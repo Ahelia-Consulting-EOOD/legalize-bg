@@ -115,5 +115,4 @@ chrome:
   ruling: "W-003: FR-036 lex.bg sidebar chrome in one act pending re-fetch"
   owner_signed: 2026-09-05
   expires: "Part V repair sweep (PR #23 phase 7); each act leaves the waiver as it is repaired"
-  acts:
-    naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni: 2
+  acts: {}
