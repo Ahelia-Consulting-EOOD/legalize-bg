@@ -1,0 +1,82 @@
+{
+ "slug": "naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal",
+ "round": 1,
+ "blocks": 554,
+ "sections": 9,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 545,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 16 is possible if not inside an annex"
+  },
+  {
+   "block": 546,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 17 is possible if not inside an annex"
+  },
+  {
+   "block": 547,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 18 is possible if not inside an annex"
+  },
+  {
+   "block": 548,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 19 is possible if not inside an annex"
+  },
+  {
+   "block": 549,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 20 is possible if not inside an annex"
+  },
+  {
+   "block": 550,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 21 is possible if not inside an annex"
+  },
+  {
+   "block": 551,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 22 is possible if not inside an annex"
+  },
+  {
+   "block": 552,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 23 is possible if not inside an annex"
+  },
+  {
+   "block": 553,
+   "kind": "low_confidence",
+   "detail": "glossary list of facilities consistent with neighbours labelled annex_row; context shows § 3 as last heading, so item 24 is possible if not inside an annex"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 9
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 1,
+  "section_heading": 4,
+  "article_head": 7,
+  "item": 20,
+  "alinea": 9,
+  "provisions_heading": 2,
+  "paragraph_sign": 3,
+  "annex_heading": 9,
+  "annex_row": 497
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: lex.bg 'add to my acts' button"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 9,
+ "diff_lines": 20
+}
