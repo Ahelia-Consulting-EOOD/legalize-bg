@@ -1,0 +1,111 @@
+{
+ "slug": "zakon-za-publichnite-finansi",
+ "round": 0,
+ "blocks": 1601,
+ "sections": 37,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 1133,
+   "kind": "bad_number",
+   "detail": "letter with n='a'"
+  },
+  {
+   "block": 1133,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 404,
+   "kind": "low_confidence",
+   "detail": "repealed alinea (Отм.); alinea or repeal_note"
+  },
+  {
+   "block": 610,
+   "kind": "low_confidence",
+   "detail": "repealed alinea (Отм.); alinea or repeal_note"
+  },
+  {
+   "block": 1133,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 1134,
+   "kind": "letter_order",
+   "detail": "б) opens the lettering"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "bad_number": 1,
+  "missing_entry": 1,
+  "low_confidence": 2,
+  "unknown": 1,
+  "letter_order": 1
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 8,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 34,
+  "article_head": 194,
+  "item": 480,
+  "alinea": 477,
+  "letter": 116,
+  "section_heading": 40,
+  "provisions_heading": 9,
+  "paragraph_sign": 128,
+  "quoted": 107,
+  "adoption_formula": 1,
+  "editorial_note": 3
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1579,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; drop or editorial_note"
+  },
+  {
+   "block": 1595,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg block listing related EU legislation, not part of the act"
+  },
+  {
+   "block": 1596,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  },
+  {
+   "block": 1597,
+   "text": "ДИРЕКТИВА 2011/85/ЕС НА СЪВЕТА от 8 ноември 2011 г. относно изискванията за бюдж",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  },
+  {
+   "block": 1598,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  },
+  {
+   "block": 1599,
+   "text": "РЕГЛАМЕНТ НА СЪВЕТА (ЕО) № 479/2009 от 25 май 2009 година за прилагане на Проток",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  },
+  {
+   "block": 1600,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1466/97 НА СЪВЕТА от 7 юли 1997 година за засилване на надзора ",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 4,
+ "diff_lines": 25
+}

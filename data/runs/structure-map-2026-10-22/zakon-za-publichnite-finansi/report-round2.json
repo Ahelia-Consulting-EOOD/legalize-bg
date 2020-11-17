@@ -1,0 +1,92 @@
+{
+ "slug": "zakon-za-publichnite-finansi",
+ "round": 2,
+ "blocks": 1601,
+ "sections": 37,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1592
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/8": [
+   1579
+  ],
+  "D-072/1": [
+   1592
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 8,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 34,
+  "article_head": 194,
+  "item": 480,
+  "alinea": 477,
+  "letter": 117,
+  "section_heading": 40,
+  "provisions_heading": 9,
+  "paragraph_sign": 128,
+  "quoted": 107,
+  "adoption_formula": 1,
+  "editorial_note": 3
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1579,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; drop or editorial_note"
+  },
+  {
+   "block": 1595,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg block listing related EU legislation, not part of the act"
+  },
+  {
+   "block": 1596,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  },
+  {
+   "block": 1597,
+   "text": "ДИРЕКТИВА 2011/85/ЕС НА СЪВЕТА от 8 ноември 2011 г. относно изискванията за бюдж",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  },
+  {
+   "block": 1598,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  },
+  {
+   "block": 1599,
+   "text": "РЕГЛАМЕНТ НА СЪВЕТА (ЕО) № 479/2009 от 25 май 2009 година за прилагане на Проток",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  },
+  {
+   "block": 1600,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1466/97 НА СЪВЕТА от 7 юли 1997 година за засилване на надзора ",
+   "note": "lex.bg related EU legislation list, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 22
+}
