@@ -1,0 +1,6526 @@
+{
+ "0": {
+  "i": 0,
+  "label": "drop",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg site chrome (add to my acts button)"
+ },
+ "1": {
+  "i": 1,
+  "label": "title",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "2": {
+  "i": 2,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg's own remark that the denomination of 1999 is reflected; not an in-force or publication line of the act"
+ },
+ "3": {
+  "i": 3,
+  "label": "article_head",
+  "n": "1",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "4": {
+  "i": 4,
+  "label": "part_heading",
+  "n": null,
+  "conf": "high",
+  "note": "top division of the act (Обща част), above the Roman-numbered chapters"
+ },
+ "5": {
+  "i": 5,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numbered division directly under the part; Arabic-numbered divisions sit below it as sections"
+ },
+ "6": {
+  "i": 6,
+  "label": "article_head",
+  "n": "2",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "7": {
+  "i": 7,
+  "label": "article_head",
+  "n": "3",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "8": {
+  "i": 8,
+  "label": "article_head",
+  "n": "4",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "9": {
+  "i": 9,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "same Roman-numbered level as I. ОСНОВНИ ПРАВИЛА; followed by an Arabic-numbered section"
+ },
+ "10": {
+  "i": 10,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Arabic-numbered division in capitals under Roman chapter II; heading, not an item"
+ },
+ "11": {
+  "i": 11,
+  "label": "article_head",
+  "n": "5",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "12": {
+  "i": 12,
+  "label": "article_head",
+  "n": "6",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "13": {
+  "i": 13,
+  "label": "article_head",
+  "n": "7",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "14": {
+  "i": 14,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Arabic-numbered division in capitals under Roman chapter II, sibling of section 1; followed by lettered subsections"
+ },
+ "15": {
+  "i": 15,
+  "label": "subsection_heading",
+  "n": null,
+  "conf": "high",
+  "note": "lettered division in capitals under section 2; heading, not a letter item"
+ },
+ "16": {
+  "i": 16,
+  "label": "article_head",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "17": {
+  "i": 17,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 8"
+ },
+ "18": {
+  "i": 18,
+  "label": "article_head",
+  "n": "9",
+  "conf": "high",
+  "note": ""
+ },
+ "19": {
+  "i": 19,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg line recording that ал. 2 of Чл. 9 is repealed; not a provision text of its own, so not unnumbered_alinea"
+ },
+ "20": {
+  "i": 20,
+  "label": "article_head",
+  "n": "10",
+  "conf": "high",
+  "note": "first paragraph repealed"
+ },
+ "21": {
+  "i": 21,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 10"
+ },
+ "22": {
+  "i": 22,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 10"
+ },
+ "23": {
+  "i": 23,
+  "label": "article_head",
+  "n": "11",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "24": {
+  "i": 24,
+  "label": "article_head",
+  "n": "12",
+  "conf": "high",
+  "note": ""
+ },
+ "25": {
+  "i": 25,
+  "label": "article_head",
+  "n": "13",
+  "conf": "high",
+  "note": ""
+ },
+ "26": {
+  "i": 26,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "27": {
+  "i": 27,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "28": {
+  "i": 28,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "29": {
+  "i": 29,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "30": {
+  "i": 30,
+  "label": "article_head",
+  "n": "14",
+  "conf": "high",
+  "note": ""
+ },
+ "31": {
+  "i": 31,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "32": {
+  "i": 32,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "33": {
+  "i": 33,
+  "label": "article_head",
+  "n": "15",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "34": {
+  "i": 34,
+  "label": "article_head",
+  "n": "16",
+  "conf": "high",
+  "note": ""
+ },
+ "35": {
+  "i": 35,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "36": {
+  "i": 36,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "37": {
+  "i": 37,
+  "label": "article_head",
+  "n": "17",
+  "conf": "high",
+  "note": ""
+ },
+ "38": {
+  "i": 38,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "39": {
+  "i": 39,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "40": {
+  "i": 40,
+  "label": "article_head",
+  "n": "18",
+  "conf": "high",
+  "note": ""
+ },
+ "41": {
+  "i": 41,
+  "label": "article_head",
+  "n": "19",
+  "conf": "high",
+  "note": ""
+ },
+ "42": {
+  "i": 42,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "43": {
+  "i": 43,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "44": {
+  "i": 44,
+  "label": "article_head",
+  "n": "20",
+  "conf": "high",
+  "note": ""
+ },
+ "45": {
+  "i": 45,
+  "label": "subsection_heading",
+  "n": null,
+  "conf": "high",
+  "note": "sibling of А) СКЛЮЧВАНЕ НА ДОГОВОРИТЕ under section 2. ДОГОВОРИ"
+ },
+ "46": {
+  "i": 46,
+  "label": "article_head",
+  "n": "20а",
+  "conf": "high",
+  "note": "first paragraph of Чл. 20а"
+ },
+ "47": {
+  "i": 47,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 20а"
+ },
+ "48": {
+  "i": 48,
+  "label": "article_head",
+  "n": "21",
+  "conf": "high",
+  "note": ""
+ },
+ "49": {
+  "i": 49,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 21"
+ },
+ "50": {
+  "i": 50,
+  "label": "article_head",
+  "n": "22",
+  "conf": "high",
+  "note": ""
+ },
+ "51": {
+  "i": 51,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 22"
+ },
+ "52": {
+  "i": 52,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 22"
+ },
+ "53": {
+  "i": 53,
+  "label": "article_head",
+  "n": "23",
+  "conf": "high",
+  "note": ""
+ },
+ "54": {
+  "i": 54,
+  "label": "article_head",
+  "n": "24",
+  "conf": "high",
+  "note": ""
+ },
+ "55": {
+  "i": 55,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 24"
+ },
+ "56": {
+  "i": 56,
+  "label": "article_head",
+  "n": "25",
+  "conf": "high",
+  "note": ""
+ },
+ "57": {
+  "i": 57,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 25"
+ },
+ "58": {
+  "i": 58,
+  "label": "subsection_heading",
+  "n": null,
+  "conf": "high",
+  "note": "sibling of А) and Б) under section 2. ДОГОВОРИ"
+ },
+ "59": {
+  "i": 59,
+  "label": "article_head",
+  "n": "26",
+  "conf": "high",
+  "note": "opens with ал. 1 editorial remark"
+ },
+ "60": {
+  "i": 60,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of Чл. 26, unnumbered"
+ },
+ "61": {
+  "i": 61,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line only states that ал. 3 of the article is repealed; it carries no provision text"
+ },
+ "62": {
+  "i": 62,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 4 of Чл. 26, unnumbered, with leading editorial remark"
+ },
+ "63": {
+  "i": 63,
+  "label": "article_head",
+  "n": "27",
+  "conf": "high",
+  "note": ""
+ },
+ "64": {
+  "i": 64,
+  "label": "article_head",
+  "n": "28",
+  "conf": "high",
+  "note": ""
+ },
+ "65": {
+  "i": 65,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 28"
+ },
+ "66": {
+  "i": 66,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 28"
+ },
+ "67": {
+  "i": 67,
+  "label": "article_head",
+  "n": "29",
+  "conf": "high",
+  "note": ""
+ },
+ "68": {
+  "i": 68,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 29"
+ },
+ "69": {
+  "i": 69,
+  "label": "article_head",
+  "n": "30",
+  "conf": "high",
+  "note": ""
+ },
+ "70": {
+  "i": 70,
+  "label": "article_head",
+  "n": "31",
+  "conf": "high",
+  "note": ""
+ },
+ "71": {
+  "i": 71,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 31"
+ },
+ "72": {
+  "i": 72,
+  "label": "article_head",
+  "n": "32",
+  "conf": "high",
+  "note": ""
+ },
+ "73": {
+  "i": 73,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 32"
+ },
+ "74": {
+  "i": 74,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 32"
+ },
+ "75": {
+  "i": 75,
+  "label": "article_head",
+  "n": "33",
+  "conf": "high",
+  "note": ""
+ },
+ "76": {
+  "i": 76,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 33"
+ },
+ "77": {
+  "i": 77,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 33"
+ },
+ "78": {
+  "i": 78,
+  "label": "article_head",
+  "n": "34",
+  "conf": "high",
+  "note": ""
+ },
+ "79": {
+  "i": 79,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line only states that ал. 2-5 of Чл. 34 are deleted (зал.), standing in place of those paragraphs; no provision text"
+ },
+ "80": {
+  "i": 80,
+  "label": "article_head",
+  "n": "35",
+  "conf": "high",
+  "note": ""
+ },
+ "81": {
+  "i": 81,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 35"
+ },
+ "82": {
+  "i": 82,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 35"
+ },
+ "83": {
+  "i": 83,
+  "label": "subsection_heading",
+  "n": null,
+  "conf": "high",
+  "note": "lettered division under the numbered division 1. Договор; same level as А), Б), В) in context"
+ },
+ "84": {
+  "i": 84,
+  "label": "article_head",
+  "n": "36",
+  "conf": "high",
+  "note": ""
+ },
+ "85": {
+  "i": 85,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 36, unnumbered"
+ },
+ "86": {
+  "i": 86,
+  "label": "article_head",
+  "n": "37",
+  "conf": "high",
+  "note": "inline amendment note stays in the article text"
+ },
+ "87": {
+  "i": 87,
+  "label": "article_head",
+  "n": "38",
+  "conf": "high",
+  "note": ""
+ },
+ "88": {
+  "i": 88,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 38"
+ },
+ "89": {
+  "i": 89,
+  "label": "article_head",
+  "n": "39",
+  "conf": "high",
+  "note": ""
+ },
+ "90": {
+  "i": 90,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 39"
+ },
+ "91": {
+  "i": 91,
+  "label": "article_head",
+  "n": "40",
+  "conf": "high",
+  "note": ""
+ },
+ "92": {
+  "i": 92,
+  "label": "article_head",
+  "n": "41",
+  "conf": "high",
+  "note": ""
+ },
+ "93": {
+  "i": 93,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 41"
+ },
+ "94": {
+  "i": 94,
+  "label": "article_head",
+  "n": "42",
+  "conf": "high",
+  "note": ""
+ },
+ "95": {
+  "i": 95,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 42"
+ },
+ "96": {
+  "i": 96,
+  "label": "article_head",
+  "n": "43",
+  "conf": "high",
+  "note": ""
+ },
+ "97": {
+  "i": 97,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 43"
+ },
+ "98": {
+  "i": 98,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 43"
+ },
+ "99": {
+  "i": 99,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "numbered division of the sources of obligations, parent level of the lettered divisions А)-Г); sibling of 1. Договор"
+ },
+ "100": {
+  "i": 100,
+  "label": "article_head",
+  "n": "44",
+  "conf": "high",
+  "note": ""
+ },
+ "101": {
+  "i": 101,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "numbered division, same level as 3. Едностранни волеизявления (block 99)"
+ },
+ "102": {
+  "i": 102,
+  "label": "article_head",
+  "n": "45",
+  "conf": "high",
+  "note": ""
+ },
+ "103": {
+  "i": 103,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 45"
+ },
+ "104": {
+  "i": 104,
+  "label": "article_head",
+  "n": "46",
+  "conf": "high",
+  "note": ""
+ },
+ "105": {
+  "i": 105,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 46"
+ },
+ "106": {
+  "i": 106,
+  "label": "article_head",
+  "n": "47",
+  "conf": "high",
+  "note": ""
+ },
+ "107": {
+  "i": 107,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 47"
+ },
+ "108": {
+  "i": 108,
+  "label": "article_head",
+  "n": "48",
+  "conf": "high",
+  "note": ""
+ },
+ "109": {
+  "i": 109,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 48"
+ },
+ "110": {
+  "i": 110,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 48"
+ },
+ "111": {
+  "i": 111,
+  "label": "article_head",
+  "n": "49",
+  "conf": "high",
+  "note": ""
+ },
+ "112": {
+  "i": 112,
+  "label": "article_head",
+  "n": "50",
+  "conf": "high",
+  "note": ""
+ },
+ "113": {
+  "i": 113,
+  "label": "article_head",
+  "n": "51",
+  "conf": "high",
+  "note": ""
+ },
+ "114": {
+  "i": 114,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 51"
+ },
+ "115": {
+  "i": 115,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 51"
+ },
+ "116": {
+  "i": 116,
+  "label": "article_head",
+  "n": "52",
+  "conf": "high",
+  "note": ""
+ },
+ "117": {
+  "i": 117,
+  "label": "article_head",
+  "n": "53",
+  "conf": "high",
+  "note": ""
+ },
+ "118": {
+  "i": 118,
+  "label": "article_head",
+  "n": "54",
+  "conf": "high",
+  "note": ""
+ },
+ "119": {
+  "i": 119,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "arabic-numbered division under a roman-numbered division, same level as 3. and 4. in context"
+ },
+ "120": {
+  "i": 120,
+  "label": "article_head",
+  "n": "55",
+  "conf": "high",
+  "note": ""
+ },
+ "121": {
+  "i": 121,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second alinea of Чл. 55, unnumbered drafting"
+ },
+ "122": {
+  "i": 122,
+  "label": "article_head",
+  "n": "56",
+  "conf": "high",
+  "note": ""
+ },
+ "123": {
+  "i": 123,
+  "label": "article_head",
+  "n": "57",
+  "conf": "high",
+  "note": ""
+ },
+ "124": {
+  "i": 124,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "125": {
+  "i": 125,
+  "label": "article_head",
+  "n": "58",
+  "conf": "high",
+  "note": ""
+ },
+ "126": {
+  "i": 126,
+  "label": "article_head",
+  "n": "59",
+  "conf": "high",
+  "note": ""
+ },
+ "127": {
+  "i": 127,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "128": {
+  "i": 128,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "arabic-numbered division under a roman-numbered division, same level as 3.-5. in context"
+ },
+ "129": {
+  "i": 129,
+  "label": "article_head",
+  "n": "60",
+  "conf": "high",
+  "note": ""
+ },
+ "130": {
+  "i": 130,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "131": {
+  "i": 131,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "132": {
+  "i": 132,
+  "label": "article_head",
+  "n": "61",
+  "conf": "high",
+  "note": ""
+ },
+ "133": {
+  "i": 133,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "134": {
+  "i": 134,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "135": {
+  "i": 135,
+  "label": "article_head",
+  "n": "62",
+  "conf": "high",
+  "note": ""
+ },
+ "136": {
+  "i": 136,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered division directly above the arabic-numbered divisions (1. Изпълнение follows); the level above the section headings, not a Част/Дял"
+ },
+ "137": {
+  "i": 137,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "first arabic-numbered division under roman division III (block 136, chapter_heading); same level as 1.-6. under the earlier roman division"
+ },
+ "138": {
+  "i": 138,
+  "label": "article_head",
+  "n": "63",
+  "conf": "high",
+  "note": "carries an inline amendment note for ал. 1"
+ },
+ "139": {
+  "i": 139,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "140": {
+  "i": 140,
+  "label": "article_head",
+  "n": "64",
+  "conf": "high",
+  "note": ""
+ },
+ "141": {
+  "i": 141,
+  "label": "article_head",
+  "n": "65",
+  "conf": "high",
+  "note": ""
+ },
+ "142": {
+  "i": 142,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "143": {
+  "i": 143,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "144": {
+  "i": 144,
+  "label": "article_head",
+  "n": "66",
+  "conf": "high",
+  "note": ""
+ },
+ "145": {
+  "i": 145,
+  "label": "article_head",
+  "n": "67",
+  "conf": "high",
+  "note": "repealed article; head line carries the repeal note"
+ },
+ "146": {
+  "i": 146,
+  "label": "article_head",
+  "n": "68",
+  "conf": "high",
+  "note": ""
+ },
+ "147": {
+  "i": 147,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "148": {
+  "i": 148,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "149": {
+  "i": 149,
+  "label": "letter",
+  "n": "в",
+  "conf": "high",
+  "note": ""
+ },
+ "150": {
+  "i": 150,
+  "label": "article_head",
+  "n": "69",
+  "conf": "high",
+  "note": ""
+ },
+ "151": {
+  "i": 151,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "152": {
+  "i": 152,
+  "label": "article_head",
+  "n": "70",
+  "conf": "high",
+  "note": ""
+ },
+ "153": {
+  "i": 153,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "154": {
+  "i": 154,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "155": {
+  "i": 155,
+  "label": "article_head",
+  "n": "71",
+  "conf": "high",
+  "note": ""
+ },
+ "156": {
+  "i": 156,
+  "label": "article_head",
+  "n": "72",
+  "conf": "high",
+  "note": ""
+ },
+ "157": {
+  "i": 157,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "158": {
+  "i": 158,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "159": {
+  "i": 159,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "160": {
+  "i": 160,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "161": {
+  "i": 161,
+  "label": "article_head",
+  "n": "73",
+  "conf": "high",
+  "note": ""
+ },
+ "162": {
+  "i": 162,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line only states that ал. 2 of Чл. 73 is repealed; no provision text; labelled as the same kind of line in Чл. 26 (block 61)"
+ },
+ "163": {
+  "i": 163,
+  "label": "article_head",
+  "n": "74",
+  "conf": "high",
+  "note": ""
+ },
+ "164": {
+  "i": 164,
+  "label": "article_head",
+  "n": "75",
+  "conf": "high",
+  "note": ""
+ },
+ "165": {
+  "i": 165,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "166": {
+  "i": 166,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "new alinea (ДВ 83/1996) with inline editorial note"
+ },
+ "167": {
+  "i": 167,
+  "label": "article_head",
+  "n": "76",
+  "conf": "high",
+  "note": ""
+ },
+ "168": {
+  "i": 168,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "169": {
+  "i": 169,
+  "label": "article_head",
+  "n": "77",
+  "conf": "high",
+  "note": ""
+ },
+ "170": {
+  "i": 170,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "171": {
+  "i": 171,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "172": {
+  "i": 172,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "173": {
+  "i": 173,
+  "label": "article_head",
+  "n": "78",
+  "conf": "high",
+  "note": ""
+ },
+ "174": {
+  "i": 174,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "numbered section heading inside the chapter (2. НЕИЗПЪЛНЕНИЕ); not an item"
+ },
+ "175": {
+  "i": 175,
+  "label": "article_head",
+  "n": "79",
+  "conf": "high",
+  "note": ""
+ },
+ "176": {
+  "i": 176,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 79"
+ },
+ "177": {
+  "i": 177,
+  "label": "article_head",
+  "n": "80",
+  "conf": "high",
+  "note": ""
+ },
+ "178": {
+  "i": 178,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 80"
+ },
+ "179": {
+  "i": 179,
+  "label": "article_head",
+  "n": "81",
+  "conf": "high",
+  "note": ""
+ },
+ "180": {
+  "i": 180,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 81"
+ },
+ "181": {
+  "i": 181,
+  "label": "article_head",
+  "n": "82",
+  "conf": "high",
+  "note": ""
+ },
+ "182": {
+  "i": 182,
+  "label": "article_head",
+  "n": "83",
+  "conf": "high",
+  "note": ""
+ },
+ "183": {
+  "i": 183,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 83"
+ },
+ "184": {
+  "i": 184,
+  "label": "article_head",
+  "n": "84",
+  "conf": "high",
+  "note": ""
+ },
+ "185": {
+  "i": 185,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 84"
+ },
+ "186": {
+  "i": 186,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 3 of чл. 84"
+ },
+ "187": {
+  "i": 187,
+  "label": "article_head",
+  "n": "85",
+  "conf": "high",
+  "note": ""
+ },
+ "188": {
+  "i": 188,
+  "label": "article_head",
+  "n": "86",
+  "conf": "high",
+  "note": ""
+ },
+ "189": {
+  "i": 189,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 86"
+ },
+ "190": {
+  "i": 190,
+  "label": "article_head",
+  "n": "87",
+  "conf": "high",
+  "note": ""
+ },
+ "191": {
+  "i": 191,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 87"
+ },
+ "192": {
+  "i": 192,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 3 of чл. 87"
+ },
+ "193": {
+  "i": 193,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 4 of чл. 87"
+ },
+ "194": {
+  "i": 194,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 5 of чл. 87"
+ },
+ "195": {
+  "i": 195,
+  "label": "article_head",
+  "n": "88",
+  "conf": "high",
+  "note": ""
+ },
+ "196": {
+  "i": 196,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 88"
+ },
+ "197": {
+  "i": 197,
+  "label": "article_head",
+  "n": "89",
+  "conf": "high",
+  "note": ""
+ },
+ "198": {
+  "i": 198,
+  "label": "article_head",
+  "n": "90",
+  "conf": "high",
+  "note": ""
+ },
+ "199": {
+  "i": 199,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 90"
+ },
+ "200": {
+  "i": 200,
+  "label": "article_head",
+  "n": "91",
+  "conf": "high",
+  "note": ""
+ },
+ "201": {
+  "i": 201,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 91"
+ },
+ "202": {
+  "i": 202,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line stating that ал. 3 of the current article is repealed; between two unnumbered paragraphs"
+ },
+ "203": {
+  "i": 203,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 4 of чл. 91 (counting the repealed ал. 3)"
+ },
+ "204": {
+  "i": 204,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 5 of чл. 91"
+ },
+ "205": {
+  "i": 205,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line stating that ал. 6 of the current article is repealed; last line before Чл. 92"
+ },
+ "206": {
+  "i": 206,
+  "label": "article_head",
+  "n": "92",
+  "conf": "high",
+  "note": ""
+ },
+ "207": {
+  "i": 207,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 92 (repealed then re-enacted), with lex.bg amendment note as prefix"
+ },
+ "208": {
+  "i": 208,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line stating that ал. 3 and 4 of the current article are repealed; no text of its own"
+ },
+ "209": {
+  "i": 209,
+  "label": "article_head",
+  "n": "93",
+  "conf": "high",
+  "note": ""
+ },
+ "210": {
+  "i": 210,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 93"
+ },
+ "211": {
+  "i": 211,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 3 of чл. 93"
+ },
+ "212": {
+  "i": 212,
+  "label": "article_head",
+  "n": "94",
+  "conf": "high",
+  "note": ""
+ },
+ "213": {
+  "i": 213,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line stating that ал. 2 of Чл. 94 is repealed; no text of its own"
+ },
+ "214": {
+  "i": 214,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "third Arabic-numbered division under Roman III, sibling of 1. ИЗПЪЛНЕНИЕ and 2. НЕИЗПЪЛНЕНИЕ; same level as them"
+ },
+ "215": {
+  "i": 215,
+  "label": "article_head",
+  "n": "95",
+  "conf": "high",
+  "note": ""
+ },
+ "216": {
+  "i": 216,
+  "label": "article_head",
+  "n": "96",
+  "conf": "high",
+  "note": ""
+ },
+ "217": {
+  "i": 217,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 96, no number"
+ },
+ "218": {
+  "i": 218,
+  "label": "article_head",
+  "n": "97",
+  "conf": "high",
+  "note": ""
+ },
+ "219": {
+  "i": 219,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 97, no number"
+ },
+ "220": {
+  "i": 220,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 97, no number"
+ },
+ "221": {
+  "i": 221,
+  "label": "article_head",
+  "n": "98",
+  "conf": "high",
+  "note": ""
+ },
+ "222": {
+  "i": 222,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numbered division, sibling of III. ДЕЙСТВИЯ НА ЗАДЪЛЖЕНИЯТА which holds the Arabic-numbered sections; chapter level"
+ },
+ "223": {
+  "i": 223,
+  "label": "article_head",
+  "n": "99",
+  "conf": "high",
+  "note": ""
+ },
+ "224": {
+  "i": 224,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 99, no number"
+ },
+ "225": {
+  "i": 225,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 99, no number"
+ },
+ "226": {
+  "i": 226,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 99, no number"
+ },
+ "227": {
+  "i": 227,
+  "label": "article_head",
+  "n": "100",
+  "conf": "high",
+  "note": ""
+ },
+ "228": {
+  "i": 228,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 100, no number"
+ },
+ "229": {
+  "i": 229,
+  "label": "article_head",
+  "n": "101",
+  "conf": "high",
+  "note": ""
+ },
+ "230": {
+  "i": 230,
+  "label": "article_head",
+  "n": "102",
+  "conf": "high",
+  "note": ""
+ },
+ "231": {
+  "i": 231,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 102, no number"
+ },
+ "232": {
+  "i": 232,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 102, no number"
+ },
+ "233": {
+  "i": 233,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numbered division followed by Arabic-numbered sections, sibling of IV; chapter level"
+ },
+ "234": {
+  "i": 234,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "first Arabic-numbered division directly under chapter-level V; same level as the Arabic sections under III"
+ },
+ "235": {
+  "i": 235,
+  "label": "article_head",
+  "n": "103",
+  "conf": "high",
+  "note": ""
+ },
+ "236": {
+  "i": 236,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 103, no number"
+ },
+ "237": {
+  "i": 237,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 103, no number"
+ },
+ "238": {
+  "i": 238,
+  "label": "article_head",
+  "n": "104",
+  "conf": "high",
+  "note": ""
+ },
+ "239": {
+  "i": 239,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "paragraph of Чл. 104, no number"
+ },
+ "240": {
+  "i": 240,
+  "label": "article_head",
+  "n": "105",
+  "conf": "high",
+  "note": ""
+ },
+ "241": {
+  "i": 241,
+  "label": "article_head",
+  "n": "106",
+  "conf": "high",
+  "note": "repealed article; its whole text is the repeal remark"
+ },
+ "242": {
+  "i": 242,
+  "label": "article_head",
+  "n": "107",
+  "conf": "high",
+  "note": ""
+ },
+ "243": {
+  "i": 243,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line stating that ал. 2 of Чл. 107 is repealed; no text of its own"
+ },
+ "244": {
+  "i": 244,
+  "label": "article_head",
+  "n": "108",
+  "conf": "high",
+  "note": ""
+ },
+ "245": {
+  "i": 245,
+  "label": "article_head",
+  "n": "109",
+  "conf": "high",
+  "note": ""
+ },
+ "246": {
+  "i": 246,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second Arabic-numbered division under chapter-level V, sibling of 1. ПРИХВАЩАНЕ, ПОДНОВЯВАНЕ И ОПРОЩАВАНЕ"
+ },
+ "247": {
+  "i": 247,
+  "label": "article_head",
+  "n": "110",
+  "conf": "high",
+  "note": ""
+ },
+ "248": {
+  "i": 248,
+  "label": "article_head",
+  "n": "111",
+  "conf": "high",
+  "note": ""
+ },
+ "249": {
+  "i": 249,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "250": {
+  "i": 250,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "251": {
+  "i": 251,
+  "label": "letter",
+  "n": "в",
+  "conf": "high",
+  "note": ""
+ },
+ "252": {
+  "i": 252,
+  "label": "letter",
+  "n": "г",
+  "conf": "high",
+  "note": "deleted letter (зал.), keeps its address"
+ },
+ "253": {
+  "i": 253,
+  "label": "article_head",
+  "n": "112",
+  "conf": "high",
+  "note": ""
+ },
+ "254": {
+  "i": 254,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 112 (refers to ал. 1)"
+ },
+ "255": {
+  "i": 255,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "256": {
+  "i": 256,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "257": {
+  "i": 257,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "258": {
+  "i": 258,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "259": {
+  "i": 259,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "260": {
+  "i": 260,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "261": {
+  "i": 261,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "262": {
+  "i": 262,
+  "label": "item",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "263": {
+  "i": 263,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 112"
+ },
+ "264": {
+  "i": 264,
+  "label": "article_head",
+  "n": "113",
+  "conf": "high",
+  "note": ""
+ },
+ "265": {
+  "i": 265,
+  "label": "article_head",
+  "n": "114",
+  "conf": "high",
+  "note": ""
+ },
+ "266": {
+  "i": 266,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "267": {
+  "i": 267,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "268": {
+  "i": 268,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 4 per its amendment note"
+ },
+ "269": {
+  "i": 269,
+  "label": "article_head",
+  "n": "115",
+  "conf": "high",
+  "note": ""
+ },
+ "270": {
+  "i": 270,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "271": {
+  "i": 271,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "272": {
+  "i": 272,
+  "label": "letter",
+  "n": "в",
+  "conf": "high",
+  "note": ""
+ },
+ "273": {
+  "i": 273,
+  "label": "letter",
+  "n": "г",
+  "conf": "high",
+  "note": ""
+ },
+ "274": {
+  "i": 274,
+  "label": "letter",
+  "n": "д",
+  "conf": "high",
+  "note": ""
+ },
+ "275": {
+  "i": 275,
+  "label": "letter",
+  "n": "е",
+  "conf": "high",
+  "note": ""
+ },
+ "276": {
+  "i": 276,
+  "label": "letter",
+  "n": "ж",
+  "conf": "high",
+  "note": ""
+ },
+ "277": {
+  "i": 277,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 115"
+ },
+ "278": {
+  "i": 278,
+  "label": "article_head",
+  "n": "116",
+  "conf": "high",
+  "note": ""
+ },
+ "279": {
+  "i": 279,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "280": {
+  "i": 280,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "281": {
+  "i": 281,
+  "label": "letter",
+  "n": "в",
+  "conf": "high",
+  "note": ""
+ },
+ "282": {
+  "i": 282,
+  "label": "article_head",
+  "n": "116а",
+  "conf": "high",
+  "note": ""
+ },
+ "283": {
+  "i": 283,
+  "label": "article_head",
+  "n": "117",
+  "conf": "high",
+  "note": ""
+ },
+ "284": {
+  "i": 284,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 per its amendment note"
+ },
+ "285": {
+  "i": 285,
+  "label": "article_head",
+  "n": "118",
+  "conf": "high",
+  "note": ""
+ },
+ "286": {
+  "i": 286,
+  "label": "article_head",
+  "n": "119",
+  "conf": "high",
+  "note": ""
+ },
+ "287": {
+  "i": 287,
+  "label": "article_head",
+  "n": "120",
+  "conf": "high",
+  "note": ""
+ },
+ "288": {
+  "i": 288,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "placeholder for repealed second paragraph of чл. 120 in an article with unnumbered paragraphs; keeps the paragraph's position, so not a free-standing repeal_note"
+ },
+ "289": {
+  "i": 289,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "placeholder for repealed third paragraph of чл. 120 (unnumbered paragraphs); keeps the paragraph's position, same treatment as block 288"
+ },
+ "290": {
+  "i": 290,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "placeholder for repealed fourth paragraph of чл. 120 (unnumbered paragraphs); keeps the paragraph's position, same treatment as blocks 288-289"
+ },
+ "291": {
+  "i": 291,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numbered caps division, same level as V.; Arabic-numbered headings under it are sections, so the Roman level is the chapter"
+ },
+ "292": {
+  "i": 292,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "numbered uppercase subdivision under roman-numeral heading"
+ },
+ "293": {
+  "i": 293,
+  "label": "article_head",
+  "n": "121",
+  "conf": "high",
+  "note": ""
+ },
+ "294": {
+  "i": 294,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "repeal of alinea 2 of Чл. 121"
+ },
+ "295": {
+  "i": 295,
+  "label": "article_head",
+  "n": "122",
+  "conf": "high",
+  "note": ""
+ },
+ "296": {
+  "i": 296,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "297": {
+  "i": 297,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "298": {
+  "i": 298,
+  "label": "article_head",
+  "n": "123",
+  "conf": "high",
+  "note": ""
+ },
+ "299": {
+  "i": 299,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "300": {
+  "i": 300,
+  "label": "article_head",
+  "n": "124",
+  "conf": "high",
+  "note": ""
+ },
+ "301": {
+  "i": 301,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "302": {
+  "i": 302,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "303": {
+  "i": 303,
+  "label": "article_head",
+  "n": "125",
+  "conf": "high",
+  "note": ""
+ },
+ "304": {
+  "i": 304,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "305": {
+  "i": 305,
+  "label": "article_head",
+  "n": "126",
+  "conf": "high",
+  "note": ""
+ },
+ "306": {
+  "i": 306,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "307": {
+  "i": 307,
+  "label": "article_head",
+  "n": "127",
+  "conf": "high",
+  "note": ""
+ },
+ "308": {
+  "i": 308,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "309": {
+  "i": 309,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "310": {
+  "i": 310,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "311": {
+  "i": 311,
+  "label": "article_head",
+  "n": "128",
+  "conf": "high",
+  "note": ""
+ },
+ "312": {
+  "i": 312,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "313": {
+  "i": 313,
+  "label": "article_head",
+  "n": "129",
+  "conf": "high",
+  "note": ""
+ },
+ "314": {
+  "i": 314,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "315": {
+  "i": 315,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "316": {
+  "i": 316,
+  "label": "article_head",
+  "n": "130",
+  "conf": "high",
+  "note": ""
+ },
+ "317": {
+  "i": 317,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "318": {
+  "i": 318,
+  "label": "article_head",
+  "n": "131",
+  "conf": "high",
+  "note": ""
+ },
+ "319": {
+  "i": 319,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "320": {
+  "i": 320,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "321": {
+  "i": 321,
+  "label": "article_head",
+  "n": "132",
+  "conf": "high",
+  "note": ""
+ },
+ "322": {
+  "i": 322,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "323": {
+  "i": 323,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numbered caps division, same level as V. and VI.; followed by Arabic-numbered sections"
+ },
+ "324": {
+  "i": 324,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "first Arabic-numbered caps division directly under Roman chapter VII.; lettered headings (А), Б)) sit one level below as subsections"
+ },
+ "325": {
+  "i": 325,
+  "label": "article_head",
+  "n": "133",
+  "conf": "high",
+  "note": ""
+ },
+ "326": {
+  "i": 326,
+  "label": "article_head",
+  "n": "134",
+  "conf": "high",
+  "note": ""
+ },
+ "327": {
+  "i": 327,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "Second paragraph of Чл. 134, refers to предходната алинея"
+ },
+ "328": {
+  "i": 328,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "Third paragraph of Чл. 134"
+ },
+ "329": {
+  "i": 329,
+  "label": "article_head",
+  "n": "135",
+  "conf": "high",
+  "note": ""
+ },
+ "330": {
+  "i": 330,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "331": {
+  "i": 331,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "332": {
+  "i": 332,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "333": {
+  "i": 333,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Arabic-numbered caps division, same level as 1. ОБЩИ ПРАВИЛА under chapter VII."
+ },
+ "334": {
+  "i": 334,
+  "label": "article_head",
+  "n": "136",
+  "conf": "high",
+  "note": ""
+ },
+ "335": {
+  "i": 335,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "336": {
+  "i": 336,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": "Item opens with an inline amendment note"
+ },
+ "337": {
+  "i": 337,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "338": {
+  "i": 338,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "339": {
+  "i": 339,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "340": {
+  "i": 340,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "341": {
+  "i": 341,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": "Item repealed (зал.); repeal_note also plausible but item keeps the address"
+ },
+ "342": {
+  "i": 342,
+  "label": "item",
+  "n": "8",
+  "conf": "high",
+  "note": "Item repealed (зал.); repeal_note also plausible but item keeps the address"
+ },
+ "343": {
+  "i": 343,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "Second paragraph of Чл. 136 (the inline note names it Ал. 2)"
+ },
+ "344": {
+  "i": 344,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "Third paragraph of Чл. 136"
+ },
+ "345": {
+  "i": 345,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "Fourth paragraph of Чл. 136"
+ },
+ "346": {
+  "i": 346,
+  "label": "article_head",
+  "n": "137",
+  "conf": "high",
+  "note": ""
+ },
+ "347": {
+  "i": 347,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "Second paragraph of Чл. 137"
+ },
+ "348": {
+  "i": 348,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Arabic-numbered caps division, same level as 1. and 2. under chapter VII.; not an item"
+ },
+ "349": {
+  "i": 349,
+  "label": "article_head",
+  "n": "138",
+  "conf": "high",
+  "note": ""
+ },
+ "350": {
+  "i": 350,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second unnumbered paragraph of чл. 138"
+ },
+ "351": {
+  "i": 351,
+  "label": "article_head",
+  "n": "139",
+  "conf": "high",
+  "note": ""
+ },
+ "352": {
+  "i": 352,
+  "label": "article_head",
+  "n": "140",
+  "conf": "high",
+  "note": ""
+ },
+ "353": {
+  "i": 353,
+  "label": "article_head",
+  "n": "141",
+  "conf": "high",
+  "note": ""
+ },
+ "354": {
+  "i": 354,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second unnumbered paragraph of чл. 141"
+ },
+ "355": {
+  "i": 355,
+  "label": "article_head",
+  "n": "142",
+  "conf": "high",
+  "note": ""
+ },
+ "356": {
+  "i": 356,
+  "label": "article_head",
+  "n": "143",
+  "conf": "high",
+  "note": ""
+ },
+ "357": {
+  "i": 357,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second unnumbered paragraph of чл. 143"
+ },
+ "358": {
+  "i": 358,
+  "label": "article_head",
+  "n": "144",
+  "conf": "high",
+  "note": ""
+ },
+ "359": {
+  "i": 359,
+  "label": "article_head",
+  "n": "145",
+  "conf": "high",
+  "note": ""
+ },
+ "360": {
+  "i": 360,
+  "label": "article_head",
+  "n": "146",
+  "conf": "high",
+  "note": ""
+ },
+ "361": {
+  "i": 361,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second unnumbered paragraph of чл. 146"
+ },
+ "362": {
+  "i": 362,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third unnumbered paragraph of чл. 146"
+ },
+ "363": {
+  "i": 363,
+  "label": "article_head",
+  "n": "147",
+  "conf": "high",
+  "note": ""
+ },
+ "364": {
+  "i": 364,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second unnumbered paragraph of чл. 147"
+ },
+ "365": {
+  "i": 365,
+  "label": "article_head",
+  "n": "148",
+  "conf": "high",
+  "note": ""
+ },
+ "366": {
+  "i": 366,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Arabic-numbered caps division, same level as 3. ПОРЪЧИТЕЛСТВО; the lettered heading after it is the subsection level"
+ },
+ "367": {
+  "i": 367,
+  "label": "subsection_heading",
+  "n": null,
+  "conf": "high",
+  "note": "lettered caps heading under section 4. ЗАЛОГ И ИПОТЕКА, followed by чл. 149; a heading, not a letter item"
+ },
+ "368": {
+  "i": 368,
+  "label": "article_head",
+  "n": "149",
+  "conf": "high",
+  "note": ""
+ },
+ "369": {
+  "i": 369,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second unnumbered paragraph of чл. 149"
+ },
+ "370": {
+  "i": 370,
+  "label": "article_head",
+  "n": "150",
+  "conf": "high",
+  "note": ""
+ },
+ "371": {
+  "i": 371,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second unnumbered paragraph of чл. 150"
+ },
+ "372": {
+  "i": 372,
+  "label": "article_head",
+  "n": "151",
+  "conf": "high",
+  "note": ""
+ },
+ "373": {
+  "i": 373,
+  "label": "article_head",
+  "n": "152",
+  "conf": "high",
+  "note": ""
+ },
+ "374": {
+  "i": 374,
+  "label": "article_head",
+  "n": "153",
+  "conf": "high",
+  "note": ""
+ },
+ "375": {
+  "i": 375,
+  "label": "article_head",
+  "n": "154",
+  "conf": "high",
+  "note": "inline amendment note (Изм. - ДВ, бр. 12 от 1993 г.) is part of the article line"
+ },
+ "376": {
+  "i": 376,
+  "label": "article_head",
+  "n": "155",
+  "conf": "high",
+  "note": ""
+ },
+ "377": {
+  "i": 377,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second unnumbered paragraph of чл. 155"
+ },
+ "378": {
+  "i": 378,
+  "label": "subsection_heading",
+  "n": null,
+  "conf": "high",
+  "note": "lettered heading nested under the numbered section 4; sibling of А) ОБЩИ РАЗПОРЕЖДАНИЯ"
+ },
+ "379": {
+  "i": 379,
+  "label": "article_head",
+  "n": "156",
+  "conf": "high",
+  "note": ""
+ },
+ "380": {
+  "i": 380,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 156, opens with an inline amendment note"
+ },
+ "381": {
+  "i": 381,
+  "label": "article_head",
+  "n": "157",
+  "conf": "high",
+  "note": ""
+ },
+ "382": {
+  "i": 382,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "383": {
+  "i": 383,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "384": {
+  "i": 384,
+  "label": "article_head",
+  "n": "158",
+  "conf": "high",
+  "note": ""
+ },
+ "385": {
+  "i": 385,
+  "label": "article_head",
+  "n": "159",
+  "conf": "high",
+  "note": ""
+ },
+ "386": {
+  "i": 386,
+  "label": "article_head",
+  "n": "160",
+  "conf": "high",
+  "note": ""
+ },
+ "387": {
+  "i": 387,
+  "label": "article_head",
+  "n": "161",
+  "conf": "high",
+  "note": ""
+ },
+ "388": {
+  "i": 388,
+  "label": "subsection_heading",
+  "n": null,
+  "conf": "high",
+  "note": "lettered heading nested under the numbered section 4; sibling of А) and Б)"
+ },
+ "389": {
+  "i": 389,
+  "label": "article_head",
+  "n": "162",
+  "conf": "high",
+  "note": ""
+ },
+ "390": {
+  "i": 390,
+  "label": "article_head",
+  "n": "163",
+  "conf": "high",
+  "note": ""
+ },
+ "391": {
+  "i": 391,
+  "label": "article_head",
+  "n": "164",
+  "conf": "high",
+  "note": ""
+ },
+ "392": {
+  "i": 392,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "393": {
+  "i": 393,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "394": {
+  "i": 394,
+  "label": "article_head",
+  "n": "165",
+  "conf": "high",
+  "note": ""
+ },
+ "395": {
+  "i": 395,
+  "label": "subsection_heading",
+  "n": null,
+  "conf": "high",
+  "note": "lettered heading nested under the numbered section 4; sibling of А), Б), В)"
+ },
+ "396": {
+  "i": 396,
+  "label": "article_head",
+  "n": "166",
+  "conf": "high",
+  "note": ""
+ },
+ "397": {
+  "i": 397,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 166, opens with an inline amendment note"
+ },
+ "398": {
+  "i": 398,
+  "label": "article_head",
+  "n": "167",
+  "conf": "high",
+  "note": ""
+ },
+ "399": {
+  "i": 399,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "referred to elsewhere as чл. 167, ал. 2"
+ },
+ "400": {
+  "i": 400,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "401": {
+  "i": 401,
+  "label": "article_head",
+  "n": "168",
+  "conf": "high",
+  "note": ""
+ },
+ "402": {
+  "i": 402,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "403": {
+  "i": 403,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "404": {
+  "i": 404,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 168 after its items"
+ },
+ "405": {
+  "i": 405,
+  "label": "article_head",
+  "n": "169",
+  "conf": "high",
+  "note": "first paragraph repealed; line holds only the repeal note"
+ },
+ "406": {
+  "i": 406,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "407": {
+  "i": 407,
+  "label": "article_head",
+  "n": "170",
+  "conf": "high",
+  "note": ""
+ },
+ "408": {
+  "i": 408,
+  "label": "article_head",
+  "n": "171",
+  "conf": "high",
+  "note": ""
+ },
+ "409": {
+  "i": 409,
+  "label": "article_head",
+  "n": "172",
+  "conf": "high",
+  "note": ""
+ },
+ "410": {
+  "i": 410,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "411": {
+  "i": 411,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "412": {
+  "i": 412,
+  "label": "article_head",
+  "n": "173",
+  "conf": "high",
+  "note": ""
+ },
+ "413": {
+  "i": 413,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "414": {
+  "i": 414,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 173, opens with an inline amendment note"
+ },
+ "415": {
+  "i": 415,
+  "label": "article_head",
+  "n": "174",
+  "conf": "high",
+  "note": ""
+ },
+ "416": {
+  "i": 416,
+  "label": "article_head",
+  "n": "175",
+  "conf": "high",
+  "note": ""
+ },
+ "417": {
+  "i": 417,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 175, opens with an inline amendment note"
+ },
+ "418": {
+  "i": 418,
+  "label": "article_head",
+  "n": "176",
+  "conf": "high",
+  "note": ""
+ },
+ "419": {
+  "i": 419,
+  "label": "article_head",
+  "n": "177",
+  "conf": "high",
+  "note": ""
+ },
+ "420": {
+  "i": 420,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "421": {
+  "i": 421,
+  "label": "article_head",
+  "n": "178",
+  "conf": "high",
+  "note": ""
+ },
+ "422": {
+  "i": 422,
+  "label": "article_head",
+  "n": "179",
+  "conf": "high",
+  "note": ""
+ },
+ "423": {
+  "i": 423,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 179, opens with an inline amendment note"
+ },
+ "424": {
+  "i": 424,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "425": {
+  "i": 425,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "arabic-numbered heading following 4. ЗАЛОГ И ИПОТЕКА; same level as sections 3 and 4 under the roman-numbered division"
+ },
+ "426": {
+  "i": 426,
+  "label": "article_head",
+  "n": "180",
+  "conf": "high",
+  "note": ""
+ },
+ "427": {
+  "i": 427,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "428": {
+  "i": 428,
+  "label": "article_head",
+  "n": "181",
+  "conf": "high",
+  "note": ""
+ },
+ "429": {
+  "i": 429,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "430": {
+  "i": 430,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "431": {
+  "i": 431,
+  "label": "article_head",
+  "n": "182",
+  "conf": "high",
+  "note": ""
+ },
+ "432": {
+  "i": 432,
+  "label": "part_heading",
+  "n": null,
+  "conf": "high",
+  "note": "ОСОБЕНА ЧАСТ, counterpart of ОБЩА ЧАСТ"
+ },
+ "433": {
+  "i": 433,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered division directly under the part ОСОБЕНА ЧАСТ, with arabic-numbered sections beneath it"
+ },
+ "434": {
+  "i": 434,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "arabic-numbered heading directly under the roman-numbered chapter I. ПРОДАЖБА"
+ },
+ "435": {
+  "i": 435,
+  "label": "article_head",
+  "n": "183",
+  "conf": "high",
+  "note": ""
+ },
+ "436": {
+  "i": 436,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "repealed second paragraph of Чл. 183"
+ },
+ "437": {
+  "i": 437,
+  "label": "article_head",
+  "n": "184",
+  "conf": "high",
+  "note": ""
+ },
+ "438": {
+  "i": 438,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "439": {
+  "i": 439,
+  "label": "article_head",
+  "n": "185",
+  "conf": "high",
+  "note": ""
+ },
+ "440": {
+  "i": 440,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "441": {
+  "i": 441,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "442": {
+  "i": 442,
+  "label": "article_head",
+  "n": "186",
+  "conf": "high",
+  "note": ""
+ },
+ "443": {
+  "i": 443,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "444": {
+  "i": 444,
+  "label": "article_head",
+  "n": "186а",
+  "conf": "high",
+  "note": ""
+ },
+ "445": {
+  "i": 445,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "arabic-numbered heading under chapter I. ПРОДАЖБА, follows section 1. ОБЩИ ПРАВИЛА"
+ },
+ "446": {
+  "i": 446,
+  "label": "article_head",
+  "n": "187",
+  "conf": "high",
+  "note": ""
+ },
+ "447": {
+  "i": 447,
+  "label": "article_head",
+  "n": "188",
+  "conf": "high",
+  "note": ""
+ },
+ "448": {
+  "i": 448,
+  "label": "article_head",
+  "n": "189",
+  "conf": "high",
+  "note": ""
+ },
+ "449": {
+  "i": 449,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "450": {
+  "i": 450,
+  "label": "article_head",
+  "n": "190",
+  "conf": "high",
+  "note": ""
+ },
+ "451": {
+  "i": 451,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "452": {
+  "i": 452,
+  "label": "article_head",
+  "n": "191",
+  "conf": "high",
+  "note": ""
+ },
+ "453": {
+  "i": 453,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "454": {
+  "i": 454,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "455": {
+  "i": 455,
+  "label": "article_head",
+  "n": "192",
+  "conf": "high",
+  "note": ""
+ },
+ "456": {
+  "i": 456,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "457": {
+  "i": 457,
+  "label": "article_head",
+  "n": "193",
+  "conf": "high",
+  "note": ""
+ },
+ "458": {
+  "i": 458,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "459": {
+  "i": 459,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "460": {
+  "i": 460,
+  "label": "article_head",
+  "n": "194",
+  "conf": "high",
+  "note": ""
+ },
+ "461": {
+  "i": 461,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "462": {
+  "i": 462,
+  "label": "article_head",
+  "n": "195",
+  "conf": "high",
+  "note": ""
+ },
+ "463": {
+  "i": 463,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "464": {
+  "i": 464,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "465": {
+  "i": 465,
+  "label": "article_head",
+  "n": "196",
+  "conf": "high",
+  "note": ""
+ },
+ "466": {
+  "i": 466,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "467": {
+  "i": 467,
+  "label": "article_head",
+  "n": "197",
+  "conf": "high",
+  "note": ""
+ },
+ "468": {
+  "i": 468,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "469": {
+  "i": 469,
+  "label": "article_head",
+  "n": "198",
+  "conf": "high",
+  "note": ""
+ },
+ "470": {
+  "i": 470,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "471": {
+  "i": 471,
+  "label": "article_head",
+  "n": "199",
+  "conf": "high",
+  "note": ""
+ },
+ "472": {
+  "i": 472,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "arabic-numbered heading under chapter I. ПРОДАЖБА, sibling of sections 1 and 2; was subsection_heading, inconsistent with its siblings"
+ },
+ "473": {
+  "i": 473,
+  "label": "article_head",
+  "n": "200",
+  "conf": "high",
+  "note": ""
+ },
+ "474": {
+  "i": 474,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "475": {
+  "i": 475,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "476": {
+  "i": 476,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "arabic-numbered heading under chapter I. ПРОДАЖБА, sibling of sections 1 to 3; was subsection_heading, inconsistent with its siblings"
+ },
+ "477": {
+  "i": 477,
+  "label": "article_head",
+  "n": "201",
+  "conf": "high",
+  "note": ""
+ },
+ "478": {
+  "i": 478,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "479": {
+  "i": 479,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "480": {
+  "i": 480,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "closing sentence after the lettered list of чл. 201 that applies to both letters; a new paragraph of the article, not a continuation of letter б)"
+ },
+ "481": {
+  "i": 481,
+  "label": "article_head",
+  "n": "202",
+  "conf": "high",
+  "note": ""
+ },
+ "482": {
+  "i": 482,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "483": {
+  "i": 483,
+  "label": "article_head",
+  "n": "203",
+  "conf": "high",
+  "note": ""
+ },
+ "484": {
+  "i": 484,
+  "label": "article_head",
+  "n": "204",
+  "conf": "high",
+  "note": ""
+ },
+ "485": {
+  "i": 485,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "486": {
+  "i": 486,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "487": {
+  "i": 487,
+  "label": "article_head",
+  "n": "205",
+  "conf": "high",
+  "note": ""
+ },
+ "488": {
+  "i": 488,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "489": {
+  "i": 489,
+  "label": "article_head",
+  "n": "206",
+  "conf": "high",
+  "note": ""
+ },
+ "490": {
+  "i": 490,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "491": {
+  "i": 491,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "492": {
+  "i": 492,
+  "label": "article_head",
+  "n": "207",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "493": {
+  "i": 493,
+  "label": "article_head",
+  "n": "208",
+  "conf": "high",
+  "note": ""
+ },
+ "494": {
+  "i": 494,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "495": {
+  "i": 495,
+  "label": "article_head",
+  "n": "209",
+  "conf": "high",
+  "note": ""
+ },
+ "496": {
+  "i": 496,
+  "label": "article_head",
+  "n": "210",
+  "conf": "high",
+  "note": ""
+ },
+ "497": {
+  "i": 497,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "498": {
+  "i": 498,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "499": {
+  "i": 499,
+  "label": "article_head",
+  "n": "211",
+  "conf": "high",
+  "note": ""
+ },
+ "500": {
+  "i": 500,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "501": {
+  "i": 501,
+  "label": "article_head",
+  "n": "212",
+  "conf": "high",
+  "note": ""
+ },
+ "502": {
+  "i": 502,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "503": {
+  "i": 503,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "504": {
+  "i": 504,
+  "label": "article_head",
+  "n": "213",
+  "conf": "high",
+  "note": ""
+ },
+ "505": {
+  "i": 505,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "506": {
+  "i": 506,
+  "label": "article_head",
+  "n": "214",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "507": {
+  "i": 507,
+  "label": "article_head",
+  "n": "215",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "508": {
+  "i": 508,
+  "label": "article_head",
+  "n": "216",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "509": {
+  "i": 509,
+  "label": "article_head",
+  "n": "217",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "510": {
+  "i": 510,
+  "label": "article_head",
+  "n": "218",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "511": {
+  "i": 511,
+  "label": "article_head",
+  "n": "219",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "512": {
+  "i": 512,
+  "label": "article_head",
+  "n": "220",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "513": {
+  "i": 513,
+  "label": "article_head",
+  "n": "221",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "514": {
+  "i": 514,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered contract-type heading; its arabic-numbered subheadings (1., 2., 3.) sit one level below it, so the roman level is the section, consistent with I. ПРОДАЖБА"
+ },
+ "515": {
+  "i": 515,
+  "label": "article_head",
+  "n": "222",
+  "conf": "high",
+  "note": ""
+ },
+ "516": {
+  "i": 516,
+  "label": "article_head",
+  "n": "223",
+  "conf": "high",
+  "note": ""
+ },
+ "517": {
+  "i": 517,
+  "label": "article_head",
+  "n": "224",
+  "conf": "high",
+  "note": "repealed article; text is the repeal note"
+ },
+ "518": {
+  "i": 518,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered contract-type heading, same level as I. and II.; arabic-numbered subheadings sit below this level"
+ },
+ "519": {
+  "i": 519,
+  "label": "article_head",
+  "n": "225",
+  "conf": "high",
+  "note": ""
+ },
+ "520": {
+  "i": 520,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 225"
+ },
+ "521": {
+  "i": 521,
+  "label": "article_head",
+  "n": "226",
+  "conf": "high",
+  "note": ""
+ },
+ "522": {
+  "i": 522,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 226"
+ },
+ "523": {
+  "i": 523,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 226, opens with an inline amendment note naming ал. 3"
+ },
+ "524": {
+  "i": 524,
+  "label": "article_head",
+  "n": "227",
+  "conf": "high",
+  "note": ""
+ },
+ "525": {
+  "i": 525,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "526": {
+  "i": 526,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "527": {
+  "i": 527,
+  "label": "letter",
+  "n": "в",
+  "conf": "high",
+  "note": ""
+ },
+ "528": {
+  "i": 528,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 227"
+ },
+ "529": {
+  "i": 529,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 227"
+ },
+ "530": {
+  "i": 530,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "fourth paragraph of чл. 227"
+ },
+ "531": {
+  "i": 531,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "fifth paragraph of чл. 227"
+ },
+ "532": {
+  "i": 532,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered contract-type heading, same level as I.-III.; arabic-numbered subheadings sit below this level"
+ },
+ "533": {
+  "i": 533,
+  "label": "article_head",
+  "n": "228",
+  "conf": "high",
+  "note": ""
+ },
+ "534": {
+  "i": 534,
+  "label": "article_head",
+  "n": "229",
+  "conf": "high",
+  "note": ""
+ },
+ "535": {
+  "i": 535,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 229"
+ },
+ "536": {
+  "i": 536,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 229"
+ },
+ "537": {
+  "i": 537,
+  "label": "article_head",
+  "n": "230",
+  "conf": "high",
+  "note": ""
+ },
+ "538": {
+  "i": 538,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 230"
+ },
+ "539": {
+  "i": 539,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 230"
+ },
+ "540": {
+  "i": 540,
+  "label": "article_head",
+  "n": "231",
+  "conf": "high",
+  "note": ""
+ },
+ "541": {
+  "i": 541,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 231"
+ },
+ "542": {
+  "i": 542,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 231"
+ },
+ "543": {
+  "i": 543,
+  "label": "article_head",
+  "n": "232",
+  "conf": "high",
+  "note": ""
+ },
+ "544": {
+  "i": 544,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 232"
+ },
+ "545": {
+  "i": 545,
+  "label": "article_head",
+  "n": "233",
+  "conf": "high",
+  "note": ""
+ },
+ "546": {
+  "i": 546,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 233"
+ },
+ "547": {
+  "i": 547,
+  "label": "article_head",
+  "n": "234",
+  "conf": "high",
+  "note": ""
+ },
+ "548": {
+  "i": 548,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 234"
+ },
+ "549": {
+  "i": 549,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 234"
+ },
+ "550": {
+  "i": 550,
+  "label": "article_head",
+  "n": "235",
+  "conf": "high",
+  "note": ""
+ },
+ "551": {
+  "i": 551,
+  "label": "article_head",
+  "n": "236",
+  "conf": "high",
+  "note": ""
+ },
+ "552": {
+  "i": 552,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 236"
+ },
+ "553": {
+  "i": 553,
+  "label": "article_head",
+  "n": "237",
+  "conf": "high",
+  "note": ""
+ },
+ "554": {
+  "i": 554,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 237"
+ },
+ "555": {
+  "i": 555,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 237"
+ },
+ "556": {
+  "i": 556,
+  "label": "article_head",
+  "n": "238",
+  "conf": "high",
+  "note": ""
+ },
+ "557": {
+  "i": 557,
+  "label": "article_head",
+  "n": "239",
+  "conf": "high",
+  "note": ""
+ },
+ "558": {
+  "i": 558,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered contract-type heading inside the chapter on individual contracts, same level as I.-IV.; the missing space after the number is formatting only"
+ },
+ "559": {
+  "i": 559,
+  "label": "article_head",
+  "n": "240",
+  "conf": "high",
+  "note": ""
+ },
+ "560": {
+  "i": 560,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 240"
+ },
+ "561": {
+  "i": 561,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 240"
+ },
+ "562": {
+  "i": 562,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "fourth paragraph of чл. 240"
+ },
+ "563": {
+  "i": 563,
+  "label": "article_head",
+  "n": "241",
+  "conf": "high",
+  "note": ""
+ },
+ "564": {
+  "i": 564,
+  "label": "article_head",
+  "n": "242",
+  "conf": "high",
+  "note": "repealed article; head carries the repeal note"
+ },
+ "565": {
+  "i": 565,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered contract-type heading, same level as I.-V."
+ },
+ "566": {
+  "i": 566,
+  "label": "article_head",
+  "n": "243",
+  "conf": "high",
+  "note": ""
+ },
+ "567": {
+  "i": 567,
+  "label": "article_head",
+  "n": "244",
+  "conf": "high",
+  "note": ""
+ },
+ "568": {
+  "i": 568,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 2 of чл. 244"
+ },
+ "569": {
+  "i": 569,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 3 of чл. 244, cited as such in чл. 253"
+ },
+ "570": {
+  "i": 570,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "ал. 4 of чл. 244"
+ },
+ "571": {
+  "i": 571,
+  "label": "article_head",
+  "n": "245",
+  "conf": "high",
+  "note": ""
+ },
+ "572": {
+  "i": 572,
+  "label": "article_head",
+  "n": "246",
+  "conf": "high",
+  "note": ""
+ },
+ "573": {
+  "i": 573,
+  "label": "article_head",
+  "n": "247",
+  "conf": "high",
+  "note": ""
+ },
+ "574": {
+  "i": 574,
+  "label": "article_head",
+  "n": "248",
+  "conf": "high",
+  "note": ""
+ },
+ "575": {
+  "i": 575,
+  "label": "article_head",
+  "n": "249",
+  "conf": "high",
+  "note": ""
+ },
+ "576": {
+  "i": 576,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 249"
+ },
+ "577": {
+  "i": 577,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered contract-type heading, same level as I.-VI."
+ },
+ "578": {
+  "i": 578,
+  "label": "article_head",
+  "n": "250",
+  "conf": "high",
+  "note": ""
+ },
+ "579": {
+  "i": 579,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 250"
+ },
+ "580": {
+  "i": 580,
+  "label": "article_head",
+  "n": "251",
+  "conf": "high",
+  "note": ""
+ },
+ "581": {
+  "i": 581,
+  "label": "article_head",
+  "n": "252",
+  "conf": "high",
+  "note": ""
+ },
+ "582": {
+  "i": 582,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 252"
+ },
+ "583": {
+  "i": 583,
+  "label": "article_head",
+  "n": "253",
+  "conf": "high",
+  "note": ""
+ },
+ "584": {
+  "i": 584,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 253"
+ },
+ "585": {
+  "i": 585,
+  "label": "article_head",
+  "n": "254",
+  "conf": "high",
+  "note": ""
+ },
+ "586": {
+  "i": 586,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 254"
+ },
+ "587": {
+  "i": 587,
+  "label": "article_head",
+  "n": "255",
+  "conf": "high",
+  "note": ""
+ },
+ "588": {
+  "i": 588,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 255"
+ },
+ "589": {
+  "i": 589,
+  "label": "article_head",
+  "n": "256",
+  "conf": "high",
+  "note": "repealed article; head carries the repeal note"
+ },
+ "590": {
+  "i": 590,
+  "label": "article_head",
+  "n": "257",
+  "conf": "high",
+  "note": ""
+ },
+ "591": {
+  "i": 591,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of чл. 257"
+ },
+ "592": {
+  "i": 592,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of чл. 257"
+ },
+ "593": {
+  "i": 593,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered contract-type heading in the same series as I.-VII., which carry section_heading; previous chapter_heading would break the series"
+ },
+ "594": {
+  "i": 594,
+  "label": "article_head",
+  "n": "258",
+  "conf": "high",
+  "note": ""
+ },
+ "595": {
+  "i": 595,
+  "label": "article_head",
+  "n": "259",
+  "conf": "high",
+  "note": ""
+ },
+ "596": {
+  "i": 596,
+  "label": "article_head",
+  "n": "260",
+  "conf": "high",
+  "note": ""
+ },
+ "597": {
+  "i": 597,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 260"
+ },
+ "598": {
+  "i": 598,
+  "label": "article_head",
+  "n": "261",
+  "conf": "high",
+  "note": ""
+ },
+ "599": {
+  "i": 599,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 261"
+ },
+ "600": {
+  "i": 600,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 261"
+ },
+ "601": {
+  "i": 601,
+  "label": "article_head",
+  "n": "262",
+  "conf": "high",
+  "note": ""
+ },
+ "602": {
+  "i": 602,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 262, prefixed by an amendment note (Ал. 2 изм.)"
+ },
+ "603": {
+  "i": 603,
+  "label": "article_head",
+  "n": "263",
+  "conf": "high",
+  "note": ""
+ },
+ "604": {
+  "i": 604,
+  "label": "article_head",
+  "n": "264",
+  "conf": "high",
+  "note": ""
+ },
+ "605": {
+  "i": 605,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 264"
+ },
+ "606": {
+  "i": 606,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 264"
+ },
+ "607": {
+  "i": 607,
+  "label": "article_head",
+  "n": "265",
+  "conf": "high",
+  "note": ""
+ },
+ "608": {
+  "i": 608,
+  "label": "unnumbered_item",
+  "n": null,
+  "conf": "high",
+  "note": "list line without a number under Чл. 265, ending with ';'"
+ },
+ "609": {
+  "i": 609,
+  "label": "unnumbered_item",
+  "n": null,
+  "conf": "high",
+  "note": "second list line without a number, after the line ending with ';'"
+ },
+ "610": {
+  "i": 610,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 265"
+ },
+ "611": {
+  "i": 611,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 265"
+ },
+ "612": {
+  "i": 612,
+  "label": "article_head",
+  "n": "266",
+  "conf": "high",
+  "note": ""
+ },
+ "613": {
+  "i": 613,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 266"
+ },
+ "614": {
+  "i": 614,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line stating that ал. 3 of Чл. 266 is repealed; it stands in the place of the third unnumbered paragraph and carries no text of its own"
+ },
+ "615": {
+  "i": 615,
+  "label": "article_head",
+  "n": "267",
+  "conf": "high",
+  "note": ""
+ },
+ "616": {
+  "i": 616,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 267"
+ },
+ "617": {
+  "i": 617,
+  "label": "article_head",
+  "n": "268",
+  "conf": "high",
+  "note": ""
+ },
+ "618": {
+  "i": 618,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line stating that ал. 2 of Чл. 268 is repealed; it stands in the place of the second unnumbered paragraph and carries no text of its own"
+ },
+ "619": {
+  "i": 619,
+  "label": "article_head",
+  "n": "269",
+  "conf": "high",
+  "note": ""
+ },
+ "620": {
+  "i": 620,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 269"
+ },
+ "621": {
+  "i": 621,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "roman-numbered contract-type heading in the same series as I.-VIII., which carry section_heading; previous chapter_heading would break the series"
+ },
+ "622": {
+  "i": 622,
+  "label": "article_head",
+  "n": "270",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "623": {
+  "i": 623,
+  "label": "article_head",
+  "n": "271",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "624": {
+  "i": 624,
+  "label": "article_head",
+  "n": "272",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "625": {
+  "i": 625,
+  "label": "article_head",
+  "n": "273",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "626": {
+  "i": 626,
+  "label": "article_head",
+  "n": "274",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "627": {
+  "i": 627,
+  "label": "article_head",
+  "n": "275",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "628": {
+  "i": 628,
+  "label": "article_head",
+  "n": "276",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "629": {
+  "i": 629,
+  "label": "article_head",
+  "n": "277",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "630": {
+  "i": 630,
+  "label": "article_head",
+  "n": "278",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "631": {
+  "i": 631,
+  "label": "article_head",
+  "n": "279",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "632": {
+  "i": 632,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numeral contract-type division of the special part, same level as VIII and IX; numbered sub-headings below such divisions are section level, so this is chapter level"
+ },
+ "633": {
+  "i": 633,
+  "label": "article_head",
+  "n": "280",
+  "conf": "high",
+  "note": ""
+ },
+ "634": {
+  "i": 634,
+  "label": "article_head",
+  "n": "281",
+  "conf": "high",
+  "note": ""
+ },
+ "635": {
+  "i": 635,
+  "label": "article_head",
+  "n": "282",
+  "conf": "high",
+  "note": ""
+ },
+ "636": {
+  "i": 636,
+  "label": "article_head",
+  "n": "283",
+  "conf": "high",
+  "note": ""
+ },
+ "637": {
+  "i": 637,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 283"
+ },
+ "638": {
+  "i": 638,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 283"
+ },
+ "639": {
+  "i": 639,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "fourth paragraph of Чл. 283"
+ },
+ "640": {
+  "i": 640,
+  "label": "article_head",
+  "n": "284",
+  "conf": "high",
+  "note": ""
+ },
+ "641": {
+  "i": 641,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 284"
+ },
+ "642": {
+  "i": 642,
+  "label": "article_head",
+  "n": "285",
+  "conf": "high",
+  "note": ""
+ },
+ "643": {
+  "i": 643,
+  "label": "article_head",
+  "n": "286",
+  "conf": "high",
+  "note": "amendment note inline"
+ },
+ "644": {
+  "i": 644,
+  "label": "article_head",
+  "n": "287",
+  "conf": "high",
+  "note": ""
+ },
+ "645": {
+  "i": 645,
+  "label": "article_head",
+  "n": "288",
+  "conf": "high",
+  "note": ""
+ },
+ "646": {
+  "i": 646,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 288"
+ },
+ "647": {
+  "i": 647,
+  "label": "article_head",
+  "n": "289",
+  "conf": "high",
+  "note": ""
+ },
+ "648": {
+  "i": 648,
+  "label": "article_head",
+  "n": "290",
+  "conf": "high",
+  "note": ""
+ },
+ "649": {
+  "i": 649,
+  "label": "article_head",
+  "n": "291",
+  "conf": "high",
+  "note": ""
+ },
+ "650": {
+  "i": 650,
+  "label": "article_head",
+  "n": "292",
+  "conf": "high",
+  "note": ""
+ },
+ "651": {
+  "i": 651,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 292"
+ },
+ "652": {
+  "i": 652,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 292"
+ },
+ "653": {
+  "i": 653,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "same level as X. ДОГОВОР ЗА ПОРЪЧКА; Roman-numeral divisions hold the numbered section-level sub-headings, so this is chapter level"
+ },
+ "654": {
+  "i": 654,
+  "label": "article_head",
+  "n": "293",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "655": {
+  "i": 655,
+  "label": "article_head",
+  "n": "294",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "656": {
+  "i": 656,
+  "label": "article_head",
+  "n": "295",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "657": {
+  "i": 657,
+  "label": "article_head",
+  "n": "296",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "658": {
+  "i": 658,
+  "label": "article_head",
+  "n": "297",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "659": {
+  "i": 659,
+  "label": "article_head",
+  "n": "298",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "660": {
+  "i": 660,
+  "label": "article_head",
+  "n": "299",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "661": {
+  "i": 661,
+  "label": "article_head",
+  "n": "300",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "662": {
+  "i": 662,
+  "label": "article_head",
+  "n": "301",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "663": {
+  "i": 663,
+  "label": "article_head",
+  "n": "302",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "664": {
+  "i": 664,
+  "label": "article_head",
+  "n": "303",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "665": {
+  "i": 665,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "same level as the other Roman-numeral contract-type divisions, which hold the numbered section-level sub-headings; chapter level"
+ },
+ "666": {
+  "i": 666,
+  "label": "article_head",
+  "n": "304",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "667": {
+  "i": 667,
+  "label": "article_head",
+  "n": "305",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "668": {
+  "i": 668,
+  "label": "article_head",
+  "n": "306",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "669": {
+  "i": 669,
+  "label": "article_head",
+  "n": "307",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "670": {
+  "i": 670,
+  "label": "article_head",
+  "n": "308",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "671": {
+  "i": 671,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "same level as the other Roman-numeral contract-type divisions, which hold the numbered section-level sub-headings; chapter level"
+ },
+ "672": {
+  "i": 672,
+  "label": "article_head",
+  "n": "309",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "673": {
+  "i": 673,
+  "label": "article_head",
+  "n": "310",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "674": {
+  "i": 674,
+  "label": "article_head",
+  "n": "311",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "675": {
+  "i": 675,
+  "label": "article_head",
+  "n": "312",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "676": {
+  "i": 676,
+  "label": "article_head",
+  "n": "313",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "677": {
+  "i": 677,
+  "label": "article_head",
+  "n": "314",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "678": {
+  "i": 678,
+  "label": "article_head",
+  "n": "315",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "679": {
+  "i": 679,
+  "label": "article_head",
+  "n": "316",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "680": {
+  "i": 680,
+  "label": "article_head",
+  "n": "317",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "681": {
+  "i": 681,
+  "label": "article_head",
+  "n": "318",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "682": {
+  "i": 682,
+  "label": "article_head",
+  "n": "319",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "683": {
+  "i": 683,
+  "label": "article_head",
+  "n": "320",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "684": {
+  "i": 684,
+  "label": "article_head",
+  "n": "321",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "685": {
+  "i": 685,
+  "label": "article_head",
+  "n": "322",
+  "conf": "high",
+  "note": "repealed article, repeal note inline"
+ },
+ "686": {
+  "i": 686,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "same level as the other Roman-numeral contract-type divisions, which hold the numbered section-level sub-headings; chapter level"
+ },
+ "687": {
+  "i": 687,
+  "label": "article_head",
+  "n": "323",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "688": {
+  "i": 688,
+  "label": "article_head",
+  "n": "324",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "689": {
+  "i": 689,
+  "label": "article_head",
+  "n": "325",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "690": {
+  "i": 690,
+  "label": "article_head",
+  "n": "326",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "691": {
+  "i": 691,
+  "label": "article_head",
+  "n": "327",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "692": {
+  "i": 692,
+  "label": "article_head",
+  "n": "328",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "693": {
+  "i": 693,
+  "label": "article_head",
+  "n": "329",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "694": {
+  "i": 694,
+  "label": "article_head",
+  "n": "330",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "695": {
+  "i": 695,
+  "label": "article_head",
+  "n": "331",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "696": {
+  "i": 696,
+  "label": "article_head",
+  "n": "332",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "697": {
+  "i": 697,
+  "label": "article_head",
+  "n": "333",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "698": {
+  "i": 698,
+  "label": "article_head",
+  "n": "334",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "699": {
+  "i": 699,
+  "label": "article_head",
+  "n": "335",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "700": {
+  "i": 700,
+  "label": "article_head",
+  "n": "336",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "701": {
+  "i": 701,
+  "label": "article_head",
+  "n": "337",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "702": {
+  "i": 702,
+  "label": "article_head",
+  "n": "338",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "703": {
+  "i": 703,
+  "label": "article_head",
+  "n": "339",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "704": {
+  "i": 704,
+  "label": "article_head",
+  "n": "340",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "705": {
+  "i": 705,
+  "label": "article_head",
+  "n": "341",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "706": {
+  "i": 706,
+  "label": "article_head",
+  "n": "342",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "707": {
+  "i": 707,
+  "label": "article_head",
+  "n": "343",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "708": {
+  "i": 708,
+  "label": "article_head",
+  "n": "344",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "709": {
+  "i": 709,
+  "label": "article_head",
+  "n": "345",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "710": {
+  "i": 710,
+  "label": "article_head",
+  "n": "346",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "711": {
+  "i": 711,
+  "label": "article_head",
+  "n": "347",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "712": {
+  "i": 712,
+  "label": "article_head",
+  "n": "348",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "713": {
+  "i": 713,
+  "label": "article_head",
+  "n": "349",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "714": {
+  "i": 714,
+  "label": "article_head",
+  "n": "350",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "715": {
+  "i": 715,
+  "label": "article_head",
+  "n": "351",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "716": {
+  "i": 716,
+  "label": "article_head",
+  "n": "352",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "717": {
+  "i": 717,
+  "label": "article_head",
+  "n": "353",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "718": {
+  "i": 718,
+  "label": "article_head",
+  "n": "354",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "719": {
+  "i": 719,
+  "label": "article_head",
+  "n": "355",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "720": {
+  "i": 720,
+  "label": "article_head",
+  "n": "356",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "721": {
+  "i": 721,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "same level as the other Roman-numeral contract-type divisions, which hold the numbered section-level sub-headings; chapter level"
+ },
+ "722": {
+  "i": 722,
+  "label": "article_head",
+  "n": "357",
+  "conf": "high",
+  "note": ""
+ },
+ "723": {
+  "i": 723,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "line stating that ал. 2 of Чл. 357 is repealed, standing in that paragraph's place; a repeal statement, so repeal_note rather than editorial_note"
+ },
+ "724": {
+  "i": 724,
+  "label": "article_head",
+  "n": "358",
+  "conf": "high",
+  "note": ""
+ },
+ "725": {
+  "i": 725,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "726": {
+  "i": 726,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "727": {
+  "i": 727,
+  "label": "article_head",
+  "n": "359",
+  "conf": "high",
+  "note": ""
+ },
+ "728": {
+  "i": 728,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "729": {
+  "i": 729,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "730": {
+  "i": 730,
+  "label": "article_head",
+  "n": "360",
+  "conf": "high",
+  "note": ""
+ },
+ "731": {
+  "i": 731,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "732": {
+  "i": 732,
+  "label": "article_head",
+  "n": "361",
+  "conf": "high",
+  "note": ""
+ },
+ "733": {
+  "i": 733,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "734": {
+  "i": 734,
+  "label": "article_head",
+  "n": "362",
+  "conf": "high",
+  "note": ""
+ },
+ "735": {
+  "i": 735,
+  "label": "article_head",
+  "n": "363",
+  "conf": "high",
+  "note": ""
+ },
+ "736": {
+  "i": 736,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "737": {
+  "i": 737,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "738": {
+  "i": 738,
+  "label": "letter",
+  "n": "в",
+  "conf": "high",
+  "note": ""
+ },
+ "739": {
+  "i": 739,
+  "label": "letter",
+  "n": "г",
+  "conf": "high",
+  "note": ""
+ },
+ "740": {
+  "i": 740,
+  "label": "letter",
+  "n": "д",
+  "conf": "high",
+  "note": ""
+ },
+ "741": {
+  "i": 741,
+  "label": "article_head",
+  "n": "364",
+  "conf": "high",
+  "note": ""
+ },
+ "742": {
+  "i": 742,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "same level as the other Roman-numeral contract-type divisions, which hold the numbered section-level sub-headings; chapter level"
+ },
+ "743": {
+  "i": 743,
+  "label": "article_head",
+  "n": "365",
+  "conf": "high",
+  "note": ""
+ },
+ "744": {
+  "i": 744,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "745": {
+  "i": 745,
+  "label": "article_head",
+  "n": "366",
+  "conf": "high",
+  "note": ""
+ },
+ "746": {
+  "i": 746,
+  "label": "article_head",
+  "n": "367",
+  "conf": "high",
+  "note": ""
+ },
+ "747": {
+  "i": 747,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "same level as the other Roman-numeral contract-type divisions, which hold the numbered section-level sub-headings; chapter level"
+ },
+ "748": {
+  "i": 748,
+  "label": "article_head",
+  "n": "368",
+  "conf": "high",
+  "note": ""
+ },
+ "749": {
+  "i": 749,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 368, no number"
+ },
+ "750": {
+  "i": 750,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 368, no number"
+ },
+ "751": {
+  "i": 751,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "fourth paragraph of Чл. 368, no number"
+ },
+ "752": {
+  "i": 752,
+  "label": "article_head",
+  "n": "369",
+  "conf": "high",
+  "note": "editorial note on ал. 1 inline"
+ },
+ "753": {
+  "i": 753,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of Чл. 369"
+ },
+ "754": {
+  "i": 754,
+  "label": "unnumbered_alinea",
+  "n": null,
+  "conf": "high",
+  "note": "third paragraph of Чл. 369"
+ },
+ "755": {
+  "i": 755,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numeral contract division like the preceding XV-XVII; the numbered 1. heading below is a section under it"
+ },
+ "756": {
+  "i": 756,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Arabic-numbered subdivision directly under chapter XVIII; next level below chapter is section"
+ },
+ "757": {
+  "i": 757,
+  "label": "article_head",
+  "n": "370",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "758": {
+  "i": 758,
+  "label": "article_head",
+  "n": "371",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "759": {
+  "i": 759,
+  "label": "article_head",
+  "n": "372",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "760": {
+  "i": 760,
+  "label": "article_head",
+  "n": "373",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "761": {
+  "i": 761,
+  "label": "article_head",
+  "n": "374",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "762": {
+  "i": 762,
+  "label": "article_head",
+  "n": "375",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "763": {
+  "i": 763,
+  "label": "article_head",
+  "n": "376",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "764": {
+  "i": 764,
+  "label": "article_head",
+  "n": "377",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "765": {
+  "i": 765,
+  "label": "article_head",
+  "n": "378",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "766": {
+  "i": 766,
+  "label": "article_head",
+  "n": "379",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "767": {
+  "i": 767,
+  "label": "article_head",
+  "n": "380",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "768": {
+  "i": 768,
+  "label": "article_head",
+  "n": "381",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "769": {
+  "i": 769,
+  "label": "article_head",
+  "n": "382",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "770": {
+  "i": 770,
+  "label": "article_head",
+  "n": "383",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "771": {
+  "i": 771,
+  "label": "article_head",
+  "n": "384",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "772": {
+  "i": 772,
+  "label": "article_head",
+  "n": "385",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "773": {
+  "i": 773,
+  "label": "article_head",
+  "n": "386",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "774": {
+  "i": 774,
+  "label": "article_head",
+  "n": "387",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "775": {
+  "i": 775,
+  "label": "article_head",
+  "n": "388",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "776": {
+  "i": 776,
+  "label": "article_head",
+  "n": "389",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "777": {
+  "i": 777,
+  "label": "article_head",
+  "n": "390",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "778": {
+  "i": 778,
+  "label": "article_head",
+  "n": "391",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "779": {
+  "i": 779,
+  "label": "article_head",
+  "n": "392",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "780": {
+  "i": 780,
+  "label": "article_head",
+  "n": "393",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "781": {
+  "i": 781,
+  "label": "article_head",
+  "n": "394",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "782": {
+  "i": 782,
+  "label": "article_head",
+  "n": "395",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "783": {
+  "i": 783,
+  "label": "article_head",
+  "n": "396",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "784": {
+  "i": 784,
+  "label": "article_head",
+  "n": "397",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "785": {
+  "i": 785,
+  "label": "article_head",
+  "n": "398",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "786": {
+  "i": 786,
+  "label": "article_head",
+  "n": "399",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "787": {
+  "i": 787,
+  "label": "article_head",
+  "n": "400",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "788": {
+  "i": 788,
+  "label": "article_head",
+  "n": "401",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "789": {
+  "i": 789,
+  "label": "article_head",
+  "n": "402",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "790": {
+  "i": 790,
+  "label": "article_head",
+  "n": "403",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "791": {
+  "i": 791,
+  "label": "article_head",
+  "n": "404",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "792": {
+  "i": 792,
+  "label": "article_head",
+  "n": "405",
+  "conf": "high",
+  "note": "repealed article"
+ },
+ "793": {
+  "i": 793,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second Arabic-numbered subdivision of chapter XVIII, sibling of 1. ЗАПИС НА ЗАПОВЕД"
+ },
+ "794": {
+  "i": 794,
+  "label": "article_head",
+  "n": "406",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "795": {
+  "i": 795,
+  "label": "article_head",
+  "n": "407",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "796": {
+  "i": 796,
+  "label": "article_head",
+  "n": "408",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "797": {
+  "i": 797,
+  "label": "article_head",
+  "n": "409",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "798": {
+  "i": 798,
+  "label": "article_head",
+  "n": "410",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "799": {
+  "i": 799,
+  "label": "article_head",
+  "n": "411",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "800": {
+  "i": 800,
+  "label": "article_head",
+  "n": "412",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "801": {
+  "i": 801,
+  "label": "article_head",
+  "n": "413",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "802": {
+  "i": 802,
+  "label": "article_head",
+  "n": "414",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "803": {
+  "i": 803,
+  "label": "article_head",
+  "n": "415",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "804": {
+  "i": 804,
+  "label": "article_head",
+  "n": "416",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "805": {
+  "i": 805,
+  "label": "article_head",
+  "n": "417",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "806": {
+  "i": 806,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "third Arabic-numbered subdivision of chapter XVIII, sibling of 1. and 2.; not a provisions_heading"
+ },
+ "807": {
+  "i": 807,
+  "label": "article_head",
+  "n": "418",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "808": {
+  "i": 808,
+  "label": "article_head",
+  "n": "419",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "809": {
+  "i": 809,
+  "label": "article_head",
+  "n": "420",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "810": {
+  "i": 810,
+  "label": "article_head",
+  "n": "421",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "811": {
+  "i": 811,
+  "label": "article_head",
+  "n": "422",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "812": {
+  "i": 812,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "fourth Arabic-numbered subdivision of chapter XVIII, sibling of 1. to 3."
+ },
+ "813": {
+  "i": 813,
+  "label": "article_head",
+  "n": "423",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "814": {
+  "i": 814,
+  "label": "article_head",
+  "n": "424",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "815": {
+  "i": 815,
+  "label": "article_head",
+  "n": "425",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "816": {
+  "i": 816,
+  "label": "article_head",
+  "n": "426",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "817": {
+  "i": 817,
+  "label": "article_head",
+  "n": "427",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "818": {
+  "i": 818,
+  "label": "article_head",
+  "n": "428",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "819": {
+  "i": 819,
+  "label": "article_head",
+  "n": "429",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "820": {
+  "i": 820,
+  "label": "article_head",
+  "n": "430",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "821": {
+  "i": 821,
+  "label": "article_head",
+  "n": "431",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "822": {
+  "i": 822,
+  "label": "article_head",
+  "n": "432",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "823": {
+  "i": 823,
+  "label": "article_head",
+  "n": "433",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "824": {
+  "i": 824,
+  "label": "article_head",
+  "n": "434",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "825": {
+  "i": 825,
+  "label": "article_head",
+  "n": "435",
+  "conf": "high",
+  "note": "repealed article, repeal stated inline"
+ },
+ "826": {
+  "i": 826,
+  "label": "article_head",
+  "n": "436",
+  "conf": "high",
+  "note": "article struck out (Зал.), stated inline"
+ },
+ "827": {
+  "i": 827,
+  "label": "part_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Част трета, first heading line"
+ },
+ "828": {
+  "i": 828,
+  "label": "part_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line of the Част трета heading"
+ },
+ "829": {
+  "i": 829,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Arabic-numbered subdivision, the form the act uses for sections elsewhere (1. ЗАПИС НА ЗАПОВЕД); a level may be skipped under ЧАСТ ТРЕТА"
+ },
+ "830": {
+  "i": 830,
+  "label": "article_head",
+  "n": "437",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "831": {
+  "i": 831,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "sibling of 1. ИЗБОР НА ПРИЛОЖИМО ПРАВО; same Arabic-numbered section form as that heading"
+ },
+ "832": {
+  "i": 832,
+  "label": "article_head",
+  "n": "438",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "833": {
+  "i": 833,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "sibling of 1. and 2.; same Arabic-numbered section form"
+ },
+ "834": {
+  "i": 834,
+  "label": "article_head",
+  "n": "439",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "835": {
+  "i": 835,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "sibling of 1. to 3.; same Arabic-numbered section form"
+ },
+ "836": {
+  "i": 836,
+  "label": "article_head",
+  "n": "440",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "837": {
+  "i": 837,
+  "label": "article_head",
+  "n": "441",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "838": {
+  "i": 838,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "sibling of 1. to 4.; same Arabic-numbered section form"
+ },
+ "839": {
+  "i": 839,
+  "label": "article_head",
+  "n": "442",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "840": {
+  "i": 840,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "sibling of 1. to 5.; same Arabic-numbered section form"
+ },
+ "841": {
+  "i": 841,
+  "label": "article_head",
+  "n": "443",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "842": {
+  "i": 842,
+  "label": "article_head",
+  "n": "444",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "843": {
+  "i": 843,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "numbered subdivision in the series 4., 5., 6. under the same heading; same level as its siblings, below the chapter"
+ },
+ "844": {
+  "i": 844,
+  "label": "article_head",
+  "n": "445",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "845": {
+  "i": 845,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "numbered subdivision in the series 5., 6., 7.; same level as its siblings, below the chapter"
+ },
+ "846": {
+  "i": 846,
+  "label": "article_head",
+  "n": "446",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "847": {
+  "i": 847,
+  "label": "article_head",
+  "n": "447",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "848": {
+  "i": 848,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "numbered subdivision in the series 6., 7., 8.; same level as its siblings, below the chapter"
+ },
+ "849": {
+  "i": 849,
+  "label": "article_head",
+  "n": "448",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "850": {
+  "i": 850,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "numbered subdivision in the series 7., 8., 9.; same level as its siblings, below the chapter"
+ },
+ "851": {
+  "i": 851,
+  "label": "article_head",
+  "n": "449",
+  "conf": "high",
+  "note": "repealed article, note inline"
+ },
+ "852": {
+  "i": 852,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "unnumbered heading after the last article that opens the act's closing block of amendments to other laws, subdivided by Roman numerals; as section_heading it would wrongly fall under the preceding numbered subdivision"
+ },
+ "853": {
+  "i": 853,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numbered grouping of the § provisions under the heading ИЗМЕНЕНИЯ НА ДРУГИ ЗАКОНИ; a subdivision of that block, not a second provisions heading"
+ },
+ "854": {
+  "i": 854,
+  "label": "paragraph_sign",
+  "n": "1",
+  "conf": "high",
+  "note": "amending instruction inserting чл. 638а in ЗГС"
+ },
+ "855": {
+  "i": 855,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "first paragraph of the new чл. 638а inserted into another law by the § 1 instruction ending with a colon; consistent with the next line, also quoted"
+ },
+ "856": {
+  "i": 856,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of the new чл. 638а inserted into another law by § 1; lies between two quoted paragraphs of the same inserted article"
+ },
+ "857": {
+  "i": 857,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "last paragraph of the new чл. 638а inserted into another law by § 1; the next line opens § 2"
+ },
+ "858": {
+  "i": 858,
+  "label": "paragraph_sign",
+  "n": "2",
+  "conf": "high",
+  "note": "amending instruction adding a chapter to ЗГС"
+ },
+ "859": {
+  "i": 859,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "chapter heading of ЗГС inserted by § 2, not a chapter of this act"
+ },
+ "860": {
+  "i": 860,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "title of the inserted ЗГС chapter"
+ },
+ "861": {
+  "i": 861,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "text added to another law by § 2 (След чл. 1001 се прибавя следната ...), printed without quotation marks; Чл. 1001а is not an address of this act"
+ },
+ "862": {
+  "i": 862,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "continuation of inserted чл. 1001а ЗГС"
+ },
+ "863": {
+  "i": 863,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "part of the text § 2 adds to another law after its чл. 1001, printed without quotation marks; not an address of this act"
+ },
+ "864": {
+  "i": 864,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "continuation of inserted чл. 1001б ЗГС"
+ },
+ "865": {
+  "i": 865,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "part of the text § 2 adds to another law after its чл. 1001, printed without quotation marks; not an address of this act"
+ },
+ "866": {
+  "i": 866,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "article 1001г is inserted into another law under the heading Изменения на други закони, after 1001б and 1001в which are quoted; the act has no article of that number; no quotation marks, but it sits inside an amending instruction"
+ },
+ "867": {
+  "i": 867,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Roman-numbered grouping of the § provisions under ИЗМЕНЕНИЯ НА ДРУГИ ЗАКОНИ, sibling of I.; follows the end of the quoted text of § 2 and precedes § 3"
+ },
+ "868": {
+  "i": 868,
+  "label": "paragraph_sign",
+  "n": "3",
+  "conf": "high",
+  "note": "amending instruction inserting чл. 5а in ЗПИ"
+ },
+ "869": {
+  "i": 869,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "text of the new чл. 5а introduced by the amending § 3; same as the following block 870"
+ },
+ "870": {
+  "i": 870,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "second paragraph of the new чл. 5а introduced by the amending § 3; neighbours 869 and 871 are quoted"
+ },
+ "871": {
+  "i": 871,
+  "label": "quoted",
+  "n": null,
+  "conf": "high",
+  "note": "last paragraph of the new чл. 5а introduced by the amending § 3; the next block opens the transitional rules"
+ },
+ "872": {
+  "i": 872,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Преходни правила"
+ },
+ "873": {
+  "i": 873,
+  "label": "paragraph_sign",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "874": {
+  "i": 874,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "875": {
+  "i": 875,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "876": {
+  "i": 876,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": "text carries a stray '/span>' markup fragment from the source"
+ },
+ "877": {
+  "i": 877,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "878": {
+  "i": 878,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "879": {
+  "i": 879,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": "text carries a stray '/span>' markup fragment from the source"
+ },
+ "880": {
+  "i": 880,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "881": {
+  "i": 881,
+  "label": "paragraph_sign",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "882": {
+  "i": 882,
+  "label": "paragraph_sign",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "883": {
+  "i": 883,
+  "label": "paragraph_sign",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "884": {
+  "i": 884,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Заключителни разпоредби heading"
+ },
+ "885": {
+  "i": 885,
+  "label": "paragraph_sign",
+  "n": "единствен",
+  "conf": "high",
+  "note": "Параграф единствен opens the sole § of the final provisions"
+ },
+ "886": {
+  "i": 886,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Преходни и Заключителни разпоредби of an amending act, line 1"
+ },
+ "887": {
+  "i": 887,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "heading line 2: към ЗИД на Търговския закон"
+ },
+ "888": {
+  "i": 888,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "publication note of the amending act"
+ },
+ "889": {
+  "i": 889,
+  "label": "paragraph_sign",
+  "n": "11",
+  "conf": "high",
+  "note": ""
+ },
+ "890": {
+  "i": 890,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "heading line 1"
+ },
+ "891": {
+  "i": 891,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "heading line 2: към Закона за частните съдебни изпълнители"
+ },
+ "892": {
+  "i": 892,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "publication note of the amending act"
+ },
+ "893": {
+  "i": 893,
+  "label": "paragraph_sign",
+  "n": "23",
+  "conf": "high",
+  "note": ""
+ },
+ "894": {
+  "i": 894,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "heading line 1"
+ },
+ "895": {
+  "i": 895,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "heading line 2: към Закона за концесиите"
+ },
+ "896": {
+  "i": 896,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "publication note of the amending act"
+ },
+ "897": {
+  "i": 897,
+  "label": "paragraph_sign",
+  "n": "23",
+  "conf": "high",
+  "note": ""
+ },
+ "898": {
+  "i": 898,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "heading line 1"
+ },
+ "899": {
+  "i": 899,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "heading line 2: към Гражданския процесуален кодекс"
+ },
+ "900": {
+  "i": 900,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "publication note of the amending act"
+ },
+ "901": {
+  "i": 901,
+  "label": "paragraph_sign",
+  "n": "61",
+  "conf": "high",
+  "note": ""
+ },
+ "902": {
+  "i": 902,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "903": {
+  "i": 903,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "904": {
+  "i": 904,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "905": {
+  "i": 905,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "906": {
+  "i": 906,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "907": {
+  "i": 907,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "908": {
+  "i": 908,
+  "label": "continuation",
+  "n": null,
+  "conf": "high",
+  "note": "closing text of § 61 after its item list"
+ },
+ "909": {
+  "i": 909,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "first line of the two-line provisions heading of the amending act"
+ },
+ "910": {
+  "i": 910,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line: към Закона за изменение и допълнение на ГПК"
+ },
+ "911": {
+  "i": 911,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "publication and in-force line of the amending act"
+ },
+ "912": {
+  "i": 912,
+  "label": "paragraph_sign",
+  "n": "45",
+  "conf": "high",
+  "note": ""
+ },
+ "913": {
+  "i": 913,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg's dotted elision line marking the omitted paragraphs of the amending act; the instructions make it editorial_note, never drop"
+ },
+ "914": {
+  "i": 914,
+  "label": "paragraph_sign",
+  "n": "48",
+  "conf": "high",
+  "note": ""
+ },
+ "915": {
+  "i": 915,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "first line of the provisions heading of the concessions act"
+ },
+ "916": {
+  "i": 916,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line: към Закона за концесиите"
+ },
+ "917": {
+  "i": 917,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "low",
+  "note": "part of the heading of the transitional and final provisions to the Закон за концесиите; the page prints the heading words before and after the КЪМ line, the same pattern as for the ГПК amendment in the context; printed text of the act, not chrome; drop as a repeated line is the other plausible reading"
+ },
+ "918": {
+  "i": 918,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "publication and in-force line of the concessions act"
+ },
+ "919": {
+  "i": 919,
+  "label": "paragraph_sign",
+  "n": "41",
+  "conf": "high",
+  "note": ""
+ },
+ "920": {
+  "i": 920,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "921": {
+  "i": 921,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "922": {
+  "i": 922,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "first line of the provisions heading of the 2020 amending act"
+ },
+ "923": {
+  "i": 923,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line: към Закона за допълнение на ЗЗД"
+ },
+ "924": {
+  "i": 924,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "publication, in-force and amendment line of the amending act"
+ },
+ "925": {
+  "i": 925,
+  "label": "paragraph_sign",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "926": {
+  "i": 926,
+  "label": "paragraph_sign",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "927": {
+  "i": 927,
+  "label": "drop",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg section listing related EU acts, not part of the act"
+ },
+ "928": {
+  "i": 928,
+  "label": "drop",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg related EU acts list, not part of the act"
+ },
+ "929": {
+  "i": 929,
+  "label": "drop",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg related EU acts list, not part of the act"
+ },
+ "930": {
+  "i": 930,
+  "label": "drop",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg related EU acts list, not part of the act"
+ },
+ "931": {
+  "i": 931,
+  "label": "drop",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg related EU acts list, not part of the act"
+ }
+}
