@@ -1,0 +1,93 @@
+{
+ "slug": "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n",
+ "round": 0,
+ "blocks": 277,
+ "sections": 9,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 176,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '17.управлява човешките ресурси'"
+  }
+ ],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "malformed_head": 1
+ },
+ "labels": {
+  "drop": 10,
+  "title": 2,
+  "chapter_heading": 14,
+  "article_head": 53,
+  "item": 99,
+  "alinea": 72,
+  "section_heading": 14,
+  "letter": 10,
+  "provisions_heading": 1,
+  "paragraph_sign": 2
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ПОСТАНОВЛЕНИЕ № 242 ОТ 9 НОЕМВРИ 2018 Г.",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 1,
+   "text": "за приемане на Правилник за прилагане на Закона за защита на лица, застрашени въ",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 2,
+   "text": "МИНИСТЕРСКИЯТ СЪВЕТ",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 3,
+   "text": "ПОСТАНОВИ:",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 4,
+   "text": "Член единствен. Приема Правилник за прилагане на Закона за защита на лица, застр",
+   "note": "sole article of the adopting decree, not the act"
+  },
+  {
+   "block": 5,
+   "text": "Заключителна разпоредба",
+   "note": "final provision heading of the adopting decree, not the act"
+  },
+  {
+   "block": 6,
+   "text": "Параграф единствен. Отменя се Правилникът за прилагане на Закона за защита на ли",
+   "note": "sole paragraph of the adopting decree, not the act"
+  },
+  {
+   "block": 7,
+   "text": "Министър-председател: Бойко Борисов",
+   "note": "signature of the adopting decree"
+  },
+  {
+   "block": 8,
+   "text": "Главен секретар на Министерския съвет: Веселин Даков",
+   "note": "countersignature of the adopting decree"
+  },
+  {
+   "block": 276,
+   "text": "10083",
+   "note": "Gazette material number after the act, not part of the act"
+  }
+ ],
+ "note": "an earlier task set was replaced: answers of round 1 moved to round1-stale-133804959576",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 570
+}
