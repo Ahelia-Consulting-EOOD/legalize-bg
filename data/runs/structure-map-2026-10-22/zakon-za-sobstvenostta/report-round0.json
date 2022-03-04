@@ -1,0 +1,74 @@
+{
+ "slug": "zakon-za-sobstvenostta",
+ "round": 0,
+ "blocks": 312,
+ "sections": 10,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 2,
+   "kind": "low_confidence",
+   "detail": "lex.bg denomination remark under the title; could be editorial_note"
+  },
+  {
+   "block": 64,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 3; could be unnumbered_alinea"
+  },
+  {
+   "block": 122,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 2; could be unnumbered_alinea"
+  },
+  {
+   "block": 177,
+   "kind": "low_confidence",
+   "detail": "Чл. 99 with the 'Чл.' missing in the source; could be item"
+  },
+  {
+   "block": 177,
+   "kind": "label_text_mismatch",
+   "detail": "article_head on a line that does not open with Чл. N."
+  },
+  {
+   "block": 191,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 2; could be unnumbered_alinea"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 5,
+  "label_text_mismatch": 1
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 1,
+  "article_head": 124,
+  "unnumbered_alinea": 57,
+  "chapter_heading": 11,
+  "repeal_note": 3,
+  "letter": 15,
+  "section_heading": 9,
+  "continuation": 3,
+  "provisions_heading": 27,
+  "paragraph_sign": 23,
+  "item": 22,
+  "quoted": 1,
+  "editorial_note": 13,
+  "alinea": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 5,
+ "diff_lines": 66
+}

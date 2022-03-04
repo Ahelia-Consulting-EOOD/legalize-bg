@@ -1,0 +1,51 @@
+{
+ "slug": "zakon-za-sobstvenostta",
+ "round": 2,
+ "blocks": 312,
+ "sections": 10,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 177,
+   "kind": "malformed_head",
+   "detail": "article number without 'Чл.': '99. Правото на собственост се '"
+  }
+ ],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "malformed_head": 1
+ },
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "editorial_note": 14,
+  "article_head": 124,
+  "unnumbered_alinea": 57,
+  "chapter_heading": 11,
+  "repeal_note": 3,
+  "letter": 15,
+  "section_heading": 9,
+  "continuation": 3,
+  "provisions_heading": 27,
+  "paragraph_sign": 23,
+  "item": 22,
+  "quoted": 1,
+  "alinea": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 68
+}
