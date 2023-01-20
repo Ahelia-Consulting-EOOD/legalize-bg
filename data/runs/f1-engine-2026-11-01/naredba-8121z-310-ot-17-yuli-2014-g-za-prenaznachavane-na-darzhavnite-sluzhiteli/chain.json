@@ -1,0 +1,117 @@
+{
+ "act": "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli",
+ "promulgation": {
+  "material": 86641,
+  "issue": "60/2014",
+  "date": "2014-07-22"
+ },
+ "materials": [
+  {
+   "material": 88705,
+   "issue": "87/2014",
+   "date": "2014-10-21",
+   "position": 2,
+   "title": "Наредба за изменение и допълнение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 90677,
+   "issue": "104/2014",
+   "date": "2014-12-16",
+   "position": 8,
+   "title": "Наредба за изменение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 93839,
+   "issue": "29/2015",
+   "date": "2015-04-21",
+   "position": 11,
+   "title": "Наредба за изменение и допълнение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 113274,
+   "issue": "29/2017",
+   "date": "2017-04-07",
+   "position": 11,
+   "title": "Наредба за изменение и допълнение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 148171,
+   "issue": "47/2020",
+   "date": "2020-05-22",
+   "position": 7,
+   "title": "Наредба за изменение и допълнение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 153040,
+   "issue": "93/2020",
+   "date": "2020-10-30",
+   "position": 6,
+   "title": "Наредба за изменение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 183866,
+   "issue": "6/2023",
+   "date": "2023-01-20",
+   "position": 20,
+   "title": "Наредба за изменение и допълнение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  }
+ ],
+ "lexbg_issues": [
+  "60/2014",
+  "87/2014",
+  "104/2014",
+  "29/2015",
+  "29/2017",
+  "47/2020",
+  "93/2020",
+  "6/2023"
+ ],
+ "unexplained_lexbg_issues": [],
+ "extra_issues": [],
+ "decisions_naming_the_act": [],
+ "candidates": 89,
+ "bodies_fetched": 82,
+ "built_at": "2026-11-01T10:48:03+00:00"
+}

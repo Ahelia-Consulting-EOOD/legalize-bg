@@ -1,0 +1,60 @@
+{
+ "act": "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli",
+ "materials": [
+  {
+   "material": 88705,
+   "issue": "87/2014",
+   "operations": 3,
+   "body_after_sha256": "ea430c303fceae24490a3939eca7c441e085958672d070df663b44cfa9df6143"
+  },
+  {
+   "material": 90677,
+   "issue": "104/2014",
+   "operations": 2,
+   "body_after_sha256": "4c37670a77a8f79a54efde09a8fb3c2e5b94908d5674f81721efeef6b4b9c2f5"
+  },
+  {
+   "material": 93839,
+   "issue": "29/2015",
+   "operations": 17,
+   "body_after_sha256": "cc0b87850be734eb656931702d1e0c7c1229f0474b9b5e8696f24b7a469a6f6f"
+  },
+  {
+   "material": 113274,
+   "issue": "29/2017",
+   "operations": 16,
+   "body_after_sha256": "da806612bcc43a0fbcbbff7f85b6d305a662fb6a53a4578142e43cf0b83ba163"
+  },
+  {
+   "material": 148171,
+   "issue": "47/2020",
+   "operations": 10,
+   "body_after_sha256": "67b739b414cc093aeba98f92ee3579ab3e16450b5245a91b8c29b9449f575188"
+  },
+  {
+   "material": 153040,
+   "issue": "93/2020",
+   "operations": 2,
+   "body_after_sha256": "db14fc7402d9dd1456271662a0d7534275ab559c2cb1515745f23e24055e49a0"
+  },
+  {
+   "material": 183866,
+   "issue": "6/2023",
+   "operations": 9,
+   "body_after_sha256": "61490ae9066a5f8ca4e156521d0ff9851d71de7e5ab091a6f5596e18fde0d55c"
+  }
+ ],
+ "operations_by_kind": {
+  "insert_provision": 9,
+  "replace_words": 7,
+  "no_text_change": 16,
+  "replace_provision": 8,
+  "repeal": 3,
+  "insert_words": 10,
+  "delete_words": 4,
+  "renumber": 2
+ },
+ "unexplained_lexbg_issues": [],
+ "applied_sha256": "61490ae9066a5f8ca4e156521d0ff9851d71de7e5ab091a6f5596e18fde0d55c",
+ "applied_at": "2026-11-01T12:19:17+00:00"
+}

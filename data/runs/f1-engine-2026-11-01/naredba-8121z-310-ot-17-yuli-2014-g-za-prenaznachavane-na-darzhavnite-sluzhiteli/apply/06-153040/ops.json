@@ -1,0 +1,26 @@
+{
+ "material": 153040,
+ "issue": "93/2020",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 11, ал. 1",
+   "old": "съответният тригодишен",
+   "old_ref": "q1",
+   "new": "двугодишният",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2",
+   "kind": "no_text_change",
+   "note": ""
+  }
+ ],
+ "log": [
+  "§1 replace_words: 1 replacement(s)",
+  "§2 no_text_change: nothing"
+ ]
+}
