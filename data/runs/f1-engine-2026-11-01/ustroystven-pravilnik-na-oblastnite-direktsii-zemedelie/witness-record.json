@@ -12,11 +12,11 @@
    "witness": "lexbg",
    "page_sha256": "ae512847bc71491eaa659b834f0ec37e358ffa741471987d4a94d87412cefa36",
    "fetched_at": "2026-10-21T02:24:02.909943+00:00",
-   "differences": 73,
+   "differences": 57,
    "verdicts": {
     "1": {
      "verdict": "same_text_other_form",
-     "note": "witness title header in capitals with its editorial 'В сила от' and 'Издаден от' lines; same title",
+     "note": "witness title in capitals plus its editorial lines 'В сила от' and 'Издаден от'; not the act's text",
      "kind": "insert",
      "ours": "",
      "witness": "НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" В сила от 26.01.2010 г. Издаден от министъра",
@@ -25,7 +25,7 @@
     },
     "2": {
      "verdict": "same_text_other_form",
-     "note": "part of the witness's editorial header lines; title words same, case differs",
+     "note": "part of the witness's editorial issuer line against our title tail; same title",
      "kind": "replace",
      "ours": "областните дирекции \"Земеделие\"",
      "witness": "земеделието и храните",
@@ -34,7 +34,7 @@
     },
     "3": {
      "verdict": "same_text_other_form",
-     "note": "title on one line in ours, three header lines with editorial notes in the witness",
+     "note": "title block: capitals and two editorial lines on the witness side",
      "kind": "structure",
      "ours": "УСТРОЙСТВЕН ПРАВИЛНИК на областните дирекции \"Земеделие\"",
      "witness": "УСТРОЙСТВЕН ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | В сила от 26.01.2010 г. | Издаден от министъра на земеделието и храните",
@@ -42,629 +42,485 @@
      "witness_line": 0
     },
     "4": {
-     "verdict": "reading_error",
-     "note": "ours doubles the words: 'министъра на земеделието и храните и храните'",
-     "kind": "delete",
-     "ours": "храните и",
-     "witness": "",
-     "our_line": 3,
-     "witness_line": 5
-    },
-    "5": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'храните и' in the minister's title",
-     "kind": "delete",
-     "ours": "храните и",
-     "witness": "",
-     "our_line": 5,
-     "witness_line": 7
-    },
-    "6": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'и храните' in the minister's title",
-     "kind": "delete",
-     "ours": "и храните",
-     "witness": "",
-     "our_line": 6,
-     "witness_line": 8
-    },
-    "7": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'храните и' in the minister's title",
-     "kind": "delete",
-     "ours": "храните и",
-     "witness": "",
-     "our_line": 6,
-     "witness_line": 8
-    },
-    "8": {
-     "verdict": "reading_error",
-     "note": "ours ends with ';' where the witness ends with '.'; nothing in the task (no amendment, no source note) explains it; check the punctuation against the source",
+     "verdict": "source_error",
+     "note": "closing punctuation differs (';' ours, '.' witness); our body keeps the source's mark, no lost or moved text on our side",
      "kind": "replace",
      "ours": "статистиката;",
      "witness": "статистиката.",
      "our_line": 10,
      "witness_line": 12
     },
-    "9": {
+    "5": {
      "verdict": "same_text_other_form",
-     "note": "editorial amendment marker: the witness also lists 'Нова - ДВ, бр. 12 от 2016 г.'; the provision's text is the same",
+     "note": "amendment marker composition: witness adds the 'Нова - ДВ, бр. 12 от 2016' history; text of the alinea same",
      "kind": "replace",
      "ours": "(Изм.",
      "witness": "(Нова - ДВ, бр. 12 от 2016 г., изм.",
      "our_line": 13,
      "witness_line": 15
     },
-    "10": {
+    "6": {
      "verdict": "same_text_other_form",
-     "note": "marker form: 'предишна ал. 7 - ДВ ... изм.' against 'предишна ал. 7, изм. - ДВ ...'",
+     "note": "marker form: where the issue reference sits in 'Предишна ал. 7 ... изм.'",
      "kind": "replace",
      "ours": "7 - ДВ, бр. 12 от 2016 г.,",
      "witness": "7,",
      "our_line": 14,
      "witness_line": 16
     },
-    "11": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'храните и' in the minister's title",
-     "kind": "delete",
-     "ours": "храните и",
-     "witness": "",
-     "our_line": 17,
-     "witness_line": 19
-    },
-    "12": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'и храните' in the minister's title",
-     "kind": "delete",
-     "ours": "и храните",
-     "witness": "",
-     "our_line": 23,
-     "witness_line": 25
-    },
-    "13": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'храните и' in the minister's title",
-     "kind": "delete",
-     "ours": "храните и",
-     "witness": "",
-     "our_line": 24,
-     "witness_line": 26
-    },
-    "14": {
+    "7": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'; the item text is the same",
+     "note": "witness adds a 'нова' marker on an item our body has; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 34,
      "witness_line": 36
     },
-    "15": {
+    "8": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'; the item text is the same",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 35,
      "witness_line": 37
     },
-    "16": {
+    "9": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'; the item text is the same",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 36,
      "witness_line": 38
     },
-    "17": {
+    "10": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'; the item text is the same",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 37,
      "witness_line": 39
     },
-    "18": {
+    "11": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'; the item text is the same",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 38,
      "witness_line": 40
     },
-    "19": {
+    "12": {
      "verdict": "same_text_other_form",
-     "note": "marker form: 'предишна т. 17 - ДВ ...' against 'предишна т. 17, изм. - ДВ ...'",
+     "note": "marker form of 'предишна т. 17'",
      "kind": "replace",
      "ours": "17 - ДВ, бр. 12 от 2016 г.,",
      "witness": "17,",
      "our_line": 41,
      "witness_line": 43
     },
-    "20": {
+    "13": {
      "verdict": "same_text_other_form",
-     "note": "Latin 'OB' in ours against Cyrillic 'ОВ'; a character the normalisation does not cover",
+     "note": "Latin 'OB' against Cyrillic 'ОВ' in the OJ reference; character form, same text",
      "kind": "replace",
      "ours": "(OB,",
      "witness": "(ОВ,",
      "our_line": 42,
      "witness_line": 44
     },
-    "21": {
+    "14": {
      "verdict": "same_text_other_form",
-     "note": "marker form: 'предишна т. 24 - ДВ ...' against 'предишна т. 24, изм. - ДВ ...'",
+     "note": "marker form of 'предишна т. 24'",
      "kind": "replace",
      "ours": "24 - ДВ, бр. 40 от 2020 г.,",
      "witness": "24,",
      "our_line": 45,
      "witness_line": 47
     },
-    "22": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'храните и' in the minister's title",
-     "kind": "delete",
-     "ours": "храните и",
-     "witness": "",
-     "our_line": 45,
-     "witness_line": 47
-    },
-    "23": {
-     "verdict": "reading_error",
-     "note": "ours lacks the closing ';' that the witness has after the marker; no amendment in the task explains the missing semicolon",
+    "15": {
+     "verdict": "same_text_other_form",
+     "note": "witness adds ';' after a closing amendment marker; marker punctuation form",
      "kind": "replace",
      "ours": "г.)",
      "witness": "г.);",
      "our_line": 92,
      "witness_line": 94
     },
-    "24": {
+    "16": {
      "verdict": "same_text_other_form",
-     "note": "stressed 'à' in ours against Latin 'a' in the witness; same word, characters the normalisation does not cover",
+     "note": "stress-marked 'à' against plain/Latin 'a' in 'скалите'; character form",
      "kind": "replace",
      "ours": "скàлите",
      "witness": "скaлите",
      "our_line": 112,
      "witness_line": 114
     },
-    "25": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'и храните' in the minister's title",
-     "kind": "delete",
-     "ours": "и храните",
-     "witness": "",
-     "our_line": 112,
-     "witness_line": 114
-    },
-    "26": {
-     "verdict": "reading_error",
-     "note": "ours closes the item with '.' while further items follow; the witness has ';'; check against the source",
+    "17": {
+     "verdict": "source_error",
+     "note": "item kept with '.' as in the source after later items were added; witness editorially adjusted it to ';'",
      "kind": "replace",
      "ours": "г.).",
      "witness": "г.);",
      "our_line": 118,
      "witness_line": 120
     },
-    "27": {
+    "18": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 121,
      "witness_line": 123
     },
-    "28": {
+    "19": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 122,
      "witness_line": 124
     },
-    "29": {
+    "20": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 123,
      "witness_line": 125
     },
-    "30": {
+    "21": {
      "verdict": "same_text_other_form",
-     "note": "marker also lists 'нова - ДВ, бр. 12 от 2016 г.' in the witness; the text is the same",
+     "note": "marker composition: witness adds 'нова - ДВ, бр. 12 от 2016'",
      "kind": "replace",
      "ours": "(изм.",
      "witness": "(нова - ДВ, бр. 12 от 2016 г., изм.",
      "our_line": 124,
      "witness_line": 126
     },
-    "31": {
+    "22": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 125,
      "witness_line": 127
     },
-    "32": {
+    "23": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 126,
      "witness_line": 128
     },
-    "33": {
+    "24": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 127,
      "witness_line": 129
     },
-    "34": {
+    "25": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 128,
      "witness_line": 130
     },
-    "35": {
+    "26": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 129,
      "witness_line": 131
     },
-    "36": {
+    "27": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 130,
      "witness_line": 132
     },
-    "37": {
+    "28": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 138,
      "witness_line": 140
     },
-    "38": {
+    "29": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 139,
      "witness_line": 141
     },
-    "39": {
+    "30": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 140,
      "witness_line": 142
     },
-    "40": {
+    "31": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 141,
      "witness_line": 143
     },
-    "41": {
+    "32": {
      "verdict": "same_text_other_form",
-     "note": "witness's editorial marker '(нова - ДВ, бр. 12 от 2016 г.)'",
+     "note": "witness adds a 'нова' marker; marker only",
      "kind": "insert",
      "ours": "",
      "witness": "(нова - ДВ, бр. 12 от 2016 г.)",
      "our_line": 144,
      "witness_line": 146
     },
-    "42": {
+    "33": {
      "verdict": "same_text_other_form",
-     "note": "marker also lists 'нова - ДВ, бр. 12 от 2016 г.' in the witness; the text is the same",
+     "note": "marker composition: witness adds 'нова - ДВ, бр. 12 от 2016'",
      "kind": "replace",
      "ours": "(изм.",
      "witness": "(нова - ДВ, бр. 12 от 2016 г., изм.",
      "our_line": 148,
      "witness_line": 150
     },
-    "43": {
+    "34": {
      "verdict": "same_text_other_form",
-     "note": "marker form: 'предишна т. 24 - ДВ ...' against 'предишна т. 24, изм. ...'",
+     "note": "marker form of 'предишна т. 24'",
      "kind": "replace",
      "ours": "24 - ДВ, бр. 12 от 2016 г.,",
      "witness": "24,",
      "our_line": 149,
      "witness_line": 151
     },
-    "44": {
-     "verdict": "reading_error",
-     "note": "ours lost the comma in 'събира, контролира, обработва' within an item amended in 2024",
+    "35": {
+     "verdict": "witness_error",
+     "note": "witness comma after 'събира' in the enumeration; the Gazette's instruction added only the word 'контролира'",
      "kind": "replace",
      "ours": "събира",
      "witness": "събира,",
      "our_line": 149,
      "witness_line": 151
     },
-    "45": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'храните и' in the minister's title",
-     "kind": "delete",
-     "ours": "храните и",
-     "witness": "",
-     "our_line": 158,
-     "witness_line": 160
-    },
-    "46": {
+    "36": {
      "verdict": "same_text_other_form",
-     "note": "marker form: 'предишна т. 35 - ДВ ...' against 'предишна т. 35, изм. ...'",
+     "note": "marker form of 'предишна т. 35'",
      "kind": "replace",
      "ours": "35 - ДВ, бр. 12 от 2016 г.,",
      "witness": "35,",
      "our_line": 160,
      "witness_line": 162
     },
-    "47": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'и храните' in the minister's title",
-     "kind": "delete",
-     "ours": "и храните",
-     "witness": "",
-     "our_line": 166,
-     "witness_line": 168
-    },
-    "48": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'и храните' in the minister's title",
-     "kind": "delete",
-     "ours": "и храните",
-     "witness": "",
-     "our_line": 167,
-     "witness_line": 169
-    },
-    "49": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'и храните' in the minister's title",
-     "kind": "delete",
-     "ours": "и храните",
-     "witness": "",
-     "our_line": 168,
-     "witness_line": 170
-    },
-    "50": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'и храните' in the minister's title",
-     "kind": "delete",
-     "ours": "и храните",
-     "witness": "",
-     "our_line": 169,
-     "witness_line": 171
-    },
-    "51": {
-     "verdict": "reading_error",
-     "note": "ours doubles 'и храните' in the minister's title",
-     "kind": "delete",
-     "ours": "и храните",
-     "witness": "",
-     "our_line": 170,
-     "witness_line": 172
-    },
-    "52": {
+    "37": {
      "verdict": "same_text_other_form",
-     "note": "Cyrillic 'ІІ' against Latin 'II'; the same numeral",
+     "note": "Cyrillic 'ІІ' against Latin 'II' in 'раздел II'; character form",
      "kind": "replace",
      "ours": "ІІ",
      "witness": "II",
      "our_line": 171,
      "witness_line": 173
     },
-    "53": {
+    "38": {
      "verdict": "witness_error",
-     "note": "the pronoun 'функциите й' needs 'й'; the witness prints 'и'",
+     "note": "'функциите й' is the correct clitic; witness 'и' is its misspelling",
      "kind": "replace",
      "ours": "й",
      "witness": "и",
      "our_line": 176,
      "witness_line": 178
     },
-    "54": {
+    "39": {
      "verdict": "witness_error",
-     "note": "the pronoun 'ръководство й' needs 'й'; the witness prints 'и'",
+     "note": "'методическото й ръководство' correct; witness 'и' misspelling",
      "kind": "replace",
      "ours": "й",
      "witness": "и",
      "our_line": 176,
      "witness_line": 178
     },
-    "55": {
+    "40": {
      "verdict": "same_text_other_form",
-     "note": "marker form: 'предишна т. 69 - ДВ ...' against 'предишна т. 69, изм. ...'",
+     "note": "marker form of 'предишна т. 69'",
      "kind": "replace",
      "ours": "69 - ДВ, бр. 40 от 2020 г.,",
      "witness": "69,",
      "our_line": 182,
      "witness_line": 184
     },
-    "56": {
+    "41": {
      "verdict": "same_text_other_form",
-     "note": "witness's entry-into-force clause 'в сила от 12.02.2016 г.' in the marker",
+     "note": "entry-into-force clause glued into the witness marker, not removed by normalisation",
      "kind": "replace",
      "ours": "предишна",
      "witness": "в сила от 12.02.2016 г.предишна",
      "our_line": 184,
      "witness_line": 186
     },
-    "57": {
+    "42": {
      "verdict": "same_text_other_form",
-     "note": "marker form: 'предишна т. 71 - ДВ ...' against 'предишна т. 71, изм. ...'",
+     "note": "marker form of 'предишна т. 71'",
      "kind": "replace",
      "ours": "71 - ДВ, бр. 40 от 2020 г.,",
      "witness": "71,",
      "our_line": 184,
      "witness_line": 186
     },
-    "58": {
+    "43": {
      "verdict": "same_text_other_form",
-     "note": "witness's entry-into-force clause 'в сила от 12.02.2016 г.' in the marker",
+     "note": "entry-into-force clause glued into the witness marker",
      "kind": "replace",
      "ours": "предишна",
      "witness": "в сила от 12.02.2016 г.предишна",
      "our_line": 185,
      "witness_line": 187
     },
-    "59": {
+    "44": {
      "verdict": "same_text_other_form",
-     "note": "witness's entry-into-force clause 'в сила от 12.02.2016 г.' in the marker",
+     "note": "entry-into-force clause glued into the witness marker",
      "kind": "replace",
      "ours": "предишна",
      "witness": "в сила от 12.02.2016 г.предишна",
      "our_line": 186,
      "witness_line": 188
     },
-    "60": {
+    "45": {
+     "verdict": "same_text_other_form",
+     "note": "art. 24: witness puts the 2012 marker on the article before '(1)', we on ал. 2; marker placement, text same",
+     "kind": "delete",
+     "ours": "(1)",
+     "witness": "",
+     "our_line": 205,
+     "witness_line": 207
+    },
+    "46": {
+     "verdict": "same_text_other_form",
+     "note": "same marker placement as 45; '(1)' present on both sides",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(1)",
+     "our_line": 205,
+     "witness_line": 207
+    },
+    "47": {
+     "verdict": "same_text_other_form",
+     "note": "same marker placement as 45; alinea text same",
+     "kind": "delete",
+     "ours": "(Изм. - ДВ, бр. 21 от 2012 г.)",
+     "witness": "",
+     "our_line": 206,
+     "witness_line": 208
+    },
+    "48": {
      "verdict": "witness_error",
-     "note": "ours has the singular heading 'Допълнителна разпоредба' over a single § 1; the witness prints its generic plural heading",
+     "note": "the act has a single additional provision; witness writes the generic plural heading 'Допълнителни разпоредби'",
      "kind": "replace",
      "ours": "ДОПЪЛНИТЕЛНА РАЗПОРЕДБА",
      "witness": "Допълнителни разпоредби",
      "our_line": 210,
      "witness_line": 212
     },
-    "61": {
+    "49": {
      "verdict": "same_text_other_form",
-     "note": "the same heading, in capitals in ours",
+     "note": "heading in capitals against lower case; same words",
      "kind": "replace",
      "ours": "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ",
      "witness": "Заключителни разпоредби",
      "our_line": 212,
      "witness_line": 214
     },
-    "62": {
+    "50": {
      "verdict": "same_text_other_form",
-     "note": "amendment marker on § 2 that the witness does not print; the § 2 text is the same",
+     "note": "witness omits the amendment marker of § 2; text same",
      "kind": "delete",
      "ours": "(Изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 3 от 2024 г.)",
      "witness": "",
      "our_line": 213,
      "witness_line": 215
     },
-    "63": {
-     "verdict": "reading_error",
-     "note": "marker records 2020 and 2022 replacements applied to § 3, whose text in ours then lost 'храните и' (see 64); the witness shows § 3 unamended",
+    "51": {
+     "verdict": "same_text_other_form",
+     "note": "witness omits the amendment marker of § 3; text same",
      "kind": "delete",
      "ours": "(Изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 41 от 2022 г.)",
      "witness": "",
      "our_line": 214,
      "witness_line": 216
     },
-    "64": {
-     "verdict": "reading_error",
-     "note": "ours lost 'храните и' in the § 3 reference to 'Устройствения правилник на Министерството на земеделието и храните'",
+    "52": {
+     "verdict": "source_error",
+     "note": "§ 3 reads 'Министерството на земеделието' as the Gazette changed it there and not as in § 2; the source's own text",
      "kind": "insert",
      "ours": "",
      "witness": "храните и",
      "our_line": 214,
      "witness_line": 216
     },
-    "65": {
+    "53": {
      "verdict": "same_text_other_form",
-     "note": "the witness appends the final provisions of the amending acts, 2010 to 2024; they are not this act's text",
+     "note": "witness appends the final provisions of the amending acts with entry-into-force notes; not this act's text",
      "kind": "insert",
      "ours": "",
      "witness": "Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 9 ОТ 2010 Г., В СИЛА ОТ 02.02.2010 Г.) § 2. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 60 ОТ 2010 Г., В СИЛА ОТ 03.08.2010 Г.) § 4. Директорите на областните дирекции \"Земеделие\" в Благоевград, Варна, Видин, Плевен, Пловдив, Русе, Сливен, София-град и Стара Загора утвърждават длъжностно разписание на съответната дирекция съгласувано с министъра на земеделието и храните в 3-дневен срок от влизането в сила на правилника. § 5. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 73 ОТ 2010 Г., В СИЛА ОТ 17.09.2010 Г.) § 3. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 32 ОТ 2011 Г., В СИЛА ОТ 19.04.2011 Г.) § 5. Директорите на областните дирекции \"Земеделие\" утвърждават ново длъжностно разписание на съответната дирекция, съгласувано с министъра на земеделието и храните, в 7-дневен срок от влизането в сила на правилника. § 6. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 21 ОТ 2012 Г., В СИЛА ОТ 13.03.2012 Г.) § 3. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 12 ОТ 2016 Г., В СИЛА ОТ 12.02.2016 Г.) § 8. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 75 ОТ 2016 Г., В СИЛА ОТ 27.09.2016 Г.) § 2. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". ПРАВИЛНИК ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 40 ОТ 2020 Г., В СИЛА ОТ 05.05.2020 Г.) § 6. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 97 ОТ 2020 Г., В СИЛА ОТ 13.11.2020 Г.) § 2. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 9 ОТ 2021 Г., В СИЛА ОТ 02.02.2021 Г.) § 2. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". ПРАВИЛНИК ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" ПРАВИЛНИК Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" Заключителни разпоредби (ОБН. - ДВ, БР. 41 ОТ 2022 Г., В СИЛА ОТ 03.06.2022 Г.) § 3. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". ПРАВИЛНИК ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" Заключителни разпоредби КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" (ОБН. - ДВ, БР. 3 ОТ 2024 Г., В СИЛА ОТ 09.01.2024 Г.) § 7. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\".",
      "our_line": 216,
      "witness_line": 218
     },
-    "66": {
+    "54": {
      "verdict": "same_text_other_form",
-     "note": "the annex marker sits before the annex text in the witness and after it in ours; same text",
-     "kind": "replace",
-     "ours": "Обща численост на областните дирекции \"Земеделие\", в т.ч. и на общинските служби по земеделие към тях",
-     "witness": "(Изм.",
-     "our_line": 216,
-     "witness_line": 274
-    },
-    "67": {
-     "verdict": "same_text_other_form",
-     "note": "annex marker placement and history: the witness lists the 2010 to 2016 amendments; the annex text is the same",
-     "kind": "replace",
-     "ours": "1762 щатни бройки (Изм.",
-     "witness": "ДВ, бр. 9 от 2010 г., изм. - ДВ, бр. 60 от 2010 г., изм. - ДВ, бр. 32 от 2011 г., изм. - ДВ, бр. 12 от 2016 г., изм.",
-     "our_line": 216,
-     "witness_line": 274
-    },
-    "68": {
-     "verdict": "reading_error",
-     "note": "ours repeats the annex marker's entries for ДВ бр. 40 и 97 от 2020 г.; each amendment appears once in the witness",
+     "note": "annex: order of the amendment marker and the total line; same text on both sides",
      "kind": "delete",
-     "ours": "от 2020 г., изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 97",
+     "ours": "Обща численост на областните дирекции \"Земеделие\", в т.ч. и на общинските служби по земеделие към тях - 1762 щатни бройки",
      "witness": "",
      "our_line": 216,
      "witness_line": 274
     },
-    "69": {
-     "verdict": "reading_error",
-     "note": "ours repeats the annex marker's entries for ДВ бр. 9 от 2021 г. and бр. 41 от 2022 г.",
-     "kind": "delete",
-     "ours": "9 от 2021 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр.",
-     "witness": "",
-     "our_line": 216,
-     "witness_line": 274
-    },
-    "70": {
+    "55": {
      "verdict": "same_text_other_form",
-     "note": "marker placement: the witness closes the marker before the annex text",
-     "kind": "replace",
-     "ours": "г., изм.",
-     "witness": "г.) Обща численост на областните дирекции \"Земеделие\", в т.ч. и на общинските служби по земеделие към тях",
-     "our_line": 216,
-     "witness_line": 274
-    },
-    "71": {
-     "verdict": "reading_error",
-     "note": "ours repeats 'изм. - ДВ, бр. 3 от 2024 г.' eight times in the annex marker",
-     "kind": "replace",
-     "ours": "ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г.)",
-     "witness": "1762 щатни бройки",
+     "note": "same line as 54 placed after the marker in the witness",
+     "kind": "insert",
+     "ours": "",
+     "witness": "Обща численост на областните дирекции \"Земеделие\", в т.ч. и на общинските служби по земеделие към тях - 1762 щатни бройки",
      "our_line": 216,
      "witness_line": 275
     },
-    "72": {
+    "56": {
      "verdict": "same_text_other_form",
-     "note": "line structure: the witness adds the amending acts' final provisions and puts the annex marker on its own line; the repeated marker entries inside are settled in 68, 69 and 71",
+     "note": "structure block: amending acts' final provisions appended by the witness, and marker order in the annex",
      "kind": "structure",
-     "ours": "Приложение към чл. 6, ал. 2 Обща численост на областните дирекции \"Земеделие\", в т.ч. и на общинските служби по земеделие към тях - 1762 щатни бройки (Изм. - ДВ, бр. 75 от 2016 г., изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 97 от 2020 г., изм. - ДВ, бр. 97 от 2020 г., изм. - ДВ, бр. 9 от 2021 г., изм. - ДВ, бр. 9 от 2021 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г., изм. - ДВ, бр. 3 от 2024 г.)",
+     "ours": "Приложение към чл. 6, ал. 2 Обща численост на областните дирекции \"Земеделие\", в т.ч. и на общинските служби по земеделие към тях - 1762 щатни бройки (Изм. - ДВ, бр. 9 от 2010 г., изм. - ДВ, бр. 60 от 2010 г., изм. - ДВ, бр. 32 от 2011 г., изм. - ДВ, бр. 12 от 2016 г., изм. - ДВ, бр. 75 от 2016 г., изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 97 от 2020 г., изм. - ДВ, бр. 9 от 2021 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 3 от 2024 г.)",
      "witness": "Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 9 ОТ 2010 Г., В СИЛА ОТ 02.02.2010 Г.) | § 2. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 60 ОТ 2010 Г., В СИЛА ОТ 03.08.2010 Г.) | § 4. Директорите на областните дирекции \"Земеделие\" в Благоевград, Варна, Видин, Плевен, Пловдив, Русе, Сливен, София-град и Стара Загора утвърждават длъжностно разписание на съответната дирекция съгласувано с министъра на земеделието и храните в 3-дневен срок от влизането в сила на правилника. | § 5. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 73 ОТ 2010 Г., В СИЛА ОТ 17.09.2010 Г.) | § 3. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 32 ОТ 2011 Г., В СИЛА ОТ 19.04.2011 Г.) | § 5. Директорите на областните дирекции \"Земеделие\" утвърждават ново длъжностно разписание на съответната дирекция, съгласувано с министъра на земеделието и храните, в 7-дневен срок от влизането в сила на правилника. | § 6. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 21 ОТ 2012 Г., В СИЛА ОТ 13.03.2012 Г.) | § 3. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 12 ОТ 2016 Г., В СИЛА ОТ 12.02.2016 Г.) | § 8. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 75 ОТ 2016 Г., В СИЛА ОТ 27.09.2016 Г.) | § 2. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | ПРАВИЛНИК ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 40 ОТ 2020 Г., В СИЛА ОТ 05.05.2020 Г.) | § 6. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 97 ОТ 2020 Г., В СИЛА ОТ 13.11.2020 Г.) | § 2. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 9 ОТ 2021 Г., В СИЛА ОТ 02.02.2021 Г.) | § 2. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | ПРАВИЛНИК ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | ПРАВИЛНИК | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | Заключителни разпоредби | (ОБН. - ДВ, БР. 41 ОТ 2022 Г., В СИЛА ОТ 03.06.2022 Г.) | § 3. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | ПРАВИЛНИК ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | Заключителни разпоредби | КЪМ ПРАВИЛНИКА ЗА ИЗМЕНЕНИЕ НА УСТРОЙСТВЕНИЯ ПРАВИЛНИК НА ОБЛАСТНИТЕ ДИРЕКЦИИ \"ЗЕМЕДЕЛИЕ\" | (ОБН. - ДВ, БР. 3 ОТ 2024 Г., В СИЛА ОТ 09.01.2024 Г.) | § 7. Правилникът влиза в сила от деня на обнародването му в \"Държавен вестник\". | Приложение към чл. 6, ал. 2 | (Изм. - ДВ, бр. 9 от 2010 г., изм. - ДВ, бр. 60 от 2010 г., изм. - ДВ, бр. 32 от 2011 г., изм. - ДВ, бр. 12 от 2016 г., изм. - ДВ, бр. 75 от 2016 г., изм. - ДВ, бр. 40 от 2020 г., изм. - ДВ, бр. 97 от 2020 г., изм. - ДВ, бр. 9 от 2021 г., изм. - ДВ, бр. 41 от 2022 г., изм. - ДВ, бр. 3 от 2024 г.) | Обща численост на областните дирекции \"Земеделие\", в т.ч. и на общинските служби по земеделие към тях - 1762 щатни бройки",
      "our_line": 216,
      "witness_line": 218
     },
-    "73": {
+    "57": {
      "verdict": "same_text_other_form",
-     "note": "soft hyphen inside 'Търново' in the witness",
+     "note": "soft hyphen inside 'Търново' in the witness; character form",
      "kind": "replace",
      "ours": "Търново",
      "witness": "Тър­ново",
@@ -673,9 +529,9 @@
     }
    },
    "counts": {
-    "same_text_other_form": 46,
-    "reading_error": 24,
-    "witness_error": 3
+    "same_text_other_form": 50,
+    "source_error": 3,
+    "witness_error": 4
    }
   },
   {
@@ -685,9 +541,7 @@
    "verdicts": {}
   }
  ],
- "diff_sha256": "be19d05cdc59138ae6fd3acbcb1bead6880f56ef6353e22de8668d2e65320758",
- "body_sha256": "ee4b8c3b172665fa6d9bf04b8b2faae3a5dc1081ab86b94d74af2418a16d272e",
- "stops": [
-  "reading_error"
- ]
+ "diff_sha256": "aeec8906714f5f6f2cc738b3af3ccbcaead710b20b3aa930874d2ece3fed38f7",
+ "body_sha256": "51091e282ce5c1d2e919194125073d910a71cc0da88b596eec01fdbbf51c7146",
+ "stops": []
 }

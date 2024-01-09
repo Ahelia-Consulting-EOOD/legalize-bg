@@ -11,67 +11,67 @@
    "material": 35396,
    "issue": "60/2010",
    "operations": 28,
-   "body_after_sha256": "14c4d8cb7665cc57b508f3cc836ea65f498c27ce591171c60bdb8abd8eeed85a"
+   "body_after_sha256": "ff62ad9e016c2b1823eb538f6120fae8326d9c71c90cf65d734d7a65009230f5"
   },
   {
    "material": 36798,
    "issue": "73/2010",
    "operations": 3,
-   "body_after_sha256": "cf34f51807a39a8655188587ed4d155cfc9862325df593984d0192e2e8593dfd"
+   "body_after_sha256": "2bb620016bf687ad8dc72bfbac4cec85400d1a3841fa17ec2c1476ad26e11829"
   },
   {
    "material": 48515,
    "issue": "32/2011",
    "operations": 9,
-   "body_after_sha256": "6d183128b9cd91db2e7897d9eacb862fa4b5af0dfbac0accd708fb553c4b2f96"
+   "body_after_sha256": "42d4929747601a489566c4222f2504eae9ddf5dc045d6d115d0e80f32c09cba8"
   },
   {
    "material": 62371,
    "issue": "21/2012",
    "operations": 3,
-   "body_after_sha256": "d266bc068dbbfbdd3d4b9b5e4e4cbe477757962b9e80c49f38a990e8e6b51740"
+   "body_after_sha256": "58a3b17ef4a3cd52a430a7e3e430d91fc62df1bc11eca666a4e45d02fe30d9cf"
   },
   {
    "material": 100860,
    "issue": "12/2016",
    "operations": 75,
-   "body_after_sha256": "df963e52170abd65288c5ec6ed95670e85ffb77c141276653e1c34824f9bbd03"
+   "body_after_sha256": "0e9d12a0ece8291c209fbd5a1ced0742bc42ddc2a863517f1b0d575d2b0e22d2"
   },
   {
    "material": 107723,
    "issue": "75/2016",
    "operations": 2,
-   "body_after_sha256": "f4de59c8abefaba58e364098c93b43e0ad25596ebd3d0ceb05d13cbd84c65b8c"
+   "body_after_sha256": "e5f6035637d75542dfc81fb8e42cd25530acbec303fd3e6bf0a1a2491f9fcb71"
   },
   {
    "material": 147660,
    "issue": "40/2020",
    "operations": 51,
-   "body_after_sha256": "8253f2615230261da9aec01c665499e8a694210552614e75882016e156217355"
+   "body_after_sha256": "c40a3de68f76299975c43d8a4ffacc5a1b5edaee402966b553793d5656fcd6fa"
   },
   {
    "material": 153474,
    "issue": "97/2020",
    "operations": 4,
-   "body_after_sha256": "533e0630b68e101b1870acfb239c8e305afe2ab261847fa198556d8d9115e46b"
+   "body_after_sha256": "a6b56d915976ff180c5c3b018ada159902473f95a824190007ba06757bad5725"
   },
   {
    "material": 155516,
    "issue": "9/2021",
    "operations": 4,
-   "body_after_sha256": "91437635151ee5fe76fe2d08327c193fb9f11ba249c21962d124064ad9973303"
+   "body_after_sha256": "c9614b36301e2c37e46d9042b4c9d92b986e281e5f8c1e56a1aaf87c095d0541"
   },
   {
    "material": 173772,
    "issue": "41/2022",
    "operations": 9,
-   "body_after_sha256": "221ba6c7249321bdcd355547f2528a1c41e02afb9d3c13bc5a209cc18b98ac15"
+   "body_after_sha256": "fab787309bdb139386cff3ad40f4779ec1915e590935950ff7ea3f88c7ceeb1c"
   },
   {
    "material": 202430,
    "issue": "3/2024",
    "operations": 51,
-   "body_after_sha256": "ee4b8c3b172665fa6d9bf04b8b2faae3a5dc1081ab86b94d74af2418a16d272e"
+   "body_after_sha256": "51091e282ce5c1d2e919194125073d910a71cc0da88b596eec01fdbbf51c7146"
   }
  ],
  "operations_by_kind": {
@@ -86,6 +86,6 @@
   "insert_words": 8
  },
  "unexplained_lexbg_issues": [],
- "applied_sha256": "ee4b8c3b172665fa6d9bf04b8b2faae3a5dc1081ab86b94d74af2418a16d272e",
- "applied_at": "2026-11-01T12:49:16+00:00"
+ "applied_sha256": "51091e282ce5c1d2e919194125073d910a71cc0da88b596eec01fdbbf51c7146",
+ "applied_at": "2026-11-01T13:22:39+00:00"
 }
