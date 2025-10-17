@@ -1,0 +1,144 @@
+{
+ "slug": "zakon-za-ustroystvo-na-teritoriyata",
+ "round": 0,
+ "blocks": 2673,
+ "sections": 66,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 546,
+   "kind": "low_confidence",
+   "detail": "second Раздел VI. heading, older title version repeated by lex.bg; section_heading or editorial_note"
+  },
+  {
+   "block": 547,
+   "kind": "low_confidence",
+   "detail": "older title of Раздел VI. printed after the current one; section_heading or editorial_note"
+  },
+  {
+   "block": 826,
+   "kind": "low_confidence",
+   "detail": "closing sentence of ал. 13 after its items; continuation or unnumbered_alinea"
+  },
+  {
+   "block": 1329,
+   "kind": "low_confidence",
+   "detail": "repealed Раздел III marker; repeal_note or section_heading"
+  },
+  {
+   "block": 2224,
+   "kind": "low_confidence",
+   "detail": "§ 35 printed without the § sign; item 35 plausible"
+  },
+  {
+   "block": 2224,
+   "kind": "label_text_mismatch",
+   "detail": "paragraph_sign n='35' on '35. Законът влиза в сила от де'"
+  },
+  {
+   "block": 2493,
+   "kind": "low_confidence",
+   "detail": "stray title of the amending law before its provisions heading; editorial_note plausible"
+  },
+  {
+   "block": 2579,
+   "kind": "low_confidence",
+   "detail": "repealed § line; repeal_note plausible"
+  },
+  {
+   "block": 2580,
+   "kind": "low_confidence",
+   "detail": "repealed § line; repeal_note plausible"
+  },
+  {
+   "block": 2587,
+   "kind": "low_confidence",
+   "detail": "§ sign missing in source, sequence § 47 -> § 49; item plausible"
+  },
+  {
+   "block": 2587,
+   "kind": "label_text_mismatch",
+   "detail": "paragraph_sign n='48' on '48. Строежите от пета категори'"
+  },
+  {
+   "block": 2102,
+   "kind": "item_order",
+   "detail": "86. after 84."
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 545,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 546"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 9,
+  "label_text_mismatch": 2,
+  "item_order": 1
+ },
+ "source_finding_kinds": {
+  "empty_section": 1
+ },
+ "labels": {
+  "drop": 7,
+  "title": 1,
+  "prehistory": 1,
+  "part_heading": 10,
+  "chapter_heading": 46,
+  "article_head": 285,
+  "alinea": 986,
+  "item": 777,
+  "section_heading": 78,
+  "letter": 93,
+  "continuation": 3,
+  "repeal_note": 1,
+  "provisions_heading": 144,
+  "paragraph_sign": 160,
+  "quoted": 5,
+  "adoption_formula": 1,
+  "editorial_note": 75
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 2192,
+   "text": "-------------------------",
+   "note": "dashed separator rule before the adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 2668,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  },
+  {
+   "block": 2669,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  },
+  {
+   "block": 2670,
+   "text": "ДИРЕКТИВА 2014/94/EC НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 22 октомври 2014 го",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  },
+  {
+   "block": 2671,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  },
+  {
+   "block": 2672,
+   "text": "РЕГЛАМЕНТ (ЕС) № 305/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 март 2011 го",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 10,
+ "diff_lines": 1407
+}
