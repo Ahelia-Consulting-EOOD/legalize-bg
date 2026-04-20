@@ -54,13 +54,25 @@ class CatalogCrawler:
         return entries
 
     def crawl_all(self, transport) -> list[dict]:
-        """Crawl all tree pages across all categories. Returns full catalog."""
-        catalog = []
+        """Crawl all tree pages across all categories. Returns full catalog.
+
+        Deduplicates doc_ids across categories with first-wins semantics.
+        lex.bg puts the Конституция (doc_id 521957377) as a sidebar link on
+        every tree page — without dedup the catalog would carry ~104 copies.
+        A small number of acts (e.g. правилници) also legitimately appear in
+        two related categories; first-wins keeps the one the crawler
+        encounters first (iteration order: laws → code → ords → regs → reg_laws).
+        """
+        catalog: list[dict] = []
+        seen: set[int] = set()
         for category, num_pages in CATEGORIES_CONFIG.items():
             for page_idx in range(num_pages):
                 url = f"{LEX_BG_TREE}/{category}/{page_idx}"
                 raw = transport.get_tree_page(url)
                 html = raw.decode(ENCODING)
-                entries = self.parse_tree_page(html, category)
-                catalog.extend(entries)
+                for entry in self.parse_tree_page(html, category):
+                    if entry["doc_id"] in seen:
+                        continue
+                    seen.add(entry["doc_id"])
+                    catalog.append(entry)
         return catalog
