@@ -1,0 +1,17 @@
+repo_id: legalize-bg
+canonical_name: legalize-bg
+remote: https://github.com/Ahelia-Consulting-EOOD/legalize-bg.git
+repo_type: data_pipeline_repo
+readiness: low
+migration_track: greenfield
+paired_repos: []
+adopted_baseline_version: null
+pilot_status: documentation_bootstrap
+waivers: []
+classification:
+  matrix_column: data_analytics_repo
+  has_ui: false
+  has_api: true  # MCP server
+  data_heavy: true
+  agentic: true
+  risk_level: low_medium

@@ -1,0 +1,171 @@
+# legalize-bg constraint profile
+# Machine-readable constraints for Bulgarian legislation-as-code pipeline
+# Authoritative sources: docs/process/delivery-contract.md, .ahelia/protected-surfaces.yaml, docs/data/schema-reference.md
+
+risk_tier: high
+constraint_pack_version: 1
+protected_surfaces_file: .ahelia/protected-surfaces.yaml
+delivery_contract_file: docs/process/delivery-contract.md
+
+# --- Network & Crawling Constraints ---
+
+rate_limiting:
+  target: lex.bg
+  max_requests_per_second: 1
+  average_response_time_ms: 1200
+  politeness: true
+  notes: >
+    No rate limiting detected on lex.bg, but polite crawling is mandatory.
+    Cloudflare may start blocking if we exceed 1 req/sec.
+    Keep Playwright as emergency fallback if simple HTTP GET is blocked.
+
+encoding:
+  source_charset: windows-1251
+  decode_as: cp1251
+  output_charset: utf-8
+  violation_risk: >
+    Data corruption if content is decoded as UTF-8 or latin-1 instead of cp1251.
+    All lex.bg responses use windows-1251 encoding.
+
+# --- Legalize SPEC Compliance ---
+
+frontmatter:
+  spec_source: "legalize-dev/legalize/SPEC.md"
+  mandatory_fields:
+    - titulo          # Law title in original language
+    - identificador   # lex.bg doc ID (e.g., "2136735703")
+    - pais            # Always "bg"
+    - rango           # Norm rank: закон, кодекс, наредба, правилник, правилник_по_прилагане
+    - fecha_publicacion    # First publication date (DV date)
+    - ultima_actualizacion # Last amendment date
+    - estado          # vigente | derogado
+    - fuente          # "lex.bg"
+  bulgarian_extension_fields:
+    - dv_issue        # DV issue number (e.g., "13")
+    - dv_year         # DV year (e.g., 2016)
+    - effective_date  # Date law enters into force (may differ from publication)
+    - category        # laws | codes | ordinances | regulations | implementing
+    - eli             # European Legislation Identifier URI
+  optional_fields:
+    - amendment_history  # List of {dv, date} entries for all amendments
+  total_field_count: 13  # 8 mandatory + 5 Bulgarian extensions
+
+# --- Commit Conventions ---
+
+commit_types:
+  - tag: "[bootstrap]"
+    meaning: "Initial scrape from lex.bg"
+    usage: "One commit per act during Phase 1a bootstrap"
+  - tag: "[reforma]"
+    meaning: "ЗИД (Закон за изменение и допълнение) — amendment"
+    usage: "One commit per amendment event from DV"
+  - tag: "[nova]"
+    meaning: "New law published for the first time"
+    usage: "New normative act appears in DV"
+  - tag: "[otmyana]"
+    meaning: "Full repeal (отмяна)"
+    usage: "Law or provision fully repealed"
+  - tag: "[popravka]"
+    meaning: "Corrigendum (поправка) in subsequent DV issue"
+    usage: "Correction to previously published text"
+
+commit_message_format:
+  required_fields:
+    - "Source-Id"    # e.g., dv-63-2017
+    - "Source-Date"  # e.g., 2017-08-04
+    - "Norm-Id"      # lex.bg doc ID (e.g., 2136735703)
+  example: |
+    [reforma] Закон за обществените поръчки
+
+    Source-Id: dv-63-2017
+    Source-Date: 2017-08-04
+    Norm-Id: 2136735703
+
+commit_granularity:
+  bootstrap: "One commit per act (not one massive commit)"
+  ongoing: "One commit per amendment event"
+  git_author_date: "Must match the DV publication date of the amendment"
+
+# --- Data Volume Constraints ---
+
+corpus:
+  total_acts: 3574
+  categories:
+    laws: 394
+    codes: 24
+    ordinances: 2604
+    regulations: 490
+    implementing_regs: 61
+  estimated_plain_text_size: "150-200 MB"
+  estimated_with_metadata_size: "500 MB - 1 GB"
+  initial_crawl_time: "~2 hours at 1 req/sec"
+
+# --- URL Patterns ---
+
+url_patterns:
+  document: "https://lex.bg/laws/ldoc/{doc_id}"
+  tree: "https://lex.bg/laws/tree/{category}/{page_index}"
+  categories:
+    laws: { pages: 12, items_per_page: 35 }
+    code: { pages: 1, items_per_page: 35 }
+    ords: { pages: 75, items_per_page: 35 }
+    regs: { pages: 14, items_per_page: 35 }
+    reg_laws: { pages: 2, items_per_page: 35 }
+
+# --- Technology Constraints ---
+
+access_method:
+  primary: "requests.get() with cp1251 encoding"
+  no_playwright: true
+  no_cookies: true
+  no_javascript_rendering: true
+  no_soap_auth: true
+  notes: "All lex.bg content is server-rendered HTML. Playwright NOT needed."
+
+parsing:
+  library: "BeautifulSoup"
+  css_selectors:
+    title: ".TitleDocument"
+    effective_date: ".PreHistory"
+    amendment_history: ".HistoryOfDocument"
+    part: ".Part"
+    chapter: ".Heading"
+    section: ".Section"
+    article: ".Article"
+    transitional_provisions: ".TransitionalFinalEdicts"
+
+storage:
+  primary: "git (Markdown with YAML frontmatter)"
+  index: "SQLite (derived, rebuilt from git)"
+  format: "Legalize-compatible Markdown"
+
+# --- Legalize Interface Contracts ---
+
+legalize_interfaces:
+  module: "fetcher/bg/"
+  required_implementations:
+    - "LegislativeClient"   # HTTP access to lex.bg
+    - "NormDiscovery"       # Tree crawler, catalog enumeration
+    - "TextParser"          # HTML to Blocks (structural elements)
+    - "MetadataParser"      # Extract YAML frontmatter fields
+  reused_from_legalize:
+    - "transformer/markdown.py"
+    - "transformer/frontmatter.py"
+    - "transformer/slug.py"
+    - "committer/"
+    - "CLI"
+    - "CI/CD"
+    - "state/"
+    - "config.yaml"
+
+# --- Quality Gates (from Legalize ADDING_A_COUNTRY.md) ---
+
+quality_gates:
+  - gate: "Fetcher returns valid Blocks for 100% of test norms"
+    phase: "Phase 1a"
+  - gate: "Frontmatter validates against SPEC schema for all acts"
+    phase: "Phase 1a"
+  - gate: "Bootstrap commits pass legalize-pipeline CI"
+    phase: "Phase 5"
+  - gate: "Daily update produces zero regressions on existing norms"
+    phase: "Phase 5"

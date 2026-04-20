@@ -1,0 +1,159 @@
+# legalize-bg Delivery Contract
+
+**Effective:** 2026-04-20
+**Scope:** All contributions to ahelia-consulting/legalize-bg
+**Authoritative design:** `docs/plans/2026-04-19-legalize-bg-design.md`
+
+---
+
+## Session Model
+
+Claude Code sessions work against this repo with the following startup protocol:
+
+1. Read `.claude/CLAUDE.md` for repo-specific instructions
+2. Read `docs/sync/ACTIVE.md` for current work state and next actions
+3. Check `.ahelia/constraint-profile.yaml` for machine-readable constraints
+4. Check `.ahelia/protected-surfaces.yaml` before modifying any interface or schema
+5. Identify current phase (1a through 6c) and work within its scope
+
+Sessions must not skip phases or begin work on a later phase until its prerequisites are met.
+
+---
+
+## Commit Discipline
+
+### Commit Types
+
+All commits to the legislation corpus follow the Legalize SPEC commit format. Five types, mapped to Bulgarian legislative practice:
+
+| Type | Meaning | When Used | Example |
+|------|---------|-----------|---------|
+| `[bootstrap]` | Initial scrape from lex.bg | Phase 1a only | `[bootstrap] Закон за обществените поръчки` |
+| `[reforma]` | Amendment (ЗИД) | Ongoing, from DV | `[reforma] Закон за обществените поръчки` |
+| `[nova]` | New law first published | When new act appears in DV | `[nova] Закон за киберсигурността` |
+| `[otmyana]` | Full repeal | When act is entirely repealed | `[otmyana] Закон за далекосъобщенията` |
+| `[popravka]` | Corrigendum | Correction in subsequent DV issue | `[popravka] Закон за обществените поръчки` |
+
+### Commit Message Format
+
+Every corpus commit must include three metadata fields in the body:
+
+```
+[reforma] Закон за обществените поръчки
+
+Source-Id: dv-63-2017
+Source-Date: 2017-08-04
+Norm-Id: 2136735703
+```
+
+- **Source-Id:** Identifier for the source document (DV issue or lex.bg doc)
+- **Source-Date:** Publication date of the source (DV issue date)
+- **Norm-Id:** lex.bg document ID for the affected law
+
+### Commit Granularity
+
+- **Bootstrap (Phase 1a):** One commit per act. Not one massive commit for all 3,574 acts.
+- **Ongoing amendments:** One commit per amendment event.
+- **GIT_AUTHOR_DATE:** Must be set to the DV publication date of the amendment, not the session date. This enables `git log --follow` to reconstruct legislative history chronologically.
+
+### Pipeline Code Commits
+
+Commits to pipeline code (fetcher, consolidation engine, MCP server, tooling) use conventional commit messages. These are not corpus commits and do not require the Legalize format.
+
+---
+
+## Review Requirements
+
+### Data Accuracy (Corpus Commits)
+
+- **Self-review against lex.bg oracle:** After bootstrap or consolidation, compare generated Markdown against current lex.bg text for the same law. Normalize whitespace and quotes before diff.
+- **Frontmatter validation:** All 13 YAML fields must be present and correctly populated.
+- **Encoding verification:** Output must be valid UTF-8 with no cp1251 artifacts.
+
+### Code Review (Pipeline Commits)
+
+- Pipeline code (fetcher/bg/, consolidation/, monitor/, mcp/) requires code review.
+- Changes to protected surfaces (see `.ahelia/protected-surfaces.yaml`) require explicit owner review.
+
+---
+
+## Quality Gates
+
+From Legalize `ADDING_A_COUNTRY.md` -- four hard gates that must pass before upstream contribution:
+
+| Gate | Requirement | Verified By |
+|------|------------|-------------|
+| **G1** | Fetcher returns valid Blocks for 100% of test norms | Unit tests against sample acts |
+| **G2** | Frontmatter validates against SPEC schema for all acts | Schema validation script |
+| **G3** | Bootstrap commits pass legalize-pipeline CI | CI run on PR |
+| **G4** | Daily update produces zero regressions on existing norms | Diff-based regression test |
+
+No PR to legalize-pipeline will be opened until all four gates pass.
+
+---
+
+## Branch Model
+
+- **`main` branch:** Legislation corpus. Contains Markdown files with YAML frontmatter. Each commit represents a legislative event (bootstrap, amendment, repeal, etc.). History is sacred -- never rebase or force-push.
+- **Feature branches:** Pipeline code development. Named descriptively (e.g., `feat/fetcher-discovery`, `feat/mcp-search`). Merged to main via PR after review.
+- **No long-lived branches:** Feature branches should be short-lived. Merge or close within a few sessions.
+
+---
+
+## Definition of Done
+
+### Phase 1a -- Bootstrap Scrape
+
+- [ ] All ~3,574 acts scraped from lex.bg and converted to Markdown
+- [ ] YAML frontmatter with all 13 fields populated for every act
+- [ ] One `[bootstrap]` commit per act with correct Source-Id, Source-Date, Norm-Id
+- [ ] SQLite catalog index built and queryable
+- [ ] Spot-check: 10 randomly selected acts match lex.bg text exactly (after normalization)
+- [ ] No cp1251 encoding artifacts in any file
+
+### Phase 1b -- MCP Server
+
+- [ ] `get_law()`, `search()`, `get_article()` tools working
+- [ ] Claude Code can access Bulgarian legislation via MCP
+- [ ] Response times under 2 seconds for single-law queries
+
+### Phase 2 -- Temporal Index
+
+- [ ] SQLite law_versions table populated from git history
+- [ ] `history()` and `diff()` MCP tools working
+- [ ] Date-based law retrieval returns correct historical version
+
+### Phase 3 -- DV Monitor
+
+- [ ] Poller detects new DV issues on Tue/Fri schedule
+- [ ] Amendment detector identifies affected laws
+- [ ] Alert or log for new amendments requiring processing
+
+### Phase 4 -- Consolidation Engine
+
+- [ ] ZID parser handles substitution, addition, deletion (covers ~80% of amendments)
+- [ ] Patcher applies parsed amendments to Markdown
+- [ ] Validator compares result against lex.bg oracle
+- [ ] Accuracy >= 70% on regex-only; >= 90% with LLM fallback
+
+### Phase 5 -- Legalize Contribution
+
+- [ ] All four quality gates (G1-G4) pass
+- [ ] fetcher/bg/ implements all 4 Legalize interfaces
+- [ ] PR submitted to legalize-pipeline
+- [ ] CI passes on upstream repo
+
+---
+
+## Rate Limiting Protocol
+
+All HTTP access to lex.bg must follow these rules:
+
+1. **Maximum 1 request per second.** Enforce with `time.sleep()` or equivalent.
+2. **Set a descriptive User-Agent** identifying the project (not a browser UA string).
+3. **Retry with exponential backoff** on 429 or 5xx responses. Max 3 retries.
+4. **Stop immediately** if Cloudflare challenges appear. Do not attempt to bypass.
+5. **Log all requests** with timestamp, URL, status code, and response time.
+6. **Full bootstrap crawl** takes ~2 hours at 1 req/sec for 3,574 acts plus tree pages. Plan accordingly -- do not rush.
+7. **Off-peak preferred:** Run large crawls outside Bulgarian business hours when possible.
+8. **lex.bg is the validation oracle, not the ongoing source.** After bootstrap, DV (dv.parliament.bg) is the primary source. lex.bg is used only for validation comparisons.

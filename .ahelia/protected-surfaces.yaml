@@ -1,0 +1,132 @@
+# legalize-bg protected surfaces
+# Surfaces that require preflight review before modification.
+# Changes to these surfaces have blast radius across the corpus (3,574 acts)
+# and/or affect downstream consumers (MCP server, Legalize upstream, SQLite index).
+
+paths:
+  # --- YAML Frontmatter Schema ---
+  # Any change to frontmatter fields affects all 3,574 acts and every downstream
+  # consumer (MCP server, SQLite index, Legalize CI, search). Adding, removing,
+  # or renaming a field requires migration of the entire corpus.
+  - path: "*.md frontmatter schema (13 fields)"
+    reason: >
+      Frontmatter is the contract between the corpus and all consumers.
+      8 mandatory Legalize SPEC fields + 5 Bulgarian extensions.
+      Changes break MCP tools, SQLite index rebuild, Legalize CI validation,
+      and any external tool consuming the Markdown files.
+    edit_mode: owner_review_required
+    blast_radius: "3,574 acts + all downstream consumers"
+    affected_fields:
+      mandatory:
+        - titulo
+        - identificador
+        - pais
+        - rango
+        - fecha_publicacion
+        - ultima_actualizacion
+        - estado
+        - fuente
+      bulgarian_extensions:
+        - dv_issue
+        - dv_year
+        - effective_date
+        - category
+        - eli
+
+  # --- Legalize Fetcher Interfaces ---
+  # These 4 interfaces are the integration contract with legalize-pipeline.
+  # Signature changes require upstream coordination with legalize-dev.
+  - path: "fetcher/bg/client.py"
+    reason: "LegislativeClient interface — HTTP access contract with lex.bg"
+    edit_mode: owner_review_required
+    upstream_dependency: "legalize-pipeline fetcher interface"
+
+  - path: "fetcher/bg/discovery.py"
+    reason: "NormDiscovery interface — tree crawler and catalog enumeration"
+    edit_mode: owner_review_required
+    upstream_dependency: "legalize-pipeline fetcher interface"
+
+  - path: "fetcher/bg/text_parser.py"
+    reason: "TextParser interface — HTML to Blocks structural conversion"
+    edit_mode: owner_review_required
+    upstream_dependency: "legalize-pipeline fetcher interface"
+
+  - path: "fetcher/bg/metadata.py"
+    reason: "MetadataParser interface — YAML frontmatter extraction"
+    edit_mode: owner_review_required
+    upstream_dependency: "legalize-pipeline fetcher interface"
+
+  # --- MCP Server Tool Signatures ---
+  # These are the API surface consumed by Claude Code legal skills
+  # (ZOP, contracts, rfp-response, legislative-draft).
+  # Signature changes break all downstream skill consumers.
+  - path: "mcp/server.py (tool signatures)"
+    reason: "MCP tool API consumed by Claude Code legal skills"
+    edit_mode: owner_review_required
+    blast_radius: "All Claude Code sessions using legal skills"
+    protected_signatures:
+      - "get_law(name: str, date: str | None = None) -> str"
+      - "search(query: str, category: str | None = None) -> list[dict]"
+      - "get_article(law: str, article: str, date: str | None = None) -> str"
+      - "history(law: str) -> list[dict]"
+      - "diff(law: str, date1: str, date2: str) -> str"
+      - "amendments_in_period(from_date: str, to_date: str) -> list[dict]"
+
+  # --- SQLite Schema ---
+  # The index is derived from git but schema changes require re-indexing
+  # the entire corpus and updating all query code in MCP server.
+  - path: "db/schema.sql"
+    reason: "SQLite schema — tables laws, law_versions, amendments, provisions"
+    edit_mode: owner_review_required
+    blast_radius: "Full re-index of corpus + MCP server query updates"
+    protected_tables:
+      - laws
+      - law_versions
+      - amendments
+      - provisions
+    protected_indexes:
+      - idx_versions_date
+      - idx_amendments_target
+      - idx_provisions_article
+
+  # --- Commit Message Format ---
+  # Legalize SPEC compliance. Changing commit format breaks upstream CI
+  # and the ability to reconstruct amendment history from git log.
+  - path: "commit message format"
+    reason: "Legalize SPEC commit conventions — 5 types + 3 metadata fields"
+    edit_mode: owner_review_required
+    upstream_dependency: "legalize-dev/legalize SPEC.md"
+    protected_elements:
+      commit_types:
+        - "[bootstrap]"
+        - "[reforma]"
+        - "[nova]"
+        - "[otmyana]"
+        - "[popravka]"
+      required_fields:
+        - "Source-Id"
+        - "Source-Date"
+        - "Norm-Id"
+
+  # --- Directory Structure ---
+  # The category-to-directory mapping is baked into discovery, frontmatter,
+  # MCP search, and Legalize upstream expectations.
+  - path: "top-level directory structure"
+    reason: "Category directories map to lex.bg categories and Legalize conventions"
+    edit_mode: owner_review_required
+    protected_directories:
+      - laws/
+      - codes/
+      - ordinances/
+      - regulations/
+      - implementing/
+      - municipal/
+
+rules:
+  - "Before modifying any protected surface: review blast radius and affected consumers"
+  - "Before changing frontmatter schema: plan migration for all 3,574 existing acts"
+  - "Before changing MCP signatures: verify no Claude Code skill depends on old signature"
+  - "Before changing SQLite schema: plan full re-index and update all MCP queries"
+  - "Before changing Legalize interfaces: coordinate with legalize-dev upstream"
+  - "Before changing commit format: verify Legalize CI compatibility"
+  - "Document the change rationale in the commit message body"
