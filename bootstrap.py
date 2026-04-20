@@ -3,6 +3,7 @@
 import argparse
 import logging
 import os
+import re
 import subprocess
 import time
 from pathlib import Path
@@ -166,21 +167,52 @@ def bootstrap(
     return catalog
 
 
-def _git_commit(filepath: Path, title: str, doc_id: int, pub_date: str, cwd: Path):
-    """Create a [bootstrap] commit for a single act."""
+_ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def _format_author_date(pub_date: str | None) -> str | None:
+    """Convert a YYYY-MM-DD publication date into a git-accepted timestamp.
+
+    Git rejects bare YYYY-MM-DD in GIT_AUTHOR_DATE with
+    'fatal: invalid date format' — it needs a full ISO 8601 with time and
+    timezone (or RFC 2822, or a Unix timestamp). We emit
+    'YYYY-MM-DDT00:00:00+00:00' — midnight UTC on the publication date —
+    which git parses as a proper timestamp.
+
+    Returns None for empty / None / malformed input so callers can skip
+    setting the env var rather than passing garbage.
+    """
+    if not pub_date or not isinstance(pub_date, str):
+        return None
+    if not _ISO_DATE_RE.match(pub_date):
+        return None
+    return f"{pub_date}T00:00:00+00:00"
+
+
+def _git_commit(filepath: Path, title: str, doc_id: int,
+                pub_date: str | None, cwd: Path):
+    """Create a [bootstrap] commit for a single act.
+
+    Sets both GIT_AUTHOR_DATE and GIT_COMMITTER_DATE to the publication
+    date so `git log --before=DATE` reconstructs legislative history
+    chronologically (see delivery-contract §Commit Granularity).
+    """
     subprocess.run(
         ["git", "add", str(filepath.relative_to(cwd))],
         cwd=cwd, check=True, capture_output=True,
     )
+    source_date_line = pub_date if pub_date else "unknown"
     msg = (
         f"[bootstrap] {title}\n\n"
         f"Source-Id: lexbg-{doc_id}\n"
-        f"Source-Date: {pub_date}\n"
+        f"Source-Date: {source_date_line}\n"
         f"Norm-Id: {doc_id}\n"
     )
     env = os.environ.copy()
-    if pub_date:
-        env["GIT_AUTHOR_DATE"] = pub_date
+    author_date = _format_author_date(pub_date)
+    if author_date:
+        env["GIT_AUTHOR_DATE"] = author_date
+        env["GIT_COMMITTER_DATE"] = author_date
     subprocess.run(
         ["git", "commit", "-m", msg],
         cwd=cwd, check=True, capture_output=True, env=env,
