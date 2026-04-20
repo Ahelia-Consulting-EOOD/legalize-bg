@@ -170,6 +170,12 @@
 | `diff` | `(law: str, date1: str, date2: str) -> str` | 2 | Git diff of a law between two dates. |
 | `amendments_in_period` | `(from_date: str, to_date: str) -> list[dict]` | 2 | All amendments across all laws in a time range. |
 
+**Data-quality constraints (implementers, read this before Phase 1b):** post-bootstrap observations in [`../data/canonical-data-model.md` §7](../data/canonical-data-model.md) shape the tool behavior. In brief:
+
+- §7.1 — `law_id` (filename slug) is NOT derivable from the title alone. Slug collisions ~5-10% of the corpus carry `-2/-3` suffixes; transliteration also drops information. `get_law(name)` must look up via SQLite (title → law_id) or accept `identificador` directly; it cannot hash-compute the path from `name`.
+- §7.2 — ~3.4% of acts have null `fecha_publicacion`. Commits for these are dated at bootstrap run time (`Source-Date: unknown` in the body). `get_law(name, date=X)` and Phase-2 temporal tools must treat these as date-uncertain, not "published 2026". Returning "most recent" for a date query on such an act is preferable to silently excluding it.
+- §7.3 — 7 acts have empty titulo. `search(query)` must surface them by `identificador` (doc_id) and show something recognizable in the result snippet instead of an empty title field.
+
 ### 8. SQLite Index
 
 | Attribute | Value |
