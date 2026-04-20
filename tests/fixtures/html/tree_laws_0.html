@@ -1,0 +1,1954 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://ogp.me/ns/fb#">
+
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-16F1C2CEKH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-16F1C2CEKH');
+</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1251" />
+
+	<title>Lex.bg - Закони, правилници, конституция, кодекси, държавен вестник, правилници по прилагане</title>
+
+	<meta name="description" content="Lex.bg - Закони, правилници, конституция, кодекси, държавен вестник, правилници по прилагане" />
+
+	<meta name="keywords" content="право,закони,правен портал,юридически справочник,държавен вестник,нормативни актове,правни семинари,законодателство,работа за юристи, новини,форум" />
+
+	<meta name="robots" content="index, follow" />
+
+	<meta name="revisit-after" content="1 day" />
+
+	<meta property="fb:app_id" content="105231989568955" />
+
+	<meta property="og:url" content="https://lex.bg/laws/tree/laws/0" />
+
+    <meta property="og:title" content="Lex.bg - Закони, правилници, конституция, кодекси, държавен вестник, правилници по прилагане" />
+
+    
+
+    
+
+	
+
+
+	<meta property="og:type" content="article" />
+
+    <meta name="referrer" content="no-referrer-when-downgrade">
+
+
+
+	<link rel="shotcut icon" href="https://lex.bg/assets/im/favicon.ico" />
+    <link rel="apple-touch-icon" type="image/png" sizes="167x167" href="https://lex.bg/assets/im/lex-favicion-167x167.png" />
+    <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="https://lex.bg/assets/im/lex-favicion-180x180.png" />
+
+	<link rel="alternate" type="application/rss+xml" title="Последни новини" href="https://lex.bg//rss/news" />
+
+
+
+	<link href="https://lex.bg/assets/css/style.css?ver=2" rel="stylesheet" type="text/css" media="screen" />
+
+	<!--link href="https://lex.bg/assets/css/search.css" rel="stylesheet" type="text/css" media="screen" /--->
+
+
+
+	<script type="text/javascript" src="https://lex.bg/assets/js/add.js"></script>
+
+
+
+	<script type="text/javascript" src="https://lex.bg/assets/js/swfobject.js"></script>
+
+
+
+	<script type="text/javascript">
+
+	TAX = {
+
+		site_url: "https://lex.bg/"
+
+	};
+
+
+
+	</script>
+
+
+
+	<script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+
+
+	<script type="text/javascript" src="https://lex.bg/assets/js/jquery-1.6.1.min.js"></script>
+
+	<script type="text/javascript" src="https://lex.bg/assets/js/ui/jquery-ui1.8.0.min.js"></script>
+
+	<link rel="stylesheet" href="https://lex.bg/assets/js/ui/jquery.autocomplete.css" type="text/css" />
+
+	<link rel="stylesheet" href="https://lex.bg/assets/css/jquery-ui-1.8.13.custom.css" type="text/css" media="all" />
+
+
+	<!--<script type="text/javascript" src="https://lex.bg/assets/js/cookieAgree.js"></script> -->
+
+
+
+	<link href="https://plus.google.com/116192933107688046495" rel="publisher" /><script type="text/javascript">
+
+		window.___gcfg = {lang: 'bg'};
+
+		(function()
+
+		{var po = document.createElement("script");
+
+		po.type = "text/javascript"; po.async = true;po.src = "https://apis.google.com/js/plusone.js";
+
+		var s = document.getElementsByTagName("script")[0];
+
+		s.parentNode.insertBefore(po, s);
+
+	})();</script>
+
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+if (!( window.self === window.top ))
+
+	window.parent.location = self.location;
+
+
+
+
+
+function replaceAll(stringValue, replaceValue, newValue)
+
+{
+
+ 	var functionReturn = new String(stringValue);
+
+
+
+ 	while ( true )
+
+ 	{
+
+  		var currentValue = functionReturn;
+
+
+
+  		functionReturn = functionReturn.replace(replaceValue, newValue);
+
+  		if ( functionReturn == currentValue )
+
+   			break;
+
+ 	}
+
+
+
+ 	return functionReturn;
+
+}
+
+
+
+
+
+
+
+$(function() {
+
+
+
+
+
+    $("#divLogin").dialog({
+
+		autoOpen: false,
+
+		show: "blind",
+
+		//show: 'slide',
+
+		resizable: false,
+
+		position: ['center',300], //[400,250],
+
+		stack: true,
+
+		width: 235,
+
+		hide: "explode",
+
+		modal: true });
+
+
+
+    //attach autocomplete
+
+    $("#search1_txt").autocomplete({
+
+
+
+        //define callback to format results
+
+        source: function(req, add) {
+
+
+
+            //pass request to server
+
+		strToSend = replaceAll(encodeURIComponent($("#search1_txt").val()), "%","-_-106");
+
+		strToSend = replaceAll(strToSend, '(', '-_-100');
+
+		strToSend = replaceAll(strToSend, ')', '-_-101');
+
+		strToSend = replaceAll(strToSend, "'", '-_-102');
+
+		strToSend = replaceAll(strToSend, '!', '-_-103');
+
+		strToSend = replaceAll(strToSend, '~', '-_-104');
+
+		strToSend = replaceAll(strToSend, '*', '-_-105');
+
+
+
+
+
+		$.getJSON("https://lex.bg/ss.php?p=" + strToSend, function(data) { //" https://lex.bg/search/AutocompleteJSON/
+
+
+
+
+
+                //create array for response objects
+
+                var suggestions = [];
+
+
+
+          if (data.length<1)
+
+	{
+
+		add(suggestions);
+
+		return;
+
+	}
+
+
+
+                //process response
+
+                $.each(data.message, function(i, val) {
+
+                    suggestions.push(val);
+
+
+
+                });
+
+
+
+                //pass array to callback
+
+                add(suggestions);
+
+            });
+
+        },
+
+
+
+        select: function(event, ui){
+
+            $(this).end().val(ui.item.value);
+
+        },
+
+
+
+
+
+        change: function() {
+
+
+
+            //prevent 'to' field being updated and correct position
+
+            //$("#search1_txt").val("").css("top", 2);
+
+        }
+
+    });
+
+});
+
+
+
+$.ajaxSetup({ timeout:3000, cache:false, crossDomain:false, error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+    //alert('jQueryError1:' + textStatus + 'E:' + errorThrown + 'X:' + XMLHttpRequest.responseText);
+
+    //alert(errorThrown);
+
+    //alert(XMLHttpRequest.responseText);
+
+}
+
+});
+
+</script>
+
+
+<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.css" />
+<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.1.0/cookieconsent.min.js"></script>
+<script>
+window.addEventListener("load", function(){
+window.cookieconsent.initialise({
+   "palette": {
+    "popup": {
+      "background": "#252e39"
+    },
+    "button": {
+      "background": "transparent",
+      "text": "#14a7d0",
+      "border": "#14a7d0"
+    }
+  },
+  "type": "opt-out",
+  "content": {
+    "message": "Този уеб сайт използва т. нар. 'бисквитки', за да ви предостави по-добра услуга и да функционира правилно.",
+    "dismiss": "Съгласен съм",
+    "deny": "Отказвам",
+    "link": "Повече информация",
+    "allow": "Разрешавам бисквитките",
+    "policy": "Политика за бисквитки",
+    "href": "https://lex.bg/termssite/politikaZaPoveritelnost/"
+  }
+})});
+</script>
+
+
+<script type="text/javascript" src="//bg.adocean.pl/files/js/ado.js"></script>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2018 */
+        if(typeof ado!=="object"){ado={};ado.config=ado.preview=ado.placement=ado.master=ado.slave=function(){};}
+        ado.config({mode: "old", xml: false, consent: true, characterEncoding: true});
+        ado.preview({enabled: true});
+</script>
+
+<!-- start master -->
+<script type="text/javascript">
+/* (c)AdOcean 2003-2018, MASTER: lex_bg.lex.bg.Home page */
+ado.master({id: '.4Zcd0jXneZ9Pr7x7YcvM8ijDeyIL6b_mGbFsvFwE17.c7', server: 'bg.adocean.pl' });
+</script>
+<!--  end master  -->
+
+
+<!-- Facebook Pixel Code -->
+<script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script', 'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '301498060891897');
+  fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=301498060891897&ev=PageView&noscript=1" /></noscript>
+<!-- End Facebook Pixel Code -->
+
+<script data-ad-client="ca-pub-9092264232006105" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<amp-geo layout="nodisplay">
+  <script type="application/json">
+    {
+      "ISOCountryGroups": {
+        "eea": [ "at", "be", "bg", "cy", "cz", "de", "dk", "ee", "es", "fi", "fr",
+        "gb", "gr", "hr", "hu", "ie", "is", "it", "li", "lt", "lu", "lv", "mt", "nl",
+        "no", "pl", "pt", "ro", "se", "si", "sk"]
+      }
+    }
+  </script>
+</amp-geo>
+
+
+<amp-consent layout="nodisplay" id="consent-element">
+  <script type="application/json">
+    {
+      "consents": {
+        "my_consent": {
+          "promptIfUnknownForGeoGroup": "eea",
+          "promptUI": "myConsentFlow"
+        }
+      }
+    }
+  </script>
+</amp-consent>
+
+<amp-ad data-block-on-consent
+    width=320 height=50
+    type="doubleclick"
+    data-slot="/4119129/mobile_ad_banner">
+</amp-ad>
+
+
+<meta name="facebook-domain-verification" content="91y1444y0g189enp1ezlht4tc1ko53" />
+
+</head>
+
+
+<body>
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WJG2W4"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WJG2W4');</script>
+<!-- End Google Tag Manager -->
+
+<div id="adoceanbgwgiqjskgkm"></div>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2019, lex_bg.lex.bg.Home page.All pages video takeover */
+ado.slave('adoceanbgwgiqjskgkm', {myMaster: '.4Zcd0jXneZ9Pr7x7YcvM8ijDeyIL6b_mGbFsvFwE17.c7' });
+</script>
+
+<div id="adoceanbgzarpdsghgt"></div>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2018, lex_bg.lex.bg.Home page.wallpaper */
+ado.slave('adoceanbgzarpdsghgt', {myMaster: '.4Zcd0jXneZ9Pr7x7YcvM8ijDeyIL6b_mGbFsvFwE17.c7' });
+</script>
+
+
+
+<div id="header">
+
+			<div class="content">
+
+				<div id="logo">
+
+					<a href="https://lex.bg/front" title="начало"><img src="https://lex.bg/assets/im/logo.png" alt="начало" /></a>
+
+				</div>
+
+
+
+				<div id="head_btn">
+
+					<a href="/register" title="Регистрация"><img src="https://lex.bg/assets/im//registration_btn.png" alt="регистрация" /></a>
+					<a href="javascript:openDialog();" title="вход" ><img src="https://lex.bg/assets/im//entrance_btn.png" alt="вход" /></a>
+				</div>
+
+				<div style="clear:both;"></div>
+
+			<div id="divLogin" title="Моля, въведете вашите данни за вход!" style="display:none;width:100%">
+
+				<style>
+ .ui-widget-overlay { opacity: .70;filter:Alpha(Opacity=70); }
+</style>
+
+	<div id="loginContent" >
+
+			<p class="formerror">
+							</p>
+			<form id="loginForm" action="https://lex.bg/login/direct" method="post">
+
+						<script type="text/javascript">
+							$(function(){
+								$("#f_username").click(function () {
+   									if ( $(this).val() == "Потребителско име")
+                							$(this).val('');
+
+    								});
+
+								$("#f_password").click(function () {
+   									$('#passwText').html('');
+									$('#passwText').css('z-index', '-1');
+    								});
+
+								$("#f_password").focus(function () {
+   									$('#passwText').html('');
+									$('#passwText').css('z-index', '-1');
+    								});
+
+								$("#passwText").click(function () {
+									$('#passwText').css('z-index', '-1');
+   									$('#passwText').html('');
+
+    								});
+
+							});
+							</script>
+
+
+				<input type="text" name="username" id="f_username" value="Потребителско име" style="color:#67677b; width:200px; height:25px; padding:0px 5px 0px 5px" /><br/><input type="hidden" name="redirect_login" id="f_redirect_login">
+				<input type="password" name="password" id="f_password" value=''  style="color:#67677b; margin-top:10px; width:200px; height:25px; padding:0px 5px 0px 5px"/><br/>
+				<div id='passwText' style='position:relative; top:-25px; left:10px; height:20px; color:#67677b;' >Парола</div>
+				<a href="https://lex.bg/login/lpassword" style="position:relative; top:-10px; text-decoration:underline; font-size:9px">Забравена парола</a>
+
+				<input type="button" class="submit" name="login" value="ВХОД" id="f_login" style="margin-left:130px; background:#cbcbcb; color:#323476; border-style:none; height:30px; width:80px; font-weight:bold; font-size:11px;" />
+
+
+			</form>
+	</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+	$('#f_login').click(function (){
+
+		$.post("/login/direct", $("#loginForm").serialize(), function(data) {
+	     		$('#loginContent').html(data);
+	 	});
+
+	})
+
+});
+</script>
+
+				</div>
+
+
+
+			</div>
+
+		</div>
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+
+
+function openDialog($param)
+
+{
+
+  $('#divLogin').dialog('open');
+
+  $('#f_redirect_login').val($param);
+
+}
+
+
+
+</script>
+
+
+
+		<div id="navigator">
+
+			<div class="content">
+
+
+
+				<div id="house" class="head_nav "><a href="https://lex.bg/" title="начало"><img src="https://lex.bg/assets/im//home_btn.png" alt="начало" /></a></div>
+
+				<div class="head_nav "><a href="https://news.lex.bg/" title="новини">НОВИНИ</a></div>
+
+				<div class="head_nav selected"><a href="https://lex.bg/guide" title="справочник">СПРАВОЧНИК</a></div>
+
+				<div class="head_nav "><a href="https://lex.bg/forum/" title="ФОРУМ">ФОРУМ</a></div>
+
+				<div class="head_nav "><a href="https://lex.bg/jobs" title="РАБОТА">РАБОТА</a></div>
+
+				<div class="head_nav "><a href="https://lex.bg/otcheti" title="УСЛУГИ">УСЛУГИ</a></div>
+
+				<!-- spektar BEGIN-->
+
+				<div id="spektar" class="head_nav ">
+
+					<a href="/spektar" title="Спектър">СПЕКТЪР</a>
+
+				</div>
+
+				<!-- spektar END -->
+
+
+				<div style='font-weight:normal; margin-left:90px; float:right' class="head_nav "><a href="https://lex.bg/about/reklama" style="padding-right:6px; padding-left:6px" title="реклама">реклама</a></div>
+
+				<!-- <div class="head_nav "><a href="https://lex.bg/blogs" title="БЛОГОВЕ">БЛОГОВЕ</a></div>
+
+				<div class="head_nav "><a href="https://lex.bg/members" title="СТРАНИЦИ">СТРАНИЦИ</a></div>
+
+				 <div class="head_nav "><a href="https://lex.bg/fun" title="ХУМОР">ХУМОР</a></div> -->
+
+				<div style="clear:both;"></div>
+
+			</div>
+
+		</div>
+
+		<!-- new elemen BEGIN - myrights sub menu -->
+
+		<div id="navigator_myrights">
+
+			<div class="wrapper">
+
+				<div class="nav_myrights">
+
+					<span class="left_arrow"></span>
+
+					<div class="thumbs">
+
+						<ul>
+
+							<li class="legal_entities ">
+
+								<a href="/pravatami/category2/13" title="Бизнес"></a>
+
+							</li>
+
+							<li class="deal ">
+
+								<a href="/pravatami/category2/2" title="Сделки"></a>
+
+							</li>
+
+							<li class="sundry ">
+
+								<a href="/pravatami/category2/15" title="Съд"></a>
+
+							</li>
+
+							<li class="work ">
+
+								<a href="/pravatami/category2/4" title="Работа"></a>
+
+							</li>
+
+							<li class="employer ">
+
+								<a href="/pravatami/category2/5" title="Потребители"></a>
+
+							</li>
+
+							<li class="police ">
+
+								<a href="/pravatami/category2/6" title="Полиция"></a>
+
+							</li>
+
+							<li class="mony ">
+
+								<a href="/pravatami/category2/7" title="Пари"></a>
+
+							</li>
+
+							<li class="heritage ">
+
+								<a href="/pravatami/category2/14" title="Интелектуална собственост"></a>
+
+							</li>
+
+							<li class="europa ">
+
+								<a href="/pravatami/category2/9" title="Европа"></a>
+
+							</li>
+
+							<li class="citizenship ">
+
+								<a href="/pravatami/category2/10" title="Граждани"></a>
+
+							</li>
+
+							<li class="administration ">
+
+								<a href="/pravatami/category2/11" title="Администрация"></a>
+
+							</li>
+
+							<li class="family ">
+
+								<a href="/pravatami/category2/12" title="Семейство"></a>
+
+							</li>
+
+						</ul>
+
+					</div>
+
+					<!-- <a href="#" title="" class="right_arrow active" onclick="moveRight()"></a> -->
+
+					<span class="right_arrow active"></span>
+
+				</div>
+
+			</div>
+
+		</div>
+
+
+
+		<script>
+			if ($('#myrights').hasClass('selected')) {
+
+				$('#navigator_myrights .wrapper').css({
+
+					"display": "block"
+
+				});
+
+			}
+
+
+
+			if ($('#navigator_myrights li.family, #navigator_myrights li.administration, #navigator_myrights li.citizenship').hasClass('selected')) {
+
+				$('#navigator_myrights ul').animate({
+
+					'margin-left': '-300px'
+
+				});
+
+				$('.right_arrow').removeClass('active');
+
+				$('.left_arrow').addClass('active');
+
+			}
+
+
+
+			$('.right_arrow').click(function() {
+
+				if ($('.right_arrow').hasClass('active')) {
+
+					$('#navigator_myrights ul').animate({
+
+						'margin-left': '-300px'
+
+					});
+
+					$('.right_arrow').removeClass('active');
+
+					$('.left_arrow').addClass('active');
+
+				}
+
+			});
+
+
+
+			$('.left_arrow').click(function() {
+
+				if ($('.left_arrow').hasClass('active')) {
+
+					$('#navigator_myrights ul').animate({
+
+						'margin-left': '0px'
+
+					});
+
+					$('.left_arrow').removeClass('active');
+
+					$('.right_arrow').addClass('active');
+
+				}
+
+			});
+		</script>
+
+		<!-- new elemen END - myrights sub menu -->
+
+		<!-- spektar sub menu -->
+		<div id="navigator_spektar">
+
+			<div class="wrapper" style="display:none">
+
+				<div class="nav_spektar">
+
+					<span class="left_arrow"></span>
+
+					<div class="thumbs">
+
+						<ul>
+
+							<li class="legal_entities">
+
+								<a title="Бизнес" href="/spektar/category2/16">
+									Бизнес
+								</a>
+
+							</li>
+
+
+							<li class="sundry">
+
+								<a title="Технологии" href="/spektar/category2/17">
+									Технологии
+								</a>
+							</li>
+
+                    <!--
+                            <li class="xmas20">
+								<a title="Идеи за коледни подаръци" href="/spektar/view/2888">Коледна селекция</a>
+							</li>
+							
+ 
+                            <li class="b2b">
+								<a title="Избрани продукти за бизнеса" href="/spektar/view/2868">Бизнес селекция</a>
+							</li>
+                                 
+                            <li class="wine2">
+    							<a title="Места за вино и любов" href="/spektar/view/288/" style="color:#8B043B;">
+                                    Места за вино и любов
+                                </a>
+							</li>
+
+                            <li class="xmas20">
+								<a title="Пътеводител за най-желаните подаръци" href="/spektar/view/2080">Коледна селекция</a>
+							</li>
+                    -->
+
+
+							<li class="mony">
+
+								<a title="Финанси" href="/spektar/category2/18">
+									Финанси
+								</a>
+
+							</li>
+
+
+							<li class="heritage">
+
+								<a title="Авто" href="/spektar/category2/19">
+									Авто
+								</a>
+
+							</li>
+
+							<li class="citizenship">
+
+								<a title="Лайфстайл" href="/spektar/category2/20">
+									Лайфстайл
+								</a>
+
+							</li>
+                            
+                            <li class="persons">
+
+								<a title="Лица" href="/spektar/category2/22">
+									Лица
+								</a>
+
+							</li>
+
+							<li class="health">
+
+								<a title="Здраве" href="/spektar/category2/21">
+									Здраве
+								</a>
+
+							</li>
+
+
+
+						</ul>
+
+					</div>
+
+
+					<span class="right_arrow"></span>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		<script>
+			if ($('#spektar').hasClass('selected')) {
+
+				$('#navigator_spektar .wrapper').css({
+
+					"display": "block"
+
+				});
+
+			}
+
+
+
+			if ($('#navigator_spektar li.family, #navigator_spektar li.administration, #navigator_spektar li.citizenship').hasClass('selected')) {
+
+				$('#navigator_spektar ul').animate({
+
+					'margin-left': '-300px'
+
+				});
+
+				$('.right_arrow').removeClass('active');
+
+				$('.left_arrow').addClass('active');
+
+			}
+
+
+
+			$('.right_arrow').click(function() {
+
+				if ($('.right_arrow').hasClass('active')) {
+
+					$('#navigator_spektar ul').animate({
+
+						'margin-left': '-300px'
+
+					});
+
+					$('.right_arrow').removeClass('active');
+
+					$('.left_arrow').addClass('active');
+
+				}
+
+			});
+
+
+
+			$('.left_arrow').click(function() {
+
+				if ($('.left_arrow').hasClass('active')) {
+
+					$('#navigator_spektar ul').animate({
+
+						'margin-left': '0px'
+
+					});
+
+					$('.left_arrow').removeClass('active');
+
+					$('.right_arrow').addClass('active');
+
+				}
+
+			});
+		</script>
+
+		<!-- end of spektar sub menu -->
+<!--<br />    -->
+<div style="width:1022px; margin: 0 auto 0 auto;">
+<div id="adoceanbgpkpgpsjknv"></div>
+<script type="text/javascript">
+/* (c)AdOcean 2003-2018, lex_bg.lex.bg.Home page.Megaboard Header */
+ado.slave('adoceanbgpkpgpsjknv', {myMaster: '.4Zcd0jXneZ9Pr7x7YcvM8ijDeyIL6b_mGbFsvFwE17.c7' });
+</script>
+</div>
+
+
+
+<div id="container" style="width:1022px; margin:0px auto">
+
+	<div class="content" style="">
+
+				
+<script type="text/javascript" src="/assets/js/jquery.multiselect.min.js"></script>
+<link rel="stylesheet" type="text/css" href="/assets/css/jquery.multiselect.css">
+<style type="text/css">
+#search-pannel{
+        width: 640px;
+        display: none;
+	position: absolute;
+	z-index: 100;
+	/*
+	top: 317px;
+	left: 151px;
+	display: block;
+	*/
+}
+#search-pannel-main{
+        width: 640px;
+        min-height:     200px;
+        background-image: url(/assets/im//search-bg-middle.gif);
+}
+#search-pannel-header{
+        background-image:       url(/assets/im//search-bg-header.gif);
+        background-repeat:      no-repeat;
+        height:                 1px;
+	font-size:		1px;
+}
+#search-pannel-footer{
+        background-image:       url(/assets/im//search-bg-bottom.gif);
+        background-repeat:      no-repeat;
+        height:                 9px;
+}
+#search-pannel .search-tabs{
+	width:		100%;
+	padding-top:	15px;
+}
+#search-pannel .search-tabs li{
+	list-style:	none;
+	float:	left;
+	height:		30px;
+	line-height:	30px;
+	padding:	5px;
+	border:		1px solid #8791d8;
+	border-top:	2px solid #8791d8;
+	border-bottom:		0px;
+	background-color: white;
+	text-align:	center;
+	font-size:	12px;
+	color:		#8791d8;
+
+}
+.sprite{
+	background-image:	url(/assets/im//sprite.png);
+	display:		block;
+	float:			left;
+	margin-right:		7px;
+	background-repeat:	no-repeat;
+}
+
+
+.sprite1{
+	background-position: -42px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+.sprite2{
+	background-position: -72px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+.sprite3{
+	background-position: -147px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+.sprite4{
+	background-position: -325px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+.sprite5{
+	background-position: -238px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+.sprite6{
+	background-position: -208px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+.sprite7{
+	background-position: -268px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+.sprite8{
+	background-position: -178px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+.sprite9{
+	background-position: -238px 4px;
+	width:		26px;
+	height:		30px;
+
+}
+
+.sprite-arrow{
+	background-image: url(/assets/im//arrow7.png);
+	background-position: center right;
+	background-repeat: no-repeat;
+	padding-right:	15px;
+	cursor:		pointer;
+}
+
+
+.sprite-close{
+	background-position: -418px 2px;
+        width:          33px;
+        height:         35px;
+	float:		right;
+	cursor:		pointer;
+}
+.tab-header-text{
+	float:		left;
+}
+.sprite-header{
+	float:          left;
+	cursor:         pointer;
+        margin-top:     9px;
+        margin-left:   4px;
+}
+.tab-header-box .sprite-header{
+        background-position: -473px 0px;
+        width:          13px;
+        height:         13px;
+}
+.tab-header-box-active .sprite-header{
+	background-position: -458px 0px;
+	width:          13px;
+        height:         13px;
+}
+
+#search-pannel .search-item{
+	clear:		both;
+	margin-top:	0px;
+}
+
+#search-start{
+	background-position: 0px 0px;
+	width:          42px;
+        height:         20px;
+	cursor:		pointer;
+}
+.tab-header{
+	height:         31px;
+	clear:		both;
+
+}
+.tab-header-box,.tab-header-bold{
+	width:		150px;
+	height:		31px;
+	line-height:	31px;
+	float:		left;
+	padding-left:	15px;
+	margin-left:	7px;
+	padding-top:	4px;
+	cursor:		pointer;
+	color:		#323476;
+
+}
+.tab-header-box-active{
+	background-image:	url(/assets/im//search-item-box.gif);
+	background-repeat:	no-repeat;
+	font-weight:		bold;
+}
+
+.tab-header-bold{
+
+}
+.tab-header-bold-active{
+	font-weight:		bold;
+}
+
+.tab-content{
+	display:		none;
+}
+
+
+
+
+
+
+
+
+
+
+#search-pannel-hide{
+	padding-top:	5px;
+	height:		35px;
+	clear:		both;
+	text-align:	right;
+}
+#search-pannel .tab-content{
+	width:		626px;
+	margin:         0px 5px 0px 7px;
+	background-color:       white;
+
+}
+#search-pannel .tab-content-header{
+	background-image:	url(/assets/im//search-item-line.gif);
+	height:			18px;
+
+}
+#search-pannel .tab-content-main{
+        background-image:       url(/assets/im//search-item-main.gif);
+	padding:	20px;
+	color:			#323476;
+}
+#search-pannel .tab-content-main input[type=checkbox]{
+	color: green;
+	border:1px solid #E7EDF2 !important;
+}
+#search-pannel .tab-content-bottom{
+        background-image:       url(/assets/im//search-item-bottom.gif);
+        height:                 14px;
+	clear:			both;
+}
+</style>
+
+
+<form id="search1" action="https://lex.bg/search" method="post">
+	<div class="sprite" id="search-start">&nbsp;</div>
+	<input id="search1_txt" type="text" autocomplete="off" tabindex="1" name="searchBox" value="търси навсякъде..." />
+	<input class="lupa" type="image" src="https://lex.bg/assets/im//lupa.png" title="търси" />
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+$("#search1_txt").click(function () {
+	if($(this).val()=="търси навсякъде...")
+		$(this).val('');
+});
+$('#search-start').click(function(){
+	if($('#search-pannel').css('display')=='block'){
+		$('#search-pannel').css('display','none');
+	}else{
+	$('#search-pannel').css('display','block');
+	$p = $('#search1').offset();
+	$('#search-pannel').css('top',$p.top+25);
+	$('#search-pannel').css('left',$p.left);
+	}
+});
+$('#sprite-close').click(function(){
+	$('#search-pannel').css('display','none');
+
+});
+
+
+$('.tab-header-box').click(function (){
+	$name = $(this).attr('rel');
+	if($('#'+$name+'-content-all').css('display')=='none'){
+		$(this).addClass('tab-header-box-active');
+		$('#'+$name+'-content-all').css('display','block');
+		$('input[name="search_for_'+$name+'"]').val('1');
+	}else{
+		$(this).removeClass('tab-header-box-active');
+		$('#'+$name+'-content-all').css('display','none');
+		$('input[name="search_for_'+$name+'"]').val('0');
+	}
+});
+
+$('.tab-header-bold').click(function (){
+        $name = $(this).attr('rel');
+        if($(this).is('.tab-header-bold-active')){
+        		$('input[name="search_for_'+$name+'"]').val('0');
+                $(this).removeClass('tab-header-bold-active');
+        }else{
+                $(this).addClass('tab-header-bold-active');
+                $('input[name="search_for_'+$name+'"]').val('1');
+        }
+});
+
+$('.inside-tab').click( function(){
+	$name = $(this).attr('rel');
+	if($(this).is('.tab-header-bold-active')){
+    		$('input[name="search_for_'+$name+'"]').val('0');
+            $(this).removeClass('tab-header-bold-active');
+    }else{
+            $(this).addClass('tab-header-bold-active');
+            $('input[name="search_for_'+$name+'"]').val('1');
+    }
+
+});
+
+$(".searchSelect").multiselect({header: false,minWidth:150});
+
+
+
+});
+    </script>
+
+<input type="hidden" name="search_for_all" value="0"/>
+<input type="hidden" name="search_for_news" value="0"/>
+<input type="hidden" name="search_for_forums" value="0"/>
+<input type="hidden" name="search_for_spravochnik" value="0"/>
+<input type="hidden" name="search_for_blogs" value="0"/>
+<input type="hidden" name="search_for_services" value="0"/>
+<input type="hidden" name="search_for_pages" value="0"/>
+<input type="hidden" name="search_for_jobs" value="0"/>
+<input type="hidden" name="search_for_jokes" value="0"/>
+
+
+
+<input type="hidden" name="search_for_acts" value="0"/>
+<input type="hidden" name="search_for_org" value="0"/>
+<input type="hidden" name="search_for_instr" value="0"/>
+<input type="hidden" name="search_for_blanks" value="0"/>
+
+<div id="search-pannel">
+	<div id="search-pannel-header"></div>
+	<div id="search-pannel-main">
+		<div>
+			<div class="search-item" id="search-all-tab">
+				<div class="tab-header">
+					<div class="tab-header-bold" rel="all"><span class="sprite sprite1"></span><span class="tab-header-text">навсякъде</span></div>
+				</div>
+			</div>
+
+
+
+		<div class="search-item" id="search-spvaochnik-tab">
+				<div class="tab-header">
+					<div class="tab-header-box" rel="spravochnik"><span class="sprite sprite4"></span><span class="tab-header-text">справочник</span><span class="sprite sprite-header"></span></div>
+
+				</div>
+				<div class="tab-content" id="spravochnik-content-all" >
+					<div class="tab-content-header"></div>
+					<div class="tab-content-main">
+					<div>
+											<table width="100%">
+							<tr>
+								<td rowspan="2" valign="top" style="width:180px"><div class="inside-tab" rel="acts"><span class="sprite-arrow">нормативни актове</span></div></td>
+								<td><input type="checkbox" name="sprav_filter[]" value="laws" > закони</td>
+								<td><input type="checkbox" name="sprav_filter[]" value="code" > кодекси</td>
+								<td><input type="checkbox" name="sprav_filter[]" value="regs" > правилници</td>
+							</tr>
+							<tr>
+								<td><input type="checkbox" name="sprav_filter[]" value="konstitucia" > конституция</td>
+                                <td><input type="checkbox" name="sprav_filter[]" value="ords" > наредби</td>
+                                <td><input type="checkbox" name="sprav_filter[]" value="dv" > ДВ</td>
+							</tr>
+							<tr><td colspan="4">&nbsp;</td></tr>
+
+
+
+
+						</table>
+					</div>
+
+					</div>
+					<div class="tab-content-bottom"></div>
+				</div>
+		</div>
+
+
+
+
+		</div>
+		<div class="search-item" style="text-align:right;margin-right:150px; margin-top:24px;">
+			<input type="submit" class="form-elem" value="ТЪРСИ" style="background:#cbcbcb; color:#323476; border-style:none; height:30px; width:80px; font-weight:bold; font-size:11px;"/>
+		</div>
+		<div id="search-pannel-hide">
+			<span class="sprite sprite-close" id="sprite-close">&nbsp;</span>
+		</div>
+	</div>
+	<div id="search-pannel-footer">
+
+	</div>
+</div>
+
+</form><!-- end search form//-->
+
+				
+				<div class="rowsp"></div>
+				
+				
+
+<div id="colleft">
+					<div class="col630">
+		<div>
+<script type="text/javascript">
+	function popup_open(link)
+	{
+		window.open(link, '_blank', 'width=700,height=600,scrollbars=yes,status=yes,resizable=yes,screenx=0,screeny=0');
+	}
+</script>
+
+		
+			<h1><a href='https://lex.bg/guide/'>Справочник</a> / <a href='https://lex.bg/laws/tree/'>Нормативни актове</a> / <a href='https://lex.bg/laws/tree/laws'>Закони</a></h1><br/>			<table id="normativniCats" style="width:100%; border-spacing:30px 30px;" cellpadding="10" class="tableBackground">
+			<tr>
+			<td style="width:30%"><a class='arrow3spanGray' href="https://lex.bg/laws/ldoc/521957377">Конституция</a></td>
+			<td style="width:30%"><a class='arrow3spanGray' href="https://lex.bg/laws/tree/regs">Правилници</a></td>
+			</tr>
+			<tr>
+			<td><a class='arrow3spanGray' href="https://lex.bg/laws/tree/code">Кодекси</a></td>
+			<td><a class='arrow3spanGray' href="https://lex.bg/laws/tree/reg_laws">Правилници по прилагане</a></td>
+			</tr>
+			<tr>
+			<td><a class='arrow3spanGray' href="https://lex.bg/laws/tree/ords">Наредби</a></td>
+			<td><a class='arrow3spanGray' href="https://lex.bg/laws/lastdv">Последен брой на ДВ</a></td>
+			</tr>
+			<tr>
+			<td><a class='arrow3spanGray' href="https://lex.bg/laws/tree/laws">Закони</a></td>
+			<td></td>
+			</tr>
+
+			</table>
+
+<div class="box">
+	<div class="bt-nt">
+		<div class="boxi boxinb"><a name="-12802047"></a><a class=law href="https://lex.bg/laws/ldoc/-12802047"><!--t-->Валутен закон</a><br><br>
+<a name="2133636096"></a><a class=law href="https://lex.bg/laws/ldoc/2133636096"><!--t-->Закон за "Държавен вестник"</a><br><br>
+<a name="2134681088"></a><a class=law href="https://lex.bg/laws/ldoc/2134681088"><!--t-->Закон за автомобилните превози</a><br><br>
+<a name="2133094401"></a><a class=law href="https://lex.bg/laws/ldoc/2133094401"><!--t-->Закон за авторското право и сродните му права</a><br><br>
+<a name="2135486731"></a><a class=law href="https://lex.bg/laws/ldoc/2135486731"><!--t-->Закон за адвокатурата</a><br><br>
+<a name="2126821377"></a><a class=law href="https://lex.bg/laws/ldoc/2126821377"><!--t-->Закон за административните нарушения и наказания</a><br><br>
+<a name="2135849180"></a><a class=law href="https://lex.bg/laws/ldoc/2135849180"><!--t-->Закон за административно-териториални промени в страната</a><br><br>
+<a name="2133622784"></a><a class=law href="https://lex.bg/laws/ldoc/2133622784"><!--t-->Закон за административно-териториалното устройство на република България</a><br><br>
+<a name="2137185952"></a><a class=law href="https://lex.bg/laws/ldoc/2137185952"><!--t-->Закон за административното регулиране на икономическите дейности, свързани с нефт и продукти от нефтен произход</a><br><br>
+<a name="2135510075"></a><a class=law href="https://lex.bg/laws/ldoc/2135510075"><!--t-->Закон за административното регулиране на производството на оптични дискове и матрици (загл. изм. - дв, бр. 26 от 2020 г.)</a><br><br>
+<a name="2134443520"></a><a class=law href="https://lex.bg/laws/ldoc/2134443520"><!--t-->Закон за администрацията</a><br><br>
+<a name="2135512728"></a><a class=law href="https://lex.bg/laws/ldoc/2135512728"><!--t-->Закон за акцизите и данъчните складове</a><br><br>
+<a name="2132541953"></a><a class=law href="https://lex.bg/laws/ldoc/2132541953"><!--t-->Закон за амнистия и връщане на отнети имущества</a><br><br>
+<a name="2132282880"></a><a class=law href="https://lex.bg/laws/ldoc/2132282880"><!--t-->Закон за амнистия и за освобождаване от изтърпяване на наложени наказания</a><br><br>
+<a name="2121082368"></a><a class=law href="https://lex.bg/laws/ldoc/2121082368"><!--t-->Закон за амнистия от 1947 г.</a><br><br>
+<a name="2121930240"></a><a class=law href="https://lex.bg/laws/ldoc/2121930240"><!--t-->Закон за амнистия от 1950 г.</a><br><br>
+<a name="2125500416"></a><a class=law href="https://lex.bg/laws/ldoc/2125500416"><!--t-->Закон за амнистия от 1964 г.</a><br><br>
+<a name="2128130048"></a><a class=law href="https://lex.bg/laws/ldoc/2128130048"><!--t-->Закон за амнистия от 1974 г.</a><br><br>
+<a name="2129948160"></a><a class=law href="https://lex.bg/laws/ldoc/2129948160"><!--t-->Закон за амнистия от 1981 г.</a><br><br>
+<a name="2130728960"></a><a class=law href="https://lex.bg/laws/ldoc/2130728960"><!--t-->Закон за амнистия от 1984 г.</a><br><br>
+<a name="2132064256"></a><a class=law href="https://lex.bg/laws/ldoc/2132064256"><!--t-->Закон за амнистия от 1989 г.</a><br><br>
+<a name="2132036608"></a><a class=law href="https://lex.bg/laws/ldoc/2132036608"><!--t-->Закон за амнистия от 1989 г.</a><br><br>
+<a name="2132068352"></a><a class=law href="https://lex.bg/laws/ldoc/2132068352"><!--t-->Закон за амнистия от 1989 г.</a><br><br>
+<a name="2132295168"></a><a class=law href="https://lex.bg/laws/ldoc/2132295168"><!--t-->Закон за амнистия от 1990 г.</a><br><br>
+<a name="2135456937"></a><a class=law href="https://lex.bg/laws/ldoc/2135456937"><!--t-->Закон за амнистия от 2002 г.</a><br><br>
+<a name="2135627422"></a><a class=law href="https://lex.bg/laws/ldoc/2135627422"><!--t-->Закон за амнистия от 2009 г.</a><br><br>
+<a name="2131785729"></a><a class=law href="https://lex.bg/laws/ldoc/2131785729"><!--t-->Закон за арбитража (загл. изм. - дв, бр. 63 от 2025 г., в сила от 01.08.2025 г.)</a><br><br>
+<a name="2133894145"></a><a class=law href="https://lex.bg/laws/ldoc/2133894145"><!--t-->Закон за арендата в земеделието</a><br><br>
+<a name="2135458119"></a><a class=law href="https://lex.bg/laws/ldoc/2135458119"><!--t-->Закон за банковата несъстоятелност</a><br><br>
+<a name="2135540546"></a><a class=law href="https://lex.bg/laws/ldoc/2135540546"><!--t-->Закон за безмитната търговия</a><br><br>
+<a name="2135455545"></a><a class=law href="https://lex.bg/laws/ldoc/2135455545"><!--t-->Закон за безопасно използване на ядрената енергия</a><br><br>
+<a name="2135456926"></a><a class=law href="https://lex.bg/laws/ldoc/2135456926"><!--t-->Закон за биологичното разнообразие</a><br><br>
+<a name="2135467374"></a><a class=law href="https://lex.bg/laws/ldoc/2135467374"><!--t-->Закон за борба с трафика на хора</a><br><br>
+<a name="2123897345"></a><a class=law href="https://lex.bg/laws/ldoc/2123897345"><!--t-->Закон за борба срещу противообществените прояви на малолетните и непълнолетните (загл. изм. - изв., бр. 11 от 1961 г.)</a><br><br>
+<a name="2134916612"></a><a class=law href="https://lex.bg/laws/ldoc/2134916612"><!--t-->Закон за българите, живеещи извън република България</a><br><br><div style="padding-bottom:10px;" class="pager"><strong>1</strong><a href="https://lex.bg/laws/tree/laws/1">2</a><a href="https://lex.bg/laws/tree/laws/2">3</a><a href="https://lex.bg/laws/tree/laws/3">4</a><a href="https://lex.bg/laws/tree/laws/4">5</a><a href="https://lex.bg/laws/tree/laws/5">6</a><a href="https://lex.bg/laws/tree/laws/6">7</a><a href="https://lex.bg/laws/tree/laws/7">8</a><a href="https://lex.bg/laws/tree/laws/8">9</a><a href="https://lex.bg/laws/tree/laws/9">10</a><a href="https://lex.bg/laws/tree/laws/1">&gt;</a><a href="https://lex.bg/laws/tree/laws/10">&gt;&gt;</a></div></div></div></div>		
+
+				</div>
+</div>
+</div>
+
+
+
+
+
+
+<div id="colright">
+					<!--<div id='topad'>
+
+<a href="https://www.lex.bg/adv/aurubis/?utm_source=lexbg&utm_medium=baner300x150&utm_campaign=legal" title="Научи повече" target="_blank"><img src="/adv/aurubis/aurubis300x150.png" border="0" alt="Aurubis"></a>
+</div><br>
+<br>-->
+
+
+					<div class="col300">
+						<div class="rowsp"></div>
+													<div style='margin-top:19px;margin-left:-4px'> <!-- spravochnik -->
+						
+
+							<div id="adoceanbgpdfocoqpzv"></div>
+							<script type="text/javascript">
+								/* (c)AdOcean 2003-2018, lex_bg.lex.bg.Home page.300x600 */
+								ado.slave('adoceanbgpdfocoqpzv', {myMaster: '.4Zcd0jXneZ9Pr7x7YcvM8ijDeyIL6b_mGbFsvFwE17.c7' });
+							</script>
+						</div>
+						<div class="rowsp"></div>
+                        
+                       	                       <div> 
+                        <script>
+                          /* Sidebar_Skyscraper */
+                          ea_adunit = 15317;
+                          ea_adunit_width = 300;
+                          ea_adunit_height = 600;
+                          ea_hash = 'hNOHv9qleqCg7eV5q2-UVGyLw39WOHcK8s8xP1v-cEP1maZJ2LfTi0Voisn1f4PG';
+                          ea_anonymous = 0;
+                          ea_cachebuster = '';
+                          ea_redir = '';
+                          </script>
+                          <script src='//eadsrv.com/js/display.js'></script>
+                        </div>
+                                                
+                        <div class="rowsp"></div>
+
+						<div style="width:300px">	<!-- class="banner300_250" -->
+
+
+
+						
+									<div id="ado-p4Lgn.radyY0Jlv8oxRLuym0.CYAtPAW5d5Zkn4yYJH.g7"></div><script type="text/javascript">/* (c)AdOcean 2003-2018, lex_bg.lex.bg.temporary_300x250 */ ado.placement({id: 'ado-p4Lgn.radyY0Jlv8oxRLuym0.CYAtPAW5d5Zkn4yYJH.g7', server: 'bg.adocean.pl' }); </script>
+								
+
+
+
+
+
+
+
+
+
+
+						</div>
+						<div class="rowsp"></div>
+						<div class="rowsp"></div>
+									
+			<div style="background-color:#f1f1f1;">
+<br/><h2 style="text-align:center">Новини</h2>
+<br/>
+		  						<div class="col300">
+				<div class="heightStab">			
+
+<div class="smallpic left">
+<a href="https://news.lex.bg/%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b5%d1%81%d0%b8%d0%b2%d0%bd%d0%b0-%d0%b1%d1%8a%d0%bb%d0%b3%d0%b0%d1%80%d0%b8%d1%8f-%d0%bf%d0%b5%d1%87%d0%b5%d0%bb%d0%b8-%d1%83%d0%b1%d0%b5%d0%b4" title=""><img class="pic" style="margin:15px; width:100px; height:60px; object-fit: cover; overflow:hidden;" src="https://news.lex.bg/wp-content/uploads/2026/04/румен-радев.jpg" alt="rss" /></a>
+</div>
+
+
+							<div class="right" style="width:150px; margin-right:10px">
+								<div class="text"><a href="https://news.lex.bg/%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b5%d1%81%d0%b8%d0%b2%d0%bd%d0%b0-%d0%b1%d1%8a%d0%bb%d0%b3%d0%b0%d1%80%d0%b8%d1%8f-%d0%bf%d0%b5%d1%87%d0%b5%d0%bb%d0%b8-%d1%83%d0%b1%d0%b5%d0%b4">„Прогресивна България“ печели мнозинство в парламента</a></div>
+
+								<div class="date">19.04.2026 20:00
+		<!-- <a href="#comments" title="коментари"><span class="comments">
+									0
+								</span></a>
+		-->
+			</div>
+							</div>
+						</div>
+
+				</div>
+				<div style="clear:both;">&nbsp;</div>
+
+								<div class="col300">
+				<div class="heightStab">			
+
+<div class="smallpic left">
+<a href="https://news.lex.bg/438-%d0%ba%d0%b0%d0%bd%d0%b4%d0%b8%d0%b4%d0%b0%d1%82%d0%b8-%d1%81%d0%b5-%d1%8f%d0%b2%d0%b8%d1%85%d0%b0-%d0%bd%d0%b0-%d0%bf%d0%b8%d1%81%d0%bc%d0%b5%d0%bd%d0%b8%d1%8f-%d0%b8%d0%b7%d0%bf%d0%b8%d1%82" title=""><img class="pic" style="margin:15px; width:100px; height:60px; object-fit: cover; overflow:hidden;" src="https://news.lex.bg/wp-content/uploads/2026/04/изпит.jpg" alt="rss" /></a>
+</div>
+
+
+							<div class="right" style="width:150px; margin-right:10px">
+								<div class="text"><a href="https://news.lex.bg/438-%d0%ba%d0%b0%d0%bd%d0%b4%d0%b8%d0%b4%d0%b0%d1%82%d0%b8-%d1%81%d0%b5-%d1%8f%d0%b2%d0%b8%d1%85%d0%b0-%d0%bd%d0%b0-%d0%bf%d0%b8%d1%81%d0%bc%d0%b5%d0%bd%d0%b8%d1%8f-%d0%b8%d0%b7%d0%bf%d0%b8%d1%82">438 кандидати се явиха на писмения изпит за младши съдии</a></div>
+
+								<div class="date">18.04.2026 11:49
+		<!-- <a href="#comments" title="коментари"><span class="comments">
+									0
+								</span></a>
+		-->
+			</div>
+							</div>
+						</div>
+
+				</div>
+				<div style="clear:both;">&nbsp;</div>
+
+								<div class="col300">
+				<div class="heightStab">			
+
+<div class="smallpic left">
+<a href="https://news.lex.bg/%d0%be%d1%82%d0%b1%d0%be%d1%80%d1%8a%d1%82-%d0%bd%d0%b0-%d1%81%d0%be%d1%84%d0%b8%d0%b9%d1%81%d0%ba%d0%b8%d1%8f-%d1%83%d0%bd%d0%b8%d0%b2%d0%b5%d1%80%d1%81%d0%b8%d1%82%d0%b5%d1%82-%d0%b7%d0%b0-%d0%b2" title=""><img class="pic" style="margin:15px; width:100px; height:60px; object-fit: cover; overflow:hidden;" src="https://news.lex.bg/wp-content/uploads/2026/04/IMG_1236.jpg" alt="rss" /></a>
+</div>
+
+
+							<div class="right" style="width:150px; margin-right:10px">
+								<div class="text"><a href="https://news.lex.bg/%d0%be%d1%82%d0%b1%d0%be%d1%80%d1%8a%d1%82-%d0%bd%d0%b0-%d1%81%d0%be%d1%84%d0%b8%d0%b9%d1%81%d0%ba%d0%b8%d1%8f-%d1%83%d0%bd%d0%b8%d0%b2%d0%b5%d1%80%d1%81%d0%b8%d1%82%d0%b5%d1%82-%d0%b7%d0%b0-%d0%b2">Отборът на Софийския университет за втори път на финал на PAX Moot Court 2026</a></div>
+
+								<div class="date">17.04.2026 19:41
+		<!-- <a href="#comments" title="коментари"><span class="comments">
+									0
+								</span></a>
+		-->
+			</div>
+							</div>
+						</div>
+
+				</div>
+				<div style="clear:both;">&nbsp;</div>
+
+								
+	</div>
+
+
+					
+						<div class="rowsp"></div>
+
+					
+			<div style="background-color:#f1f1f1;">
+<br/><h2 style="text-align:center">Спектър</h2>
+<br/>
+		  						<div class="col300">
+				<div class="heightStab">
+
+<div class="smallpic left">
+<a href="https://lex.bg/spektar/view/3382" title=""><img class="pic" style="margin:15px; width:100px; height:60px; object-fit: cover; overflow:hidden;" src="https://lex.bg/upload/spektar/3382_thumb2.jpg" alt="last spektar" /></a>
+</div>
+
+
+							<div class="right" style="width:150px; margin-right:10px">
+								<div class="text"><a href="https://lex.bg/spektar/view/3382">Тестдрайв: Hyundai Ioniq 6 N е новият еталон при електрическите спортни седани</a></div>
+
+								<div class="date">2026-04-17
+		<!-- <a href="#comments" title="коментари"><span class="comments">
+									0
+								</span></a>
+		-->
+			</div>
+							</div>
+						</div>
+
+				</div>
+				<div style="clear:both;">&nbsp;</div>
+
+								
+	</div>
+
+
+						<div class="rowsp"></div>
+
+						<!-- ===============================================
+RICH MEDIA TAGS FOR SITE "TESTSITE"
+===============================================
+Advertiser : Bulgarian IDLO alumni a?socation
+Campagne : Bulgarian IDLO Alumni Association_2 - autocreated
+Site : testsite
+Page : 3dparty -->
+
+<!--===============================================
+Insertion : Lex.bg - 100 Percent - banner 300x90   Autocreated (300x90)
+Delivering : from 27/01/2016 00:01:00 to 23/02/2016 23:59:00 -->
+
+<!-- Tag : -->
+<script type="text/javascript" src="https://diff3.smartadserver.com/ac?pgid=182746&insid=5121835&tmstp=[timestamp]&out=js&clcturl=[countgoEncoded]"></script>
+<noscript>
+
+</noscript>
+
+
+
+
+
+
+												
+
+
+
+
+
+
+
+
+
+						<div style="clear:both;"></div>
+												
+
+
+
+
+						
+							<div class="rowsp"></div>
+
+							<div class="rowsp"></div>
+
+										
+						
+
+
+
+						<div class="rowsp"></div>
+
+						
+						<div class="rowsp"></div>
+
+						
+
+
+									<div class="left"><h1><a href="https://lex.bg/forum/" title="Форум">Форум</a></h1></div>
+						<div class="right"><a href="https://lex.bg/rss/forum" title="RSS"><img class="rss" src="https://lex.bg/assets/im//rss.png" alt="rss" /></a></div>
+						<div style="clear:both;"></div>
+
+						<ul class="text">
+						
+
+							<li>
+								<div class="bold"><a href="https://lex.bg/forum/viewtopic.php?t=71762">Тълкувателно решение</a></div>
+								<div class="lip date">
+								<span>от <strong>jzschrstsprstr</strong> на <em>19.04 20:10</em> <em>2 мнения</em></span>
+								</div>
+							</li>
+
+							
+
+							<li>
+								<div class="bold"><a href="https://lex.bg/forum/viewtopic.php?t=71760">Въпрос относно идеални части и делба</a></div>
+								<div class="lip date">
+								<span>от <strong>jhoro</strong> на <em>18.04 17:52</em> <em>9 мнения</em></span>
+								</div>
+							</li>
+
+							
+
+							<li>
+								<div class="bold"><a href="https://lex.bg/forum/viewtopic.php?t=70958">Отказан достъп до общи части на сграда от собственик на УПИ</a></div>
+								<div class="lip date">
+								<span>от <strong>Melly</strong> на <em>17.04 14:10</em> <em>13 мнения</em></span>
+								</div>
+							</li>
+
+							
+						</ul>
+
+						<a class="rlink right" href="https://lex.bg/forum" class="all">Посети форума <img src="https://lex.bg/assets/im//arrow3.png" alt="" /></a>
+						<div style="clear:both;"></div>
+
+
+
+
+
+
+
+						
+							<div class="rowsp"></div>
+
+							<div class="rowsp"></div>
+
+                            <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+                            <!-- 300x250 -->
+                            <!--<ins class="adsbygoogle"
+                                 style="display:inline-block;width:300px;height:250px"
+                                 data-ad-client="ca-pub-9092264232006105"
+                                 data-ad-slot="3896835950"></ins>   -->
+                            <!-- <script>
+                                 (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script> -->
+
+						<div class='etarget-hb-wrap'><div id='etarget-id-86814'><script src='https://etargetcdn.com/hb/6.86814.js'></script></div></div>
+
+						
+
+
+						<div class="rowsp"></div>
+
+						<div class="rowsp"></div>
+
+
+
+						
+
+
+						<div class="facebook_right_column">
+
+
+
+						<div class="fb-like-box" data-href="https://www.facebook.com/#!/pages/LEXBG-%D0%91%D1%8A%D0%BB%D0%B3%D0%B0%D1%80%D1%81%D0%BA%D0%B8%D1%8F%D1%82-%D0%BF%D1%80%D0%B0%D0%B2%D0%B5%D0%BD-%D0%BF%D0%BE%D1%80%D1%82%D0%B0%D0%BB/252700991422690" data-width="300" data-show-faces="true" data-stream="false" data-header="true"></div>
+
+						</div>
+
+						<br /><br />
+
+
+
+						<!--
+						<div class="left"><br/><h1><a href="https://lex.bg/fun" title="Хумор">Хумор</a></h1></div>
+
+						<div class="right"><br/><a href="https://lex.bg/rss/fun/" title="RSS"><img class="rss" src="https://lex.bg/assets/im//rss.png" alt="rss" /></a></div>
+
+						<div style="clear:both;"></div>
+
+
+
+
+
+						<br/>
+
+
+						<p class="text">
+
+						Кога времето е много студено, ама наистина много студено?<br>Когато дори адвокатите приберат ръцете в джобовете си.
+						</p>
+
+
+
+						<a class="rlink right" href="https://lex.bg/fun" title="Виж всички">Виж всички <img src="https://lex.bg/assets/im//arrow3.png" alt="" /></a>
+
+						<div style="clear:both;"></div>
+
+						-->
+
+						<!---
+
+						<div class="left"><h1><a href="#" title="Бюлетин">Бюлетин</a></h1></div>
+
+
+
+						<div style="clear:both;"></div>
+
+
+
+						<div class="rowsp"></div>
+
+
+
+						<form class="bulletin left" action="https://lex.bg/bulletin/sub" method="post">
+
+							<input id="bulletin_txt"  class="hint" type="text" name="email" value="вашият e-mail адрес" />
+
+							<input class="bulletin_btn center" type="image" src="https://lex.bg/assets/im//bulletin_btn.png" title="записване" />
+
+						<script type="text/javascript">
+
+
+
+ 							$("#bulletin_txt").click(function () {
+
+   								if ( $(this).val() == "вашият e-mail адрес")
+
+
+
+               						 $(this).val('');
+
+
+
+    								});
+
+
+
+
+
+    						</script>
+
+						</form>
+
+
+
+						<a class="rlink right rss" href="https://lex.bg/bulletin" title="Архив">Архив <img src="https://lex.bg/assets/im//arrow3.png" alt="" /></a>
+
+						<p class="hint left">Абонирайте се за нашия безплатен<br />информационен e-mail бюлетин</p>
+
+						<a class="rlink right rss" href="https://lex.bg/bulletin/unsub" title="Отписване">Отписване <img src="https://lex.bg/assets/im//arrow3.png" alt="" /></a>
+
+						<div style="clear:both;"></div>
+
+						-->
+
+					</div>
+
+				</div>
+
+
+
+
+<br clear="all">
+
+</div>
+
+</div>
+
+
+
+		<div id="footer">
+			<p>&copy;
+
+				<a href="https://lex.bg/" title="Lex.bg">Lex.bg</a> |
+
+				<a href="https://lex.bg/termssite/" title="Общи условия" target="_blank">общи условия</a> |
+
+				<a href="https://lex.bg/termssite/politikaZaPoveritelnost/" title="Политика за поверителност" target="_blank">политика за поверителност</a> |
+
+				<a href="https://lex.bg/about/" title="за нас">за нас</a> |
+
+				<a href="https://lex.bg/about/reklama" title="реклама">реклама</a>
+
+			</p>
+
+
+
+
+
+
+		</div>
+
+
+
+
+
+
+
+
+
+<div id="pixels">
+
+
+			<script src="https://www.google-analytics.com/urchin.js" type="text/javascript">
+
+			</script>
+
+			<script type="text/javascript">
+
+			_uacct = "UA-3505015-1";
+
+			urchinTracker();
+
+			</script>
+
+
+
+<!-- (C)2000-2014 Gemius SA - gemiusAudience / lex.bg / Inner pages -->
+
+<script type="text/javascript">
+
+<!--//--><![CDATA[//><!--
+
+var pp_gemius_identifier = '0nHlb67mEZZE.zHOqTm0TMdvDkXkzELfVa4XuV_Oxan.C7';
+
+// lines below shouldn't be edited
+
+function gemius_pending(i) { window[i] = window[i] || function() {var x = window[i+'_pdata'] = window[i+'_pdata'] || []; x[x.length]=arguments;};};
+
+gemius_pending('gemius_hit'); gemius_pending('gemius_event'); gemius_pending('pp_gemius_hit'); gemius_pending('pp_gemius_event');
+
+(function(d,t) {try {var gt=d.createElement(t),s=d.getElementsByTagName(t)[0],l='http'+((location.protocol=='https:')?'s':''); gt.setAttribute('async','async');
+
+gt.setAttribute('defer','defer'); gt.src=l+'://gabg.hit.gemius.pl/xgemius.js'; s.parentNode.insertBefore(gt,s);} catch (e) {}})(document,'script');
+
+//--><!]]>
+
+</script>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+<div id="fb-root"></div>
+
+<script>(function(d, s, id) {
+
+  var js, fjs = d.getElementsByTagName(s)[0];
+
+  if (d.getElementById(id)) return;
+
+  js = d.createElement(s); js.id = id;
+
+  js.src = "//connect.facebook.net/bg_BG/all.js#xfbml=1&appId=105231989568955";
+
+  fjs.parentNode.insertBefore(js, fjs);
+
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9ef00a88be91d0f7',t:'MTc3NjY0NTAzNA=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+</html>
+
+
+
+                                                                                                                                                                                                                                                                                                                     
