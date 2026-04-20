@@ -14,15 +14,6 @@ CATEGORY_TO_RANGO = {
     "implementing": "правилник по прилагане",
 }
 
-# Maps lex.bg tree category slugs to corpus directory names
-CATEGORY_SLUG_TO_DIR = {
-    "laws": "laws",
-    "code": "codes",
-    "ords": "ordinances",
-    "regs": "regulations",
-    "reg_laws": "implementing",
-}
-
 # Bulgarian month names -> month number. Real lex.bg text uses Title-Case
 # Cyrillic month names (e.g. "Февруари"), so we match case-insensitively.
 BG_MONTHS = {
