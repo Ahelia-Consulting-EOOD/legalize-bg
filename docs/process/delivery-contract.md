@@ -52,9 +52,11 @@ Norm-Id: 2136735703
 
 ### Commit Granularity
 
-- **Bootstrap (Phase 1a):** One commit per act. Not one massive commit for all 3,574 acts.
+- **Bootstrap (Phase 1a):** One commit per act. Not one massive commit for all 3,573 acts.
 - **Ongoing amendments:** One commit per amendment event.
-- **GIT_AUTHOR_DATE:** Must be set to the DV publication date of the amendment, not the session date. This enables `git log --follow` to reconstruct legislative history chronologically.
+- **GIT_AUTHOR_DATE + GIT_COMMITTER_DATE:** Must be set to the DV publication date of the amendment, not the session date. This enables `git log --follow` to reconstruct legislative history chronologically.
+  - **Format constraint:** git refuses bare `YYYY-MM-DD` with `fatal: invalid date format`. Always emit full ISO 8601 with time and timezone — `YYYY-MM-DDT00:00:00+00:00`. Reference: `bootstrap._format_author_date()`.
+  - **Pre-1970 dates:** this git build also rejects negative Unix timestamps. Clamp pre-1970 publication dates to `1970-01-01` for the env var; keep the true date in the `Source-Date:` body line. Reference: D-017, D-018.
 
 ### Pipeline Code Commits
 

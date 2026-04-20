@@ -1,34 +1,31 @@
 # Active Work
 
-**Current phase:** Phase 1a (bootstrap scrape)
+**Current phase:** Phase 1a (bootstrap scrape) — **COMPLETE** on `bootstrap/phase-1a`, pending spot-check and merge to main.
 **Current owner:** ekimir
 **Started:** 2026-04-20
-**Next action:** Run Task 11 — full bootstrap on `bootstrap/phase-1a` branch with `--push-every 250`.
+**Next action:** Spot-check 10 random acts against lex.bg, then decide merge strategy (fast-forward vs squash) for landing `bootstrap/phase-1a` into `main`.
 
 ## Status
 
-Phase 1a pipeline is code-complete and verified:
+Phase 1a pipeline is code-complete and the corpus is fully bootstrapped:
 
-- `fetcher/bg/` implements the 4 Legalize interfaces: `LegislativeClient` (client), `NormDiscovery` (discovery), `TextParser` (text_parser), `MetadataParser` (metadata).
-- `index/catalog.py` provides the SQLite schema and insert/query surface.
-- `bootstrap.py` orchestrates the full pipeline: crawl → dedup → fetch → parse → commit → (optional) push → index.
-- Transport layer hardened per delivery-contract §Rate Limiting Protocol: global 1 req/sec ceiling, 3× exp backoff on 429/5xx, `CloudflareChallenge` exception on CF markers, per-request INFO logging.
-- 6 representative HTML fixtures cover all 5 corpus categories. 59 automated tests pass.
+- `bootstrap/phase-1a` branch on origin: 3,573 commits, one per act, each with Source-Id / Source-Date / Norm-Id trailers and `GIT_AUTHOR_DATE` backdated to the publication date (pre-1970 acts clamped to 1970-01-01 epoch floor; null-date acts use the bootstrap run date, with `Source-Date: unknown` in the body).
+- Per-category counts match PRD targets exactly:
+  - laws: 395 (target ~394)
+  - codes: 24 (target ~24)
+  - ordinances: 2,604 (target ~2,604)
+  - regulations: 490 (target ~490)
+  - implementing: 60 (target ~61)
+- SQLite catalog (`catalog.db`, not tracked): 3,573 `laws` rows + 3,573 `law_versions` rows (one initial version per act, `valid_to = NULL`).
+- 66 automated tests pass, including real-git-repo integration tests for `_git_commit` backdating.
 
-Post–code-review fixes (session 2026-04-20):
+### Session history (2026-04-20)
 
-- **C1-C3** — Retry/logging/Cloudflare detection centralized in `RateLimitedSession`.
-- **I1** — ELI URI now uses `/eli/bg/{rango}/{Y}/{M}/{D}/{ascii-slug}/con`; slug unified with filename via `assembler.generate_slug`.
-- **I2** — `_unique_slug` dedups same-run slug collisions with `-N` suffix.
-- **I3** — Removed dead `CATEGORY_SLUG_TO_DIR` from metadata.
-- **I4** — Missing-metadata edge cases tested; bootstrap WARN-logs null mandatory fields.
-- **I5** — 4 additional fixtures + parametrized cross-category smoke test.
-- **I6** — Amendment history test asserts non-null parsed dates.
-- **I7** — Alinea paragraphs joined with `\n\n` (CommonMark paragraph break).
-- Cross-category doc_id dedup in `CatalogCrawler.crawl_all` removes 104 Конституция sidebar duplicates.
-- `--branch` and `--push-every` flags added for incremental remote delivery.
-
-Dry run completed 2026-04-20: 104 tree pages in ~2 minutes, no retries, no CF challenges. `catalog.json` snapshot committed. Per-category counts match `COVERAGE-FLOOR.md` targets to within 1 act (3,573 unique acts vs target ~3,574).
+1. **Implementation**: parallel subagent dispatch for Tasks 2-5 + 7; sequential Tasks 6, 8, 9. 28 tests on first pass.
+2. **Code review** surfaced C1-C3 (transport hardening) + I1-I7. All 10 items fixed with TDD. 55 tests pass.
+3. **Dry run + verification** (`scripts/verify_catalog.py`): 3,677 entries reduced to 3,573 unique after the Конституция/cross-category dedup fix was added to `CatalogCrawler.crawl_all`. `catalog.json` committed as snapshot.
+4. **First full bootstrap run**: hit a git date-format bug. Bare `YYYY-MM-DD` is rejected by `GIT_AUTHOR_DATE` (exit 128); commits silently accumulated staged files until a null-date act triggered a successful commit that bundled ~30 files at a time. Result: 3,573 files in 121 wrong-dated commits. Tagged the broken state as `bootstrap-phase-1a-broken-backup` for recovery.
+5. **Recovery via `scripts/rebuild_bootstrap_commits.py`**: no lex.bg re-fetch (files on disk were correct). Reset branch to main, replayed one commit per file with the fixed `_format_author_date` (ISO 8601 timestamps, pre-1970 clamped to epoch). 3,573 commits in 2 min 20 s, zero failures. `git push --force-with-lease` replaced the remote branch.
 
 ## Blockers
 
@@ -36,6 +33,6 @@ None.
 
 ## Pending
 
-- Task 11: full bootstrap run (~2 hours, ~3,573 act fetches + commits, periodic pushes every 250 commits).
-- Spot-check 10 random acts against lex.bg after Task 11 (Definition of Done, Phase 1a).
-- Update this file to Phase 1b once Task 11 verifies.
+- **Spot-check (Definition of Done, Phase 1a)**: 10 randomly sampled acts must match lex.bg text exactly after whitespace/quote normalization.
+- **Merge decision**: fast-forward `bootstrap/phase-1a` into `main` (keeps one-commit-per-act history) or squash-merge (one "[bootstrap] initial corpus" commit on main). Squash loses per-act `GIT_AUTHOR_DATE` backdating, so default is fast-forward.
+- **Phase 1b (MCP server)**: `get_law()`, `search()`, `get_article()` tools; next phase after this one lands on main.
