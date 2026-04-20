@@ -115,7 +115,7 @@ def test_format_author_date_converts_iso_date_to_git_iso_timestamp():
     'fatal: invalid date format'. The full run of Task 11 hit this and
     silently bundled 3,573 files into 121 commits with wrong dates."""
     assert _format_author_date("2016-02-16") == "2016-02-16T00:00:00+00:00"
-    assert _format_author_date("1955-09-09") == "1955-09-09T00:00:00+00:00"
+    assert _format_author_date("1975-11-28") == "1975-11-28T00:00:00+00:00"
 
 
 def test_format_author_date_returns_none_for_empty_or_none():
@@ -128,6 +128,41 @@ def test_format_author_date_rejects_obviously_malformed_input():
     # caller skips setting GIT_AUTHOR_DATE rather than passing garbage to git.
     assert _format_author_date("2016") is None
     assert _format_author_date("not-a-date") is None
+
+
+def test_format_author_date_clamps_pre_1970_to_epoch():
+    """Git rejects pre-1970 dates in every input format. Clamp to 1970-01-01
+    so the commit still succeeds; the true publication date remains in the
+    Source-Date body line."""
+    assert _format_author_date("1947-06-27") == "1970-01-01T00:00:00+00:00"
+    assert _format_author_date("1964-09-08") == "1970-01-01T00:00:00+00:00"
+    # Boundary: 1970-01-01 itself is accepted unchanged
+    assert _format_author_date("1970-01-01") == "1970-01-01T00:00:00+00:00"
+    # Post-1970 unchanged
+    assert _format_author_date("1970-01-02") == "1970-01-02T00:00:00+00:00"
+
+
+def test_git_commit_accepts_pre_1970_pub_date(tmp_path):
+    """Historical Bulgarian laws (e.g. 1947 Amnesty Act) must commit cleanly
+    — without the epoch clamp they silently fail and bundle into the next
+    successful commit."""
+    _init_tmp_repo(tmp_path)
+    f = tmp_path / "laws" / "old.md"
+    f.parent.mkdir()
+    f.write_text("body")
+
+    _git_commit(filepath=f, title="Old Act", doc_id=1,
+                pub_date="1947-06-27", cwd=tmp_path)
+
+    log = subprocess.run(
+        ["git", "log", "-1", "--format=%aI|%B"],
+        cwd=tmp_path, check=True, capture_output=True, text=True,
+    ).stdout.strip()
+    author_iso, _, body = log.partition("|")
+    # Author date clamped to epoch
+    assert author_iso.startswith("1970-01-01"), f"expected epoch floor, got {author_iso}"
+    # True publication date preserved in body
+    assert "Source-Date: 1947-06-27" in body
 
 
 def _init_tmp_repo(tmp_path):

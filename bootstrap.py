@@ -168,6 +168,7 @@ def bootstrap(
 
 
 _ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_GIT_EPOCH_FLOOR = "1970-01-01"
 
 
 def _format_author_date(pub_date: str | None) -> str | None:
@@ -179,6 +180,12 @@ def _format_author_date(pub_date: str | None) -> str | None:
     'YYYY-MM-DDT00:00:00+00:00' — midnight UTC on the publication date —
     which git parses as a proper timestamp.
 
+    Pre-1970 dates are clamped to 1970-01-01: this git build (and many
+    others) refuses negative Unix timestamps in every input format. Data
+    fidelity is preserved via the `Source-Date` line in the commit body,
+    which still carries the true publication date. `git log --before`
+    queries continue to order pre-1970 acts before all modern ones.
+
     Returns None for empty / None / malformed input so callers can skip
     setting the env var rather than passing garbage.
     """
@@ -186,6 +193,9 @@ def _format_author_date(pub_date: str | None) -> str | None:
         return None
     if not _ISO_DATE_RE.match(pub_date):
         return None
+    # Clamp to epoch floor — lexicographic comparison works for YYYY-MM-DD.
+    if pub_date < _GIT_EPOCH_FLOOR:
+        pub_date = _GIT_EPOCH_FLOOR
     return f"{pub_date}T00:00:00+00:00"
 
 
