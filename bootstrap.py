@@ -85,6 +85,16 @@ def bootstrap(output_dir: Path, db_path: str = "catalog.db", dry_run: bool = Fal
             body = parser.convert(soup)
             meta = metadata_parser.parse(soup, doc_id=doc_id, category=corpus_dir)
 
+            missing_mandatory = [
+                k for k in ("fecha_publicacion", "ultima_actualizacion")
+                if not meta.get(k)
+            ]
+            if missing_mandatory:
+                log.warning(
+                    "mandatory field(s) null for %s (doc_id=%d): %s",
+                    meta.get("titulo") or "<no-title>", doc_id, missing_mandatory,
+                )
+
             base_slug = generate_slug(meta["titulo"]) or str(doc_id)
             slug = _unique_slug(base_slug, used_slugs)
             filepath = output_dir / corpus_dir / f"{slug}.md"

@@ -108,3 +108,61 @@ def test_eli_with_unknown_pub_date_uses_placeholder():
     assert meta["eli"]
     assert meta["eli"].startswith("/eli/bg/")
     assert meta["eli"].endswith("/con")
+
+
+def test_missing_history_only_uses_prehistory_date():
+    """Act with .PreHistory but no .HistoryOfDocument (never amended)."""
+    from bs4 import BeautifulSoup as _BS
+    html = (
+        '<html><body>'
+        '<div class="TitleDocument">НАРЕДБА № 1</div>'
+        '<div class="PreHistory">В сила от 01.03.2020 г.</div>'
+        '</body></html>'
+    )
+    meta = MetadataParser().parse(_BS(html, "lxml"), doc_id=100, category="ordinances")
+    assert meta["effective_date"] == "2020-03-01"
+    assert meta["amendment_history"] == []
+    # fecha_publicacion may be None (no DV refs, no numeric date in prehistory),
+    # but parser must not crash; ultima_actualizacion falls back to pub_date.
+    assert meta["ultima_actualizacion"] == meta["fecha_publicacion"]
+
+
+def test_missing_prehistory_only_uses_history_date():
+    """Act with .HistoryOfDocument but no .PreHistory."""
+    from bs4 import BeautifulSoup as _BS
+    html = (
+        '<html><body>'
+        '<div class="TitleDocument">ЗАКОН</div>'
+        '<div class="HistoryOfDocument">ДВ. бр.5 от 10 Януари 2019г.</div>'
+        '</body></html>'
+    )
+    meta = MetadataParser().parse(_BS(html, "lxml"), doc_id=101, category="laws")
+    assert meta["effective_date"] is None  # no "В сила от" anywhere
+    assert meta["fecha_publicacion"] == "2019-01-10"
+    assert meta["dv_issue"] == "5"
+    assert meta["dv_year"] == 2019
+    assert len(meta["amendment_history"]) == 1
+
+
+def test_missing_both_sections_does_not_crash():
+    """Act with neither .PreHistory nor .HistoryOfDocument — degenerate case.
+
+    fecha_publicacion/ultima_actualizacion end up None (schema violation,
+    caught by G2 gate for manual investigation), but the parser must still
+    produce a complete dict without raising.
+    """
+    from bs4 import BeautifulSoup as _BS
+    html = '<html><body><div class="TitleDocument">ЗАКОН</div></body></html>'
+    meta = MetadataParser().parse(_BS(html, "lxml"), doc_id=102, category="laws")
+    assert meta["titulo"] == "ЗАКОН"
+    assert meta["fecha_publicacion"] is None
+    assert meta["ultima_actualizacion"] is None
+    assert meta["effective_date"] is None
+    assert meta["dv_issue"] is None
+    assert meta["dv_year"] is None
+    assert meta["amendment_history"] == []
+    # Still has all 13 fields + amendment_history
+    for field in ("titulo", "identificador", "pais", "rango",
+                  "fecha_publicacion", "ultima_actualizacion", "estado", "fuente",
+                  "dv_issue", "dv_year", "effective_date", "category", "eli"):
+        assert field in meta
