@@ -166,3 +166,35 @@ The legalize-bg data model is a Bulgarian specialization of the international Le
 | `amendment_history` | array | Ordered list of all DV amendments with issue and date |
 
 **Legalize compliance path:** Phase 5 submits `fetcher/bg/` to the legalize-pipeline repository, implementing four interfaces: `LegislativeClient`, `NormDiscovery`, `TextParser`, `MetadataParser`. The 8 mandatory YAML fields satisfy all four Legalize hard gates. Bulgarian extensions are carried alongside but ignored by the Legalize CI.
+
+---
+
+## 7. Corpus Data Quality (post-bootstrap observations)
+
+Observed characteristics of the 3,573-act corpus after Phase 1a. These are facts about lex.bg source data, not pipeline bugs — they surface via WARN logs during bootstrap and are candidates for the G2 schema-validation triage (pre-Phase-5).
+
+### 7.1 Slug collisions are ~5-10% of the corpus, not an edge case
+
+Many Bulgarian наредби and правилници share generic titles (e.g., "Наредба № 1", "Правилник на Столичен общински съвет…"). Transliterated, they collapse to the same slug. Observed in a random 10-act sample from the bootstrap, 2 acts carried a `-2` suffix — the `_unique_slug` dedup in `bootstrap.py` is load-bearing, not paranoia. Plan for roughly 200-300 collision-suffixed filenames across the corpus.
+
+**Implication for consumers:** `law_id` (filename stem) is not derivable from the title alone — always go through SQLite or git to map identificador → law_id.
+
+### 7.2 Null `fecha_publicacion` affects 3.4% of acts (121 / 3,573)
+
+Acts whose lex.bg page has no parseable `.PreHistory` text AND no `.HistoryOfDocument` DV references produce YAML with `fecha_publicacion: null` and `ultima_actualizacion: null`. `bootstrap.py` logs a WARN for each and falls back to the bootstrap run date for `GIT_AUTHOR_DATE`, keeping `Source-Date: unknown` in the commit body.
+
+**Implication for temporal queries (Phase 2+):**
+- `git log --before=<past_date>` will NOT return these 121 acts — they appear dated at bootstrap time.
+- The temporal index must treat `Source-Date: unknown` commits as "date uncertain," not "published 2026-04-20."
+- Fix path: Phase 2 amendment detection from DV may recover real publication dates; otherwise FR-011 (G2 triage, below) covers manual repair.
+
+### 7.3 Empty titles: 7 / 3,573 acts (0.2%)
+
+Seven acts have no `.TitleDocument` element on lex.bg at all — the page exists but carries no substantive content (likely withdrawn or placeholder entries). Filename falls back to `{doc_id}.md`; frontmatter carries empty `titulo`. Cross-check during spot-check confirmed these are consistent with source (lex.bg itself shows empty), not parser failures.
+
+**Implication:** Search by title cannot find these acts; search by `identificador` (doc_id) can. Listed for G2 triage — most should probably be dropped from the corpus with a WAIVER entry.
+
+### 7.4 Surfacing mechanism
+
+- Bootstrap emits `WARNING mandatory field(s) null for <title> (doc_id=N): ['fecha_publicacion', ...]` per affected act.
+- The 7 empty-title + 121 null-date acts together (~128, with overlap) constitute the initial G2 triage backlog — see FR-011 in `frs/INDEX.md`.

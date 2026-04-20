@@ -41,8 +41,8 @@ amendment_history:
 | `identificador` | string | Required. Numeric string matching lex.bg doc ID. | Unique document identifier from lex.bg (e.g., "2136735703"). Used to construct the source URL: `https://lex.bg/laws/ldoc/{identificador}`. |
 | `pais` | literal | Required. Must be `bg`. | ISO country code. Always "bg" for this repository. |
 | `rango` | enum | Required. One of: `закон`, `кодекс`, `наредба`, `правилник`, `правилник по прилагане`. | Legal rank/type of the normative act in the Bulgarian hierarchy. Values are in Bulgarian to match the Legalize convention of using the country's own legal terminology. |
-| `fecha_publicacion` | date | Required. ISO 8601 format (YYYY-MM-DD). | Date the act was first published in the State Gazette (Държавен вестник). |
-| `ultima_actualizacion` | date | Required. ISO 8601 format (YYYY-MM-DD). | Date of the most recent amendment's publication in DV. Equals `fecha_publicacion` if the act has never been amended. |
+| `fecha_publicacion` | date | Required. ISO 8601 format (YYYY-MM-DD). May be null in ~3.4% of bootstrapped acts — see `canonical-data-model.md` §7.2. | Date the act was first published in the State Gazette (Държавен вестник). |
+| `ultima_actualizacion` | date | Required. ISO 8601 format (YYYY-MM-DD). May be null when `fecha_publicacion` is null (same set of ~121 acts). | Date of the most recent amendment's publication in DV. Equals `fecha_publicacion` if the act has never been amended. |
 | `estado` | enum | Required. One of: `vigente`, `derogado`. | Current status. `vigente` = in force; `derogado` = repealed. |
 | `fuente` | literal | Required. Must be `lex.bg`. | Data source used for bootstrapping. May change to `dv.parliament.bg` for acts tracked via the DV monitor pipeline. |
 
