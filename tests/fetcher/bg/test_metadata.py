@@ -56,10 +56,22 @@ def test_extracts_amendment_history():
     assert isinstance(meta["amendment_history"], list)
     # ZOP has been amended many times
     assert len(meta["amendment_history"]) > 5
-    # Each entry has dv and date
+    # Each entry has dv and date keys
     for entry in meta["amendment_history"]:
         assert "dv" in entry
         assert "date" in entry
+    # At least some entries MUST have non-null dates — if every date parse
+    # silently failed, the previous assertions would still pass but the
+    # data would be unusable. Real ZOP has dozens of dated DV refs.
+    dated = [e for e in meta["amendment_history"] if e["date"] is not None]
+    assert len(dated) > 5, (
+        f"expected >5 amendments with parsed dates; got {len(dated)} "
+        f"out of {len(meta['amendment_history'])} total"
+    )
+    # Dated entries should have ISO-format dates and dv with year suffix
+    for entry in dated[:3]:
+        assert entry["date"].count("-") == 2  # YYYY-MM-DD
+        assert "/" in entry["dv"]  # "13/2016"
 
 
 def test_category_to_rango_mapping():
