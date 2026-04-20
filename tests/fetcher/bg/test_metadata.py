@@ -80,3 +80,31 @@ def test_all_13_fields_present():
     ]
     for field in required:
         assert field in meta, f"Missing field: {field}"
+
+
+def test_eli_contains_year_month_day_and_transliterated_slug():
+    """ELI must follow data-model.md format /eli/bg/{rango}/{Y}/{M}/{D}/{slug}/con.
+
+    Uses transliterated ASCII slug (not raw Cyrillic) for URI interop.
+    """
+    soup = _load_soup("zop.html")
+    meta = MetadataParser().parse(soup, doc_id=2136735703, category="laws")
+    eli = meta["eli"]
+    # ZOP fecha_publicacion is 2016-02-16
+    assert eli.startswith("/eli/bg/закон/2016/2/16/"), f"ELI format wrong: {eli}"
+    assert eli.endswith("/con"), f"ELI must end /con: {eli}"
+    # Slug must be ASCII (transliterated), no raw Cyrillic
+    slug = eli.split("/")[-2]
+    assert slug.isascii(), f"ELI slug must be ASCII, got: {slug!r}"
+    assert "zakon" in slug, f"expected transliterated 'zakon', got: {slug!r}"
+
+
+def test_eli_with_unknown_pub_date_uses_placeholder():
+    """If fecha_publicacion is None, ELI should still be well-formed."""
+    from bs4 import BeautifulSoup as _BS
+    empty = _BS("<html><body></body></html>", "lxml")
+    meta = MetadataParser().parse(empty, doc_id=42, category="laws")
+    # No crash, ELI exists
+    assert meta["eli"]
+    assert meta["eli"].startswith("/eli/bg/")
+    assert meta["eli"].endswith("/con")

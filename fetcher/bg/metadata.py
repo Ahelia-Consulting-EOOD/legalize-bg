@@ -5,6 +5,8 @@ from datetime import date
 
 from bs4 import BeautifulSoup, Tag
 
+from fetcher.bg.assembler import generate_slug
+
 
 CATEGORY_TO_RANGO = {
     "laws": "закон",
@@ -85,7 +87,7 @@ class MetadataParser:
         dv_issue, dv_year = self._extract_first_dv(amendment_history, pre_history)
 
         rango = CATEGORY_TO_RANGO.get(category, "закон")
-        slug = self._title_to_slug(title)
+        slug = generate_slug(title) if title else str(doc_id)
 
         return {
             # 8 mandatory Legalize fields
@@ -102,10 +104,28 @@ class MetadataParser:
             "dv_year": dv_year,
             "effective_date": effective_date,
             "category": category,
-            "eli": f"/eli/bg/{rango}/{pub_date[:4] if pub_date else 'unknown'}/{slug}/con",
+            "eli": self._build_eli(rango, pub_date, slug),
             # Amendment history array
             "amendment_history": amendment_history,
         }
+
+    @staticmethod
+    def _build_eli(rango: str, pub_date: str | None, slug: str) -> str:
+        """Build ELI URI per docs/architecture/data-model.md:134:
+        /eli/bg/{rango}/{Y}/{M}/{D}/{slug}/con
+
+        Uses ASCII-transliterated slug for URI interop. Falls back to
+        "unknown" segments when publication date is unavailable.
+        """
+        if pub_date and len(pub_date) >= 10:
+            try:
+                d = date.fromisoformat(pub_date)
+                ymd = f"{d.year}/{d.month}/{d.day}"
+            except ValueError:
+                ymd = "unknown/unknown/unknown"
+        else:
+            ymd = "unknown/unknown/unknown"
+        return f"/eli/bg/{rango}/{ymd}/{slug}/con"
 
     def _extract_title(self, soup: BeautifulSoup) -> str:
         el = soup.select_one(".TitleDocument")
@@ -199,14 +219,3 @@ class MetadataParser:
                 year = int(match.group(7))
             return issue, year
         return None, None
-
-    @staticmethod
-    def _title_to_slug(title: str) -> str:
-        """Generate a filesystem-safe slug from a Bulgarian title."""
-        # Transliterate common patterns
-        slug = title.lower().strip()
-        # Remove non-alphanumeric (keeping Cyrillic)
-        slug = re.sub(r"[^\w\s-]", "", slug)
-        slug = re.sub(r"[\s_]+", "-", slug)
-        slug = slug.strip("-")
-        return slug[:80]  # cap length
