@@ -10,11 +10,21 @@ from pathlib import Path
 
 FIXTURES_DIR = Path(__file__).parent.parent / "tests" / "fixtures" / "html"
 
-# Representative acts from test strategy.
-# Additional doc IDs will be discovered from catalog crawl (Task 10).
+# Representative acts covering all 5 corpus categories.
+# One fixture per category catches structural divergence in CSS classes
+# and metadata shapes between кодекси / наредби / правилници / etc.
 FIXTURES = {
-    "zop.html": 2136735703,   # ЗОП — large law, frequent amendments
-    "zeu.html": 2135555445,   # ЗЕУ — medium law, IT domain
+    # laws
+    "zop.html": 2136735703,           # ЗОП — large law, many amendments
+    "zeu.html": 2135555445,           # ЗЕУ — medium law, IT domain
+    # codes
+    "gpk.html": 2135558368,           # Граждански процесуален кодекс
+    # ordinances
+    "naredba-04-14.html": 2137197056, # Modern наредба (2019)
+    # regulations
+    "pravilnik-sadilishta.html": 2137175683,  # Правилник за администрацията в съдилищата
+    # implementing regulations
+    "ppz-aktsizi.html": 2135526226,   # Правилник за прилагане на закона за акцизите
 }
 
 USER_AGENT = "legalize-bg/0.1 fixture-capture"
