@@ -4,12 +4,9 @@ import argparse
 import logging
 import os
 import subprocess
-import time
 from pathlib import Path
 
-import requests
-
-from fetcher.bg.client import LexBgClient, HttpTransport
+from fetcher.bg.client import LexBgClient, HttpTransport, RateLimitedSession
 from fetcher.bg.discovery import CatalogCrawler, CATEGORY_DIRS
 from fetcher.bg.text_parser import HtmlToMarkdown
 from fetcher.bg.metadata import MetadataParser
@@ -23,32 +20,31 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 
-USER_AGENT = (
-    "legalize-bg/0.1 (https://github.com/Ahelia-Consulting-EOOD/legalize-bg)"
-)
-
-
 class TreeTransport:
-    """HTTP transport for tree page requests with 1 req/sec rate limiting."""
+    """Thin adapter exposing `get_tree_page(url)` over a RateLimitedSession.
 
-    def __init__(self):
-        self._session = requests.Session()
-        self._session.headers["User-Agent"] = USER_AGENT
-        self._last = 0.0
+    The discovery module calls `transport.get_tree_page(url)`; we wrap the
+    shared session so rate limit, retries, logging, and CF detection apply
+    uniformly to tree crawls and document fetches.
+    """
+
+    def __init__(self, session: RateLimitedSession | None = None):
+        self._session = session or RateLimitedSession()
 
     def get_tree_page(self, url: str) -> bytes:
-        elapsed = time.monotonic() - self._last
-        if elapsed < 1.0:
-            time.sleep(1.0 - elapsed)
-        resp = self._session.get(url, timeout=30)
-        self._last = time.monotonic()
-        resp.raise_for_status()
-        return resp.content
+        return self._session.get_bytes(url)
+
+    def close(self):
+        self._session.close()
 
 
 def bootstrap(output_dir: Path, db_path: str = "catalog.db", dry_run: bool = False):
     """Run the full bootstrap pipeline."""
-    client = LexBgClient(transport=HttpTransport())
+    # Share one rate-limited session across tree and document fetches so the
+    # 1 req/sec ceiling applies globally.
+    session = RateLimitedSession()
+    client = LexBgClient(transport=HttpTransport(session=session))
+    tree_transport = TreeTransport(session=session)
     crawler = CatalogCrawler()
     parser = HtmlToMarkdown()
     metadata_parser = MetadataParser()
@@ -59,7 +55,6 @@ def bootstrap(output_dir: Path, db_path: str = "catalog.db", dry_run: bool = Fal
         (output_dir / dir_name).mkdir(parents=True, exist_ok=True)
 
     log.info("Crawling lex.bg catalog...")
-    tree_transport = TreeTransport()
     catalog = crawler.crawl_all(tree_transport)
     log.info(
         "Found %d acts across %d categories",
