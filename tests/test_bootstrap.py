@@ -1,6 +1,9 @@
 import pathlib
+import subprocess
 
-from bootstrap import _unique_slug
+import pytest
+
+from bootstrap import _git_push, _unique_slug
 from fetcher.bg.client import LexBgClient
 from fetcher.bg.text_parser import HtmlToMarkdown
 from fetcher.bg.metadata import MetadataParser
@@ -58,3 +61,49 @@ def test_unique_slug_appends_counter_on_collision():
     assert _unique_slug("naredba-8", used) == "naredba-8"
     # Original pattern continues correctly
     assert _unique_slug("naredba-7", used) == "naredba-7-4"
+
+
+def test_git_push_retries_on_transient_failure(tmp_path, monkeypatch):
+    """_git_push should retry failed pushes with backoff (transient network)."""
+    calls = []
+    sleep_calls = []
+
+    def fake_run(cmd, cwd, check, capture_output, text=False):
+        calls.append(cmd)
+        # First two pushes fail, third succeeds
+        if len(calls) < 3:
+            raise subprocess.CalledProcessError(
+                returncode=128, cmd=cmd, stderr=b"network unreachable"
+            )
+        return subprocess.CompletedProcess(cmd, 0, stdout=b"", stderr=b"")
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    _git_push(cwd=tmp_path, branch="bootstrap/test", retries=3, sleep=sleep_calls.append)
+
+    assert len(calls) == 3, f"expected 3 attempts, got {len(calls)}"
+    assert len(sleep_calls) == 2, "expected 2 backoff sleeps between 3 attempts"
+    # Exponential backoff
+    assert sleep_calls[1] > sleep_calls[0]
+
+
+def test_git_push_raises_after_max_retries(tmp_path, monkeypatch):
+    def always_fail(cmd, cwd, check, capture_output, text=False):
+        raise subprocess.CalledProcessError(
+            returncode=128, cmd=cmd, stderr=b"rejected"
+        )
+
+    monkeypatch.setattr(subprocess, "run", always_fail)
+    with pytest.raises(subprocess.CalledProcessError):
+        _git_push(cwd=tmp_path, branch="bootstrap/test", retries=2, sleep=lambda s: None)
+
+
+def test_git_push_succeeds_first_try(tmp_path, monkeypatch):
+    calls = []
+
+    def fake_run(cmd, cwd, check, capture_output, text=False):
+        calls.append(cmd)
+        return subprocess.CompletedProcess(cmd, 0, stdout=b"", stderr=b"")
+
+    monkeypatch.setattr(subprocess, "run", fake_run)
+    _git_push(cwd=tmp_path, branch="bootstrap/test", retries=3, sleep=lambda s: None)
+    assert len(calls) == 1
