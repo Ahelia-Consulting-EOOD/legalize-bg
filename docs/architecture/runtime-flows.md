@@ -61,22 +61,26 @@ One-time initial population of the git corpus from lex.bg.
 
 | Step | Action | Data | Container |
 |------|--------|------|-----------|
-| 1 | Crawl tree pages | HTTP GET to ~105 URLs; parse `<a href="/laws/ldoc/{id}">` links | Catalog Crawler |
-| 2 | Dispatch per act | `(doc_id, name, category)` tuples; 1 req/sec rate limit | Catalog Crawler |
+| 1 | Crawl tree pages | HTTP GET to ~104 URLs; parse `<a href="/laws/ldoc/{id}">` links | Catalog Crawler |
+| 1b | Dedup doc IDs | First-wins across categories (laws → code → ords → regs → reg_laws); drops the 104 `Конституция` sidebar duplicates and any cross-category overlaps; result: 3,573 unique acts | Catalog Crawler |
+| 2 | Dispatch per act | `(doc_id, name, category)` tuples; shared `RateLimitedSession` enforces global 1 req/sec + 3× retry with 2/4/8s exp backoff on 429/5xx; Cloudflare challenge raises `CloudflareChallenge` and halts | Catalog Crawler |
 | 3 | Fetch act HTML | HTTP GET, `resp.encoding = 'cp1251'`, BeautifulSoup parse | Content Fetcher |
-| 4 | Parse structure | DOM elements selected by CSS class (.Article, .Part, .Heading, .Section, .TransitionalFinalEdicts) | HTML-to-Markdown Converter |
-| 4b | Extract metadata | `.TitleDocument` -> titulo; `.PreHistory` -> effective_date; `.HistoryOfDocument` -> amendment_history | Metadata Parser |
+| 4 | Parse structure | DOM elements selected by CSS class (.Article, .Part, .Heading, .Section, .TransitionalFinalEdicts); article alineas separated by `<br>` are joined with `\n\n` so they render as distinct Markdown paragraphs | HTML-to-Markdown Converter |
+| 4b | Extract metadata | `.TitleDocument` → titulo; `.PreHistory` → effective_date (numeric form, e.g. `15.04.2016 г.`); `.HistoryOfDocument` → amendment_history (supports Bulgarian month-name form, e.g. `16 Февруари 2016г.`, and numeric form) | Metadata Parser |
 | 5 | Generate Markdown | Structured Markdown body with H1 title, H2 parts, H3 chapters, H4 sections, bold article numbers | HTML-to-Markdown Converter |
-| 6 | Generate YAML | 8 mandatory fields + 5 extensions + amendment_history list | Metadata Parser |
-| 7 | Assemble file | YAML frontmatter + Markdown body; compute slug from title for filename | Legalize transformer |
+| 6 | Generate YAML | 8 mandatory fields + 5 extensions + amendment_history list; `eli` built as `/eli/bg/{rango}/{Y}/{M}/{D}/{ascii-slug}/con` | Metadata Parser |
+| 7 | Assemble file | YAML frontmatter + Markdown body; `generate_slug` (transliterated ASCII, shared between filename and ELI slug segment); `_unique_slug` appends `-2/-3/…` on same-run slug collision | Legalize transformer |
+| 7b | Log null mandatory fields | If `fecha_publicacion` or `ultima_actualizacion` is null (degenerate acts with no `.PreHistory`/`.HistoryOfDocument`), emit WARN for G2 triage; continue processing | Bootstrap Runner |
 | 8 | Commit to git | `git add {cat}/{slug}.md && git commit -m "[bootstrap] {title}" --date="{fecha_publicacion}"` | Legalize committer |
+| 8b | Push to remote (optional) | When `--branch BOOTSTRAP_BRANCH --push-every N` is set, `git push --set-upstream origin BOOTSTRAP_BRANCH` after every N successful commits plus a final push; 3× retry with 2/4/8s backoff on transient failures | Bootstrap Runner |
 | 9 | Index in SQLite | INSERT into `laws` and `law_versions` (single version with `valid_to = NULL`) | SQLite Index |
 
 ### Performance
 
-- ~3,574 acts at 1 req/sec = ~60 minutes for content fetching
-- Tree crawl: ~105 requests = ~2 minutes
-- Total estimated time: ~2 hours including parsing and commits
+- 3,573 unique acts at 1 req/sec = ~60 minutes for content fetching
+- Tree crawl: ~104 requests = ~2 minutes (dry run verified: 104 requests in ~2:04, no retries, no CF challenges)
+- Periodic `git push` (if enabled, e.g. `--push-every 250`): ~14 intermediate pushes over the run, ~1-2 s each
+- Total estimated time: ~2 hours including parsing, commits, and remote delivery
 
 ---
 

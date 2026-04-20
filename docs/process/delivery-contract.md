@@ -154,6 +154,32 @@ All HTTP access to lex.bg must follow these rules:
 3. **Retry with exponential backoff** on 429 or 5xx responses. Max 3 retries.
 4. **Stop immediately** if Cloudflare challenges appear. Do not attempt to bypass.
 5. **Log all requests** with timestamp, URL, status code, and response time.
-6. **Full bootstrap crawl** takes ~2 hours at 1 req/sec for 3,574 acts plus tree pages. Plan accordingly -- do not rush.
+6. **Full bootstrap crawl** takes ~2 hours at 1 req/sec for 3,573 acts plus ~104 tree pages. Plan accordingly — do not rush.
 7. **Off-peak preferred:** Run large crawls outside Bulgarian business hours when possible.
 8. **lex.bg is the validation oracle, not the ongoing source.** After bootstrap, DV (dv.parliament.bg) is the primary source. lex.bg is used only for validation comparisons.
+
+### Reference implementation
+
+All 5 rules are enforced in `fetcher/bg/client.py:RateLimitedSession`:
+- Rule 1: `rate_limit_sec` gate before every request; `HttpTransport` (doc pages) and `bootstrap.py:TreeTransport` (tree crawl) share one session so the ceiling is global across the pipeline.
+- Rule 2: `USER_AGENT = "legalize-bg/0.1 (https://github.com/Ahelia-Consulting-EOOD/legalize-bg)"`.
+- Rule 3: `max_retries=3`, `retry_base_sec=2.0` (2 / 4 / 8 s backoff) on HTTP 429 and 500-599; connection/timeout errors also retry.
+- Rule 4: `is_cloudflare_challenge()` matches body markers (`"Just a moment"`, `"challenge-platform"`, `"__cf_chl_"`, `"Attention Required! | Cloudflare"`) on status 403/503 and raises `CloudflareChallenge`, which the bootstrap does NOT catch — the run halts for manual intervention.
+- Rule 5: INFO log per successful request with URL, status, and elapsed ms; WARN on retry or transient failure.
+
+## Bootstrap Runner CLI
+
+`python bootstrap.py [flags]` — supported flags:
+
+- `--output PATH` — corpus root (default: `.`).
+- `--db PATH` — SQLite catalog path (default: `catalog.db`).
+- `--dry-run` — crawl the catalog only; skip per-act fetch and commits. Use to verify counts before a full run; gated by `scripts/verify_catalog.py`.
+- `--branch NAME` — create and switch to `NAME` before the loop (recommended: `bootstrap/phase-1a`). Keeps `main` clean until the run is reviewed and merged.
+- `--push-every N` — `git push --set-upstream` after every N successful commits plus one final push. 3× retry with 2/4/8s backoff on transient push failures. Requires `--branch` or a pre-existing upstream.
+- `--remote NAME` — remote to push to (default: `origin`).
+
+Reference Phase 1a invocation:
+
+```bash
+python bootstrap.py --branch bootstrap/phase-1a --push-every 250 --db catalog.db
+```

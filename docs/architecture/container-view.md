@@ -73,8 +73,8 @@
 | **Technology** | Python, `requests`, `BeautifulSoup` |
 | **Inputs** | Category list (`laws`, `code`, `ords`, `regs`, `reg_laws`) |
 | **Outputs** | List of `(doc_id: int, name: str, category: str)` tuples |
-| **HTTP requests** | ~105 total (12 + 1 + 75 + 14 + 2 pages) |
-| **Key detail** | Pagination is 0-based via `/laws/tree/{category}/{pageIndex}`. Each page has ~35 items. Doc IDs are signed 32-bit integers extracted from `href="/laws/ldoc/{id}"` links. |
+| **HTTP requests** | ~104 total (12 + 1 + 75 + 14 + 2 pages) |
+| **Key detail** | Pagination is 0-based via `/laws/tree/{category}/{pageIndex}`. Each page has ~35 items. Doc IDs are signed 32-bit integers extracted from `href="/laws/ldoc/{id}"` links. `crawl_all` deduplicates doc IDs across categories (first-wins in iteration order laws → code → ords → regs → reg_laws) — `Конституция` appears on every tree page as a sidebar link, and a small number of acts appear in two related categories. Post-dedup yields 3,573 unique acts. |
 
 ### 2. Content Fetcher
 
@@ -86,7 +86,7 @@
 | **Technology** | Python, `requests`, `BeautifulSoup` |
 | **Inputs** | `doc_id: int` |
 | **Outputs** | Parsed `BeautifulSoup` DOM of the law page |
-| **Key details** | URL pattern: `https://lex.bg/laws/ldoc/{doc_id}`. Encoding: `resp.encoding = 'cp1251'`. Self-imposed rate limit: 1 req/sec via `time.sleep()`. No cookies, no headers, no auth required. Playwright kept as emergency fallback if Cloudflare starts blocking. |
+| **Key details** | URL pattern: `https://lex.bg/laws/ldoc/{doc_id}`. Encoding: `resp.encoding = 'cp1251'`. Wrapped in `RateLimitedSession` which enforces: (a) global 1 req/sec ceiling shared between `HttpTransport` (doc pages) and `bootstrap.py:TreeTransport` (tree crawl) so the limit applies across the whole pipeline, not per-transport; (b) automatic retry on HTTP 429 / 5xx — up to 3 attempts with exponential backoff (2 / 4 / 8 s); (c) Cloudflare challenge detection (status 403/503 with markers like `"Just a moment"`, `challenge-platform`, `__cf_chl_`, `Attention Required! | Cloudflare`) raises `CloudflareChallenge` and halts the pipeline — do not attempt to bypass; (d) per-request INFO log line with URL, status, and elapsed ms; WARN on retries. No cookies, no headers, no auth required. Playwright kept as emergency fallback if Cloudflare starts blocking. |
 
 ### 3. HTML-to-Markdown Converter
 

@@ -131,7 +131,7 @@ Each Markdown file begins with a YAML frontmatter block containing structured me
 | `dv_year` | integer | Parsed from `.HistoryOfDocument` | `2016` |
 | `effective_date` | date | `.PreHistory` "В сила от" text | `"2016-04-15"` |
 | `category` | string | Tree page category | `laws`, `codes`, `ordinances`, `regulations`, `implementing` |
-| `eli` | string | Constructed per ELI spec | `"/eli/bg/закон/2016/2/16/zop/con"` |
+| `eli` | string | Constructed per ELI spec. Path form: `/eli/bg/{rango}/{Y}/{M}/{D}/{slug}/con`. Slug is the ASCII-transliterated title (same slug used for the Markdown filename) — `rango` stays in Cyrillic per Legalize convention. | `"/eli/bg/закон/2016/2/16/zakon-za-obshtestvenite-porachki/con"` |
 
 **Amendment history (nested list):**
 
@@ -156,7 +156,7 @@ dv_issue: "13"
 dv_year: 2016
 effective_date: "2016-04-15"
 category: laws
-eli: "/eli/bg/закон/2016/2/16/zop/con"
+eli: "/eli/bg/закон/2016/2/16/zakon-za-obshtestvenite-porachki/con"
 amendment_history:
   - dv: "34/2016"
     date: "2016-05-03"

@@ -83,15 +83,18 @@ Testing strategy for the legalize-bg pipeline. Covers unit through validation te
 
 Cached HTML responses from lex.bg, stored in `tests/fixtures/html/`. Each fixture is a complete HTTP response body saved as a file with cp1251 encoding preserved.
 
-Representative laws selected to cover structural diversity:
+One fixture per corpus category so structural divergence in CSS classes and metadata shapes surfaces in unit tests, not at 3,574-act scale. Captured via `scripts/capture_fixtures.py` (rate-limited at 1 req/sec, idempotent — re-running skips files already on disk):
 
-| Fixture | Act | Why Selected |
-|---------|-----|-------------|
-| `zop.html` | Закон за обществените поръчки | Large law, frequent amendments, complex ПЗР |
-| `zeu.html` | Закон за електронното управление | Medium law, IT domain relevance |
-| `npk.html` | Наказателно-процесуален кодекс | Code (кодекс), very large, deep nesting |
-| `naredba-7-2004.html` | Наредба No 7 от 2004 г. | Ordinance with tables and annexes |
-| `ppzop.html` | Правилник за прилагане на ЗОП | Implementing regulation, linked to ЗОП |
+| Fixture | Category | Act | Why Selected |
+|---------|----------|-----|--------------|
+| `zop.html` | laws | Закон за обществените поръчки | Large law, many amendments, complex ПЗР; also used as the live-fixture integration anchor for every parser test |
+| `zeu.html` | laws | Закон за електронното управление | Medium law, IT domain relevance |
+| `gpk.html` | codes | Граждански процесуален кодекс | Code (кодекс), very large, deep nesting |
+| `naredba-04-14.html` | ordinances | Наредба № 04-14 от 9 октомври 2019 г. | Modern наредба, exercises the Bulgarian month-name DV date form |
+| `pravilnik-sadilishta.html` | regulations | Правилник за администрацията в съдилищата | Плaвилник (regulation) shape, distinct from "правилник по прилагане" |
+| `ppz-aktsizi.html` | implementing | Правилник за прилагане на закона за акцизите и данъчните складове | Implementing regulation (правилник по прилагане), largest category-5 fixture |
+
+A parametrized smoke test (`tests/fetcher/bg/test_cross_category.py`) runs the full pipeline — metadata parse → HTML-to-Markdown → file assembly — on all six fixtures and verifies rango, ELI prefix, slug generation, and frontmatter invariants per category.
 
 Additional fixtures added as bugs are discovered (see Regression Policy below).
 
