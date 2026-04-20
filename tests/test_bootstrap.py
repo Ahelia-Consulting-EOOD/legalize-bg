@@ -110,6 +110,15 @@ def test_git_push_succeeds_first_try(tmp_path, monkeypatch):
     assert len(calls) == 1
 
 
+def test_bootstrap_requires_branch_when_push_every_is_set(tmp_path):
+    """--push-every without --branch would push half-bootstrapped commits to
+    the current branch (likely main); delivery-contract.md:97 says main
+    history is sacred. Guard at the entry point, before any lex.bg traffic."""
+    from bootstrap import bootstrap
+    with pytest.raises(ValueError, match="--branch"):
+        bootstrap(tmp_path, db_path=":memory:", push_every=250)
+
+
 def test_format_author_date_converts_iso_date_to_git_iso_timestamp():
     """Git rejects bare YYYY-MM-DD in GIT_AUTHOR_DATE with
     'fatal: invalid date format'. The full run of Task 11 hit this and

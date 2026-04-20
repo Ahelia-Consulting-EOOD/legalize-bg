@@ -56,7 +56,22 @@ def bootstrap(
             plus one final push at the end. Requires `branch` or a
             pre-existing upstream on the current branch.
         remote: Remote name to push to (default "origin").
+
+    Raises:
+        ValueError: when push_every > 0 without --branch. Without an
+            explicit feature branch, an interrupted run would start
+            pushing half-bootstrapped commits to the current branch
+            (typically main), violating delivery-contract.md's
+            "main history is sacred" rule.
     """
+    if push_every and not branch:
+        raise ValueError(
+            "--push-every requires --branch to avoid pushing partial "
+            "bootstrap state to the current branch (likely main). "
+            "Use --branch bootstrap/phase-1a (or similar) to land commits "
+            "on a feature branch first."
+        )
+
     session = RateLimitedSession()
     client = LexBgClient(transport=HttpTransport(session=session))
     tree_transport = TreeTransport(session=session)
