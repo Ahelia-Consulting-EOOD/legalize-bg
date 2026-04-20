@@ -83,9 +83,16 @@ def test_preserves_paragraph_structure():
     '''
     soup = BeautifulSoup(html, "lxml")
     md = HtmlToMarkdown().convert(soup)
-    assert "(1)" in md
-    assert "(2)" in md
-    assert "(3)" in md
+    # Alineas must be separated by a blank line (CommonMark paragraph break);
+    # a single `\n` is a soft break that renders as a space in HTML, which
+    # collapses the legal paragraph structure.
+    blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
+    assert any(b.startswith("(2)") for b in blocks), (
+        f"(2) should be its own block, got blocks: {blocks!r}"
+    )
+    assert any(b.startswith("(3)") for b in blocks), (
+        f"(3) should be its own block, got blocks: {blocks!r}"
+    )
 
 
 def test_full_zop_produces_valid_markdown():

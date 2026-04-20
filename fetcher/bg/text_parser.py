@@ -73,16 +73,33 @@ class HtmlToMarkdown:
         return text
 
     def _extract_article_text(self, element: Tag) -> str:
-        """Extract article text, converting <br> to newlines."""
-        parts = []
+        """Extract article text, treating <br> as a paragraph break.
+
+        Bulgarian legal articles have numbered alineas ((1), (2), ...)
+        separated by <br>. In Markdown, a single newline is a soft break
+        (rendered as a space) — we need a blank line between alineas so
+        each renders as its own paragraph.
+        """
+        lines: list[str] = []
+        buf: list[str] = []
+
+        def flush():
+            if buf:
+                line = " ".join(s for s in buf if s).strip()
+                if line:
+                    lines.append(line)
+                buf.clear()
+
         for child in element.children:
             if isinstance(child, Tag):
                 if child.name == "br":
-                    parts.append("\n")
+                    flush()
                 else:
-                    parts.append(child.get_text())
+                    buf.append(child.get_text().strip())
             else:
-                text = str(child)
-                if text.strip():
-                    parts.append(text.strip())
-        return " ".join(parts).replace("  ", " ").strip()
+                text = str(child).strip()
+                if text:
+                    buf.append(text)
+        flush()
+
+        return "\n\n".join(lines)
