@@ -70,6 +70,7 @@ def bootstrap(output_dir: Path, db_path: str = "catalog.db", dry_run: bool = Fal
         return catalog
 
     errors = []
+    used_slugs: set[str] = set()
     for i, entry in enumerate(catalog, 1):
         doc_id = entry["doc_id"]
         name = entry["name"]
@@ -84,7 +85,8 @@ def bootstrap(output_dir: Path, db_path: str = "catalog.db", dry_run: bool = Fal
             body = parser.convert(soup)
             meta = metadata_parser.parse(soup, doc_id=doc_id, category=corpus_dir)
 
-            slug = generate_slug(meta["titulo"])
+            base_slug = generate_slug(meta["titulo"]) or str(doc_id)
+            slug = _unique_slug(base_slug, used_slugs)
             filepath = output_dir / corpus_dir / f"{slug}.md"
             content = assemble_file(meta, body)
 
@@ -161,6 +163,25 @@ def _count_by_cat(catalog: list[dict]) -> dict[str, int]:
         cat = entry["category"]
         counts[cat] = counts.get(cat, 0) + 1
     return counts
+
+
+def _unique_slug(slug: str, used: set[str]) -> str:
+    """Return `slug` if unused, else append a counter (-2, -3, ...) until unique.
+
+    Bulgarian legislation has many similarly-named наредби ("Наредба № 7"
+    appears repeatedly across ministries). Without dedup, the second act
+    would silently overwrite the first's Markdown file and the SQLite
+    insert would fail on the law_id primary key.
+    """
+    if slug not in used:
+        used.add(slug)
+        return slug
+    n = 2
+    while f"{slug}-{n}" in used:
+        n += 1
+    candidate = f"{slug}-{n}"
+    used.add(candidate)
+    return candidate
 
 
 if __name__ == "__main__":

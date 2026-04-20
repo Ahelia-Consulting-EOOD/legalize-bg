@@ -1,5 +1,6 @@
 import pathlib
 
+from bootstrap import _unique_slug
 from fetcher.bg.client import LexBgClient
 from fetcher.bg.text_parser import HtmlToMarkdown
 from fetcher.bg.metadata import MetadataParser
@@ -40,3 +41,20 @@ def test_single_act_pipeline():
     filepath = f"{meta['category']}/{slug}.md"
     assert filepath.startswith("laws/")
     assert filepath.endswith(".md")
+
+
+def test_unique_slug_no_collision():
+    used: set[str] = set()
+    assert _unique_slug("zakon-x", used) == "zakon-x"
+    assert "zakon-x" in used
+
+
+def test_unique_slug_appends_counter_on_collision():
+    used: set[str] = set()
+    assert _unique_slug("naredba-7", used) == "naredba-7"
+    assert _unique_slug("naredba-7", used) == "naredba-7-2"
+    assert _unique_slug("naredba-7", used) == "naredba-7-3"
+    # Different slug stays clean
+    assert _unique_slug("naredba-8", used) == "naredba-8"
+    # Original pattern continues correctly
+    assert _unique_slug("naredba-7", used) == "naredba-7-4"
