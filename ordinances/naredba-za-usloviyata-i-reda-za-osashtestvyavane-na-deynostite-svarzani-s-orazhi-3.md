@@ -7,7 +7,7 @@ pais: bg
 rango: наредба
 fecha_publicacion: '2012-04-10'
 ultima_actualizacion: '2012-04-10'
-estado: vigente
+estado: derogado
 fuente: lex.bg
 dv_issue: '29'
 dv_year: 2012
