@@ -9,6 +9,9 @@ from mcp_server.queries import (
     version_at_date,
     version_with_warnings,
     NoVersionAtDate,
+    full_text_search,
+    article_lookup,
+    ArticleNotFound,
 )
 
 
@@ -158,3 +161,66 @@ def test_version_with_warnings_attaches_DATE_UNCERTAIN_for_null_pub_date(populat
     commit, warnings = version_with_warnings(populated_conn, "phantom", date=None)
     codes = [w["code"] for w in warnings]
     assert "DATE_UNCERTAIN" in codes
+
+
+# ────────────────────────────── full_text_search + article_lookup ──────────
+
+
+def test_search_returns_matching_acts(populated_conn):
+    hits = full_text_search(populated_conn, "Закон за А")
+    assert any(h["law_id"] == "zakon-a" for h in hits)
+
+
+def test_search_morphology_matches_definite_article(populated_conn):
+    """bg_normalize symmetry: query 'наредбата' should still find
+    'Наредба № 7' even though indexed form is 'наредба'."""
+    hits = full_text_search(populated_conn, "наредбата")
+    assert any(h["law_id"].startswith("naredba-7") for h in hits)
+
+
+def test_search_filters_by_category(populated_conn):
+    hits = full_text_search(populated_conn, "Закон", category="ordinances")
+    assert all(h["category"] == "ordinances" for h in hits)
+
+
+def test_search_phantom_act_uses_doc_id_as_title(populated_conn):
+    """§7.3: phantom acts have empty titulo on lex.bg; the conftest
+    seeds laws_fts with a `<doc_id=N>` substitute so they remain
+    findable via identificador."""
+    hits = full_text_search(populated_conn, "549676032")
+    assert any(h["law_id"] == "phantom" for h in hits)
+
+
+def test_article_lookup_missing_provision_raises(populated_conn):
+    # No provisions seeded in conftest; any lookup should raise.
+    with pytest.raises(ArticleNotFound) as exc:
+        article_lookup(populated_conn, "zakon-a", article="14",
+                       paragraph=None, date=None)
+    assert exc.value.law_id == "zakon-a"
+    assert exc.value.article == "14"
+
+
+def test_article_lookup_returns_text_for_matching_provision(populated_conn):
+    populated_conn.execute(
+        """INSERT INTO provisions(law_id, article, paragraph,
+                                  valid_from, text, text_hash)
+           VALUES ('zakon-a', '14', NULL, '2020-01-01',
+                   'Чл. 14 текст.', 'h1')"""
+    )
+    populated_conn.execute(
+        """INSERT INTO provisions(law_id, article, paragraph,
+                                  valid_from, text, text_hash)
+           VALUES ('zakon-a', '14', '2', '2020-01-01',
+                   '(2) Алинея 2.', 'h2')"""
+    )
+    populated_conn.commit()
+
+    rows = article_lookup(populated_conn, "zakon-a",
+                          article="14", paragraph=None, date=None)
+    assert any(r["paragraph"] is None and "Чл. 14" in r["text"] for r in rows)
+
+    rows = article_lookup(populated_conn, "zakon-a",
+                          article="14", paragraph="2", date=None)
+    assert len(rows) == 1
+    assert rows[0]["paragraph"] == "2"
+    assert "Алинея 2" in rows[0]["text"]

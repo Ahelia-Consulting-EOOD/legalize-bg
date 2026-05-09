@@ -207,3 +207,74 @@ def version_with_warnings(conn: sqlite3.Connection, law_id: str,
             ),
         })
     return commit, warnings
+
+
+# ────────────────────────────── full_text_search + article_lookup ──────────
+
+
+class ArticleNotFound(LookupError):
+    def __init__(self, law_id: str, article: str, paragraph: str | None,
+                 available_articles: list[str] | None = None):
+        super().__init__(f"article {article} not found in {law_id}")
+        self.law_id = law_id
+        self.article = article
+        self.paragraph = paragraph
+        self.available_articles = available_articles or []
+
+
+def full_text_search(conn: sqlite3.Connection, query: str,
+                     category: str | None = None,
+                     limit: int = 20) -> list[dict]:
+    """FTS5 search; symmetric bg_normalize is applied inside search_fts.
+
+    Substitutes `<doc_id=N>` in the `title` slot for §7.3 phantom acts
+    (empty titulo) so callers get a non-blank display string.
+    """
+    rows = search_fts(conn, query, category=category, limit=limit)
+    out: list[dict] = []
+    for r in rows:
+        title = r["title"] or f"<doc_id={r['doc_id']}>"
+        out.append({
+            "law_id": r["law_id"],
+            "identificador": str(r["doc_id"]),
+            "title": title,
+            "category": r["category"],
+            "snippet": r["snippet"],
+            "score": r["score"],
+        })
+    return out
+
+
+def article_lookup(conn: sqlite3.Connection, law_id: str,
+                   article: str, paragraph: str | None,
+                   date: str | None) -> list[dict]:
+    """Return provision row(s) for a law/article/paragraph at a date.
+
+    If `paragraph` is None, returns the article-as-whole row.
+    If `paragraph` is set, returns just that alinea row.
+    Raises ArticleNotFound (with `available_articles` for retry) if no
+    matching row exists.
+    """
+    target = date or _date.today().isoformat()
+    sql = """
+        SELECT article, paragraph, text, text_hash, valid_from, valid_to
+          FROM provisions
+         WHERE law_id = ? AND article = ?
+           AND valid_from <= ?
+           AND (valid_to IS NULL OR valid_to > ?)
+    """
+    params: list = [law_id, article, target, target]
+    if paragraph is None:
+        sql += " AND paragraph IS NULL"
+    else:
+        sql += " AND paragraph = ?"
+        params.append(paragraph)
+    rows = conn.execute(sql, params).fetchall()
+    if not rows:
+        avail = [r["article"] for r in conn.execute(
+            "SELECT DISTINCT article FROM provisions WHERE law_id = ? "
+            "ORDER BY article", (law_id,),
+        ).fetchall()]
+        raise ArticleNotFound(law_id=law_id, article=article,
+                              paragraph=paragraph, available_articles=avail)
+    return [dict(r) for r in rows]
