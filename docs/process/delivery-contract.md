@@ -104,6 +104,10 @@ No PR to legalize-pipeline will be opened until all four gates pass.
 
 ## Definition of Done
 
+### Universal phase-promotion gate
+
+Before promoting from any phase X to phase Y, every Open row in `docs/sync/DEFERRED.md` whose Target column is X (or earlier) must be reviewed and resolved (Implemented / Re-affirmed with date / Withdrawn). **Phase promotion is blocked while any such row remains Open.** Re-affirmations require a new `docs/sync/DECISIONS.md` entry stating why the deferral is being kept; Withdrawals require a DECISIONS entry explaining why the work won't happen. This gate applies to every per-phase DoD below; each phase's checklist also surfaces it as its last bullet for local visibility.
+
 ### Phase 1a -- Bootstrap Scrape
 
 - [ ] All ~3,574 acts scraped from lex.bg and converted to Markdown
@@ -112,6 +116,7 @@ No PR to legalize-pipeline will be opened until all four gates pass.
 - [ ] SQLite catalog index built and queryable
 - [ ] Spot-check: 10 randomly selected acts match lex.bg text exactly (after normalization)
 - [ ] No cp1251 encoding artifacts in any file
+- [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 1b -- MCP Server
 
@@ -119,18 +124,21 @@ No PR to legalize-pipeline will be opened until all four gates pass.
 - [ ] Claude Code can access Bulgarian legislation via MCP
 - [ ] Per-tool p95 latency budgets (soft assertions in 1b.1, hard in 1b.2 per D-027): `search` < 100 ms, `get_law` (current) < 100 ms, `get_law` (historical) < 500 ms, `get_article` < 50 ms.
   - Authoritative source: `docs/plans/2026-05-09-phase1b-mcp-design.md` §9. The "наредба" pathological single-word category query currently exceeds the 100 ms budget at ~290 ms p95 — tracked as FR-016 for Phase 1b.2 hardening.
+- [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 2 -- Temporal Index
 
 - [ ] SQLite law_versions table populated from git history
 - [ ] `history()` and `diff()` MCP tools working
 - [ ] Date-based law retrieval returns correct historical version
+- [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 3 -- DV Monitor
 
 - [ ] Poller detects new DV issues on Tue/Fri schedule
 - [ ] Amendment detector identifies affected laws
 - [ ] Alert or log for new amendments requiring processing
+- [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 4 -- Consolidation Engine
 
@@ -138,6 +146,7 @@ No PR to legalize-pipeline will be opened until all four gates pass.
 - [ ] Patcher applies parsed amendments to Markdown
 - [ ] Validator compares result against lex.bg oracle
 - [ ] Accuracy >= 70% on regex-only; >= 90% with LLM fallback
+- [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 5 -- Legalize Contribution
 
@@ -145,6 +154,7 @@ No PR to legalize-pipeline will be opened until all four gates pass.
 - [ ] fetcher/bg/ implements all 4 Legalize interfaces
 - [ ] PR submitted to legalize-pipeline
 - [ ] CI passes on upstream repo
+- [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ---
 

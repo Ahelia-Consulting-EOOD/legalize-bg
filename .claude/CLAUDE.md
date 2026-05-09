@@ -6,8 +6,9 @@ Bulgarian legislation as code — ~3,574 national legislative acts as Markdown+Y
 
 1. Read this file
 2. Read `docs/sync/ACTIVE.md` for current work state
-3. Read `docs/process/delivery-contract.md` for process rules
-4. Read the relevant `docs/prd/` or `docs/plans/` for task context
+3. Read `docs/sync/DEFERRED.md` for items punted from prior phases that may be relevant to current work
+4. Read `docs/process/delivery-contract.md` for process rules
+5. Read the relevant `docs/prd/` or `docs/plans/` for task context
 
 ## Authority Surfaces (in precedence order)
 
