@@ -36,7 +36,7 @@ def test_every_runtime_code_has_a_markdown_section():
 
 def test_every_runtime_code_has_a_json_entry():
     d = json.loads(ERR_JSON.read_text(encoding="utf-8"))
-    json_codes = {entry["code"] for entry in d["data"]["codes"]}
+    json_codes = {entry["code"] for entry in d["codes"]}
     runtime = set(ERROR_CODES)
     missing_in_json = runtime - json_codes
     extra_in_json = json_codes - runtime
@@ -57,7 +57,7 @@ def test_md_and_json_versions_match():
     md_version = md_version_match.group(1)
 
     j = json.loads(ERR_JSON.read_text(encoding="utf-8"))
-    json_version = j["data"]["version"]
+    json_version = j["version"]
 
     from mcp_server.export_tools import TOOLS_JSON_VERSION
     assert md_version == json_version == TOOLS_JSON_VERSION, (
@@ -69,7 +69,7 @@ def test_md_and_json_versions_match():
 def test_query_too_broad_marked_since_1b2():
     """Sanity check that the new 1b.2 code is correctly tagged."""
     j = json.loads(ERR_JSON.read_text(encoding="utf-8"))
-    qtb = next(c for c in j["data"]["codes"] if c["code"] == "QUERY_TOO_BROAD")
+    qtb = next(c for c in j["codes"] if c["code"] == "QUERY_TOO_BROAD")
     assert qtb["since_phase"] == "1b.2"
     assert qtb["category"] == "error"
     assert "search" in qtb["raised_by"]

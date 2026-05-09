@@ -116,10 +116,12 @@ def test_search_cold_p95():
     durations: list[float] = []
     for q in COLD_QUERIES:
         c = _open_fresh()
-        t0 = time.monotonic()
-        full_text_search(c, q, limit=20)
-        durations.append(time.monotonic() - t0)
-        c.close()
+        try:
+            t0 = time.monotonic()
+            full_text_search(c, q, limit=20)
+            durations.append(time.monotonic() - t0)
+        finally:
+            c.close()
     _hard_assert(_p95(durations), "search_cold_p95")
 
 
@@ -130,21 +132,25 @@ def test_get_law_cold_current_p95():
     from mcp_server.queries import resolve_name_to_law_id, version_with_warnings
 
     boot = _open_fresh()
-    doc_ids = [
-        str(r["doc_id"]) for r in boot.execute(
-            "SELECT doc_id FROM laws WHERE doc_id != 0 LIMIT 10"
-        ).fetchall()
-    ]
-    boot.close()
+    try:
+        doc_ids = [
+            str(r["doc_id"]) for r in boot.execute(
+                "SELECT doc_id FROM laws WHERE doc_id != 0 LIMIT 10"
+            ).fetchall()
+        ]
+    finally:
+        boot.close()
 
     durations: list[float] = []
     for did in doc_ids:
         c = _open_fresh()
-        t0 = time.monotonic()
-        law_id = resolve_name_to_law_id(c, did)
-        version_with_warnings(c, law_id, date=None)
-        durations.append(time.monotonic() - t0)
-        c.close()
+        try:
+            t0 = time.monotonic()
+            law_id = resolve_name_to_law_id(c, did)
+            version_with_warnings(c, law_id, date=None)
+            durations.append(time.monotonic() - t0)
+        finally:
+            c.close()
     _hard_assert(_p95(durations), "get_law_cold_current_p95")
 
 
@@ -155,18 +161,22 @@ def test_get_article_cold_p95():
     from mcp_server.queries import article_lookup
 
     boot = _open_fresh()
-    pairs = boot.execute(
-        "SELECT law_id, article FROM provisions "
-        "WHERE paragraph IS NULL LIMIT 10"
-    ).fetchall()
-    boot.close()
+    try:
+        pairs = boot.execute(
+            "SELECT law_id, article FROM provisions "
+            "WHERE paragraph IS NULL LIMIT 10"
+        ).fetchall()
+    finally:
+        boot.close()
 
     durations: list[float] = []
     for r in pairs:
         c = _open_fresh()
-        t0 = time.monotonic()
-        article_lookup(c, r["law_id"], article=r["article"],
-                       paragraph=None, date=None)
-        durations.append(time.monotonic() - t0)
-        c.close()
+        try:
+            t0 = time.monotonic()
+            article_lookup(c, r["law_id"], article=r["article"],
+                           paragraph=None, date=None)
+            durations.append(time.monotonic() - t0)
+        finally:
+            c.close()
     _hard_assert(_p95(durations), "get_article_cold_p95")

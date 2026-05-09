@@ -49,7 +49,7 @@ Payload:
 - `date` (string, ISO 8601): the requested date.
 - `earliest_valid_from` (string|null): the earliest `valid_from` recorded for this act, or null if no versions exist.
 
-### `DATE_UNCERTAIN` ⚠️ warning, rides in successful response
+### `DATE_UNCERTAIN` (warning, rides in successful response)
 
 Raised by: `get_law` (as a warning in the `warnings` array, not as a thrown error).
 When: §7.2 — the act's `fecha_publicacion` was null at index time, so `valid_from` fell back to the bootstrap-run date.
@@ -92,7 +92,7 @@ Payload:
 - `db_path` (string): the absolute path the server tried.
 - `instruction` (string): "Run `python -m index.build --corpus . --db catalog.db` to create the index."
 
-### `QUERY_TOO_BROAD` ✨ added in 1b.2 (FR-016)
+### `QUERY_TOO_BROAD` (added in 1b.2 — FR-016)
 
 Raised by: `search`.
 When: the query, after `bg_normalize`, is exactly one of the five Bulgarian category words: `наредба`, `закон`, `правилник`, `кодекс`, `постановление`. These match thousands of acts each (2,604 ordinances for `наредба` alone) and produce 400+ ms cold-call latency outside the 100 ms p95 budget.

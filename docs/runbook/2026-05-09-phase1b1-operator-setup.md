@@ -151,7 +151,7 @@ A request DOES write to:
 
 **Idempotency consequences:**
 - A retry of any tool call against the same `(name, date, article)` returns the same response (modulo OS-cache state, which only affects latency, not the response body).
-- Concurrent calls do not race — SQLite is opened with `check_same_thread=False`, FastMCP serializes per-tool execution, and there are no shared mutable structures across calls.
+- Concurrent calls do not race because the safety story is built on three independent layers: (a) the stdio transport processes one JSON-RPC request per server connection at a time; (b) SQLite is opened with `check_same_thread=False` and handles concurrent readers via its own internal locking (the runtime catalog is read-only); (c) the tool implementations don't share mutable Python state across calls (no module-level dicts mutated at request time, no per-tool caches). This holds regardless of FastMCP internals — even a future transport that runs requests in parallel would still inherit (b) and (c).
 - A caller may safely retry on transport-level failures without risk of duplicated side-effects.
 
 **Non-idempotency to be aware of:**

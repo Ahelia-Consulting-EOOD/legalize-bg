@@ -171,9 +171,11 @@ deferrals:
     punted_from: 1b.1
     target: 1b.2
     status: implemented
-    resolution_note: "Stop-word reject path in mcp_server.queries.full_text_search; D-028."
+    resolution_note: "Stop-word reject path in mcp_server.queries.full_text_search; D-028. Round-4 review tightened the v1 bypass via punctuation suffixes (commit 06195fa1)."
     surfaces_affected:
-      - "index/fts.py:search_fts"
+      - "mcp_server/queries.py:full_text_search"
+      - "mcp_server/queries.py:_CATEGORY_STOP_WORDS"
+      - "tests/mcp_server/test_search.py"
       - "tests/perf/test_budgets.py"
 
   - id: D-2026-05-09-04
