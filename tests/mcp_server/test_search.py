@@ -213,3 +213,84 @@ def test_search_rejection_is_constant_time(app):
         f"1000 rejects took {elapsed:.2f}s — reject path is invoking "
         "FTS5 or doing O(n²) work somewhere."
     )
+
+
+# ─── FR-015 synonym expansion (D-2026-05-09-04 part 1) ────────────────────────
+
+
+def test_search_expands_single_token_abbreviation(populated_conn, tmp_path):
+    """FR-015: a single-token abbreviation query should be rewritten
+    to its canonical form before FTS5 sees it. The conftest fixture
+    seeds 'Закон за А' with law_id='zakon-a'; we use a custom
+    abbreviation registered just for the test to avoid coupling the
+    test to whatever happens to be in the production dictionary."""
+    from mcp_server.server import build_app
+    import index.synonyms as syn
+
+    # Patch the dictionary for this test only.
+    orig = syn.LEGAL_ABBREVIATIONS.copy()
+    try:
+        # 'тестабс' (test-abbrev) → 'закон за а' which matches zakon-a
+        # by title in the populated_conn fixture.
+        syn.LEGAL_ABBREVIATIONS["тестабс"] = "закон за а"
+        app = build_app(conn=populated_conn, corpus_root=tmp_path)
+        hits = app.call_tool_sync("search", {"query": "тестабс"})
+        assert any(h["law_id"] == "zakon-a" for h in hits), (
+            "synonym expansion should let 'тестабс' find zakon-a "
+            f"via its canonical form. Got: {[h['law_id'] for h in hits]}"
+        )
+    finally:
+        syn.LEGAL_ABBREVIATIONS.clear()
+        syn.LEGAL_ABBREVIATIONS.update(orig)
+
+
+def test_search_does_not_expand_multi_word_query(populated_conn, tmp_path):
+    """Multi-word queries with an abbreviation in them pass through
+    unchanged — FTS5 sees the literal tokens. This is correct: if the
+    user typed 'ЗОП обществени', they're scoping; rewriting would
+    duplicate context."""
+    from mcp_server.server import build_app
+    import index.synonyms as syn
+
+    orig = syn.LEGAL_ABBREVIATIONS.copy()
+    try:
+        # Even though 'тестабс' is registered, the multi-word query
+        # 'тестабс за А' should NOT be rewritten — multi-word
+        # passthrough is the contract.
+        syn.LEGAL_ABBREVIATIONS["тестабс"] = "закон за б"  # would map to a different law
+        app = build_app(conn=populated_conn, corpus_root=tmp_path)
+        # The multi-word search shouldn't be turned into the synonym's
+        # canonical form (which would point at zakon-b). The literal
+        # tokens 'тестабс' and 'А' don't match any seeded act, so the
+        # result is an empty list (or no zakon-b in the hits).
+        hits = app.call_tool_sync("search", {"query": "тестабс за А"})
+        zakon_b_hits = [h for h in hits if h["law_id"] == "zakon-b"]
+        # Either no hits at all, or no zakon-b — the rewrite did NOT fire.
+        assert not zakon_b_hits, (
+            "multi-word query should pass through unchanged; "
+            f"unexpected zakon-b match suggests rewrite fired. Got: {hits}"
+        )
+    finally:
+        syn.LEGAL_ABBREVIATIONS.clear()
+        syn.LEGAL_ABBREVIATIONS.update(orig)
+
+
+def test_search_synonym_expansion_is_case_insensitive(populated_conn, tmp_path):
+    """The lookup is via bg_normalize, which lowercases. So 'ЗОП' and
+    'зоп' both resolve to the same canonical form."""
+    from mcp_server.server import build_app
+    import index.synonyms as syn
+
+    orig = syn.LEGAL_ABBREVIATIONS.copy()
+    try:
+        syn.LEGAL_ABBREVIATIONS["тестабс"] = "закон за а"
+        app = build_app(conn=populated_conn, corpus_root=tmp_path)
+        for variant in ("ТЕСТАБС", "Тестабс", "тестабс", "ТестАбс"):
+            hits = app.call_tool_sync("search", {"query": variant})
+            assert any(h["law_id"] == "zakon-a" for h in hits), (
+                f"variant {variant!r} should expand to canonical via "
+                f"bg_normalize. Got: {[h['law_id'] for h in hits]}"
+            )
+    finally:
+        syn.LEGAL_ABBREVIATIONS.clear()
+        syn.LEGAL_ABBREVIATIONS.update(orig)

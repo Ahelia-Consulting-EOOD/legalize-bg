@@ -18,6 +18,7 @@ from dataclasses import dataclass
 from datetime import date as _date
 
 from index.fts import bg_normalize, search_fts
+from index.synonyms import expand_if_abbreviation
 from mcp_server.errors import ToolError
 
 
@@ -300,6 +301,12 @@ def full_text_search(conn: sqlite3.Connection, query: str,
     (tokens=3); two-stop-word conjunctions like "наредба—правилник"
     are also NOT rejected (tokens=2 — the two-tier FTS5 ranker handles
     the AND efficiently).
+
+    FR-015 / D-2026-05-09-04 closed in Phase 1b.3: single-token
+    abbreviation queries (`ЗОП`, `НК`, `ГПК`, etc. — see
+    `index/synonyms.LEGAL_ABBREVIATIONS` for the full list) are
+    rewritten to their canonical long form before FTS5 runs. Multi-word
+    queries pass through unchanged.
     """
     # FR-016 single-word category-query reject. Round-4 review (Issue
     # #1) caught a v1 bypass: `bg_normalize(q).strip() in STOP_WORDS`
@@ -332,7 +339,21 @@ def full_text_search(conn: sqlite3.Connection, query: str,
             },
         )
 
-    rows = search_fts(conn, query, category=category, limit=limit)
+    # FR-015 synonym expansion: single-token abbreviation queries get
+    # rewritten to their canonical long form before FTS5 sees them.
+    # Multi-word queries pass through unchanged (the user provided
+    # context). The expanded form is what FTS5 indexes via the title
+    # column, so the rewrite turns "ЗОП" into a hit on
+    # "Закон за обществените поръчки". Reuses raw_tokens from the
+    # FR-016 pass above — no double regex work.
+    effective_query = query
+    if isinstance(query, str) and len(raw_tokens) == 1:
+        normalized_token = bg_normalize(raw_tokens[0])
+        canonical = expand_if_abbreviation(normalized_token)
+        if canonical is not None:
+            effective_query = canonical
+
+    rows = search_fts(conn, effective_query, category=category, limit=limit)
     out: list[dict] = []
     for r in rows:
         title = r["title"] or f"<doc_id={r['doc_id']}>"
