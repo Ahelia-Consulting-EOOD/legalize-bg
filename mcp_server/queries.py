@@ -127,3 +127,83 @@ def resolve_name_to_law_id(conn: sqlite3.Connection, name: str) -> str:
         # Degenerate query (FTS5 syntax error) — return without suggestions.
         pass
     raise LawNotFound(name=name, suggestions=suggestions)
+
+
+# ────────────────────────────── version_at_date (§7.2) ──────────────────────
+
+from datetime import date as _date
+
+
+class NoVersionAtDate(LookupError):
+    def __init__(self, law_id: str, date: str | None,
+                 earliest_available: str | None = None,
+                 latest_available: str | None = None):
+        super().__init__(f"no version of {law_id} at date {date}")
+        self.law_id = law_id
+        self.date = date
+        self.earliest_available = earliest_available
+        self.latest_available = latest_available
+
+
+def _earliest_latest(conn: sqlite3.Connection, law_id: str) -> tuple[str | None, str | None]:
+    row = conn.execute(
+        "SELECT MIN(valid_from), MAX(valid_from) FROM law_versions WHERE law_id = ?",
+        (law_id,),
+    ).fetchone()
+    return row[0], row[1]
+
+
+def version_at_date(conn: sqlite3.Connection, law_id: str,
+                    date: str | None) -> str:
+    """Return the commit_hash valid at `date` (or current if None).
+
+    Raises NoVersionAtDate if the date is before the earliest valid_from
+    or the law_id has no versions at all.
+    """
+    target = date or _date.today().isoformat()
+    row = conn.execute(
+        """SELECT commit_hash FROM law_versions
+           WHERE law_id = ?
+             AND valid_from <= ?
+             AND (valid_to IS NULL OR valid_to > ?)
+           ORDER BY valid_from DESC
+           LIMIT 1""",
+        (law_id, target, target),
+    ).fetchone()
+    if row:
+        return row["commit_hash"]
+    earliest, latest = _earliest_latest(conn, law_id)
+    raise NoVersionAtDate(
+        law_id=law_id, date=date,
+        earliest_available=earliest, latest_available=latest,
+    )
+
+
+def version_with_warnings(conn: sqlite3.Connection, law_id: str,
+                          date: str | None) -> tuple[str, list[dict]]:
+    """Same as `version_at_date` but also returns warnings.
+
+    §7.2 detection: when valid_from equals today (the bootstrap-run-date
+    fallback used by `index.build` when fecha_publicacion was null), the
+    response includes a DATE_UNCERTAIN warning. Per D-026 this is a
+    warning (rides in the successful response), not a blocker.
+    """
+    commit = version_at_date(conn, law_id, date)
+    warnings: list[dict] = []
+    today = _date.today().isoformat()
+    row = conn.execute(
+        "SELECT valid_from FROM law_versions "
+        "WHERE law_id = ? AND commit_hash = ?",
+        (law_id, commit),
+    ).fetchone()
+    if row and row["valid_from"] == today:
+        warnings.append({
+            "code": "DATE_UNCERTAIN",
+            "law_id": law_id,
+            "source_date_marker": "unknown",
+            "note": (
+                "publication date not parseable from lex.bg; "
+                "version validity falls back to bootstrap run date"
+            ),
+        })
+    return commit, warnings

@@ -6,6 +6,9 @@ from mcp_server.queries import (
     resolve_name_to_law_id,
     LawNotFound,
     AmbiguousName,
+    version_at_date,
+    version_with_warnings,
+    NoVersionAtDate,
 )
 
 
@@ -111,3 +114,47 @@ def test_unknown_name_raises_LawNotFound_with_suggestions(populated_conn):
         resolve_name_to_law_id(populated_conn, "напълно непознат акт")
     assert "напълно непознат акт" in exc.value.name
     assert hasattr(exc.value, "suggestions")
+
+
+# ────────────────────────────── version_at_date (§7.2) ──────────────────────
+
+
+def test_version_at_date_returns_commit_for_current(populated_conn):
+    commit = version_at_date(populated_conn, "zakon-a", date=None)
+    assert len(commit) == 40  # SHA-1 hex
+
+
+def test_version_at_date_for_date_after_validity(populated_conn):
+    """Date after valid_from returns the version that's still in force
+    (valid_to is NULL for current versions)."""
+    commit = version_at_date(populated_conn, "zakon-a", date="2024-12-31")
+    assert commit
+
+
+def test_version_at_date_for_date_before_validity_raises(populated_conn):
+    with pytest.raises(NoVersionAtDate) as exc:
+        version_at_date(populated_conn, "zakon-a", date="1900-01-01")
+    assert exc.value.law_id == "zakon-a"
+    assert exc.value.earliest_available  # earliest valid_from for the law
+
+
+def test_version_at_date_for_unknown_law_raises_NoVersion(populated_conn):
+    with pytest.raises(NoVersionAtDate):
+        version_at_date(populated_conn, "nonexistent", date=None)
+
+
+def test_version_with_warnings_attaches_DATE_UNCERTAIN_for_null_pub_date(populated_conn):
+    """§7.2: an act whose valid_from equals today (the bootstrap-run-date
+    fallback used when fecha_publicacion was null) returns a successful
+    response with a DATE_UNCERTAIN warning attached."""
+    from datetime import date as _date
+    today = _date.today().isoformat()
+    populated_conn.execute(
+        "UPDATE law_versions SET valid_from = ? WHERE law_id = 'phantom'",
+        (today,),
+    )
+    populated_conn.commit()
+
+    commit, warnings = version_with_warnings(populated_conn, "phantom", date=None)
+    codes = [w["code"] for w in warnings]
+    assert "DATE_UNCERTAIN" in codes
