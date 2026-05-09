@@ -15,6 +15,7 @@ ERROR_CODES = frozenset({
     "ARTICLE_NOT_FOUND",
     "INDEX_STALE",
     "INDEX_MISSING",
+    "QUERY_TOO_BROAD",    # FR-016: single-word category queries (e.g. "наредба")
 })
 
 

@@ -17,7 +17,23 @@ import sqlite3
 from dataclasses import dataclass
 from datetime import date as _date
 
-from index.fts import search_fts
+from index.fts import bg_normalize, search_fts
+from mcp_server.errors import ToolError
+
+
+# FR-016 / D-2026-05-09-03: single-word queries matching these terms
+# get rejected with QUERY_TOO_BROAD before FTS5 runs. Compared after
+# `bg_normalize`, so definite-article forms ("наредбата") and case
+# variants ("Наредба") are caught uniformly. Multi-word queries that
+# happen to start with one of these words ("наредба за ...") are NOT
+# rejected — only the single-word case is pathological.
+_CATEGORY_STOP_WORDS = frozenset({
+    "наредба",
+    "закон",
+    "правилник",
+    "кодекс",
+    "постановление",
+})
 
 
 # ────────────────────────────── Article spec parser ─────────────────────────
@@ -265,7 +281,34 @@ def full_text_search(conn: sqlite3.Connection, query: str,
 
     Output `title_snippet` is a highlighted title fragment, not body.
     See SearchHit docstring + FR-017 for the 1b.3 body-snippet rework.
+
+    Single-word category queries (`наредба`, `закон`, `правилник`,
+    `кодекс`, `постановление`) match thousands of acts each (2,604
+    ordinances for "наредба" alone) and produce 400+ ms cold-call
+    latency on FTS5 — outside the 100 ms p95 budget. These are
+    rejected with a `QUERY_TOO_BROAD` ToolError before FTS5 is even
+    invoked (FR-016 / D-2026-05-09-03). The check runs after
+    `bg_normalize` so definite-article forms (`наредбата`) and
+    capitalization variants are caught uniformly.
     """
+    # FR-016 single-word category-query reject.
+    normalized = bg_normalize(query).strip()
+    if normalized in _CATEGORY_STOP_WORDS:
+        raise ToolError(
+            "QUERY_TOO_BROAD",
+            {
+                "query": query,
+                "category_words": sorted(_CATEGORY_STOP_WORDS),
+                "hint": (
+                    "Заявката съответства на хиляди актове. Добавете "
+                    "повече ключови думи (напр. \"наредба за обществени "
+                    "поръчки\") за по-конкретно търсене. "
+                    "Be more specific — single category words like "
+                    "'наредба' match thousands of acts."
+                ),
+            },
+        )
+
     rows = search_fts(conn, query, category=category, limit=limit)
     out: list[dict] = []
     for r in rows:

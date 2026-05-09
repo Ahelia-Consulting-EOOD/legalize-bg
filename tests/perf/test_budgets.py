@@ -32,14 +32,20 @@ BUDGETS = {
 REPRESENTATIVE_QUERIES = [
     "обществени поръчки",
     "електронно управление",
-    "наредба",
-    "правилник",
-    "закон",
+    # Single-word category queries ("наредба", "закон", "правилник",
+    # "кодекс", "постановление") were removed as of Phase 1b.2 because
+    # FR-016 rejects them before FTS5 — they no longer measure search
+    # latency, only the reject path. The remaining queries are all
+    # multi-word OR non-category single words representative of real
+    # FTS5 work.
     "административно",
     "транспорт",
     "съд",
     "образование",
     "здравеопазване",
+    "договор",          # multi-domain term, hits across categories
+    "общини",           # municipal cross-cut
+    "данък",            # finance
 ]
 
 

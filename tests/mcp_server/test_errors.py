@@ -2,11 +2,16 @@ import pytest
 from mcp_server.errors import ToolError, ERROR_CODES
 
 
-def test_all_8_codes_are_defined():
+def test_all_codes_are_defined():
+    """The error taxonomy is the union of:
+      - 8 codes from Phase 1b.1 (D-026)
+      - QUERY_TOO_BROAD added in Phase 1b.2 (FR-016)
+    See docs/api/error-codes.md for the catalog."""
     expected = {
         "LAW_NOT_FOUND", "AMBIGUOUS_NAME", "NO_VERSION_AT_DATE",
         "DATE_UNCERTAIN", "INVALID_ARTICLE_SPEC", "ARTICLE_NOT_FOUND",
         "INDEX_STALE", "INDEX_MISSING",
+        "QUERY_TOO_BROAD",  # Phase 1b.2
     }
     assert ERROR_CODES == expected
 

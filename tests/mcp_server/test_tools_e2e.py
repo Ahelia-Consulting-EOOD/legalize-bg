@@ -71,7 +71,9 @@ def test_search_tool_call_round_trip(populated_conn, tmp_path):
 
     async def _call():
         async with Client(app.mcp) as c:
-            return await c.call_tool("search", {"query": "Закон"})
+            # Multi-word query — single-word "Закон" would now trigger
+            # the FR-016 QUERY_TOO_BROAD reject before reaching FTS5.
+            return await c.call_tool("search", {"query": "Закон за"})
 
     result = _run(_call())
     # FastMCP returns a CallToolResult; the structured payload is in

@@ -226,14 +226,17 @@ def test_search_returns_matching_acts(populated_conn):
 
 
 def test_search_morphology_matches_definite_article(populated_conn):
-    """bg_normalize symmetry: query 'наредбата' should still find
-    'Наредба № 7' even though indexed form is 'наредба'."""
-    hits = full_text_search(populated_conn, "наредбата")
+    """bg_normalize symmetry: query 'наредбата за' should still find
+    'Наредба № 7 за нещо' even though indexed form is 'наредба'.
+    Multi-word query is required after FR-016 — single-word category
+    words ('наредбата' → 'наредба') trigger QUERY_TOO_BROAD."""
+    hits = full_text_search(populated_conn, "наредбата за")
     assert any(h["law_id"].startswith("naredba-7") for h in hits)
 
 
 def test_search_filters_by_category(populated_conn):
-    hits = full_text_search(populated_conn, "Закон", category="ordinances")
+    """Category filter; multi-word query to dodge FR-016 reject."""
+    hits = full_text_search(populated_conn, "Закон за", category="ordinances")
     assert all(h["category"] == "ordinances" for h in hits)
 
 
