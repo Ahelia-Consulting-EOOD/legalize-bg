@@ -50,9 +50,33 @@ server, SQLite index, consolidation engine, and municipal pipeline.
 
 ## Project Status
 
-**Phase:** Pre-implementation. Phase 1a (bootstrap scrape of lex.bg) is next.
+**Phase:** Phase 1b.1 (MCP server) shipping 2026-05-09.
+
+- Phase 1a (bootstrap, 3,573 acts) — **complete** on `main`.
+- Phase 1b.1 (MCP server with `get_law` / `search` / `get_article`) —
+  **complete**. See [the operator setup
+  runbook](docs/runbook/2026-05-09-phase1b1-operator-setup.md) and
+  [Phase 1b design](docs/plans/2026-05-09-phase1b-mcp-design.md).
+- Phase 1b.2 (structured backend hardening) and 1b.3 (operator polish
+  + Bulgarian stemmer) — next.
 
 See the design document for the full 6-phase roadmap and risk register.
+
+## MCP Server
+
+The `mcp_server/` package exposes the corpus to Claude Code, Claude
+Desktop, and OpenAI Codex via Model Context Protocol over stdio.
+
+```bash
+# One-time index build (~45s):
+python -m index.build --corpus . --db catalog.db
+
+# Run the server:
+python -m mcp_server --db catalog.db --corpus .
+```
+
+See [Phase 1b.1 operator setup](docs/runbook/2026-05-09-phase1b1-operator-setup.md)
+for host configuration and the smoke test.
 
 ## Organization
 
