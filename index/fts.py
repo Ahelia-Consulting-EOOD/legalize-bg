@@ -97,12 +97,22 @@ def insert_fts_row(conn: sqlite3.Connection, law_id: str, title: str,
     )
 
 
-_BASE_SELECT = """
+# Single-stage SELECT with snippet() on the TITLE column (FTS5 column
+# index 1), not the body (index 2). Body-snippet was the perf killer:
+# extracting a fragment from ЗОП's 559 KB indexed body takes ~700ms
+# even with limit 20. Title-snippet runs in ~75ms and produces more
+# useful "which act is this?" output for callers — body context is
+# already available one tool-call away via get_law.
+#
+# FR-017 tracks body-snippet generation for 1b.3 (truncated-excerpt
+# column or Python-side substring snippet). FR-015/FR-016 cover the
+# related ranking-quality and perf-pathological-query work.
+_FTS_SELECT = """
     SELECT laws_fts.law_id          AS law_id,
            laws.doc_id              AS doc_id,
            laws.title               AS title,
            laws.category            AS category,
-           snippet(laws_fts, 2, '<b>', '</b>', '...', 12) AS snippet,
+           snippet(laws_fts, 1, '<b>', '</b>', '...', 12) AS snippet,
            bm25(laws_fts)           AS score
       FROM laws_fts
       JOIN laws USING(law_id)
@@ -112,7 +122,7 @@ _BASE_SELECT = """
 
 def _run_match(conn: sqlite3.Connection, match_query: str,
                category: str | None, limit: int) -> list[sqlite3.Row]:
-    sql = _BASE_SELECT
+    sql = _FTS_SELECT
     params: list = [match_query]
     if category:
         sql += " AND laws.category = ?"
@@ -162,6 +172,12 @@ def search_fts(conn: sqlite3.Connection, query: str,
         title_rows = _run_match(conn, title_q, category, limit)
     else:
         title_rows = []
+
+    # Skip tier 2 when tier 1 already filled the limit — the second
+    # FTS5 query is the bigger of the two (full-corpus body match) and
+    # adds ~100ms even when its results are discarded by the dedup loop.
+    if len(title_rows) >= limit:
+        return list(title_rows)
 
     # Tier 2: general FTS5 over title+body (covers abbreviations and
     # body-only matches when no title fully covers the query).
