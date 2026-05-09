@@ -107,7 +107,8 @@ CREATE TABLE law_versions (
     commit_hash TEXT NOT NULL,
     dv_issue TEXT,
     dv_date DATE,
-    amending_act TEXT
+    amending_act TEXT,
+    date_uncertain INTEGER DEFAULT 0  -- added by Migration 004
 );
 ```
 
@@ -116,11 +117,12 @@ CREATE TABLE law_versions (
 | `id` | INTEGER | PRIMARY KEY, autoincrement | Surrogate key. |
 | `law_id` | TEXT | FOREIGN KEY → laws(law_id) | Which act this version belongs to. |
 | `valid_from` | DATE | NOT NULL | Effective date of this version (when the amendment entered into force). |
-| `valid_to` | DATE | Nullable | Last date this version was in force. NULL means this is the current version. |
+| `valid_to` | DATE | Nullable. **INCLUSIVE.** | Last date this version was in force. NULL means this is the current version. See "Predicate semantics" at end of §2 — the in-force boundary day is included. |
 | `commit_hash` | TEXT | NOT NULL | Git commit hash that created this version. Use `git show {commit_hash}:{path}` to retrieve the text. |
 | `dv_issue` | TEXT | Nullable | DV reference for the amendment that created this version (e.g., "63/2017"). NULL for bootstrap versions. |
 | `dv_date` | DATE | Nullable | Publication date of the amending DV issue. |
 | `amending_act` | TEXT | Nullable | Name of the amending act (e.g., "ЗИД на ЗОП"). NULL for bootstrap versions. |
+| `date_uncertain` | INTEGER | Nullable, default 0 (0/1 boolean) | §7.2 marker: 1 when `fecha_publicacion` was null at index time and `valid_from` fell back to the bootstrap-run date. Read by `mcp_server/queries.py:version_with_warnings` to attach a `DATE_UNCERTAIN` warning to every response. Added by Migration 004. |
 
 ### Table: `amendments`
 
@@ -160,7 +162,8 @@ CREATE TABLE provisions (
     paragraph TEXT,
     valid_from DATE NOT NULL,
     valid_to DATE,
-    text_hash TEXT
+    text_hash TEXT,
+    text TEXT  -- added by Migration 001
 );
 ```
 
@@ -171,8 +174,9 @@ CREATE TABLE provisions (
 | `article` | TEXT | NOT NULL | Article number, including suffixes (e.g., "1", "14а", "115б"). |
 | `paragraph` | TEXT | Nullable | Paragraph number within the article (e.g., "1", "2"). NULL if the provision is the entire article. |
 | `valid_from` | DATE | NOT NULL | Date this provision version entered into force. |
-| `valid_to` | DATE | Nullable | Last date this provision version was in force. NULL means currently in force. |
-| `text_hash` | TEXT | Nullable | SHA-256 hash of the provision's text content. Used for change detection — if the hash changes between versions, the text was amended. |
+| `valid_to` | DATE | Nullable. **INCLUSIVE.** | Last date this provision version was in force. NULL means currently in force. See "Predicate semantics" at end of §2. |
+| `text_hash` | TEXT | Nullable | First 16 hex characters of the SHA-256 digest of the provision's text content (`hashlib.sha256(...).hexdigest()[:16]`). Used for change detection — if the hash changes between versions, the text was amended. ~64-bit collision domain, adequate for ~125k provisions across 3,573 acts. Implementation: `index/provisions.py:_hash`. |
+| `text` | TEXT | Nullable | Verbatim provision text. Populated by `index/provisions.py:_extract_article_blocks` at index time. Used by FTS5 (`laws_fts.body` mirrors this column). Added by Migration 001 (D-023). |
 
 ### Indexes
 
@@ -187,3 +191,48 @@ CREATE INDEX idx_provisions_article ON provisions(law_id, article, valid_from);
 | `idx_versions_date` | `law_versions(law_id, valid_from)` | Accelerates "what version of law X was in force on date Y?" queries. The most common temporal lookup. |
 | `idx_amendments_target` | `amendments(target_law, dv_date)` | Accelerates "what amendments were applied to law X, ordered by date?" and period-range queries. |
 | `idx_provisions_article` | `provisions(law_id, article, valid_from)` | Accelerates per-article lookups: "show me the history of чл. 14 of ЗОП." |
+| `idx_provisions_lookup` | `provisions(law_id, article, paragraph, valid_from)` | Added by Migration 003. Accelerates `get_article` lookups in the MCP server (the `paragraph` discriminator matters when an article has multiple paragraph rows). |
+
+### Predicate semantics
+
+`valid_to` is **INCLUSIVE** — a row with `valid_to = '2020-12-31'` is in force ON 2020-12-31 (not stale starting that day). The in-force predicate is therefore:
+
+```sql
+valid_from <= date AND (valid_to IS NULL OR valid_to >= date)
+```
+
+Note `>=`, not `>` — the closed convention is that successor versions begin on `previous.valid_to + 1 day`, so using `>` would silently exclude the boundary day. Authoritative consumer: `mcp_server/queries.py:version_at_date` (cross-references this section). The same predicate applies to the `provisions` table.
+
+---
+
+## Section 3: Migrations & Schema Evolution
+
+The base schema in §2 (laws / law_versions / amendments / provisions + the three indexes) is the Phase 1a shape. Phase 1b.1 evolved the schema via four forward-only migrations; future phases will add more.
+
+### Migration tracking table
+
+```sql
+CREATE TABLE schema_version (
+    version INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    applied_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+Created (idempotently) by `index/migrations.py:_ensure_schema_version_table`. One row is inserted per migration when it is applied.
+
+### Shipped migrations (Phase 1b.1)
+
+| Version | Name | Effect | Decision / Rationale |
+|---|---|---|---|
+| 1 | `provisions_text_column` | `ALTER TABLE provisions ADD COLUMN text TEXT;` | D-023 — the FTS5 `body` column needs verbatim provision text; carrying it on the row simplifies the `laws_fts` content provider and lets future tools query body text without a separate join. |
+| 2 | `laws_fts_virtual_table` | `CREATE VIRTUAL TABLE laws_fts USING fts5(law_id UNINDEXED, identificador UNINDEXED, title, body, category UNINDEXED, tokenize='unicode61 remove_diacritics 2')` | D-022 — FTS5 with the `unicode61 remove_diacritics 2` tokenizer is the chosen Bulgarian-search backend. `title` and `body` are indexed; `law_id` / `identificador` / `category` ride along as filters. |
+| 3 | `provisions_lookup_index` | `CREATE INDEX idx_provisions_lookup ON provisions(law_id, article, paragraph, valid_from)` | Performance — `get_article` lookups need the four-column composite (the existing `idx_provisions_article` lacks `paragraph`). |
+| 4 | `law_versions_date_uncertain_column` | `ALTER TABLE law_versions ADD COLUMN date_uncertain INTEGER DEFAULT 0;` | §7.2 surfacing — when `fecha_publicacion` is null, the indexer falls back to bootstrap-run date and sets `date_uncertain=1` so `version_with_warnings` can attach a `DATE_UNCERTAIN` warning rather than silently emit a fabricated date. |
+
+### Migration discipline
+
+- **Forward-only and idempotent.** `migrate(conn)` is safe to call repeatedly; each migration runs at most once (gated by the `schema_version` table).
+- **Never edit a shipped migration.** Add a new one with the next version number. Editing a shipped migration silently desyncs already-migrated catalogs.
+- **Schema additions are additive.** Phase 1b.1 only added columns/indexes/virtual tables; no destructive operations. Future destructive changes (column drop, table rename) require a preflight under Protected Surface "SQLite Schema" in `.ahelia/protected-surfaces.yaml`.
+- **Authoritative implementation:** `index/migrations.py:MIGRATIONS` is the source of truth; this section is its documentation mirror.

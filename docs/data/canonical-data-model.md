@@ -119,6 +119,12 @@ Bulgarian amendments follow the Закон за нормативните акт�
 
 **Cross-law amendments:** A ЗИД targeting law A often amends laws B, C, D through its ПЗР (Преходни и заключителни разпоредби / transitional and final provisions). The system must detect these and apply amendments to all affected laws, not just the primary target.
 
+### 4a. Provisions Extraction Heuristics
+
+**Exactly-one-anchor-per-paragraph article extraction.** `index/provisions.py:_extract_article_blocks` only emits an article row for paragraphs containing exactly one `**Чл. N.**` anchor. Paragraphs with two or more anchors (cite-lists like "В чл. 14, ал. 1, чл. 15, ал. 2 ...", template enumerations, or amendment preambles that recite the articles they touch) are skipped — they reference articles in passing but do not constitute the article body. Without this rule, a single ЗИД preamble would emit dozens of false article rows whose `text_hash` collides with the genuine articles, polluting both `provisions` and `laws_fts`.
+
+Test: `tests/index/test_provisions.py::test_skip_paragraph_with_multiple_anchors_cite_list`.
+
 ---
 
 ## 5. Category Taxonomy
@@ -198,3 +204,9 @@ Seven acts have no `.TitleDocument` element on lex.bg at all — the page exists
 
 - Bootstrap emits `WARNING mandatory field(s) null for <title> (doc_id=N): ['fecha_publicacion', ...]` per affected act.
 - The 7 empty-title + 121 null-date acts together (~128, with overlap) constitute the initial G2 triage backlog — see FR-011 in `frs/INDEX.md`.
+
+### 7.5 Missing/zero `identificador` is a hard build error
+
+`index/build.py:_iter_corpus_files` raises `ValueError` when an `.md` file has `identificador` ∈ {None, "", 0, "0"}. Collapsing such acts to `doc_id=0` would cause silent dedup against any future zero-id row and corrupt every join keyed on `laws.doc_id`. The fetcher always populates `identificador` from lex.bg's URL pattern (`https://lex.bg/laws/ldoc/{doc_id}`), so a missing or zero value at index time is a data bug — surfaced loudly at build time rather than swallowed and rediscovered as a query-time anomaly weeks later.
+
+This contract is asymmetric with the §7.3 empty-titulo acts (which do enter the catalog with `titulo=""`): a missing title is recoverable (search by `identificador` still works); a missing `identificador` is not.

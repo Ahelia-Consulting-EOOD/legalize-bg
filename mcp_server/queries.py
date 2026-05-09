@@ -170,10 +170,11 @@ def version_at_date(conn: sqlite3.Connection, law_id: str,
                     date: str | None) -> str:
     """Return the commit_hash valid at `date` (or current if None).
 
-    `valid_to` is INCLUSIVE per `docs/data/schema-reference.md` §3 — a
-    version with valid_to='2020-12-31' is in force ON 2020-12-31. So the
-    in-force predicate is `valid_from <= date AND (valid_to IS NULL OR
-    valid_to >= date)` (NOT `>`, which would exclude the boundary day).
+    `valid_to` is INCLUSIVE per `docs/data/schema-reference.md` §2
+    ("Predicate semantics") — a version with valid_to='2020-12-31' is in
+    force ON 2020-12-31. So the in-force predicate is `valid_from <= date
+    AND (valid_to IS NULL OR valid_to >= date)` (NOT `>`, which would
+    exclude the boundary day).
 
     Raises NoVersionAtDate if the date is before the earliest valid_from
     or the law_id has no versions at all.
@@ -290,8 +291,9 @@ def article_lookup(conn: sqlite3.Connection, law_id: str,
     Raises ArticleNotFound (with `available_articles` for retry) if no
     matching row exists.
 
-    `valid_to` is INCLUSIVE per `docs/data/schema-reference.md` §3, so
-    the in-force predicate is `valid_to >= date` (NOT `>`).
+    `valid_to` is INCLUSIVE per `docs/data/schema-reference.md` §2
+    ("Predicate semantics"), so the in-force predicate is
+    `valid_to >= date` (NOT `>`).
     """
     target = date or _date.today().isoformat()
     sql = """
