@@ -8,8 +8,16 @@ from index.migrations import migrate
 
 @pytest.fixture
 def conn():
-    """Fresh in-memory SQLite with migrations applied."""
-    c = sqlite3.connect(":memory:")
+    """Fresh in-memory SQLite with migrations applied.
+
+    `check_same_thread=False` mirrors what the production CLI uses —
+    FastMCP runs tool calls on a worker thread, so the e2e tests that
+    invoke tools through the real Client need cross-thread access to
+    the same in-memory DB. The catalog is read-only at runtime (writes
+    happen via `index.build` against an on-disk file), so the
+    same-thread guard is unnecessary defense.
+    """
+    c = sqlite3.connect(":memory:", check_same_thread=False)
     c.row_factory = sqlite3.Row
     migrate(c)
     yield c

@@ -18,6 +18,7 @@ via the conftest fixture.
 
 from __future__ import annotations
 
+import inspect
 import logging
 import sqlite3
 import subprocess
@@ -114,9 +115,16 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
     mcp = FastMCP(name)
     handle = _AppHandle(mcp, conn, Path(corpus_root))
 
+    def _full_docstring(fn: Callable[..., Any]) -> str:
+        """FastMCP only takes the first line of the Python docstring as
+        the MCP description. The rest (Args, Returns sections) is what
+        actually helps the model decide which tool to call. We use the
+        whole cleaned-up docstring as the explicit `description=` kwarg
+        so callers see the full contract."""
+        return inspect.getdoc(fn) or ""
+
     # ─────────────────── get_law ─────────────────────────────────────
 
-    @mcp.tool()
     def get_law(name: str, date: str | None = None) -> dict:
         """Return the full text and metadata of a Bulgarian normative act.
 
@@ -182,11 +190,11 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         )
         return resp.to_dict()
 
+    mcp.tool(description=_full_docstring(get_law))(get_law)
     handle._tools["get_law"] = get_law
 
     # ─────────────────── search ──────────────────────────────────────
 
-    @mcp.tool()
     def search(query: str, category: str | None = None,
                limit: int = 20) -> list[dict]:
         """Full-text search over the Bulgarian legislation corpus.
@@ -218,11 +226,11 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         return queries.full_text_search(conn, query=query,
                                         category=category, limit=capped)
 
+    mcp.tool(description=_full_docstring(search))(search)
     handle._tools["search"] = search
 
     # ─────────────────── get_article ─────────────────────────────────
 
-    @mcp.tool()
     def get_article(law: str, article: str,
                     date: str | None = None) -> dict:
         """Return a specific article (or alinea) of a Bulgarian act.
@@ -306,6 +314,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         )
         return resp.to_dict()
 
+    mcp.tool(description=_full_docstring(get_article))(get_article)
     handle._tools["get_article"] = get_article
 
     return handle

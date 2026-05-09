@@ -116,7 +116,12 @@ def main(argv: list[str] | None = None) -> int:
     if rc is not None:
         return rc
 
-    conn = sqlite3.connect(str(db_path))
+    # FastMCP runs tool calls on a worker thread; SQLite refuses
+    # cross-thread connection usage by default. The catalog is read-only
+    # at runtime (writes happen via `index.build`), so disabling the
+    # same-thread guard is safe — concurrent writers would still be
+    # serialized by SQLite's locking even if we had any.
+    conn = sqlite3.connect(str(db_path), check_same_thread=False)
     conn.row_factory = sqlite3.Row
 
     handle = build_app(conn=conn, corpus_root=corpus_root)
