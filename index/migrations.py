@@ -55,6 +55,18 @@ MIGRATIONS: tuple[Migration, ...] = (
             ON provisions(law_id, article, paragraph, valid_from);
         """,
     ),
+    Migration(
+        version=4,
+        name="law_versions_date_uncertain_column",
+        # Persisted §7.2 marker. The previous detection compared
+        # valid_from to today() at query time, which silently stopped
+        # firing the day after the build. The column makes the marker
+        # build-time-stable and survives across days/rebuilds.
+        sql=(
+            "ALTER TABLE law_versions ADD COLUMN "
+            "date_uncertain INTEGER NOT NULL DEFAULT 0;"
+        ),
+    ),
 )
 
 

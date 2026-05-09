@@ -142,6 +142,13 @@ def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
 # across paragraph breaks (after the post–code-review fix in Phase 1a's
 # I7). Both cases share the "(N)" marker, so we split on the marker
 # itself, not on \n\n.
+#
+# The capture group is `\d+[а-я]?` only — parenthetical references like
+# "(вж. чл. 2)" or "(в сила от 01.01.2025 г.)" do not match because
+# their content is not purely digits. The reviewer's flagged scenario
+# (`Чл. 14 (вж. чл. 2) текст…` producing a bogus paragraph='2' row)
+# is therefore not a real false-positive against this regex — but the
+# scenario lock-test below pins this behavior.
 _ALINEA_MARKER_RE = re.compile(r"\(\s*(\d+[а-я]?)\s*\)")
 
 

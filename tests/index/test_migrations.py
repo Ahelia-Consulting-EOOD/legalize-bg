@@ -47,3 +47,11 @@ def test_migration_003_adds_provisions_lookup_index():
         "SELECT name FROM sqlite_master WHERE type='index' AND name='idx_provisions_lookup'"
     ).fetchall()
     assert len(rows) == 1
+
+
+def test_migration_004_adds_date_uncertain_column():
+    conn = sqlite3.connect(":memory:")
+    migrate(conn)
+    cols = [r[1] for r in conn.execute("PRAGMA table_info(law_versions)")]
+    assert "date_uncertain" in cols, \
+        f"expected 'date_uncertain' in law_versions cols, got {cols}"

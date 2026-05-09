@@ -101,16 +101,25 @@ def build(corpus_root: Path, db_path: str = "catalog.db",
         for cat, path in _iter_corpus_files(corpus_root):
             meta, body = _parse_md(path)
             law_id = path.stem
-            doc_id = int(meta.get("identificador") or 0)
+            # Missing identificador is a data bug (the fetcher always
+            # populates it); collapsing to 0 would cause silent dedup.
+            raw_id = meta.get("identificador")
+            if raw_id in (None, "", 0, "0"):
+                raise ValueError(
+                    f"{path}: missing or zero identificador; the fetcher "
+                    "should always populate this. Refusing to index."
+                )
+            doc_id = int(raw_id)
             title = meta.get("titulo") or f"<doc_id={doc_id}>"
-            # §7.2 fallback: when fecha_publicacion is null, use today
-            # so law_versions.valid_from is non-NULL. The DATE_UNCERTAIN
-            # warning surfaces this to callers via mcp_server.queries.
-            effective = (
-                meta.get("effective_date")
-                or meta.get("fecha_publicacion")
-                or today_iso
-            )
+            # §7.2 detection: when both effective_date and fecha_publicacion
+            # are absent, we fall back to today_iso so law_versions.valid_from
+            # is non-NULL — but we set date_uncertain=1 so callers see a
+            # DATE_UNCERTAIN warning regardless of when the query runs
+            # (the prior detection compared valid_from to today() at query
+            # time, which silently stopped firing on day 2).
+            pub_date = meta.get("effective_date") or meta.get("fecha_publicacion")
+            date_uncertain = 1 if pub_date in (None, "") else 0
+            effective = pub_date or today_iso
             # Coerce dates to ISO strings (PyYAML may parse them as
             # datetime.date objects).
             if hasattr(effective, "isoformat"):
@@ -124,9 +133,10 @@ def build(corpus_root: Path, db_path: str = "catalog.db",
                  meta.get("estado") or "vigente", head),
             )
             conn.execute(
-                """INSERT INTO law_versions (law_id, valid_from, commit_hash)
-                   VALUES (?, ?, ?)""",
-                (law_id, effective, head),
+                """INSERT INTO law_versions
+                       (law_id, valid_from, commit_hash, date_uncertain)
+                   VALUES (?, ?, ?, ?)""",
+                (law_id, effective, head, date_uncertain),
             )
             for prov in parse_provisions(body, law_id=law_id):
                 conn.execute(

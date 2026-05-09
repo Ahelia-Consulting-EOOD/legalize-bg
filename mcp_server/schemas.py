@@ -32,12 +32,20 @@ class GetLawResponse:
 
 @dataclass(frozen=True)
 class SearchHit:
+    """One ranked search result.
+
+    `relevance` is positive-where-higher-is-better (the negated SQLite
+    bm25 score). Convention chosen so model callers don't need to know
+    SQLite-specific scoring details (raw bm25 returns negative-where-
+    lower-is-better, which surprises naive sort-descending usage).
+    """
+
     law_id: str
     identificador: str
     title: str
     category: str
     snippet: str
-    score: float
+    relevance: float
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

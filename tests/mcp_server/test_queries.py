@@ -102,14 +102,17 @@ def test_resolve_by_unique_title(populated_conn):
 def test_ambiguous_title_raises_with_candidates(populated_conn):
     """§7.1 — multiple acts with identical title surface as
     AMBIGUOUS_NAME with the full candidate list including identificador
-    (the disambiguating handle)."""
+    (the disambiguating handle). The point of D-026's payload contract
+    is that the identificador values are *distinct* — a list of
+    identical identificadors couldn't disambiguate anything."""
     with pytest.raises(AmbiguousName) as exc:
         resolve_name_to_law_id(populated_conn, "Наредба № 7 за нещо")
     assert len(exc.value.candidates) == 2
-    ids = {c["law_id"] for c in exc.value.candidates}
-    assert ids == {"naredba-7", "naredba-7-2"}
-    for c in exc.value.candidates:
-        assert "identificador" in c
+    law_ids = {c["law_id"] for c in exc.value.candidates}
+    assert law_ids == {"naredba-7", "naredba-7-2"}
+    identificadors = {c["identificador"] for c in exc.value.candidates}
+    assert len(identificadors) == 2, \
+        f"identificadors must be distinct for disambiguation, got {identificadors}"
 
 
 def test_unknown_name_raises_LawNotFound_with_suggestions(populated_conn):
@@ -146,21 +149,72 @@ def test_version_at_date_for_unknown_law_raises_NoVersion(populated_conn):
         version_at_date(populated_conn, "nonexistent", date=None)
 
 
-def test_version_with_warnings_attaches_DATE_UNCERTAIN_for_null_pub_date(populated_conn):
-    """§7.2: an act whose valid_from equals today (the bootstrap-run-date
-    fallback used when fecha_publicacion was null) returns a successful
-    response with a DATE_UNCERTAIN warning attached."""
-    from datetime import date as _date
-    today = _date.today().isoformat()
+def test_version_with_warnings_attaches_DATE_UNCERTAIN_via_persisted_flag(populated_conn):
+    """§7.2: the warning fires off a persisted `date_uncertain` column
+    on law_versions, set by index.build when fecha_publicacion is null
+    at index time. The fix replaces the previous time-dependent check
+    (valid_from == today()) which silently stopped firing the day after
+    the build."""
     populated_conn.execute(
-        "UPDATE law_versions SET valid_from = ? WHERE law_id = 'phantom'",
-        (today,),
+        "UPDATE law_versions SET date_uncertain = 1 WHERE law_id = 'phantom'",
     )
     populated_conn.commit()
 
     commit, warnings = version_with_warnings(populated_conn, "phantom", date=None)
     codes = [w["code"] for w in warnings]
     assert "DATE_UNCERTAIN" in codes
+
+
+def test_version_with_warnings_no_warning_when_flag_not_set(populated_conn):
+    """Acts with date_uncertain=0 (the default; pub_date was known at
+    index time) must NOT emit DATE_UNCERTAIN regardless of valid_from
+    value."""
+    commit, warnings = version_with_warnings(populated_conn, "zakon-a", date=None)
+    codes = [w["code"] for w in warnings]
+    assert "DATE_UNCERTAIN" not in codes
+
+
+def test_version_at_date_inclusive_valid_to_boundary(populated_conn):
+    """Schema convention: valid_to is INCLUSIVE (last day in force).
+    Insert two adjacent versions and verify a query on the boundary day
+    returns the version that's still in force on that day, not the
+    next one. Regression test for the >=/>  off-by-one."""
+    fake_v1 = "v" * 40
+    fake_v2 = "w" * 40
+    # Replace zakon-a's single version with two adjacent versions
+    populated_conn.execute("DELETE FROM law_versions WHERE law_id = 'zakon-a'")
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, valid_to, commit_hash) "
+        "VALUES (?, ?, ?, ?)",
+        ("zakon-a", "2020-01-01", "2020-12-31", fake_v1),
+    )
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, valid_to, commit_hash) "
+        "VALUES (?, ?, ?, ?)",
+        ("zakon-a", "2021-01-01", None, fake_v2),
+    )
+    populated_conn.commit()
+    # Boundary day: 2020-12-31 belongs to v1 (still in force that day)
+    assert version_at_date(populated_conn, "zakon-a", "2020-12-31") == fake_v1
+    # Next day: 2021-01-01 belongs to v2
+    assert version_at_date(populated_conn, "zakon-a", "2021-01-01") == fake_v2
+
+
+def test_article_lookup_inclusive_valid_to_boundary(populated_conn):
+    """Same boundary rule applies to provisions table."""
+    populated_conn.execute(
+        "INSERT INTO provisions (law_id, article, paragraph, valid_from, valid_to, text, text_hash) "
+        "VALUES ('zakon-a', '1', NULL, '2020-01-01', '2020-12-31', 'old', 'h_old')"
+    )
+    populated_conn.execute(
+        "INSERT INTO provisions (law_id, article, paragraph, valid_from, valid_to, text, text_hash) "
+        "VALUES ('zakon-a', '1', NULL, '2021-01-01', NULL, 'new', 'h_new')"
+    )
+    populated_conn.commit()
+    rows = article_lookup(populated_conn, "zakon-a",
+                          article="1", paragraph=None, date="2020-12-31")
+    assert any(r["text"] == "old" for r in rows), \
+        "boundary day must resolve to the still-in-force version"
 
 
 # ────────────────────────────── full_text_search + article_lookup ──────────
@@ -224,3 +278,21 @@ def test_article_lookup_returns_text_for_matching_provision(populated_conn):
     assert len(rows) == 1
     assert rows[0]["paragraph"] == "2"
     assert "Алинея 2" in rows[0]["text"]
+
+
+def test_article_lookup_available_articles_sorted_in_legal_order(populated_conn):
+    """The retry-list `available_articles` must use legal-number
+    ordering (1, 9, 14, 14а, 15, 100), not text-sort (which gives
+    1, 14, 14а, 15, 9, 100). The ordering matters because the model
+    chooses retry candidates by reading the list."""
+    for art in ["1", "9", "14", "14а", "15", "100"]:
+        populated_conn.execute(
+            "INSERT INTO provisions (law_id, article, paragraph, valid_from, text, text_hash) "
+            "VALUES ('zakon-a', ?, NULL, '2020-01-01', 'x', 'h')",
+            (art,),
+        )
+    populated_conn.commit()
+    with pytest.raises(ArticleNotFound) as exc:
+        article_lookup(populated_conn, "zakon-a",
+                       article="999", paragraph=None, date=None)
+    assert exc.value.available_articles == ["1", "9", "14", "14а", "15", "100"]

@@ -168,6 +168,22 @@ def test_alinea_text_hash_is_alinea_only():
     assert alineas2[1].text_hash != alineas[1].text_hash
 
 
+def test_parenthetical_references_dont_create_alinea_rows():
+    """Reviewer-flagged scenario: 'Чл. 14 (вж. чл. 2) текст…' should NOT
+    produce a bogus paragraph='2' row. The (N) regex requires the
+    parens to enclose ONLY digits + optional Cyrillic suffix; references
+    like '(вж. чл. 2)' or '(в сила от 01.01.2025 г.)' don't match
+    because their content is not purely numeric."""
+    md = "**Чл. 14.** (вж. чл. 2) Този член се прилага съответно (в сила от 01.01.2025 г.)."
+    rows = parse(md, law_id="test")
+    article_rows = [r for r in rows if r.paragraph is None]
+    alinea_rows = [r for r in rows if r.paragraph is not None]
+    # Article row exists with the full body; no alinea rows generated
+    # from parenthetical references.
+    assert len(article_rows) == 1 and article_rows[0].article == "14"
+    assert alinea_rows == []
+
+
 def test_inline_alineas_within_single_paragraph():
     """Real corpus articles often pack all alineas into a single
     paragraph (no \\n\\n between them), e.g.,
