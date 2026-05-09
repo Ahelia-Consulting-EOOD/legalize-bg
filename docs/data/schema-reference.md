@@ -108,7 +108,7 @@ CREATE TABLE law_versions (
     dv_issue TEXT,
     dv_date DATE,
     amending_act TEXT,
-    date_uncertain INTEGER DEFAULT 0  -- added by Migration 004
+    date_uncertain INTEGER NOT NULL DEFAULT 0  -- added by Migration 004
 );
 ```
 
@@ -122,7 +122,7 @@ CREATE TABLE law_versions (
 | `dv_issue` | TEXT | Nullable | DV reference for the amendment that created this version (e.g., "63/2017"). NULL for bootstrap versions. |
 | `dv_date` | DATE | Nullable | Publication date of the amending DV issue. |
 | `amending_act` | TEXT | Nullable | Name of the amending act (e.g., "ЗИД на ЗОП"). NULL for bootstrap versions. |
-| `date_uncertain` | INTEGER | Nullable, default 0 (0/1 boolean) | §7.2 marker: 1 when `fecha_publicacion` was null at index time and `valid_from` fell back to the bootstrap-run date. Read by `mcp_server/queries.py:version_with_warnings` to attach a `DATE_UNCERTAIN` warning to every response. Added by Migration 004. |
+| `date_uncertain` | INTEGER | NOT NULL, default 0 (0/1 boolean) | §7.2 marker: 1 when `fecha_publicacion` was null at index time and `valid_from` fell back to the bootstrap-run date. Read by `mcp_server/queries.py:version_with_warnings` to attach a `DATE_UNCERTAIN` warning to every response. Added by Migration 004. |
 
 ### Table: `amendments`
 
@@ -226,9 +226,9 @@ Created (idempotently) by `index/migrations.py:_ensure_schema_version_table`. On
 | Version | Name | Effect | Decision / Rationale |
 |---|---|---|---|
 | 1 | `provisions_text_column` | `ALTER TABLE provisions ADD COLUMN text TEXT;` | D-023 — the FTS5 `body` column needs verbatim provision text; carrying it on the row simplifies the `laws_fts` content provider and lets future tools query body text without a separate join. |
-| 2 | `laws_fts_virtual_table` | `CREATE VIRTUAL TABLE laws_fts USING fts5(law_id UNINDEXED, identificador UNINDEXED, title, body, category UNINDEXED, tokenize='unicode61 remove_diacritics 2')` | D-022 — FTS5 with the `unicode61 remove_diacritics 2` tokenizer is the chosen Bulgarian-search backend. `title` and `body` are indexed; `law_id` / `identificador` / `category` ride along as filters. |
+| 2 | `laws_fts_virtual_table` | `CREATE VIRTUAL TABLE laws_fts USING fts5(law_id UNINDEXED, title, body, category UNINDEXED, tokenize='unicode61 remove_diacritics 2')` | D-022 — FTS5 with the `unicode61 remove_diacritics 2` tokenizer is the chosen Bulgarian-search backend. `title` and `body` are indexed; `law_id` and `category` ride along as filters/UNINDEXED metadata. The `identificador` is NOT in `laws_fts` — it lives only on `laws.doc_id` and reaches search results via the JOIN in `_FTS_SELECT`. |
 | 3 | `provisions_lookup_index` | `CREATE INDEX idx_provisions_lookup ON provisions(law_id, article, paragraph, valid_from)` | Performance — `get_article` lookups need the four-column composite (the existing `idx_provisions_article` lacks `paragraph`). |
-| 4 | `law_versions_date_uncertain_column` | `ALTER TABLE law_versions ADD COLUMN date_uncertain INTEGER DEFAULT 0;` | §7.2 surfacing — when `fecha_publicacion` is null, the indexer falls back to bootstrap-run date and sets `date_uncertain=1` so `version_with_warnings` can attach a `DATE_UNCERTAIN` warning rather than silently emit a fabricated date. |
+| 4 | `law_versions_date_uncertain_column` | `ALTER TABLE law_versions ADD COLUMN date_uncertain INTEGER NOT NULL DEFAULT 0;` | §7.2 surfacing — when `fecha_publicacion` is null, the indexer falls back to bootstrap-run date and sets `date_uncertain=1` so `version_with_warnings` can attach a `DATE_UNCERTAIN` warning rather than silently emit a fabricated date. The NOT NULL constraint pairs with DEFAULT 0 so existing rows get the safe-default value at migration time and new rows are forced to declare a value. |
 
 ### Migration discipline
 
