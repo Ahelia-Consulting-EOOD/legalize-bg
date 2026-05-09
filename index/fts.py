@@ -12,45 +12,52 @@ import re
 import sqlite3
 
 
-# Bulgarian definite-article suffixes — last-character stripping only.
+# Bulgarian definite-article suffixes.
 #
-# Strip just the trailing definite article: feminine "та", neuter "то",
-# masculine "ът"/"ят" (after consonant / after specific vowels), plural
-# "те". Critically, NOT stripping the longer "ите"/"ия"/"ето"/"а"
-# variants — those would mangle valid base forms or break plural
-# symmetry:
-#   "ите" stripped: "обществените" → "обществен", but "обществени"
-#     (plural indefinite — what users actually type) → "обществени".
-#     The two forms diverge → search silently misses indefinite hits.
-#     Stripping just "те": both reduce to "обществени". Symmetric.
-#   "ето" stripped: "управлението" → "управлени" (mangled).
-#   "а" stripped: "държава" → "държав" (feminine base form mangled).
-#   "ия" stripped: "решения" → "реше" (plural base form mangled).
+# Strip the trailing definite article. The list is ordered longest-first
+# so longer matches win (e.g. "новият" matches both 3-char "ият" and
+# 2-char "ят"; the 3-char strip gives "нов", the 2-char gives "нови" —
+# we want the 3-char strip).
 #
-# All entries are 2 chars, so order doesn't change matching, but we list
-# them grouped by gender/number for readability.
-_BG_DEFINITE_SUFFIXES: tuple[str, ...] = (
-    "ът", "ят",  # masculine
-    "та",        # feminine
-    "то",        # neuter
-    "те",        # plural
+# Each entry is (suffix, min_stem_len): the suffix is stripped only if
+# the resulting stem has at least `min_stem_len` characters. This
+# per-suffix threshold lets the canonical FR-013 case `новият → нов`
+# work (stem=3) without over-stripping short demonstratives via the
+# 2-char suffixes (stem=4 floor protects "това", "този", etc.).
+#
+# Suffixes deliberately NOT added (would break existing symmetry or
+# mangle plural-noun endings):
+#   "ите" — would split "обществените" → "обществен" while leaving
+#     "обществени" unchanged → query/index forms diverge.
+#   "ето" — would mangle "управлението" → "управлени".
+#   "ия" — would mangle "решения" (plural noun) → "реше".
+#   "а" — would mangle "държава" → "държав".
+#
+# FR-013 / D-2026-05-09-01 closed in Phase 1b.3 by adding the 3-char
+# "ият" entry; the broader 3-char/2-char additions remain off-table
+# because they conflict with plural-indefinite forms.
+_BG_DEFINITE_SUFFIXES: tuple[tuple[str, int], ...] = (
+    # 3-char (long-form) — try first.
+    ("ият", 3),  # masc adj long-form definite: новият → нов  (FR-013)
+    # 2-char.
+    ("ът", 4),   # masc nom: градът → град
+    ("ят", 4),   # masc nom variant: дъждът → дъжд
+    ("та", 4),   # feminine: жената → жена
+    ("то", 4),   # neuter: детето → дете
+    ("те", 4),   # plural: новите → нови, обществените → обществени
 )
 
-# Minimum length of the stem AFTER stripping a suffix. 4 chars protects
-# against catastrophic over-stripping of short words. Known asymmetry
-# this introduces: adjective long-form definite (`новият` 6→`нови` 4)
-# does not match indefinite (`нов` 3 chars, below threshold, returned
-# unchanged). Acceptable for Phase 1b.1 (rare in legal subject position);
-# tracked as FR-013 in `docs/frs/INDEX.md` for the 1b.3 stemmer milestone.
-_MIN_STEM_LEN = 4
 _WS_RE = re.compile(r"\s+")
 
 
 def _strip_definite_article(token: str) -> str:
-    if len(token) <= _MIN_STEM_LEN:
-        return token
-    for suffix in _BG_DEFINITE_SUFFIXES:
-        if token.endswith(suffix) and len(token) - len(suffix) >= _MIN_STEM_LEN:
+    """Strip a Bulgarian definite-article suffix from `token` if one
+    matches AND the stem after stripping is at least the suffix's
+    minimum length. The `_BG_DEFINITE_SUFFIXES` table is ordered
+    longest-first so 3-char suffixes (e.g. `ият` in `новият`) take
+    priority over their 2-char prefixes (e.g. `ят`)."""
+    for suffix, min_stem in _BG_DEFINITE_SUFFIXES:
+        if token.endswith(suffix) and len(token) - len(suffix) >= min_stem:
             return token[: -len(suffix)]
     return token
 

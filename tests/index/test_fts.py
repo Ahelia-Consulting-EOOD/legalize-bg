@@ -77,6 +77,76 @@ def test_preserves_numbers_and_latin():
     assert "зоп" in out
 
 
+# ─── FR-013: long-form definite article asymmetry (D-2026-05-09-01) ───────────
+
+
+@pytest.mark.parametrize(
+    "definite,indefinite",
+    [
+        # Long-form masc adj definite, monosyllabic — the canonical
+        # FR-013 case the FR text explicitly locks:
+        #   bg_normalize("новият") == bg_normalize("нов").
+        ("новият", "нов"),
+        ("старият", "стар"),
+        # Plural-definite/plural-indefinite — already worked in 1b.1
+        # via 2-char "те" stripping; locking it here so a future suffix
+        # change can't silently break it.
+        ("новите", "нови"),
+    ],
+    ids=[
+        "novijat",
+        "starijat",
+        "novite",
+    ],
+)
+def test_bg_normalize_long_definite_article_symmetry(definite, indefinite):
+    """FR-013 / D-2026-05-09-01: long-form masc adjective definite
+    (`новият` 6 chars + 3-char `ият` suffix) must reduce to the same
+    form as the indefinite (`нов`, 3 chars). Pre-1b.3, `новият`
+    reduced to `нови` via the 2-char `ят` suffix (with the global
+    MIN_STEM_LEN=4 protecting `нов`), so the two forms diverged.
+    Fixed by adding the 3-char `ият` suffix with its own MIN_STEM=3
+    threshold, ordered before `ят` so longest-match wins.
+
+    NOT covered: multi-syllable / vowel-stem cases like `българският`
+    (where `bg_normalize("българският") = "българск"` but
+    `bg_normalize("български") = "български"` — the indefinite form
+    ends in `-и` which is NOT a definite-article suffix, so the two
+    forms can't unify with simple suffix stripping). A proper
+    Bulgarian stemmer (Snowball or similar) would handle this; the
+    1b.3 milestone explicitly stayed conservative per FR-013's text
+    ("the asymmetry is a candidate to fold in then" — i.e., if usage
+    data justifies). Other plural-definite/oblique-definite forms
+    (`новия`, `решенията`) are NOT added because they would conflict
+    with plural-noun endings — the comment block in index/fts.py
+    documents which suffixes were considered and rejected."""
+    assert bg_normalize(definite) == bg_normalize(indefinite)
+
+
+def test_bg_normalize_does_not_overstrip_short_demonstratives():
+    """Adding the 3-char `ият` suffix must NOT cause over-stripping
+    of common short Bulgarian demonstratives. These all have 4
+    characters and must pass through bg_normalize unchanged."""
+    for word in ("това", "този", "тази", "тези", "тоя", "оня"):
+        assert bg_normalize(word) == word, (
+            f"{word!r} was over-stripped to {bg_normalize(word)!r}."
+        )
+
+
+def test_bg_normalize_preserves_plural_indefinite_for_neuter_nouns():
+    """The conservative scope (only `ият` added, NOT `ия` or `ите`)
+    is deliberate: stripping `ия` would mangle plural neuter nouns
+    like `решения` → `реше` (decisions → 4-char nonsense). Lock this
+    behavior so a future suffix-table edit catches it immediately."""
+    # Plural indefinite neuter nouns — must stay unchanged after 1b.3.
+    for word in ("решения", "упражнения", "обстоятелства"):
+        out = bg_normalize(word)
+        assert out == word, (
+            f"plural-indefinite {word!r} was modified to {out!r} — "
+            "the 1b.3 suffix table is too aggressive."
+        )
+
+
 # ─── _run_match exception narrowing (audit D-8) ───────────────────────────────
 
 _LAWS_DDL = """
