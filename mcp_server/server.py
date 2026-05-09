@@ -208,7 +208,8 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
     # ─────────────────── search ──────────────────────────────────────
 
     def search(query: str, category: str | None = None,
-               limit: int = 20) -> list[dict]:
+               limit: int = 20,
+               include_body: bool = False) -> list[dict]:
         """Full-text search over the Bulgarian legislation corpus.
 
         Bulgarian morphology is handled via symmetric `bg_normalize`
@@ -221,19 +222,37 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         Args:
             query: Free-form Bulgarian (or mixed Cyrillic/Latin) text.
                 Empty / whitespace-only queries return an empty list.
+                Single-token Bulgarian abbreviations (`ЗОП`, `НК`,
+                `ГПК`, etc. — see index/synonyms.py for the full list)
+                are auto-expanded to their canonical long form.
             category: Optional filter — one of "laws", "codes",
                 "ordinances", "regulations", "implementing".
             limit: Max results (default 20, capped at 50).
+            include_body: When True, the top 2 results carry a
+                non-empty `body_snippet` field with a ±60-char window
+                around the first matching token in the act's body
+                (with `<b>...</b>` highlighting). Adds ~150 ms per
+                search call because the largest indexed bodies are
+                1+ MB. Default False — preserves the 100 ms p95
+                budget. Pass True only when the model needs body
+                context to disambiguate similar titles. (FR-017)
 
         Returns:
             List of {law_id, identificador, title, category,
-            title_snippet, relevance}. `relevance` is positive-where-
-            higher-is-better (the negated SQLite bm25 score).
-            `title_snippet` is a highlighted fragment of the act's
-            TITLE, not its body — call `get_law` to retrieve body
-            context (body-snippet generation is deferred to a future
-            milestone). Acts with empty titulo (§7.3) carry
-            "<doc_id=N>" in the title slot.
+            title_snippet, body_snippet, relevance}. `relevance` is
+            positive-where-higher-is-better (negated SQLite bm25).
+            `title_snippet` is always populated (cheap title fragment).
+            `body_snippet` is empty unless `include_body=True`, and
+            then non-empty for the top 2 hits only.
+
+            Result ordering combines bm25 relevance WITH a rang-aware
+            tier sort (FR-015): parent laws (`laws`/`codes` categories)
+            float to the top, implementing regs / ordinances follow,
+            with bm25 order preserved within each tier. So `relevance`
+            is a within-tier signal — don't sort by it globally.
+
+            Acts with empty titulo (§7.3) carry "<doc_id=N>" in the
+            title slot.
 
         Raises:
             QUERY_TOO_BROAD: when the query (after normalization) is a
@@ -248,7 +267,8 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         # on a million-row catalog. 50 is plenty for an LLM caller.
         capped = min(max(1, int(limit)), 50)
         return queries.full_text_search(conn, query=query,
-                                        category=category, limit=capped)
+                                        category=category, limit=capped,
+                                        include_body=bool(include_body))
 
     mcp.tool(description=_full_docstring(search))(search)
     handle._tools["search"] = search

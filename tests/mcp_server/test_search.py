@@ -338,3 +338,95 @@ def test_search_parent_law_outranks_implementing_regulation(app):
         f"(pos {ppr_pos}) and regulation (pos {reg_pos}). "
         f"Hits: {[h['law_id'] for h in hits]}"
     )
+
+
+# ─── FR-017 body-snippet generation (D-2026-05-09-02) ─────────────────────────
+
+
+def test_search_default_omits_body_snippet(app):
+    """FR-017: body_snippet is opt-in. The default `search` call (no
+    include_body) returns body_snippet="" for every hit so the
+    100 ms p95 search budget is preserved."""
+    hits = app.call_tool_sync("search", {"query": "обществени поръчки"})
+    assert hits, "expected at least one hit"
+    for h in hits:
+        assert h["body_snippet"] == "", (
+            f"default search should not populate body_snippet; "
+            f"hit={h!r}"
+        )
+
+
+def test_search_with_include_body_populates_top_results(app):
+    """When include_body=True, the top results carry a non-empty
+    body_snippet with <b>...</b> highlighting."""
+    hits = app.call_tool_sync(
+        "search",
+        {"query": "обществени поръчки", "include_body": True},
+    )
+    assert hits, "expected at least one hit"
+
+    top = hits[0]
+    assert top["body_snippet"], (
+        f"top result body_snippet should be non-empty when "
+        f"include_body=True; got {top!r}"
+    )
+    assert "<b>" in top["body_snippet"] and "</b>" in top["body_snippet"]
+
+
+def test_search_body_snippet_cap_excludes_results_past_top_n(app, monkeypatch):
+    """Results past the top _BODY_SNIPPET_TOP_N have body_snippet=''
+    even with include_body=True. We monkey-patch the cap to 1 so
+    3rd+ results exercise the empty-string path."""
+    import mcp_server.queries as q
+    monkeypatch.setattr(q, "_BODY_SNIPPET_TOP_N", 1)
+    hits = app.call_tool_sync(
+        "search",
+        {"query": "обществени", "limit": 50, "include_body": True},
+    )
+    assert len(hits) >= 2, (
+        f"need >=2 hits with patched cap=1; got {len(hits)}."
+    )
+    # Hits 2+ must all have empty body_snippet under the patched cap.
+    for i, h in enumerate(hits[1:], start=2):
+        assert h["body_snippet"] == "", (
+            f"hit #{i} (law_id={h['law_id']!r}) should have empty "
+            f"body_snippet under cap=1; got {h['body_snippet']!r}"
+        )
+    # The first hit must have a non-empty body_snippet (proving the
+    # cap doesn't accidentally zero out the whole list).
+    assert hits[0]["body_snippet"], (
+        f"top-1 hit should have non-empty body_snippet; "
+        f"got: {hits[0]['body_snippet']!r}"
+    )
+
+
+def test_make_body_snippet_returns_empty_on_no_term_match(populated_conn):
+    """Direct unit test: when no term appears in the body, return ''."""
+    from mcp_server.queries import _make_body_snippet
+    out = _make_body_snippet(populated_conn, "zakon-a",
+                             terms=["неизвестен_термин"])
+    assert out == ""
+
+
+def test_make_body_snippet_returns_empty_for_unknown_law_id(populated_conn):
+    """If the law_id isn't in laws_fts, return ''."""
+    from mcp_server.queries import _make_body_snippet
+    out = _make_body_snippet(populated_conn, "doesnotexist",
+                             terms=["обществен"])
+    assert out == ""
+
+
+def test_make_body_snippet_finds_earliest_match(populated_conn):
+    """When multiple terms appear in the body, the snippet is built
+    around the EARLIEST occurrence (so the user sees the first context
+    they'd naturally read in)."""
+    from mcp_server.queries import _make_body_snippet
+    # zakon-zop has body "закон за обществените поръчки в република
+    # българия" (lowercased by insert_fts_row). 'българия' appears AFTER
+    # 'закон'; both are in the body. The snippet should be around 'закон'
+    # (earliest), not 'българия'.
+    out = _make_body_snippet(populated_conn, "zakon-zop",
+                             terms=["българия", "закон"])
+    assert "<b>закон</b>" in out, (
+        f"snippet should highlight earliest term 'закон', got: {out!r}"
+    )

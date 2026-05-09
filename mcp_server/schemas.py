@@ -49,12 +49,23 @@ class SearchHit:
     SQLite-specific scoring details (raw bm25 returns negative-where-
     lower-is-better, which surprises naive sort-descending usage).
 
+    NOTE on ordering (post-FR-015 part 2): the result list is NOT
+    strictly relevance-sorted — `mcp_server/queries.py:full_text_search`
+    runs a rang-aware tier sort (parent laws / codes above implementing
+    regs / ordinances) AFTER the bm25 ranking, so within-tier the bm25
+    order holds but cross-tier the tier wins. Use `relevance` as a
+    within-tier signal, not a global one.
+
     `title_snippet` is a highlighted fragment of the act's TITLE (not
-    body). Body-context snippets cost ~700ms p95 in 1b.1 because FTS5
-    must read the full body column for the largest matches; the
-    deferred body-snippet rework is FR-017 (Phase 1b.3). Until then,
-    callers should treat this as a "which act is this?" affordance,
-    not as substantive content; call get_law for body context.
+    body). Cheap (~75 ms p95) — FTS5's snippet() over the title column.
+    Always populated.
+
+    `body_snippet` is a Python-extracted ±60-char window around the
+    first matching query token in the act's body, with `<b>...</b>`
+    highlighting. Cost-bounded: only the top 5 search results have a
+    populated `body_snippet`; results 6-N carry the empty string (NOT
+    None — non-optional field, callers always get a string). Closed
+    FR-017 / D-2026-05-09-02 in Phase 1b.3.
     """
 
     law_id: str
@@ -62,6 +73,7 @@ class SearchHit:
     title: str
     category: str
     title_snippet: str
+    body_snippet: str  # FR-017 — empty for results 6-N (cost bound)
     relevance: float
 
     def to_dict(self) -> dict[str, Any]:
