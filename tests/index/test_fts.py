@@ -47,6 +47,22 @@ def test_idempotent():
     assert bg_normalize(bg_normalize(s)) == bg_normalize(s)
 
 
+def test_plural_definite_indefinite_symmetry():
+    """D-022 symmetry MUST hold across number variants — users type the
+    plural indefinite ("обществени поръчки") far more often than the
+    plural definite ("обществените поръчки"), but both must reduce to
+    the same indexed form or FTS silently drops indefinite-query hits.
+
+    With the suffix list reduced to last-character articles only, the
+    plural definite "те"/"та"/"то" peel off cleanly, leaving the bare
+    plural marker that the indefinite already carries.
+    """
+    assert bg_normalize("обществените") == bg_normalize("обществени")
+    assert bg_normalize("гражданите") == bg_normalize("граждани")
+    assert bg_normalize("законите") == bg_normalize("закони")
+    assert bg_normalize("решенията") == bg_normalize("решения")
+
+
 def test_handles_empty_and_none():
     assert bg_normalize("") == ""
     assert bg_normalize(None) == ""

@@ -36,6 +36,16 @@ _PARAGRAPH_SPLIT_RE = re.compile(r"\n\n+")
 
 @dataclass(frozen=True)
 class Provision:
+    """One provisions-table row.
+
+    Note: no `valid_from` field. The SQLite `provisions` table requires
+    valid_from (NOT NULL); the index builder pairs each Provision with
+    the law's effective_date at insertion time (see `index.build`). This
+    keeps the parse step temporally agnostic — the same Markdown body
+    yields the same Provisions whether we're indexing HEAD or a past
+    commit; only the writer knows the validity interval.
+    """
+
     law_id: str
     article: str
     paragraph: str | None
@@ -58,17 +68,35 @@ def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
     element produces one paragraph in the markdown body, so paragraph
     boundaries (\\n\\n) are article boundaries. The body is the entire
     paragraph (preserving any title preamble before the anchor and all
-    inline alineas after)."""
+    inline alineas after).
+
+    A paragraph counts as an article block ONLY when it contains
+    EXACTLY ONE capitalized "Чл. N." anchor. Reasons to reject:
+      - 0 anchors: not an article (could be PreHistory, narrative, etc.)
+      - 2+ anchors: cite-list or template text (e.g., a декларация
+        template citing "Чл. 102а и Чл. 102б"). Treating it as an
+        article would emit a duplicate row for the first cited number,
+        polluting search and `get_article` results.
+
+    Real article paragraphs in the corpus carry exactly one capitalized
+    anchor and zero-or-more lowercase "чл. N" inline references; the
+    capitalize-only regex already ignores the latter.
+
+    Phase 4 amendment-detection will need a separate
+    `body_text_minus_preamble` projection (the article-as-whole text
+    here intentionally includes the title preamble + anchor for Phase
+    1b.1 search/get_article use). Tracked as FR-012 in
+    `docs/frs/INDEX.md`.
+    """
     blocks: list[tuple[str, str]] = []
     for raw_para in _PARAGRAPH_SPLIT_RE.split(markdown):
         para = raw_para.strip()
         if not para or _is_structural_header(para):
             continue
-        m = _ARTICLE_RE.search(para)
-        if not m:
+        article_ids = _ARTICLE_RE.findall(para)
+        if len(article_ids) != 1:
             continue
-        article_id = m.group(1)
-        blocks.append((article_id, para))
+        blocks.append((article_ids[0], para))
     return blocks
 
 

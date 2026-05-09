@@ -73,6 +73,36 @@ def test_returns_law_id_on_each_row():
         assert r.law_id == "zop"
 
 
+def test_skip_paragraph_with_multiple_anchors_cite_list():
+    """A paragraph with 2+ capitalized 'Чл. N.' references is a cite list
+    or template, not an article. Reviewer found a real instance in the
+    ppz-aktsizi declaration template — emitting a row for the first
+    cited number duplicates the real article and pollutes search."""
+    md = """**Чл. 5.** Истинският член.
+
+Декларация по Чл. 102а и Чл. 102б — образец на формуляр.
+
+**Чл. 7.** Следващият истински член.
+"""
+    rows = parse(md, law_id="test")
+    article_rows = [r for r in rows if r.paragraph is None]
+    # 5 and 7 are real articles; the multi-anchor template paragraph
+    # (capital Ч cited twice) is rejected.
+    assert [r.article for r in article_rows] == ["5", "7"]
+
+
+def test_skip_sentence_start_capitalized_reference():
+    """A paragraph that opens with a capitalized 'Чл. N' but cites
+    multiple is editorial/transitional text, not an anchor."""
+    md = """Чл. 5 и Чл. 6 уреждат подобни въпроси на дейността.
+
+**Чл. 7.** Истинският член.
+"""
+    rows = parse(md, law_id="test")
+    article_rows = [r for r in rows if r.paragraph is None]
+    assert [r.article for r in article_rows] == ["7"]
+
+
 def test_zop_golden_subset():
     """ZOP fixture should produce a known set of articles. Golden anchors
     the parser; alinea-level coverage added in Task 5."""

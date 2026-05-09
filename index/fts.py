@@ -12,20 +12,36 @@ import re
 import sqlite3
 
 
-# Definite-article suffixes ordered LONGEST FIRST so longer suffixes are
-# stripped before shorter (e.g., "ите" before "те").
+# Bulgarian definite-article suffixes — last-character stripping only.
 #
-# Bulgarian morphology: feminine "та", masculine short/long "ът"/"ят",
-# neuter "то", plural "ите"/"те". The plan's draft also listed "ето",
-# "а", "ия" — these are dropped because they cause incorrect stripping
-# (e.g., "управление" → "управлени", "държава" → "държав", "решения"
-# → "реше"). Idempotency requires that no suffix mangles a base form.
+# Strip just the trailing definite article: feminine "та", neuter "то",
+# masculine "ът"/"ят" (after consonant / after specific vowels), plural
+# "те". Critically, NOT stripping the longer "ите"/"ия"/"ето"/"а"
+# variants — those would mangle valid base forms or break plural
+# symmetry:
+#   "ите" stripped: "обществените" → "обществен", but "обществени"
+#     (plural indefinite — what users actually type) → "обществени".
+#     The two forms diverge → search silently misses indefinite hits.
+#     Stripping just "те": both reduce to "обществени". Symmetric.
+#   "ето" stripped: "управлението" → "управлени" (mangled).
+#   "а" stripped: "държава" → "държав" (feminine base form mangled).
+#   "ия" stripped: "решения" → "реше" (plural base form mangled).
+#
+# All entries are 2 chars, so order doesn't change matching, but we list
+# them grouped by gender/number for readability.
 _BG_DEFINITE_SUFFIXES: tuple[str, ...] = (
-    "ите",
-    "ят", "ът",
-    "та", "то", "те",
+    "ът", "ят",  # masculine
+    "та",        # feminine
+    "то",        # neuter
+    "те",        # plural
 )
 
+# Minimum length of the stem AFTER stripping a suffix. 4 chars protects
+# against catastrophic over-stripping of short words. Known asymmetry
+# this introduces: adjective long-form definite (`новият` 6→`нови` 4)
+# does not match indefinite (`нов` 3 chars, below threshold, returned
+# unchanged). Acceptable for Phase 1b.1 (rare in legal subject position);
+# tracked as FR-013 in `docs/frs/INDEX.md` for the 1b.3 stemmer milestone.
 _MIN_STEM_LEN = 4
 _WS_RE = re.compile(r"\s+")
 

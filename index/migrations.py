@@ -13,6 +13,8 @@ from dataclasses import dataclass
 from typing import Iterable
 import sqlite3
 
+from index.catalog import SCHEMA as BASE_SCHEMA
+
 
 @dataclass(frozen=True)
 class Migration:
@@ -78,10 +80,11 @@ def migrate(conn: sqlite3.Connection,
             migrations: Iterable[Migration] = MIGRATIONS) -> int:
     """Apply all pending migrations. Returns the final version."""
     _ensure_schema_version_table(conn)
-    # Need the base schema (laws, law_versions, provisions) before migrations
-    # can ALTER them. CatalogIndex.initialize creates them; we mirror that
-    # here so `migrate()` can be called against a fresh in-memory db too.
-    from index.catalog import SCHEMA as BASE_SCHEMA
+    # Ensure base tables exist before migrations can ALTER them.
+    # CatalogIndex.initialize creates them; this mirrors that so
+    # `migrate()` works against a fresh in-memory db too. (CREATE TABLE
+    # IF NOT EXISTS in the base SCHEMA makes this safe to re-run on a
+    # Phase-1a-built db.)
     conn.executescript(BASE_SCHEMA)
 
     applied = current_version(conn)
