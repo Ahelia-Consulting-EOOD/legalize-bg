@@ -12,11 +12,12 @@ Claude Code sessions work against this repo with the following startup protocol:
 
 1. Read `.claude/CLAUDE.md` for repo-specific instructions
 2. Read `docs/sync/ACTIVE.md` for current work state and next actions
-3. Check `.ahelia/constraint-profile.yaml` for machine-readable constraints
-4. Check `.ahelia/protected-surfaces.yaml` before modifying any interface or schema
-5. Identify current phase (1a through 6c) and work within its scope
+3. Read `docs/sync/DEFERRED.md` for items punted from prior phases that may be relevant to the current phase or to changes about to be made
+4. Check `.ahelia/constraint-profile.yaml` for machine-readable constraints
+5. Check `.ahelia/protected-surfaces.yaml` before modifying any interface or schema (includes the machine-readable `deferrals:` block mirroring `DEFERRED.md`)
+6. Identify current phase (1a through 6c) and work within its scope
 
-Sessions must not skip phases or begin work on a later phase until its prerequisites are met.
+Sessions must not skip phases or begin work on a later phase until its prerequisites are met. The Definition of Done for any phase X→Y promotion includes resolving every Open row in `DEFERRED.md` whose Target ≤ X — see "Universal phase-promotion gate" below.
 
 ---
 
