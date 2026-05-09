@@ -156,7 +156,7 @@
 | Attribute | Value |
 |-----------|-------|
 | **Module** | Top-level MCP server module |
-| **Phase** | Phase 1b (basic), Phase 2 (temporal) |
+| **Phase** | Phase 1b.1 (3 tools shipped), Phase 2 (3 more tools — temporal) |
 | **Responsibility** | Expose legislation corpus to Claude Code sessions via Model Context Protocol. |
 | **Technology** | Python, MCP SDK, JSON-RPC over stdio |
 | **Data sources** | SQLite index for lookups, `git show` for content retrieval |
@@ -164,11 +164,11 @@
 | Tool | Signature | Phase | Description |
 |------|-----------|-------|-------------|
 | `get_law` | `(name: str, date: str?) -> GetLawResponse` | 1b.1 | Structured response: metadata fields (titulo, identificador, fecha_publicacion, ultima_actualizacion, dv_issue, dv_year, effective_date, eli, amendment_history, commit_hash) + body_markdown + optional `warnings` array. Date-qualified historical retrieval via `git show {commit}:{path}`. See D-024. |
-| `search` | `(query: str, category: str?, limit: int = 20) -> list[SearchHit]` | 1b.1 | Full-text search with FTS5 + BM25 ranking + Bulgarian-aware `bg_normalize` pre-normalization. Each hit: `{law_id, identificador, title, snippet, score}`. Empty-titulo acts (§7.3) get `<doc_id=N>` substituted in `title` slot. See D-022. |
-| `get_article` | `(law: str, article: str, date: str?) -> GetArticleResponse` | 1b.1 | Single article or alinea text via SQL lookup on `provisions` table (populated to alinea level from day one per D-023). Accepts `"чл. 14"`, `"14"`, `"чл. 14а"` (Cyrillic suffixes), `"чл. 14, ал. 2"`, `"14.2"`, ranges `"чл. 14-16"`. |
-| `history` | `(law: str) -> list[VersionEntry]` | 2 | Amendment history: `[{date, dv_issue, operation, commit_hash}]`. Depends on Phase 2 temporal index. |
-| `diff` | `(law: str, date1: str, date2: str) -> str` | 2 | Git diff of a law between two dates. |
-| `amendments_in_period` | `(from_date: str, to_date: str) -> list[AmendmentEntry]` | 2 | All amendments across all laws in a time range. |
+| `search` | `(query: str, category: str?, limit: int = 20) -> list[SearchHit]` | 1b.1 | Full-text search with FTS5 + BM25 ranking + Bulgarian-aware `bg_normalize` pre-normalization. Each hit: `{law_id, identificador, title, category, title_snippet, relevance}`. The snippet is over the act's TITLE only (not body) — title-snippet runs in ~75 ms vs ~700 ms for body-snippet on the 3,573-act corpus; body-snippet generation is tracked as FR-017 for Phase 1b.3. The `relevance` score is the negated SQLite `bm25` (higher = better). Empty-titulo acts (§7.3) get `<doc_id=N>` substituted in `title` slot. `limit` defaults to 20 and is capped at 50 (defensive — FTS5 with very large limits can OOM on a million-row catalog; 50 is plenty for an LLM caller). See D-022. |
+| `get_article` | `(law: str, article: str, date: str?) -> GetArticleResponse` | 1b.1 | Single article or alinea text via SQL lookup on `provisions` table (populated to alinea level from day one per D-023). Accepts `"чл. 14"`, `"14"`, `"чл. 14а"` (Cyrillic suffixes), `"чл. 14, ал. 2"`, `"14.2"`. Ranges `"чл. 14-16"` parse but only the first article is returned in 1b.1 — full range expansion tracked as FR-018. |
+| `history` | `(law: str) -> list[VersionEntry]` | 2 | Amendment history: `[{date, dv_issue, operation, commit_hash}]`. Deferred to Phase 2 — depends on FR-001 temporal index. |
+| `diff` | `(law: str, date1: str, date2: str) -> str` | 2 | Git diff of a law between two dates. Deferred to Phase 2 — depends on FR-001 temporal index. |
+| `amendments_in_period` | `(from_date: str, to_date: str) -> list[AmendmentEntry]` | 2 | All amendments across all laws in a time range. Deferred to Phase 2 — depends on FR-001 temporal index. |
 
 **Errors are first-class tool outputs**, not opaque transport failures. Eight stable codes returned as `ToolError(code, payload)` per D-026: `LAW_NOT_FOUND`, `AMBIGUOUS_NAME`, `NO_VERSION_AT_DATE`, `DATE_UNCERTAIN` (warning, rides in successful response), `INVALID_ARTICLE_SPEC`, `ARTICLE_NOT_FOUND`, `INDEX_STALE`, `INDEX_MISSING`. Each carries a structured payload the model can act on (suggestions, candidates, available_articles, etc.).
 

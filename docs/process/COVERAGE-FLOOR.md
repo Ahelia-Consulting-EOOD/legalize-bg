@@ -19,6 +19,7 @@ This file defines what must eventually be covered with no silent omissions.
   - **All 5 lex.bg categories:** laws (~394), codes (~24), ordinances (~2,604), regulations (~490), implementing regs (~61) = ~3,574 total acts
   - **All 6 phases must eventually ship:** 1a, 1b, 2, 3, 4/4v, 5, 6a-6c
   - **MCP server** with at minimum: `get_law`, `search`, `get_article` tools (Phase 1b); extended with `history`, `diff`, `amendments_in_period` (Phase 2+); extended with `get_municipal_ordinance` (Phase 6)
+    - **Phase scoping (per D-027):** Phase 1b.1 ships exactly 3 tools (`get_law`, `search`, `get_article`); Phase 2 adds the other 3 (`history`, `diff`, `amendments_in_period`) once the temporal index (FR-001) is populated. The `get_municipal_ordinance` tool is Phase 6.
   - **SQLite temporal index** covering all acts with tables: `laws`, `law_versions`, `amendments`, `provisions`
   - **Consolidation engine** for ongoing DV amendments: ZID parser + patcher covering substitution, addition, deletion, repeal, renumbering, restructuring, new chapter operations
   - **Validation pipeline** comparing engine output against lex.bg consolidated text, with diff reporting and human-review flagging for non-trivial discrepancies

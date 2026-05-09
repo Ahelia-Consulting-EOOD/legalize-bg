@@ -241,10 +241,13 @@ Per D-024, response is a structured typed-dict, not bare Markdown — model gets
      |                |                       |
      |<-- list[SearchHit] ──|                 |
      |   [{law_id, identificador,             |
-     |     title, snippet, score}]            |
+     |     title, category,                   |
+     |     title_snippet, relevance}]         |
 ```
 
 Per D-022, Bulgarian morphology coverage is ~70-80% via symmetric `bg_normalize`; Snowball stemmer + legal-term synonyms slated for Phase 1b.3 if usage data justifies.
+
+**Two-tier ranking.** `index/fts.py:search_fts` issues two FTS5 MATCH queries in sequence rather than a single combined match. **Tier 1** is a column-restricted match against `title:` (e.g. `title:обществен title:поръчк`) — high precision; documents whose title contains every query token are almost always the right answer. **Tier 2** is general FTS5 over title+body — recall, catching body-only matches and abbreviations. Tier 2 is **skipped when tier 1 already filled the limit** (saves ~100 ms per query). Results are deduplicated by `law_id` (title-tier wins on ties). Rationale: BM25 alone over title+body would invert canonical-title rankings — a law's implementing regulation, with a denser body match, would outrank the law itself. FR-015 tracks the Phase 1b.3 stemmer + synonym dictionary that will further refine ranking.
 
 ### 6.3.4 `get_article(law, article, date=None)`
 
