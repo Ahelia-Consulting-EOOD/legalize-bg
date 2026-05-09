@@ -149,6 +149,16 @@ def _run_match(conn: sqlite3.Connection, match_query: str,
         # mcp_server.queries.resolve_name_to_law_id in spirit;
         # consolidating the two allowlists into a shared tuple is
         # tracked separately.
+        #
+        # Known limitation (reviewed Round-3): startswith("no such
+        # column") would also swallow a hypothetical schema-corruption
+        # case where laws.* columns are renamed/dropped. Realistic
+        # exposure is near-zero (the schema is fixed code behind a
+        # protected-surface preflight) but the tighter form
+        # `startswith("no such column: ") and ":" in match_query`
+        # would gate suppression on the user actually typing a
+        # column-qualifier — fold into the consolidation work
+        # mentioned above.
         msg = str(e).lower()
         is_user_input_error = (
             "fts5" in msg
