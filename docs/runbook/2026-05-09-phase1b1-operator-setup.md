@@ -150,6 +150,8 @@ them in sync with behavior.
 
 ## Error codes (D-026)
 
+> **Authoritative catalog:** `docs/api/error-codes.md` (Markdown for humans) and `docs/api/error-codes.json` (machine-readable). Both are version-tagged 1.0.0 and tested for parity with `mcp_server.errors.ERROR_CODES`. Phase 1b.2 added `QUERY_TOO_BROAD` (FR-016 — single-word category-query reject).
+
 When a tool call fails, the structured payload includes one of these
 codes plus model-actionable context:
 

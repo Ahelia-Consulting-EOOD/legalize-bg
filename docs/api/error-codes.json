@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Ahelia-Consulting-EOOD/legalize-bg/docs/api/error-codes.json",
+  "title": "legalize-bg MCP error taxonomy",
+  "version": "1.0.0",
+  "description": "Machine-readable catalog of every error code the legalize-bg MCP server returns. Mirror of docs/api/error-codes.md.",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "const": "1.0.0"
+    },
+    "codes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["code", "raised_by", "category", "payload"],
+        "properties": {
+          "code": {"type": "string"},
+          "raised_by": {
+            "type": "array",
+            "items": {"type": "string", "enum": ["get_law", "search", "get_article"]}
+          },
+          "category": {
+            "type": "string",
+            "enum": ["error", "warning"]
+          },
+          "since_phase": {"type": "string"},
+          "payload": {
+            "type": "object",
+            "description": "Payload fields. Each entry: name -> {type, optional, description}."
+          }
+        }
+      }
+    }
+  },
+  "required": ["version", "codes"],
+
+  "data": {
+    "version": "1.0.0",
+    "codes": [
+      {
+        "code": "LAW_NOT_FOUND",
+        "raised_by": ["get_law", "get_article"],
+        "category": "error",
+        "since_phase": "1b.1",
+        "payload": {
+          "name": {"type": "string", "optional": false, "description": "the input that failed to resolve"},
+          "suggestions": {"type": "array", "optional": false, "description": "up to 5 nearby matches; empty if no candidates"}
+        }
+      },
+      {
+        "code": "AMBIGUOUS_NAME",
+        "raised_by": ["get_law", "get_article"],
+        "category": "error",
+        "since_phase": "1b.1",
+        "payload": {
+          "name": {"type": "string", "optional": false, "description": "the input"},
+          "candidates": {"type": "array", "optional": false, "description": "every candidate with law_id, title, identificador"}
+        }
+      },
+      {
+        "code": "NO_VERSION_AT_DATE",
+        "raised_by": ["get_law", "get_article"],
+        "category": "error",
+        "since_phase": "1b.1",
+        "payload": {
+          "law_id": {"type": "string", "optional": false, "description": "resolved act"},
+          "date": {"type": "string", "optional": false, "description": "ISO date requested"},
+          "earliest_valid_from": {"type": "string|null", "optional": false, "description": "earliest version's valid_from, or null"}
+        }
+      },
+      {
+        "code": "DATE_UNCERTAIN",
+        "raised_by": ["get_law"],
+        "category": "warning",
+        "since_phase": "1b.1",
+        "payload": {
+          "code": {"type": "string", "optional": false, "description": "always 'DATE_UNCERTAIN'"},
+          "source_date_marker": {"type": "string", "optional": false, "description": "always 'unknown'"}
+        }
+      },
+      {
+        "code": "INVALID_ARTICLE_SPEC",
+        "raised_by": ["get_article"],
+        "category": "error",
+        "since_phase": "1b.1",
+        "payload": {
+          "article": {"type": "string", "optional": false, "description": "the input"},
+          "expected_forms": {"type": "array", "optional": false, "description": "canonical accepted forms"}
+        }
+      },
+      {
+        "code": "ARTICLE_NOT_FOUND",
+        "raised_by": ["get_article"],
+        "category": "error",
+        "since_phase": "1b.1",
+        "payload": {
+          "law_id": {"type": "string", "optional": false, "description": "resolved act"},
+          "article": {"type": "string", "optional": false, "description": "requested article"},
+          "paragraph": {"type": "string|null", "optional": false, "description": "alinea if requested"},
+          "available_articles": {"type": "array", "optional": false, "description": "every article in the act at the requested date"}
+        }
+      },
+      {
+        "code": "INDEX_STALE",
+        "raised_by": ["get_law", "search", "get_article"],
+        "category": "error",
+        "since_phase": "1b.1",
+        "payload": {
+          "expected_commit": {"type": "string", "optional": false, "description": "working-tree HEAD"},
+          "index_commit": {"type": "string", "optional": false, "description": "laws.current_commit"},
+          "instruction": {"type": "string", "optional": false, "description": "remediation"}
+        }
+      },
+      {
+        "code": "INDEX_MISSING",
+        "raised_by": ["get_law", "search", "get_article"],
+        "category": "error",
+        "since_phase": "1b.1",
+        "payload": {
+          "db_path": {"type": "string", "optional": false, "description": "expected catalog path"},
+          "instruction": {"type": "string", "optional": false, "description": "remediation"}
+        }
+      },
+      {
+        "code": "QUERY_TOO_BROAD",
+        "raised_by": ["search"],
+        "category": "error",
+        "since_phase": "1b.2",
+        "payload": {
+          "query": {"type": "string", "optional": false, "description": "the input"},
+          "category_words": {"type": "array", "optional": false, "description": "five stop-words, alphabetically sorted"},
+          "hint": {"type": "string", "optional": false, "description": "bilingual instruction"}
+        }
+      }
+    ]
+  }
+}
