@@ -63,24 +63,39 @@ def _is_structural_header(para: str) -> bool:
     return para.startswith("#")
 
 
+_ALINEA_CONTINUATION_RE = re.compile(r"^\s*\(\s*\d+[а-я]?\s*\)")
+
+
+def _looks_like_alinea_continuation(para: str) -> bool:
+    """A paragraph starting with '(N)' is the continuation of the
+    previous article — Phase 1a's text_parser separates alineas with
+    \\n\\n when the source HTML has <br> between them (test_text_parser
+    `test_preserves_paragraph_structure` enforces this), but inline
+    alineas in a single paragraph are also common (most ЗОП articles).
+    Both cases must be supported."""
+    return bool(_ALINEA_CONTINUATION_RE.match(para))
+
+
 def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
-    """Return list of (article_id, body_text). Each Article-class HTML
-    element produces one paragraph in the markdown body, so paragraph
-    boundaries (\\n\\n) are article boundaries. The body is the entire
-    paragraph (preserving any title preamble before the anchor and all
-    inline alineas after).
+    """Return list of (article_id, body_text).
 
-    A paragraph counts as an article block ONLY when it contains
-    EXACTLY ONE capitalized "Чл. N." anchor. Reasons to reject:
-      - 0 anchors: not an article (could be PreHistory, narrative, etc.)
-      - 2+ anchors: cite-list or template text (e.g., a декларация
-        template citing "Чл. 102а и Чл. 102б"). Treating it as an
-        article would emit a duplicate row for the first cited number,
-        polluting search and `get_article` results.
+    Each Article-class HTML element produces one paragraph in the
+    markdown when alineas are inline (e.g., "Чл. 1. (1) X. (2) Y."),
+    or multiple paragraphs when alineas are separated by \\n\\n (the
+    Phase 1a I7 fix path). This extractor merges alinea-continuation
+    paragraphs back onto their parent article so `_split_alineas` can
+    find all (N) markers regardless of source layout.
 
-    Real article paragraphs in the corpus carry exactly one capitalized
-    anchor and zero-or-more lowercase "чл. N" inline references; the
-    capitalize-only regex already ignores the latter.
+    Acceptance rules per paragraph:
+      - 0 anchors and looks like alinea continuation: append to current
+        article body.
+      - 0 anchors and not a continuation: flush pending article and
+        discard the paragraph (preamble, narrative, etc.).
+      - 1 anchor: flush pending and start a new article.
+      - 2+ anchors: cite-list or template (e.g., a декларация template
+        citing "Чл. 102а и Чл. 102б"). Flush pending and skip — never
+        emit a row for paragraphs with multiple anchors.
+      - structural header ('## ПРЕХОДНИ', '#'): flush pending and skip.
 
     Phase 4 amendment-detection will need a separate
     `body_text_minus_preamble` projection (the article-as-whole text
@@ -89,19 +104,80 @@ def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
     `docs/frs/INDEX.md`.
     """
     blocks: list[tuple[str, str]] = []
+    pending_id: str | None = None
+    pending_parts: list[str] = []
+
+    def flush() -> None:
+        nonlocal pending_id, pending_parts
+        if pending_id is not None:
+            blocks.append((pending_id, "\n\n".join(pending_parts)))
+            pending_id = None
+            pending_parts = []
+
     for raw_para in _PARAGRAPH_SPLIT_RE.split(markdown):
         para = raw_para.strip()
         if not para or _is_structural_header(para):
+            flush()
             continue
         article_ids = _ARTICLE_RE.findall(para)
-        if len(article_ids) != 1:
-            continue
-        blocks.append((article_ids[0], para))
+        n = len(article_ids)
+        if n == 1:
+            flush()
+            pending_id = article_ids[0]
+            pending_parts = [para]
+        elif n == 0:
+            if pending_id is not None and _looks_like_alinea_continuation(para):
+                pending_parts.append(para)
+            else:
+                flush()
+        else:  # n >= 2
+            flush()
+    flush()
     return blocks
 
 
+# Alinea boundary inside an article body: "(N)" or "(Nа)" (Cyrillic
+# suffix variants). Real corpus articles pack alineas EITHER inline
+# inside a single paragraph (e.g., "Чл. 1. (1) X. (2) Y. (3) Z.") OR
+# across paragraph breaks (after the post–code-review fix in Phase 1a's
+# I7). Both cases share the "(N)" marker, so we split on the marker
+# itself, not on \n\n.
+_ALINEA_MARKER_RE = re.compile(r"\(\s*(\d+[а-я]?)\s*\)")
+
+
+def _split_alineas(body: str) -> list[tuple[str, str]]:
+    """Split an article body into (paragraph_id, text) pairs.
+    Returns [] if the article has no '(N)' alinea markers.
+
+    The text for each alinea spans from after the marker to the next
+    marker (or end of body), with leading/trailing whitespace stripped.
+    """
+    matches = list(_ALINEA_MARKER_RE.finditer(body))
+    if not matches:
+        return []
+    out: list[tuple[str, str]] = []
+    for i, m in enumerate(matches):
+        paragraph_id = m.group(1)
+        start = m.end()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(body)
+        text = body[start:end].strip()
+        # Strip leading punctuation/whitespace artifacts left by adjacent
+        # markers (e.g., ". " between "(1) Първа." and "(2) Втора.")
+        text = re.sub(r"^[\s\.,]+", "", text)
+        out.append((paragraph_id, text))
+    return out
+
+
 def parse(markdown: str, law_id: str) -> list[Provision]:
-    """Phase 1b.1 article-level extraction. Alinea rows added in Task 5."""
+    """Emit one article-as-whole row + one row per alinea (D-023).
+
+    Article-as-whole row: paragraph=None, text=full paragraph (preamble
+    + anchor + alineas), text_hash over that whole text.
+
+    Alinea rows: paragraph='1'/'2'/'1а'/..., text=just that alinea's
+    text, text_hash over only that alinea — so single-alinea amendments
+    (Phase 4) can be detected without re-hashing the article.
+    """
     rows: list[Provision] = []
     for article_id, body in _extract_article_blocks(markdown):
         rows.append(Provision(
@@ -111,4 +187,12 @@ def parse(markdown: str, law_id: str) -> list[Provision]:
             text=body,
             text_hash=_hash(body),
         ))
+        for paragraph_id, alinea_text in _split_alineas(body):
+            rows.append(Provision(
+                law_id=law_id,
+                article=article_id,
+                paragraph=paragraph_id,
+                text=alinea_text,
+                text_hash=_hash(alinea_text),
+            ))
     return rows
