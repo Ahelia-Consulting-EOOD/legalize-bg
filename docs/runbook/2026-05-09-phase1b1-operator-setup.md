@@ -95,8 +95,12 @@ Expected: returns the article text with `(1) Този закон определ�
 > What's the publication date of doc_id -549676032?
 
 Expected: succeeds with `titulo: ""` (truthful empty for the §7.3
-phantom act) and a `DATE_UNCERTAIN` warning if the act is also one of
-the 121 §7.2 acts.
+phantom act) **and** a `DATE_UNCERTAIN` warning in the response
+(`source_date_marker: "unknown"`); `fecha_publicacion` is null. This
+specific doc_id is in the intersection of the §7.3 empty-titulo set
+**and** the 121 §7.2 null-pub-date set, so the warning is deterministic
+— if you don't see `DATE_UNCERTAIN`, the index is stale or the §7.2
+surfacing path is broken.
 
 ## Re-indexing after corpus changes
 
@@ -110,11 +114,22 @@ The MCP server soft-warns at startup when `git HEAD ≠
 laws.current_commit`. Pass `--strict` to make staleness a hard
 refusal (exit code 3).
 
+## Server runtime
+
+**SQLite connection threading.** `mcp_server/__main__.py` opens the
+catalog connection with `check_same_thread=False`. FastMCP serves tool
+calls on a worker thread; SQLite would otherwise raise "SQLite objects
+created in a thread can only be used in that same thread." All writes
+happen at index-build time on a separate connection, so the runtime
+connection is read-mostly — no concurrent-write hazard. The test
+fixtures use the same setting via the `populated_conn` conftest fixture,
+so component-level tests behave identically to the production server.
+
 ## Tools surfaced
 
 | Tool | Inputs | Returns |
 |---|---|---|
-| `get_law(name, date=None)` | title / slug / identificador, optional ISO date | full text + metadata + warnings |
+| `get_law(name, date=None)` | title / slug / identificador, optional ISO date | full text + metadata + warnings. Date fields (`fecha_publicacion`, `ultima_actualizacion`, `effective_date`) are ISO 8601 strings — PyYAML's `datetime.date` is coerced via `mcp_server.server._iso` before serialization, so JSON-RPC consumers never see Python objects. |
 | `search(query, category=None, limit=20)` | Bulgarian/Cyrillic text + optional category filter | ranked list of hits |
 | `get_article(law, article, date=None)` | act + article spec (`чл. 14`, `14.2`, `чл. 14а`) | article or alinea text |
 
