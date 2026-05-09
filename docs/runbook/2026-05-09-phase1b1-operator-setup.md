@@ -163,7 +163,7 @@ A request DOES write to:
 | Tool | Inputs | Returns |
 |---|---|---|
 | `get_law(name, date=None)` | title / slug / identificador, optional ISO date | full text + metadata + warnings. Date fields (`fecha_publicacion`, `ultima_actualizacion`, `effective_date`) are ISO 8601 strings — PyYAML's `datetime.date` is coerced via `mcp_server.server._iso` before serialization, so JSON-RPC consumers never see Python objects. |
-| `search(query, category=None, limit=20)` | Bulgarian/Cyrillic text + optional category filter | ranked list of hits |
+| `search(query, category=None, limit=20, include_body=False)` | Bulgarian/Cyrillic text + optional category filter | Ranked list of hits. Each hit carries `title_snippet` (always populated, cheap) and `body_snippet` (empty unless `include_body=True`, then non-empty for top-2 only). Result list is rang-tier-sorted (laws/codes outrank implementing/regulations/ordinances per FR-015). Single-token Bulgarian abbreviation queries (`ЗОП`, `НК`, `ГПК` — see `index/synonyms.py`) are auto-expanded to canonical long forms before FTS5 runs. |
 | `get_article(law, article, date=None)` | act + article spec (`чл. 14`, `14.2`, `чл. 14а`) | article or alinea text |
 
 Tool descriptions visible to the LLM are the full Python docstrings

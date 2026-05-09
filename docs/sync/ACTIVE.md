@@ -1,9 +1,9 @@
 # Active Work
 
-**Current phase:** Phase 1b.2 — **complete on `main` 2026-05-09**.
+**Current phase:** Phase 1b.3 — **complete on `main` 2026-05-09**. Phase 1b is fully shipped (1b.1 + 1b.2 + 1b.3).
 **Current owner:** ekimir
 **Started:** 2026-05-09 (design phase) → shipped same day after multi-batch executing-plans run.
-**Next action:** Phase 1b.3 (operator/end-user polish) OR Phase 2 (temporal index) — both are now unblocked. See "Pending" below.
+**Next action:** Phase 2 (temporal index, FR-001) — newly unblocked. See "Pending" below.
 
 ## Status
 
@@ -26,7 +26,16 @@
 - **Idempotency contract documented** in the runbook (read-only at request time; build path explicitly non-idempotent — FR-014 tracks the incremental rebuild).
 - Test count: 221 → 244.
 
-**Phase 1b design** is recorded in `docs/plans/2026-05-09-phase1b-mcp-design.md`; D-020 through D-028 in `DECISIONS.md`. Phase 1b.2 plan: `docs/plans/2026-05-09-phase1b2-hardening.md`.
+**Phase 1b.3** (operator/end-user polish) — complete on `main` 2026-05-09:
+- **FR-013 closed**: long-form masc adjective definite article (`новият`/`нов` asymmetry) resolved by per-suffix MIN_STEM_LEN model in `index/fts.py:_BG_DEFINITE_SUFFIXES`. New 3-char `ият` suffix at MIN_STEM=3, ordered before 2-char `ят` so longest-match wins. Multi-syllable cases (`българският`) require a proper Bulgarian stemmer and stay out of scope per FR-013 text.
+- **FR-015 closed** in two parts: (a) hand-curated synonym dictionary in `index/synonyms.py` (22 Bulgarian legal abbreviations) — single-token queries (`ЗОП`, `НК`, `ГПК`) auto-expand to canonical long form before FTS5; (b) rang-aware tier sort in `search_fts` — parent laws (laws/codes) outrank implementing regs (regulations/implementing/ordinances). Locked test: `search("обществени поръчки")` puts ЗОП at top despite shorter implementing-reg titles.
+- **FR-017 closed** as opt-in: new `include_body=True` parameter on `search` populates `body_snippet` for the top 2 hits (Python-side ±60-char window with `<b>...</b>` highlighting). Default off — preserves the 100ms warm + 250ms cold p95 budgets. Largest indexed bodies are 1+ MB on the live catalog so even TOP_N=2 fetches cost ~150 ms (paid only when explicitly requested). New `body_snippet` field on `SearchHit` (additive per Surface 3).
+- Test count: 256 → 286 (+30 new across the three FRs).
+- D-029 captures the design choices in `DECISIONS.md`.
+
+DEFERRED.md now has a single Open row (D-2026-05-09-05 / FR-014, Phase 4 incremental rebuild). Phase 2 promotion is no longer gated on Phase 1b deferrals.
+
+**Phase 1b design** is recorded in `docs/plans/2026-05-09-phase1b-mcp-design.md`; D-020 through D-029 in `DECISIONS.md`. Phase 1b.2 plan: `docs/plans/2026-05-09-phase1b2-hardening.md`. Phase 1b.3 plan: `docs/plans/2026-05-09-phase1b3-polish.md`.
 
 ## Blockers
 
@@ -34,8 +43,7 @@ None.
 
 ## Pending
 
-- **Phase 1b.3** — operator/end-user polish: structured logging + per-tool-call metrics, packaging, Bulgarian stemmer + legal-term synonym dictionary (FR-015), body-snippet rework (FR-017), long-form definite-article stemming (FR-013).
-  Note: FR-016 (pathological-query stop-words) was originally slated here but landed in 1b.2 via the `QUERY_TOO_BROAD` reject path.
+- **Phase 1b polish (optional, not gated)** — items mentioned aspirationally but not in DEFERRED.md: structured logging + per-tool-call metrics, packaging (PyPI / Docker image), proper Bulgarian Snowball stemmer (would close the multi-syllable-stem cases FR-013 left out, e.g. `българският`/`български`).
 - **Phase 2 temporal index** (FR-001) — strictly after Phase 1b completes. The 1b.1 `provisions` schema is built to support it without migration.
 - **FR-011 G2 triage** of the ~128 degenerate acts (7 empty-titulo + 121 null-pub-date) — needed before Phase 5 upstream contribution; Phase 1b.1 surfaces these correctly so triage can proceed in parallel.
 

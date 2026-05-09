@@ -162,8 +162,11 @@ deferrals:
     title: bg_normalize last-character-only suffix stripping
     punted_from: 1b.1
     target: 1b.3
-    status: open
+    status: implemented
+    resolution_note: "Per-suffix MIN_STEM_LEN table in index/fts.py; new 3-char `ият` suffix at MIN_STEM=3 closes the новият/нов asymmetry; D-029."
     surfaces_affected:
+      - "index/fts.py:_BG_DEFINITE_SUFFIXES"
+      - "index/fts.py:_strip_definite_article"
       - "index/fts.py:bg_normalize"
 
   - id: D-2026-05-09-02
@@ -171,10 +174,13 @@ deferrals:
     title: search title_snippet only (no body snippet)
     punted_from: 1b.1
     target: 1b.3
-    status: open
+    status: implemented
+    resolution_note: "Opt-in body_snippet via include_body=True parameter on search; Python-side snippet generator with TOP_N=2 cap; preserves default perf budget; D-029."
     surfaces_affected:
       - "mcp_server/queries.py:full_text_search"
+      - "mcp_server/queries.py:_make_body_snippet"
       - "mcp_server/schemas.py:SearchHit"
+      - "mcp_server/server.py:search"
 
   - id: D-2026-05-09-03
     fr: FR-016
@@ -194,10 +200,13 @@ deferrals:
     title: synonym dictionary for Bulgarian abbreviations + rang-aware re-ranking
     punted_from: 1b.1
     target: 1b.3
-    status: open
+    status: implemented
+    resolution_note: "Two layers: hand-curated index/synonyms.LEGAL_ABBREVIATIONS (22 entries, query rewrite pre-FTS5) + rang-aware tier sort in index/fts.py:search_fts (laws/codes outrank implementing/regulations/ordinances); D-029."
     surfaces_affected:
-      - "index/fts.py:bg_normalize"
+      - "index/synonyms.py:LEGAL_ABBREVIATIONS"
       - "mcp_server/queries.py:full_text_search"
+      - "index/fts.py:search_fts"
+      - "index/fts.py:_RANG_TIER"
 
   - id: D-2026-05-09-05
     fr: FR-014
