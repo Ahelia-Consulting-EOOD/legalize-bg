@@ -1,0 +1,11 @@
+# Curated query → expected behavior pairs. Updated as the corpus + tokenizer
+# evolve. Each entry is: {query, must_include, must_exclude, top_k_law_ids}.
+# Initial seed — expanded in Task 21.
+
+cases:
+  - query: "обществени поръчки"
+    must_include: ["zakon-za-obshtestvenite-porachki"]
+    description: "ЗОП should rank top-3 for the most obvious Bulgarian query"
+  - query: "обществената поръчка"  # singular + definite article
+    must_include: ["zakon-za-obshtestvenite-porachki"]
+    description: "morphology test — singular def-art form should still match"
