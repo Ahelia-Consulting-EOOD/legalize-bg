@@ -62,10 +62,16 @@ class SearchHit:
 
     `body_snippet` is a Python-extracted ±60-char window around the
     first matching query token in the act's body, with `<b>...</b>`
-    highlighting. Cost-bounded: only the top 5 search results have a
-    populated `body_snippet`; results 6-N carry the empty string (NOT
-    None — non-optional field, callers always get a string). Closed
-    FR-017 / D-2026-05-09-02 in Phase 1b.3.
+    highlighting. Generated **only** when the caller passes
+    `include_body=True` to `search` (default False). When enabled,
+    cost-bounded to the top 2 hits — results 3+ always carry the
+    empty string. When disabled (the default), every hit carries
+    the empty string. The non-optional `str` type is intentional:
+    callers always get a string, never None. Closed FR-017 /
+    D-2026-05-09-02 in Phase 1b.3 — opt-in design preserves the
+    100 ms warm / 250 ms cold p95 search budget for the default
+    path; the live catalog has 1+ MB indexed bodies that make any
+    body fetch expensive.
     """
 
     law_id: str

@@ -416,6 +416,30 @@ def test_make_body_snippet_returns_empty_for_unknown_law_id(populated_conn):
     assert out == ""
 
 
+def test_insert_fts_row_lowercases_body(populated_conn):
+    """LOAD-BEARING INVARIANT: _make_body_snippet does case-sensitive
+    str.find() against laws_fts.body, expecting bg_normalize-d
+    (lowercased) text. If insert_fts_row ever stops lowercasing, the
+    snippet helper silently returns empty for queries that should
+    match. Lock the invariant here so a future change to the
+    normalization pipeline produces a focused failure."""
+    row = populated_conn.execute(
+        "SELECT body FROM laws_fts WHERE law_id = 'zakon-zop'"
+    ).fetchone()
+    assert row is not None
+    body = row["body"]
+    # bg_normalize lowercases — body should not contain any uppercase
+    # Cyrillic. Spot-check the canonical case-marker chars.
+    assert body == body.lower(), (
+        f"laws_fts.body for zakon-zop should be lowercased after "
+        f"bg_normalize; got mixed case: {body[:60]!r}"
+    )
+    # And the bg_normalize symmetric form is what _make_body_snippet
+    # expects for case-insensitive matching.
+    assert "закон" in body
+    assert "Закон" not in body
+
+
 def test_make_body_snippet_finds_earliest_match(populated_conn):
     """When multiple terms appear in the body, the snippet is built
     around the EARLIEST occurrence (so the user sees the first context

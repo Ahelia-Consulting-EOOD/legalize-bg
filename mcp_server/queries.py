@@ -52,7 +52,8 @@ _BODY_SNIPPET_TOP_N = 2
 
 # Half-window in characters around the matched token. ±60 chars gives
 # the model a sentence-sized fragment without ballooning the response
-# payload (max 120 chars per snippet × 5 = 600 chars per search call).
+# payload (max ~120 chars per snippet × _BODY_SNIPPET_TOP_N = ~240
+# chars total per search call when include_body=True).
 _BODY_SNIPPET_HALF_WINDOW = 60
 
 

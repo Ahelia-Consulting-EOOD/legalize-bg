@@ -105,15 +105,18 @@ def insert_fts_row(conn: sqlite3.Connection, law_id: str, title: str,
 
 
 # Single-stage SELECT with snippet() on the TITLE column (FTS5 column
-# index 1), not the body (index 2). Body-snippet was the perf killer:
-# extracting a fragment from ЗОП's 559 KB indexed body takes ~700ms
-# even with limit 20. Title-snippet runs in ~75ms and produces more
-# useful "which act is this?" output for callers — body context is
-# already available one tool-call away via get_law.
+# index 1), not the body (index 2). Body-snippet via FTS5 was the perf
+# killer in 1b.1: extracting a fragment from large indexed bodies takes
+# ~700ms even with limit 20. Title-snippet runs in ~75ms and produces
+# useful "which act is this?" output for callers.
 #
-# FR-017 tracks body-snippet generation for 1b.3 (truncated-excerpt
-# column or Python-side substring snippet). FR-015/FR-016 cover the
-# related ranking-quality and perf-pathological-query work.
+# FR-017 closed in Phase 1b.3 with an OPT-IN body-snippet path: see
+# `mcp_server/queries.py:_make_body_snippet`, gated on the new
+# `include_body=True` parameter on the `search` tool. Default `search`
+# calls preserve the title-only behavior here. FR-015 (synonym
+# expansion + rang-aware re-rank) and FR-016 (single-word category
+# query reject) are also closed; remaining open deferral is FR-014
+# (Phase 4 incremental rebuild).
 _FTS_SELECT = """
     SELECT laws_fts.law_id          AS law_id,
            laws.doc_id              AS doc_id,

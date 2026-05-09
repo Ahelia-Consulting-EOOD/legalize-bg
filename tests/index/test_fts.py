@@ -22,7 +22,13 @@ def test_strips_short_definite_article_TA_TO_TE():
     assert "място" in bg_normalize("мястото").split()
 
 
-def test_strips_long_definite_article_ETO_ITE():
+def test_strips_2char_definite_articles_TO_TA():
+    """Phase 1b.1 last-character stripping: `то` (neuter) and `та`
+    (feminine) come off cleanly, leaving the indefinite-form root.
+    Pre-1b.3 this test was named ETO_ITE but the body never tested
+    those — `ето`/`ите` are still NOT stripped (they would mangle
+    `управлението→управлени` and break plural-noun symmetry; see
+    the suffix-table comment in index/fts.py)."""
     # "управление[то]" → "управление", "решения[та]" → "решения"
     assert "управление" in bg_normalize("управлението").split()
     assert "решения" in bg_normalize("решенията").split()

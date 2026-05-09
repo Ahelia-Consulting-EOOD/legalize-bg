@@ -72,7 +72,9 @@ paths:
     protected_signatures:
       phase_1b_1:
         - "get_law(name: str, date: str | None = None) -> GetLawResponse"
-        - "search(query: str, category: str | None = None, limit: int = 20) -> list[SearchHit]"
+        # `include_body: bool = False` added in 1b.3 (FR-017 / D-029); additive
+        # per Surface 3 (default value preserves prior callers).
+        - "search(query: str, category: str | None = None, limit: int = 20, include_body: bool = False) -> list[SearchHit]"
         - "get_article(law: str, article: str, date: str | None = None) -> GetArticleResponse"
       phase_2:
         # Not yet implemented — gated on temporal index (FR-001).
