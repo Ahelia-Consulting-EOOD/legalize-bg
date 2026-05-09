@@ -271,7 +271,7 @@ Per D-022, Bulgarian morphology coverage is ~70-80% via symmetric `bg_normalize`
      |                     |          OR paragraph="2")   |
      |                     |     AND valid_from <= date   |
      |                     |     AND (valid_to IS NULL    |
-     |                     |          OR valid_to > date) |
+     |                     |          OR valid_to >= date)|
      |                     |<-- text ────────────────────|
      |                     |                              |
      |<-- GetArticleResponse|                             |
@@ -279,6 +279,8 @@ Per D-022, Bulgarian morphology coverage is ~70-80% via symmetric `bg_normalize`
 ```
 
 Per D-023, `provisions` is populated to alinea level from day one with `text` + `text_hash` columns — `get_article` is a single SQL lookup, no runtime Markdown parsing for current versions.
+
+**Inclusive `valid_to`.** The `>=` in the WHERE clause is intentional — see `docs/data/schema-reference.md` §2 ("Predicate semantics") for the in-force predicate definition. A version with `valid_to = '2020-12-31'` is in force ON 2020-12-31; using `>` would silently exclude the boundary day. The same `>=` predicate appears in the `version_at_date` SQL in §6.3.2 above — both are uniform across the codebase per `mcp_server/queries.py`.
 
 ### 6.3.5 Error envelope (8 codes)
 
