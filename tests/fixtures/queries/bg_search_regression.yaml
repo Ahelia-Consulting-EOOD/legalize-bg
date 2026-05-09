@@ -1,11 +1,39 @@
-# Curated query → expected behavior pairs. Updated as the corpus + tokenizer
-# evolve. Each entry is: {query, must_include, must_exclude, top_k_law_ids}.
-# Initial seed — expanded in Task 21.
+# Curated query → expected behavior pairs for the Bulgarian FTS pipeline.
+# Tested against the live catalog.db built from `main`. Failures here
+# signal that bg_normalize, FTS5 tokenization, or BM25 ranking has
+# regressed.
+#
+# `must_include`: law_id MUST appear in the top-20 results.
+# `must_exclude`: law_id MUST NOT appear at all.
+# `must_include_substring`: at least one hit's law_id must contain this.
+#
+# Phase 1b.1 ranking is BM25-only — top-N positional assertions are
+# tracked in FR-015 (1b.3 stemmer milestone) and not yet enforced here.
 
 cases:
   - query: "обществени поръчки"
     must_include: ["zakon-za-obshtestvenite-porachki"]
-    description: "ЗОП should rank top-3 for the most obvious Bulgarian query"
-  - query: "обществената поръчка"  # singular + definite article
+    description: "ЗОП should appear for the canonical procurement query"
+
+  - query: "обществената поръчка"   # singular + definite article
     must_include: ["zakon-za-obshtestvenite-porachki"]
-    description: "morphology test — singular def-art form should still match"
+    description: "morphology — singular def-art form must still match"
+
+  - query: "обществените поръчки"   # plural definite
+    must_include: ["zakon-za-obshtestvenite-porachki"]
+    description: "plural-definite ↔ plural-indefinite symmetry (D-022)"
+
+  - query: "електронното управление"
+    must_include: ["zakon-za-elektronnoto-upravlenie"]
+    description: "ЗЕУ via plural-definite form"
+
+  - query: "наказателен кодекс"
+    must_include_substring: "nakazatelen-kodeks"
+    description: "Codes retrievable via canonical title (two-tier ranker hit)"
+
+# NOTE: 'ЗОП' (the Bulgarian abbreviation) does NOT appear in ЗОП's
+# title or body — Bulgarian laws don't use abbreviations of their own
+# names internally. Resolving "ЗОП" → "Закон за обществените поръчки"
+# requires the synonym/abbreviation dictionary tracked in FR-015 +
+# D-022's stemmer milestone (Phase 1b.3). The negative case is locked
+# in tests/mcp_server/test_data_quality_acceptance.py until 1b.3 lands.

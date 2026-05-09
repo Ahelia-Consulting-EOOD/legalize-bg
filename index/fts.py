@@ -97,27 +97,83 @@ def insert_fts_row(conn: sqlite3.Connection, law_id: str, title: str,
     )
 
 
-def search_fts(conn: sqlite3.Connection, query: str,
-               category: str | None = None, limit: int = 20) -> list[sqlite3.Row]:
-    """Run an FTS5 MATCH query and return ranked rows joined with laws."""
-    normalized = bg_normalize(query)
-    if not normalized:
-        return []
-    sql = """
-        SELECT laws_fts.law_id          AS law_id,
-               laws.doc_id              AS doc_id,
-               laws.title               AS title,
-               laws.category            AS category,
-               snippet(laws_fts, 2, '<b>', '</b>', '...', 12) AS snippet,
-               bm25(laws_fts)           AS score
-          FROM laws_fts
-          JOIN laws USING(law_id)
-         WHERE laws_fts MATCH ?
-    """
-    params: list = [normalized]
+_BASE_SELECT = """
+    SELECT laws_fts.law_id          AS law_id,
+           laws.doc_id              AS doc_id,
+           laws.title               AS title,
+           laws.category            AS category,
+           snippet(laws_fts, 2, '<b>', '</b>', '...', 12) AS snippet,
+           bm25(laws_fts)           AS score
+      FROM laws_fts
+      JOIN laws USING(law_id)
+     WHERE laws_fts MATCH ?
+"""
+
+
+def _run_match(conn: sqlite3.Connection, match_query: str,
+               category: str | None, limit: int) -> list[sqlite3.Row]:
+    sql = _BASE_SELECT
+    params: list = [match_query]
     if category:
         sql += " AND laws.category = ?"
         params.append(category)
     sql += " ORDER BY bm25(laws_fts) LIMIT ?"
     params.append(limit)
-    return conn.execute(sql, params).fetchall()
+    try:
+        return conn.execute(sql, params).fetchall()
+    except sqlite3.OperationalError:
+        # FTS5 raises OperationalError on syntax issues (special chars,
+        # empty terms after tokenization). Treat as no results.
+        return []
+
+
+def search_fts(conn: sqlite3.Connection, query: str,
+               category: str | None = None,
+               limit: int = 20) -> list[sqlite3.Row]:
+    """FTS5 search with two-tier ranking: title-restricted matches
+    first, body matches second.
+
+    BM25 alone over title+body produces inverted rankings for canonical
+    title queries — e.g., "обществени поръчки" puts the implementing
+    regulation above ЗОП itself because the implementing reg has a
+    shorter body where the terms repeat more densely. Two-tier search
+    fixes the dominant case without a stemmer:
+      tier 1: docs whose TITLE contains every query token (high
+              precision; a doc with all query tokens in the title is
+              almost always the right answer)
+      tier 2: BM25 over the full corpus (recall — catches body matches
+              and abbreviations like 'ЗОП' that don't appear in titles)
+
+    Both tiers honor the optional category filter. Results are
+    deduplicated by law_id (title-tier wins). FR-015 tracks the
+    Phase 1b.3 stemmer + synonym dictionary that will further refine
+    ranking once usage data exists.
+    """
+    normalized = bg_normalize(query)
+    if not normalized:
+        return []
+
+    # Tier 1: column-restricted title query (e.g. "title:наказателен
+    # title:кодекс"). FTS5's column qualifier requires lowercased
+    # column name and the same normalized tokens.
+    tokens = [t for t in normalized.split() if t]
+    if tokens:
+        title_q = " ".join(f"title:{t}" for t in tokens)
+        title_rows = _run_match(conn, title_q, category, limit)
+    else:
+        title_rows = []
+
+    # Tier 2: general FTS5 over title+body (covers abbreviations and
+    # body-only matches when no title fully covers the query).
+    body_rows = _run_match(conn, normalized, category, limit)
+
+    seen_ids = {r["law_id"] for r in title_rows}
+    merged = list(title_rows)
+    for r in body_rows:
+        if r["law_id"] in seen_ids:
+            continue
+        merged.append(r)
+        seen_ids.add(r["law_id"])
+        if len(merged) >= limit:
+            break
+    return merged[:limit]
