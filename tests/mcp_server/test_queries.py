@@ -1,5 +1,12 @@
 import pytest
-from mcp_server.queries import parse_article_spec, ArticleSpec, InvalidArticleSpec
+from mcp_server.queries import (
+    parse_article_spec,
+    ArticleSpec,
+    InvalidArticleSpec,
+    resolve_name_to_law_id,
+    LawNotFound,
+    AmbiguousName,
+)
 
 
 @pytest.mark.parametrize("spec,expected", [
@@ -63,3 +70,44 @@ def test_valid_specs_with_whitespace_and_case_edges(
 def test_invalid_specs_edge_cases(spec):
     with pytest.raises(InvalidArticleSpec):
         parse_article_spec(spec)
+
+
+# ────────────────────────────── resolve_name_to_law_id ──────────────────────
+
+
+def test_resolve_by_identificador(populated_conn):
+    assert resolve_name_to_law_id(populated_conn, "100") == "zakon-a"
+
+
+def test_resolve_by_negative_identificador(populated_conn):
+    """§7.3 phantom act with negative doc_id — identificador is the only
+    handle that can address it, since titulo is empty."""
+    assert resolve_name_to_law_id(populated_conn, "-549676032") == "phantom"
+
+
+def test_resolve_by_exact_slug(populated_conn):
+    assert resolve_name_to_law_id(populated_conn, "zakon-a") == "zakon-a"
+
+
+def test_resolve_by_unique_title(populated_conn):
+    assert resolve_name_to_law_id(populated_conn, "Закон за А") == "zakon-a"
+
+
+def test_ambiguous_title_raises_with_candidates(populated_conn):
+    """§7.1 — multiple acts with identical title surface as
+    AMBIGUOUS_NAME with the full candidate list including identificador
+    (the disambiguating handle)."""
+    with pytest.raises(AmbiguousName) as exc:
+        resolve_name_to_law_id(populated_conn, "Наредба № 7 за нещо")
+    assert len(exc.value.candidates) == 2
+    ids = {c["law_id"] for c in exc.value.candidates}
+    assert ids == {"naredba-7", "naredba-7-2"}
+    for c in exc.value.candidates:
+        assert "identificador" in c
+
+
+def test_unknown_name_raises_LawNotFound_with_suggestions(populated_conn):
+    with pytest.raises(LawNotFound) as exc:
+        resolve_name_to_law_id(populated_conn, "напълно непознат акт")
+    assert "напълно непознат акт" in exc.value.name
+    assert hasattr(exc.value, "suggestions")
