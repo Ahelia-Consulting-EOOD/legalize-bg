@@ -234,6 +234,15 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             context (body-snippet generation is deferred to a future
             milestone). Acts with empty titulo (§7.3) carry
             "<doc_id=N>" in the title slot.
+
+        Raises:
+            QUERY_TOO_BROAD: when the query (after normalization) is a
+                single Bulgarian category word ("наредба", "закон",
+                "правилник", "кодекс", "постановление"). These would
+                match thousands of acts each; the rejection prevents
+                a 400 ms+ cold-call latency outside the 100 ms p95
+                budget. Multi-word queries containing the same words
+                ("наредба за обществени поръчки") are NOT rejected.
         """
         # Cap limit defensively — FTS5 with very large limits can OOM
         # on a million-row catalog. 50 is plenty for an LLM caller.
