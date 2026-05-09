@@ -60,17 +60,25 @@ paths:
   # These are the API surface consumed by Claude Code legal skills
   # (ZOP, contracts, rfp-response, legislative-draft).
   # Signature changes break all downstream skill consumers.
-  - path: "mcp/server.py (tool signatures)"
+  # Phase 1b.1 ships exactly the phase_1b_1 trio with typed-dict response
+  # shapes per D-024 (see docs/sync/DECISIONS.md). The phase_2 trio is
+  # listed for forward visibility but is NOT yet implemented; it is
+  # gated on the temporal index (FR-001).
+  - path: "mcp_server/server.py (tool signatures)"
     reason: "MCP tool API consumed by Claude Code legal skills"
     edit_mode: owner_review_required
     blast_radius: "All Claude Code sessions using legal skills"
+    reference: "docs/sync/DECISIONS.md D-024 (typed-dict response shapes)"
     protected_signatures:
-      - "get_law(name: str, date: str | None = None) -> str"
-      - "search(query: str, category: str | None = None) -> list[dict]"
-      - "get_article(law: str, article: str, date: str | None = None) -> str"
-      - "history(law: str) -> list[dict]"
-      - "diff(law: str, date1: str, date2: str) -> str"
-      - "amendments_in_period(from_date: str, to_date: str) -> list[dict]"
+      phase_1b_1:
+        - "get_law(name: str, date: str | None = None) -> GetLawResponse"
+        - "search(query: str, category: str | None = None, limit: int = 20) -> list[SearchHit]"
+        - "get_article(law: str, article: str, date: str | None = None) -> GetArticleResponse"
+      phase_2:
+        # Not yet implemented — gated on temporal index (FR-001).
+        - "history(law: str) -> list[VersionEntry]"
+        - "diff(law: str, date1: str, date2: str) -> str"
+        - "amendments_in_period(from_date: str, to_date: str) -> list[AmendmentEntry]"
 
   # --- SQLite Schema ---
   # The index is derived from git but schema changes require re-indexing
