@@ -136,6 +136,28 @@ connection is read-mostly — no concurrent-write hazard. The test
 fixtures use the same setting via the `populated_conn` conftest fixture,
 so component-level tests behave identically to the production server.
 
+## Idempotency contract
+
+All three tools (`get_law`, `search`, `get_article`) are **read-only with respect to durable state**. A request never:
+
+- Writes to the corpus (working-tree `.md` files).
+- Writes to the SQLite catalog (`catalog.db`).
+- Mutates remote services (no network I/O at request time).
+
+A request DOES write to:
+
+- The Python logger (INFO/WARN per the rules in §"Server runtime").
+- The OS file cache (incidental — opening `.md` files for the working-tree fast path warms the page cache; this is invisible to callers).
+
+**Idempotency consequences:**
+- A retry of any tool call against the same `(name, date, article)` returns the same response (modulo OS-cache state, which only affects latency, not the response body).
+- Concurrent calls do not race — SQLite is opened with `check_same_thread=False`, FastMCP serializes per-tool execution, and there are no shared mutable structures across calls.
+- A caller may safely retry on transport-level failures without risk of duplicated side-effects.
+
+**Non-idempotency to be aware of:**
+- The build path (`python -m index.build`) IS NOT idempotent in the sense that re-running it issues `DELETE FROM laws_fts` etc. (full rebuild). FR-014 tracks the incremental rebuild path; until then, do not re-run the build under load.
+- Working-tree edits between requests will surface in subsequent `get_law` responses via the fast path (commit_hash matches HEAD). The runbook's `INDEX_STALE` advice covers this.
+
 ## Tools surfaced
 
 | Tool | Inputs | Returns |
