@@ -11,6 +11,16 @@ from typing import Any
 
 @dataclass(frozen=True)
 class GetLawResponse:
+    """Structured `get_law` response per D-024.
+
+    All date fields (`fecha_publicacion`, `ultima_actualizacion`,
+    `effective_date`, and any `amendment_history[].date`) are ISO 8601
+    strings (YYYY-MM-DD), never `datetime.date`. PyYAML parses unquoted
+    ISO date scalars to `datetime.date`; `mcp_server.server._iso` coerces
+    them back to strings before they reach this dataclass so JSON-RPC
+    consumers don't see Python objects (audit C-4). Quoted-string YAML
+    date fields pass through unchanged.
+    """
     law_id: str
     identificador: str
     titulo: str

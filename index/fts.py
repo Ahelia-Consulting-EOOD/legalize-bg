@@ -131,9 +131,27 @@ def _run_match(conn: sqlite3.Connection, match_query: str,
     params.append(limit)
     try:
         return conn.execute(sql, params).fetchall()
-    except sqlite3.OperationalError:
-        # FTS5 raises OperationalError on syntax issues (special chars,
-        # empty terms after tokenization). Treat as no results.
+    except sqlite3.OperationalError as e:
+        # FTS5 raises OperationalError for malformed query terms — the
+        # user-input error families we suppress are:
+        #   - "fts5: syntax error near ..."         (unbalanced quotes etc.)
+        #   - "unknown special query: ..."          (lone '*' / bareword)
+        #   - "syntax error"                        (generic FTS5 syntax)
+        # Suppress those — the user gave us a string FTS5 can't tokenize,
+        # so treat as no results. Other OperationalErrors (table missing,
+        # DB locked, disk full, corruption) must propagate so callers
+        # see INDEX_STALE / INDEX_MISSING instead of silent empty results
+        # (audit D-8). Mirrors mcp_server.queries.resolve_name_to_law_id
+        # in spirit; broadened to include the "unknown special query"
+        # family that the resolver's path doesn't hit.
+        msg = str(e).lower()
+        is_user_input_error = (
+            "fts5" in msg
+            or "syntax error" in msg
+            or "unknown special query" in msg
+        )
+        if not is_user_input_error:
+            raise
         return []
 
 

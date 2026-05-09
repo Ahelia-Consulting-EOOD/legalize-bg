@@ -1,5 +1,7 @@
+import sqlite3
+
 import pytest
-from index.fts import bg_normalize
+from index.fts import bg_normalize, _run_match, create_laws_fts_table
 
 
 def test_lowercase():
@@ -73,3 +75,46 @@ def test_preserves_numbers_and_latin():
     assert "14" in out
     assert "2016" in out
     assert "зоп" in out
+
+
+# ─── _run_match exception narrowing (audit D-8) ───────────────────────────────
+
+_LAWS_DDL = """
+    CREATE TABLE laws (
+        law_id TEXT PRIMARY KEY,
+        doc_id INTEGER,
+        title TEXT NOT NULL,
+        category TEXT NOT NULL,
+        status TEXT DEFAULT 'vigente',
+        current_commit TEXT
+    )
+"""
+
+
+def test_run_match_swallows_fts5_syntax_errors():
+    """A query with FTS5-special syntax (lone '*', unbalanced quote) must
+    return [] rather than raise — both the resolver and search depend on
+    this fallback so callers don't see FTS5 syntax errors from raw user
+    input."""
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    conn.execute(_LAWS_DDL)
+    create_laws_fts_table(conn)
+    # FTS5 emits "unknown special query: " for lone '*'. Must be
+    # swallowed; result is empty list.
+    assert _run_match(conn, "*", category=None, limit=20) == []
+
+
+def test_run_match_does_not_swallow_corrupt_index_errors():
+    """A non-FTS5 OperationalError (mirroring a corrupted/dropped FTS5
+    index — base `laws` table intact but `laws_fts` virtual table
+    missing) MUST propagate so the operator sees INDEX_STALE /
+    INDEX_MISSING instead of silent empty results. The narrowed catch
+    only suppresses fts5/syntax/unknown-special-query errors."""
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    conn.execute(_LAWS_DDL)
+    # Deliberately do NOT create laws_fts; expect OperationalError
+    # ("no such table: laws_fts") to propagate.
+    with pytest.raises(sqlite3.OperationalError):
+        _run_match(conn, "поръчки", category=None, limit=20)

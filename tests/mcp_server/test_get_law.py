@@ -111,3 +111,51 @@ def test_get_law_no_DATE_UNCERTAIN_by_default(app):
     result = app.call_tool_sync("get_law", {"name": "100"})
     codes = [w["code"] for w in result["warnings"]]
     assert "DATE_UNCERTAIN" not in codes
+
+
+# ─── _split_frontmatter WARN log on missing delimiter (audit D-9) ────────────
+
+
+def test_split_frontmatter_warns_on_missing_delimiter(caplog):
+    """When a Markdown file lacks the leading `---\\n` frontmatter
+    delimiter, _split_frontmatter falls back to ({}, raw) — but it must
+    emit a WARN log so operators see drift between the working-tree fast
+    path (which silently tolerates dirty files) and the build-time
+    invariant (which raises). Without the WARN, an operator could
+    silently get titulo="" / eli=None responses."""
+    import logging
+    from mcp_server.server import _split_frontmatter
+
+    raw_no_frontmatter = "# Just a body, no YAML frontmatter\n\nХ.\n"
+    with caplog.at_level(logging.WARNING, logger="mcp_server.server"):
+        fm, body = _split_frontmatter(raw_no_frontmatter)
+
+    assert fm == {}
+    assert body == raw_no_frontmatter
+    assert any(
+        "frontmatter" in rec.message.lower()
+        and rec.levelname == "WARNING"
+        for rec in caplog.records
+    ), (
+        "expected a WARN about missing frontmatter; got: "
+        f"{[(r.levelname, r.message) for r in caplog.records]}"
+    )
+
+
+def test_split_frontmatter_no_warn_on_happy_path(caplog):
+    """Files with proper `---\\n` delimiter must NOT emit any
+    missing-frontmatter WARN — the warning is only for the silent-
+    fallback case."""
+    import logging
+    from mcp_server.server import _split_frontmatter
+
+    raw_with_frontmatter = "---\ntitulo: Test\n---\n# Body\n"
+    with caplog.at_level(logging.WARNING, logger="mcp_server.server"):
+        fm, body = _split_frontmatter(raw_with_frontmatter)
+
+    assert fm == {"titulo": "Test"}
+    assert "Body" in body
+    assert not any(
+        rec.levelname == "WARNING" and "frontmatter" in rec.message.lower()
+        for rec in caplog.records
+    ), "happy path must not emit the missing-frontmatter WARN"

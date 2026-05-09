@@ -61,8 +61,20 @@ def _read_law_markdown(corpus_root: Path, law_id: str, category: str,
 def _split_frontmatter(raw: str) -> tuple[dict, str]:
     """Split a Markdown file with YAML frontmatter into (frontmatter, body).
     Mirrors `index.build._parse_md` so the read path matches the write
-    path; if the corpus invariant changes, both fix together."""
+    path; if the corpus invariant changes, both fix together.
+
+    Behavior on missing `---\\n` prefix: returns ({}, raw) and emits a
+    WARN log. The build path raises on missing frontmatter; the query
+    path doesn't, because the working-tree fast path may legitimately
+    encounter a hand-edited file mid-edit. Without the WARN, an operator
+    could silently get titulo="" / eli=None responses (audit D-9).
+    """
     if not raw.startswith("---\n"):
+        log.warning(
+            "frontmatter delimiter '---' missing at start of markdown; "
+            "returning empty frontmatter dict (working-tree may be dirty "
+            "or the file is hand-edited — re-run index.build if so)"
+        )
         return {}, raw
     after_open = raw[4:]
     parts = after_open.split("\n---\n", 1)
@@ -245,7 +257,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                 "чл. 14а" / "14а" — Cyrillic-suffix variant
                 "чл. 14, ал. 2" / "14.2" / "14, ал. 2" — specific alinea
                 "чл. 14-16" — range (only article=14 is returned in 1b.1;
-                    full range support tracked in FR-001 Phase 2).
+                    full range support tracked in FR-018).
             date: ISO 8601 date for historical retrieval. If omitted,
                 returns the current text.
 
