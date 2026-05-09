@@ -8,6 +8,7 @@ dependencies = [
     "beautifulsoup4>=4.12",
     "pyyaml>=6.0",
     "lxml>=5.0",
+    "fastmcp>=0.4",
 ]
 
 [project.optional-dependencies]
@@ -17,7 +18,7 @@ dev = [
 ]
 
 [tool.setuptools.packages.find]
-include = ["fetcher*", "index*"]
+include = ["fetcher*", "index*", "mcp_server*"]
 exclude = ["tests*", "scripts*", "research*", "docs*"]
 
 [tool.pytest.ini_options]
