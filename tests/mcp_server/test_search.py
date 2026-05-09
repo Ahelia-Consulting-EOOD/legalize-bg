@@ -294,3 +294,47 @@ def test_search_synonym_expansion_is_case_insensitive(populated_conn, tmp_path):
     finally:
         syn.LEGAL_ABBREVIATIONS.clear()
         syn.LEGAL_ABBREVIATIONS.update(orig)
+
+
+# ─── FR-015 part 2: rang-aware re-ranking (D-2026-05-09-04) ────────────────────
+
+
+def test_search_parent_law_outranks_implementing_regulation(app):
+    """FR-015 part 2: when a parent law and its implementing
+    regulations / ordinances all match the same query, the parent law
+    (category=`laws` or `codes`) must outrank the implementing acts
+    (category=`implementing`/`regulations`/`ordinances`) in search
+    results.
+
+    Conftest seeds an adversarial fixture (zakon-zop with a long
+    title vs ppr-zop / reg-zop with shorter denser titles). bm25 alone
+    would put the shorter implementing acts FIRST because of higher
+    query-token density. The rang-aware tier sort in search_fts must
+    invert that: parent law on top, implementing acts after."""
+    hits = app.call_tool_sync("search", {"query": "обществени поръчки"})
+    law_pos = next(
+        (i for i, h in enumerate(hits) if h["law_id"] == "zakon-zop"),
+        None,
+    )
+    ppr_pos = next(
+        (i for i, h in enumerate(hits) if h["law_id"] == "ppr-zop"),
+        None,
+    )
+    reg_pos = next(
+        (i for i, h in enumerate(hits) if h["law_id"] == "reg-zop"),
+        None,
+    )
+    assert law_pos is not None, (
+        f"parent law not found: {[h['law_id'] for h in hits]}"
+    )
+    assert ppr_pos is not None, (
+        f"implementing reg not found: {[h['law_id'] for h in hits]}"
+    )
+    assert reg_pos is not None, (
+        f"regulation not found: {[h['law_id'] for h in hits]}"
+    )
+    assert law_pos < ppr_pos and law_pos < reg_pos, (
+        f"parent law (pos {law_pos}) should outrank implementing reg "
+        f"(pos {ppr_pos}) and regulation (pos {reg_pos}). "
+        f"Hits: {[h['law_id'] for h in hits]}"
+    )

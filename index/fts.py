@@ -179,6 +179,31 @@ def _run_match(conn: sqlite3.Connection, match_query: str,
         return []
 
 
+# FR-015 part 2 / D-2026-05-09-04: rang-aware re-rank tiers. Lower
+# number = higher priority. Parent legislative instruments
+# (`laws` directory = закони; `codes` = кодекси) outrank implementing
+# regs / ordinances / regulations within the same query result set.
+# Tier 2 is fallback for unknown categories.
+_RANG_TIER: dict[str, int] = {
+    "laws":         0,
+    "codes":        0,
+    "regulations":  1,
+    "implementing": 1,
+    "ordinances":   1,
+}
+
+
+def _rang_tier(row: sqlite3.Row) -> int:
+    """Return the rang-tier for a search result row (0 = parent
+    laws/codes, 1 = regulations/implementing/ordinances, 2 = unknown).
+    Used as the primary sort key in search_fts's final tier sort."""
+    try:
+        category = row["category"]
+    except (IndexError, KeyError):
+        return 2
+    return _RANG_TIER.get(category, 2)
+
+
 def search_fts(conn: sqlite3.Connection, query: str,
                category: str | None = None,
                limit: int = 20) -> list[sqlite3.Row]:
@@ -219,7 +244,7 @@ def search_fts(conn: sqlite3.Connection, query: str,
     # FTS5 query is the bigger of the two (full-corpus body match) and
     # adds ~100ms even when its results are discarded by the dedup loop.
     if len(title_rows) >= limit:
-        return list(title_rows)
+        return _rang_tier_sort(list(title_rows))
 
     # Tier 2: general FTS5 over title+body (covers abbreviations and
     # body-only matches when no title fully covers the query).
@@ -234,4 +259,19 @@ def search_fts(conn: sqlite3.Connection, query: str,
         seen_ids.add(r["law_id"])
         if len(merged) >= limit:
             break
-    return merged[:limit]
+
+    # FR-015 part 2 / D-2026-05-09-04: rang-aware tier sort. Parent
+    # laws (закон / кодекс categories) outrank implementing regs /
+    # ordinances within the result set. Sort is stable within each
+    # tier (key = (tier, original_index)), preserving bm25 ordering
+    # among same-rang results.
+    return _rang_tier_sort(merged[:limit])
+
+
+def _rang_tier_sort(rows: list[sqlite3.Row]) -> list[sqlite3.Row]:
+    """Stable tier sort by `_rang_tier(row)` then original position —
+    parent laws/codes float to the top, bm25 order is preserved within
+    each tier."""
+    indexed = list(enumerate(rows))
+    indexed.sort(key=lambda pair: (_rang_tier(pair[1]), pair[0]))
+    return [row for _, row in indexed]

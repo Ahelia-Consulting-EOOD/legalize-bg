@@ -42,6 +42,21 @@ def populated_conn(conn):
         ("naredba-7",   200,         "Наредба № 7 за нещо",   "ordinances"),
         ("naredba-7-2", 201,         "Наредба № 7 за нещо",   "ordinances"),  # §7.1
         ("phantom",     -549676032,  "",                      "ordinances"),  # §7.3
+        # FR-015 part 2 (rang-aware re-rank, D-2026-05-09-04):
+        # adversarial fixture where bm25 alone would put the
+        # implementing reg + ordinance ABOVE the parent law (both have
+        # shorter titles with denser query-token concentration). The
+        # rang-tier sort in search_fts must invert that and put the
+        # parent law (laws/) at the top.
+        ("zakon-zop",     500,
+         "Закон за обществените поръчки в Република България",
+         "laws"),
+        ("ppr-zop",       501,
+         "Правилник обществени поръчки",
+         "implementing"),
+        ("reg-zop",       502,
+         "Регистър обществени поръчки",
+         "regulations"),
     ]
     fake_commit = FAKE_COMMIT_HASH
     for law_id, doc_id, title, cat in rows:
