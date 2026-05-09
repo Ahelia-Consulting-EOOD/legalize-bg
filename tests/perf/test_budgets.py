@@ -1,9 +1,10 @@
 """Performance regression budgets per design doc §9.
 
 Phase 1b.1: SOFT assertions — log a warning on regression but pass.
-Phase 1b.2: promote to HARD assertions (when observability lands so
-operators have feedback loops). Until then, the warning text in CI logs
-is the signal; sustained regressions trigger investigation, not alerts.
+Phase 1b.2 (D-027 hard-promotion): assertions FAIL the test on
+regression so CI catches drift. The cold-call companion file
+`test_cold_calls.py` adds first-user-hit coverage that this warm
+sequential pattern alone can't see.
 
 All budgets measured against the live catalog.db (3,573 acts, ~150k
 article rows + ~300k alinea rows). Skipped when catalog.db is missing.
@@ -67,20 +68,22 @@ def _p95(samples: list[float]) -> float:
     return samples[idx]
 
 
-def _soft_assert(p95: float, budget_key: str) -> None:
-    """1b.1 contract: log a warning above budget, don't fail. The
-    eventual 1b.2 promotion swaps `logging.warning` for `assert`."""
+def _hard_assert(p95: float, budget_key: str) -> None:
+    """1b.2 contract (D-027): fail the test on regression. Phase 1b.1
+    used a soft warning here; Phase 1b.2's deferral D-2026-05-09-06
+    promoted these to hard assertions now that observability has caught
+    up enough that operators see CI failures instead of silent log
+    lines."""
     budget = BUDGETS[budget_key]
     if p95 > budget:
-        logging.warning(
-            "PERF: %s p95=%.4fs exceeds budget %.4fs (1b.1 SOFT)",
-            budget_key, p95, budget,
+        pytest.fail(
+            f"PERF: {budget_key} p95={p95:.4f}s exceeds budget "
+            f"{budget:.4f}s (1b.2 HARD). Investigate before merge."
         )
-    else:
-        logging.info(
-            "PERF: %s p95=%.4fs within budget %.4fs",
-            budget_key, p95, budget,
-        )
+    logging.info(
+        "PERF: %s p95=%.4fs within budget %.4fs (HARD)",
+        budget_key, p95, budget,
+    )
 
 
 def test_search_p95(conn):
@@ -93,7 +96,7 @@ def test_search_p95(conn):
         t0 = time.monotonic()
         full_text_search(conn, q, limit=20)
         durations.append(time.monotonic() - t0)
-    _soft_assert(_p95(durations), "search_p95")
+    _hard_assert(_p95(durations), "search_p95")
 
 
 def test_get_law_current_p95(conn):
@@ -118,7 +121,7 @@ def test_get_law_current_p95(conn):
         law_id = resolve_name_to_law_id(conn, did)
         version_with_warnings(conn, law_id, date=None)
         durations.append(time.monotonic() - t0)
-    _soft_assert(_p95(durations), "get_law_current_p95")
+    _hard_assert(_p95(durations), "get_law_current_p95")
 
 
 def test_get_article_p95(conn):
@@ -135,4 +138,4 @@ def test_get_article_p95(conn):
         article_lookup(conn, r["law_id"], article=r["article"],
                        paragraph=None, date=None)
         durations.append(time.monotonic() - t0)
-    _soft_assert(_p95(durations), "get_article_p95")
+    _hard_assert(_p95(durations), "get_article_p95")
