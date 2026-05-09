@@ -91,18 +91,60 @@ _LAWS_DDL = """
 """
 
 
-def test_run_match_swallows_fts5_syntax_errors():
-    """A query with FTS5-special syntax (lone '*', unbalanced quote) must
-    return [] rather than raise — both the resolver and search depend on
-    this fallback so callers don't see FTS5 syntax errors from raw user
-    input."""
+@pytest.mark.parametrize(
+    "user_input,error_family",
+    [
+        ("*", "unknown special query"),
+        ('"foo', "unterminated string"),
+        ('foo"bar', "unterminated string"),
+        ('"unbalanced', "unterminated string"),
+        ('"empty""', "unterminated string"),
+        ("x:badcolumn", "no such column"),
+    ],
+    ids=[
+        "lone-asterisk",
+        "leading-quote",
+        "embedded-quote",
+        "unbalanced-quote",
+        "doubled-trailing-quote",
+        "invalid-column-qualifier",
+    ],
+)
+def test_run_match_swallows_fts5_user_input_errors(user_input, error_family):
+    """FTS5 raises OperationalError for malformed query terms — three
+    error-message families verified empirically (see plan
+    `2026-05-09-phase1b1-review-fixes.md`):
+
+      - "unknown special query: "  (lone '*')
+      - "unterminated string"      (any unbalanced quote)
+      - "no such column: ..."      (invalid column qualifier)
+
+    All must be swallowed (return []) so user typos in `search` don't
+    surface as 500-equivalent errors. The resolver and search both depend
+    on this fallback. The error_family arg is a sanity check that the
+    test inputs are actually reaching the path under test (audit D-8 +
+    review Issue #1)."""
     conn = sqlite3.connect(":memory:")
     conn.row_factory = sqlite3.Row
     conn.execute(_LAWS_DDL)
     create_laws_fts_table(conn)
-    # FTS5 emits "unknown special query: " for lone '*'. Must be
-    # swallowed; result is empty list.
-    assert _run_match(conn, "*", category=None, limit=20) == []
+    # Sanity: confirm the input genuinely produces the expected family
+    # at the SQLite layer (so a future SQLite version that changes the
+    # message family causes a single, focused test failure rather than
+    # silent allowlist drift).
+    try:
+        conn.execute(
+            "SELECT 1 FROM laws_fts WHERE laws_fts MATCH ?", [user_input]
+        ).fetchone()
+    except sqlite3.OperationalError as e:
+        assert error_family in str(e).lower(), (
+            f"input {user_input!r}: expected error family containing "
+            f"{error_family!r}, got {str(e)!r}. SQLite/FTS5 may have "
+            f"changed its error wording — update the allowlist in "
+            f"index/fts.py:_run_match accordingly."
+        )
+    # The actual contract: _run_match must return [] for all three families.
+    assert _run_match(conn, user_input, category=None, limit=20) == []
 
 
 def test_run_match_does_not_swallow_corrupt_index_errors():

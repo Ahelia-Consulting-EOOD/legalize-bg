@@ -132,23 +132,30 @@ def _run_match(conn: sqlite3.Connection, match_query: str,
     try:
         return conn.execute(sql, params).fetchall()
     except sqlite3.OperationalError as e:
-        # FTS5 raises OperationalError for malformed query terms — the
-        # user-input error families we suppress are:
-        #   - "fts5: syntax error near ..."         (unbalanced quotes etc.)
-        #   - "unknown special query: ..."          (lone '*' / bareword)
-        #   - "syntax error"                        (generic FTS5 syntax)
+        # FTS5 raises OperationalError for malformed query terms — three
+        # user-input error families verified empirically (see plan
+        # docs/plans/2026-05-09-phase1b1-review-fixes.md, Task 1) plus
+        # the historic "fts5"/"syntax error" prefixes some SQLite builds
+        # emit:
+        #   - "unknown special query: "              (lone '*' / bareword)
+        #   - "unterminated string"                  (any unbalanced quote)
+        #   - "no such column: ..."                  (invalid x:foo column qualifier)
+        #   - "fts5: ..." / "syntax error"           (build-specific prefixes)
         # Suppress those — the user gave us a string FTS5 can't tokenize,
         # so treat as no results. Other OperationalErrors (table missing,
         # DB locked, disk full, corruption) must propagate so callers
-        # see INDEX_STALE / INDEX_MISSING instead of silent empty results
-        # (audit D-8). Mirrors mcp_server.queries.resolve_name_to_law_id
-        # in spirit; broadened to include the "unknown special query"
-        # family that the resolver's path doesn't hit.
+        # see INDEX_STALE / INDEX_MISSING instead of silent empty
+        # results (audit D-8 + review Issue #1). Mirrors
+        # mcp_server.queries.resolve_name_to_law_id in spirit;
+        # consolidating the two allowlists into a shared tuple is
+        # tracked separately.
         msg = str(e).lower()
         is_user_input_error = (
             "fts5" in msg
             or "syntax error" in msg
             or "unknown special query" in msg
+            or "unterminated string" in msg
+            or msg.startswith("no such column")
         )
         if not is_user_input_error:
             raise
