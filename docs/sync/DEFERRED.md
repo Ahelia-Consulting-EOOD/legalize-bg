@@ -19,20 +19,17 @@ Each row links the deferral to its FR (or DECISION) trace, the phase it was punt
 |---|---|---|---|---|---|---|
 | D-2026-05-09-01 | `bg_normalize` last-character-only suffix stripping (adjective long-form definite article asymmetry) | Phase 1b.1 | Phase 1b.3 | Open | 2026-05-09 (filed) | [FR-013](../frs/INDEX.md) |
 | D-2026-05-09-02 | `search` returns `title_snippet` only (no body snippet) | Phase 1b.1 | Phase 1b.3 | Open | 2026-05-09 (filed) | [FR-017](../frs/INDEX.md) |
-| D-2026-05-09-03 | Single-word category queries (`наредба`) overrun the 100 ms p95 search budget | Phase 1b.1 | Phase 1b.2 | Open | 2026-05-09 (filed) | [FR-016](../frs/INDEX.md) |
 | D-2026-05-09-04 | Synonym dictionary for Bulgarian abbreviations (ЗОП ↔ Закон за обществените поръчки) and `rang`-aware re-ranking | Phase 1b.1 | Phase 1b.3 | Open | 2026-05-09 (filed) | [FR-015](../frs/INDEX.md) |
 | D-2026-05-09-05 | Incremental index rebuild (currently full DELETE-then-INSERT each time, ~45 s for 3,573 acts) | Phase 1b.1 | Phase 4 | Open | 2026-05-09 (filed) | [FR-014](../frs/INDEX.md) |
-| D-2026-05-09-06 | Soft perf assertions (`tests/perf/test_budgets.py` logs warnings, doesn't fail) — promote to hard | Phase 1b.1 | Phase 1b.2 | Open | 2026-05-09 (filed) | [D-027](DECISIONS.md) |
 
 ## Resolved deferrals
 
-(empty — Phase 1b.1 is the first phase to register deferrals in this file.)
+| ID | Title | Punted from | Target | Status | Last reviewed | FR / Decision | Resolution note |
+|---|---|---|---|---|---|---|---|
+| D-2026-05-09-03 | Single-word category queries (`наредба`) overrun the 100 ms p95 search budget | Phase 1b.1 | Phase 1b.2 | Implemented | 2026-05-09 | [FR-016](../frs/INDEX.md) | Stop-word reject path in `mcp_server/queries.py:full_text_search` raises new `QUERY_TOO_BROAD` error before FTS5; closed in Phase 1b.2 hardening plan. See [D-028](DECISIONS.md). |
+| D-2026-05-09-06 | Soft perf assertions (`tests/perf/test_budgets.py` logs warnings, doesn't fail) — promote to hard | Phase 1b.1 | Phase 1b.2 | Implemented | 2026-05-09 | [D-027](DECISIONS.md) | `_soft_assert` → `_hard_assert` in `tests/perf/test_budgets.py`; new `tests/perf/test_cold_calls.py` adds first-user-hit coverage. See [D-028](DECISIONS.md). |
 
-> **Row schema for resolved entries.** When an Open row is resolved at a phase boundary it migrates here with the same columns; only the values change. The `Status` column flips from `Open` to one of `Implemented` / `Re-affirmed` / `Withdrawn`; `Last reviewed` becomes the resolution date; an extra column "Resolution note" can be added inline with a one-sentence explanation and a link to the closing `DECISIONS.md` entry. Example row format (kept as a template, not an actual deferral):
->
-> | ID | Title | Punted from | Target | Status | Last reviewed | FR / Decision | Resolution note |
-> |---|---|---|---|---|---|---|---|
-> | D-YYYY-MM-DD-NN | _example title_ | _from-phase_ | _target-phase_ | Implemented | YYYY-MM-DD | [FR-NNN](../frs/INDEX.md) | _One-sentence resolution; link to_ [_DECISIONS.md_](DECISIONS.md) _entry._ |
+> **Row schema for resolved entries.** When an Open row is resolved at a phase boundary it migrates here with the same columns; only the values change. The `Status` column flips from `Open` to one of `Implemented` / `Re-affirmed` / `Withdrawn`; `Last reviewed` becomes the resolution date; an extra column "Resolution note" carries a one-sentence explanation and a link to the closing `DECISIONS.md` entry.
 
 ## Phase-boundary review protocol
 

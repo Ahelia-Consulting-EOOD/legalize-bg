@@ -1,9 +1,9 @@
 # Active Work
 
-**Current phase:** Phase 1b.1 — **complete on `main` 2026-05-09**.
+**Current phase:** Phase 1b.2 — **complete on `main` 2026-05-09**.
 **Current owner:** ekimir
 **Started:** 2026-05-09 (design phase) → shipped same day after multi-batch executing-plans run.
-**Next action:** Phase 1b.2 (structured backend hardening) — versioned JSON schemas published as `tools.json` + `mcp_server/schemas.py` dataclass freeze, error taxonomy formalized for downstream callers, soft perf assertions promoted to hard.
+**Next action:** Phase 1b.3 (operator/end-user polish) OR Phase 2 (temporal index) — both are now unblocked. See "Pending" below.
 
 ## Status
 
@@ -18,7 +18,15 @@
 - Operator runbook at `docs/runbook/2026-05-09-phase1b1-operator-setup.md`.
 - Smoke-verified end-to-end: search/get_law/get_article all work against the live 3,573-act catalog. Build time 45 s. p95 latencies: get_law 3.4 ms, get_article 0.3 ms, search ~290 ms (soft warning on the "наредба" pathological query — FR-016 tracks the 1b.2 hardening).
 
-**Phase 1b design** is recorded in `docs/plans/2026-05-09-phase1b-mcp-design.md`; D-020 through D-027 in `DECISIONS.md`.
+**Phase 1b.2** (structured backend hardening) — complete on `main` 2026-05-09:
+- **FR-016 closed** via the `QUERY_TOO_BROAD` reject path: single-word category queries (`наредба`, `закон`, `правилник`, `кодекс`, `постановление`) now short-circuit before FTS5 — the rejection runs in <1 ms instead of the 437 ms cold-call FTS5 ranking over 2,604 ordinances. 9th error code, additive per Surface 3.
+- **D-027 closed**: `tests/perf/test_budgets.py` soft assertions promoted to hard via `_hard_assert(pytest.fail)`. New `tests/perf/test_cold_calls.py` adds first-user-hit coverage with fresh-connection-per-query. Shared `tests/perf/conftest.py` warmer keeps OS file cache hot across both files so the budgets measure SQLite/FTS5, not disk I/O.
+- **`tools.json` published** (version 1.0.0) — full input/output JSON schemas for all 3 tools plus the 9-code error taxonomy. Source of truth: `mcp_server/export_tools.py`. CI parity test in `tests/mcp_server/test_export_tools.py` enforces no drift via `--check` mode.
+- **Error taxonomy formalized**: `docs/api/error-codes.md` (humans) + `docs/api/error-codes.json` (machines), both at version 1.0.0, parity-tested against runtime `ERROR_CODES`.
+- **Idempotency contract documented** in the runbook (read-only at request time; build path explicitly non-idempotent — FR-014 tracks the incremental rebuild).
+- Test count: 221 → 244.
+
+**Phase 1b design** is recorded in `docs/plans/2026-05-09-phase1b-mcp-design.md`; D-020 through D-028 in `DECISIONS.md`. Phase 1b.2 plan: `docs/plans/2026-05-09-phase1b2-hardening.md`.
 
 ## Blockers
 
@@ -26,8 +34,8 @@ None.
 
 ## Pending
 
-- **Phase 1b.2** — structured backend hardening: publish `tools.json` schemas, formalize the error taxonomy for external callers, promote soft perf assertions to hard. The synonym/abbreviation dictionary described in FR-015 may land here or be split to 1b.3 depending on usage signal.
-- **Phase 1b.3** — operator/end-user polish: structured logging + per-tool-call metrics, packaging, Bulgarian stemmer + legal-term synonym dictionary (FR-015), body-snippet rework (FR-017), pathological-query stop-words (FR-016).
+- **Phase 1b.3** — operator/end-user polish: structured logging + per-tool-call metrics, packaging, Bulgarian stemmer + legal-term synonym dictionary (FR-015), body-snippet rework (FR-017), long-form definite-article stemming (FR-013).
+  Note: FR-016 (pathological-query stop-words) was originally slated here but landed in 1b.2 via the `QUERY_TOO_BROAD` reject path.
 - **Phase 2 temporal index** (FR-001) — strictly after Phase 1b completes. The 1b.1 `provisions` schema is built to support it without migration.
 - **FR-011 G2 triage** of the ~128 degenerate acts (7 empty-titulo + 121 null-pub-date) — needed before Phase 5 upstream contribution; Phase 1b.1 surfaces these correctly so triage can proceed in parallel.
 

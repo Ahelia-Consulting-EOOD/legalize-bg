@@ -170,7 +170,8 @@ deferrals:
     title: single-word category queries overrun the 100ms p95 search budget
     punted_from: 1b.1
     target: 1b.2
-    status: open
+    status: implemented
+    resolution_note: "Stop-word reject path in mcp_server.queries.full_text_search; D-028."
     surfaces_affected:
       - "index/fts.py:search_fts"
       - "tests/perf/test_budgets.py"
@@ -199,9 +200,11 @@ deferrals:
     title: soft perf assertions (1b.2 hard-promote)
     punted_from: 1b.1
     target: 1b.2
-    status: open
+    status: implemented
+    resolution_note: "_soft_assert → _hard_assert + cold-call coverage; D-028."
     surfaces_affected:
       - "tests/perf/test_budgets.py"
+      - "tests/perf/test_cold_calls.py"
 
 deferrals_meta:
   authoritative_source: docs/sync/DEFERRED.md
