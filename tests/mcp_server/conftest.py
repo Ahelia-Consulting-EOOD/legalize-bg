@@ -5,6 +5,14 @@ import pytest
 from index.fts import insert_fts_row
 from index.migrations import migrate
 
+# Fake "current_commit" stamped onto every populated_conn row. Tests
+# that simulate the working-tree fast path in mcp_server.server.
+# _read_law_markdown rely on this exact value matching what their
+# fixture file system claims is HEAD — see test_get_law.py's `app`
+# fixture. Pulled into a constant so a future fixture change stays in
+# lockstep with the consumers.
+FAKE_COMMIT_HASH = "a" * 40
+
 
 @pytest.fixture
 def conn():
@@ -35,7 +43,7 @@ def populated_conn(conn):
         ("naredba-7-2", 201,         "Наредба № 7 за нещо",   "ordinances"),  # §7.1
         ("phantom",     -549676032,  "",                      "ordinances"),  # §7.3
     ]
-    fake_commit = "a" * 40
+    fake_commit = FAKE_COMMIT_HASH
     for law_id, doc_id, title, cat in rows:
         conn.execute(
             "INSERT INTO laws (law_id, doc_id, title, category, status, current_commit) "
@@ -52,4 +60,16 @@ def populated_conn(conn):
         insert_fts_row(conn, law_id=law_id, title=fts_title,
                        body=fts_title, category=cat)
     conn.commit()
+    # Defensive lock: tests downstream couple their tmp-corpus fixture
+    # to FAKE_COMMIT_HASH for the working-tree fast path (see
+    # mcp_server.server._read_law_markdown). If the seed value drifts,
+    # they silently flip to the slower `git show` path and pass for
+    # the wrong reason.
+    seeded = {row["current_commit"] for row in conn.execute(
+        "SELECT DISTINCT current_commit FROM laws"
+    )}
+    assert seeded == {FAKE_COMMIT_HASH}, (
+        f"populated_conn seed drift: expected current_commit="
+        f"{FAKE_COMMIT_HASH!r}, got {seeded}"
+    )
     return conn

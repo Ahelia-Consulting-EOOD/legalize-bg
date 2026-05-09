@@ -69,6 +69,9 @@ def _check_index_state(db_path: Path, corpus_root: Path,
         # don't block startup.
         return None
 
+    # Single-threaded preflight check; the FastMCP runtime connection
+    # is opened separately at the bottom of main() with
+    # check_same_thread=False so worker threads can use it.
     conn = sqlite3.connect(str(db_path))
     try:
         row = conn.execute(

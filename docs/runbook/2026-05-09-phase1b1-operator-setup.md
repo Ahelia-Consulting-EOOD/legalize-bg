@@ -40,7 +40,9 @@ each `.md` frontmatter + body, and populates the SQLite catalog:
 | `provisions` | ~448,000 | Article + alinea text rows (D-023) |
 | `laws_fts` | 3,573 | FTS5 virtual table for `bg_normalize`-ed title + body |
 
-Build takes ~45 seconds. Output `catalog.db` is ~50–100 MB. The
+Build takes **~45 seconds** (measured: M-class Apple silicon, NVMe
+SSD; ARM laptops with slower SSDs typically run ~60s, network
+filesystems can be 2–5×). Output `catalog.db` is ~50–100 MB. The
 catalog is **gitignored** — derived state, rebuildable from git+YAML.
 
 If you see `INDEX_MISSING` from `python -m mcp_server`: the catalog
@@ -156,15 +158,28 @@ prepared the schema for but does not populate. See `docs/frs/INDEX.md`.
 
 ## Troubleshooting
 
+### Process exit codes
+
+`python -m mcp_server` exits non-zero on preflight failures so wrappers
+(launchd, systemd, supervisord) can react before any tool call lands:
+
+| Code | Meaning | Recovery |
+|---|---|---|
+| 0 | Server exited cleanly (host disconnected) | normal |
+| 2 | `INDEX_MISSING` — catalog.db not at the configured path | run `python -m index.build --db <path>` to create it |
+| 3 | `INDEX_STALE` under `--strict` — git HEAD ≠ indexed commit | re-run `python -m index.build`, OR drop `--strict` to allow soft-warn startup |
+
+### Common errors
+
 **`ModuleNotFoundError: fastmcp`** → reinstall deps: `pip install -e
 ".[dev]"` from the repo root.
 
-**`INDEX_MISSING`** → run `python -m index.build` to create
+**`INDEX_MISSING` (exit 2)** → run `python -m index.build` to create
 `catalog.db`.
 
-**`INDEX_STALE` warning** → re-run `python -m index.build` to refresh.
-Pass `--strict` if you want the server to refuse to start on stale
-catalogs.
+**`INDEX_STALE` warning** (default) or refusal (`--strict`, exit 3) →
+re-run `python -m index.build` to refresh. Pass `--strict` if you want
+the server to refuse to start on stale catalogs.
 
 **FastMCP transport timeouts** → confirm the MCP host's `command`
 points at the venv's `python`, not the system one. The system Python

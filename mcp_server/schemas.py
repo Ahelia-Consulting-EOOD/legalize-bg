@@ -38,13 +38,20 @@ class SearchHit:
     bm25 score). Convention chosen so model callers don't need to know
     SQLite-specific scoring details (raw bm25 returns negative-where-
     lower-is-better, which surprises naive sort-descending usage).
+
+    `title_snippet` is a highlighted fragment of the act's TITLE (not
+    body). Body-context snippets cost ~700ms p95 in 1b.1 because FTS5
+    must read the full body column for the largest matches; the
+    deferred body-snippet rework is FR-017 (Phase 1b.3). Until then,
+    callers should treat this as a "which act is this?" affordance,
+    not as substantive content; call get_law for body context.
     """
 
     law_id: str
     identificador: str
     title: str
     category: str
-    snippet: str
+    title_snippet: str
     relevance: float
 
     def to_dict(self) -> dict[str, Any]:

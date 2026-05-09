@@ -37,11 +37,13 @@ def test_get_law_response_warnings_optional():
 
 def test_search_hit_shape():
     h = SearchHit(law_id="zop", identificador="100", title="ЗОП",
-                   category="laws", snippet="...", relevance=1.5)
+                   category="laws", title_snippet="<b>ЗОП</b>",
+                   relevance=1.5)
     d = h.to_dict()
     assert d == {
         "law_id": "zop", "identificador": "100", "title": "ЗОП",
-        "category": "laws", "snippet": "...", "relevance": 1.5,
+        "category": "laws", "title_snippet": "<b>ЗОП</b>",
+        "relevance": 1.5,
     }
 
 

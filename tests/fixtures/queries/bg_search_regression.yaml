@@ -35,5 +35,10 @@ cases:
 # title or body — Bulgarian laws don't use abbreviations of their own
 # names internally. Resolving "ЗОП" → "Закон за обществените поръчки"
 # requires the synonym/abbreviation dictionary tracked in FR-015 +
-# D-022's stemmer milestone (Phase 1b.3). The negative case is locked
-# in tests/mcp_server/test_data_quality_acceptance.py until 1b.3 lands.
+# D-022's stemmer milestone (Phase 1b.3).
+#
+# When FR-015 lands, re-enable by appending the following case
+# verbatim and removing this comment block:
+#   - query: "ЗОП"
+#     must_include: ["zakon-za-obshtestvenite-porachki"]
+#     description: "Latin/Cyrillic abbreviation resolves via synonym dict"

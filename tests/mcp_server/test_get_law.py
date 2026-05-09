@@ -5,6 +5,7 @@ import pytest
 
 from mcp_server.errors import ToolError
 from mcp_server.server import build_app
+from tests.mcp_server.conftest import FAKE_COMMIT_HASH
 
 
 @pytest.fixture
@@ -14,7 +15,17 @@ def app(populated_conn, tmp_path):
 
     The frontmatter mirrors what `index.build` would write: 8 mandatory
     SPEC fields + 5 Bulgarian extensions + amendment_history.
+
+    Coupling note: populated_conn stamps every law's current_commit as
+    FAKE_COMMIT_HASH. This lets get_law's working-tree fast path read
+    tmp_path directly (no real git repo needed). The conftest fixture
+    asserts the seed value, so any drift between fixture and consumer
+    fails the populated_conn assertion before this test even runs.
     """
+    # Lock the contract at use-site too — readers of this fixture
+    # should be able to see the value rather than chase it through
+    # multiple files.
+    assert FAKE_COMMIT_HASH == "a" * 40
     (tmp_path / "laws").mkdir()
     (tmp_path / "laws" / "zakon-a.md").write_text(
         "---\n"

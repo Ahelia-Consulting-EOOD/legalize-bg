@@ -214,11 +214,14 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             limit: Max results (default 20, capped at 50).
 
         Returns:
-            List of {law_id, identificador, title, category, snippet,
-            relevance}. `relevance` is positive-where-higher-is-better
-            (the negated SQLite bm25 score). Acts with empty titulo
-            (§7.3) carry "<doc_id=N>" in the title slot so callers
-            never see a blank.
+            List of {law_id, identificador, title, category,
+            title_snippet, relevance}. `relevance` is positive-where-
+            higher-is-better (the negated SQLite bm25 score).
+            `title_snippet` is a highlighted fragment of the act's
+            TITLE, not its body — call `get_law` to retrieve body
+            context (body-snippet generation is deferred to a future
+            milestone). Acts with empty titulo (§7.3) carry
+            "<doc_id=N>" in the title slot.
         """
         # Cap limit defensively — FTS5 with very large limits can OOM
         # on a million-row catalog. 50 is plenty for an LLM caller.
@@ -299,9 +302,18 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             })
 
         # When paragraph is requested, return the alinea row; else the
-        # article-as-whole row. article_lookup's WHERE clause already
-        # filters, so rows is either the alinea (single row) or the
-        # article (single row).
+        # article-as-whole row. article_lookup's WHERE clause filters
+        # on (law_id, article, paragraph, valid_from <= date,
+        # valid_to >= date OR NULL), which guarantees a single row at
+        # any given date in 1b.1.
+        #
+        # Phase-2 caveat (FR-001): when historical versions are
+        # backfilled with non-NULL valid_to, this single-row guarantee
+        # depends on the temporal predicate staying strict (no overlap
+        # between adjacent versions). If FR-001 ever loosens that —
+        # e.g., to support range queries — picking rows[0] becomes a
+        # silent bug; switch to explicit "highest valid_from" tie-break
+        # at that point.
         target = rows[0]
         resp = GetArticleResponse(
             law_id=law_id,

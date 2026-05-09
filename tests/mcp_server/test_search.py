@@ -16,6 +16,17 @@ def test_search_returns_list_of_hits(app):
     assert all("law_id" in h and "relevance" in h for h in hits)
 
 
+def test_search_hit_has_title_snippet_not_snippet(app):
+    """Field is title_snippet (not snippet) — we want callers to know
+    the snippet is title-derived, not body-context. FR-017 tracks the
+    1b.3 body-snippet rework."""
+    hits = app.call_tool_sync("search", {"query": "Закон"})
+    assert hits
+    for h in hits:
+        assert "title_snippet" in h, f"missing title_snippet in {h}"
+        assert "snippet" not in h, f"unexpected legacy `snippet` in {h}"
+
+
 def test_search_returns_positive_relevance(app):
     """SearchHit.relevance is positive-where-higher-is-better. Raw bm25
     is negative-where-lower-is-better; the queries layer negates so

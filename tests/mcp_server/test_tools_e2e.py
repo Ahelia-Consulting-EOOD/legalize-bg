@@ -18,7 +18,13 @@ from mcp_server.server import build_app
 
 
 def _run(coro):
-    """Synchronous wrapper for async FastMCP Client interactions."""
+    """Synchronous wrapper for async FastMCP Client interactions.
+
+    Each call creates+tears-down a fresh event loop. That's fine at
+    the current 5-test scale, where loop setup is dwarfed by FastMCP
+    init. If 1b.2/1b.3 add many more e2e cases, switch to pytest-anyio
+    or pytest-asyncio so loops are reused across tests.
+    """
     return asyncio.run(coro)
 
 

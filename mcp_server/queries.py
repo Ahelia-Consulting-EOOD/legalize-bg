@@ -261,6 +261,9 @@ def full_text_search(conn: sqlite3.Connection, query: str,
     match (the SQLite bm25() function returns negative-where-lower-is-
     better; exposing the raw value would surprise callers who expect
     the conventional "higher is better" ordering).
+
+    Output `title_snippet` is a highlighted title fragment, not body.
+    See SearchHit docstring + FR-017 for the 1b.3 body-snippet rework.
     """
     rows = search_fts(conn, query, category=category, limit=limit)
     out: list[dict] = []
@@ -271,7 +274,7 @@ def full_text_search(conn: sqlite3.Connection, query: str,
             "identificador": str(r["doc_id"]),
             "title": title,
             "category": r["category"],
-            "snippet": r["snippet"],
+            "title_snippet": r["snippet"],
             "relevance": -float(r["score"]),
         })
     return out
