@@ -28,6 +28,12 @@ Each row links the deferral to its FR (or DECISION) trace, the phase it was punt
 
 (empty — Phase 1b.1 is the first phase to register deferrals in this file.)
 
+> **Row schema for resolved entries.** When an Open row is resolved at a phase boundary it migrates here with the same columns; only the values change. The `Status` column flips from `Open` to one of `Implemented` / `Re-affirmed` / `Withdrawn`; `Last reviewed` becomes the resolution date; an extra column "Resolution note" can be added inline with a one-sentence explanation and a link to the closing `DECISIONS.md` entry. Example row format (kept as a template, not an actual deferral):
+>
+> | ID | Title | Punted from | Target | Status | Last reviewed | FR / Decision | Resolution note |
+> |---|---|---|---|---|---|---|---|
+> | D-YYYY-MM-DD-NN | _example title_ | _from-phase_ | _target-phase_ | Implemented | YYYY-MM-DD | [FR-NNN](../frs/INDEX.md) | _One-sentence resolution; link to_ [_DECISIONS.md_](DECISIONS.md) _entry._ |
+
 ## Phase-boundary review protocol
 
 Before promoting from Phase X to Phase Y, the human reviews every Open row whose Target column is X (or earlier). For each:

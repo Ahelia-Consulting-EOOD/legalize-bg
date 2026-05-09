@@ -11,8 +11,9 @@
 
 **Phase 1b.1** (MCP server) — complete on `main`:
 - 3 tools (`get_law` / `search` / `get_article`) over FastMCP/stdio, accessible to Claude Code, Claude Desktop, OpenAI Codex.
-- 211 tests passing across unit, component, integration (FastMCP in-memory), real-corpus acceptance (§7.1/7.2/7.3), FTS regression, and soft perf-budget tiers.
+- **221 tests passing** across unit, component, integration (FastMCP in-memory), real-corpus acceptance (§7.1/7.2/7.3), FTS regression, and soft perf-budget tiers (216 after the audit-gaps batch on 2026-05-09; 221 after the review-fixes commit added 5 parametrizations of the FTS5 user-input regression).
 - Two formal code-review rounds; 18/18 findings addressed in-batch with zero deferrals (forward-looking items recorded as FR-012 through FR-017 in `docs/frs/INDEX.md` per Ahelia conventions).
+- **Three** formal code-review rounds; the third (post-audit-gaps) surfaced 5 Important + 4 Minor findings, all closed in `docs/plans/2026-05-09-phase1b1-review-fixes.md` (FTS5 user-input allowlist regression, two `schema-reference.md` constraint mismatches the audit-fix itself introduced, a stale `runtime-flows.md` §6.3.4 predicate, and the duplicate Session Model gap). Phase 1b.1 docs and code are now publication-ready.
 - SQLite catalog migrated to schema v4 with `provisions.text`, `laws_fts` virtual table, `idx_provisions_lookup`, and `law_versions.date_uncertain` columns.
 - §7 data-quality semantics encoded as server-enforced contracts (D-026 error taxonomy with 8 codes; ambiguous-name candidates carry distinct identificadors; date_uncertain warning rides in successful responses).
 - Operator runbook at `docs/runbook/2026-05-09-phase1b1-operator-setup.md`.

@@ -102,6 +102,17 @@ specific doc_id is in the intersection of the §7.3 empty-titulo set
 — if you don't see `DATE_UNCERTAIN`, the index is stale or the §7.2
 surfacing path is broken.
 
+> **Aside — `titulo: ""` vs `<doc_id=...>`.** The frontmatter `titulo`
+> for §7.3 phantom acts is genuinely empty (`titulo: ''` in the `.md`
+> file), so `get_law` returns the truthful empty. The SQLite
+> `laws.title` column for the same act, however, carries a substituted
+> `<doc_id=N>` form — that substitution lives in `index/build.py` and
+> only affects `search` results' display. So an operator running raw
+> SQL like `SELECT title FROM laws WHERE doc_id = -549676032` will see
+> `<doc_id=-549676032>`, not the empty string. Both views are
+> consistent with their respective contracts; the substitution exists
+> only so search results are recognizable in the LLM-facing output.
+
 ## Re-indexing after corpus changes
 
 Whenever `git pull` or local commits land new acts or amendments:
