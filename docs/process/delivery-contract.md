@@ -117,7 +117,8 @@ No PR to legalize-pipeline will be opened until all four gates pass.
 
 - [ ] `get_law()`, `search()`, `get_article()` tools working
 - [ ] Claude Code can access Bulgarian legislation via MCP
-- [ ] Response times under 2 seconds for single-law queries
+- [ ] Per-tool p95 latency budgets (soft assertions in 1b.1, hard in 1b.2 per D-027): `search` < 100 ms, `get_law` (current) < 100 ms, `get_law` (historical) < 500 ms, `get_article` < 50 ms.
+  - Authoritative source: `docs/plans/2026-05-09-phase1b-mcp-design.md` §9. The "наредба" pathological single-word category query currently exceeds the 100 ms budget at ~290 ms p95 — tracked as FR-016 for Phase 1b.2 hardening.
 
 ### Phase 2 -- Temporal Index
 

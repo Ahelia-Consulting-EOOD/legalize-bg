@@ -41,6 +41,17 @@ Testing strategy for the legalize-bg pipeline. Covers unit through validation te
 - **MCP tool response format** — Validate that MCP tool responses match the expected JSON schema (correct keys, types, non-null required fields). Tests run against a local MCP server instance.
 - **Legalize hard gates** — The 4 gates from the Legalize contribution guide must pass before Phase 5 submission: (1) valid YAML frontmatter on all files, (2) correct commit message format, (3) no duplicate `identificador` values, (4) CI pipeline green.
 
+### Phase 1b.1 testing layers
+
+The MCP server uses four practical testing layers, all running against an in-memory FastMCP app (no separate server process):
+
+- **L1 — Unit:** Pure functions. `bg_normalize`, `parse_article_spec`, `_legal_article_sort_key`, schema dataclass round-trips. Files under `tests/index/test_fts.py`, `tests/mcp_server/test_queries.py`, `tests/mcp_server/test_schemas.py`.
+- **L2 — Component:** Per-tool tests via the `_AppHandle.call_tool_sync(name, args)` shortcut. Skips JSON-RPC serialization; bound to a populated in-memory SQLite via the `populated_conn` fixture. Files: `tests/mcp_server/test_get_law.py`, `test_search.py`, `test_get_article.py`, `test_errors.py`.
+- **L3 — In-memory FastMCP `Client`:** Exercises the JSON-RPC envelope itself, using `fastmcp.Client(handle.mcp)`. File: `tests/mcp_server/test_tools_e2e.py`.
+- **L4 — Acceptance:** §7 data-quality cases (slug ≠ title, null `fecha_publicacion`, empty titulo) and the perf-budget tier in `tests/mcp_server/test_data_quality_acceptance.py` and the soft-perf-assertion suite. Soft in 1b.1, promoted to hard in 1b.2 per D-027.
+
+The `populated_conn` conftest fixture stamps `current_commit = "a"*40` (FAKE_COMMIT_HASH) so the working-tree fast path in `_read_law_markdown` works against `tmp_path` without needing a real git repo.
+
 ---
 
 ## 2. Acceptance Criteria per Phase
