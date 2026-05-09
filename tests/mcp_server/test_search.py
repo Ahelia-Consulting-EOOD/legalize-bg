@@ -140,3 +140,76 @@ def test_search_query_too_broad_payload_lists_actual_stop_words(app):
         app.call_tool_sync("search", {"query": "наредба"})
     expected = {"наредба", "закон", "правилник", "кодекс", "постановление"}
     assert set(exc.value.payload["category_words"]) == expected
+
+
+@pytest.mark.parametrize(
+    "query",
+    [
+        # Trailing punctuation — Round-4 review Issue #1 found that
+        # "наредба—" (em-dash suffix) was bypassing the reject and
+        # reproducing the original 1.14 sec cold-call regression
+        # FR-016 was supposed to eliminate.
+        "наредба—",       # em-dash
+        "наредба–",       # en-dash
+        "наредба.",       # period
+        "наредба*",       # asterisk
+        "наредба…",       # ellipsis
+        'наредба"',       # trailing quote (FTS5-special)
+        "НАРЕДБА—",       # case + em-dash
+        "законът—",       # definite article + em-dash
+        # Leading whitespace + trailing punctuation
+        "  наредба—  ",
+        # Multiple punctuation
+        "наредба...",
+    ],
+    ids=[
+        "em-dash-suffix",
+        "en-dash-suffix",
+        "period-suffix",
+        "asterisk-suffix",
+        "ellipsis-suffix",
+        "trailing-quote",
+        "uppercase-em-dash",
+        "definite-article-em-dash",
+        "leading-whitespace-em-dash",
+        "triple-period",
+    ],
+)
+def test_search_rejects_category_words_with_trailing_punctuation(app, query):
+    """Round-4 review Issue #1: the v1 reject (membership against
+    bg_normalize(query).strip()) was bypassed by trailing punctuation —
+    notably em-dash, which is common in Bulgarian legal writing. The v2
+    reject tokenizes the normalized query (re.findall(r'\\w+', ...))
+    and rejects when exactly one token comes out and matches the
+    stop-word set. This test locks the contract for every punctuation
+    bypass discovered in Round-4."""
+    with pytest.raises(ToolError) as exc:
+        app.call_tool_sync("search", {"query": query})
+    assert exc.value.code == "QUERY_TOO_BROAD"
+
+
+def test_search_does_not_reject_multi_category_word_queries(app):
+    """A query with two stop-words connected by punctuation (e.g.
+    'наредба—правилник') is NOT rejected — it tokenizes to 2 distinct
+    words, the two-tier FTS5 ranker handles the conjunction efficiently,
+    and the user clearly intends a multi-term search."""
+    result = app.call_tool_sync("search", {"query": "наредба—правилник"})
+    assert isinstance(result, list)
+
+
+def test_search_rejection_is_constant_time(app):
+    """Reject path must short-circuit before FTS5 — running the reject
+    1000 times in a tight loop should still be fast (<1 second total).
+    A regression where the reject accidentally invokes search_fts (or a
+    tokenizer that's not O(input)) would break this budget. The actual
+    timing is hardware-dependent, so the assertion is generous."""
+    import time
+    t0 = time.monotonic()
+    for _ in range(1000):
+        with pytest.raises(ToolError):
+            app.call_tool_sync("search", {"query": "наредба—"})
+    elapsed = time.monotonic() - t0
+    assert elapsed < 5.0, (
+        f"1000 rejects took {elapsed:.2f}s — reject path is invoking "
+        "FTS5 or doing O(n²) work somewhere."
+    )

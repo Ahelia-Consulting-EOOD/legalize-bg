@@ -287,17 +287,40 @@ def full_text_search(conn: sqlite3.Connection, query: str,
     ordinances for "наредба" alone) and produce 400+ ms cold-call
     latency on FTS5 — outside the 100 ms p95 budget. These are
     rejected with a `QUERY_TOO_BROAD` ToolError before FTS5 is even
-    invoked (FR-016 / D-2026-05-09-03). The check runs after
-    `bg_normalize` so definite-article forms (`наредбата`) and
-    capitalization variants are caught uniformly.
+    invoked (FR-016 / D-2026-05-09-03). The reject tokenizes the
+    bg_normalize-d query via `re.findall(r"\\w+", ...)` (alphanumeric
+    runs only, ignoring punctuation), then checks `len(tokens) == 1
+    and tokens[0] in _CATEGORY_STOP_WORDS`. This catches:
+      - "наредба" (canonical case)
+      - "наредба—", "наредба.", "наредба*" (trailing punct)
+      - "законът", "наредбата" (definite-article forms — bg_normalize
+        symmetric stripping reduces them)
+      - "  наредба  ", "НАРЕДБА" (whitespace + case variants)
+    Multi-word queries "наредба за обществени" are NOT rejected
+    (tokens=3); two-stop-word conjunctions like "наредба—правилник"
+    are also NOT rejected (tokens=2 — the two-tier FTS5 ranker handles
+    the AND efficiently).
     """
-    # FR-016 single-word category-query reject.
-    normalized = bg_normalize(query).strip()
-    if normalized in _CATEGORY_STOP_WORDS:
+    # FR-016 single-word category-query reject. Round-4 review (Issue
+    # #1) caught a v1 bypass: `bg_normalize(q).strip() in STOP_WORDS`
+    # missed punctuation suffixes like "наредба—" because bg_normalize
+    # doesn't strip punctuation, and missed "законът—" because
+    # bg_normalize's suffix-stripping looks at the trailing character
+    # which is the em-dash, not the actual letter suffix.
+    #
+    # The fix: tokenize the raw query FIRST (extract alphanumeric runs
+    # only), THEN bg_normalize each token. This naturally handles
+    # punctuation, mixed case, AND definite-article-plus-punctuation
+    # combinations. Multi-word queries (tokens > 1) skip the reject;
+    # the two-tier FTS5 ranker handles them efficiently.
+    raw_tokens = re.findall(r"\w+", query) if isinstance(query, str) else []
+    if len(raw_tokens) == 1 and bg_normalize(raw_tokens[0]) in _CATEGORY_STOP_WORDS:
         raise ToolError(
             "QUERY_TOO_BROAD",
             {
-                "query": query,
+                # Truncate the input echo to bound payload size against
+                # accidentally-large client inputs (Round-4 Minor #11).
+                "query": query[:200] if isinstance(query, str) else "",
                 "category_words": sorted(_CATEGORY_STOP_WORDS),
                 "hint": (
                     "Заявката съответства на хиляди актове. Добавете "
