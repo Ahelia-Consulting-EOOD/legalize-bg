@@ -168,68 +168,118 @@ When zid_parser.py cannot match an instruction to a known regex pattern (estimat
 
 ## 6.3 MCP Query Flow (Phase 1b-2)
 
-Point-in-time retrieval of legislation by Claude Code sessions.
+Point-in-time retrieval of legislation by Claude Code, Claude Desktop, and OpenAI Codex sessions over MCP/stdio. Tool surface defined in `container-view.md` §7; full design in `docs/plans/2026-05-09-phase1b-mcp-design.md`.
 
-### Sequence
+### 6.3.1 Build-time flow (`python -m index.build`)
 
-```
- Claude Code        MCP Server          SQLite Index        Git Corpus
-     |                   |                   |                   |
-     |--[1] get_law ---->|                   |                   |
-     |   name="zop"      |                   |                   |
-     |   date="2020-06-15"|                  |                   |
-     |                   |                   |                   |
-     |                   |--[2] SELECT ----->|                   |
-     |                   |   commit_hash     |                   |
-     |                   |   FROM law_versions                   |
-     |                   |   WHERE law_id='zop'                  |
-     |                   |     AND valid_from <= '2020-06-15'    |
-     |                   |     AND (valid_to IS NULL             |
-     |                   |          OR valid_to > '2020-06-15')  |
-     |                   |                   |                   |
-     |                   |<-- commit_hash ---|                   |
-     |                   |   "a3f7c2d..."    |                   |
-     |                   |                   |                   |
-     |                   |--[3] git show ----|------------------>|
-     |                   |   a3f7c2d:laws/zop.md                 |
-     |                   |                   |                   |
-     |                   |<-- Markdown text --|-------------------|
-     |                   |                   |                   |
-     |<--[4] return -----|                   |                   |
-     |   full Markdown   |                   |                   |
-     |   with YAML       |                   |                   |
-     |   frontmatter     |                   |                   |
-     |                   |                   |                   |
-```
-
-### Variant: get_law without date (current version)
-
-When `date` is omitted, step 2 simplifies to:
-```sql
-SELECT current_commit FROM laws WHERE law_id = 'zop';
-```
-Or simply reads the file from the working tree: `laws/zop.md`.
-
-### Variant: search(query)
+Idempotent. Single transaction per build. Rebuildable from git at any ref. Phase 3 (DV monitor) and Phase 4 (consolidation) invoke this as a final step in their pipelines; in Phase 1b.1 it's a manual command operators run after corpus changes. Soft-warn at MCP server startup if `git rev-parse HEAD` differs from `laws.current_commit`; `--strict` refuses to start.
 
 ```
- Claude Code        MCP Server          SQLite Index
-     |                   |                   |
-     |--[1] search ----->|                   |
-     |   query="поръчки" |                   |
-     |   category="laws" |                   |
-     |                   |--[2] FTS query -->|
-     |                   |   SELECT law_id,  |
-     |                   |   title, snippet  |
-     |                   |   FROM laws_fts   |
-     |                   |   WHERE text MATCH|
-     |                   |   'поръчки'       |
-     |                   |                   |
-     |<--[3] results ----|                   |
-     |   [{law_id: "zop",|                   |
-     |     title: "...", |                   |
-     |     snippet: "..."}]                  |
+git ref → for each .md in {laws, codes, ordinances, regulations, implementing}/:
+    read frontmatter + body
+    INSERT laws (current_commit)
+    INSERT law_versions (valid_from = effective_date / fecha_publicacion / bootstrap-run-date for §7.2)
+    provisions.parse(body) → INSERT provisions (article rows AND alinea rows; text + text_hash)
+    INSERT laws_fts (bg_normalize(title), bg_normalize(body))
+COMMIT
 ```
+
+`bg_normalize` is symmetric — same function called at insert AND query time so morphological forms match without a custom SQLite tokenizer.
+
+### 6.3.2 `get_law(name, date=None)`
+
+```
+ Client (Claude Code/Desktop/Codex)    FastMCP/queries        SQLite              Git
+     |                                    |                    |                   |
+     |--[1] tools/call get_law ---------->|                    |                   |
+     |   name="ЗОП", date="2020-06-15"    |                    |                   |
+     |                                    |                    |                   |
+     |    [2] resolve_name_to_law_id ──→  |                    |                   |
+     |    identificador → slug → title    |                    |                   |
+     |                                    |--SELECT laws ─────>|                   |
+     |                                    |<-- law_id="zop" ---|                   |
+     |                                    |                    |                   |
+     |    [3] version_at_date ────────→   |                    |                   |
+     |                                    |--SELECT versions ─>|                   |
+     |                                    |<-- commit_hash ----|                   |
+     |                                    |                    |                   |
+     |    [4a] current version: read working-tree .md          |                   |
+     |    [4b] historical:                |                    |                   |
+     |                                    |--git show ────────────────────────────>|
+     |                                    |<-- Markdown text ──────────────────────|
+     |                                    |                    |                   |
+     |    [5] split frontmatter+body, build GetLawResponse    |                   |
+     |    [6] attach warnings if §7.2 (DATE_UNCERTAIN)         |                   |
+     |                                    |                    |                   |
+     |<--[7] tools/result ────────────────|                    |                   |
+     |   {titulo, identificador, eli, ...,|                    |                   |
+     |    body_markdown, warnings: [...]} |                    |                   |
+```
+
+Per D-024, response is a structured typed-dict, not bare Markdown — model gets metadata for citations alongside body.
+
+### 6.3.3 `search(query, category=None, limit=20)`
+
+```
+ Client          FastMCP/queries           SQLite (laws_fts)
+     |                |                       |
+     |--search ───────|                       |
+     |   "обществените поръчки"               |
+     |                |                       |
+     |   bg_normalize(query) →                |
+     |   "обществен поръчк"                   |
+     |                |--FTS5 MATCH ─────────>|
+     |                |   SELECT law_id, ...  |
+     |                |   FROM laws_fts JOIN laws
+     |                |   WHERE laws_fts MATCH ?
+     |                |   ORDER BY bm25(laws_fts)
+     |                |   LIMIT ?             |
+     |                |<-- ranked rows -------|
+     |                |                       |
+     |   §7.3: substitute "<doc_id=N>"        |
+     |   for empty titles                     |
+     |                |                       |
+     |<-- list[SearchHit] ──|                 |
+     |   [{law_id, identificador,             |
+     |     title, snippet, score}]            |
+```
+
+Per D-022, Bulgarian morphology coverage is ~70-80% via symmetric `bg_normalize`; Snowball stemmer + legal-term synonyms slated for Phase 1b.3 if usage data justifies.
+
+### 6.3.4 `get_article(law, article, date=None)`
+
+```
+ Client                FastMCP/queries                SQLite (provisions)
+     |                     |                              |
+     |--get_article ──────>|                              |
+     |   law="ЗОП"         |                              |
+     |   article="чл. 14, ал. 2"                          |
+     |                     |                              |
+     |   resolve_name_to_law_id("ЗОП") → "zop"            |
+     |   parse_article_spec("чл. 14, ал. 2")              |
+     |     → (article="14", paragraph="2")                |
+     |   version_at_date("zop", date) → commit_hash       |
+     |                     |                              |
+     |                     |--SELECT text ───────────────>|
+     |                     |   FROM provisions            |
+     |                     |   WHERE law_id="zop"         |
+     |                     |     AND article="14"         |
+     |                     |     AND (paragraph IS NULL   |
+     |                     |          OR paragraph="2")   |
+     |                     |     AND valid_from <= date   |
+     |                     |     AND (valid_to IS NULL    |
+     |                     |          OR valid_to > date) |
+     |                     |<-- text ────────────────────|
+     |                     |                              |
+     |<-- GetArticleResponse|                             |
+     |   {law_id, article, paragraph, text, commit_hash} |
+```
+
+Per D-023, `provisions` is populated to alinea level from day one with `text` + `text_hash` columns — `get_article` is a single SQL lookup, no runtime Markdown parsing for current versions.
+
+### 6.3.5 Error envelope (8 codes)
+
+Per D-026, errors are first-class structured outputs. `LAW_NOT_FOUND`, `AMBIGUOUS_NAME` (§7.1 collisions), `NO_VERSION_AT_DATE`, `DATE_UNCERTAIN` (§7.2 warning, rides in successful response), `INVALID_ARTICLE_SPEC`, `ARTICLE_NOT_FOUND`, `INDEX_STALE`, `INDEX_MISSING`. FastMCP serializes `ToolError(code, payload)` into the MCP response envelope.
 
 ### Variant: diff(law, date1, date2)
 

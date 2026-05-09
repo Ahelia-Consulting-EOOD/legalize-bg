@@ -163,12 +163,16 @@
 
 | Tool | Signature | Phase | Description |
 |------|-----------|-------|-------------|
-| `get_law` | `(name: str, date: str?) -> str` | 1b | Full law text as Markdown. If `date` provided, returns version at that date via `git show {commit}:{path}`. |
-| `search` | `(query: str, category: str?) -> list[dict]` | 1b | Full-text search. Returns `[{law_id, title, snippet}]`. |
-| `get_article` | `(law: str, article: str, date: str?) -> str` | 1b | Single article text. Accepts `"чл. 14"` or `"14"`. |
-| `history` | `(law: str) -> list[dict]` | 2 | Amendment history: `[{date, dv_issue, operation, commit}]`. |
+| `get_law` | `(name: str, date: str?) -> GetLawResponse` | 1b.1 | Structured response: metadata fields (titulo, identificador, fecha_publicacion, ultima_actualizacion, dv_issue, dv_year, effective_date, eli, amendment_history, commit_hash) + body_markdown + optional `warnings` array. Date-qualified historical retrieval via `git show {commit}:{path}`. See D-024. |
+| `search` | `(query: str, category: str?, limit: int = 20) -> list[SearchHit]` | 1b.1 | Full-text search with FTS5 + BM25 ranking + Bulgarian-aware `bg_normalize` pre-normalization. Each hit: `{law_id, identificador, title, snippet, score}`. Empty-titulo acts (§7.3) get `<doc_id=N>` substituted in `title` slot. See D-022. |
+| `get_article` | `(law: str, article: str, date: str?) -> GetArticleResponse` | 1b.1 | Single article or alinea text via SQL lookup on `provisions` table (populated to alinea level from day one per D-023). Accepts `"чл. 14"`, `"14"`, `"чл. 14а"` (Cyrillic suffixes), `"чл. 14, ал. 2"`, `"14.2"`, ranges `"чл. 14-16"`. |
+| `history` | `(law: str) -> list[VersionEntry]` | 2 | Amendment history: `[{date, dv_issue, operation, commit_hash}]`. Depends on Phase 2 temporal index. |
 | `diff` | `(law: str, date1: str, date2: str) -> str` | 2 | Git diff of a law between two dates. |
-| `amendments_in_period` | `(from_date: str, to_date: str) -> list[dict]` | 2 | All amendments across all laws in a time range. |
+| `amendments_in_period` | `(from_date: str, to_date: str) -> list[AmendmentEntry]` | 2 | All amendments across all laws in a time range. |
+
+**Errors are first-class tool outputs**, not opaque transport failures. Eight stable codes returned as `ToolError(code, payload)` per D-026: `LAW_NOT_FOUND`, `AMBIGUOUS_NAME`, `NO_VERSION_AT_DATE`, `DATE_UNCERTAIN` (warning, rides in successful response), `INVALID_ARTICLE_SPEC`, `ARTICLE_NOT_FOUND`, `INDEX_STALE`, `INDEX_MISSING`. Each carries a structured payload the model can act on (suggestions, candidates, available_articles, etc.).
+
+**Implementation reference:** see `docs/plans/2026-05-09-phase1b-mcp-design.md` for the full Phase 1b design — milestone split (1b.1/1b.2/1b.3 per D-027), components, data flow, error taxonomy, and testing strategy. The implementation plan (task-by-task) lives in `docs/plans/2026-05-09-phase1b-mcp-implementation.md`.
 
 **Data-quality constraints (implementers, read this before Phase 1b):** post-bootstrap observations in [`../data/canonical-data-model.md` §7](../data/canonical-data-model.md) shape the tool behavior. In brief:
 
