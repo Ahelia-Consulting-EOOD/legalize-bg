@@ -95,13 +95,24 @@ Payload:
 ### `QUERY_TOO_BROAD` (added in 1b.2 — FR-016)
 
 Raised by: `search`.
-When: the query, after `bg_normalize`, is exactly one of the five Bulgarian category words: `наредба`, `закон`, `правилник`, `кодекс`, `постановление`. These match thousands of acts each (2,604 ordinances for `наредба` alone) and produce 400+ ms cold-call latency outside the 100 ms p95 budget.
+When: the query reduces to exactly one of the five Bulgarian category words: `наредба`, `закон`, `правилник`, `кодекс`, `постановление`. The reduction is: tokenize the input via `re.findall(r"\w+", query)` (alphanumeric runs only — punctuation is stripped), `bg_normalize` each token (case-fold + symmetric definite-article suffix stripping), then check that exactly one token comes out and matches the stop-word set. This catches all surface-form variants:
+
+- Canonical: `"наредба"`, `"закон"`, `"правилник"`, `"кодекс"`, `"постановление"`.
+- Definite article: `"наредбата"`, `"законът"`.
+- Trailing punctuation: `"наредба."`, `"наредба—"`, `"наредба*"`, `"наредба…"`, `'"наредба"'`.
+- Case + punctuation: `"НАРЕДБА—"`, `"  Наредба  "`.
+- Definite + punctuation: `"законът—"`.
+
+These all match thousands of acts each (2,604 ordinances for `наредба` alone) and produce 400+ ms cold-call latency outside the 100 ms p95 budget.
+
 Payload:
-- `query` (string): the input.
+- `query` (string): the input, truncated to 200 characters (defensive bound against accidentally-large client inputs).
 - `category_words` (array of strings): the five stop-words, sorted alphabetically.
 - `hint` (string): bilingual Bulgarian/English instruction asking for a more specific query.
 
-Multi-word queries that contain a category word (`"наредба за обществени"`) are NOT rejected — they pass through FTS5 unchanged.
+Multi-word queries that contain a category word are NOT rejected:
+- `"наредба за обществени"` → 3 tokens → passes through FTS5.
+- `"наредба—правилник"` → 2 tokens (em-dash splits) → passes through FTS5; the two-tier ranker handles the conjunction efficiently.
 
 ## Versioning policy
 

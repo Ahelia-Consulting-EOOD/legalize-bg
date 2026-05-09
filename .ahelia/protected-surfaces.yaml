@@ -144,6 +144,17 @@ rules:
 # pre-commit hooks can flag changes touching a code surface with an open
 # deferral against it. Source of truth: docs/sync/DEFERRED.md; this YAML
 # is regenerated when that file changes.
+#
+# `surfaces_affected` entries can be:
+#   - "path/file.py:function_name"           (a callable)
+#   - "path/file.py:CONSTANT_NAME"           (a module-level constant — listed when
+#                                             touching the value would re-open the
+#                                             deferral, even though it's not callable)
+#   - "path/file.py"                         (whole-file scope when the deferral
+#                                             touches multiple symbols)
+#   - "path/dir/"                            (directory scope, rare)
+# Hooks should pattern-match on the file path; the symbol qualifier is a hint
+# for which part of the file is load-bearing for the deferral.
 
 deferrals:
   - id: D-2026-05-09-01
