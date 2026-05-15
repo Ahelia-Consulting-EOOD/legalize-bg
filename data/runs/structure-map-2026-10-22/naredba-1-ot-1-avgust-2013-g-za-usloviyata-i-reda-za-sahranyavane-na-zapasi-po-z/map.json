@@ -1,0 +1,4643 @@
+{
+ "0": {
+  "i": 0,
+  "label": "drop",
+  "n": null,
+  "conf": "high",
+  "note": "site chrome: lex.bg 'add to my acts' button"
+ },
+ "1": {
+  "i": 1,
+  "label": "title",
+  "n": null,
+  "conf": "high",
+  "note": "act title"
+ },
+ "2": {
+  "i": 2,
+  "label": "prehistory",
+  "n": null,
+  "conf": "high",
+  "note": "issuer line printed under the title as publication metadata (lex.bg PreHistory), not the act's own text, so not preamble"
+ },
+ "3": {
+  "i": 3,
+  "label": "repeal_note",
+  "n": null,
+  "conf": "high",
+  "note": "states the whole act is repealed (Отменена)"
+ },
+ "4": {
+  "i": 4,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Глава първа, first line of two-line heading"
+ },
+ "5": {
+  "i": 5,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line of the chapter heading"
+ },
+ "6": {
+  "i": 6,
+  "label": "article_head",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "7": {
+  "i": 7,
+  "label": "article_head",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "8": {
+  "i": 8,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Глава втора, first line"
+ },
+ "9": {
+  "i": 9,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "chapter title, second line"
+ },
+ "10": {
+  "i": 10,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Раздел I, first line"
+ },
+ "11": {
+  "i": 11,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "section title, second line"
+ },
+ "12": {
+  "i": 12,
+  "label": "article_head",
+  "n": "3",
+  "conf": "high",
+  "note": "opens with alinea (1)"
+ },
+ "13": {
+  "i": 13,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "14": {
+  "i": 14,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "15": {
+  "i": 15,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "16": {
+  "i": 16,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "17": {
+  "i": 17,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "18": {
+  "i": 18,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "19": {
+  "i": 19,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "20": {
+  "i": 20,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "21": {
+  "i": 21,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "22": {
+  "i": 22,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "23": {
+  "i": 23,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "24": {
+  "i": 24,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "25": {
+  "i": 25,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "26": {
+  "i": 26,
+  "label": "article_head",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "27": {
+  "i": 27,
+  "label": "article_head",
+  "n": "5",
+  "conf": "high",
+  "note": "opens with alinea (1)"
+ },
+ "28": {
+  "i": 28,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "29": {
+  "i": 29,
+  "label": "article_head",
+  "n": "6",
+  "conf": "high",
+  "note": "opens with alinea (1)"
+ },
+ "30": {
+  "i": 30,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "31": {
+  "i": 31,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "32": {
+  "i": 32,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "33": {
+  "i": 33,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "34": {
+  "i": 34,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "35": {
+  "i": 35,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "36": {
+  "i": 36,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "37": {
+  "i": 37,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "38": {
+  "i": 38,
+  "label": "item",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "39": {
+  "i": 39,
+  "label": "item",
+  "n": "9",
+  "conf": "high",
+  "note": ""
+ },
+ "40": {
+  "i": 40,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "41": {
+  "i": 41,
+  "label": "article_head",
+  "n": "7",
+  "conf": "high",
+  "note": "opens with alinea (1)"
+ },
+ "42": {
+  "i": 42,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "43": {
+  "i": 43,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "44": {
+  "i": 44,
+  "label": "article_head",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "45": {
+  "i": 45,
+  "label": "article_head",
+  "n": "9",
+  "conf": "high",
+  "note": "opens with alinea (1)"
+ },
+ "46": {
+  "i": 46,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "47": {
+  "i": 47,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "48": {
+  "i": 48,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "49": {
+  "i": 49,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "50": {
+  "i": 50,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "51": {
+  "i": 51,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "52": {
+  "i": 52,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "53": {
+  "i": 53,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "54": {
+  "i": 54,
+  "label": "item",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "55": {
+  "i": 55,
+  "label": "item",
+  "n": "9",
+  "conf": "high",
+  "note": ""
+ },
+ "56": {
+  "i": 56,
+  "label": "item",
+  "n": "10",
+  "conf": "high",
+  "note": ""
+ },
+ "57": {
+  "i": 57,
+  "label": "item",
+  "n": "11",
+  "conf": "high",
+  "note": ""
+ },
+ "58": {
+  "i": 58,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "59": {
+  "i": 59,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "60": {
+  "i": 60,
+  "label": "article_head",
+  "n": "10",
+  "conf": "high",
+  "note": ""
+ },
+ "61": {
+  "i": 61,
+  "label": "article_head",
+  "n": "11",
+  "conf": "high",
+  "note": "opens with alinea (1)"
+ },
+ "62": {
+  "i": 62,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "63": {
+  "i": 63,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "64": {
+  "i": 64,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "65": {
+  "i": 65,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "66": {
+  "i": 66,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "67": {
+  "i": 67,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "68": {
+  "i": 68,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "69": {
+  "i": 69,
+  "label": "alinea",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "70": {
+  "i": 70,
+  "label": "alinea",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "71": {
+  "i": 71,
+  "label": "article_head",
+  "n": "12",
+  "conf": "high",
+  "note": "opens with Чл. 12. and carries the article's only text inline"
+ },
+ "72": {
+  "i": 72,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Раздел II., first line of a two-line heading"
+ },
+ "73": {
+  "i": 73,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line of the Раздел II heading"
+ },
+ "74": {
+  "i": 74,
+  "label": "article_head",
+  "n": "13",
+  "conf": "high",
+  "note": "opens Чл. 13 with its (1)"
+ },
+ "75": {
+  "i": 75,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "76": {
+  "i": 76,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "77": {
+  "i": 77,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "78": {
+  "i": 78,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "79": {
+  "i": 79,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "80": {
+  "i": 80,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "81": {
+  "i": 81,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "82": {
+  "i": 82,
+  "label": "article_head",
+  "n": "14",
+  "conf": "high",
+  "note": "opens Чл. 14 with its (1)"
+ },
+ "83": {
+  "i": 83,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "84": {
+  "i": 84,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "85": {
+  "i": 85,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "86": {
+  "i": 86,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "87": {
+  "i": 87,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "88": {
+  "i": 88,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "89": {
+  "i": 89,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "90": {
+  "i": 90,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "91": {
+  "i": 91,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "92": {
+  "i": 92,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "93": {
+  "i": 93,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "94": {
+  "i": 94,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "95": {
+  "i": 95,
+  "label": "alinea",
+  "n": "5",
+  "conf": "high",
+  "note": "inline amendment note kept in the paragraph"
+ },
+ "96": {
+  "i": 96,
+  "label": "article_head",
+  "n": "15",
+  "conf": "high",
+  "note": "opens Чл. 15 with its (1)"
+ },
+ "97": {
+  "i": 97,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "98": {
+  "i": 98,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "99": {
+  "i": 99,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "100": {
+  "i": 100,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": "inline amendment note kept in the item"
+ },
+ "101": {
+  "i": 101,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "102": {
+  "i": 102,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "103": {
+  "i": 103,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "104": {
+  "i": 104,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "105": {
+  "i": 105,
+  "label": "item",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "106": {
+  "i": 106,
+  "label": "item",
+  "n": "9",
+  "conf": "high",
+  "note": ""
+ },
+ "107": {
+  "i": 107,
+  "label": "item",
+  "n": "10",
+  "conf": "high",
+  "note": ""
+ },
+ "108": {
+  "i": 108,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "109": {
+  "i": 109,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "110": {
+  "i": 110,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "111": {
+  "i": 111,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "112": {
+  "i": 112,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "113": {
+  "i": 113,
+  "label": "article_head",
+  "n": "16",
+  "conf": "high",
+  "note": "opens Чл. 16 with its (1)"
+ },
+ "114": {
+  "i": 114,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "115": {
+  "i": 115,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "116": {
+  "i": 116,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "117": {
+  "i": 117,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "118": {
+  "i": 118,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "119": {
+  "i": 119,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "120": {
+  "i": 120,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "121": {
+  "i": 121,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "122": {
+  "i": 122,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "123": {
+  "i": 123,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "124": {
+  "i": 124,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "125": {
+  "i": 125,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "126": {
+  "i": 126,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "127": {
+  "i": 127,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "128": {
+  "i": 128,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "129": {
+  "i": 129,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "130": {
+  "i": 130,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "131": {
+  "i": 131,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "132": {
+  "i": 132,
+  "label": "alinea",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "133": {
+  "i": 133,
+  "label": "article_head",
+  "n": "17",
+  "conf": "high",
+  "note": "opens Чл. 17 with its (1)"
+ },
+ "134": {
+  "i": 134,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "135": {
+  "i": 135,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "136": {
+  "i": 136,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "137": {
+  "i": 137,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "138": {
+  "i": 138,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": "inline amendment note kept in text"
+ },
+ "139": {
+  "i": 139,
+  "label": "article_head",
+  "n": "18",
+  "conf": "high",
+  "note": "opens Чл. 18 with its (1)"
+ },
+ "140": {
+  "i": 140,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "141": {
+  "i": 141,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "142": {
+  "i": 142,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "143": {
+  "i": 143,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "144": {
+  "i": 144,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "145": {
+  "i": 145,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "146": {
+  "i": 146,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "147": {
+  "i": 147,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "148": {
+  "i": 148,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "149": {
+  "i": 149,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "150": {
+  "i": 150,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "151": {
+  "i": 151,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "152": {
+  "i": 152,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "153": {
+  "i": 153,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "154": {
+  "i": 154,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "155": {
+  "i": 155,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "156": {
+  "i": 156,
+  "label": "article_head",
+  "n": "19",
+  "conf": "high",
+  "note": "opens Чл. 19 with its (1)"
+ },
+ "157": {
+  "i": 157,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "158": {
+  "i": 158,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "159": {
+  "i": 159,
+  "label": "article_head",
+  "n": "20",
+  "conf": "high",
+  "note": "opens Чл. 20 with its (1)"
+ },
+ "160": {
+  "i": 160,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "161": {
+  "i": 161,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "162": {
+  "i": 162,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "163": {
+  "i": 163,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "164": {
+  "i": 164,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "165": {
+  "i": 165,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "166": {
+  "i": 166,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "167": {
+  "i": 167,
+  "label": "article_head",
+  "n": "21",
+  "conf": "high",
+  "note": "opens Чл. 21 with its (1)"
+ },
+ "168": {
+  "i": 168,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "169": {
+  "i": 169,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "170": {
+  "i": 170,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "171": {
+  "i": 171,
+  "label": "article_head",
+  "n": "22",
+  "conf": "high",
+  "note": ""
+ },
+ "172": {
+  "i": 172,
+  "label": "article_head",
+  "n": "23",
+  "conf": "high",
+  "note": "opens Чл. 23 with its (1)"
+ },
+ "173": {
+  "i": 173,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "174": {
+  "i": 174,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "175": {
+  "i": 175,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "176": {
+  "i": 176,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "177": {
+  "i": 177,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "178": {
+  "i": 178,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "179": {
+  "i": 179,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "180": {
+  "i": 180,
+  "label": "item",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "181": {
+  "i": 181,
+  "label": "item",
+  "n": "9",
+  "conf": "high",
+  "note": ""
+ },
+ "182": {
+  "i": 182,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "183": {
+  "i": 183,
+  "label": "article_head",
+  "n": "24",
+  "conf": "high",
+  "note": ""
+ },
+ "184": {
+  "i": 184,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "185": {
+  "i": 185,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "186": {
+  "i": 186,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "187": {
+  "i": 187,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "188": {
+  "i": 188,
+  "label": "article_head",
+  "n": "25",
+  "conf": "high",
+  "note": "opens Чл. 25 with its (1)"
+ },
+ "189": {
+  "i": 189,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "190": {
+  "i": 190,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "191": {
+  "i": 191,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "192": {
+  "i": 192,
+  "label": "article_head",
+  "n": "26",
+  "conf": "high",
+  "note": ""
+ },
+ "193": {
+  "i": 193,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "194": {
+  "i": 194,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "195": {
+  "i": 195,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "196": {
+  "i": 196,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "197": {
+  "i": 197,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "198": {
+  "i": 198,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "199": {
+  "i": 199,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "200": {
+  "i": 200,
+  "label": "item",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "201": {
+  "i": 201,
+  "label": "item",
+  "n": "9",
+  "conf": "high",
+  "note": ""
+ },
+ "202": {
+  "i": 202,
+  "label": "item",
+  "n": "10",
+  "conf": "high",
+  "note": ""
+ },
+ "203": {
+  "i": 203,
+  "label": "item",
+  "n": "11",
+  "conf": "high",
+  "note": ""
+ },
+ "204": {
+  "i": 204,
+  "label": "item",
+  "n": "12",
+  "conf": "high",
+  "note": "inline amendment note kept in text"
+ },
+ "205": {
+  "i": 205,
+  "label": "item",
+  "n": "13",
+  "conf": "high",
+  "note": ""
+ },
+ "206": {
+  "i": 206,
+  "label": "article_head",
+  "n": "26а",
+  "conf": "high",
+  "note": "Article head with inline editorial note and first alinea (1)"
+ },
+ "207": {
+  "i": 207,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "208": {
+  "i": 208,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "209": {
+  "i": 209,
+  "label": "article_head",
+  "n": "27",
+  "conf": "high",
+  "note": "Article head with inline alinea (1)"
+ },
+ "210": {
+  "i": 210,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "211": {
+  "i": 211,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "212": {
+  "i": 212,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "213": {
+  "i": 213,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "214": {
+  "i": 214,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "215": {
+  "i": 215,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "216": {
+  "i": 216,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "217": {
+  "i": 217,
+  "label": "article_head",
+  "n": "28",
+  "conf": "high",
+  "note": "Article head with inline alinea (1)"
+ },
+ "218": {
+  "i": 218,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "219": {
+  "i": 219,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "220": {
+  "i": 220,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "221": {
+  "i": 221,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "222": {
+  "i": 222,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "223": {
+  "i": 223,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "224": {
+  "i": 224,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "225": {
+  "i": 225,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "226": {
+  "i": 226,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "227": {
+  "i": 227,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "228": {
+  "i": 228,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "229": {
+  "i": 229,
+  "label": "article_head",
+  "n": "29",
+  "conf": "high",
+  "note": "Article head with inline alinea (1)"
+ },
+ "230": {
+  "i": 230,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "231": {
+  "i": 231,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "232": {
+  "i": 232,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "233": {
+  "i": 233,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "234": {
+  "i": 234,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "235": {
+  "i": 235,
+  "label": "item",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "236": {
+  "i": 236,
+  "label": "item",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "237": {
+  "i": 237,
+  "label": "item",
+  "n": "7",
+  "conf": "high",
+  "note": ""
+ },
+ "238": {
+  "i": 238,
+  "label": "item",
+  "n": "8",
+  "conf": "high",
+  "note": ""
+ },
+ "239": {
+  "i": 239,
+  "label": "item",
+  "n": "9",
+  "conf": "high",
+  "note": ""
+ },
+ "240": {
+  "i": 240,
+  "label": "item",
+  "n": "10",
+  "conf": "high",
+  "note": ""
+ },
+ "241": {
+  "i": 241,
+  "label": "item",
+  "n": "11",
+  "conf": "high",
+  "note": ""
+ },
+ "242": {
+  "i": 242,
+  "label": "item",
+  "n": "12",
+  "conf": "high",
+  "note": ""
+ },
+ "243": {
+  "i": 243,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "244": {
+  "i": 244,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "first line of a two-line Раздел heading"
+ },
+ "245": {
+  "i": 245,
+  "label": "section_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line of the Раздел III heading"
+ },
+ "246": {
+  "i": 246,
+  "label": "article_head",
+  "n": "30",
+  "conf": "high",
+  "note": ""
+ },
+ "247": {
+  "i": 247,
+  "label": "article_head",
+  "n": "31",
+  "conf": "high",
+  "note": "opens with (1) on the same line"
+ },
+ "248": {
+  "i": 248,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "249": {
+  "i": 249,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "250": {
+  "i": 250,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "251": {
+  "i": 251,
+  "label": "alinea",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "252": {
+  "i": 252,
+  "label": "article_head",
+  "n": "32",
+  "conf": "high",
+  "note": "opens with (1) and inline amendment note"
+ },
+ "253": {
+  "i": 253,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "254": {
+  "i": 254,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": "inline amendment note kept in text"
+ },
+ "255": {
+  "i": 255,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "256": {
+  "i": 256,
+  "label": "alinea",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "257": {
+  "i": 257,
+  "label": "article_head",
+  "n": "33",
+  "conf": "high",
+  "note": "opens with (1) and inline amendment note"
+ },
+ "258": {
+  "i": 258,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": "inline amendment note kept in text"
+ },
+ "259": {
+  "i": 259,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "260": {
+  "i": 260,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "261": {
+  "i": 261,
+  "label": "alinea",
+  "n": "5",
+  "conf": "high",
+  "note": "inline amendment note kept in text"
+ },
+ "262": {
+  "i": 262,
+  "label": "alinea",
+  "n": "6",
+  "conf": "high",
+  "note": ""
+ },
+ "263": {
+  "i": 263,
+  "label": "article_head",
+  "n": "34",
+  "conf": "high",
+  "note": "inline amendment note kept in text"
+ },
+ "264": {
+  "i": 264,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "265": {
+  "i": 265,
+  "label": "letter",
+  "n": "а",
+  "conf": "high",
+  "note": ""
+ },
+ "266": {
+  "i": 266,
+  "label": "letter",
+  "n": "б",
+  "conf": "high",
+  "note": ""
+ },
+ "267": {
+  "i": 267,
+  "label": "letter",
+  "n": "в",
+  "conf": "high",
+  "note": ""
+ },
+ "268": {
+  "i": 268,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "269": {
+  "i": 269,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "270": {
+  "i": 270,
+  "label": "article_head",
+  "n": "35",
+  "conf": "high",
+  "note": "opens with (1) on the same line"
+ },
+ "271": {
+  "i": 271,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "272": {
+  "i": 272,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "273": {
+  "i": 273,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "274": {
+  "i": 274,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "275": {
+  "i": 275,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "276": {
+  "i": 276,
+  "label": "alinea",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "277": {
+  "i": 277,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "first line of two-line heading Глава трета"
+ },
+ "278": {
+  "i": 278,
+  "label": "chapter_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line of chapter heading"
+ },
+ "279": {
+  "i": 279,
+  "label": "article_head",
+  "n": "36",
+  "conf": "high",
+  "note": "opens with (1)"
+ },
+ "280": {
+  "i": 280,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "281": {
+  "i": 281,
+  "label": "article_head",
+  "n": "37",
+  "conf": "high",
+  "note": "opens with (1)"
+ },
+ "282": {
+  "i": 282,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "283": {
+  "i": 283,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "284": {
+  "i": 284,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "285": {
+  "i": 285,
+  "label": "article_head",
+  "n": "38",
+  "conf": "high",
+  "note": ""
+ },
+ "286": {
+  "i": 286,
+  "label": "article_head",
+  "n": "39",
+  "conf": "high",
+  "note": "opens with (1)"
+ },
+ "287": {
+  "i": 287,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "288": {
+  "i": 288,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "289": {
+  "i": 289,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "290": {
+  "i": 290,
+  "label": "alinea",
+  "n": "5",
+  "conf": "high",
+  "note": "inline editorial note (Нова) kept in the alinea"
+ },
+ "291": {
+  "i": 291,
+  "label": "alinea",
+  "n": "6",
+  "conf": "high",
+  "note": "inline editorial note (Предишна ал. 5) kept in the alinea"
+ },
+ "292": {
+  "i": 292,
+  "label": "article_head",
+  "n": "40",
+  "conf": "high",
+  "note": "opens with (1)"
+ },
+ "293": {
+  "i": 293,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "294": {
+  "i": 294,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "295": {
+  "i": 295,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "296": {
+  "i": 296,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "297": {
+  "i": 297,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "298": {
+  "i": 298,
+  "label": "alinea",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "299": {
+  "i": 299,
+  "label": "alinea",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "300": {
+  "i": 300,
+  "label": "item",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "301": {
+  "i": 301,
+  "label": "item",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "302": {
+  "i": 302,
+  "label": "item",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "303": {
+  "i": 303,
+  "label": "item",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "304": {
+  "i": 304,
+  "label": "article_head",
+  "n": "41",
+  "conf": "high",
+  "note": "opens with (1)"
+ },
+ "305": {
+  "i": 305,
+  "label": "alinea",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "306": {
+  "i": 306,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Преходни и Заключителни разпоредби heading; hint Title is wrong"
+ },
+ "307": {
+  "i": 307,
+  "label": "paragraph_sign",
+  "n": "1",
+  "conf": "high",
+  "note": ""
+ },
+ "308": {
+  "i": 308,
+  "label": "paragraph_sign",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "309": {
+  "i": 309,
+  "label": "paragraph_sign",
+  "n": "3",
+  "conf": "high",
+  "note": ""
+ },
+ "310": {
+  "i": 310,
+  "label": "paragraph_sign",
+  "n": "4",
+  "conf": "high",
+  "note": ""
+ },
+ "311": {
+  "i": 311,
+  "label": "paragraph_sign",
+  "n": "5",
+  "conf": "high",
+  "note": ""
+ },
+ "312": {
+  "i": 312,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Заключителни разпоредби, first line of a two-line heading"
+ },
+ "313": {
+  "i": 313,
+  "label": "provisions_heading",
+  "n": null,
+  "conf": "high",
+  "note": "second line: към Наредба за изменение на Наредба № 1"
+ },
+ "314": {
+  "i": 314,
+  "label": "editorial_note",
+  "n": null,
+  "conf": "high",
+  "note": "publication and in-force note of the amending act"
+ },
+ "315": {
+  "i": 315,
+  "label": "paragraph_sign",
+  "n": "2",
+  "conf": "high",
+  "note": ""
+ },
+ "316": {
+  "i": 316,
+  "label": "annex_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Приложение № 1 към чл. 10"
+ },
+ "317": {
+  "i": 317,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form header of the annex"
+ },
+ "318": {
+  "i": 318,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "319": {
+  "i": 319,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "320": {
+  "i": 320,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "321": {
+  "i": 321,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "322": {
+  "i": 322,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "323": {
+  "i": 323,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "324": {
+  "i": 324,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "325": {
+  "i": 325,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "326": {
+  "i": 326,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "327": {
+  "i": 327,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form title inside the annex"
+ },
+ "328": {
+  "i": 328,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "329": {
+  "i": 329,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "330": {
+  "i": 330,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "331": {
+  "i": 331,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "332": {
+  "i": 332,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "333": {
+  "i": 333,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "334": {
+  "i": 334,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "335": {
+  "i": 335,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "336": {
+  "i": 336,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "337": {
+  "i": 337,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "338": {
+  "i": 338,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "339": {
+  "i": 339,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "340": {
+  "i": 340,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "341": {
+  "i": 341,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "table cell of the annex form"
+ },
+ "342": {
+  "i": 342,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "343": {
+  "i": 343,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "344": {
+  "i": 344,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "345": {
+  "i": 345,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "346": {
+  "i": 346,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "347": {
+  "i": 347,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "348": {
+  "i": 348,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "349": {
+  "i": 349,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "350": {
+  "i": 350,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "351": {
+  "i": 351,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "352": {
+  "i": 352,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "353": {
+  "i": 353,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "354": {
+  "i": 354,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "355": {
+  "i": 355,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "356": {
+  "i": 356,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "357": {
+  "i": 357,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "358": {
+  "i": 358,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "359": {
+  "i": 359,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "360": {
+  "i": 360,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "361": {
+  "i": 361,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "362": {
+  "i": 362,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "363": {
+  "i": 363,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "364": {
+  "i": 364,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "365": {
+  "i": 365,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "366": {
+  "i": 366,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "367": {
+  "i": 367,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "368": {
+  "i": 368,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "369": {
+  "i": 369,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "370": {
+  "i": 370,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "371": {
+  "i": 371,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "372": {
+  "i": 372,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "373": {
+  "i": 373,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "374": {
+  "i": 374,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "375": {
+  "i": 375,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "376": {
+  "i": 376,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "377": {
+  "i": 377,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "378": {
+  "i": 378,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "379": {
+  "i": 379,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "380": {
+  "i": 380,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "381": {
+  "i": 381,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "382": {
+  "i": 382,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "383": {
+  "i": 383,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "384": {
+  "i": 384,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "385": {
+  "i": 385,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "386": {
+  "i": 386,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "387": {
+  "i": 387,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "388": {
+  "i": 388,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "389": {
+  "i": 389,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "390": {
+  "i": 390,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "391": {
+  "i": 391,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "392": {
+  "i": 392,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "signature block of the annex form"
+ },
+ "393": {
+  "i": 393,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "394": {
+  "i": 394,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "395": {
+  "i": 395,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "396": {
+  "i": 396,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "397": {
+  "i": 397,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "398": {
+  "i": 398,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "399": {
+  "i": 399,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "400": {
+  "i": 400,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "401": {
+  "i": 401,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "402": {
+  "i": 402,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "403": {
+  "i": 403,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "404": {
+  "i": 404,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "405": {
+  "i": 405,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "406": {
+  "i": 406,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "407": {
+  "i": 407,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "408": {
+  "i": 408,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "409": {
+  "i": 409,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "410": {
+  "i": 410,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "411": {
+  "i": 411,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "412": {
+  "i": 412,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "413": {
+  "i": 413,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "414": {
+  "i": 414,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "415": {
+  "i": 415,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "416": {
+  "i": 416,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "417": {
+  "i": 417,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "418": {
+  "i": 418,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "419": {
+  "i": 419,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "420": {
+  "i": 420,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "421": {
+  "i": 421,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "422": {
+  "i": 422,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "423": {
+  "i": 423,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "424": {
+  "i": 424,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "issuing instruction printed at the foot of the annex form"
+ },
+ "425": {
+  "i": 425,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "426": {
+  "i": 426,
+  "label": "annex_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Приложение № 2 към чл. 11, ал. 6"
+ },
+ "427": {
+  "i": 427,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form letterhead inside Приложение № 2"
+ },
+ "428": {
+  "i": 428,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "429": {
+  "i": 429,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "430": {
+  "i": 430,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "431": {
+  "i": 431,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "432": {
+  "i": 432,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "433": {
+  "i": 433,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "434": {
+  "i": 434,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "435": {
+  "i": 435,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "436": {
+  "i": 436,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "437": {
+  "i": 437,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form title, not the annex heading"
+ },
+ "438": {
+  "i": 438,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "439": {
+  "i": 439,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "440": {
+  "i": 440,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "441": {
+  "i": 441,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "442": {
+  "i": 442,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "443": {
+  "i": 443,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "444": {
+  "i": 444,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "445": {
+  "i": 445,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "446": {
+  "i": 446,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "447": {
+  "i": 447,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "448": {
+  "i": 448,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "449": {
+  "i": 449,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "450": {
+  "i": 450,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "451": {
+  "i": 451,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "table header cell of the form"
+ },
+ "452": {
+  "i": 452,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "453": {
+  "i": 453,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "454": {
+  "i": 454,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "455": {
+  "i": 455,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "456": {
+  "i": 456,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "457": {
+  "i": 457,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "458": {
+  "i": 458,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "459": {
+  "i": 459,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "460": {
+  "i": 460,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "461": {
+  "i": 461,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "462": {
+  "i": 462,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "463": {
+  "i": 463,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "464": {
+  "i": 464,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "465": {
+  "i": 465,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "466": {
+  "i": 466,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "467": {
+  "i": 467,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "468": {
+  "i": 468,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "469": {
+  "i": 469,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "470": {
+  "i": 470,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "471": {
+  "i": 471,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "472": {
+  "i": 472,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "signature block of the preceding annex form"
+ },
+ "473": {
+  "i": 473,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "474": {
+  "i": 474,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "475": {
+  "i": 475,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "476": {
+  "i": 476,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "477": {
+  "i": 477,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "478": {
+  "i": 478,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "479": {
+  "i": 479,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "480": {
+  "i": 480,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "481": {
+  "i": 481,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "482": {
+  "i": 482,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "483": {
+  "i": 483,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "484": {
+  "i": 484,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "485": {
+  "i": 485,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "486": {
+  "i": 486,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "487": {
+  "i": 487,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "488": {
+  "i": 488,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "489": {
+  "i": 489,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "490": {
+  "i": 490,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "491": {
+  "i": 491,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "492": {
+  "i": 492,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "493": {
+  "i": 493,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "494": {
+  "i": 494,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "495": {
+  "i": 495,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "496": {
+  "i": 496,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "497": {
+  "i": 497,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "498": {
+  "i": 498,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "closing instruction of the annex form"
+ },
+ "499": {
+  "i": 499,
+  "label": "annex_heading",
+  "n": null,
+  "conf": "high",
+  "note": "Приложение № 3"
+ },
+ "500": {
+  "i": 500,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form addressee line"
+ },
+ "501": {
+  "i": 501,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "502": {
+  "i": 502,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "503": {
+  "i": 503,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "504": {
+  "i": 504,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "505": {
+  "i": 505,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form title inside the annex, not a structural heading"
+ },
+ "506": {
+  "i": 506,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "507": {
+  "i": 507,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "508": {
+  "i": 508,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "509": {
+  "i": 509,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "510": {
+  "i": 510,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "511": {
+  "i": 511,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "512": {
+  "i": 512,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "513": {
+  "i": 513,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "514": {
+  "i": 514,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "515": {
+  "i": 515,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "516": {
+  "i": 516,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered point of the form text, not an item of the act"
+ },
+ "517": {
+  "i": 517,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "518": {
+  "i": 518,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "519": {
+  "i": 519,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "520": {
+  "i": 520,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "521": {
+  "i": 521,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "522": {
+  "i": 522,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "523": {
+  "i": 523,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "524": {
+  "i": 524,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "525": {
+  "i": 525,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "526": {
+  "i": 526,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "527": {
+  "i": 527,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "528": {
+  "i": 528,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "529": {
+  "i": 529,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "530": {
+  "i": 530,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "531": {
+  "i": 531,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered point of the form text, not an item of the act"
+ },
+ "532": {
+  "i": 532,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "533": {
+  "i": 533,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form's list of attached documents"
+ },
+ "534": {
+  "i": 534,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "535": {
+  "i": 535,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "536": {
+  "i": 536,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "537": {
+  "i": 537,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "538": {
+  "i": 538,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "539": {
+  "i": 539,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "540": {
+  "i": 540,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "541": {
+  "i": 541,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "542": {
+  "i": 542,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "543": {
+  "i": 543,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "544": {
+  "i": 544,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "545": {
+  "i": 545,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "546": {
+  "i": 546,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "547": {
+  "i": 547,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "548": {
+  "i": 548,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "549": {
+  "i": 549,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "550": {
+  "i": 550,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "551": {
+  "i": 551,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "552": {
+  "i": 552,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "explanatory line of a form field in the preceding annex"
+ },
+ "553": {
+  "i": 553,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex, not an item of the act"
+ },
+ "554": {
+  "i": 554,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "555": {
+  "i": 555,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "556": {
+  "i": 556,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "557": {
+  "i": 557,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "558": {
+  "i": 558,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "559": {
+  "i": 559,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "560": {
+  "i": 560,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "561": {
+  "i": 561,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "562": {
+  "i": 562,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "563": {
+  "i": 563,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "564": {
+  "i": 564,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "565": {
+  "i": 565,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "place and date line of the form"
+ },
+ "566": {
+  "i": 566,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "567": {
+  "i": 567,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "568": {
+  "i": 568,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "569": {
+  "i": 569,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "570": {
+  "i": 570,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "note at the foot of the annex form"
+ },
+ "571": {
+  "i": 571,
+  "label": "annex_heading",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "572": {
+  "i": 572,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "addressee block of the form"
+ },
+ "573": {
+  "i": 573,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "574": {
+  "i": 574,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "575": {
+  "i": 575,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "576": {
+  "i": 576,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form title inside the annex"
+ },
+ "577": {
+  "i": 577,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form title inside the annex"
+ },
+ "578": {
+  "i": 578,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "579": {
+  "i": 579,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "580": {
+  "i": 580,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "581": {
+  "i": 581,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "582": {
+  "i": 582,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "583": {
+  "i": 583,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "584": {
+  "i": 584,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "585": {
+  "i": 585,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "586": {
+  "i": 586,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "587": {
+  "i": 587,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "588": {
+  "i": 588,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "589": {
+  "i": 589,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "590": {
+  "i": 590,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "591": {
+  "i": 591,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "592": {
+  "i": 592,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "593": {
+  "i": 593,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "594": {
+  "i": 594,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "595": {
+  "i": 595,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "596": {
+  "i": 596,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "597": {
+  "i": 597,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "598": {
+  "i": 598,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "599": {
+  "i": 599,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "600": {
+  "i": 600,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "601": {
+  "i": 601,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "602": {
+  "i": 602,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "603": {
+  "i": 603,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "604": {
+  "i": 604,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "605": {
+  "i": 605,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "606": {
+  "i": 606,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "607": {
+  "i": 607,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "608": {
+  "i": 608,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "609": {
+  "i": 609,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "610": {
+  "i": 610,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "611": {
+  "i": 611,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered form field of the annex"
+ },
+ "612": {
+  "i": 612,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "613": {
+  "i": 613,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "614": {
+  "i": 614,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "615": {
+  "i": 615,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "616": {
+  "i": 616,
+  "label": "annex_heading",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "617": {
+  "i": 617,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "addressee block of the form"
+ },
+ "618": {
+  "i": 618,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "619": {
+  "i": 619,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "620": {
+  "i": 620,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "621": {
+  "i": 621,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "622": {
+  "i": 622,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form title inside the annex"
+ },
+ "623": {
+  "i": 623,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form title inside the annex"
+ },
+ "624": {
+  "i": 624,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "625": {
+  "i": 625,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "626": {
+  "i": 626,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "627": {
+  "i": 627,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "628": {
+  "i": 628,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "629": {
+  "i": 629,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "630": {
+  "i": 630,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "631": {
+  "i": 631,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": ""
+ },
+ "632": {
+  "i": 632,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form line of an annex (request form)"
+ },
+ "633": {
+  "i": 633,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "634": {
+  "i": 634,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form line"
+ },
+ "635": {
+  "i": 635,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "636": {
+  "i": 636,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form line"
+ },
+ "637": {
+  "i": 637,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form salutation"
+ },
+ "638": {
+  "i": 638,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered point of the form, not an item of the act"
+ },
+ "639": {
+  "i": 639,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "640": {
+  "i": 640,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered point of the form, not an item of the act"
+ },
+ "641": {
+  "i": 641,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "642": {
+  "i": 642,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form line"
+ },
+ "643": {
+  "i": 643,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "644": {
+  "i": 644,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form line"
+ },
+ "645": {
+  "i": 645,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "646": {
+  "i": 646,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered point of the form, not an item of the act"
+ },
+ "647": {
+  "i": 647,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "648": {
+  "i": 648,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered point of the form, not an item of the act"
+ },
+ "649": {
+  "i": 649,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "650": {
+  "i": 650,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "numbered point of the form, not an item of the act"
+ },
+ "651": {
+  "i": 651,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "blank form line"
+ },
+ "652": {
+  "i": 652,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "653": {
+  "i": 653,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form line"
+ },
+ "654": {
+  "i": 654,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form line"
+ },
+ "655": {
+  "i": 655,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form line"
+ },
+ "656": {
+  "i": 656,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "657": {
+  "i": 657,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form place and date line"
+ },
+ "658": {
+  "i": 658,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "659": {
+  "i": 659,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form closing"
+ },
+ "660": {
+  "i": 660,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "signature line"
+ },
+ "661": {
+  "i": 661,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "form field caption"
+ },
+ "662": {
+  "i": 662,
+  "label": "annex_row",
+  "n": null,
+  "conf": "high",
+  "note": "note to the annex form"
+ }
+}
