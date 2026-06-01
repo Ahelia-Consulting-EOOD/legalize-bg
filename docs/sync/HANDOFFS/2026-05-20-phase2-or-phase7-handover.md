@@ -1,9 +1,36 @@
 # Handoff: 2026-05-20 — Phase 2 (temporal index) OR Phase 7 (browser) next
 
 **Previous session owner:** ekimir (Claude Opus 4.7, 1M context)
-**Repo HEAD at handover:** `f01c6645` (`origin/main` in sync)
+**Repo HEAD at handover:** `f01c6645` (`origin/main` in sync — the handover commit `7bdcf4b8` sits on top)
 **Test suite:** **287 passing** (`pytest -q`, ~13 s)
 **Working tree:** clean
+
+---
+
+## Execute these steps (read top-to-bottom, do not skip)
+
+You are continuing work on `legalize-bg` from a previous session. Read the rest of this handover for context, then perform the two tasks below in order.
+
+**Step 1 — Code review of the Phase 7 design doc.**
+- Target: commit `f01c6645` (`docs/plans/2026-05-11-phase7-legislation-browser-design.md`, 329 lines, doc-only).
+- Invocation: `superpowers:requesting-code-review` against range `17ea7b23..f01c6645`.
+- This is a **design-doc review, not a code review** — there is no code yet. Focus on the items listed under "Task A" below: dependency on Phase 2, defensibility of the 6 brainstorming decisions, REST API compatibility with `mcp_server/queries.py`, governance-gap risk from the separate frontend repo, completeness of the documentation plan.
+- Apply Important findings (if any) before proceeding to Step 2.
+
+**Step 2 — Plan the next implementation.**
+- Ask the user which to plan next: **Phase 2** (temporal index, FR-001 — unblocks Phase 7 full launch; natural per `ACTIVE.md`) or **Phase 7 REST API** (the design says it can begin now; doesn't unblock anything).
+- Wait for the user's answer. Don't guess.
+- Once the user picks one, write the plan via `superpowers:writing-plans` and save it to `docs/plans/YYYY-MM-DD-<feature>.md` (NOT `docs/superpowers/plans/`).
+
+**Session pattern** (proven across Phase 1b.1 → 1b.3):
+`writing-plans` → `executing-plans` direct to `main` → `requesting-code-review` (clean-context subagent) → fix any Important findings → re-review if needed → `finishing-a-development-branch` → **push only after the user's explicit OK**.
+
+**Hard rules** (from "What to NOT do" later in this file — read that section once before starting):
+- Don't re-do the Phase 1b code reviews (6 closed rounds already).
+- Don't push without explicit user authorization.
+- Don't update `tools.json` by hand — use `python -m mcp_server.export_tools --output tools.json`.
+- Don't touch the `provisions` table or `bg_normalize` without re-reading the FR-013 / D-029 rationale block in `index/fts.py`.
+- Don't tighten the FR-016 reject predicate without checking the 12 parametrized regression tests in `tests/mcp_server/test_search.py` first.
 
 ---
 
