@@ -1,0 +1,56 @@
+{
+ "slug": "zakon-za-mestnoto-samoupravlenie-i-mestnata-administratsiya",
+ "round": 0,
+ "blocks": 680,
+ "sections": 18,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 79,
+   "kind": "low_confidence",
+   "detail": "unnumbered line stating al. 2 repealed; repeal_note or editorial_note"
+  },
+  {
+   "block": 472,
+   "kind": "low_confidence",
+   "detail": "second line of Глава единадесета; provisions_heading also plausible"
+  },
+  {
+   "block": 651,
+   "kind": "low_confidence",
+   "detail": "opens § 7 which is repealed; paragraph_sign or repeal_note"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 3
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 2,
+  "chapter_heading": 22,
+  "article_head": 92,
+  "alinea": 182,
+  "item": 202,
+  "repeal_note": 1,
+  "continuation": 1,
+  "letter": 11,
+  "paragraph_sign": 54,
+  "quoted": 11,
+  "provisions_heading": 60,
+  "editorial_note": 40
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 3,
+ "diff_lines": 66
+}
