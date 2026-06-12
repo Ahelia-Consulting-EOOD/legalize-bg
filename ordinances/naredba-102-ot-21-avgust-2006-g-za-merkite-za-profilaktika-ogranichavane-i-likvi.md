@@ -7,7 +7,7 @@ pais: bg
 rango: наредба
 fecha_publicacion: '2006-10-13'
 ultima_actualizacion: '2018-10-18'
-estado: vigente
+estado: derogado
 fuente: lex.bg
 dv_issue: '83'
 dv_year: 2006
