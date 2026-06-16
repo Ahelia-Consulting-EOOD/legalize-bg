@@ -1,0 +1,539 @@
+{
+ "slug": "zakon-za-korporativnoto-podohodno-oblagane",
+ "round": 1,
+ "blocks": 4042,
+ "sections": 117,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 1071,
+   "kind": "low_confidence",
+   "detail": "repeated chapter number before the superseded old title; chapter_heading also plausible"
+  },
+  {
+   "block": 1072,
+   "kind": "low_confidence",
+   "detail": "superseded pre-2019 chapter title printed after the amended one; chapter_heading also plausible"
+  },
+  {
+   "block": 1179,
+   "kind": "low_confidence",
+   "detail": "repeated section number of the duplicated old heading; section_heading also plausible"
+  },
+  {
+   "block": 1180,
+   "kind": "low_confidence",
+   "detail": "duplicated old section title without the repeal note; section_heading also plausible"
+  },
+  {
+   "block": 2888,
+   "kind": "low_confidence",
+   "detail": "sub-item nested in т. 29 restarting at 1; item also plausible"
+  },
+  {
+   "block": 2888,
+   "kind": "label_text_mismatch",
+   "detail": "continuation on a line that opens like a provision: '1. създаване на нов производствен обект;'"
+  },
+  {
+   "block": 2889,
+   "kind": "low_confidence",
+   "detail": "sub-item nested in т. 29; item also plausible"
+  },
+  {
+   "block": 2889,
+   "kind": "label_text_mismatch",
+   "detail": "continuation on a line that opens like a provision: '2. увеличаване на капацитета на съществу'"
+  },
+  {
+   "block": 2890,
+   "kind": "low_confidence",
+   "detail": "sub-item nested in т. 29; item also plausible"
+  },
+  {
+   "block": 2890,
+   "kind": "label_text_mismatch",
+   "detail": "continuation on a line that opens like a provision: '3. диверсификация на продукцията на прои'"
+  },
+  {
+   "block": 2891,
+   "kind": "low_confidence",
+   "detail": "sub-item nested in т. 29; item also plausible"
+  },
+  {
+   "block": 2891,
+   "kind": "label_text_mismatch",
+   "detail": "continuation on a line that opens like a provision: '4. (изм. - ДВ, бр. 99 от 2022 г., в сила'"
+  },
+  {
+   "block": 3052,
+   "kind": "low_confidence",
+   "detail": "new letter list inside the same item after an intro line; continuation also plausible"
+  },
+  {
+   "block": 3118,
+   "kind": "low_confidence",
+   "detail": "new letter list inside the same item after an intro line; continuation also plausible"
+  },
+  {
+   "block": 3135,
+   "kind": "low_confidence",
+   "detail": "new letter list inside the same item after an intro line; continuation also plausible"
+  },
+  {
+   "block": 3138,
+   "kind": "low_confidence",
+   "detail": "new letter list inside the same item after an intro line; continuation also plausible"
+  },
+  {
+   "block": 3463,
+   "kind": "low_confidence",
+   "detail": "amending-act title line naming the act of the following provisions; editorial_note also plausible"
+  },
+  {
+   "block": 3052,
+   "kind": "letter_order",
+   "detail": "а) after б)"
+  },
+  {
+   "block": 3118,
+   "kind": "letter_order",
+   "detail": "а) after б)"
+  },
+  {
+   "block": 3135,
+   "kind": "letter_order",
+   "detail": "а) after б)"
+  },
+  {
+   "block": 3138,
+   "kind": "letter_order",
+   "detail": "а) after б)"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 1993,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2089,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2093,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2126,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2249,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2375,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2383,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2401,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2410,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2417,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2428,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2438,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2461,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2478,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2498,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2508,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2525,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2541,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2549,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2554,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2573,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2578,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2621,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2635,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2639,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2666,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2676,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2705,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2736,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2744,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2749,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2755,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2766,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2769,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2773,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2775,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2780,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2783,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2785,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2787,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 13,
+  "label_text_mismatch": 4,
+  "letter_order": 4
+ },
+ "source_finding_kinds": {
+  "fragment": 40
+ },
+ "labels": {
+  "drop": 37,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 14,
+  "chapter_heading": 98,
+  "article_title": 365,
+  "article_head": 392,
+  "item": 974,
+  "alinea": 852,
+  "letter": 360,
+  "continuation": 186,
+  "table_row": 62,
+  "section_heading": 48,
+  "editorial_note": 178,
+  "provisions_heading": 165,
+  "paragraph_sign": 186,
+  "quoted": 2,
+  "adoption_formula": 1,
+  "annex_heading": 10,
+  "repeal_note": 2,
+  "annex_row": 107
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 3223,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 4007,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU acts block, not the act"
+  },
+  {
+   "block": 4008,
+   "text": "КОНСОЛИДИРАН ТЕКСТ НА ДОГОВОРА ЗА ФУНКЦИОНИРАНЕТО НА ЕВРОПЕЙСКИЯ СЪЮЗ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4009,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4010,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2523 НА СЪВЕТА от 14 декември 2022 година за гарантиране на ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4011,
+   "text": "ДИРЕКТИВА (ЕС) 2017/952 НА СЪВЕТА от 29 май 2017 г. за изменение на Директива (Е",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4012,
+   "text": "ДИРЕКТИВА (ЕС) 2016/1164 НА СЪВЕТА от 12 юли 2016 година за установяване на прав",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4013,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4014,
+   "text": "ДИРЕКТИВА (ЕС) 2015/121 НА СЪВЕТА от 27 януари 2015 година за изменение на Дирек",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4015,
+   "text": "ДИРЕКТИВА 2014/86/ЕС НА СЪВЕТА от 8 юли 2014 година за изменение на Директива 20",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4016,
+   "text": "ДИРЕКТИВА 2014/65/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4017,
+   "text": "ДИРЕКТИВА 2013/13/ЕС НА СЪВЕТА от 13 май 2013 година за адаптиране на някои дире",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4018,
+   "text": "ДИРЕКТИВА 2011/96/ЕС НА СЪВЕТА от 30 ноември 2011 година относно общата система ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4019,
+   "text": "ДИРЕКТИВА 2011/16/ЕС НА СЪВЕТА от 15 февруари 2011 година относно административн",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4020,
+   "text": "ДИРЕКТИВА 2010/24/ЕС НА СЪВЕТА от 16 март 2010 година относно взаимната помощ пр",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4021,
+   "text": "ДИРЕКТИВА 2009/133/ЕО НА СЪВЕТА от 19 октомври 2009 година относно общата систем",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4022,
+   "text": "ДИРЕКТИВА 2006/98/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4023,
+   "text": "ДИРЕКТИВА 2003/72/ЕО НА СЪВЕТА от 22 юли 2003 година за допълване на Устава на Е",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4024,
+   "text": "ДИРЕКТИВА 2003/49/ЕО НА СЪВЕТА от 3 юни 2003 година относно общата система на да",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4025,
+   "text": "ДИРЕКТИВА 2001/86/ЕО НА СЪВЕТА от 8 октомври 2001 година за допълнение на Устава",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4026,
+   "text": "Регламент:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4027,
+   "text": "РЕГЛАМЕНТ (ЕС) 2023/2831 НА КОМИСИЯТА от 13 декември 2023 година относно прилага",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4028,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2472 НА КОМИСИЯТА от 14 декември 2022 година относно деклари",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4029,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/2008 НА КОМИСИЯТА от 8 декември 2020 година за изменение на ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4030,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1474 НА КОМИСИЯТА от 13 октомври 2020 година за изменение на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4031,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/972 НА КОМИСИЯТА от 2 юли 2020 година за изменение на Реглам",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4032,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/316 НА КОМИСИЯТА от 21 февруари 2019 година за изменение на ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4033,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1379/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4034,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1303/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 декември 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4035,
+   "text": "РЕГЛАМЕНТ (ЕС) № 575/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ и на Съвета от 26 юни 2013 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4036,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1435/2003 НА СЪВЕТА от 22 юли 2003 година относно устава на Евр",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4037,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1059/2003 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 май 2003 г",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4038,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2157/2001 НА СЪВЕТА от 8 октомври 2001 година относно Устава на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4039,
+   "text": "РЕГЛАМЕНТ (ЕИО, ЕВРАТОМ) № 1182/71 НА СЪВЕТА от 3 юни 1971 година за определяне ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4040,
+   "text": "Други:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4041,
+   "text": "Съобщение на Комисията - Насоки за държавна помощ за оздравяване и преструктурир",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 13,
+ "diff_lines": 1827
+}
