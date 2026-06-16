@@ -1,0 +1,165 @@
+{
+ "slug": "zakon-za-kontsesiite",
+ "round": 0,
+ "blocks": 2250,
+ "sections": 47,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 776,
+   "kind": "low_confidence",
+   "detail": "repeated Глава четвърта with the older title; chapter_heading or editorial_note"
+  },
+  {
+   "block": 777,
+   "kind": "low_confidence",
+   "detail": "older chapter title repeated after the amended one; chapter_heading or editorial_note"
+  },
+  {
+   "block": 1042,
+   "kind": "low_confidence",
+   "detail": "repealed numbered alinea; alinea or repeal_note"
+  },
+  {
+   "block": 1092,
+   "kind": "low_confidence",
+   "detail": "repealed numbered alinea; alinea or repeal_note"
+  },
+  {
+   "block": 1170,
+   "kind": "low_confidence",
+   "detail": "second Глава седма printed right after the amended one; duplicate old title, chapter_heading or editorial_note"
+  },
+  {
+   "block": 1171,
+   "kind": "low_confidence",
+   "detail": "pre-2021 title of the same Глава седма; chapter_heading or editorial_note"
+  },
+  {
+   "block": 1749,
+   "kind": "low_confidence",
+   "detail": "title of an amending act printed before its provisions heading; editorial_note also plausible"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 7
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 18,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 22,
+  "section_heading": 68,
+  "article_head": 209,
+  "alinea": 478,
+  "item": 618,
+  "letter": 151,
+  "continuation": 5,
+  "provisions_heading": 23,
+  "paragraph_sign": 55,
+  "quoted": 131,
+  "adoption_formula": 1,
+  "editorial_note": 19,
+  "annex_heading": 20,
+  "annex_row": 429
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1717,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 2234,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU acts, not act text; editorial_note also plausible"
+  },
+  {
+   "block": 2235,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2236,
+   "text": "ДИРЕКТИВА (ЕС) 2019/944 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юни 2019 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2237,
+   "text": "ДИРЕКТИВА 2014/55/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2238,
+   "text": "ДИРЕКТИВА 2014/23/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 февруари 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2239,
+   "text": "ДИРЕКТИВА 2009/73/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юли 2009 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2240,
+   "text": "ДИРЕКТИВА 97/67/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 декември 1997 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2241,
+   "text": "ДИРЕКТИВА 94/22/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 30 май 1994 година от",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2242,
+   "text": "ДИРЕКТИВА 89/665/ЕИО НА СЪВЕТА от 21 декември 1989 година относно координирането",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2243,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2244,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1008/2008 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 септември ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2245,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1370/2007 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2246,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1059/2003 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 май 2003 г",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2247,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2195/2002 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 ноември 200",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2248,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2249,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2017/1870 НА КОМИСИЯТА от 16 октомври 2017 година за ",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 7,
+ "diff_lines": 123
+}
