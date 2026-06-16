@@ -1,0 +1,173 @@
+{
+ "slug": "zakon-za-elektronnoto-upravlenie",
+ "round": 2,
+ "blocks": 835,
+ "sections": 28,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    68,
+    69
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    161,
+    162
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    189
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    366,
+    367
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    448,
+    449
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    450,
+    451
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    460,
+    461
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    751
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    781
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   68,
+   69,
+   161,
+   162,
+   189,
+   366,
+   367,
+   448,
+   449,
+   450,
+   451,
+   460,
+   461,
+   751,
+   781
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 11,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 14,
+  "article_title": 96,
+  "article_head": 102,
+  "item": 231,
+  "alinea": 183,
+  "letter": 33,
+  "section_heading": 32,
+  "editorial_note": 40,
+  "provisions_heading": 45,
+  "paragraph_sign": 43,
+  "quoted": 1,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 825,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 826,
+   "text": "Директиви:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 827,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2102 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 октомври 201",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 828,
+   "text": "ДИРЕКТИВА (EС) 2016/1148 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 юли 2016 годи",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 829,
+   "text": "Регламенти:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 830,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 831,
+   "text": "Решения:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 832,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2018/1524 НА КОМИСИЯТА от 11 октомври 2018 година за ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 833,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2018/1523 НА КОМИСИЯТА от 11 октомври 2018 година за ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 834,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2017/863 НА КОМИСИЯТА от 18 май 2017 година за актуал",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 340
+}
