@@ -4,7 +4,7 @@ identificador: '2135579101'
 pais: bg
 rango: закон
 fecha_publicacion: '2008-02-08'
-ultima_actualizacion: '2025-08-08'
+ultima_actualizacion: '2026-06-16'
 estado: vigente
 fuente: lex.bg
 dv_issue: '13'
@@ -55,6 +55,8 @@ amendment_history:
   date: '2024-05-01'
 - dv: 65/2025
   date: '2025-08-08'
+- dv: 55/2026
+  date: '2026-06-16'
 ---
 
 # ЗАКОН ЗА ПРИЗНАВАНЕ НА ПРОФЕСИОНАЛНИ КВАЛИФИКАЦИИ
