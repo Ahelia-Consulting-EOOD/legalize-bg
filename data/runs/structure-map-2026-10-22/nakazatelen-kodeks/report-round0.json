@@ -1,0 +1,474 @@
+{
+ "slug": "nakazatelen-kodeks",
+ "round": 0,
+ "blocks": 2996,
+ "sections": 78,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 237,
+   "kind": "low_confidence",
+   "detail": "unnumbered list line under ал. 1 (ends with a comma); continuation also plausible"
+  },
+  {
+   "block": 238,
+   "kind": "low_confidence",
+   "detail": "second unnumbered list line under ал. 1; continuation also plausible"
+  },
+  {
+   "block": 441,
+   "kind": "low_confidence",
+   "detail": "Допълнителна разпоредба heading inside the Обща част; it holds Чл. 93, not § provisions, so chapter_heading-like placement is plausible"
+  },
+  {
+   "block": 442,
+   "kind": "low_confidence",
+   "detail": "second line of the Допълнителна разпоредба heading; same doubt as 441"
+  },
+  {
+   "block": 482,
+   "kind": "low_confidence",
+   "detail": "unnumbered heading in the general part, parallel to 'Допълнителна разпоредба'; could also be article_title of Чл. 94"
+  },
+  {
+   "block": 538,
+   "kind": "low_confidence",
+   "detail": "chapter-level 'Допълнителна разпоредба' followed by a numbered article (Чл. 114), not the act's closing § provisions; provisions_heading also plausible"
+  },
+  {
+   "block": 648,
+   "kind": "low_confidence",
+   "detail": "Раздел II. printed twice (648-649 and 650-651, differing only Нов/Нова); one pair is a duplicate, possibly drop"
+  },
+  {
+   "block": 649,
+   "kind": "low_confidence",
+   "detail": "second line of Раздел II heading; duplicated at 651"
+  },
+  {
+   "block": 650,
+   "kind": "low_confidence",
+   "detail": "repeat of 648; duplicate heading, possibly drop"
+  },
+  {
+   "block": 651,
+   "kind": "low_confidence",
+   "detail": "repeat of 649 with Нова instead of Нов; duplicate heading, possibly drop"
+  },
+  {
+   "block": 690,
+   "kind": "low_confidence",
+   "detail": "Допълнителна разпоредба inside the chapter, followed by an article (Чл. 114у) not a §; could be read as a section-level heading"
+  },
+  {
+   "block": 836,
+   "kind": "low_confidence",
+   "detail": "paragraph carrying only its history note (new 1982, repealed 1995, renumbered); alinea or repeal_note"
+  },
+  {
+   "block": 1045,
+   "kind": "low_confidence",
+   "detail": "unnumbered in-chapter heading over чл. 160, not the act's final provisions; provisions_heading also plausible"
+  },
+  {
+   "block": 1048,
+   "kind": "low_confidence",
+   "detail": "unnumbered in-chapter heading over чл. 161; provisions_heading also plausible"
+  },
+  {
+   "block": 1144,
+   "kind": "low_confidence",
+   "detail": "repeated 'Раздел IX.' line after the heading title; duplicate in source, could be drop"
+  },
+  {
+   "block": 1148,
+   "kind": "low_confidence",
+   "detail": "unnumbered heading 'Особена разпоредба' closing Глава трета; could be article_title of чл. 175"
+  },
+  {
+   "block": 1226,
+   "kind": "low_confidence",
+   "detail": "unnumbered heading 'Особена разпоредба' closing Глава четвърта; could be article_title of чл. 193а"
+  },
+  {
+   "block": 1280,
+   "kind": "low_confidence",
+   "detail": "item 3 also carries the closing sanction of ал. 2 in the same line; item vs continuation"
+  },
+  {
+   "block": 1415,
+   "kind": "low_confidence",
+   "detail": "unnumbered heading inside the chapter after Раздел VIII, covering repealed Чл. 218; article_title also plausible"
+  },
+  {
+   "block": 1417,
+   "kind": "low_confidence",
+   "detail": "Допълнителни разпоредби inside the chapter, followed by numbered Чл. 218а-218в not § signs; provisions_heading also plausible"
+  },
+  {
+   "block": 1812,
+   "kind": "label_text_mismatch",
+   "detail": "article_head n='278б1' but the text says Чл. 278б"
+  },
+  {
+   "block": 2409,
+   "kind": "low_confidence",
+   "detail": "unnumbered line of the closing words of ал. 3; unnumbered_item also plausible"
+  },
+  {
+   "block": 2410,
+   "kind": "low_confidence",
+   "detail": "unnumbered line of the closing words of ал. 3; unnumbered_item also plausible"
+  },
+  {
+   "block": 2411,
+   "kind": "low_confidence",
+   "detail": "unnumbered line of the closing words of ал. 3; unnumbered_item also plausible"
+  },
+  {
+   "block": 2553,
+   "kind": "low_confidence",
+   "detail": "Допълнителна разпоредба heading inside Глава тринадесета, followed by Чл. 406 not a §; could also be read as an in-chapter section-like heading"
+  },
+  {
+   "block": 2610,
+   "kind": "low_confidence",
+   "detail": "Допълнителни разпоредби heading inside Глава четиринадесета, followed by Чл. 419 not a §; could also be read as an in-chapter section-like heading"
+  },
+  {
+   "block": 2640,
+   "kind": "low_confidence",
+   "detail": "heading of the original code's closing § block amending other laws; not named Допълнителни/Преходни/Заключителни; section_heading also plausible"
+  },
+  {
+   "block": 2662,
+   "kind": "low_confidence",
+   "detail": "inside the quoted run opened at 2661; no closing mark appears in the run, so continuation also plausible"
+  },
+  {
+   "block": 2663,
+   "kind": "low_confidence",
+   "detail": "last line of the quoted new чл. 39; closing quotation mark missing in source"
+  },
+  {
+   "block": 2683,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing provision assigning execution of the code; continuation of § 11 also plausible but the separator above sets it apart"
+  },
+  {
+   "block": 2686,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under the provisions heading; provisions_heading also plausible"
+  },
+  {
+   "block": 2688,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted §§ of the amending act; act content, not chrome; editorial_note also plausible"
+  },
+  {
+   "block": 2692,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2696,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2700,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2704,
+   "kind": "low_confidence",
+   "detail": "publication and amendment line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2710,
+   "kind": "low_confidence",
+   "detail": "publication and amendment line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2716,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2718,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted §§ of the amending act; act content, not chrome; editorial_note also plausible"
+  },
+  {
+   "block": 2722,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2726,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2730,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2734,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2738,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act; provisions_heading also plausible"
+  },
+  {
+   "block": 2740,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted §§ of the amending act; act content, not chrome; editorial_note also plausible"
+  },
+  {
+   "block": 2844,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted provisions of the amending law; act content, not chrome; could be unknown"
+  },
+  {
+   "block": 2849,
+   "kind": "low_confidence",
+   "detail": "repeated provisions heading after the КЪМ line; still a heading, possibly a duplicate print"
+  },
+  {
+   "block": 2925,
+   "kind": "low_confidence",
+   "detail": "second line of heading, act name truncated in source"
+  },
+  {
+   "block": 2928,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted provisions, act content; editorial_note plausible"
+  },
+  {
+   "block": 2932,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted provisions, act content; editorial_note plausible"
+  },
+  {
+   "block": 2938,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted provisions, act content; editorial_note plausible"
+  },
+  {
+   "block": 2945,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted provisions, act content; editorial_note plausible"
+  },
+  {
+   "block": 2954,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted provisions, act content; editorial_note plausible"
+  },
+  {
+   "block": 2963,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted provisions, act content; editorial_note plausible"
+  },
+  {
+   "block": 2969,
+   "kind": "low_confidence",
+   "detail": "dot line marking omitted provisions, act content; editorial_note plausible"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 1812,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 649,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 650"
+  },
+  {
+   "block": 1143,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1144"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 54,
+  "label_text_mismatch": 1
+ },
+ "source_finding_kinds": {
+  "fragment": 1,
+  "empty_section": 2
+ },
+ "labels": {
+  "drop": 28,
+  "title": 1,
+  "prehistory": 1,
+  "part_heading": 2,
+  "chapter_heading": 56,
+  "section_heading": 167,
+  "article_head": 632,
+  "alinea": 993,
+  "letter": 122,
+  "item": 643,
+  "unnumbered_item": 2,
+  "provisions_heading": 130,
+  "continuation": 66,
+  "editorial_note": 61,
+  "repeal_note": 1,
+  "paragraph_sign": 81,
+  "quoted": 9,
+  "unnumbered_alinea": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: lex.bg button 'add to my acts'"
+  },
+  {
+   "block": 2682,
+   "text": "-------------------------",
+   "note": "dash separator line, not provision text; could be kept as a printed divider"
+  },
+  {
+   "block": 2970,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's appended list of related EU acts, not part of the act"
+  },
+  {
+   "block": 2971,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2972,
+   "text": "ДИРЕКТИВА (ЕС) 2024/1226 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 април 2024 г",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2973,
+   "text": "ДИРЕКТИВА (ЕС) 2018/1673 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 201",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2974,
+   "text": "ДИРЕКТИВА (ЕС) 2017/1371 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юли 2017 г. о",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2975,
+   "text": "ДИРЕКТИВА (ЕС) 2017/541 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 март 2017 год",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2976,
+   "text": "ДИРЕКТИВА (ЕС) 2015/2366 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2015",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2977,
+   "text": "ДИРЕКТИВА 2014/62/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 г. отно",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2978,
+   "text": "ДИРЕКТИВА 2014/57/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 г. от",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2979,
+   "text": "ДИРЕКТИВА 2014/42/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 3 април 2014 година",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2980,
+   "text": "ДИРЕКТИВА 2013/40/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 август 2013 г. о",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2981,
+   "text": "ДИРЕКТИВА 2011/99/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 2011 го",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2982,
+   "text": "ДИРЕКТИВА 2011/93/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 2011 г.",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2983,
+   "text": "ДИРЕКТИВА 2011/36/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 април 2011 година",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2984,
+   "text": "ДИРЕКТИВА 2009/123/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2009 г",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2985,
+   "text": "ДИРЕКТИВА 2009/52/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 юни 2009 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2986,
+   "text": "ДИРЕКТИВА 2008/99/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 год",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2987,
+   "text": "ДИРЕКТИВА 2006/43/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2006 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2988,
+   "text": "ДИРЕКТИВА 2005/35/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 7 септември 2005 го",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2989,
+   "text": "ДИРЕКТИВА 2003/87/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 октомври 2003 го",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2990,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2991,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2023/2830 НА КОМИСИЯТА от 17 октомври 2023 година за до",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2992,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/1939 НА СЪВЕТА от 12 октомври 2017 година за установяване на",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2993,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2994,
+   "text": "РАМКОВО РЕШЕНИЕ 2008/913/ПВР НА СЪВЕТА от 28 ноември 2008 г. относно борбата с о",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2995,
+   "text": "РАМКОВО РЕШЕНИЕ 2008/675/ПВР НА СЪВЕТА от 24 юли 2008 г. за вземане предвид прис",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 55,
+ "diff_lines": 519
+}
