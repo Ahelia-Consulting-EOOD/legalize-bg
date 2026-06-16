@@ -1,0 +1,167 @@
+{
+ "slug": "zakon-za-mestnite-danatsi-i-taksi",
+ "round": 2,
+ "blocks": 2415,
+ "sections": 50,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 1424,
+   "kind": "alinea_gap",
+   "detail": "(2) opens the article: the page has no (1)"
+  }
+ ],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    816,
+    817
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    818,
+    819
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    820,
+    821
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1333,
+    1334
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1439
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1524
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   816,
+   817,
+   818,
+   819,
+   820,
+   821,
+   1333,
+   1334,
+   1439,
+   1524
+  ],
+  "D-072/8": [
+   1060
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "alinea_gap": 1
+ },
+ "labels": {
+  "drop": 12,
+  "title": 1,
+  "prehistory": 2,
+  "chapter_heading": 8,
+  "section_heading": 40,
+  "article_head": 165,
+  "item": 349,
+  "alinea": 316,
+  "letter": 58,
+  "repeal_note": 3,
+  "continuation": 33,
+  "table_row": 199,
+  "editorial_note": 107,
+  "provisions_heading": 150,
+  "paragraph_sign": 148,
+  "quoted": 2,
+  "adoption_formula": 1,
+  "annex_heading": 6,
+  "annex_row": 815
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site button 'add to my acts'"
+  },
+  {
+   "block": 1060,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 2405,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg section listing related EU acts, not part of the act"
+  },
+  {
+   "block": 2406,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2407,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2408,
+   "text": "ДИРЕКТИВА 2009/103/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2409,
+   "text": "ДИРЕКТИВА 2006/98/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2410,
+   "text": "ДИРЕКТИВА 2006/38/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2006 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2411,
+   "text": "ДИРЕКТИВА 1999/62/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 юни 1999 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2412,
+   "text": "ДИРЕКТИВА 96/53/ЕО НА СЪВЕТА от 25 юли 1996 година относно максимално допустимит",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2413,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2414,
+   "text": "РЕГЛАМЕНТ (ЕС) № 168/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 януари 2013",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 7191
+}
