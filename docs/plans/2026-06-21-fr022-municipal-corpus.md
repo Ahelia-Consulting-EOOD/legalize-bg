@@ -160,6 +160,26 @@ Bulgaria transposed the EU DSM Directive (2019/790) TDM exceptions:
 
 ---
 
+## 9. Volume / size estimate (owner "second-thoughts" check, 2026-06-21)
+
+Order-of-magnitude estimate to decide whether the municipal corpus is worth building now. **Not a census** — assumptions stated; refine with a real per-municipality count (e.g. one APIS `DocList` query for Sofia) before committing.
+
+**Inputs:** 265 municipalities (confirmed). Each общински съвет issues наредби + правилници + инструкции (ЗМСМА чл. 21(2)). Confirmed on APIS `obshtini.bg`: Sofia, Plovdiv, Varna (+ "several" more per apis.bg — full coverage unpublished). APIS `DocInfo.hasVersions=true` → acts carry multiple редакции.
+
+**Assumptions:** ~30 current normative acts per municipality on average (small ~15-25; large city ~50-70 — Sofia is in the high end). Avg act text ~15 KB Markdown (municipal наредби are smaller than national laws). Avg ~3-5 редакции per act over its lifetime if full version history is captured.
+
+| Metric | Current (in-force) | With full version history |
+|---|---|---|
+| **Acts / act-versions** | **~8,000** (range ~5k-12k) ≈ **2.2× the national corpus** (3,599) | **~25,000-40,000** act-versions |
+| **Markdown text** | **~120 MB** | **~400-500 MB** |
+| **SQLite catalog (derived)** | ~1.5-2.5 GB (national 3,599 → ~1 GB) | larger |
+
+**Near-term vs long tail:** the APIS-bootstrap-able subset is only the municipalities actually on `obshtini.bg` (large city councils confirmed; if ~20-50 municipalities → **~600-1,500 acts** for a first useful slice). The remaining ~215-245 municipalities need per-municipality official-site adapters (D-037 ongoing strategy) — the **long tail is the real cost**, not the data volume.
+
+**Decision input:** the municipal corpus roughly **doubles the project's act count** (and is the same order of magnitude in text/catalog size as national). Data volume is manageable (git handles ~120-500 MB of Markdown fine; the catalog is derived/gitignored). The dominant cost is **breadth of sourcing** (265 heterogeneous councils), not size. A phased rollout (major cities via APIS bootstrap first → long tail via adapters) makes the first slice (~1k acts) cheap; full 265-coverage is a sustained effort. **Recommendation for the second-thoughts:** the size is not a blocker; the per-municipality long-tail sourcing effort is what to weigh against the national-track priorities (Phase 3 freshness, FR-020). Start with the APIS-covered major cities only if/when greenlit, measure real counts, then decide on the long tail.
+
+---
+
 ### Evidence log (investigation 2026-06-21)
 - ЗМСМА чл. 21(2), 22(2), 22(3) — `laws/zakon-za-mestnoto-samoupravlenie-i-mestnata-administratsiya.md`.
 - ЗНА чл. 8, 37(1)/(3), 26(3) — `laws/zakon-za-normativnite-aktove.md`.
