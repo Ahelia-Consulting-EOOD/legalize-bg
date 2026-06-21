@@ -81,6 +81,13 @@ paths:
         - "history(law: str) -> list[VersionEntry]"
         - "diff(law: str, date1: str, date2: str) -> str"
         - "amendments_in_period(from_date: str, to_date: str) -> list[AmendmentEntry]"
+      phase_2x_a:
+        # Added 2026-06-21 in batch 2.x-a (FR-018; D-033). Additive new tool
+        # (Surface 3 allowed scope) — tools.json 1.1.0 → 1.2.0. get_article
+        # now rejects a range spec with INVALID_ARTICLE_SPEC (behavior fix,
+        # signature/shape unchanged). Preflight:
+        # docs/process/IMPLEMENTATION-PREFLIGHT-2026-06-21-fr018.md
+        - "get_articles(law: str, articles: str, date: str | None = None) -> GetArticlesResponse"
 
   # --- SQLite Schema ---
   # The index is derived from git but schema changes require re-indexing

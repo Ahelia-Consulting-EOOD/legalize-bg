@@ -310,6 +310,43 @@ def test_article_lookup_available_articles_sorted_in_legal_order(populated_conn)
     assert exc.value.available_articles == ["1", "9", "14", "14а", "15", "100"]
 
 
+# ────────────────────────────── articles_lookup (FR-018 ranges) ─────────────
+
+
+def test_articles_lookup_expands_range(populated_conn):
+    """FR-018: a range expands to every article whose legal-sort-key is in
+    [start, end] inclusive — including Cyrillic-suffixed articles (14а)
+    inside the span — ordered legally, gaps skipped, upper bound exclusive
+    of the next integer. Seed 14, 14а, 16, 17; range 14-16 → [14, 14а, 16]
+    (15 absent, 17 out of range)."""
+    from mcp_server.queries import articles_lookup
+    for art in ["14", "14а", "16", "17"]:
+        populated_conn.execute(
+            "INSERT INTO provisions (law_id, article, paragraph, valid_from, text, text_hash) "
+            "VALUES ('zakon-a', ?, NULL, '2020-01-01', ?, ?)",
+            (art, f"text {art}", f"h{art}"),
+        )
+    populated_conn.commit()
+    rows = articles_lookup(populated_conn, "zakon-a", "14", "16", None)
+    assert [r["article"] for r in rows] == ["14", "14а", "16"]
+    assert all(r["paragraph"] is None for r in rows)
+    assert rows[0]["text"] == "text 14"
+
+
+def test_articles_lookup_empty_range_raises(populated_conn):
+    """An in-range query that matches no article raises ArticleNotFound
+    with the act's available articles for retry (range as 'start-end')."""
+    from mcp_server.queries import articles_lookup
+    populated_conn.execute(
+        "INSERT INTO provisions (law_id, article, paragraph, valid_from, text, text_hash) "
+        "VALUES ('zakon-a', '14', NULL, '2020-01-01', 't', 'h')")
+    populated_conn.commit()
+    with pytest.raises(ArticleNotFound) as exc:
+        articles_lookup(populated_conn, "zakon-a", "50", "60", None)
+    assert exc.value.available_articles == ["14"]
+    assert exc.value.article == "50-60"
+
+
 # ────────────────────────────── law_history (Phase 2 timeline) ──────────────
 
 

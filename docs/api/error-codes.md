@@ -1,7 +1,7 @@
 # legalize-bg MCP Error Taxonomy
 
-**Version:** 1.1.0  (matches `tools.json` `version`)
-**Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`; Phase 2 adds `INVALID_DATE_RANGE`.
+**Version:** 1.2.0  (matches `tools.json` `version`)
+**Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`; Phase 2 adds `INVALID_DATE_RANGE`; 2.x-a adds the `get_articles` tool (FR-018) which reuses `INVALID_ARTICLE_SPEC` / `ARTICLE_NOT_FOUND` — no new codes.
 
 This document catalogs every error code the legalize-bg MCP server returns through the FastMCP error envelope. Codes are stable: additive changes (new code) bump the minor version; removing or renaming a code bumps the major version (compatibility break).
 
@@ -59,19 +59,20 @@ Payload (as warning entry):
 
 ### `INVALID_ARTICLE_SPEC`
 
-Raised by: `get_article`.
-When: the article string can't be parsed by `parse_article_spec` (e.g., empty, or contains characters outside the allowed `Чч.0-9 а-яA-Z, -` set).
+Raised by: `get_article`, `get_articles`.
+When: the article string can't be parsed by `parse_article_spec` (e.g., empty, or contains characters outside the allowed `Чч.0-9 а-яA-Z, -` set). Also raised by `get_article` (only) when the spec parses to a **range** (`чл. 14-16`) — `get_article` serves a single article, so a range is out of contract and the payload carries a `hint` pointing at `get_articles` (FR-018). `get_articles` accepts ranges and does NOT raise here for them.
 Payload:
-- `article` (string): the input.
-- `expected_forms` (array of strings): the canonical accepted forms (`"чл. 14"`, `"14"`, `"чл. 14а"`, `"чл. 14, ал. 2"`, `"14.2"`, `"чл. 14-16"`).
+- `spec` (string): the input.
+- `examples` (array of strings): canonical accepted forms.
+- `hint` (string, optional): present on the range-rejection case — directs the caller to `get_articles`.
 
 ### `ARTICLE_NOT_FOUND`
 
-Raised by: `get_article`.
-When: the article spec parses but no `provisions` row matches `(law_id, article, paragraph?)` at the requested date.
+Raised by: `get_article`, `get_articles`.
+When: the article spec parses but no `provisions` row matches at the requested date — for `get_article` no `(law_id, article, paragraph?)` row; for `get_articles` no article in the act falls within the `[start, end]` range. In the range case the payload's `article` is the `"start-end"` span.
 Payload:
 - `law_id` (string).
-- `article` (string).
+- `article` (string): the article, or the `"start-end"` span for a range.
 - `paragraph` (string|null): if a specific alinea was requested.
 - `available_articles` (array of strings): every distinct article number in the act at the requested date, sorted by `_legal_article_sort_key`. Helps the model retry with a valid article number.
 

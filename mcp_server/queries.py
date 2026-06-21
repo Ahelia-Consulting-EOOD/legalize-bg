@@ -542,6 +542,49 @@ def article_lookup(conn: sqlite3.Connection, law_id: str,
     return [dict(r) for r in rows]
 
 
+def articles_lookup(conn: sqlite3.Connection, law_id: str,
+                    start: str, end: str, date: str | None) -> list[dict]:
+    """Return article-as-whole provision rows for every article in the law
+    whose legal-number sort key falls within [start, end] inclusive,
+    ordered legally (FR-018 range expansion).
+
+    A range addresses WHOLE articles only (paragraph IS NULL); ranges never
+    carry an alinea (the parser's `_FULL_RE` makes range and `ал.`
+    mutually exclusive). Cyrillic-suffixed articles inside the numeric span
+    are included — `чл. 14-16` returns `14, 14а, 14б, 15, 16` if present.
+    Gaps are skipped (an agent asking 14-16 wants whatever exists).
+
+    Raises ArticleNotFound (with `available_articles` for retry, and
+    `article` set to the `"start-end"` span) when no article in the act
+    falls in the range at `date`. `valid_to` is INCLUSIVE per
+    `docs/data/schema-reference.md` §2.
+    """
+    target = date or _date.today().isoformat()
+    lo = _legal_article_sort_key(start)
+    hi = _legal_article_sort_key(end)
+    rows = conn.execute(
+        """SELECT article, paragraph, text, text_hash, valid_from, valid_to
+             FROM provisions
+            WHERE law_id = ? AND paragraph IS NULL
+              AND valid_from <= ?
+              AND (valid_to IS NULL OR valid_to >= ?)""",
+        (law_id, target, target),
+    ).fetchall()
+    in_range = [r for r in rows
+                if lo <= _legal_article_sort_key(r["article"]) <= hi]
+    in_range.sort(key=lambda r: _legal_article_sort_key(r["article"]))
+    if not in_range:
+        raw_articles = [r["article"] for r in conn.execute(
+            "SELECT DISTINCT article FROM provisions WHERE law_id = ?",
+            (law_id,),
+        ).fetchall()]
+        raise ArticleNotFound(
+            law_id=law_id, article=f"{start}-{end}", paragraph=None,
+            available_articles=sorted(raw_articles, key=_legal_article_sort_key),
+        )
+    return [dict(r) for r in in_range]
+
+
 # ────────────────────────────── law_history (Phase 2 timeline) ──────────────
 
 
