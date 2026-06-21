@@ -15,11 +15,12 @@ REPO = pathlib.Path(__file__).resolve().parent.parent.parent
 TOOLS_JSON = REPO / "tools.json"
 
 
-def test_export_tools_returns_six_tools():
+def test_export_tools_returns_seven_tools():
     d = export_tool_schemas()
     names = sorted(t["name"] for t in d["tools"])
     assert names == [
-        "amendments_in_period", "diff", "get_article", "get_law", "history", "search",
+        "amendments_in_period", "diff", "get_article", "get_articles",
+        "get_law", "history", "search",
     ]
 
 

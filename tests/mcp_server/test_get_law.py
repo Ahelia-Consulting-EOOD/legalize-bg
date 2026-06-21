@@ -63,6 +63,15 @@ def test_get_law_by_identificador_returns_full_response(app):
     assert "warnings" in result and isinstance(result["warnings"], list)
 
 
+def test_get_law_by_mixed_case_cyrillic_title(app):
+    """FR-019: title resolution must fold Cyrillic case. The stored title
+    is 'Закон за А'; an agent calling with a different case must still
+    resolve. Proves build_app registered the pylower UDF on its conn."""
+    result = app.call_tool_sync("get_law", {"name": "закон за а"})
+    assert result["law_id"] == "zakon-a"
+    assert result["titulo"] == "Закон за А"
+
+
 def test_get_law_response_includes_metadata_fields(app):
     """D-024: the response is a typed-dict with all metadata fields,
     not a bare Markdown string."""

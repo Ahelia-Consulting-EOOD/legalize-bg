@@ -7,7 +7,10 @@ catch domain exceptions and translate them into ToolError.
 Caller responsibility: the connection passed in MUST have
 `row_factory = sqlite3.Row` set so column-name access (`row["foo"]`) works.
 The conftest fixture and the FastMCP server's connection-init code both
-do this; new entry points must follow suit.
+do this; new entry points must follow suit. (Cyrillic case-insensitive
+title resolution is done in Python, NOT via a SQLite UDF — a Python-callback
+UDF deadlocks under the FastMCP threadpool on the shared connection; see
+`resolve_name_to_law_id` step 3.)
 """
 
 from __future__ import annotations
@@ -206,10 +209,26 @@ def resolve_name_to_law_id(conn: sqlite3.Connection, name: str) -> str:
     if row:
         return row["law_id"]
 
-    # 3. Exact title (case-insensitive). Multiple matches → AmbiguousName.
-    rows = conn.execute(
-        "SELECT * FROM laws WHERE LOWER(title) = LOWER(?)", (name,)
-    ).fetchall()
+    # 3. Exact title, Cyrillic case-insensitive (FR-019). SQLite's
+    # built-in LOWER()/NOCASE are ASCII-only and do NOT fold Cyrillic.
+    # We fold case in PYTHON over the candidate rows rather than via a
+    # SQLite UDF: a Python-callback UDF invoked during statement
+    # execution deadlocks under FastMCP's worker-thread pool on the
+    # single shared (check_same_thread=False) connection — a GIL ↔
+    # connection-mutex lock-order inversion (the UDF re-acquires the GIL
+    # while holding the connection mutex, while another worker holds the
+    # GIL and waits for that mutex). Folding in Python keeps no callback
+    # inside SQLite, so concurrent title lookups can't wedge. This step
+    # is the fallback (after identificador + exact slug) and the catalog
+    # is a few thousand short titles, so the full read is sub-10 ms.
+    needle = name.casefold()
+    rows = [
+        r for r in conn.execute(
+            "SELECT law_id, doc_id, title, category FROM laws "
+            "WHERE title IS NOT NULL AND title <> ''"
+        ).fetchall()
+        if (r["title"] or "").casefold() == needle
+    ]
     if len(rows) == 1:
         return rows[0]["law_id"]
     if len(rows) > 1:
@@ -511,6 +530,57 @@ def article_lookup(conn: sqlite3.Connection, law_id: str,
         raise ArticleNotFound(law_id=law_id, article=article,
                               paragraph=paragraph, available_articles=avail)
     return [dict(r) for r in rows]
+
+
+def articles_lookup(conn: sqlite3.Connection, law_id: str,
+                    start: str, end: str, date: str | None) -> list[dict]:
+    """Return article-as-whole provision rows for every article in the law
+    whose legal-number sort key falls within [start, end] inclusive,
+    ordered legally (FR-018 range expansion).
+
+    A range addresses WHOLE articles only (paragraph IS NULL); ranges never
+    carry an alinea (the parser's `_FULL_RE` makes range and `ал.`
+    mutually exclusive). Cyrillic-suffixed articles inside the numeric span
+    are included — `чл. 14-16` returns `14, 14а, 14б, 15, 16` if present.
+    Gaps are skipped (an agent asking 14-16 wants whatever exists).
+
+    Raises ArticleNotFound (with `available_articles` for retry, and
+    `article` set to the `"start-end"` span) when no article in the act
+    falls in the range at `date`. `valid_to` is INCLUSIVE per
+    `docs/data/schema-reference.md` §2.
+    """
+    target = date or _date.today().isoformat()
+    lo = _legal_article_sort_key(start)
+    hi = _legal_article_sort_key(end)
+    if lo > hi:
+        # Reversed range (e.g. "16-14"): the parser accepts it, but it can
+        # never match. Raise InvalidArticleSpec (→ INVALID_ARTICLE_SPEC with
+        # a hint) rather than the misleading ARTICLE_NOT_FOUND an empty
+        # match would give — mirrors the INVALID_DATE_RANGE guards on
+        # diff()/amendments_in_period().
+        raise InvalidArticleSpec(
+            f"reversed range: start {start!r} is after end {end!r}")
+    rows = conn.execute(
+        """SELECT article, paragraph, text, text_hash, valid_from, valid_to
+             FROM provisions
+            WHERE law_id = ? AND paragraph IS NULL
+              AND valid_from <= ?
+              AND (valid_to IS NULL OR valid_to >= ?)""",
+        (law_id, target, target),
+    ).fetchall()
+    in_range = [r for r in rows
+                if lo <= _legal_article_sort_key(r["article"]) <= hi]
+    in_range.sort(key=lambda r: _legal_article_sort_key(r["article"]))
+    if not in_range:
+        raw_articles = [r["article"] for r in conn.execute(
+            "SELECT DISTINCT article FROM provisions WHERE law_id = ?",
+            (law_id,),
+        ).fetchall()]
+        raise ArticleNotFound(
+            law_id=law_id, article=f"{start}-{end}", paragraph=None,
+            available_articles=sorted(raw_articles, key=_legal_article_sort_key),
+        )
+    return [dict(r) for r in in_range]
 
 
 # ────────────────────────────── law_history (Phase 2 timeline) ──────────────

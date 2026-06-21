@@ -37,8 +37,9 @@ from mcp_server.errors import ERROR_CODES
 from mcp_server.server import build_app
 
 # Bumped on any breaking change to the tool schemas. Additive changes
-# (new optional input arg, new optional output field) stay at 1.x.
-TOOLS_JSON_VERSION = "1.1.0"
+# (new optional input arg, new optional output field, new tool) stay at 1.x.
+# 1.1.0 → 1.2.0: added the get_articles tool (FR-018), additive.
+TOOLS_JSON_VERSION = "1.2.0"
 
 
 def export_tool_schemas(corpus_root: Path | None = None) -> dict:

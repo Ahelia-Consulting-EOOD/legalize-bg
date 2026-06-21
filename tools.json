@@ -1,5 +1,5 @@
 {
-  "version": "1.1.0",
+  "version": "1.2.0",
   "spec": "https://modelcontextprotocol.io/specification/server/tools",
   "server": {
     "name": "legalize-bg",
@@ -97,7 +97,7 @@
     },
     {
       "name": "get_article",
-      "description": "Return a specific article (or alinea) of a Bulgarian act.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n    article: Article reference. Accepts:\n        \"чл. 14\" / \"14\" / \"Чл. 14\" — whole article\n        \"чл. 14а\" / \"14а\" — Cyrillic-suffix variant\n        \"чл. 14, ал. 2\" / \"14.2\" / \"14, ал. 2\" — specific alinea\n        \"чл. 14-16\" — range (only article=14 is returned in 1b.1;\n            full range support tracked in FR-018).\n    date: ISO 8601 date for historical retrieval. If omitted,\n        returns the current text.\n\nReturns:\n    {law_id, article, paragraph, text, text_hash, commit_hash,\n    warnings}. `paragraph` is null for the article-as-whole row\n    and a string (\"1\", \"2\", \"1а\"...) for an alinea row.\n    `text_hash` is a stable per-row digest — Phase 4 amendment\n    detection compares hashes to pinpoint changed alineas.",
+      "description": "Return a specific article (or alinea) of a Bulgarian act.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n    article: Article reference. Accepts:\n        \"чл. 14\" / \"14\" / \"Чл. 14\" — whole article\n        \"чл. 14а\" / \"14а\" — Cyrillic-suffix variant\n        \"чл. 14, ал. 2\" / \"14.2\" / \"14, ал. 2\" — specific alinea\n        For an article RANGE (\"чл. 14-16\"), use the get_articles\n        tool instead — get_article serves a single article and\n        rejects a range spec with INVALID_ARTICLE_SPEC.\n    date: ISO 8601 date for historical retrieval. If omitted,\n        returns the current text.\n\nReturns:\n    {law_id, article, paragraph, text, text_hash, commit_hash,\n    warnings}. `paragraph` is null for the article-as-whole row\n    and a string (\"1\", \"2\", \"1а\"...) for an alinea row.\n    `text_hash` is a stable per-row digest — Phase 4 amendment\n    detection compares hashes to pinpoint changed alineas.",
       "input_schema": {
         "additionalProperties": false,
         "properties": {
@@ -107,7 +107,7 @@
           },
           "article": {
             "type": "string",
-            "description": "Article reference. Accepts:\n\"чл. 14\" / \"14\" / \"Чл. 14\" — whole article\n\"чл. 14а\" / \"14а\" — Cyrillic-suffix variant\n\"чл. 14, ал. 2\" / \"14.2\" / \"14, ал. 2\" — specific alinea\n\"чл. 14-16\" — range (only article=14 is returned in 1b.1;\n    full range support tracked in FR-018)."
+            "description": "Article reference. Accepts:\n\"чл. 14\" / \"14\" / \"Чл. 14\" — whole article\n\"чл. 14а\" / \"14а\" — Cyrillic-suffix variant\n\"чл. 14, ал. 2\" / \"14.2\" / \"14, ал. 2\" — specific alinea\nFor an article RANGE (\"чл. 14-16\"), use the get_articles\ntool instead — get_article serves a single article and\nrejects a range spec with INVALID_ARTICLE_SPEC."
           },
           "date": {
             "anyOf": [
@@ -125,6 +125,44 @@
         "required": [
           "law",
           "article"
+        ],
+        "type": "object"
+      },
+      "output_schema": {
+        "additionalProperties": true,
+        "type": "object"
+      }
+    },
+    {
+      "name": "get_articles",
+      "description": "Return one or more articles of a Bulgarian act, including ranges.\n\nUse this when you need an article RANGE (e.g. \"чл. 14-16\"); it also\naccepts a single article, so it's a superset of get_article for\nwhole-article retrieval.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n    articles: Article reference. Accepts a single article\n        (\"чл. 14\" / \"14\" / \"чл. 14а\"), a single alinea\n        (\"чл. 14, ал. 2\"), or a RANGE (\"чл. 14-16\"). A range\n        addresses whole articles and expands to every article whose\n        number falls in [start, end] inclusive — including\n        Cyrillic-suffixed articles inside the span (чл. 14-16 → 14,\n        14а, 14б, 15, 16 when present). Gaps in the range are\n        skipped.\n    date: ISO 8601 date for historical retrieval. If omitted,\n        returns the current text.\n\nReturns:\n    {law_id, articles, commit_hash, warnings}. `articles` is a list\n    of {article, paragraph, text, text_hash} entries in legal-number\n    order. `paragraph` is null for whole-article/range entries and\n    carries the alinea id for a single alinea spec. `commit_hash`\n    and `warnings` are shared across all entries (same act + date →\n    same resolved version).\n\nRaises:\n    INVALID_ARTICLE_SPEC: the article reference can't be parsed, OR\n        a range is reversed (start after end) — payload carries a\n        `hint`.\n    ARTICLE_NOT_FOUND: no article in the act falls in the range\n        (payload carries available_articles for retry).\n    NO_VERSION_AT_DATE: the date precedes the act's earliest version.\n    LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.",
+      "input_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "law": {
+            "type": "string",
+            "description": "The act's title, slug, or identificador (see get_law)."
+          },
+          "articles": {
+            "type": "string",
+            "description": "Article reference. Accepts a single article\n(\"чл. 14\" / \"14\" / \"чл. 14а\"), a single alinea\n(\"чл. 14, ал. 2\"), or a RANGE (\"чл. 14-16\"). A range\naddresses whole articles and expands to every article whose\nnumber falls in [start, end] inclusive — including\nCyrillic-suffixed articles inside the span (чл. 14-16 → 14,\n14а, 14б, 15, 16 when present). Gaps in the range are\nskipped."
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "description": "ISO 8601 date for historical retrieval. If omitted,\nreturns the current text."
+          }
+        },
+        "required": [
+          "law",
+          "articles"
         ],
         "type": "object"
       },

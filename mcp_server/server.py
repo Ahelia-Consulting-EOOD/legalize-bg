@@ -30,7 +30,10 @@ from fastmcp import FastMCP
 
 from mcp_server import queries
 from mcp_server.errors import ToolError
-from mcp_server.schemas import GetArticleResponse, GetLawResponse, SearchHit
+from mcp_server.schemas import (
+    ArticleEntry, GetArticleResponse, GetArticlesResponse, GetLawResponse,
+    SearchHit,
+)
 
 log = logging.getLogger(__name__)
 
@@ -285,8 +288,9 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                 "чл. 14" / "14" / "Чл. 14" — whole article
                 "чл. 14а" / "14а" — Cyrillic-suffix variant
                 "чл. 14, ал. 2" / "14.2" / "14, ал. 2" — specific alinea
-                "чл. 14-16" — range (only article=14 is returned in 1b.1;
-                    full range support tracked in FR-018).
+                For an article RANGE ("чл. 14-16"), use the get_articles
+                tool instead — get_article serves a single article and
+                rejects a range spec with INVALID_ARTICLE_SPEC.
             date: ISO 8601 date for historical retrieval. If omitted,
                 returns the current text.
 
@@ -315,8 +319,22 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                 "spec": article,
                 "examples": [
                     "чл. 14", "14", "чл. 14а",
-                    "чл. 14, ал. 2", "14.2", "чл. 14-16",
+                    "чл. 14, ал. 2", "14.2",
                 ],
+            })
+
+        # FR-018: get_article serves a single article. A range spec is
+        # valid syntax but out of contract here — reject it explicitly
+        # (pointing at get_articles) rather than silently returning only
+        # the first article (the pre-FR-018 bug).
+        if spec.range_end is not None:
+            raise ToolError(code="INVALID_ARTICLE_SPEC", payload={
+                "spec": article,
+                "hint": ("Диапазоните (напр. 'чл. 14-16') се поддържат от "
+                         "инструмента get_articles, не от get_article. / "
+                         "Ranges like 'чл. 14-16' are served by get_articles, "
+                         "not get_article."),
+                "examples": ["чл. 14", "14", "чл. 14а", "чл. 14, ал. 2", "14.2"],
             })
 
         try:
@@ -369,6 +387,112 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
     mcp.tool(description=_full_docstring(get_article))(get_article)
     handle._tools["get_article"] = get_article
+
+    # ─────────────────── get_articles (FR-018) ───────────────────────
+
+    def get_articles(law: str, articles: str,
+                     date: str | None = None) -> dict:
+        """Return one or more articles of a Bulgarian act, including ranges.
+
+        Use this when you need an article RANGE (e.g. "чл. 14-16"); it also
+        accepts a single article, so it's a superset of get_article for
+        whole-article retrieval.
+
+        Args:
+            law: The act's title, slug, or identificador (see get_law).
+            articles: Article reference. Accepts a single article
+                ("чл. 14" / "14" / "чл. 14а"), a single alinea
+                ("чл. 14, ал. 2"), or a RANGE ("чл. 14-16"). A range
+                addresses whole articles and expands to every article whose
+                number falls in [start, end] inclusive — including
+                Cyrillic-suffixed articles inside the span (чл. 14-16 → 14,
+                14а, 14б, 15, 16 when present). Gaps in the range are
+                skipped.
+            date: ISO 8601 date for historical retrieval. If omitted,
+                returns the current text.
+
+        Returns:
+            {law_id, articles, commit_hash, warnings}. `articles` is a list
+            of {article, paragraph, text, text_hash} entries in legal-number
+            order. `paragraph` is null for whole-article/range entries and
+            carries the alinea id for a single alinea spec. `commit_hash`
+            and `warnings` are shared across all entries (same act + date →
+            same resolved version).
+
+        Raises:
+            INVALID_ARTICLE_SPEC: the article reference can't be parsed, OR
+                a range is reversed (start after end) — payload carries a
+                `hint`.
+            ARTICLE_NOT_FOUND: no article in the act falls in the range
+                (payload carries available_articles for retry).
+            NO_VERSION_AT_DATE: the date precedes the act's earliest version.
+            LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.
+        """
+        try:
+            law_id = queries.resolve_name_to_law_id(conn, law)
+        except queries.AmbiguousName as e:
+            raise ToolError(code="AMBIGUOUS_NAME",
+                            payload={"name": e.name, "candidates": e.candidates})
+        except queries.LawNotFound as e:
+            raise ToolError(code="LAW_NOT_FOUND",
+                            payload={"name": e.name, "suggestions": e.suggestions})
+
+        try:
+            spec = queries.parse_article_spec(articles)
+        except queries.InvalidArticleSpec:
+            raise ToolError(code="INVALID_ARTICLE_SPEC", payload={
+                "spec": articles,
+                "examples": ["чл. 14", "14", "чл. 14а", "чл. 14, ал. 2",
+                             "чл. 14-16"],
+            })
+
+        try:
+            commit, warnings = queries.version_with_warnings(conn, law_id, date)
+        except queries.NoVersionAtDate as e:
+            raise ToolError(code="NO_VERSION_AT_DATE", payload={
+                "law_id": e.law_id, "date": e.date,
+                "earliest_available": e.earliest_available,
+                "latest_available": e.latest_available,
+            })
+
+        try:
+            if spec.range_end is not None:
+                rows = queries.articles_lookup(
+                    conn, law_id, spec.article, spec.range_end, date)
+            else:
+                rows = queries.article_lookup(
+                    conn, law_id, article=spec.article,
+                    paragraph=spec.paragraph, date=date)
+        except queries.InvalidArticleSpec:
+            # A reversed range ("чл. 16-14") parses but can't match; give an
+            # actionable INVALID_ARTICLE_SPEC instead of a misleading
+            # ARTICLE_NOT_FOUND (FR-018 review M1).
+            raise ToolError(code="INVALID_ARTICLE_SPEC", payload={
+                "spec": articles,
+                "hint": ("Обърнат диапазон: началото трябва да предхожда края "
+                         "(напр. 'чл. 14-16', не 'чл. 16-14'). / Reversed "
+                         "range: start must precede end."),
+                "examples": ["чл. 14", "чл. 14а", "чл. 14, ал. 2", "чл. 14-16"],
+            })
+        except queries.ArticleNotFound as e:
+            raise ToolError(code="ARTICLE_NOT_FOUND", payload={
+                "law_id": e.law_id, "article": e.article,
+                "paragraph": e.paragraph,
+                "available_articles": e.available_articles,
+            })
+
+        entries = [
+            ArticleEntry(article=r["article"], paragraph=r["paragraph"],
+                         text=r["text"], text_hash=r["text_hash"]).to_dict()
+            for r in rows
+        ]
+        resp = GetArticlesResponse(
+            law_id=law_id, articles=entries,
+            commit_hash=commit, warnings=warnings)
+        return resp.to_dict()
+
+    mcp.tool(description=_full_docstring(get_articles))(get_articles)
+    handle._tools["get_articles"] = get_articles
 
     # ─────────────────── history (Phase 2) ───────────────────────────
 

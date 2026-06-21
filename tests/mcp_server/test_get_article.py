@@ -67,6 +67,17 @@ def test_get_article_invalid_spec_raises(app_with_provisions):
     assert "spec" in exc.value.payload
 
 
+def test_get_article_range_rejected_with_get_articles_hint(app_with_provisions):
+    """FR-018: get_article serves single articles only. A range spec must
+    raise INVALID_ARTICLE_SPEC pointing at get_articles, not silently
+    return just the first article (the pre-FR-018 bug)."""
+    with pytest.raises(ToolError) as exc:
+        app_with_provisions.call_tool_sync(
+            "get_article", {"law": "100", "article": "чл. 14-16"})
+    assert exc.value.code == "INVALID_ARTICLE_SPEC"
+    assert "get_articles" in exc.value.payload.get("hint", "")
+
+
 def test_get_article_not_found_raises_with_available(app_with_provisions):
     with pytest.raises(ToolError) as exc:
         app_with_provisions.call_tool_sync(

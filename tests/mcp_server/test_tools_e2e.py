@@ -28,9 +28,10 @@ def _run(coro):
     return asyncio.run(coro)
 
 
-def test_tools_list_contains_six_tools(populated_conn, tmp_path):
-    """Phase 2 ships six tools total (3 Phase 1b.1 + 3 temporal) — locked
-    here so future additions trip a test rather than slipping in silently."""
+def test_tools_list_contains_seven_tools(populated_conn, tmp_path):
+    """2.x-a ships seven tools total (3 Phase 1b.1 + 3 temporal + the
+    FR-018 get_articles tool) — locked here so future additions trip a
+    test rather than slipping in silently."""
     app = build_app(conn=populated_conn, corpus_root=tmp_path)
 
     async def _list():
@@ -39,9 +40,9 @@ def test_tools_list_contains_six_tools(populated_conn, tmp_path):
 
     tools = _run(_list())
     names = {t.name for t in tools}
-    assert names == {"get_law", "search", "get_article",
+    assert names == {"get_law", "search", "get_article", "get_articles",
                      "history", "amendments_in_period", "diff"}, \
-        f"expected exactly 6 Phase 2 tools; got {names}"
+        f"expected exactly 7 tools; got {names}"
 
 
 def test_tool_descriptions_are_substantive_docstrings(populated_conn, tmp_path):
@@ -175,6 +176,39 @@ def test_diff_tool_roundtrip_through_fastmcp(populated_conn, tmp_path):
     assert isinstance(payload, str), f"expected str, got {type(payload)}"
     assert "consolidated" in payload.lower(), \
         f"expected 'consolidated' in diff note; got {payload!r}"
+
+
+def test_get_articles_tool_roundtrip_through_fastmcp(populated_conn, tmp_path):
+    """FR-018: get_articles survives the full JSON-RPC round trip, including
+    its nested `articles: list[dict]` response shape — the most complex
+    shape in the toolset. Seeds a 14-16 range of article-as-whole rows on
+    zakon-a (doc_id 100) and asserts the nested list survives serialization.
+    """
+    for art in ["14", "15", "16"]:
+        populated_conn.execute(
+            "INSERT INTO provisions (law_id, article, paragraph, valid_from, text, text_hash) "
+            "VALUES ('zakon-a', ?, NULL, '2020-01-01', ?, ?)",
+            (art, f"Чл. {art} текст.", f"h{art}"),
+        )
+    populated_conn.commit()
+
+    app = build_app(conn=populated_conn, corpus_root=tmp_path)
+
+    async def _call():
+        async with Client(app.mcp) as c:
+            return await c.call_tool(
+                "get_articles", {"law": "100", "articles": "чл. 14-16"})
+
+    result = _run(_call())
+    payload = result.data if hasattr(result, "data") else result
+    assert isinstance(payload, dict), f"expected dict, got {type(payload)}"
+    assert payload["law_id"] == "zakon-a"
+    arts = payload["articles"]
+    assert isinstance(arts, list), f"articles must be a list; got {type(arts)}"
+    assert [a["article"] for a in arts] == ["14", "15", "16"], \
+        f"nested articles list did not survive serialization: {arts!r}"
+    assert all("text" in a and "text_hash" in a for a in arts)
+    assert payload["commit_hash"]
 
 
 def test_invalid_article_spec_surfaces_through_mcp(populated_conn, tmp_path):

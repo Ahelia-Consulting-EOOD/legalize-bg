@@ -3,11 +3,11 @@
   "$id": "https://github.com/Ahelia-Consulting-EOOD/legalize-bg/docs/api/error-codes.json",
   "title": "legalize-bg MCP error taxonomy",
   "description": "Machine-readable catalog of every error code the legalize-bg MCP server returns. Mirror of docs/api/error-codes.md.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "codes": [
     {
       "code": "LAW_NOT_FOUND",
-      "raised_by": ["get_law", "get_article"],
+      "raised_by": ["get_law", "get_article", "get_articles", "history", "diff"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
@@ -17,7 +17,7 @@
     },
     {
       "code": "AMBIGUOUS_NAME",
-      "raised_by": ["get_law", "get_article"],
+      "raised_by": ["get_law", "get_article", "get_articles", "history", "diff"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
@@ -27,13 +27,14 @@
     },
     {
       "code": "NO_VERSION_AT_DATE",
-      "raised_by": ["get_law", "get_article"],
+      "raised_by": ["get_law", "get_article", "get_articles", "diff"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
         "law_id": {"type": "string", "optional": false, "description": "resolved act"},
-        "date": {"type": "string", "optional": false, "description": "ISO date requested"},
-        "earliest_valid_from": {"type": "string|null", "optional": false, "description": "earliest version's valid_from, or null"}
+        "date": {"type": "string|null", "optional": false, "description": "ISO date requested"},
+        "earliest_available": {"type": "string|null", "optional": false, "description": "earliest version's valid_from, or null"},
+        "latest_available": {"type": "string|null", "optional": false, "description": "latest version's valid_from, or null"}
       }
     },
     {
@@ -48,22 +49,23 @@
     },
     {
       "code": "INVALID_ARTICLE_SPEC",
-      "raised_by": ["get_article"],
+      "raised_by": ["get_article", "get_articles"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "article": {"type": "string", "optional": false, "description": "the input"},
-        "expected_forms": {"type": "array", "optional": false, "description": "canonical accepted forms"}
+        "spec": {"type": "string", "optional": false, "description": "the input article reference"},
+        "examples": {"type": "array", "optional": false, "description": "canonical accepted forms"},
+        "hint": {"type": "string", "optional": true, "description": "present on get_article's range-rejection case (FR-018) — directs the caller to get_articles"}
       }
     },
     {
       "code": "ARTICLE_NOT_FOUND",
-      "raised_by": ["get_article"],
+      "raised_by": ["get_article", "get_articles"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
         "law_id": {"type": "string", "optional": false, "description": "resolved act"},
-        "article": {"type": "string", "optional": false, "description": "requested article"},
+        "article": {"type": "string", "optional": false, "description": "requested article, or the 'start-end' span for a get_articles range"},
         "paragraph": {"type": "string|null", "optional": false, "description": "alinea if requested"},
         "available_articles": {"type": "array", "optional": false, "description": "every article in the act at the requested date"}
       }

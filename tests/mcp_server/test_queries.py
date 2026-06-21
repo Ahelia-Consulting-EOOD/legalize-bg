@@ -99,6 +99,15 @@ def test_resolve_by_unique_title(populated_conn):
     assert resolve_name_to_law_id(populated_conn, "Закон за А") == "zakon-a"
 
 
+def test_resolve_by_title_cyrillic_case_insensitive(populated_conn):
+    """FR-019: SQLite's built-in LOWER() is ASCII-only and does NOT fold
+    Cyrillic, so a mixed/upper-case Cyrillic title used to miss. The
+    pylower UDF (str.lower, full-Unicode) must resolve it. The stored
+    title is the mixed-case 'Закон за А'."""
+    assert resolve_name_to_law_id(populated_conn, "закон за а") == "zakon-a"  # all-lower
+    assert resolve_name_to_law_id(populated_conn, "ЗАКОН ЗА А") == "zakon-a"  # all-upper
+
+
 def test_ambiguous_title_raises_with_candidates(populated_conn):
     """§7.1 — multiple acts with identical title surface as
     AMBIGUOUS_NAME with the full candidate list including identificador
@@ -299,6 +308,43 @@ def test_article_lookup_available_articles_sorted_in_legal_order(populated_conn)
         article_lookup(populated_conn, "zakon-a",
                        article="999", paragraph=None, date=None)
     assert exc.value.available_articles == ["1", "9", "14", "14а", "15", "100"]
+
+
+# ────────────────────────────── articles_lookup (FR-018 ranges) ─────────────
+
+
+def test_articles_lookup_expands_range(populated_conn):
+    """FR-018: a range expands to every article whose legal-sort-key is in
+    [start, end] inclusive — including Cyrillic-suffixed articles (14а)
+    inside the span — ordered legally, gaps skipped, upper bound exclusive
+    of the next integer. Seed 14, 14а, 16, 17; range 14-16 → [14, 14а, 16]
+    (15 absent, 17 out of range)."""
+    from mcp_server.queries import articles_lookup
+    for art in ["14", "14а", "16", "17"]:
+        populated_conn.execute(
+            "INSERT INTO provisions (law_id, article, paragraph, valid_from, text, text_hash) "
+            "VALUES ('zakon-a', ?, NULL, '2020-01-01', ?, ?)",
+            (art, f"text {art}", f"h{art}"),
+        )
+    populated_conn.commit()
+    rows = articles_lookup(populated_conn, "zakon-a", "14", "16", None)
+    assert [r["article"] for r in rows] == ["14", "14а", "16"]
+    assert all(r["paragraph"] is None for r in rows)
+    assert rows[0]["text"] == "text 14"
+
+
+def test_articles_lookup_empty_range_raises(populated_conn):
+    """An in-range query that matches no article raises ArticleNotFound
+    with the act's available articles for retry (range as 'start-end')."""
+    from mcp_server.queries import articles_lookup
+    populated_conn.execute(
+        "INSERT INTO provisions (law_id, article, paragraph, valid_from, text, text_hash) "
+        "VALUES ('zakon-a', '14', NULL, '2020-01-01', 't', 'h')")
+    populated_conn.commit()
+    with pytest.raises(ArticleNotFound) as exc:
+        articles_lookup(populated_conn, "zakon-a", "50", "60", None)
+    assert exc.value.available_articles == ["14"]
+    assert exc.value.article == "50-60"
 
 
 # ────────────────────────────── law_history (Phase 2 timeline) ──────────────
@@ -547,3 +593,39 @@ def test_diff_failed_raises_DIFF_FAILED(populated_conn, tmp_path):
         diff_law_versions(populated_conn, repo, "zakon-a", "2019-06-01", "2020-06-01")
     assert exc.value.code == "DIFF_FAILED"
     assert exc.value.payload["law_id"] == "zakon-a"
+
+
+# ────────────────────────── FR-019 no-SQL-UDF guard (review C1) ──────────────
+
+
+def test_resolve_title_needs_no_sql_udf():
+    """Guard for the batch-2.x-a review C1 deadlock.
+
+    The first FR-019 implementation registered a Python-callback SQLite
+    UDF (`pylower`) used inside `resolve_name_to_law_id`'s title step.
+    Under FastMCP's worker-thread pool sharing one
+    `check_same_thread=False` connection that DEADLOCKED the server (a
+    GIL ↔ connection-mutex lock-order inversion — verified: 20 concurrent
+    title lookups wedged). Cyrillic case-folding is now done in PYTHON,
+    so resolution must work on a BARE connection with NO custom function
+    registered. If an in-SQL Python-callback dependency is reintroduced,
+    this raises `OperationalError: no such function: …` here. (The shared-
+    connection concurrency model itself is tracked separately as FR-023.)
+    """
+    import sqlite3
+    from index.migrations import migrate
+
+    c = sqlite3.connect(":memory:")
+    c.row_factory = sqlite3.Row
+    migrate(c)
+    c.execute(
+        "INSERT INTO laws (law_id, doc_id, title, category, status, current_commit) "
+        "VALUES ('z', '1', 'Закон за Тест', 'laws', 'vigente', ?)",
+        ("a" * 40,),
+    )
+    c.commit()
+    # No register_query_functions / create_function — a deliberately bare
+    # connection. Both case variants must resolve via the Python fold.
+    assert resolve_name_to_law_id(c, "ЗАКОН ЗА ТЕСТ") == "z"
+    assert resolve_name_to_law_id(c, "закон за тест") == "z"
+    c.close()

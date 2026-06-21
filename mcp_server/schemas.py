@@ -101,6 +101,42 @@ class GetArticleResponse:
 
 
 @dataclass(frozen=True)
+class ArticleEntry:
+    """One article in a `get_articles` response (FR-018).
+
+    For RANGE entries `paragraph` is None (a range addresses whole
+    articles). When `get_articles` is handed a single spec that names an
+    alinea ("чл. 14, ал. 2"), the one entry carries that alinea in
+    `paragraph`. `text_hash` is the same stable per-row digest as
+    GetArticleResponse, so Phase 4 amendment detection can compare ranged
+    and single lookups uniformly.
+    """
+    article: str
+    paragraph: str | None
+    text: str
+    text_hash: str
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class GetArticlesResponse:
+    """`get_articles` response (FR-018). A single object carrying the list
+    of in-range articles plus ONE shared `commit_hash` and `warnings`
+    channel — every entry shares the same law + date, hence the same
+    resolved version, so per-entry duplication would be noise. `articles`
+    holds already-serialized `ArticleEntry.to_dict()` dicts."""
+    law_id: str
+    articles: list[dict]
+    commit_hash: str
+    warnings: list[dict] = field(default_factory=list)
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
 class VersionEntry:
     """One entry in an act's version timeline (Phase 2 / FR-001).
 
