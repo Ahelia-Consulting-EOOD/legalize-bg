@@ -192,3 +192,31 @@ Corpus **3,573 → 3,599** acts. **276** single-file corpus commits (`git rev-li
   - `2135506845`, `2135515370`, `2135516067`, `2135518328`, `2135526211`, `2135526865`, `2135533188`, `2135535977`, `2135535978`, `2135536200`, `2135553161`, `2135576453`, `2135785028`, `2135828375`, `2135880580`, `2137240577`, `2137247022`, `2137255124`.
 - **Index rebuild ordering (§8):** rebuild once more after BOTH this branch and Phase 2 merge.
 - **`history_grew` over-trigger** (the 16): benign (idempotent guard catches it); file an FR only if it recurs at scale.
+
+---
+
+## 11. Merge order — PR #1 (refresh) vs PR #2 (Phase 2 temporal index)
+
+Both branch from the same `main` (`3d754027`). **Verified: zero code-file overlap.** The branches share exactly **3 files, all additive docs/config**:
+
+| Shared file | PR #1 adds | PR #2 adds | Conflict |
+|---|---|---|---|
+| `docs/sync/DECISIONS.md` | row **D-030** | row **D-031** (already renumbered to avoid collision) | trivial — keep both rows |
+| `docs/sync/ACTIVE.md` | "Parallel track: corpus re-scrape" section | Phase 2 status | trivial — keep both sections |
+| `.gitignore` | `.refresh-state.json`, `refresh-run.log` | `.superpowers/` | trivial — keep all entries |
+
+No code conflicts: PR #1 = `refresh.py` (new) + 293 corpus `.md` + refresh tests; PR #2 = `index/build.py`, `mcp_server/*`, `tools.json`, `docs/api/*` — disjoint sets.
+
+### Recommendation: **PR #1 (refresh) first → PR #2 (Phase 2) → one final `index.build`.**
+
+Rationale:
+1. **Additive-before-modifying (lowest risk).** PR #1 adds a brand-new module and data; it makes **zero edits to existing code**. PR #2 *modifies* existing modules (`index/build.py`, `mcp_server/queries.py`/`schemas.py`/`server.py`/`errors.py`/`export_tools.py`, `tools.json`). Landing the purely-additive branch first keeps `main` trivially stable, then the code-changing branch goes on top.
+2. **Data before derived.** Phase 2's value is the temporal/amendments index **derived from** `amendment_history`, which this refresh changed for ~184 `[reforma]` acts + 26 new + 18 `derogado`. Merging refresh first means the **single final `index.build`** (run after PR #2 lands, using Phase 2's new builder) sees the fully-refreshed corpus in one shot. Phase-2-first would index the temporal/amendments tables against the **pre-refresh** corpus, forcing a second rebuild after refresh lands.
+3. **tools.json parity is clean either way** (PR #1 doesn't touch `tools.json`/`export_tools.py`; PR #2 bumps v1.0.0 → v1.1.0 in lockstep), but refresh-first lets Phase 2's tool-schema changes land as the final, uninterleaved word.
+
+### Mechanics
+- Merge PR #1. Then merge PR #2, resolving the 3 trivial conflicts by **keeping both sides**.
+- Run **once** on merged `main`: `.venv/bin/python -m index.build --corpus . --db catalog.db` (§8 — rebuilds the SQLite catalog, now derived from Phase 2's builder over the refreshed corpus). `catalog.db` is gitignored/derived; never commit it.
+- Re-verify on merged `main`: `python -m mcp_server.export_tools --check` (Phase 2's v1.1.0) + full `pytest`.
+
+**Alternative (Phase-2-first)** is acceptable only if unblocking Phase 7 (gated on Phase 2) is time-critical; its only cost is a second index rebuild. Order does **not** affect correctness — both PRs are independently complete.

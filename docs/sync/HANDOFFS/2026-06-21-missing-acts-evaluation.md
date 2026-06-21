@@ -5,7 +5,7 @@
 
 > ## ✅ Status — APPLIED 2026-06-21 (owner-approved)
 > - **17 confirmed repeals → flipped to `estado: derogado`** with a `[otmyana]` marker commit each, **author-dated at the actual repeal date** (`refresh.py --flip-missing-estado`, enhanced to flip only acts with a confirmed `отм. ДВ` marker). Index rebuilt — 17 acts now `status=derogado`. Files kept (historical text retained).
-> - **1 act NOT flipped and PENDING your decision:** `2137255124` (Union of Architects bylaw, §3) — no repeal marker, so the runner correctly skipped it (`missing_not_repealed`). It remains `estado: vigente`. **Choose: remove as erroneously-included, or keep-but-mark.**
+> - **1 act — RESOLVED: keep-but-mark** (owner decision). `2137255124` (Union of Architects bylaw, §3) had no repeal marker so the runner skipped it; per owner decision it is **kept** and **marked `estado: derogado` as a data-quality scope exclusion** (a YAML-comment note in the file records that this is *not* a ДВ repeal). Index now shows 18 `derogado` (17 ДВ repeals + this scope-mark).
 
 ---
 
@@ -75,10 +75,9 @@ The other 11 repealed acts were repealed without a same-window replacement in th
 
 This is an **internal bylaw of a private body, not a национален нормативен акт.** It arguably should never have been in a *national legislation* corpus.
 
-**Decision options for the owner:**
-- **(a) Remove as erroneously included** — this is the handover's explicit hard-delete exception ("only ever hard-delete a file if you positively confirm it was published in error"). I have **not** done this; it needs your confirmation.
-- **(b) Keep but mark out-of-scope** — flip `estado` to e.g. `derogado`/a non-vigente value and leave a note, treating it as a known data-quality artifact.
-- **Follow-up either way:** worth a one-off sweep for other non-ДВ private-body documents that may have slipped into the corpus (grep frontmatter for acts whose `dv_issue` is null AND whose source is a non-ДВ site). I can run that if you want.
+**Decision — applied: (b) keep-but-mark.** `estado` set to `derogado` (the only non-`vigente` enum value the schema allows) with a YAML-comment note recording that this is a *scope exclusion*, not a ДВ repeal. The file is kept. *Residual limitation:* the index can't distinguish a scope-mark from a real repeal (both are `status=derogado`) without a schema enhancement (a third `estado` value or a `scope` field — a protected-surface change, out of scope here). The note + this report carry the distinction.
+
+**Optional follow-up (not yet run):** a one-off sweep for other non-ДВ private-body documents that may have slipped into the corpus — candidates have `dv_issue: null` AND `dv_year: null` AND a non-ДВ `fuente`/source. I can run it on request.
 
 ---
 
