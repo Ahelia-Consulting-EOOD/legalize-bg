@@ -3,7 +3,7 @@
 **Current phase:** Phase 2 — **complete on `main` 2026-06-21**. Phase 1b is fully shipped (1b.1 + 1b.2 + 1b.3).
 **Current owner:** ekimir
 **Started:** 2026-06-21 (Phase 2 temporal index).
-**Next action:** Phase 3 (DV gazette monitor). The corpus re-scrape (D-030) is now merged (corpus is 3,599 acts). **Accuracy note:** `diff()` / historical `get_law(date)` still return single-version output even post-re-scrape — `index/build.py` writes one `law_versions` row per act (commit_hash = HEAD), so `version_at_date` resolves to a single commit. The re-scrape supplied per-act `[reforma]`/`[popravka]` git commits; materializing those into multiple `law_versions` rows (a row per commit, valid_from = its author-date) is the follow-up that actually enables multi-version temporal diffs.
+**Next action:** Phase 3 (DV gazette monitor). The corpus re-scrape (D-030) is now merged (corpus is 3,599 acts). **Accuracy note:** `diff()` / historical `get_law(date)` still return single-version output even post-re-scrape — `index/build.py` writes one `law_versions` row per act (commit_hash = HEAD), so `version_at_date` resolves to a single commit. The re-scrape supplied per-act `[reforma]`/`[popravka]` git commits; materializing those into multiple `law_versions` rows (a row per commit, valid_from = its author-date) is the follow-up that actually enables multi-version temporal diffs (tracked as **FR-020**).
 
 ## Status
 
