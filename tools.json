@@ -1,9 +1,9 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "spec": "https://modelcontextprotocol.io/specification/server/tools",
   "server": {
     "name": "legalize-bg",
-    "phase": "1b.2",
+    "phase": "2",
     "transport": "stdio"
   },
   "tools": [
@@ -141,6 +141,7 @@
     "INDEX_MISSING",
     "INDEX_STALE",
     "INVALID_ARTICLE_SPEC",
+    "INVALID_DATE_RANGE",
     "LAW_NOT_FOUND",
     "NO_VERSION_AT_DATE",
     "QUERY_TOO_BROAD"

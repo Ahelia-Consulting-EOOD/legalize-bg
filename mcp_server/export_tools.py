@@ -38,7 +38,7 @@ from mcp_server.server import build_app
 
 # Bumped on any breaking change to the tool schemas. Additive changes
 # (new optional input arg, new optional output field) stay at 1.x.
-TOOLS_JSON_VERSION = "1.0.0"
+TOOLS_JSON_VERSION = "1.1.0"
 
 
 def export_tool_schemas(corpus_root: Path | None = None) -> dict:
@@ -69,7 +69,7 @@ def export_tool_schemas(corpus_root: Path | None = None) -> dict:
         "spec": "https://modelcontextprotocol.io/specification/server/tools",
         "server": {
             "name": "legalize-bg",
-            "phase": "1b.2",
+            "phase": "2",
             "transport": "stdio",
         },
         "tools": tool_dicts,
