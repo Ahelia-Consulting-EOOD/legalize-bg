@@ -18,10 +18,12 @@ via the conftest fixture.
 
 from __future__ import annotations
 
+import functools
 import inspect
 import logging
 import sqlite3
 import subprocess
+import threading
 from pathlib import Path
 from typing import Any, Callable
 
@@ -138,6 +140,32 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         so callers see the full contract."""
         return inspect.getdoc(fn) or ""
 
+    # FR-023: the catalog connection is shared across FastMCP worker threads
+    # (check_same_thread=False, see __main__). sqlite3 connections are NOT
+    # safe for concurrent cross-thread `execute` — concurrent use raises
+    # `InterfaceError: bad parameter or other API misuse`, and a Python-UDF
+    # made it deadlock (the removed FR-019 pylower; review C1 / D-036). The
+    # catalog is read-only at runtime, so serialize all tool DB access behind
+    # one lock: correct and cheap (each query is ms-scale; the lock is
+    # uncontended single-threaded, so per-call latency budgets are unchanged).
+    # True-parallel reads via a per-thread/per-call connection pool are a
+    # future optimization if throughput ever demands it (D-040).
+    _db_lock = threading.Lock()
+
+    def _register(fn: Callable[..., Any]) -> Callable[..., Any]:
+        """Register a tool function: serialize its DB access behind
+        `_db_lock`, then expose it BOTH to FastMCP (description from the full
+        docstring) and to the sync test shortcut (`call_tool_sync`).
+        `functools.wraps` preserves `__name__`/`__doc__`/signature, so
+        FastMCP's tool-name and input-schema inference are unaffected."""
+        @functools.wraps(fn)
+        def wrapper(*args: Any, **kwargs: Any) -> Any:
+            with _db_lock:
+                return fn(*args, **kwargs)
+        mcp.tool(description=_full_docstring(fn))(wrapper)
+        handle._tools[fn.__name__] = wrapper
+        return wrapper
+
     # ─────────────────── get_law ─────────────────────────────────────
 
     def get_law(name: str, date: str | None = None) -> dict:
@@ -205,8 +233,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         )
         return resp.to_dict()
 
-    mcp.tool(description=_full_docstring(get_law))(get_law)
-    handle._tools["get_law"] = get_law
+    _register(get_law)
 
     # ─────────────────── search ──────────────────────────────────────
 
@@ -273,8 +300,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                                         category=category, limit=capped,
                                         include_body=bool(include_body))
 
-    mcp.tool(description=_full_docstring(search))(search)
-    handle._tools["search"] = search
+    _register(search)
 
     # ─────────────────── get_article ─────────────────────────────────
 
@@ -385,8 +411,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         )
         return resp.to_dict()
 
-    mcp.tool(description=_full_docstring(get_article))(get_article)
-    handle._tools["get_article"] = get_article
+    _register(get_article)
 
     # ─────────────────── get_articles (FR-018) ───────────────────────
 
@@ -491,8 +516,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             commit_hash=commit, warnings=warnings)
         return resp.to_dict()
 
-    mcp.tool(description=_full_docstring(get_articles))(get_articles)
-    handle._tools["get_articles"] = get_articles
+    _register(get_articles)
 
     # ─────────────────── history (Phase 2) ───────────────────────────
 
@@ -524,8 +548,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                             payload={"name": e.name, "suggestions": e.suggestions})
         return [v.to_dict() for v in queries.law_history(conn, law_id)]
 
-    mcp.tool(description=_full_docstring(history))(history)
-    handle._tools["history"] = history
+    _register(history)
 
     # ─────────────────── amendments_in_period (Phase 2) ──────────────
 
@@ -547,8 +570,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         return [a.to_dict()
                 for a in queries.amendments_in_period(conn, from_date, to_date)]
 
-    mcp.tool(description=_full_docstring(amendments_in_period))(amendments_in_period)
-    handle._tools["amendments_in_period"] = amendments_in_period
+    _register(amendments_in_period)
 
     # ─────────────────── diff (Phase 2) ──────────────────────────────
 
@@ -591,8 +613,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                 "latest_available": e.latest_available,
             })
 
-    mcp.tool(description=_full_docstring(diff))(diff)
-    handle._tools["diff"] = diff
+    _register(diff)
 
     return handle
 
