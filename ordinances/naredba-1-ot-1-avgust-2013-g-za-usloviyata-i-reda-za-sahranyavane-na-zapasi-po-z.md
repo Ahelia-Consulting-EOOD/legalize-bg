@@ -6,7 +6,7 @@ pais: bg
 rango: наредба
 fecha_publicacion: '2013-08-13'
 ultima_actualizacion: '2025-07-15'
-estado: vigente
+estado: derogado
 fuente: lex.bg
 dv_issue: '71'
 dv_year: 2013

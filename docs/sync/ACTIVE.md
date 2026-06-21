@@ -3,7 +3,7 @@
 **Current phase:** Phase 2 — **complete on `main` 2026-06-21**. Phase 1b is fully shipped (1b.1 + 1b.2 + 1b.3).
 **Current owner:** ekimir
 **Started:** 2026-06-21 (Phase 2 temporal index).
-**Next action:** Corpus re-scrape (parallel, see `docs/sync/HANDOFFS/2026-06-21-corpus-rescrape-refresh.md`) to enable multi-version output from `diff()` and historical `get_law(date)`. Phase 3 (DV gazette monitor) is next in sequence.
+**Next action:** Phase 3 (DV gazette monitor). The corpus re-scrape (D-030) is now merged (corpus is 3,599 acts). **Accuracy note:** `diff()` / historical `get_law(date)` still return single-version output even post-re-scrape — `index/build.py` writes one `law_versions` row per act (commit_hash = HEAD), so `version_at_date` resolves to a single commit. The re-scrape supplied per-act `[reforma]`/`[popravka]` git commits; materializing those into multiple `law_versions` rows (a row per commit, valid_from = its author-date) is the follow-up that actually enables multi-version temporal diffs.
 
 ## Status
 
@@ -63,3 +63,15 @@ None.
 - FR-015 — Phase 1b.3 synonym dictionary + rang-aware re-ranking.
 - FR-016 — Phase 1b.2 single-word category query stop-words.
 - FR-017 — Phase 1b.3 body-snippet generation (currently title-snippet only for perf).
+
+## Parallel track: corpus re-scrape (2026-06-21) — COMPLETE on `refresh/2026-06`
+
+Wholesale lex.bg re-photograph per `docs/sync/HANDOFFS/2026-06-21-corpus-rescrape-refresh.md`, run in parallel with Phase 2. No code overlap: this track = `fetcher/bg` (read-only) + new `refresh.py` + corpus `.md`; Phase 2 = `mcp_server/` / `index/`.
+
+- **Result:** 26 `[nova]` + 184 `[reforma]` + 66 `[popravka]` = **276 corpus commits**; 3,305 acts effectively unchanged; **18 acts gone from lex.bg's tree KEPT** (repealed/superseded — `estado` untouched, report-only); 0 errors; 0 Cloudflare. Corpus 3,573 → **3,599 acts**.
+- **Tooling:** new `refresh.py` + 43 tests on the branch. No protected surface modified (`fetcher/bg` interfaces, frontmatter schema, commit format, SQLite schema all untouched).
+- **Gates (handover §9):** pytest green (the two FTS5 perf-budget tests are load-flaky and pass in isolation); `export_tools --check` OK; G2 frontmatter clean (0 missing mandatory keys, 0 cp1251/UTF-8 artifacts, FR-011 degenerates unchanged at 7 empty-titulo + 121 null-pubdate); smoke test (search / get_law / get_article on a changed act + a nova act) OK; SQLite index rebuilt (3,599 acts).
+- **Coordination (handover §8):** rebuild the SQLite index once more AFTER both this branch and Phase 2 merge, so it sees the freshest `amendment_history`. `catalog.db` is gitignored/derived.
+- **MISSING acts — evaluated + actioned + resolved** (`docs/sync/HANDOFFS/2026-06-21-missing-acts-evaluation.md`): 17 confirmed repeals flipped to `estado: derogado` via 17 `[otmyana]` commits, each author-dated at the real repeal date. The 1 outlier `2137255124` (Union of Architects private bylaw, no ДВ) is **kept-but-marked** `derogado` as a scope exclusion (owner decision) with a YAML-comment note. Index rebuilt → **18 `derogado`** (17 repeals + 1 scope-mark).
+- **Open items for the owner:** (1) **merge order** — see the evaluation in the close-out; recommend PR #1 (refresh) → PR #2 (Phase 2) → one final `index.build`. (2) 16 acts classified as changed but re-assembled byte-identical (idempotent guard absorbed them, 0 empty commits) — benign report over-count; candidate FR only if it recurs. (3) optional non-ДВ corpus sweep (see report §3).
+- **Decision:** D-030. **Branch `refresh/2026-06` is ready for review/merge — NOT pushed.**

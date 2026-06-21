@@ -6,3 +6,6 @@ __pycache__/
 .coverage
 catalog.db
 .superpowers/
+# Refresh runner artifacts (derived, per-run)
+.refresh-state.json
+refresh-run.log

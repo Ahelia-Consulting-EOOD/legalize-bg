@@ -5,7 +5,7 @@ pais: bg
 rango: правилник
 fecha_publicacion: '2024-12-20'
 ultima_actualizacion: '2025-06-20'
-estado: vigente
+estado: derogado
 fuente: lex.bg
 dv_issue: '107'
 dv_year: 2024

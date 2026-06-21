@@ -7,7 +7,7 @@ pais: bg
 rango: наредба
 fecha_publicacion: '2024-02-16'
 ultima_actualizacion: '2024-02-16'
-estado: vigente
+estado: derogado
 fuente: lex.bg
 dv_issue: '14'
 dv_year: 2024
