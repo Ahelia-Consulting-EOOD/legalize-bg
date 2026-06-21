@@ -24,6 +24,7 @@ import logging
 import sqlite3
 import subprocess
 import threading
+import time
 from pathlib import Path
 from typing import Any, Callable
 
@@ -114,10 +115,45 @@ class _AppHandle:
         self._conn = conn
         self._corpus = corpus_root
         self._tools: dict[str, Callable[..., Any]] = {}
+        # 2.x-c observability: per-tool call metrics (calls / errors /
+        # error_codes / latency). Mutated only from inside the per-tool
+        # _db_lock (see _register), so access is already serialized — no
+        # separate metrics lock needed.
+        self._metrics: dict[str, dict[str, Any]] = {}
 
     def call_tool_sync(self, name: str, args: dict) -> Any:
         """Run a registered tool synchronously by name (for tests)."""
         return self._tools[name](**args)
+
+    def _record(self, tool: str, ok: bool, code: str | None,
+                ms: float) -> None:
+        """Accumulate one tool-call observation. Called under _db_lock."""
+        m = self._metrics.setdefault(
+            tool, {"calls": 0, "errors": 0, "error_codes": {},
+                   "total_ms": 0.0, "last_ms": 0.0})
+        m["calls"] += 1
+        m["total_ms"] += ms
+        m["last_ms"] = ms
+        if not ok:
+            m["errors"] += 1
+            if code:
+                m["error_codes"][code] = m["error_codes"].get(code, 0) + 1
+
+    def metrics_snapshot(self) -> dict[str, dict[str, Any]]:
+        """Return a copy of per-tool metrics for operators/tests:
+        {tool: {calls, errors, error_codes, total_ms, last_ms, avg_ms}}.
+        Read-only snapshot — mutating it does not affect internal state."""
+        return {
+            tool: {
+                "calls": v["calls"],
+                "errors": v["errors"],
+                "error_codes": dict(v["error_codes"]),
+                "total_ms": v["total_ms"],
+                "last_ms": v["last_ms"],
+                "avg_ms": (v["total_ms"] / v["calls"]) if v["calls"] else 0.0,
+            }
+            for tool, v in self._metrics.items()
+        }
 
 
 # ─────────────────────────── app factory ──────────────────────────────────
@@ -154,14 +190,42 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
     def _register(fn: Callable[..., Any]) -> Callable[..., Any]:
         """Register a tool function: serialize its DB access behind
-        `_db_lock`, then expose it BOTH to FastMCP (description from the full
-        docstring) and to the sync test shortcut (`call_tool_sync`).
-        `functools.wraps` preserves `__name__`/`__doc__`/signature, so
-        FastMCP's tool-name and input-schema inference are unaffected."""
+        `_db_lock`, record per-call metrics + a structured log line, then
+        expose it BOTH to FastMCP (description from the full docstring) and
+        to the sync test shortcut (`call_tool_sync`). `functools.wraps`
+        preserves `__name__`/`__doc__`/signature, so FastMCP's tool-name and
+        input-schema inference are unaffected.
+
+        Metrics + logging run INSIDE `_db_lock` (in the `finally`), so the
+        per-tool metrics dict is mutated by at most one thread at a time —
+        no separate metrics lock needed. The structured log line is
+        `tool=<name> ok=<true|false> [code=<CODE>] duration_ms=<n>` —
+        key=value so operators can grep/parse per-tool latency + error rates
+        (2.x-c observability)."""
+        tool_name = fn.__name__
+
         @functools.wraps(fn)
         def wrapper(*args: Any, **kwargs: Any) -> Any:
+            t0 = time.perf_counter()
+            ok, code = True, None
             with _db_lock:
-                return fn(*args, **kwargs)
+                try:
+                    return fn(*args, **kwargs)
+                except ToolError as e:
+                    ok, code = False, e.code
+                    raise
+                except Exception:
+                    ok, code = False, "UNEXPECTED"
+                    raise
+                finally:
+                    ms = (time.perf_counter() - t0) * 1000.0
+                    handle._record(tool_name, ok, code, ms)
+                    if ok:
+                        log.info("tool=%s ok=true duration_ms=%.1f",
+                                 tool_name, ms)
+                    else:
+                        log.warning("tool=%s ok=false code=%s duration_ms=%.1f",
+                                    tool_name, code, ms)
         mcp.tool(description=_full_docstring(fn))(wrapper)
         handle._tools[fn.__name__] = wrapper
         return wrapper

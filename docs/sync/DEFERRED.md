@@ -17,7 +17,7 @@ Each row links the deferral to its FR (or DECISION) trace, the phase it was punt
 
 | ID | Title | Punted from | Target | Status | Last reviewed | FR / Decision |
 |---|---|---|---|---|---|---|
-| D-2026-05-09-05 | Incremental index rebuild (currently full DELETE-then-INSERT each time, ~45 s for 3,573 acts) | Phase 1b.1 | Phase 4 | Open | 2026-05-09 (filed) | [FR-014](../frs/INDEX.md) |
+| _(none — all deferrals resolved)_ | | | | | | |
 
 ## Resolved deferrals
 
@@ -28,6 +28,7 @@ Each row links the deferral to its FR (or DECISION) trace, the phase it was punt
 | D-2026-05-09-01 | `bg_normalize` last-character-only suffix stripping (adjective long-form definite article asymmetry) | Phase 1b.1 | Phase 1b.3 | Implemented | 2026-05-09 | [FR-013](../frs/INDEX.md) | Per-suffix MIN_STEM_LEN model in `index/fts.py:_BG_DEFINITE_SUFFIXES`; new 3-char `ият` suffix at MIN_STEM=3 closes the canonical `новият/нов` asymmetry. Other long-form suffixes (`ите`, `ия`) deliberately NOT added — they would conflict with plural-noun endings. See [D-029](DECISIONS.md). |
 | D-2026-05-09-02 | `search` returns `title_snippet` only (no body snippet) | Phase 1b.1 | Phase 1b.3 | Implemented | 2026-05-09 | [FR-017](../frs/INDEX.md) | Python-side body-snippet generator in `mcp_server/queries.py:_make_body_snippet`; opt-in via `include_body=True` parameter on `search` (TOP_N=2 cap). New `body_snippet` field on `SearchHit` (additive per Surface 3). See [D-029](DECISIONS.md). |
 | D-2026-05-09-04 | Synonym dictionary for Bulgarian abbreviations and `rang`-aware re-ranking | Phase 1b.1 | Phase 1b.3 | Implemented | 2026-05-09 | [FR-015](../frs/INDEX.md) | Two layers: hand-curated `index/synonyms.LEGAL_ABBREVIATIONS` (22 entries) rewrites single-token queries pre-FTS5; rang-aware tier sort in `index/fts.py:search_fts` puts laws/codes above implementing/regulations/ordinances. See [D-029](DECISIONS.md). |
+| D-2026-05-09-05 | Incremental index rebuild (currently full DELETE-then-INSERT each time, ~45 s for 3,573 acts) | Phase 1b.1 | Phase 4 | Implemented | 2026-06-21 | [FR-014](../frs/INDEX.md) | `index/build.py` `build(..., incremental=True)` / `--incremental`: git-diffs the indexed commit (`laws.current_commit`) vs HEAD, re-indexes only changed acts (DELETE+INSERT per law_id) + removes deleted, bumps unchanged acts' commit pointers; full-rebuild fallback when empty/inconsistent. Oracle-verified == full rebuild (byte-identical content tables). Pulled forward from Phase 4 in batch 2.x-c; preflight `IMPLEMENTATION-PREFLIGHT-2026-06-21-fr014.md`. See [D-041](DECISIONS.md). |
 
 > **Row schema for resolved entries.** When an Open row is resolved at a phase boundary it migrates here with the same columns; only the values change. The `Status` column flips from `Open` to one of `Implemented` / `Re-affirmed` / `Withdrawn`; `Last reviewed` becomes the resolution date; an extra column "Resolution note" carries a one-sentence explanation and a link to the closing `DECISIONS.md` entry.
 
