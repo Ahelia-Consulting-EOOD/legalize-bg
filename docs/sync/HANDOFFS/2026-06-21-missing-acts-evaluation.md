@@ -1,7 +1,11 @@
 # MISSING acts evaluation — corpus re-scrape 2026-06-21
 
 **For:** owner review (decision required)
-**Context:** the `refresh/2026-06` re-scrape found **18 acts in our corpus that no longer appear in lex.bg's browse tree**. Per owner directive they were **kept** (never auto-deleted) with `estado` untouched. This report evaluates *why* each left the tree, by re-fetching its lex.bg page and reading the document status, and recommends an action.
+**Context:** the `refresh/2026-06` re-scrape found **18 acts in our corpus that no longer appear in lex.bg's browse tree**. Per owner directive they were **kept** (never auto-deleted). This report evaluates *why* each left the tree, by re-fetching its lex.bg page and reading the document status, and recommends an action.
+
+> ## ✅ Status — APPLIED 2026-06-21 (owner-approved)
+> - **17 confirmed repeals → flipped to `estado: derogado`** with a `[otmyana]` marker commit each, **author-dated at the actual repeal date** (`refresh.py --flip-missing-estado`, enhanced to flip only acts with a confirmed `отм. ДВ` marker). Index rebuilt — 17 acts now `status=derogado`. Files kept (historical text retained).
+> - **1 act NOT flipped and PENDING your decision:** `2137255124` (Union of Architects bylaw, §3) — no repeal marker, so the runner correctly skipped it (`missing_not_repealed`). It remains `estado: vigente`. **Choose: remove as erroneously-included, or keep-but-mark.**
 
 ---
 
@@ -78,14 +82,14 @@ This is an **internal bylaw of a private body, not a национален нор
 
 ---
 
-## 4. How to action this
+## 4. What was done
 
-`refresh.py --flip-missing-estado` flips `vigente → derogado` and writes an `[otmyana]` commit for **every** act gone from the tree. Two caveats before you run it:
+Both caveats raised in the original draft were addressed before running:
 
-1. **It would flip all 18, including the Architects bylaw (#18)** — which is *not* repealed. Decide #3 first; if you choose (a) remove or want #18 handled differently, flip the 17 deliberately rather than the blanket 18.
-2. **`[otmyana]` author-date is `today` (2026-06-21), not the real repeal date.** The true repeal dates are known (column above). If you want git history to reflect the actual repeal dates (consistent with the "author-date = legislative date" convention, D-016), that's a small enhancement to `refresh.py` (pass the parsed `отм. ДВ` date as the `[otmyana]` author-date) — I can add it under TDD before the flip. Otherwise the blanket `today` date is acceptable for a marker commit.
+1. **Only confirmed repeals are flipped.** `refresh.py --flip-missing-estado` now re-fetches each MISSING act and flips `vigente → derogado` **only** when lex.bg shows an `отм. ДВ` marker. The Architects bylaw (#18, no marker) was automatically skipped → `missing_not_repealed`, still `vigente`, pending your decision.
+2. **`[otmyana]` author-dates are the real repeal dates** (parsed from the `отм. ДВ` annotation), consistent with the "author-date = legislative date" convention (D-016) — e.g. ПОДНС-2024 dated `2026-06-02`, the bluetongue наредба `2026-06-12`.
 
-**Recommended sequence:** (1) confirm #18's disposition; (2) optionally add the repeal-date enhancement; (3) run the flip for the 17 (or 18); (4) rebuild the index. All on `refresh/2026-06`, still pre-merge.
+**Done:** 17 `[otmyana]` commits on `refresh/2026-06`; index rebuilt (17 `derogado`); 48 tests pass. **Remaining:** your call on #18 (remove vs keep-but-mark) and the optional non-ДВ corpus sweep. All still **pre-merge** — the branch waits for the Phase 2 PR (#2) so the two land coordinated.
 
 ---
 
