@@ -1,7 +1,11 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "legalize-bg"
 version = "0.1.0"
-description = "Bulgarian legislation as code"
+description = "Bulgarian legislation as code — MCP server over a SQLite index of the corpus"
 requires-python = ">=3.12"
 dependencies = [
     "requests>=2.31",
@@ -10,6 +14,11 @@ dependencies = [
     "lxml>=5.0",
     "fastmcp>=2.0,<4.0",
 ]
+
+# Console entry point: `legalize-bg-mcp [--db PATH] [--corpus PATH] [--strict]`
+# starts the FastMCP stdio server. Equivalent to `python -m mcp_server`.
+[project.scripts]
+legalize-bg-mcp = "mcp_server.__main__:main"
 
 [project.optional-dependencies]
 dev = [

@@ -1,0 +1,25 @@
+# Keep the Docker build context small: the image carries only the app
+# (mcp_server/index/fetcher + pyproject), copied explicitly in the Dockerfile.
+# The corpus + git history + derived DB are mounted at runtime, not built in.
+.git
+.venv
+*.db
+catalog.db
+laws/
+codes/
+ordinances/
+regulations/
+implementing/
+municipal/
+tests/
+docs/
+research/
+scripts/
+.playwright-mcp/
+.superpowers/
+.claude/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+tools.json
