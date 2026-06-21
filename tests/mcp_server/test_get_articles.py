@@ -80,3 +80,25 @@ def test_get_articles_single_alinea_returns_that_alinea(populated_conn, tmp_path
     assert [a["article"] for a in r["articles"]] == ["14"]
     assert r["articles"][0]["paragraph"] == "2"
     assert r["articles"][0]["text"] == "Алинея 2."
+
+
+def test_get_articles_reversed_range_raises_invalid_spec(app_with_range):
+    """FR-018 review M1: a reversed range ('чл. 16-14') parses but can
+    never match — it must raise INVALID_ARTICLE_SPEC with a hint, NOT a
+    misleading ARTICLE_NOT_FOUND that lists articles which actually exist."""
+    with pytest.raises(ToolError) as exc:
+        app_with_range.call_tool_sync(
+            "get_articles", {"law": "100", "articles": "чл. 16-14"})
+    assert exc.value.code == "INVALID_ARTICLE_SPEC"
+    assert "hint" in exc.value.payload
+
+
+def test_get_articles_no_version_at_date(app_with_range):
+    """FR-018 review M3: a date before the act's earliest version surfaces
+    NO_VERSION_AT_DATE through get_articles (the version_with_warnings
+    branch), same as get_article."""
+    with pytest.raises(ToolError) as exc:
+        app_with_range.call_tool_sync(
+            "get_articles",
+            {"law": "100", "articles": "чл. 14", "date": "1900-01-01"})
+    assert exc.value.code == "NO_VERSION_AT_DATE"

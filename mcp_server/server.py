@@ -130,11 +130,6 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
     mcp = FastMCP(name)
     handle = _AppHandle(mcp, conn, Path(corpus_root))
 
-    # FR-019: register the pylower UDF so Cyrillic-aware title resolution
-    # works on every tool path (get_law / get_article / get_articles /
-    # history / diff all resolve names through queries.resolve_name_to_law_id).
-    queries.register_query_functions(conn)
-
     def _full_docstring(fn: Callable[..., Any]) -> str:
         """FastMCP only takes the first line of the Python docstring as
         the MCP description. The rest (Args, Returns sections) is what
@@ -425,7 +420,9 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             same resolved version).
 
         Raises:
-            INVALID_ARTICLE_SPEC: the article reference can't be parsed.
+            INVALID_ARTICLE_SPEC: the article reference can't be parsed, OR
+                a range is reversed (start after end) — payload carries a
+                `hint`.
             ARTICLE_NOT_FOUND: no article in the act falls in the range
                 (payload carries available_articles for retry).
             NO_VERSION_AT_DATE: the date precedes the act's earliest version.
@@ -466,6 +463,17 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                 rows = queries.article_lookup(
                     conn, law_id, article=spec.article,
                     paragraph=spec.paragraph, date=date)
+        except queries.InvalidArticleSpec:
+            # A reversed range ("чл. 16-14") parses but can't match; give an
+            # actionable INVALID_ARTICLE_SPEC instead of a misleading
+            # ARTICLE_NOT_FOUND (FR-018 review M1).
+            raise ToolError(code="INVALID_ARTICLE_SPEC", payload={
+                "spec": articles,
+                "hint": ("Обърнат диапазон: началото трябва да предхожда края "
+                         "(напр. 'чл. 14-16', не 'чл. 16-14'). / Reversed "
+                         "range: start must precede end."),
+                "examples": ["чл. 14", "чл. 14а", "чл. 14, ал. 2", "чл. 14-16"],
+            })
         except queries.ArticleNotFound as e:
             raise ToolError(code="ARTICLE_NOT_FOUND", payload={
                 "law_id": e.law_id, "article": e.article,

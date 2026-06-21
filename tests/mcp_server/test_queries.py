@@ -593,3 +593,39 @@ def test_diff_failed_raises_DIFF_FAILED(populated_conn, tmp_path):
         diff_law_versions(populated_conn, repo, "zakon-a", "2019-06-01", "2020-06-01")
     assert exc.value.code == "DIFF_FAILED"
     assert exc.value.payload["law_id"] == "zakon-a"
+
+
+# ────────────────────────── FR-019 no-SQL-UDF guard (review C1) ──────────────
+
+
+def test_resolve_title_needs_no_sql_udf():
+    """Guard for the batch-2.x-a review C1 deadlock.
+
+    The first FR-019 implementation registered a Python-callback SQLite
+    UDF (`pylower`) used inside `resolve_name_to_law_id`'s title step.
+    Under FastMCP's worker-thread pool sharing one
+    `check_same_thread=False` connection that DEADLOCKED the server (a
+    GIL ↔ connection-mutex lock-order inversion — verified: 20 concurrent
+    title lookups wedged). Cyrillic case-folding is now done in PYTHON,
+    so resolution must work on a BARE connection with NO custom function
+    registered. If an in-SQL Python-callback dependency is reintroduced,
+    this raises `OperationalError: no such function: …` here. (The shared-
+    connection concurrency model itself is tracked separately as FR-023.)
+    """
+    import sqlite3
+    from index.migrations import migrate
+
+    c = sqlite3.connect(":memory:")
+    c.row_factory = sqlite3.Row
+    migrate(c)
+    c.execute(
+        "INSERT INTO laws (law_id, doc_id, title, category, status, current_commit) "
+        "VALUES ('z', '1', 'Закон за Тест', 'laws', 'vigente', ?)",
+        ("a" * 40,),
+    )
+    c.commit()
+    # No register_query_functions / create_function — a deliberately bare
+    # connection. Both case variants must resolve via the Python fold.
+    assert resolve_name_to_law_id(c, "ЗАКОН ЗА ТЕСТ") == "z"
+    assert resolve_name_to_law_id(c, "закон за тест") == "z"
+    c.close()

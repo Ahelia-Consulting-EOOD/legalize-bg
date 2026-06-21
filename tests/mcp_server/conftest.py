@@ -4,7 +4,6 @@ import pytest
 
 from index.fts import insert_fts_row
 from index.migrations import migrate
-from mcp_server.queries import register_query_functions
 
 # Fake "current_commit" stamped onto every populated_conn row. Tests
 # that simulate the working-tree fast path in mcp_server.server.
@@ -29,9 +28,6 @@ def conn():
     c = sqlite3.connect(":memory:", check_same_thread=False)
     c.row_factory = sqlite3.Row
     migrate(c)
-    # FR-019: register pylower so direct resolve_name_to_law_id calls in
-    # tests (not going through build_app) get Cyrillic-aware title lookup.
-    register_query_functions(c)
     yield c
     c.close()
 
