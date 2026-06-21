@@ -222,7 +222,8 @@ deferrals:
     title: incremental index rebuild
     punted_from: 1b.1
     target: 4
-    status: open
+    status: implemented
+    resolution_note: "build(..., incremental=True) / --incremental in index/build.py: git-diff indexed commit vs HEAD, re-index only changed acts (DELETE+INSERT per law_id) + bump unchanged pointers; full-rebuild fallback; oracle-verified == full rebuild. Pulled forward to batch 2.x-c; D-041."
     surfaces_affected:
       - "index/build.py"
 
