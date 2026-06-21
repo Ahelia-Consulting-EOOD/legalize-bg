@@ -61,9 +61,9 @@ paths:
   # (ZOP, contracts, rfp-response, legislative-draft).
   # Signature changes break all downstream skill consumers.
   # Phase 1b.1 ships exactly the phase_1b_1 trio with typed-dict response
-  # shapes per D-024 (see docs/sync/DECISIONS.md). The phase_2 trio is
-  # listed for forward visibility but is NOT yet implemented; it is
-  # gated on the temporal index (FR-001).
+  # shapes per D-024 (see docs/sync/DECISIONS.md). The phase_2 trio was
+  # implemented 2026-06-21 (FR-001 Done; D-030) and is now a binding
+  # surface alongside the phase_1b_1 trio.
   - path: "mcp_server/server.py (tool signatures)"
     reason: "MCP tool API consumed by Claude Code legal skills"
     edit_mode: owner_review_required
