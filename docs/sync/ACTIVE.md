@@ -7,12 +7,20 @@
 
 **🆕 Owner re-prioritization (2026-06-21): MUNICIPAL CORPUS — ASAP.** Building out a proper **municipal** legislation corpus is now a prioritized, near-term SEPARATE track (was Phase 6 per D-006). Trigger: FR-011 triage found 104 of the 121 null-pub acts are municipal council acts present only as lex.bg local entries; municipal acts DO appear in Държавен вестник, so they warrant a dedicated corpus with authoritative metadata, not a permanent waiver. Tracked as **FR-022** / **D-035** (supersedes D-006 timing). NOT folded into 2.x-a — needs its own brainstorm → plan → phased scrape (265 municipalities, per-site variance; the `municipal/` directory is already a reserved protected surface). **Re-sequenced (owner 2026-06-21): finish the MCP track first; municipal executes after PR #3 merges + MCP work done.** Live investigation + global-workflow plan complete: `docs/plans/2026-06-21-fr022-municipal-corpus.md`. Key findings: municipal acts publish LOCALLY not ДВ by default (ЗНА чл. 37(3) / ЗМСМА чл. 22(2); ДВ only "когато това е предвидено със закон"); `obshtini.bg` is APIS's commercial JSON-API SaaS (`web-api.apis.bg`, version-aware, has the dates our lex.bg-sourced acts lack) — scrapable but ToS-gated. Phase-0 of execution = resolve the APIS ToS / source decision.
 
-**Batch 2.x-a — DELIVERED on `feat/2.x-a-agent-ux` (2026-06-21), pending owner PR review.** Plan: `docs/plans/2026-06-21-2.x-a-agent-ux.md`.
+**Batch 2.x-a — MERGED to `main` (PR #3, 2026-06-21).** Plan: `docs/plans/2026-06-21-2.x-a-agent-ux.md`.
 - **FR-019 (Done):** Cyrillic case-insensitive title resolution via the `pylower` UDF (`queries.register_query_functions`, called in `build_app` + test `conn` fixture). Smoke-verified on live catalog for ЗОП mixed case.
 - **FR-018 (Done):** new `get_articles` tool for article ranges + `get_article` now rejects a range with `INVALID_ARTICLE_SPEC` (no silent drop). `tools.json` 1.1.0→1.2.0; Surface-3 preflight filed; no new error codes.
 - **Stemmer (deferred → FR-021 / D-032):** aggressive Bulgarian stemmer scoped out (D-022 conflict + full-corpus regression risk + needs eval harness); no `bg_normalize` change.
 - **FR-011 (triaged → D-034):** 121 degenerate acts categorized + WAIVERS registry (`docs/data/fr-011-degenerate-triage.md`); no invented data. Municipal portion → FR-022.
-- **Tests:** 367 total (+10), non-perf suite 361 green; the 2 perf budget tests remain load-flaky (non-regression). DECISIONS up to **D-035**; FRS up to **FR-022**.
+- **Tests:** non-perf suite green; the 2 perf budget tests remain load-flaky (non-regression).
+
+**FR-023 — MERGED to `main` (PR #4, 2026-06-21).** Connection-concurrency safety: serialize the shared sqlite connection behind a lock in `build_app` (D-040; review C1 root cause). Closes the deadlock + the pre-existing InterfaceError race.
+
+**Batch 2.x-c (operability) — DELIVERED on `feat/2.x-c-operability` (2026-06-21), all 3 items, pending owner PR.**
+- **Item 1 (logging+metrics):** per-tool-call structured logs (`tool=… ok=… duration_ms=…`) + `handle.metrics_snapshot()` via the `_register` wrapper. No schema/tool change.
+- **Item 2 (packaging):** `[build-system]` + `[project.scripts] legalize-bg-mcp` + Dockerfile (+.dockerignore). Verified: `legalize-bg-mcp --help` + `docker build`/`run` (355 MB image).
+- **Item 3 (FR-014 incremental rebuild, D-041):** `build(..., incremental=True)` / `--incremental` — git-diff indexed-commit→HEAD, re-index only changed acts, full-rebuild fallback; oracle-verified == full rebuild. **Closes the last open deferral (D-2026-05-09-05) — DEFERRED.md now has no active rows.**
+- **State:** DECISIONS up to **D-041**; FRS up to **FR-024**; tools.json 1.2.0 (7 tools). Next roadmap step after 2.x-c merges + FR-022 municipal: Phase 3 freshness → FR-020 time machine → Phase 7 web.
 
 ## Status
 
