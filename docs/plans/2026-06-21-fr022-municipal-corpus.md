@@ -14,7 +14,7 @@
 
 - **Bootstrap (one-time):** scrape APIS once to seed the municipal corpus with structured, version-aware data (the `DocInfo`/`DocContent` JSON, which also carries the publication dates lex.bg lacked). Like the lex.bg bootstrap, this is a single photograph, not a recurring dependency.
 - **Ongoing (durable):** identify + develop **catalog/discovery + fetch adapters for each municipality's own website** (the legally-mandated publication channel, ЗМСМА чл. 22(2)) — these become the authoritative source for updates, making the APIS touch transient.
-- **Legal posture (see §8):** the act *texts* are public-domain (ЗАПСП чл. 4); a one-time APIS bootstrap still extracts a *substantial part* of APIS's чл. 93б database (ToS II.5/II.6) → keep it minimal and/or clear it with APIS, and rely on the parallel municipal-site adapters so the APIS extraction is one-off, not systematic. (Owner has chosen the lex.bg-style one-time treatment knowing this; recorded for an informed decision.)
+- **Legal posture (D-039, see §8):** we fetch only the public-domain legislative TEXTS (ЗАПСП чл. 4) and build our OWN structure (Legalize Markdown+YAML + the project's own SQLite schema/slugs) — reusing ZERO of APIS's database (compilation, structure, metadata, presentation). The sui generis чл. 93б right protects their compilation, which we don't re-use; the ToS "копиране на базите" clauses target reuse of their DB, which we don't do. The bootstrap pulls only the free texts, kept minimal; the municipal-site adapters are the durable source.
 - **Status:** plan + record only; **execution left for a future session**, gated on PR #3 merge + MCP-track completion ("finish MCP before municipal").
 
 ---
@@ -121,7 +121,9 @@ A deterministic Workflow (Mode D) over a discovered work-list, scaled per munici
 
 ## 8. APIS legal gate — detailed analysis (Phase-0 input)
 
-**Bottom line: the act *texts* are free, but APIS's *database* is not — and that distinction is the whole gate. Do NOT bulk-extract `web-api.apis.bg`.**
+**Posture (D-039, owner): we BUILD OUR OWN structure from the free legal TEXTS and reuse ZERO of any provider's database.** We fetch the public-domain legislative texts (ЗАПСП чл. 4) and transform them into the project's own original structure (Legalize Markdown+YAML, our own SQLite schema, our own slugs/identifiers) — we do NOT copy, extract, or re-utilize APIS's *database* (its compilation, selection/arrangement, structure, metadata schema, or presentation). The sui generis right (чл. 93б/93в) protects the maker's investment in compiling/structuring THEIR database; taking the underlying free texts into an independent work does not re-utilize it, and the ToS "копиране на базите" clauses target reuse of their compilation — which we do not do.
+
+**Bottom line: the act *texts* are free (чл. 4) and we rebuild structure independently; what we deliberately avoid is re-using APIS's database/compilation.** APIS is therefore touched only as a one-time bootstrap *oracle* for the free texts (D-037), kept minimal — not as an ongoing source and not as a database we copy.
 
 ### 8.1 The act texts themselves are public domain
 - **ЗАПСП чл. 4, т. 1** (`laws/zakon-za-avtorskoto-pravo-i-srodnite-mu-prava.md`): *"Не са обект на авторското право: 1. нормативни и индивидуални актове на държавни органи за управление, актовете на съдилищата, както и официалните им преводи"* — and т. 4: *"новини, факти, сведения и данни"*. Municipal наредби/правилници are нормативни актове → **not copyrightable**. Copying the *content* of any municipal act is always lawful, from any source.
@@ -154,7 +156,7 @@ Bulgaria transposed the EU DSM Directive (2019/790) TDM exceptions:
 - **(D) Research-institution route** — partner with a qualifying body to rely on чл. 26ж.
 - **Either way:** respect `robots.txt` / TDM opt-out, rate-limit, attribute. APIS may still be used the way lex.bg is for the national corpus — as a *validation oracle* for a handful of acts — without harvesting a substantial part.
 
-**Recommendation → superseded by owner decision D-037 (§0):** APIS is used as a **one-time bootstrap** (like lex.bg — a single photograph, not a systematic ongoing feed), and **(A)** the per-municipality official sites are the durable ongoing source built in parallel. This keeps the legally-clean municipal sites authoritative while the (substantial-part) APIS extraction stays one-off; keep that bootstrap minimal and/or clear it with APIS. `web-api.apis.bg` is therefore the bootstrap **oracle**, not the corpus's ongoing source.
+**Recommendation → superseded by owner decisions D-037 + D-039 (§0):** we fetch only the free public-domain TEXTS and build our own independent structure (D-039 — reusing ZERO of any provider DB), with APIS used as a **one-time bootstrap oracle** (like lex.bg — a single photograph, not a systematic ongoing feed) and **(A)** the per-municipality official sites as the durable ongoing source built in parallel. `web-api.apis.bg` is therefore a bootstrap source for the free texts only, not a database we copy and not the corpus's ongoing source.
 
 ---
 
