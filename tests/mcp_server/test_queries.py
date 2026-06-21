@@ -381,3 +381,64 @@ def test_diff_rejects_reversed_range(populated_conn, tmp_path):
         diff_law_versions(populated_conn, tmp_path, "zakon-a",
                           "2021-01-01", "2020-01-01")
     assert exc.value.code == "INVALID_DATE_RANGE"
+
+
+def test_diff_different_versions_invokes_git(populated_conn, tmp_path, monkeypatch):
+    import types
+    from mcp_server import queries
+    from mcp_server.queries import diff_law_versions
+
+    # Set up two versions of zakon-a with DIFFERENT commits at different dates.
+    populated_conn.execute("DELETE FROM law_versions WHERE law_id='zakon-a'")
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2019-01-01', ?)",
+        ("b" * 40,),
+    )
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2020-01-01', ?)",
+        ("c" * 40,),
+    )
+    populated_conn.commit()
+
+    calls = {}
+
+    def fake_run(cmd, **kw):
+        calls["cmd"] = cmd
+        calls["cwd"] = kw.get("cwd")
+        return types.SimpleNamespace(stdout="FAKE DIFF OUTPUT")
+
+    monkeypatch.setattr(queries.subprocess, "run", fake_run)
+
+    out = diff_law_versions(populated_conn, tmp_path, "zakon-a", "2019-06-01", "2020-06-01")
+    assert out == "FAKE DIFF OUTPUT"
+    # git diff <commit1> <commit2> -- <path>
+    assert calls["cmd"][:3] == ["git", "diff", "b" * 40]
+    assert calls["cmd"][3] == "c" * 40
+    assert calls["cmd"][4] == "--"
+    assert calls["cmd"][5] == "laws/zakon-a.md"
+
+
+def test_diff_missing_laws_row_raises_LAW_NOT_FOUND(populated_conn, tmp_path, monkeypatch):
+    """law_versions row without a corresponding laws row must raise LAW_NOT_FOUND."""
+    import types
+    from mcp_server import queries
+    from mcp_server.queries import diff_law_versions
+    from mcp_server.errors import ToolError
+
+    # Two different commits so we reach the cat_row lookup.
+    populated_conn.execute("DELETE FROM law_versions WHERE law_id='zakon-a'")
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2019-01-01', ?)",
+        ("d" * 40,),
+    )
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2020-01-01', ?)",
+        ("e" * 40,),
+    )
+    # Remove the laws row so cat_row will be None.
+    populated_conn.execute("DELETE FROM laws WHERE law_id='zakon-a'")
+    populated_conn.commit()
+
+    with pytest.raises(ToolError) as exc:
+        diff_law_versions(populated_conn, tmp_path, "zakon-a", "2019-06-01", "2020-06-01")
+    assert exc.value.code == "LAW_NOT_FOUND"

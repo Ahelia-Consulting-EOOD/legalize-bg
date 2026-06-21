@@ -610,9 +610,11 @@ def diff_law_versions(conn: sqlite3.Connection, corpus_root: Path,
     cat_row = conn.execute(
         "SELECT category FROM laws WHERE law_id = ?", (law_id,)
     ).fetchone()
+    if cat_row is None:
+        raise ToolError("LAW_NOT_FOUND", {"name": law_id, "suggestions": []})
     rel_path = f"{cat_row['category']}/{law_id}.md"
     out = subprocess.run(
         ["git", "diff", commit1, commit2, "--", rel_path],
-        cwd=str(corpus_root), check=True, capture_output=True, text=True,
+        cwd=corpus_root, check=True, capture_output=True, text=True,
     )
     return out.stdout
