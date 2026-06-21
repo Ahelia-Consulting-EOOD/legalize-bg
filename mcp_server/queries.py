@@ -14,8 +14,10 @@ from __future__ import annotations
 
 import re
 import sqlite3
+import subprocess
 from dataclasses import dataclass
 from datetime import date as _date
+from pathlib import Path
 
 from index.fts import bg_normalize, search_fts
 from index.synonyms import expand_if_abbreviation
@@ -577,3 +579,40 @@ def amendments_in_period(conn: sqlite3.Connection, from_date: str,
             date=r["date"], dv_issue=r["dv_issue"])
         for r in rows
     ]
+
+
+def diff_law_versions(conn: sqlite3.Connection, corpus_root: Path,
+                      law_id: str, date1: str, date2: str) -> str:
+    """Return a `git diff` of the act's text between the versions in
+    force at date1 and date2.
+
+    When both dates resolve to the same commit (the common case until a
+    write-side accumulates more versions), returns a clear bilingual
+    "single consolidated version held" note instead of an empty diff —
+    so the model doesn't mistake "no diff" for "no data".
+
+    Raises INVALID_DATE_RANGE on a reversed range. Propagates
+    NoVersionAtDate (from version_at_date) for the server tool to map
+    to NO_VERSION_AT_DATE.
+    """
+    if date1 and date2 and date1 > date2:
+        raise ToolError("INVALID_DATE_RANGE",
+                        {"from_date": date1, "to_date": date2})
+    commit1 = version_at_date(conn, law_id, date1)
+    commit2 = version_at_date(conn, law_id, date2)
+    if commit1 == commit2:
+        return (
+            f"Хранилището съдържа една консолидирана версия на '{law_id}'; "
+            f"няма записана текстова промяна между {date1} и {date2}. / "
+            f"The corpus holds one consolidated version of '{law_id}'; "
+            f"no textual change is recorded between {date1} and {date2}."
+        )
+    cat_row = conn.execute(
+        "SELECT category FROM laws WHERE law_id = ?", (law_id,)
+    ).fetchone()
+    rel_path = f"{cat_row['category']}/{law_id}.md"
+    out = subprocess.run(
+        ["git", "diff", commit1, commit2, "--", rel_path],
+        cwd=str(corpus_root), check=True, capture_output=True, text=True,
+    )
+    return out.stdout

@@ -360,3 +360,24 @@ def test_amendments_in_period_rejects_reversed_range(populated_conn):
     with pytest.raises(ToolError) as exc:
         amendments_in_period(populated_conn, "2020-01-01", "2019-01-01")
     assert exc.value.code == "INVALID_DATE_RANGE"
+
+
+# ────────────────────────────── diff_law_versions (Phase 2 temporal) ────────
+
+def test_diff_single_version_returns_no_change_message(populated_conn, tmp_path):
+    from mcp_server.queries import diff_law_versions
+    # Both dates resolve to the same (only) commit → human-readable note,
+    # no git invocation.
+    out = diff_law_versions(populated_conn, tmp_path, "zakon-a",
+                            "2020-06-01", "2021-06-01")
+    assert "one consolidated version" in out.lower() \
+        or "single consolidated version" in out.lower()
+
+
+def test_diff_rejects_reversed_range(populated_conn, tmp_path):
+    from mcp_server.queries import diff_law_versions
+    from mcp_server.errors import ToolError
+    with pytest.raises(ToolError) as exc:
+        diff_law_versions(populated_conn, tmp_path, "zakon-a",
+                          "2021-01-01", "2020-01-01")
+    assert exc.value.code == "INVALID_DATE_RANGE"
