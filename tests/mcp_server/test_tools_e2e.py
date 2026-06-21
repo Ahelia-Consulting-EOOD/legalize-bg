@@ -211,6 +211,44 @@ def test_get_articles_tool_roundtrip_through_fastmcp(populated_conn, tmp_path):
     assert payload["commit_hash"]
 
 
+def test_concurrent_tool_calls_are_serialized_safely(populated_conn, tmp_path):
+    """FR-023: the catalog connection is shared across FastMCP worker
+    threads; sqlite3 connections aren't safe for concurrent cross-thread
+    `execute` (→ `InterfaceError: bad parameter or other API misuse`; and a
+    Python UDF made it deadlock). build_app now serializes all tool DB
+    access behind a lock, so concurrent tool calls must neither error nor
+    hang. Hammer the resolver-backed `history` tool (DB-only, no file I/O)
+    by mixed-case Cyrillic title from 16 threads × 20 calls and assert
+    every call succeeds with the right result.
+    """
+    import threading
+
+    app = build_app(conn=populated_conn, corpus_root=tmp_path)
+    results, errors = [], []
+
+    def worker():
+        try:
+            for _ in range(20):
+                # mixed-case -> exercises FR-019 title fold + the lock
+                r = app.call_tool_sync("history", {"law": "ЗАКОН ЗА А"})
+                results.append(r)
+        except Exception as e:  # noqa: BLE001
+            errors.append(repr(e))
+
+    threads = [threading.Thread(target=worker) for _ in range(16)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+
+    assert not errors, f"concurrent tool calls failed: {errors[:3]}"
+    assert len(results) == 16 * 20
+    # Every history() result is the zakon-a timeline (a non-empty list whose
+    # last entry is the consolidated version).
+    assert all(isinstance(r, list) and r and r[-1]["operation"] == "consolidated"
+               for r in results)
+
+
 def test_invalid_article_spec_surfaces_through_mcp(populated_conn, tmp_path):
     """ToolError → MCP error envelope. The structured payload (with
     `examples` for INVALID_ARTICLE_SPEC) must reach the caller, not
