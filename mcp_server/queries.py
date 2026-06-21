@@ -5,9 +5,11 @@ an MCP dependency. Tools in mcp_server/server.py are thin wrappers that
 catch domain exceptions and translate them into ToolError.
 
 Caller responsibility: the connection passed in MUST have
-`row_factory = sqlite3.Row` set so column-name access (`row["foo"]`) works.
-The conftest fixture and the FastMCP server's connection-init code both
-do this; new entry points must follow suit.
+`row_factory = sqlite3.Row` set so column-name access (`row["foo"]`) works,
+AND must have had `register_query_functions(conn)` called to register the
+`pylower` UDF used by Cyrillic-aware title resolution (FR-019). The
+conftest fixture and the FastMCP server's connection-init (`build_app`)
+both do this; new entry points must follow suit.
 """
 
 from __future__ import annotations
@@ -23,6 +25,30 @@ from index.fts import bg_normalize, search_fts
 from index.synonyms import expand_if_abbreviation
 from mcp_server.errors import ToolError
 from mcp_server.schemas import VersionEntry, AmendmentEntry
+
+
+# ────────────────────────────── connection UDFs (FR-019) ────────────────────
+
+
+def _pylower(s):
+    """Full-Unicode lowercase for the SQLite UDF. SQLite's built-in
+    LOWER() is ASCII-only and does NOT fold Cyrillic; Python's
+    str.lower() does, so `pylower(title) = pylower(?)` resolves
+    mixed-case Cyrillic titles (FR-019). Non-str inputs pass through."""
+    return s.lower() if isinstance(s, str) else s
+
+
+def register_query_functions(conn: sqlite3.Connection) -> None:
+    """Register the catalog query UDFs on `conn`. Idempotent — SQLite
+    allows re-registering a function name. This is caller responsibility,
+    exactly like `row_factory = sqlite3.Row` (see module docstring):
+    every connection that reaches `resolve_name_to_law_id` MUST have this
+    called first. `build_app` does it for all production/tool paths; the
+    test `conn` fixture does it for direct-resolver tests. The numeric
+    identificador and exact-slug resolution steps don't need it (they run
+    before the title step), so connections used only for those — e.g. the
+    perf cold-call harness — are unaffected. FR-019."""
+    conn.create_function("pylower", 1, _pylower, deterministic=True)
 
 
 # FR-016 / D-2026-05-09-03: single-word queries matching these terms
@@ -207,8 +233,11 @@ def resolve_name_to_law_id(conn: sqlite3.Connection, name: str) -> str:
         return row["law_id"]
 
     # 3. Exact title (case-insensitive). Multiple matches → AmbiguousName.
+    # `pylower` (FR-019) folds Cyrillic case; SQLite's built-in LOWER()
+    # is ASCII-only. Requires register_query_functions(conn) — see the
+    # module docstring's caller-responsibility note.
     rows = conn.execute(
-        "SELECT * FROM laws WHERE LOWER(title) = LOWER(?)", (name,)
+        "SELECT * FROM laws WHERE pylower(title) = pylower(?)", (name,)
     ).fetchall()
     if len(rows) == 1:
         return rows[0]["law_id"]

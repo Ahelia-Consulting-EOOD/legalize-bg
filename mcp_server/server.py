@@ -127,6 +127,11 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
     mcp = FastMCP(name)
     handle = _AppHandle(mcp, conn, Path(corpus_root))
 
+    # FR-019: register the pylower UDF so Cyrillic-aware title resolution
+    # works on every tool path (get_law / get_article / get_articles /
+    # history / diff all resolve names through queries.resolve_name_to_law_id).
+    queries.register_query_functions(conn)
+
     def _full_docstring(fn: Callable[..., Any]) -> str:
         """FastMCP only takes the first line of the Python docstring as
         the MCP description. The rest (Args, Returns sections) is what

@@ -99,6 +99,15 @@ def test_resolve_by_unique_title(populated_conn):
     assert resolve_name_to_law_id(populated_conn, "Закон за А") == "zakon-a"
 
 
+def test_resolve_by_title_cyrillic_case_insensitive(populated_conn):
+    """FR-019: SQLite's built-in LOWER() is ASCII-only and does NOT fold
+    Cyrillic, so a mixed/upper-case Cyrillic title used to miss. The
+    pylower UDF (str.lower, full-Unicode) must resolve it. The stored
+    title is the mixed-case 'Закон за А'."""
+    assert resolve_name_to_law_id(populated_conn, "закон за а") == "zakon-a"  # all-lower
+    assert resolve_name_to_law_id(populated_conn, "ЗАКОН ЗА А") == "zakon-a"  # all-upper
+
+
 def test_ambiguous_title_raises_with_candidates(populated_conn):
     """§7.1 — multiple acts with identical title surface as
     AMBIGUOUS_NAME with the full candidate list including identificador
