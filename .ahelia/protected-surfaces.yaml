@@ -77,7 +77,7 @@ paths:
         - "search(query: str, category: str | None = None, limit: int = 20, include_body: bool = False) -> list[SearchHit]"
         - "get_article(law: str, article: str, date: str | None = None) -> GetArticleResponse"
       phase_2:
-        # Not yet implemented — gated on temporal index (FR-001).
+        # Implemented 2026-06-21 (FR-001 Done; D-030).
         - "history(law: str) -> list[VersionEntry]"
         - "diff(law: str, date1: str, date2: str) -> str"
         - "amendments_in_period(from_date: str, to_date: str) -> list[AmendmentEntry]"
