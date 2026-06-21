@@ -62,6 +62,24 @@ class FakeMeta:
         return dict(self._metas[token])
 
 
+class FakeSoupClient:
+    """fetch_soup(doc_id) -> a real BeautifulSoup carrying a HistoryOfDocument,
+    so the MISSING-flip repeal detection can run against it."""
+
+    def __init__(self, history_by_doc):
+        from bs4 import BeautifulSoup
+        self._BS = BeautifulSoup
+        self._h = history_by_doc
+
+    def fetch_soup(self, doc_id):
+        h = self._h.get(doc_id, "")
+        html = f'<html><body><div class="HistoryOfDocument">{h}</div></body></html>'
+        return self._BS(html, "lxml")
+
+    def close(self):
+        pass
+
+
 # --- repo + corpus fixtures -------------------------------------------------
 
 
@@ -273,20 +291,50 @@ def test_refresh_missing_kept_by_default_not_deleted_not_committed(tmp_path):
     assert head_after == head_before  # no commit by default
 
 
-def test_refresh_flip_missing_estado_commits_otmyana(tmp_path):
+def test_refresh_flip_repealed_missing_uses_real_repeal_date(tmp_path):
+    # A MISSING act whose fresh lex.bg page shows an `отм. ДВ` marker is flipped
+    # to derogado, with the [otmyana] author-date = the actual repeal date.
     _init_repo(tmp_path)
-    gone = _meta(300, "Отишъл закон", [{"dv": "1/2000", "date": "2000-01-01"}])
-    _commit_initial(tmp_path, "laws/otishal-zakon.md",
-                    assemble_file(gone, "Член 1.\n"))
+    gone = _meta(300, "Отменена наредба", [{"dv": "5/2006", "date": "2006-01-17"}])
+    _commit_initial(tmp_path, "ordinances/otmenena.md", assemble_file(gone, "Чл. 1.\n"))
 
-    tree = FakeTreeTransport({_url("laws", 0): _tree_html([])})
+    tree = FakeTreeTransport({_url("ords", 0): _tree_html([])})  # 300 absent
+    client = FakeSoupClient({300: "Обн. ДВ. бр. 5 от 17 Януари 2006г. , отм. ДВ. бр. 54 от 12 Юни 2026г."})
     report = refresh(
-        tmp_path, branch=None, crawl_config={"laws": 1}, today_iso="2026-06-21",
-        flip_missing_estado=True,
-        tree_transport=tree, client=FakeClient([]),
+        tmp_path, branch=None, crawl_config={"ords": 1}, today_iso="2026-06-21",
+        flip_missing_estado=True, tree_transport=tree, client=client,
         parser=FakeParser({}), metadata_parser=FakeMeta({}),
     )
-    assert [m["doc_id"] for m in report.missing_kept] == [300]
-    text = (tmp_path / "laws" / "otishal-zakon.md").read_text(encoding="utf-8")
+    assert [o["doc_id"] for o in report.otmyana] == [300]
+    assert report.missing_not_repealed == []
+    text = (tmp_path / "ordinances" / "otmenena.md").read_text(encoding="utf-8")
     assert "estado: derogado" in text
-    assert _last_subject(tmp_path) == "[otmyana] Отишъл закон"
+    assert _last_subject(tmp_path) == "[otmyana] Отменена наредба"
+    author_date = subprocess.run(["git", "log", "-1", "--format=%ai"], cwd=tmp_path,
+                                 check=True, capture_output=True, text=True).stdout
+    assert "2026-06-12" in author_date  # repeal date, not today
+
+
+def test_refresh_flip_skips_missing_act_without_repeal_marker(tmp_path):
+    # A MISSING act with NO `отм.` marker (e.g. a private-body bylaw) must NOT
+    # be flipped — it left the tree for a non-repeal reason and needs review.
+    _init_repo(tmp_path)
+    gone = _meta(300, "Частен правилник", [])
+    _commit_initial(tmp_path, "implementing/chasten.md", assemble_file(gone, "Чл. 1.\n"))
+    head_before = subprocess.run(["git", "rev-parse", "HEAD"], cwd=tmp_path,
+                                 check=True, capture_output=True, text=True).stdout.strip()
+
+    tree = FakeTreeTransport({_url("reg_laws", 0): _tree_html([])})
+    client = FakeSoupClient({300: "Приет от УС на САБ с Решение по Протокол от 08.07.2014 г."})
+    report = refresh(
+        tmp_path, branch=None, crawl_config={"reg_laws": 1}, today_iso="2026-06-21",
+        flip_missing_estado=True, tree_transport=tree, client=client,
+        parser=FakeParser({}), metadata_parser=FakeMeta({}),
+    )
+    assert [m["doc_id"] for m in report.missing_not_repealed] == [300]
+    assert report.otmyana == []
+    text = (tmp_path / "implementing" / "chasten.md").read_text(encoding="utf-8")
+    assert "estado: vigente" in text  # untouched
+    head_after = subprocess.run(["git", "rev-parse", "HEAD"], cwd=tmp_path,
+                                check=True, capture_output=True, text=True).stdout.strip()
+    assert head_after == head_before  # no commit

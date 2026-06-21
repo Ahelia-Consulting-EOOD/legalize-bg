@@ -5,7 +5,33 @@ from refresh import (
     normalize_for_compare,
     classify_change,
     latest_amendment_date,
+    parse_repeal_date,
 )
+
+
+# --- parse_repeal_date ------------------------------------------------------
+
+
+def test_parse_repeal_date_extracts_otm_marker():
+    hist = ("Обн. ДВ. бр. 5 от 17 Януари 2006г. , изм. ДВ. бр. 79 от 29 "
+            "Септември 2006г. , отм. ДВ. бр. 54 от 12 Юни 2026г.")
+    assert parse_repeal_date(hist) == "2026-06-12"
+
+
+def test_parse_repeal_date_picks_the_repeal_not_an_amendment():
+    hist = ("Обн. ДВ. бр. 107 от 20 Декември 2024г. , изм. и доп. ДВ. бр. 50 "
+            "от 20 Юни 2025г. , отм. ДВ. бр. 50 от 2 Юни 2026г.")
+    assert parse_repeal_date(hist) == "2026-06-02"
+
+
+def test_parse_repeal_date_none_when_only_amendments():
+    hist = "Обн. ДВ. бр. 5 от 17 Януари 2006г. , изм. ДВ. бр. 79 от 29 Септември 2006г."
+    assert parse_repeal_date(hist) is None
+
+
+def test_parse_repeal_date_none_for_non_dv_act():
+    # private-association bylaw, no ДВ promulgation at all
+    assert parse_repeal_date("Приет от УС на САБ с Решение по Протокол от 08.07.2014 г.") is None
 
 
 # --- partition --------------------------------------------------------------

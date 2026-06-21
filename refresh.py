@@ -48,7 +48,7 @@ from fetcher.bg.discovery import (
     LEX_BG_TREE,
     CatalogCrawler,
 )
-from fetcher.bg.metadata import MetadataParser
+from fetcher.bg.metadata import BG_MONTHS, MetadataParser
 from fetcher.bg.text_parser import HtmlToMarkdown
 
 log = logging.getLogger(__name__)
@@ -358,6 +358,29 @@ def _flip_estado_derogado(raw: str) -> str:
     return _ESTADO_VIGENTE_RE.sub("estado: derogado", raw, count=1)
 
 
+# lex.bg annotates a repealed act as `… отм. ДВ. бр. N от <day month year>`.
+_REPEAL_RE = re.compile(
+    r"отм\.\s*ДВ\.?\s*бр\.?\s*\d+\s*от\s*(\d{1,2})\s+([А-Яа-я]+)\s*(\d{4})",
+    re.IGNORECASE,
+)
+
+
+def parse_repeal_date(history_text: str) -> str | None:
+    """Extract the ISO repeal date from a lex.bg `.HistoryOfDocument` string.
+
+    Returns None when there is no `отм.` repeal marker — i.e. the act left the
+    tree for a non-repeal reason (e.g. a private-body bylaw with no ДВ
+    promulgation), which must NOT be auto-flipped to derogado.
+    """
+    m = _REPEAL_RE.search(history_text)
+    if not m:
+        return None
+    month = BG_MONTHS.get(m.group(2).lower())
+    if not month:
+        return None
+    return f"{int(m.group(3)):04d}-{month:02d}-{int(m.group(1)):02d}"
+
+
 # --- orchestrator -----------------------------------------------------------
 
 
@@ -368,7 +391,8 @@ class RefreshReport:
     popravka: list[dict] = field(default_factory=list)     # {doc_id, slug}
     unchanged: list[int] = field(default_factory=list)
     missing_kept: list[dict] = field(default_factory=list)  # {doc_id, slug}
-    otmyana: list[dict] = field(default_factory=list)      # {doc_id, slug}
+    otmyana: list[dict] = field(default_factory=list)      # {doc_id, slug, repeal_date}
+    missing_not_repealed: list[dict] = field(default_factory=list)  # {doc_id, slug}
     errors: list[dict] = field(default_factory=list)       # {doc_id, error}
     stale_categories: dict = field(default_factory=dict)
     pages_used: dict = field(default_factory=dict)
@@ -378,6 +402,7 @@ class RefreshReport:
             f"ADDED={len(self.added)} REFORMA={len(self.reforma)} "
             f"POPRAVKA={len(self.popravka)} UNCHANGED={len(self.unchanged)} "
             f"MISSING(kept)={len(self.missing_kept)} OTMYANA={len(self.otmyana)} "
+            f"NO-REPEAL={len(self.missing_not_repealed)} "
             f"ERRORS={len(self.errors)} STALE={self.stale_categories or '{}'}"
         )
 
@@ -533,19 +558,43 @@ def refresh(
             save_state(state_path, state)
 
     # --- MISSING: keep the file (repealed acts stay). Optionally flip estado. ---
+    # With flip_missing_estado, re-fetch each act and flip ONLY those lex.bg
+    # confirms repealed (`отм. ДВ`), dating the [otmyana] commit at the real
+    # repeal date. Acts that left the tree without a repeal marker (e.g. a
+    # non-ДВ private bylaw) are routed to missing_not_repealed for owner review,
+    # never auto-flipped.
     for doc_id in sorted(missing_ids):
         ce = corpus[doc_id]
         report.missing_kept.append({"doc_id": doc_id, "slug": ce.slug})
-        if flip_missing_estado and doc_id not in state:
+        if not flip_missing_estado or doc_id in state:
+            continue
+        try:
+            soup = client.fetch_soup(doc_id)
+            hist_el = soup.select_one(".HistoryOfDocument")
+            repeal_date = parse_repeal_date(hist_el.get_text() if hist_el else "")
+            if repeal_date is None:
+                report.missing_not_repealed.append({"doc_id": doc_id, "slug": ce.slug})
+                state[doc_id] = "missing-no-repeal"
+                save_state(state_path, state)
+                log.warning("MISSING but no repeal marker: %s (doc_id=%d) — review", ce.slug, doc_id)
+                continue
             flipped = _flip_estado_derogado(ce.raw_text)
             if flipped != ce.raw_text:
                 ce.path.write_text(flipped, encoding="utf-8")
                 title = ce.frontmatter.get("titulo") or f"doc {doc_id}"
-                _git_commit_typed(ce.path, "otmyana", title, doc_id, today_iso, output_dir)
-                report.otmyana.append({"doc_id": doc_id, "slug": ce.slug})
+                _git_commit_typed(ce.path, "otmyana", title, doc_id, repeal_date, output_dir)
+                report.otmyana.append({"doc_id": doc_id, "slug": ce.slug, "repeal_date": repeal_date})
                 state[doc_id] = "otmyana"
                 save_state(state_path, state)
-                log.info("[otmyana] %s (doc_id=%d) estado->derogado", title, doc_id)
+                log.info("[otmyana] %s (doc_id=%d) estado->derogado (repealed %s)",
+                         title, doc_id, repeal_date)
+        except CloudflareChallenge:
+            raise
+        except Exception as e:  # noqa: BLE001
+            log.error("FAILED otmyana doc_id=%d: %s", doc_id, e)
+            report.errors.append({"doc_id": doc_id, "error": str(e)})
+            state[doc_id] = "error"
+            save_state(state_path, state)
 
     if hasattr(client, "close"):
         client.close()
