@@ -132,7 +132,13 @@ def _all_file_versions(corpus_root: Path) -> dict[str, list[tuple[str, str]]]:
     Uses `--name-only` with a sentinel-prefixed format so commit headers
     (`@@@<hash> <date>`) are distinguishable from the changed-file paths
     that follow. No `--follow` (see `_git_file_versions` rationale — stable
-    slugs, no renames)."""
+    slugs, no renames).
+
+    Assumes act content lands via NON-merge commits (the corpus discipline:
+    one commit per legislative event). `git log --name-only` without `-m`
+    omits merge-commit file lists; the corpus currently has zero merge
+    commits touching the category dirs, so every version is captured. Add
+    `-m` if a future workflow ever lands act content via a merge commit."""
     cats = sorted(set(CATEGORY_DIRS.values()))
     out = subprocess.run(
         ["git", "log", "--reverse", "--date=short",
