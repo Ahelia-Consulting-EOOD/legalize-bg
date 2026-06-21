@@ -14,12 +14,15 @@ from __future__ import annotations
 
 import re
 import sqlite3
+import subprocess
 from dataclasses import dataclass
 from datetime import date as _date
+from pathlib import Path
 
 from index.fts import bg_normalize, search_fts
 from index.synonyms import expand_if_abbreviation
 from mcp_server.errors import ToolError
+from mcp_server.schemas import VersionEntry, AmendmentEntry
 
 
 # FR-016 / D-2026-05-09-03: single-word queries matching these terms
@@ -508,3 +511,120 @@ def article_lookup(conn: sqlite3.Connection, law_id: str,
         raise ArticleNotFound(law_id=law_id, article=article,
                               paragraph=paragraph, available_articles=avail)
     return [dict(r) for r in rows]
+
+
+# ────────────────────────────── law_history (Phase 2 timeline) ──────────────
+
+
+def law_history(conn: sqlite3.Connection, law_id: str) -> list[VersionEntry]:
+    """Return the act's version timeline, oldest→newest.
+
+    Amendment events come from the `amendments` table (populated from
+    amendment_history at build time). Each historical event carries
+    commit_hash=None — we know the act was amended on that DV date but
+    don't hold a separate text snapshot for it. A final
+    operation='consolidated' entry carries the real commit of the held
+    current text. Honest semantics per the Phase 2 design: never imply
+    we hold historical text we don't have.
+    """
+    amend_rows = conn.execute(
+        "SELECT dv_issue, dv_date, operation FROM amendments "
+        "WHERE target_law = ? ORDER BY dv_date IS NULL, dv_date",
+        (law_id,),
+    ).fetchall()
+    entries: list[VersionEntry] = [
+        VersionEntry(date=r["dv_date"], dv_issue=r["dv_issue"],
+                     operation=r["operation"], commit_hash=None)
+        for r in amend_rows
+    ]
+    lv = conn.execute(
+        "SELECT valid_from, commit_hash FROM law_versions "
+        "WHERE law_id = ? ORDER BY valid_from DESC LIMIT 1",
+        (law_id,),
+    ).fetchone()
+    if lv:
+        last_dated = [r["dv_date"] for r in amend_rows if r["dv_date"]]
+        # The held consolidated text reflects all amendments through the most
+        # recent, so it is dated to that last amendment date (or
+        # law_versions.valid_from when the act was never amended).
+        held_date = last_dated[-1] if last_dated else lv["valid_from"]
+        entries.append(VersionEntry(
+            date=held_date, dv_issue=None,
+            operation="consolidated", commit_hash=lv["commit_hash"]))
+    return entries
+
+
+def amendments_in_period(conn: sqlite3.Connection, from_date: str,
+                         to_date: str) -> list[AmendmentEntry]:
+    """Return every dated amendment event across the corpus whose DV
+    date falls within [from_date, to_date] inclusive, oldest first.
+
+    Raises INVALID_DATE_RANGE (directly, like full_text_search's
+    QUERY_TOO_BROAD) when from_date > to_date.
+    """
+    if from_date and to_date and from_date > to_date:
+        raise ToolError("INVALID_DATE_RANGE",
+                        {"from_date": from_date, "to_date": to_date})
+    rows = conn.execute(
+        """SELECT a.target_law AS law_id, l.title AS title,
+                  a.dv_date AS date, a.dv_issue AS dv_issue
+             FROM amendments a
+             JOIN laws l ON l.law_id = a.target_law
+            WHERE a.dv_date IS NOT NULL
+              AND a.operation = 'amendment'
+              AND a.dv_date >= ? AND a.dv_date <= ?
+            ORDER BY a.dv_date, a.target_law""",
+        (from_date, to_date),
+    ).fetchall()
+    return [
+        AmendmentEntry(
+            law_id=r["law_id"],
+            title=r["title"] or f"<doc_id-unknown:{r['law_id']}>",
+            date=r["date"], dv_issue=r["dv_issue"])
+        for r in rows
+    ]
+
+
+def diff_law_versions(conn: sqlite3.Connection, corpus_root: Path,
+                      law_id: str, date1: str, date2: str) -> str:
+    """Return a `git diff` of the act's text between the versions in
+    force at date1 and date2.
+
+    When both dates resolve to the same commit (the common case until a
+    write-side accumulates more versions), returns a clear bilingual
+    "single consolidated version held" note instead of an empty diff —
+    so the model doesn't mistake "no diff" for "no data".
+
+    Raises INVALID_DATE_RANGE on a reversed range. Propagates
+    NoVersionAtDate (from version_at_date) for the server tool to map
+    to NO_VERSION_AT_DATE.
+    """
+    if date1 and date2 and date1 > date2:
+        raise ToolError("INVALID_DATE_RANGE",
+                        {"from_date": date1, "to_date": date2})
+    commit1 = version_at_date(conn, law_id, date1)
+    commit2 = version_at_date(conn, law_id, date2)
+    if commit1 == commit2:
+        return (
+            f"Хранилището съдържа една консолидирана версия на '{law_id}'; "
+            f"няма записана текстова промяна между {date1} и {date2}. / "
+            f"The corpus holds one consolidated version of '{law_id}'; "
+            f"no textual change is recorded between {date1} and {date2}."
+        )
+    cat_row = conn.execute(
+        "SELECT category FROM laws WHERE law_id = ?", (law_id,)
+    ).fetchone()
+    if cat_row is None:
+        raise ToolError("LAW_NOT_FOUND", {"name": law_id, "suggestions": []})
+    rel_path = f"{cat_row['category']}/{law_id}.md"
+    try:
+        out = subprocess.run(
+            ["git", "diff", commit1, commit2, "--", rel_path],
+            cwd=corpus_root, check=True, capture_output=True, text=True,
+        )
+    except subprocess.CalledProcessError as e:
+        raise ToolError("DIFF_FAILED", {
+            "law_id": law_id,
+            "detail": (e.stderr or "").strip()[:300] or f"git diff exited {e.returncode}",
+        })
+    return out.stdout

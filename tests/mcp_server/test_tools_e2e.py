@@ -28,9 +28,9 @@ def _run(coro):
     return asyncio.run(coro)
 
 
-def test_tools_list_contains_three_phase_1b1_tools(populated_conn, tmp_path):
-    """Phase 1b.1 ships exactly three tools — locked here so future
-    additions trip a test rather than slipping in silently."""
+def test_tools_list_contains_six_tools(populated_conn, tmp_path):
+    """Phase 2 ships six tools total (3 Phase 1b.1 + 3 temporal) — locked
+    here so future additions trip a test rather than slipping in silently."""
     app = build_app(conn=populated_conn, corpus_root=tmp_path)
 
     async def _list():
@@ -39,8 +39,9 @@ def test_tools_list_contains_three_phase_1b1_tools(populated_conn, tmp_path):
 
     tools = _run(_list())
     names = {t.name for t in tools}
-    assert names == {"get_law", "search", "get_article"}, \
-        f"expected exactly 3 Phase 1b.1 tools; got {names}"
+    assert names == {"get_law", "search", "get_article",
+                     "history", "amendments_in_period", "diff"}, \
+        f"expected exactly 6 Phase 2 tools; got {names}"
 
 
 def test_tool_descriptions_are_substantive_docstrings(populated_conn, tmp_path):
@@ -112,6 +113,68 @@ def test_get_law_tool_call_round_trip(populated_conn, tmp_path):
     payload = result.data if hasattr(result, "data") else result
     assert payload["law_id"] == "zakon-a"
     assert payload["body_markdown"]
+
+
+def test_history_tool_roundtrip_through_fastmcp(populated_conn, tmp_path):
+    """Phase 2 / FR-001: history tool survives the full JSON-RPC round trip.
+
+    Seeds one amendment row for zakon-a (doc_id 100) so that
+    `law_history` returns a real two-entry timeline, then invokes the
+    tool through the real fastmcp.Client and asserts behavioral invariants
+    survive serialization:
+      - timeline is a non-empty list
+      - last entry has operation='consolidated' and a non-null commit_hash
+      - an earlier entry has operation='amendment'
+    """
+    populated_conn.execute(
+        "INSERT INTO amendments "
+        "(source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('ДВ 13/2016', 'zakon-a', 'amendment', '13/2016', '2016-02-16')"
+    )
+    populated_conn.commit()
+
+    app = build_app(conn=populated_conn, corpus_root=tmp_path)
+
+    async def _call():
+        async with Client(app.mcp) as c:
+            return await c.call_tool("history", {"law": "100"})
+
+    result = _run(_call())
+    payload = result.data if hasattr(result, "data") else result
+    assert isinstance(payload, list), f"expected list, got {type(payload)}"
+    assert len(payload) >= 2, f"expected at least 2 timeline entries; got {payload}"
+
+    last = payload[-1]
+    assert last["operation"] == "consolidated", \
+        f"last entry must be 'consolidated'; got {last!r}"
+    assert last["commit_hash"] is not None, \
+        f"consolidated entry must carry a commit_hash; got {last!r}"
+
+    earlier_ops = {e["operation"] for e in payload[:-1]}
+    assert "amendment" in earlier_ops, \
+        f"expected an 'amendment' entry before consolidated; got {payload!r}"
+
+
+def test_diff_tool_roundtrip_through_fastmcp(populated_conn, tmp_path):
+    """Phase 2 / FR-003: diff tool survives the full JSON-RPC round trip.
+
+    When the corpus holds a single consolidated version (the common case),
+    diff should return the bilingual 'single consolidated version held'
+    note — not an empty string and not a transport error. Validates that
+    the string result type survives JSON-RPC serialization.
+    """
+    app = build_app(conn=populated_conn, corpus_root=tmp_path)
+
+    async def _call():
+        async with Client(app.mcp) as c:
+            return await c.call_tool(
+                "diff", {"law": "100", "date1": "2020-06-01", "date2": "2021-06-01"})
+
+    result = _run(_call())
+    payload = result.data if hasattr(result, "data") else result
+    assert isinstance(payload, str), f"expected str, got {type(payload)}"
+    assert "consolidated" in payload.lower(), \
+        f"expected 'consolidated' in diff note; got {payload!r}"
 
 
 def test_invalid_article_spec_surfaces_through_mcp(populated_conn, tmp_path):

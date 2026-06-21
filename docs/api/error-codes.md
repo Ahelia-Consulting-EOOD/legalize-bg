@@ -1,7 +1,7 @@
 # legalize-bg MCP Error Taxonomy
 
-**Version:** 1.0.0  (matches `tools.json` `version`)
-**Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`.
+**Version:** 1.1.0  (matches `tools.json` `version`)
+**Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`; Phase 2 adds `INVALID_DATE_RANGE`.
 
 This document catalogs every error code the legalize-bg MCP server returns through the FastMCP error envelope. Codes are stable: additive changes (new code) bump the minor version; removing or renaming a code bumps the major version (compatibility break).
 
@@ -113,6 +113,22 @@ Payload:
 Multi-word queries that contain a category word are NOT rejected:
 - `"наредба за обществени"` → 3 tokens → passes through FTS5.
 - `"наредба—правилник"` → 2 tokens (em-dash splits) → passes through FTS5; the two-tier ranker handles the conjunction efficiently.
+
+### `INVALID_DATE_RANGE`
+
+Raised by: `diff`, `amendments_in_period`.
+When: the start date is later than the end date (`date1 > date2` or `from_date > to_date`).
+Payload:
+- `from_date` (string): the start date supplied.
+- `to_date` (string): the end date supplied.
+
+### `DIFF_FAILED`
+
+Raised by: `diff`.
+When: the underlying `git diff` invocation fails (e.g. a commit recorded in the index is not present in the corpus repo).
+Payload:
+- `law_id` (string): the act whose diff was requested.
+- `detail` (string): stderr from git diff, truncated to 300 characters, or a fallback message with the exit code.
 
 ## Versioning policy
 

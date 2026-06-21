@@ -299,3 +299,251 @@ def test_article_lookup_available_articles_sorted_in_legal_order(populated_conn)
         article_lookup(populated_conn, "zakon-a",
                        article="999", paragraph=None, date=None)
     assert exc.value.available_articles == ["1", "9", "14", "14а", "15", "100"]
+
+
+# ────────────────────────────── law_history (Phase 2 timeline) ──────────────
+
+
+def test_law_history_lists_amendments_then_consolidated(populated_conn):
+    from mcp_server.queries import law_history
+    from tests.mcp_server.conftest import FAKE_COMMIT_HASH
+    # Seed two amendment events for zakon-a.
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('ДВ 13/2016', 'zakon-a', 'amendment', '13/2016', '2016-02-16')")
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('ДВ 63/2017', 'zakon-a', 'amendment', '63/2017', '2017-08-04')")
+    populated_conn.commit()
+
+    hist = law_history(populated_conn, "zakon-a")
+    # Two amendment events + one consolidated entry.
+    assert [v.operation for v in hist] == ["amendment", "amendment", "consolidated"]
+    # Historical entries hold no separate text version.
+    assert hist[0].commit_hash is None and hist[1].commit_hash is None
+    assert hist[0].dv_issue == "13/2016"
+    # The held consolidated version carries the real commit.
+    assert hist[-1].commit_hash == FAKE_COMMIT_HASH
+
+
+def test_law_history_no_amendments_returns_consolidated_only(populated_conn):
+    from mcp_server.queries import law_history
+    hist = law_history(populated_conn, "zakon-b")  # no amendments seeded
+    assert len(hist) == 1
+    assert hist[0].operation == "consolidated"
+    assert hist[0].commit_hash is not None
+
+
+# ────────────────────────────── amendments_in_period (Phase 2) ──────────────
+
+
+def test_amendments_in_period_filters_and_joins_title(populated_conn):
+    from mcp_server.queries import amendments_in_period
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('x', 'zakon-a', 'amendment', '13/2016', '2016-02-16')")
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('y', 'zakon-b', 'amendment', '63/2017', '2017-08-04')")
+    populated_conn.commit()
+
+    out = amendments_in_period(populated_conn, "2016-01-01", "2016-12-31")
+    assert len(out) == 1
+    assert out[0].law_id == "zakon-a"
+    assert out[0].title == "Закон за А"
+    assert out[0].dv_issue == "13/2016"
+
+
+def test_amendments_in_period_rejects_reversed_range(populated_conn):
+    from mcp_server.queries import amendments_in_period
+    from mcp_server.errors import ToolError
+    with pytest.raises(ToolError) as exc:
+        amendments_in_period(populated_conn, "2020-01-01", "2019-01-01")
+    assert exc.value.code == "INVALID_DATE_RANGE"
+
+
+def test_amendments_in_period_excludes_enacted(populated_conn):
+    """Promulgation events (operation='enacted') must NOT appear in
+    amendments_in_period output — only 'amendment' rows are reported."""
+    from mcp_server.queries import amendments_in_period
+    # Seed one 'enacted' and one 'amendment' row for zakon-a, both in range.
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('ДВ 1/2015', 'zakon-a', 'enacted', '1/2015', '2015-01-06')")
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('ДВ 13/2016', 'zakon-a', 'amendment', '13/2016', '2016-02-16')")
+    populated_conn.commit()
+
+    out = amendments_in_period(populated_conn, "2015-01-01", "2016-12-31")
+    law_ids = [e.law_id for e in out]
+    # The amendment row must appear.
+    assert "zakon-a" in law_ids
+    # There must be exactly one zakon-a entry (the 'enacted' was excluded).
+    zakon_a_entries = [e for e in out if e.law_id == "zakon-a"]
+    assert len(zakon_a_entries) == 1
+    assert zakon_a_entries[0].dv_issue == "13/2016"
+
+
+# ────────────────────────────── diff_law_versions (Phase 2 temporal) ────────
+
+def test_diff_single_version_returns_no_change_message(populated_conn, tmp_path):
+    from mcp_server.queries import diff_law_versions
+    # Both dates resolve to the same (only) commit → human-readable note,
+    # no git invocation.
+    out = diff_law_versions(populated_conn, tmp_path, "zakon-a",
+                            "2020-06-01", "2021-06-01")
+    assert "one consolidated version" in out.lower() \
+        or "single consolidated version" in out.lower()
+
+
+def test_diff_rejects_reversed_range(populated_conn, tmp_path):
+    from mcp_server.queries import diff_law_versions
+    from mcp_server.errors import ToolError
+    with pytest.raises(ToolError) as exc:
+        diff_law_versions(populated_conn, tmp_path, "zakon-a",
+                          "2021-01-01", "2020-01-01")
+    assert exc.value.code == "INVALID_DATE_RANGE"
+
+
+def test_diff_different_versions_invokes_git(populated_conn, tmp_path, monkeypatch):
+    import types
+    from mcp_server import queries
+    from mcp_server.queries import diff_law_versions
+
+    # Set up two versions of zakon-a with DIFFERENT commits at different dates.
+    populated_conn.execute("DELETE FROM law_versions WHERE law_id='zakon-a'")
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2019-01-01', ?)",
+        ("b" * 40,),
+    )
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2020-01-01', ?)",
+        ("c" * 40,),
+    )
+    populated_conn.commit()
+
+    calls = {}
+
+    def fake_run(cmd, **kw):
+        calls["cmd"] = cmd
+        calls["cwd"] = kw.get("cwd")
+        return types.SimpleNamespace(stdout="FAKE DIFF OUTPUT")
+
+    monkeypatch.setattr(queries.subprocess, "run", fake_run)
+
+    out = diff_law_versions(populated_conn, tmp_path, "zakon-a", "2019-06-01", "2020-06-01")
+    assert out == "FAKE DIFF OUTPUT"
+    # git diff <commit1> <commit2> -- <path>
+    assert calls["cmd"][:3] == ["git", "diff", "b" * 40]
+    assert calls["cmd"][3] == "c" * 40
+    assert calls["cmd"][4] == "--"
+    assert calls["cmd"][5] == "laws/zakon-a.md"
+
+
+def test_diff_missing_laws_row_raises_LAW_NOT_FOUND(populated_conn, tmp_path, monkeypatch):
+    """law_versions row without a corresponding laws row must raise LAW_NOT_FOUND."""
+    import types
+    from mcp_server import queries
+    from mcp_server.queries import diff_law_versions
+    from mcp_server.errors import ToolError
+
+    # Two different commits so we reach the cat_row lookup.
+    populated_conn.execute("DELETE FROM law_versions WHERE law_id='zakon-a'")
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2019-01-01', ?)",
+        ("d" * 40,),
+    )
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2020-01-01', ?)",
+        ("e" * 40,),
+    )
+    # Remove the laws row so cat_row will be None.
+    populated_conn.execute("DELETE FROM laws WHERE law_id='zakon-a'")
+    populated_conn.commit()
+
+    with pytest.raises(ToolError) as exc:
+        diff_law_versions(populated_conn, tmp_path, "zakon-a", "2019-06-01", "2020-06-01")
+    assert exc.value.code == "LAW_NOT_FOUND"
+
+
+def test_diff_real_git_two_commits(populated_conn, tmp_path):
+    """Real git repo: diff between two actual commits returns a non-empty diff."""
+    import subprocess as sp
+    from mcp_server.queries import diff_law_versions
+
+    # Build a throwaway git repo with two commits of laws/zakon-a.md.
+    repo = tmp_path / "corpus"
+    repo.mkdir()
+    (repo / "laws").mkdir()
+    law_file = repo / "laws" / "zakon-a.md"
+
+    sp.run(["git", "init", "-q"], cwd=repo, check=True)
+    sp.run(["git", "config", "user.email", "test@test"], cwd=repo, check=True)
+    sp.run(["git", "config", "user.name", "Test"], cwd=repo, check=True)
+    sp.run(["git", "config", "commit.gpgsign", "false"], cwd=repo, check=True)
+
+    law_file.write_text("V1\n", encoding="utf-8")
+    sp.run(["git", "add", "laws/zakon-a.md"], cwd=repo, check=True)
+    sp.run(["git", "commit", "-q", "-m", "V1"], cwd=repo, check=True)
+    sha1 = sp.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo, check=True,
+        capture_output=True, text=True,
+    ).stdout.strip()
+
+    law_file.write_text("V2\n", encoding="utf-8")
+    sp.run(["git", "add", "laws/zakon-a.md"], cwd=repo, check=True)
+    sp.run(["git", "commit", "-q", "-m", "V2"], cwd=repo, check=True)
+    sha2 = sp.run(
+        ["git", "rev-parse", "HEAD"], cwd=repo, check=True,
+        capture_output=True, text=True,
+    ).stdout.strip()
+
+    # Seed populated_conn with two law_versions rows for zakon-a using the real SHAs.
+    populated_conn.execute("DELETE FROM law_versions WHERE law_id='zakon-a'")
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a', '2019-01-01', ?)",
+        (sha1,),
+    )
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a', '2020-01-01', ?)",
+        (sha2,),
+    )
+    populated_conn.commit()
+
+    result = diff_law_versions(populated_conn, repo, "zakon-a", "2019-06-01", "2020-06-01")
+    # A real diff was produced — it must reference V1 or V2 (or diff markers).
+    assert "V1" in result or "V2" in result or "+" in result or "-" in result, \
+        f"expected a real diff, got: {result!r}"
+
+
+def test_diff_failed_raises_DIFF_FAILED(populated_conn, tmp_path):
+    """Bogus commit hashes in a real git repo must raise DIFF_FAILED."""
+    import subprocess as sp
+    from mcp_server.queries import diff_law_versions
+    from mcp_server.errors import ToolError
+
+    # Create a minimal real git repo (no commits needed — bogus hashes won't exist).
+    repo = tmp_path / "corpus2"
+    repo.mkdir()
+    (repo / "laws").mkdir()
+    sp.run(["git", "init", "-q"], cwd=repo, check=True)
+    sp.run(["git", "config", "user.email", "test@test"], cwd=repo, check=True)
+    sp.run(["git", "config", "user.name", "Test"], cwd=repo, check=True)
+    sp.run(["git", "config", "commit.gpgsign", "false"], cwd=repo, check=True)
+
+    populated_conn.execute("DELETE FROM law_versions WHERE law_id='zakon-a'")
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2019-01-01', ?)",
+        ("d" * 40,),
+    )
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash) VALUES ('zakon-a','2020-01-01', ?)",
+        ("e" * 40,),
+    )
+    populated_conn.commit()
+
+    with pytest.raises(ToolError) as exc:
+        diff_law_versions(populated_conn, repo, "zakon-a", "2019-06-01", "2020-06-01")
+    assert exc.value.code == "DIFF_FAILED"
+    assert exc.value.payload["law_id"] == "zakon-a"

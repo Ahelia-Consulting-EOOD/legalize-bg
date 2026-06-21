@@ -370,6 +370,106 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
     mcp.tool(description=_full_docstring(get_article))(get_article)
     handle._tools["get_article"] = get_article
 
+    # ─────────────────── history (Phase 2) ───────────────────────────
+
+    def history(law: str) -> list[dict]:
+        """Return the amendment timeline of a Bulgarian act, oldest→newest.
+
+        Args:
+            law: The act's title, slug, or identificador (see get_law).
+
+        Returns:
+            A list of version entries, each {date, dv_issue, operation,
+            commit_hash}. `operation` is "enacted" for the act's original
+            promulgation (the first DV entry), "amendment" for each
+            subsequent DV amendment event, and "consolidated" for the
+            currently-held text. Only the consolidated entry carries a
+            non-null `commit_hash`: the corpus holds one consolidated text
+            per act, so the text of historical amendments is not separately
+            retrievable yet (commit_hash is null for those). Use this to
+            answer "when was this act amended?" — it lists every DV
+            amendment date.
+        """
+        try:
+            law_id = queries.resolve_name_to_law_id(conn, law)
+        except queries.AmbiguousName as e:
+            raise ToolError(code="AMBIGUOUS_NAME",
+                            payload={"name": e.name, "candidates": e.candidates})
+        except queries.LawNotFound as e:
+            raise ToolError(code="LAW_NOT_FOUND",
+                            payload={"name": e.name, "suggestions": e.suggestions})
+        return [v.to_dict() for v in queries.law_history(conn, law_id)]
+
+    mcp.tool(description=_full_docstring(history))(history)
+    handle._tools["history"] = history
+
+    # ─────────────────── amendments_in_period (Phase 2) ──────────────
+
+    def amendments_in_period(from_date: str, to_date: str) -> list[dict]:
+        """List every dated amendment across the whole corpus in a period.
+
+        Args:
+            from_date: ISO 8601 start date (inclusive).
+            to_date: ISO 8601 end date (inclusive).
+
+        Returns:
+            A list of {law_id, title, date, dv_issue}, oldest first —
+            every act amended on a DV date within the period. Useful for
+            "what changed in Bulgarian law between X and Y?" research.
+
+        Raises:
+            INVALID_DATE_RANGE: when from_date is later than to_date.
+        """
+        return [a.to_dict()
+                for a in queries.amendments_in_period(conn, from_date, to_date)]
+
+    mcp.tool(description=_full_docstring(amendments_in_period))(amendments_in_period)
+    handle._tools["amendments_in_period"] = amendments_in_period
+
+    # ─────────────────── diff (Phase 2) ──────────────────────────────
+
+    def diff(law: str, date1: str, date2: str) -> str:
+        """Return a git diff of an act's text between two dates.
+
+        Args:
+            law: The act's title, slug, or identificador (see get_law).
+            date1: ISO 8601 start date.
+            date2: ISO 8601 end date.
+
+        Returns:
+            The unified `git diff` of the act between the versions in
+            force at date1 and date2. When the corpus holds a single
+            consolidated version (the current state for most acts), a
+            clear bilingual "single consolidated version held" note is
+            returned instead of an empty diff. Real diffs appear once
+            additional versions are committed (corpus re-scrape / Phase 4).
+
+        Raises:
+            INVALID_DATE_RANGE: when date1 is later than date2.
+            NO_VERSION_AT_DATE: when a date precedes the act's earliest
+                recorded version.
+        """
+        try:
+            law_id = queries.resolve_name_to_law_id(conn, law)
+        except queries.AmbiguousName as e:
+            raise ToolError(code="AMBIGUOUS_NAME",
+                            payload={"name": e.name, "candidates": e.candidates})
+        except queries.LawNotFound as e:
+            raise ToolError(code="LAW_NOT_FOUND",
+                            payload={"name": e.name, "suggestions": e.suggestions})
+        try:
+            return queries.diff_law_versions(
+                conn, handle._corpus, law_id, date1, date2)
+        except queries.NoVersionAtDate as e:
+            raise ToolError(code="NO_VERSION_AT_DATE", payload={
+                "law_id": e.law_id, "date": e.date,
+                "earliest_available": e.earliest_available,
+                "latest_available": e.latest_available,
+            })
+
+    mcp.tool(description=_full_docstring(diff))(diff)
+    handle._tools["diff"] = diff
+
     return handle
 
 

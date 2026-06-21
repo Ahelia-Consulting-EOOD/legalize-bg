@@ -90,3 +90,21 @@ def test_get_article_response_shape():
     )
     d = r.to_dict()
     assert d["law_id"] == "zop" and d["article"] == "14" and d["paragraph"] == "2"
+
+
+def test_version_entry_to_dict():
+    from mcp_server.schemas import VersionEntry
+    v = VersionEntry(date="2017-08-04", dv_issue="63/2017",
+                     operation="amendment", commit_hash=None)
+    d = v.to_dict()
+    assert d == {"date": "2017-08-04", "dv_issue": "63/2017",
+                 "operation": "amendment", "commit_hash": None}
+
+
+def test_amendment_entry_to_dict():
+    from mcp_server.schemas import AmendmentEntry
+    a = AmendmentEntry(law_id="zakon-zop", title="Закон за ОП",
+                       date="2017-08-04", dv_issue="63/2017")
+    d = a.to_dict()
+    assert d == {"law_id": "zakon-zop", "title": "Закон за ОП",
+                 "date": "2017-08-04", "dv_issue": "63/2017"}

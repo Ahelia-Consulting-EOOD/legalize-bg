@@ -61,9 +61,9 @@ paths:
   # (ZOP, contracts, rfp-response, legislative-draft).
   # Signature changes break all downstream skill consumers.
   # Phase 1b.1 ships exactly the phase_1b_1 trio with typed-dict response
-  # shapes per D-024 (see docs/sync/DECISIONS.md). The phase_2 trio is
-  # listed for forward visibility but is NOT yet implemented; it is
-  # gated on the temporal index (FR-001).
+  # shapes per D-024 (see docs/sync/DECISIONS.md). The phase_2 trio was
+  # implemented 2026-06-21 (FR-001 Done; D-031) and is now a binding
+  # surface alongside the phase_1b_1 trio.
   - path: "mcp_server/server.py (tool signatures)"
     reason: "MCP tool API consumed by Claude Code legal skills"
     edit_mode: owner_review_required
@@ -77,7 +77,7 @@ paths:
         - "search(query: str, category: str | None = None, limit: int = 20, include_body: bool = False) -> list[SearchHit]"
         - "get_article(law: str, article: str, date: str | None = None) -> GetArticleResponse"
       phase_2:
-        # Not yet implemented — gated on temporal index (FR-001).
+        # Implemented 2026-06-21 (FR-001 Done; D-031).
         - "history(law: str) -> list[VersionEntry]"
         - "diff(law: str, date1: str, date2: str) -> str"
         - "amendments_in_period(from_date: str, to_date: str) -> list[AmendmentEntry]"

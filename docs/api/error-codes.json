@@ -3,7 +3,7 @@
   "$id": "https://github.com/Ahelia-Consulting-EOOD/legalize-bg/docs/api/error-codes.json",
   "title": "legalize-bg MCP error taxonomy",
   "description": "Machine-readable catalog of every error code the legalize-bg MCP server returns. Mirror of docs/api/error-codes.md.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "codes": [
     {
       "code": "LAW_NOT_FOUND",
@@ -98,6 +98,26 @@
         "query": {"type": "string", "optional": false, "description": "the input (truncated to 200 chars)"},
         "category_words": {"type": "array", "optional": false, "description": "five stop-words, alphabetically sorted"},
         "hint": {"type": "string", "optional": false, "description": "bilingual instruction"}
+      }
+    },
+    {
+      "code": "INVALID_DATE_RANGE",
+      "raised_by": ["diff", "amendments_in_period"],
+      "category": "error",
+      "since_phase": "2",
+      "payload": {
+        "from_date": {"type": "string", "optional": false, "description": "start date supplied"},
+        "to_date": {"type": "string", "optional": false, "description": "end date supplied"}
+      }
+    },
+    {
+      "code": "DIFF_FAILED",
+      "raised_by": ["diff"],
+      "category": "error",
+      "since_phase": "2",
+      "payload": {
+        "law_id": {"type": "string", "optional": false, "description": "the act whose diff was requested"},
+        "detail": {"type": "string", "optional": false, "description": "stderr from git diff (truncated to 300 chars) or fallback exit-code message"}
       }
     }
   ]

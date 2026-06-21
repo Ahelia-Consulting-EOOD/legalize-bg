@@ -1,9 +1,9 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "spec": "https://modelcontextprotocol.io/specification/server/tools",
   "server": {
     "name": "legalize-bg",
-    "phase": "1b.2",
+    "phase": "2",
     "transport": "stdio"
   },
   "tools": [
@@ -132,15 +132,127 @@
         "additionalProperties": true,
         "type": "object"
       }
+    },
+    {
+      "name": "history",
+      "description": "Return the amendment timeline of a Bulgarian act, oldest→newest.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n\nReturns:\n    A list of version entries, each {date, dv_issue, operation,\n    commit_hash}. `operation` is \"enacted\" for the act's original\n    promulgation (the first DV entry), \"amendment\" for each\n    subsequent DV amendment event, and \"consolidated\" for the\n    currently-held text. Only the consolidated entry carries a\n    non-null `commit_hash`: the corpus holds one consolidated text\n    per act, so the text of historical amendments is not separately\n    retrievable yet (commit_hash is null for those). Use this to\n    answer \"when was this act amended?\" — it lists every DV\n    amendment date.",
+      "input_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "law": {
+            "type": "string",
+            "description": "The act's title, slug, or identificador (see get_law)."
+          }
+        },
+        "required": [
+          "law"
+        ],
+        "type": "object"
+      },
+      "output_schema": {
+        "properties": {
+          "result": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "type": "object",
+        "x-fastmcp-wrap-result": true
+      }
+    },
+    {
+      "name": "amendments_in_period",
+      "description": "List every dated amendment across the whole corpus in a period.\n\nArgs:\n    from_date: ISO 8601 start date (inclusive).\n    to_date: ISO 8601 end date (inclusive).\n\nReturns:\n    A list of {law_id, title, date, dv_issue}, oldest first —\n    every act amended on a DV date within the period. Useful for\n    \"what changed in Bulgarian law between X and Y?\" research.\n\nRaises:\n    INVALID_DATE_RANGE: when from_date is later than to_date.",
+      "input_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "from_date": {
+            "type": "string",
+            "description": "ISO 8601 start date (inclusive)."
+          },
+          "to_date": {
+            "type": "string",
+            "description": "ISO 8601 end date (inclusive)."
+          }
+        },
+        "required": [
+          "from_date",
+          "to_date"
+        ],
+        "type": "object"
+      },
+      "output_schema": {
+        "properties": {
+          "result": {
+            "items": {
+              "additionalProperties": true,
+              "type": "object"
+            },
+            "type": "array"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "type": "object",
+        "x-fastmcp-wrap-result": true
+      }
+    },
+    {
+      "name": "diff",
+      "description": "Return a git diff of an act's text between two dates.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n    date1: ISO 8601 start date.\n    date2: ISO 8601 end date.\n\nReturns:\n    The unified `git diff` of the act between the versions in\n    force at date1 and date2. When the corpus holds a single\n    consolidated version (the current state for most acts), a\n    clear bilingual \"single consolidated version held\" note is\n    returned instead of an empty diff. Real diffs appear once\n    additional versions are committed (corpus re-scrape / Phase 4).\n\nRaises:\n    INVALID_DATE_RANGE: when date1 is later than date2.\n    NO_VERSION_AT_DATE: when a date precedes the act's earliest\n        recorded version.",
+      "input_schema": {
+        "additionalProperties": false,
+        "properties": {
+          "law": {
+            "type": "string",
+            "description": "The act's title, slug, or identificador (see get_law)."
+          },
+          "date1": {
+            "type": "string",
+            "description": "ISO 8601 start date."
+          },
+          "date2": {
+            "type": "string",
+            "description": "ISO 8601 end date."
+          }
+        },
+        "required": [
+          "law",
+          "date1",
+          "date2"
+        ],
+        "type": "object"
+      },
+      "output_schema": {
+        "properties": {
+          "result": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "result"
+        ],
+        "type": "object",
+        "x-fastmcp-wrap-result": true
+      }
     }
   ],
   "error_codes": [
     "AMBIGUOUS_NAME",
     "ARTICLE_NOT_FOUND",
     "DATE_UNCERTAIN",
+    "DIFF_FAILED",
     "INDEX_MISSING",
     "INDEX_STALE",
     "INVALID_ARTICLE_SPEC",
+    "INVALID_DATE_RANGE",
     "LAW_NOT_FOUND",
     "NO_VERSION_AT_DATE",
     "QUERY_TOO_BROAD"

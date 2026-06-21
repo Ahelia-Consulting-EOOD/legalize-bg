@@ -1,9 +1,9 @@
 # Active Work
 
-**Current phase:** Phase 1b.3 — **complete on `main` 2026-05-09**. Phase 1b is fully shipped (1b.1 + 1b.2 + 1b.3).
+**Current phase:** Phase 2 — **complete on `main` 2026-06-21**. Phase 1b is fully shipped (1b.1 + 1b.2 + 1b.3).
 **Current owner:** ekimir
-**Started:** 2026-05-09 (design phase) → shipped same day after multi-batch executing-plans run.
-**Next action:** Phase 2 (temporal index, FR-001) — newly unblocked. See "Pending" below.
+**Started:** 2026-06-21 (Phase 2 temporal index).
+**Next action:** Phase 3 (DV gazette monitor). The corpus re-scrape (D-030) is now merged (corpus is 3,599 acts). **Accuracy note:** `diff()` / historical `get_law(date)` still return single-version output even post-re-scrape — `index/build.py` writes one `law_versions` row per act (commit_hash = HEAD), so `version_at_date` resolves to a single commit. The re-scrape supplied per-act `[reforma]`/`[popravka]` git commits; materializing those into multiple `law_versions` rows (a row per commit, valid_from = its author-date) is the follow-up that actually enables multi-version temporal diffs.
 
 ## Status
 
@@ -37,14 +37,22 @@ DEFERRED.md now has a single Open row (D-2026-05-09-05 / FR-014, Phase 4 increme
 
 **Phase 1b design** is recorded in `docs/plans/2026-05-09-phase1b-mcp-design.md`; D-020 through D-029 in `DECISIONS.md`. Phase 1b.2 plan: `docs/plans/2026-05-09-phase1b2-hardening.md`. Phase 1b.3 plan: `docs/plans/2026-05-09-phase1b3-polish.md`.
 
+**Phase 2** (temporal index, FR-001) — **complete on `main` 2026-06-21**:
+- 3 new MCP tools: `history()`, `diff()`, `amendments_in_period()`.
+- `amendments` table populated from `amendment_history` YAML frontmatter field in index build.
+- **306 tests passing** (was 287 at Phase 1b close; +19 previously-skipped real-corpus/perf tests now run against the live catalog.db).
+- Time-travel tools (`diff`, historical `get_law`) are wired but show single-version output until the parallel corpus re-scrape (see `docs/sync/HANDOFFS/2026-06-21-corpus-rescrape-refresh.md`) accumulates more text versions. This is honest single-version semantics (D-031) — `diff()` and `get_law(date)` return correct-but-limited results rather than fabricating historical data.
+- Smoke-tested against ЗОП via slug `zakon-za-obshtestvenite-porachki` (identificador lookup): 32 amendment events + real commit hash confirmed. (Title-based lookup `"Закон за обществените поръчки"` raises LAW_NOT_FOUND due to the SQLite `LOWER()` Cyrillic gap — awaits FR-019.)
+- D-031 captures the temporal semantics decision in `DECISIONS.md`.
+
 ## Blockers
 
 None.
 
 ## Pending
 
+- **Corpus re-scrape** — parallel effort to accumulate multi-version text so `diff()` and historical `get_law(date)` return rich output. See `docs/sync/HANDOFFS/2026-06-21-corpus-rescrape-refresh.md`.
 - **Phase 1b polish (optional, not gated)** — items mentioned aspirationally but not in DEFERRED.md: structured logging + per-tool-call metrics, packaging (PyPI / Docker image), proper Bulgarian Snowball stemmer (would close the multi-syllable-stem cases FR-013 left out, e.g. `българският`/`български`).
-- **Phase 2 temporal index** (FR-001) — strictly after Phase 1b completes. The 1b.1 `provisions` schema is built to support it without migration.
 - **FR-011 G2 triage** of the ~128 degenerate acts (7 empty-titulo + 121 null-pub-date) — needed before Phase 5 upstream contribution; Phase 1b.1 surfaces these correctly so triage can proceed in parallel.
 
 ## Forward-looking items added in 1b.1 (FRS index)
