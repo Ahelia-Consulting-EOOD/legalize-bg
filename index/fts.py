@@ -36,6 +36,17 @@ import sqlite3
 # FR-013 / D-2026-05-09-01 closed in Phase 1b.3 by adding the 3-char
 # "ият" entry; the broader 3-char/2-char additions remain off-table
 # because they conflict with plural-indefinite forms.
+#
+# Known residual gap (FR-021 / D-032, deferred from batch 2.x-a):
+# masculine adjectives with a consonant stem still diverge — "българският"
+# strips via "ият" to "българск", but the INDEFINITE "български" ends in a
+# bare "-и" and is left intact, so query/index forms don't meet. Closing
+# this needs stripping bare "-и", which mangles plural nouns ("закони",
+# "поръчки") and collides with the rejected "ия"/"ите" suffixes above — a
+# POS-aware morphology problem that requires a real Bulgarian stemmer.
+# That conflicts with D-022 (pure-Python, no NLP libs) and needs a
+# full-corpus eval harness, so it is scoped as its own effort (FR-021),
+# NOT a suffix-table tweak here.
 _BG_DEFINITE_SUFFIXES: tuple[tuple[str, int], ...] = (
     # 3-char (long-form) — try first.
     ("ият", 3),  # masc adj long-form definite: новият → нов  (FR-013)
