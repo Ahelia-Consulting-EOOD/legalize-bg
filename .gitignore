@@ -5,3 +5,6 @@ __pycache__/
 .pytest_cache/
 .coverage
 catalog.db
+# Refresh runner artifacts (derived, per-run)
+.refresh-state.json
+refresh-run.log

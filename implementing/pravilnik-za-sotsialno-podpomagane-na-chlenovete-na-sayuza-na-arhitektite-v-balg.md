@@ -5,7 +5,12 @@ pais: bg
 rango: правилник по прилагане
 fecha_publicacion: null
 ultima_actualizacion: null
-estado: vigente
+# SCOPE MARK (2026-06-21): estado is derogado as a data-quality scope exclusion,
+# NOT a ДВ repeal — this is an internal bylaw of the Съюз на архитектите в България
+# (САБ), adopted by its board 2014-07-08 (source bularch.eu); never promulgated in
+# Държавен вестник; removed from lex.bg's tree; kept for the record.
+# Ref: docs/sync/HANDOFFS/2026-06-21-missing-acts-evaluation.md §3
+estado: derogado
 fuente: lex.bg
 dv_issue: null
 dv_year: null

@@ -5,7 +5,7 @@ pais: bg
 rango: правилник
 fecha_publicacion: '2005-07-12'
 ultima_actualizacion: '2017-10-31'
-estado: vigente
+estado: derogado
 fuente: lex.bg
 dv_issue: '57'
 dv_year: 2005
