@@ -98,3 +98,35 @@ class GetArticleResponse:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+
+@dataclass(frozen=True)
+class VersionEntry:
+    """One entry in an act's version timeline (Phase 2 / FR-001).
+
+    `commit_hash` is populated ONLY for the version whose text the
+    corpus actually holds (operation='consolidated'); historical
+    amendment events carry commit_hash=None because their separate
+    text is not held yet (no per-amendment commits until the re-scrape
+    or Phase 4 lands them). `operation` is 'amendment' for a DV
+    amendment event and 'consolidated' for the held current version.
+    """
+    date: str | None
+    dv_issue: str | None
+    operation: str
+    commit_hash: str | None
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
+
+@dataclass(frozen=True)
+class AmendmentEntry:
+    """One amendment event across the corpus in a period (Phase 2)."""
+    law_id: str
+    title: str
+    date: str | None
+    dv_issue: str | None
+
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
