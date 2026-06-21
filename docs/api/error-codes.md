@@ -26,7 +26,7 @@ The `code` is always a top-level key (not nested under "error"). Payload fields 
 
 ### `LAW_NOT_FOUND`
 
-Raised by: `get_law`, `get_article`.
+Raised by: `get_law`, `get_article`, `get_articles`, `history`, `diff`.
 When: the supplied name (title, slug, or identificador) does not resolve to any act in the catalog.
 Payload:
 - `name` (string): the input that failed to resolve.
@@ -34,7 +34,7 @@ Payload:
 
 ### `AMBIGUOUS_NAME`
 
-Raised by: `get_law`, `get_article`.
+Raised by: `get_law`, `get_article`, `get_articles`, `history`, `diff`.
 When: the supplied name matches multiple distinct acts (§7.1 slug-collision territory).
 Payload:
 - `name` (string): the input.
@@ -42,12 +42,13 @@ Payload:
 
 ### `NO_VERSION_AT_DATE`
 
-Raised by: `get_law`, `get_article`.
+Raised by: `get_law`, `get_article`, `get_articles`, `diff`.
 When: the requested ISO date is before any `valid_from` for the resolved act, OR the act has no `law_versions` rows at all.
 Payload:
 - `law_id` (string).
-- `date` (string, ISO 8601): the requested date.
-- `earliest_valid_from` (string|null): the earliest `valid_from` recorded for this act, or null if no versions exist.
+- `date` (string|null, ISO 8601): the requested date.
+- `earliest_available` (string|null): the earliest `valid_from` recorded for this act, or null if no versions exist.
+- `latest_available` (string|null): the latest `valid_from` recorded for this act, or null if no versions exist.
 
 ### `DATE_UNCERTAIN` (warning, rides in successful response)
 

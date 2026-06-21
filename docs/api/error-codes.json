@@ -7,7 +7,7 @@
   "codes": [
     {
       "code": "LAW_NOT_FOUND",
-      "raised_by": ["get_law", "get_article"],
+      "raised_by": ["get_law", "get_article", "get_articles", "history", "diff"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
@@ -17,7 +17,7 @@
     },
     {
       "code": "AMBIGUOUS_NAME",
-      "raised_by": ["get_law", "get_article"],
+      "raised_by": ["get_law", "get_article", "get_articles", "history", "diff"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
@@ -27,13 +27,14 @@
     },
     {
       "code": "NO_VERSION_AT_DATE",
-      "raised_by": ["get_law", "get_article"],
+      "raised_by": ["get_law", "get_article", "get_articles", "diff"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
         "law_id": {"type": "string", "optional": false, "description": "resolved act"},
-        "date": {"type": "string", "optional": false, "description": "ISO date requested"},
-        "earliest_valid_from": {"type": "string|null", "optional": false, "description": "earliest version's valid_from, or null"}
+        "date": {"type": "string|null", "optional": false, "description": "ISO date requested"},
+        "earliest_available": {"type": "string|null", "optional": false, "description": "earliest version's valid_from, or null"},
+        "latest_available": {"type": "string|null", "optional": false, "description": "latest version's valid_from, or null"}
       }
     },
     {

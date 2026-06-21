@@ -62,3 +62,21 @@ def test_get_articles_law_not_found(app_with_range):
         app_with_range.call_tool_sync(
             "get_articles", {"law": "напълно непознат", "articles": "чл. 14-16"})
     assert exc.value.code == "LAW_NOT_FOUND"
+
+
+def test_get_articles_single_alinea_returns_that_alinea(populated_conn, tmp_path):
+    """A single (non-range) spec naming an alinea ('чл. 14, ал. 2') returns
+    a one-entry list carrying that alinea in `paragraph` — the single-spec
+    branch honors spec.paragraph rather than collapsing to the whole article."""
+    populated_conn.execute(
+        "INSERT INTO provisions(law_id, article, paragraph, valid_from, text, text_hash) "
+        "VALUES ('zakon-a','14',NULL,'2020-01-01','Чл. 14 цял.','h0')")
+    populated_conn.execute(
+        "INSERT INTO provisions(law_id, article, paragraph, valid_from, text, text_hash) "
+        "VALUES ('zakon-a','14','2','2020-01-01','Алинея 2.','h2')")
+    populated_conn.commit()
+    app = build_app(conn=populated_conn, corpus_root=tmp_path)
+    r = app.call_tool_sync("get_articles", {"law": "100", "articles": "чл. 14, ал. 2"})
+    assert [a["article"] for a in r["articles"]] == ["14"]
+    assert r["articles"][0]["paragraph"] == "2"
+    assert r["articles"][0]["text"] == "Алинея 2."
