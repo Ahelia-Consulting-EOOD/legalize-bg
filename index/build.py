@@ -17,7 +17,7 @@ import logging
 import sqlite3
 import subprocess
 import sys
-from datetime import date
+from datetime import date, timedelta
 from pathlib import Path
 
 import yaml
@@ -95,8 +95,71 @@ def _delete_act_rows(conn: sqlite3.Connection, law_id: str) -> None:
     conn.execute("DELETE FROM amendments WHERE target_law = ?", (law_id,))
 
 
-def _reindex_act(conn: sqlite3.Connection, cat: str, path: Path,
-                 head: str, today_iso: str) -> str:
+def _git_file_versions(corpus_root: Path, rel_path: str) -> list[tuple[str, str]]:
+    """Return [(valid_from_iso, commit_hash)] oldest→newest for the act's
+    file from `git log` — author-date = the legislative date per the corpus
+    commit-date discipline (FR-020). Multiple commits on the SAME author-date
+    are collapsed to that day's LAST commit (end-of-day state) so valid_from
+    values are distinct and validity ranges never invert. Empty when the file
+    has no committed history (e.g. a test corpus that wasn't committed) → the
+    caller falls back to the prior single-row behavior.
+
+    `--follow` is deliberately NOT used: it is ~7× slower (per-file rename
+    detection) and the corpus invariant is that acts keep a STABLE slug
+    (`law_id = path.stem` never changes — D-030), so no act file is ever
+    renamed in history and `--follow` would buy nothing. Ordering is handled
+    by the `sorted()` below, not by git's output order (which `--follow`
+    can scramble). If act renames are ever introduced, restore `--follow`."""
+    out = subprocess.run(
+        ["git", "log", "--reverse", "--date=short",
+         "--format=%H %ad", "--", rel_path],
+        cwd=corpus_root, check=True, capture_output=True, text=True,
+    ).stdout
+    by_date: dict[str, str] = {}
+    for line in out.splitlines():
+        commit_hash, _, d = line.partition(" ")
+        if commit_hash and d:
+            by_date[d] = commit_hash  # later same-date commit overwrites
+    return sorted(by_date.items())  # (date, commit) chronological
+
+
+def _all_file_versions(corpus_root: Path) -> dict[str, list[tuple[str, str]]]:
+    """Build the FR-020 version map for the WHOLE corpus in ONE `git log`
+    pass (vs one subprocess per act — the ~3,599-spawn cost that made full
+    builds ~8-20 min). Returns {rel_path: [(valid_from_iso, commit_hash)]}
+    oldest→newest, same-author-date commits collapsed to that day's last.
+
+    Uses `--name-only` with a sentinel-prefixed format so commit headers
+    (`@@@<hash> <date>`) are distinguishable from the changed-file paths
+    that follow. No `--follow` (see `_git_file_versions` rationale — stable
+    slugs, no renames).
+
+    Assumes act content lands via NON-merge commits (the corpus discipline:
+    one commit per legislative event). `git log --name-only` without `-m`
+    omits merge-commit file lists; the corpus currently has zero merge
+    commits touching the category dirs, so every version is captured. Add
+    `-m` if a future workflow ever lands act content via a merge commit."""
+    cats = sorted(set(CATEGORY_DIRS.values()))
+    out = subprocess.run(
+        ["git", "log", "--reverse", "--date=short",
+         "--format=tformat:@@@%H %ad", "--name-only", "--", *cats],
+        cwd=corpus_root, check=True, capture_output=True, text=True,
+    ).stdout
+    per_file: dict[str, dict[str, str]] = {}
+    cur_hash = cur_date = None
+    for line in out.splitlines():
+        if line.startswith("@@@"):
+            cur_hash, _, cur_date = line[3:].partition(" ")
+        elif line.strip() and cur_hash and cur_date:
+            # --reverse = oldest first, so a later same-date commit
+            # overwrites → keeps the day's last commit (end-of-day state).
+            per_file.setdefault(line, {})[cur_date] = cur_hash
+    return {p: sorted(d.items()) for p, d in per_file.items()}
+
+
+def _reindex_act(conn: sqlite3.Connection, corpus_root: Path, cat: str,
+                 path: Path, head: str, today_iso: str,
+                 versions_map: dict[str, list[tuple[str, str]]] | None = None) -> str:
     """Parse one act's Markdown and INSERT its rows into every content
     table at commit `head`. The single source of truth for per-act
     indexing — used by both the full build and the FR-014 incremental
@@ -134,12 +197,46 @@ def _reindex_act(conn: sqlite3.Connection, cat: str, path: Path,
         (law_id, doc_id, title, cat,
          meta.get("estado") or "vigente", head),
     )
-    conn.execute(
-        """INSERT INTO law_versions
-               (law_id, valid_from, commit_hash, date_uncertain)
-           VALUES (?, ?, ?, ?)""",
-        (law_id, effective, head, date_uncertain),
-    )
+    # FR-020 time-machine: one law_versions row per git commit of the act's
+    # file, so version_at_date / get_law(date) / diff resolve historical
+    # versions. valid_from = commit author-date (legislative date); valid_to
+    # = day before the next version's valid_from (INCLUSIVE, NULL for the
+    # latest). The LATEST row carries `head` as its commit_hash (so get_law's
+    # working-tree fast path stays valid — head:path == the working tree);
+    # historical rows carry their own commit. Falls back to a single row at
+    # the frontmatter effective date when the file has no git history
+    # (uncommitted test corpora), preserving prior behavior.
+    rel_path = f"{cat}/{path.name}"
+    # Full build passes a precomputed whole-corpus version map (one git log
+    # pass); the incremental path omits it (few changed acts → per-act log).
+    if versions_map is not None:
+        git_versions = versions_map.get(rel_path, [])
+    else:
+        git_versions = _git_file_versions(corpus_root, rel_path)
+    if git_versions:
+        n = len(git_versions)
+        for i, (valid_from, commit_hash) in enumerate(git_versions):
+            is_latest = (i + 1 == n)
+            if is_latest:
+                valid_to = None
+                commit = head
+            else:
+                next_from = date.fromisoformat(git_versions[i + 1][0])
+                valid_to = (next_from - timedelta(days=1)).isoformat()
+                commit = commit_hash
+            conn.execute(
+                """INSERT INTO law_versions
+                       (law_id, valid_from, valid_to, commit_hash, date_uncertain)
+                   VALUES (?, ?, ?, ?, ?)""",
+                (law_id, valid_from, valid_to, commit, date_uncertain),
+            )
+    else:
+        conn.execute(
+            """INSERT INTO law_versions
+                   (law_id, valid_from, valid_to, commit_hash, date_uncertain)
+               VALUES (?, ?, NULL, ?, ?)""",
+            (law_id, effective, head, date_uncertain),
+        )
     # Phase 2 (FR-001): populate `amendments` from amendment_history.
     # Entry 0 is the original promulgation ('enacted'); the rest are
     # 'amendment' (generic — specific ЗИД ops await Phase 4).
@@ -267,17 +364,18 @@ def _incremental_build(conn: sqlite3.Connection, corpus_root: Path,
         _delete_act_rows(conn, law_id)
     for cat, path in upserts:
         _delete_act_rows(conn, path.stem)  # remove old rows if Modified
-        _reindex_act(conn, cat, path, head, today_iso)
+        _reindex_act(conn, corpus_root, cat, path, head, today_iso)
 
     # Unchanged acts: re-point to head so the staleness check passes and
     # the working-tree fast path stays valid (identical file at head).
-    # Changed acts already carry head from _reindex_act. NOTE: the
-    # `commit_hash = base` filter assumes one law_versions row per act
-    # (current state); revisit when FR-020 lands multi-version rows.
+    # Changed acts already carry head from _reindex_act. Scope the bump to
+    # the CURRENT version row only (`valid_to IS NULL`) — FR-020 gives each
+    # act multiple law_versions rows whose historical commit_hashes must NOT
+    # be rewritten to head (fixes the D-040/D-041 hazard).
     conn.execute("UPDATE laws SET current_commit = ?", (head,))
     conn.execute(
-        "UPDATE law_versions SET commit_hash = ? WHERE commit_hash = ?",
-        (head, base))
+        "UPDATE law_versions SET commit_hash = ? WHERE valid_to IS NULL",
+        (head,))
     conn.commit()
     return _act_count(conn)
 
@@ -316,9 +414,13 @@ def build(corpus_root: Path, db_path: str = "catalog.db",
 
         _drop_content_rows(conn)
         log.info("indexing corpus at %s commit=%s", corpus_root, head[:8])
+        # FR-020: precompute the whole-corpus git version map in ONE pass
+        # (one `git log` vs one-per-act — keeps full builds ~1 min, not ~8).
+        versions_map = _all_file_versions(corpus_root)
         count = 0
         for cat, path in _iter_corpus_files(corpus_root):
-            _reindex_act(conn, cat, path, head, today_iso)
+            _reindex_act(conn, corpus_root, cat, path, head, today_iso,
+                         versions_map=versions_map)
             count += 1
         conn.commit()
         log.info("indexed %d acts", count)

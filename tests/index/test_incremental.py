@@ -124,7 +124,7 @@ def _dump(db):
     c = _conn(db)
     q = {
         "laws": "SELECT law_id,doc_id,title,category,status,current_commit FROM laws",
-        "law_versions": "SELECT law_id,valid_from,commit_hash,date_uncertain FROM law_versions",
+        "law_versions": "SELECT law_id,valid_from,valid_to,commit_hash,date_uncertain FROM law_versions",
         "amendments": "SELECT source_act,target_law,operation,dv_issue,dv_date FROM amendments",
         "provisions": "SELECT law_id,article,paragraph,valid_from,text,text_hash FROM provisions",
         "laws_fts": "SELECT law_id,title,body,category FROM laws_fts",
