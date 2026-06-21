@@ -28,9 +28,9 @@ def _run(coro):
     return asyncio.run(coro)
 
 
-def test_tools_list_contains_three_phase_1b1_tools(populated_conn, tmp_path):
-    """Phase 1b.1 ships exactly three tools — locked here so future
-    additions trip a test rather than slipping in silently."""
+def test_tools_list_contains_six_tools(populated_conn, tmp_path):
+    """Phase 2 ships six tools total (3 Phase 1b.1 + 3 temporal) — locked
+    here so future additions trip a test rather than slipping in silently."""
     app = build_app(conn=populated_conn, corpus_root=tmp_path)
 
     async def _list():
@@ -39,8 +39,9 @@ def test_tools_list_contains_three_phase_1b1_tools(populated_conn, tmp_path):
 
     tools = _run(_list())
     names = {t.name for t in tools}
-    assert names == {"get_law", "search", "get_article"}, \
-        f"expected exactly 3 Phase 1b.1 tools; got {names}"
+    assert names == {"get_law", "search", "get_article",
+                     "history", "amendments_in_period", "diff"}, \
+        f"expected exactly 6 Phase 2 tools; got {names}"
 
 
 def test_tool_descriptions_are_substantive_docstrings(populated_conn, tmp_path):
