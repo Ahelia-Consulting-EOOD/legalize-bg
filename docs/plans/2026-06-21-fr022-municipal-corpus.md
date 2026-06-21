@@ -106,9 +106,49 @@ A deterministic Workflow (Mode D) over a discovered work-list, scaled per munici
 
 ---
 
+## 8. APIS legal gate — detailed analysis (Phase-0 input)
+
+**Bottom line: the act *texts* are free, but APIS's *database* is not — and that distinction is the whole gate. Do NOT bulk-extract `web-api.apis.bg`.**
+
+### 8.1 The act texts themselves are public domain
+- **ЗАПСП чл. 4, т. 1** (`laws/zakon-za-avtorskoto-pravo-i-srodnite-mu-prava.md`): *"Не са обект на авторското право: 1. нормативни и индивидуални актове на държавни органи за управление, актовете на съдилищата, както и официалните им преводи"* — and т. 4: *"новини, факти, сведения и данни"*. Municipal наредби/правилници are нормативни актове → **not copyrightable**. Copying the *content* of any municipal act is always lawful, from any source.
+
+### 8.2 …but APIS holds a *sui generis* database right over its compilation
+- **APIS ToS I.1.1** explicitly: *"«АПИС» е производител на база данни по смисъла на чл. 93б от ЗАПСП и носител на всички права на интелектуална собственост."*
+- **ЗАПСП чл. 93б**: the database *producer* — the party that made a *"съществено в количествено или качествено отношение"* investment in collecting/verifying/presenting the content — holds the right. APIS's curated, consolidated, **version-tracked** municipal compilation is exactly such an investment.
+- **ЗАПСП чл. 93в(1)** — the operative prohibition: the producer may forbid *"1. извличането ... на съдържанието на базата данни или на негова **съществена** ... част ... под каквато и да е форма; 2. повторното използване ... на негова **съществена** ... част ..."* — i.e. **extraction or re-utilization of a *substantial part*** of the database, by any means.
+- **→ Systematic harvesting of `web-api.apis.bg/api/obshtina-*/Doc*` is precisely "извличане на съществена част" of APIS's database** — prohibitable under чл. 93в *even though every individual наредба text is copyright-free (чл. 4)*. The free-ness of the texts does **not** grant a right to lift a substantial part of APIS's *compilation*.
+
+### 8.3 The APIS Terms of Use (apis.bg "Общи условия") confirm it
+- **II.5:** *"Всяко използване, възпроизвеждане ... с търговска цел или за да се извлече друга облага без разрешение на «АПИС» е забранено."*
+- **II.6:** *"Никой няма право без изричното разрешение на «АПИС» да разпространява с търговска цел цялата или част от базата данни."*
+- **I.4:** no third-party access without prior written APIS consent. **III.10:** no decompiling/reverse-engineering.
+- **II.3–4:** download/print/copy is permitted only for the *client's internal* use, with copyright notices intact.
+- Scraping/bots/API are **not explicitly named**, and the public `obshtini.bg` portals are **not mentioned** in the general ToS — but the чл. 93б/93в database right applies regardless of an explicit anti-scraping clause.
+
+### 8.4 The "it's a public portal" argument does NOT clear the gate
+Municipalities pay APIS to *display* their acts to citizens at `{obshtina}.obshtini.bg`. That is a public **display/consultation** license — not a license to **extract and re-utilize a substantial part**. The unauthenticated `web-api` endpoints exist to serve APIS's own SPA front-end; using them for bulk harvest is the textbook database-right scenario (cf. EU Database Directive 96/9/EC; *Innoweb/Ryanair* line of cases).
+
+### 8.5 The TDM exceptions — a narrow possible path, not a green light
+Bulgaria transposed the EU DSM Directive (2019/790) TDM exceptions:
+- **ЗАПСП чл. 26е** (general text-&-data-mining): permits automated extraction *"от лице, което разполага с **правомерен достъп**"* (lawful access) — including *"извличане ... по смисъла на чл. 93в на бази данни"* — **BUT** чл. 26е(4): the rightholder may **opt out** for electronically-accessed content via machine-readable means. For APIS, "lawful access" normally means a paid subscription, and a commercial ToS prohibiting reproduction functions as that reservation. **Not a reliable basis for bulk extraction.**
+- **ЗАПСП чл. 26ж** (TDM for scientific research): broader (no opt-out), but **only for** universities, research institutes, public libraries/museums/archives, and non-profit/public-interest research organisations. legalize-bg is an Ahelia private project — it does **not** plainly qualify. *(If the corpus were produced under/with a qualifying research institution, чл. 26ж could change the analysis — a strategic option, not a default.)*
+
+### 8.6 Clean paths (ranked) — the actual Phase-0 decision
+- **(A) Source from the municipal councils' own websites** — the legally-mandated publication channel (ЗМСМА чл. 22(2)); the official act text there is public-domain (чл. 4) and **no APIS database right attaches to the council's own publication**. Cleanest, and mirrors our national pattern (scrape the *source*, not an aggregator — lex.bg was bootstrap-only, DV is the ongoing source). Cost: 265 heterogeneous sites → bespoke adapters, start with the highest-value councils.
+- **(B) Data agreement / license with APIS** — APIS already *sells* municipal data; a licence removes the gate and yields uniform, structured, version-aware data (incl. the dates our lex.bg-sourced acts lack). Cost: commercial + negotiation.
+- **(C) Municipal open data / ЗДОИ requests** — some municipalities publish open data or must provide acts on request (ЗМСМА чл. 22(3) keeps 10 years accessible; ЗДОИ access-to-public-information).
+- **(D) Research-institution route** — partner with a qualifying body to rely on чл. 26ж.
+- **Either way:** respect `robots.txt` / TDM opt-out, rate-limit, attribute. APIS may still be used the way lex.bg is for the national corpus — as a *validation oracle* for a handful of acts — without harvesting a substantial part.
+
+**Recommendation:** Phase-0 picks **(A)** as the build source (legally clean, fits the project's "scrape the authoritative source" doctrine), optionally pursuing **(B)** in parallel for uniformity/coverage. Do **not** make `web-api.apis.bg` the corpus source.
+
+---
+
 ### Evidence log (investigation 2026-06-21)
 - ЗМСМА чл. 21(2), 22(2), 22(3) — `laws/zakon-za-mestnoto-samoupravlenie-i-mestnata-administratsiya.md`.
 - ЗНА чл. 8, 37(1)/(3), 26(3) — `laws/zakon-za-normativnite-aktove.md`.
-- APIS product: apis.bg/bg/municipal-norm-acts ("Общински нормативни актове"); ToS: apis.bg/bg/obshti-usloviya-za-polzvane-na-informatsionni-sistemi-apis.
+- APIS product: apis.bg/bg/municipal-norm-acts ("Общински нормативни актове"); ToS: apis.bg/bg/obshti-usloviya-za-polzvane-na-informatsionni-sistemi-apis (clauses I.1.1 DB-producer per чл.93б; I.4 no third-party access; II.2 rights reserved; II.3–4 internal copies; II.5–6 no commercial reproduction/distribution of the DB; III.10 no reverse-engineering; scraping/API not explicitly named).
+- ЗАПСП (`laws/zakon-za-avtorskoto-pravo-i-srodnite-mu-prava.md`): чл. 4 т.1/т.4 (official acts + facts/data not copyrightable); чл. 93б (database-producer sui generis right); чл. 93в(1) (prohibit extraction/re-utilization of a *substantial part*); чл. 26е (general TDM — lawful access + opt-out); чл. 26ж (research-institution TDM — no opt-out). EU basis: Database Directive 96/9/EC; DSM Directive 2019/790 arts. 3–4.
 - Live API (verified 200, in-browser): `web-api.apis.bg/api/obshtina-sofia/{DocInfo,DocContent,DocTextJson}?uniqueId=5353100&dbIndex=0`; `DocList` → 405 (exists). DocInfo payload schema captured above.
 - ДВ structure (unofficial section carries some municipal administrative acts): dv.parliament.bg; pravatami.bg/s/15211.
