@@ -332,3 +332,31 @@ def test_law_history_no_amendments_returns_consolidated_only(populated_conn):
     assert len(hist) == 1
     assert hist[0].operation == "consolidated"
     assert hist[0].commit_hash is not None
+
+
+# ────────────────────────────── amendments_in_period (Phase 2) ──────────────
+
+
+def test_amendments_in_period_filters_and_joins_title(populated_conn):
+    from mcp_server.queries import amendments_in_period
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('x', 'zakon-a', 'amendment', '13/2016', '2016-02-16')")
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('y', 'zakon-b', 'amendment', '63/2017', '2017-08-04')")
+    populated_conn.commit()
+
+    out = amendments_in_period(populated_conn, "2016-01-01", "2016-12-31")
+    assert len(out) == 1
+    assert out[0].law_id == "zakon-a"
+    assert out[0].title == "Закон за А"
+    assert out[0].dv_issue == "13/2016"
+
+
+def test_amendments_in_period_rejects_reversed_range(populated_conn):
+    from mcp_server.queries import amendments_in_period
+    from mcp_server.errors import ToolError
+    with pytest.raises(ToolError) as exc:
+        amendments_in_period(populated_conn, "2020-01-01", "2019-01-01")
+    assert exc.value.code == "INVALID_DATE_RANGE"

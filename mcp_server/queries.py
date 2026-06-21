@@ -547,3 +547,33 @@ def law_history(conn: sqlite3.Connection, law_id: str) -> list[VersionEntry]:
             date=held_date, dv_issue=None,
             operation="consolidated", commit_hash=lv["commit_hash"]))
     return entries
+
+
+def amendments_in_period(conn: sqlite3.Connection, from_date: str,
+                         to_date: str) -> list[AmendmentEntry]:
+    """Return every dated amendment event across the corpus whose DV
+    date falls within [from_date, to_date] inclusive, oldest first.
+
+    Raises INVALID_DATE_RANGE (directly, like full_text_search's
+    QUERY_TOO_BROAD) when from_date > to_date.
+    """
+    if from_date and to_date and from_date > to_date:
+        raise ToolError("INVALID_DATE_RANGE",
+                        {"from_date": from_date, "to_date": to_date})
+    rows = conn.execute(
+        """SELECT a.target_law AS law_id, l.title AS title,
+                  a.dv_date AS date, a.dv_issue AS dv_issue
+             FROM amendments a
+             JOIN laws l ON l.law_id = a.target_law
+            WHERE a.dv_date IS NOT NULL
+              AND a.dv_date >= ? AND a.dv_date <= ?
+            ORDER BY a.dv_date, a.target_law""",
+        (from_date, to_date),
+    ).fetchall()
+    return [
+        AmendmentEntry(
+            law_id=r["law_id"],
+            title=r["title"] or f"<doc_id-unknown:{r['law_id']}>",
+            date=r["date"], dv_issue=r["dv_issue"])
+        for r in rows
+    ]
