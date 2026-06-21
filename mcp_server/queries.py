@@ -20,6 +20,7 @@ from datetime import date as _date
 from index.fts import bg_normalize, search_fts
 from index.synonyms import expand_if_abbreviation
 from mcp_server.errors import ToolError
+from mcp_server.schemas import VersionEntry, AmendmentEntry
 
 
 # FR-016 / D-2026-05-09-03: single-word queries matching these terms
@@ -508,3 +509,41 @@ def article_lookup(conn: sqlite3.Connection, law_id: str,
         raise ArticleNotFound(law_id=law_id, article=article,
                               paragraph=paragraph, available_articles=avail)
     return [dict(r) for r in rows]
+
+
+# ────────────────────────────── law_history (Phase 2 timeline) ──────────────
+
+
+def law_history(conn: sqlite3.Connection, law_id: str) -> list[VersionEntry]:
+    """Return the act's version timeline, oldest→newest.
+
+    Amendment events come from the `amendments` table (populated from
+    amendment_history at build time). Each historical event carries
+    commit_hash=None — we know the act was amended on that DV date but
+    don't hold a separate text snapshot for it. A final
+    operation='consolidated' entry carries the real commit of the held
+    current text. Honest semantics per the Phase 2 design: never imply
+    we hold historical text we don't have.
+    """
+    amend_rows = conn.execute(
+        "SELECT dv_issue, dv_date, operation FROM amendments "
+        "WHERE target_law = ? ORDER BY dv_date IS NULL, dv_date",
+        (law_id,),
+    ).fetchall()
+    entries: list[VersionEntry] = [
+        VersionEntry(date=r["dv_date"], dv_issue=r["dv_issue"],
+                     operation=r["operation"], commit_hash=None)
+        for r in amend_rows
+    ]
+    lv = conn.execute(
+        "SELECT valid_from, commit_hash FROM law_versions "
+        "WHERE law_id = ? ORDER BY valid_from DESC LIMIT 1",
+        (law_id,),
+    ).fetchone()
+    if lv:
+        last_dated = [r["dv_date"] for r in amend_rows if r["dv_date"]]
+        held_date = last_dated[-1] if last_dated else lv["valid_from"]
+        entries.append(VersionEntry(
+            date=held_date, dv_issue=None,
+            operation="consolidated", commit_hash=lv["commit_hash"]))
+    return entries

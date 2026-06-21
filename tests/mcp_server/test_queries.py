@@ -299,3 +299,36 @@ def test_article_lookup_available_articles_sorted_in_legal_order(populated_conn)
         article_lookup(populated_conn, "zakon-a",
                        article="999", paragraph=None, date=None)
     assert exc.value.available_articles == ["1", "9", "14", "14а", "15", "100"]
+
+
+# ────────────────────────────── law_history (Phase 2 timeline) ──────────────
+
+
+def test_law_history_lists_amendments_then_consolidated(populated_conn):
+    from mcp_server.queries import law_history
+    from tests.mcp_server.conftest import FAKE_COMMIT_HASH
+    # Seed two amendment events for zakon-a.
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('ДВ 13/2016', 'zakon-a', 'amendment', '13/2016', '2016-02-16')")
+    populated_conn.execute(
+        "INSERT INTO amendments (source_act, target_law, operation, dv_issue, dv_date) "
+        "VALUES ('ДВ 63/2017', 'zakon-a', 'amendment', '63/2017', '2017-08-04')")
+    populated_conn.commit()
+
+    hist = law_history(populated_conn, "zakon-a")
+    # Two amendment events + one consolidated entry.
+    assert [v.operation for v in hist] == ["amendment", "amendment", "consolidated"]
+    # Historical entries hold no separate text version.
+    assert hist[0].commit_hash is None and hist[1].commit_hash is None
+    assert hist[0].dv_issue == "13/2016"
+    # The held consolidated version carries the real commit.
+    assert hist[-1].commit_hash == FAKE_COMMIT_HASH
+
+
+def test_law_history_no_amendments_returns_consolidated_only(populated_conn):
+    from mcp_server.queries import law_history
+    hist = law_history(populated_conn, "zakon-b")  # no amendments seeded
+    assert len(hist) == 1
+    assert hist[0].operation == "consolidated"
+    assert hist[0].commit_hash is not None
