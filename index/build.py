@@ -138,6 +138,26 @@ def build(corpus_root: Path, db_path: str = "catalog.db",
                    VALUES (?, ?, ?, ?)""",
                 (law_id, effective, head, date_uncertain),
             )
+            # Phase 2 (FR-001): populate the `amendments` table from the
+            # act's amendment_history frontmatter. This is the backing
+            # store for the history() and amendments_in_period() tools.
+            # We do NOT know the specific ЗИД operation (substitution /
+            # addition / deletion) without Phase-4 ЗИД parsing, so we
+            # record the generic operation 'amendment'. affected_articles
+            # stays NULL for the same reason.
+            for entry in (meta.get("amendment_history") or []):
+                dv_issue = entry.get("dv")
+                dv_date = entry.get("date")
+                if hasattr(dv_date, "isoformat"):   # PyYAML may yield date
+                    dv_date = dv_date.isoformat()
+                conn.execute(
+                    """INSERT INTO amendments
+                           (source_act, target_law, operation,
+                            affected_articles, dv_issue, dv_date)
+                       VALUES (?, ?, 'amendment', NULL, ?, ?)""",
+                    (f"ДВ {dv_issue}" if dv_issue else "unknown",
+                     law_id, dv_issue, dv_date),
+                )
             for prov in parse_provisions(body, law_id=law_id):
                 conn.execute(
                     """INSERT INTO provisions

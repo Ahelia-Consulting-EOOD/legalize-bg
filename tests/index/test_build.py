@@ -100,3 +100,27 @@ def test_build_records_current_commit(fake_corpus, tmp_path):
     ).stdout.strip()
     rows = conn.execute("SELECT DISTINCT current_commit FROM laws").fetchall()
     assert len(rows) == 1 and rows[0][0] == head
+
+
+def test_build_populates_amendments_from_history(fake_corpus, tmp_path):
+    """Phase 2: each amendment_history entry becomes an `amendments` row,
+    keyed to the act via target_law, with the DV issue + date carried."""
+    db_path = str(tmp_path / "test.db")
+    build(corpus_root=fake_corpus, db_path=db_path)
+    conn = sqlite3.connect(db_path)
+    conn.row_factory = sqlite3.Row
+    # ZOP (the fixture) has a non-trivial amendment history.
+    rows = conn.execute(
+        "SELECT target_law, operation, dv_issue, dv_date FROM amendments"
+    ).fetchall()
+    assert len(rows) > 0, "expected amendments rows from amendment_history"
+    # Every row is keyed to a real law and carries the generic operation.
+    law_ids = {r["law_id"] for r in conn.execute("SELECT law_id FROM laws")}
+    for r in rows:
+        assert r["target_law"] in law_ids
+        assert r["operation"] == "amendment"
+    # dv_date values are ISO strings (not datetime.date objects).
+    dated = [r for r in rows if r["dv_date"] is not None]
+    assert dated, "expected at least one dated amendment"
+    for r in dated:
+        assert isinstance(r["dv_date"], str) and len(r["dv_date"]) == 10
