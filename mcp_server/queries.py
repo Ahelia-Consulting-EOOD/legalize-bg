@@ -544,6 +544,9 @@ def law_history(conn: sqlite3.Connection, law_id: str) -> list[VersionEntry]:
     ).fetchone()
     if lv:
         last_dated = [r["dv_date"] for r in amend_rows if r["dv_date"]]
+        # The held consolidated text reflects all amendments through the most
+        # recent, so it is dated to that last amendment date (or
+        # law_versions.valid_from when the act was never amended).
         held_date = last_dated[-1] if last_dated else lv["valid_from"]
         entries.append(VersionEntry(
             date=held_date, dv_issue=None,

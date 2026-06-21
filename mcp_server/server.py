@@ -380,13 +380,15 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
         Returns:
             A list of version entries, each {date, dv_issue, operation,
-            commit_hash}. `operation` is "amendment" for a DV amendment
-            event and "consolidated" for the currently-held text. Only
-            the consolidated entry carries a non-null `commit_hash`:
-            the corpus holds one consolidated text per act, so the text
-            of historical amendments is not separately retrievable yet
-            (commit_hash is null for those). Use this to answer "when
-            was this act amended?" — it lists every DV amendment date.
+            commit_hash}. `operation` is "enacted" for the act's original
+            promulgation (the first DV entry), "amendment" for each
+            subsequent DV amendment event, and "consolidated" for the
+            currently-held text. Only the consolidated entry carries a
+            non-null `commit_hash`: the corpus holds one consolidated text
+            per act, so the text of historical amendments is not separately
+            retrievable yet (commit_hash is null for those). Use this to
+            answer "when was this act amended?" — it lists every DV
+            amendment date.
         """
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)

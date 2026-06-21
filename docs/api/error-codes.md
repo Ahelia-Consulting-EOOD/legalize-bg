@@ -130,8 +130,6 @@ Payload:
 - `law_id` (string): the act whose diff was requested.
 - `detail` (string): stderr from git diff, truncated to 300 characters, or a fallback message with the exit code.
 
-**Version:** 1.1.0
-
 ## Versioning policy
 
 - **Patch (1.0.x):** clarifying docs, payload field descriptions. No behavior change.

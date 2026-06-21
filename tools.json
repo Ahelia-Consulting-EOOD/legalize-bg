@@ -135,7 +135,7 @@
     },
     {
       "name": "history",
-      "description": "Return the amendment timeline of a Bulgarian act, oldest→newest.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n\nReturns:\n    A list of version entries, each {date, dv_issue, operation,\n    commit_hash}. `operation` is \"amendment\" for a DV amendment\n    event and \"consolidated\" for the currently-held text. Only\n    the consolidated entry carries a non-null `commit_hash`:\n    the corpus holds one consolidated text per act, so the text\n    of historical amendments is not separately retrievable yet\n    (commit_hash is null for those). Use this to answer \"when\n    was this act amended?\" — it lists every DV amendment date.",
+      "description": "Return the amendment timeline of a Bulgarian act, oldest→newest.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n\nReturns:\n    A list of version entries, each {date, dv_issue, operation,\n    commit_hash}. `operation` is \"enacted\" for the act's original\n    promulgation (the first DV entry), \"amendment\" for each\n    subsequent DV amendment event, and \"consolidated\" for the\n    currently-held text. Only the consolidated entry carries a\n    non-null `commit_hash`: the corpus holds one consolidated text\n    per act, so the text of historical amendments is not separately\n    retrievable yet (commit_hash is null for those). Use this to\n    answer \"when was this act amended?\" — it lists every DV\n    amendment date.",
       "input_schema": {
         "additionalProperties": false,
         "properties": {

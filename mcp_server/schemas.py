@@ -108,8 +108,10 @@ class VersionEntry:
     corpus actually holds (operation='consolidated'); historical
     amendment events carry commit_hash=None because their separate
     text is not held yet (no per-amendment commits until the re-scrape
-    or Phase 4 lands them). `operation` is 'amendment' for a DV
-    amendment event and 'consolidated' for the held current version.
+    or Phase 4 lands them). `operation` is 'enacted' for the act's
+    original promulgation (the first DV entry), 'amendment' for each
+    subsequent DV amendment event, and 'consolidated' for the held
+    current version.
     """
     date: str | None
     dv_issue: str | None
