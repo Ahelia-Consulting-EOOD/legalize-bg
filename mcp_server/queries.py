@@ -568,6 +568,7 @@ def amendments_in_period(conn: sqlite3.Connection, from_date: str,
              FROM amendments a
              JOIN laws l ON l.law_id = a.target_law
             WHERE a.dv_date IS NOT NULL
+              AND a.operation = 'amendment'
               AND a.dv_date >= ? AND a.dv_date <= ?
             ORDER BY a.dv_date, a.target_law""",
         (from_date, to_date),
@@ -613,8 +614,14 @@ def diff_law_versions(conn: sqlite3.Connection, corpus_root: Path,
     if cat_row is None:
         raise ToolError("LAW_NOT_FOUND", {"name": law_id, "suggestions": []})
     rel_path = f"{cat_row['category']}/{law_id}.md"
-    out = subprocess.run(
-        ["git", "diff", commit1, commit2, "--", rel_path],
-        cwd=corpus_root, check=True, capture_output=True, text=True,
-    )
+    try:
+        out = subprocess.run(
+            ["git", "diff", commit1, commit2, "--", rel_path],
+            cwd=corpus_root, check=True, capture_output=True, text=True,
+        )
+    except subprocess.CalledProcessError as e:
+        raise ToolError("DIFF_FAILED", {
+            "law_id": law_id,
+            "detail": (e.stderr or "").strip()[:300] or f"git diff exited {e.returncode}",
+        })
     return out.stdout

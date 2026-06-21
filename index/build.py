@@ -141,22 +141,24 @@ def build(corpus_root: Path, db_path: str = "catalog.db",
             # Phase 2 (FR-001): populate the `amendments` table from the
             # act's amendment_history frontmatter. This is the backing
             # store for the history() and amendments_in_period() tools.
-            # We do NOT know the specific ЗИД operation (substitution /
-            # addition / deletion) without Phase-4 ЗИД parsing, so we
-            # record the generic operation 'amendment'. affected_articles
-            # stays NULL for the same reason.
-            for entry in (meta.get("amendment_history") or []):
+            # The FIRST entry (index 0) is the original promulgation
+            # (publication in DV), labelled 'enacted'. Subsequent entries
+            # are amendments; we record 'amendment' generically because
+            # we don't know the specific ЗИД operation without Phase-4
+            # ЗИД parsing. affected_articles stays NULL for the same reason.
+            for i, entry in enumerate(meta.get("amendment_history") or []):
                 dv_issue = entry.get("dv")
                 dv_date = entry.get("date")
                 if hasattr(dv_date, "isoformat"):   # PyYAML may yield date
                     dv_date = dv_date.isoformat()
+                operation = "enacted" if i == 0 else "amendment"
                 conn.execute(
                     """INSERT INTO amendments
                            (source_act, target_law, operation,
                             affected_articles, dv_issue, dv_date)
-                       VALUES (?, ?, 'amendment', NULL, ?, ?)""",
+                       VALUES (?, ?, ?, NULL, ?, ?)""",
                     (f"ДВ {dv_issue}" if dv_issue else "unknown",
-                     law_id, dv_issue, dv_date),
+                     law_id, operation, dv_issue, dv_date),
                 )
             for prov in parse_provisions(body, law_id=law_id):
                 conn.execute(

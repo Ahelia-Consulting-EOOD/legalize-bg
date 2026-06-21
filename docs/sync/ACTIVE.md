@@ -42,7 +42,7 @@ DEFERRED.md now has a single Open row (D-2026-05-09-05 / FR-014, Phase 4 increme
 - `amendments` table populated from `amendment_history` YAML frontmatter field in index build.
 - **306 tests passing** (was 287 at Phase 1b close; +19 previously-skipped real-corpus/perf tests now run against the live catalog.db).
 - Time-travel tools (`diff`, historical `get_law`) are wired but show single-version output until the parallel corpus re-scrape (see `docs/sync/HANDOFFS/2026-06-21-corpus-rescrape-refresh.md`) accumulates more text versions. This is honest single-version semantics (D-030) — `diff()` and `get_law(date)` return correct-but-limited results rather than fabricating historical data.
-- Smoke-tested against ЗОП (Закон за обществените поръчки): 32 amendment events + real commit hash confirmed.
+- Smoke-tested against ЗОП via slug `zakon-za-obshtestvenite-porachki` (identificador lookup): 32 amendment events + real commit hash confirmed. (Title-based lookup `"Закон за обществените поръчки"` raises LAW_NOT_FOUND due to the SQLite `LOWER()` Cyrillic gap — awaits FR-019.)
 - D-030 captures the temporal semantics decision in `DECISIONS.md`.
 
 ## Blockers

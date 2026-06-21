@@ -104,7 +104,9 @@ def test_build_records_current_commit(fake_corpus, tmp_path):
 
 def test_build_populates_amendments_from_history(fake_corpus, tmp_path):
     """Phase 2: each amendment_history entry becomes an `amendments` row,
-    keyed to the act via target_law, with the DV issue + date carried."""
+    keyed to the act via target_law, with the DV issue + date carried.
+    The FIRST entry per act is labelled 'enacted' (promulgation); subsequent
+    entries are 'amendment'."""
     db_path = str(tmp_path / "test.db")
     build(corpus_root=fake_corpus, db_path=db_path)
     conn = sqlite3.connect(db_path)
@@ -114,11 +116,18 @@ def test_build_populates_amendments_from_history(fake_corpus, tmp_path):
         "SELECT target_law, operation, dv_issue, dv_date FROM amendments"
     ).fetchall()
     assert len(rows) > 0, "expected amendments rows from amendment_history"
-    # Every row is keyed to a real law and carries the generic operation.
+    # Every row is keyed to a real law and carries a valid operation.
     law_ids = {r["law_id"] for r in conn.execute("SELECT law_id FROM laws")}
+    ops = {r["operation"] for r in rows}
+    assert ops <= {"enacted", "amendment"}, f"unexpected operations: {ops}"
     for r in rows:
         assert r["target_law"] in law_ids
-        assert r["operation"] == "amendment"
+    # There must be at least one 'enacted' row (the promulgation entry).
+    assert any(r["operation"] == "enacted" for r in rows), \
+        "expected at least one 'enacted' row for the first amendment_history entry"
+    # There must be at least one 'amendment' row (the fixture has many).
+    assert any(r["operation"] == "amendment" for r in rows), \
+        "expected at least one 'amendment' row"
     # dv_date values are ISO strings (not datetime.date objects).
     dated = [r for r in rows if r["dv_date"] is not None]
     assert dated, "expected at least one dated amendment"

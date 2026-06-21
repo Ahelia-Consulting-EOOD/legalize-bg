@@ -122,6 +122,16 @@ Payload:
 - `from_date` (string): the start date supplied.
 - `to_date` (string): the end date supplied.
 
+### `DIFF_FAILED`
+
+Raised by: `diff`.
+When: the underlying `git diff` invocation fails (e.g. a commit recorded in the index is not present in the corpus repo).
+Payload:
+- `law_id` (string): the act whose diff was requested.
+- `detail` (string): stderr from git diff, truncated to 300 characters, or a fallback message with the exit code.
+
+**Version:** 1.1.0
+
 ## Versioning policy
 
 - **Patch (1.0.x):** clarifying docs, payload field descriptions. No behavior change.

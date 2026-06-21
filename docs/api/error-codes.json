@@ -109,6 +109,16 @@
         "from_date": {"type": "string", "optional": false, "description": "start date supplied"},
         "to_date": {"type": "string", "optional": false, "description": "end date supplied"}
       }
+    },
+    {
+      "code": "DIFF_FAILED",
+      "raised_by": ["diff"],
+      "category": "error",
+      "since_phase": "2",
+      "payload": {
+        "law_id": {"type": "string", "optional": false, "description": "the act whose diff was requested"},
+        "detail": {"type": "string", "optional": false, "description": "stderr from git diff (truncated to 300 chars) or fallback exit-code message"}
+      }
     }
   ]
 }

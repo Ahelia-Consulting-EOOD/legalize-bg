@@ -7,6 +7,7 @@ def test_all_codes_are_defined():
       - 8 codes from Phase 1b.1 (D-026)
       - QUERY_TOO_BROAD added in Phase 1b.2 (FR-016)
       - INVALID_DATE_RANGE added in Phase 2
+      - DIFF_FAILED added in Phase 2
     See docs/api/error-codes.md for the catalog."""
     expected = {
         "LAW_NOT_FOUND", "AMBIGUOUS_NAME", "NO_VERSION_AT_DATE",
@@ -14,6 +15,7 @@ def test_all_codes_are_defined():
         "INDEX_STALE", "INDEX_MISSING",
         "QUERY_TOO_BROAD",  # Phase 1b.2
         "INVALID_DATE_RANGE",  # Phase 2
+        "DIFF_FAILED",  # Phase 2
     }
     assert ERROR_CODES == expected
 
