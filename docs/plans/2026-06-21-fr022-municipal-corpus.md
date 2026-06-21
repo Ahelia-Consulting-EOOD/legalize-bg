@@ -6,6 +6,19 @@
 
 ---
 
+## 0. Owner decision — sourcing strategy (2026-06-21, D-037) — THE WAY
+
+> Settles the Phase-0 source question (§2/§8) by owner directive.
+
+**Treat APIS `obshtini.bg` exactly like lex.bg for the national corpus: a ONE-TIME bootstrap snapshot — and, in parallel, build per-municipality official-site adapters as the durable ongoing source.** This mirrors the national doctrine precisely (D-002/D-003): *lex.bg = bootstrap/oracle, DV = ongoing* → here *APIS = bootstrap/oracle, municipal sites = ongoing*.
+
+- **Bootstrap (one-time):** scrape APIS once to seed the municipal corpus with structured, version-aware data (the `DocInfo`/`DocContent` JSON, which also carries the publication dates lex.bg lacked). Like the lex.bg bootstrap, this is a single photograph, not a recurring dependency.
+- **Ongoing (durable):** identify + develop **catalog/discovery + fetch adapters for each municipality's own website** (the legally-mandated publication channel, ЗМСМА чл. 22(2)) — these become the authoritative source for updates, making the APIS touch transient.
+- **Legal posture (see §8):** the act *texts* are public-domain (ЗАПСП чл. 4); a one-time APIS bootstrap still extracts a *substantial part* of APIS's чл. 93б database (ToS II.5/II.6) → keep it minimal and/or clear it with APIS, and rely on the parallel municipal-site adapters so the APIS extraction is one-off, not systematic. (Owner has chosen the lex.bg-style one-time treatment knowing this; recorded for an informed decision.)
+- **Status:** plan + record only; **execution left for a future session**, gated on PR #3 merge + MCP-track completion ("finish MCP before municipal").
+
+---
+
 ## 1. Live investigation findings (2026-06-21)
 
 ### 1.1 Legal framework — how municipal acts are made & published (authoritative, from our own corpus)
@@ -50,7 +63,7 @@ Ranked by authority + legal safety:
 2. **APIS `obshtini.bg` portals** — uniform, structured, version-aware, metadata-rich; covers the municipalities that contract APIS (incl. Sofia, Veliko Tarnovo). **Commercial → requires ToS review and likely an explicit arrangement with APIS** before any systematic extraction.
 3. **ДВ (dv.parliament.bg)** — only the law-mandated subset of municipal acts; NOT a general municipal source. Useful as a cross-check for the acts that DO appear there.
 
-**Open decision (owner):** which source(s) to build on. Recommended: **start with the municipalities already partly in our corpus (Sofia, Veliko Tarnovo)** and **resolve the APIS ToS question first** (review "Общи условия", and/or approach APIS — they already sell municipal data; a data arrangement may be cleanest). If APIS is off-limits, fall back to per-municipality official sites with bespoke adapters.
+**Decision (owner, D-037 — see §0): RESOLVED.** APIS = one-time **bootstrap** (like lex.bg); per-municipality official sites (source 1) = the durable **ongoing** source, built in parallel. Start with Sofia + Veliko Tarnovo. Keep the APIS bootstrap minimal and/or clear it with APIS (§8); the ongoing municipal-site adapters make the APIS touch one-off.
 
 ---
 
@@ -141,7 +154,7 @@ Bulgaria transposed the EU DSM Directive (2019/790) TDM exceptions:
 - **(D) Research-institution route** — partner with a qualifying body to rely on чл. 26ж.
 - **Either way:** respect `robots.txt` / TDM opt-out, rate-limit, attribute. APIS may still be used the way lex.bg is for the national corpus — as a *validation oracle* for a handful of acts — without harvesting a substantial part.
 
-**Recommendation:** Phase-0 picks **(A)** as the build source (legally clean, fits the project's "scrape the authoritative source" doctrine), optionally pursuing **(B)** in parallel for uniformity/coverage. Do **not** make `web-api.apis.bg` the corpus source.
+**Recommendation → superseded by owner decision D-037 (§0):** APIS is used as a **one-time bootstrap** (like lex.bg — a single photograph, not a systematic ongoing feed), and **(A)** the per-municipality official sites are the durable ongoing source built in parallel. This keeps the legally-clean municipal sites authoritative while the (substantial-part) APIS extraction stays one-off; keep that bootstrap minimal and/or clear it with APIS. `web-api.apis.bg` is therefore the bootstrap **oracle**, not the corpus's ongoing source.
 
 ---
 
