@@ -48,6 +48,29 @@ The **MCP track + time-machine are fully shipped on `main`** (`95b3b067`): PRs #
 
 ---
 
+## 3a. FR-009 deterministic re-source — envisioned process (discussion 2026-06-22)
+
+**Reframe: FORWARD replay, not "reverse-apply."** FR-009's row says "reverse-apply" (undo from lex.bg current text backward) — but the LawVM model is *forward* replay, which is both more deterministic AND the thing that retires lex.bg: anchor on the **ДВ original promulgation** (sovereign source) and use lex.bg only as the validation endpoint.
+
+**Enabler we already have:** `amendment_history` frontmatter per act = the dated roadmap of which ДВ issues amended it (already powers `history()`). FR-009 doesn't *discover* the amendment stream — it *fetches the ЗИД text* for issues we already know.
+
+**Process (per act):**
+1. **Anchor** = original enacted text ← first `amendment_history` entry's ДВ issue (fetch from ДВ).
+2. **Stream** = each later entry's ЗИД text ← fetched from ДВ, date-ordered.
+3. **Replay** = parse each ЗИД → typed deterministic ops (replace `чл.X,ал.Y` old→new; insert `чл.Xа`; repeal; renumber) → apply to running text → version N. SAME engine as Phase 4.
+4. **Validate** = byte-compare the final replayed version vs the lex.bg oracle (current consolidated). Match ⇒ the whole chain is proven (endpoint validation validates the replay transitively). Divergence ⇒ HARD-FAIL / flag that act — never silent.
+5. **Re-commit** each version with `GIT_AUTHOR_DATE` = its ДВ date → FR-020 projects it into `law_versions`.
+
+Determinism guarantee = step 4: even where ЗИД parsing is hard, the endpoint byte-match proves correctness per act; the rest are explicitly flagged for LLM-assisted (validation-gated) or manual resolution.
+
+**Open tensions (resolve in full research; the validation-gate keeps us deterministic-or-flagged regardless):**
+- **T1 — ДВ archive depth/format:** old/pre-digital acts may be scanned-image PDFs (→ embedded vision, not OCR libs) or absent → those keep the bootstrap photograph (D-039); FR-009 covers the digitally-available stream.
+- **T2 — ЗИД-parse coverage:** fraction that replays+validates vs flags is unknown until measured — the main effort risk (flagged → LLM proposes ops, validation gates).
+- **T3 — historical-version oracle:** endpoint (lex.bg-current) validation is certain; validating *intermediate* versions needs a historical oracle (does lex.bg/APIS expose past consolidations?) — else rely on endpoint + spot checks.
+- **T4 — structural ops** (renumbering, restructuring): deterministic but locator-heavy; LawVM handles them.
+
+This refines the FR-009 row (forward replay) and reuses the Phase-4 engine + `amendment_history`. Update the FR-009 backlog wording accordingly when scheduled.
+
 ## 4. Proposed sequence (national functionality)
 
 1. **Phase 3 — DV monitor (freshness).** Poller for new ДВ issues (Tue/Fri), detect new issues, **amendment detector** (which act(s) each ДВ issue touches — via ЗИД cross-references / `.HistoryOfDocument`), alert/log acts needing processing. Independent (needs only ДВ read access). Per delivery-contract Phase 3 DoD.
