@@ -1,0 +1,290 @@
+{
+ "slug": "zakon-za-zashtita-na-konkurentsiyata",
+ "round": 0,
+ "blocks": 1426,
+ "sections": 45,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 1031,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Глава петнадесета.'"
+  },
+  {
+   "block": 149,
+   "kind": "low_confidence",
+   "detail": "repeats Глава четвърта with the old title right after the amended one; chapter_heading or drop as a duplicate"
+  },
+  {
+   "block": 150,
+   "kind": "low_confidence",
+   "detail": "old wording of the chapter title duplicated after the amended one; chapter_heading or drop as a duplicate"
+  },
+  {
+   "block": 328,
+   "kind": "low_confidence",
+   "detail": "repeated heading of repealed Глава седма а (older version shown by lex.bg); may be editorial_note"
+  },
+  {
+   "block": 329,
+   "kind": "low_confidence",
+   "detail": "older-version title of the same repealed chapter, duplicate of 327; may be editorial_note"
+  },
+  {
+   "block": 330,
+   "kind": "low_confidence",
+   "detail": "third repetition of Глава седма а; may be editorial_note"
+  },
+  {
+   "block": 331,
+   "kind": "low_confidence",
+   "detail": "repealed article line; article_head or repeal_note"
+  },
+  {
+   "block": 658,
+   "kind": "low_confidence",
+   "detail": "second Глава девета printed with the pre-2018 title; chapter_heading or editorial_note (superseded heading repeated by lex.bg)"
+  },
+  {
+   "block": 659,
+   "kind": "low_confidence",
+   "detail": "old title (чл. 81 и 82 ДЕО) of the repeated Глава девета; chapter_heading or editorial_note"
+  },
+  {
+   "block": 885,
+   "kind": "low_confidence",
+   "detail": "repeated earlier wording of the same chapter heading; could be editorial_note"
+  },
+  {
+   "block": 886,
+   "kind": "low_confidence",
+   "detail": "repeated earlier wording of the same chapter heading; could be editorial_note"
+  },
+  {
+   "block": 887,
+   "kind": "low_confidence",
+   "detail": "repeated earlier wording of the same chapter heading; could be editorial_note"
+  },
+  {
+   "block": 888,
+   "kind": "low_confidence",
+   "detail": "repeated earlier wording of the same chapter heading; could be editorial_note"
+  },
+  {
+   "block": 1356,
+   "kind": "low_confidence",
+   "detail": "lone fragment КЪМ of a heading line; provisions_heading or drop"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "drop_inside_act": 1,
+  "low_confidence": 13
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 36,
+  "title": 1,
+  "preamble": 1,
+  "part_heading": 8,
+  "chapter_heading": 47,
+  "article_title": 138,
+  "article_head": 140,
+  "alinea": 394,
+  "item": 504,
+  "letter": 43,
+  "continuation": 2,
+  "section_heading": 4,
+  "provisions_heading": 34,
+  "paragraph_sign": 46,
+  "quoted": 9,
+  "adoption_formula": 1,
+  "editorial_note": 18
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1031,
+   "text": "Глава петнадесета.",
+   "note": "repeated 'Глава петнадесета.' line duplicating 1029 before Раздел I; else chapter_heading"
+  },
+  {
+   "block": 1287,
+   "text": "-------------------------",
+   "note": "dash separator line before the adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 1393,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU acts block, not part of the act"
+  },
+  {
+   "block": 1394,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1395,
+   "text": "ДИРЕКТИВА (ЕС) 2019/633 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 април 2019 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1396,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2018 г",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1397,
+   "text": "ДИРЕКТИВА (ЕС) 2016/943 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2016 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1398,
+   "text": "ДИРЕКТИВА 2014/104/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 ноември 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1399,
+   "text": "ДИРЕКТИВА 2006/114/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2006 г",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1400,
+   "text": "ДИРЕКТИВА 92/13/ЕИО НА СЪВЕТА от 25 февруари 1992 година относно координирането ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1401,
+   "text": "ДИРЕКТИВА 89/665/ЕИО НА СЪВЕТА от 21 декември 1989 година относно координирането",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1402,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1403,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2560 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 202",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1404,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/1925 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 септември 20",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1405,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1783 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1406,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/2394 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1407,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1316/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1408,
+   "text": "КОНСОЛИДИРАНА ВЕРСИЯ НА РЕГЛАМЕНТ (ЕС) № 1308/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1409,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1215/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1410,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1151/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 ноември 20",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1411,
+   "text": "РЕГЛАМЕНТ (ЕО) № 169/2009 НА СЪВЕТА от 26 февруари 2009 година относно прилагане",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1412,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1419/2006 НА СЪВЕТА от 25 септември 2006 година за отмяна на Ре",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1413,
+   "text": "РЕГЛАМЕНТ (ЕО) № 773/2004 НА КОМИСИЯТА от 7 април 2004 година относно водените о",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1414,
+   "text": "РЕГЛАМЕНТ (ЕО) № 411/2004 НА СЪВЕТА от 26 февруари 2004 година за отмяна на Регл",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1415,
+   "text": "РЕГЛАМЕНТ (ЕО) № 139/2004 НА СЪВЕТА от 20 януари 2004 година относно контрола въ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1416,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1/2003 НА СЪВЕТА от 16 декември 2002 година относно изпълнениет",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1417,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 4058/86 НА СЪВЕТА от 22 декември 1986 година относно координир",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1418,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 4057/86 НА СЪВЕТА от 22 декември 1986 година относно практикат",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1419,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2988/74 НА СЪВЕТА от 26 ноември 1974 година относно давността ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1420,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2380/74 НА СЪВЕТА от 17 септември 1974 година за приемане на р",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1421,
+   "text": "РЕГЛАМЕНТ № 19/65/ЕИО НА СЪВЕТА от 2 март 1965 година за прилагането на член 85,",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1422,
+   "text": "РЕГЛАМЕНТ № 17 НА СЪВЕТА Първи регламент за прилагане на членове 85 и 86 от Дого",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1423,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1424,
+   "text": "РЕШЕНИЕ 2011/695/ЕС НА ПРЕДСЕДАТЕЛЯ НА ЕВРОПЕЙСКАТА КОМИСИЯ от 13 октомври 2011 ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 1425,
+   "text": "ИЗВЕСТИЕ НА КОМИСИЯТА за поставяне на допълнителни условия съгласно Регламент (Е",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 14,
+ "diff_lines": 458
+}
