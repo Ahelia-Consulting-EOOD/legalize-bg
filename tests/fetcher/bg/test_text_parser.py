@@ -133,3 +133,20 @@ def test_transitional_heading_is_not_glued_to_kym():
 def test_section_paragraph_bodies_present_for_zuo_like():
     md = HtmlToMarkdown().convert(_load_soup("zop.html"))
     assert md.count("§") > 20  # §-provisions, not just headings
+
+
+# --- Task 3: keep-unknown-by-default + chrome denylist ---
+
+
+def test_unknown_content_class_is_kept_not_dropped():
+    html = ('<div class="TitleDocument">Z</div>'
+            '<div class="SomeBrandNewEdict">КЪМ ЗАКОНА ЗА НЕЩО СИ нова разпоредба</div>')
+    md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
+    assert "нова разпоредба" in md  # kept by default, not silently dropped
+
+
+def test_known_chrome_class_is_excluded():
+    html = ('<div class="TitleDocument">Z</div>'
+            '<p class="buttons">ДОБАВИ В МОИТЕ АКТОВЕ</p>')
+    md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
+    assert "ДОБАВИ В МОИТЕ АКТОВЕ" not in md

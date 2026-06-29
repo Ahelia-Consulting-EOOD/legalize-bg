@@ -1,9 +1,11 @@
 """HTML-to-Markdown Converter — Legalize TextParser interface for lex.bg."""
 
+import logging
 import re
 
 from bs4 import BeautifulSoup, Tag
 
+log = logging.getLogger(__name__)
 
 # CSS class -> (markdown prefix, include in output)
 CLASS_MAP = {
@@ -20,6 +22,18 @@ CLASS_MAP = {
     "HistoryOfDocument": ("", False),  # excluded from body
 }
 
+# Known chrome/navigation elements that must never appear in the Markdown body.
+# Elements whose class is in neither CLASS_MAP nor CHROME_DENYLIST are kept by
+# default (with a warning) so unknown legal classes surface rather than vanish.
+CHROME_DENYLIST: frozenset[str] = frozenset({
+    "buttons", "boxi", "boxinb", "picHasEditions", "picRefsFromActs",
+    "HistoryOfDocument", "HistoryItem", "HistoryReference",
+    "NewDocReference", "SameDocReference", "LegalDocReference", "contextads",
+})
+
+# Spine classes used to locate the legal-content region (LCA of these elements).
+_SPINE: frozenset[str] = frozenset(c for c, (_, inc) in CLASS_MAP.items() if inc)
+
 
 class HtmlToMarkdown:
     """Converts lex.bg HTML DOM to structured Markdown."""
@@ -27,37 +41,85 @@ class HtmlToMarkdown:
     def convert(self, soup: BeautifulSoup) -> str:
         """Convert parsed HTML to Markdown body (no frontmatter)."""
         lines: list[str] = []
-
-        for element in soup.find_all(class_=list(CLASS_MAP.keys())):
-            if not isinstance(element, Tag):
-                continue
-
-            css_class = self._get_mapped_class(element)
-            if css_class is None:
-                continue
-
-            prefix, include = CLASS_MAP[css_class]
-            if not include:
-                continue
-
-            if css_class == "Article":
-                lines.append(self._format_article(element))
-            elif css_class == "FinalEdictsArticle":
-                lines.append(self._format_edict_article(element))
-            elif css_class == "PreHistory":
-                text = element.get_text(strip=True)
-                if text:
-                    lines.append(f"*{text}*")
-            else:
-                # Use get_text(" ", strip=True) + whitespace collapse to de-glue
-                # heading text from adjacent КЪМ act-name spans.
-                text = re.sub(r"\s+", " ", element.get_text(" ", strip=True)).strip()
-                if text:
-                    lines.append(f"{prefix}{text}")
-
-            lines.append("")  # blank line after each block
-
+        region = self._content_region(soup)
+        self._walk(region, lines)
         return "\n".join(lines).strip() + "\n"
+
+    def _content_region(self, soup: BeautifulSoup) -> Tag:
+        """Return the LCA of all spine elements, scoping the walk to legal content.
+
+        Restricts the keep-by-default pass to the legal-content region so that
+        page navigation, header, and footer chrome outside the LCA is never emitted.
+        """
+        spine_els = [
+            e for e in soup.find_all(True)
+            if set(e.get("class") or []) & _SPINE
+        ]
+        if not spine_els:
+            return soup  # type: ignore[return-value]
+        chains = [set(id(p) for p in el.parents) for el in spine_els]
+        common = set.intersection(*chains) if chains else set()
+        for p in spine_els[0].parents:
+            if id(p) in common:
+                return p  # type: ignore[return-value]
+        return soup  # type: ignore[return-value]
+
+    def _walk(self, element: Tag, lines: list[str]) -> None:
+        """Walk element's direct children and emit content in document order.
+
+        Mapped classes → handled as before (emitted or excluded).
+        Chrome denylist → skipped (no descent).
+        Unknown class(es) → kept as plain text + WARNING (no descent).
+        No class → structural container; descend into its children.
+
+        Never descends into an already-handled element, which prevents
+        double-emission of text already covered by a mapped parent's get_text().
+        """
+        for child in element.children:
+            if not isinstance(child, Tag):
+                continue
+
+            classes: list[str] = child.get("class") or []
+            class_set: set[str] = set(classes)
+
+            # --- Mapped class: emit (or exclude) and do NOT descend ---
+            mapped_cls = self._get_mapped_class(child)
+            if mapped_cls is not None:
+                prefix, include = CLASS_MAP[mapped_cls]
+                if include:
+                    if mapped_cls == "Article":
+                        lines.append(self._format_article(child))
+                    elif mapped_cls == "FinalEdictsArticle":
+                        lines.append(self._format_edict_article(child))
+                    elif mapped_cls == "PreHistory":
+                        text = child.get_text(strip=True)
+                        if text:
+                            lines.append(f"*{text}*")
+                    else:
+                        # Use get_text(" ") + whitespace collapse to de-glue
+                        # heading text from adjacent КЪМ act-name spans.
+                        text = re.sub(r"\s+", " ", child.get_text(" ", strip=True)).strip()
+                        if text:
+                            lines.append(f"{prefix}{text}")
+                    lines.append("")
+                # Whether included or excluded, don't descend.
+                continue
+
+            # --- Chrome denylist: skip entirely ---
+            if class_set & CHROME_DENYLIST:
+                continue
+
+            # --- Unknown class(es): keep as plain text + warn ---
+            if class_set:
+                text = re.sub(r"\s+", " ", child.get_text(" ", strip=True)).strip()
+                if text:
+                    log.warning("unmapped content class kept: %s", classes)
+                    lines.append(text)
+                    lines.append("")
+                continue  # don't descend; text already captured
+
+            # --- No class: structural container, descend ---
+            self._walk(child, lines)
 
     def _get_mapped_class(self, element: Tag) -> str | None:
         """Find the first CSS class that maps to a known role."""
@@ -90,7 +152,7 @@ class HtmlToMarkdown:
 
         walk(element)
         lines = [
-            re.sub(r"[ \t ]+", " ", line).strip()
+            re.sub(r"[ \t ]+", " ", line).strip()
             for line in "".join(parts).split("\n")
         ]
         return "\n\n".join(line for line in lines if line)
