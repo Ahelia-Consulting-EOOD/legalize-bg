@@ -104,3 +104,32 @@ def test_full_zop_produces_valid_markdown():
     assert lines[0].startswith("# ")
     # Should have articles
     assert any("**Чл." in line for line in lines)
+
+
+# --- Task 2: ДР/ПЗР subdivision classes ---
+
+
+def test_additional_provisions_heading_present():
+    md = HtmlToMarkdown().convert(_load_soup("zeu.html"))
+    assert "## Допълнителни разпоредби" in md
+
+
+def test_paragraph_definitions_captured():
+    md = HtmlToMarkdown().convert(_load_soup("zeu.html"))
+    assert "§ 1." in md and "По смисъла" in md
+
+
+def test_final_edicts_heading_variant_captured():
+    # ГПК carries standalone "Заключителни разпоредби КЪМ ..." blocks (class=FinalEdicts)
+    md = HtmlToMarkdown().convert(_load_soup("gpk.html"))
+    assert "Заключителни разпоредби" in md
+
+
+def test_transitional_heading_is_not_glued_to_kym():
+    md = HtmlToMarkdown().convert(_load_soup("gpk.html"))
+    assert "разпоредбиКЪМ" not in md  # de-glued
+
+
+def test_section_paragraph_bodies_present_for_zuo_like():
+    md = HtmlToMarkdown().convert(_load_soup("zop.html"))
+    assert md.count("§") > 20  # §-provisions, not just headings

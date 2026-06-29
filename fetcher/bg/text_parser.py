@@ -1,5 +1,7 @@
 """HTML-to-Markdown Converter — Legalize TextParser interface for lex.bg."""
 
+import re
+
 from bs4 import BeautifulSoup, Tag
 
 
@@ -11,7 +13,10 @@ CLASS_MAP = {
     "Heading": ("### ", True),
     "Section": ("#### ", True),
     "Article": ("", True),           # special handling for bold article number
+    "AdditionalEdicts": ("## ", True),       # Допълнителни разпоредби heading
+    "FinalEdicts": ("## ", True),            # Заключителни разпоредби (КЪМ …) heading
     "TransitionalFinalEdicts": ("## ", True),
+    "FinalEdictsArticle": ("", True),        # § definition / transitional provision bodies
     "HistoryOfDocument": ("", False),  # excluded from body
 }
 
@@ -37,12 +42,16 @@ class HtmlToMarkdown:
 
             if css_class == "Article":
                 lines.append(self._format_article(element))
+            elif css_class == "FinalEdictsArticle":
+                lines.append(self._format_edict_article(element))
             elif css_class == "PreHistory":
                 text = element.get_text(strip=True)
                 if text:
                     lines.append(f"*{text}*")
             else:
-                text = element.get_text(strip=True)
+                # Use get_text(" ", strip=True) + whitespace collapse to de-glue
+                # heading text from adjacent КЪМ act-name spans.
+                text = re.sub(r"\s+", " ", element.get_text(" ", strip=True)).strip()
                 if text:
                     lines.append(f"{prefix}{text}")
 
@@ -56,6 +65,45 @@ class HtmlToMarkdown:
             if cls in CLASS_MAP:
                 return cls
         return None
+
+    def _block_text(self, element: Tag) -> str:
+        """Flatten element text, treating <br> and block tags as paragraph breaks.
+
+        §-provision точки come as <div> children; alineas are separated by <br>.
+        Each becomes its own Markdown paragraph (blank-line separated).
+        """
+        parts: list[str] = []
+
+        def walk(node: Tag) -> None:
+            for child in node.children:
+                if isinstance(child, Tag):
+                    if child.name == "br":
+                        parts.append("\n")
+                    elif child.name in ("div", "p", "li", "tr"):
+                        parts.append("\n")
+                        walk(child)
+                        parts.append("\n")
+                    else:
+                        walk(child)
+                else:
+                    parts.append(str(child))
+
+        walk(element)
+        lines = [
+            re.sub(r"[ \t ]+", " ", line).strip()
+            for line in "".join(parts).split("\n")
+        ]
+        return "\n\n".join(line for line in lines if line)
+
+    def _format_edict_article(self, element: Tag) -> str:
+        """Format a FinalEdictsArticle element with bold § or Чл. number prefix."""
+        text = self._block_text(element)
+        m = re.match(r"^(§\s*\d+[а-яА-Я]?\.)", text) or re.match(
+            r"^(Чл\.\s*\d+[а-яА-Я]?\.)", text
+        )
+        if m:
+            return f"**{m.group(1)}**{text[m.end():]}"
+        return text
 
     def _format_article(self, element: Tag) -> str:
         """Format an article element, bolding the article number."""
