@@ -35,6 +35,7 @@ import yaml
 
 from bootstrap import TreeTransport, _format_author_date, _git_checkout_branch, _unique_slug
 from fetcher.bg.assembler import assemble_file, generate_slug
+from fetcher.bg.coverage import uncovered_legal_text
 from fetcher.bg.client import (
     CloudflareChallenge,
     HttpTransport,
@@ -394,6 +395,7 @@ class RefreshReport:
     otmyana: list[dict] = field(default_factory=list)      # {doc_id, slug, repeal_date}
     missing_not_repealed: list[dict] = field(default_factory=list)  # {doc_id, slug}
     errors: list[dict] = field(default_factory=list)       # {doc_id, error}
+    gate_failures: list[dict] = field(default_factory=list)  # {doc_id, slug, uncovered_chars, top_buckets}
     stale_categories: dict = field(default_factory=dict)
     pages_used: dict = field(default_factory=dict)
 
@@ -403,16 +405,23 @@ class RefreshReport:
             f"POPRAVKA={len(self.popravka)} UNCHANGED={len(self.unchanged)} "
             f"MISSING(kept)={len(self.missing_kept)} OTMYANA={len(self.otmyana)} "
             f"NO-REPEAL={len(self.missing_not_repealed)} "
-            f"ERRORS={len(self.errors)} STALE={self.stale_categories or '{}'}"
+            f"ERRORS={len(self.errors)} GATE-FAIL={len(self.gate_failures)} "
+            f"STALE={self.stale_categories or '{}'}"
         )
 
 
 def _fetch_assemble(client, parser, metadata_parser, doc_id, category):
-    """Fetch + convert + parse one act into (meta, body)."""
+    """Fetch + convert + parse one act into (meta, body, gate).
+
+    gate is the result of uncovered_legal_text(soup, body): a dict with
+    ``uncovered_chars`` and ``buckets``.  Callers must check the gate before
+    writing any .md file — see refresh() for the threshold logic.
+    """
     soup = client.fetch_soup(doc_id)
     body = parser.convert(soup)
+    gate = uncovered_legal_text(soup, body)
     meta = metadata_parser.parse(soup, doc_id=doc_id, category=category)
-    return meta, body
+    return meta, body, gate
 
 
 def refresh(
@@ -490,6 +499,7 @@ def refresh(
 
     state = load_state(state_path)
     used_slugs = seed_used_slugs(corpus)
+    threshold = int(os.environ.get("LEGALIZE_COVERAGE_THRESHOLD", 64))
 
     # --- ADDED: brand-new acts -> [nova] ---
     for doc_id in sorted(added_ids):
@@ -502,9 +512,28 @@ def refresh(
         # categories land in directories index/build.py never scans.
         corpus_dir = CATEGORY_DIRS.get(entry["category"], entry["category"])
         try:
-            meta, body = _fetch_assemble(
+            meta, body, gate = _fetch_assemble(
                 client, parser, metadata_parser, doc_id, corpus_dir)
             title = meta.get("titulo") or entry["name"]
+            if gate["uncovered_chars"] > threshold:
+                slug_hint = generate_slug(title) or str(doc_id)
+                record = {
+                    "doc_id": doc_id,
+                    "slug": slug_hint,
+                    "title": title,
+                    "uncovered_chars": gate["uncovered_chars"],
+                    "top_buckets": dict(
+                        sorted(gate["buckets"].items(), key=lambda x: -x[1])[:5]
+                    ),
+                }
+                report.gate_failures.append(record)
+                state[doc_id] = "gate-fail"
+                save_state(state_path, state)
+                log.warning(
+                    "coverage gate FAIL [nova] %s (doc_id=%d) uncovered_chars=%d — skipping write",
+                    title, doc_id, gate["uncovered_chars"],
+                )
+                continue
             slug = mint_slug(meta.get("titulo", ""), doc_id, used_slugs)
             filepath = output_dir / corpus_dir / f"{slug}.md"
             filepath.parent.mkdir(parents=True, exist_ok=True)
@@ -529,8 +558,27 @@ def refresh(
             continue
         ce = corpus[doc_id]
         try:
-            meta, body = _fetch_assemble(
+            meta, body, gate = _fetch_assemble(
                 client, parser, metadata_parser, doc_id, ce.category)
+            title = meta.get("titulo") or ce.frontmatter.get("titulo") or f"doc {doc_id}"
+            if gate["uncovered_chars"] > threshold:
+                record = {
+                    "doc_id": doc_id,
+                    "slug": ce.slug,
+                    "title": title,
+                    "uncovered_chars": gate["uncovered_chars"],
+                    "top_buckets": dict(
+                        sorted(gate["buckets"].items(), key=lambda x: -x[1])[:5]
+                    ),
+                }
+                report.gate_failures.append(record)
+                state[doc_id] = "gate-fail"
+                save_state(state_path, state)
+                log.warning(
+                    "coverage gate FAIL [existing] %s (doc_id=%d) uncovered_chars=%d — skipping write",
+                    title, doc_id, gate["uncovered_chars"],
+                )
+                continue
             candidate = assemble_file(meta, body)
             fresh_hist = meta.get("amendment_history") or []
             grew = history_grew(ce.amendment_history, fresh_hist)
@@ -542,7 +590,6 @@ def refresh(
                 # SAME slug — slug stability is the #1 invariant.
                 ce.path.write_text(candidate, encoding="utf-8")
                 cdate = latest_amendment_date(fresh_hist) or meta.get("fecha_publicacion")
-                title = meta.get("titulo") or ce.frontmatter.get("titulo") or f"doc {doc_id}"
                 _git_commit_typed(ce.path, disposition, title, doc_id, cdate, output_dir)
                 bucket = report.reforma if disposition == "reforma" else report.popravka
                 bucket.append({"doc_id": doc_id, "slug": ce.slug})
@@ -595,6 +642,17 @@ def refresh(
             report.errors.append({"doc_id": doc_id, "error": str(e)})
             state[doc_id] = "error"
             save_state(state_path, state)
+
+    gate_report_path = output_dir / "gate-report.json"
+    gate_report_path.write_text(
+        json.dumps(report.gate_failures, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    log.info(
+        "coverage gate: %d/%d acts failed",
+        len(report.gate_failures),
+        len(added_ids) + len(existing_ids),
+    )
 
     if hasattr(client, "close"):
         client.close()

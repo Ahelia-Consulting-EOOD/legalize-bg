@@ -1,11 +1,14 @@
+import json
 import os
 import pathlib
 import subprocess
 
 import pytest
+from bs4 import BeautifulSoup
 
 from bootstrap import _format_author_date, _git_commit, _git_push, _unique_slug
 from fetcher.bg.client import LexBgClient
+from fetcher.bg.discovery import CatalogCrawler
 from fetcher.bg.text_parser import HtmlToMarkdown
 from fetcher.bg.metadata import MetadataParser
 from fetcher.bg.assembler import assemble_file, generate_slug
@@ -224,3 +227,94 @@ def test_git_commit_handles_null_pub_date(tmp_path):
     ).stdout
     assert "Source-Date: unknown" in body
     assert "Source-Date: None" not in body
+
+
+# ---------------------------------------------------------------------------
+# Coverage gate tests (Task 5)
+# ---------------------------------------------------------------------------
+
+
+def _make_soup_from_fixture(name: str) -> BeautifulSoup:
+    html = (FIXTURES / name).read_bytes().decode("cp1251")
+    return BeautifulSoup(html, "lxml")
+
+
+def test_coverage_gate_blocks_write_on_drop(tmp_path, monkeypatch):
+    """Bootstrap: a parser that drops most content triggers the coverage gate.
+
+    The act's .md file must NOT be written, and the failure must appear
+    in gate-report.json next to the output directory.
+    """
+    from bootstrap import bootstrap
+
+    # Serve zop.html soup for any fetch
+    fake_soup = _make_soup_from_fixture("zop.html")
+    monkeypatch.setattr(LexBgClient, "fetch_soup", lambda self, doc_id: fake_soup)
+
+    # Crawler returns a single-act catalog
+    fake_catalog = [{"doc_id": 9001, "name": "Закон за тест", "category": "laws"}]
+    monkeypatch.setattr(CatalogCrawler, "crawl_all", lambda self, t: fake_catalog)
+
+    # Parser stub: drops almost all content → uncovered_chars >> 64
+    monkeypatch.setattr(
+        HtmlToMarkdown, "convert",
+        lambda self, soup: "## Заглавие\n\nМалко текст.",
+    )
+
+    # No real git operations needed: gate fires before write/commit
+    # But subprocess.run is still called for git setup; monkeypatch to no-op.
+    monkeypatch.setattr(
+        subprocess, "run",
+        lambda *a, **k: subprocess.CompletedProcess(a[0], 0, stdout=b"", stderr=b""),
+    )
+
+    (tmp_path / "laws").mkdir()
+    bootstrap(tmp_path, db_path=":memory:")
+
+    # (a) .md must NOT be written
+    written = list((tmp_path / "laws").glob("*.md"))
+    assert written == [], f"Expected no .md written, got: {written}"
+
+    # (b) failure must appear in gate-report.json
+    report_path = tmp_path / "gate-report.json"
+    assert report_path.exists(), "gate-report.json must be written"
+    failures = json.loads(report_path.read_text(encoding="utf-8"))
+    assert len(failures) == 1, f"Expected 1 gate failure, got: {failures}"
+    assert failures[0]["doc_id"] == 9001
+    assert failures[0]["uncovered_chars"] > 64
+
+
+def test_coverage_gate_allows_complete_act(tmp_path, monkeypatch):
+    """Bootstrap: a fully-captured act passes the gate and its .md is written."""
+    from bootstrap import bootstrap
+
+    fake_soup = _make_soup_from_fixture("zop.html")
+    monkeypatch.setattr(LexBgClient, "fetch_soup", lambda self, doc_id: fake_soup)
+
+    fake_catalog = [{"doc_id": 9002, "name": "Закон за тест 2", "category": "laws"}]
+    monkeypatch.setattr(CatalogCrawler, "crawl_all", lambda self, t: fake_catalog)
+
+    # Real parser — zop.html should pass the gate (uncovered_chars ≤ 64)
+    # (HtmlToMarkdown not monkeypatched)
+
+    # Monkeypatch git to avoid real subprocess in tmp_path
+    def fake_git(cmd, cwd=None, check=False, capture_output=False,
+                 text=False, env=None, **kw):
+        if isinstance(cmd, list) and "rev-parse" in cmd and "HEAD" in cmd:
+            return subprocess.CompletedProcess(cmd, 0, stdout=b"deadbeef\n", stderr=b"")
+        return subprocess.CompletedProcess(cmd, 0, stdout=b"", stderr=b"")
+
+    monkeypatch.setattr(subprocess, "run", fake_git)
+
+    (tmp_path / "laws").mkdir()
+    bootstrap(tmp_path, db_path=":memory:")
+
+    # .md must be written
+    written = list((tmp_path / "laws").glob("*.md"))
+    assert len(written) == 1, f"Expected exactly one .md, got: {written}"
+
+    # gate-report.json must exist with 0 failures
+    report_path = tmp_path / "gate-report.json"
+    assert report_path.exists(), "gate-report.json must always be written"
+    failures = json.loads(report_path.read_text(encoding="utf-8"))
+    assert failures == [], f"Expected no gate failures, got: {failures}"
