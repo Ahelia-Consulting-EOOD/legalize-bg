@@ -155,6 +155,7 @@ def test_refresh_added_existing_missing_end_to_end(tmp_path):
     report = refresh(
         tmp_path, branch=None, crawl_config=crawl_cfg, today_iso="2026-06-21",
         tree_transport=tree, client=client, parser=parser, metadata_parser=meta,
+        coverage_gate=lambda soup, body: {"uncovered_chars": 0, "buckets": {}},
     )
 
     # Partition outcomes
@@ -199,6 +200,7 @@ def test_refresh_added_nonlaws_act_lands_in_corpus_dir_not_tree_slug(tmp_path):
         tmp_path, branch=None, crawl_config=crawl_cfg, today_iso="2026-06-21",
         tree_transport=tree, client=FakeClient([700]),
         parser=FakeParser({700: "Член 1.\n"}), metadata_parser=FakeMeta({700: new_700}),
+        coverage_gate=lambda soup, body: {"uncovered_chars": 0, "buckets": {}},
     )
     assert [a["doc_id"] for a in report.added] == [700]
     slug = report.added[0]["slug"]
@@ -220,6 +222,7 @@ def test_refresh_unchanged_act_is_skipped_no_commit(tmp_path):
         tmp_path, branch=None, crawl_config={"laws": 1}, today_iso="2026-06-21",
         tree_transport=tree, client=FakeClient([100]),
         parser=FakeParser({100: body}), metadata_parser=FakeMeta({100: m}),
+        coverage_gate=lambda soup, body: {"uncovered_chars": 0, "buckets": {}},
     )
 
     assert report.unchanged == [100]
@@ -264,6 +267,7 @@ def test_refresh_popravka_when_body_changed_history_did_not(tmp_path):
         tree_transport=tree, client=FakeClient([100]),
         parser=FakeParser({100: "Член 1. Текст без грешка.\n"}),
         metadata_parser=FakeMeta({100: m}),
+        coverage_gate=lambda soup, body: {"uncovered_chars": 0, "buckets": {}},
     )
     assert [p["doc_id"] for p in report.popravka] == [100]
     assert report.reforma == []

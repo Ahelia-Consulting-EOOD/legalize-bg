@@ -410,16 +410,22 @@ class RefreshReport:
         )
 
 
-def _fetch_assemble(client, parser, metadata_parser, doc_id, category):
+def _fetch_assemble(client, parser, metadata_parser, doc_id, category,
+                    coverage_gate=uncovered_legal_text):
     """Fetch + convert + parse one act into (meta, body, gate).
 
-    gate is the result of uncovered_legal_text(soup, body): a dict with
+    gate is the result of coverage_gate(soup, body): a dict with
     ``uncovered_chars`` and ``buckets``.  Callers must check the gate before
     writing any .md file — see refresh() for the threshold logic.
+
+    coverage_gate is injectable so orchestration tests can pass a no-op lambda
+    (their FakeClient returns an opaque int token, not a real BeautifulSoup).
+    The real default gate (uncovered_legal_text) must never be weakened in
+    production.
     """
     soup = client.fetch_soup(doc_id)
     body = parser.convert(soup)
-    gate = uncovered_legal_text(soup, body)
+    gate = coverage_gate(soup, body)
     meta = metadata_parser.parse(soup, doc_id=doc_id, category=category)
     return meta, body, gate
 
@@ -439,6 +445,7 @@ def refresh(
     client=None,
     parser=None,
     metadata_parser=None,
+    coverage_gate=uncovered_legal_text,
 ) -> RefreshReport:
     """Re-photograph lex.bg and refresh the corpus as a fresh snapshot.
 
@@ -513,7 +520,8 @@ def refresh(
         corpus_dir = CATEGORY_DIRS.get(entry["category"], entry["category"])
         try:
             meta, body, gate = _fetch_assemble(
-                client, parser, metadata_parser, doc_id, corpus_dir)
+                client, parser, metadata_parser, doc_id, corpus_dir,
+                coverage_gate=coverage_gate)
             title = meta.get("titulo") or entry["name"]
             if gate["uncovered_chars"] > threshold:
                 slug_hint = generate_slug(title) or str(doc_id)
@@ -559,7 +567,8 @@ def refresh(
         ce = corpus[doc_id]
         try:
             meta, body, gate = _fetch_assemble(
-                client, parser, metadata_parser, doc_id, ce.category)
+                client, parser, metadata_parser, doc_id, ce.category,
+                coverage_gate=coverage_gate)
             title = meta.get("titulo") or ce.frontmatter.get("titulo") or f"doc {doc_id}"
             if gate["uncovered_chars"] > threshold:
                 record = {
