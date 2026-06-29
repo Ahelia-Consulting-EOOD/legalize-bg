@@ -182,13 +182,20 @@ def uncovered_legal_text(
             # Too short to be meaningful — ignore to avoid false positives
             continue
 
-        # For long strings use just the first 40 chars as the lookup signature
-        # (the full string might have trailing punctuation or whitespace that
-        # differs between source and output; the prefix is enough to confirm
-        # the block was emitted).
-        signature = t[:40] if len(t) >= 40 else t
+        # Full-text coverage check.
+        # For nodes up to 200 chars: require the exact normalized string to appear
+        # in M.  This eliminates the 40-char false-negative where two legal elements
+        # share an identical opener and the dropped one is incorrectly considered
+        # "covered" because the other element's prefix happens to match in M.
+        # For pathologically long nodes (> 200 chars): require both the first 100
+        # and last 100 chars to appear in M (handles minor trailing punctuation
+        # differences while still anchoring the full block).
+        if len(t) <= 200:
+            covered = t in M
+        else:
+            covered = (t[:100] in M) and (t[-100:] in M)
 
-        if signature in M:
+        if covered:
             continue  # covered
 
         # ---- UNCOVERED ----
