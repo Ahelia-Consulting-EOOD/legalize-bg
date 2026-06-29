@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 
 from fetcher.bg.client import LexBgClient, HttpTransport, RateLimitedSession
-from fetcher.bg.coverage import uncovered_legal_text
+from fetcher.bg.coverage import make_gate_record, uncovered_legal_text
 from fetcher.bg.discovery import CatalogCrawler, CATEGORY_DIRS
 from fetcher.bg.text_parser import HtmlToMarkdown
 from fetcher.bg.metadata import MetadataParser
@@ -106,7 +106,15 @@ def bootstrap(
         db.close()
         return catalog
 
-    threshold = int(os.environ.get("LEGALIZE_COVERAGE_THRESHOLD", 64))
+    _threshold_raw = os.environ.get("LEGALIZE_COVERAGE_THRESHOLD", "64")
+    try:
+        threshold = int(_threshold_raw)
+    except (ValueError, TypeError):
+        log.warning(
+            "Invalid LEGALIZE_COVERAGE_THRESHOLD value %r — falling back to default 64",
+            _threshold_raw,
+        )
+        threshold = 64
     gate_failures: list[dict] = []
     errors = []
     used_slugs: set[str] = set()
@@ -127,15 +135,8 @@ def bootstrap(
 
             if gate["uncovered_chars"] > threshold:
                 slug_hint = generate_slug(meta.get("titulo", "")) or str(doc_id)
-                gate_failures.append({
-                    "doc_id": doc_id,
-                    "slug": slug_hint,
-                    "title": meta.get("titulo") or name,
-                    "uncovered_chars": gate["uncovered_chars"],
-                    "top_buckets": dict(
-                        sorted(gate["buckets"].items(), key=lambda x: -x[1])[:5]
-                    ),
-                })
+                title = meta.get("titulo") or name
+                gate_failures.append(make_gate_record(doc_id, slug_hint, title, gate))
                 log.warning(
                     "coverage gate FAIL: %s (doc_id=%d) uncovered_chars=%d — skipping write",
                     meta.get("titulo") or name, doc_id, gate["uncovered_chars"],

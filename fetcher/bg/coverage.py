@@ -19,6 +19,20 @@ reflects that the parser dropped it as a unit.
 
 DEFAULT_CHROME mirrors CHROME_DENYLIST from text_parser, extended with CLASS_MAP
 excluded entries (e.g. HistoryOfDocument).  Pass a custom set to override.
+
+SHARED-DENYLIST SEAM GUARANTEE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The parser (text_parser.HtmlToMarkdown) and this gate share the same
+CHROME_DENYLIST.  Both skip the *entire* subtree rooted at any element whose
+CSS class is in that denylist.  This design has one invisible boundary: text
+under a denylisted ancestor is skipped by BOTH the parser and the gate, so if a
+chrome wrapper class were ever applied to an element that directly wraps real
+legal text (a spine element such as Article or FinalEdictsArticle), neither pass
+would see the gap.  The standing test
+``tests/fetcher/bg/test_coverage.py::test_denylist_seam_no_spine_inside_chrome``
+asserts this condition does not hold across all 6 act fixtures today.  If a new
+act or layout change causes that test to fail, the fix is a targeted denylist
+exception (not a blanket class addition) and requires IMPLEMENTATION-PREFLIGHT.
 """
 
 import re
@@ -26,7 +40,7 @@ from collections import defaultdict
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
 
-from fetcher.bg.text_parser import CHROME_DENYLIST, CLASS_MAP, HtmlToMarkdown
+from fetcher.bg.text_parser import CHROME_DENYLIST, CLASS_MAP, content_region
 
 # ---------------------------------------------------------------------------
 # Public constant
@@ -98,6 +112,31 @@ def _nearest_legal_ancestor(node: NavigableString, region_id: int) -> Tag | None
 # ---------------------------------------------------------------------------
 
 
+def make_gate_record(doc_id: int, slug: str, title: str, gate: dict) -> dict:
+    """Build the canonical gate-failure record written to gate-report.json.
+
+    Extracted to avoid the three-site duplication in bootstrap.py and refresh.py.
+    The record shape is stable (protected surface — any change needs IMPLEMENTATION-PREFLIGHT):
+
+        {
+            "doc_id": int,
+            "slug": str,
+            "title": str,
+            "uncovered_chars": int,
+            "top_buckets": {class: count, ...}  # top 5 by descending count
+        }
+    """
+    return {
+        "doc_id": doc_id,
+        "slug": slug,
+        "title": title,
+        "uncovered_chars": gate["uncovered_chars"],
+        "top_buckets": dict(
+            sorted(gate["buckets"].items(), key=lambda x: -x[1])[:5]
+        ),
+    }
+
+
 def uncovered_legal_text(
     soup: BeautifulSoup,
     markdown: str,
@@ -129,7 +168,7 @@ def uncovered_legal_text(
         Mapping from nearest-ancestor CSS class → uncovered char count, so callers
         can identify which source elements caused the gap.
     """
-    region, _ = HtmlToMarkdown()._content_region(soup)
+    region, _ = content_region(soup)
 
     # Normalise the Markdown output once; all node checks run against this.
     M = _normalize(markdown)

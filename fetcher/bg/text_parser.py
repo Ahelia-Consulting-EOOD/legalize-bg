@@ -36,6 +36,35 @@ CHROME_DENYLIST: frozenset[str] = frozenset({
 _SPINE: frozenset[str] = frozenset(c for c, (_, inc) in CLASS_MAP.items() if inc)
 
 
+def content_region(soup: BeautifulSoup) -> tuple[Tag, bool]:
+    """Return the LCA of all spine elements, scoping the walk to legal content.
+
+    Module-level function so that fetcher.bg.coverage (and any future consumer)
+    can import it directly without going through the private ``_content_region``
+    method.  ``HtmlToMarkdown._content_region`` delegates to this function so
+    the implementation lives in exactly one place.
+
+    Restricts the keep-by-default pass to the legal-content region so that page
+    navigation, header, and footer chrome outside the LCA is never emitted.
+
+    Returns ``(region, has_spine)``.  When no spine is found, returns
+    ``(soup, False)`` so the caller knows not to apply the keep-unknown-by-default
+    rule.
+    """
+    spine_els = [
+        e for e in soup.find_all(True)
+        if set(e.get("class") or []) & _SPINE
+    ]
+    if not spine_els:
+        return soup, False  # type: ignore[return-value]
+    chains = [set(id(p) for p in el.parents) for el in spine_els]
+    common = set.intersection(*chains) if chains else set()
+    for p in spine_els[0].parents:
+        if id(p) in common:
+            return p, True  # type: ignore[return-value]
+    return soup, True  # type: ignore[return-value]
+
+
 class HtmlToMarkdown:
     """Converts lex.bg HTML DOM to structured Markdown."""
 
@@ -47,26 +76,13 @@ class HtmlToMarkdown:
         return "\n".join(lines).strip() + "\n"
 
     def _content_region(self, soup: BeautifulSoup) -> tuple[Tag, bool]:
-        """Return the LCA of all spine elements, scoping the walk to legal content.
+        """Delegate to the module-level content_region() function.
 
-        Restricts the keep-by-default pass to the legal-content region so that
-        page navigation, header, and footer chrome outside the LCA is never emitted.
-
-        Returns (region, has_spine).  When no spine is found, returns (soup, False)
-        so the caller knows not to apply the keep-unknown-by-default rule.
+        Kept for backward compatibility — external callers that reach into the
+        private method continue to work, but the implementation now lives in
+        the public content_region() function so coverage.py can import it cleanly.
         """
-        spine_els = [
-            e for e in soup.find_all(True)
-            if set(e.get("class") or []) & _SPINE
-        ]
-        if not spine_els:
-            return soup, False  # type: ignore[return-value]
-        chains = [set(id(p) for p in el.parents) for el in spine_els]
-        common = set.intersection(*chains) if chains else set()
-        for p in spine_els[0].parents:
-            if id(p) in common:
-                return p, True  # type: ignore[return-value]
-        return soup, True  # type: ignore[return-value]
+        return content_region(soup)
 
     def _walk(self, element: Tag, lines: list[str], *, allow_unknown_keep: bool = True) -> None:
         """Walk element's direct children and emit content in document order.

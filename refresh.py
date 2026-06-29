@@ -35,7 +35,7 @@ import yaml
 
 from bootstrap import TreeTransport, _format_author_date, _git_checkout_branch, _unique_slug
 from fetcher.bg.assembler import assemble_file, generate_slug
-from fetcher.bg.coverage import uncovered_legal_text
+from fetcher.bg.coverage import make_gate_record, uncovered_legal_text
 from fetcher.bg.client import (
     CloudflareChallenge,
     HttpTransport,
@@ -506,7 +506,28 @@ def refresh(
 
     state = load_state(state_path)
     used_slugs = seed_used_slugs(corpus)
-    threshold = int(os.environ.get("LEGALIZE_COVERAGE_THRESHOLD", 64))
+    _threshold_raw = os.environ.get("LEGALIZE_COVERAGE_THRESHOLD", "64")
+    try:
+        threshold = int(_threshold_raw)
+    except (ValueError, TypeError):
+        log.warning(
+            "Invalid LEGALIZE_COVERAGE_THRESHOLD value %r — falling back to default 64",
+            _threshold_raw,
+        )
+        threshold = 64
+
+    # Load prior gate-report so that doc_ids already classified as gate-fail
+    # (and therefore SKIPPED on resume) still appear in the gate-report.json
+    # we write at the end of this run.  Without this merge, a resumed run would
+    # silently erase prior gate-fail entries for skipped docs (I3 fix).
+    gate_report_path = output_dir / "gate-report.json"
+    prior_gate_by_doc: dict[int, dict] = {}
+    if gate_report_path.exists():
+        try:
+            for rec in json.loads(gate_report_path.read_text(encoding="utf-8")):
+                prior_gate_by_doc[int(rec["doc_id"])] = rec
+        except Exception:  # noqa: BLE001 — malformed prior report; start fresh
+            pass
 
     # --- ADDED: brand-new acts -> [nova] ---
     for doc_id in sorted(added_ids):
@@ -525,16 +546,7 @@ def refresh(
             title = meta.get("titulo") or entry["name"]
             if gate["uncovered_chars"] > threshold:
                 slug_hint = generate_slug(title) or str(doc_id)
-                record = {
-                    "doc_id": doc_id,
-                    "slug": slug_hint,
-                    "title": title,
-                    "uncovered_chars": gate["uncovered_chars"],
-                    "top_buckets": dict(
-                        sorted(gate["buckets"].items(), key=lambda x: -x[1])[:5]
-                    ),
-                }
-                report.gate_failures.append(record)
+                report.gate_failures.append(make_gate_record(doc_id, slug_hint, title, gate))
                 state[doc_id] = "gate-fail"
                 save_state(state_path, state)
                 log.warning(
@@ -571,16 +583,7 @@ def refresh(
                 coverage_gate=coverage_gate)
             title = meta.get("titulo") or ce.frontmatter.get("titulo") or f"doc {doc_id}"
             if gate["uncovered_chars"] > threshold:
-                record = {
-                    "doc_id": doc_id,
-                    "slug": ce.slug,
-                    "title": title,
-                    "uncovered_chars": gate["uncovered_chars"],
-                    "top_buckets": dict(
-                        sorted(gate["buckets"].items(), key=lambda x: -x[1])[:5]
-                    ),
-                }
-                report.gate_failures.append(record)
+                report.gate_failures.append(make_gate_record(doc_id, ce.slug, title, gate))
                 state[doc_id] = "gate-fail"
                 save_state(state_path, state)
                 log.warning(
@@ -652,15 +655,24 @@ def refresh(
             state[doc_id] = "error"
             save_state(state_path, state)
 
-    gate_report_path = output_dir / "gate-report.json"
+    # Merge current-run gate failures with prior gate-fail entries that were
+    # skipped this run (still have state=="gate-fail").  This prevents a resumed
+    # run from silently under-reporting known coverage problems (I3 fix).
+    current_fail_ids = {r["doc_id"] for r in report.gate_failures}
+    merged_failures = list(report.gate_failures)
+    for gid, disposition in state.items():
+        if disposition == "gate-fail" and gid not in current_fail_ids:
+            if gid in prior_gate_by_doc:
+                merged_failures.append(prior_gate_by_doc[gid])
     gate_report_path.write_text(
-        json.dumps(report.gate_failures, ensure_ascii=False, indent=2),
+        json.dumps(merged_failures, ensure_ascii=False, indent=2),
         encoding="utf-8",
     )
     log.info(
-        "coverage gate: %d/%d acts failed",
+        "coverage gate: %d/%d acts failed (%d carried from prior run)",
         len(report.gate_failures),
         len(added_ids) + len(existing_ids),
+        len(merged_failures) - len(report.gate_failures),
     )
 
     if hasattr(client, "close"):
