@@ -1,3 +1,4 @@
+import logging
 import pathlib
 import pytest
 from bs4 import BeautifulSoup
@@ -150,3 +151,26 @@ def test_known_chrome_class_is_excluded():
             '<p class="buttons">ДОБАВИ В МОИТЕ АКТОВЕ</p>')
     md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
     assert "ДОБАВИ В МОИТЕ АКТОВЕ" not in md
+
+
+# --- Task 4: Portion(Дял) heading, no-spine fail-safe, warning assertion ---
+
+
+def test_division_portion_heading_captured():
+    md = HtmlToMarkdown().convert(_load_soup("gpk.html"))
+    assert "## Дял" in md          # Дял (Division) headings now formatted, not plain text
+    assert md.count("## Дял") >= 4
+
+
+def test_no_spine_does_not_inject_page_chrome():
+    html = '<div class="wrapper"><div class="content">НОВИНИ СПРАВОЧНИК ФОРУМ</div></div>'
+    md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
+    assert "НОВИНИ" not in md
+
+
+def test_warning_emitted_for_kept_unmapped_class(caplog):
+    html = '<div class="TitleDocument">Z</div><div class="SomeNovelEdict">нова разпоредба тук</div>'
+    with caplog.at_level(logging.WARNING):
+        md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
+    assert "нова разпоредба тук" in md
+    assert any("SomeNovelEdict" in (r.getMessage()) for r in caplog.records)

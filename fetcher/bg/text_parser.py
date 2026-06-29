@@ -11,6 +11,7 @@ log = logging.getLogger(__name__)
 CLASS_MAP = {
     "TitleDocument": ("# ", True),
     "PreHistory": ("*", True),       # italic
+    "Portion": ("## ", True),        # Дял (Division) — top-level division like Part
     "Part": ("## ", True),
     "Heading": ("### ", True),
     "Section": ("#### ", True),
@@ -27,7 +28,7 @@ CLASS_MAP = {
 # default (with a warning) so unknown legal classes surface rather than vanish.
 CHROME_DENYLIST: frozenset[str] = frozenset({
     "buttons", "boxi", "boxinb", "picHasEditions", "picRefsFromActs",
-    "HistoryOfDocument", "HistoryItem", "HistoryReference",
+    "HistoryItem", "HistoryReference",
     "NewDocReference", "SameDocReference", "LegalDocReference", "contextads",
 })
 
@@ -41,35 +42,40 @@ class HtmlToMarkdown:
     def convert(self, soup: BeautifulSoup) -> str:
         """Convert parsed HTML to Markdown body (no frontmatter)."""
         lines: list[str] = []
-        region = self._content_region(soup)
-        self._walk(region, lines)
+        region, has_spine = self._content_region(soup)
+        self._walk(region, lines, allow_unknown_keep=has_spine)
         return "\n".join(lines).strip() + "\n"
 
-    def _content_region(self, soup: BeautifulSoup) -> Tag:
+    def _content_region(self, soup: BeautifulSoup) -> tuple[Tag, bool]:
         """Return the LCA of all spine elements, scoping the walk to legal content.
 
         Restricts the keep-by-default pass to the legal-content region so that
         page navigation, header, and footer chrome outside the LCA is never emitted.
+
+        Returns (region, has_spine).  When no spine is found, returns (soup, False)
+        so the caller knows not to apply the keep-unknown-by-default rule.
         """
         spine_els = [
             e for e in soup.find_all(True)
             if set(e.get("class") or []) & _SPINE
         ]
         if not spine_els:
-            return soup  # type: ignore[return-value]
+            return soup, False  # type: ignore[return-value]
         chains = [set(id(p) for p in el.parents) for el in spine_els]
         common = set.intersection(*chains) if chains else set()
         for p in spine_els[0].parents:
             if id(p) in common:
-                return p  # type: ignore[return-value]
-        return soup  # type: ignore[return-value]
+                return p, True  # type: ignore[return-value]
+        return soup, True  # type: ignore[return-value]
 
-    def _walk(self, element: Tag, lines: list[str]) -> None:
+    def _walk(self, element: Tag, lines: list[str], *, allow_unknown_keep: bool = True) -> None:
         """Walk element's direct children and emit content in document order.
 
         Mapped classes → handled as before (emitted or excluded).
         Chrome denylist → skipped (no descent).
-        Unknown class(es) → kept as plain text + WARNING (no descent).
+        Unknown class(es) → kept as plain text + WARNING when allow_unknown_keep
+            is True (i.e. the page has a legal spine); skipped silently when False
+            so that pages without any legal content never inject site chrome.
         No class → structural container; descend into its children.
 
         Never descends into an already-handled element, which prevents
@@ -109,17 +115,18 @@ class HtmlToMarkdown:
             if class_set & CHROME_DENYLIST:
                 continue
 
-            # --- Unknown class(es): keep as plain text + warn ---
+            # --- Unknown class(es): keep as plain text + warn (only when spine found) ---
             if class_set:
-                text = re.sub(r"\s+", " ", child.get_text(" ", strip=True)).strip()
-                if text:
-                    log.warning("unmapped content class kept: %s", classes)
-                    lines.append(text)
-                    lines.append("")
-                continue  # don't descend; text already captured
+                if allow_unknown_keep:
+                    text = re.sub(r"\s+", " ", child.get_text(" ", strip=True)).strip()
+                    if text:
+                        log.warning("unmapped content class kept: %s", classes)
+                        lines.append(text)
+                        lines.append("")
+                continue  # don't descend; text already captured (or silently skipped)
 
             # --- No class: structural container, descend ---
-            self._walk(child, lines)
+            self._walk(child, lines, allow_unknown_keep=allow_unknown_keep)
 
     def _get_mapped_class(self, element: Tag) -> str | None:
         """Find the first CSS class that maps to a known role."""
