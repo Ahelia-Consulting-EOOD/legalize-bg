@@ -1,0 +1,260 @@
+{
+ "slug": "nakazatelno-protsesualen-kodeks",
+ "round": 2,
+ "blocks": 3490,
+ "sections": 120,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1605,
+    1606
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2294,
+    2295
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2310,
+    2311
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2610
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    115
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    266
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    600
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    1265
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    1271
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    1296
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    1399
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2094
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2564
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2572
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2830
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3169
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   1605,
+   1606,
+   2294,
+   2295,
+   2310,
+   2311,
+   2610
+  ],
+  "D-072/8": [
+   3199
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 21,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 14,
+  "chapter_heading": 86,
+  "article_title": 558,
+  "article_head": 558,
+  "alinea": 1194,
+  "item": 643,
+  "section_heading": 102,
+  "letter": 29,
+  "continuation": 2,
+  "editorial_note": 72,
+  "repeal_note": 3,
+  "provisions_heading": 104,
+  "paragraph_sign": 89,
+  "quoted": 11,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 4,
+   "text": "Таблица за съответствие между разпоредбите на НПК (нов) и НПК (отм.)",
+   "note": "lex.bg link to correspondence table; could be preamble"
+  },
+  {
+   "block": 3199,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 3472,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg panel of related EU acts, not part of the act"
+  },
+  {
+   "block": 3473,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3474,
+   "text": "ДИРЕКТИВА (ЕС) 2018/1673 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3475,
+   "text": "ДИРЕКТИВА (ЕС) 2016/1919 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 октомври 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3476,
+   "text": "ДИРЕКТИВА (ЕС) 2016/800 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 май 2016 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3477,
+   "text": "ДИРЕКТИВА (EС) 2016/343 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 март 2016 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3478,
+   "text": "ДИРЕКТИВА 2014/57/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 г. от",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3479,
+   "text": "ДИРЕКТИВА 2014/42/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 3 април 2014 година",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3480,
+   "text": "ДИРЕКТИВА 2013/48/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 22 октомври 2013 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3481,
+   "text": "ДИРЕКТИВА 2012/29/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 2012 г.",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3482,
+   "text": "ДИРЕКТИВА 2012/13/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 22 май 2012 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3483,
+   "text": "ДИРЕКТИВА 2011/99/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 2011 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3484,
+   "text": "ДИРЕКТИВА 2010/64/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 октомври 2010 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3485,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3486,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/1939 НА СЪВЕТА от 12 октомври 2017 година за установяване на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3487,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3488,
+   "text": "РАМКОВО РЕШЕНИЕ 2009/948/ПВР НА СЪВЕТА от 30 ноември 2009 г. относно предотвратя",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 3489,
+   "text": "РАМКОВО РЕШЕНИЕ 2002/465/ПВР НА СЪВЕТА от 13 юни 2002 година относно съвместните",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 1538
+}
