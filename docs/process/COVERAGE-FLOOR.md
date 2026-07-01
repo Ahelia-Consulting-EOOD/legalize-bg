@@ -16,7 +16,8 @@ This file defines what must eventually be covered with no silent omissions.
 ## Completeness rule
 
 - required floor:
-  - **All 5 lex.bg categories:** laws (~394), codes (~24), ordinances (~2,604), regulations (~490), implementing regs (~61) = ~3,574 total acts
+  - **All 5 lex.bg BROWSABLE categories:** laws (~394), codes (~24), ordinances (~2,604), regulations (~490), implementing regs (~61) = ~3,574 total acts
+    - **KNOWN COVERAGE GAP (D-049 / FR-025, finding 2026-07-02):** other act-types — ПМС, тарифи, инструкции, решения на МС, разпореждания, укази — are NOT covered. This is not silent: lex.bg exposes only the 5 browsable trees above; those act-types are not tree-enumerable there (`docs/research/2026-07-02-fr025-category-gap.md`). Sourcing is redirected to the ДВ acquisition layer (FR-024) with on-demand per-act capture as the interim posture; a comprehensive delegation-chain discovery is to be brainstormed. Until then this floor covers ONLY the 5 browsable categories, by documented limitation, not omission.
   - **All 6 phases must eventually ship:** 1a, 1b, 2, 3, 4/4v, 5, 6a-6c
   - **MCP server** with at minimum: `get_law`, `search`, `get_article` tools (Phase 1b); extended with `history`, `diff`, `amendments_in_period` (Phase 2+); extended with `get_municipal_ordinance` (Phase 6)
     - **Phase scoping (per D-027):** Phase 1b.1 ships exactly 3 tools (`get_law`, `search`, `get_article`); Phase 2 adds the other 3 (`history`, `diff`, `amendments_in_period`) once the temporal index (FR-001) is populated. The `get_municipal_ordinance` tool is Phase 6.
