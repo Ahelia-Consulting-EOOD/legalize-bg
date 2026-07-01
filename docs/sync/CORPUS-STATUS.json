@@ -1,0 +1,13 @@
+{
+  "corpus_trustworthy": true,
+  "safe_for_full_content_consumption": true,
+  "d047_remediated": true,
+  "remediated_at": "2026-07-01",
+  "remediation_commit": "25a79389662afdc7585a697058948fc627135071",
+  "remediation_tag": "corpus-d047-remediated",
+  "acts_indexed": 3600,
+  "acts_with_definitions": 1826,
+  "acts_with_definitions_before": 31,
+  "notes": "D-047 parser data-loss fully remediated: Допълнителни разпоредби and §-numbered transitional/final provision bodies restored corpus-wide via a coverage-gated corrective re-bootstrap. The corpus .md files (the authoritative source DRS consumes by path) are complete. Detect freshness by CONTENT or this file, not commit author-date (legislative by design, D-048).",
+  "how_to_poll": "git ls-remote --tags origin corpus-d047-remediated  (non-empty = safe)  OR  git show origin/main:docs/sync/CORPUS-STATUS.json | jq -e '.corpus_trustworthy == true'"
+}
