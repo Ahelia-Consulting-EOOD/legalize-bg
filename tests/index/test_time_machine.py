@@ -117,3 +117,76 @@ def test_diff_returns_real_diff_across_versions(time_corpus, tmp_path):
     assert ("Първоначален" in out or "Изменен" in out
             or out.startswith("diff") or "@@" in out), \
         f"expected a real diff, got: {out[:200]!r}"
+
+
+def _typed_corpus(tmp_path, commits):
+    """Commit zakon-a.md once per (body, date, message) tuple, honoring the
+    Legalize commit-message convention in `message` (e.g. '[bootstrap] ...',
+    '[popravka] ...', '[reforma] ...'). Returns [(sha, message), ...]."""
+    (tmp_path / "laws").mkdir()
+    f = tmp_path / "laws" / "zakon-a.md"
+    _git(tmp_path, "init", "-q")
+    _git(tmp_path, "config", "user.email", "t@t")
+    _git(tmp_path, "config", "user.name", "T")
+    _git(tmp_path, "config", "commit.gpgsign", "false")
+    shas = []
+    for body, d, msg in commits:
+        f.write_text(_act(body), encoding="utf-8")
+        _git(tmp_path, "add", ".")
+        env = {**os.environ, "GIT_AUTHOR_DATE": f"{d}T00:00:00+00:00"}
+        _git(tmp_path, "commit", "-q", "-m", msg, env=env)
+        sha = subprocess.run(["git", "rev-parse", "HEAD"], cwd=tmp_path,
+                             check=True, capture_output=True,
+                             text=True).stdout.strip()
+        shas.append((sha, msg))
+    return shas
+
+
+def test_popravka_commit_does_not_create_version_boundary(tmp_path):
+    """D-047 / Task 13: a [popravka] is a corrigendum (e.g. the parser
+    data-loss re-bootstrap that finally captured Допълнителни разпоредби),
+    NOT a legal amendment — so it must NOT create a new law_versions row.
+    Otherwise get_law(historical_date) returns the pre-fix DEFECTIVE text and
+    the timeline fabricates a spurious 'incomplete->complete' step for ~every
+    corrected act."""
+    shas = _typed_corpus(tmp_path, [
+        ("Чл. 1. Оригинал (без ДР).", "2018-01-01", "[bootstrap] Закон А"),
+        ("Чл. 1. Оригинал.\n\n## Допълнителни разпоредби\n\n**§ 1.** Определения.",
+         "2020-06-15", "[popravka] Закон А"),
+    ])
+    (_boot_sha, _), (pop_sha, _) = shas
+    db = str(tmp_path / "c.db")
+    build(str(tmp_path), db)
+    c = _conn(db)
+    rows = c.execute(
+        "SELECT valid_from, valid_to, commit_hash FROM law_versions "
+        "WHERE law_id='zakon-a' ORDER BY valid_from"
+    ).fetchall()
+    assert len(rows) == 1, \
+        f"popravka must not add a version; got {[tuple(r) for r in rows]}"
+    assert rows[0]["valid_from"] == "2018-01-01"   # keeps the bootstrap boundary
+    assert rows[0]["valid_to"] is None
+    assert rows[0]["commit_hash"] == pop_sha        # latest=HEAD => corrected text
+
+
+def test_reforma_commit_still_creates_version_boundary(tmp_path):
+    """Guard: excluding [popravka] must NOT swallow real amendments — a
+    [reforma] (ЗИД) remains a legal version boundary."""
+    shas = _typed_corpus(tmp_path, [
+        ("Чл. 1. Оригинал.", "2018-01-01", "[bootstrap] Закон А"),
+        ("Чл. 1. Изменен с ЗИД.", "2020-06-15", "[reforma] Закон А"),
+    ])
+    (boot_sha, _), (ref_sha, _) = shas
+    db = str(tmp_path / "c.db")
+    build(str(tmp_path), db)
+    c = _conn(db)
+    rows = c.execute(
+        "SELECT valid_from, valid_to, commit_hash FROM law_versions "
+        "WHERE law_id='zakon-a' ORDER BY valid_from"
+    ).fetchall()
+    assert len(rows) == 2, \
+        f"reforma must add a version; got {[tuple(r) for r in rows]}"
+    assert rows[0]["valid_from"] == "2018-01-01"
+    assert rows[0]["commit_hash"] == boot_sha
+    assert rows[1]["valid_from"] == "2020-06-15"
+    assert rows[1]["valid_to"] is None
