@@ -1,0 +1,45 @@
+{
+ "slug": "zakon-za-darzhavnata-sobstvenost",
+ "round": 1,
+ "blocks": 764,
+ "sections": 21,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 250,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 251"
+  }
+ ],
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "empty_section": 1
+ },
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 2,
+  "chapter_heading": 12,
+  "article_head": 125,
+  "alinea": 241,
+  "item": 106,
+  "section_heading": 8,
+  "letter": 9,
+  "provisions_heading": 105,
+  "paragraph_sign": 88,
+  "editorial_note": 65,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "diff_lines": 130
+}

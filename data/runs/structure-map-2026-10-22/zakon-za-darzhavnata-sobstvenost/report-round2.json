@@ -1,0 +1,88 @@
+{
+ "slug": "zakon-za-darzhavnata-sobstvenost",
+ "round": 2,
+ "blocks": 764,
+ "sections": 21,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    251,
+    252
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    638
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    692,
+    693
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    728,
+    729
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    737,
+    738
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   251,
+   252,
+   638,
+   692,
+   693,
+   728,
+   729,
+   737,
+   738
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 2,
+  "chapter_heading": 12,
+  "article_head": 125,
+  "alinea": 241,
+  "item": 106,
+  "section_heading": 8,
+  "letter": 9,
+  "provisions_heading": 105,
+  "paragraph_sign": 88,
+  "editorial_note": 65,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 116
+}
