@@ -1,0 +1,4750 @@
+{
+  "sources": [
+    {
+      "name": "ЗУО (Закон за управление на отпадъците)",
+      "kind": "закон",
+      "AdditionalEdicts": 1,
+      "FinalEdicts": 5,
+      "TransitionalFinalEdicts": 19,
+      "FinalEdictsArticle": 71,
+      "FinalEdictsArticle_chars": 64332,
+      "AdditionalEdicts_chars": 23,
+      "dropped_content_classes": {
+        "AdditionalEdicts": {
+          "elements": 1,
+          "text_chars": 23
+        },
+        "FinalEdicts": {
+          "elements": 5,
+          "text_chars": 556
+        },
+        "FinalEdictsArticle": {
+          "elements": 71,
+          "text_chars": 64332
+        },
+        "Title": {
+          "elements": 49,
+          "text_chars": 3894
+        },
+        "\\\"HistoryItem\\\"": {
+          "elements": 29,
+          "text_chars": 1044
+        },
+        "\\\"HistoryReference\\\"": {
+          "elements": 29,
+          "text_chars": 63
+        },
+        "\\\"Title\\\"": {
+          "elements": 1,
+          "text_chars": 1072
+        }
+      },
+      "current": {
+        "chars": 306457,
+        "has_definitions": false,
+        "dr_heading": false,
+        "para_provisions": 0
+      },
+      "fixed": {
+        "chars": 371540,
+        "has_definitions": true,
+        "dr_heading": true,
+        "para_provisions": 48
+      },
+      "recovered_chars": 65083
+    },
+    {
+      "name": "ЗЕУ (Закон за електронното управление)",
+      "kind": "закон",
+      "AdditionalEdicts": 4,
+      "FinalEdicts": 3,
+      "TransitionalFinalEdicts": 14,
+      "FinalEdictsArticle": 42,
+      "FinalEdictsArticle_chars": 32138,
+      "AdditionalEdicts_chars": 311,
+      "dropped_content_classes": {
+        "AdditionalEdicts": {
+          "elements": 4,
+          "text_chars": 311
+        },
+        "FinalEdicts": {
+          "elements": 3,
+          "text_chars": 265
+        },
+        "FinalEdictsArticle": {
+          "elements": 42,
+          "text_chars": 32138
+        },
+        "Title": {
+          "elements": 151,
+          "text_chars": 9802
+        },
+        "\\\"HistoryItem\\\"": {
+          "elements": 21,
+          "text_chars": 740
+        },
+        "\\\"HistoryReference\\\"": {
+          "elements": 21,
+          "text_chars": 43
+        },
+        "\\\"Title\\\"": {
+          "elements": 1,
+          "text_chars": 760
+        }
+      },
+      "current": {
+        "chars": 105139,
+        "has_definitions": false,
+        "dr_heading": false,
+        "para_provisions": 0
+      },
+      "fixed": {
+        "chars": 137972,
+        "has_definitions": true,
+        "dr_heading": true,
+        "para_provisions": 23
+      },
+      "recovered_chars": 32833
+    },
+    {
+      "name": "ГПК (Граждански процесуален кодекс)",
+      "kind": "кодекс",
+      "AdditionalEdicts": 1,
+      "FinalEdicts": 6,
+      "TransitionalFinalEdicts": 30,
+      "FinalEdictsArticle": 121,
+      "FinalEdictsArticle_chars": 70591,
+      "AdditionalEdicts_chars": 112,
+      "dropped_content_classes": {
+        "AdditionalEdicts": {
+          "elements": 1,
+          "text_chars": 112
+        },
+        "FinalEdicts": {
+          "elements": 6,
+          "text_chars": 598
+        },
+        "FinalEdictsArticle": {
+          "elements": 121,
+          "text_chars": 70591
+        },
+        "Title": {
+          "elements": 891,
+          "text_chars": 39616
+        },
+        "\\\"HistoryItem\\\"": {
+          "elements": 57,
+          "text_chars": 2019
+        },
+        "\\\"HistoryReference\\\"": {
+          "elements": 57,
+          "text_chars": 118
+        },
+        "\\\"Title\\\"": {
+          "elements": 1,
+          "text_chars": 2075
+        }
+      },
+      "current": {
+        "chars": 456213,
+        "has_definitions": false,
+        "dr_heading": false,
+        "para_provisions": 0
+      },
+      "fixed": {
+        "chars": 527791,
+        "has_definitions": true,
+        "dr_heading": true,
+        "para_provisions": 86
+      },
+      "recovered_chars": 71578
+    },
+    {
+      "name": "ЗОП (Закон за обществените поръчки)",
+      "kind": "закон",
+      "AdditionalEdicts": 1,
+      "FinalEdicts": 6,
+      "TransitionalFinalEdicts": 20,
+      "FinalEdictsArticle": 84,
+      "FinalEdictsArticle_chars": 69552,
+      "AdditionalEdicts_chars": 23,
+      "dropped_content_classes": {
+        "AdditionalEdicts": {
+          "elements": 1,
+          "text_chars": 23
+        },
+        "FinalEdicts": {
+          "elements": 6,
+          "text_chars": 586
+        },
+        "FinalEdictsArticle": {
+          "elements": 84,
+          "text_chars": 69552
+        },
+        "Title": {
+          "elements": 374,
+          "text_chars": 16832
+        },
+        "\\\"HistoryItem\\\"": {
+          "elements": 32,
+          "text_chars": 1170
+        },
+        "\\\"HistoryReference\\\"": {
+          "elements": 32,
+          "text_chars": 70
+        },
+        "\\\"Title\\\"": {
+          "elements": 1,
+          "text_chars": 1201
+        }
+      },
+      "current": {
+        "chars": 559209,
+        "has_definitions": false,
+        "dr_heading": false,
+        "para_provisions": 0
+      },
+      "fixed": {
+        "chars": 629573,
+        "has_definitions": true,
+        "dr_heading": true,
+        "para_provisions": 59
+      },
+      "recovered_chars": 70364
+    },
+    {
+      "name": "ППЗ Акцизи (правилник)",
+      "kind": "правилник",
+      "AdditionalEdicts": 2,
+      "FinalEdicts": 10,
+      "TransitionalFinalEdicts": 15,
+      "FinalEdictsArticle": 56,
+      "FinalEdictsArticle_chars": 18325,
+      "AdditionalEdicts_chars": 266,
+      "dropped_content_classes": {
+        "AdditionalEdicts": {
+          "elements": 2,
+          "text_chars": 266
+        },
+        "FinalEdicts": {
+          "elements": 10,
+          "text_chars": 1306
+        },
+        "FinalEdictsArticle": {
+          "elements": 56,
+          "text_chars": 18325
+        },
+        "Title": {
+          "elements": 129,
+          "text_chars": 18701
+        },
+        "\\\"HistoryItem\\\"": {
+          "elements": 31,
+          "text_chars": 1105
+        },
+        "\\\"HistoryReference\\\"": {
+          "elements": 31,
+          "text_chars": 61
+        },
+        "\\\"Title\\\"": {
+          "elements": 1,
+          "text_chars": 1135
+        }
+      },
+      "current": {
+        "chars": 973384,
+        "has_definitions": false,
+        "dr_heading": false,
+        "para_provisions": 0
+      },
+      "fixed": {
+        "chars": 993453,
+        "has_definitions": false,
+        "dr_heading": true,
+        "para_provisions": 30
+      },
+      "recovered_chars": 20069
+    },
+    {
+      "name": "Правилник съдилища",
+      "kind": "правилник",
+      "AdditionalEdicts": 1,
+      "FinalEdicts": 0,
+      "TransitionalFinalEdicts": 2,
+      "FinalEdictsArticle": 8,
+      "FinalEdictsArticle_chars": 1422,
+      "AdditionalEdicts_chars": 23,
+      "dropped_content_classes": {
+        "AdditionalEdicts": {
+          "elements": 1,
+          "text_chars": 23
+        },
+        "FinalEdictsArticle": {
+          "elements": 8,
+          "text_chars": 1422
+        },
+        "OfInsidetitle": {
+          "elements": 2,
+          "text_chars": 102
+        },
+        "Title": {
+          "elements": 39,
+          "text_chars": 1945
+        },
+        "\\\"HistoryItem\\\"": {
+          "elements": 5,
+          "text_chars": 180
+        },
+        "\\\"HistoryReference\\\"": {
+          "elements": 5,
+          "text_chars": 10
+        },
+        "\\\"Title\\\"": {
+          "elements": 1,
+          "text_chars": 184
+        }
+      },
+      "current": {
+        "chars": 140181,
+        "has_definitions": false,
+        "dr_heading": false,
+        "para_provisions": 0
+      },
+      "fixed": {
+        "chars": 141647,
+        "has_definitions": true,
+        "dr_heading": true,
+        "para_provisions": 7
+      },
+      "recovered_chars": 1466
+    },
+    {
+      "name": "Наредба № 4-14",
+      "kind": "наредба",
+      "AdditionalEdicts": 1,
+      "FinalEdicts": 1,
+      "TransitionalFinalEdicts": 0,
+      "FinalEdictsArticle": 3,
+      "FinalEdictsArticle_chars": 909,
+      "AdditionalEdicts_chars": 23,
+      "dropped_content_classes": {
+        "AdditionalEdicts": {
+          "elements": 1,
+          "text_chars": 23
+        },
+        "FinalEdicts": {
+          "elements": 1,
+          "text_chars": 23
+        },
+        "FinalEdictsArticle": {
+          "elements": 3,
+          "text_chars": 909
+        },
+        "Title": {
+          "elements": 5,
+          "text_chars": 284
+        },
+        "\\\"HistoryItem\\\"": {
+          "elements": 1,
+          "text_chars": 35
+        },
+        "\\\"HistoryReference\\\"": {
+          "elements": 1,
+          "text_chars": 2
+        },
+        "\\\"Title\\\"": {
+          "elements": 1,
+          "text_chars": 35
+        }
+      },
+      "current": {
+        "chars": 36459,
+        "has_definitions": false,
+        "dr_heading": false,
+        "para_provisions": 0
+      },
+      "fixed": {
+        "chars": 37430,
+        "has_definitions": true,
+        "dr_heading": true,
+        "para_provisions": 3
+      },
+      "recovered_chars": 971
+    }
+  ],
+  "corpus": {
+    "aggregate": {
+      "total": 396,
+      "with_dr_heading": 0,
+      "with_definitions": 19,
+      "with_pzr_headings": 336,
+      "with_real_provisions": 1,
+      "with_concat_artifacts": 308,
+      "with_dangling_refs": 0
+    },
+    "sums": {
+      "pzr_headings": 4562,
+      "concat_artifacts": 4149,
+      "dangling_dr_refs": 0,
+      "articles": 26150
+    }
+  },
+  "corpus_files": [
+    {
+      "file": "laws/konstitutsiya-na-republika-balgariya.md",
+      "chars": 76447,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 175
+    },
+    {
+      "file": "laws/targovski-zakon.md",
+      "chars": 696157,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 42,
+      "real_para_provisions": 0,
+      "concat_artifacts": 42,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/valuten-zakon.md",
+      "chars": 55394,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 14,
+      "real_para_provisions": 0,
+      "concat_artifacts": 13,
+      "dangling_dr_refs": 0,
+      "articles": 6
+    },
+    {
+      "file": "laws/zakon-za-administrativnite-narusheniya-i-nakazaniya.md",
+      "chars": 120405,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 22,
+      "real_para_provisions": 0,
+      "concat_artifacts": 21,
+      "dangling_dr_refs": 0,
+      "articles": 114
+    },
+    {
+      "file": "laws/zakon-za-administrativno-teritorialni-promeni-v-stranata.md",
+      "chars": 6586,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 36
+    },
+    {
+      "file": "laws/zakon-za-administrativno-teritorialnoto-ustroystvo-na-republika-balgariya.md",
+      "chars": 24137,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 37
+    },
+    {
+      "file": "laws/zakon-za-administrativnoto-regulirane-na-ikonomicheskite-deynosti-svarzani-s-nef.md",
+      "chars": 73206,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 43
+    },
+    {
+      "file": "laws/zakon-za-administrativnoto-regulirane-na-proizvodstvoto-na-optichni-diskove-i-ma.md",
+      "chars": 48622,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 14,
+      "real_para_provisions": 0,
+      "concat_artifacts": 13,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-administratsiyata.md",
+      "chars": 59426,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 25,
+      "real_para_provisions": 0,
+      "concat_artifacts": 23,
+      "dangling_dr_refs": 0,
+      "articles": 72
+    },
+    {
+      "file": "laws/zakon-za-advokaturata.md",
+      "chars": 120443,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 160
+    },
+    {
+      "file": "laws/zakon-za-aktsizite-i-danachnite-skladove.md",
+      "chars": 596211,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 63,
+      "real_para_provisions": 0,
+      "concat_artifacts": 60,
+      "dangling_dr_refs": 0,
+      "articles": 305
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-i-vrashtane-na-otneti-imushtestva.md",
+      "chars": 4526,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 8
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-i-za-osvobozhdavane-ot-iztarpyavane-na-nalozheni-nakazaniya.md",
+      "chars": 3106,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1947-g.md",
+      "chars": 2132,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1950-g.md",
+      "chars": 1784,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1964-g.md",
+      "chars": 8367,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 9
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1974-g.md",
+      "chars": 1230,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1981-g.md",
+      "chars": 2382,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1984-g.md",
+      "chars": 3038,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 5
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1989-g-2.md",
+      "chars": 1721,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1989-g-3.md",
+      "chars": 1321,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1989-g.md",
+      "chars": 1282,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-1990-g.md",
+      "chars": 1047,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-2002-g.md",
+      "chars": 1143,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-amnistiya-ot-2009-g.md",
+      "chars": 3484,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-arbitrazha-zagl-izm-dv-br-63-ot-2025-g-v-sila-ot-01082025-g.md",
+      "chars": 45325,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 60
+    },
+    {
+      "file": "laws/zakon-za-arendata-v-zemedelieto.md",
+      "chars": 22379,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 32
+    },
+    {
+      "file": "laws/zakon-za-avtomobilnite-prevozi.md",
+      "chars": 255198,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 31,
+      "real_para_provisions": 0,
+      "concat_artifacts": 30,
+      "dangling_dr_refs": 0,
+      "articles": 167
+    },
+    {
+      "file": "laws/zakon-za-avtorskoto-pravo-i-srodnite-mu-prava.md",
+      "chars": 323729,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 15,
+      "real_para_provisions": 0,
+      "concat_artifacts": 16,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-balgarite-zhiveeshti-izvan-republika-balgariya.md",
+      "chars": 18785,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 30
+    },
+    {
+      "file": "laws/zakon-za-balgarskata-agentsiya-po-bezopasnost-na-hranite.md",
+      "chars": 12470,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 15
+    },
+    {
+      "file": "laws/zakon-za-balgarskata-akademiya-na-naukite.md",
+      "chars": 14358,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 15
+    },
+    {
+      "file": "laws/zakon-za-balgarskata-banka-za-razvitie.md",
+      "chars": 15544,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 20
+    },
+    {
+      "file": "laws/zakon-za-balgarskata-narodna-banka.md",
+      "chars": 55918,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 67
+    },
+    {
+      "file": "laws/zakon-za-balgarskata-telegrafna-agentsiya.md",
+      "chars": 20619,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 21
+    },
+    {
+      "file": "laws/zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g.md",
+      "chars": 147243,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 36,
+      "real_para_provisions": 0,
+      "concat_artifacts": 35,
+      "dangling_dr_refs": 0,
+      "articles": 110
+    },
+    {
+      "file": "laws/zakon-za-balgarskiya-cherven-krast.md",
+      "chars": 9467,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 10
+    },
+    {
+      "file": "laws/zakon-za-balgarskiya-zhestov-ezik.md",
+      "chars": 23163,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 29
+    },
+    {
+      "file": "laws/zakon-za-balgarskoto-grazhdanstvo.md",
+      "chars": 28651,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 46
+    },
+    {
+      "file": "laws/zakon-za-bankovata-nesastoyatelnost.md",
+      "chars": 149559,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 25,
+      "real_para_provisions": 0,
+      "concat_artifacts": 21,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-bezmitnata-targoviya.md",
+      "chars": 22123,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 6,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 28
+    },
+    {
+      "file": "laws/zakon-za-bezopasno-izpolzvane-na-yadrenata-energiya.md",
+      "chars": 150087,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 25,
+      "real_para_provisions": 0,
+      "concat_artifacts": 24,
+      "dangling_dr_refs": 0,
+      "articles": 160
+    },
+    {
+      "file": "laws/zakon-za-biologichnoto-raznoobrazie.md",
+      "chars": 233397,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 23,
+      "real_para_provisions": 0,
+      "concat_artifacts": 24,
+      "dangling_dr_refs": 0,
+      "articles": 153
+    },
+    {
+      "file": "laws/zakon-za-borba-s-trafika-na-hora.md",
+      "chars": 19401,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 31
+    },
+    {
+      "file": "laws/zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet.md",
+      "chars": 55834,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 60
+    },
+    {
+      "file": "laws/zakon-za-byudzheta-na-darzhavnoto-obshtestveno-osiguryavane-za-2025-g.md",
+      "chars": 57250,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 17
+    },
+    {
+      "file": "laws/zakon-za-byudzheta-na-natsionalnata-zdravnoosiguritelna-kasa-za-2025-g.md",
+      "chars": 18695,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 9
+    },
+    {
+      "file": "laws/zakon-za-chastnata-ohranitelna-deynost.md",
+      "chars": 61536,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 83
+    },
+    {
+      "file": "laws/zakon-za-chastnite-sadebni-izpalniteli.md",
+      "chars": 53265,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-chistotata-na-atmosferniya-vazduh.md",
+      "chars": 186098,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 22,
+      "real_para_provisions": 0,
+      "concat_artifacts": 21,
+      "dangling_dr_refs": 0,
+      "articles": 105
+    },
+    {
+      "file": "laws/zakon-za-chuzhdentsite-v-republika-balgariya.md",
+      "chars": 363043,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 34,
+      "real_para_provisions": 0,
+      "concat_artifacts": 33,
+      "dangling_dr_refs": 0,
+      "articles": 173
+    },
+    {
+      "file": "laws/zakon-za-danak-varhu-dobavenata-stoynost.md",
+      "chars": 645842,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 51,
+      "real_para_provisions": 0,
+      "concat_artifacts": 51,
+      "dangling_dr_refs": 0,
+      "articles": 30
+    },
+    {
+      "file": "laws/zakon-za-danak-varhu-zastrahovatelnite-premii.md",
+      "chars": 12919,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa.md",
+      "chars": 175375,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 60,
+      "real_para_provisions": 0,
+      "concat_artifacts": 55,
+      "dangling_dr_refs": 0,
+      "articles": 10
+    },
+    {
+      "file": "laws/zakon-za-darzhaven-vestnik.md",
+      "chars": 13176,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 16
+    },
+    {
+      "file": "laws/zakon-za-darzhavna-agentsiya-natsionalna-sigurnost.md",
+      "chars": 172514,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 23,
+      "real_para_provisions": 0,
+      "concat_artifacts": 21,
+      "dangling_dr_refs": 0,
+      "articles": 181
+    },
+    {
+      "file": "laws/zakon-za-darzhavna-agentsiya-razuznavane.md",
+      "chars": 85094,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 117
+    },
+    {
+      "file": "laws/zakon-za-darzhavnata-finansova-inspektsiya.md",
+      "chars": 46390,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 49
+    },
+    {
+      "file": "laws/zakon-za-darzhavnata-sobstvenost.md",
+      "chars": 111803,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 42,
+      "real_para_provisions": 0,
+      "concat_artifacts": 41,
+      "dangling_dr_refs": 0,
+      "articles": 125
+    },
+    {
+      "file": "laws/zakon-za-darzhavnite-pomoshti.md",
+      "chars": 59876,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-darzhavnite-rezervi-i-voennovremennite-zapasi.md",
+      "chars": 24492,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 39
+    },
+    {
+      "file": "laws/zakon-za-darzhavnite-taksi.md",
+      "chars": 12047,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 9
+    },
+    {
+      "file": "laws/zakon-za-darzhavniya-byudzhet-na-republika-balgariya-za-2025-g.md",
+      "chars": 1036163,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 114
+    },
+    {
+      "file": "laws/zakon-za-darzhavniya-dalg.md",
+      "chars": 30526,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 10,
+      "dangling_dr_refs": 0,
+      "articles": 55
+    },
+    {
+      "file": "laws/zakon-za-darzhavniya-fond-za-garantirane-ustoychivost-na-darzhavnata-pensionna-s.md",
+      "chars": 33593,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-darzhavniya-pechat-i-natsionalnoto-zname-na-republika-balgariya.md",
+      "chars": 22118,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 25
+    },
+    {
+      "file": "laws/zakon-za-darzhavniya-protokol.md",
+      "chars": 5290,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 13
+    },
+    {
+      "file": "laws/zakon-za-darzhavniya-sluzhitel.md",
+      "chars": 143347,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 34,
+      "real_para_provisions": 0,
+      "concat_artifacts": 33,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-denominatsiya-na-leva.md",
+      "chars": 2270,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 6
+    },
+    {
+      "file": "laws/zakon-za-denonsirane-na-sporazumenieto-mezhdu-pravitelstvoto-na-republika-balgar.md",
+      "chars": 1298,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-denonsirane-na-sporazumenieto-za-osnovavaneto-na-mezhdunarodnata-invest.md",
+      "chars": 1777,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-deynostite-po-predostavyane-na-uslugi.md",
+      "chars": 55643,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 45
+    },
+    {
+      "file": "laws/zakon-za-deynostta-na-kolektivnite-investitsionni-shemi-i-na-drugi-predpriyatiya.md",
+      "chars": 648382,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 22,
+      "real_para_provisions": 0,
+      "concat_artifacts": 20,
+      "dangling_dr_refs": 0,
+      "articles": 327
+    },
+    {
+      "file": "laws/zakon-za-diplomaticheskata-sluzhba.md",
+      "chars": 72279,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-dogovorite-za-finansovo-obezpechenie-i-za-priklyuchvashtoto-netirane-za.md",
+      "chars": 39551,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-dopalnitelniya-nadzor-varhu-finansovite-konglomerati.md",
+      "chars": 62902,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 1
+    },
+    {
+      "file": "laws/zakon-za-dostap-do-obshtestvena-informatsiya.md",
+      "chars": 70592,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-dostap-do-prostranstveni-danni.md",
+      "chars": 41223,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 26
+    },
+    {
+      "file": "laws/zakon-za-dostap-i-razkrivane-na-dokumentite-i-za-obyavyavane-na-prinadlezhnost-n.md",
+      "chars": 47064,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 20,
+      "real_para_provisions": 0,
+      "concat_artifacts": 19,
+      "dangling_dr_refs": 0,
+      "articles": 33
+    },
+    {
+      "file": "laws/zakon-za-druzhestvata-sas-spetsialna-investitsionna-tsel-i-za-druzhestvata-za-se.md",
+      "chars": 97290,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-dvizhenieto-po-patishtata.md",
+      "chars": 497149,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 62,
+      "real_para_provisions": 0,
+      "concat_artifacts": 56,
+      "dangling_dr_refs": 0,
+      "articles": 277
+    },
+    {
+      "file": "laws/zakon-za-eksportniya-kontrol-na-produkti-svarzani-s-otbranata-i-na-izdeliya-i-te.md",
+      "chars": 107623,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 6,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 78
+    },
+    {
+      "file": "laws/zakon-za-eksportnoto-zastrahovane.md",
+      "chars": 57093,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 21
+    },
+    {
+      "file": "laws/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest.md",
+      "chars": 95910,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-elektronnata-identifikatsiya.md",
+      "chars": 36607,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-elektronnata-targoviya.md",
+      "chars": 23987,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-elektronnite-saobshteniya.md",
+      "chars": 622754,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 48,
+      "real_para_provisions": 0,
+      "concat_artifacts": 45,
+      "dangling_dr_refs": 0,
+      "articles": 528
+    },
+    {
+      "file": "laws/zakon-za-elektronnite-saobshtitelni-mrezhi-i-fizicheska-infrastruktura.md",
+      "chars": 101763,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 105
+    },
+    {
+      "file": "laws/zakon-za-elektronniya-dokument-i-elektronnite-udostoveritelni-uslugi-zagl-izm-dv.md",
+      "chars": 32411,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 6,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-elektronnoto-upravlenie.md",
+      "chars": 109158,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 16,
+      "real_para_provisions": 0,
+      "concat_artifacts": 13,
+      "dangling_dr_refs": 0,
+      "articles": 6
+    },
+    {
+      "file": "laws/zakon-za-energetikata.md",
+      "chars": 616368,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 59,
+      "real_para_provisions": 0,
+      "concat_artifacts": 57,
+      "dangling_dr_refs": 0,
+      "articles": 370
+    },
+    {
+      "file": "laws/zakon-za-energiyata-ot-vazobnovyaemi-iztochnitsi.md",
+      "chars": 202359,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 18,
+      "real_para_provisions": 0,
+      "concat_artifacts": 16,
+      "dangling_dr_refs": 0,
+      "articles": 95
+    },
+    {
+      "file": "laws/zakon-za-energiynata-efektivnost.md",
+      "chars": 160362,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 123
+    },
+    {
+      "file": "laws/zakon-za-evropeyskata-zapoved-za-razsledvane.md",
+      "chars": 106985,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-evropeyskata-zapoved-za-zashtita.md",
+      "chars": 14556,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-filmovata-industriya.md",
+      "chars": 88405,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 14,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 67
+    },
+    {
+      "file": "laws/zakon-za-finansovoto-upravlenie-i-kontrol-v-publichniya-sektor.md",
+      "chars": 19349,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 31
+    },
+    {
+      "file": "laws/zakon-za-fiskalen-savet-i-avtomatichni-korektivni-mehanizmi.md",
+      "chars": 15550,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 23
+    },
+    {
+      "file": "laws/zakon-za-fizicheskoto-vazpitanie-i-sporta.md",
+      "chars": 134391,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 153
+    },
+    {
+      "file": "laws/zakon-za-furazhite.md",
+      "chars": 173177,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 155
+    },
+    {
+      "file": "laws/zakon-za-garantirane-na-vlogovete-v-bankite.md",
+      "chars": 43514,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 10,
+      "dangling_dr_refs": 0,
+      "articles": 33
+    },
+    {
+      "file": "laws/zakon-za-garantiranite-vzemaniya-na-rabotnitsite-i-sluzhitelite-pri-nesastoyatel.md",
+      "chars": 24093,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 32
+    },
+    {
+      "file": "laws/zakon-za-genetichno-modifitsirani-organizmi.md",
+      "chars": 147670,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 14,
+      "real_para_provisions": 0,
+      "concat_artifacts": 13,
+      "dangling_dr_refs": 0,
+      "articles": 154
+    },
+    {
+      "file": "laws/zakon-za-geodeziyata-i-kartografiyata.md",
+      "chars": 59107,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 57
+    },
+    {
+      "file": "laws/zakon-za-gerb-na-republika-balgariya.md",
+      "chars": 1617,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-gorite.md",
+      "chars": 319873,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 30,
+      "real_para_provisions": 0,
+      "concat_artifacts": 28,
+      "dangling_dr_refs": 0,
+      "articles": 284
+    },
+    {
+      "file": "laws/zakon-za-grazhdanskata-registratsiya.md",
+      "chars": 125704,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 15,
+      "real_para_provisions": 9,
+      "concat_artifacts": 14,
+      "dangling_dr_refs": 0,
+      "articles": 127
+    },
+    {
+      "file": "laws/zakon-za-grazhdanskoto-vazduhoplavane.md",
+      "chars": 299154,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 29,
+      "real_para_provisions": 0,
+      "concat_artifacts": 30,
+      "dangling_dr_refs": 0,
+      "articles": 244
+    },
+    {
+      "file": "laws/zakon-za-hazarta.md",
+      "chars": 154318,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 18,
+      "real_para_provisions": 0,
+      "concat_artifacts": 16,
+      "dangling_dr_refs": 0,
+      "articles": 25
+    },
+    {
+      "file": "laws/zakon-za-horata-s-uvrezhdaniya.md",
+      "chars": 95108,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 101
+    },
+    {
+      "file": "laws/zakon-za-hranite.md",
+      "chars": 174151,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 142
+    },
+    {
+      "file": "laws/zakon-za-ikonomicheski-i-sotsialen-savet.md",
+      "chars": 20972,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 6,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 28
+    },
+    {
+      "file": "laws/zakon-za-ikonomicheskite-i-finansovite-otnosheniya-s-druzhestvata-registrirani-v.md",
+      "chars": 22901,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-imushtestvoto-na-balgarskata-komunisticheska-partiya-balgarskiya-zemede.md",
+      "chars": 5443,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 7
+    },
+    {
+      "file": "laws/zakon-za-industrialnite-parkove.md",
+      "chars": 48569,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 41
+    },
+    {
+      "file": "laws/zakon-za-informatsiya-otnosno-neobsluzhvani-krediti.md",
+      "chars": 4827,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 7
+    },
+    {
+      "file": "laws/zakon-za-informirane-i-konsultirane-s-rabotnitsite-i-sluzhitelite-v-mnogonatsion.md",
+      "chars": 72672,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-inspektirane-na-truda.md",
+      "chars": 14717,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 13
+    },
+    {
+      "file": "laws/zakon-za-iziskvaniyata-za-dostapnost-na-produkti-i-uslugi.md",
+      "chars": 95718,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 92
+    },
+    {
+      "file": "laws/zakon-za-izmervaniyata.md",
+      "chars": 67775,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 104
+    },
+    {
+      "file": "laws/zakon-za-izpalnenie-na-konventsiyata-po-kasetachnite-boepripasi-i-konventsiyata-.md",
+      "chars": 35804,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 43
+    },
+    {
+      "file": "laws/zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha.md",
+      "chars": 207541,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 294
+    },
+    {
+      "file": "laws/zakon-za-izpalnenie-na-reglament-es-2019125-na-evropeyskiya-parlament-i-na-savet.md",
+      "chars": 24174,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 21
+    },
+    {
+      "file": "laws/zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato.md",
+      "chars": 706,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-kadastara-i-imotniya-registar.md",
+      "chars": 120292,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 23,
+      "real_para_provisions": 0,
+      "concat_artifacts": 22,
+      "dangling_dr_refs": 0,
+      "articles": 126
+    },
+    {
+      "file": "laws/zakon-za-kamarata-na-stroitelite.md",
+      "chars": 25999,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 28
+    },
+    {
+      "file": "laws/zakon-za-kamarite-na-arhitektite-i-inzhenerite-v-investitsionnoto-proektirane.md",
+      "chars": 37932,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 10,
+      "dangling_dr_refs": 0,
+      "articles": 37
+    },
+    {
+      "file": "laws/zakon-za-kibersigurnost.md",
+      "chars": 114123,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-komisiyata-za-finansov-nadzor.md",
+      "chars": 184033,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 37,
+      "real_para_provisions": 0,
+      "concat_artifacts": 32,
+      "dangling_dr_refs": 0,
+      "articles": 1
+    },
+    {
+      "file": "laws/zakon-za-kompensirane-na-razhodite-na-potrebitelite-za-transport.md",
+      "chars": 8155,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 11
+    },
+    {
+      "file": "laws/zakon-za-konstitutsionen-sad.md",
+      "chars": 14982,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 27
+    },
+    {
+      "file": "laws/zakon-za-konsultativen-savet-za-natsionalna-sigurnost.md",
+      "chars": 3265,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 7
+    },
+    {
+      "file": "laws/zakon-za-kontrol-po-prilagane-na-ogranichitelnite-merki-s-ogled-na-deystviyata-n.md",
+      "chars": 8153,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 21
+    },
+    {
+      "file": "laws/zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite.md",
+      "chars": 155804,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 31,
+      "real_para_provisions": 0,
+      "concat_artifacts": 30,
+      "dangling_dr_refs": 0,
+      "articles": 168
+    },
+    {
+      "file": "laws/zakon-za-kontsesiite.md",
+      "chars": 264802,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 10,
+      "dangling_dr_refs": 0,
+      "articles": 209
+    },
+    {
+      "file": "laws/zakon-za-kooperatsiite.md",
+      "chars": 52506,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-korporativnoto-podohodno-oblagane.md",
+      "chars": 563258,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 67,
+      "real_para_provisions": 0,
+      "concat_artifacts": 63,
+      "dangling_dr_refs": 0,
+      "articles": 28
+    },
+    {
+      "file": "laws/zakon-za-kravta-kravodaryavaneto-i-kravoprelivaneto.md",
+      "chars": 40946,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 15,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 65
+    },
+    {
+      "file": "laws/zakon-za-kreditirane-na-studenti-i-doktoranti.md",
+      "chars": 27844,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 27
+    },
+    {
+      "file": "laws/zakon-za-kreditite-za-nedvizhimi-imoti-na-potrebiteli.md",
+      "chars": 142715,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 85
+    },
+    {
+      "file": "laws/zakon-za-kreditnite-institutsii.md",
+      "chars": 408523,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 56,
+      "real_para_provisions": 0,
+      "concat_artifacts": 50,
+      "dangling_dr_refs": 0,
+      "articles": 219
+    },
+    {
+      "file": "laws/zakon-za-kulturnoto-nasledstvo.md",
+      "chars": 218770,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 26,
+      "real_para_provisions": 0,
+      "concat_artifacts": 22,
+      "dangling_dr_refs": 0,
+      "articles": 258
+    },
+    {
+      "file": "laws/zakon-za-lechebnite-rasteniya.md",
+      "chars": 98459,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 93
+    },
+    {
+      "file": "laws/zakon-za-lechebnite-zavedeniya.md",
+      "chars": 214710,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 53,
+      "real_para_provisions": 0,
+      "concat_artifacts": 49,
+      "dangling_dr_refs": 0,
+      "articles": 171
+    },
+    {
+      "file": "laws/zakon-za-lekarstvenite-produkti-v-humannata-meditsina.md",
+      "chars": 446693,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 30,
+      "real_para_provisions": 0,
+      "concat_artifacts": 27,
+      "dangling_dr_refs": 0,
+      "articles": 443
+    },
+    {
+      "file": "laws/zakon-za-lichnata-pomosht.md",
+      "chars": 25524,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 41
+    },
+    {
+      "file": "laws/zakon-za-lihvite-varhu-danatsi-taksi-i-drugi-podobni-darzhavni-vzemaniya.md",
+      "chars": 1883,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-litsata-i-semeystvoto.md",
+      "chars": 17457,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-litsata-obsluzhvashti-krediti-i-kupuvachite-na-krediti.md",
+      "chars": 105223,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-lova-i-opazvane-na-divecha.md",
+      "chars": 120769,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 24,
+      "real_para_provisions": 0,
+      "concat_artifacts": 22,
+      "dangling_dr_refs": 0,
+      "articles": 144
+    },
+    {
+      "file": "laws/zakon-za-malkite-i-srednite-predpriyatiya.md",
+      "chars": 29122,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 32
+    },
+    {
+      "file": "laws/zakon-za-markite-i-geografskite-oznacheniya.md",
+      "chars": 249508,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-maslodaynata-roza.md",
+      "chars": 48059,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 34
+    },
+    {
+      "file": "laws/zakon-za-mediatsiyata.md",
+      "chars": 22060,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 6,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-meditsinskite-izdeliya.md",
+      "chars": 133903,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 16,
+      "real_para_provisions": 0,
+      "concat_artifacts": 13,
+      "dangling_dr_refs": 0,
+      "articles": 176
+    },
+    {
+      "file": "laws/zakon-za-merkite-i-deystviyata-po-vreme-na-izvanrednoto-polozhenie-obyaveno-s-re.md",
+      "chars": 63588,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 38
+    },
+    {
+      "file": "laws/zakon-za-merkite-sreshtu-finansiraneto-na-terorizma-i-na-razprostranenieto-na-or.md",
+      "chars": 63779,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 33
+    },
+    {
+      "file": "laws/zakon-za-merkite-sreshtu-izpiraneto-na-pari.md",
+      "chars": 264753,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 151
+    },
+    {
+      "file": "laws/zakon-za-mestnite-danatsi-i-taksi.md",
+      "chars": 208765,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 65,
+      "real_para_provisions": 0,
+      "concat_artifacts": 63,
+      "dangling_dr_refs": 0,
+      "articles": 165
+    },
+    {
+      "file": "laws/zakon-za-mestnoto-samoupravlenie-i-mestnata-administratsiya.md",
+      "chars": 102204,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 24,
+      "real_para_provisions": 0,
+      "concat_artifacts": 25,
+      "dangling_dr_refs": 0,
+      "articles": 92
+    },
+    {
+      "file": "laws/zakon-za-metsenatstvoto.md",
+      "chars": 36407,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 50
+    },
+    {
+      "file": "laws/zakon-za-mezhdunarodnite-dogovori-na-republika-balgariya.md",
+      "chars": 15331,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 32
+    },
+    {
+      "file": "laws/zakon-za-ministerstvoto-na-vatreshnite-raboti.md",
+      "chars": 303222,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 23,
+      "real_para_provisions": 0,
+      "concat_artifacts": 20,
+      "dangling_dr_refs": 0,
+      "articles": 315
+    },
+    {
+      "file": "laws/zakon-za-mitnitsite.md",
+      "chars": 220255,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 34,
+      "real_para_provisions": 0,
+      "concat_artifacts": 33,
+      "dangling_dr_refs": 0,
+      "articles": 336
+    },
+    {
+      "file": "laws/zakon-za-mladezhta.md",
+      "chars": 29846,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 48
+    },
+    {
+      "file": "laws/zakon-za-morskite-prostranstva-vatreshnite-vodni-patishta-i-pristanishtata-na-re.md",
+      "chars": 239841,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 24,
+      "real_para_provisions": 0,
+      "concat_artifacts": 23,
+      "dangling_dr_refs": 0,
+      "articles": 218
+    },
+    {
+      "file": "laws/zakon-za-nagrazhdavane-na-litsa-za-osobeni-zaslugi-kam-balgarskata-darzhava-i-na.md",
+      "chars": 3810,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 6
+    },
+    {
+      "file": "laws/zakon-za-narodnite-chitalishta.md",
+      "chars": 32520,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 42
+    },
+    {
+      "file": "laws/zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060.md",
+      "chars": 105682,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 27,
+      "real_para_provisions": 0,
+      "concat_artifacts": 25,
+      "dangling_dr_refs": 0,
+      "articles": 65
+    },
+    {
+      "file": "laws/zakon-za-nasarchavane-na-nauchnite-izsledvaniya-i-inovatsiite.md",
+      "chars": 81335,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 89
+    },
+    {
+      "file": "laws/zakon-za-nasarchavane-na-zaetostta.md",
+      "chars": 141573,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 27,
+      "real_para_provisions": 0,
+      "concat_artifacts": 25,
+      "dangling_dr_refs": 0,
+      "articles": 141
+    },
+    {
+      "file": "laws/zakon-za-nasledstvoto.md",
+      "chars": 33057,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 97
+    },
+    {
+      "file": "laws/zakon-za-natsionalnata-agentsiya-za-prihodite.md",
+      "chars": 57001,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 27,
+      "real_para_provisions": 0,
+      "concat_artifacts": 21,
+      "dangling_dr_refs": 0,
+      "articles": 1
+    },
+    {
+      "file": "laws/zakon-za-natsionalnata-akreditatsiya-na-organi-za-otsenyavane-na-saotvetstvieto-.md",
+      "chars": 45394,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 46
+    },
+    {
+      "file": "laws/zakon-za-natsionalnata-sistema-za-speshni-povikvaniya-s-edinen-evropeyski-nomer-.md",
+      "chars": 19014,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 6,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 40
+    },
+    {
+      "file": "laws/zakon-za-natsionalnata-sluzhba-za-ohrana.md",
+      "chars": 97270,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 131
+    },
+    {
+      "file": "laws/zakon-za-natsionalnata-standartizatsiya.md",
+      "chars": 28505,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 6,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 57
+    },
+    {
+      "file": "laws/zakon-za-natsionalniya-arhiven-fond.md",
+      "chars": 49449,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 100
+    },
+    {
+      "file": "laws/zakon-za-natsionalniya-daritelski-fond-13-veka-balgariya.md",
+      "chars": 11633,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 17
+    },
+    {
+      "file": "laws/zakon-za-nesastoyatelnost-na-fizicheskite-litsa.md",
+      "chars": 70613,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-nezavisimite-otseniteli.md",
+      "chars": 30318,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 44
+    },
+    {
+      "file": "laws/zakon-za-nezavisimiya-finansov-odit-i-izrazyavaneto-na-sigurnost-po-ustoychivost.md",
+      "chars": 204259,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-normativnite-aktove.md",
+      "chars": 22240,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 56
+    },
+    {
+      "file": "laws/zakon-za-notariusite-i-notarialnata-deynost-zagl-izm-dv-br-123-ot-1997-g.md",
+      "chars": 68646,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 15,
+      "real_para_provisions": 0,
+      "concat_artifacts": 15,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-nyakoi-prava-na-litsata-koito-sa-bili-prezidenti-na-republika-balgariya.md",
+      "chars": 4324,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 7
+    },
+    {
+      "file": "laws/zakon-za-obezshtetyavane-na-sobstvenitsi-na-odarzhaveni-imoti.md",
+      "chars": 26374,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 10
+    },
+    {
+      "file": "laws/zakon-za-oblekchenie-rabotata-na-varhovniya-kasatsionen-sad-i-vav-vrazka-s-tova-.md",
+      "chars": 15349,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 9
+    },
+    {
+      "file": "laws/zakon-za-obrazuvane-na-ednolichni-targovski-druzhestva-s-darzhavno-imushtestvo.md",
+      "chars": 963,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-obshtestvenite-biblioteki.md",
+      "chars": 34258,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 68
+    },
+    {
+      "file": "laws/zakon-za-obshtestvenite-porachki.md",
+      "chars": 560965,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 23,
+      "real_para_provisions": 0,
+      "concat_artifacts": 20,
+      "dangling_dr_refs": 0,
+      "articles": 23
+    },
+    {
+      "file": "laws/zakon-za-obshtestveniya-transport.md",
+      "chars": 99590,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 106
+    },
+    {
+      "file": "laws/zakon-za-obshtinskata-sobstvenost.md",
+      "chars": 91928,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 23,
+      "real_para_provisions": 0,
+      "concat_artifacts": 22,
+      "dangling_dr_refs": 0,
+      "articles": 90
+    },
+    {
+      "file": "laws/zakon-za-obshtinskiya-dalg.md",
+      "chars": 27405,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 17,
+      "real_para_provisions": 0,
+      "concat_artifacts": 16,
+      "dangling_dr_refs": 0,
+      "articles": 63
+    },
+    {
+      "file": "laws/zakon-za-obshtite-iziskvaniya-za-bezopasnost-pri-predostavyane-na-atraktsionni-u.md",
+      "chars": 35544,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 40
+    },
+    {
+      "file": "laws/zakon-za-obyavyavane-na-komunisticheskiya-rezhim-v-balgariya-za-prestapen.md",
+      "chars": 4579,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-obyavyavane-na-sela-i-selishta-za-gradove-i-selishta-ot-gradski-tip.md",
+      "chars": 2344,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-ofitserskite-sabraniya.md",
+      "chars": 1173,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-ogranichavane-izmenenieto-na-klimata.md",
+      "chars": 179593,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 14,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 121
+    },
+    {
+      "file": "laws/zakon-za-ogranichavane-na-administrativnoto-regulirane-i-administrativniya-kontr.md",
+      "chars": 38730,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 21,
+      "real_para_provisions": 0,
+      "concat_artifacts": 20,
+      "dangling_dr_refs": 0,
+      "articles": 34
+    },
+    {
+      "file": "laws/zakon-za-ogranichavane-na-plashtaniyata-v-broy.md",
+      "chars": 9996,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 7
+    },
+    {
+      "file": "laws/zakon-za-ogranichavane-noseneto-na-obleklo-prikrivashto-ili-skrivashto-litseto.md",
+      "chars": 3083,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 9
+    },
+    {
+      "file": "laws/zakon-za-ombudsmana.md",
+      "chars": 22821,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 42
+    },
+    {
+      "file": "laws/zakon-za-opazvane-na-obshtestveniya-red-pri-provezhdaneto-na-sportni-meropriyati.md",
+      "chars": 54320,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 60
+    },
+    {
+      "file": "laws/zakon-za-opazvane-na-okolnata-sreda.md",
+      "chars": 352930,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 54,
+      "real_para_provisions": 0,
+      "concat_artifacts": 53,
+      "dangling_dr_refs": 0,
+      "articles": 252
+    },
+    {
+      "file": "laws/zakon-za-opazvane-na-selskostopanskoto-imushtestvo.md",
+      "chars": 39228,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 52
+    },
+    {
+      "file": "laws/zakon-za-opazvane-na-zemedelskite-zemi.md",
+      "chars": 68966,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 25,
+      "real_para_provisions": 0,
+      "concat_artifacts": 24,
+      "dangling_dr_refs": 0,
+      "articles": 51
+    },
+    {
+      "file": "laws/zakon-za-oproshtavane-na-zadalzheniya-kam-darzhavata.md",
+      "chars": 4147,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-orazhiyata-boepripasite-vzrivnite-veshtestva-i-pirotehnicheskite-izdeli.md",
+      "chars": 318307,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 20,
+      "real_para_provisions": 0,
+      "concat_artifacts": 19,
+      "dangling_dr_refs": 0,
+      "articles": 247
+    },
+    {
+      "file": "laws/zakon-za-ordenite-i-medalite-na-republika-balgariya.md",
+      "chars": 16509,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-osobenite-zalozi.md",
+      "chars": 86403,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 16,
+      "real_para_provisions": 0,
+      "concat_artifacts": 16,
+      "dangling_dr_refs": 0,
+      "articles": 1
+    },
+    {
+      "file": "laws/zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya.md",
+      "chars": 303359,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 39,
+      "real_para_provisions": 0,
+      "concat_artifacts": 37,
+      "dangling_dr_refs": 0,
+      "articles": 389
+    },
+    {
+      "file": "laws/zakon-za-otgovornostta-na-darzhavata-i-obshtinite-za-vredi-zagl-izm-dv-br-30-ot-.md",
+      "chars": 15199,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-otgovornostta-za-predotvratyavane-i-otstranyavane-na-ekologichni-shteti.md",
+      "chars": 85905,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 75
+    },
+    {
+      "file": "laws/zakon-za-otmenyavane-na-vsichki-zakoni-izdadeni-predi-9091944-g.md",
+      "chars": 780,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-otnemane-na-nezakonno-pridobitoto-imushtestvo-zagl-izm-dv-br-84-ot-2023.md",
+      "chars": 82220,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 178
+    },
+    {
+      "file": "laws/zakon-za-otteglyane-na-deklaratsii-po-mezhdunarodnata-konventsiya-otnosno-namesa.md",
+      "chars": 1755,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-otteglyane-na-deklaratsiyata-po-chl-7-2-ot-evropeyskata-harta-za-mestno.md",
+      "chars": 905,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-otteglyane-na-rezerva-i-priemane-na-deklaratsiya-po-mezhdunarodni-konve.md",
+      "chars": 2547,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-otteglyane-na-rezervata-napravena-ot-republika-balgariya-po-chl-12-ot-e.md",
+      "chars": 1029,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-otteglyane-na-rezervata-napravena-ot-republika-balgariya-po-chl-31-ot-k.md",
+      "chars": 1106,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-otteglyane-na-rezervata-napravena-ot-republika-balgariya-v-saotvetstvie.md",
+      "chars": 1029,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-otteglyane-na-rezervi-i-deklaratsii-po-mezhdunarodni-konventsii-otnosno.md",
+      "chars": 8723,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-otteglyane-na-rezervite-napraveni-ot-republika-balgariya-v-saotvetstvie.md",
+      "chars": 1028,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-patentite-i-registratsiyata-na-poleznite-modeli-zagl-izm-dv-br-64-ot-20.md",
+      "chars": 172436,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-patishtata.md",
+      "chars": 157931,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 40,
+      "real_para_provisions": 0,
+      "concat_artifacts": 37,
+      "dangling_dr_refs": 0,
+      "articles": 113
+    },
+    {
+      "file": "laws/zakon-za-pazarite-na-finansovi-instrumenti.md",
+      "chars": 664989,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 18,
+      "real_para_provisions": 0,
+      "concat_artifacts": 13,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-pazarite-na-kriptoaktivi.md",
+      "chars": 62133,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 52
+    },
+    {
+      "file": "laws/zakon-za-pchelarstvoto.md",
+      "chars": 30207,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 49
+    },
+    {
+      "file": "laws/zakon-za-platezhnite-uslugi-i-platezhnite-sistemi.md",
+      "chars": 319335,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-pochvite.md",
+      "chars": 30991,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 43
+    },
+    {
+      "file": "laws/zakon-za-podpomagane-i-finansova-kompensatsiya-na-postradali-ot-prestapleniya.md",
+      "chars": 32515,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 35
+    },
+    {
+      "file": "laws/zakon-za-podpomagane-na-zemedelskite-proizvoditeli.md",
+      "chars": 179952,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 41,
+      "real_para_provisions": 0,
+      "concat_artifacts": 38,
+      "dangling_dr_refs": 0,
+      "articles": 158
+    },
+    {
+      "file": "laws/zakon-za-podzemnite-bogatstva.md",
+      "chars": 214041,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 24,
+      "real_para_provisions": 0,
+      "concat_artifacts": 22,
+      "dangling_dr_refs": 0,
+      "articles": 142
+    },
+    {
+      "file": "laws/zakon-za-pokritite-obligatsii.md",
+      "chars": 121662,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 78
+    },
+    {
+      "file": "laws/zakon-za-politicheska-i-grazhdanska-reabilitatsiya-na-represirani-litsa.md",
+      "chars": 15806,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 10
+    },
+    {
+      "file": "laws/zakon-za-politicheskite-partii.md",
+      "chars": 37117,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 15,
+      "real_para_provisions": 0,
+      "concat_artifacts": 15,
+      "dangling_dr_refs": 0,
+      "articles": 50
+    },
+    {
+      "file": "laws/zakon-za-posevniya-i-posadachniya-material.md",
+      "chars": 99582,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 94
+    },
+    {
+      "file": "laws/zakon-za-poshtenskite-uslugi.md",
+      "chars": 154671,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 24,
+      "real_para_provisions": 0,
+      "concat_artifacts": 23,
+      "dangling_dr_refs": 0,
+      "articles": 136
+    },
+    {
+      "file": "laws/zakon-za-potrebitelskiya-kredit.md",
+      "chars": 107641,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 61
+    },
+    {
+      "file": "laws/zakon-za-pravnata-pomosht.md",
+      "chars": 51916,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 16,
+      "real_para_provisions": 0,
+      "concat_artifacts": 15,
+      "dangling_dr_refs": 0,
+      "articles": 69
+    },
+    {
+      "file": "laws/zakon-za-prebroyavane-na-naselenieto-i-zhilishtniya-fond-v-republika-balgariya-p.md",
+      "chars": 30075,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 51
+    },
+    {
+      "file": "laws/zakon-za-prebroyavane-na-zemedelskite-stopanstva-v-republika-balgariya-prez-2020.md",
+      "chars": 32400,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 37
+    },
+    {
+      "file": "laws/zakon-za-predostavyane-na-finansova-podkrepa-na-bitovi-krayni-klienti-na-elektri.md",
+      "chars": 3873,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 5
+    },
+    {
+      "file": "laws/zakon-za-predostavyane-na-finansovi-uslugi-ot-razstoyanie.md",
+      "chars": 26860,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 30
+    },
+    {
+      "file": "laws/zakon-za-predostavyane-na-pomosht-za-izplashtane-na-zadalzheniya-na-natsionalna-.md",
+      "chars": 2706,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-predostavyane-na-pomosht-za-ozdravyavane-na-holding-balgarski-darzhavni.md",
+      "chars": 2227,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-predostavyane-na-tsifrovo-sadarzhanie-i-tsifrovi-uslugi-i-za-prodazhba-.md",
+      "chars": 72275,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 75
+    },
+    {
+      "file": "laws/zakon-za-predpriyatiyata-na-sotsialnata-i-solidarna-ikonomika.md",
+      "chars": 19608,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 18
+    },
+    {
+      "file": "laws/zakon-za-preduchilishtnoto-i-uchilishtnoto-obrazovanie.md",
+      "chars": 336629,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 10,
+      "dangling_dr_refs": 0,
+      "articles": 359
+    },
+    {
+      "file": "laws/zakon-za-preminavaneto-prez-i-prebivavaneto-na-teritoriyata-na-republika-balgari.md",
+      "chars": 21545,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 45
+    },
+    {
+      "file": "laws/zakon-za-preobrazuvane-na-darzhavnata-spestovna-kasa.md",
+      "chars": 1907,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-priemane-na-deklaratsiya-po-chl-287-al-1-ot-konventsiyata-na-organizats.md",
+      "chars": 1424,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-priemane-na-deklaratsiya-po-smisala-na-chl-h-razdel-43-ot-konventsiyata.md",
+      "chars": 1483,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-priemane-na-deklaratsiya-po-smisala-na-chlen-hi-razdel-43-ot-konventsiy.md",
+      "chars": 1747,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-priemane-na-deklaratsiya-za-priznavane-zadalzhitelnata-yurisdiktsiya-na.md",
+      "chars": 5446,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-prilagane-na-merkite-sreshtu-pazarnite-zloupotrebi-s-finansovi-instrume.md",
+      "chars": 23888,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 6,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 25
+    },
+    {
+      "file": "laws/zakon-za-prilagane-na-obshtata-organizatsiya-na-pazarite-na-zemedelski-produkti-.md",
+      "chars": 143290,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 15,
+      "real_para_provisions": 0,
+      "concat_artifacts": 14,
+      "dangling_dr_refs": 0,
+      "articles": 127
+    },
+    {
+      "file": "laws/zakon-za-prilagane-na-razporedbi-na-zakona-za-darzhavniya-byudzhet-na-republika--2.md",
+      "chars": 17905,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 11
+    },
+    {
+      "file": "laws/zakon-za-prilagane-na-razporedbi-na-zakona-za-darzhavniya-byudzhet-na-republika-.md",
+      "chars": 1543,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-privatizatsionnite-fondove.md",
+      "chars": 29581,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 43
+    },
+    {
+      "file": "laws/zakon-za-privatizatsiya-i-sledprivatizatsionen-kontrol.md",
+      "chars": 101586,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 32,
+      "real_para_provisions": 0,
+      "concat_artifacts": 33,
+      "dangling_dr_refs": 0,
+      "articles": 68
+    },
+    {
+      "file": "laws/zakon-za-priznavane-izpalnenie-i-izprashtane-na-aktove-za-konfiskatsiya-ili-otne.md",
+      "chars": 116708,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-priznavane-izpalnenie-i-izprashtane-na-aktove-za-nalagane-na-merki-za-p.md",
+      "chars": 36759,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-priznavane-izpalnenie-i-izprashtane-na-sadebni-aktove-za-nalagane-na-na.md",
+      "chars": 52719,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-priznavane-izpalnenie-i-izprashtane-na-sadebni-resheniya-i-resheniya-za.md",
+      "chars": 48293,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-priznavane-izpalnenie-postanovyavane-i-izprashtane-na-aktove-za-obezpec.md",
+      "chars": 37509,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-priznavane-na-profesionalni-kvalifikatsii.md",
+      "chars": 150899,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 111
+    },
+    {
+      "file": "laws/zakon-za-profesionalnoto-obrazovanie-i-obuchenie.md",
+      "chars": 195820,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 23,
+      "real_para_provisions": 0,
+      "concat_artifacts": 21,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-promishleniya-dizayn.md",
+      "chars": 76758,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-protivodeystvie-na-koruptsiyata-sred-litsa-zaemashti-publichni-dlazhnos.md",
+      "chars": 96308,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 118
+    },
+    {
+      "file": "laws/zakon-za-protivodeystvie-na-terorizma.md",
+      "chars": 45342,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 49
+    },
+    {
+      "file": "laws/zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi.md",
+      "chars": 21343,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 23
+    },
+    {
+      "file": "laws/zakon-za-pryako-uchastie-na-grazhdanite-v-darzhavnata-vlast-i-mestnoto-samouprav.md",
+      "chars": 61072,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-publichnite-finansi.md",
+      "chars": 196237,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 194
+    },
+    {
+      "file": "laws/zakon-za-publichnite-predpriyatiya.md",
+      "chars": 25314,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 33
+    },
+    {
+      "file": "laws/zakon-za-publichnoto-predlagane-na-tsenni-knizha.md",
+      "chars": 504832,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 47,
+      "real_para_provisions": 0,
+      "concat_artifacts": 45,
+      "dangling_dr_refs": 0,
+      "articles": 427
+    },
+    {
+      "file": "laws/zakon-za-radioto-i-televiziyata.md",
+      "chars": 206344,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 45,
+      "real_para_provisions": 0,
+      "concat_artifacts": 43,
+      "dangling_dr_refs": 0,
+      "articles": 182
+    },
+    {
+      "file": "laws/zakon-za-ravnopostavenost-na-zhenite-i-mazhete.md",
+      "chars": 11292,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 16
+    },
+    {
+      "file": "laws/zakon-za-razvitieto-na-akademichniya-sastav-v-republika-balgariya.md",
+      "chars": 72927,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 45
+    },
+    {
+      "file": "laws/zakon-za-regionalnoto-razvitie.md",
+      "chars": 49620,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 47
+    },
+    {
+      "file": "laws/zakon-za-registar-bulstat.md",
+      "chars": 50773,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 54
+    },
+    {
+      "file": "laws/zakon-za-registratsiya-i-kontrol-na-zemedelskata-i-gorskata-tehnika.md",
+      "chars": 71275,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 17,
+      "real_para_provisions": 0,
+      "concat_artifacts": 15,
+      "dangling_dr_refs": 0,
+      "articles": 49
+    },
+    {
+      "file": "laws/zakon-za-regulirane-na-vodosnabditelnite-i-kanalizatsionnite-uslugi.md",
+      "chars": 41311,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 10,
+      "dangling_dr_refs": 0,
+      "articles": 40
+    },
+    {
+      "file": "laws/zakon-za-rezerva-na-vaorazhenite-sili-na-republika-balgariya.md",
+      "chars": 74688,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 116
+    },
+    {
+      "file": "laws/zakon-za-ribarstvoto-i-akvakulturite.md",
+      "chars": 204781,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 32,
+      "real_para_provisions": 0,
+      "concat_artifacts": 33,
+      "dangling_dr_refs": 0,
+      "articles": 168
+    },
+    {
+      "file": "laws/zakon-za-sabiraneto-na-prihodi-i-izvarshvaneto-na-razhodi-prez-2025-g-do-prieman.md",
+      "chars": 4857,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 8
+    },
+    {
+      "file": "laws/zakon-za-sabiraneto-na-prihodi-i-izvarshvaneto-na-razhodi-prez-2026-g-do-prieman.md",
+      "chars": 25882,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 13
+    },
+    {
+      "file": "laws/zakon-za-sabraniyata-mitingite-i-manifestatsiite.md",
+      "chars": 7098,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 14
+    },
+    {
+      "file": "laws/zakon-za-sadebnata-vlast.md",
+      "chars": 532736,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 61,
+      "real_para_provisions": 0,
+      "concat_artifacts": 58,
+      "dangling_dr_refs": 0,
+      "articles": 558
+    },
+    {
+      "file": "laws/zakon-za-sahranenie-na-vagleroden-dioksid-v-zemnite-nedra.md",
+      "chars": 91632,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 87
+    },
+    {
+      "file": "laws/zakon-za-saslovnata-organizatsiya-na-magistar-farmatsevtite.md",
+      "chars": 40764,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 42
+    },
+    {
+      "file": "laws/zakon-za-saslovnata-organizatsiya-na-veterinarnite-lekari-v-balgariya.md",
+      "chars": 24240,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 30
+    },
+    {
+      "file": "laws/zakon-za-saslovnite-organizatsii-na-lekarite-i-na-lekarite-po-dentalna-meditsina.md",
+      "chars": 41732,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 10,
+      "dangling_dr_refs": 0,
+      "articles": 44
+    },
+    {
+      "file": "laws/zakon-za-saslovnite-organizatsii-na-meditsinskite-sestri-akusherkite-i-asotsiira.md",
+      "chars": 51969,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 47
+    },
+    {
+      "file": "laws/zakon-za-schetovodstvoto.md",
+      "chars": 118645,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 18,
+      "real_para_provisions": 0,
+      "concat_artifacts": 16,
+      "dangling_dr_refs": 0,
+      "articles": 87
+    },
+    {
+      "file": "laws/zakon-za-sdelkite-s-kompensatorni-instrumenti.md",
+      "chars": 13646,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 17
+    },
+    {
+      "file": "laws/zakon-za-sdruzheniya-za-napoyavane.md",
+      "chars": 46308,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 79
+    },
+    {
+      "file": "laws/zakon-za-selskostopanskata-akademiya-zagl-izm-dv-br-43-ot-2008-g.md",
+      "chars": 20023,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 14
+    },
+    {
+      "file": "laws/zakon-za-semeyni-pomoshti-za-detsa.md",
+      "chars": 57581,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 26,
+      "real_para_provisions": 0,
+      "concat_artifacts": 23,
+      "dangling_dr_refs": 0,
+      "articles": 30
+    },
+    {
+      "file": "laws/zakon-za-smetnata-palata.md",
+      "chars": 66049,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 12
+    },
+    {
+      "file": "laws/zakon-za-sobstvenostta-i-polzvaneto-na-zemedelskite-zemi-zagl-izm-dv-br-14-ot-20.md",
+      "chars": 171818,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 45,
+      "real_para_provisions": 0,
+      "concat_artifacts": 45,
+      "dangling_dr_refs": 0,
+      "articles": 82
+    },
+    {
+      "file": "laws/zakon-za-sobstvenostta.md",
+      "chars": 34022,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 123
+    },
+    {
+      "file": "laws/zakon-za-sotsialnite-uslugi.md",
+      "chars": 139274,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-sotsialno-podpomagane.md",
+      "chars": 47677,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 20,
+      "real_para_provisions": 0,
+      "concat_artifacts": 19,
+      "dangling_dr_refs": 0,
+      "articles": 56
+    },
+    {
+      "file": "laws/zakon-za-spetsialnite-razuznavatelni-sredstva.md",
+      "chars": 75210,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 24,
+      "real_para_provisions": 0,
+      "concat_artifacts": 24,
+      "dangling_dr_refs": 0,
+      "articles": 66
+    },
+    {
+      "file": "laws/zakon-za-statistikata-na-vatresayuznata-targoviya-sas-stoki-zagl-izm-dv-br-61-ot.md",
+      "chars": 21987,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 19
+    },
+    {
+      "file": "laws/zakon-za-statistikata.md",
+      "chars": 43086,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 62
+    },
+    {
+      "file": "laws/zakon-za-stokovite-borsi-i-tarzhishtata.md",
+      "chars": 67770,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 17,
+      "real_para_provisions": 0,
+      "concat_artifacts": 16,
+      "dangling_dr_refs": 0,
+      "articles": 83
+    },
+    {
+      "file": "laws/zakon-za-talkuvane-na-chl-47-ot-zakona-za-chuzhdentsite-v-republika-balgariya-dv.md",
+      "chars": 2101,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-targovskiya-registar-i-registara-na-yuridicheskite-litsa-s-nestopanska-.md",
+      "chars": 72709,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 22,
+      "real_para_provisions": 0,
+      "concat_artifacts": 21,
+      "dangling_dr_refs": 0,
+      "articles": 1
+    },
+    {
+      "file": "laws/zakon-za-tehnicheskite-iziskvaniya-kam-produktite.md",
+      "chars": 133205,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 16,
+      "real_para_provisions": 0,
+      "concat_artifacts": 16,
+      "dangling_dr_refs": 0,
+      "articles": 118
+    },
+    {
+      "file": "laws/zakon-za-teritorialnoto-delenie-na-stolichnata-obshtina-i-golemite-gradove.md",
+      "chars": 18198,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-topologiyata-na-integralnite-shemi.md",
+      "chars": 22567,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-transliteratsiyata.md",
+      "chars": 8164,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 17
+    },
+    {
+      "file": "laws/zakon-za-transplantatsiya-na-organi-takani-i-kletki.md",
+      "chars": 85331,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 70
+    },
+    {
+      "file": "laws/zakon-za-trudovata-migratsiya-i-trudovata-mobilnost.md",
+      "chars": 86476,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 85
+    },
+    {
+      "file": "laws/zakon-za-tsentara-za-otsenka-na-riska-po-hranitelnata-veriga.md",
+      "chars": 24857,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 23
+    },
+    {
+      "file": "laws/zakon-za-turizma.md",
+      "chars": 351996,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 20,
+      "real_para_provisions": 0,
+      "concat_artifacts": 19,
+      "dangling_dr_refs": 0,
+      "articles": 267
+    },
+    {
+      "file": "laws/zakon-za-tvorcheskite-fondove.md",
+      "chars": 8302,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 11
+    },
+    {
+      "file": "laws/zakon-za-tyutyuna-tyutyunevite-i-svarzanite-s-tyah-izdeliya-zagl-izm-dv-br-28-ot.md",
+      "chars": 184987,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 37,
+      "real_para_provisions": 0,
+      "concat_artifacts": 33,
+      "dangling_dr_refs": 0,
+      "articles": 127
+    },
+    {
+      "file": "laws/zakon-za-ubezhishteto-i-bezhantsite.md",
+      "chars": 136732,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 14,
+      "real_para_provisions": 0,
+      "concat_artifacts": 14,
+      "dangling_dr_refs": 0,
+      "articles": 129
+    },
+    {
+      "file": "laws/zakon-za-upravlenie-i-funktsionirane-na-sistemata-za-zashtita-na-natsionalnata-s.md",
+      "chars": 20549,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 24
+    },
+    {
+      "file": "laws/zakon-za-upravlenie-na-agrohranitelnata-veriga.md",
+      "chars": 69659,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 98
+    },
+    {
+      "file": "laws/zakon-za-upravlenie-na-etazhnata-sobstvenost.md",
+      "chars": 109906,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 6
+    },
+    {
+      "file": "laws/zakon-za-upravlenie-na-otpadatsite.md",
+      "chars": 307783,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 20,
+      "real_para_provisions": 0,
+      "concat_artifacts": 18,
+      "dangling_dr_refs": 0,
+      "articles": 173
+    },
+    {
+      "file": "laws/zakon-za-upravlenie-na-sredstvata-ot-evropeyskite-fondove-pri-spodeleno-upravlen.md",
+      "chars": 96779,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 84
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-na-kolektivnite-trudovi-sporove.md",
+      "chars": 15077,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 23
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-na-neobsluzhvanite-krediti-dogovoreni-do-31-dekemvri-1990-g.md",
+      "chars": 14768,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 19
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-na-nyakoi-trudovi-i-osiguritelni-prava-na-balgarski-grazhdani.md",
+      "chars": 2364,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-na-stari-zadalzheniya-po-bankovi-krediti.md",
+      "chars": 3710,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 3
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-na-zadalzheniya-na-bulgargaz-ead-kam-darzhavata.md",
+      "chars": 2154,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-pravata-na-grazhdani-s-mnogogodishni-zhilishtno-spestovni-vlo.md",
+      "chars": 6660,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 10
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-pravata-na-kupuvachi-na-nedvizhimi-imoti-s-chastni-dogovori.md",
+      "chars": 8860,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 12
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-pravata-na-litsata-koito-sa-zaeli-ili-poluchili-darzhavni-dvo.md",
+      "chars": 2168,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-urezhdane-pravnite-posleditsi-na-brakove-sklyucheni-v-narushenie-na-chl.md",
+      "chars": 994,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-ustanovyavane-na-trudov-i-osiguritelen-stazh-po-sadeben-red.md",
+      "chars": 7545,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 10
+    },
+    {
+      "file": "laws/zakon-za-ustroystvo-na-teritoriyata.md",
+      "chars": 497773,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 63,
+      "real_para_provisions": 0,
+      "concat_artifacts": 62,
+      "dangling_dr_refs": 0,
+      "articles": 284
+    },
+    {
+      "file": "laws/zakon-za-ustroystvoto-i-zastroyavaneto-na-stolichnata-obshtina.md",
+      "chars": 56824,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 6,
+      "dangling_dr_refs": 0,
+      "articles": 30
+    },
+    {
+      "file": "laws/zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie.md",
+      "chars": 127531,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 23,
+      "real_para_provisions": 0,
+      "concat_artifacts": 21,
+      "dangling_dr_refs": 0,
+      "articles": 81
+    },
+    {
+      "file": "laws/zakon-za-vanshnata-targoviya.md",
+      "chars": 2168,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 24
+    },
+    {
+      "file": "laws/zakon-za-vatreshniya-odit-v-publichniya-sektor.md",
+      "chars": 44541,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 58
+    },
+    {
+      "file": "laws/zakon-za-vavezhdane-na-evroto-v-republika-balgariya.md",
+      "chars": 77518,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-vazstanovyavane-i-prestrukturirane-na-kreditni-institutsii-i-investitsi.md",
+      "chars": 511777,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-vazstanovyavane-na-nadvnesen-aktsiz-za-upotrebyavani-avtomobili.md",
+      "chars": 20342,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-vazstanovyavane-na-sobstvenostta-varhu-gorite-i-zemite-ot-gorskiya-fond.md",
+      "chars": 34106,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 27
+    },
+    {
+      "file": "laws/zakon-za-vazstanovyavane-sobstvenostta-varhu-konfiskuvanite-s-ukaz-88-na-prezidi.md",
+      "chars": 1763,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-vazstanovyavane-sobstvenostta-varhu-nedvizhimi-imoti-na-balgarski-grazh.md",
+      "chars": 7194,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 9
+    },
+    {
+      "file": "laws/zakon-za-vazstanovyavane-sobstvenostta-varhu-nyakoi-magazini-rabotilnitsi-sklado.md",
+      "chars": 1974,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 4
+    },
+    {
+      "file": "laws/zakon-za-vazstanovyavane-sobstvenostta-varhu-nyakoi-otchuzhdeni-imoti-po-zakona-.md",
+      "chars": 5865,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 7
+    },
+    {
+      "file": "laws/zakon-za-vazstanovyavane-sobstvenostta-varhu-odarzhaveni-nedvizhimi-imoti.md",
+      "chars": 17230,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 10
+    },
+    {
+      "file": "laws/zakon-za-veroizpovedaniyata.md",
+      "chars": 35773,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 12,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 42
+    },
+    {
+      "file": "laws/zakon-za-veteranite-ot-voynite-na-republika-balgariya-zagl-dop-dv-br-105-ot-2016.md",
+      "chars": 5601,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 2,
+      "real_para_provisions": 0,
+      "concat_artifacts": 1,
+      "dangling_dr_refs": 0,
+      "articles": 7
+    },
+    {
+      "file": "laws/zakon-za-veterinarnomeditsinskata-deynost.md",
+      "chars": 475640,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 28,
+      "real_para_provisions": 0,
+      "concat_artifacts": 26,
+      "dangling_dr_refs": 0,
+      "articles": 618
+    },
+    {
+      "file": "laws/zakon-za-vinoto-i-spirtnite-napitki.md",
+      "chars": 215243,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 10,
+      "real_para_provisions": 0,
+      "concat_artifacts": 9,
+      "dangling_dr_refs": 0,
+      "articles": 229
+    },
+    {
+      "file": "laws/zakon-za-vissheto-obrazovanie.md",
+      "chars": 224271,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 44,
+      "real_para_provisions": 0,
+      "concat_artifacts": 43,
+      "dangling_dr_refs": 0,
+      "articles": 139
+    },
+    {
+      "file": "laws/zakon-za-vlizaneto-prebivavaneto-i-napuskaneto-na-republika-balgariya-na-grazhda.md",
+      "chars": 46606,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 11,
+      "dangling_dr_refs": 0,
+      "articles": 44
+    },
+    {
+      "file": "laws/zakon-za-vodite.md",
+      "chars": 430110,
+      "dr_heading": false,
+      "definitions": true,
+      "pzr_headings": 51,
+      "real_para_provisions": 0,
+      "concat_artifacts": 49,
+      "dangling_dr_refs": 0,
+      "articles": 335
+    },
+    {
+      "file": "laws/zakon-za-voennata-politsiya.md",
+      "chars": 58463,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 37
+    },
+    {
+      "file": "laws/zakon-za-voennite-pametnitsi.md",
+      "chars": 13344,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 2,
+      "dangling_dr_refs": 0,
+      "articles": 21
+    },
+    {
+      "file": "laws/zakon-za-voennoinvalidite-i-voennopostradalite.md",
+      "chars": 14743,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 26
+    },
+    {
+      "file": "laws/zakon-za-voennoto-razuznavane.md",
+      "chars": 53909,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 7,
+      "real_para_provisions": 0,
+      "concat_artifacts": 5,
+      "dangling_dr_refs": 0,
+      "articles": 90
+    },
+    {
+      "file": "laws/zakon-za-yuridicheskite-litsa-s-nestopanska-tsel.md",
+      "chars": 44328,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-zabrana-na-himicheskoto-orazhie-i-za-kontrol-na-toksichnite-himicheski-.md",
+      "chars": 35086,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 31
+    },
+    {
+      "file": "laws/zakon-za-zadalzheniyata-i-dogovorite.md",
+      "chars": 113472,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 452
+    },
+    {
+      "file": "laws/zakon-za-zadalzheniyata-kam-mezhdunarodniya-fond-za-obezshtetenie-pri-shteti-pri.md",
+      "chars": 10112,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 13
+    },
+    {
+      "file": "laws/zakon-za-zadalzhitelnoto-depozirane-na-pechatni-i-drugi-proizvedeniya-i-za-obyav.md",
+      "chars": 27924,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-zakrila-i-razvitie-na-kulturata.md",
+      "chars": 65764,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 24,
+      "real_para_provisions": 0,
+      "concat_artifacts": 24,
+      "dangling_dr_refs": 0,
+      "articles": 55
+    },
+    {
+      "file": "laws/zakon-za-zakrila-na-deteto.md",
+      "chars": 102110,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 25,
+      "real_para_provisions": 0,
+      "concat_artifacts": 20,
+      "dangling_dr_refs": 0,
+      "articles": 13
+    },
+    {
+      "file": "laws/zakon-za-zakrila-na-novite-sortove-rasteniya-i-porodi-zhivotni.md",
+      "chars": 55983,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-zakrivane-na-agentsiyata-za-chuzhdestranna-pomosht.md",
+      "chars": 875,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-zakrivane-na-meditsinskata-akademiya.md",
+      "chars": 685,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-zakrivane-na-natsionalnata-sluzhba-po-zarnoto.md",
+      "chars": 696,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-zakrivane-na-sotsialnoinvestitsionniya-fond.md",
+      "chars": 694,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 1,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-zanayatite.md",
+      "chars": 48401,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 13,
+      "real_para_provisions": 0,
+      "concat_artifacts": 12,
+      "dangling_dr_refs": 0,
+      "articles": 70
+    },
+    {
+      "file": "laws/zakon-za-zapasite-ot-neft-i-neftoprodukti.md",
+      "chars": 134160,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 78
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-klasifitsiranata-informatsiya.md",
+      "chars": 145629,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 34,
+      "real_para_provisions": 0,
+      "concat_artifacts": 30,
+      "dangling_dr_refs": 0,
+      "articles": 144
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-konkurentsiyata.md",
+      "chars": 192382,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 15,
+      "real_para_provisions": 0,
+      "concat_artifacts": 13,
+      "dangling_dr_refs": 0,
+      "articles": 2
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-lichnite-danni.md",
+      "chars": 110954,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 16,
+      "real_para_provisions": 0,
+      "concat_artifacts": 14,
+      "dangling_dr_refs": 0,
+      "articles": 132
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo.md",
+      "chars": 32278,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 4,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 38
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-litsata-podavashti-signali-ili-publichno-opovestyavashti-in.md",
+      "chars": 127881,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 3,
+      "real_para_provisions": 0,
+      "concat_artifacts": 3,
+      "dangling_dr_refs": 0,
+      "articles": 8
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-potrebitelite.md",
+      "chars": 355563,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 32,
+      "real_para_provisions": 0,
+      "concat_artifacts": 30,
+      "dangling_dr_refs": 0,
+      "articles": 349
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-rasteniyata.md",
+      "chars": 226081,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 213
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-targovskata-tayna.md",
+      "chars": 28065,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 0
+    },
+    {
+      "file": "laws/zakon-za-zashtita-na-zhivotnite.md",
+      "chars": 48237,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 8,
+      "real_para_provisions": 0,
+      "concat_artifacts": 7,
+      "dangling_dr_refs": 0,
+      "articles": 82
+    },
+    {
+      "file": "laws/zakon-za-zashtita-ot-diskriminatsiya-zagl-izm-dv-br-68-ot-2006-g.md",
+      "chars": 49767,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 11,
+      "real_para_provisions": 0,
+      "concat_artifacts": 10,
+      "dangling_dr_refs": 0,
+      "articles": 84
+    },
+    {
+      "file": "laws/zakon-za-zashtita-ot-domashnoto-nasilie-zagl-izm-dv-br-102-ot-2009-g-v-sila-ot-2.md",
+      "chars": 45141,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 5,
+      "real_para_provisions": 0,
+      "concat_artifacts": 4,
+      "dangling_dr_refs": 0,
+      "articles": 39
+    },
+    {
+      "file": "laws/zakon-za-zashtita-ot-shuma-v-okolnata-sreda.md",
+      "chars": 44657,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 9,
+      "real_para_provisions": 0,
+      "concat_artifacts": 8,
+      "dangling_dr_refs": 0,
+      "articles": 45
+    },
+    {
+      "file": "laws/zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-.md",
+      "chars": 150366,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 19,
+      "real_para_provisions": 0,
+      "concat_artifacts": 18,
+      "dangling_dr_refs": 0,
+      "articles": 120
+    },
+    {
+      "file": "laws/zakon-za-zashtita-pri-bedstviya.md",
+      "chars": 107942,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 14,
+      "real_para_provisions": 0,
+      "concat_artifacts": 13,
+      "dangling_dr_refs": 0,
+      "articles": 121
+    },
+    {
+      "file": "laws/zakon-za-zashtitenite-teritorii.md",
+      "chars": 66628,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 21,
+      "real_para_provisions": 0,
+      "concat_artifacts": 17,
+      "dangling_dr_refs": 0,
+      "articles": 88
+    },
+    {
+      "file": "laws/zakon-za-zdraveto.md",
+      "chars": 318136,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 82,
+      "real_para_provisions": 0,
+      "concat_artifacts": 77,
+      "dangling_dr_refs": 0,
+      "articles": 321
+    },
+    {
+      "file": "laws/zakon-za-zdravnoto-osiguryavane.md",
+      "chars": 239661,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 93,
+      "real_para_provisions": 0,
+      "concat_artifacts": 88,
+      "dangling_dr_refs": 0,
+      "articles": 180
+    },
+    {
+      "file": "laws/zakon-za-zdravoslovni-i-bezopasni-usloviya-na-trud.md",
+      "chars": 77279,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 16,
+      "real_para_provisions": 0,
+      "concat_artifacts": 15,
+      "dangling_dr_refs": 0,
+      "articles": 77
+    },
+    {
+      "file": "laws/zakon-za-zhelezopatniya-transport.md",
+      "chars": 219243,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 19,
+      "real_para_provisions": 0,
+      "concat_artifacts": 17,
+      "dangling_dr_refs": 0,
+      "articles": 170
+    },
+    {
+      "file": "laws/zakon-za-zhilishtnostroitelnite-kooperatsii.md",
+      "chars": 21246,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 0,
+      "real_para_provisions": 0,
+      "concat_artifacts": 0,
+      "dangling_dr_refs": 0,
+      "articles": 46
+    },
+    {
+      "file": "laws/zakon-za-zhivotnovadstvoto.md",
+      "chars": 96878,
+      "dr_heading": false,
+      "definitions": false,
+      "pzr_headings": 22,
+      "real_para_provisions": 0,
+      "concat_artifacts": 19,
+      "dangling_dr_refs": 0,
+      "articles": 115
+    }
+  ]
+}
