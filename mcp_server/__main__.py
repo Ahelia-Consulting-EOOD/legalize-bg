@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import argparse
 import logging
+import os
 import sqlite3
 import subprocess
 import sys
@@ -27,6 +28,28 @@ from mcp_server.server import build_app
 
 
 log = logging.getLogger("mcp_server")
+
+
+def _check_corpus_defective() -> int | None:
+    """Deploy-guard: refuse to serve a corpus flagged as defective (D-047).
+
+    Returns a non-None exit code when ``LEGALIZE_CORPUS_DEFECTIVE=1`` and the
+    explicit ``LEGALIZE_ALLOW_DEFECTIVE=1`` override is not set; otherwise
+    None (continue). The flag is OFF by default, so this is a dormant safety
+    net: it exists so a known-incomplete corpus (missing definitions and
+    transitional/final provisions) can never be served unnoticed. Checked
+    before any DB access so the refusal wins over INDEX_MISSING/INDEX_STALE.
+    """
+    if (os.environ.get("LEGALIZE_CORPUS_DEFECTIVE") == "1"
+            and os.environ.get("LEGALIZE_ALLOW_DEFECTIVE") != "1"):
+        log.error(
+            "REFUSING TO START: corpus flagged defective "
+            "(LEGALIZE_CORPUS_DEFECTIVE=1; D-047 parser data-loss). "
+            "Definitions and transitional/final provisions may be missing. "
+            "Set LEGALIZE_ALLOW_DEFECTIVE=1 to override for debugging only."
+        )
+        return 2
+    return None
 
 
 def _git_head(corpus_root: Path) -> str | None:
@@ -114,6 +137,12 @@ def main(argv: list[str] | None = None) -> int:
 
     db_path = args.db.resolve()
     corpus_root = args.corpus.resolve()
+
+    # Deploy-guard first: a corpus flagged defective must not be served, even
+    # if the index is otherwise present and fresh (D-047 Phase 0 / Task 0).
+    rc = _check_corpus_defective()
+    if rc is not None:
+        return rc
 
     rc = _check_index_state(db_path, corpus_root, args.strict)
     if rc is not None:

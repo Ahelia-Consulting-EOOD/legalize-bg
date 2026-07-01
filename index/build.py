@@ -112,13 +112,18 @@ def _git_file_versions(corpus_root: Path, rel_path: str) -> list[tuple[str, str]
     can scramble). If act renames are ever introduced, restore `--follow`."""
     out = subprocess.run(
         ["git", "log", "--reverse", "--date=short",
-         "--format=%H %ad", "--", rel_path],
+         "--format=%H %ad %s", "--", rel_path],
         cwd=corpus_root, check=True, capture_output=True, text=True,
     ).stdout
     by_date: dict[str, str] = {}
     for line in out.splitlines():
-        commit_hash, _, d = line.partition(" ")
-        if commit_hash and d:
+        commit_hash, _, tail = line.partition(" ")
+        d, _, subject = tail.partition(" ")
+        # A [popravka] is a corrigendum, NOT a legal amendment (D-047/Task 13):
+        # it must not create a version boundary, or the parser-fix re-bootstrap
+        # fabricates a spurious 'incomplete->complete' step. The corrected text
+        # still reaches the latest version because the caller stamps commit=head.
+        if commit_hash and d and not subject.startswith("[popravka]"):
             by_date[d] = commit_hash  # later same-date commit overwrites
     return sorted(by_date.items())  # (date, commit) chronological
 
@@ -142,15 +147,21 @@ def _all_file_versions(corpus_root: Path) -> dict[str, list[tuple[str, str]]]:
     cats = sorted(set(CATEGORY_DIRS.values()))
     out = subprocess.run(
         ["git", "log", "--reverse", "--date=short",
-         "--format=tformat:@@@%H %ad", "--name-only", "--", *cats],
+         "--format=tformat:@@@%H %ad %s", "--name-only", "--", *cats],
         cwd=corpus_root, check=True, capture_output=True, text=True,
     ).stdout
     per_file: dict[str, dict[str, str]] = {}
     cur_hash = cur_date = None
+    cur_is_popravka = False
     for line in out.splitlines():
         if line.startswith("@@@"):
-            cur_hash, _, cur_date = line[3:].partition(" ")
-        elif line.strip() and cur_hash and cur_date:
+            cur_hash, _, tail = line[3:].partition(" ")
+            cur_date, _, subject = tail.partition(" ")
+            # [popravka] = corrigendum, not a legal amendment: skip it as a
+            # version boundary (D-047/Task 13). The latest version still gets
+            # the corrected text via the caller's commit=head stamping.
+            cur_is_popravka = subject.startswith("[popravka]")
+        elif line.strip() and cur_hash and cur_date and not cur_is_popravka:
             # --reverse = oldest first, so a later same-date commit
             # overwrites → keeps the day's last commit (end-of-day state).
             per_file.setdefault(line, {})[cur_date] = cur_hash

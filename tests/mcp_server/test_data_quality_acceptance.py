@@ -72,11 +72,12 @@ def test_72_null_pub_date_returns_DATE_UNCERTAIN(real_app):
 
 
 def test_72_null_pub_date_count_matches_canonical_data_model(real_app):
-    """§7.2 promises exactly 121 acts have date_uncertain=1 in the
-    bootstrap build. The canonical data model documents this number;
-    deviation means either the bootstrap regressed or the doc is stale."""
+    """§7.2 promises exactly 121 ACTS have date_uncertain=1. Count DISTINCT
+    law_id, not law_versions rows: FR-020 (D-042) can give a null-pub-date act
+    more than one version row (e.g. a [reforma] amendment boundary), so a raw
+    COUNT(*) over-counts. The documented invariant is the number of acts."""
     n = real_app._conn.execute(
-        "SELECT COUNT(*) FROM law_versions WHERE date_uncertain = 1"
+        "SELECT COUNT(DISTINCT law_id) FROM law_versions WHERE date_uncertain = 1"
     ).fetchone()[0]
     assert n == 121, (
         f"§7.2 acts changed: was 121, now {n}. Update "
