@@ -50,6 +50,22 @@ def test_commit_sets_author_date_from_legislative_date(tmp_path):
     assert _log(tmp_path, "%ad").startswith("") and "2026-06-01" in _log(tmp_path, "%ai")
 
 
+def test_commit_does_not_backdate_committer_date(tmp_path):
+    """D-048: only author-date is backdated to the legislative date; committer
+    date stays at real commit time so shared-main `git log` ordering and
+    date-based freshness monitoring work. Regression guard against re-introducing
+    GIT_COMMITTER_DATE backdating (which made origin/main appear to move
+    backwards for the DRS consumer)."""
+    _init_repo(tmp_path)
+    f = tmp_path / "laws" / "act.md"
+    f.parent.mkdir()
+    f.write_text("content", encoding="utf-8")
+    _git_commit_typed(f, "popravka", "Стар закон", doc_id=7,
+                      date="2019-01-01", cwd=tmp_path)
+    assert _log(tmp_path, "%aI").startswith("2019-01-01")       # author = legislative
+    assert not _log(tmp_path, "%cI").startswith("2019-01-01")   # committer = real (not backdated)
+
+
 def test_commit_null_date_emits_unknown_source_date(tmp_path):
     _init_repo(tmp_path)
     f = tmp_path / "laws" / "act.md"

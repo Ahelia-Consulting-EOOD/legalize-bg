@@ -270,11 +270,14 @@ def _git_commit_typed(filepath: Path, commit_type: str, title: str,
     """Commit one corpus change with the Legalize commit format.
 
     Mirrors bootstrap._git_commit but parametrized over commit type. The body
-    carries the three mandatory fields (Source-Id / Source-Date / Norm-Id);
-    GIT_AUTHOR_DATE and GIT_COMMITTER_DATE are set to the legislative date so
-    `git log --before` reconstructs history chronologically. Source-Id stays
-    lexbg-{doc_id} because this coarse pass re-pulls from lex.bg rather than a
-    specific DV issue.
+    carries the three mandatory fields (Source-Id / Source-Date / Norm-Id).
+    Only GIT_AUTHOR_DATE is set to the legislative date (FR-020 reads author-date
+    via `git log --format=%ad`); GIT_COMMITTER_DATE is left at the real commit
+    time (D-048). Backdating the committer date made the shared-main tip appear
+    to move backwards and defeated date-based freshness monitoring for downstream
+    consumers, and nothing reads committer-date (get_law(date)/diff resolve via
+    the law_versions table, not `git log --before`). Source-Id stays lexbg-{doc_id}
+    because this coarse pass re-pulls from lex.bg rather than a specific DV issue.
     """
     if commit_type not in COMMIT_TYPES:
         raise ValueError(f"unknown commit type: {commit_type}")
@@ -297,8 +300,9 @@ def _git_commit_typed(filepath: Path, commit_type: str, title: str,
     env = os.environ.copy()
     author_date = _format_author_date(date)
     if author_date:
+        # Author-date = legislative date (FR-020 reads %ad). Committer-date is
+        # deliberately NOT set, so it stays at real commit time (D-048).
         env["GIT_AUTHOR_DATE"] = author_date
-        env["GIT_COMMITTER_DATE"] = author_date
     subprocess.run(
         ["git", "commit", "-m", msg],
         cwd=cwd, check=True, capture_output=True, env=env,
