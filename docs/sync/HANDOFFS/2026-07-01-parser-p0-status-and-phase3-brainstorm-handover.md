@@ -14,7 +14,7 @@ The **P0 corpus-integrity defect (D-047) is the top priority, ahead of the fresh
 1. `.claude/CLAUDE.md` → `docs/sync/ACTIVE.md` (**P0 banner at top**) → `docs/sync/DEFERRED.md` (empty) → `docs/process/delivery-contract.md`.
 2. **`docs/sync/DECISIONS.md` → D-047** ← the P0 finding + the four resolved decisions (D1–D4) + the CF obstacle. START HERE for the defect.
 3. **`docs/plans/2026-06-29-parser-remediation-plan.md`** ← the 5-phase remediation plan (Task-by-Task). *Uncommitted — see §5.*
-4. `.superpowers/sdd/final-fix-report.md` ← what the branch-review wave actually fixed (committed).
+4. `.superpowers/sdd/final-fix-report.md` ← what the branch-review wave actually fixed (now gitignored/local per `658d9340`; the durable record is the committed forensics in item 5).
 5. `docs/research/2026-06-29-parser-data-loss-forensics/` (`FINDINGS.md`, `EVALUATION.md`, `COMPLETENESS.md`, `forensics.py`, `coverage_ledger.py`) ← the evidence base. *Uncommitted — see §5.*
 6. **This handover §3** ← the paused Phase 3 brainstorm decisions (to preserve).
 7. When Phase 3 resumes: `docs/sync/HANDOFFS/2026-06-22-phase3-next-session-handover.md` (the prior handover; its §2 SETTLED facts still hold) + `docs/research/2026-06-22-investigations-synthesis-brief.md` + the four `docs/research/2026-06-22-I{1,2,3,4}-*.md` findings.
@@ -69,17 +69,15 @@ Ran `superpowers:brainstorming` with the shared Phase-3/Phase-4 design spine in 
 - **Convergence B — coverage gate ↔ DV-monitor + Phase-4 validation.** The D-047 class-agnostic coverage gate ("prove completeness by measuring uncovered source text") is now a **proven, reusable discipline**. It strengthens the DV-monitor's conservative-classifier / flag-don't-guess posture (decision #5) and is a natural fit for the Phase-4 consolidation validation model (the LawVM two-level bar).
 - **Held governance edits — still held, now larger.** The 2026-06-22 handover §4.5 held a one-pass governance edit (delivery-contract §Phase-4 rewrite → LawVM two-level model; DECISIONS D-043…D-046; FR-002/003/004/005/009 rewordings). That is **still pending** and must **now also capture the resolver D-022 fork** from brainstorm decision #4. Apply in one pass when the freshness track resumes. (Note: D-047 already took the next decision ID after D-042, so the held D-043…D-046 labels should be re-numbered on ratification.)
 
-## 5. Uncommitted state (hygiene — flag before more work)
+## 5. Uncommitted state (RESOLVED 2026-07-01)
 
-The repo has meaningful uncommitted primary evidence and planning docs. None are lost, but they are not yet in history:
+All primary evidence cited by committed decisions/handovers is now in git history — no cited evidence remains untracked:
 
-- `docs/plans/2026-06-29-parser-remediation-plan.md` — **untracked** (the code that implements its Phases 1–2 IS committed; the plan doc lags).
-- `docs/process/IMPLEMENTATION-PREFLIGHT-2026-06-29-parser.md` — **untracked** (D-047 references it as the Surface-6 preflight for the parser change).
-- `docs/research/` — **entirely untracked**: the nine 2026-06-22 freshness investigation files (I1–I4 + sources + synthesis brief) AND the `2026-06-29-parser-data-loss-forensics/` evidence dir referenced by D-047.
-- `docs/sync/HANDOFFS/2026-06-22-phase3-next-session-handover.md` — **untracked** (on disk, never committed).
-- `docs/sync/ACTIVE.md`, `docs/sync/DECISIONS.md` — show as modified in `git status` but have **no content diff vs HEAD** (mtime-only; D-047 and the P0 banner ARE committed). No action needed beyond a `git checkout`/no-op if desired.
+- **2026-06-29 D-047 evidence** — the remediation plan, the parser preflight, and the full `docs/research/2026-06-29-parser-data-loss-forensics/` dir (FINDINGS/EVALUATION/COMPLETENESS + `forensics.py`/`coverage_ledger.py`) — **committed** in `3f046e44`.
+- **2026-06-22 freshness track** — the nine investigation files (I1–I4 + sources logs + synthesis brief) and `2026-06-22-phase3-next-session-handover.md` — **committed** alongside this handover update (`docs(research)`, 2026-07-01).
+- `docs/sync/ACTIVE.md` (P0 banner + D-047 row) — committed (`3f046e44` / `d368febf`); this handover — committed (`d368febf`). `docs/sync/DECISIONS.md`'s prior `git status` "modified" flag was mtime-only (no content diff).
 
-**Recommendation:** commit the forensics evidence, the remediation plan, the preflight, and the freshness research (they are load-bearing references cited by committed decisions) before the next code push, so decisions don't point at uncommitted files. This handover is itself new and uncommitted.
+Historical note: `.superpowers/` scratch was gitignored and a stray SDD report untracked in `658d9340` — the durable D-047 record is the committed forensics above, not that local report.
 
 ## 6. Risks to carry forward
 
