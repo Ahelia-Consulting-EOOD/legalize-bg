@@ -15,6 +15,7 @@ CLASS_MAP = {
     "Part": ("## ", True),
     "Heading": ("### ", True),
     "Section": ("#### ", True),
+    "UnderSection": ("##### ", True),  # Подраздел — subdivision below Раздел/Section
     "Article": ("", True),           # special handling for bold article number
     "AdditionalEdicts": ("## ", True),       # Допълнителни разпоредби heading
     "FinalEdicts": ("## ", True),            # Заключителни разпоредби (КЪМ …) heading

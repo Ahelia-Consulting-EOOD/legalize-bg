@@ -174,3 +174,16 @@ def test_warning_emitted_for_kept_unmapped_class(caplog):
         md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
     assert "нова разпоредба тук" in md
     assert any("SomeNovelEdict" in (r.getMessage()) for r in caplog.records)
+
+
+def test_undersection_rendered_as_level5_heading():
+    """Подраздел (UnderSection) is a structural level below Раздел/Section and
+    must render as a level-5 heading, not be flattened to plain text (D-047:
+    preserve article/chapter/section structure)."""
+    from bs4 import BeautifulSoup
+    html = ('<div class="TitleDocument">Z</div>'
+            '<div class="Section">Раздел I. Общи разпоредби</div>'
+            '<div class="UnderSection">Подраздел I. Общи положения</div>')
+    md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
+    assert "#### Раздел I. Общи разпоредби" in md
+    assert "##### Подраздел I. Общи положения" in md
