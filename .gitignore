@@ -11,6 +11,7 @@ catalog.db
 # Refresh runner artifacts (derived, per-run)
 .refresh-state.json
 refresh-run.log
+gate-report.json
 
 # Playwright MCP browser session artifacts (snapshots/console logs)
 .playwright-mcp/

@@ -6,6 +6,7 @@ Contract references (docs/process/delivery-contract.md "Rate Limiting Protocol")
 - Line 155: log timestamp, URL, status code, response time
 """
 
+import json
 import logging
 import pytest
 import requests
@@ -115,3 +116,85 @@ def test_4xx_other_than_429_does_not_retry():
     with pytest.raises(requests.HTTPError):
         sess.get_bytes("http://x")
     assert sess._call_count() == 1
+
+
+# --- CF-clearance cookie support (D-047 Phase 3 / Task 9) -------------------
+
+_FAKE_CLOCK = lambda counter=[0.0]: (counter.__setitem__(0, counter[0] + 0.01) or counter[0])
+
+
+def _write_cookie_file(path, token, ua="Mozilla/5.0 TestUA"):
+    path.write_text(json.dumps({
+        "user_agent": ua,
+        "cf_clearance": token,
+        "cookies": {"cf_clearance": token, "PHPSESSID": "sess-abc"},
+    }), encoding="utf-8")
+
+
+def _bind_get(sess, responses):
+    idx = [0]
+
+    def fake_get(url, timeout=30):
+        r = responses[idx[0]]
+        idx[0] += 1
+        return r
+
+    sess._do_get = fake_get
+    sess._call_count = lambda: idx[0]
+    return sess
+
+
+def test_cookie_file_sets_user_agent_and_cookie_jar(tmp_path):
+    cf = tmp_path / "cf.json"
+    _write_cookie_file(cf, "TOKEN1", ua="Mozilla/5.0 RealBrowser")
+    sess = RateLimitedSession(cookie_path=cf, rate_limit_sec=0.0, sleep=lambda s: None)
+    assert sess._session.headers["User-Agent"] == "Mozilla/5.0 RealBrowser"
+    # never advertise brotli — requests can't decode it without the package
+    assert sess._session.headers.get("Accept-Encoding") == "gzip, deflate"
+    jar = {c.name: c.value for c in sess._session.cookies}
+    assert jar.get("cf_clearance") == "TOKEN1"
+    assert jar.get("PHPSESSID") == "sess-abc"
+
+
+def test_cf_challenge_waits_for_refreshed_cookie_then_retries(tmp_path):
+    cf = tmp_path / "cf.json"
+    _write_cookie_file(cf, "OLD")
+    body = b"<html><body>Just a moment...</body></html>"
+    sess = RateLimitedSession(
+        cookie_path=cf, cookie_wait_sec=60, cookie_poll_sec=15,
+        rate_limit_sec=0.0,
+        # simulate the out-of-band Playwright re-mint on the first poll-sleep
+        sleep=lambda s: _write_cookie_file(cf, "NEW"),
+        clock=_FAKE_CLOCK,
+    )
+    _bind_get(sess, [FakeResponse(503, content=body), FakeResponse(200, b"ok")])
+    assert sess.get_bytes("http://x") == b"ok"
+    assert sess._call_count() == 2          # CF challenge, then success after refresh
+    assert sess._cf_clearance == "NEW"      # reloaded the fresh token
+
+
+def test_cf_challenge_halts_if_cookie_never_refreshes(tmp_path):
+    cf = tmp_path / "cf.json"
+    _write_cookie_file(cf, "STALE")
+    body = b"<html><body>Just a moment...</body></html>"
+    sess = RateLimitedSession(
+        cookie_path=cf, cookie_wait_sec=30, cookie_poll_sec=15,
+        rate_limit_sec=0.0,
+        sleep=lambda s: None,               # cookie file never changes
+        clock=_FAKE_CLOCK,
+    )
+    _bind_get(sess, [FakeResponse(503, content=body)])
+    with pytest.raises(CloudflareChallenge):
+        sess.get_bytes("http://x")
+
+
+def test_cf_challenge_still_raises_when_wait_disabled(tmp_path):
+    # cookie_path set but cookie_wait_sec=0 (default) => unchanged stop-on-CF contract
+    cf = tmp_path / "cf.json"
+    _write_cookie_file(cf, "X")
+    body = b"<html><body>Just a moment...</body></html>"
+    sess = RateLimitedSession(cookie_path=cf, rate_limit_sec=0.0, sleep=lambda s: None)
+    _bind_get(sess, [FakeResponse(503, content=body)])
+    with pytest.raises(CloudflareChallenge):
+        sess.get_bytes("http://x")
+    assert sess._call_count() == 1          # did NOT retry

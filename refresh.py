@@ -692,12 +692,44 @@ def _build_arg_parser():
     ap.add_argument("--dry-run", action="store_true", help="Crawl + partition only; no fetch/commit")
     ap.add_argument("--flip-missing-estado", action="store_true",
                     help="For acts gone from lex.bg, flip estado vigente->derogado and commit [otmyana]")
+    ap.add_argument("--cookie-file", default=None,
+                    help="JSON cookie file (Playwright-minted cf_clearance+UA+cookies) "
+                         "for the Cloudflare-cleared fetch path (D-047 Task 9)")
+    ap.add_argument("--cookie-wait", type=float, default=900.0,
+                    help="Seconds to pause on a CF challenge waiting for a refreshed "
+                         "cookie file before halting (default 900; only used with --cookie-file)")
+    ap.add_argument("--categories", default=None,
+                    help="Comma-separated subset of tree categories to crawl this run "
+                         "(e.g. 'laws'). Categories NOT listed are treated as MISSING/kept "
+                         "(no fetch, no commit) so a staged run can process one category at "
+                         "a time; the resume checkpoint carries across runs. Default = all.")
     return ap
 
 
 def main() -> int:
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
     args = _build_arg_parser().parse_args()
+    # When a cookie file is supplied, build ONE Cloudflare-cleared session and
+    # inject it so the same cf_clearance/UA + wait-for-refresh spans both the
+    # tree crawl and every doc fetch (single shared 1 req/s ceiling).
+    session = None
+    if args.cookie_file:
+        session = RateLimitedSession(
+            cookie_path=args.cookie_file,
+            cookie_wait_sec=args.cookie_wait,
+        )
+        log.info("using Cloudflare-cleared session (cookie=%s, wait=%.0fs)",
+                 args.cookie_file, args.cookie_wait)
+    crawl_config = None
+    if args.categories:
+        from fetcher.bg.discovery import CATEGORIES_CONFIG
+        wanted = [c.strip() for c in args.categories.split(",") if c.strip()]
+        unknown = [c for c in wanted if c not in CATEGORIES_CONFIG]
+        if unknown:
+            ap_choices = ", ".join(CATEGORIES_CONFIG)
+            raise SystemExit(f"unknown --categories {unknown}; valid: {ap_choices}")
+        crawl_config = {c: CATEGORIES_CONFIG[c] for c in wanted}
+        log.info("staged run: crawling only %s (others kept as MISSING)", wanted)
     report = refresh(
         args.output,
         db_path=args.db,
@@ -705,6 +737,8 @@ def main() -> int:
         state_path=args.state,
         dry_run=args.dry_run,
         flip_missing_estado=args.flip_missing_estado,
+        session=session,
+        crawl_config=crawl_config,
     )
     print(report.summary())
     return 0

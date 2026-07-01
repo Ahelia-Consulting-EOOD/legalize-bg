@@ -1,8 +1,10 @@
 """Content Fetcher — Legalize LegislativeClient interface for lex.bg."""
 
+import json
 import logging
 import time
 from dataclasses import dataclass
+from pathlib import Path
 
 import requests
 from bs4 import BeautifulSoup
@@ -58,6 +60,9 @@ class RateLimitedSession:
         retry_base_sec: float = RETRY_BASE_SECONDS,
         sleep=time.sleep,
         clock=time.monotonic,
+        cookie_path=None,
+        cookie_wait_sec: float = 0.0,
+        cookie_poll_sec: float = 15.0,
     ):
         self._session = requests.Session()
         self._session.headers["User-Agent"] = user_agent
@@ -67,6 +72,80 @@ class RateLimitedSession:
         self._sleep = sleep
         self._clock = clock
         self._last = 0.0
+        # Cloudflare-clearance layer (D-047 Phase 3, Task 9). All OFF by default
+        # so behaviour is byte-identical when cookie_path is not supplied.
+        self._cookie_path = Path(cookie_path) if cookie_path else None
+        self._cookie_wait_sec = cookie_wait_sec
+        self._cookie_poll_sec = cookie_poll_sec
+        self._cf_clearance = None
+        if self._cookie_path is not None:
+            # Match the real browser that minted the cookie: never advertise
+            # brotli (requests can't decode it without the `brotli` package,
+            # which silently corrupts the cp1251 body), and send browser-like
+            # Accept headers so the cf_clearance is honoured.
+            self._session.headers["Accept-Encoding"] = "gzip, deflate"
+            self._session.headers["Accept"] = (
+                "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
+            )
+            self._session.headers["Accept-Language"] = "bg,en;q=0.9"
+            self._load_cookies()
+
+    def _load_cookies(self):
+        """(Re)load UA + cookie jar from the JSON cookie file onto the session.
+
+        The file is a Playwright-minted `{user_agent, cf_clearance, cookies}`
+        snapshot. Returns the current cf_clearance value (or None). Idempotent;
+        called at init and again on each CF-refresh poll so an out-of-band
+        re-mint is picked up.
+        """
+        if self._cookie_path is None or not self._cookie_path.exists():
+            return self._cf_clearance
+        data = json.loads(self._cookie_path.read_text(encoding="utf-8"))
+        ua = data.get("user_agent")
+        if ua:
+            self._session.headers["User-Agent"] = ua
+        cookies = data.get("cookies") or {}
+        for name, val in cookies.items():
+            self._session.cookies.set(name, val, domain=".lex.bg")
+        self._cf_clearance = data.get("cf_clearance") or cookies.get("cf_clearance")
+        return self._cf_clearance
+
+    def _await_fresh_cookie(self, url: str) -> bool:
+        """Handle a Cloudflare challenge by waiting for a fresh cf_clearance.
+
+        Returns True if a *changed* cf_clearance was loaded from the cookie file
+        (an out-of-band Playwright re-mint) so the caller should retry; False to
+        fall through and raise CloudflareChallenge (the unchanged stop-on-CF
+        contract). Disabled unless cookie_path is set and cookie_wait_sec > 0.
+
+        This is NOT an automated CF bypass (D-011): the run STOPS scraping and
+        waits for a human/agent to supply a fresh, legitimately browser-minted
+        cookie, then resumes at <=1 req/s.
+        """
+        if self._cookie_path is None or self._cookie_wait_sec <= 0:
+            return False
+        old = self._cf_clearance
+        log.error(
+            "CLOUDFLARE challenge at %s — pausing; awaiting fresh cf_clearance in "
+            "%s (re-mint via Playwright). Waiting up to %.0fs.",
+            url, self._cookie_path, self._cookie_wait_sec,
+        )
+        waited = 0.0
+        while waited < self._cookie_wait_sec:
+            self._sleep(self._cookie_poll_sec)
+            waited += self._cookie_poll_sec
+            new = self._load_cookies()
+            if new and new != old:
+                log.info(
+                    "fresh cf_clearance loaded after %.0fs — resuming %s", waited, url
+                )
+                self._last = self._clock()  # reset the rate-limit clock
+                return True
+        log.error(
+            "no fresh cf_clearance within %.0fs — halting on Cloudflare (D-011).",
+            self._cookie_wait_sec,
+        )
+        return False
 
     def _do_get(self, url: str, timeout: int = 30):
         """Low-level HTTP GET. Overridable for tests."""
@@ -102,6 +181,11 @@ class RateLimitedSession:
             self._last = self._clock()
 
             if is_cloudflare_challenge(resp):
+                if self._await_fresh_cookie(url):
+                    # A fresh, browser-minted cf_clearance was supplied out of
+                    # band; retry the SAME url with the reloaded cookie. Not a
+                    # backoff retry, so it does not consume the retry budget.
+                    continue
                 log.error(
                     "cloudflare challenge detected; stopping. url=%s status=%d",
                     url, resp.status_code,
