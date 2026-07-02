@@ -3,7 +3,7 @@
   "$id": "https://github.com/Ahelia-Consulting-EOOD/legalize-bg/docs/api/error-codes.json",
   "title": "legalize-bg MCP error taxonomy",
   "description": "Machine-readable catalog of every error code the legalize-bg MCP server returns. Mirror of docs/api/error-codes.md.",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "codes": [
     {
       "code": "LAW_NOT_FOUND",

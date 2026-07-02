@@ -58,7 +58,12 @@ Task 8 derives a real JSON Schema per tool from its TypedDict response annotatio
 the trigger for the version bump: `mcp_server/export_tools.py:TOOLS_JSON_VERSION`
 `1.2.0` → `1.3.0`. Response *shapes* are unchanged — this only makes the already-existing
 shape visible in the exported schema. No field removed, no required input added, no tool
-renamed.
+renamed. Client-visible side effect: once a tool has a field-level output schema,
+`fastmcp.Client`'s `result.data` auto-hydrates into a synthesized typed object (fastmcp's
+`Root` model) instead of a plain dict/list-of-dicts; `result.structured_content` remains
+the raw wire-format dict/list, unaffected — any Python client relying on `.data` being a
+plain `dict`/`list` (as the four in-repo e2e round-trip tests did) needs to switch to
+`.structured_content` or accept attribute access on the hydrated object.
 
 ## Violation risk
 

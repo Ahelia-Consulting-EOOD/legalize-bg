@@ -39,7 +39,9 @@ from mcp_server.server import build_app
 # Bumped on any breaking change to the tool schemas. Additive changes
 # (new optional input arg, new optional output field, new tool) stay at 1.x.
 # 1.1.0 → 1.2.0: added the get_articles tool (FR-018), additive.
-TOOLS_JSON_VERSION = "1.2.0"
+# 1.2.0 → 1.3.0: field-level output schemas (TypedDict annotations),
+# INVALID_DATE code, JSON error wire format — all additive.
+TOOLS_JSON_VERSION = "1.3.0"
 
 
 def export_tool_schemas(corpus_root: Path | None = None) -> dict:

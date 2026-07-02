@@ -77,3 +77,14 @@ def test_search_input_schema_documents_query_too_broad_constraint():
         "search docstring should mention the QUERY_TOO_BROAD reject "
         "for single-word category queries — currently missing."
     )
+
+
+def test_core_read_tools_export_field_level_output_schemas():
+    """get_law/get_article/get_articles carried
+    {"additionalProperties": true} — nothing for UI codegen
+    (review 2026-07-02 P1)."""
+    from mcp_server.export_tools import export_tool_schemas
+    tools = {t["name"]: t for t in export_tool_schemas()["tools"]}
+    assert "body_markdown" in tools["get_law"]["output_schema"]["properties"]
+    assert "text_hash" in tools["get_article"]["output_schema"]["properties"]
+    assert "articles" in tools["get_articles"]["output_schema"]["properties"]

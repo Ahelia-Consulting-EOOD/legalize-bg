@@ -6,7 +6,7 @@ the YAML frontmatter for any field that mirrors the Markdown source.
 """
 
 from dataclasses import dataclass, field, asdict
-from typing import Any
+from typing import Any, TypedDict
 
 
 @dataclass(frozen=True)
@@ -168,3 +168,75 @@ class AmendmentEntry:
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
+
+
+# ── Wire-shape mirrors (review 2026-07-02) ─────────────────────────────
+# TypedDicts mirroring the dataclasses above, used ONLY as tool return
+# annotations so FastMCP derives field-level output_schema for
+# tools.json / UI codegen. Runtime values stay the .to_dict() dicts —
+# keep every field list in lockstep with its dataclass.
+
+
+class SearchHitDict(TypedDict):
+    law_id: str
+    identificador: str
+    title: str
+    category: str
+    title_snippet: str
+    body_snippet: str
+    relevance: float
+
+
+class GetLawResponseDict(TypedDict):
+    law_id: str
+    identificador: str
+    titulo: str
+    category: str
+    fecha_publicacion: str | None
+    ultima_actualizacion: str | None
+    dv_issue: str | None
+    dv_year: int | None
+    effective_date: str | None
+    eli: str | None
+    amendment_history: list[dict]
+    commit_hash: str
+    body_markdown: str
+    warnings: list[dict]
+
+
+class GetArticleResponseDict(TypedDict):
+    law_id: str
+    article: str
+    paragraph: str | None
+    text: str
+    text_hash: str
+    commit_hash: str
+    warnings: list[dict]
+
+
+class ArticleEntryDict(TypedDict):
+    article: str
+    paragraph: str | None
+    text: str
+    text_hash: str
+
+
+class GetArticlesResponseDict(TypedDict):
+    law_id: str
+    articles: list[ArticleEntryDict]
+    commit_hash: str
+    warnings: list[dict]
+
+
+class VersionEntryDict(TypedDict):
+    date: str | None
+    dv_issue: str | None
+    operation: str
+    commit_hash: str | None
+
+
+class AmendmentEntryDict(TypedDict):
+    law_id: str
+    title: str
+    date: str | None
+    dv_issue: str | None

@@ -34,8 +34,10 @@ from fastmcp import FastMCP
 from mcp_server import queries
 from mcp_server.errors import ToolError
 from mcp_server.schemas import (
-    ArticleEntry, GetArticleResponse, GetArticlesResponse, GetLawResponse,
-    SearchHit,
+    AmendmentEntryDict, ArticleEntry, GetArticleResponse,
+    GetArticleResponseDict, GetArticlesResponse, GetArticlesResponseDict,
+    GetLawResponse, GetLawResponseDict, SearchHit, SearchHitDict,
+    VersionEntryDict,
 )
 
 log = logging.getLogger(__name__)
@@ -277,7 +279,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
     # ─────────────────── get_law ─────────────────────────────────────
 
-    def get_law(name: str, date: str | None = None) -> dict:
+    def get_law(name: str, date: str | None = None) -> GetLawResponseDict:
         """Return the full text and metadata of a Bulgarian normative act.
 
         Args:
@@ -353,7 +355,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
     def search(query: str, category: str | None = None,
                limit: int = 20,
-               include_body: bool = False) -> list[dict]:
+               include_body: bool = False) -> list[SearchHitDict]:
         """Full-text search over the Bulgarian legislation corpus.
 
         Bulgarian morphology is handled via symmetric `bg_normalize`
@@ -419,7 +421,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
     # ─────────────────── get_article ─────────────────────────────────
 
     def get_article(law: str, article: str,
-                    date: str | None = None) -> dict:
+                    date: str | None = None) -> GetArticleResponseDict:
         """Return a specific article (or alinea) of a Bulgarian act.
 
         Args:
@@ -542,7 +544,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
     # ─────────────────── get_articles (FR-018) ───────────────────────
 
     def get_articles(law: str, articles: str,
-                     date: str | None = None) -> dict:
+                     date: str | None = None) -> GetArticlesResponseDict:
         """Return one or more articles of a Bulgarian act, including ranges.
 
         Use this when you need an article RANGE (e.g. "чл. 14-16"); it also
@@ -647,7 +649,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
     # ─────────────────── history (Phase 2) ───────────────────────────
 
-    def history(law: str) -> list[dict]:
+    def history(law: str) -> list[VersionEntryDict]:
         """Return the amendment timeline of a Bulgarian act, oldest→newest.
 
         Args:
@@ -679,7 +681,8 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
     # ─────────────────── amendments_in_period (Phase 2) ──────────────
 
-    def amendments_in_period(from_date: str, to_date: str) -> list[dict]:
+    def amendments_in_period(from_date: str,
+                              to_date: str) -> list[AmendmentEntryDict]:
         """List every dated amendment across the whole corpus in a period.
 
         Args:

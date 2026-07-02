@@ -79,9 +79,12 @@ def test_search_tool_call_round_trip(populated_conn, tmp_path):
             return await c.call_tool("search", {"query": "Закон за"})
 
     result = _run(_call())
-    # FastMCP returns a CallToolResult; the structured payload is in
-    # `.data` (serialized) or `.structured_content`.
-    payload = result.data if hasattr(result, "data") else result
+    # `.data` now hydrates into typed objects (fastmcp's synthesized `Root`
+    # model) once the tool has a field-level output schema (1.3.0) — use
+    # `.structured_content`, the raw wire-format dict, to check the actual
+    # JSON-RPC payload. A list-shaped return is wrapped as {"result": [...]}
+    # because MCP structured content must be a JSON object at the top level.
+    payload = result.structured_content["result"]
     assert isinstance(payload, list)
     assert all("law_id" in h and "relevance" in h for h in payload)
 
@@ -112,7 +115,11 @@ def test_get_law_tool_call_round_trip(populated_conn, tmp_path):
             return await c.call_tool("get_law", {"name": "100"})
 
     result = _run(_call())
-    payload = result.data if hasattr(result, "data") else result
+    # `.data` hydrates into a typed object once get_law has a field-level
+    # output schema (1.3.0) — use `.structured_content`, the raw
+    # wire-format dict. A dict-shaped return is NOT wrapped (it's already
+    # a JSON object at the top level).
+    payload = result.structured_content
     assert payload["law_id"] == "zakon-a"
     assert payload["body_markdown"]
 
@@ -142,7 +149,12 @@ def test_history_tool_roundtrip_through_fastmcp(populated_conn, tmp_path):
             return await c.call_tool("history", {"law": "100"})
 
     result = _run(_call())
-    payload = result.data if hasattr(result, "data") else result
+    # `.data` hydrates into typed objects once history has a field-level
+    # output schema (1.3.0) — use `.structured_content`, the raw
+    # wire-format dict. A list-shaped return is wrapped as
+    # {"result": [...]} because MCP structured content must be a JSON
+    # object at the top level.
+    payload = result.structured_content["result"]
     assert isinstance(payload, list), f"expected list, got {type(payload)}"
     assert len(payload) >= 2, f"expected at least 2 timeline entries; got {payload}"
 
@@ -201,7 +213,11 @@ def test_get_articles_tool_roundtrip_through_fastmcp(populated_conn, tmp_path):
                 "get_articles", {"law": "100", "articles": "чл. 14-16"})
 
     result = _run(_call())
-    payload = result.data if hasattr(result, "data") else result
+    # `.data` hydrates into a typed object once get_articles has a
+    # field-level output schema (1.3.0) — use `.structured_content`, the
+    # raw wire-format dict. A dict-shaped return is NOT wrapped (it's
+    # already a JSON object at the top level).
+    payload = result.structured_content
     assert isinstance(payload, dict), f"expected dict, got {type(payload)}"
     assert payload["law_id"] == "zakon-a"
     arts = payload["articles"]
