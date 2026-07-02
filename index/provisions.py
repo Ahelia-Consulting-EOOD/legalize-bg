@@ -63,7 +63,7 @@ def _is_structural_header(para: str) -> bool:
     return para.startswith("#")
 
 
-_ALINEA_CONTINUATION_RE = re.compile(r"^\s*\(\s*\d+[а-я]?\s*\)")
+_ALINEA_CONTINUATION_RE = re.compile(r"^\s*\(\s*\d{1,3}[а-я]?\s*\)")
 
 
 def _looks_like_alinea_continuation(para: str) -> bool:
@@ -149,7 +149,22 @@ def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
 # (`Чл. 14 (вж. чл. 2) текст…` producing a bogus paragraph='2' row)
 # is therefore not a real false-positive against this regex — but the
 # scenario lock-test below pins this behavior.
-_ALINEA_MARKER_RE = re.compile(r"\(\s*(\d+[а-я]?)\s*\)")
+#
+# 1-3 digits only: no article has 1,000+ alineas, while parenthesised
+# YEARS — "(1969)", "(2003)" — are always 4-digit and were the dominant
+# false positive (P0-2, review 2026-07-02: 116 bogus paragraph rows in
+# 22 live acts, truncating real alinea text). The digit cap alone fixes
+# the whole corruption class with zero collateral loss.
+#
+# A letter-boundary heuristic (require the marker to follow a
+# sentence/anchor punctuation char) was tried and rejected: it cannot
+# distinguish a citation "(1969)" following a letter from a real "(4)"
+# alinea whose preceding sentence lacks terminal punctuation (common
+# after amendment-introduced alineas, e.g. "...управление (4) (Нова -
+# ДВ, бр. 94 от 2019 г. ...)"). Review 2026-07-02 confirmed it silently
+# dropped real alineas in 3 of 6 fixture acts (zop чл. 196, zeu чл. 5,
+# ppz-aktsizi чл. 78) — both cases look identical to the heuristic.
+_ALINEA_MARKER_RE = re.compile(r"\(\s*(\d{1,3}[а-я]?)\s*\)")
 
 
 def _split_alineas(body: str) -> list[tuple[str, str]]:
