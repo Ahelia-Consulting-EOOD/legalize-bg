@@ -78,10 +78,15 @@ _CONTENT_TABLES = ("laws_fts", "provisions", "law_versions", "amendments", "laws
 def _drop_content_rows(conn: sqlite3.Connection) -> None:
     """Idempotency: remove all rows from content tables before
     re-inserting. Schema (managed by migrations.py) stays intact.
-    Order matters for FK-style constraints: dependent tables first."""
+    Order matters for FK-style constraints: dependent tables first.
+
+    Deliberately does NOT commit: the DELETE and the full re-INSERT
+    loop must be one transaction (committed at the end of build()'s
+    full path), so a crash mid-rebuild rolls back to the previous
+    catalog instead of leaving it durably empty (P0-3, review
+    2026-07-02)."""
     for table in _CONTENT_TABLES:
         conn.execute(f"DELETE FROM {table}")
-    conn.commit()
 
 
 def _delete_act_rows(conn: sqlite3.Connection, law_id: str) -> None:
