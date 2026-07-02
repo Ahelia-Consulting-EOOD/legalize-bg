@@ -412,9 +412,9 @@ total). Response bodies reuse the MCP server's TypedDicts
 `get_article`, `history`, `search`), plus REST-only TypedDicts in
 `api/schemas.py` (`LawListResponseDict`/`LawSummaryDict`,
 `StatsResponseDict`, `DiffResponseDict`) for endpoints with no MCP
-analogue or a REST-shaped list wrapper. `GET /laws/{slug}` and
-`/articles/{art}` set `Cache-Control: public, max-age=300`; `/search`
-sets `max-age=60`.
+analogue or a REST-shaped list wrapper. `GET /laws/{slug}`,
+`/articles/{art}`, and `/history` set `Cache-Control: public,
+max-age=300`; `/search` sets `max-age=60`.
 
 ### Error → HTTP mapping (D-052)
 

@@ -34,7 +34,7 @@ from `mcp_server/server.py` to public names in `mcp_server/queries.py`:
   - `_law_meta` → `law_meta` (extract law metadata from parsed Markdown+YAML)
   - `_read_law_markdown` → `read_law_markdown` (load and parse a single law file)
   - `_split_frontmatter` → `split_frontmatter` (parse YAML frontmatter from raw text)
-  - `_iso` → `iso` (format date/datetime as ISO 8601 string)
+  - `_iso` → `iso_date` (format date/datetime as ISO 8601 string)
 
 These functions are implementation details of the query layer, not part of the MCP tool 
 surface. Relocating them to a shared module enables the REST API to reuse the same 

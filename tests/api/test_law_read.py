@@ -33,6 +33,40 @@ def test_get_law_before_first_version_is_404(client):
     assert r.json()["code"] == "NO_VERSION_AT_DATE"
 
 
+def test_get_law_ambiguous_name_is_409_with_candidates(client):
+    # api_corpus (tests/api/conftest.py) seeds a title-twin of
+    # zakon-vremeto (zakon-vremeto-dva) sharing the exact titulo
+    # "Закон за времето". Neither slug matches that string, so
+    # resolve_name_to_law_id (mcp_server/queries.py step 3) falls
+    # through to its exact-title match, finds both rows, and genuinely
+    # raises AmbiguousName through the real resolution code path.
+    r = client.get("/api/v1/laws/Закон за времето")
+    assert r.status_code == 409
+    body = r.json()
+    assert body["code"] == "AMBIGUOUS_NAME"
+    candidate_ids = {c["law_id"] for c in body["candidates"]}
+    assert candidate_ids == {"zakon-vremeto", "zakon-vremeto-dva"}
+
+
+def test_get_article_not_found_is_404_via_non_get_law_route(client):
+    # LAW_NOT_FOUND is otherwise only exercised via get_law; assert the
+    # same taxonomy surfaces through get_article's independent
+    # resolve_name_to_law_id call.
+    r = client.get("/api/v1/laws/nesashtestvuvasht-akt/articles/чл. 1")
+    assert r.status_code == 404
+    assert r.json()["code"] == "LAW_NOT_FOUND"
+
+
+def test_get_article_before_first_version_is_404(client):
+    # NO_VERSION_AT_DATE is otherwise only exercised via get_law; assert
+    # the same taxonomy surfaces through get_article's independent
+    # version_with_warnings call.
+    r = client.get("/api/v1/laws/zakon-vremeto/articles/чл. 1",
+                   params={"date": "1990-01-01"})
+    assert r.status_code == 404
+    assert r.json()["code"] == "NO_VERSION_AT_DATE"
+
+
 def test_get_article(client):
     r = client.get("/api/v1/laws/zakon-vremeto/articles/чл. 1, ал. 2")
     assert r.status_code == 200

@@ -22,13 +22,11 @@ import functools
 import inspect
 import logging
 import sqlite3
-import subprocess
 import threading
 import time
 from pathlib import Path
 from typing import Any, Callable
 
-import yaml
 from fastmcp import FastMCP
 
 from mcp_server import queries

@@ -9,6 +9,12 @@ from collections.abc import Iterator
 
 from fastapi import Request
 
+# Shared Cache-Control value for the routes that cache for 5 minutes
+# (/laws/{slug}, /laws/{slug}/articles/{art}, /laws/{slug}/history).
+# `/search` uses its own shorter-lived max-age=60 (not a duplicate of
+# this constant — kept local to api/routes/search.py).
+CACHE_HEADER_300 = "public, max-age=300"
+
 
 def get_conn(request: Request) -> Iterator[sqlite3.Connection]:
     db_path = request.app.state.db_path

@@ -6,14 +6,12 @@ import sqlite3
 
 from fastapi import APIRouter, Depends, Request, Response
 
-from api.deps import get_conn
+from api.deps import CACHE_HEADER_300, get_conn
 from mcp_server import queries
 from mcp_server.errors import ToolError
 from mcp_server.schemas import GetArticleResponseDict, GetLawResponseDict
 
 router = APIRouter(prefix="/api/v1")
-
-_CACHE = "public, max-age=300"
 
 
 @router.get("/laws/{slug}", response_model=GetLawResponseDict)
@@ -27,7 +25,7 @@ def get_law(slug: str, request: Request, response: Response,
         request.app.state.corpus_root, law_id, meta_row["category"],
         commit, meta_row["current_commit"])
     fm, body = queries.split_frontmatter(raw)
-    response.headers["Cache-Control"] = _CACHE
+    response.headers["Cache-Control"] = CACHE_HEADER_300
     return {
         "law_id": law_id,
         "identificador": str(meta_row["doc_id"]),
@@ -65,7 +63,7 @@ def get_article(slug: str, art: str, response: Response,
     rows = queries.article_lookup(conn, law_id, spec.article,
                                   spec.paragraph, date)
     row = rows[0]
-    response.headers["Cache-Control"] = _CACHE
+    response.headers["Cache-Control"] = CACHE_HEADER_300
     return {
         "law_id": law_id,
         "article": row["article"],

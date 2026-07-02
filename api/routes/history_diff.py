@@ -11,21 +11,19 @@ import sqlite3
 
 from fastapi import APIRouter, Depends, Query, Request, Response
 
-from api.deps import get_conn
+from api.deps import CACHE_HEADER_300, get_conn
 from api.schemas import DiffResponseDict
 from mcp_server import queries
 from mcp_server.schemas import VersionEntryDict
 
 router = APIRouter(prefix="/api/v1")
 
-_CACHE = "public, max-age=300"
-
 
 @router.get("/laws/{slug}/history", response_model=list[VersionEntryDict])
 def history(slug: str, response: Response,
             conn: sqlite3.Connection = Depends(get_conn)):
     law_id = queries.resolve_name_to_law_id(conn, slug)
-    response.headers["Cache-Control"] = _CACHE
+    response.headers["Cache-Control"] = CACHE_HEADER_300
     return [e.to_dict() for e in queries.law_history(conn, law_id)]
 
 
