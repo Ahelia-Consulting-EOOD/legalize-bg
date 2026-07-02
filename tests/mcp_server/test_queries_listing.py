@@ -34,6 +34,24 @@ def test_list_laws_caps_limit(populated_conn):
     assert len(out["items"]) <= 200
 
 
+def test_list_laws_tie_break_is_stable_across_pagination(populated_conn):
+    # PR review fix #5: naredba-7 / naredba-7-2 (populated_conn, §7.1)
+    # share the exact title "Наредба № 7 за нещо". ORDER BY l.title
+    # alone leaves row order among ties unspecified, so a client walking
+    # pages with limit=1 could in principle skip or repeat a row at that
+    # boundary; the fix adds `l.law_id` (unique, stable) as a secondary
+    # sort key. Walk every row one at a time and confirm each law_id —
+    # including both title-twins — is seen exactly once.
+    total = queries.list_laws(populated_conn)["total"]
+    seen = []
+    for offset in range(total):
+        page = queries.list_laws(populated_conn, limit=1, offset=offset)
+        assert len(page["items"]) == 1
+        seen.append(page["items"][0]["law_id"])
+    assert len(seen) == len(set(seen)) == total
+    assert {"naredba-7", "naredba-7-2"} <= set(seen)
+
+
 def test_corpus_stats_shape(populated_conn):
     s = queries.corpus_stats(populated_conn)
     assert set(s.keys()) == {

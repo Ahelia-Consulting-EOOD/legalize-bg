@@ -33,3 +33,11 @@ class DiffResponseDict(TypedDict):
     from_date: str
     to_date: str
     diff: str
+
+
+class ErrorResponseDict(TypedDict):
+    """D-052 error envelope shape, for OpenAPI documentation only (PR
+    review fix #3). Every REST error body carries at least `code`; the
+    remaining keys vary per code — see docs/api/error-codes.md for the
+    full per-code payload contracts."""
+    code: str

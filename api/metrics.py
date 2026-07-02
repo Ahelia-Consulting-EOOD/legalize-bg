@@ -35,7 +35,20 @@ def install_metrics(app: FastAPI) -> None:
     @app.middleware("http")
     async def _measure(request: Request, call_next):
         t0 = time.perf_counter()
-        response = await call_next(request)
+        try:
+            response = await call_next(request)
+        except Exception:
+            # PR review fix #2: an unhandled exception makes call_next
+            # raise instead of returning, so the happy-path record()
+            # below never ran — the route silently vanished from
+            # /api/v1/metrics. Record it as an error here, then
+            # re-raise UNCHANGED so the D-052 handlers / FastAPI's
+            # default 500 path still run exactly as before.
+            route = getattr(request.scope.get("route"), "path", None)
+            if route and route != "/api/v1/metrics":
+                metrics.record(route, ok=False,
+                               ms=(time.perf_counter() - t0) * 1000)
+            raise
         route = getattr(request.scope.get("route"), "path", None)
         if route and route != "/api/v1/metrics":
             metrics.record(route, ok=response.status_code < 400,

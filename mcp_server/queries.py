@@ -770,6 +770,28 @@ def diff_law_versions(conn: sqlite3.Connection, corpus_root: Path,
     return out.stdout
 
 
+# ─────────────── catalog-error detection (PR review fix #1) ────────────────
+# Relocated from mcp_server/server.py (was _SQLITE_CATALOG_ERRORS /
+# _is_catalog_error) so both transports recognize a catalog-level
+# sqlite3.OperationalError (missing/corrupt schema) with the identical
+# predicate. server.py keeps its old private name as an aliased import;
+# api/errors.py imports the public name directly for the REST
+# INDEX_MISSING (503) exception handler.
+
+_SQLITE_CATALOG_ERRORS = ("no such table", "no such column",
+                          "unable to open database",
+                          "database disk image is malformed",
+                          "file is not a database")
+
+
+def is_catalog_error(e: sqlite3.OperationalError) -> bool:
+    """Catalog-level OperationalErrors (schema missing/corrupt) — as
+    opposed to FTS5 user-input syntax errors, which queries/index.fts
+    already suppress before reaching the tool wrapper."""
+    msg = str(e).lower()
+    return any(marker in msg for marker in _SQLITE_CATALOG_ERRORS)
+
+
 # ────────────────────────────── Composition helpers (FR-028) ────────────────
 # Relocated from mcp_server/server.py (was _read_law_markdown/_split_
 # frontmatter/_law_meta/_iso) so the REST API layer (Tasks 3-8) can call
@@ -892,7 +914,7 @@ def list_laws(conn: sqlite3.Connection, category: str | None = None,
                    COUNT(v.id) AS version_count
             FROM laws l LEFT JOIN law_versions v ON v.law_id = l.law_id
             {where_sql}
-            GROUP BY l.law_id ORDER BY l.title
+            GROUP BY l.law_id ORDER BY l.title, l.law_id
             LIMIT ? OFFSET ?""",
         params + [limit, offset]).fetchall()
     items = [{

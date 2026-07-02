@@ -44,25 +44,12 @@ log = logging.getLogger(__name__)
 # ─────────────────────────── helpers ──────────────────────────────────────
 
 from mcp_server.queries import (
+    is_catalog_error as _is_catalog_error,
     iso_date as _iso,
     law_meta as _law_meta,
     read_law_markdown as _read_law_markdown,
     split_frontmatter as _split_frontmatter,
 )
-
-
-_SQLITE_CATALOG_ERRORS = ("no such table", "no such column",
-                          "unable to open database",
-                          "database disk image is malformed",
-                          "file is not a database")
-
-
-def _is_catalog_error(e: sqlite3.OperationalError) -> bool:
-    """Catalog-level OperationalErrors (schema missing/corrupt) — as
-    opposed to FTS5 user-input syntax errors, which queries/index.fts
-    already suppress before reaching the tool wrapper."""
-    msg = str(e).lower()
-    return any(marker in msg for marker in _SQLITE_CATALOG_ERRORS)
 
 
 # ─────────────────────────── handle ───────────────────────────────────────

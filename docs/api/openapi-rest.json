@@ -29,6 +29,20 @@
         "title": "DiffResponseDict",
         "type": "object"
       },
+      "ErrorResponseDict": {
+        "description": "D-052 error envelope shape, for OpenAPI documentation only (PR\nreview fix #3). Every REST error body carries at least `code`; the\nremaining keys vary per code — see docs/api/error-codes.md for the\nfull per-code payload contracts.",
+        "properties": {
+          "code": {
+            "title": "Code",
+            "type": "string"
+          }
+        },
+        "required": [
+          "code"
+        ],
+        "title": "ErrorResponseDict",
+        "type": "object"
+      },
       "GetArticleResponseDict": {
         "properties": {
           "article": {
@@ -570,6 +584,16 @@
               }
             },
             "description": "Validation Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time"
           }
         },
         "summary": "List Laws"
@@ -616,6 +640,36 @@
             },
             "description": "Successful Response"
           },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INVALID_DATE` — a `date`-like parameter is missing or not a valid YYYY-MM-DD string"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`LAW_NOT_FOUND` — no act matches the given slug, identificador, or title; `NO_VERSION_AT_DATE` — the requested date precedes the act's earliest recorded version, or it has none"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`AMBIGUOUS_NAME` — multiple acts share the given title"
+          },
           "422": {
             "content": {
               "application/json": {
@@ -625,6 +679,16 @@
               }
             },
             "description": "Validation Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INDEX_STALE` — the catalog and corpus have diverged for this act; `INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time"
           }
         },
         "summary": "Get Law"
@@ -680,6 +744,36 @@
             },
             "description": "Successful Response"
           },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INVALID_DATE` — a `date`-like parameter is missing or not a valid YYYY-MM-DD string; `INVALID_ARTICLE_SPEC` — the article spec could not be parsed, or a range (`чл. 5-7`) was given where only a single article is accepted"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`LAW_NOT_FOUND` — no act matches the given slug, identificador, or title; `NO_VERSION_AT_DATE` — the requested date precedes the act's earliest recorded version, or it has none; `ARTICLE_NOT_FOUND` — the article/alinea spec parsed but no provisions row matches it"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`AMBIGUOUS_NAME` — multiple acts share the given title"
+          },
           "422": {
             "content": {
               "application/json": {
@@ -689,6 +783,16 @@
               }
             },
             "description": "Validation Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time"
           }
         },
         "summary": "Get Article"
@@ -737,6 +841,36 @@
             },
             "description": "Successful Response"
           },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INVALID_DATE` — a `date`-like parameter is missing or not a valid YYYY-MM-DD string; `INVALID_DATE_RANGE` — the `from` date is later than the `to` date"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`LAW_NOT_FOUND` — no act matches the given slug, identificador, or title; `NO_VERSION_AT_DATE` — the requested date precedes the act's earliest recorded version, or it has none"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`AMBIGUOUS_NAME` — multiple acts share the given title"
+          },
           "422": {
             "content": {
               "application/json": {
@@ -746,6 +880,26 @@
               }
             },
             "description": "Validation Error"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`DIFF_FAILED` — the underlying `git diff` invocation failed"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time"
           }
         },
         "summary": "Diff"
@@ -780,6 +934,26 @@
             },
             "description": "Successful Response"
           },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`LAW_NOT_FOUND` — no act matches the given slug, identificador, or title"
+          },
+          "409": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`AMBIGUOUS_NAME` — multiple acts share the given title"
+          },
           "422": {
             "content": {
               "application/json": {
@@ -789,6 +963,16 @@
               }
             },
             "description": "Validation Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time"
           }
         },
         "summary": "History"
@@ -880,6 +1064,16 @@
             },
             "description": "Successful Response"
           },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`QUERY_TOO_BROAD` — the search query reduces to a bare category stop-word (e.g. `наредба`) and would match thousands of acts"
+          },
           "422": {
             "content": {
               "application/json": {
@@ -889,6 +1083,16 @@
               }
             },
             "description": "Validation Error"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time"
           }
         },
         "summary": "Search"
@@ -907,6 +1111,16 @@
               }
             },
             "description": "Successful Response"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponseDict"
+                }
+              }
+            },
+            "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time"
           }
         },
         "summary": "Stats"

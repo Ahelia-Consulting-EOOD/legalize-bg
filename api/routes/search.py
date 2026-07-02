@@ -16,13 +16,15 @@ import sqlite3
 from fastapi import APIRouter, Depends, Query, Response
 
 from api.deps import get_conn
+from api.errors import error_responses
 from mcp_server import queries
 from mcp_server.schemas import SearchHitDict
 
 router = APIRouter(prefix="/api/v1")
 
 
-@router.get("/search", response_model=list[SearchHitDict])
+@router.get("/search", response_model=list[SearchHitDict],
+            responses=error_responses("QUERY_TOO_BROAD", "INDEX_MISSING"))
 def search(response: Response, q: str = Query(min_length=1),
            category: str | None = None, limit: int = 20,
            include_body: bool = False,

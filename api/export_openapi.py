@@ -21,7 +21,8 @@ def main(argv: list[str] | None = None) -> int:
     g.add_argument("--output", type=Path)
     g.add_argument("--check", type=Path)
     args = ap.parse_args(argv)
-    spec = json.dumps(generate_spec(), ensure_ascii=False, indent=2,
+    spec_dict = generate_spec()
+    spec = json.dumps(spec_dict, ensure_ascii=False, indent=2,
                       sort_keys=True) + "\n"
     if args.output:
         args.output.write_text(spec, encoding="utf-8")
@@ -33,7 +34,7 @@ def main(argv: list[str] | None = None) -> int:
               file=sys.stderr)
         return 1
     print(f"OK: {args.check} matches live app (version="
-          f"{generate_spec()['info']['version']}).")
+          f"{spec_dict['info']['version']}).")
     return 0
 
 

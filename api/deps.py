@@ -21,10 +21,12 @@ def get_conn(request: Request) -> Iterator[sqlite3.Connection]:
     conn = sqlite3.connect(f"file:{db_path}?mode=ro", uri=True,
                            check_same_thread=False)
     conn.row_factory = sqlite3.Row
-    # D-051 (FR-027): memory-map the 1.2 GB catalog + 64 MB page cache.
-    conn.execute("PRAGMA mmap_size = 1073741824")
-    conn.execute("PRAGMA cache_size = -65536")
     try:
+        # D-051 (FR-027): memory-map the 1.2 GB catalog + 64 MB page
+        # cache. Inside `try` (PR review fix #6) so a PRAGMA failure
+        # can't leak the just-opened connection.
+        conn.execute("PRAGMA mmap_size = 1073741824")
+        conn.execute("PRAGMA cache_size = -65536")
         yield conn
     finally:
         conn.close()

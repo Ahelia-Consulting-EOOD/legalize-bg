@@ -7,6 +7,7 @@ import sqlite3
 from fastapi import APIRouter, Depends, Request, Response
 
 from api.deps import CACHE_HEADER_300, get_conn
+from api.errors import error_responses
 from mcp_server import queries
 from mcp_server.errors import ToolError
 from mcp_server.schemas import GetArticleResponseDict, GetLawResponseDict
@@ -14,7 +15,10 @@ from mcp_server.schemas import GetArticleResponseDict, GetLawResponseDict
 router = APIRouter(prefix="/api/v1")
 
 
-@router.get("/laws/{slug}", response_model=GetLawResponseDict)
+@router.get("/laws/{slug}", response_model=GetLawResponseDict,
+            responses=error_responses(
+                "INVALID_DATE", "LAW_NOT_FOUND", "NO_VERSION_AT_DATE",
+                "AMBIGUOUS_NAME", "INDEX_STALE", "INDEX_MISSING"))
 def get_law(slug: str, request: Request, response: Response,
             date: str | None = None,
             conn: sqlite3.Connection = Depends(get_conn)):
@@ -45,7 +49,11 @@ def get_law(slug: str, request: Request, response: Response,
 
 
 @router.get("/laws/{slug}/articles/{art}",
-            response_model=GetArticleResponseDict)
+            response_model=GetArticleResponseDict,
+            responses=error_responses(
+                "INVALID_DATE", "INVALID_ARTICLE_SPEC", "LAW_NOT_FOUND",
+                "NO_VERSION_AT_DATE", "ARTICLE_NOT_FOUND", "AMBIGUOUS_NAME",
+                "INDEX_MISSING"))
 def get_article(slug: str, art: str, response: Response,
                 date: str | None = None,
                 conn: sqlite3.Connection = Depends(get_conn)):

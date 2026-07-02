@@ -10,6 +10,7 @@ from pathlib import Path
 from fastapi import FastAPI
 
 from api.errors import install_error_handlers
+from api.head_support import install_head_support
 from api.metrics import install_metrics
 
 API_VERSION = "1.0.0"
@@ -37,6 +38,10 @@ def create_app(db_path: str, corpus_root: Path,
 
     # Routers are attached by later tasks (laws, search, stats, metrics).
     _include_routers(app)
+    # Added last (PR review fix #4) so it's the outermost user
+    # middleware — wraps the metrics middleware too, so a HEAD request
+    # still gets recorded against the right route.
+    install_head_support(app)
     return app
 
 
