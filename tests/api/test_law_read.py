@@ -47,6 +47,20 @@ def test_get_article_range_rejected(client):
     assert r.json()["code"] == "INVALID_ARTICLE_SPEC"
 
 
+def test_get_article_range_rejected_before_date_validation(client):
+    # Regression (review 2026-07-02): get_article must validate the
+    # article spec (and reject ranges) BEFORE resolving the version at
+    # `date` — matching mcp_server/server.py::get_article's real call
+    # order. A range spec combined with a date that precedes the law's
+    # earliest version must still surface INVALID_ARTICLE_SPEC (400),
+    # not NO_VERSION_AT_DATE (404) from a version lookup that should
+    # never run.
+    r = client.get("/api/v1/laws/zakon-vremeto/articles/чл. 1-3",
+                   params={"date": "1990-01-01"})
+    assert r.status_code == 400
+    assert r.json()["code"] == "INVALID_ARTICLE_SPEC"
+
+
 def test_get_article_missing_is_404(client):
     r = client.get("/api/v1/laws/zakon-vremeto/articles/чл. 99")
     assert r.status_code == 404

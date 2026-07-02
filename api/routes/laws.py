@@ -52,7 +52,6 @@ def get_article(slug: str, art: str, response: Response,
                 date: str | None = None,
                 conn: sqlite3.Connection = Depends(get_conn)):
     law_id = queries.resolve_name_to_law_id(conn, slug)
-    commit, warnings = queries.version_with_warnings(conn, law_id, date)
     spec = queries.parse_article_spec(art)
     if spec.range_end is not None:
         raise ToolError("INVALID_ARTICLE_SPEC", {
@@ -62,6 +61,7 @@ def get_article(slug: str, art: str, response: Response,
                       "ranges)",
             "examples": ["чл. 5", "чл. 5, ал. 2"],
         })
+    commit, warnings = queries.version_with_warnings(conn, law_id, date)
     rows = queries.article_lookup(conn, law_id, spec.article,
                                   spec.paragraph, date)
     row = rows[0]
