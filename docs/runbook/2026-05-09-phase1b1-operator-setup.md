@@ -1,12 +1,17 @@
 # Phase 1b.1 — Operator Setup
 
-**Status:** Phase 1b.1 ships 2026-05-09. Stable for daily use; Phase
-1b.2 will harden JSON schemas and promote perf budgets to hard
-assertions.
+**Status:** written 2026-05-09 for the Phase 1b.1 ship (3-tool server);
+kept truthful 2026-07-02 against the review that found the server had
+grown well past what this doc described (2.x-a/b/c batches, Phase 2
+temporal index, a 2026-07-02 hardening pass). The filename/date is kept
+for doc-history continuity — treat the **content** as current. The
+"Tools surfaced" table below is locked to the live tool set by
+`tests/mcp_server/test_runbook_parity.py`; if this doc and the server
+ever drift again, that test turns red.
 
 This runbook is for operators wiring the legalize-bg MCP server into
 Claude Code, Claude Desktop, or OpenAI Codex. It covers index build,
-host config, and the smoke test.
+host config (native or Docker), and the smoke test.
 
 ## Prerequisites
 
@@ -14,7 +19,11 @@ host config, and the smoke test.
 - Cloned `legalize-bg` repo with `main` checked out
 - Virtualenv at `.venv` with `pip install -e ".[dev]"` (installs
   `fastmcp>=2.0,<4.0` along with the rest)
-- ~50 MB free disk for the catalog
+- ~2.5 GB free disk (catalog.db is ~1.1 GB — see sizing note below; the
+  zero-downtime rebuild approach further down needs roughly double
+  that temporarily, old + new side by side)
+- Alternatively, Docker — see "Docker quick-start" below; no local
+  Python/venv needed for the container path.
 
 ## One-time index build
 
@@ -30,24 +39,83 @@ Or equivalently:
 python scripts/build_index.py --corpus . --db catalog.db
 ```
 
-This walks the corpus (3,573 acts on `main` as of 2026-05-09), parses
-each `.md` frontmatter + body, and populates the SQLite catalog:
+This walks the corpus (3,601 acts as of 2026-07-02), parses each `.md`
+frontmatter + body, and populates the SQLite catalog:
 
 | Table | Rows | Purpose |
 |---|---|---|
-| `laws` | 3,573 | Act metadata + current_commit |
-| `law_versions` | 3,573 | Temporal index (one entry per act in 1b.1; Phase 2 backfills history) |
-| `provisions` | ~448,000 | Article + alinea text rows (D-023) |
-| `laws_fts` | 3,573 | FTS5 virtual table for `bg_normalize`-ed title + body |
+| laws | 3,601 | Act metadata + current_commit |
+| law_versions | 3,833 | Temporal index — one row per historical version (FR-020, `git log`-derived); 225 acts carry 2+ versions, the rest exactly one |
+| provisions | 451,587 | Article + alinea text rows (D-023) |
+| laws_fts | 3,601 | FTS5 virtual table for `bg_normalize`-ed title + body |
 
-Build takes **~45 seconds** (measured: M-class Apple silicon, NVMe
-SSD; ARM laptops with slower SSDs typically run ~60s, network
-filesystems can be 2–5×). Output `catalog.db` is ~50–100 MB. The
-catalog is **gitignored** — derived state, rebuildable from git+YAML.
+Full-rebuild time is now **~2–2.5 minutes** on the live corpus (Apple
+M4 measured, `docs/research/2026-07-02-fr027-search-perf.md`) — up from
+the original ~45 s baseline. The jump is the D-047 re-bootstrap, which
+restored Допълнителни разпоредби text across 1,826 acts and grew the
+FTS body corpus to ~223 M characters; `catalog.db` is correspondingly
+~1.1 GB now, not ~50–100 MB. The catalog is **gitignored** — derived
+state, rebuildable from git+YAML. For routine re-indexing after a small
+number of changed acts, prefer `--incremental` (see "Re-indexing after
+corpus changes" below) — it's the faster path when a full rebuild isn't
+needed.
 
 If you see `INDEX_MISSING` from `python -m mcp_server`: the catalog
 file isn't where the server expects. The error message includes the
 exact path; run `index.build` to that path.
+
+**Category-drift guard.** `index.build` refuses to run (raises
+`ValueError`, no partial write) if a top-level corpus directory outside
+`fetcher/bg/discovery.py:CATEGORY_DIRS` holds `.md` files with YAML
+frontmatter carrying an `identificador` key — i.e., a new act category
+was added on disk but never wired into the indexer (`index/build.py:
+_check_category_drift`, review 2026-07-02). If you add a new top-level
+corpus directory, either relocate its acts into an existing category
+dir or register the new category in `CATEGORY_DIRS` — that file is a
+protected surface (IMPLEMENTATION-PREFLIGHT required).
+
+## Docker quick-start
+
+Packaging batch 2.x-c added a `Dockerfile` that carries only the
+application; the corpus (Markdown + `.git`) and the derived
+`catalog.db` are mounted at runtime, not baked into the image. Three
+commands (from the `Dockerfile` header):
+
+```bash
+# Build the image:
+docker build -t legalize-bg-mcp .
+
+# Build the index once (host or a one-off container):
+docker run --rm -v "$PWD:/corpus" --entrypoint python legalize-bg-mcp \
+    -m index.build --corpus /corpus --db /corpus/catalog.db
+
+# Run the stdio MCP server (the MCP host attaches over stdin/stdout; -i):
+docker run --rm -i -v "$PWD:/corpus" legalize-bg-mcp \
+    --db /corpus/catalog.db --corpus /corpus
+```
+
+The image installs `git` (historical `get_law`/`diff` shell out to it,
+and `index.build` reads git HEAD) but no C build toolchain — `lxml`,
+`pyyaml`, and `fastmcp` all install from wheels. To point an MCP host at
+the container instead of a venv, set the host config's `command` to
+`docker` and `args` to the third command's flags above (host configs
+are covered next).
+
+## Deploy guards
+
+Two environment variables gate server startup, checked before any DB
+access (so a refusal here wins over `INDEX_MISSING`/`INDEX_STALE`):
+
+- `LEGALIZE_CORPUS_DEFECTIVE=1` — refuses to start (exit code 2) when
+  the corpus is flagged as known-incomplete (D-047: a parser data-loss
+  incident that dropped definitions and transitional/final provisions
+  from affected acts). Off by default — this is a dormant safety net,
+  not a normal operating mode.
+- `LEGALIZE_ALLOW_DEFECTIVE=1` — explicit override to start anyway
+  (debugging only); has no effect unless `LEGALIZE_CORPUS_DEFECTIVE=1`
+  is also set.
+
+See `mcp_server/__main__.py:_check_corpus_defective`.
 
 ## MCP host configuration
 
@@ -70,6 +138,12 @@ Edit `~/.claude/claude_code_config.json` (or your project's
   }
 }
 ```
+
+`pip install -e .` also installs a `legalize-bg-mcp` console script
+(`mcp_server.__main__:main`) — `command` can point directly at
+`/abs/path/to/legalize-bg/.venv/bin/legalize-bg-mcp` with `args` being
+just `["--db", ..., "--corpus", ...]`, if you'd rather not spell out
+`-m mcp_server`.
 
 ### Claude Desktop / OpenAI Codex
 
@@ -113,17 +187,64 @@ surfacing path is broken.
 > consistent with their respective contracts; the substitution exists
 > only so search results are recognizable in the LLM-facing output.
 
+> Show me the amendment history of ДОПК (identificador 2135514513).
+
+Expected: `history` returns a multi-entry timeline; this act is one of
+the 225 with real git-derived version history (FR-020), so `diff`
+between two of its dates returns an actual unified diff rather than
+the "single consolidated version held" note (see "Tools surfaced"
+below).
+
 ## Re-indexing after corpus changes
 
-Whenever `git pull` or local commits land new acts or amendments:
+Whenever `git pull` or local commits land new acts or amendments, the
+default full rebuild is:
 
 ```bash
 python -m index.build --corpus . --db catalog.db
 ```
 
+For routine re-indexing where only a handful of acts changed, use the
+incremental path instead (FR-014, done — D-041):
+
+```bash
+python -m index.build --corpus . --db catalog.db --incremental
+```
+
+This diffs the catalog's indexed commit against git HEAD (`git diff
+--name-status`), re-indexes only added/modified acts, drops removed
+acts, and bumps unchanged acts' commit pointers — atomic (single
+commit), and falls back automatically to a full rebuild if the catalog
+is empty/inconsistent or its base commit isn't in git history any
+more.
+
 The MCP server soft-warns at startup when `git HEAD ≠
 laws.current_commit`. Pass `--strict` to make staleness a hard
 refusal (exit code 3).
+
+**Zero-downtime rebuild.** A crashed in-place rebuild (full or
+incremental) no longer empties the catalog — it's one SQLite
+transaction, so a crash mid-rebuild rolls back cleanly and the server
+keeps serving the pre-rebuild data (Task 1, P0-3). But a
+*successful* in-place rebuild still races a live server: the rebuild's
+commit can land between two calls in the same operator/LLM session,
+so a `search` and a subsequent `get_law` could observe the catalog
+before and after the rebuild respectively — usually harmless, but not
+guaranteed-consistent within one logical interaction. For a genuinely
+zero-downtime rebuild, build to a separate path and swap it in:
+
+```bash
+python -m index.build --corpus . --db catalog.db.new
+mv catalog.db.new catalog.db
+# then restart the MCP server process so it opens the new file
+```
+
+`mv` on the same filesystem is atomic, so any reader that opens
+`catalog.db` sees either the fully-old or fully-new file, never a
+partial one — but the *running* server process still holds its
+original file descriptor open against the old (now unlinked, if on
+POSIX) inode until it's restarted, so the restart step is required to
+actually pick up the new data.
 
 ## Server runtime
 
@@ -136,9 +257,48 @@ connection is read-mostly — no concurrent-write hazard. The test
 fixtures use the same setting via the `populated_conn` conftest fixture,
 so component-level tests behave identically to the production server.
 
+Every tool call additionally acquires a process-wide `threading.Lock`
+(`build_app`'s `_db_lock`, FR-023/D-040) before touching the
+connection. SQLite's own locking already serializes writers, but this
+closes a residual `InterfaceError` race that showed up under concurrent
+cross-thread reads on the one shared connection. The lock is
+uncontended in the common case (stdio serves one request at a time), so
+it costs nothing per call; the lock wraps entire tool bodies (including
+git subprocess calls and 1 MB body reads), so one slow historical
+`get_law`/`diff` call blocks every other tool call server-wide.
+Retiring it for true per-thread/per-call connections is tracked as
+FR-029 (backlog, "on demand" — pick up only when a concurrent MCP
+fronting materializes, e.g. multi-session host or MCP-over-HTTP). The
+separate REST API planned for the web UI (FR-028) does NOT inherit this
+lock — it uses its own per-request connections.
+
+**Read-performance pragmas (FR-027, Task 13).** Right after opening,
+the runtime connection sets `PRAGMA mmap_size = 1073741824` (1 GB
+memory-map) and `PRAGMA cache_size = -65536` (64 MB page cache).
+Measured effect: same-connection repeat calls to queries that
+previously stayed multi-second even after 5 warm-up calls (e.g. "лични
+данни", "административни нарушения" — see
+`docs/research/2026-07-02-fr027-search-perf.md`) drop to ~20 ms with
+the pragmas set, a ~300–400x reduction. This does **not** fix the
+first (cold) call on a fresh connection — see "Known limitations"
+below.
+
+**Metrics via SIGUSR1 (Task 16).** The stdio transport has no side
+channel for runtime introspection, so send `SIGUSR1` to the running
+server process (`kill -USR1 <pid>`) to have it log one JSON line:
+`metrics_snapshot: {...}` with, per tool, `calls`, `errors`,
+`error_codes` (counts by code), `total_ms`, `last_ms`, `avg_ms`.
+Recording and the SIGUSR1 dump both go through their own
+`threading.Lock` (`_AppHandle._metrics_lock`), separate from the DB
+lock above, so pulling metrics never contends with in-flight tool
+calls. Not available on Windows (no POSIX signals) — handler
+installation is best-effort and silently no-ops there.
+
 ## Idempotency contract
 
-All three tools (`get_law`, `search`, `get_article`) are **read-only with respect to durable state**. A request never:
+All seven tools (`get_law`, `search`, `get_article`, `get_articles`,
+`history`, `amendments_in_period`, `diff`) are **read-only with respect
+to durable state**. A request never:
 
 - Writes to the corpus (working-tree `.md` files).
 - Writes to the SQLite catalog (`catalog.db`).
@@ -151,20 +311,24 @@ A request DOES write to:
 
 **Idempotency consequences:**
 - A retry of any tool call against the same `(name, date, article)` returns the same response (modulo OS-cache state, which only affects latency, not the response body).
-- Concurrent calls do not race because the safety story is built on three independent layers: (a) the stdio transport processes one JSON-RPC request per server connection at a time; (b) SQLite is opened with `check_same_thread=False` and handles concurrent readers via its own internal locking (the runtime catalog is read-only); (c) the tool implementations don't share mutable Python state across calls (no module-level dicts mutated at request time, no per-tool caches). This holds regardless of FastMCP internals — even a future transport that runs requests in parallel would still inherit (b) and (c).
+- Concurrent calls do not race because the safety story is built on layers: (a) the stdio transport processes one JSON-RPC request per server connection at a time; (b) every tool call holds the process-wide `_db_lock` for the duration of its DB access (see "Server runtime"); (c) the tool implementations don't share mutable Python state across calls outside the lock-protected metrics dict. This holds regardless of FastMCP internals — even a future transport that runs requests in parallel would still inherit (b) and (c).
 - A caller may safely retry on transport-level failures without risk of duplicated side-effects.
 
 **Non-idempotency to be aware of:**
-- The build path (`python -m index.build`) IS NOT idempotent in the sense that re-running it issues `DELETE FROM laws_fts` etc. (full rebuild). FR-014 tracks the incremental rebuild path; until then, do not re-run the build under load.
+- The default full-rebuild path (`python -m index.build`) is NOT idempotent in the sense that it re-issues `DELETE FROM laws_fts` etc. and re-inserts every row inside one transaction (crash-safe per Task 1; still races live readers when it *succeeds* — see "Zero-downtime rebuild" above). `--incremental` (FR-014, done) re-indexes only changed acts instead, but the same in-place-vs-live-reader caveat applies to it too.
 - Working-tree edits between requests will surface in subsequent `get_law` responses via the fast path (commit_hash matches HEAD). The runbook's `INDEX_STALE` advice covers this.
 
 ## Tools surfaced
 
 | Tool | Inputs | Returns |
 |---|---|---|
-| `get_law(name, date=None)` | title / slug / identificador, optional ISO date | full text + metadata + warnings. Date fields (`fecha_publicacion`, `ultima_actualizacion`, `effective_date`) are ISO 8601 strings — PyYAML's `datetime.date` is coerced via `mcp_server.server._iso` before serialization, so JSON-RPC consumers never see Python objects. |
-| `search(query, category=None, limit=20, include_body=False)` | Bulgarian/Cyrillic text + optional category filter | Ranked list of hits. Each hit carries `title_snippet` (always populated, cheap) and `body_snippet` (empty unless `include_body=True`, then non-empty for top-2 only). Result list is rang-tier-sorted (laws/codes outrank implementing/regulations/ordinances per FR-015). Single-token Bulgarian abbreviation queries (`ЗОП`, `НК`, `ГПК` — see `index/synonyms.py`) are auto-expanded to canonical long forms before FTS5 runs. |
-| `get_article(law, article, date=None)` | act + article spec (`чл. 14`, `14.2`, `чл. 14а`) | article or alinea text |
+| `get_law` | name, date=None | title / slug / identificador lookup → full text + metadata + warnings. Date fields (`fecha_publicacion`, `ultima_actualizacion`, `effective_date`) are ISO 8601 strings — PyYAML's `datetime.date` is coerced via `mcp_server.server._iso` before serialization, so JSON-RPC consumers never see Python objects. With `date` set, resolves the historical version in force at that date (FR-020). |
+| `search` | query, category=None, limit=20, include_body=False | Ranked list of hits. Each hit carries `title_snippet` (always populated, cheap) and `body_snippet` (empty unless `include_body=True`, then non-empty for top-2 only). Result list is rang-tier-sorted (laws/codes outrank implementing/regulations/ordinances per FR-015). Single-token Bulgarian abbreviation queries (`ЗОП`, `НК`, `ГПК` — see `index/synonyms.py`) are auto-expanded to canonical long forms before FTS5 runs. |
+| `get_article` | law, article, date=None | Act + article spec (`чл. 14`, `14.2`, `чл. 14а`) → article or alinea text. Rejects a range spec (`чл. 14-16`) with `INVALID_ARTICLE_SPEC` and a hint pointing at `get_articles`. |
+| `get_articles` | law, articles, date=None | Superset of `get_article` — accepts a single article or a RANGE (`чл. 14-16`), expanding to every article number in `[start, end]` including Cyrillic-suffixed ones present in the act (FR-018). |
+| `history` | law | Amendment timeline, oldest→newest: `{date, dv_issue, operation, commit_hash}` per entry. `operation` is `"enacted"` for the original promulgation, `"amendment"` for each DV amendment event. |
+| `amendments_in_period` | from_date, to_date | Every dated amendment across the whole corpus in `[from_date, to_date]` inclusive, oldest first: `{law_id, title, date, dv_issue}`. Answers "what changed in Bulgarian law between X and Y?". |
+| `diff` | law, date1, date2 | Unified `git diff` of the act's text between the versions in force at `date1` and `date2` (FR-020). For the majority of acts, which still hold exactly one recorded version, returns a bilingual "single consolidated version held" note instead of an empty diff; for the 225 acts with 2+ `law_versions` rows, returns a real diff. |
 
 Tool descriptions visible to the LLM are the full Python docstrings
 (D-021). The model decides which tool to call based on those — keep
@@ -172,39 +336,61 @@ them in sync with behavior.
 
 ## Error codes (D-026)
 
-> **Authoritative catalog:** `docs/api/error-codes.md` (Markdown for humans) and `docs/api/error-codes.json` (machine-readable). Both are version-tagged 1.0.0 and tested for parity with `mcp_server.errors.ERROR_CODES`. Phase 1b.2 added `QUERY_TOO_BROAD` (FR-016 — single-word category-query reject).
+> **Authoritative catalog:** `docs/api/error-codes.md` (Markdown for humans) and `docs/api/error-codes.json` (machine-readable). Both are version-tagged **1.3.0** and tested for parity with `mcp_server.errors.ERROR_CODES`.
 
 When a tool call fails, the structured payload includes one of these
-codes plus model-actionable context:
+codes plus model-actionable context. (Backticks omitted below on
+purpose — this table isn't parity-tested against the live tool set the
+way "Tools surfaced" above is; see `docs/api/error-codes.md` for the
+full per-code payload contracts.)
 
 | Code | Returned when | Payload includes |
 |---|---|---|
-| `LAW_NOT_FOUND` | resolver exhausted identificador → slug → title | `name`, `suggestions[]` |
-| `AMBIGUOUS_NAME` | multiple acts share the title (§7.1) | `candidates[]` with distinct identificadors |
-| `NO_VERSION_AT_DATE` | requested date is before earliest valid_from | `earliest_available`, `latest_available` |
-| `DATE_UNCERTAIN` | (warning, not blocker) §7.2 act with no parseable pub date | `source_date_marker: "unknown"` |
-| `INVALID_ARTICLE_SPEC` | parser couldn't read the article spec | `examples[]` |
-| `ARTICLE_NOT_FOUND` | spec parsed, no provisions row matches | `available_articles[]` (legal-number sort) |
-| `INDEX_STALE` | (operator log only — soft warn unless `--strict`) | `head`, `indexed`, rebuild command |
-| `INDEX_MISSING` | (operator log only — exits before serving) | `db_path`, build command |
+| LAW_NOT_FOUND | resolver exhausted identificador → slug → title | name, suggestions[] |
+| AMBIGUOUS_NAME | multiple acts share the title (§7.1) | name, candidates[] with distinct identificadors |
+| NO_VERSION_AT_DATE | requested date is before earliest valid_from, or the act has no versions | law_id, date, earliest_available, latest_available |
+| DATE_UNCERTAIN | (warning, not blocker) §7.2 act with no parseable pub date | source_date_marker: "unknown" |
+| INVALID_ARTICLE_SPEC | parser couldn't read the article spec, or `get_article` was given a range | spec, examples[], hint (range case only) |
+| ARTICLE_NOT_FOUND | spec parsed, no provisions row matches (or none in a range) | law_id, article, paragraph, available_articles[] (legal-number sort) |
+| INDEX_STALE | (read-path failure) catalog and corpus have diverged | law_id, commit_hash (historical path only), detail, hint |
+| INDEX_MISSING | catalog.db missing tables/columns or unreadable at query time | detail, hint |
+| QUERY_TOO_BROAD | `search` query reduces to one of the 5 Bulgarian category stop-words (наредба/закон/правилник/кодекс/постановление) | query, category_words[], hint |
+| INVALID_DATE_RANGE | `diff`/`amendments_in_period` called with the start date later than the end date | from_date/date1, to_date/date2 |
+| DIFF_FAILED | `diff`'s underlying `git diff` invocation failed | law_id, detail |
+| INVALID_DATE | a date parameter isn't a valid `YYYY-MM-DD` string (empty/whitespace included) | param, value, expected: "YYYY-MM-DD" |
+
+`INDEX_STALE`/`INDEX_MISSING` above are the read-path (`ToolError`)
+forms. There's a separate startup-preflight mechanism with the same
+names but different mechanics — see "Troubleshooting" below.
 
 ## Known limitations (tracked as FRs)
 
-- **Search ranking quality** — BM25 + title-tier ranking puts canonical
-  laws in top-5 but not always #1. Synonym dictionary (ЗОП ↔ Закон за
-  обществените поръчки) and rang-aware re-ranking land in Phase 1b.3.
-  See `docs/frs/INDEX.md` FR-015.
-- **Single-word category queries** — "наредба" alone matches all
-  ~2,600 ordinances and overruns the 100ms perf budget. 1b.2 adds a
-  stop-word-list / "be more specific" hint. See FR-016.
-- **Body snippets** — current `search` returns highlighted-title
-  snippets. Body-context snippets land in Phase 1b.3. See FR-017.
-
-## Phase 2+ deferred
-
-`history`, `diff`, `amendments_in_period`, full historical version
-retrieval — all require the temporal index (FR-001) which Phase 1b.1
-prepared the schema for but does not populate. See `docs/frs/INDEX.md`.
+- **Search cold-call latency (FR-027, open — Task 14 owner checkpoint
+  pending, D-051).** After the D-047 re-bootstrap grew the FTS body
+  corpus to ~223 M characters, some multi-token Bulgarian queries take
+  1–7 seconds on the *first* call against a fresh connection —
+  "лични данни" and "административни нарушения" are the worst measured
+  cases, both dominated (>97%) by the tier-2 full-corpus body `MATCH` +
+  `bm25()` path, not I/O. Task 13's read-only pragmas (see "Server
+  runtime") fix the *warm* case (~300–400x) but do nothing for cold
+  calls. This blows the declared 250 ms cold budget by 1–2 orders of
+  magnitude for affected queries; short/rare-token queries (`ЗОП`,
+  "касови апарати") stay within budget. See
+  `docs/research/2026-07-02-fr027-search-perf.md` for the full
+  measurement; the fix (body-index restructuring or tier-2 gating) is
+  Task 14's decision, not yet made.
+- **`diff`/historical `get_law(date)` single-version acts.** Real
+  historical diffs only exist for the 225 acts with 2+ `law_versions`
+  rows (FR-020) — for the other ~3,376 acts, `diff` returns the
+  bilingual "single consolidated version held" note rather than a real
+  diff, because the corpus itself only holds one recorded text version
+  for those acts.
+- **Bulgarian stemming (FR-021, backlog).** `bg_normalize` strips
+  definite-article suffixes but isn't a real stemmer — the masculine
+  adjective indefinite/definite pair `български`/`българският` still
+  diverges in some cases. Closing this needs a proper Bulgarian
+  Snowball stemmer, which conflicts with D-022 (pure-Python, no
+  external NLP libs) unless that decision is revisited.
 
 ## Troubleshooting
 
@@ -216,8 +402,8 @@ prepared the schema for but does not populate. See `docs/frs/INDEX.md`.
 | Code | Meaning | Recovery |
 |---|---|---|
 | 0 | Server exited cleanly (host disconnected) | normal |
-| 2 | `INDEX_MISSING` — catalog.db not at the configured path | run `python -m index.build --db <path>` to create it |
-| 3 | `INDEX_STALE` under `--strict` — git HEAD ≠ indexed commit | re-run `python -m index.build`, OR drop `--strict` to allow soft-warn startup |
+| 2 | `INDEX_MISSING` (catalog.db not at the configured path) OR the `LEGALIZE_CORPUS_DEFECTIVE` deploy-guard refused to start | run `python -m index.build --db <path>` to create the catalog; or set `LEGALIZE_ALLOW_DEFECTIVE=1` only if you understand the D-047 caveat it overrides |
+| 3 | `INDEX_STALE` under `--strict` — git HEAD ≠ indexed commit | re-run `python -m index.build` (or `--incremental`), OR drop `--strict` to allow soft-warn startup |
 
 ### Common errors
 
@@ -228,12 +414,18 @@ prepared the schema for but does not populate. See `docs/frs/INDEX.md`.
 `catalog.db`.
 
 **`INDEX_STALE` warning** (default) or refusal (`--strict`, exit 3) →
-re-run `python -m index.build` to refresh. Pass `--strict` if you want
-the server to refuse to start on stale catalogs.
+re-run `python -m index.build` (or `--incremental`) to refresh. Pass
+`--strict` if you want the server to refuse to start on stale catalogs.
+
+**"corpus-shaped directories not indexed" `ValueError` from
+`index.build`** → the category-drift guard fired (see "One-time index
+build" above); relocate the new directory's acts into a known category
+dir or register it in `CATEGORY_DIRS`.
 
 **FastMCP transport timeouts** → confirm the MCP host's `command`
-points at the venv's `python`, not the system one. The system Python
-won't have `fastmcp` installed.
+points at the venv's `python` (or the `legalize-bg-mcp` console
+script), not the system one. The system Python won't have `fastmcp`
+installed.
 
 **Search returns nothing for an obvious query** → check the actual
 indexed form via `bg_normalize`:

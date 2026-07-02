@@ -10,7 +10,7 @@ for legal research, legislative drafting, and public procurement analysis.
 
 - ~3,574 Bulgarian legislative acts (394 laws, 24 codes, 2,604 ordinances, 490 regulations, 61 implementing regs) as Markdown + YAML frontmatter
 - SQLite temporal index for date-based queries and amendment tracking
-- MCP server with tools: `get_law`, `search`, `get_article`, `history`, `diff`
+- MCP server with 7 tools: `get_law`, `search`, `get_article`, `get_articles`, `history`, `amendments_in_period`, `diff`
 - Git history where each commit represents one legislative amendment event
 
 ## Audience
@@ -68,15 +68,25 @@ The `mcp_server/` package exposes the corpus to Claude Code, Claude
 Desktop, and OpenAI Codex via Model Context Protocol over stdio.
 
 ```bash
-# One-time index build (~45s):
+# One-time index build:
 python -m index.build --corpus . --db catalog.db
 
 # Run the server:
 python -m mcp_server --db catalog.db --corpus .
 ```
 
-See [Phase 1b.1 operator setup](docs/runbook/2026-05-09-phase1b1-operator-setup.md)
-for host configuration and the smoke test.
+Or via Docker (`Dockerfile` carries only the app; corpus + `catalog.db`
+are mounted at runtime):
+
+```bash
+docker build -t legalize-bg-mcp .
+docker run --rm -i -v "$PWD:/corpus" legalize-bg-mcp \
+    --db /corpus/catalog.db --corpus /corpus
+```
+
+See [the operator runbook](docs/runbook/2026-05-09-phase1b1-operator-setup.md)
+for host configuration, the Docker index-build step, deploy guards, and
+the smoke test.
 
 ## Organization
 
