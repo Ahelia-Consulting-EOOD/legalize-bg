@@ -72,23 +72,24 @@
     },
     {
       "code": "INDEX_STALE",
-      "raised_by": ["get_law", "search", "get_article"],
+      "raised_by": ["get_law", "get_article", "get_articles"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "expected_commit": {"type": "string", "optional": false, "description": "working-tree HEAD"},
-        "index_commit": {"type": "string", "optional": false, "description": "laws.current_commit"},
-        "instruction": {"type": "string", "optional": false, "description": "remediation"}
+        "law_id": {"type": "string", "optional": false, "description": "the resolved act"},
+        "commit_hash": {"type": "string", "optional": true, "description": "unreachable commit (historical git-show path only)"},
+        "detail": {"type": "string", "optional": false, "description": "underlying OS/git error, truncated to 300 chars"},
+        "hint": {"type": "string", "optional": false, "description": "remediation: re-run python -m index.build against this corpus"}
       }
     },
     {
       "code": "INDEX_MISSING",
-      "raised_by": ["get_law", "search", "get_article"],
+      "raised_by": ["get_law", "search", "get_article", "get_articles", "history", "amendments_in_period", "diff"],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "db_path": {"type": "string", "optional": false, "description": "expected catalog path"},
-        "instruction": {"type": "string", "optional": false, "description": "remediation"}
+        "detail": {"type": "string", "optional": false, "description": "underlying sqlite3 catalog-level error, truncated to 300 chars"},
+        "hint": {"type": "string", "optional": false, "description": "remediation: re-run python -m index.build"}
       }
     },
     {

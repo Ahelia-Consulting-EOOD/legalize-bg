@@ -88,20 +88,25 @@ Payload:
 
 ### `INDEX_STALE`
 
-Raised by: any tool, at server startup.
-When: `git HEAD ≠ laws.current_commit` for the relevant act AND `--strict` is in effect (or via runtime check; see runbook "Server runtime").
+Raised by: `get_law`, `get_article`, `get_articles` (read-path failures). `_read_law_markdown` maps a missing working-tree file or an unreachable historical commit to this code (review 2026-07-02: previously leaked a raw `OSError`/`CalledProcessError` instead).
+When: the indexed working-tree file no longer exists, or the commit hash recorded in `laws.current_commit` / `law_versions` is not reachable in the corpus's git history — i.e., the catalog and the corpus have diverged.
 Payload:
-- `expected_commit` (string): the working-tree HEAD.
-- `index_commit` (string): what `laws.current_commit` says.
-- `instruction` (string): "Re-run `python -m index.build --corpus . --db catalog.db`."
+- `law_id` (string): the resolved act.
+- `commit_hash` (string, optional): present on the historical (`git show`) path — the unreachable commit.
+- `detail` (string): the underlying OS/git error, truncated to 300 characters.
+- `hint` (string): "catalog and corpus have diverged — re-run `python -m index.build` against this corpus".
+
+Startup preflight (separate mechanism): `python -m mcp_server` also compares `git HEAD` against `laws.current_commit` before serving any tool call. By default a mismatch is a soft warning (server still starts); `--strict` turns it into a hard refusal (process exit code 3, logged as `INDEX_STALE: ...`). That is a CLI exit path, not a `ToolError` — it never reaches an MCP client.
 
 ### `INDEX_MISSING`
 
-Raised by: any tool, at server startup.
-When: `catalog.db` does not exist or lacks the expected tables (typically a fresh checkout that hasn't been built).
+Raised by: all seven tools (`get_law`, `search`, `get_article`, `get_articles`, `history`, `amendments_in_period`, `diff`) — mapped at the `_register` wrapper level, so a catalog-level `sqlite3.OperationalError` surfaces this code no matter which tool triggered the underlying query.
+When: `catalog.db`'s schema is missing tables/columns, or the database file itself is corrupt/unreadable, at query time — matched on the markers `no such table`, `no such column`, `unable to open database`, `database disk image is malformed`, `file is not a database`. FTS5 syntax errors from user search input are NOT remapped here — those are already suppressed inside `index/fts.py:_run_match` / `queries.resolve_name_to_law_id`.
 Payload:
-- `db_path` (string): the absolute path the server tried.
-- `instruction` (string): "Run `python -m index.build --corpus . --db catalog.db` to create the index."
+- `detail` (string): the underlying sqlite3 error message, truncated to 300 characters.
+- `hint` (string): "catalog.db is missing tables or corrupt — re-run `python -m index.build`".
+
+Startup preflight (separate mechanism): `python -m mcp_server` also checks that `catalog.db` exists before serving any tool call; a missing file is CLI exit code 2, logged as `INDEX_MISSING: ...`. That is a process-exit path, not a `ToolError`.
 
 ### `QUERY_TOO_BROAD` (added in 1b.2 — FR-016)
 

@@ -47,20 +47,40 @@ log = logging.getLogger(__name__)
 def _read_law_markdown(corpus_root: Path, law_id: str, category: str,
                        commit_hash: str, current_commit: str) -> str:
     """Return the full Markdown (frontmatter + body) for the law at the
-    given commit.
+    given commit. Working-tree fast path when commit_hash ==
+    current_commit; historical versions go through `git show`.
 
-    Working-tree fast path when commit_hash == current_commit (the
-    HEAD-equivalent recorded by `index.build` at index time). Historical
-    versions go through `git show`, which Phase 2 will exercise heavily.
+    Read failures surface as INDEX_STALE (structured, actionable): a
+    missing working-tree file or an unreachable commit both mean the
+    catalog no longer matches the corpus — re-run `python -m index.build`
+    (review 2026-07-02; previously leaked OSError/CalledProcessError).
     """
     rel_path = f"{category}/{law_id}.md"
+    rebuild_hint = ("catalog and corpus have diverged — re-run "
+                    "`python -m index.build` against this corpus")
     if commit_hash == current_commit:
         path = corpus_root / rel_path
-        return path.read_text(encoding="utf-8")
-    out = subprocess.run(
-        ["git", "show", f"{commit_hash}:{rel_path}"],
-        cwd=corpus_root, check=True, capture_output=True, text=True,
-    )
+        try:
+            return path.read_text(encoding="utf-8")
+        except OSError as e:
+            raise ToolError("INDEX_STALE", {
+                "law_id": law_id,
+                "detail": f"indexed file unreadable: {rel_path} ({e})",
+                "hint": rebuild_hint,
+            })
+    try:
+        out = subprocess.run(
+            ["git", "show", f"{commit_hash}:{rel_path}"],
+            cwd=corpus_root, check=True, capture_output=True, text=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError) as e:
+        stderr = (getattr(e, "stderr", "") or "").strip()
+        raise ToolError("INDEX_STALE", {
+            "law_id": law_id,
+            "commit_hash": commit_hash,
+            "detail": stderr[:300] or str(e),
+            "hint": rebuild_hint,
+        })
     return out.stdout
 
 
@@ -94,6 +114,20 @@ def _law_meta(conn: sqlite3.Connection, law_id: str) -> dict:
         "SELECT * FROM laws WHERE law_id = ?", (law_id,)
     ).fetchone()
     return dict(row) if row else {}
+
+
+_SQLITE_CATALOG_ERRORS = ("no such table", "no such column",
+                          "unable to open database",
+                          "database disk image is malformed",
+                          "file is not a database")
+
+
+def _is_catalog_error(e: sqlite3.OperationalError) -> bool:
+    """Catalog-level OperationalErrors (schema missing/corrupt) — as
+    opposed to FTS5 user-input syntax errors, which queries/index.fts
+    already suppress before reaching the tool wrapper."""
+    msg = str(e).lower()
+    return any(marker in msg for marker in _SQLITE_CATALOG_ERRORS)
 
 
 # ─────────────────────────── handle ───────────────────────────────────────
@@ -213,6 +247,17 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                     return fn(*args, **kwargs)
                 except ToolError as e:
                     ok, code = False, e.code
+                    raise
+                except sqlite3.OperationalError as e:
+                    if _is_catalog_error(e):
+                        ok, code = False, "INDEX_MISSING"
+                        raise ToolError("INDEX_MISSING", {
+                            "detail": str(e)[:300],
+                            "hint": ("catalog.db is missing tables or "
+                                     "corrupt — re-run `python -m "
+                                     "index.build`"),
+                        })
+                    ok, code = False, "UNEXPECTED"
                     raise
                 except Exception:
                     ok, code = False, "UNEXPECTED"
