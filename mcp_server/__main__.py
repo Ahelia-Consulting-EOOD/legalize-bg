@@ -17,8 +17,10 @@ Per the queries.py docstring, the connection is opened with
 from __future__ import annotations
 
 import argparse
+import json
 import logging
 import os
+import signal
 import sqlite3
 import subprocess
 import sys
@@ -28,6 +30,21 @@ from mcp_server.server import build_app
 
 
 log = logging.getLogger("mcp_server")
+
+
+def _install_metrics_signal_handler(handle):
+    """SIGUSR1 → log the metrics snapshot as one JSON line. The stdio
+    transport has no side channel, so a signal is the only way an
+    operator can pull runtime metrics without killing the process
+    (review 2026-07-02). Returns the handler for direct-call tests."""
+    def _dump(signum, frame):
+        log.info("metrics_snapshot: %s",
+                 json.dumps(handle.metrics_snapshot(), ensure_ascii=False))
+    try:
+        signal.signal(signal.SIGUSR1, _dump)
+    except (ValueError, OSError, AttributeError):
+        pass  # non-main thread, or platform without SIGUSR1 (Windows)
+    return _dump
 
 
 def _check_corpus_defective() -> int | None:
@@ -162,6 +179,7 @@ def main(argv: list[str] | None = None) -> int:
     conn.execute("PRAGMA cache_size = -65536")
 
     handle = build_app(conn=conn, corpus_root=corpus_root)
+    _install_metrics_signal_handler(handle)
     log.info("starting MCP server: db=%s corpus=%s tools=%s",
              db_path, corpus_root, sorted(handle._tools.keys()))
     handle.mcp.run()  # stdio transport (FastMCP default)
