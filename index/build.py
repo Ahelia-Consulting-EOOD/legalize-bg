@@ -255,9 +255,29 @@ def _reindex_act(conn: sqlite3.Connection, corpus_root: Path, cat: str,
         git_versions = versions_map.get(rel_path, [])
     else:
         git_versions = _git_file_versions(corpus_root, rel_path)
+    # Repair input for the pre-1970 clamp below: git author-dates are
+    # derived from fecha_publicacion at bootstrap time (bootstrap.py
+    # `_format_author_date`/`_git_commit` pass `pub_date=fecha_publicacion`,
+    # never effective_date), so law_versions.valid_from means "ДВ
+    # publication date" for every non-clamped act in the corpus. The clamp
+    # repair must restore THAT same field, not `effective` (which prefers
+    # effective_date) — else pre-1970 acts alone would carry
+    # entry-into-force semantics while the rest of the corpus carries
+    # publication semantics (review 2026-07-02 follow-up).
+    fecha_pub = meta.get("fecha_publicacion")
+    if hasattr(fecha_pub, "isoformat"):  # PyYAML may parse dates as date objs
+        fecha_pub = fecha_pub.isoformat()
     if git_versions:
         n = len(git_versions)
         for i, (valid_from, commit_hash) in enumerate(git_versions):
+            # D-017/D-018 clamp repair: pre-1970 publication dates commit
+            # with GIT_AUTHOR_DATE clamped to 1970-01-01 (git rejects
+            # negative epochs). For the act's EARLIEST version, prefer
+            # fecha_publicacion when it is genuinely earlier, so
+            # version_at_date() doesn't deny pre-1970 history (review
+            # 2026-07-02: Inheritance Act 1949 → earliest=1970-01-01).
+            if i == 0 and valid_from == "1970-01-01" and fecha_pub and fecha_pub < "1970-01-01":
+                valid_from = fecha_pub
             is_latest = (i + 1 == n)
             if is_latest:
                 valid_to = None
