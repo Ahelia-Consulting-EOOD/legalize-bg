@@ -15,14 +15,30 @@ caught.
 **Budgets are higher than `test_budgets.py` for `search`** because
 cold-cache FTS5 has to read index pages from disk on every fresh
 connection: empirically, the same multi-word queries that run in
-~33 ms warm take ~100–160 ms cold on this hardware. The cold
-budget for `search` is therefore set at 250 ms — wide enough to
-absorb hardware variance without losing regression-protection on
-genuine pathological cases (e.g., the FR-016 "наредба" case at
-437 ms would still fail this budget). The `get_law` and
+~33 ms warm take ~100–160 ms cold on this hardware. The `get_law` and
 `get_article` budgets stay at the steady-state numbers because
 they're SQL-only, not FTS5, and don't suffer the same cold-cache
 penalty (measured at 5 ms / 0.3 ms cold).
+
+FR-027/D-051 (2026-07-02) re-lock: Task 14's title-first tier-2 gating
+(`index/fts.py:search_fts`) makes every query in COLD_QUERIES
+title-served, so cold-call p95 collapsed from the old 250 ms budget's
+headroom to ~1.6-2.1 ms in a clean, spawn-free in-process measurement
+(30 trials, same query set). The literal ratified formula (measured
+p95 × 1.5) would lock ~0.007s; that value failed intermittently
+(spikes up to 0.049-0.096s) when re-run ~15x through the actual
+pytest-subprocess path, traced to this machine running 4 concurrent
+Claude Code sessions + browser/VM load at measurement time (confirmed
+via `ps aux`) rather than a code regression. Per the ratified re-run
+rule, headroom was widened further to 0.050s — confirmed stable
+across 20 consecutive runs on the same (still busy) machine — see
+`test_budgets.py`'s BUDGETS comment for the parallel derivation. This
+budget covers title-served queries only — the D-051 "body-only
+queries stay slow" case (e.g. "административни нарушения", which
+still falls through to tier 2 even after gating) is NOT covered by a
+fresh-connection-per-call budget at all: Task 13 found the pragma fix
+that tames it only helps a *persistent* connection, so that case is
+locked instead in `tests/perf/test_warm_persistent.py`, not here.
 """
 
 import logging
@@ -32,17 +48,18 @@ import time
 
 import pytest
 
+pytestmark = pytest.mark.perf
+
 REPO = pathlib.Path(__file__).resolve().parent.parent.parent
 DB = REPO / "catalog.db"
 
-# search_cold_p95 is structurally higher than the warm budget — see
-# module docstring. The 250 ms ceiling catches the historical
-# pathological case (FR-016 "наредба" at 437 ms) and any future
-# regression that would push cold-call latency into the half-second
-# range, without being so tight that ordinary cold-cache variance
-# trips it.
+# search_cold_p95 re-locked per D-051 — see module docstring for full
+# derivation (measured p95 × 1.5, widened after observed re-run
+# flakiness traced to machine load, not a code regression).
+# get_law_cold_current_p95 / get_article_cold_p95 are SQL-only paths
+# outside D-051's scope and keep their original budgets.
 COLD_BUDGETS = {
-    "search_cold_p95":          0.250,  # 250 ms cold; warm budget is 100 ms
+    "search_cold_p95":          0.050,  # 50 ms cold, title-tier-only (D-051)
     "get_law_cold_current_p95": 0.100,
     "get_article_cold_p95":     0.050,
 }

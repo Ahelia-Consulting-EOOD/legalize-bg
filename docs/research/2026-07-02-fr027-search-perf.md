@@ -362,4 +362,118 @@ showing no diff (file identical to the committed baseline).
 
 ## Decision
 
-_(filled by Task 14, D-051)_
+**Task:** Task 14 of the pre-UI hardening plan. **Ratified by the owner
+(2026-07-02): option (a) title-first tier-2 gating, implemented now,
+PLUS option (c) re-baseline for queries that still hit tier 2
+(body-only). Option (b) (split body FTS index) is DEFERRED to the
+REST-API era, triggered only if the web PRD's 300 ms p95 is missed for
+the real query mix.**
+
+### Implementation
+
+`index/fts.py:search_fts`'s tier-1/tier-2 early-return widened from
+`len(title_rows) >= limit` to `len(title_rows) >= min(limit,
+_TIER2_MIN_TITLE_HITS)` with `_TIER2_MIN_TITLE_HITS = 3`. Tier 2 (the
+full-corpus body `MATCH`, 97.9-99.9% of measured latency per
+Experiment C) now runs only when the title tier can't serve the query
+on its own — the dominant case for real title-shaped traffic. Body-only
+queries (title tier yields < 3 hits) still fall through to tier 2
+unchanged.
+
+All locked ranking tests (`tests/index/test_fts.py`,
+`test_fts_regression.py`, and the FR-015 adversarial fixture in
+`tests/mcp_server/test_search.py`/`conftest.py`) passed with **zero
+edits** — the gating only removes *additional* body-only recall beyond
+whatever the title tier already found, and none of the locked
+assertions depend on that extra recall (they check `must_include`/
+position-ordering, which the title tier alone already satisfies for
+every locked case).
+
+### Post-(a) probe (verbatim, `scripts/perf_probe.py`, two runs)
+
+```
+Run 1 (post-gating):
+'обществени поръчки': cold=     52ms warm_p50=      0ms
+'данък добавена стойност': cold=    159ms warm_p50=      1ms
+'лични данни': cold=     35ms warm_p50=      1ms
+'трудов договор': cold=   4057ms warm_p50=   3936ms
+'движение по пътищата': cold=    133ms warm_p50=      1ms
+'енергийна ефективност': cold=     49ms warm_p50=      0ms
+'ЗОП': cold=    476ms warm_p50=      4ms
+'касови апарати': cold=    195ms warm_p50=      1ms
+'административни нарушения': cold=   6452ms warm_p50=   6235ms
+'защита на потребителите': cold=    154ms warm_p50=      4ms
+
+Run 2 (confirm re-run):
+'обществени поръчки': cold=     74ms warm_p50=      0ms
+'данък добавена стойност': cold=    159ms warm_p50=      1ms
+'лични данни': cold=     36ms warm_p50=      1ms
+'трудов договор': cold=   4189ms warm_p50=     19ms
+'движение по пътищата': cold=    120ms warm_p50=      1ms
+'енергийна ефективност': cold=     22ms warm_p50=      0ms
+'ЗОП': cold=    472ms warm_p50=      4ms
+'касови апарати': cold=    165ms warm_p50=      1ms
+'административни нарушения': cold=   5415ms warm_p50=   5421ms
+'защита на потребителите': cold=    148ms warm_p50=      3ms
+```
+
+**Reading:** 8 of 10 probe queries are now title-served and fast
+(single-digit-ms warm, cold in the tens-to-low-hundreds-of-ms range —
+including "лични данни", one of the two pathological queries the
+baseline flagged, now sub-40ms cold / ~1ms warm). "трудов договор"
+run 1's slow warm (3936ms) did not replicate in run 2 (19ms) — a
+one-off, consistent with normal same-connection page-cache warming for
+a body-only query. **"административни нарушения" remains genuinely
+pathological** (title tier yields < 3 hits, so it still falls through
+to tier 2) — both cold and warm stay in the 5.4-6.5s range across both
+runs, matching the pre-gating baseline exactly. This is the expected,
+documented "body-only queries stay slow" case option (c) accepts
+rather than fixes structurally.
+
+### Ratified budgets
+
+The `perf` pytest marker (excluded from CI; `pyproject.toml`
+`[tool.pytest.ini_options]`) now gates 7 tests across 3 files. Ratified
+rule: **measured p95 × 1.5**, widened further and uniformly if a
+re-run shows flakiness (never a per-test fudge factor).
+
+| Test | Budget key | Old budget | Measured (clean) | Literal ×1.5 | **Locked budget** | Note |
+|---|---|---|---|---|---|---|
+| `test_budgets.py::test_search_p95` | `search_p95` | 0.100s | 1.6-1.9ms (29/30 in-process trials) | 0.003s | **0.020s** | widened after ~15 pytest-subprocess re-runs showed intermittent spikes to 0.23s, traced to 4 concurrent Claude Code sessions + browser/VM load on this machine (`ps aux`), not a code regression; 20/20 clean at 0.020s |
+| `test_budgets.py::test_get_law_current_p95` | `get_law_current_p95` | 0.100s | unaffected (SQL-only) | — | **0.100s** (unchanged) | D-051 scope is search latency only |
+| `test_budgets.py::test_get_article_p95` | `get_article_p95` | 0.050s | unaffected (SQL-only) | — | **0.050s** (unchanged) | ditto |
+| `test_cold_calls.py::test_search_cold_p95` | `search_cold_p95` | 0.250s | 1.6-2.1ms (30/30 in-process trials) | 0.007s | **0.050s** | same flakiness pattern (spikes to 0.049-0.096s under subprocess load); 20/20 clean at 0.050s |
+| `test_cold_calls.py::test_get_law_cold_current_p95` | `get_law_cold_current_p95` | 0.100s | unaffected (SQL-only) | — | **0.100s** (unchanged) | ditto |
+| `test_cold_calls.py::test_get_article_cold_p95` | `get_article_cold_p95` | 0.050s | unaffected (SQL-only) | — | **0.050s** (unchanged) | ditto |
+| **`test_warm_persistent.py::test_search_warm_persistent_p95`** (NEW) | `search_warm_persistent_p95` | n/a | Task 13 measured 17-24ms (pragma'd persistent connection, first-in-process) | 0.036s (24ms × 1.5) | **0.036s** | measured ~19.5-21.6ms p95 over 60 interleaved warm calls in this task's own verification; 15/15 clean |
+
+The new test (`tests/perf/test_warm_persistent.py`) closes the gap
+`test_budgets.py` (shared connection, no pragmas) and
+`test_cold_calls.py` (fresh connection per call, by design) both miss:
+neither exercises the actual production model in
+`mcp_server/__main__.py:main()` — one connection, pragma'd, held for
+the process lifetime. It runs "лични данни", "административни
+нарушения", "обществени поръчки" (Task 13's Experiment B set) on
+exactly that connection shape; "административни нарушения" is the one
+that still hits tier 2 post-gating and is the query the pragma fix
+actually has to tame for this test to mean anything.
+
+### Deferred: option (b)
+
+Splitting the body FTS index (`laws_fts_body` separate from a small
+title-only FTS table) remains deferred into the REST-API era. Trigger:
+the web PRD's 300 ms p95 budget is missed for the real (post-launch)
+query mix — i.e., if body-only queries like "административни
+нарушения" turn out to be common enough in real usage that gating
+alone doesn't keep the *aggregate* p95 under 300 ms. SQLite schema is
+a protected surface (`docs/process/IMPLEMENTATION-PREFLIGHT.md`) so
+(b) needs its own preflight when/if that trigger fires.
+
+**The cold/fresh-connection search budget for body-only queries is
+deliberately left unlocked** — no `tests/perf` test asserts a latency
+ceiling on a fresh-connection-per-call body-only search (the case
+`test_cold_calls.py`'s `COLD_QUERIES` doesn't cover and the pragma fix
+doesn't help, per Task 13's Experiment B). This is recorded in
+`docs/sync/DEFERRED.md` (D-2026-07-02-01) rather than left implicit in
+this doc alone, so it isn't silently forgotten at the next phase
+boundary.

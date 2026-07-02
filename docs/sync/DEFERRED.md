@@ -17,7 +17,7 @@ Each row links the deferral to its FR (or DECISION) trace, the phase it was punt
 
 | ID | Title | Punted from | Target | Status | Last reviewed | FR / Decision |
 |---|---|---|---|---|---|---|
-| _(none — all deferrals resolved)_ | | | | | | |
+| D-2026-07-02-01 | Cold/fresh-connection search budget for body-only queries (e.g. `административни нарушения`, 5.4–6.5s raw tier-2) deliberately left UNLOCKED under D-051 — production MCP server uses one persistent pragma'd connection (covered by `tests/perf/test_warm_persistent.py`), so the fresh-connection-per-call case never hits this path in practice. Revisit when FR-028's REST API introduces per-request connections. | Phase 1b | 7.1 | Open | 2026-07-02 | [FR-027](../frs/INDEX.md) / [D-051](DECISIONS.md) |
 
 ## Resolved deferrals
 

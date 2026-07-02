@@ -32,3 +32,6 @@ exclude = ["tests*", "scripts*", "research*", "docs*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = [
+    "perf: latency budgets against the live catalog (excluded in CI; run locally on a quiet machine)",
+]

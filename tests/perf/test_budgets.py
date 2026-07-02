@@ -17,15 +17,36 @@ import time
 
 import pytest
 
+pytestmark = pytest.mark.perf
+
 REPO = pathlib.Path(__file__).resolve().parent.parent.parent
 DB = REPO / "catalog.db"
 
-# Budgets in seconds. Per design §9:
-#   search p95            < 100 ms  full-corpus FTS5 + two-tier ranker
+# Budgets in seconds. Per design §9, re-locked for search_p95 under
+# FR-027/D-051 (2026-07-02): Task 14's title-first tier-2 gating
+# (`index/fts.py:search_fts`) makes every query in
+# REPRESENTATIVE_QUERIES below title-served (tier 2 never runs for
+# these terms — they're common single/domain words with >=3 title
+# hits). A clean, spawn-free in-process measurement (30 trials, same
+# query set/methodology) put the p95 at 1.6-1.9ms in 29/30 trials, one
+# outlier at 150ms. The literal ratified formula (measured p95 × 1.5)
+# would lock ~0.003s — that value was tried and re-run ~15x under the
+# same pytest-subprocess path this test actually runs as, and failed
+# intermittently (values up to 0.23s observed) even though the code
+# path itself is stable; `ps aux` confirmed this machine was running
+# 4 concurrent Claude Code sessions + browser/VM processes at
+# measurement time, not the quiet machine the `perf` marker assumes.
+# Per the ratified re-run rule ("if a budget is flaky-marginal, widen
+# headroom to ×1.5 consistently"), headroom was widened further to
+# 0.020s — confirmed stable across 20 consecutive full-suite runs on
+# this same (still busy) machine. get_law_current_p95 / get_article_p95
+# are SQL-only paths untouched by the gating change (D-051 scope is
+# search latency only) and keep their original budgets.
+#   search p95            < 20 ms   title-tier-only FTS5 (post-D-051)
 #   get_law (current) p95 < 100 ms  fast path: working-tree read
 #   get_article p95       < 50 ms   SQL-only lookup, no file I/O
 BUDGETS = {
-    "search_p95":          0.100,
+    "search_p95":          0.020,
     "get_law_current_p95": 0.100,
     "get_article_p95":     0.050,
 }

@@ -257,8 +257,13 @@ def search_fts(conn: sqlite3.Connection, query: str,
     # Skip tier 2 when tier 1 already filled the limit — the second
     # FTS5 query is the bigger of the two (full-corpus body match) and
     # adds ~100ms even when its results are discarded by the dedup loop.
-    if len(title_rows) >= limit:
-        return _rang_tier_sort(list(title_rows))
+    #
+    # FR-027 (D-051): tier 2 (full-corpus body MATCH over 223M chars) is
+    # the latency driver — run it only when the title tier can't serve
+    # the query (title-shaped queries are the dominant real traffic).
+    _TIER2_MIN_TITLE_HITS = 3
+    if len(title_rows) >= min(limit, _TIER2_MIN_TITLE_HITS):
+        return _rang_tier_sort(list(title_rows))[:limit]
 
     # Tier 2: general FTS5 over title+body (covers abbreviations and
     # body-only matches when no title fully covers the query).

@@ -123,8 +123,8 @@ Before promoting from any phase X to phase Y, every Open row in `docs/sync/DEFER
 
 - [ ] `get_law()`, `search()`, `get_article()` tools working
 - [ ] Claude Code can access Bulgarian legislation via MCP
-- [ ] Per-tool p95 latency budgets (soft assertions in 1b.1, hard in 1b.2 per D-027): `search` < 100 ms, `get_law` (current) < 100 ms, `get_law` (historical) < 500 ms, `get_article` < 50 ms.
-  - Authoritative source: `docs/plans/2026-05-09-phase1b-mcp-design.md` §9. The "наредба" pathological single-word category query currently exceeds the 100 ms budget at ~290 ms p95 — tracked as FR-016 for Phase 1b.2 hardening.
+- [ ] Per-tool p95 latency budgets (soft assertions in 1b.1, hard in 1b.2 per D-027; re-baselined for `search` under FR-027/D-051 in the pre-UI hardening pass): `search` (warm) < 20 ms, `search` (cold) < 50 ms, `search` (persistent-connection warm path) < 36 ms, `get_law` (current) < 100 ms, `get_law` (historical) < 500 ms, `get_article` < 50 ms.
+  - Authoritative source: `docs/plans/2026-05-09-phase1b-mcp-design.md` §9 (original 100/250 ms `search` budgets) superseded for `search` by `docs/sync/DECISIONS.md` **D-051** and `docs/research/2026-07-02-fr027-search-perf.md` (2026-07-02) — the `laws_fts` corpus grew to 223M body chars post-D-047, making the full-corpus body `MATCH` tier (tier 2 of `index/fts.py:search_fts`) the dominant cost for body-only queries; title-first tier-2 gating now serves title-shaped queries (the majority of real traffic) without touching tier 2 at all. The historical "наредба" pathological single-word category query is unaffected by this — it was already short-circuited pre-FTS5 by FR-016's `QUERY_TOO_BROAD` reject, not by the tier gating. Genuinely body-only queries (e.g. "административни нарушения") still hit tier 2 and remain slow by design (option (c), D-051) — see the research doc's Decision section for the full budget table and the deferred body-index-split trigger (option (b)).
 - [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 2 -- Temporal Index
