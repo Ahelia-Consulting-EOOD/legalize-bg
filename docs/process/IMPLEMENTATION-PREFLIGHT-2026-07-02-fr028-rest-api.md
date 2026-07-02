@@ -31,8 +31,11 @@ internal query layer (`mcp_server/queries.py`).
 
 **(b) Internal relocation of shared query helpers.** Four utility functions are moved 
 from `mcp_server/server.py` to public names in `mcp_server/queries.py`:
-  - `_law_meta` → `law_meta` (extract law metadata from parsed Markdown+YAML)
-  - `_read_law_markdown` → `read_law_markdown` (load and parse a single law file)
+  - `_law_meta` → `law_meta` (a plain SQL `SELECT * FROM laws WHERE law_id = ?` —
+    reads the act's metadata row from the SQLite catalog; no Markdown/YAML parsing)
+  - `_read_law_markdown` → `read_law_markdown` (loads the raw Markdown text for a
+    law at a given commit — a working-tree file read, or `git show` for a
+    historical commit; it does not parse the file, that's `split_frontmatter`'s job)
   - `_split_frontmatter` → `split_frontmatter` (parse YAML frontmatter from raw text)
   - `_iso` → `iso_date` (format date/datetime as ISO 8601 string)
 

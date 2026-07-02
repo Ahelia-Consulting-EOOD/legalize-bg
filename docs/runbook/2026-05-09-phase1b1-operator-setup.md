@@ -392,6 +392,16 @@ dev server. No auth / rate-limiting / reverse-proxy is wired up (design
 §Deployment marks that as future work); this start command is
 sufficient for Phase 7.2 frontend development.
 
+**Operational note before exposing this publicly.** Some full-text
+search queries are slow at the SQL layer — the REST API's per-request
+connections don't benefit from the MCP server's warm, pragma'd,
+long-lived connection, so a pathological body-only query can take
+several seconds server-side (tracked as the open D-2026-07-02-01 row in
+`docs/sync/DEFERRED.md`; not addressed by this runbook note). Before
+routing real public traffic at this API, put it behind a reverse proxy
+(e.g. Caddy or nginx) and configure request-rate limiting there — this
+process does not implement any rate-limiting itself.
+
 ### Endpoints
 
 | Endpoint | Purpose |
