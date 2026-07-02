@@ -133,6 +133,17 @@ def bootstrap(
             gate = uncovered_legal_text(soup, body)
             meta = metadata_parser.parse(soup, doc_id=doc_id, category=corpus_dir)
 
+            if not (meta.get("titulo") or "").strip():
+                # A page with no parseable titulo is not a legal act —
+                # blank/challenge/soft-404 pages must never be written
+                # (P0-5, review 2026-07-02).
+                gate_failures.append(make_gate_record(
+                    doc_id, str(doc_id), "<no titulo>",
+                    {"uncovered_chars": len(body),
+                     "buckets": {"<missing-titulo>": len(body)}}))
+                log.warning("titulo precondition FAIL doc_id=%d — skipping write", doc_id)
+                continue
+
             if gate["uncovered_chars"] > threshold:
                 slug_hint = generate_slug(meta.get("titulo", "")) or str(doc_id)
                 title = meta.get("titulo") or name

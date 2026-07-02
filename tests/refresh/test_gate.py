@@ -293,6 +293,49 @@ def test_gate_fail_existing_act_appears_in_report_gate_failures(tmp_path):
 
 
 # ---------------------------------------------------------------------------
+# Titulo precondition (P0-5): an empty titulo is a gate failure, never written
+# ---------------------------------------------------------------------------
+
+def test_empty_titulo_is_a_gate_failure_and_skips_write(tmp_path):
+    """A page parsing to no titulo is never a legal act — record a gate
+    failure instead of committing a near-empty file (P0-5)."""
+    _init_repo(tmp_path)
+    m = _meta(100, "Закон сто")
+    original_text = assemble_file(m, "Член 1. Оригинал.\n")
+    _commit_initial(tmp_path, "laws/zakon-sto.md", original_text)
+
+    tree = FakeTreeTransport([100])
+    client = FakeClient([100])
+    body_text = "Член 1. Нов текст.\n"
+    parser = FakeParser({100: body_text})
+    empty_titulo_meta = _meta(100, "Закон сто")
+    empty_titulo_meta["titulo"] = ""
+    meta = FakeMeta({100: empty_titulo_meta})
+    pass_gate = lambda soup, body: {"uncovered_chars": 0, "buckets": {}}
+
+    report = refresh(
+        tmp_path, branch=None, crawl_config={"laws": 1}, today_iso="2026-06-21",
+        tree_transport=tree, client=client, parser=parser, metadata_parser=meta,
+        coverage_gate=pass_gate,
+    )
+
+    # (a) report.gate_failures grows by one, bucketed as "<missing-titulo>"
+    assert len(report.gate_failures) == 1
+    rec = report.gate_failures[0]
+    assert rec["doc_id"] == 100
+    assert rec["top_buckets"] == {"<missing-titulo>": len(body_text)}
+
+    # (b) no file write — the committed file is untouched
+    on_disk = (tmp_path / "laws" / "zakon-sto.md").read_text(encoding="utf-8")
+    assert "Оригинал" in on_disk, "empty-titulo EXISTING act must NOT overwrite the committed file"
+    assert "Нов текст" not in on_disk
+
+    # (c) state[doc_id] == "gate-fail"
+    state = load_state(tmp_path / ".refresh-state.json")
+    assert state[100] == "gate-fail"
+
+
+# ---------------------------------------------------------------------------
 # Resume: prior gate-fail entries must survive in the rewritten gate-report.json
 # ---------------------------------------------------------------------------
 

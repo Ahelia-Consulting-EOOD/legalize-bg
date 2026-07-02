@@ -34,9 +34,10 @@ _CF_MARKERS = (
 
 
 def is_cloudflare_challenge(resp) -> bool:
-    """Detect Cloudflare bot challenge by status + body markers."""
-    if resp.status_code not in (403, 503):
-        return False
+    """Detect a Cloudflare bot challenge by body markers. 403/503 is the
+    classic signature, but managed/JS challenges can arrive with HTTP
+    200 (P0-5, review 2026-07-02) — the markers alone are decisive; no
+    real lex.bg act body contains them."""
     body = (resp.content or b"")[:20000].lower()
     return any(m in body for m in _CF_MARKERS)
 

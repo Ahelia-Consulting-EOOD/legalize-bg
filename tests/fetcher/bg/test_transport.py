@@ -89,8 +89,22 @@ def test_cloudflare_challenge_detection_covers_known_markers():
     assert is_cloudflare_challenge(FakeResponse(403, b"Attention Required! | Cloudflare"))
     # Plain 403 without CF markers is NOT a CF challenge
     assert not is_cloudflare_challenge(FakeResponse(403, b"Forbidden"))
-    # 200 is never a CF challenge
-    assert not is_cloudflare_challenge(FakeResponse(200, b"Just a moment..."))
+
+
+def test_challenge_served_with_http_200_is_detected():
+    """CF managed challenges can arrive with HTTP 200; status-gating let
+    them pass as act content (P0-5, review 2026-07-02)."""
+    resp = FakeResponse(200, content=(
+        b"<html><title>Just a moment...</title>"
+        b"<script src='/cdn-cgi/challenge-platform/x.js'></script></html>"))
+    assert is_cloudflare_challenge(resp) is True
+
+
+def test_normal_act_page_is_not_flagged():
+    resp = FakeResponse(200,
+                         content="<html><p class='Article'>Чл. 1. Текст."
+                                 "</p></html>".encode("utf-8"))
+    assert is_cloudflare_challenge(resp) is False
 
 
 def test_logs_request_with_status_and_elapsed(caplog):

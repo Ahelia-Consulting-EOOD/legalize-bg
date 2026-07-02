@@ -547,6 +547,21 @@ def refresh(
             meta, body, gate = _fetch_assemble(
                 client, parser, metadata_parser, doc_id, corpus_dir,
                 coverage_gate=coverage_gate)
+            if not (meta.get("titulo") or "").strip():
+                # A page with no parseable titulo is not a legal act —
+                # blank/challenge/soft-404 pages must never be written
+                # (P0-5, review 2026-07-02). FR-011's 7 known empty-titulo
+                # stubs will re-fail here on refresh: intended — they are
+                # content-less and stay frozen as committed.
+                report.gate_failures.append(make_gate_record(
+                    doc_id, str(doc_id), "<no titulo>",
+                    {"uncovered_chars": len(body),
+                     "buckets": {"<missing-titulo>": len(body)}}))
+                state[doc_id] = "gate-fail"
+                save_state(state_path, state)
+                log.warning("titulo precondition FAIL doc_id=%d — skipping write",
+                            doc_id)
+                continue
             title = meta.get("titulo") or entry["name"]
             if gate["uncovered_chars"] > threshold:
                 slug_hint = generate_slug(title) or str(doc_id)
@@ -585,6 +600,21 @@ def refresh(
             meta, body, gate = _fetch_assemble(
                 client, parser, metadata_parser, doc_id, ce.category,
                 coverage_gate=coverage_gate)
+            if not (meta.get("titulo") or "").strip():
+                # A page with no parseable titulo is not a legal act —
+                # blank/challenge/soft-404 pages must never be written
+                # (P0-5, review 2026-07-02). FR-011's 7 known empty-titulo
+                # stubs will re-fail here on refresh: intended — they are
+                # content-less and stay frozen as committed.
+                report.gate_failures.append(make_gate_record(
+                    doc_id, ce.slug, "<no titulo>",
+                    {"uncovered_chars": len(body),
+                     "buckets": {"<missing-titulo>": len(body)}}))
+                state[doc_id] = "gate-fail"
+                save_state(state_path, state)
+                log.warning("titulo precondition FAIL doc_id=%d — skipping write",
+                            doc_id)
+                continue
             title = meta.get("titulo") or ce.frontmatter.get("titulo") or f"doc {doc_id}"
             if gate["uncovered_chars"] > threshold:
                 report.gate_failures.append(make_gate_record(doc_id, ce.slug, title, gate))
