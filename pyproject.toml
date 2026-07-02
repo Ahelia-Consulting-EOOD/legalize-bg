@@ -19,6 +19,7 @@ dependencies = [
 # starts the FastMCP stdio server. Equivalent to `python -m mcp_server`.
 [project.scripts]
 legalize-bg-mcp = "mcp_server.__main__:main"
+legalize-bg-api = "api.__main__:main"
 
 [project.optional-dependencies]
 dev = [
