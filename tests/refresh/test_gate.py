@@ -460,3 +460,39 @@ def test_bad_threshold_env_var_falls_back_to_64(tmp_path, monkeypatch):
     # With threshold=64 (fallback) and uncovered_chars=0 the act passes
     assert len(report.added) == 1
     assert report.errors == []
+
+
+# ---------------------------------------------------------------------------
+# estado: derogado preservation on re-scrape (P0-6)
+# ---------------------------------------------------------------------------
+
+def test_derogado_estado_survives_existing_rescrape(tmp_path):
+    """metadata.parse() hardcodes estado: vigente; without preservation a
+    repealed act still listed on lex.bg gets silently un-repealed on its
+    next re-scrape and committed as [popravka] (P0-6, review 2026-07-02)."""
+    _init_repo(tmp_path)
+    body_text = "Член 1. Текст.\n"
+    m = _meta(100, "Закон сто")
+    m["estado"] = "derogado"
+    _commit_initial(tmp_path, "laws/zakon-sto.md", assemble_file(m, body_text))
+
+    tree = FakeTreeTransport([100])
+    client = FakeClient([100])
+    parser = FakeParser({100: body_text})
+    # metadata.parse() hardcodes estado: vigente — no repeal detection exists.
+    meta = FakeMeta({100: _meta(100, "Закон сто")})
+    pass_gate = lambda soup, body: {"uncovered_chars": 0, "buckets": {}}
+
+    report = refresh(
+        tmp_path, branch=None, crawl_config={"laws": 1}, today_iso="2026-06-21",
+        tree_transport=tree, client=client, parser=parser, metadata_parser=meta,
+        coverage_gate=pass_gate,
+    )
+
+    assert report.gate_failures == []
+    # (1) the written/candidate frontmatter still says estado: derogado
+    on_disk = (tmp_path / "laws" / "zakon-sto.md").read_text(encoding="utf-8")
+    assert "estado: derogado" in on_disk
+    # (2) nothing else changed → classified "unchanged", no spurious [popravka]
+    assert report.unchanged == [100]
+    assert [p["doc_id"] for p in report.popravka] == []

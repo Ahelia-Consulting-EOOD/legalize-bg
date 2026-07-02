@@ -616,6 +616,14 @@ def refresh(
                             doc_id)
                 continue
             title = meta.get("titulo") or ce.frontmatter.get("titulo") or f"doc {doc_id}"
+            # P0-6 (review 2026-07-02): never silently un-repeal.
+            # metadata.parse() hardcodes estado: vigente (no repeal
+            # detection), so a committed derogado act still listed on
+            # lex.bg would flip back on re-scrape. Preserve derogado
+            # unless an explicit un-repeal signal exists (none is parsed
+            # today — revisit with the ДВ layer, FR-024/FR-025).
+            if ce.frontmatter.get("estado") == "derogado":
+                meta["estado"] = "derogado"
             if gate["uncovered_chars"] > threshold:
                 report.gate_failures.append(make_gate_record(doc_id, ce.slug, title, gate))
                 state[doc_id] = "gate-fail"
