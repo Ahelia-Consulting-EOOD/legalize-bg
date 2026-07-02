@@ -171,3 +171,35 @@ def test_all_fixtures_no_false_positives(fixture: str):
         f"{fixture}: uncovered_chars={res['uncovered_chars']} exceeds gate threshold 64; "
         f"buckets={res['buckets']}"
     )
+
+
+# ---------------------------------------------------------------------------
+# New tests for Task 9 — full-substring match at any length (P0-4)
+# ---------------------------------------------------------------------------
+
+
+def test_middle_truncation_of_long_node_is_uncovered():
+    """>200-char nodes were only head/tail-anchored: a parser bug
+    dropping text from the MIDDLE passed the gate with 0 uncovered
+    chars (P0-4, review 2026-07-02) — the exact D-047 failure class."""
+    sentence = ("Възложителят провежда процедурата при условията и по реда "
+                "на този закон и приложимите подзаконови нормативни актове, "
+                "като осигурява публичност и прозрачност на всички етапи. ")
+    full_text = sentence * 4                      # ~640 normalized chars
+    html = f'<div class="boxi"><p class="Article">{full_text}</p></div>'
+    soup = BeautifulSoup(html, "lxml")
+    truncated = full_text[:200] + full_text[-200:]   # middle dropped
+    result = uncovered_legal_text(soup, truncated)
+    assert result["uncovered_chars"] > 0
+
+
+def test_trailing_punctuation_variance_still_passes():
+    text = ("Министерският съвет приема наредба за прилагането на този "
+            "закон в тримесечен срок от обнародването му в Държавен "
+            "вестник, като определя реда и условията за нейното изпълнение "
+            "и контролните органи по прилагането ѝ. ") * 2
+    html = f'<div class="boxi"><p class="Article">{text}</p></div>'
+    soup = BeautifulSoup(html, "lxml")
+    markdown = text.strip().rstrip(".")           # trailing '.' lost only
+    result = uncovered_legal_text(soup, markdown)
+    assert result["uncovered_chars"] == 0

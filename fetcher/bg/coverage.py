@@ -221,18 +221,18 @@ def uncovered_legal_text(
             # Too short to be meaningful — ignore to avoid false positives
             continue
 
-        # Full-text coverage check.
-        # For nodes up to 200 chars: require the exact normalized string to appear
-        # in M.  This eliminates the 40-char false-negative where two legal elements
-        # share an identical opener and the dropped one is incorrectly considered
-        # "covered" because the other element's prefix happens to match in M.
-        # For pathologically long nodes (> 200 chars): require both the first 100
-        # and last 100 chars to appear in M (handles minor trailing punctuation
-        # differences while still anchoring the full block).
-        if len(t) <= 200:
-            covered = t in M
-        else:
-            covered = (t[:100] in M) and (t[-100:] in M)
+        # Full-text coverage check at ANY length. The old >200-char rule
+        # anchored only the first/last 100 chars, leaving the middle
+        # unchecked — a parser bug dropping text from the middle of a
+        # long node passed the gate silently (P0-4, review 2026-07-02:
+        # the exact D-047 failure class). The head/tail rule existed to
+        # tolerate minor trailing-punctuation variance; that tolerance
+        # is now explicit and bounded: retry with trailing punctuation
+        # stripped, never with the middle unchecked.
+        covered = t in M
+        if not covered:
+            t2 = t.rstrip(" .,;:")
+            covered = bool(t2) and t2 in M
 
         if covered:
             continue  # covered
