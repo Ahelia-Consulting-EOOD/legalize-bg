@@ -669,12 +669,20 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             commit_hash}. `operation` is "enacted" for the act's original
             promulgation (the first DV entry), "amendment" for each
             subsequent DV amendment event, and "consolidated" for the
-            currently-held text. Only the consolidated entry carries a
-            non-null `commit_hash`: the corpus holds one consolidated text
-            per act, so the text of historical amendments is not separately
-            retrievable yet (commit_hash is null for those). Use this to
-            answer "when was this act amended?" — it lists every DV
-            amendment date.
+            currently-held text. Enacted/amendment entries are sourced
+            from the act's declared `amendment_history` (every DV
+            publication date the act's own frontmatter names) and always
+            carry `commit_hash=None` — this is a list of *declared*
+            amendment events, not git commits, and stays decoupled from
+            the corpus's actual commit history by design (not a "not
+            implemented yet" gap). Only the final "consolidated" entry
+            carries a non-null `commit_hash`, taken from the act's latest
+            `law_versions` row. Use `history` to answer "when was this
+            act amended?"; use `diff` / `get_law(date)` when you need the
+            act's actual historical TEXT — those read `law_versions`
+            directly and, for acts whose corpus history holds more than
+            one committed version (FR-020), return real per-version
+            content rather than just amendment dates.
         """
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)
@@ -724,11 +732,16 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
         Returns:
             The unified `git diff` of the act between the versions in
-            force at date1 and date2. When the corpus holds a single
-            consolidated version (the current state for most acts), a
-            clear bilingual "single consolidated version held" note is
-            returned instead of an empty diff. Real diffs appear once
-            additional versions are committed (corpus re-scrape / Phase 4).
+            force at date1 and date2 (FR-020: `law_versions` carries one
+            row per git commit of the act, not one row per act). When
+            date1 and date2 resolve to the SAME committed version — true
+            for every date pair on the acts that still hold only one
+            recorded version (most of the corpus), and also true for two
+            dates that land inside the same version's date range on a
+            multi-version act — a clear bilingual "single consolidated
+            version held" note is returned instead of an empty diff. When
+            the two dates resolve to different committed versions, a real
+            unified diff is returned.
 
         Raises:
             INVALID_DATE_RANGE: when date1 is later than date2.
