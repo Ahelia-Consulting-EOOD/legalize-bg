@@ -49,3 +49,7 @@ Strong: search / get_article / incremental-rebuild oracle / D-040 concurrency st
 ## 7. What was checked and found sound
 
 FR-020 same-day-commit collapsing; `valid_to` INCLUSIVE arithmetic (windows can't invert); merge-commit limitation latent (zero merge commits touch category dirs); FTS5 DELETE-by-UNINDEXED-column correctness; migrations idempotency/ordering; bg_normalize suffix table (no new bugs beyond FR-021); rate-limiting rules 1-5 implemented as documented; QUERY_TOO_BROAD / synonym expansion / rang-tier sort behavior as specced.
+
+---
+
+**Disposition (2026-07-02, close-out):** all 6 P0s + the FR-027 perf regression + the planned P1/P2s in `docs/plans/2026-07-02-pre-ui-hardening-plan.md` were remediated in this session's commits `7dbc3af4..HEAD` (18 tasks, batches A/B/E/C/D). Plan executed to completion; see D-050/D-051 in `docs/sync/DECISIONS.md` and FR-027 in `docs/frs/INDEX.md`.
