@@ -44,3 +44,6 @@ def _include_routers(app: FastAPI) -> None:
     app.include_router(stats.router)
     from api.routes import laws
     app.include_router(laws.router)
+    from api.routes import history_diff, search
+    app.include_router(history_diff.router)
+    app.include_router(search.router)
