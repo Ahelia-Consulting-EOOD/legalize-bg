@@ -363,6 +363,118 @@ full per-code payload contracts.)
 forms. There's a separate startup-preflight mechanism with the same
 names but different mechanics — see "Troubleshooting" below.
 
+## REST API (FR-028)
+
+The `api/` package exposes a peer HTTP surface over the SAME shared
+query layer the MCP server uses (`mcp_server/queries.py`, `index/fts.py`)
+— built for the `legalize-bg-web` Next.js frontend (sister repo, Phase
+7.2) but usable by any HTTP client. It does **not** share the MCP
+server's process-wide `_db_lock` described in "Server runtime" above:
+every request opens its own short-lived `mode=ro` SQLite connection
+with the D-051 read pragmas (`api/deps.py`) and closes it when the
+response is sent. FR-029 tracks retiring the MCP lock the same way, on
+its own trigger — the two are independent.
+
+### Start command
+
+```bash
+legalize-bg-api --db catalog.db --corpus . --port 8228 \
+    --cors-origin https://<frontend-domain>
+```
+
+`pip install -e ".[api]"` installs `fastapi`/`uvicorn`; the console
+script (`legalize-bg-api` → `api.__main__:main`) comes from the base
+install's `[project.scripts]`. Equivalent: `python -m api --db catalog.db
+--corpus . --port 8228`. `--host` defaults to `127.0.0.1`;
+`--cors-origin` is repeatable — add `--cors-origin
+http://localhost:3000` alongside the production origin for the Next.js
+dev server. No auth / rate-limiting / reverse-proxy is wired up (design
+§Deployment marks that as future work); this start command is
+sufficient for Phase 7.2 frontend development.
+
+**Operational note before exposing this publicly.** Some full-text
+search queries are slow at the SQL layer — the REST API's per-request
+connections don't benefit from the MCP server's warm, pragma'd,
+long-lived connection, so a pathological body-only query can take
+several seconds server-side (tracked as the open D-2026-07-02-01 row in
+`docs/sync/DEFERRED.md`; not addressed by this runbook note). Before
+routing real public traffic at this API, put it behind a reverse proxy
+(e.g. Caddy or nginx) and configure request-rate limiting there — this
+process does not implement any rate-limiting itself.
+
+### Endpoints
+
+| Endpoint | Purpose |
+|---|---|
+| GET /healthz | Liveness probe — `{"status": "ok"}`, no DB access |
+| GET /api/v1/laws | Paginated law list; `category`, `estado`, `limit`, `offset` query params |
+| GET /api/v1/laws/{slug} | Full law metadata + body markdown; optional `date=` resolves the historical version in force at that date (FR-020) |
+| GET /api/v1/laws/{slug}/articles/{art} | Single article/alinea text; optional `date=`; rejects a range spec (`чл. 14-16`) with INVALID_ARTICLE_SPEC — ranges stay MCP-only (`get_articles`) |
+| GET /api/v1/laws/{slug}/history | Amendment timeline, oldest to newest |
+| GET /api/v1/laws/{slug}/diff | Unified diff between two dates; `from`/`to` query params (`YYYY-MM-DD`) |
+| GET /api/v1/search | Full-text search; `q`, `category`, `limit` (capped at 50, mirrors the MCP `search` tool's cap), `include_body` query params |
+| GET /api/v1/stats | Corpus-wide counts — `total_acts`, `by_category`, `by_status`, `multi_version_acts`, `latest_version_date` |
+| GET /api/v1/metrics | Per-route call/error/latency snapshot (excluded from its own recording) |
+
+That's 7 REST endpoints plus `/healthz` and `/api/v1/metrics` (9 routes
+total). Response bodies reuse the MCP server's TypedDicts
+(`mcp_server/schemas.py`) where the shape matches 1:1 (`get_law`,
+`get_article`, `history`, `search`), plus REST-only TypedDicts in
+`api/schemas.py` (`LawListResponseDict`/`LawSummaryDict`,
+`StatsResponseDict`, `DiffResponseDict`) for endpoints with no MCP
+analogue or a REST-shaped list wrapper. `GET /laws/{slug}`,
+`/articles/{art}`, and `/history` set `Cache-Control: public,
+max-age=300`; `/search` sets `max-age=60`.
+
+### Error → HTTP mapping (D-052)
+
+Errors reuse the SAME `ToolError` / query-layer exception taxonomy the
+MCP server raises (D-026) — the JSON body is `ToolError.to_dict()`,
+byte-compatible with what an MCP client parses out of `str(ToolError)`.
+`api/errors.py` maps each code to an HTTP status:
+
+| Code | HTTP status |
+|---|---|
+| INVALID_DATE | 400 |
+| INVALID_ARTICLE_SPEC | 400 |
+| INVALID_DATE_RANGE | 400 |
+| QUERY_TOO_BROAD | 400 |
+| LAW_NOT_FOUND | 404 |
+| ARTICLE_NOT_FOUND | 404 |
+| NO_VERSION_AT_DATE | 404 |
+| AMBIGUOUS_NAME | 409 |
+| DIFF_FAILED | 500 |
+| INDEX_MISSING | 503 |
+| INDEX_STALE | 503 |
+
+Any code not in this table falls back to 500. A malformed HTTP request
+line (e.g. a query string with a raw, un-percent-encoded non-ASCII byte
+— some curl invocations do this for path segments but not query
+strings) is rejected by uvicorn's `h11` parser before it ever reaches
+FastAPI routing: a `400 Bad Request` / `text/plain` "Invalid HTTP
+request received." response, not a D-052 JSON error body. Well-behaved
+HTTP clients (browsers, `fetch`, `requests`, `axios`) percent-encode the
+whole URL and never hit this path.
+
+### OpenAPI contract
+
+`docs/api/openapi-rest.json` is the locked contract, generated by
+`python -m api.export_openapi --output docs/api/openapi-rest.json` from
+a throwaway `create_app()` instance (no DB access required) and
+verified via `python -m api.export_openapi --check
+docs/api/openapi-rest.json` (CI-wired, `tests/api/test_export_openapi.py`).
+Interactive docs are served at `/api/v1/docs` when the app is running
+(Swagger UI over the same generated spec).
+
+### Metrics
+
+`GET /api/v1/metrics` returns a per-route snapshot keyed by route
+template (not the concrete URL, so cardinality stays bounded —
+`api/metrics.py`): `calls`, `errors`, `total_ms`, `avg_ms` per route.
+Unlike the MCP server's SIGUSR1 dump, this is a normal HTTP endpoint —
+its own middleware, its own lock, and it excludes itself from its own
+recording.
+
 ## Known limitations (tracked as FRs)
 
 - **Search cold-call latency (FR-027, open — Task 14 owner checkpoint

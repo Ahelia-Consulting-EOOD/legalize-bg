@@ -89,6 +89,23 @@ paths:
         # docs/process/IMPLEMENTATION-PREFLIGHT-2026-06-21-fr018.md
         - "get_articles(law: str, articles: str, date: str | None = None) -> GetArticlesResponse"
 
+  # --- REST API v1 Endpoint Contract (FR-028 / Phase 7.1) ---
+  # Consumed by legalize-bg-web (Next.js frontend). Renaming/removing an
+  # endpoint or changing a response field is a breaking change for the
+  # frontend; additions are allowed (additive scope, like Surface 3).
+  - path: "api/ (v1 endpoint contract)"
+    reason: "REST API consumed by legalize-bg-web; error mapping per D-052"
+    edit_mode: owner_review_required
+    reference: "docs/plans/2026-07-02-fr028-rest-api-plan.md; docs/sync/DECISIONS.md D-052"
+    protected_endpoints:
+      - "GET /api/v1/laws"
+      - "GET /api/v1/laws/{slug}"
+      - "GET /api/v1/laws/{slug}/articles/{art}"
+      - "GET /api/v1/laws/{slug}/history"
+      - "GET /api/v1/laws/{slug}/diff"
+      - "GET /api/v1/search"
+      - "GET /api/v1/stats"
+
   # --- SQLite Schema ---
   # The index is derived from git but schema changes require re-indexing
   # the entire corpus and updating all query code in MCP server.

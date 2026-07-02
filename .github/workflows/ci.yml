@@ -12,12 +12,13 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m pip install -e ".[dev]"
+      - run: python -m pip install -e ".[dev,api]"
       # catalog.db is not in CI — real-corpus/perf tests self-skip;
       # perf is excluded explicitly (hard wall-clock budgets need a
       # quiet reference machine, not a shared runner).
       - run: python -m pytest -q -m "not perf"
       - run: python -m mcp_server.export_tools --check
+      - run: python -m api.export_openapi --check docs/api/openapi-rest.json
   install-smoke:
     runs-on: ubuntu-latest
     steps:
@@ -25,8 +26,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m venv /tmp/smoke && /tmp/smoke/bin/pip install .
+      - run: python -m venv /tmp/smoke && /tmp/smoke/bin/pip install ".[api]"
       - run: /tmp/smoke/bin/legalize-bg-mcp --help
+      - run: /tmp/smoke/bin/legalize-bg-api --help
       - name: INDEX_MISSING preflight exits 2
         run: |
           set +e

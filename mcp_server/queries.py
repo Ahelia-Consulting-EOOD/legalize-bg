@@ -15,17 +15,23 @@ UDF deadlocks under the FastMCP threadpool on the shared connection; see
 
 from __future__ import annotations
 
+import logging
 import re
 import sqlite3
 import subprocess
 from dataclasses import dataclass
 from datetime import date as _date
 from pathlib import Path
+from typing import Any
+
+import yaml
 
 from index.fts import bg_normalize, search_fts
 from index.synonyms import expand_if_abbreviation
 from mcp_server.errors import ToolError
 from mcp_server.schemas import VersionEntry, AmendmentEntry
+
+log = logging.getLogger(__name__)
 
 
 _MAX_QUERY_LEN = 512   # defensive cap: a pasted multi-MB string must not
@@ -762,3 +768,177 @@ def diff_law_versions(conn: sqlite3.Connection, corpus_root: Path,
             "detail": (e.stderr or "").strip()[:300] or f"git diff exited {e.returncode}",
         })
     return out.stdout
+
+
+# ─────────────── catalog-error detection (PR review fix #1) ────────────────
+# Relocated from mcp_server/server.py (was _SQLITE_CATALOG_ERRORS /
+# _is_catalog_error) so both transports recognize a catalog-level
+# sqlite3.OperationalError (missing/corrupt schema) with the identical
+# predicate. server.py keeps its old private name as an aliased import;
+# api/errors.py imports the public name directly for the REST
+# INDEX_MISSING (503) exception handler.
+
+_SQLITE_CATALOG_ERRORS = ("no such table", "no such column",
+                          "unable to open database",
+                          "database disk image is malformed",
+                          "file is not a database")
+
+
+def is_catalog_error(e: sqlite3.OperationalError) -> bool:
+    """Catalog-level OperationalErrors (schema missing/corrupt) — as
+    opposed to FTS5 user-input syntax errors, which queries/index.fts
+    already suppress before reaching the tool wrapper."""
+    msg = str(e).lower()
+    return any(marker in msg for marker in _SQLITE_CATALOG_ERRORS)
+
+
+# ────────────────────────────── Composition helpers (FR-028) ────────────────
+# Relocated from mcp_server/server.py (was _read_law_markdown/_split_
+# frontmatter/_law_meta/_iso) so the REST API layer (Tasks 3-8) can call
+# them without importing the MCP server module. server.py keeps the old
+# private names as aliased imports so its call sites stay untouched.
+
+
+def read_law_markdown(corpus_root: Path, law_id: str, category: str,
+                       commit_hash: str, current_commit: str) -> str:
+    """Return the full Markdown (frontmatter + body) for the law at the
+    given commit. Working-tree fast path when commit_hash ==
+    current_commit; historical versions go through `git show`.
+
+    Read failures surface as INDEX_STALE (structured, actionable): a
+    missing working-tree file or an unreachable commit both mean the
+    catalog no longer matches the corpus — re-run `python -m index.build`
+    (review 2026-07-02; previously leaked OSError/CalledProcessError).
+    """
+    rel_path = f"{category}/{law_id}.md"
+    rebuild_hint = ("catalog and corpus have diverged — re-run "
+                    "`python -m index.build` against this corpus")
+    if commit_hash == current_commit:
+        path = corpus_root / rel_path
+        try:
+            return path.read_text(encoding="utf-8")
+        except OSError as e:
+            raise ToolError("INDEX_STALE", {
+                "law_id": law_id,
+                "detail": f"indexed file unreadable: {rel_path} ({e})",
+                "hint": rebuild_hint,
+            })
+    try:
+        out = subprocess.run(
+            ["git", "show", f"{commit_hash}:{rel_path}"],
+            cwd=corpus_root, check=True, capture_output=True, text=True,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError, OSError) as e:
+        stderr = (getattr(e, "stderr", "") or "").strip()
+        raise ToolError("INDEX_STALE", {
+            "law_id": law_id,
+            "commit_hash": commit_hash,
+            "detail": stderr[:300] or str(e),
+            "hint": rebuild_hint,
+        })
+    return out.stdout
+
+
+def split_frontmatter(raw: str) -> tuple[dict, str]:
+    """Split a Markdown file with YAML frontmatter into (frontmatter, body).
+    Mirrors `index.build._parse_md` so the read path matches the write
+    path; if the corpus invariant changes, both fix together.
+
+    Behavior on missing `---\\n` prefix: returns ({}, raw) and emits a
+    WARN log. The build path raises on missing frontmatter; the query
+    path doesn't, because the working-tree fast path may legitimately
+    encounter a hand-edited file mid-edit. Without the WARN, an operator
+    could silently get titulo="" / eli=None responses (audit D-9).
+    """
+    if not raw.startswith("---\n"):
+        log.warning(
+            "frontmatter delimiter '---' missing at start of markdown; "
+            "returning empty frontmatter dict (working-tree may be dirty "
+            "or the file is hand-edited — re-run index.build if so)"
+        )
+        return {}, raw
+    after_open = raw[4:]
+    parts = after_open.split("\n---\n", 1)
+    fm = yaml.safe_load(parts[0]) or {}
+    body = parts[1] if len(parts) > 1 else ""
+    return fm, body.lstrip("\n")
+
+
+def law_meta(conn: sqlite3.Connection, law_id: str) -> dict:
+    row = conn.execute(
+        "SELECT * FROM laws WHERE law_id = ?", (law_id,)
+    ).fetchone()
+    return dict(row) if row else {}
+
+
+def iso_date(v: Any) -> str | None:
+    """Coerce date-like YAML value to ISO string (PyYAML may yield
+    datetime.date for ISO date fields)."""
+    if v is None:
+        return None
+    if hasattr(v, "isoformat"):
+        return v.isoformat()
+    return str(v)
+
+
+_MAX_LIST_LIMIT = 200
+
+
+def list_laws(conn: sqlite3.Connection, category: str | None = None,
+              estado: str | None = None, limit: int = 50,
+              offset: int = 0) -> dict:
+    """Paginated act listing for the REST API (FR-028).
+
+    Returns {"total": N, "items": [...]}; `total` counts ALL rows
+    matching the filters (pagination-independent, so a UI can render
+    page controls). Dates come from `law_versions` (min/max valid_from),
+    not from frontmatter reads — a list endpoint must not open 3,601
+    files.
+    """
+    limit = max(1, min(int(limit), _MAX_LIST_LIMIT))
+    offset = max(0, int(offset))
+    where, params = [], []
+    if category:
+        where.append("l.category = ?")
+        params.append(category)
+    if estado:
+        where.append("l.status = ?")
+        params.append(estado)
+    where_sql = ("WHERE " + " AND ".join(where)) if where else ""
+    total = conn.execute(
+        f"SELECT COUNT(*) FROM laws l {where_sql}", params).fetchone()[0]
+    rows = conn.execute(
+        f"""SELECT l.law_id, l.doc_id, l.title, l.category, l.status,
+                   MIN(v.valid_from) AS first_version,
+                   MAX(v.valid_from) AS latest_version,
+                   COUNT(v.id) AS version_count
+            FROM laws l LEFT JOIN law_versions v ON v.law_id = l.law_id
+            {where_sql}
+            GROUP BY l.law_id ORDER BY l.title, l.law_id
+            LIMIT ? OFFSET ?""",
+        params + [limit, offset]).fetchall()
+    items = [{
+        "law_id": r["law_id"], "identificador": str(r["doc_id"]),
+        "title": r["title"], "category": r["category"],
+        "status": r["status"], "first_version": r["first_version"],
+        "latest_version": r["latest_version"],
+        "version_count": r["version_count"],
+    } for r in rows]
+    return {"total": total, "items": items}
+
+
+def corpus_stats(conn: sqlite3.Connection) -> dict:
+    """Corpus stats for GET /api/v1/stats and the frontend sitemap."""
+    total = conn.execute("SELECT COUNT(*) FROM laws").fetchone()[0]
+    by_cat = dict(conn.execute(
+        "SELECT category, COUNT(*) FROM laws GROUP BY category").fetchall())
+    by_status = dict(conn.execute(
+        "SELECT status, COUNT(*) FROM laws GROUP BY status").fetchall())
+    multi = conn.execute(
+        "SELECT COUNT(*) FROM (SELECT law_id FROM law_versions "
+        "GROUP BY law_id HAVING COUNT(*) > 1)").fetchone()[0]
+    latest = conn.execute(
+        "SELECT MAX(valid_from) FROM law_versions").fetchone()[0]
+    return {"total_acts": total, "by_category": by_cat,
+            "by_status": by_status, "multi_version_acts": multi,
+            "latest_version_date": latest}

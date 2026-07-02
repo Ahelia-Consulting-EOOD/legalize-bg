@@ -22,13 +22,11 @@ import functools
 import inspect
 import logging
 import sqlite3
-import subprocess
 import threading
 import time
 from pathlib import Path
 from typing import Any, Callable
 
-import yaml
 from fastmcp import FastMCP
 
 from mcp_server import queries
@@ -45,91 +43,13 @@ log = logging.getLogger(__name__)
 
 # ─────────────────────────── helpers ──────────────────────────────────────
 
-
-def _read_law_markdown(corpus_root: Path, law_id: str, category: str,
-                       commit_hash: str, current_commit: str) -> str:
-    """Return the full Markdown (frontmatter + body) for the law at the
-    given commit. Working-tree fast path when commit_hash ==
-    current_commit; historical versions go through `git show`.
-
-    Read failures surface as INDEX_STALE (structured, actionable): a
-    missing working-tree file or an unreachable commit both mean the
-    catalog no longer matches the corpus — re-run `python -m index.build`
-    (review 2026-07-02; previously leaked OSError/CalledProcessError).
-    """
-    rel_path = f"{category}/{law_id}.md"
-    rebuild_hint = ("catalog and corpus have diverged — re-run "
-                    "`python -m index.build` against this corpus")
-    if commit_hash == current_commit:
-        path = corpus_root / rel_path
-        try:
-            return path.read_text(encoding="utf-8")
-        except OSError as e:
-            raise ToolError("INDEX_STALE", {
-                "law_id": law_id,
-                "detail": f"indexed file unreadable: {rel_path} ({e})",
-                "hint": rebuild_hint,
-            })
-    try:
-        out = subprocess.run(
-            ["git", "show", f"{commit_hash}:{rel_path}"],
-            cwd=corpus_root, check=True, capture_output=True, text=True,
-        )
-    except (subprocess.CalledProcessError, FileNotFoundError, OSError) as e:
-        stderr = (getattr(e, "stderr", "") or "").strip()
-        raise ToolError("INDEX_STALE", {
-            "law_id": law_id,
-            "commit_hash": commit_hash,
-            "detail": stderr[:300] or str(e),
-            "hint": rebuild_hint,
-        })
-    return out.stdout
-
-
-def _split_frontmatter(raw: str) -> tuple[dict, str]:
-    """Split a Markdown file with YAML frontmatter into (frontmatter, body).
-    Mirrors `index.build._parse_md` so the read path matches the write
-    path; if the corpus invariant changes, both fix together.
-
-    Behavior on missing `---\\n` prefix: returns ({}, raw) and emits a
-    WARN log. The build path raises on missing frontmatter; the query
-    path doesn't, because the working-tree fast path may legitimately
-    encounter a hand-edited file mid-edit. Without the WARN, an operator
-    could silently get titulo="" / eli=None responses (audit D-9).
-    """
-    if not raw.startswith("---\n"):
-        log.warning(
-            "frontmatter delimiter '---' missing at start of markdown; "
-            "returning empty frontmatter dict (working-tree may be dirty "
-            "or the file is hand-edited — re-run index.build if so)"
-        )
-        return {}, raw
-    after_open = raw[4:]
-    parts = after_open.split("\n---\n", 1)
-    fm = yaml.safe_load(parts[0]) or {}
-    body = parts[1] if len(parts) > 1 else ""
-    return fm, body.lstrip("\n")
-
-
-def _law_meta(conn: sqlite3.Connection, law_id: str) -> dict:
-    row = conn.execute(
-        "SELECT * FROM laws WHERE law_id = ?", (law_id,)
-    ).fetchone()
-    return dict(row) if row else {}
-
-
-_SQLITE_CATALOG_ERRORS = ("no such table", "no such column",
-                          "unable to open database",
-                          "database disk image is malformed",
-                          "file is not a database")
-
-
-def _is_catalog_error(e: sqlite3.OperationalError) -> bool:
-    """Catalog-level OperationalErrors (schema missing/corrupt) — as
-    opposed to FTS5 user-input syntax errors, which queries/index.fts
-    already suppress before reaching the tool wrapper."""
-    msg = str(e).lower()
-    return any(marker in msg for marker in _SQLITE_CATALOG_ERRORS)
+from mcp_server.queries import (
+    is_catalog_error as _is_catalog_error,
+    iso_date as _iso,
+    law_meta as _law_meta,
+    read_law_markdown as _read_law_markdown,
+    split_frontmatter as _split_frontmatter,
+)
 
 
 # ─────────────────────────── handle ───────────────────────────────────────
@@ -779,13 +699,3 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
     _register(diff)
 
     return handle
-
-
-def _iso(v: Any) -> str | None:
-    """Coerce date-like YAML value to ISO string (PyYAML may yield
-    datetime.date for ISO date fields)."""
-    if v is None:
-        return None
-    if hasattr(v, "isoformat"):
-        return v.isoformat()
-    return str(v)

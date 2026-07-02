@@ -19,15 +19,20 @@ dependencies = [
 # starts the FastMCP stdio server. Equivalent to `python -m mcp_server`.
 [project.scripts]
 legalize-bg-mcp = "mcp_server.__main__:main"
+legalize-bg-api = "api.__main__:main"
 
 [project.optional-dependencies]
 dev = [
     "pytest>=8.0",
     "pytest-cov>=4.0",
 ]
+api = [
+    "fastapi>=0.115",
+    "uvicorn>=0.30",
+]
 
 [tool.setuptools.packages.find]
-include = ["fetcher*", "index*", "mcp_server*"]
+include = ["fetcher*", "index*", "mcp_server*", "api*"]
 exclude = ["tests*", "scripts*", "research*", "docs*"]
 
 [tool.pytest.ini_options]

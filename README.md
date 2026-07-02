@@ -88,6 +88,25 @@ See [the operator runbook](docs/runbook/2026-05-09-phase1b1-operator-setup.md)
 for host configuration, the Docker index-build step, deploy guards, and
 the smoke test.
 
+## REST API
+
+The `api/` package exposes a FastAPI REST surface (FR-028) over the same
+shared query layer as the MCP server, for the `legalize-bg-web` Next.js
+frontend (sister repo, Phase 7.2) or any other HTTP client: 7 endpoints
+(`/api/v1/laws`, `/laws/{slug}`, `/laws/{slug}/articles/{art}`,
+`/laws/{slug}/history`, `/laws/{slug}/diff`, `/search`, `/stats`) plus
+`/healthz` and `/api/v1/metrics`, with per-request read-only SQLite
+connections (no MCP-lock inheritance), CORS, and an OpenAPI contract
+locked at `docs/api/openapi-rest.json`.
+
+```bash
+# One-time index build (see MCP Server section above), then:
+legalize-bg-api --db catalog.db --corpus . --port 8228
+```
+
+See [the operator runbook](docs/runbook/2026-05-09-phase1b1-operator-setup.md#rest-api-fr-028)
+for the full endpoint table, error mapping (D-052), and CORS setup.
+
 ## Organization
 
 Hosted at [Ahelia-Consulting-EOOD](https://github.com/Ahelia-Consulting-EOOD) on GitHub.
