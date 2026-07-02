@@ -10,6 +10,7 @@ directly as the transport). Validates that:
 """
 
 import asyncio
+import json
 import pytest
 
 from fastmcp import Client
@@ -249,10 +250,18 @@ def test_concurrent_tool_calls_are_serialized_safely(populated_conn, tmp_path):
                for r in results)
 
 
+def _error_payload(exc_value) -> dict:
+    """Parse the structured JSON error a real MCP client receives.
+    Tolerates a host-added text prefix by slicing at the first '{'."""
+    text = str(exc_value)
+    start = text.find("{")
+    assert start != -1, f"no JSON object in error text: {text!r}"
+    return json.loads(text[start:])
+
+
 def test_invalid_article_spec_surfaces_through_mcp(populated_conn, tmp_path):
-    """ToolError → MCP error envelope. The structured payload (with
-    `examples` for INVALID_ARTICLE_SPEC) must reach the caller, not
-    just an opaque transport failure."""
+    """The structured payload must reach a REAL MCP client as parseable
+    JSON — not Python dict-repr prose (P0-1, review 2026-07-02)."""
     app = build_app(conn=populated_conn, corpus_root=tmp_path)
 
     async def _call():
@@ -264,5 +273,23 @@ def test_invalid_article_spec_surfaces_through_mcp(populated_conn, tmp_path):
     # either signals failure correctly.
     with pytest.raises(Exception) as exc:
         _run(_call())
-    # Must include the error code so the model can act on it
-    assert "INVALID_ARTICLE_SPEC" in str(exc.value)
+    payload = _error_payload(exc.value)
+    assert payload["code"] == "INVALID_ARTICLE_SPEC"
+    assert isinstance(payload["examples"], list) and payload["examples"]
+
+
+def test_law_not_found_carries_structured_suggestions(populated_conn, tmp_path):
+    """Same JSON-wire contract for a second error family (LAW_NOT_FOUND)
+    — locks the contract generally, not just for one code (P0-1)."""
+    app = build_app(conn=populated_conn, corpus_root=tmp_path)
+
+    async def _call():
+        async with Client(app.mcp) as c:
+            return await c.call_tool(
+                "get_law", {"name": "несъществуващ акт"})
+
+    with pytest.raises(Exception) as exc:
+        _run(_call())
+    payload = _error_payload(exc.value)
+    assert payload["code"] == "LAW_NOT_FOUND"
+    assert isinstance(payload["suggestions"], list)

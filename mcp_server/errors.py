@@ -1,10 +1,21 @@
 """Tool error taxonomy. Per D-026, errors are first-class structured outputs.
 
 Each ToolError carries a stable `code` (one of ERROR_CODES) and a payload
-dict with model-actionable structured data (suggestions, candidates,
-available_articles, etc.). FastMCP serializes ToolError into the MCP
-response envelope.
+dict with model/UI-actionable structured data (suggestions, candidates,
+available_articles, etc.).
+
+The class SUBCLASSES fastmcp.exceptions.ToolError so FastMCP's call_tool
+passes it through unwrapped (`except FastMCPError: raise`), and its
+message is compact JSON — every MCP client (LLM host or web UI) receives
+machine-parseable structure, not Python repr prose. (P0-1, review
+2026-07-02: a plain-Exception ToolError was wrapped and flattened to
+dict-repr text on the wire, making the taxonomy invisible to non-LLM
+callers.)
 """
+
+import json
+
+from fastmcp.exceptions import ToolError as _FastMCPToolError
 
 ERROR_CODES = frozenset({
     "LAW_NOT_FOUND",
@@ -21,8 +32,12 @@ ERROR_CODES = frozenset({
 })
 
 
-class ToolError(Exception):
-    """Structured tool failure surfaced through the MCP response envelope."""
+class ToolError(_FastMCPToolError):
+    """Structured tool failure surfaced through the MCP response envelope.
+
+    str(e) — and therefore the error text an MCP client receives — is
+    json.dumps({"code": ..., **payload}, ensure_ascii=False).
+    """
 
     def __init__(self, code: str, payload: dict):
         if code not in ERROR_CODES:
@@ -30,7 +45,8 @@ class ToolError(Exception):
                              f"must be one of {sorted(ERROR_CODES)}")
         self.code = code
         self.payload = payload
-        super().__init__(f"{code}: {payload}")
+        super().__init__(json.dumps(self.to_dict(), ensure_ascii=False,
+                                    default=str))
 
     def to_dict(self) -> dict:
         """JSON-serializable form for FastMCP."""

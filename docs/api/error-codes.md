@@ -22,6 +22,15 @@ Every `ToolError` is serialized as:
 
 The `code` is always a top-level key (not nested under "error"). Payload fields differ per code; this catalog enumerates them.
 
+## Wire format
+
+The MCP error text is a single JSON object: `{"code": "<CODE>", ...payload}` (UTF-8,
+`ensure_ascii=False`). Clients parse it with `JSON.parse`/`json.loads`; the `code` key
+is always present. (P0-1, review 2026-07-02: `mcp_server.errors.ToolError` now
+subclasses `fastmcp.exceptions.ToolError`, so FastMCP passes it through unwrapped
+instead of flattening it to Python dict-repr prose — the format above was already the
+contract via `to_dict()`, this just makes it what actually reaches the wire.)
+
 ## Codes
 
 ### `LAW_NOT_FOUND`
