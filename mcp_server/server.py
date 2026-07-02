@@ -156,6 +156,15 @@ class _AppHandle:
         # DB lock (see _register) so log I/O never holds up DB access;
         # _metrics_lock serializes concurrent mutation of this dict
         # instead (review 2026-07-02).
+        #
+        # Deadlock-freedom invariant (final review 2026-07-02): sync tools
+        # run in FastMCP's anyio threadpool (verified fastmcp 3.2.4 —
+        # `call_sync_fn_in_threadpool`), never inline on the main thread.
+        # The SIGUSR1 handler (`mcp_server/__main__.py`) runs main-thread
+        # only. So the signal-handler's `metrics_snapshot()` dump and a
+        # worker's `_record()` call can never be the same thread, and this
+        # plain (non-reentrant) `Lock` can never be asked to re-enter
+        # itself — no self-deadlock is possible.
         self._metrics: dict[str, dict[str, Any]] = {}
         self._metrics_lock = threading.Lock()
 
