@@ -55,6 +55,32 @@ def _iter_corpus_files(corpus_root: Path):
                 yield cat, f
 
 
+def _check_category_drift(corpus_root: Path) -> None:
+    """Fail loudly when a top-level directory outside CATEGORY_DIRS holds
+    corpus-shaped acts (review 2026-07-02: postanovleniya/ was invisible
+    to every build and every MCP tool). A dir is corpus-shaped when any
+    immediate *.md child starts with YAML frontmatter carrying an
+    `identificador` key. docs/, research/ etc. don't match."""
+    known = set(CATEGORY_DIRS.values())
+    offenders: list[str] = []
+    for d in sorted(corpus_root.iterdir()):
+        if not d.is_dir() or d.name.startswith(".") or d.name in known:
+            continue
+        for f in sorted(d.glob("*.md")):
+            head = f.read_text(encoding="utf-8", errors="replace")[:2048]
+            if head.startswith("---\n") and "\nidentificador:" in head:
+                offenders.append(f"{d.name}/ (e.g. {f.name})")
+                break
+    if offenders:
+        raise ValueError(
+            "corpus-shaped directories not indexed (missing from "
+            f"CATEGORY_DIRS): {', '.join(offenders)} — relocate the acts "
+            "into a known category dir, or register the category in "
+            "fetcher/bg/discovery.py CATEGORY_DIRS (protected surface — "
+            "IMPLEMENTATION-PREFLIGHT required)."
+        )
+
+
 def _parse_md(path: Path) -> tuple[dict, str]:
     """Split a Markdown file with YAML frontmatter into (frontmatter, body).
 
@@ -409,6 +435,7 @@ def build(corpus_root: Path, db_path: str = "catalog.db",
     """
     today_iso = today_iso or date.today().isoformat()
     corpus_root = Path(corpus_root)
+    _check_category_drift(corpus_root)
     conn = sqlite3.connect(db_path)
     try:
         migrate(conn)
