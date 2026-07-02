@@ -10,6 +10,7 @@ from pathlib import Path
 from fastapi import FastAPI
 
 from api.errors import install_error_handlers
+from api.metrics import install_metrics
 
 API_VERSION = "1.0.0"
 
@@ -28,6 +29,7 @@ def create_app(db_path: str, corpus_root: Path,
                            allow_methods=["GET"], allow_headers=["*"])
 
     install_error_handlers(app)
+    install_metrics(app)
 
     @app.get("/healthz")
     def healthz() -> dict:
