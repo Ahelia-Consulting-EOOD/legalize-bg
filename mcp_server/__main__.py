@@ -155,6 +155,11 @@ def main(argv: list[str] | None = None) -> int:
     # serialized by SQLite's locking even if we had any.
     conn = sqlite3.connect(str(db_path), check_same_thread=False)
     conn.row_factory = sqlite3.Row
+    # FR-027: the 1.2 GB catalog is read-only at serve time — memory-map
+    # it (page-cache reads without syscalls) and give SQLite a 64 MB
+    # page cache. Both are per-connection and harmless on small DBs.
+    conn.execute("PRAGMA mmap_size = 1073741824")
+    conn.execute("PRAGMA cache_size = -65536")
 
     handle = build_app(conn=conn, corpus_root=corpus_root)
     log.info("starting MCP server: db=%s corpus=%s tools=%s",

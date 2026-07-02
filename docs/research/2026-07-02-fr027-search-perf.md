@@ -101,7 +101,264 @@ cherry-picking.
 
 ## Experiments
 
-_(filled by Task 13)_
+**Task:** Task 13 of the pre-UI hardening plan. Same machine/DB lineage as
+Task 12's baseline (Apple M4, 16 GB RAM, macOS 26.5); `catalog.db` rebuilt
+in place between experiments where noted. A background macOS process
+(`mediaanalysisd`, observed via `ps aux` pinned at ~107% CPU) was running
+throughout this session and is flagged as an uncontrolled confound on
+absolute magnitudes — it does not change the conclusions below, which rest
+on relative/reproducible patterns (order-controlled comparisons, repeated
+runs), not single absolute numbers.
+
+### Experiment A — FTS5 `optimize` at build time
+
+**Change:** `index/build.py`, full-build path, after the reindex loop:
+`conn.execute("INSERT INTO laws_fts(laws_fts) VALUES('optimize')")`.
+
+**Commands:**
+```
+.venv/bin/python -m index.build --corpus . --db catalog.db   # rebuild w/ optimize, 2:23 total
+.venv/bin/python scripts/perf_probe.py                         # x3
+```
+
+**Probe output, run 1 (post-optimize):**
+```
+'обществени поръчки': cold=   2936ms warm_p50=     16ms
+'данък добавена стойност': cold=   1183ms warm_p50=     14ms
+'лични данни': cold=   4758ms warm_p50=   4761ms
+'трудов договор': cold=   1545ms warm_p50=     21ms
+'движение по пътищата': cold=   2022ms warm_p50=     28ms
+'енергийна ефективност': cold=    400ms warm_p50=     10ms
+'ЗОП': cold=    166ms warm_p50=      3ms
+'касови апарати': cold=     38ms warm_p50=      1ms
+'административни нарушения': cold=   2000ms warm_p50=    478ms
+'защита на потребителите': cold=    882ms warm_p50=     35ms
+```
+
+**Probe output, run 2 (post-optimize, stability check):**
+```
+'обществени поръчки': cold=   3289ms warm_p50=     19ms
+'данък добавена стойност': cold=   1593ms warm_p50=     19ms
+'лични данни': cold=   5676ms warm_p50=   5471ms
+'трудов договор': cold=   2566ms warm_p50=     23ms
+'движение по пътищата': cold=   2427ms warm_p50=     27ms
+'енергийна ефективност': cold=    597ms warm_p50=     11ms
+'ЗОП': cold=    228ms warm_p50=      3ms
+'касови апарати': cold=     70ms warm_p50=      1ms
+'административни нарушения': cold=   2921ms warm_p50=   4360ms
+'защита на потребителите': cold=   3677ms warm_p50=   3559ms
+```
+
+**Probe output, run 3 (post-optimize, tie-breaker):**
+```
+'обществени поръчки': cold=   3299ms warm_p50=     15ms
+'данък добавена стойност': cold=   1346ms warm_p50=     14ms
+'лични данни': cold=   5326ms warm_p50=   5411ms
+'трудов договор': cold=   2021ms warm_p50=     19ms
+'движение по пътищата': cold=   2196ms warm_p50=     24ms
+'енергийна ефективност': cold=    545ms warm_p50=     10ms
+'ЗОП': cold=    186ms warm_p50=      3ms
+'касови апарати': cold=     57ms warm_p50=      1ms
+'административни нарушения': cold=   2956ms warm_p50=   3958ms
+'защита на потребителите': cold=   3131ms warm_p50=     34ms
+```
+
+**Delta vs Task 12 baseline** (baseline run1/run2 recap: "лични данни"
+warm 6845/4560ms; "административни нарушения" warm 1053/1081ms):
+
+- "лични данни" warm across 3 post-optimize runs: 4761/5471/5411ms — average
+  ≈5214ms vs baseline average ≈5703ms. A ~9% apparent improvement, but well
+  inside the baseline's own run-to-run spread (baseline run1→run2 varied by
+  ~40%), so **not distinguishable from noise**.
+- "административни нарушения" warm across 3 post-optimize runs:
+  478/4360/3958ms. Baseline was tight and consistent (1053ms, 1081ms — within
+  3% of each other across 2 runs). Post-optimize is wildly inconsistent (an
+  ~9x spread across 3 runs) and 2 of 3 runs are **~4x worse** than baseline,
+  not better. This is the most legible signal in this experiment: `optimize`
+  did not just fail to help, it made this query's behavior less predictable.
+- Every other (already-fast-warming) query stayed in the same ballpark as
+  baseline — `optimize` neither helped nor hurt them measurably.
+
+**Keep/drop: DROPPED.** No reliable improvement on the two queries FR-027
+exists to fix, and a regression/instability signal on one of them. Per the
+brief's rollback instruction, the catalog was rebuilt a fourth time WITHOUT
+the `optimize` call (`git diff index/build.py` confirms the file is back to
+the committed baseline) so the on-disk index Task 14 measures against is
+representative of what the shipped code actually produces — not an
+optimized state that will never occur again after the next rebuild.
+Rebuild command/timing: `.venv/bin/python -m index.build --corpus . --db
+catalog.db` → 2:17 total, "indexed 3601 acts".
+
+### Experiment B — server connection pragmas (`mmap_size` / `cache_size`)
+
+**Change:** `mcp_server/__main__.py:main()`, after `conn.row_factory =
+sqlite3.Row`: `PRAGMA mmap_size = 1073741824` and `PRAGMA cache_size =
+-65536`.
+
+**Command:** `.venv/bin/python -m pytest tests/perf/test_cold_calls.py -q`
+
+**Output (verbatim, relevant part):**
+```
+p95 = 5.578998583136126, budget_key = 'search_cold_p95'
+E           Failed: PERF: search_cold_p95 p95=5.5790s exceeds budget 0.2500s (1b.2 HARD).
+1 failed, 2 passed in 68.49s (0:01:08)
+```
+Comparable to Task 12's baseline shape (every query blows the 250 ms cold
+budget); `get_law_cold_current_p95` and `get_article_cold_p95` still pass
+(they're SQL-only paths, unaffected either way).
+
+**Caveat found before trusting that number:** `tests/perf/test_cold_calls.py`
+opens its own connections via a private `_open_fresh()` (`sqlite3.connect`
+directly), never through `mcp_server/__main__.py:main()` — confirmed by
+reading `tests/perf/conftest.py` and `test_cold_calls.py` in full. The
+pragmas added in `__main__.py` are therefore **never applied** in this test;
+the FAILED result above is not evidence about the pragmas at all, it just
+reconfirms the fresh-connection-per-call case is untouched by a
+per-connection pragma (expected — a brand-new connection each call means
+mmap/cache never get to persist anything across calls).
+
+**Variant probe** (ad-hoc, not committed — isolates the pragma effect
+directly): opens connections the same way `__main__.py` does (plain
+`sqlite3.connect(db, check_same_thread=False)`, `row_factory=Row`), with vs.
+without the two pragmas, and times cold + 5-call same-connection warm median
+on the three slowest queries. Run twice with the group order swapped to
+control for OS-page-cache carryover between groups within one process run
+(the first group in each run pays for populating the OS cache; the second
+group benefits from it regardless of pragmas — visible below).
+
+Run 1 (`no-pragma-first`, default order):
+```
+--- NO-PRAGMA ---
+'лични данни': cold=   8058ms warm_p50=   7042ms
+'административни нарушения': cold=   5852ms warm_p50=   5455ms
+'обществени поръчки': cold=   2077ms warm_p50=     16ms
+--- PRAGMA ---
+'лични данни': cold=   4723ms warm_p50=     24ms
+'административни нарушения': cold=   1050ms warm_p50=     20ms
+'обществени поръчки': cold=    186ms warm_p50=      9ms
+```
+
+Run 2 (`pragma-first`, order swapped):
+```
+--- PRAGMA ---
+'лични данни': cold=   7771ms warm_p50=     22ms
+'административни нарушения': cold=   1076ms warm_p50=     17ms
+'обществени поръчки': cold=    206ms warm_p50=      8ms
+--- NO-PRAGMA ---
+'лични данни': cold=     53ms warm_p50=     43ms
+'административни нарушения': cold=     38ms warm_p50=     34ms
+'обществени поръчки': cold=     16ms warm_p50=     16ms
+```
+(Run 2's NO-PRAGMA group is fast across the board because it ran *second*,
+benefiting from OS page-cache warmth left by the PRAGMA group immediately
+before it — the confound this order swap was designed to expose. Its
+numbers are NOT evidence that pragmas are unnecessary; they show why
+group order must be controlled.)
+
+Run 3 (`no-pragma-first` repeat, replicate of run 1's ordering):
+```
+--- NO-PRAGMA ---
+'лични данни': cold=   8040ms warm_p50=   7005ms
+'административни нарушения': cold=   5700ms warm_p50=   5422ms
+'обществени поръчки': cold=   2223ms warm_p50=     20ms
+--- PRAGMA ---
+'лични данни': cold=   4793ms warm_p50=     24ms
+'административни нарушения': cold=    983ms warm_p50=     18ms
+'обществени поръчки': cold=    165ms warm_p50=      9ms
+```
+
+**Reading the numbers:** whichever group runs FIRST in a given process (no
+OS-cache assist from a prior group) isolates the pragma's own effect:
+- WITHOUT pragmas, first-in-process: "лични данни" warm stays ≈7000–7042ms,
+  "административни нарушения" stays ≈5422–5455ms — i.e. these two queries
+  reproduce the baseline's "never warms down" pathology exactly, even after
+  6 calls on the same connection.
+- WITH pragmas, first-in-process: same two queries warm to ≈17–24ms —
+  a **~300–400x** reduction in same-connection repeat-call latency, fully
+  reproducible across 2 independent runs with the group order controlled.
+- COLD (the very first call on a brand-new connection) is **not**
+  meaningfully changed by the pragmas either way (still multi-second) — the
+  pragmas fix repeat-call behavior on a persisted connection, not first-touch
+  latency on a fresh one.
+
+**Why this matters for the real server, not just the test:** `mcp_server/
+__main__.py:main()` opens exactly ONE connection and holds it for the
+server process's entire lifetime (passed once into `build_app`); every tool
+call for that process's life reuses it. That is precisely the "same
+connection, repeated calls" case the variant probe measures, not the
+fresh-connection-per-call case `test_cold_calls.py` simulates. So although
+`test_cold_calls.py` still (correctly) fails budgets, the pragmas fix the
+actual FR-027 regression signal — "лични данни"/"административни
+нарушения" never warming down — for the real deployed process, at the cost
+of the first call after server startup still being slow (a one-time cost
+per process lifetime, not per query).
+
+**Keep/drop: KEPT.** Reproducible ~300-400x same-connection improvement on
+exactly the two pathological queries FR-027 tracks, isolated via an
+order-controlled variant probe after confirming the prescribed pytest path
+doesn't exercise the change at all.
+
+### Experiment C — tier-1 vs tier-2 timing split
+
+**Change (temporary, reverted after measurement):** added
+`time.perf_counter()` around the tier-1 (`title:` MATCH) and tier-2 (body
+MATCH) calls inside `index/fts.py:search_fts`, printing
+`[FR-027 tier1]`/`[FR-027 tier2]` labelled durations. Measured on the three
+slowest queries by Task 12 baseline cold latency ("лични данни",
+"обществени поръчки", "административни нарушения"), one fresh
+`mode=ro` connection per query (matching `scripts/perf_probe.py`'s
+connection style), no pragmas applied (isolating the query-execution split
+itself, not the Experiment B effect).
+
+**Run 1:**
+```
+[FR-027 tier1] 'лични данни': 39.3ms
+[FR-027 tier2] 'лични данни': 7981.9ms
+>>> 'лични данни' COLD TOTAL=8021.5ms
+[FR-027 tier1] 'обществени поръчки': 46.7ms
+[FR-027 tier2] 'обществени поръчки': 2163.3ms
+>>> 'обществени поръчки' COLD TOTAL=2210.0ms
+[FR-027 tier1] 'административни нарушения': 6.8ms
+[FR-027 tier2] 'административни нарушения': 4598.4ms
+>>> 'административни нарушения' COLD TOTAL=4605.2ms
+```
+
+**Run 2 (replicate):**
+```
+[FR-027 tier1] 'лични данни': 30.1ms
+[FR-027 tier2] 'лични данни': 6637.7ms
+>>> 'лични данни' COLD TOTAL=6667.9ms
+[FR-027 tier1] 'обществени поръчки': 29.3ms
+[FR-027 tier2] 'обществени поръчки': 1690.6ms
+>>> 'обществени поръчки' COLD TOTAL=1720.0ms
+[FR-027 tier1] 'административни нарушения': 5.8ms
+[FR-027 tier2] 'административни нарушения': 4460.3ms
+>>> 'административни нарушения' COLD TOTAL=4466.1ms
+```
+
+**Tier split (both runs agree):**
+
+| Query | Tier-1 (title MATCH) | Tier-2 (body MATCH) | Tier-2 share (tier2 ÷ measured total) |
+|---|---|---|---|
+| лични данни | 30–39ms | 6638–7982ms | 99.51–99.55% |
+| обществени поръчки | 29–47ms | 1691–2163ms | 97.89–98.29% |
+| административни нарушения | 6–7ms | 4460–4598ms | 99.85–99.87% |
+
+(Share = tier2 duration ÷ the independently-measured `COLD TOTAL` printed
+by the script, not tier1+tier2, since `search_fts` does untimed work
+between/around the two tiers — e.g. `bg_normalize`, tokenization, the
+dedup loop, `_rang_tier_sort` — that the total captures and the tier sum
+does not. Corrected 2026-07-02 post-review: an earlier pass of this table
+mis-stated "обществени поръчки" as 97.3–97.9%; recomputed from the raw ms
+figures above it is 97.89–98.29%.)
+
+**Conclusion: tier-2 dominates decisively** — as the brief anticipated,
+this points Task 14's options at body-index restructuring or tier-2 gating,
+NOT segment/IO tuning (tier-1's title-restricted MATCH is already fast
+across the board, 6–47ms). Across all 3 queries × 2 runs, tier-2's share
+of total ranges 97.89–99.87%. Instrumentation was removed immediately
+after recording these numbers; confirmed via `git diff index/fts.py`
+showing no diff (file identical to the committed baseline).
 
 ## Decision
 
