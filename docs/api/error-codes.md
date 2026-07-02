@@ -1,7 +1,7 @@
 # legalize-bg MCP Error Taxonomy
 
 **Version:** 1.2.0  (matches `tools.json` `version`)
-**Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`; Phase 2 adds `INVALID_DATE_RANGE`; 2.x-a adds the `get_articles` tool (FR-018) which reuses `INVALID_ARTICLE_SPEC` / `ARTICLE_NOT_FOUND` — no new codes.
+**Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`; Phase 2 adds `INVALID_DATE_RANGE`; 2.x-a adds the `get_articles` tool (FR-018) which reuses `INVALID_ARTICLE_SPEC` / `ARTICLE_NOT_FOUND` — no new codes; the 2026-07-02 P2 input-validation hardening adds `INVALID_DATE`.
 
 This document catalogs every error code the legalize-bg MCP server returns through the FastMCP error envelope. Codes are stable: additive changes (new code) bump the minor version; removing or renaming a code bumps the major version (compatibility break).
 
@@ -145,6 +145,15 @@ When: the underlying `git diff` invocation fails (e.g. a commit recorded in the 
 Payload:
 - `law_id` (string): the act whose diff was requested.
 - `detail` (string): stderr from git diff, truncated to 300 characters, or a fallback message with the exit code.
+
+### `INVALID_DATE` (added 2026-07-02 — P2 input-validation hardening)
+
+Raised by: `get_law`, `get_article`, `get_articles`, `diff`, `amendments_in_period`.
+When: a date parameter is not a valid `YYYY-MM-DD` string. This includes empty or whitespace-only strings (previously silently mapped to "today" by truthiness), and malformed or non-ISO strings (previously fell through to a raw string comparison instead of being rejected). `None` is still valid and means "today" for the single-date tools (`get_law`, `get_article`, `get_articles`); `amendments_in_period` requires both `from_date` and `to_date` and raises this code if either is missing.
+Payload:
+- `param` (string): which parameter failed (`date`, `date1`, `date2`, `from_date`, `to_date`, or `from_date/to_date` when both are required and missing).
+- `value` (string): the offending input, truncated to 50 characters (`"null"` when the value was absent but required).
+- `expected` (string): always `"YYYY-MM-DD"`.
 
 ## Versioning policy
 

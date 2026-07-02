@@ -28,6 +28,34 @@ from mcp_server.errors import ToolError
 from mcp_server.schemas import VersionEntry, AmendmentEntry
 
 
+_MAX_QUERY_LEN = 512   # defensive cap: a pasted multi-MB string must not
+_MAX_NAME_LEN = 512    # run through normalization/FTS5 under the DB lock
+
+_ISO_DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+
+
+def _validate_date(value: str | None, param: str) -> str | None:
+    """Strict ISO-8601 date validation for tool date parameters.
+    None → None (meaning 'today'); anything else must be YYYY-MM-DD.
+    Empty strings are INVALID (previously truthiness silently mapped
+    them to 'today' — review 2026-07-02)."""
+    if value is None:
+        return None
+    v = value.strip() if isinstance(value, str) else ""
+    if not _ISO_DATE_RE.match(v):
+        raise ToolError("INVALID_DATE", {
+            "param": param, "value": str(value)[:50],
+            "expected": "YYYY-MM-DD",
+        })
+    try:
+        _date.fromisoformat(v)
+    except ValueError:
+        raise ToolError("INVALID_DATE", {
+            "param": param, "value": v, "expected": "YYYY-MM-DD",
+        })
+    return v
+
+
 # FR-016 / D-2026-05-09-03: single-word queries matching these terms
 # get rejected with QUERY_TOO_BROAD before FTS5 runs. Compared after
 # `bg_normalize`, so definite-article forms ("наредбата") and case
@@ -193,6 +221,8 @@ def resolve_name_to_law_id(conn: sqlite3.Connection, name: str) -> str:
     if not name or not name.strip():
         raise LawNotFound(name=name)
     name = name.strip()
+    if len(name) > _MAX_NAME_LEN:
+        raise LawNotFound(name=name[:100] + "…")
 
     # 1. Identificador (numeric, may be negative for §7.3 phantom acts)
     if re.fullmatch(r"-?\d+", name):
@@ -293,8 +323,10 @@ def version_at_date(conn: sqlite3.Connection, law_id: str,
     exclude the boundary day).
 
     Raises NoVersionAtDate if the date is before the earliest valid_from
-    or the law_id has no versions at all.
+    or the law_id has no versions at all. Raises INVALID_DATE (via
+    `_validate_date`) if `date` is malformed or an empty string.
     """
+    date = _validate_date(date, "date")
     target = date or _date.today().isoformat()
     row = conn.execute(
         """SELECT commit_hash FROM law_versions
@@ -408,6 +440,15 @@ def full_text_search(conn: sqlite3.Connection, query: str,
     rewritten to their canonical long form before FTS5 runs. Multi-word
     queries pass through unchanged.
     """
+    # Defensive length cap (review 2026-07-02 P2): a pasted multi-MB
+    # string must not run through tokenization/FTS5 under the DB lock.
+    # Checked before anything else in this function.
+    if isinstance(query, str) and len(query) > _MAX_QUERY_LEN:
+        raise ToolError("QUERY_TOO_BROAD", {
+            "query": query[:200],
+            "hint": f"query longer than {_MAX_QUERY_LEN} chars — send a focused query",
+        })
+
     # FR-016 single-word category-query reject. Round-4 review (Issue
     # #1) caught a v1 bypass: `bg_normalize(q).strip() in STOP_WORDS`
     # missed punctuation suffixes like "наредба—" because bg_normalize
@@ -503,7 +544,13 @@ def article_lookup(conn: sqlite3.Connection, law_id: str,
     `valid_to` is INCLUSIVE per `docs/data/schema-reference.md` §2
     ("Predicate semantics"), so the in-force predicate is
     `valid_to >= date` (NOT `>`).
+
+    Raises INVALID_DATE (via `_validate_date`) if `date` is malformed
+    or an empty string — added for direct-call safety even though
+    callers normally pass an already-validated value through
+    `version_at_date`.
     """
+    date = _validate_date(date, "date")
     target = date or _date.today().isoformat()
     sql = """
         SELECT article, paragraph, text, text_hash, valid_from, valid_to
@@ -547,8 +594,12 @@ def articles_lookup(conn: sqlite3.Connection, law_id: str,
     Raises ArticleNotFound (with `available_articles` for retry, and
     `article` set to the `"start-end"` span) when no article in the act
     falls in the range at `date`. `valid_to` is INCLUSIVE per
-    `docs/data/schema-reference.md` §2.
+    `docs/data/schema-reference.md` §2. Raises INVALID_DATE (via
+    `_validate_date`) if `date` is malformed or an empty string — added
+    for direct-call safety even though callers normally pass an
+    already-validated value through `version_at_date`.
     """
+    date = _validate_date(date, "date")
     target = date or _date.today().isoformat()
     lo = _legal_article_sort_key(start)
     hi = _legal_article_sort_key(end)
@@ -630,8 +681,18 @@ def amendments_in_period(conn: sqlite3.Connection, from_date: str,
     date falls within [from_date, to_date] inclusive, oldest first.
 
     Raises INVALID_DATE_RANGE (directly, like full_text_search's
-    QUERY_TOO_BROAD) when from_date > to_date.
+    QUERY_TOO_BROAD) when from_date > to_date. Raises INVALID_DATE if
+    either date is malformed, empty, or missing — both are required for
+    this tool (unlike `date` elsewhere, which defaults to "today" on
+    None).
     """
+    from_date = _validate_date(from_date, "from_date")
+    to_date = _validate_date(to_date, "to_date")
+    if from_date is None or to_date is None:
+        raise ToolError("INVALID_DATE", {
+            "param": "from_date/to_date", "value": "null",
+            "expected": "YYYY-MM-DD",
+        })
     if from_date and to_date and from_date > to_date:
         raise ToolError("INVALID_DATE_RANGE",
                         {"from_date": from_date, "to_date": to_date})
@@ -665,10 +726,13 @@ def diff_law_versions(conn: sqlite3.Connection, corpus_root: Path,
     "single consolidated version held" note instead of an empty diff —
     so the model doesn't mistake "no diff" for "no data".
 
-    Raises INVALID_DATE_RANGE on a reversed range. Propagates
+    Raises INVALID_DATE_RANGE on a reversed range. Raises INVALID_DATE
+    if either date is malformed or an empty string. Propagates
     NoVersionAtDate (from version_at_date) for the server tool to map
     to NO_VERSION_AT_DATE.
     """
+    date1 = _validate_date(date1, "date1")
+    date2 = _validate_date(date2, "date2")
     if date1 and date2 and date1 > date2:
         raise ToolError("INVALID_DATE_RANGE",
                         {"from_date": date1, "to_date": date2})

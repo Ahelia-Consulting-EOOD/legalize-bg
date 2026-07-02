@@ -297,6 +297,11 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             body_markdown. May include a `warnings` list — DATE_UNCERTAIN
             is set for acts whose publication date was not parseable from
             lex.bg (§7.2).
+
+        Raises:
+            LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.
+            NO_VERSION_AT_DATE: the date precedes the act's earliest version.
+            INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
         try:
             law_id = queries.resolve_name_to_law_id(conn, name)
@@ -435,6 +440,18 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             and a string ("1", "2", "1а"...) for an alinea row.
             `text_hash` is a stable per-row digest — Phase 4 amendment
             detection compares hashes to pinpoint changed alineas.
+
+        Raises:
+            INVALID_ARTICLE_SPEC: the article reference can't be parsed,
+                OR it parses to a range ("чл. 14-16") — get_article
+                serves a single article and rejects ranges; use
+                get_articles instead (payload carries a `hint`).
+            ARTICLE_NOT_FOUND: no article/alinea row matches the spec at
+                the requested date (payload carries available_articles
+                for retry).
+            NO_VERSION_AT_DATE: the date precedes the act's earliest version.
+            LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.
+            INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)
@@ -561,6 +578,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                 (payload carries available_articles for retry).
             NO_VERSION_AT_DATE: the date precedes the act's earliest version.
             LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.
+            INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)
@@ -675,6 +693,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
 
         Raises:
             INVALID_DATE_RANGE: when from_date is later than to_date.
+            INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
         return [a.to_dict()
                 for a in queries.amendments_in_period(conn, from_date, to_date)]
@@ -703,6 +722,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             INVALID_DATE_RANGE: when date1 is later than date2.
             NO_VERSION_AT_DATE: when a date precedes the act's earliest
                 recorded version.
+            INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)

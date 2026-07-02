@@ -122,6 +122,17 @@
         "law_id": {"type": "string", "optional": false, "description": "the act whose diff was requested"},
         "detail": {"type": "string", "optional": false, "description": "stderr from git diff (truncated to 300 chars) or fallback exit-code message"}
       }
+    },
+    {
+      "code": "INVALID_DATE",
+      "raised_by": ["get_law", "get_article", "get_articles", "diff", "amendments_in_period"],
+      "category": "error",
+      "since_phase": "2026-07-02-p2-hardening",
+      "payload": {
+        "param": {"type": "string", "optional": false, "description": "which date parameter failed (date, date1, date2, from_date, to_date, or from_date/to_date)"},
+        "value": {"type": "string", "optional": false, "description": "the offending input, truncated to 50 chars ('null' when absent but required)"},
+        "expected": {"type": "string", "optional": false, "description": "always 'YYYY-MM-DD'"}
+      }
     }
   ]
 }

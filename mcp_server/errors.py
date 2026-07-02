@@ -29,6 +29,7 @@ ERROR_CODES = frozenset({
     "QUERY_TOO_BROAD",    # FR-016: single-word category queries (e.g. "наредба")
     "INVALID_DATE_RANGE",  # Phase 2: diff/amendments_in_period with from > to
     "DIFF_FAILED",         # Phase 2: underlying git diff invocation failed
+    "INVALID_DATE",  # malformed/empty date parameter (YYYY-MM-DD required)
 })
 
 
