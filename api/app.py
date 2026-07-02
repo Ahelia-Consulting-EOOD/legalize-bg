@@ -39,11 +39,6 @@ def create_app(db_path: str, corpus_root: Path,
 
 
 def _include_routers(app: FastAPI) -> None:
-    """Import-and-include hook; each routes module is added by its task.
-    Keeping the imports here (not module-level) lets create_app stay the
-    single composition point."""
-    # Task 4: from api.routes import laws_list, stats
-    # Task 5: from api.routes import laws
-    # Task 6: from api.routes import history_diff, search
-    # Task 7: metrics middleware + endpoint
-    return None
+    from api.routes import laws_list, stats
+    app.include_router(laws_list.router)
+    app.include_router(stats.router)
