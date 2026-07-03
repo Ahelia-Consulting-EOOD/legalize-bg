@@ -1,7 +1,11 @@
+import os
 import sqlite3
+import subprocess
+from pathlib import Path
 
 import pytest
 
+from index.build import build
 from index.fts import insert_fts_row
 from index.migrations import migrate
 
@@ -88,3 +92,36 @@ def populated_conn(conn):
         f"{FAKE_COMMIT_HASH!r}, got {seeded}"
     )
     return conn
+
+
+def _commit(corpus: Path, msg: str, date: str) -> None:
+    """Commit the corpus at a fixed author-date (mirrors the corpus
+    commit-date discipline) so FR-020 version derivation is deterministic."""
+    env = dict(os.environ, GIT_AUTHOR_DATE=f"{date}T00:00:00+00:00",
+               GIT_COMMITTER_DATE=f"{date}T00:00:00+00:00")
+    subprocess.run(["git", "add", "-A"], cwd=corpus, check=True)
+    subprocess.run(
+        ["git", "-c", "user.email=t@t", "-c", "user.name=t",
+         "commit", "-q", "-m", msg], cwd=corpus, check=True, env=env)
+
+
+@pytest.fixture(scope="module")
+def file_catalog(tmp_path_factory) -> tuple[Path, str]:
+    """A real on-disk catalog.db built from a one-act corpus.
+
+    Per-call `mode=ro` connections (FR-029, via build_app(db_path=)) require a
+    file DB, not the in-memory `conn`/`populated_conn` fixtures — so this
+    builds an actual git-backed corpus + `index.build` catalog. Shared by
+    test_connection_model.py and test_transport.py.
+    """
+    corpus = tmp_path_factory.mktemp("file-catalog-corpus")
+    law = corpus / "laws" / "zakon-test.md"
+    law.parent.mkdir(parents=True)
+    fm = ("---\ntitulo: Закон за тест\nidentificador: 999\n"
+          "fecha_publicacion: 2020-01-01\n---\n\n")
+    law.write_text(fm + "**Чл. 1.** Съдържание на теста.\n", encoding="utf-8")
+    subprocess.run(["git", "init", "-q"], cwd=corpus, check=True)
+    _commit(corpus, "[bootstrap] Закон за тест", "2020-01-01")
+    db = str(corpus / "catalog.db")
+    build(corpus, db)
+    return corpus, db

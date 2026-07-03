@@ -15,38 +15,9 @@ genuine HTTP round-trip with no sockets or background threads to flake on.
 
 from __future__ import annotations
 
-import os
-import subprocess
-from pathlib import Path
-
 import pytest
 
-from index.build import build
 import mcp_server.__main__ as m
-
-
-def _commit(corpus: Path, msg: str, date: str) -> None:
-    env = dict(os.environ, GIT_AUTHOR_DATE=f"{date}T00:00:00+00:00",
-               GIT_COMMITTER_DATE=f"{date}T00:00:00+00:00")
-    subprocess.run(["git", "add", "-A"], cwd=corpus, check=True)
-    subprocess.run(
-        ["git", "-c", "user.email=t@t", "-c", "user.name=t",
-         "commit", "-q", "-m", msg], cwd=corpus, check=True, env=env)
-
-
-@pytest.fixture(scope="module")
-def cli_catalog(tmp_path_factory) -> tuple[Path, str]:
-    corpus = tmp_path_factory.mktemp("cli-corpus")
-    law = corpus / "laws" / "zakon-test.md"
-    law.parent.mkdir(parents=True)
-    fm = ("---\ntitulo: Закон за тест\nidentificador: 999\n"
-          "fecha_publicacion: 2020-01-01\n---\n\n")
-    law.write_text(fm + "**Чл. 1.** Съдържание на теста.\n", encoding="utf-8")
-    subprocess.run(["git", "init", "-q"], cwd=corpus, check=True)
-    _commit(corpus, "[bootstrap] Закон за тест", "2020-01-01")
-    db = str(corpus / "catalog.db")
-    build(corpus, db)
-    return corpus, db
 
 
 def _patch_run_recorder(monkeypatch):
@@ -75,9 +46,9 @@ def _spy_build_app(monkeypatch):
     return seen
 
 
-def test_stdio_is_default_and_keeps_shared_connection(cli_catalog, monkeypatch):
+def test_stdio_is_default_and_keeps_shared_connection(file_catalog, monkeypatch):
     """No --transport → stdio (run() with no transport) + shared conn."""
-    corpus, db = cli_catalog
+    corpus, db = file_catalog
     calls = _patch_run_recorder(monkeypatch)
     seen = _spy_build_app(monkeypatch)
 
@@ -90,10 +61,10 @@ def test_stdio_is_default_and_keeps_shared_connection(cli_catalog, monkeypatch):
 
 @pytest.mark.parametrize("transport", ["http", "sse", "streamable-http"])
 def test_network_transport_selects_transport_and_per_call_conn(
-        cli_catalog, monkeypatch, transport):
+        file_catalog, monkeypatch, transport):
     """Every network transport → run(transport=..., host, port) and the
     per-call (db_path) connection model, not a shared connection."""
-    corpus, db = cli_catalog
+    corpus, db = file_catalog
     calls = _patch_run_recorder(monkeypatch)
     seen = _spy_build_app(monkeypatch)
 
@@ -107,13 +78,13 @@ def test_network_transport_selects_transport_and_per_call_conn(
     assert seen and "db_path" in seen[-1] and "conn" not in seen[-1]
 
 
-def test_stdio_ignores_host_port_and_warns(cli_catalog, monkeypatch, caplog):
+def test_stdio_ignores_host_port_and_warns(file_catalog, monkeypatch, caplog):
     """Passing --host/--port with stdio is accepted but ignored (stdio has no
     listener) — the server drops them, keeps the shared conn, and warns so an
     operator isn't misled into thinking they took effect."""
     import logging
 
-    corpus, db = cli_catalog
+    corpus, db = file_catalog
     calls = _patch_run_recorder(monkeypatch)
     seen = _spy_build_app(monkeypatch)
 
@@ -129,7 +100,7 @@ def test_stdio_ignores_host_port_and_warns(cli_catalog, monkeypatch, caplog):
                for r in caplog.records)
 
 
-def test_streamable_http_serves_tools_over_http(cli_catalog):
+def test_streamable_http_serves_tools_over_http(file_catalog):
     """End-to-end: a real MCP client talks to the server over the
     streamable-http protocol (in-process ASGI transport) and gets correct
     tool results — the Phase B smoke sequence the design requires."""
@@ -141,7 +112,7 @@ def test_streamable_http_serves_tools_over_http(cli_catalog):
 
     from mcp_server.server import build_app
 
-    corpus, db = cli_catalog
+    corpus, db = file_catalog
     handle = build_app(db_path=db, corpus_root=corpus)
     app = handle.mcp.http_app()
 
