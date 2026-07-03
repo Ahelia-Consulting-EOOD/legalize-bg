@@ -15,8 +15,10 @@ dependencies = [
     "fastmcp>=2.0,<4.0",
 ]
 
-# Console entry point: `legalize-bg-mcp [--db PATH] [--corpus PATH] [--strict]`
-# starts the FastMCP stdio server. Equivalent to `python -m mcp_server`.
+# Console entry point: `legalize-bg-mcp [--db PATH] [--corpus PATH] [--strict]
+# [--transport {stdio,http,sse,streamable-http}] [--host H] [--port P]]` starts
+# the FastMCP server — stdio by default (FR-031), network transports over HTTP.
+# Equivalent to `python -m mcp_server`.
 [project.scripts]
 legalize-bg-mcp = "mcp_server.__main__:main"
 legalize-bg-api = "api.__main__:main"

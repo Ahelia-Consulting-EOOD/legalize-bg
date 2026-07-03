@@ -311,7 +311,7 @@ A request DOES write to:
 
 **Idempotency consequences:**
 - A retry of any tool call against the same `(name, date, article)` returns the same response (modulo OS-cache state, which only affects latency, not the response body).
-- Concurrent calls do not race because the safety story is built on layers: (a) the stdio transport processes one JSON-RPC request per server connection at a time; (b) every tool call holds the process-wide `_db_lock` for the duration of its DB access (see "Server runtime"); (c) the tool implementations don't share mutable Python state across calls outside the lock-protected metrics dict. This holds regardless of FastMCP internals — even a future transport that runs requests in parallel would still inherit (b) and (c).
+- Concurrent calls do not race, but as of FR-031 / D-053 the mechanism depends on the transport: **stdio** (default) processes one JSON-RPC request per connection at a time AND every tool call holds the process-wide `_db_lock` for its DB access (see "Server runtime"); **network transports** (`--transport http/sse/streamable-http`) instead give each tool call its OWN `mode=ro` connection (FR-029), so there is no shared connection to serialize and the lock is not taken on that path. Either way, (c) the tool implementations don't share mutable Python state across calls outside the lock-protected metrics dict — so concurrent remote calls are safe by per-call connection isolation, not by the lock.
 - A caller may safely retry on transport-level failures without risk of duplicated side-effects.
 
 **Non-idempotency to be aware of:**
@@ -362,6 +362,41 @@ full per-code payload contracts.)
 `INDEX_STALE`/`INDEX_MISSING` above are the read-path (`ToolError`)
 forms. There's a separate startup-preflight mechanism with the same
 names but different mechanics — see "Troubleshooting" below.
+
+## Remote MCP transport (FR-031, Phase A/B — local)
+
+By default the MCP server speaks **stdio** (see "MCP host configuration"
+above) — a local subprocess the host launches. As of FR-031 / D-053 the
+server can also run over HTTP so a non-local MCP client (e.g. a Claude
+Code session on another machine) can reach the same 7 tools *as MCP
+tools*:
+
+```bash
+# stdio (default, unchanged) — nothing new to do:
+legalize-bg-mcp --db catalog.db --corpus .
+
+# network transport (Phase B; bind loopback, test locally):
+legalize-bg-mcp --db catalog.db --corpus . \
+    --transport streamable-http --host 127.0.0.1 --port 8000
+```
+
+`--transport` accepts `stdio` (default) | `http` | `sse` | `streamable-http`
+(`streamable-http` is the current MCP spec's transport; `sse` is legacy).
+Network transports build the server with **per-call `mode=ro` connections**
+(FR-029) instead of stdio's single warm connection + `_db_lock`, so
+concurrent remote clients don't serialize. `--host`/`--port` apply to
+network transports only (they're ignored — with a startup warning — under
+stdio, which has no listener). A Claude Code client registers a running
+network server with `claude mcp add legalize-bg --transport http <url>`.
+
+**Not yet wired (FR-031 Phase C, owner-gated on actual deployment):** auth
+and public network exposure. The decided posture is **public read, no
+auth** (the corpus is public-domain, read-only — same as the REST API),
+but this is validated **local-only** so far. Before binding anything but
+`127.0.0.1`, put the server behind a reverse proxy that terminates TLS
+and enforces rate limiting (the same body-only-query slowness noted for
+the REST API below applies here — per-call connections aren't warm). Do
+**not** `--host 0.0.0.0` on an untrusted network without that proxy.
 
 ## REST API (FR-028)
 

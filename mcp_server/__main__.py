@@ -1,8 +1,12 @@
-"""CLI entry: `python -m mcp_server [--db PATH] [--corpus PATH] [--strict]`
+"""CLI entry: `python -m mcp_server [--db PATH] [--corpus PATH] [--strict]
+              [--transport {stdio,http,sse,streamable-http}] [--host H] [--port P]`
 
-Starts the FastMCP server over stdio. Designed to be invoked by Claude
-Code, Claude Desktop, or OpenAI Codex via their MCP host config (see
-docs/runbook/2026-05-09-phase1b1-operator-setup.md).
+Starts the FastMCP server. Default transport is stdio — invoked locally by
+Claude Code, Claude Desktop, or OpenAI Codex via their MCP host config (see
+docs/runbook/2026-05-09-phase1b1-operator-setup.md). Network transports
+(http/sse/streamable-http) serve over HTTP with per-call mode=ro connections
+(FR-029/FR-031); they bind loopback by default — front them with a TLS/auth
+reverse proxy before public exposure.
 
 Pre-flight checks (operator-actionable, not part of any tool response):
   - INDEX_MISSING: catalog.db unreadable → exit code 2 with hint
@@ -142,7 +146,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     ap = argparse.ArgumentParser(
         prog="mcp_server",
-        description="legalize-bg MCP server — stdio transport.",
+        description="legalize-bg MCP server — stdio (default) or network transport.",
     )
     ap.add_argument("--db", type=Path, default=Path("catalog.db"),
                     help="Path to catalog.db (default: ./catalog.db)")
@@ -150,6 +154,18 @@ def main(argv: list[str] | None = None) -> int:
                     help="Path to legalize-bg repo root (default: cwd)")
     ap.add_argument("--strict", action="store_true",
                     help="Refuse to start when catalog is stale vs git HEAD")
+    ap.add_argument("--transport", default="stdio",
+                    choices=["stdio", "http", "sse", "streamable-http"],
+                    help="MCP transport (default: stdio — the local/global "
+                         "model). Network transports (http/sse/streamable-http) "
+                         "serve over HTTP with per-call connections "
+                         "(FR-029/FR-031).")
+    ap.add_argument("--host", default="127.0.0.1",
+                    help="Bind host for network transports (default: 127.0.0.1, "
+                         "loopback only — put a TLS/auth reverse proxy in front "
+                         "before exposing publicly, FR-031 Phase C).")
+    ap.add_argument("--port", type=int, default=8000,
+                    help="Bind port for network transports (default: 8000).")
     args = ap.parse_args(argv)
 
     db_path = args.db.resolve()
@@ -165,24 +181,47 @@ def main(argv: list[str] | None = None) -> int:
     if rc is not None:
         return rc
 
-    # FastMCP runs tool calls on a worker thread; SQLite refuses
-    # cross-thread connection usage by default. The catalog is read-only
-    # at runtime (writes happen via `index.build`), so disabling the
-    # same-thread guard is safe — concurrent writers would still be
-    # serialized by SQLite's locking even if we had any.
-    conn = sqlite3.connect(str(db_path), check_same_thread=False)
-    conn.row_factory = sqlite3.Row
-    # FR-027: the 1.2 GB catalog is read-only at serve time — memory-map
-    # it (page-cache reads without syscalls) and give SQLite a 64 MB
-    # page cache. Both are per-connection and harmless on small DBs.
-    conn.execute("PRAGMA mmap_size = 1073741824")
-    conn.execute("PRAGMA cache_size = -65536")
-
-    handle = build_app(conn=conn, corpus_root=corpus_root)
-    _install_metrics_signal_handler(handle)
-    log.info("starting MCP server: db=%s corpus=%s tools=%s",
-             db_path, corpus_root, sorted(handle._tools.keys()))
-    handle.mcp.run()  # stdio transport (FastMCP default)
+    # Transport selection (FR-031). stdio (the default) keeps the persistent
+    # shared connection + D-040 lock — zero behavior change for local/global
+    # users, and the warm connection the perf budgets assume (DEFERRED
+    # D-2026-07-02-01). Network transports use the FR-029 per-call `mode=ro`
+    # model (build_app(db_path=)) so concurrent remote clients don't serialize
+    # behind one process-wide lock.
+    if args.transport == "stdio":
+        if args.host != "127.0.0.1" or args.port != 8000:
+            log.warning(
+                "--host/--port are ignored for the stdio transport "
+                "(host=%s port=%s); they apply only to network transports "
+                "(--transport http/sse/streamable-http).",
+                args.host, args.port)
+        # FastMCP runs tool calls on a worker thread; SQLite refuses
+        # cross-thread connection usage by default. The catalog is read-only
+        # at runtime (writes happen via `index.build`), so disabling the
+        # same-thread guard is safe — concurrent writers would still be
+        # serialized by SQLite's locking even if we had any.
+        conn = sqlite3.connect(str(db_path), check_same_thread=False)
+        conn.row_factory = sqlite3.Row
+        # FR-027: the 1.2 GB catalog is read-only at serve time — memory-map
+        # it (page-cache reads without syscalls) and give SQLite a 64 MB
+        # page cache. Both are per-connection and harmless on small DBs.
+        conn.execute("PRAGMA mmap_size = 1073741824")
+        conn.execute("PRAGMA cache_size = -65536")
+        handle = build_app(conn=conn, corpus_root=corpus_root)
+        _install_metrics_signal_handler(handle)
+        log.info("starting MCP server: transport=stdio db=%s corpus=%s tools=%s",
+                 db_path, corpus_root, sorted(handle._tools.keys()))
+        handle.mcp.run()  # stdio transport (FastMCP default)
+    else:
+        # Per-call mode=ro connections (FR-029); build_app opens/pragmas/closes
+        # one per tool call, so no shared connection is held here.
+        handle = build_app(db_path=str(db_path), corpus_root=corpus_root)
+        _install_metrics_signal_handler(handle)
+        log.info("starting MCP server: transport=%s host=%s port=%s db=%s "
+                 "corpus=%s tools=%s (per-call mode=ro connections)",
+                 args.transport, args.host, args.port, db_path, corpus_root,
+                 sorted(handle._tools.keys()))
+        handle.mcp.run(transport=args.transport, host=args.host,
+                       port=args.port)
     return 0
 
 
