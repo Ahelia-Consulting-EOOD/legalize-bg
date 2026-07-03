@@ -144,6 +144,22 @@ the ratified transport/auth choice as a new D-0NN row.
 
 ## 7. Open Questions for the Owner (blocking Phase B+ execution)
 
+> **ANSWERED 2026-07-04 (owner) — Phases A + B executed; see D-053.**
+> - **Q1 — is remote MCP needed given REST ships?** YES. Use case: a Claude Code
+>   session on another machine wanting the 7 MCP tools *as* MCP tools, not REST
+>   endpoints it has to wrap.
+> - **Q2 — auth strategy?** PUBLIC READ, no auth (matches the REST API's posture;
+>   corpus is public-domain, read-only; rate-limiting → reverse proxy). Gates
+>   Phase C only.
+> - **Q4 — priority vs. FR-029?** PROMOTE and land FR-029 now — done as Phase A
+>   (FR-029 → Done).
+> - **Q3 — hosting target?** Deferred to Phase C planning (as anticipated below).
+>
+> Phase A (FR-029 per-call connections) and Phase B (`--transport` flag, local
+> streamable-http, verified end-to-end) are shipped. Phase C (auth + network
+> exposure) and Phase D (full runbook) remain owner-gated on actual deployment.
+
+
 1. **Is remote MCP actually needed, given the REST API already ships?** Name the concrete
    use case (a specific remote MCP client/session that needs the 7 MCP tools specifically,
    not REST) before committing engineering time — see §4's live question.

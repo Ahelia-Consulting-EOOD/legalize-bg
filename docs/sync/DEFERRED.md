@@ -17,7 +17,7 @@ Each row links the deferral to its FR (or DECISION) trace, the phase it was punt
 
 | ID | Title | Punted from | Target | Status | Last reviewed | FR / Decision |
 |---|---|---|---|---|---|---|
-| D-2026-07-02-01 | Cold/fresh-connection search budget for body-only queries (e.g. `административни нарушения`, 5.4–6.5s raw tier-2) deliberately left UNLOCKED under D-051 — production MCP server uses one persistent pragma'd connection (covered by `tests/perf/test_warm_persistent.py`), so the fresh-connection-per-call case never hits this path in practice. Revisit when FR-028's REST API introduces per-request connections. | Phase 1b | 7.1 | Open | 2026-07-02 | [FR-027](../frs/INDEX.md) / [D-051](DECISIONS.md) |
+| D-2026-07-02-01 | Cold/fresh-connection search budget for body-only queries (e.g. `административни нарушения`, 5.4–6.5s raw tier-2) deliberately left UNLOCKED under D-051. **Trigger fired (2026-07-04):** FR-028 (REST) AND FR-031/D-053 (network MCP transport) both introduce per-request/per-call connections, so the original "never hits this path in practice" premise no longer holds — the fresh-connection body-only path IS now reachable in production. **Re-affirmed deferred (D-054):** a cold-connection budget would only lock a known-slow number; the real remedy is the structural body-FTS split (D-051 option b, own trigger); operational mitigation (reverse-proxy rate-limiting) is documented in the runbook for both HTTP surfaces; stdio MCP stays warm/unaffected. Revisit when D-051 option (b) is picked up or the web PRD latency target is missed on the real query mix. | Phase 1b | 7.1 | **Re-affirmed** | 2026-07-04 | [FR-027](../frs/INDEX.md) / [D-051](DECISIONS.md) / [D-054](DECISIONS.md) |
 
 ## Resolved deferrals
 

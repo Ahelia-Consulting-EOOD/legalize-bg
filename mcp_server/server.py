@@ -5,19 +5,24 @@ Code, Claude Desktop, and OpenAI Codex. Per D-021, keeping descriptions
 in sync with behavior is enforced by FastMCP rendering them automatically
 — don't write parallel descriptions elsewhere.
 
-`build_app(conn, corpus_root)` returns an `_AppHandle` carrying:
+`build_app(conn=..., corpus_root=...)` or `build_app(db_path=..., corpus_root=...)`
+returns an `_AppHandle` carrying:
   - the FastMCP `mcp` instance for production transport (mcp.run())
   - a `_tools` dict for direct sync invocation in tests (call_tool_sync)
-  - the bound `_conn` so test fixtures can mutate state (e.g., set the
-    date_uncertain flag) and assert on resulting warnings
+  - the bound `_conn` (the shared connection in `conn=` mode, so test
+    fixtures can mutate state — e.g. set date_uncertain — and assert on
+    resulting warnings; `None` in per-call `db_path=` mode, FR-029)
 
-Per the queries.py docstring: the connection passed in MUST have
-`row_factory = sqlite3.Row`. The `__main__` CLI sets this; tests do too
-via the conftest fixture.
+Connection contract (per the queries.py docstring): every connection MUST
+have `row_factory = sqlite3.Row`. In `conn=` mode the caller sets this (the
+`__main__` CLI and the conftest fixture do); in `db_path=` mode `build_app`
+opens each per-call `mode=ro` connection itself and sets it.
 """
 
 from __future__ import annotations
 
+import contextlib
+import contextvars
 import functools
 import inspect
 import logging
@@ -39,6 +44,20 @@ from mcp_server.schemas import (
 )
 
 log = logging.getLogger(__name__)
+
+
+# FR-029: the connection bound to the in-flight tool call. A ContextVar (not
+# a plain global) keeps concurrent calls on different FastMCP worker threads
+# isolated — the _register wrapper sets it per call, the tools read it via
+# _cur_conn(). This lets tool bodies stay closed over a stable accessor while
+# the wrapper swaps the real connection (shared, or fresh per-call) underneath.
+_conn_var: contextvars.ContextVar[sqlite3.Connection] = contextvars.ContextVar(
+    "_legalize_conn")
+
+
+def _cur_conn() -> sqlite3.Connection:
+    """Return the connection bound to the in-flight tool call."""
+    return _conn_var.get()
 
 
 # ─────────────────────────── helpers ──────────────────────────────────────
@@ -132,12 +151,29 @@ class _AppHandle:
 # ─────────────────────────── app factory ──────────────────────────────────
 
 
-def build_app(conn: sqlite3.Connection, corpus_root: Path,
-              name: str = "legalize-bg") -> _AppHandle:
-    """Build a FastMCP app with all Phase 1b.1 tools bound to (conn,
-    corpus_root). The factory pattern keeps tools pure functions that
-    close over the connection rather than reaching for module globals
-    — easy to test, easy to swap for a fresh DB in fixtures."""
+def build_app(conn: sqlite3.Connection | None = None,
+              corpus_root: Path | None = None,
+              name: str = "legalize-bg",
+              db_path: str | Path | None = None) -> _AppHandle:
+    """Build a FastMCP app with all tools bound to a connection source.
+
+    Exactly one connection source is required:
+      - ``conn=`` — a single shared connection (tests / legacy stdio). Its
+        cross-thread access stays serialized behind ``_db_lock`` (D-040).
+      - ``db_path=`` — per-call ``mode=ro`` connections (FR-029): every tool
+        call opens its own read-only connection with the D-051 pragmas and
+        closes it after, mirroring ``api/deps.py:get_conn``. No global lock, so
+        concurrent remote/HTTP callers no longer serialize behind one.
+
+    The factory pattern keeps tools pure functions that reach for the
+    in-flight connection via ``_cur_conn()`` rather than module globals —
+    easy to test, easy to swap for a fresh DB in fixtures."""
+    if (conn is None) == (db_path is None):
+        raise ValueError(
+            "build_app requires exactly one of conn= (shared connection) or "
+            "db_path= (per-call mode=ro connections) — not neither, not both.")
+    if corpus_root is None:
+        raise ValueError("build_app requires corpus_root")
     mcp = FastMCP(name)
     handle = _AppHandle(mcp, conn, Path(corpus_root))
 
@@ -149,17 +185,43 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
         so callers see the full contract."""
         return inspect.getdoc(fn) or ""
 
-    # FR-023: the catalog connection is shared across FastMCP worker threads
-    # (check_same_thread=False, see __main__). sqlite3 connections are NOT
-    # safe for concurrent cross-thread `execute` — concurrent use raises
-    # `InterfaceError: bad parameter or other API misuse`, and a Python-UDF
-    # made it deadlock (the removed FR-019 pylower; review C1 / D-036). The
-    # catalog is read-only at runtime, so serialize all tool DB access behind
-    # one lock: correct and cheap (each query is ms-scale; the lock is
-    # uncontended single-threaded, so per-call latency budgets are unchanged).
-    # True-parallel reads via a per-thread/per-call connection pool are a
-    # future optimization if throughput ever demands it (D-040).
+    # Connection acquisition strategy (D-040 → FR-029).
+    #
+    # conn= (shared): sqlite3 connections are NOT safe for concurrent
+    # cross-thread `execute` — `InterfaceError: bad parameter or other API
+    # misuse`, and a Python UDF once deadlocked it (removed FR-019 pylower;
+    # review C1 / D-036). So the shared connection stays serialized behind one
+    # lock — correct and cheap for the single-stdio-client reality.
+    #
+    # db_path= (per-call): each call opens its OWN read-only connection
+    # (FR-029), so there is nothing to serialize — the lock is skipped and
+    # true-parallel reads are possible. This is the model FR-028/D-052's REST
+    # API already runs in production (api/deps.py:get_conn, D-051 pragmas).
     _db_lock = threading.Lock()
+
+    if db_path is not None:
+        _db_uri = f"file:{Path(db_path)}?mode=ro"
+
+        @contextlib.contextmanager
+        def _acquire():
+            c = sqlite3.connect(_db_uri, uri=True, check_same_thread=False)
+            c.row_factory = sqlite3.Row
+            try:
+                # D-051 (FR-027): mmap the catalog + 64 MB page cache. Inside
+                # `try` so a PRAGMA failure can't leak the open connection.
+                c.execute("PRAGMA mmap_size = 1073741824")
+                c.execute("PRAGMA cache_size = -65536")
+                yield c
+            finally:
+                c.close()
+
+        _needs_lock = False
+    else:
+        @contextlib.contextmanager
+        def _acquire():
+            yield conn  # shared connection; never closed here
+
+        _needs_lock = True
 
     def _register(fn: Callable[..., Any]) -> Callable[..., Any]:
         """Register a tool function: serialize its DB access behind
@@ -183,8 +245,15 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             t0 = time.perf_counter()
             ok, code = True, None
             try:
-                with _db_lock:
-                    return fn(*args, **kwargs)
+                with _acquire() as call_conn:
+                    token = _conn_var.set(call_conn)
+                    try:
+                        if _needs_lock:
+                            with _db_lock:
+                                return fn(*args, **kwargs)
+                        return fn(*args, **kwargs)
+                    finally:
+                        _conn_var.reset(token)
             except ToolError as e:
                 ok, code = False, e.code
                 raise
@@ -243,6 +312,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             NO_VERSION_AT_DATE: the date precedes the act's earliest version.
             INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
+        conn = _cur_conn()
         try:
             law_id = queries.resolve_name_to_law_id(conn, name)
         except queries.AmbiguousName as e:
@@ -347,6 +417,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                 budget. Multi-word queries containing the same words
                 ("наредба за обществени поръчки") are NOT rejected.
         """
+        conn = _cur_conn()
         # Cap limit defensively — FTS5 with very large limits can OOM
         # on a million-row catalog. 50 is plenty for an LLM caller.
         capped = min(max(1, int(limit)), 50)
@@ -393,6 +464,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.
             INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
+        conn = _cur_conn()
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)
         except queries.AmbiguousName as e:
@@ -520,6 +592,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.
             INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
+        conn = _cur_conn()
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)
         except queries.AmbiguousName as e:
@@ -613,6 +686,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             one committed version (FR-020), return real per-version
             content rather than just amendment dates.
         """
+        conn = _cur_conn()
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)
         except queries.AmbiguousName as e:
@@ -644,6 +718,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
             INVALID_DATE_RANGE: when from_date is later than to_date.
             INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
+        conn = _cur_conn()
         return [a.to_dict()
                 for a in queries.amendments_in_period(conn, from_date, to_date)]
 
@@ -678,6 +753,7 @@ def build_app(conn: sqlite3.Connection, corpus_root: Path,
                 recorded version.
             INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.
         """
+        conn = _cur_conn()
         try:
             law_id = queries.resolve_name_to_law_id(conn, law)
         except queries.AmbiguousName as e:
