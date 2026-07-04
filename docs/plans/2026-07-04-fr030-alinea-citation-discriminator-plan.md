@@ -1,5 +1,7 @@
 # FR-030 alinea/citation discriminator — Implementation Plan
 
+> ⛔ **SUPERSEDED / RETIRED (2026-07-05, D-055).** This plan was executed to Task 3, where the full-corpus rebuild-diff proved the script drops real alineas (irreducible `[ref] N (M)` ambiguity). The branch was deleted and the approach retired. FR-030 is redirected to a reasoning-based pipeline — see D-055 and the FR-030 row in `docs/frs/INDEX.md`. **Do not execute this plan.** Retained only as the historical record.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. **Standing project rule (owner, 2026-07-04):** every task, when green, passes a fresh-subagent code review → receive → fix → re-review until clean before advancing (memory: `per-task-fresh-subagent-review-loop`).
 
 **Goal:** Stop `index/provisions.py` from mis-parsing parenthesised citation numbers (`чл. 8 (3)`, `четири (4)`, treaty/standard/grade refs) as alinea markers, without dropping real alineas.

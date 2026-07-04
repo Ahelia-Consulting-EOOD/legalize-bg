@@ -1,8 +1,14 @@
 # Design: alinea/citation discriminator (FR-030)
 
-**Status:** Design approved (owner, 2026-07-04). Implementation-ready once the
-plan (`docs/plans/2026-07-04-fr030-...-plan.md`) is written. No code has been
-written against this yet.
+**Status:** ⛔ **SUPERSEDED / RETIRED (2026-07-05, D-055).** This script-based
+hybrid-discriminator design was executed in full and RETIRED: Task 3's
+full-corpus rebuild-diff proved it drops ~82 real alineas (real legal-text loss)
+because `"[ref] N (M)"` is byte-identical for a citation (`"чл. 8 (3)"`) and a
+real alinea after a numeric reference (`"по ал. 4 (6)"`) — a regex cannot
+separate them. **DO NOT re-attempt the script approach.** FR-030 is redirected to
+a reasoning-based flagger→agentic-reasoner→applier pipeline (D-055, `docs/frs/INDEX.md`
+FR-030). This document is retained only as the record of why the pattern approach
+fails; the sections below describe the retired design.
 
 **Requirement:** FR-030 (`docs/frs/INDEX.md`). **Origin:** the pre-UI hardening
 plan's P0-2 (`index/provisions.py` `_ALINEA_MARKER_RE`) fixed the 4-digit-year
