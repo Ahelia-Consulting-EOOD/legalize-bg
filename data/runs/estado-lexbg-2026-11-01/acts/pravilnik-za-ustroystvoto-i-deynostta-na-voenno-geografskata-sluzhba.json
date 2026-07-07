@@ -1,0 +1,43 @@
+{
+ "run": "estado-lexbg-2026-11-01",
+ "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-voenno-geografskata-sluzhba",
+ "doc_id": "2137227611",
+ "page_sha256": "a4e4beea871e40a943b60845f73984a3f57b16a3b9eb7b8519796a7a9a1af135",
+ "history": "Обн. ДВ. бр.90 от 11 Ноември 2022г., отм. ДВ. бр.62 от 7 Юли 2026г.",
+ "marker": "отм. ДВ. бр.62 от 7 Юли 2026г.",
+ "repeal_issue": "62/2026",
+ "repeal_date": "2026-07-07",
+ "note": "Отменен с § 3 от заключителните разпоредби на Правилника за устройството и дейността на Военно-географската служба - ДВ, бр. 62 от 7 юли 2026 г., в сила от 01.07.2026 г.",
+ "repealing_act": "§ 3 от заключителните разпоредби на Правилника за устройството и дейността на Военно-географската служба",
+ "in_force": "2026-07-01",
+ "before": {
+  "estado": "vigente",
+  "ultima_actualizacion": "2022-11-11",
+  "amendment_history": [
+   {
+    "dv": "90/2022",
+    "date": "2022-11-11"
+   }
+  ]
+ },
+ "after": {
+  "estado": "derogado",
+  "ultima_actualizacion": "2026-07-07",
+  "amendment_history": [
+   {
+    "dv": "90/2022",
+    "date": "2022-11-11"
+   },
+   {
+    "dv": "62/2026",
+    "date": "2026-07-07"
+   }
+  ]
+ },
+ "fields_changed": [
+  "estado",
+  "amendment_history",
+  "ultima_actualizacion"
+ ],
+ "written_at": "2026-11-01T09:35:42+00:00"
+}
