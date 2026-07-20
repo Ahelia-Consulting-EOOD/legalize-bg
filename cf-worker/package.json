@@ -1,0 +1,26 @@
+{
+  "name": "legalize-bg-api-worker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker serving the legalize-bg REST contract (docs/api/openapi-rest.json) from D1 + R2",
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "parity:capture": "node parity/run.mjs --capture",
+    "parity": "node parity/run.mjs"
+  },
+  "dependencies": {
+    "diff": "^8.0.2",
+    "hono": "^4.8.2"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.8.19",
+    "@cloudflare/workers-types": "^5.20260719.1",
+    "typescript": "^5.5.0",
+    "vitest": "~3.2.0",
+    "wrangler": "^4.20.0"
+  }
+}
