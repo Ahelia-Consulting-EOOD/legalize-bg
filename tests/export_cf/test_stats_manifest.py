@@ -63,3 +63,8 @@ def test_manifest_class_aggregates(export_run, manifest):
         agg = hashlib.sha256(("\n".join(lines) + "\n").encode()).hexdigest()
         assert manifest["classes"][cls]["count"] == len(files)
         assert manifest["classes"][cls]["sha256"] == agg
+
+
+def test_manifest_fts_truncated_key(manifest):
+    # Fixture bodies are tiny — key present, empty
+    assert manifest["fts_truncated"] == []

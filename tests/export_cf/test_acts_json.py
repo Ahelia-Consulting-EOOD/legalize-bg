@@ -94,3 +94,37 @@ def test_minified(acts_dir):
     text = (acts_dir / "zakon-vremeto.json").read_text(encoding="utf-8")
     assert '": ' not in text  # no pretty-print separators
     assert "Закон" in text    # ensure_ascii=False (readable UTF-8)
+
+
+def test_articles_map_first_wins_on_duplicate_anchor():
+    """Corpus reality (457 cases): quoted amendment text inside ПЗР
+    re-anchors 'Чл. N.' and produces a SECOND provisions block for the
+    same article id. FastAPI's article_lookup serves rows[0] — the FIRST
+    inserted row — so the baked map must keep the FIRST occurrence
+    (parity-gate failure on zakon-za-obshtestvenite-porachki чл. 5)."""
+    from export_cf.acts import articles_map
+
+    md = ("**Чл. 5.** (1) Първа алинея на истинския член. "
+          "(2) Втора алинея.\n\n"
+          "## ПРЕХОДНИ И ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ\n\n"
+          "Чл. 5. В случаите на продажба на акции чрез публично "
+          "предлагане (3) фалшива алинея.\n")
+    arts = articles_map(md, law_id="x")
+    assert arts["5"]["text"].startswith("**Чл. 5.**")
+    assert arts["5"]["paragraphs"]["1"] == "Първа алинея на истинския член."
+    # ал. 3 exists ONLY in the later duplicate block: article_lookup
+    # would still serve it (rows[0] of the (5, 3) key), so it stays.
+    assert arts["5"]["paragraphs"]["3"] == "фалшива алинея."
+
+
+def test_articles_map_paragraph_first_wins_per_key():
+    """Paragraph fidelity matches article_lookup exactly: rows[0] per
+    (article, paragraph) key — so an alinea that exists ONLY in a later
+    duplicate block is still served (FastAPI would return it)."""
+    from export_cf.acts import articles_map
+
+    md = ("**Чл. 7.** (1) Първи блок ал. 1.\n\n"
+          "Чл. 7. (1) Втори блок ал. 1 — губи. (2) Само тук.\n")
+    arts = articles_map(md, law_id="x")
+    assert arts["7"]["paragraphs"]["1"] == "Първи блок ал. 1."
+    assert arts["7"]["paragraphs"]["2"] == "Само тук."

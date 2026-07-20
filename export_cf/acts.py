@@ -58,20 +58,30 @@ def dump_json(payload: dict, path: Path) -> None:
 def articles_map(body_markdown: str, law_id: str) -> dict[str, dict]:
     """Bake the articles map from the same parser that fills
     `provisions` (article-as-whole rows carry text_hash; alinea rows
-    become plain paragraph strings)."""
+    become plain paragraph strings).
+
+    FIRST-wins on duplicates — exact FastAPI parity: the corpus has 457
+    (law, article) pairs where quoted amendment text (typically inside
+    ПЗР) re-anchors "Чл. N." and yields a second provisions block for
+    the same article id. `article_lookup` serves rows[0] (first inserted
+    row) for each (article, paragraph) key, so the article text/hash
+    keep the FIRST block and each paragraph key keeps its FIRST
+    occurrence — while a paragraph that exists only in a later block is
+    still included (FastAPI would return it too)."""
     arts: dict[str, dict] = {}
     for prov in parse_provisions(body_markdown, law_id=law_id):
         if prov.paragraph is None:
-            arts[prov.article] = {
-                "text": prov.text,
-                "text_hash": prov.text_hash,
-                "paragraphs": {},
-            }
+            if prov.article not in arts:
+                arts[prov.article] = {
+                    "text": prov.text,
+                    "text_hash": prov.text_hash,
+                    "paragraphs": {},
+                }
         else:
-            # Defensive: the parser always emits the article row first.
-            arts.setdefault(prov.article, {
+            entry = arts.setdefault(prov.article, {
                 "text": "", "text_hash": "", "paragraphs": {},
-            })["paragraphs"][prov.paragraph] = prov.text
+            })
+            entry["paragraphs"].setdefault(prov.paragraph, prov.text)
     return arts
 
 

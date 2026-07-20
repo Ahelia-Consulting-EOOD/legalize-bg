@@ -47,12 +47,18 @@ def _check_act_articles(conn: sqlite3.Connection, out_dir: Path,
         failures.append(f"acts/{law_id}.json unreadable: {e}")
         return
     arts = doc.get("articles", {})
+    # FIRST-wins (rowid order), mirroring article_lookup's rows[0]
+    # semantics and export_cf.acts.articles_map — see its docstring.
     rows = conn.execute(
         "SELECT article, paragraph, text, text_hash FROM provisions "
-        "WHERE law_id = ?", (law_id,)).fetchall()
-    whole = {r["article"]: r for r in rows if r["paragraph"] is None}
-    alineas = {(r["article"], r["paragraph"]): r for r in rows
-               if r["paragraph"] is not None}
+        "WHERE law_id = ? ORDER BY rowid", (law_id,)).fetchall()
+    whole: dict = {}
+    alineas: dict = {}
+    for r in rows:
+        if r["paragraph"] is None:
+            whole.setdefault(r["article"], r)
+        else:
+            alineas.setdefault((r["article"], r["paragraph"]), r)
     if set(arts) != set(whole):
         failures.append(
             f"{law_id}: article keys diverge (json={len(arts)}, "

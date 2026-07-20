@@ -13,9 +13,9 @@ def d1_out(export_corpus, tmp_path_factory):
     _, db = export_corpus
     out = tmp_path_factory.mktemp("d1-out")
     conn = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
-    counts = export_d1(conn, out)
+    counts_and_truncated = export_d1(conn, out)
     conn.close()
-    return db, out, counts
+    return db, out, counts_and_truncated
 
 
 @pytest.fixture(scope="module")
@@ -30,7 +30,7 @@ def reimported(d1_out):
 
 
 def test_chunk_files_exist(d1_out):
-    _, out, counts = d1_out
+    _, out, (counts, _) = d1_out
     assert (out / "d1-schema.sql").is_file()
     chunks = sorted(out.glob("d1-data-*.sql"))
     assert chunks and chunks[0].name == "d1-data-0001.sql"
@@ -73,3 +73,48 @@ def test_fts_index_is_queryable(reimported):
         "SELECT law_id FROM laws_fts WHERE laws_fts MATCH 'време'"
     ).fetchall()
     assert ("zakon-vremeto",) in hits
+
+
+def test_laws_dumped_in_rowid_order(reimported):
+    """Parity: FastAPI's AMBIGUOUS_NAME candidates and no-ORDER-BY scans
+    follow insertion (rowid) order — the reimported D1 must preserve it
+    (fixture: laws/ act inserted before ordinances/ act, while sorted
+    law_id order is the reverse)."""
+    db, fresh = reimported
+    src = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    src_order = [r[0] for r in src.execute(
+        "SELECT law_id FROM laws ORDER BY rowid")]
+    src.close()
+    assert src_order[0] == "zakon-vremeto"  # insertion order, not sorted
+    fresh_order = [r[0] for r in fresh.execute(
+        "SELECT law_id FROM laws ORDER BY rowid")]
+    assert fresh_order == src_order
+    fts_order = [r[0] for r in fresh.execute(
+        "SELECT law_id FROM laws_fts ORDER BY rowid")]
+    assert fts_order == src_order
+
+
+def test_fts_row_cap_truncates_oversized_bodies(export_corpus, tmp_path):
+    """D1 hard limit: any string/row over 2MB throws SQLITE_TOOBIG at
+    query time. Oversized laws_fts bodies are truncated at a char
+    boundary so the TOTAL row stays under the cap; truncated law_ids are
+    reported for the manifest."""
+    _, db = export_corpus
+    src = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    counts, truncated = export_d1(src, tmp_path, fts_row_max_bytes=100)
+    src.close()
+    assert set(truncated)  # fixture bodies exceed 100 bytes total row
+    fresh = sqlite3.connect(":memory:")
+    fresh.executescript((tmp_path / "d1-schema.sql").read_text("utf-8"))
+    for chunk in sorted(tmp_path.glob("d1-data-*.sql")):
+        fresh.executescript(chunk.read_text("utf-8"))
+    for law_id, title, body, cat in fresh.execute(
+            "SELECT law_id, title, body, category FROM laws_fts"):
+        total = sum(len(s.encode("utf-8")) for s in (law_id, title, body, cat))
+        assert total <= 100, law_id
+    fresh.close()
+
+
+def test_fts_row_cap_default_no_truncation_on_fixture(d1_out):
+    _, _, (counts, truncated) = d1_out
+    assert truncated == []

@@ -50,7 +50,8 @@ def export_stats(conn: sqlite3.Connection, r2_dir: Path,
     return stats
 
 
-def write_manifest(out_dir: Path, counts: dict, exported_at: str) -> dict:
+def write_manifest(out_dir: Path, counts: dict, exported_at: str,
+                   fts_truncated: list[str] | None = None) -> dict:
     out_dir = Path(out_dir)
     files = {}
     for f in sorted(out_dir.glob("d1-*.sql")):
@@ -60,6 +61,9 @@ def write_manifest(out_dir: Path, counts: dict, exported_at: str) -> dict:
     manifest = {
         "exported_at": exported_at,
         "counts": counts,
+        # Acts whose laws_fts body was truncated for D1's 2 MB row
+        # limit (documented FTS-recall divergence for these law_ids).
+        "fts_truncated": fts_truncated or [],
         "files": files,
         "classes": {
             "acts": class_aggregate(out_dir, "r2/acts"),
