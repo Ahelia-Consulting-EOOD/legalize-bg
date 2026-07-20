@@ -113,4 +113,9 @@ Hosted at [Ahelia-Consulting-EOOD](https://github.com/Ahelia-Consulting-EOOD) on
 
 ## License
 
-Proprietary. Ahelia Consulting EOOD.
+MIT for the software, tooling, and documentation — see [LICENSE](LICENSE).
+
+The legislative texts in the corpus are official acts of Bulgarian state bodies
+and are not objects of copyright (чл. 4, т. 1 ЗАПСП); they are provided as
+unofficial consolidations with no claim of authenticity. The authoritative
+source is Държавен вестник.
