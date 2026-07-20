@@ -18,13 +18,15 @@ from export_cf.sqlgen import insert_statements
 
 CHUNK_MAX_BYTES = 50_000_000  # ≤50 MB per d1-data-NNNN.sql
 
-# D1 hard limit: max string/BLOB/row size is 2 MB — a row at/over it
-# throws SQLITE_TOOBIG at import or query time. Cap the TOTAL laws_fts
-# row (law_id+title+body+category, UTF-8 bytes) with a safety margin;
-# oversized bodies are truncated at a char boundary and the affected
-# law_ids surface in manifest.json (documented FTS-recall divergence
-# for those few giant acts — unavoidable under D1 limits).
-FTS_ROW_MAX_BYTES = 1_950_000
+# Spec v1.2: the indexed FTS body is DEFINED as "bg_normalize(body)
+# truncated to 1,900,000 UTF-8 bytes at a character boundary" — D1's
+# hard 2 MB string/row limit throws SQLITE_TOOBIG otherwise. The same
+# cap lands upstream in index/fts.py via a separate owner-merged PR;
+# the exporter caps unconditionally so D1 is safe regardless of the
+# upstream rebuild schedule. Affected law_ids surface in
+# manifest.json `fts_truncated` (documented FTS-recall divergence for
+# those few giant acts).
+FTS_BODY_MAX_BYTES = 1_900_000
 
 # All tables are dumped in rowid order — FastAPI parity requires D1 to
 # preserve catalog insertion order (AMBIGUOUS_NAME candidate lists and
@@ -72,22 +74,19 @@ def _columns(conn: sqlite3.Connection, table: str) -> tuple[str, ...]:
     return tuple(r[1] for r in conn.execute(f"PRAGMA table_info({table})"))
 
 
-def _cap_fts_row(law_id: str, title: str, body: str, category: str,
-                 max_bytes: int) -> tuple[str, bool]:
-    """Return (body, truncated) with body cut at a UTF-8 char boundary
-    so the total row stays ≤ max_bytes."""
-    fixed = sum(len((s or "").encode("utf-8"))
-                for s in (law_id, title, category))
-    budget = max(0, max_bytes - fixed)
+def _cap_fts_body(body: str, max_bytes: int) -> tuple[str, bool]:
+    """Return (body, truncated): body cut to ≤ max_bytes UTF-8 bytes at
+    a character boundary (spec v1.2 definition, byte-identical to the
+    upstream index/fts.py cap)."""
     encoded = (body or "").encode("utf-8")
-    if len(encoded) <= budget:
+    if len(encoded) <= max_bytes:
         return body, False
-    return encoded[:budget].decode("utf-8", errors="ignore"), True
+    return encoded[:max_bytes].decode("utf-8", errors="ignore"), True
 
 
 def export_d1(conn: sqlite3.Connection, out_dir: Path,
               chunk_max_bytes: int = CHUNK_MAX_BYTES,
-              fts_row_max_bytes: int = FTS_ROW_MAX_BYTES,
+              fts_body_max_bytes: int = FTS_BODY_MAX_BYTES,
               ) -> tuple[dict[str, int], list[str]]:
     """Write d1-schema.sql + d1-data-NNNN.sql under `out_dir`; returns
     (per-table row counts incl. the rebuilt laws_fts,
@@ -127,8 +126,7 @@ def export_d1(conn: sqlite3.Connection, out_dir: Path,
             nonlocal n
             for law_id, title, body, category in cur:
                 n += 1
-                body, was_cut = _cap_fts_row(law_id, title, body,
-                                             category, fts_row_max_bytes)
+                body, was_cut = _cap_fts_body(body, fts_body_max_bytes)
                 if was_cut:
                     truncated.append(law_id)
                 yield law_id, title, body, category

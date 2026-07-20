@@ -94,27 +94,39 @@ def test_laws_dumped_in_rowid_order(reimported):
     assert fts_order == src_order
 
 
-def test_fts_row_cap_truncates_oversized_bodies(export_corpus, tmp_path):
-    """D1 hard limit: any string/row over 2MB throws SQLITE_TOOBIG at
-    query time. Oversized laws_fts bodies are truncated at a char
-    boundary so the TOTAL row stays under the cap; truncated law_ids are
-    reported for the manifest."""
+def test_fts_body_cap_truncates_oversized_bodies(export_corpus, tmp_path):
+    """Spec v1.2: indexed FTS body = bg_normalize(body) truncated to a
+    UTF-8 byte cap at a character boundary (D1's 2MB string limit
+    throws SQLITE_TOOBIG otherwise). Truncated law_ids are reported for
+    the manifest; the emitted SQL must still re-import cleanly."""
     _, db = export_corpus
     src = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
-    counts, truncated = export_d1(src, tmp_path, fts_row_max_bytes=100)
+    counts, truncated = export_d1(src, tmp_path, fts_body_max_bytes=40)
     src.close()
-    assert set(truncated)  # fixture bodies exceed 100 bytes total row
+    assert set(truncated)  # fixture bodies exceed 40 UTF-8 bytes
     fresh = sqlite3.connect(":memory:")
     fresh.executescript((tmp_path / "d1-schema.sql").read_text("utf-8"))
     for chunk in sorted(tmp_path.glob("d1-data-*.sql")):
         fresh.executescript(chunk.read_text("utf-8"))
-    for law_id, title, body, cat in fresh.execute(
-            "SELECT law_id, title, body, category FROM laws_fts"):
-        total = sum(len(s.encode("utf-8")) for s in (law_id, title, body, cat))
-        assert total <= 100, law_id
+    for law_id, body in fresh.execute("SELECT law_id, body FROM laws_fts"):
+        assert len(body.encode("utf-8")) <= 40, law_id
     fresh.close()
 
 
-def test_fts_row_cap_default_no_truncation_on_fixture(d1_out):
+def test_fts_body_cap_cyrillic_char_boundary():
+    """A cap landing mid-character must back off to the previous char
+    boundary, never emit a broken UTF-8 tail (Cyrillic = 2 bytes/char)."""
+    from export_cf.d1 import _cap_fts_body
+
+    body = "я" * 60  # 120 UTF-8 bytes
+    capped, cut = _cap_fts_body(body, 101)  # 101 splits the 51st 'я'
+    assert cut is True
+    assert capped == "я" * 50
+    assert len(capped.encode("utf-8")) == 100
+    uncut, not_cut = _cap_fts_body(body, 120)
+    assert not_cut is False and uncut == body
+
+
+def test_fts_body_cap_default_no_truncation_on_fixture(d1_out):
     _, _, (counts, truncated) = d1_out
     assert truncated == []
