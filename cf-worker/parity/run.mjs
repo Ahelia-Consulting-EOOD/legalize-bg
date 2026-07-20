@@ -16,7 +16,15 @@
  *     function-context text git appends after `@@ ... @@` (hunk ranges
  *     and hunk content ARE compared);
  *   - metrics values (shape compared, numbers/route-key traffic not);
- *   - openapi server URL (`servers` field).
+ *   - openapi server URL (`servers` field);
+ *   - SANCTIONED-TEMPORARY (spec v1.2): bm25 `relevance` floats may
+ *     drift within a 2% relative tolerance while the reference FastAPI
+ *     still indexes uncapped bodies (D1's 2MB row limit forces the
+ *     1,900,000-byte FTS body cap; upstream PR applies the identical
+ *     cap to index/fts.py). REMOVE once the upstream cap is merged, the
+ *     local index rebuilt, and goldens recaptured — parity is then
+ *     expected float-exact. Tolerated fields are counted per request in
+ *     parity-report.json (`bm25_tolerance_applied`).
  */
 
 import { mkdir, readFile, writeFile } from "node:fs/promises";
@@ -133,6 +141,41 @@ function sortKeys(v) {
   return v;
 }
 
+/** SANCTIONED-TEMPORARY (spec v1.2): walk golden/actual in lockstep and
+ * absorb `relevance` float drift within 2% relative tolerance by copying
+ * the golden value onto the actual. Returns the number of absorbed
+ * fields. Delete together with the header note once goldens are
+ * recaptured against the capped reference index. */
+const BM25_REL_TOLERANCE = 0.02;
+
+function absorbBm25Drift(golden, actual) {
+  let absorbed = 0;
+  function walk(g, a) {
+    if (Array.isArray(g) && Array.isArray(a)) {
+      for (let i = 0; i < Math.min(g.length, a.length); i++) walk(g[i], a[i]);
+      return;
+    }
+    if (g && a && typeof g === "object" && typeof a === "object") {
+      for (const k of Object.keys(g)) {
+        if (
+          k === "relevance" &&
+          typeof g[k] === "number" &&
+          typeof a[k] === "number" &&
+          g[k] !== a[k] &&
+          Math.abs(g[k] - a[k]) / Math.max(Math.abs(g[k]), 1e-9) <= BM25_REL_TOLERANCE
+        ) {
+          a[k] = g[k];
+          absorbed++;
+        } else {
+          walk(g[k], a[k]);
+        }
+      }
+    }
+  }
+  walk(golden, actual);
+  return absorbed;
+}
+
 function firstDifference(a, b) {
   const la = a.split("\n");
   const lb = b.split("\n");
@@ -168,6 +211,7 @@ if (capture) {
     const actual = await fetchSnapshot(req);
     const g = normalizeSnapshot(golden, req.normalize);
     const a = normalizeSnapshot(actual, req.normalize);
+    const bm25Absorbed = absorbBm25Drift(g.body, a.body);
     const problems = [];
     if (g.status !== a.status) problems.push(`status: golden ${g.status} vs actual ${a.status}`);
     for (const h of ["content-type", "cache-control"]) {
@@ -185,8 +229,14 @@ if (capture) {
     }
     const ok = problems.length === 0;
     if (!ok) report.failures++;
-    report.results.push({ id: req.id, ok, ...(ok ? {} : { problems }) });
-    console.log(`${ok ? "PASS" : "FAIL"} ${req.id}${ok ? "" : "  " + problems.join(" | ")}`);
+    report.results.push({
+      id: req.id,
+      ok,
+      ...(bm25Absorbed > 0 ? { bm25_tolerance_applied: bm25Absorbed } : {}),
+      ...(ok ? {} : { problems }),
+    });
+    const tolNote = bm25Absorbed > 0 ? ` [bm25 tolerance x${bm25Absorbed}]` : "";
+    console.log(`${ok ? "PASS" : "FAIL"} ${req.id}${tolNote}${ok ? "" : "  " + problems.join(" | ")}`);
   }
   await writeFile(join(HERE, "parity-report.json"), JSON.stringify(report, null, 1) + "\n");
   console.log(
