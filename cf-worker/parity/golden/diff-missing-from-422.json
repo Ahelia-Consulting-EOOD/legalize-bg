@@ -1,0 +1,22 @@
+{
+ "id": "diff-missing-from-422",
+ "path": "/api/v1/laws/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-/diff?to=2026-01-01",
+ "status": 422,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "detail": [
+   {
+    "type": "missing",
+    "loc": [
+     "query",
+     "from"
+    ],
+    "msg": "Field required",
+    "input": null
+   }
+  ]
+ }
+}

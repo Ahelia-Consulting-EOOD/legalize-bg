@@ -1,0 +1,38 @@
+{
+ "id": "search-zop-abbrev",
+ "path": "/api/v1/search?q=ЗОП&limit=3",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": "public, max-age=60"
+ },
+ "body": [
+  {
+   "law_id": "zakon-za-obshtestvenite-porachki",
+   "identificador": "2136735703",
+   "title": "ЗАКОН ЗА ОБЩЕСТВЕНИТЕ ПОРЪЧКИ",
+   "category": "laws",
+   "title_snippet": "<b>закон</b> <b>за</b> <b>обществени</b> <b>поръчки</b>",
+   "body_snippet": "",
+   "relevance": 2.71733748478716
+  },
+  {
+   "law_id": "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki",
+   "identificador": "2137062047",
+   "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА АГЕНЦИЯТА ПО ОБЩЕСТВЕНИ ПОРЪЧКИ",
+   "category": "regulations",
+   "title_snippet": "устройствен правилник на агенция по <b>обществени</b> <b>поръчки</b>",
+   "body_snippet": "",
+   "relevance": 7.014419121814993
+  },
+  {
+   "law_id": "pravilnik-za-prilagane-na-zakona-za-obshtestvenite-porachki",
+   "identificador": "2136789316",
+   "title": "ПРАВИЛНИК ЗА ПРИЛАГАНЕ НА ЗАКОНА ЗА ОБЩЕСТВЕНИТЕ ПОРЪЧКИ",
+   "category": "implementing",
+   "title_snippet": "правилник <b>за</b> прилагане на закона <b>за</b> <b>обществени</b> <b>поръчки</b>",
+   "body_snippet": "",
+   "relevance": 6.9872606940485005
+  }
+ ]
+}

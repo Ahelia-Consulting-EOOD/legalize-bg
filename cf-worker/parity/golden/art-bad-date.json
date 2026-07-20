@@ -1,0 +1,15 @@
+{
+ "id": "art-bad-date",
+ "path": "/api/v1/laws/zakon-za-obshtestvenite-porachki/articles/5?date=junk",
+ "status": 400,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "INVALID_DATE",
+  "param": "date",
+  "value": "junk",
+  "expected": "YYYY-MM-DD"
+ }
+}

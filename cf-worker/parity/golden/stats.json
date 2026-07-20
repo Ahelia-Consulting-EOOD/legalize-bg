@@ -1,0 +1,25 @@
+{
+ "id": "stats",
+ "path": "/api/v1/stats",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "total_acts": 3602,
+  "by_category": {
+   "codes": 24,
+   "implementing": 60,
+   "laws": 396,
+   "ordinances": 2628,
+   "regulations": 494
+  },
+  "by_status": {
+   "derogado": 18,
+   "vigente": 3584
+  },
+  "multi_version_acts": 225,
+  "latest_version_date": "2026-07-02"
+ }
+}

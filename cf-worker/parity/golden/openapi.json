@@ -1,0 +1,1159 @@
+{
+ "id": "openapi",
+ "path": "/api/v1/openapi.json",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "openapi": "3.1.0",
+  "info": {
+   "title": "legalize-bg REST API",
+   "version": "1.0.0"
+  },
+  "paths": {
+   "/api/v1/metrics": {
+    "get": {
+     "summary": "Get Metrics",
+     "operationId": "get_metrics_api_v1_metrics_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Response Get Metrics Api V1 Metrics Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/healthz": {
+    "get": {
+     "summary": "Healthz",
+     "operationId": "healthz_healthz_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "additionalProperties": true,
+          "type": "object",
+          "title": "Response Healthz Healthz Get"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/v1/laws": {
+    "get": {
+     "summary": "List Laws",
+     "operationId": "list_laws_api_v1_laws_get",
+     "parameters": [
+      {
+       "name": "category",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Category"
+       }
+      },
+      {
+       "name": "estado",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Estado"
+       }
+      },
+      {
+       "name": "limit",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "type": "integer",
+        "default": 50,
+        "title": "Limit"
+       }
+      },
+      {
+       "name": "offset",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "type": "integer",
+        "default": 0,
+        "title": "Offset"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/LawListResponseDict"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      },
+      "503": {
+       "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/v1/stats": {
+    "get": {
+     "summary": "Stats",
+     "operationId": "stats_api_v1_stats_get",
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/StatsResponseDict"
+         }
+        }
+       }
+      },
+      "503": {
+       "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/v1/laws/{slug}": {
+    "get": {
+     "summary": "Get Law",
+     "operationId": "get_law_api_v1_laws__slug__get",
+     "parameters": [
+      {
+       "name": "slug",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Slug"
+       }
+      },
+      {
+       "name": "date",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Date"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/GetLawResponseDict"
+         }
+        }
+       }
+      },
+      "400": {
+       "description": "`INVALID_DATE` — a `date`-like parameter is missing or not a valid YYYY-MM-DD string",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "404": {
+       "description": "`LAW_NOT_FOUND` — no act matches the given slug, identificador, or title; `NO_VERSION_AT_DATE` — the requested date precedes the act's earliest recorded version, or it has none",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "409": {
+       "description": "`AMBIGUOUS_NAME` — multiple acts share the given title",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      },
+      "503": {
+       "description": "`INDEX_STALE` — the catalog and corpus have diverged for this act; `INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/v1/laws/{slug}/articles/{art}": {
+    "get": {
+     "summary": "Get Article",
+     "operationId": "get_article_api_v1_laws__slug__articles__art__get",
+     "parameters": [
+      {
+       "name": "slug",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Slug"
+       }
+      },
+      {
+       "name": "art",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Art"
+       }
+      },
+      {
+       "name": "date",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Date"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/GetArticleResponseDict"
+         }
+        }
+       }
+      },
+      "400": {
+       "description": "`INVALID_DATE` — a `date`-like parameter is missing or not a valid YYYY-MM-DD string; `INVALID_ARTICLE_SPEC` — the article spec could not be parsed, or a range (`чл. 5-7`) was given where only a single article is accepted",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "404": {
+       "description": "`LAW_NOT_FOUND` — no act matches the given slug, identificador, or title; `NO_VERSION_AT_DATE` — the requested date precedes the act's earliest recorded version, or it has none; `ARTICLE_NOT_FOUND` — the article/alinea spec parsed but no provisions row matches it",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "409": {
+       "description": "`AMBIGUOUS_NAME` — multiple acts share the given title",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      },
+      "503": {
+       "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/v1/laws/{slug}/history": {
+    "get": {
+     "summary": "History",
+     "operationId": "history_api_v1_laws__slug__history_get",
+     "parameters": [
+      {
+       "name": "slug",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Slug"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "array",
+          "items": {
+           "$ref": "#/components/schemas/VersionEntryDict"
+          },
+          "title": "Response History Api V1 Laws  Slug  History Get"
+         }
+        }
+       }
+      },
+      "404": {
+       "description": "`LAW_NOT_FOUND` — no act matches the given slug, identificador, or title",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "409": {
+       "description": "`AMBIGUOUS_NAME` — multiple acts share the given title",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      },
+      "503": {
+       "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/v1/laws/{slug}/diff": {
+    "get": {
+     "summary": "Diff",
+     "operationId": "diff_api_v1_laws__slug__diff_get",
+     "parameters": [
+      {
+       "name": "slug",
+       "in": "path",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "Slug"
+       }
+      },
+      {
+       "name": "from",
+       "in": "query",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "From"
+       }
+      },
+      {
+       "name": "to",
+       "in": "query",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "title": "To"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/DiffResponseDict"
+         }
+        }
+       }
+      },
+      "400": {
+       "description": "`INVALID_DATE` — a `date`-like parameter is missing or not a valid YYYY-MM-DD string; `INVALID_DATE_RANGE` — the `from` date is later than the `to` date",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "404": {
+       "description": "`LAW_NOT_FOUND` — no act matches the given slug, identificador, or title; `NO_VERSION_AT_DATE` — the requested date precedes the act's earliest recorded version, or it has none",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "409": {
+       "description": "`AMBIGUOUS_NAME` — multiple acts share the given title",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      },
+      "500": {
+       "description": "`DIFF_FAILED` — the underlying `git diff` invocation failed",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "503": {
+       "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      }
+     }
+    }
+   },
+   "/api/v1/search": {
+    "get": {
+     "summary": "Search",
+     "operationId": "search_api_v1_search_get",
+     "parameters": [
+      {
+       "name": "q",
+       "in": "query",
+       "required": true,
+       "schema": {
+        "type": "string",
+        "minLength": 1,
+        "title": "Q"
+       }
+      },
+      {
+       "name": "category",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "null"
+         }
+        ],
+        "title": "Category"
+       }
+      },
+      {
+       "name": "limit",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "type": "integer",
+        "default": 20,
+        "title": "Limit"
+       }
+      },
+      {
+       "name": "include_body",
+       "in": "query",
+       "required": false,
+       "schema": {
+        "type": "boolean",
+        "default": false,
+        "title": "Include Body"
+       }
+      }
+     ],
+     "responses": {
+      "200": {
+       "description": "Successful Response",
+       "content": {
+        "application/json": {
+         "schema": {
+          "type": "array",
+          "items": {
+           "$ref": "#/components/schemas/SearchHitDict"
+          },
+          "title": "Response Search Api V1 Search Get"
+         }
+        }
+       }
+      },
+      "400": {
+       "description": "`QUERY_TOO_BROAD` — the search query reduces to a bare category stop-word (e.g. `наредба`) and would match thousands of acts",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      },
+      "422": {
+       "description": "Validation Error",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/HTTPValidationError"
+         }
+        }
+       }
+      },
+      "503": {
+       "description": "`INDEX_MISSING` — catalog.db is missing tables/columns or unreadable at query time",
+       "content": {
+        "application/json": {
+         "schema": {
+          "$ref": "#/components/schemas/ErrorResponseDict"
+         }
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "components": {
+   "schemas": {
+    "DiffResponseDict": {
+     "properties": {
+      "law_id": {
+       "type": "string",
+       "title": "Law Id"
+      },
+      "from_date": {
+       "type": "string",
+       "title": "From Date"
+      },
+      "to_date": {
+       "type": "string",
+       "title": "To Date"
+      },
+      "diff": {
+       "type": "string",
+       "title": "Diff"
+      }
+     },
+     "type": "object",
+     "required": [
+      "law_id",
+      "from_date",
+      "to_date",
+      "diff"
+     ],
+     "title": "DiffResponseDict"
+    },
+    "ErrorResponseDict": {
+     "properties": {
+      "code": {
+       "type": "string",
+       "title": "Code"
+      }
+     },
+     "type": "object",
+     "required": [
+      "code"
+     ],
+     "title": "ErrorResponseDict",
+     "description": "D-052 error envelope shape, for OpenAPI documentation only (PR\nreview fix #3). Every REST error body carries at least `code`; the\nremaining keys vary per code — see docs/api/error-codes.md for the\nfull per-code payload contracts."
+    },
+    "GetArticleResponseDict": {
+     "properties": {
+      "law_id": {
+       "type": "string",
+       "title": "Law Id"
+      },
+      "article": {
+       "type": "string",
+       "title": "Article"
+      },
+      "paragraph": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Paragraph"
+      },
+      "text": {
+       "type": "string",
+       "title": "Text"
+      },
+      "text_hash": {
+       "type": "string",
+       "title": "Text Hash"
+      },
+      "commit_hash": {
+       "type": "string",
+       "title": "Commit Hash"
+      },
+      "warnings": {
+       "items": {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       "type": "array",
+       "title": "Warnings"
+      }
+     },
+     "type": "object",
+     "required": [
+      "law_id",
+      "article",
+      "paragraph",
+      "text",
+      "text_hash",
+      "commit_hash",
+      "warnings"
+     ],
+     "title": "GetArticleResponseDict"
+    },
+    "GetLawResponseDict": {
+     "properties": {
+      "law_id": {
+       "type": "string",
+       "title": "Law Id"
+      },
+      "identificador": {
+       "type": "string",
+       "title": "Identificador"
+      },
+      "titulo": {
+       "type": "string",
+       "title": "Titulo"
+      },
+      "category": {
+       "type": "string",
+       "title": "Category"
+      },
+      "fecha_publicacion": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Fecha Publicacion"
+      },
+      "ultima_actualizacion": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Ultima Actualizacion"
+      },
+      "dv_issue": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dv Issue"
+      },
+      "dv_year": {
+       "anyOf": [
+        {
+         "type": "integer"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dv Year"
+      },
+      "effective_date": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Effective Date"
+      },
+      "eli": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Eli"
+      },
+      "amendment_history": {
+       "items": {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       "type": "array",
+       "title": "Amendment History"
+      },
+      "commit_hash": {
+       "type": "string",
+       "title": "Commit Hash"
+      },
+      "body_markdown": {
+       "type": "string",
+       "title": "Body Markdown"
+      },
+      "warnings": {
+       "items": {
+        "additionalProperties": true,
+        "type": "object"
+       },
+       "type": "array",
+       "title": "Warnings"
+      }
+     },
+     "type": "object",
+     "required": [
+      "law_id",
+      "identificador",
+      "titulo",
+      "category",
+      "fecha_publicacion",
+      "ultima_actualizacion",
+      "dv_issue",
+      "dv_year",
+      "effective_date",
+      "eli",
+      "amendment_history",
+      "commit_hash",
+      "body_markdown",
+      "warnings"
+     ],
+     "title": "GetLawResponseDict"
+    },
+    "HTTPValidationError": {
+     "properties": {
+      "detail": {
+       "items": {
+        "$ref": "#/components/schemas/ValidationError"
+       },
+       "type": "array",
+       "title": "Detail"
+      }
+     },
+     "type": "object",
+     "title": "HTTPValidationError"
+    },
+    "LawListResponseDict": {
+     "properties": {
+      "total": {
+       "type": "integer",
+       "title": "Total"
+      },
+      "items": {
+       "items": {
+        "$ref": "#/components/schemas/LawSummaryDict"
+       },
+       "type": "array",
+       "title": "Items"
+      }
+     },
+     "type": "object",
+     "required": [
+      "total",
+      "items"
+     ],
+     "title": "LawListResponseDict"
+    },
+    "LawSummaryDict": {
+     "properties": {
+      "law_id": {
+       "type": "string",
+       "title": "Law Id"
+      },
+      "identificador": {
+       "type": "string",
+       "title": "Identificador"
+      },
+      "title": {
+       "type": "string",
+       "title": "Title"
+      },
+      "category": {
+       "type": "string",
+       "title": "Category"
+      },
+      "status": {
+       "type": "string",
+       "title": "Status"
+      },
+      "first_version": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "First Version"
+      },
+      "latest_version": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Latest Version"
+      },
+      "version_count": {
+       "type": "integer",
+       "title": "Version Count"
+      }
+     },
+     "type": "object",
+     "required": [
+      "law_id",
+      "identificador",
+      "title",
+      "category",
+      "status",
+      "first_version",
+      "latest_version",
+      "version_count"
+     ],
+     "title": "LawSummaryDict"
+    },
+    "SearchHitDict": {
+     "properties": {
+      "law_id": {
+       "type": "string",
+       "title": "Law Id"
+      },
+      "identificador": {
+       "type": "string",
+       "title": "Identificador"
+      },
+      "title": {
+       "type": "string",
+       "title": "Title"
+      },
+      "category": {
+       "type": "string",
+       "title": "Category"
+      },
+      "title_snippet": {
+       "type": "string",
+       "title": "Title Snippet"
+      },
+      "body_snippet": {
+       "type": "string",
+       "title": "Body Snippet"
+      },
+      "relevance": {
+       "type": "number",
+       "title": "Relevance"
+      }
+     },
+     "type": "object",
+     "required": [
+      "law_id",
+      "identificador",
+      "title",
+      "category",
+      "title_snippet",
+      "body_snippet",
+      "relevance"
+     ],
+     "title": "SearchHitDict"
+    },
+    "StatsResponseDict": {
+     "properties": {
+      "total_acts": {
+       "type": "integer",
+       "title": "Total Acts"
+      },
+      "by_category": {
+       "additionalProperties": {
+        "type": "integer"
+       },
+       "type": "object",
+       "title": "By Category"
+      },
+      "by_status": {
+       "additionalProperties": {
+        "type": "integer"
+       },
+       "type": "object",
+       "title": "By Status"
+      },
+      "multi_version_acts": {
+       "type": "integer",
+       "title": "Multi Version Acts"
+      },
+      "latest_version_date": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Latest Version Date"
+      }
+     },
+     "type": "object",
+     "required": [
+      "total_acts",
+      "by_category",
+      "by_status",
+      "multi_version_acts",
+      "latest_version_date"
+     ],
+     "title": "StatsResponseDict"
+    },
+    "ValidationError": {
+     "properties": {
+      "loc": {
+       "items": {
+        "anyOf": [
+         {
+          "type": "string"
+         },
+         {
+          "type": "integer"
+         }
+        ]
+       },
+       "type": "array",
+       "title": "Location"
+      },
+      "msg": {
+       "type": "string",
+       "title": "Message"
+      },
+      "type": {
+       "type": "string",
+       "title": "Error Type"
+      },
+      "input": {
+       "title": "Input"
+      },
+      "ctx": {
+       "type": "object",
+       "title": "Context"
+      }
+     },
+     "type": "object",
+     "required": [
+      "loc",
+      "msg",
+      "type"
+     ],
+     "title": "ValidationError"
+    },
+    "VersionEntryDict": {
+     "properties": {
+      "date": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Date"
+      },
+      "dv_issue": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Dv Issue"
+      },
+      "operation": {
+       "type": "string",
+       "title": "Operation"
+      },
+      "commit_hash": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "title": "Commit Hash"
+      }
+     },
+     "type": "object",
+     "required": [
+      "date",
+      "dv_issue",
+      "operation",
+      "commit_hash"
+     ],
+     "title": "VersionEntryDict"
+    }
+   }
+  }
+ }
+}

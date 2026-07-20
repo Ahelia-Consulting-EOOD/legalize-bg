@@ -1,0 +1,56 @@
+{
+ "id": "search-category",
+ "path": "/api/v1/search?q=труд&category=codes&limit=5",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": "public, max-age=60"
+ },
+ "body": [
+  {
+   "law_id": "kodeks-na-truda",
+   "identificador": "1594373121",
+   "title": "КОДЕКС НА ТРУДА",
+   "category": "codes",
+   "title_snippet": "кодекс на труда",
+   "body_snippet": "",
+   "relevance": 1.8160490838722771
+  },
+  {
+   "law_id": "kodeks-za-profesionalna-etika-na-lekarskite-asistenti",
+   "identificador": "2137259782",
+   "title": "КОДЕКС ЗА ПРОФЕСИОНАЛНА ЕТИКА НА ЛЕКАРСКИТЕ АСИСТЕНТИ",
+   "category": "codes",
+   "title_snippet": "кодекс за професионална етика на лекарски асистенти",
+   "body_snippet": "",
+   "relevance": 1.6551470020475312
+  },
+  {
+   "law_id": "kodeks-za-profesionalna-etika-na-lekarite-v-balgariya-zagl-izm-dv-br-85-ot-2013-",
+   "identificador": "1598070784",
+   "title": "КОДЕКС ЗА ПРОФЕСИОНАЛНА ЕТИКА НА ЛЕКАРИТЕ В БЪЛГАРИЯ (ЗАГЛ. ИЗМ. - ДВ, БР. 85 ОТ 2013 Г.)",
+   "category": "codes",
+   "title_snippet": "кодекс за професионална етика на лекари в българия (загл. изм. - дв, бр...",
+   "body_snippet": "",
+   "relevance": 1.497509870193081
+  },
+  {
+   "law_id": "nakazatelen-kodeks",
+   "identificador": "1589654529",
+   "title": "НАКАЗАТЕЛЕН КОДЕКС",
+   "category": "codes",
+   "title_snippet": "наказателен кодекс",
+   "body_snippet": "",
+   "relevance": 1.421075285427031
+  },
+  {
+   "law_id": "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g",
+   "identificador": "1597824512",
+   "title": "КОДЕКС ЗА СОЦИАЛНО ОСИГУРЯВАНЕ (ЗАГЛ. ИЗМ. - ДВ, БР. 67 ОТ 2003 Г.)",
+   "category": "codes",
+   "title_snippet": "кодекс за социално осигуряване (загл. изм. - дв, бр. 67 от 2003 г.)",
+   "body_snippet": "",
+   "relevance": 1.38516866128765
+  }
+ ]
+}

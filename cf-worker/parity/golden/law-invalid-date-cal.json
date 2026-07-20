@@ -1,0 +1,15 @@
+{
+ "id": "law-invalid-date-cal",
+ "path": "/api/v1/laws/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-?date=2026-02-30",
+ "status": 400,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "INVALID_DATE",
+  "param": "date",
+  "value": "2026-02-30",
+  "expected": "YYYY-MM-DD"
+ }
+}

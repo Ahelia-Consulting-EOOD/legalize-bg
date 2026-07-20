@@ -1,0 +1,10 @@
+{
+ "id": "search-colon-empty",
+ "path": "/api/v1/search?q=foo:bar",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": "public, max-age=60"
+ },
+ "body": []
+}

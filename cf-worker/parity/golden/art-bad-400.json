@@ -1,0 +1,19 @@
+{
+ "id": "art-bad-400",
+ "path": "/api/v1/laws/zakon-za-obshtestvenite-porachki/articles/abc",
+ "status": 400,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "INVALID_ARTICLE_SPEC",
+  "detail": "could not parse: 'abc'",
+  "examples": [
+   "чл. 5",
+   "чл. 5, ал. 2",
+   "5.2",
+   "чл. 5-7"
+  ]
+ }
+}

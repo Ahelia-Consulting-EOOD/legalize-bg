@@ -1,0 +1,12 @@
+{
+ "id": "route-404",
+ "path": "/api/v1/nope",
+ "status": 404,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "detail": "Not Found"
+ }
+}

@@ -1,0 +1,12 @@
+{
+ "id": "healthz",
+ "path": "/healthz",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "status": "ok"
+ }
+}

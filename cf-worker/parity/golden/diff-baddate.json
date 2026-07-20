@@ -1,0 +1,15 @@
+{
+ "id": "diff-baddate",
+ "path": "/api/v1/laws/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-/diff?from=bad&to=2026-07-01",
+ "status": 400,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "INVALID_DATE",
+  "param": "date1",
+  "value": "bad",
+  "expected": "YYYY-MM-DD"
+ }
+}

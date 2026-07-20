@@ -1,0 +1,29 @@
+{
+ "id": "history-small",
+ "path": "/api/v1/laws/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-/history",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": "public, max-age=300"
+ },
+ "body": [
+  {
+   "date": "2022-12-16",
+   "dv_issue": "100/2022",
+   "operation": "enacted",
+   "commit_hash": null
+  },
+  {
+   "date": "2026-06-05",
+   "dv_issue": "51/2026",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2026-06-05",
+   "dv_issue": null,
+   "operation": "consolidated",
+   "commit_hash": "d31b4927e4b7b01587936a6a3c288648c4918f2b"
+  }
+ ]
+}

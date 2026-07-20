@@ -1,0 +1,15 @@
+{
+ "id": "diff-note",
+ "path": "/api/v1/laws/zakon-za-mitnitsite/diff?from=2026-07-01&to=2026-07-02",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": "public, max-age=300"
+ },
+ "body": {
+  "law_id": "zakon-za-mitnitsite",
+  "from_date": "2026-07-01",
+  "to_date": "2026-07-02",
+  "diff": "Хранилището съдържа една консолидирана версия на 'zakon-za-mitnitsite'; няма записана текстова промяна между 2026-07-01 и 2026-07-02. / The corpus holds one consolidated version of 'zakon-za-mitnitsite'; no textual change is recorded between 2026-07-01 and 2026-07-02."
+ }
+}

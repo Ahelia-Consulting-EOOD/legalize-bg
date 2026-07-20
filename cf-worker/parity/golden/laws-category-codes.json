@@ -1,0 +1,64 @@
+{
+ "id": "laws-category-codes",
+ "path": "/api/v1/laws?category=codes&limit=5",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "total": 24,
+  "items": [
+   {
+    "law_id": "administrativnoprotsesualen-kodeks",
+    "identificador": "2135521015",
+    "title": "АДМИНИСТРАТИВНОПРОЦЕСУАЛЕН КОДЕКС",
+    "category": "codes",
+    "status": "vigente",
+    "first_version": "2006-04-11",
+    "latest_version": "2006-04-11",
+    "version_count": 1
+   },
+   {
+    "law_id": "grazhdanski-protsesualen-kodeks",
+    "identificador": "2135558368",
+    "title": "ГРАЖДАНСКИ ПРОЦЕСУАЛЕН КОДЕКС",
+    "category": "codes",
+    "status": "vigente",
+    "first_version": "2007-07-20",
+    "latest_version": "2026-06-16",
+    "version_count": 2
+   },
+   {
+    "law_id": "danachno-osiguritelen-protsesualen-kodeks",
+    "identificador": "2135514513",
+    "title": "ДАНЪЧНО-ОСИГУРИТЕЛЕН ПРОЦЕСУАЛЕН КОДЕКС",
+    "category": "codes",
+    "status": "vigente",
+    "first_version": "2005-12-29",
+    "latest_version": "2026-06-05",
+    "version_count": 2
+   },
+   {
+    "law_id": "etichen-kodeks-za-povedenie-na-darzhavnite-sluzhiteli-v-ministerstvoto-na-vatres",
+    "identificador": "2136291652",
+    "title": "ЕТИЧЕН КОДЕКС ЗА ПОВЕДЕНИЕ НА ДЪРЖАВНИТЕ СЛУЖИТЕЛИ В МИНИСТЕРСТВОТО НА ВЪТРЕШНИТЕ РАБОТИ",
+    "category": "codes",
+    "status": "vigente",
+    "first_version": "2014-08-12",
+    "latest_version": "2014-08-12",
+    "version_count": 1
+   },
+   {
+    "law_id": "etichen-kodeks-na-advokata",
+    "identificador": "2135507578",
+    "title": "ЕТИЧЕН КОДЕКС НА АДВОКАТА",
+    "category": "codes",
+    "status": "vigente",
+    "first_version": "2005-07-22",
+    "latest_version": "2005-07-22",
+    "version_count": 1
+   }
+  ]
+ }
+}

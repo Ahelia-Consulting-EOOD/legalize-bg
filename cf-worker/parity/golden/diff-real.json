@@ -1,0 +1,15 @@
+{
+ "id": "diff-real",
+ "path": "/api/v1/laws/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-/diff?from=2023-01-01&to=2026-07-01",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": "public, max-age=300"
+ },
+ "body": {
+  "law_id": "naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-",
+  "from_date": "2023-01-01",
+  "to_date": "2026-07-01",
+  "diff": "diff --git a/ordinances/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-.md b/ordinances/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-.md\nindex eb7fa661..a1050bcd 100644\n--- a/ordinances/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-.md\n+++ b/ordinances/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-.md\n@@ -5,7 +5,7 @@ identificador: '2137229122'\n pais: bg\n rango: наредба\n fecha_publicacion: '2022-12-16'\n-ultima_actualizacion: '2022-12-16'\n+ultima_actualizacion: '2026-06-05'\n estado: vigente\n fuente: lex.bg\n dv_issue: '100'\n@@ -16,6 +16,8 @@ eli: /eli/bg/наредба/2022/12/16/naredba-1-ot-1-dekemvri-2022-g-za-prieman\n amendment_history:\n - dv: 100/2022\n   date: '2022-12-16'\n+- dv: 51/2026\n+  date: '2026-06-05'\n ---\n \n # НАРЕДБА № 1 ОТ 1 ДЕКЕМВРИ 2022 Г. ЗА ПРИЕМАНЕ НА ФАРМАКО-ТЕРАПЕВТИЧНО РЪКОВОДСТВО ПО АКУШЕРСТВО И ГИНЕКОЛОГИЯ\n@@ -26,6 +28,18 @@ amendment_history:\n \n ## Преходни и Заключителни разпоредби\n \n+**§ 1.** Приложението се публикува като притурка на интернет страницата на \"Държавен вестник\".\n+\n+**§ 2.** Тази наредба се приема на основание чл. 259, ал. 1, т. 4 от Закона за лекарствените продукти в хуманната медицина.\n+\n+**§ 3.** Указания по прилагането на тази наредба се дават от Националния съвет по цени и реимбурсиране на лекарствените продукти.\n+\n+**§ 4.** Наредбата е приета с Решение на Националния съвет по цени и реимбурсиране на лекарствените продукти съгласно Протокол № 520 от 1.12.2022 г.\n+\n Приложение към член единствен\n \n-(Обнародвано като притурка на \"Държавен вестник\")\n+(Изм. - ДВ, бр. 51 от 2026 г.)\n+\n+Фармако-терапевтично ръководство по акушерство и гинекология\n+\n+(Обнародвано и изменено като притурка на \"Държавен вестник\")\n"
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "id": "art-range-400",
+ "path": "/api/v1/laws/zakon-za-obshtestvenite-porachki/articles/5-7",
+ "status": 400,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "INVALID_ARTICLE_SPEC",
+  "spec": "5-7",
+  "detail": "ranges are not served by this endpoint — request single articles (the MCP get_articles tool serves ranges)",
+  "examples": [
+   "чл. 5",
+   "чл. 5, ал. 2"
+  ]
+ }
+}

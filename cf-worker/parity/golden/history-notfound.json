@@ -1,0 +1,14 @@
+{
+ "id": "history-notfound",
+ "path": "/api/v1/laws/nope-nope/history",
+ "status": 404,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "LAW_NOT_FOUND",
+  "name": "nope-nope",
+  "suggestions": []
+ }
+}
