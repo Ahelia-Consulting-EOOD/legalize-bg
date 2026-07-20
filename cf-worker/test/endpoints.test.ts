@@ -468,6 +468,7 @@ describe("GET /api/v1/search", () => {
     const bad = await getJson("/api/v1/search?q=%D1%82%D0%B5%D1%81%D1%82&limit=abc&include_body=xx");
     expect(bad.status).toBe(422);
     expect(bad.body.detail.map((d: any) => d.type)).toEqual(["int_parsing", "bool_parsing"]);
+    expect(bad.body.detail[1].msg).toBe("Input should be a valid boolean, unable to interpret input");
   });
   it("INDEX_MISSING 503 when the FTS table is gone", async () => {
     await env.DB.prepare("DROP TABLE laws_fts").run();

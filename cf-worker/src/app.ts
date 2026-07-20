@@ -76,7 +76,9 @@ function errorResponse(e: unknown): Response {
       503,
     );
   }
-  // Starlette's ServerErrorMiddleware default.
+  // Starlette's ServerErrorMiddleware default (which also logs the
+  // traceback server-side — mirror that so 500s are diagnosable).
+  console.error("unhandled error:", e);
   return new Response("Internal Server Error", {
     status: 500,
     headers: { "content-type": "text/plain; charset=utf-8" },

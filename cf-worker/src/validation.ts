@@ -101,7 +101,7 @@ export function parseBoolParam(
   errors.push({
     type: "bool_parsing",
     loc: ["query", name],
-    msg: "Input should be a valid boolean, unable to parse string as a boolean",
+    msg: "Input should be a valid boolean, unable to interpret input",
     input: raw,
   });
   return fallback;
