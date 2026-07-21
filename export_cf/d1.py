@@ -14,7 +14,12 @@ import sqlite3
 from pathlib import Path
 
 from export_cf.ddl import COPIED_TABLES, d1_schema_sql
-from export_cf.sqlgen import insert_statements
+from export_cf.sqlgen import (
+    STATEMENT_MAX_BYTES,
+    Batcher,
+    insert_statements,
+    sql_literal,
+)
 
 CHUNK_MAX_BYTES = 50_000_000  # ≤50 MB per d1-data-NNNN.sql
 
@@ -57,7 +62,10 @@ class _ChunkWriter:
         self._written = 0
 
     def write(self, stmt: str) -> None:
+        """Write ONE complete SQL statement (v1.3 invariant: one call ==
+        one statement, so max_stmt_bytes is exact)."""
         size = len(stmt.encode("utf-8"))
+        self.max_stmt_bytes = max(getattr(self, "max_stmt_bytes", 0), size)
         if self._fh is None or (self._written
                                 and self._written + size > self.max_bytes):
             self._roll()
@@ -84,13 +92,67 @@ def _cap_fts_body(body: str, max_bytes: int) -> tuple[str, bool]:
     return encoded[:max_bytes].decode("utf-8", errors="ignore"), True
 
 
+def _take_escaped_slice(s: str, budget_bytes: int) -> tuple[str, str]:
+    """Split `s` at the largest char boundary whose SQL-escaped UTF-8
+    form fits `budget_bytes`; returns (escaped_slice, raw_remainder).
+    Escaped length is monotonic in the char count, so binary search."""
+    def esc_len(k: int) -> int:
+        return len(s[:k].replace("'", "''").encode("utf-8"))
+
+    lo, hi = 0, min(len(s), budget_bytes)
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if esc_len(mid) <= budget_bytes:
+            lo = mid
+        else:
+            hi = mid - 1
+    return s[:lo].replace("'", "''"), s[lo:]
+
+
+def _fts_row_statements(law_id: str, title: str, body: str, category: str,
+                        stmt_max_bytes: int) -> list[str] | None:
+    """Spec v1.3 slicing for laws_fts rows whose single-row INSERT would
+    blow the statement budget: emit INSERT with the first body slice,
+    then `UPDATE laws_fts SET body = body || '<slice>'` appends keyed on
+    law_id (D1 import has no last_insert_rowid persistence across
+    statements). Returns None when the row fits one statement — the
+    caller batches it normally. Slices are raw-substring char-boundary
+    cuts, so their concatenation reproduces the body EXACTLY."""
+    single = ("INSERT INTO laws_fts (law_id, title, body, category) VALUES "
+              f"({sql_literal(law_id)}, {sql_literal(title)}, "
+              f"{sql_literal(body)}, {sql_literal(category)});\n")
+    if len(single.encode("utf-8")) <= stmt_max_bytes:
+        return None
+    prefix = ("INSERT INTO laws_fts (law_id, title, body, category) VALUES "
+              f"({sql_literal(law_id)}, {sql_literal(title)}, '")
+    mid_suffix = f"', {sql_literal(category)});\n"
+    budget = (stmt_max_bytes - len(prefix.encode("utf-8"))
+              - len(mid_suffix.encode("utf-8")))
+    upd_prefix = "UPDATE laws_fts SET body = body || '"
+    upd_suffix = f"' WHERE law_id = {sql_literal(law_id)};\n"
+    upd_budget = (stmt_max_bytes - len(upd_prefix.encode("utf-8"))
+                  - len(upd_suffix.encode("utf-8")))
+    if budget <= 0 or upd_budget <= 0:
+        raise ValueError(
+            f"stmt_max_bytes={stmt_max_bytes} too small to slice "
+            f"laws_fts row {law_id!r}")
+    first, rest = _take_escaped_slice(body, budget)
+    stmts = [prefix + first + mid_suffix]
+    while rest:
+        piece, rest = _take_escaped_slice(rest, upd_budget)
+        stmts.append(upd_prefix + piece + upd_suffix)
+    return stmts
+
+
 def export_d1(conn: sqlite3.Connection, out_dir: Path,
               chunk_max_bytes: int = CHUNK_MAX_BYTES,
               fts_body_max_bytes: int = FTS_BODY_MAX_BYTES,
-              ) -> tuple[dict[str, int], list[str]]:
+              stmt_max_bytes: int = STATEMENT_MAX_BYTES,
+              ) -> tuple[dict[str, int], list[str], int]:
     """Write d1-schema.sql + d1-data-NNNN.sql under `out_dir`; returns
     (per-table row counts incl. the rebuilt laws_fts,
-     law_ids whose FTS body was truncated for the D1 2 MB row limit)."""
+     law_ids whose FTS body was truncated for the D1 2 MB value limit,
+     max emitted statement size in bytes — v1.3 requires ≤ 90,000)."""
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "d1-schema.sql").write_text(
@@ -112,7 +174,8 @@ def export_d1(conn: sqlite3.Connection, out_dir: Path,
                     n += 1
                     yield row
 
-            for stmt in insert_statements(table, cols, counted()):
+            for stmt in insert_statements(table, cols, counted(),
+                                          max_bytes=stmt_max_bytes):
                 writer.write(stmt)
             counts[table] = n
 
@@ -121,19 +184,30 @@ def export_d1(conn: sqlite3.Connection, out_dir: Path,
             "SELECT law_id, title, body, category FROM laws_fts "
             "ORDER BY rowid")
         n = 0
-
-        def counted_fts():
-            nonlocal n
-            for law_id, title, body, category in cur:
-                n += 1
-                body, was_cut = _cap_fts_body(body, fts_body_max_bytes)
-                if was_cut:
-                    truncated.append(law_id)
-                yield law_id, title, body, category
-
-        for stmt in insert_statements("laws_fts", fts_cols, counted_fts()):
+        batcher = Batcher("laws_fts", fts_cols, max_bytes=stmt_max_bytes)
+        for law_id, title, body, category in cur:
+            n += 1
+            body, was_cut = _cap_fts_body(body, fts_body_max_bytes)
+            if was_cut:
+                truncated.append(law_id)
+            sliced = _fts_row_statements(law_id, title, body, category,
+                                         stmt_max_bytes)
+            if sliced is None:
+                stmt = batcher.add((law_id, title, body, category))
+                if stmt:
+                    writer.write(stmt)
+            else:
+                # Flush pending small rows FIRST so rowid order (and
+                # therefore D1 insertion order) is preserved.
+                stmt = batcher.flush()
+                if stmt:
+                    writer.write(stmt)
+                for stmt in sliced:
+                    writer.write(stmt)
+        stmt = batcher.flush()
+        if stmt:
             writer.write(stmt)
         counts["laws_fts"] = n
     finally:
         writer.close()
-    return counts, truncated
+    return counts, truncated, getattr(writer, "max_stmt_bytes", 0)

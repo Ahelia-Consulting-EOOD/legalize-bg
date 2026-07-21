@@ -19,6 +19,8 @@ import sqlite3
 from pathlib import Path
 
 from export_cf.manifest import _sha256_file, class_aggregate
+from export_cf.scan import max_statement_bytes
+from export_cf.sqlgen import STATEMENT_MAX_BYTES
 
 DEFAULT_SAMPLE_N = 25
 
@@ -120,7 +122,17 @@ def verify_export(db_path: str, out_dir: Path,
             if class_aggregate(out_dir, subdir) != manifest["classes"][cls]:
                 failures.append(f"class aggregate mismatch: {cls}")
 
-        # 4. sampled acts vs provisions
+        # 4. v1.3 statement-budget self-check: rescan every emitted SQL
+        # file quote-aware and assert no statement exceeds the D1 cap.
+        max_seen = 0
+        for f in sorted(out_dir.glob("d1-*.sql")):
+            max_seen = max(max_seen, max_statement_bytes(str(f)))
+        if max_seen > STATEMENT_MAX_BYTES:
+            failures.append(
+                f"statement budget exceeded: longest emitted statement "
+                f"{max_seen} bytes > {STATEMENT_MAX_BYTES}")
+
+        # 5. sampled acts vs provisions
         law_ids = [r[0] for r in conn.execute("SELECT law_id FROM laws")]
         sampled = _sample(law_ids, sample_n)
         for law_id in sampled:

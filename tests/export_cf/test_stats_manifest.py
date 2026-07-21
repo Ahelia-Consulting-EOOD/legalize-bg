@@ -68,3 +68,7 @@ def test_manifest_class_aggregates(export_run, manifest):
 def test_manifest_fts_truncated_key(manifest):
     # Fixture bodies are tiny — key present, empty
     assert manifest["fts_truncated"] == []
+
+
+def test_manifest_max_statement_bytes(manifest):
+    assert 0 < manifest["max_statement_bytes"] <= 90_000

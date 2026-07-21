@@ -42,6 +42,16 @@ def export_corpus(tmp_path_factory):
              "**Чл. 2.** Без алинеи.\n",
         encoding="utf-8")
 
+    # Big-body act: forces the v1.3 statement-slicing path at small
+    # test budgets (its laws_fts row can't fit one small statement).
+    big = corpus / "laws" / "zakon-golyam.md"
+    big.write_text(
+        "---\ntitulo: Закон за големия текст\nidentificador: 999\n"
+        "fecha_publicacion: 2020-01-01\n---\n\n"
+        "**Чл. 1.** " + "Дълга разпоредба за тестване на лимита. " * 150
+        + "\n",
+        encoding="utf-8")
+
     ord_ = corpus / "ordinances" / "naredba-bez-data.md"
     ord_.write_text(
         "---\ntitulo: Наредба без дата\nidentificador: 888\n---\n\n"

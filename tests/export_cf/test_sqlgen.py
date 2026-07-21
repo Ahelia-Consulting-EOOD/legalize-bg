@@ -41,3 +41,21 @@ def test_round_trip_through_sqlite():
         conn.executescript(stmt)
     got = conn.execute("SELECT a, b, c, d FROM t ORDER BY a").fetchall()
     assert got == rows
+
+
+def test_statement_budget_includes_head_and_terminator():
+    """Spec v1.3: D1 caps each SQL STATEMENT at ~100KB — every emitted
+    statement must stay ≤ max_bytes TOTAL (head + tuples + separators +
+    ';'), not just the tuple payload."""
+    rows = [(i, "х" * 40) for i in range(200)]
+    stmts = list(insert_statements("laws_fts", ("id", "body"), iter(rows),
+                                   max_rows=500, max_bytes=2_000))
+    assert len(stmts) > 1
+    for s in stmts:
+        assert len(s.encode("utf-8")) <= 2_000
+    # nothing lost
+    conn = sqlite3.connect(":memory:")
+    conn.execute("CREATE TABLE laws_fts (id INTEGER, body TEXT)")
+    for s in stmts:
+        conn.executescript(s)
+    assert conn.execute("SELECT COUNT(*) FROM laws_fts").fetchone()[0] == 200

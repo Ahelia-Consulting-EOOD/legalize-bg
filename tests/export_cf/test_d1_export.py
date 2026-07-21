@@ -30,7 +30,7 @@ def reimported(d1_out):
 
 
 def test_chunk_files_exist(d1_out):
-    _, out, (counts, _) = d1_out
+    _, out, (counts, *_) = d1_out
     assert (out / "d1-schema.sql").is_file()
     chunks = sorted(out.glob("d1-data-*.sql"))
     assert chunks and chunks[0].name == "d1-data-0001.sql"
@@ -85,7 +85,9 @@ def test_laws_dumped_in_rowid_order(reimported):
     src_order = [r[0] for r in src.execute(
         "SELECT law_id FROM laws ORDER BY rowid")]
     src.close()
-    assert src_order[0] == "zakon-vremeto"  # insertion order, not sorted
+    # insertion order (laws/ before ordinances/), NOT sorted law_id order
+    assert src_order != sorted(src_order)
+    assert src_order[0].startswith("zakon-")
     fresh_order = [r[0] for r in fresh.execute(
         "SELECT law_id FROM laws ORDER BY rowid")]
     assert fresh_order == src_order
@@ -101,7 +103,7 @@ def test_fts_body_cap_truncates_oversized_bodies(export_corpus, tmp_path):
     the manifest; the emitted SQL must still re-import cleanly."""
     _, db = export_corpus
     src = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
-    counts, truncated = export_d1(src, tmp_path, fts_body_max_bytes=40)
+    counts, truncated, _ = export_d1(src, tmp_path, fts_body_max_bytes=40)
     src.close()
     assert set(truncated)  # fixture bodies exceed 40 UTF-8 bytes
     fresh = sqlite3.connect(":memory:")
@@ -128,5 +130,66 @@ def test_fts_body_cap_cyrillic_char_boundary():
 
 
 def test_fts_body_cap_default_no_truncation_on_fixture(d1_out):
-    _, _, (counts, truncated) = d1_out
+    _, _, (counts, truncated, _) = d1_out
     assert truncated == []
+
+
+def test_statement_scanner_quote_aware():
+    """The chunk self-check must split statements SQL-aware: ';' and
+    quote characters INSIDE string literals (escaped as '') must not be
+    seen as statement terminators."""
+    from export_cf.scan import max_statement_bytes
+    sql = ("INSERT INTO t (a) VALUES ('x;y');\n"
+           "INSERT INTO t (a) VALUES ('it''s; tricky');\n"
+           "UPDATE t SET a = a || ';;''' WHERE b = 'q';\n")
+    p = None
+    import tempfile, os
+    fd, p = tempfile.mkstemp(suffix=".sql")
+    with os.fdopen(fd, "w", encoding="utf-8") as fh:
+        fh.write(sql)
+    try:
+        m = max_statement_bytes(p)
+    finally:
+        os.unlink(p)
+    # longest statement is the second line (45 bytes incl ';')
+    expected = max(len(line.encode("utf-8")) + 0
+                   for line in sql.split("\n") if line)
+    assert m == expected
+
+
+def test_oversized_fts_body_sliced_into_insert_plus_updates(
+        export_corpus, tmp_path):
+    """Spec v1.3: FTS rows whose single-statement form would exceed the
+    budget are emitted as INSERT(first slice) + UPDATE ... SET body =
+    body || '<slice>' appends keyed on law_id; the reassembled body must
+    equal the capped source EXACTLY, and every statement stays within
+    budget."""
+    from export_cf.scan import max_statement_bytes
+    _, db = export_corpus
+    src = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    counts, _, max_stmt = export_d1(src, tmp_path, stmt_max_bytes=1000)
+    assert max_stmt <= 1000
+    chunks = sorted(tmp_path.glob("d1-data-*.sql"))
+    for c in chunks:
+        assert max_statement_bytes(str(c)) <= 1000, c.name
+    joined = "".join(c.read_text("utf-8") for c in chunks)
+    assert "UPDATE laws_fts SET body = body || '" in joined
+    fresh = sqlite3.connect(":memory:")
+    fresh.executescript((tmp_path / "d1-schema.sql").read_text("utf-8"))
+    for c in chunks:
+        fresh.executescript(c.read_text("utf-8"))
+    q = "SELECT law_id, title, body, category FROM laws_fts ORDER BY law_id"
+    assert fresh.execute(q).fetchall() == src.execute(q).fetchall()
+    # FTS index still consistent after the UPDATE appends
+    hits = fresh.execute("SELECT law_id FROM laws_fts WHERE laws_fts "
+                         "MATCH 'време'").fetchall()
+    assert ("zakon-vremeto",) in hits
+    fresh.close()
+    src.close()
+
+
+def test_default_budget_emits_no_statement_over_90k(d1_out):
+    from export_cf.scan import max_statement_bytes
+    _, out, _ = d1_out
+    for f in sorted(out.glob("d1-*.sql")):
+        assert max_statement_bytes(str(f)) <= 90_000, f.name
