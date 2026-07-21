@@ -107,11 +107,28 @@ def create_laws_fts_table(conn: sqlite3.Connection) -> None:
     )
 
 
+# Cap on the indexed (normalized) body, in UTF-8 bytes. Cloudflare D1
+# rejects strings >= 2,000,000 bytes (SQLITE_TOOBIG), and the D1 export
+# mirrors this index verbatim; both sides truncate identically so bm25
+# document-length statistics — and therefore relevance floats — match.
+# Only the search-index tail of oversized acts is affected; full text
+# serving is untouched. Spec: cf-data-plane v1.2.
+FTS_BODY_MAX_BYTES = 1_900_000
+
+
+def _cap_utf8(text: str, max_bytes: int) -> str:
+    raw = text.encode("utf-8")
+    if len(raw) <= max_bytes:
+        return text
+    return raw[:max_bytes].decode("utf-8", errors="ignore")
+
+
 def insert_fts_row(conn: sqlite3.Connection, law_id: str, title: str,
                    body: str, category: str) -> None:
     conn.execute(
         "INSERT INTO laws_fts (law_id, title, body, category) VALUES (?, ?, ?, ?)",
-        (law_id, bg_normalize(title), bg_normalize(body), category),
+        (law_id, bg_normalize(title),
+         _cap_utf8(bg_normalize(body), FTS_BODY_MAX_BYTES), category),
     )
 
 
