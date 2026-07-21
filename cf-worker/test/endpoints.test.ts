@@ -554,6 +554,22 @@ describe("HEAD, 404/405, CORS", () => {
     const resp = await call("/healthz", { headers: { origin: "https://a.example" } });
     expect(resp.headers.get("access-control-allow-origin")).toBeNull();
   });
+  it("CORS wildcard: ACAO * on GET and preflight for any origin", async () => {
+    const cors = { CORS_ORIGINS: "*" };
+    const ok = await call("/api/v1/stats", { headers: { origin: "http://localhost:3100" } }, cors);
+    expect(ok.headers.get("access-control-allow-origin")).toBe("*");
+    const preflight = await call(
+      "/api/v1/laws/whatever",
+      {
+        method: "OPTIONS",
+        headers: { origin: "https://legalize.ahelia.com", "access-control-request-method": "GET" },
+      },
+      cors,
+    );
+    expect(preflight.status).toBe(200);
+    expect(preflight.headers.get("access-control-allow-origin")).toBe("*");
+    expect(preflight.headers.get("access-control-allow-methods")).toBe("GET");
+  });
   it("CORS enabled via env: allows configured origins on GET and preflight", async () => {
     const cors = { CORS_ORIGINS: "https://a.example, https://b.example" };
     const ok = await call("/healthz", { headers: { origin: "https://a.example" } }, cors);
