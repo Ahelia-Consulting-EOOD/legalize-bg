@@ -15,3 +15,6 @@ gate-report.json
 
 # Playwright MCP browser session artifacts (snapshots/console logs)
 .playwright-mcp/
+
+# Cloudflare export artifacts (export_cf output — never commit)
+cf-export/
