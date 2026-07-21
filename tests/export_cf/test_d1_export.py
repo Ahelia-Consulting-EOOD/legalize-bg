@@ -193,3 +193,32 @@ def test_default_budget_emits_no_statement_over_90k(d1_out):
     _, out, _ = d1_out
     for f in sorted(out.glob("d1-*.sql")):
         assert max_statement_bytes(str(f)) <= 90_000, f.name
+
+
+def test_chunk_default_is_12mb():
+    """v1.3.1: 50MB chunks keep D1's import long-poll open too long
+    (transient 'fetch failed'); 12MB imports reliably."""
+    from export_cf.d1 import CHUNK_MAX_BYTES
+    assert CHUNK_MAX_BYTES == 12_000_000
+
+
+def test_chunks_break_only_at_statement_boundaries(export_corpus, tmp_path):
+    """String literals contain raw newlines (legal text), so chunk files
+    are only splittable at statement ends: every chunk must end with a
+    complete ';\\n'-terminated statement and be independently
+    executescript-able in sequence."""
+    _, db = export_corpus
+    src = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
+    export_d1(src, tmp_path, chunk_max_bytes=2_000, stmt_max_bytes=1_000)
+    chunks = sorted(tmp_path.glob("d1-data-*.sql"))
+    assert len(chunks) > 2  # tiny budget → many files
+    fresh = sqlite3.connect(":memory:")
+    fresh.executescript((tmp_path / "d1-schema.sql").read_text("utf-8"))
+    for c in chunks:
+        text = c.read_text("utf-8")
+        assert text.endswith(";\n"), c.name
+        fresh.executescript(text)  # would raise if a stmt were split
+    q = "SELECT law_id, body FROM laws_fts ORDER BY law_id"
+    assert fresh.execute(q).fetchall() == src.execute(q).fetchall()
+    fresh.close()
+    src.close()

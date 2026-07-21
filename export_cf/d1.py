@@ -21,7 +21,10 @@ from export_cf.sqlgen import (
     sql_literal,
 )
 
-CHUNK_MAX_BYTES = 50_000_000  # ≤50 MB per d1-data-NNNN.sql
+# v1.3.1: 12 MB per d1-data-NNNN.sql. 50 MB chunks kept D1's import
+# long-poll open long enough for transient "fetch failed" aborts; 12 MB
+# imports reliably in under a minute per chunk.
+CHUNK_MAX_BYTES = 12_000_000
 
 # Spec v1.2: the indexed FTS body is DEFINED as "bg_normalize(body)
 # truncated to 1,900,000 UTF-8 bytes at a character boundary" — D1's
@@ -42,7 +45,15 @@ FTS_BODY_MAX_BYTES = 1_900_000
 
 class _ChunkWriter:
     """Sequential d1-data-NNNN.sql files, rolled before a statement
-    would push the current file past `max_bytes`."""
+    would push the current file past `max_bytes`.
+
+    INVARIANT (v1.3.1): chunk files break ONLY at statement boundaries
+    — write() takes one complete statement and the roll happens between
+    writes, never inside one. This matters because string literals
+    contain RAW NEWLINES (legal text): any line-based post-splitting of
+    these files is unsafe; the only safe split points are the ';\\n'
+    statement ends, and each emitted file already respects them (every
+    chunk is independently executable in sequence)."""
 
     def __init__(self, out_dir: Path, max_bytes: int = CHUNK_MAX_BYTES):
         self.out_dir = out_dir
