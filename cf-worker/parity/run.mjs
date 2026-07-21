@@ -101,6 +101,18 @@ function normalizeDiffText(text) {
 
 function normalizeSnapshot(snap, mode) {
   const s = structuredClone(snap);
+  // commit_hash is snapshot identity, not behavior: the deployed export is cut
+  // at a specific corpus commit and legitimately lags a later local index
+  // rebuild even when no act text changed (code merges move HEAD too, since
+  // corpus and code share the repo). Parity asserts CONTENT equality; snapshot
+  // freshness is the refresh workflow's concern. Sanctioned normalization.
+  (function scrubCommitHash(node) {
+    if (Array.isArray(node)) return node.forEach(scrubCommitHash);
+    if (node && typeof node === "object") {
+      if (typeof node.commit_hash === "string") node.commit_hash = "<snapshot>";
+      Object.values(node).forEach(scrubCommitHash);
+    }
+  })(s.body);
   if (mode === "diff" && s.body && typeof s.body.diff === "string") {
     s.body.diff = normalizeDiffText(s.body.diff);
   }
@@ -146,7 +158,7 @@ function sortKeys(v) {
  * the golden value onto the actual. Returns the number of absorbed
  * fields. Delete together with the header note once goldens are
  * recaptured against the capped reference index. */
-const BM25_REL_TOLERANCE = 0.02;
+const BM25_REL_TOLERANCE = 0; // float-exact since PR #13 (index cap) + golden recapture; was 0.02 sanctioned-temporary (spec v1.2)
 
 function absorbBm25Drift(golden, actual) {
   let absorbed = 0;
