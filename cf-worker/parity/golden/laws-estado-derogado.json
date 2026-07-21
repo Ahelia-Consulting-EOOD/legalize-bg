@@ -1,0 +1,44 @@
+{
+ "id": "laws-estado-derogado",
+ "path": "/api/v1/laws?estado=derogado&limit=3",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "total": 18,
+  "items": [
+   {
+    "law_id": "naredba-za-usloviyata-i-reda-za-osashtestvyavane-na-deynostite-svarzani-s-orazhi-3",
+    "identificador": "2135785028",
+    "title": "НАРЕДБА ЗА УСЛОВИЯТА И РЕДА ЗА ОСЪЩЕСТВЯВАНЕ НА ДЕЙНОСТИТЕ, СВЪРЗАНИ С ОРЪЖИЯТА, БОЕПРИПАСИТЕ И ПИРОТЕХНИЧЕСКИТЕ ИЗДЕЛИЯ, И КОНТРОЛА НАД ТЯХ В ГЛАВНА ДИРЕКЦИЯ \"ОХРАНА\" И ГЛАВНА ДИРЕКЦИЯ \"ИЗПЪЛНЕНИЕ НА НАКАЗАНИЯТА\" КЪМ МИНИСТЕРСТВОТО НА ПРАВОСЪДИЕТО",
+    "category": "ordinances",
+    "status": "derogado",
+    "first_version": "2012-04-10",
+    "latest_version": "2026-05-08",
+    "version_count": 2
+   },
+   {
+    "law_id": "naredba-za-usloviyata-i-reda-za-provezhdane-na-granichen-zdraven-kontrol-na-repu",
+    "identificador": "2135536200",
+    "title": "НАРЕДБА ЗА УСЛОВИЯТА И РЕДА ЗА ПРОВЕЖДАНЕ НА ГРАНИЧЕН ЗДРАВЕН КОНТРОЛ НА РЕПУБЛИКА БЪЛГАРИЯ",
+    "category": "ordinances",
+    "status": "derogado",
+    "first_version": "2006-10-20",
+    "latest_version": "2026-06-16",
+    "version_count": 2
+   },
+   {
+    "law_id": "naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z",
+    "identificador": "2135880580",
+    "title": "НАРЕДБА № 1 ОТ 1 АВГУСТ 2013 Г. ЗА УСЛОВИЯТА И РЕДА ЗА СЪХРАНЯВАНЕ НА ЗАПАСИ ПО ЗАКОНА ЗА ЗАПАСИТЕ ОТ НЕФТ И НЕФТОПРОДУКТИ",
+    "category": "ordinances",
+    "status": "derogado",
+    "first_version": "2013-08-13",
+    "latest_version": "2026-05-15",
+    "version_count": 2
+   }
+  ]
+ }
+}

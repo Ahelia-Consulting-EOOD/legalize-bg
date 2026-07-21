@@ -1,0 +1,30 @@
+{
+ "id": "law-version-boundary-a",
+ "path": "/api/v1/laws/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-?date=2026-06-04",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": "public, max-age=300"
+ },
+ "body": {
+  "law_id": "naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-",
+  "identificador": "2137229122",
+  "titulo": "НАРЕДБА № 1 ОТ 1 ДЕКЕМВРИ 2022 Г. ЗА ПРИЕМАНЕ НА ФАРМАКО-ТЕРАПЕВТИЧНО РЪКОВОДСТВО ПО АКУШЕРСТВО И ГИНЕКОЛОГИЯ",
+  "category": "ordinances",
+  "fecha_publicacion": "2022-12-16",
+  "ultima_actualizacion": "2022-12-16",
+  "dv_issue": "100",
+  "dv_year": 2022,
+  "effective_date": null,
+  "eli": "/eli/bg/наредба/2022/12/16/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-/con",
+  "amendment_history": [
+   {
+    "dv": "100/2022",
+    "date": "2022-12-16"
+   }
+  ],
+  "commit_hash": "8ec3b15d3d30494cf6efb3e04134cc10afe2dea1",
+  "body_markdown": "# НАРЕДБА № 1 ОТ 1 ДЕКЕМВРИ 2022 Г. ЗА ПРИЕМАНЕ НА ФАРМАКО-ТЕРАПЕВТИЧНО РЪКОВОДСТВО ПО АКУШЕРСТВО И ГИНЕКОЛОГИЯ\n\n*Издадена от Националния съвет по цени и реимбурсиране на лекарствените продукти*\n\nЧлен единствен. С тази наредба се приема фармако-терапевтично ръководство по акушерство и гинекология съгласно приложението.\n\n## Преходни и Заключителни разпоредби\n\nПриложение към член единствен\n\n(Обнародвано като притурка на \"Държавен вестник\")\n",
+  "warnings": []
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "id": "search-broad-400",
+ "path": "/api/v1/search?q=наредба",
+ "status": 400,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "QUERY_TOO_BROAD",
+  "query": "наредба",
+  "category_words": [
+   "закон",
+   "кодекс",
+   "наредба",
+   "постановление",
+   "правилник"
+  ],
+  "hint": "Заявката съответства на хиляди актове. Добавете повече ключови думи (напр. \"наредба за обществени поръчки\") за по-конкретно търсене. Be more specific — single category words like 'наредба' match thousands of acts."
+ }
+}

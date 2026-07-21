@@ -1,0 +1,401 @@
+{
+ "id": "history-mitnitsite",
+ "path": "/api/v1/laws/zakon-za-mitnitsite/history",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": "public, max-age=300"
+ },
+ "body": [
+  {
+   "date": "1998-02-06",
+   "dv_issue": "15/1998",
+   "operation": "enacted",
+   "commit_hash": null
+  },
+  {
+   "date": "1998-08-03",
+   "dv_issue": "89/1998",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "1998-12-23",
+   "dv_issue": "153/1998",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "1999-04-02",
+   "dv_issue": "30/1999",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "1999-09-21",
+   "dv_issue": "83/1999",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2000-08-01",
+   "dv_issue": "63/2000",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2001-12-21",
+   "dv_issue": "110/2001",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2002-08-06",
+   "dv_issue": "76/2002",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2003-04-22",
+   "dv_issue": "37/2003",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2003-10-28",
+   "dv_issue": "95/2003",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2004-05-11",
+   "dv_issue": "38/2004",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2005-05-31",
+   "dv_issue": "45/2005",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2005-10-28",
+   "dv_issue": "86/2005",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2005-11-15",
+   "dv_issue": "91/2005",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2005-12-29",
+   "dv_issue": "105/2005",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2006-04-11",
+   "dv_issue": "30/2006",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2006-12-22",
+   "dv_issue": "105/2006",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2007-07-20",
+   "dv_issue": "59/2007",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2007-12-20",
+   "dv_issue": "109/2007",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2008-03-14",
+   "dv_issue": "28/2008",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2008-04-29",
+   "dv_issue": "43/2008",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2008-12-12",
+   "dv_issue": "106/2008",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2009-02-13",
+   "dv_issue": "12/2009",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2009-04-28",
+   "dv_issue": "32/2009",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2009-06-05",
+   "dv_issue": "42/2009",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2009-06-12",
+   "dv_issue": "44/2009",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2009-12-01",
+   "dv_issue": "95/2009",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2010-07-16",
+   "dv_issue": "54/2010",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2010-07-20",
+   "dv_issue": "55/2010",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2010-09-17",
+   "dv_issue": "73/2010",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2010-11-30",
+   "dv_issue": "94/2010",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2011-10-21",
+   "dv_issue": "82/2011",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2012-05-18",
+   "dv_issue": "38/2012",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2012-07-17",
+   "dv_issue": "54/2012",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2013-02-15",
+   "dv_issue": "15/2013",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2013-07-26",
+   "dv_issue": "66/2013",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2014-11-28",
+   "dv_issue": "98/2014",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2015-06-09",
+   "dv_issue": "42/2015",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2015-08-07",
+   "dv_issue": "60/2015",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2016-07-26",
+   "dv_issue": "58/2016",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2016-09-27",
+   "dv_issue": "75/2016",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2016-12-09",
+   "dv_issue": "98/2016",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2017-12-12",
+   "dv_issue": "99/2017",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2017-12-28",
+   "dv_issue": "103/2017",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2018-03-16",
+   "dv_issue": "24/2018",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2018-09-28",
+   "dv_issue": "80/2018",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2018-11-27",
+   "dv_issue": "98/2018",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2018-12-18",
+   "dv_issue": "105/2018",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2019-01-22",
+   "dv_issue": "7/2019",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2019-02-26",
+   "dv_issue": "17/2019",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2019-04-16",
+   "dv_issue": "32/2019",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2019-09-24",
+   "dv_issue": "75/2019",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2019-12-20",
+   "dv_issue": "100/2019",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2019-12-31",
+   "dv_issue": "102/2019",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2020-02-18",
+   "dv_issue": "14/2020",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2022-08-05",
+   "dv_issue": "62/2022",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2023-09-29",
+   "dv_issue": "82/2023",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2023-10-06",
+   "dv_issue": "84/2023",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2024-03-01",
+   "dv_issue": "18/2024",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2024-08-20",
+   "dv_issue": "70/2024",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2025-08-05",
+   "dv_issue": "64/2025",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2026-02-10",
+   "dv_issue": "16/2026",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2026-06-05",
+   "dv_issue": "51/2026",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2026-06-30",
+   "dv_issue": "59/2026",
+   "operation": "amendment",
+   "commit_hash": null
+  },
+  {
+   "date": "2026-06-30",
+   "dv_issue": null,
+   "operation": "consolidated",
+   "commit_hash": "d31b4927e4b7b01587936a6a3c288648c4918f2b"
+  }
+ ]
+}

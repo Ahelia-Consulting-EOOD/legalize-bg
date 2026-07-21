@@ -1,0 +1,14 @@
+{
+ "id": "law-notfound",
+ "path": "/api/v1/laws/no-such-law-xyz",
+ "status": 404,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "LAW_NOT_FOUND",
+  "name": "no-such-law-xyz",
+  "suggestions": []
+ }
+}

@@ -1,0 +1,16 @@
+{
+ "id": "diff-noversion",
+ "path": "/api/v1/laws/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-/diff?from=1900-01-01&to=2026-07-01",
+ "status": 404,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "NO_VERSION_AT_DATE",
+  "law_id": "naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-",
+  "date": "1900-01-01",
+  "earliest_available": "2022-12-16",
+  "latest_available": "2026-06-05"
+ }
+}

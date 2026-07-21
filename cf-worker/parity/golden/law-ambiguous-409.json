@@ -1,0 +1,33 @@
+{
+ "id": "law-ambiguous-409",
+ "path": "/api/v1/laws/ЗАКОН ЗА АМНИСТИЯ ОТ 1989 Г.",
+ "status": 409,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "AMBIGUOUS_NAME",
+  "name": "ЗАКОН ЗА АМНИСТИЯ ОТ 1989 Г.",
+  "candidates": [
+   {
+    "law_id": "zakon-za-amnistiya-ot-1989-g-2",
+    "identificador": "2132036608",
+    "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1989 Г.",
+    "category": "laws"
+   },
+   {
+    "law_id": "zakon-za-amnistiya-ot-1989-g-3",
+    "identificador": "2132068352",
+    "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1989 Г.",
+    "category": "laws"
+   },
+   {
+    "law_id": "zakon-za-amnistiya-ot-1989-g",
+    "identificador": "2132064256",
+    "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1989 Г.",
+    "category": "laws"
+   }
+  ]
+ }
+}

@@ -1,0 +1,134 @@
+{
+ "id": "laws-limit-cap",
+ "path": "/api/v1/laws?limit=500&offset=3590",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "total": 3602,
+  "items": [
+   {
+    "law_id": "ustroystven-pravilnik-na-regionalen-tsentar-za-savremenni-izkustva-toplotsentral",
+    "identificador": "2137230151",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА РЕГИОНАЛЕН ЦЕНТЪР ЗА СЪВРЕМЕННИ ИЗКУСТВА \"ТОПЛОЦЕНТРАЛА\"",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2026-04-20",
+    "latest_version": "2026-04-20",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-regionalnite-direktsii-po-gorite",
+    "identificador": "2135766431",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА РЕГИОНАЛНИТЕ ДИРЕКЦИИ ПО ГОРИТЕ",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2011-12-27",
+    "latest_version": "2011-12-27",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-regionalnite-zdravni-inspektsii",
+    "identificador": "2135713881",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА РЕГИОНАЛНИТЕ ЗДРАВНИ ИНСПЕКЦИИ",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2011-01-18",
+    "latest_version": "2011-01-18",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-selskostopanskata-akademiya",
+    "identificador": "2137186015",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА СЕЛСКОСТОПАНСКАТА АКАДЕМИЯ",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2018-07-31",
+    "latest_version": "2018-07-31",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-teatralna-kashta-nadezhda",
+    "identificador": "2135504265",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА ТЕАТРАЛНА КЪЩА \"НАДЕЖДА\"",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2005-05-31",
+    "latest_version": "2005-05-31",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-topolovo-stopanstvo-gr-pazardzhik",
+    "identificador": "2135873233",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА ТОПОЛОВО СТОПАНСТВО ГР. ПАЗАРДЖИК",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2013-07-23",
+    "latest_version": "2013-07-23",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-tsentara-za-nasarchavane-na-iznosa",
+    "identificador": "-12562427",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА ЦЕНТЪРА ЗА НАСЪРЧАВАНЕ НА ИЗНОСА",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2000-05-12",
+    "latest_version": "2000-05-12",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-tsentara-za-otsenka-na-riska-po-hranitelnata-veriga",
+    "identificador": "2136904414",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА ЦЕНТЪРА ЗА ОЦЕНКА НА РИСКА ПО ХРАНИТЕЛНАТА ВЕРИГА",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2016-09-13",
+    "latest_version": "2016-09-13",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-tsentara-za-podvodna-arheologiya",
+    "identificador": "2135463138",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА ЦЕНТЪРА ЗА ПОДВОДНА АРХЕОЛОГИЯ",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2003-02-07",
+    "latest_version": "2003-02-07",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-tsentara-za-preventsiya-i-protivodeystvie-na-koruptsiya",
+    "identificador": "2135707691",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА ЦЕНТЪРА ЗА ПРЕВЕНЦИЯ И ПРОТИВОДЕЙСТВИЕ НА КОРУПЦИЯТА И ОРГАНИЗИРАНАТА ПРЕСТЪПНОСТ КЪМ МИНИСТЕРСКИЯ СЪВЕТ",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2010-12-07",
+    "latest_version": "2010-12-07",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-tsentara-za-razvitie-na-choveshkite-resursi-i-regionaln",
+    "identificador": "2135805160",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА ЦЕНТЪРА ЗА РАЗВИТИЕ НА ЧОВЕШКИТЕ РЕСУРСИ И РЕГИОНАЛНИ ИНИЦИАТИВИ",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2012-08-03",
+    "latest_version": "2012-08-03",
+    "version_count": 1
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-tsentara-na-promishlenostta-na-republika-balgariya-v-mo",
+    "identificador": "2135813198",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА ЦЕНТЪРА НА ПРОМИШЛЕНОСТТА НА РЕПУБЛИКА БЪЛГАРИЯ В МОСКВА, РУСКА ФЕДЕРАЦИЯ",
+    "category": "regulations",
+    "status": "vigente",
+    "first_version": "2012-10-05",
+    "latest_version": "2012-10-05",
+    "version_count": 1
+   }
+  ]
+ }
+}

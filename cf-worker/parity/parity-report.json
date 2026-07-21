@@ -1,0 +1,250 @@
+{
+ "against": "http://127.0.0.1:8788",
+ "at": "2026-07-20T23:09:01.902Z",
+ "results": [
+  {
+   "id": "healthz",
+   "ok": true
+  },
+  {
+   "id": "stats",
+   "ok": true
+  },
+  {
+   "id": "laws-default",
+   "ok": true
+  },
+  {
+   "id": "laws-category-codes",
+   "ok": true
+  },
+  {
+   "id": "laws-estado-derogado",
+   "ok": true
+  },
+  {
+   "id": "laws-combined",
+   "ok": true
+  },
+  {
+   "id": "laws-limit-cap",
+   "ok": true
+  },
+  {
+   "id": "laws-offset-negative",
+   "ok": true
+  },
+  {
+   "id": "laws-422-limit",
+   "ok": true
+  },
+  {
+   "id": "law-small",
+   "ok": true
+  },
+  {
+   "id": "law-docid",
+   "ok": true
+  },
+  {
+   "id": "law-title-resolve",
+   "ok": true
+  },
+  {
+   "id": "law-version-old",
+   "ok": true
+  },
+  {
+   "id": "law-version-boundary-a",
+   "ok": true
+  },
+  {
+   "id": "law-version-boundary-b",
+   "ok": true
+  },
+  {
+   "id": "law-noversion",
+   "ok": true
+  },
+  {
+   "id": "law-invalid-date",
+   "ok": true
+  },
+  {
+   "id": "law-invalid-date-cal",
+   "ok": true
+  },
+  {
+   "id": "law-invalid-date-empty",
+   "ok": true
+  },
+  {
+   "id": "law-notfound",
+   "ok": true
+  },
+  {
+   "id": "law-notfound-suggestions",
+   "ok": true,
+   "bm25_tolerance_applied": 5
+  },
+  {
+   "id": "law-ambiguous-409",
+   "ok": true
+  },
+  {
+   "id": "law-warnings",
+   "ok": true
+  },
+  {
+   "id": "art-whole",
+   "ok": true
+  },
+  {
+   "id": "art-alinea",
+   "ok": true
+  },
+  {
+   "id": "art-dot",
+   "ok": true
+  },
+  {
+   "id": "art-suffix",
+   "ok": true
+  },
+  {
+   "id": "art-range-400",
+   "ok": true
+  },
+  {
+   "id": "art-bad-400",
+   "ok": true
+  },
+  {
+   "id": "art-notfound",
+   "ok": true
+  },
+  {
+   "id": "art-bad-date",
+   "ok": true
+  },
+  {
+   "id": "art-versioned",
+   "ok": true
+  },
+  {
+   "id": "history-mitnitsite",
+   "ok": true
+  },
+  {
+   "id": "history-small",
+   "ok": true
+  },
+  {
+   "id": "history-notfound",
+   "ok": true
+  },
+  {
+   "id": "diff-real",
+   "ok": true
+  },
+  {
+   "id": "diff-note",
+   "ok": true
+  },
+  {
+   "id": "diff-reversed-400",
+   "ok": true
+  },
+  {
+   "id": "diff-noversion",
+   "ok": true
+  },
+  {
+   "id": "diff-baddate",
+   "ok": true
+  },
+  {
+   "id": "diff-missing-from-422",
+   "ok": true
+  },
+  {
+   "id": "diff-missing-both-422",
+   "ok": true
+  },
+  {
+   "id": "search-zop-abbrev",
+   "ok": true,
+   "bm25_tolerance_applied": 3
+  },
+  {
+   "id": "search-multiword",
+   "ok": true,
+   "bm25_tolerance_applied": 5
+  },
+  {
+   "id": "search-category",
+   "ok": true,
+   "bm25_tolerance_applied": 5
+  },
+  {
+   "id": "search-definite-form",
+   "ok": true,
+   "bm25_tolerance_applied": 3
+  },
+  {
+   "id": "search-include-body",
+   "ok": true,
+   "bm25_tolerance_applied": 3
+  },
+  {
+   "id": "search-broad-400",
+   "ok": true
+  },
+  {
+   "id": "search-broad-definite-400",
+   "ok": true
+  },
+  {
+   "id": "search-long-400",
+   "ok": true
+  },
+  {
+   "id": "search-422-missing",
+   "ok": true
+  },
+  {
+   "id": "search-422-empty",
+   "ok": true
+  },
+  {
+   "id": "search-422-types",
+   "ok": true
+  },
+  {
+   "id": "search-colon-empty",
+   "ok": true
+  },
+  {
+   "id": "search-quote-empty",
+   "ok": true
+  },
+  {
+   "id": "search-limit-cap",
+   "ok": true,
+   "bm25_tolerance_applied": 50
+  },
+  {
+   "id": "metrics",
+   "ok": true
+  },
+  {
+   "id": "openapi",
+   "ok": true
+  },
+  {
+   "id": "route-404",
+   "ok": true
+  }
+ ],
+ "failures": 0
+}

@@ -1,0 +1,34 @@
+{
+ "id": "laws-combined",
+ "path": "/api/v1/laws?category=laws&estado=vigente&limit=2&offset=5",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "total": 396,
+  "items": [
+   {
+    "law_id": "zakon-za-administrativnite-narusheniya-i-nakazaniya",
+    "identificador": "2126821377",
+    "title": "ЗАКОН ЗА АДМИНИСТРАТИВНИТЕ НАРУШЕНИЯ И НАКАЗАНИЯ",
+    "category": "laws",
+    "status": "vigente",
+    "first_version": "1969-11-28",
+    "latest_version": "1969-11-28",
+    "version_count": 1
+   },
+   {
+    "law_id": "zakon-za-administrativno-teritorialni-promeni-v-stranata",
+    "identificador": "2135849180",
+    "title": "ЗАКОН ЗА АДМИНИСТРАТИВНО-ТЕРИТОРИАЛНИ ПРОМЕНИ В СТРАНАТА",
+    "category": "laws",
+    "status": "vigente",
+    "first_version": "1991-08-22",
+    "latest_version": "1991-08-22",
+    "version_count": 1
+   }
+  ]
+ }
+}

@@ -1,0 +1,26 @@
+{
+  // legalize-bg REST API worker (spec: scratchpad cf-data-plane-spec.md v1).
+  // account_id intentionally NOT set here — supply via CLOUDFLARE_ACCOUNT_ID.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "legalize-bg-api",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-06-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "legalize-bg",
+      "database_id": "REPLACE_AT_DEPLOY"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "ACTS",
+      "bucket_name": "legalize-bg-acts"
+    }
+  ],
+  "vars": {
+    // Comma-separated allowed origins; empty string = CORS disabled
+    // (mirrors FastAPI create_app(cors_origins=None)).
+    "CORS_ORIGINS": ""
+  }
+}

@@ -1,0 +1,16 @@
+{
+ "id": "art-versioned",
+ "path": "/api/v1/laws/naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-/articles/1?date=2023-01-01",
+ "status": 404,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "ARTICLE_NOT_FOUND",
+  "law_id": "naredba-1-ot-1-dekemvri-2022-g-za-priemane-na-farmako-terapevtichno-rakovodstvo-",
+  "article": "1",
+  "paragraph": null,
+  "available_articles": []
+ }
+}

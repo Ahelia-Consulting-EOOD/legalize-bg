@@ -1,0 +1,34 @@
+{
+ "id": "laws-default",
+ "path": "/api/v1/laws?limit=2",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "total": 3602,
+  "items": [
+   {
+    "law_id": "-549676032",
+    "identificador": "-549676032",
+    "title": "<doc_id=-549676032>",
+    "category": "ordinances",
+    "status": "vigente",
+    "first_version": "2026-04-20",
+    "latest_version": "2026-04-20",
+    "version_count": 1
+   },
+   {
+    "law_id": "2135625007",
+    "identificador": "2135625007",
+    "title": "<doc_id=2135625007>",
+    "category": "ordinances",
+    "status": "vigente",
+    "first_version": "2026-04-20",
+    "latest_version": "2026-04-20",
+    "version_count": 1
+   }
+  ]
+ }
+}

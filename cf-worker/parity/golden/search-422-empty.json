@@ -1,0 +1,25 @@
+{
+ "id": "search-422-empty",
+ "path": "/api/v1/search?q=",
+ "status": 422,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "detail": [
+   {
+    "type": "string_too_short",
+    "loc": [
+     "query",
+     "q"
+    ],
+    "msg": "String should have at least 1 character",
+    "input": "",
+    "ctx": {
+     "min_length": 1
+    }
+   }
+  ]
+ }
+}

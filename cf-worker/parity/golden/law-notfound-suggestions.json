@@ -1,0 +1,40 @@
+{
+ "id": "law-notfound-suggestions",
+ "path": "/api/v1/laws/обществени поръчки",
+ "status": 404,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "code": "LAW_NOT_FOUND",
+  "name": "обществени поръчки",
+  "suggestions": [
+   {
+    "law_id": "naredba-za-kriteriite-i-reda-za-opredelyane-nalichieto-na-osnovni-interesi-v-slu",
+    "title": "НАРЕДБА ЗА КРИТЕРИИТЕ И РЕДА ЗА ОПРЕДЕЛЯНЕ НАЛИЧИЕТО НА ОСНОВНИ ИНТЕРЕСИ В СЛУЧАИТЕ ПО ЧЛ. 13, АЛ. 1, Т. 13, БУКВИ \"А\", \"Е\" И \"Ж\" И ЧЛ. 149, АЛ. 1, Т. 2 ОТ ЗАКОНА ЗА ОБЩЕСТВЕНИТЕ ПОРЪЧКИ, КОИТО ТРЯБВА ДА БЪДАТ ЗАЩИТЕНИ ПРИ СКЛЮЧВАНЕ НА ДОГОВОР ЗА ОБЩЕСТВЕНА ПОРЪЧКА ИЛИ ПРИ ПРОВЕЖДАНЕ НА КОНКУРС ЗА ПРОЕКТ",
+    "relevance": 17.587031052311442
+   },
+   {
+    "law_id": "naredba-za-vanshnite-eksperti-pri-predvaritelen-kontrol-na-obshtestveni-porachki",
+    "title": "НАРЕДБА ЗА ВЪНШНИТЕ ЕКСПЕРТИ ПРИ ПРЕДВАРИТЕЛЕН КОНТРОЛ НА ОБЩЕСТВЕНИ ПОРЪЧКИ",
+    "relevance": 16.388150011145207
+   },
+   {
+    "law_id": "naredba-za-vodene-na-registara-za-obshtestveni-porachki",
+    "title": "НАРЕДБА ЗА ВОДЕНЕ НА РЕГИСТЪРА ЗА ОБЩЕСТВЕНИ ПОРЪЧКИ",
+    "relevance": 16.301271810592777
+   },
+   {
+    "law_id": "naredba-n-1-ot-23-yuli-2024-g-za-ekologichnite-iziskvaniya-kam-opredeleni-produk",
+    "title": "НАРЕДБА № Н-1 ОТ 23 ЮЛИ 2024 Г. ЗА ЕКОЛОГИЧНИТЕ ИЗИСКВАНИЯ КЪМ ОПРЕДЕЛЕНИ ПРОДУКТИ, ПРЕДМЕТ НА ОБЩЕСТВЕНИ ПОРЪЧКИ",
+    "relevance": 13.156257622224748
+   },
+   {
+    "law_id": "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki",
+    "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА АГЕНЦИЯТА ПО ОБЩЕСТВЕНИ ПОРЪЧКИ",
+    "relevance": 12.433171933848497
+   }
+  ]
+ }
+}

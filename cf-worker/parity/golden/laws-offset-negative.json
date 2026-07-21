@@ -1,0 +1,24 @@
+{
+ "id": "laws-offset-negative",
+ "path": "/api/v1/laws?offset=-5&limit=1",
+ "status": 200,
+ "headers": {
+  "content-type": "application/json",
+  "cache-control": null
+ },
+ "body": {
+  "total": 3602,
+  "items": [
+   {
+    "law_id": "-549676032",
+    "identificador": "-549676032",
+    "title": "<doc_id=-549676032>",
+    "category": "ordinances",
+    "status": "vigente",
+    "first_version": "2026-04-20",
+    "latest_version": "2026-04-20",
+    "version_count": 1
+   }
+  ]
+ }
+}
