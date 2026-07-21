@@ -52,7 +52,8 @@ def export_stats(conn: sqlite3.Connection, r2_dir: Path,
 
 def write_manifest(out_dir: Path, counts: dict, exported_at: str,
                    fts_truncated: list[str] | None = None,
-                   max_statement_bytes: int = 0) -> dict:
+                   max_statement_bytes: int = 0,
+                   fts_guards: dict | None = None) -> dict:
     out_dir = Path(out_dir)
     files = {}
     for f in sorted(out_dir.glob("d1-*.sql")):
@@ -68,6 +69,10 @@ def write_manifest(out_dir: Path, counts: dict, exported_at: str,
         # Largest emitted SQL statement (v1.3: must be ≤ 90,000 — D1
         # rejects statements over ~100 KB with SQLITE_TOOBIG).
         "max_statement_bytes": max_statement_bytes,
+        # v1.3.2 idempotency: guarded-statement counts in the d1-fts
+        # series (the d1-meta series is NOT idempotent — import into
+        # empty tables only).
+        "fts_guards": fts_guards or {"inserts": 0, "updates": 0},
         "files": files,
         "classes": {
             "acts": class_aggregate(out_dir, "r2/acts"),

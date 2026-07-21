@@ -31,7 +31,7 @@ def run_export(corpus_root: Path, db_path: str, out_dir: Path) -> dict:
     conn.row_factory = sqlite3.Row
     try:
         log.info("D1 dump → %s", out_dir)
-        d1_counts, fts_truncated, max_stmt = export_d1(conn, out_dir)
+        d1 = export_d1(conn, out_dir)
         log.info("R2 acts/ → %s", r2_dir / "acts")
         acts_n = export_acts(conn, corpus_root, r2_dir)
         log.info("R2 versions/ → %s", r2_dir / "versions")
@@ -41,8 +41,10 @@ def run_export(corpus_root: Path, db_path: str, out_dir: Path) -> dict:
     finally:
         conn.close()
 
-    counts = {**d1_counts, "acts_json": acts_n, "versions_json": versions_n}
+    counts = {**d1["counts"], "acts_json": acts_n,
+              "versions_json": versions_n}
     log.info("manifest.json")
     return write_manifest(out_dir, counts, exported_at,
-                          fts_truncated=fts_truncated,
-                          max_statement_bytes=max_stmt)
+                          fts_truncated=d1["fts_truncated"],
+                          max_statement_bytes=d1["max_statement_bytes"],
+                          fts_guards=d1["fts_guards"])

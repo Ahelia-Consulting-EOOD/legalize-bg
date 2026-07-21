@@ -72,3 +72,9 @@ def test_manifest_fts_truncated_key(manifest):
 
 def test_manifest_max_statement_bytes(manifest):
     assert 0 < manifest["max_statement_bytes"] <= 90_000
+
+
+def test_manifest_fts_guards(manifest):
+    g = manifest["fts_guards"]
+    assert g["inserts"] == manifest["counts"]["laws_fts"]
+    assert g["updates"] >= 0

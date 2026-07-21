@@ -1,11 +1,27 @@
-"""D1 dump writer: d1-schema.sql + d1-data-NNNN.sql chunks (≤50 MB each).
+"""D1 dump writer (spec v1.3.2): d1-schema.sql + two chunk series.
 
-Streams row-by-row from the source catalog (never materializes a table),
-in deterministic order. `laws_fts` rows are re-emitted as plain INSERTs
-selected from the source catalog's logical laws_fts view — this is
-byte-identically "the same source text the index builder uses" (the
-builder inserted exactly these bg_normalize-d strings), while letting D1
-build its own clean shadow tables.
+  d1-meta-NNNN.sql — laws, law_versions, amendments, schema_version as
+      plain multi-row INSERTs. NOT idempotent: this series must only be
+      imported into EMPTY tables (drop/recreate via d1-schema.sql
+      first). Kept separate so a partially loaded database can reload
+      one series without touching the other.
+  d1-fts-NNNN.sql — laws_fts as FULLY IDEMPOTENT per-row statements:
+      `INSERT ... SELECT ... WHERE NOT EXISTS (law_id)` plus, for rows
+      whose body exceeds the statement budget, append UPDATEs guarded by
+      `AND length(CAST(body AS BLOB)) = <expected-byte-offset>`. D1
+      import success is not reliably observable client-side (a "fetch
+      failed" attempt may have committed server-side), so blind retries
+      of this series are safe at ANY point.
+
+Streams row-by-row from the source catalog (never materializes a
+table), in rowid order — FastAPI parity requires D1 to preserve catalog
+insertion order (AMBIGUOUS_NAME candidate lists and no-ORDER-BY scans
+follow it); for law_versions/amendments/schema_version the INTEGER
+PRIMARY KEY is the rowid alias, so this equals id/version order.
+
+`laws_fts` rows are re-emitted from the source catalog's logical
+laws_fts view — byte-identically "the same source text the index
+builder uses", while letting D1 build its own clean shadow tables.
 """
 
 from __future__ import annotations
@@ -16,35 +32,27 @@ from pathlib import Path
 from export_cf.ddl import COPIED_TABLES, d1_schema_sql
 from export_cf.sqlgen import (
     STATEMENT_MAX_BYTES,
-    Batcher,
     insert_statements,
     sql_literal,
 )
 
-# v1.3.1: 12 MB per d1-data-NNNN.sql. 50 MB chunks kept D1's import
-# long-poll open long enough for transient "fetch failed" aborts; 12 MB
-# imports reliably in under a minute per chunk.
+# v1.3.1: 12 MB per chunk file. 50 MB chunks kept D1's import long-poll
+# open long enough for transient "fetch failed" aborts; 12 MB imports
+# reliably in under a minute per chunk.
 CHUNK_MAX_BYTES = 12_000_000
 
 # Spec v1.2: the indexed FTS body is DEFINED as "bg_normalize(body)
-# truncated to 1,900,000 UTF-8 bytes at a character boundary" — D1's
-# hard 2 MB string/row limit throws SQLITE_TOOBIG otherwise. The same
-# cap lands upstream in index/fts.py via a separate owner-merged PR;
-# the exporter caps unconditionally so D1 is safe regardless of the
-# upstream rebuild schedule. Affected law_ids surface in
-# manifest.json `fts_truncated` (documented FTS-recall divergence for
-# those few giant acts).
+# truncated to 1,900,000 UTF-8 bytes at a character boundary" — the
+# same cap lands upstream in index/fts.py via a separate owner-merged
+# PR; the exporter caps unconditionally. (v1.3.2 correction: D1 values
+# up to 2,000,000 bytes are empirically fine — the earlier TOOBIG was
+# retry double-application — but the ratified body definition stays.)
+# Affected law_ids surface in manifest.json `fts_truncated`.
 FTS_BODY_MAX_BYTES = 1_900_000
-
-# All tables are dumped in rowid order — FastAPI parity requires D1 to
-# preserve catalog insertion order (AMBIGUOUS_NAME candidate lists and
-# any no-ORDER-BY scan follow it). Sequential re-INSERT preserves it in
-# D1. (For law_versions/amendments/schema_version the INTEGER PRIMARY
-# KEY is the rowid alias, so this equals id/version order.)
 
 
 class _ChunkWriter:
-    """Sequential d1-data-NNNN.sql files, rolled before a statement
+    """Sequential {prefix}NNNN.sql files, rolled before a statement
     would push the current file past `max_bytes`.
 
     INVARIANT (v1.3.1): chunk files break ONLY at statement boundaries
@@ -55,28 +63,31 @@ class _ChunkWriter:
     statement ends, and each emitted file already respects them (every
     chunk is independently executable in sequence)."""
 
-    def __init__(self, out_dir: Path, max_bytes: int = CHUNK_MAX_BYTES):
+    def __init__(self, out_dir: Path, prefix: str,
+                 max_bytes: int = CHUNK_MAX_BYTES):
         self.out_dir = out_dir
+        self.prefix = prefix
         self.max_bytes = max_bytes
         self._n = 0
         self._fh = None
         self._written = 0
+        self.max_stmt_bytes = 0
         self.files: list[Path] = []
 
     def _roll(self) -> None:
         if self._fh:
             self._fh.close()
         self._n += 1
-        path = self.out_dir / f"d1-data-{self._n:04d}.sql"
+        path = self.out_dir / f"{self.prefix}{self._n:04d}.sql"
         self._fh = open(path, "w", encoding="utf-8", newline="\n")
         self.files.append(path)
         self._written = 0
 
     def write(self, stmt: str) -> None:
-        """Write ONE complete SQL statement (v1.3 invariant: one call ==
-        one statement, so max_stmt_bytes is exact)."""
+        """Write ONE complete SQL statement (invariant: one call == one
+        statement, so max_stmt_bytes is exact)."""
         size = len(stmt.encode("utf-8"))
-        self.max_stmt_bytes = max(getattr(self, "max_stmt_bytes", 0), size)
+        self.max_stmt_bytes = max(self.max_stmt_bytes, size)
         if self._fh is None or (self._written
                                 and self._written + size > self.max_bytes):
             self._roll()
@@ -103,10 +114,11 @@ def _cap_fts_body(body: str, max_bytes: int) -> tuple[str, bool]:
     return encoded[:max_bytes].decode("utf-8", errors="ignore"), True
 
 
-def _take_escaped_slice(s: str, budget_bytes: int) -> tuple[str, str]:
+def _take_escaped_slice(s: str, budget_bytes: int) -> tuple[str, str, str]:
     """Split `s` at the largest char boundary whose SQL-escaped UTF-8
-    form fits `budget_bytes`; returns (escaped_slice, raw_remainder).
-    Escaped length is monotonic in the char count, so binary search."""
+    form fits `budget_bytes`; returns (escaped_slice, raw_slice,
+    raw_remainder). Escaped length is monotonic in the char count, so
+    binary search."""
     def esc_len(k: int) -> int:
         return len(s[:k].replace("'", "''").encode("utf-8"))
 
@@ -117,53 +129,71 @@ def _take_escaped_slice(s: str, budget_bytes: int) -> tuple[str, str]:
             lo = mid
         else:
             hi = mid - 1
-    return s[:lo].replace("'", "''"), s[lo:]
+    return s[:lo].replace("'", "''"), s[:lo], s[lo:]
 
 
 def _fts_row_statements(law_id: str, title: str, body: str, category: str,
-                        stmt_max_bytes: int) -> list[str] | None:
-    """Spec v1.3 slicing for laws_fts rows whose single-row INSERT would
-    blow the statement budget: emit INSERT with the first body slice,
-    then `UPDATE laws_fts SET body = body || '<slice>'` appends keyed on
-    law_id (D1 import has no last_insert_rowid persistence across
-    statements). Returns None when the row fits one statement — the
-    caller batches it normally. Slices are raw-substring char-boundary
-    cuts, so their concatenation reproduces the body EXACTLY."""
-    single = ("INSERT INTO laws_fts (law_id, title, body, category) VALUES "
-              f"({sql_literal(law_id)}, {sql_literal(title)}, "
-              f"{sql_literal(body)}, {sql_literal(category)});\n")
+                        stmt_max_bytes: int) -> list[str]:
+    """One laws_fts row → idempotent statement list (spec v1.3.2).
+
+    The INSERT is per-row `INSERT ... SELECT ... WHERE NOT EXISTS
+    (SELECT 1 FROM laws_fts WHERE law_id = ...)` so a retried import
+    can never duplicate a row. When the body cannot fit one statement
+    (v1.3 budget), the INSERT carries the first char-boundary slice and
+    each remaining slice is appended with
+    `UPDATE laws_fts SET body = body || '<slice>' WHERE law_id = ...
+    AND length(CAST(body AS BLOB)) = <bytes-before-this-slice>` — the
+    byte-offset guard makes every append apply EXACTLY once regardless
+    of retries (the double-application incident: D1 "fetch failed"
+    imports may have committed server-side). Statements are keyed on
+    law_id because D1 import has no last_insert_rowid persistence.
+    Slices are raw substrings, so their concatenation reproduces the
+    body byte-exactly."""
+    guard = (" WHERE NOT EXISTS (SELECT 1 FROM laws_fts WHERE law_id = "
+             f"{sql_literal(law_id)});\n")
+    head = "INSERT INTO laws_fts (law_id, title, body, category) SELECT "
+    single = (head + f"{sql_literal(law_id)}, {sql_literal(title)}, "
+              f"{sql_literal(body)}, {sql_literal(category)}" + guard)
     if len(single.encode("utf-8")) <= stmt_max_bytes:
-        return None
-    prefix = ("INSERT INTO laws_fts (law_id, title, body, category) VALUES "
-              f"({sql_literal(law_id)}, {sql_literal(title)}, '")
-    mid_suffix = f"', {sql_literal(category)});\n"
+        return [single]
+    prefix = (head + f"{sql_literal(law_id)}, {sql_literal(title)}, '")
+    mid_suffix = f"', {sql_literal(category)}" + guard
     budget = (stmt_max_bytes - len(prefix.encode("utf-8"))
               - len(mid_suffix.encode("utf-8")))
-    upd_prefix = "UPDATE laws_fts SET body = body || '"
-    upd_suffix = f"' WHERE law_id = {sql_literal(law_id)};\n"
-    upd_budget = (stmt_max_bytes - len(upd_prefix.encode("utf-8"))
-                  - len(upd_suffix.encode("utf-8")))
-    if budget <= 0 or upd_budget <= 0:
+    if budget <= 0:
         raise ValueError(
             f"stmt_max_bytes={stmt_max_bytes} too small to slice "
             f"laws_fts row {law_id!r}")
-    first, rest = _take_escaped_slice(body, budget)
-    stmts = [prefix + first + mid_suffix]
+    first_esc, first_raw, rest = _take_escaped_slice(body, budget)
+    stmts = [prefix + first_esc + mid_suffix]
+    offset = len(first_raw.encode("utf-8"))
+    upd_prefix = "UPDATE laws_fts SET body = body || '"
     while rest:
-        piece, rest = _take_escaped_slice(rest, upd_budget)
-        stmts.append(upd_prefix + piece + upd_suffix)
+        upd_suffix = (f"' WHERE law_id = {sql_literal(law_id)} "
+                      f"AND length(CAST(body AS BLOB)) = {offset};\n")
+        upd_budget = (stmt_max_bytes - len(upd_prefix.encode("utf-8"))
+                      - len(upd_suffix.encode("utf-8")))
+        if upd_budget <= 0:
+            raise ValueError(
+                f"stmt_max_bytes={stmt_max_bytes} too small to slice "
+                f"laws_fts row {law_id!r}")
+        piece_esc, piece_raw, rest = _take_escaped_slice(rest, upd_budget)
+        stmts.append(upd_prefix + piece_esc + upd_suffix)
+        offset += len(piece_raw.encode("utf-8"))
     return stmts
 
 
 def export_d1(conn: sqlite3.Connection, out_dir: Path,
               chunk_max_bytes: int = CHUNK_MAX_BYTES,
               fts_body_max_bytes: int = FTS_BODY_MAX_BYTES,
-              stmt_max_bytes: int = STATEMENT_MAX_BYTES,
-              ) -> tuple[dict[str, int], list[str], int]:
-    """Write d1-schema.sql + d1-data-NNNN.sql under `out_dir`; returns
-    (per-table row counts incl. the rebuilt laws_fts,
-     law_ids whose FTS body was truncated for the D1 2 MB value limit,
-     max emitted statement size in bytes — v1.3 requires ≤ 90,000)."""
+              stmt_max_bytes: int = STATEMENT_MAX_BYTES) -> dict:
+    """Write d1-schema.sql + d1-meta-NNNN.sql + d1-fts-NNNN.sql under
+    `out_dir`. Returns
+    {"counts": per-table row counts (incl. rebuilt laws_fts),
+     "fts_truncated": law_ids whose FTS body hit the v1.2 byte cap,
+     "max_statement_bytes": largest emitted statement (must be ≤90,000),
+     "fts_guards": {"inserts": N, "updates": N} guarded-statement counts}.
+    """
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "d1-schema.sql").write_text(
@@ -171,7 +201,9 @@ def export_d1(conn: sqlite3.Connection, out_dir: Path,
 
     counts: dict[str, int] = {}
     truncated: list[str] = []
-    writer = _ChunkWriter(out_dir, max_bytes=chunk_max_bytes)
+    guards = {"inserts": 0, "updates": 0}
+    meta_writer = _ChunkWriter(out_dir, "d1-meta-", max_bytes=chunk_max_bytes)
+    fts_writer = _ChunkWriter(out_dir, "d1-fts-", max_bytes=chunk_max_bytes)
     try:
         for table in COPIED_TABLES:
             cols = _columns(conn, table)
@@ -187,38 +219,32 @@ def export_d1(conn: sqlite3.Connection, out_dir: Path,
 
             for stmt in insert_statements(table, cols, counted(),
                                           max_bytes=stmt_max_bytes):
-                writer.write(stmt)
+                meta_writer.write(stmt)
             counts[table] = n
 
-        fts_cols = ("law_id", "title", "body", "category")
         cur = conn.execute(
             "SELECT law_id, title, body, category FROM laws_fts "
             "ORDER BY rowid")
         n = 0
-        batcher = Batcher("laws_fts", fts_cols, max_bytes=stmt_max_bytes)
         for law_id, title, body, category in cur:
             n += 1
             body, was_cut = _cap_fts_body(body, fts_body_max_bytes)
             if was_cut:
                 truncated.append(law_id)
-            sliced = _fts_row_statements(law_id, title, body, category,
-                                         stmt_max_bytes)
-            if sliced is None:
-                stmt = batcher.add((law_id, title, body, category))
-                if stmt:
-                    writer.write(stmt)
-            else:
-                # Flush pending small rows FIRST so rowid order (and
-                # therefore D1 insertion order) is preserved.
-                stmt = batcher.flush()
-                if stmt:
-                    writer.write(stmt)
-                for stmt in sliced:
-                    writer.write(stmt)
-        stmt = batcher.flush()
-        if stmt:
-            writer.write(stmt)
+            stmts = _fts_row_statements(law_id, title, body, category,
+                                        stmt_max_bytes)
+            guards["inserts"] += 1
+            guards["updates"] += len(stmts) - 1
+            for stmt in stmts:
+                fts_writer.write(stmt)
         counts["laws_fts"] = n
     finally:
-        writer.close()
-    return counts, truncated, getattr(writer, "max_stmt_bytes", 0)
+        meta_writer.close()
+        fts_writer.close()
+    return {
+        "counts": counts,
+        "fts_truncated": truncated,
+        "max_statement_bytes": max(meta_writer.max_stmt_bytes,
+                                   fts_writer.max_stmt_bytes),
+        "fts_guards": guards,
+    }

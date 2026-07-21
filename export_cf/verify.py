@@ -19,7 +19,7 @@ import sqlite3
 from pathlib import Path
 
 from export_cf.manifest import _sha256_file, class_aggregate
-from export_cf.scan import max_statement_bytes
+from export_cf.scan import iter_statements, max_statement_bytes
 from export_cf.sqlgen import STATEMENT_MAX_BYTES
 
 DEFAULT_SAMPLE_N = 25
@@ -131,6 +131,23 @@ def verify_export(db_path: str, out_dir: Path,
             failures.append(
                 f"statement budget exceeded: longest emitted statement "
                 f"{max_seen} bytes > {STATEMENT_MAX_BYTES}")
+
+        # 4b. v1.3.2 idempotency self-check: EVERY statement in the
+        # d1-fts series must carry a retry guard (WHERE NOT EXISTS for
+        # INSERTs, byte-offset length() guard for append UPDATEs).
+        for f in sorted(out_dir.glob("d1-fts-*.sql")):
+            for stmt in iter_statements(str(f)):
+                if stmt.startswith(b"INSERT INTO laws_fts"):
+                    ok = b"WHERE NOT EXISTS (SELECT 1 FROM laws_fts" in stmt
+                elif stmt.startswith(b"UPDATE laws_fts"):
+                    ok = b"AND length(CAST(body AS BLOB)) = " in stmt
+                else:
+                    ok = False
+                if not ok:
+                    failures.append(
+                        f"unguarded fts statement in {f.name}: "
+                        f"{stmt[:100]!r}")
+                    break
 
         # 5. sampled acts vs provisions
         law_ids = [r[0] for r in conn.execute("SELECT law_id FROM laws")]

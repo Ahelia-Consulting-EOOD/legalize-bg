@@ -33,7 +33,7 @@ def test_verify_catches_tampered_act(export_run, tmp_path):
 
 def test_verify_catches_missing_d1_chunk(export_run):
     corpus, db, out = export_run
-    chunk = next(out.glob("d1-data-*.sql"))
+    chunk = next(out.glob("d1-fts-*.sql"))
     moved = chunk.with_suffix(".sql.bak")
     chunk.rename(moved)
     try:
