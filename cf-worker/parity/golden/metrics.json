@@ -8,52 +8,52 @@
  },
  "body": {
   "/api/v1/stats": {
-   "calls": 4,
+   "calls": 5,
    "errors": 0,
-   "total_ms": 589.3913740001153,
-   "avg_ms": 147.35
+   "total_ms": 595.234665001044,
+   "avg_ms": 119.05
   },
   "/api/v1/laws": {
-   "calls": 9,
-   "errors": 1,
-   "total_ms": 24.543957973946817,
-   "avg_ms": 2.73
+   "calls": 16,
+   "errors": 2,
+   "total_ms": 47.51983497408219,
+   "avg_ms": 2.97
   },
   "/api/v1/search": {
-   "calls": 21,
-   "errors": 10,
-   "total_ms": 14329.700500020408,
-   "avg_ms": 682.37
+   "calls": 35,
+   "errors": 16,
+   "total_ms": 14535.53075203672,
+   "avg_ms": 415.3
   },
   "/api/v1/laws/{slug}": {
-   "calls": 22,
-   "errors": 12,
-   "total_ms": 152.85949903773144,
-   "avg_ms": 6.95
+   "calls": 36,
+   "errors": 19,
+   "total_ms": 238.45003901806194,
+   "avg_ms": 6.62
   },
   "/healthz": {
-   "calls": 2,
+   "calls": 4,
    "errors": 0,
-   "total_ms": 9.047583007486537,
-   "avg_ms": 4.52
+   "total_ms": 22.723916990798898,
+   "avg_ms": 5.68
   },
   "/api/v1/laws/{slug}/diff": {
-   "calls": 11,
-   "errors": 7,
-   "total_ms": 58.89891801052727,
-   "avg_ms": 5.35
+   "calls": 18,
+   "errors": 12,
+   "total_ms": 77.8580839978531,
+   "avg_ms": 4.33
   },
   "/api/v1/laws/{slug}/articles/{art}": {
-   "calls": 12,
-   "errors": 7,
-   "total_ms": 24.62391700828448,
-   "avg_ms": 2.05
+   "calls": 21,
+   "errors": 12,
+   "total_ms": 32.08229099982418,
+   "avg_ms": 1.53
   },
   "/api/v1/laws/{slug}/history": {
-   "calls": 4,
-   "errors": 1,
-   "total_ms": 9.704457013867795,
-   "avg_ms": 2.43
+   "calls": 7,
+   "errors": 2,
+   "total_ms": 17.794500003219582,
+   "avg_ms": 2.54
   }
  }
 }

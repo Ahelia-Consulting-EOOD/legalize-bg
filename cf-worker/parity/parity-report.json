@@ -1,6 +1,6 @@
 {
- "against": "http://127.0.0.1:8788",
- "at": "2026-07-20T23:09:01.902Z",
+ "against": "https://legalize-bg-api.ahelia.workers.dev",
+ "at": "2026-07-21T09:53:01.055Z",
  "results": [
   {
    "id": "healthz",
@@ -84,8 +84,7 @@
   },
   {
    "id": "law-notfound-suggestions",
-   "ok": true,
-   "bm25_tolerance_applied": 5
+   "ok": true
   },
   {
    "id": "law-ambiguous-409",
@@ -173,28 +172,23 @@
   },
   {
    "id": "search-zop-abbrev",
-   "ok": true,
-   "bm25_tolerance_applied": 3
+   "ok": true
   },
   {
    "id": "search-multiword",
-   "ok": true,
-   "bm25_tolerance_applied": 5
+   "ok": true
   },
   {
    "id": "search-category",
-   "ok": true,
-   "bm25_tolerance_applied": 5
+   "ok": true
   },
   {
    "id": "search-definite-form",
-   "ok": true,
-   "bm25_tolerance_applied": 3
+   "ok": true
   },
   {
    "id": "search-include-body",
-   "ok": true,
-   "bm25_tolerance_applied": 3
+   "ok": true
   },
   {
    "id": "search-broad-400",
@@ -230,8 +224,7 @@
   },
   {
    "id": "search-limit-cap",
-   "ok": true,
-   "bm25_tolerance_applied": 50
+   "ok": true
   },
   {
    "id": "metrics",
