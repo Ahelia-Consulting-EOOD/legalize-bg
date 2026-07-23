@@ -28,6 +28,12 @@ design §11 recommendations:
   the §8 spike.
 - **Q5 (DEFERRED `D-2026-07-02-01` disposition):** decided by spike data at landing.
 
+**Q1 AMENDED (2026-07-23, post-spike, owner):** plain MIN showed a measured
+short-segment bias (Кодекс на труда #31 for "трудов договор", ЗАНН #6 for
+"административни нарушения"). Act score = best-segment bm25 **− 4·n/(n+5)**
+(n = matching segments within the fixed 500-row overscan window; rational form for
+cross-plane float parity). Evidence: `docs/research/2026-07-23-fr032-spike.md` §5.
+
 Implementation branch: `feat/fr032-per-article-fts`.
 
 ## Problem
