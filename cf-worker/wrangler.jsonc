@@ -20,7 +20,10 @@
   ],
   "vars": {
     // Comma-separated allowed origins; empty string = CORS disabled
-    // (mirrors FastAPI create_app(cors_origins=None)).
-    "CORS_ORIGINS": ""
+    // (mirrors FastAPI create_app(cors_origins=None)). Default "*":
+    // this is a public read-only GET API and the legalize-bg-web
+    // frontend fetches it cross-origin (localhost dev +
+    // legalize.ahelia.com). Override per environment to restrict.
+    "CORS_ORIGINS": "*"
   }
 }
