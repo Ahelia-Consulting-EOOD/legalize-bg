@@ -176,7 +176,7 @@ CREATE TABLE provisions (
 | `valid_from` | DATE | NOT NULL | Date this provision version entered into force. |
 | `valid_to` | DATE | Nullable. **INCLUSIVE.** | Last date this provision version was in force. NULL means currently in force. See "Predicate semantics" at end of §2. |
 | `text_hash` | TEXT | Nullable | First 16 hex characters of the SHA-256 digest of the provision's text content (`hashlib.sha256(...).hexdigest()[:16]`). Used for change detection — if the hash changes between versions, the text was amended. ~64-bit collision domain, adequate for ~125k provisions across 3,573 acts. Implementation: `index/provisions.py:_hash`. |
-| `text` | TEXT | Nullable | Verbatim provision text. Populated by `index/provisions.py:_extract_article_blocks` at index time. Used by FTS5 (`laws_fts.body` mirrors this column). Added by Migration 001 (D-023). |
+| `text` | TEXT | Nullable | Verbatim provision text. Populated by `index/provisions.py:_extract_article_blocks` at index time. Added by Migration 001 (D-023). Since migration 005 (FR-032) the search index no longer mirrors this column — `articles_fts.body` is produced independently by the full-coverage segmenter `index/segments.py` (provisions covers only ~57% of body text; the segmenter covers 100%). |
 
 ### Indexes
 
@@ -207,7 +207,7 @@ Note `>=`, not `>` — the closed convention is that successor versions begin on
 
 ## Section 3: Migrations & Schema Evolution
 
-The base schema in §2 (laws / law_versions / amendments / provisions + the three indexes) is the Phase 1a shape. Phase 1b.1 evolved the schema via four forward-only migrations; future phases will add more.
+The base schema in §2 (laws / law_versions / amendments / provisions + the three indexes) is the Phase 1a shape. Phase 1b.1 evolved the schema via four forward-only migrations; FR-032 added migration 005 (schema version 5, the per-segment FTS split); future phases will add more.
 
 ### Migration tracking table
 
@@ -229,6 +229,7 @@ Created (idempotently) by `index/migrations.py:_ensure_schema_version_table`. On
 | 2 | `laws_fts_virtual_table` | `CREATE VIRTUAL TABLE laws_fts USING fts5(law_id UNINDEXED, title, body, category UNINDEXED, tokenize='unicode61 remove_diacritics 2')` | D-022 — FTS5 with the `unicode61 remove_diacritics 2` tokenizer is the chosen Bulgarian-search backend. `title` and `body` are indexed; `law_id` and `category` ride along as filters/UNINDEXED metadata. The `identificador` is NOT in `laws_fts` — it lives only on `laws.doc_id` and reaches search results via the JOIN in `_FTS_SELECT`. |
 | 3 | `provisions_lookup_index` | `CREATE INDEX idx_provisions_lookup ON provisions(law_id, article, paragraph, valid_from)` | Performance — `get_article` lookups need the four-column composite (the existing `idx_provisions_article` lacks `paragraph`). |
 | 4 | `law_versions_date_uncertain_column` | `ALTER TABLE law_versions ADD COLUMN date_uncertain INTEGER NOT NULL DEFAULT 0;` | §7.2 surfacing — when `fecha_publicacion` is null, the indexer falls back to bootstrap-run date and sets `date_uncertain=1` so `version_with_warnings` can attach a `DATE_UNCERTAIN` warning rather than silently emit a fabricated date. The NOT NULL constraint pairs with DEFAULT 0 so existing rows get the safe-default value at migration time and new rows are forced to declare a value. |
+| 5 | `fr032_per_segment_fts_split` | `DROP TABLE laws_fts` → recreate `laws_fts(law_id UNINDEXED, title, category UNINDEXED)` title-only; `CREATE VIRTUAL TABLE articles_fts (law_id UNINDEXED, seg_no UNINDEXED, kind UNINDEXED, label UNINDEXED, body, category UNINDEXED)`; same tokenizer on both | FR-032 / D-056 (preflight `IMPLEMENTATION-PREFLIGHT-2026-07-21-fr032-per-article-fts.md`) — the two-index split: tier-1 title search on the title-only table, tier-2 per-SEGMENT body search over `articles_fts` (one row per article/§/annex/preamble segment from `index/segments.py`, chunked to ≤400,000 UTF-8 bytes per row). Both tables are DERIVED and left EMPTY by the migration; a full `python -m index.build` is MANDATORY afterwards. The `laws_fts` drop is destructive-in-form only (rebuilt from the corpus in ~1 min). |
 
 ### Migration discipline
 
