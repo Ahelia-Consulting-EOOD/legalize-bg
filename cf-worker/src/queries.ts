@@ -4,7 +4,7 @@
  * bodies). */
 
 import { ToolError, type JsonValue } from "./errors";
-import { searchFts } from "./fts";
+import { isUserInputFtsError, searchFts } from "./fts";
 import { bgNormalize } from "./normalize";
 import { expandIfAbbreviation } from "./synonyms";
 import { legalArticleSortKey, compareSortKeys } from "./sortkey";
@@ -22,8 +22,13 @@ const CATEGORY_STOP_WORDS = new Set([
   "постановление",
 ]);
 
+// FR-017 as reworked by FR-032 (D-056): tier-2 hits carry an FTS5
+// segment snippet for free (search_fts seg_snippet). include_body=true
+// additionally fetches a best-segment snippet for TITLE-tier hits via
+// one articles_fts MATCH scoped to that law_id — bounded to the top
+// N hits per call, replacing the retired makeBodySnippet scan (laws_fts
+// is title-only since migration 005, so body rows no longer exist).
 const BODY_SNIPPET_TOP_N = 2;
-const BODY_SNIPPET_HALF_WINDOW = 60;
 
 // Python re.findall(r"\w+", ...) with full Unicode semantics.
 const WORD_RE = /[\p{L}\p{N}_]+/gu;
@@ -171,43 +176,34 @@ export async function versionWithWarnings(
 
 // ── full_text_search ────────────────────────────────────────────────────
 
-async function makeBodySnippet(
+// Verbatim from mcp_server/queries.py `_SCOPED_SEGMENT_SNIPPET_SQL`.
+const SCOPED_SEGMENT_SNIPPET_SQL = `
+    SELECT snippet(articles_fts, 4, '<b>', '</b>', '...', 12) AS snip
+      FROM articles_fts
+     WHERE articles_fts MATCH ? AND law_id = ?
+     ORDER BY bm25(articles_fts) LIMIT 1
+`;
+
+/** Port of mcp_server/queries.py `_title_tier_body_snippet` — best-
+ * segment snippet for a title-tier hit (include_body=true). Returns ""
+ * when the act's segments don't match the query (a purely title-shaped
+ * hit) or the query is FTS5-malformed. */
+async function titleTierBodySnippet(
   db: D1Database,
   lawId: string,
-  terms: string[],
+  normalizedQuery: string,
 ): Promise<string> {
-  const row = await db
-    .prepare("SELECT body FROM laws_fts WHERE law_id = ?")
-    .bind(lawId)
-    .first<{ body: string | null }>();
-  if (!row) return "";
-  const body = row.body || "";
-  if (!body) return "";
-
-  let earliest = -1;
-  let matchedTerm = "";
-  for (const term of terms) {
-    const idx = body.indexOf(term);
-    if (idx !== -1 && (earliest === -1 || idx < earliest)) {
-      earliest = idx;
-      matchedTerm = term;
-    }
+  let row: { snip: string } | null;
+  try {
+    row = await db
+      .prepare(SCOPED_SEGMENT_SNIPPET_SQL)
+      .bind(normalizedQuery, lawId)
+      .first<{ snip: string }>();
+  } catch (e) {
+    if (!isUserInputFtsError(e)) throw e; // INDEX_MISSING-class errors must not be silenced
+    return "";
   }
-  if (earliest === -1) return "";
-
-  const start = Math.max(0, earliest - BODY_SNIPPET_HALF_WINDOW);
-  const end = Math.min(body.length, earliest + matchedTerm.length + BODY_SNIPPET_HALF_WINDOW);
-  const prefix = start > 0 ? "..." : "";
-  const suffix = end < body.length ? "..." : "";
-  const fragment = body.slice(start, end);
-  const rel = earliest - start;
-  const highlighted =
-    fragment.slice(0, rel) +
-    "<b>" +
-    fragment.slice(rel, rel + matchedTerm.length) +
-    "</b>" +
-    fragment.slice(rel + matchedTerm.length);
-  return `${prefix}${highlighted}${suffix}`;
+  return row ? row.snip : "";
 }
 
 export interface SearchHit {
@@ -217,6 +213,7 @@ export interface SearchHit {
   category: string;
   title_snippet: string;
   body_snippet: string;
+  matched: { kind: string; label: string | null } | null;
   relevance: number;
 }
 
@@ -256,17 +253,23 @@ export async function fullTextSearch(
 
   const rows = await searchFts(db, effectiveQuery, category, limit);
 
-  const snippetTerms = (bgNormalize(effectiveQuery).match(WORD_RE) ?? []).filter(
-    (t) => t.length >= 3,
-  );
+  // FR-032: tier-2 hits carry an FTS5 segment snippet for free; the
+  // additive `matched` field attributes the hit to an article/§/annex
+  // (D-056 Q3). include_body=true upgrades TITLE-tier hits (top
+  // BODY_SNIPPET_TOP_N) with a scoped best-segment snippet.
+  const normalizedEffective = bgNormalize(effectiveQuery);
 
   const out: SearchHit[] = [];
   for (let idx = 0; idx < rows.length; idx++) {
     const r = rows[idx]!;
     const title = r.title || `<doc_id=${r.doc_id}>`;
-    let bodySnippet = "";
-    if (includeBody && idx < BODY_SNIPPET_TOP_N && snippetTerms.length > 0) {
-      bodySnippet = await makeBodySnippet(db, r.law_id, snippetTerms);
+    let bodySnippet = r.seg_snippet || "";
+    if (includeBody && !bodySnippet && idx < BODY_SNIPPET_TOP_N && normalizedEffective) {
+      bodySnippet = await titleTierBodySnippet(db, r.law_id, normalizedEffective);
+    }
+    let matched: SearchHit["matched"] = null;
+    if (r.matched_kind !== null) {
+      matched = { kind: r.matched_kind, label: r.matched_label };
     }
     out.push({
       law_id: r.law_id,
@@ -275,6 +278,7 @@ export async function fullTextSearch(
       category: r.category,
       title_snippet: r.snippet,
       body_snippet: bodySnippet,
+      matched,
       relevance: -r.score,
     });
   }
