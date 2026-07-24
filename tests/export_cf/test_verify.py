@@ -74,3 +74,50 @@ def test_verify_catches_missing_d1_chunk(export_run):
             verify_export(db_path=db, out_dir=out, sample_n=25)
     finally:
         moved.rename(chunk)
+
+
+def test_verify_always_hashes_sliced_segments(export_run):
+    """Review 2026-07-24 (FR-032 cf-plane review, Important): a torn
+    append-slice leaves row COUNTS intact, so only body hashing can
+    catch it — and a uniform stride sample of 25 keys covers ~0.06% of
+    a 182K-row corpus. Sliced-class rows (body above the statement
+    budget) must therefore ALWAYS be hashed, independent of sample_n.
+    This test tampers a byte inside an append-UPDATE statement and runs
+    verify with sample_n=1 (stride sample = first key only): detection
+    must not depend on the uniform sample getting lucky."""
+    import json as _json
+
+    from export_cf.verify import verify_export
+
+    corpus, db, out = export_run
+    target = None
+    for chunk in sorted(out.glob("d1-fts-articles-*.sql")):
+        text = chunk.read_text(encoding="utf-8")
+        if "UPDATE articles_fts SET body = body ||" in text:
+            target = chunk
+            break
+    assert target is not None, (
+        "fixture must contain a sliced (append-UPDATE) segment — the "
+        "conftest corpus seeds a >90KB annex for exactly this")
+    original = target.read_bytes()
+    idx = original.index("UPDATE articles_fts SET body = body ||"
+                         .encode())
+    tail = original[idx:]
+    tampered = original[:idx] + tail.replace("а".encode(), "б".encode(), 1)
+    assert tampered != original
+    manifest_path = out / "manifest.json"
+    manifest_orig = manifest_path.read_text(encoding="utf-8")
+    try:
+        target.write_bytes(tampered)
+        m = _json.loads(manifest_orig)
+        import hashlib
+        m["files"][target.name] = hashlib.sha256(tampered).hexdigest()
+        manifest_path.write_text(_json.dumps(m), encoding="utf-8")
+        import pytest as _pytest
+
+        from export_cf.verify import VerifyError
+        with _pytest.raises(VerifyError, match="hash mismatch"):
+            verify_export(db_path=db, out_dir=out, sample_n=1)
+    finally:
+        target.write_bytes(original)
+        manifest_path.write_text(manifest_orig, encoding="utf-8")

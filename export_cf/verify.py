@@ -114,6 +114,13 @@ def _check_fts_guards(out_dir: Path, failures: list[str]) -> None:
                 return
 
 
+# All segment rows above this byte floor are unconditionally hashed by
+# the reimport check — see the sliced-rows comment inside. Kept below
+# d1.py's effective per-statement body budget so every sliced row
+# qualifies.
+SLICED_HASH_FLOOR_BYTES = 80_000
+
+
 def _check_fts_reimport(conn: sqlite3.Connection, out_dir: Path,
                         sample_n: int, failures: list[str]) -> int:
     """Reimport d1-schema.sql + both fts series into a scratch SQLite
@@ -141,7 +148,19 @@ def _check_fts_reimport(conn: sqlite3.Connection, out_dir: Path,
                                     f"catalog rows={want}")
             keys = [(r[0], r[1]) for r in conn.execute(
                 "SELECT law_id, seg_no FROM articles_fts")]
-            sampled = _sample(keys, sample_n)
+            # Review 2026-07-24 (FR-032): sliced rows (INSERT prefix +
+            # append UPDATEs) are the ONLY rows that can arrive torn
+            # while row counts stay intact, and a uniform stride
+            # sample covers ~0.06% of the 182K-row corpus. Hash ALL
+            # rows above the slice floor (safely below the ~89.7KB
+            # effective statement budget, so a superset of sliced
+            # rows — ~456 live, cheap), plus the uniform sample.
+            sliced = [(r[0], r[1]) for r in conn.execute(
+                "SELECT law_id, seg_no FROM articles_fts"
+                " WHERE length(CAST(body AS BLOB)) > ?",
+                (SLICED_HASH_FLOOR_BYTES,))]
+            sampled = list(dict.fromkeys(
+                sliced + _sample(keys, sample_n)))
             for law_id, seg_no in sampled:
                 q = ("SELECT kind, label, body FROM articles_fts "
                      "WHERE law_id = ? AND seg_no = ?")

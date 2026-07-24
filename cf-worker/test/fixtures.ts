@@ -72,7 +72,7 @@ export const SCHEMA_STATEMENTS = [
 
 const ART_START = /^(?:\*\*)?Чл\.\s+(\d+[а-я]?)\.?/u;
 const PARA_START = /^(?:\*\*)?§\s*(\d+[а-я]?)\.?/u;
-const ANNEX_START = /^(?:\*\*)?Приложение\s*(?:№\s*)?(\d*[а-я]?)/u;
+const ANNEX_START = /^(?:\*\*)?Приложение(?![а-яa-z0-9])\s*(?:№\s*)?(\d*[а-я]?)/u;
 const PARA_SPLIT = /\n\n+/g;
 
 function paragraphSpans(body: string): [number, number][] {
