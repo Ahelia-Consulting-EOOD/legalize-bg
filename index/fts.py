@@ -243,6 +243,15 @@ TIER2_OVERSCAN = 500
 BREADTH_ALPHA = 4.0
 BREADTH_SATURATION = 5.0
 
+# Act pool handed to the FR-015 rang-tier sort. FIXED at 20 (not
+# `limit`): the sort must see enough body-tier acts to rescue parent
+# laws whose breadth-corrected rank lands below the caller's limit —
+# the spike's Кодекс-на-труда case sits at raw rank ~20 for
+# "трудов договор" and must surface at limit=10. Truncation to `limit`
+# happens AFTER the sort; snippets are fetched after truncation, for
+# the surviving hits only.
+TIER2_ACT_POOL = 20
+
 
 def _is_user_input_error(e: sqlite3.OperationalError) -> bool:
     """FTS5 raises OperationalError for malformed query terms — the
@@ -377,12 +386,12 @@ def _title_hit(row: sqlite3.Row) -> dict:
     }
 
 
-def _segment_hits(conn: sqlite3.Connection, match_query: str,
-                  rows: list[sqlite3.Row], limit: int) -> list[dict]:
-    """Aggregate phase-1 window rows (bm25-ordered) to act-level hits:
-    first occurrence per act = its best segment; n = occurrences in the
-    window; score per the breadth-corrected formula above. Then phase 2
-    fetches snippets + act metadata for the top `limit` acts only."""
+def _segment_hits(rows: list[sqlite3.Row]) -> list[dict]:
+    """Aggregate phase-1 window rows (bm25-ordered) to LIGHT act-level
+    hits: first occurrence per act = its best segment; n = occurrences
+    in the window; score per the breadth-corrected formula above.
+    Returns the top TIER2_ACT_POOL acts, un-enriched (no titles, no
+    snippets — see _enrich_segment_hits, called post-truncation)."""
     order: list[str] = []
     best: dict[str, sqlite3.Row] = {}
     count: dict[str, int] = {}
@@ -401,25 +410,38 @@ def _segment_hits(conn: sqlite3.Connection, match_query: str,
             (row["score"] - BREADTH_ALPHA * n / (n + BREADTH_SATURATION),
              lid, row))
     scored.sort(key=lambda t: t[0])
-    winners = scored[:limit]
-
-    keys = [f"{lid}:{row['seg_no']}" for _, lid, row in winners]
-    snippets = _fetch_segment_snippets(conn, match_query, keys)
-    meta = _fetch_laws_meta(conn, [lid for _, lid, _ in winners])
 
     hits = []
-    for score, lid, row in winners:
-        m = meta.get(lid)
-        title = m["title"] if m else None
+    for score, lid, row in scored[:TIER2_ACT_POOL]:
         hits.append({
-            "law_id": lid, "doc_id": m["doc_id"] if m else None,
-            "title": title, "category": row["category"],
-            "snippet": _trim_title(title),
+            "law_id": lid, "doc_id": None, "title": None,
+            "category": row["category"], "snippet": "",
             "score": score,
             "matched_kind": row["kind"], "matched_label": row["label"],
-            "seg_snippet": snippets.get(f"{lid}:{row['seg_no']}", ""),
+            "seg_snippet": "", "_seg_no": row["seg_no"],
         })
     return hits
+
+
+def _enrich_segment_hits(conn: sqlite3.Connection, match_query: str,
+                         hits: list[dict]) -> None:
+    """Phase 2, applied to the ≤limit SURVIVING body-tier hits only:
+    fetch act metadata (title/doc_id) and the best-segment snippet,
+    fill the display fields in place."""
+    if not hits:
+        return
+    keys = [f"{h['law_id']}:{h['_seg_no']}" for h in hits]
+    snippets = _fetch_segment_snippets(conn, match_query, keys)
+    meta = _fetch_laws_meta(conn, [h["law_id"] for h in hits])
+    for h in hits:
+        m = meta.get(h["law_id"])
+        title = m["title"] if m else None
+        h["doc_id"] = m["doc_id"] if m else None
+        h["title"] = title
+        h["snippet"] = _trim_title(title)
+        h["seg_snippet"] = snippets.get(
+            f"{h['law_id']}:{h['_seg_no']}", "")
+        del h["_seg_no"]
 
 
 def search_fts(conn: sqlite3.Connection, query: str,
@@ -457,9 +479,8 @@ def search_fts(conn: sqlite3.Connection, query: str,
     if len(title_hits) >= min(limit, _TIER2_MIN_TITLE_HITS):
         return _rang_tier_sort(title_hits)[:limit]
 
-    body_hits = _segment_hits(
-        conn, normalized, _run_segment_match(conn, normalized, category),
-        limit)
+    body_hits = _segment_hits(_run_segment_match(conn, normalized,
+                                                  category))
 
     seen_ids = {h["law_id"] for h in title_hits}
     merged = list(title_hits)
@@ -468,7 +489,11 @@ def search_fts(conn: sqlite3.Connection, query: str,
             continue
         merged.append(h)
         seen_ids.add(h["law_id"])
-        if len(merged) >= limit:
-            break
 
-    return _rang_tier_sort(merged[:limit])
+    # Rang-sort over the full pool (title hits + TIER2_ACT_POOL body
+    # acts), truncate to the caller's limit, then enrich the surviving
+    # body-tier hits (phase-2 snippet + metadata; ≤limit extractions).
+    final = _rang_tier_sort(merged)[:limit]
+    _enrich_segment_hits(conn, normalized,
+                         [h for h in final if "_seg_no" in h])
+    return final

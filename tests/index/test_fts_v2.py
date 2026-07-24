@@ -181,6 +181,45 @@ def test_missing_articles_fts_propagates(conn):
         search_fts(conn, "киберсигурност", limit=10)
 
 
+def test_rang_rescue_operates_on_the_act_pool_not_limit(conn, monkeypatch):
+    """A parent law whose breadth-corrected rank lands BETWEEN `limit`
+    and TIER2_ACT_POOL must still be rang-rescued into the results —
+    the spike's Кодекс-на-труда case (raw rank ~20, limit 10). The act
+    pool for rang sorting is TIER2_ACT_POOL (20); truncation to `limit`
+    happens after the sort. An act OUTSIDE the pool (rank 21) must not
+    be rescued. White-box: phase-1 rows are patched with controlled
+    scores (synthetic corpora cannot pin bm25 orderings reliably)."""
+    import index.fts as fts
+
+    rows = []
+    for i in range(21):
+        if i == 11:
+            lid, cat = "law-inside-pool", "laws"
+        elif i == 20:
+            lid, cat = "law-outside-pool", "laws"
+        else:
+            lid, cat = f"ord-{i}", "ordinances"
+        rows.append({"law_id": lid, "seg_no": "0", "kind": "article",
+                     "label": f"чл. {i}", "category": cat,
+                     "score": -100.0 + i})
+        conn.execute(
+            "INSERT INTO laws (law_id, doc_id, title, category)"
+            " VALUES (?, ?, ?, ?)", (lid, i, f"Акт {i}", cat))
+
+    monkeypatch.setattr(fts, "_run_segment_match",
+                        lambda conn_, q, cat: rows)
+    monkeypatch.setattr(fts, "_fetch_segment_snippets",
+                        lambda conn_, q, keys: {k: "<b>x</b>" for k in keys})
+    hits = search_fts(conn, "какъвто", limit=5)
+    ids = [h["law_id"] for h in hits]
+    assert ids[0] == "law-inside-pool", (
+        f"rank-12 law must be rang-rescued from the 20-act pool; {ids}")
+    assert "law-outside-pool" not in ids, (
+        f"rank-21 law is outside TIER2_ACT_POOL and must not appear; {ids}")
+    assert len(ids) == 5
+    assert fts.TIER2_ACT_POOL == 20
+
+
 def test_overscan_constant_is_fixed_500():
     # Determinism contract: breadth counts (hence scores) must not vary
     # with the caller's limit.
