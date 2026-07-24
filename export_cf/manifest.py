@@ -1,7 +1,8 @@
 """stats.json + manifest.json writers.
 
 Manifest layout:
-  counts   — per-table D1 row counts + acts_json/versions_json file counts
+  counts   — per-table D1 row counts (incl. laws_fts titles and
+             articles_fts segments) + acts_json/versions_json file counts
   files    — sha256 per top-level artifact (d1-schema.sql, d1-data-*.sql,
              r2/meta/stats.json)
   classes  — per artifact class (acts, versions): file count + aggregate
@@ -51,7 +52,7 @@ def export_stats(conn: sqlite3.Connection, r2_dir: Path,
 
 
 def write_manifest(out_dir: Path, counts: dict, exported_at: str,
-                   fts_truncated: list[str] | None = None,
+                   max_fts_body_bytes: int = 0,
                    max_statement_bytes: int = 0,
                    fts_guards: dict | None = None) -> dict:
     out_dir = Path(out_dir)
@@ -63,13 +64,15 @@ def write_manifest(out_dir: Path, counts: dict, exported_at: str,
     manifest = {
         "exported_at": exported_at,
         "counts": counts,
-        # Acts whose laws_fts body was truncated for D1's 2 MB row
-        # limit (documented FTS-recall divergence for these law_ids).
-        "fts_truncated": fts_truncated or [],
+        # v2.0 (replaces the retired fts_truncated key): largest
+        # emitted articles_fts body in UTF-8 bytes — must be ≤ 400,000
+        # (index SEG_MAX_BYTES contract), which keeps every value far
+        # below D1's 2,000,000-byte cap. Nothing is ever truncated.
+        "max_fts_body_bytes": max_fts_body_bytes,
         # Largest emitted SQL statement (v1.3: must be ≤ 90,000 — D1
         # rejects statements over ~100 KB with SQLITE_TOOBIG).
         "max_statement_bytes": max_statement_bytes,
-        # v1.3.2 idempotency: guarded-statement counts in the d1-fts
+        # v1.3.2 idempotency: guarded-statement counts across BOTH fts
         # series (the d1-meta series is NOT idempotent — import into
         # empty tables only).
         "fts_guards": fts_guards or {"inserts": 0, "updates": 0},

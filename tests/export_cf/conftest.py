@@ -52,6 +52,22 @@ def export_corpus(tmp_path_factory):
         + "\n",
         encoding="utf-8")
 
+    # Multi-segment act (FR-032): Чл. + § + Приложение anchors so the
+    # articles_fts series carries every segment kind, with an annex
+    # paragraph long enough (>90KB normalized) that its lone INSERT
+    # exceeds the DEFAULT statement budget — the INSERT+UPDATE-append
+    # slicer must fire even at production settings.
+    seg = corpus / "laws" / "zakon-segmenti.md"
+    annex_para = "Таблица със стойности за прилагане на закона. " * 2600
+    seg.write_text(
+        "---\ntitulo: Закон за сегментите\nidentificador: 555\n"
+        "fecha_publicacion: 2020-01-01\n---\n\n"
+        "**Чл. 1.** Първи член от закона.\n\n"
+        "**Чл. 2.** Втори член от закона.\n\n"
+        "§ 1. Преходна разпоредба към закона.\n\n"
+        "Приложение № 1\n\n" + annex_para + "\n",
+        encoding="utf-8")
+
     ord_ = corpus / "ordinances" / "naredba-bez-data.md"
     ord_.write_text(
         "---\ntitulo: Наредба без дата\nidentificador: 888\n---\n\n"
