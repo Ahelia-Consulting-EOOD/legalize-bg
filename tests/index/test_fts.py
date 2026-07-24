@@ -236,35 +236,3 @@ def test_run_match_does_not_swallow_corrupt_index_errors():
     # ("no such table: laws_fts") to propagate.
     with pytest.raises(sqlite3.OperationalError):
         _run_match(conn, "поръчки", category=None, limit=20)
-
-
-class TestFtsBodyCap:
-    """D1-parity cap (spec v1.2): indexed body ≤ 1,900,000 UTF-8 bytes."""
-
-    def test_oversized_body_is_capped_at_char_boundary(self, tmp_path):
-        import sqlite3
-        from index.fts import create_laws_fts_table, insert_fts_row, FTS_BODY_MAX_BYTES
-
-        conn = sqlite3.connect(":memory:")
-        create_laws_fts_table(conn)
-        big_body = "я" * 1_200_000  # 2.4 MB in UTF-8 (2 bytes/char)
-        insert_fts_row(conn, "big-act", "Голям акт", big_body, "laws")
-        stored = conn.execute(
-            "SELECT body FROM laws_fts WHERE law_id = 'big-act'"
-        ).fetchone()[0]
-        raw = stored.encode("utf-8")
-        assert len(raw) <= FTS_BODY_MAX_BYTES
-        # char-boundary truncation: decodes cleanly and only whole chars
-        assert stored == "я" * (len(raw) // 2)
-
-    def test_normal_body_unchanged(self):
-        import sqlite3
-        from index.fts import create_laws_fts_table, insert_fts_row, bg_normalize
-
-        conn = sqlite3.connect(":memory:")
-        create_laws_fts_table(conn)
-        insert_fts_row(conn, "small-act", "Малък акт", "Чл. 1. Текст.", "laws")
-        stored = conn.execute(
-            "SELECT body FROM laws_fts WHERE law_id = 'small-act'"
-        ).fetchone()[0]
-        assert stored == bg_normalize("Чл. 1. Текст.")

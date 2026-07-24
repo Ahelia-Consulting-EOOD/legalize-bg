@@ -77,8 +77,14 @@ def test_build_populates_fts_with_normalized_text(fake_corpus, tmp_path):
     conn = sqlite3.connect(db_path)
     fts_count = conn.execute("SELECT COUNT(*) FROM laws_fts").fetchone()[0]
     assert fts_count == 2
-    body = conn.execute("SELECT body FROM laws_fts LIMIT 1").fetchone()[0]
-    assert body == body.lower()  # bg_normalize lowercases
+    title = conn.execute("SELECT title FROM laws_fts LIMIT 1").fetchone()[0]
+    assert title == title.lower()  # bg_normalize lowercases
+    # FR-032: every act's body lands in articles_fts, normalized
+    seg_acts = conn.execute(
+        "SELECT COUNT(DISTINCT law_id) FROM articles_fts").fetchone()[0]
+    assert seg_acts == 2
+    body = conn.execute("SELECT body FROM articles_fts LIMIT 1").fetchone()[0]
+    assert body == body.lower()
 
 
 def test_build_is_idempotent(fake_corpus, tmp_path):

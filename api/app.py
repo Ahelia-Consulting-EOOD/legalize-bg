@@ -13,7 +13,9 @@ from api.errors import install_error_handlers
 from api.head_support import install_head_support
 from api.metrics import install_metrics
 
-API_VERSION = "1.0.0"
+# 1.0.0 → 1.1.0: ADDITIVE `matched` object on /search hits (FR-032 /
+# D-056 Q3 — best-segment attribution for body-tier results).
+API_VERSION = "1.1.0"
 
 
 def create_app(db_path: str, corpus_root: Path,

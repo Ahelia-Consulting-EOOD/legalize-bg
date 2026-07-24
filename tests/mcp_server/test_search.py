@@ -400,57 +400,75 @@ def test_search_body_snippet_cap_excludes_results_past_top_n(app, monkeypatch):
     )
 
 
-def test_make_body_snippet_returns_empty_on_no_term_match(populated_conn):
-    """Direct unit test: when no term appears in the body, return ''."""
-    from mcp_server.queries import _make_body_snippet
-    out = _make_body_snippet(populated_conn, "zakon-a",
-                             terms=["неизвестен_термин"])
+def test_title_tier_snippet_returns_empty_on_no_segment_match(populated_conn):
+    """FR-032 replacement for the retired _make_body_snippet unit: when
+    the act's segments don't match the query, return ''."""
+    from mcp_server.queries import _title_tier_body_snippet
+    out = _title_tier_body_snippet(populated_conn, "zakon-a",
+                                   "неизвестентермин")
     assert out == ""
 
 
-def test_make_body_snippet_returns_empty_for_unknown_law_id(populated_conn):
-    """If the law_id isn't in laws_fts, return ''."""
-    from mcp_server.queries import _make_body_snippet
-    out = _make_body_snippet(populated_conn, "doesnotexist",
-                             terms=["обществен"])
+def test_title_tier_snippet_returns_empty_for_unknown_law_id(populated_conn):
+    from mcp_server.queries import _title_tier_body_snippet
+    out = _title_tier_body_snippet(populated_conn, "doesnotexist",
+                                   "обществен")
     assert out == ""
 
 
-def test_insert_fts_row_lowercases_body(populated_conn):
-    """LOAD-BEARING INVARIANT: _make_body_snippet does case-sensitive
-    str.find() against laws_fts.body, expecting bg_normalize-d
-    (lowercased) text. If insert_fts_row ever stops lowercasing, the
-    snippet helper silently returns empty for queries that should
-    match. Lock the invariant here so a future change to the
-    normalization pipeline produces a focused failure."""
+def test_title_tier_snippet_swallows_malformed_query_only(populated_conn):
+    """User-input FTS5 errors → ''; structural errors (articles_fts
+    missing) must propagate as INDEX_MISSING-class failures."""
+    import sqlite3
+    from mcp_server.queries import _title_tier_body_snippet
+    assert _title_tier_body_snippet(populated_conn, "zakon-a",
+                                    '"unbalanced') == ""
+    populated_conn.execute("DROP TABLE articles_fts")
+    with pytest.raises(sqlite3.OperationalError):
+        _title_tier_body_snippet(populated_conn, "zakon-a", "обществен")
+
+
+def test_segment_bodies_are_normalized_lowercase(populated_conn):
+    """LOAD-BEARING INVARIANT (FR-032 edition): articles_fts.body holds
+    bg_normalize-d (lowercased) text — the symmetric-normalization
+    contract (D-022) that makes query/index forms meet."""
     row = populated_conn.execute(
-        "SELECT body FROM laws_fts WHERE law_id = 'zakon-zop'"
+        "SELECT body FROM articles_fts WHERE law_id = 'zakon-zop'"
     ).fetchone()
     assert row is not None
     body = row["body"]
-    # bg_normalize lowercases — body should not contain any uppercase
-    # Cyrillic. Spot-check the canonical case-marker chars.
     assert body == body.lower(), (
-        f"laws_fts.body for zakon-zop should be lowercased after "
+        f"articles_fts.body for zakon-zop should be lowercased after "
         f"bg_normalize; got mixed case: {body[:60]!r}"
     )
-    # And the bg_normalize symmetric form is what _make_body_snippet
-    # expects for case-insensitive matching.
     assert "закон" in body
     assert "Закон" not in body
 
 
-def test_make_body_snippet_finds_earliest_match(populated_conn):
-    """When multiple terms appear in the body, the snippet is built
-    around the EARLIEST occurrence (so the user sees the first context
-    they'd naturally read in)."""
-    from mcp_server.queries import _make_body_snippet
-    # zakon-zop has body "закон за обществените поръчки в република
-    # българия" (lowercased by insert_fts_row). 'българия' appears AFTER
-    # 'закон'; both are in the body. The snippet should be around 'закон'
-    # (earliest), not 'българия'.
-    out = _make_body_snippet(populated_conn, "zakon-zop",
-                             terms=["българия", "закон"])
-    assert "<b>закон</b>" in out, (
-        f"snippet should highlight earliest term 'закон', got: {out!r}"
-    )
+def test_body_tier_hits_carry_matched_attribution(populated_conn, tmp_path):
+    """FR-032 / D-056 Q3: a body-tier hit carries the additive
+    `matched` object ({kind, label}) and a free segment-derived
+    body_snippet even WITHOUT include_body; title-tier hits carry
+    matched=None."""
+    from mcp_server.server import build_app
+    from tests.mcp_server.conftest import FAKE_COMMIT_HASH
+    populated_conn.execute(
+        "INSERT INTO laws (law_id, doc_id, title, category, status,"
+        " current_commit) VALUES ('deep', 900, 'Закон за дълбините',"
+        " 'laws', 'vigente', ?)", (FAKE_COMMIT_HASH,))
+    from index.fts import insert_segment_rows, insert_title_row
+    insert_title_row(populated_conn, law_id="deep",
+                     title="Закон за дълбините", category="laws")
+    insert_segment_rows(
+        populated_conn, law_id="deep",
+        body="**Чл. 42.** Уредба на батискафите в дълбоки води.\n",
+        category="laws")
+    app = build_app(conn=populated_conn, corpus_root=tmp_path)
+    hits = app.call_tool_sync("search", {"query": "батискафите"})
+    assert hits and hits[0]["law_id"] == "deep"
+    assert hits[0]["matched"] == {"kind": "article", "label": "чл. 42"}
+    assert "<b>батискаф" in hits[0]["body_snippet"]
+    # title-served query → matched is None
+    title_hits = app.call_tool_sync("search", {"query": "обществени поръчки"})
+    assert title_hits and title_hits[0]["matched"] is None
+

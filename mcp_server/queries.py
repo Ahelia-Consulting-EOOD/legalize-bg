@@ -26,7 +26,7 @@ from typing import Any
 
 import yaml
 
-from index.fts import bg_normalize, search_fts
+from index.fts import _is_user_input_error, bg_normalize, search_fts
 from index.synonyms import expand_if_abbreviation
 from mcp_server.errors import ToolError
 from mcp_server.schemas import VersionEntry, AmendmentEntry
@@ -77,81 +77,37 @@ _CATEGORY_STOP_WORDS = frozenset({
 })
 
 
-# FR-017 / D-2026-05-09-02 — body snippets are generated only for the
-# top N hits to bound per-query cost. The biggest indexed bodies in
-# the live catalog are 1+ MB (e.g. naredba-za-kachestvoto-na-...
-# at 1.26 MB; kodeks-za-zastrahovaneto at 1.05 MB). Fetching one of
-# those rows from SQLite takes ~50 ms because the entire row is
-# materialized into Python regardless of substr() because of FTS5's
-# storage layout. With N=2 the worst-case per-search overhead is
-# ~100 ms — comfortably within the 250 ms cold-call search budget
-# while still giving the model body context for the most likely
-# answers. Phase 1b.3 chose N=2 over N=5 after a 5x cost overrun
-# during integration testing (508 ms warm p95 vs 100 ms budget).
+# FR-017 as reworked by FR-032 (D-056): tier-2 hits carry an FTS5
+# segment snippet for free (search_fts seg_snippet). include_body=True
+# additionally fetches a best-segment snippet for TITLE-tier hits via
+# one articles_fts MATCH scoped to that law_id — bounded to the top
+# N hits per call, replacing the retired _make_body_snippet Python
+# scan over ≥1 MB laws_fts body rows (which no longer exist: laws_fts
+# is title-only since migration 005).
 _BODY_SNIPPET_TOP_N = 2
 
-# Half-window in characters around the matched token. ±60 chars gives
-# the model a sentence-sized fragment without ballooning the response
-# payload (max ~120 chars per snippet × _BODY_SNIPPET_TOP_N = ~240
-# chars total per search call when include_body=True).
-_BODY_SNIPPET_HALF_WINDOW = 60
+_SCOPED_SEGMENT_SNIPPET_SQL = """
+    SELECT snippet(articles_fts, 4, '<b>', '</b>', '...', 12) AS snip
+      FROM articles_fts
+     WHERE articles_fts MATCH ? AND law_id = ?
+     ORDER BY bm25(articles_fts) LIMIT 1
+"""
 
 
-def _make_body_snippet(conn: sqlite3.Connection, law_id: str,
-                      terms: list[str]) -> str:
-    """Return a Python-extracted body fragment around the first
-    occurrence of any term in `terms` within the act's indexed body.
-
-    Falls back to the empty string if:
-      - The body row is missing or empty.
-      - None of the terms appear in the body.
-
-    Highlights the matched term with `<b>...</b>` to match the
-    title-snippet convention. The body in laws_fts is bg_normalize-d
-    (lowercased), so the lookup is on the lowercased input; the
-    returned fragment shows the body verbatim (lowercased) with the
-    match wrapped.
-    """
-    row = conn.execute(
-        "SELECT body FROM laws_fts WHERE law_id = ?", (law_id,)
-    ).fetchone()
-    if not row:
+def _title_tier_body_snippet(conn: sqlite3.Connection, law_id: str,
+                             normalized_query: str) -> str:
+    """Best-segment snippet for a title-tier hit (include_body=True).
+    Returns '' when the act's segments don't match the query (a purely
+    title-shaped hit) or the query is FTS5-malformed."""
+    try:
+        row = conn.execute(
+            _SCOPED_SEGMENT_SNIPPET_SQL, (normalized_query, law_id)
+        ).fetchone()
+    except sqlite3.OperationalError as e:
+        if not _is_user_input_error(e):
+            raise  # INDEX_MISSING-class errors must not be silenced
         return ""
-    body = row["body"] or ""
-    if not body:
-        return ""
-
-    # Find the earliest occurrence of any term. The body in laws_fts
-    # is already lowercased by insert_fts_row; terms are also
-    # lowercased by bg_normalize, so direct .find() is sufficient.
-    earliest = -1
-    matched_term = ""
-    for term in terms:
-        idx = body.find(term)
-        if idx != -1 and (earliest == -1 or idx < earliest):
-            earliest = idx
-            matched_term = term
-
-    if earliest == -1:
-        return ""
-
-    start = max(0, earliest - _BODY_SNIPPET_HALF_WINDOW)
-    end = min(len(body), earliest + len(matched_term)
-              + _BODY_SNIPPET_HALF_WINDOW)
-
-    prefix = "..." if start > 0 else ""
-    suffix = "..." if end < len(body) else ""
-
-    fragment = body[start:end]
-    rel = earliest - start
-    highlighted = (
-        fragment[:rel]
-        + "<b>"
-        + fragment[rel:rel + len(matched_term)]
-        + "</b>"
-        + fragment[rel + len(matched_term):]
-    )
-    return f"{prefix}{highlighted}{suffix}"
+    return row["snip"] if row else ""
 
 
 # ────────────────────────────── Article spec parser ─────────────────────────
@@ -502,37 +458,33 @@ def full_text_search(conn: sqlite3.Connection, query: str,
 
     rows = search_fts(conn, effective_query, category=category, limit=limit)
 
-    # FR-017 / D-2026-05-09-02: Python-side body snippet for the top
-    # _BODY_SNIPPET_TOP_N results. Tokens are extracted from the
-    # bg_normalize-d effective query (which already includes any
-    # synonym expansion). 3-char minimum to avoid noise from very
-    # short terms.
-    snippet_terms = [
-        t for t in re.findall(r"\w+", bg_normalize(effective_query))
-        if len(t) >= 3
-    ]
+    # FR-032: tier-2 hits carry an FTS5 segment snippet for free; the
+    # additive `matched` field attributes the hit to an article/§/annex
+    # (D-056 Q3). include_body=True upgrades TITLE-tier hits (top
+    # _BODY_SNIPPET_TOP_N) with a scoped best-segment snippet.
+    normalized_effective = bg_normalize(effective_query)
 
     out: list[dict] = []
-    for idx, r in enumerate(rows):
-        title = r["title"] or f"<doc_id={r['doc_id']}>"
-        body_snippet = ""
-        # Body-snippet generation is opt-in: each fetch reads a full
-        # 100KB-1MB body row from FTS5 and the catalog's largest acts
-        # (kodeks-za-zastrahovaneto, naredba-za-kachestvoto, etc.) blow
-        # the 100 ms warm-search budget at any TOP_N > 0. Callers that
-        # need body context pass include_body=True and accept the
-        # extra latency; the default preserves the 1b.2 hard budget.
-        if include_body and idx < _BODY_SNIPPET_TOP_N and snippet_terms:
-            body_snippet = _make_body_snippet(conn, r["law_id"],
-                                              snippet_terms)
+    for idx, h in enumerate(rows):
+        title = h["title"] or f"<doc_id={h['doc_id']}>"
+        body_snippet = h["seg_snippet"] or ""
+        if (include_body and not body_snippet
+                and idx < _BODY_SNIPPET_TOP_N and normalized_effective):
+            body_snippet = _title_tier_body_snippet(
+                conn, h["law_id"], normalized_effective)
+        matched = None
+        if h["matched_kind"] is not None:
+            matched = {"kind": h["matched_kind"],
+                       "label": h["matched_label"]}
         out.append({
-            "law_id": r["law_id"],
-            "identificador": str(r["doc_id"]),
+            "law_id": h["law_id"],
+            "identificador": str(h["doc_id"]),
             "title": title,
-            "category": r["category"],
-            "title_snippet": r["snippet"],
+            "category": h["category"],
+            "title_snippet": h["snippet"],
             "body_snippet": body_snippet,
-            "relevance": -float(r["score"]),
+            "matched": matched,
+            "relevance": -float(h["score"]),
         })
     return out
 

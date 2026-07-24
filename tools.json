@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "spec": "https://modelcontextprotocol.io/specification/server/tools",
   "server": {
     "name": "legalize-bg",
@@ -210,6 +210,28 @@
                 "body_snippet": {
                   "type": "string"
                 },
+                "matched": {
+                  "anyOf": [
+                    {
+                      "properties": {
+                        "kind": {
+                          "type": "string"
+                        },
+                        "label": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "kind",
+                        "label"
+                      ],
+                      "type": "object"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
                 "relevance": {
                   "type": "number"
                 }
@@ -221,6 +243,7 @@
                 "category",
                 "title_snippet",
                 "body_snippet",
+                "matched",
                 "relevance"
               ],
               "type": "object"
