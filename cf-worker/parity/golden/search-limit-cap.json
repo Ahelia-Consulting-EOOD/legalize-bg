@@ -8,454 +8,504 @@
  },
  "body": [
   {
-   "law_id": "zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato",
-   "identificador": "2135849405",
-   "title": "ЗАКОН ЗА ИЗПЛАЩАНЕ НА ЗАДЪЛЖЕНИЯТА, УГОВОРЕНИ В ЗЛАТО",
+   "law_id": "zakon-za-administratsiyata",
+   "identificador": "2134443520",
+   "title": "ЗАКОН ЗА АДМИНИСТРАЦИЯТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> изплащане на задълженията, уговорени в злато",
+   "title_snippet": "<b>закон</b> <b>за</b> администрация",
    "body_snippet": "",
-   "relevance": 3.5149718492084
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-otmenyavane-na-vsichki-zakoni-izdadeni-predi-9091944-g",
-   "identificador": "2122103808",
-   "title": "ЗАКОН ЗА ОТМЕНЯВАНЕ НА ВСИЧКИ ЗАКОНИ, ИЗДАДЕНИ ПРЕДИ 9.09.1944 Г.",
+   "law_id": "zakon-za-advokaturata",
+   "identificador": "2135486731",
+   "title": "ЗАКОН ЗА АДВОКАТУРАТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> отменяване на всички закони, издадени преди 9.09.1944 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> адвокатура",
    "body_snippet": "",
-   "relevance": 3.5124688517811253
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-otteglyane-na-deklaratsiyata-po-chl-7-2-ot-evropeyskata-harta-za-mestno",
-   "identificador": "2135803520",
-   "title": "ЗАКОН ЗА ОТТЕГЛЯНЕ НА ДЕКЛАРАЦИЯТА ПО ЧЛ. 7, § 2 ОТ ЕВРОПЕЙСКАТА ХАРТА ЗА МЕСТНО САМОУПРАВЛЕНИЕ",
+   "law_id": "zakon-za-energetikata",
+   "identificador": "2135475623",
+   "title": "ЗАКОН ЗА ЕНЕРГЕТИКАТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> оттегляне на декларация по чл. 7, § 2 от европейска харта...",
+   "title_snippet": "<b>закон</b> <b>за</b> енергетика",
    "body_snippet": "",
-   "relevance": 3.5084716862051515
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-otteglyane-na-rezervite-napraveni-ot-republika-balgariya-v-saotvetstvie",
-   "identificador": "2135475757",
-   "title": "ЗАКОН ЗА ОТТЕГЛЯНЕ НА РЕЗЕРВИТЕ, НАПРАВЕНИ ОТ РЕПУБЛИКА БЪЛГАРИЯ В СЪОТВЕТСТВИЕ С ЧЛ. 37, АЛ. 1 ОТ НАКАЗАТЕЛНАТА КОНВЕНЦИЯ ОТНОСНО КОРУПЦИЯТА",
+   "law_id": "zakon-za-furazhite",
+   "identificador": "2135531693",
+   "title": "ЗАКОН ЗА ФУРАЖИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> оттегляне на резервите, направени от република българия в съответствие с...",
+   "title_snippet": "<b>закон</b> <b>за</b> фуражи",
    "body_snippet": "",
-   "relevance": 3.5049812023984748
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-otteglyane-na-rezervata-napravena-ot-republika-balgariya-v-saotvetstvie",
-   "identificador": "2135218176",
-   "title": "ЗАКОН ЗА ОТТЕГЛЯНЕ НА РЕЗЕРВАТА, НАПРАВЕНА ОТ РЕПУБЛИКА БЪЛГАРИЯ В СЪОТВЕТСТВИЕ С ЧЛ. 13, АЛ. 1 ОТ ЕВРОПЕЙСКАТА КОНВЕНЦИЯ ЗА БОРБА С ТЕРОРИЗМА",
+   "law_id": "zakon-za-gorite",
+   "identificador": "2135721295",
+   "title": "ЗАКОН ЗА ГОРИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> оттегляне на резервата, направена от република българия в съответствие с...",
+   "title_snippet": "<b>закон</b> <b>за</b> гори",
    "body_snippet": "",
-   "relevance": 3.503487726615014
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-otteglyane-na-rezervata-napravena-ot-republika-balgariya-po-chl-12-ot-e",
-   "identificador": "2135179776",
-   "title": "ЗАКОН ЗА ОТТЕГЛЯНЕ НА РЕЗЕРВАТА, НАПРАВЕНА ОТ РЕПУБЛИКА БЪЛГАРИЯ ПО ЧЛ. 12 ОТ ЕВРОПЕЙСКАТА КОНВЕНЦИЯ ЗА ЕКСТРАДИЦИЯ",
+   "law_id": "zakon-za-hazarta",
+   "identificador": "2135783265",
+   "title": "ЗАКОН ЗА ХАЗАРТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> оттегляне на резервата, направена от република българия по чл. 12...",
+   "title_snippet": "<b>закон</b> <b>за</b> хазар",
    "body_snippet": "",
-   "relevance": 3.503238900307256
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-ofitserskite-sabraniya",
-   "identificador": "2135649625",
-   "title": "ЗАКОН ЗА ОФИЦЕРСКИТЕ СЪБРАНИЯ",
+   "law_id": "zakon-za-hranite",
+   "identificador": "2137203080",
+   "title": "ЗАКОН ЗА ХРАНИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> офицерски събрания",
+   "title_snippet": "<b>закон</b> <b>за</b> храни",
    "body_snippet": "",
-   "relevance": 3.4977734238476055
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-zakrivane-na-meditsinskata-akademiya",
-   "identificador": "2132295169",
-   "title": "ЗАКОН ЗА ЗАКРИВАНЕ НА МЕДИЦИНСКАТА АКАДЕМИЯ",
+   "law_id": "zakon-za-izmervaniyata",
+   "identificador": "2135449088",
+   "title": "ЗАКОН ЗА ИЗМЕРВАНИЯТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> закриване на медицинска академия",
+   "title_snippet": "<b>закон</b> <b>за</b> измервания",
    "body_snippet": "",
-   "relevance": 3.4977734238476055
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-denonsirane-na-sporazumenieto-mezhdu-pravitelstvoto-na-republika-balgar",
-   "identificador": "2137244606",
-   "title": "ЗАКОН ЗА ДЕНОНСИРАНЕ НА СПОРАЗУМЕНИЕТО МЕЖДУ ПРАВИТЕЛСТВОТО НА РЕПУБЛИКА БЪЛГАРИЯ И ПРАВИТЕЛСТВОТО НА РЕПУБЛИКА МОЛДОВА ЗА ПОДПОМАГАНЕ НА ТАРАКЛИЙСКИЯ ДЪРЖАВЕН УНИВЕРСИТЕТ, РЕПУБЛИКА МОЛДОВА",
+   "law_id": "zakon-za-kibersigurnost",
+   "identificador": "2137188253",
+   "title": "ЗАКОН ЗА КИБЕРСИГУРНОСТ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> денонсиране на споразумение между правителство на република българия и правителство...",
+   "title_snippet": "<b>закон</b> <b>за</b> киберсигурност",
    "body_snippet": "",
-   "relevance": 3.4967817993640407
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1990-g",
-   "identificador": "2132295168",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1990 Г.",
+   "law_id": "zakon-za-kontsesiite",
+   "identificador": "2137178490",
+   "title": "ЗАКОН ЗА КОНЦЕСИИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1990 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> концесии",
    "body_snippet": "",
-   "relevance": 3.4950471876938796
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-urezhdane-pravnite-posleditsi-na-brakove-sklyucheni-v-narushenie-na-chl",
-   "identificador": "2134660097",
-   "title": "ЗАКОН ЗА УРЕЖДАНЕ ПРАВНИТЕ ПОСЛЕДИЦИ НА БРАКОВЕ, СКЛЮЧЕНИ В НАРУШЕНИЕ НА ЧЛ. 7 ОТ СЕМЕЙНИЯ КОДЕКС",
+   "law_id": "zakon-za-kooperatsiite",
+   "identificador": "2134696966",
+   "title": "ЗАКОН ЗА КООПЕРАЦИИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> уреждане правни последици на бракове, сключени в нарушение на чл...",
+   "title_snippet": "<b>закон</b> <b>за</b> кооперации",
    "body_snippet": "",
-   "relevance": 3.4950471876938796
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1974-g",
-   "identificador": "2128130048",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1974 Г.",
+   "law_id": "zakon-za-mediatsiyata",
+   "identificador": "2135496713",
+   "title": "ЗАКОН ЗА МЕДИАЦИЯТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1974 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> медиация",
    "body_snippet": "",
-   "relevance": 3.490842262629951
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-otteglyane-na-rezervata-napravena-ot-republika-balgariya-po-chl-31-ot-k",
-   "identificador": "2137205693",
-   "title": "ЗАКОН ЗА ОТТЕГЛЯНЕ НА РЕЗЕРВАТА, НАПРАВЕНА ОТ РЕПУБЛИКА БЪЛГАРИЯ ПО ЧЛ. 31 ОТ КОНВЕНЦИЯТА ЗА СТАТУТА НА ЛИЦАТА БЕЗ ГРАЖДАНСТВО, ПРИЕТА В НЮ ЙОРК НА 28 СЕПТЕМВРИ 1954 Г. (ДВ, БР. 60 ОТ 7 АВГУСТ 2012 Г.)",
+   "law_id": "zakon-za-metsenatstvoto",
+   "identificador": "2135514206",
+   "title": "ЗАКОН ЗА МЕЦЕНАТСТВОТО",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> оттегляне на резервата, направена от република българия по чл. 31...",
+   "title_snippet": "<b>закон</b> <b>за</b> меценатство",
    "body_snippet": "",
-   "relevance": 3.486401231081337
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-priemane-na-deklaratsiya-po-smisala-na-chlen-hi-razdel-43-ot-konventsiy",
-   "identificador": "2134696962",
-   "title": "ЗАКОН ЗА ПРИЕМАНЕ НА ДЕКЛАРАЦИЯ ПО СМИСЪЛА НА ЧЛЕН ХI, РАЗДЕЛ 43 ОТ КОНВЕНЦИЯТА НА ООН ЗА ПРИВИЛЕГИИТЕ И ИМУНИТЕТИТЕ НА СПЕЦИАЛИЗИРАНИТЕ ОРГАНИЗАЦИИ ЗА РАЗШИРЯВАНЕ ПРИЛАГАНЕТО НА КОНВЕНЦИЯТА ПО ОТНОШЕНИЕ НА НЯКОИ СПЕЦИАЛИЗИРАНИ ОРГАНИЗАЦИИ",
+   "law_id": "zakon-za-mitnitsite",
+   "identificador": "2134384640",
+   "title": "ЗАКОН ЗА МИТНИЦИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> приемане на декларация по смисъла на член хi, раздел 43...",
+   "title_snippet": "<b>закон</b> <b>за</b> митници",
    "body_snippet": "",
-   "relevance": 3.481971349726486
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-denonsirane-na-sporazumenieto-za-osnovavaneto-na-mezhdunarodnata-invest",
-   "identificador": "2137231404",
-   "title": "ЗАКОН ЗА ДЕНОНСИРАНЕ НА СПОРАЗУМЕНИЕТО ЗА ОСНОВАВАНЕТО НА МЕЖДУНАРОДНАТА ИНВЕСТИЦИОННА БАНКА И НА СПОРАЗУМЕНИЕТО ЗА ОРГАНИЗАЦИЯТА И ДЕЙНОСТТА НА МЕЖДУНАРОДНАТА БАНКА ЗА ИКОНОМИЧЕСКО СЪТРУДНИЧЕСТВО",
+   "law_id": "zakon-za-mladezhta",
+   "identificador": "2135786802",
+   "title": "ЗАКОН ЗА МЛАДЕЖТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> денонсиране на споразумение <b>за</b> основаване на международна инвестиционна банка и...",
+   "title_snippet": "<b>закон</b> <b>за</b> младеж",
    "body_snippet": "",
-   "relevance": 3.4797606316786696
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1989-g-3",
-   "identificador": "2132068352",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1989 Г.",
+   "law_id": "zakon-za-nasledstvoto",
+   "identificador": "2121542657",
+   "title": "ЗАКОН ЗА НАСЛЕДСТВОТО",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1989 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> наследство",
    "body_snippet": "",
-   "relevance": 3.4787786004946963
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-zakrivane-na-sotsialnoinvestitsionniya-fond",
-   "identificador": "2135668988",
-   "title": "ЗАКОН ЗА ЗАКРИВАНЕ НА СОЦИАЛНОИНВЕСТИЦИОННИЯ ФОНД",
+   "law_id": "zakon-za-ombudsmana",
+   "identificador": "2135467520",
+   "title": "ЗАКОН ЗА ОМБУДСМАНА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> закриване на социалноинвестиционния фонд",
+   "title_snippet": "<b>закон</b> <b>за</b> омбудсмана",
    "body_snippet": "",
-   "relevance": 3.478533271419388
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1989-g",
-   "identificador": "2132064256",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1989 Г.",
+   "law_id": "zakon-za-patishtata",
+   "identificador": "2134914560",
+   "title": "ЗАКОН ЗА ПЪТИЩАТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1989 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> пътища",
    "body_snippet": "",
-   "relevance": 3.4780427170601422
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-priemane-na-deklaratsiya-po-smisala-na-chl-h-razdel-43-ot-konventsiyata",
-   "identificador": "2135685282",
-   "title": "ЗАКОН ЗА ПРИЕМАНЕ НА ДЕКЛАРАЦИЯ ПО СМИСЪЛА НА ЧЛ. ХІ, РАЗДЕЛ 43 ОТ КОНВЕНЦИЯТА НА ООН ЗА ПРИВИЛЕГИИТЕ И ИМУНИТЕТИТЕ НА СПЕЦИАЛИЗИРАНИТЕ ОРГАНИЗАЦИИ ЗА РАЗШИРЯВАНЕ ПРИЛАГАНЕТО НА КОНВЕНЦИЯТА ПО ОТНОШЕНИЕ НА СВЕТОВНАТА ОРГАНИЗАЦИЯ ПО ТУРИЗЪМ",
+   "law_id": "zakon-za-pchelarstvoto",
+   "identificador": "2135468444",
+   "title": "ЗАКОН ЗА ПЧЕЛАРСТВОТО",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> приемане на декларация по смисъла на чл. хі, раздел 43...",
+   "title_snippet": "<b>закон</b> <b>за</b> пчеларство",
    "body_snippet": "",
-   "relevance": 3.4777978121745714
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-2002-g",
-   "identificador": "2135456937",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 2002 Г.",
+   "law_id": "zakon-za-pochvite",
+   "identificador": "2135569762",
+   "title": "ЗАКОН ЗА ПОЧВИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 2002 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> почви",
    "body_snippet": "",
-   "relevance": 3.4743679649063894
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-gerb-na-republika-balgariya",
-   "identificador": "2134146564",
-   "title": "ЗАКОН ЗА ГЕРБ НА РЕПУБЛИКА БЪЛГАРИЯ",
+   "law_id": "zakon-za-schetovodstvoto",
+   "identificador": "2136697598",
+   "title": "ЗАКОН ЗА СЧЕТОВОДСТВОТО",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> герб на република българия",
+   "title_snippet": "<b>закон</b> <b>за</b> счетоводство",
    "body_snippet": "",
-   "relevance": 3.471433749386931
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-lihvite-varhu-danatsi-taksi-i-drugi-podobni-darzhavni-vzemaniya",
-   "identificador": "2123675140",
-   "title": "ЗАКОН ЗА ЛИХВИТЕ ВЪРХУ ДАНЪЦИ, ТАКСИ И ДРУГИ ПОДОБНИ ДЪРЖАВНИ ВЗЕМАНИЯ",
+   "law_id": "zakon-za-sobstvenostta",
+   "identificador": "2122102787",
+   "title": "ЗАКОН ЗА СОБСТВЕНОСТТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> лихви върху данъци, такси и други подобни държавни вземания",
+   "title_snippet": "<b>закон</b> <b>за</b> собственост",
    "body_snippet": "",
-   "relevance": 3.4709451952402044
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1950-g",
-   "identificador": "2121930240",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1950 Г.",
+   "law_id": "zakon-za-statistikata",
+   "identificador": "2134668297",
+   "title": "ЗАКОН ЗА СТАТИСТИКАТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1950 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> статистика",
    "body_snippet": "",
-   "relevance": 3.4694803575350677
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-obyavyavane-na-sela-i-selishta-za-gradove-i-selishta-ot-gradski-tip",
-   "identificador": "2135849406",
-   "title": "ЗАКОН ЗА ОБЯВЯВАНЕ НА СЕЛА И СЕЛИЩА ЗА ГРАДОВЕ И СЕЛИЩА ОТ ГРАДСКИ ТИП",
+   "law_id": "zakon-za-transliteratsiyata",
+   "identificador": "2135623667",
+   "title": "ЗАКОН ЗА ТРАНСЛИТЕРАЦИЯТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> обявяване на села и селища <b>за</b> градове и селища от...",
+   "title_snippet": "<b>закон</b> <b>за</b> транслитерация",
    "body_snippet": "",
-   "relevance": 3.468992583806973
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-vazstanovyavane-sobstvenostta-varhu-konfiskuvanite-s-ukaz-88-na-prezidi",
-   "identificador": "2132857345",
-   "title": "ЗАКОН ЗА ВЪЗСТАНОВЯВАНЕ СОБСТВЕНОСТТА ВЪРХУ КОНФИСКУВАНИТЕ С УКАЗ № 88 НА ПРЕЗИДИУМА НА НС ОТ 1953 Г. (НЕОБНАРОДВАН) НЕДВИЖИМИ И ДВИЖИМИ ИМОТИ, ПРИНАДЛЕЖАЩИ НА КАТОЛИЧЕСКАТА ЧЕРКВА В ПРЕДЕЛИТЕ НА НАРОДНА РЕПУБЛИКА БЪЛГАРИЯ",
+   "law_id": "zakon-za-turizma",
+   "identificador": "2135845281",
+   "title": "ЗАКОН ЗА ТУРИЗМА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> възстановяване собственост върху конфискувани с указ № 88 на президиума на...",
+   "title_snippet": "<b>закон</b> <b>за</b> туризма",
    "body_snippet": "",
-   "relevance": 3.4687484022371
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-obrazuvane-na-ednolichni-targovski-druzhestva-s-darzhavno-imushtestvo",
-   "identificador": "2132569601",
-   "title": "ЗАКОН ЗА ОБРАЗУВАНЕ НА ЕДНОЛИЧНИ ТЪРГОВСКИ ДРУЖЕСТВА С ДЪРЖАВНО ИМУЩЕСТВО",
+   "law_id": "zakon-za-veroizpovedaniyata",
+   "identificador": "2135462355",
+   "title": "ЗАКОН ЗА ВЕРОИЗПОВЕДАНИЯТА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> образуване на еднолични търговски дружества с държавно имущество",
+   "title_snippet": "<b>закон</b> <b>за</b> вероизповедания",
    "body_snippet": "",
-   "relevance": 3.4648498507637475
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-otteglyane-na-deklaratsii-po-mezhdunarodnata-konventsiya-otnosno-namesa",
-   "identificador": "2135535792",
-   "title": "ЗАКОН ЗА ОТТЕГЛЯНЕ НА ДЕКЛАРАЦИИ ПО МЕЖДУНАРОДНАТА КОНВЕНЦИЯ ОТНОСНО НАМЕСАТА В ОТКРИТО МОРЕ В СЛУЧАИ НА БЕДСТВИЯ, ВОДЕЩИ ДО ЗАМЪРСЯВАНЕ НА МОРЕТО С НЕФТ, ОТ 1969 Г. И ЗА РАТИФИЦИРАНЕ НА ПРОТОКОЛА ОТНОСНО НАМЕСАТА В ОТКРИТО МОРЕ В СЛУЧАИ НА ЗАМЪРСЯВАНЕ С ВЕЩЕСТВА, РАЗЛИЧНИ ОТ НЕФТ, ОТ 1973 Г. С ИЗМЕНЕНИЯТА ОТ 2002 Г.",
+   "law_id": "zakon-za-vodite",
+   "identificador": "2134673412",
+   "title": "ЗАКОН ЗА ВОДИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> оттегляне на декларации по международна конвенция относно намеса в откри...",
+   "title_snippet": "<b>закон</b> <b>за</b> води",
    "body_snippet": "",
-   "relevance": 3.4638768134146822
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1989-g-2",
-   "identificador": "2132036608",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1989 Г.",
+   "law_id": "zakon-za-zanayatite",
+   "identificador": "2135184905",
+   "title": "ЗАКОН ЗА ЗАНАЯТИТЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1989 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> занаяти",
    "body_snippet": "",
-   "relevance": 3.4614457997414587
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-urezhdane-pravata-na-litsata-koito-sa-zaeli-ili-poluchili-darzhavni-dvo",
-   "identificador": "2123412992",
-   "title": "ЗАКОН ЗА УРЕЖДАНЕ ПРАВАТА НА ЛИЦАТА, КОИТО СА ЗАЕЛИ ИЛИ ПОЛУЧИЛИ ДЪРЖАВНИ ДВОРНИ МЕСТА",
+   "law_id": "zakon-za-zdraveto",
+   "identificador": "2135489147",
+   "title": "ЗАКОН ЗА ЗДРАВЕТО",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> уреждане права на лицата, които са заели или получили държавни...",
+   "title_snippet": "<b>закон</b> <b>за</b> здраве",
    "body_snippet": "",
-   "relevance": 3.457806016753581
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-vazstanovyavane-sobstvenostta-varhu-nyakoi-magazini-rabotilnitsi-sklado",
-   "identificador": "2132595201",
-   "title": "ЗАКОН ЗА ВЪЗСТАНОВЯВАНЕ СОБСТВЕНОСТТА ВЪРХУ НЯКОИ МАГАЗИНИ, РАБОТИЛНИЦИ, СКЛАДОВЕ И АТЕЛИЕТА",
+   "law_id": "zakon-za-zhivotnovadstvoto",
+   "identificador": "2134934528",
+   "title": "ЗАКОН ЗА ЖИВОТНОВЪДСТВОТО",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> възстановяване собственост върху някои магазини, работилници, складове и ателие",
+   "title_snippet": "<b>закон</b> <b>за</b> животновъдство",
    "body_snippet": "",
-   "relevance": 3.456594456187515
+   "matched": null,
+   "relevance": 3.202487887524908
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1947-g",
-   "identificador": "2121082368",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1947 Г.",
+   "law_id": "zakon-za-avtomobilnite-prevozi",
+   "identificador": "2134681088",
+   "title": "ЗАКОН ЗА АВТОМОБИЛНИТЕ ПРЕВОЗИ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1947 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> автомобилни превози",
    "body_snippet": "",
-   "relevance": 3.4544157853588717
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-vanshnata-targoviya",
-   "identificador": "2126822401",
-   "title": "ЗАКОН ЗА ВЪНШНАТА ТЪРГОВИЯ",
+   "law_id": "zakon-za-balgarskoto-grazhdanstvo",
+   "identificador": "2134446592",
+   "title": "ЗАКОН ЗА БЪЛГАРСКОТО ГРАЖДАНСТВО",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> външна търговия",
+   "title_snippet": "<b>закон</b> <b>за</b> българско гражданство",
    "body_snippet": "",
-   "relevance": 3.451515159521127
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-priemane-na-deklaratsiya-po-chl-287-al-1-ot-konventsiyata-na-organizats",
-   "identificador": "2136680931",
-   "title": "ЗАКОН ЗА ПРИЕМАНЕ НА ДЕКЛАРАЦИЯ ПО ЧЛ. 287, АЛ. 1 ОТ КОНВЕНЦИЯТА НА ОРГАНИЗАЦИЯТА НА ОБЕДИНЕНИТЕ НАЦИИ ПО МОРСКО ПРАВО ЗА ПРИЗНАВАНЕ НА ЮРИСДИКЦИЯТА НА МЕЖДУНАРОДНИЯ ТРИБУНАЛ ПО МОРСКО ПРАВО",
+   "law_id": "zakon-za-bankovata-nesastoyatelnost",
+   "identificador": "2135458119",
+   "title": "ЗАКОН ЗА БАНКОВАТА НЕСЪСТОЯТЕЛНОСТ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> приемане на декларация по чл. 287, ал. 1 от конвенция...",
+   "title_snippet": "<b>закон</b> <b>за</b> банкова несъстоятелност",
    "body_snippet": "",
-   "relevance": 3.44837854116758
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-talkuvane-na-chl-47-ot-zakona-za-chuzhdentsite-v-republika-balgariya-dv",
-   "identificador": "2134956544",
-   "title": "ЗАКОН ЗА ТЪЛКУВАНЕ НА ЧЛ. 47 ОТ ЗАКОНА ЗА ЧУЖДЕНЦИТЕ В РЕПУБЛИКА БЪЛГАРИЯ (ДВ, БР. 153 ОТ 1998 Г.)",
+   "law_id": "zakon-za-bezmitnata-targoviya",
+   "identificador": "2135540546",
+   "title": "ЗАКОН ЗА БЕЗМИТНАТА ТЪРГОВИЯ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> тълкуване на чл. 47 от закона <b>за</b> чужденци в република...",
+   "title_snippet": "<b>закон</b> <b>за</b> безмитна търговия",
    "body_snippet": "",
-   "relevance": 3.446451003080126
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-urezhdane-na-zadalzheniya-na-bulgargaz-ead-kam-darzhavata",
-   "identificador": "2134682624",
-   "title": "ЗАКОН ЗА УРЕЖДАНЕ НА ЗАДЪЛЖЕНИЯ НА \"БУЛГАРГАЗ\" - ЕАД, КЪМ ДЪРЖАВАТА",
+   "law_id": "zakon-za-biologichnoto-raznoobrazie",
+   "identificador": "2135456926",
+   "title": "ЗАКОН ЗА БИОЛОГИЧНОТО РАЗНООБРАЗИЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> уреждане на задължения на \"булгаргаз\" - еад, към държава",
+   "title_snippet": "<b>закон</b> <b>за</b> биологично разнообразие",
    "body_snippet": "",
-   "relevance": 3.445969220557282
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-predostavyane-na-pomosht-za-ozdravyavane-na-holding-balgarski-darzhavni",
-   "identificador": "2135727801",
-   "title": "ЗАКОН ЗА ПРЕДОСТАВЯНЕ НА ПОМОЩ ЗА ОЗДРАВЯВАНЕ НА \"ХОЛДИНГ БЪЛГАРСКИ ДЪРЖАВНИ ЖЕЛЕЗНИЦИ\" - ЕАД",
+   "law_id": "zakon-za-darzhaven-vestnik",
+   "identificador": "2133636096",
+   "title": "ЗАКОН ЗА \"ДЪРЖАВЕН ВЕСТНИК\"",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> предоставяне на помощ <b>за</b> оздравяване на \"холдинг български държавни железници...",
+   "title_snippet": "<b>закон</b> <b>за</b> \"държавен вестник\"",
    "body_snippet": "",
-   "relevance": 3.445488041886806
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-otteglyane-na-rezerva-i-priemane-na-deklaratsiya-po-mezhdunarodni-konve",
-   "identificador": "2135728792",
-   "title": "ЗАКОН ЗА ОТТЕГЛЯНЕ НА РЕЗЕРВА И ПРИЕМАНЕ НА ДЕКЛАРАЦИЯ ПО МЕЖДУНАРОДНИ КОНВЕНЦИИ",
+   "law_id": "zakon-za-darzhavnata-sobstvenost",
+   "identificador": "2133874689",
+   "title": "ЗАКОН ЗА ДЪРЖАВНАТА СОБСТВЕНОСТ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> оттегляне на резерва и приемане на декларация по международни конвенции",
+   "title_snippet": "<b>закон</b> <b>за</b> държавна собственост",
    "body_snippet": "",
-   "relevance": 3.4430827563816337
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-zakrivane-na-agentsiyata-za-chuzhdestranna-pomosht",
-   "identificador": "2135553197",
-   "title": "ЗАКОН ЗА ЗАКРИВАНЕ НА АГЕНЦИЯТА ЗА ЧУЖДЕСТРАННА ПОМОЩ",
+   "law_id": "zakon-za-darzhavnite-pomoshti",
+   "identificador": "2137177456",
+   "title": "ЗАКОН ЗА ДЪРЖАВНИТЕ ПОМОЩИ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> закриване на агенция <b>за</b> чуждестранна помощ",
+   "title_snippet": "<b>закон</b> <b>за</b> държавни помощи",
    "body_snippet": "",
-   "relevance": 3.4421219112296955
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-predostavyane-na-pomosht-za-izplashtane-na-zadalzheniya-na-natsionalna-",
-   "identificador": "2136906199",
-   "title": "ЗАКОН ЗА ПРЕДОСТАВЯНЕ НА ПОМОЩ ЗА ИЗПЛАЩАНЕ НА ЗАДЪЛЖЕНИЯ НА \"НАЦИОНАЛНА ЕЛЕКТРИЧЕСКА КОМПАНИЯ\" - ЕАД",
+   "law_id": "zakon-za-darzhavnite-taksi",
+   "identificador": "2122108929",
+   "title": "ЗАКОН ЗА ДЪРЖАВНИТЕ ТАКСИ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> предоставяне на помощ <b>за</b> изплащане на задължения на \"национална електрическа...",
+   "title_snippet": "<b>закон</b> <b>за</b> държавни такси",
    "body_snippet": "",
-   "relevance": 3.4346916917954005
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-urezhdane-na-nyakoi-trudovi-i-osiguritelni-prava-na-balgarski-grazhdani",
-   "identificador": "2135605219",
-   "title": "ЗАКОН ЗА УРЕЖДАНЕ НА НЯКОИ ТРУДОВИ И ОСИГУРИТЕЛНИ ПРАВА НА БЪЛГАРСКИ ГРАЖДАНИ",
+   "law_id": "zakon-za-darzhavniya-dalg",
+   "identificador": "2135458339",
+   "title": "ЗАКОН ЗА ДЪРЖАВНИЯ ДЪЛГ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> уреждане на някои трудови и осигурителни права на български граждани",
+   "title_snippet": "<b>закон</b> <b>за</b> държавния дълг",
    "body_snippet": "",
-   "relevance": 3.431823845612424
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-ogranichavane-noseneto-na-obleklo-prikrivashto-ili-skrivashto-litseto",
-   "identificador": "2136914670",
-   "title": "ЗАКОН ЗА ОГРАНИЧАВАНЕ НОСЕНЕТО НА ОБЛЕКЛО, ПРИКРИВАЩО ИЛИ СКРИВАЩО ЛИЦЕТО",
+   "law_id": "zakon-za-darzhavniya-protokol",
+   "identificador": "2134917635",
+   "title": "ЗАКОН ЗА ДЪРЖАВНИЯ ПРОТОКОЛ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> ограничаване носене на облекло, прикриващо или скриващо лице",
+   "title_snippet": "<b>закон</b> <b>за</b> държавния протокол",
    "body_snippet": "",
-   "relevance": 3.4294378260958998
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1981-g",
-   "identificador": "2129948160",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1981 Г.",
+   "law_id": "zakon-za-darzhavniya-sluzhitel",
+   "identificador": "2134673408",
+   "title": "ЗАКОН ЗА ДЪРЖАВНИЯ СЛУЖИТЕЛ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1981 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> държавния служител",
    "body_snippet": "",
-   "relevance": 3.4263409563881315
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-preobrazuvane-na-darzhavnata-spestovna-kasa",
-   "identificador": "2134401536",
-   "title": "ЗАКОН ЗА ПРЕОБРАЗУВАНЕ НА ДЪРЖАВНАТА СПЕСТОВНА КАСА",
+   "law_id": "zakon-za-diplomaticheskata-sluzhba",
+   "identificador": "2135565718",
+   "title": "ЗАКОН ЗА ДИПЛОМАТИЧЕСКАТА СЛУЖБА",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> преобразуване на държавна спестовна каса",
+   "title_snippet": "<b>закон</b> <b>за</b> дипломатическа служба",
    "body_snippet": "",
-   "relevance": 3.4163737988915988
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-1984-g",
-   "identificador": "2130728960",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1984 Г.",
+   "law_id": "zakon-za-eksportnoto-zastrahovane",
+   "identificador": "2134408192",
+   "title": "ЗАКОН ЗА ЕКСПОРТНОТО ЗАСТРАХОВАНЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 1984 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> експортно застраховане",
    "body_snippet": "",
-   "relevance": 3.4159006185695953
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-konsultativen-savet-za-natsionalna-sigurnost",
-   "identificador": "2133334529",
-   "title": "ЗАКОН ЗА КОНСУЛТАТИВЕН СЪВЕТ ЗА НАЦИОНАЛНА СИГУРНОСТ",
+   "law_id": "zakon-za-elektronnata-identifikatsiya",
+   "identificador": "2136822116",
+   "title": "ЗАКОН ЗА ЕЛЕКТРОННАТА ИДЕНТИФИКАЦИЯ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> консултативен съвет <b>за</b> национална сигурност",
+   "title_snippet": "<b>закон</b> <b>за</b> електронна идентификация",
    "body_snippet": "",
-   "relevance": 3.4038788928756785
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-amnistiya-i-za-osvobozhdavane-ot-iztarpyavane-na-nalozheni-nakazaniya",
-   "identificador": "2132282880",
-   "title": "ЗАКОН ЗА АМНИСТИЯ И ЗА ОСВОБОЖДАВАНЕ ОТ ИЗТЪРПЯВАНЕ НА НАЛОЖЕНИ НАКАЗАНИЯ",
+   "law_id": "zakon-za-elektronnata-targoviya",
+   "identificador": "2135530547",
+   "title": "ЗАКОН ЗА ЕЛЕКТРОННАТА ТЪРГОВИЯ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия и <b>за</b> освобождаване от изтърпяване на наложени наказания",
+   "title_snippet": "<b>закон</b> <b>за</b> електронна търговия",
    "body_snippet": "",
-   "relevance": 3.40340916731064
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-predostavyane-na-finansova-podkrepa-na-bitovi-krayni-klienti-na-elektri",
-   "identificador": "2137248709",
-   "title": "ЗАКОН ЗА ПРЕДОСТАВЯНЕ НА ФИНАНСОВА ПОДКРЕПА НА БИТОВИ КРАЙНИ КЛИЕНТИ НА ЕЛЕКТРИЧЕСКА ЕНЕРГИЯ",
+   "law_id": "zakon-za-elektronnite-saobshteniya",
+   "identificador": "2135553187",
+   "title": "ЗАКОН ЗА ЕЛЕКТРОННИТЕ СЪОБЩЕНИЯ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> предоставяне на финансова подкрепа на битови крайни клиенти на електрическа...",
+   "title_snippet": "<b>закон</b> <b>за</b> електронни съобщения",
    "body_snippet": "",
-   "relevance": 3.3868172474447986
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-obyavyavane-na-komunisticheskiya-rezhim-v-balgariya-za-prestapen",
-   "identificador": "2134920192",
-   "title": "ЗАКОН ЗА ОБЯВЯВАНЕ НА КОМУНИСТИЧЕСКИЯ РЕЖИМ В БЪЛГАРИЯ ЗА ПРЕСТЪПЕН",
+   "law_id": "zakon-za-elektronnoto-upravlenie",
+   "identificador": "2135555445",
+   "title": "ЗАКОН ЗА ЕЛЕКТРОННОТО УПРАВЛЕНИЕ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> обявяване на комунистическия режим в българия <b>за</b> престъпен",
+   "title_snippet": "<b>закон</b> <b>за</b> електронно управление",
    "body_snippet": "",
-   "relevance": 3.385655159130544
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-oproshtavane-na-zadalzheniya-kam-darzhavata",
-   "identificador": "2125500929",
-   "title": "ЗАКОН ЗА ОПРОЩАВАНЕ НА ЗАДЪЛЖЕНИЯ КЪМ ДЪРЖАВАТА",
+   "law_id": "zakon-za-energiynata-efektivnost",
+   "identificador": "2136500695",
+   "title": "ЗАКОН ЗА ЕНЕРГИЙНАТА ЕФЕКТИВНОСТ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> опрощаване на задължения към държава",
+   "title_snippet": "<b>закон</b> <b>за</b> енергийна ефективност",
    "body_snippet": "",
-   "relevance": 3.3842611677578733
+   "matched": null,
+   "relevance": 3.106987350003122
   },
   {
-   "law_id": "zakon-za-amnistiya-ot-2009-g",
-   "identificador": "2135627422",
-   "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 2009 Г.",
+   "law_id": "zakon-za-filmovata-industriya",
+   "identificador": "2135474936",
+   "title": "ЗАКОН ЗА ФИЛМОВАТА ИНДУСТРИЯ",
    "category": "laws",
-   "title_snippet": "<b>закон</b> <b>за</b> амнистия от 2009 г.",
+   "title_snippet": "<b>закон</b> <b>за</b> филмова индустрия",
    "body_snippet": "",
-   "relevance": 3.3805501135166893
+   "matched": null,
+   "relevance": 3.106987350003122
   }
  ]
 }

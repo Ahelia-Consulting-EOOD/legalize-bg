@@ -132,6 +132,11 @@ def _check_fts_reimport(conn: sqlite3.Connection, out_dir: Path,
     with tempfile.TemporaryDirectory(prefix="cf-verify-") as tmp:
         scratch = sqlite3.connect(str(Path(tmp) / "reimport.db"))
         try:
+            # Throwaway db: durability off. Without these the live-scale
+            # reimport (385MB of fts SQL) measured 3.5 HOURS wall clock
+            # (fsync per autocommit statement); with them it is minutes.
+            scratch.execute("PRAGMA journal_mode = OFF")
+            scratch.execute("PRAGMA synchronous = OFF")
             scratch.executescript(
                 (out_dir / "d1-schema.sql").read_text(encoding="utf-8"))
             for series in ("d1-fts-laws-*.sql", "d1-fts-articles-*.sql"):

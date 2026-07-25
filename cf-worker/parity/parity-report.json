@@ -1,6 +1,6 @@
 {
- "against": "https://legalize-bg-api.ahelia.workers.dev",
- "at": "2026-07-21T09:53:01.055Z",
+ "against": "http://127.0.0.1:8788",
+ "at": "2026-07-25T06:43:26.824Z",
  "results": [
   {
    "id": "healthz",
