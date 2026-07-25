@@ -114,27 +114,34 @@ def _check_fts_guards(out_dir: Path, failures: list[str]) -> None:
                 return
 
 
-# All segment rows above this byte floor are unconditionally hashed by
-# the reimport check — see the sliced-rows comment inside. Kept below
-# d1.py's effective per-statement body budget so every sliced row
-# qualifies.
-SLICED_HASH_FLOOR_BYTES = 80_000
-
-
 def _check_fts_reimport(conn: sqlite3.Connection, out_dir: Path,
                         sample_n: int, failures: list[str]) -> int:
     """Reimport d1-schema.sql + both fts series into a scratch SQLite
     file (RAM-safe at live scale, ~385MB of normalized text) and check
-    (a) row-count parity per FTS table and (b) sampled segment rows —
-    kind/label equality + sha256(body) — against the live catalog. This
+    (a) row-count parity per FTS table and (b) EVERY segment row —
+    kind/label equality + sha256(body) — against the live catalog, via
+    ONE streamed pass over each table. Full comparison is both stronger
+    than any sampling (review 2026-07-24: a torn append slice keeps row
+    counts intact, and uniform sampling covered ~0.06% of rows) and
+    faster than per-key lookups: law_id/seg_no are UNINDEXED FTS5
+    columns, so every point WHERE is a full-table scan — 481 sampled
+    lookups measured >10 min while two full passes take seconds. This
     is the end-to-end proof that the guarded INSERT+UPDATE slicing
-    reassembles bodies byte-exactly. Returns the sampled-segment count."""
+    reassembles bodies byte-exactly. Returns the compared-row count."""
     with tempfile.TemporaryDirectory(prefix="cf-verify-") as tmp:
         scratch = sqlite3.connect(str(Path(tmp) / "reimport.db"))
         try:
-            # Throwaway db: durability off. Without these the live-scale
-            # reimport (385MB of fts SQL) measured 3.5 HOURS wall clock
-            # (fsync per autocommit statement); with them it is minutes.
+            # Throwaway db, tuned reimport. Two measured pathologies:
+            # (a) plain per-chunk executescript autocommits every
+            # statement, and each commit flushes an FTS5 level-0 merge
+            # + fsync — 3.5 HOURS at live scale (385MB, ~4K stmts);
+            # (b) concatenating everything into ONE script is O(n²) —
+            # executescript re-scans the remaining buffer per
+            # statement. The fix: pragmas off + per-chunk execution
+            # (12MB scripts stay linear) with BEGIN/COMMIT wrapped
+            # INSIDE each chunk script so its ~130 statements commit
+            # once. Safe: the dump carries no transaction-control
+            # statements (spec rule).
             scratch.execute("PRAGMA journal_mode = OFF")
             scratch.execute("PRAGMA synchronous = OFF")
             scratch.executescript(
@@ -142,7 +149,9 @@ def _check_fts_reimport(conn: sqlite3.Connection, out_dir: Path,
             for series in ("d1-fts-laws-*.sql", "d1-fts-articles-*.sql"):
                 for chunk in sorted(out_dir.glob(series)):
                     scratch.executescript(
-                        chunk.read_text(encoding="utf-8"))
+                        "BEGIN;\n"
+                        + chunk.read_text(encoding="utf-8")
+                        + "\nCOMMIT;")
             for table in ("laws_fts", "articles_fts"):
                 got = scratch.execute(
                     f"SELECT COUNT(*) FROM {table}").fetchone()[0]
@@ -151,41 +160,36 @@ def _check_fts_reimport(conn: sqlite3.Connection, out_dir: Path,
                 if got != want:
                     failures.append(f"reimported {table} rows={got} != "
                                     f"catalog rows={want}")
-            keys = [(r[0], r[1]) for r in conn.execute(
-                "SELECT law_id, seg_no FROM articles_fts")]
-            # Review 2026-07-24 (FR-032): sliced rows (INSERT prefix +
-            # append UPDATEs) are the ONLY rows that can arrive torn
-            # while row counts stay intact, and a uniform stride
-            # sample covers ~0.06% of the 182K-row corpus. Hash ALL
-            # rows above the slice floor (safely below the ~89.7KB
-            # effective statement budget, so a superset of sliced
-            # rows — ~456 live, cheap), plus the uniform sample.
-            sliced = [(r[0], r[1]) for r in conn.execute(
-                "SELECT law_id, seg_no FROM articles_fts"
-                " WHERE length(CAST(body AS BLOB)) > ?",
-                (SLICED_HASH_FLOOR_BYTES,))]
-            sampled = list(dict.fromkeys(
-                sliced + _sample(keys, sample_n)))
-            for law_id, seg_no in sampled:
-                q = ("SELECT kind, label, body FROM articles_fts "
-                     "WHERE law_id = ? AND seg_no = ?")
-                src = conn.execute(q, (law_id, seg_no)).fetchone()
-                got = scratch.execute(q, (law_id, seg_no)).fetchone()
+            def digest(db) -> dict:
+                rows = {}
+                cur = db.execute(
+                    "SELECT law_id, seg_no, kind, label, body"
+                    " FROM articles_fts")
+                for law_id, seg_no, kind, label, body in cur:
+                    rows[(law_id, seg_no)] = (
+                        kind, label,
+                        hashlib.sha256(body.encode("utf-8")).hexdigest())
+                return rows
+
+            src_rows = digest(conn)
+            got_rows = digest(scratch)
+            reported = 0
+            for key, src in src_rows.items():
+                got = got_rows.get(key)
+                if reported >= 20:
+                    failures.append("... further segment mismatches "
+                                    "suppressed")
+                    break
                 if got is None:
-                    failures.append(
-                        f"segment ({law_id}, {seg_no}) missing on reimport")
-                    continue
-                if (got[0], got[1]) != (src[0], src[1]):
-                    failures.append(
-                        f"segment ({law_id}, {seg_no}) kind/label diverge")
-                src_hash = hashlib.sha256(
-                    src[2].encode("utf-8")).hexdigest()
-                got_hash = hashlib.sha256(
-                    got[2].encode("utf-8")).hexdigest()
-                if src_hash != got_hash:
-                    failures.append(
-                        f"segment ({law_id}, {seg_no}) body hash mismatch")
-            return len(sampled)
+                    failures.append(f"segment {key} missing on reimport")
+                    reported += 1
+                elif (got[0], got[1]) != (src[0], src[1]):
+                    failures.append(f"segment {key} kind/label diverge")
+                    reported += 1
+                elif got[2] != src[2]:
+                    failures.append(f"segment {key} body hash mismatch")
+                    reported += 1
+            return len(src_rows)
         finally:
             scratch.close()
 
