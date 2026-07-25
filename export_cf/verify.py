@@ -120,14 +120,19 @@ def _check_fts_reimport(conn: sqlite3.Connection, out_dir: Path,
     file (RAM-safe at live scale, ~385MB of normalized text) and check
     (a) row-count parity per FTS table and (b) EVERY segment row —
     kind/label equality + sha256(body) — against the live catalog, via
-    ONE streamed pass over each table. Full comparison is both stronger
-    than any sampling (review 2026-07-24: a torn append slice keeps row
-    counts intact, and uniform sampling covered ~0.06% of rows) and
-    faster than per-key lookups: law_id/seg_no are UNINDEXED FTS5
-    columns, so every point WHERE is a full-table scan — 481 sampled
-    lookups measured >10 min while two full passes take seconds. This
-    is the end-to-end proof that the guarded INSERT+UPDATE slicing
-    reassembles bodies byte-exactly. Returns the compared-row count."""
+    ONE streamed pass over each table. The full COMPARISON replaces the
+    prior per-key sampling for two reasons (review 2026-07-24): it is
+    strictly stronger (a torn append slice keeps row counts intact, and
+    uniform sampling covered ~0.06% of the 182K rows), and it avoids
+    per-key point lookups on the UNINDEXED law_id/seg_no columns (each
+    a full-table scan — 481 sampled lookups scanned 182K rows 481
+    times). RUNTIME CAVEAT: the overall run is dominated by REIMPORTING
+    ~385MB of FTS SQL (unavoidable — rebuilding the FTS index), which is
+    MINUTES, not seconds, and was NOT completed end-to-end at full scale
+    this cycle (killed under heavy concurrent machine load). Correctness
+    is covered by tests/export_cf and the live 59/59 parity run on the
+    real export; full-scale --verify wall-clock is FR-033 (characterize
+    / bound). Returns the compared-row count."""
     with tempfile.TemporaryDirectory(prefix="cf-verify-") as tmp:
         scratch = sqlite3.connect(str(Path(tmp) / "reimport.db"))
         try:
