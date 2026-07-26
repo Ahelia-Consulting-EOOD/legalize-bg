@@ -45,6 +45,6 @@ def run_export(corpus_root: Path, db_path: str, out_dir: Path) -> dict:
               "versions_json": versions_n}
     log.info("manifest.json")
     return write_manifest(out_dir, counts, exported_at,
-                          fts_truncated=d1["fts_truncated"],
+                          max_fts_body_bytes=d1["max_fts_body_bytes"],
                           max_statement_bytes=d1["max_statement_bytes"],
                           fts_guards=d1["fts_guards"])

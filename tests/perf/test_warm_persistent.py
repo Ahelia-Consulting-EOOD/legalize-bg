@@ -41,6 +41,14 @@ DB = REPO / "catalog.db"
 # 20/18ms — ceiling 24ms. D-051 ratified rule: measured p95 × 1.5.
 # 24ms × 1.5 = 36ms.
 WARM_PERSISTENT_BUDGET = 0.036  # 36 ms
+# FR-032 / D-057 re-ratification (2026-07-24): re-measured with this
+# file's exact methodology on the v5 per-segment pipeline (two-phase
+# tier 2, post-truncation snippet enrichment): p95 = 8.4 ms, max
+# 8.8 ms, p50 0.1 ms on the reference machine. The 36 ms D-051 budget
+# holds with >4x headroom and stays unchanged. (During implementation
+# this budget caught a real 272 ms regression — snippet() computed
+# over the full 500-row overscan window — which forced the two-phase
+# design. Working budget, not a relic.)
 
 QUERIES = (
     "лични данни",

@@ -5,6 +5,7 @@
 import { describe, expect, it } from "vitest";
 
 import { bgNormalize } from "../src/normalize";
+import { trimTitle } from "../src/fts";
 import { LEGAL_ABBREVIATIONS, expandIfAbbreviation } from "../src/synonyms";
 import { InvalidArticleSpecError, parseArticleSpec } from "../src/articles";
 import { legalArticleSortKey, compareSortKeys } from "../src/sortkey";
@@ -34,6 +35,25 @@ describe("bgNormalize (port of index.fts.bg_normalize)", () => {
   });
   it("keeps digits and punctuation", () => {
     expect(bgNormalize("Чл. 5, ал. 2")).toBe("чл. 5, ал. 2");
+  });
+});
+
+describe("trimTitle (port of index.fts._trim_title, FR-032)", () => {
+  it("passes short titles through untouched", () => {
+    expect(trimTitle("ЗАКОН ЗА МРЕЖИТЕ")).toBe("ЗАКОН ЗА МРЕЖИТЕ");
+  });
+  it("truncates to the leading 12 whitespace tokens with '...'", () => {
+    const t = "а б в г д е ж з и к л м н о";
+    expect(trimTitle(t)).toBe("а б в г д е ж з и к л м...");
+    // exactly 12 tokens: no truncation, original string preserved
+    expect(trimTitle("а б в г д е ж з и к л м")).toBe("а б в г д е ж з и к л м");
+  });
+  it("collapses runs of whitespace like Python str.split()", () => {
+    expect(trimTitle("а  б\tв г д е ж з и к л м н")).toBe("а б в г д е ж з и к л м...");
+  });
+  it("maps null/empty to ''", () => {
+    expect(trimTitle(null)).toBe("");
+    expect(trimTitle("")).toBe("");
   });
 });
 

@@ -3,135 +3,317 @@
   "$id": "https://github.com/Ahelia-Consulting-EOOD/legalize-bg/docs/api/error-codes.json",
   "title": "legalize-bg MCP error taxonomy",
   "description": "Machine-readable catalog of every error code the legalize-bg MCP server returns. Mirror of docs/api/error-codes.md.",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "codes": [
     {
       "code": "LAW_NOT_FOUND",
-      "raised_by": ["get_law", "get_article", "get_articles", "history", "diff"],
+      "raised_by": [
+        "get_law",
+        "get_article",
+        "get_articles",
+        "history",
+        "diff"
+      ],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "name": {"type": "string", "optional": false, "description": "the input that failed to resolve"},
-        "suggestions": {"type": "array", "optional": false, "description": "up to 5 nearby matches; empty if no candidates"}
+        "name": {
+          "type": "string",
+          "optional": false,
+          "description": "the input that failed to resolve"
+        },
+        "suggestions": {
+          "type": "array",
+          "optional": false,
+          "description": "up to 5 nearby matches; empty if no candidates"
+        }
       }
     },
     {
       "code": "AMBIGUOUS_NAME",
-      "raised_by": ["get_law", "get_article", "get_articles", "history", "diff"],
+      "raised_by": [
+        "get_law",
+        "get_article",
+        "get_articles",
+        "history",
+        "diff"
+      ],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "name": {"type": "string", "optional": false, "description": "the input"},
-        "candidates": {"type": "array", "optional": false, "description": "every candidate with law_id, title, identificador"}
+        "name": {
+          "type": "string",
+          "optional": false,
+          "description": "the input"
+        },
+        "candidates": {
+          "type": "array",
+          "optional": false,
+          "description": "every candidate with law_id, title, identificador"
+        }
       }
     },
     {
       "code": "NO_VERSION_AT_DATE",
-      "raised_by": ["get_law", "get_article", "get_articles", "diff"],
+      "raised_by": [
+        "get_law",
+        "get_article",
+        "get_articles",
+        "diff"
+      ],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "law_id": {"type": "string", "optional": false, "description": "resolved act"},
-        "date": {"type": "string|null", "optional": false, "description": "ISO date requested"},
-        "earliest_available": {"type": "string|null", "optional": false, "description": "earliest version's valid_from, or null"},
-        "latest_available": {"type": "string|null", "optional": false, "description": "latest version's valid_from, or null"}
+        "law_id": {
+          "type": "string",
+          "optional": false,
+          "description": "resolved act"
+        },
+        "date": {
+          "type": "string|null",
+          "optional": false,
+          "description": "ISO date requested"
+        },
+        "earliest_available": {
+          "type": "string|null",
+          "optional": false,
+          "description": "earliest version's valid_from, or null"
+        },
+        "latest_available": {
+          "type": "string|null",
+          "optional": false,
+          "description": "latest version's valid_from, or null"
+        }
       }
     },
     {
       "code": "DATE_UNCERTAIN",
-      "raised_by": ["get_law"],
+      "raised_by": [
+        "get_law"
+      ],
       "category": "warning",
       "since_phase": "1b.1",
       "payload": {
-        "code": {"type": "string", "optional": false, "description": "always 'DATE_UNCERTAIN'"},
-        "source_date_marker": {"type": "string", "optional": false, "description": "always 'unknown'"}
+        "code": {
+          "type": "string",
+          "optional": false,
+          "description": "always 'DATE_UNCERTAIN'"
+        },
+        "source_date_marker": {
+          "type": "string",
+          "optional": false,
+          "description": "always 'unknown'"
+        }
       }
     },
     {
       "code": "INVALID_ARTICLE_SPEC",
-      "raised_by": ["get_article", "get_articles"],
+      "raised_by": [
+        "get_article",
+        "get_articles"
+      ],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "spec": {"type": "string", "optional": false, "description": "the input article reference"},
-        "examples": {"type": "array", "optional": false, "description": "canonical accepted forms"},
-        "hint": {"type": "string", "optional": true, "description": "present on get_article's range-rejection case (FR-018) — directs the caller to get_articles"}
+        "spec": {
+          "type": "string",
+          "optional": false,
+          "description": "the input article reference"
+        },
+        "examples": {
+          "type": "array",
+          "optional": false,
+          "description": "canonical accepted forms"
+        },
+        "hint": {
+          "type": "string",
+          "optional": true,
+          "description": "present on get_article's range-rejection case (FR-018) — directs the caller to get_articles"
+        }
       }
     },
     {
       "code": "ARTICLE_NOT_FOUND",
-      "raised_by": ["get_article", "get_articles"],
+      "raised_by": [
+        "get_article",
+        "get_articles"
+      ],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "law_id": {"type": "string", "optional": false, "description": "resolved act"},
-        "article": {"type": "string", "optional": false, "description": "requested article, or the 'start-end' span for a get_articles range"},
-        "paragraph": {"type": "string|null", "optional": false, "description": "alinea if requested"},
-        "available_articles": {"type": "array", "optional": false, "description": "every article in the act at the requested date"}
+        "law_id": {
+          "type": "string",
+          "optional": false,
+          "description": "resolved act"
+        },
+        "article": {
+          "type": "string",
+          "optional": false,
+          "description": "requested article, or the 'start-end' span for a get_articles range"
+        },
+        "paragraph": {
+          "type": "string|null",
+          "optional": false,
+          "description": "alinea if requested"
+        },
+        "available_articles": {
+          "type": "array",
+          "optional": false,
+          "description": "every article in the act at the requested date"
+        }
       }
     },
     {
       "code": "INDEX_STALE",
-      "raised_by": ["get_law", "get_article", "get_articles"],
+      "raised_by": [
+        "get_law",
+        "get_article",
+        "get_articles"
+      ],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "law_id": {"type": "string", "optional": false, "description": "the resolved act"},
-        "commit_hash": {"type": "string", "optional": true, "description": "unreachable commit (historical git-show path only)"},
-        "detail": {"type": "string", "optional": false, "description": "underlying OS/git error, truncated to 300 chars"},
-        "hint": {"type": "string", "optional": false, "description": "remediation: re-run python -m index.build against this corpus"}
+        "law_id": {
+          "type": "string",
+          "optional": false,
+          "description": "the resolved act"
+        },
+        "commit_hash": {
+          "type": "string",
+          "optional": true,
+          "description": "unreachable commit (historical git-show path only)"
+        },
+        "detail": {
+          "type": "string",
+          "optional": false,
+          "description": "underlying OS/git error, truncated to 300 chars"
+        },
+        "hint": {
+          "type": "string",
+          "optional": false,
+          "description": "remediation: re-run python -m index.build against this corpus"
+        }
       }
     },
     {
       "code": "INDEX_MISSING",
-      "raised_by": ["get_law", "search", "get_article", "get_articles", "history", "amendments_in_period", "diff"],
+      "raised_by": [
+        "get_law",
+        "search",
+        "get_article",
+        "get_articles",
+        "history",
+        "amendments_in_period",
+        "diff"
+      ],
       "category": "error",
       "since_phase": "1b.1",
       "payload": {
-        "detail": {"type": "string", "optional": false, "description": "underlying sqlite3 catalog-level error, truncated to 300 chars"},
-        "hint": {"type": "string", "optional": false, "description": "remediation: re-run python -m index.build"}
+        "detail": {
+          "type": "string",
+          "optional": false,
+          "description": "underlying sqlite3 catalog-level error, truncated to 300 chars"
+        },
+        "hint": {
+          "type": "string",
+          "optional": false,
+          "description": "remediation: re-run python -m index.build"
+        }
       }
     },
     {
       "code": "QUERY_TOO_BROAD",
-      "raised_by": ["search"],
+      "raised_by": [
+        "search"
+      ],
       "category": "error",
       "since_phase": "1b.2",
       "payload": {
-        "query": {"type": "string", "optional": false, "description": "the input (truncated to 200 chars)"},
-        "category_words": {"type": "array", "optional": false, "description": "five stop-words, alphabetically sorted"},
-        "hint": {"type": "string", "optional": false, "description": "bilingual instruction"}
+        "query": {
+          "type": "string",
+          "optional": false,
+          "description": "the input (truncated to 200 chars)"
+        },
+        "category_words": {
+          "type": "array",
+          "optional": false,
+          "description": "five stop-words, alphabetically sorted"
+        },
+        "hint": {
+          "type": "string",
+          "optional": false,
+          "description": "bilingual instruction"
+        }
       }
     },
     {
       "code": "INVALID_DATE_RANGE",
-      "raised_by": ["diff", "amendments_in_period"],
+      "raised_by": [
+        "diff",
+        "amendments_in_period"
+      ],
       "category": "error",
       "since_phase": "2",
       "payload": {
-        "from_date": {"type": "string", "optional": false, "description": "start date supplied"},
-        "to_date": {"type": "string", "optional": false, "description": "end date supplied"}
+        "from_date": {
+          "type": "string",
+          "optional": false,
+          "description": "start date supplied"
+        },
+        "to_date": {
+          "type": "string",
+          "optional": false,
+          "description": "end date supplied"
+        }
       }
     },
     {
       "code": "DIFF_FAILED",
-      "raised_by": ["diff"],
+      "raised_by": [
+        "diff"
+      ],
       "category": "error",
       "since_phase": "2",
       "payload": {
-        "law_id": {"type": "string", "optional": false, "description": "the act whose diff was requested"},
-        "detail": {"type": "string", "optional": false, "description": "stderr from git diff (truncated to 300 chars) or fallback exit-code message"}
+        "law_id": {
+          "type": "string",
+          "optional": false,
+          "description": "the act whose diff was requested"
+        },
+        "detail": {
+          "type": "string",
+          "optional": false,
+          "description": "stderr from git diff (truncated to 300 chars) or fallback exit-code message"
+        }
       }
     },
     {
       "code": "INVALID_DATE",
-      "raised_by": ["get_law", "get_article", "get_articles", "diff", "amendments_in_period"],
+      "raised_by": [
+        "get_law",
+        "get_article",
+        "get_articles",
+        "diff",
+        "amendments_in_period"
+      ],
       "category": "error",
       "since_phase": "2026-07-02-p2-hardening",
       "payload": {
-        "param": {"type": "string", "optional": false, "description": "which date parameter failed (date, date1, date2, from_date, to_date, or from_date/to_date)"},
-        "value": {"type": "string", "optional": false, "description": "the offending input, truncated to 50 chars ('null' when absent but required)"},
-        "expected": {"type": "string", "optional": false, "description": "always 'YYYY-MM-DD'"}
+        "param": {
+          "type": "string",
+          "optional": false,
+          "description": "which date parameter failed (date, date1, date2, from_date, to_date, or from_date/to_date)"
+        },
+        "value": {
+          "type": "string",
+          "optional": false,
+          "description": "the offending input, truncated to 50 chars ('null' when absent but required)"
+        },
+        "expected": {
+          "type": "string",
+          "optional": false,
+          "description": "always 'YYYY-MM-DD'"
+        }
       }
     }
   ]

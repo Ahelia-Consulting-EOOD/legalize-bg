@@ -23,7 +23,7 @@ from pathlib import Path
 import yaml
 
 from fetcher.bg.discovery import CATEGORY_DIRS
-from index.fts import bg_normalize, insert_fts_row
+from index.fts import bg_normalize, insert_segment_rows, insert_title_row
 from index.migrations import migrate
 from index.provisions import parse as parse_provisions
 
@@ -98,7 +98,8 @@ def _parse_md(path: Path) -> tuple[dict, str]:
     return yaml.safe_load(fm_block), body
 
 
-_CONTENT_TABLES = ("laws_fts", "provisions", "law_versions", "amendments", "laws")
+_CONTENT_TABLES = ("laws_fts", "articles_fts", "provisions",
+                   "law_versions", "amendments", "laws")
 
 
 def _drop_content_rows(conn: sqlite3.Connection) -> None:
@@ -121,7 +122,8 @@ def _delete_act_rows(conn: sqlite3.Connection, law_id: str) -> None:
     FTS5 table, so a `DELETE ... WHERE law_id = ?` on its UNINDEXED column
     is valid. NOTE: `amendments` keys the act via `target_law`, not
     `law_id` — handled separately."""
-    for table in ("laws_fts", "provisions", "law_versions", "laws"):
+    for table in ("laws_fts", "articles_fts", "provisions", "law_versions",
+                  "laws"):
         conn.execute(f"DELETE FROM {table} WHERE law_id = ?", (law_id,))
     conn.execute("DELETE FROM amendments WHERE target_law = ?", (law_id,))
 
@@ -324,7 +326,8 @@ def _reindex_act(conn: sqlite3.Connection, corpus_root: Path, cat: str,
             (prov.law_id, prov.article, prov.paragraph,
              effective, prov.text, prov.text_hash),
         )
-    insert_fts_row(conn, law_id=law_id, title=title, body=body, category=cat)
+    insert_title_row(conn, law_id=law_id, title=title, category=cat)
+    insert_segment_rows(conn, law_id=law_id, body=body, category=cat)
     return law_id
 
 

@@ -127,7 +127,9 @@ def _dump(db):
         "law_versions": "SELECT law_id,valid_from,valid_to,commit_hash,date_uncertain FROM law_versions",
         "amendments": "SELECT source_act,target_law,operation,dv_issue,dv_date FROM amendments",
         "provisions": "SELECT law_id,article,paragraph,valid_from,text,text_hash FROM provisions",
-        "laws_fts": "SELECT law_id,title,body,category FROM laws_fts",
+        "laws_fts": "SELECT law_id,title,category FROM laws_fts",
+        "articles_fts": ("SELECT law_id,seg_no,kind,label,body,category"
+                         " FROM articles_fts"),
     }
     return {k: sorted(tuple(r) for r in c.execute(v)) for k, v in q.items()}
 

@@ -6,7 +6,7 @@ from pathlib import Path
 import pytest
 
 from index.build import build
-from index.fts import insert_fts_row
+from index.fts import insert_segment_rows, insert_title_row
 from index.migrations import migrate
 
 # Fake "current_commit" stamped onto every populated_conn row. Tests
@@ -74,10 +74,14 @@ def populated_conn(conn):
             "VALUES (?, ?, ?)",
             (law_id, "2020-01-01", fake_commit),
         )
-        # FTS row uses normalized title; phantom acts get <doc_id=N> placeholder
+        # FTS rows use the normalized title; phantom acts get the
+        # <doc_id=N> placeholder. The title text doubles as the act's
+        # one-segment body so body-tier (articles_fts) matches work in
+        # tests, mirroring the pre-FR-032 fixture shape.
         fts_title = title or f"<doc_id={doc_id}>"
-        insert_fts_row(conn, law_id=law_id, title=fts_title,
-                       body=fts_title, category=cat)
+        insert_title_row(conn, law_id=law_id, title=fts_title, category=cat)
+        insert_segment_rows(conn, law_id=law_id, body=fts_title,
+                            category=cat)
     conn.commit()
     # Defensive lock: tests downstream couple their tmp-corpus fixture
     # to FAKE_COMMIT_HASH for the working-tree fast path (see

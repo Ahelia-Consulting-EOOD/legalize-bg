@@ -46,6 +46,9 @@ def test_search_hit_shape():
         "category": "laws", "title_snippet": "<b>ЗОП</b>",
         "body_snippet": "...чл. 1. <b>урежда</b>...",
         "relevance": 1.5,
+        # FR-032 / D-056 Q3 (tools.json 1.4.0): additive, None for
+        # title-tier hits.
+        "matched": None,
     }
 
 

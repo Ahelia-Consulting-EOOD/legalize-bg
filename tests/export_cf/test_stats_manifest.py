@@ -34,10 +34,14 @@ def test_manifest_counts(export_run, manifest):
     src = sqlite3.connect(f"file:{db}?mode=ro", uri=True)
     laws = src.execute("SELECT COUNT(*) FROM laws").fetchone()[0]
     versions = src.execute("SELECT COUNT(*) FROM law_versions").fetchone()[0]
+    segments = src.execute(
+        "SELECT COUNT(*) FROM articles_fts").fetchone()[0]
     src.close()
     c = manifest["counts"]
     assert c["laws"] == laws
     assert c["laws_fts"] == laws
+    assert c["articles_fts"] == segments
+    assert segments > laws  # multi-segment acts in the fixture
     assert c["acts_json"] == laws
     assert c["law_versions"] == versions
     assert c["versions_json"] == versions
@@ -65,9 +69,15 @@ def test_manifest_class_aggregates(export_run, manifest):
         assert manifest["classes"][cls]["sha256"] == agg
 
 
-def test_manifest_fts_truncated_key(manifest):
-    # Fixture bodies are tiny — key present, empty
-    assert manifest["fts_truncated"] == []
+def test_manifest_body_size_guard_key(manifest):
+    """v2.0: fts_truncated is RETIRED (nothing is ever truncated — the
+    index chunks at SEG_MAX_BYTES); the manifest instead records the
+    largest emitted articles_fts body, which must respect the 400KB
+    contract and sit far below D1's 2MB value cap."""
+    from index.segments import SEG_MAX_BYTES
+    assert "fts_truncated" not in manifest
+    assert 0 < manifest["max_fts_body_bytes"] <= SEG_MAX_BYTES
+    assert manifest["max_fts_body_bytes"] < 2_000_000
 
 
 def test_manifest_max_statement_bytes(manifest):
@@ -76,5 +86,8 @@ def test_manifest_max_statement_bytes(manifest):
 
 def test_manifest_fts_guards(manifest):
     g = manifest["fts_guards"]
-    assert g["inserts"] == manifest["counts"]["laws_fts"]
-    assert g["updates"] >= 0
+    assert g["inserts"] == (manifest["counts"]["laws_fts"]
+                            + manifest["counts"]["articles_fts"])
+    # the fixture's >90KB annex segment forces append UPDATEs even at
+    # the default statement budget
+    assert g["updates"] > 0

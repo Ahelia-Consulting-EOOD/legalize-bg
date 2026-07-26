@@ -382,22 +382,31 @@ def build_app(conn: sqlite3.Connection | None = None,
             category: Optional filter — one of "laws", "codes",
                 "ordinances", "regulations", "implementing".
             limit: Max results (default 20, capped at 50).
-            include_body: When True, the top 2 results carry a
-                non-empty `body_snippet` field with a ±60-char window
-                around the first matching token in the act's body
-                (with `<b>...</b>` highlighting). Adds ~150 ms per
-                search call because the largest indexed bodies are
-                1+ MB. Default False — preserves the 100 ms p95
-                budget. Pass True only when the model needs body
-                context to disambiguate similar titles. (FR-017)
+            include_body: Body-tier hits ALWAYS carry a `body_snippet`
+                (FR-032: an FTS5 `snippet()` over the best-matching
+                segment — essentially free). When True, the top 2
+                TITLE-tier hits additionally get a best-segment
+                snippet via one scoped segment lookup each (cheap).
+                Default False.
 
         Returns:
             List of {law_id, identificador, title, category,
-            title_snippet, body_snippet, relevance}. `relevance` is
-            positive-where-higher-is-better (negated SQLite bm25).
-            `title_snippet` is always populated (cheap title fragment).
-            `body_snippet` is empty unless `include_body=True`, and
-            then non-empty for the top 2 hits only.
+            title_snippet, body_snippet, matched, relevance}.
+            `relevance` is positive-where-higher-is-better (negated
+            SQLite bm25; FR-032 body-tier scores carry a breadth
+            correction — comparable within one result set only).
+            `title_snippet` is always populated (title fragment).
+            `body_snippet`: non-empty for every body-tier hit (the
+            matched segment, `<b>...</b>` highlighted); for title-tier
+            hits non-empty only for the top 2 when
+            `include_body=True`.
+            `matched` (FR-032, additive in tools.json 1.4.0): for
+            body-tier hits, `{kind, label}` names the segment that
+            produced the hit — kind in {article, para, annex,
+            preamble, other}, label like "чл. 5" / "§ 3" /
+            "приложение 2" (advisory display hint; resolve article
+            text via `get_article`, not via the label). `null` for
+            title-tier hits.
 
             Result ordering combines bm25 relevance WITH a rang-aware
             tier sort (FR-015): parent laws (`laws`/`codes` categories)

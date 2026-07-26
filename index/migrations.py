@@ -67,6 +67,35 @@ MIGRATIONS: tuple[Migration, ...] = (
             "date_uncertain INTEGER NOT NULL DEFAULT 0;"
         ),
     ),
+    Migration(
+        version=5,
+        name="fr032_per_segment_fts_split",
+        # FR-032 / D-056 (preflight IMPLEMENTATION-PREFLIGHT-2026-07-21-
+        # fr032-per-article-fts): laws_fts loses its body column (FTS5
+        # cannot be ALTERed → drop + recreate title-only) and the new
+        # articles_fts holds one row per body segment. Both tables are
+        # DERIVED (rebuilt from the git-tracked corpus); the migration
+        # leaves them empty — a full `python -m index.build` run is
+        # mandatory afterwards.
+        sql="""
+        DROP TABLE IF EXISTS laws_fts;
+        CREATE VIRTUAL TABLE laws_fts USING fts5(
+            law_id UNINDEXED,
+            title,
+            category UNINDEXED,
+            tokenize='unicode61 remove_diacritics 2'
+        );
+        CREATE VIRTUAL TABLE IF NOT EXISTS articles_fts USING fts5(
+            law_id UNINDEXED,
+            seg_no UNINDEXED,
+            kind UNINDEXED,
+            label UNINDEXED,
+            body,
+            category UNINDEXED,
+            tokenize='unicode61 remove_diacritics 2'
+        );
+        """,
+    ),
 )
 
 

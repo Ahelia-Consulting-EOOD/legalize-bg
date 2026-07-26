@@ -42,9 +42,20 @@ export const SCHEMA_STATEMENTS = [
     name TEXT NOT NULL,
     applied_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
   )`,
+  // FR-032 (migration 005) split index: title-only laws_fts + one
+  // articles_fts row per body segment — DDL matches index/fts.py
+  // create_laws_fts_table / create_articles_fts_table.
   `CREATE VIRTUAL TABLE IF NOT EXISTS laws_fts USING fts5(
     law_id UNINDEXED,
     title,
+    category UNINDEXED,
+    tokenize='unicode61 remove_diacritics 2'
+  )`,
+  `CREATE VIRTUAL TABLE IF NOT EXISTS articles_fts USING fts5(
+    law_id UNINDEXED,
+    seg_no UNINDEXED,
+    kind UNINDEXED,
+    label UNINDEXED,
     body,
     category UNINDEXED,
     tokenize='unicode61 remove_diacritics 2'
@@ -52,6 +63,83 @@ export const SCHEMA_STATEMENTS = [
   `CREATE INDEX IF NOT EXISTS idx_versions_date ON law_versions(law_id, valid_from)`,
   `CREATE INDEX IF NOT EXISTS idx_amendments_target ON amendments(target_law, dv_date)`,
 ];
+
+// ── test-side body segmenter ────────────────────────────────────────────
+// Mirror of index/segments.py `segment()` for fixture seeding (chunking
+// omitted — fixture bodies are tiny). Paragraph-initial anchors only;
+// markdown headings glue to the FOLLOWING segment; leading text is one
+// 'preamble' segment; an anchor-less body is a single 'other' segment.
+
+const ART_START = /^(?:\*\*)?Чл\.\s+(\d+[а-я]?)\.?/u;
+const PARA_START = /^(?:\*\*)?§\s*(\d+[а-я]?)\.?/u;
+const ANNEX_START = /^(?:\*\*)?Приложение(?![а-яa-z0-9])\s*(?:№\s*)?(\d*[а-я]?)/u;
+const PARA_SPLIT = /\n\n+/g;
+
+function paragraphSpans(body: string): [number, number][] {
+  const spans: [number, number][] = [];
+  let pos = 0;
+  for (const m of body.matchAll(PARA_SPLIT)) {
+    spans.push([pos, m.index! + m[0].length]);
+    pos = m.index! + m[0].length;
+  }
+  if (pos < body.length || spans.length === 0) spans.push([pos, body.length]);
+  return spans;
+}
+
+function classify(paragraph: string): [string, string] | null {
+  const t = paragraph.replace(/^\s+/, "");
+  let m = ART_START.exec(t);
+  if (m) return ["article", `чл. ${m[1]}`];
+  m = PARA_START.exec(t);
+  if (m) return ["para", `§ ${m[1]}`];
+  m = ANNEX_START.exec(t);
+  if (m) return ["annex", `приложение ${m[1]}`.trimEnd()];
+  return null;
+}
+
+export interface TestSegment {
+  kind: string;
+  label: string;
+  text: string;
+}
+
+export function segmentBody(body: string): TestSegment[] {
+  if (!body) return [];
+  const segs: TestSegment[] = [];
+  let curKind = "preamble";
+  let curLabel = "";
+  let curStart = 0;
+  let glueStart: number | null = null;
+  let anyAnchor = false;
+
+  for (const [start, end] of paragraphSpans(body)) {
+    const text = body.slice(start, end);
+    if (text.replace(/^\s+/, "").startsWith("#")) {
+      if (glueStart === null) glueStart = start;
+      continue;
+    }
+    const cls = classify(text);
+    if (cls !== null) {
+      const cut = glueStart !== null ? glueStart : start;
+      if (cut > curStart) {
+        segs.push({ kind: curKind, label: curLabel, text: body.slice(curStart, cut) });
+      }
+      [curKind, curLabel] = cls;
+      curStart = cut;
+      anyAnchor = true;
+    }
+    glueStart = null;
+  }
+
+  if (!anyAnchor) {
+    curKind = "other";
+    curLabel = "";
+  }
+  if (body.length > curStart) {
+    segs.push({ kind: curKind, label: curLabel, text: body.slice(curStart) });
+  }
+  return segs;
+}
 
 interface FixtureLaw {
   lawId: string;
@@ -218,6 +306,42 @@ const FIXTURES: FixtureLaw[] = [
     ultimaActualizacion: "2026-04-20",
     fechaPublicacion: "2026-04-20",
   },
+  // FR-032 body corpus (mirrors tests/index/test_fts_v2.py body_corpus):
+  // 'broad' matches "киберсигурност" in 3 separate articles; 'narrow'
+  // once in a tiny § — neither title mentions it, so tier 2 must serve.
+  {
+    lawId: "zakon-za-mrezhite",
+    docId: 771,
+    title: "ЗАКОН ЗА МРЕЖИТЕ",
+    category: "laws",
+    currentCommit: "fff1",
+    versions: [{ validFrom: "2024-01-01", validTo: null, commit: "fff1" }],
+    body:
+      "**Чл. 1.** Уредба на киберсигурност в мрежите и системите.\n\n" +
+      "**Чл. 2.** Органи по киберсигурност и контрол по него.\n\n" +
+      "**Чл. 3.** Санкции при нарушения на киберсигурност.\n",
+    articles: {
+      "1": { text: "Чл. 1. Уредба на киберсигурност в мрежите и системите." },
+      "2": { text: "Чл. 2. Органи по киберсигурност и контрол по него." },
+      "3": { text: "Чл. 3. Санкции при нарушения на киберсигурност." },
+    },
+    ultimaActualizacion: "2024-01-01",
+    fechaPublicacion: "2024-01-01",
+  },
+  {
+    lawId: "naredba-za-pechatite",
+    docId: 772,
+    title: "НАРЕДБА ЗА ПЕЧАТИТЕ",
+    category: "ordinances",
+    currentCommit: "ggg1",
+    versions: [{ validFrom: "2024-02-01", validTo: null, commit: "ggg1" }],
+    body: "**Чл. 1.** Печати и щемпели.\n\n**§ 1.** Значение: киберсигурност.\n",
+    articles: {
+      "1": { text: "Чл. 1. Печати и щемпели." },
+    },
+    ultimaActualizacion: "2024-02-01",
+    fechaPublicacion: "2024-02-01",
+  },
 ];
 
 function preamble(f: FixtureLaw, ultima: string): string {
@@ -295,11 +419,19 @@ export async function seedFixtures(): Promise<void> {
         ).bind(f.lawId, f.lawId, a.operation, a.dvIssue, a.dvDate),
       );
     }
+    // Mirrors index/fts.py insert_title_row + insert_segment_rows.
     inserts.push(
       env.DB.prepare(
-        "INSERT INTO laws_fts (law_id, title, body, category) VALUES (?, ?, ?, ?)",
-      ).bind(f.lawId, bgNormalize(f.title), bgNormalize(f.body), f.category),
+        "INSERT INTO laws_fts (law_id, title, category) VALUES (?, ?, ?)",
+      ).bind(f.lawId, bgNormalize(f.title), f.category),
     );
+    segmentBody(f.body).forEach((seg, segNo) => {
+      inserts.push(
+        env.DB.prepare(
+          "INSERT INTO articles_fts (law_id, seg_no, kind, label, body, category) VALUES (?, ?, ?, ?, ?, ?)",
+        ).bind(f.lawId, String(segNo), seg.kind, seg.label, bgNormalize(seg.text), f.category),
+      );
+    });
   }
   await env.DB.batch(inserts);
 
@@ -320,7 +452,7 @@ export async function seedFixtures(): Promise<void> {
     "meta/stats.json",
     JSON.stringify({
       total_acts: FIXTURES.length,
-      by_category: { codes: 1, laws: 4, ordinances: 2 },
+      by_category: { codes: 1, laws: 5, ordinances: 3 },
       by_status: { vigente: FIXTURES.length },
       multi_version_acts: 1,
       latest_version_date: "2026-04-20",

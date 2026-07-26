@@ -10,7 +10,7 @@
   "openapi": "3.1.0",
   "info": {
    "title": "legalize-bg REST API",
-   "version": "1.0.0"
+   "version": "1.1.0"
   },
   "paths": {
    "/api/v1/metrics": {
@@ -975,6 +975,24 @@
      ],
      "title": "LawSummaryDict"
     },
+    "MatchedSegmentDict": {
+     "properties": {
+      "kind": {
+       "type": "string",
+       "title": "Kind"
+      },
+      "label": {
+       "type": "string",
+       "title": "Label"
+      }
+     },
+     "type": "object",
+     "required": [
+      "kind",
+      "label"
+     ],
+     "title": "MatchedSegmentDict"
+    },
     "SearchHitDict": {
      "properties": {
       "law_id": {
@@ -1001,6 +1019,16 @@
        "type": "string",
        "title": "Body Snippet"
       },
+      "matched": {
+       "anyOf": [
+        {
+         "$ref": "#/components/schemas/MatchedSegmentDict"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
       "relevance": {
        "type": "number",
        "title": "Relevance"
@@ -1014,6 +1042,7 @@
       "category",
       "title_snippet",
       "body_snippet",
+      "matched",
       "relevance"
      ],
      "title": "SearchHitDict"

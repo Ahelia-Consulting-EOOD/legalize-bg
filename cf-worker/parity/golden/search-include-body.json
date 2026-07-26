@@ -13,26 +13,35 @@
    "title": "ЗАКОН ЗА ОБЩЕСТВЕНИТЕ ПОРЪЧКИ",
    "category": "laws",
    "title_snippet": "<b>закон</b> <b>за</b> <b>обществени</b> <b>поръчки</b>",
-   "body_snippet": "# <b>закон</b> за обществени поръчки *в сила от 15.04.2016 г.* проект: 502...",
-   "relevance": 2.7131698031589346
+   "body_snippet": "...6 от закона <b>за</b> <b>обществени</b> <b>поръчки</b> <b>за</b> нарушения по чл. 61, ал...",
+   "matched": null,
+   "relevance": 19.73522002338743
   },
   {
-   "law_id": "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki",
-   "identificador": "2137062047",
-   "title": "УСТРОЙСТВЕН ПРАВИЛНИК НА АГЕНЦИЯТА ПО ОБЩЕСТВЕНИ ПОРЪЧКИ",
-   "category": "regulations",
-   "title_snippet": "устройствен правилник на агенция по <b>обществени</b> <b>поръчки</b>",
-   "body_snippet": "# устройствен правилник на агенция по <b>обществени</b> поръчки *в сила от 24.03.2017 г.* *приет с пмс № 53 от 20.0...",
-   "relevance": 7.014048736540515
+   "law_id": "zakon-za-pazarite-na-finansovi-instrumenti",
+   "identificador": "2137180966",
+   "title": "ЗАКОН ЗА ПАЗАРИТЕ НА ФИНАНСОВИ ИНСТРУМЕНТИ",
+   "category": "laws",
+   "title_snippet": "ЗАКОН ЗА ПАЗАРИТЕ НА ФИНАНСОВИ ИНСТРУМЕНТИ",
+   "body_snippet": "...6 от закона <b>за</b> <b>обществени</b> <b>поръчки</b> <b>за</b> нарушения по чл. 61, ал...",
+   "matched": {
+    "kind": "para",
+    "label": "§ 26"
+   },
+   "relevance": 20.634539813507338
   },
   {
-   "law_id": "pravilnik-za-prilagane-na-zakona-za-obshtestvenite-porachki",
-   "identificador": "2136789316",
-   "title": "ПРАВИЛНИК ЗА ПРИЛАГАНЕ НА ЗАКОНА ЗА ОБЩЕСТВЕНИТЕ ПОРЪЧКИ",
-   "category": "implementing",
-   "title_snippet": "правилник <b>за</b> прилагане на закона <b>за</b> <b>обществени</b> <b>поръчки</b>",
-   "body_snippet": "",
-   "relevance": 6.986734449056675
+   "law_id": "zakon-za-kontsesiite",
+   "identificador": "2137178490",
+   "title": "ЗАКОН ЗА КОНЦЕСИИТЕ",
+   "category": "laws",
+   "title_snippet": "ЗАКОН ЗА КОНЦЕСИИТЕ",
+   "body_snippet": "...при възлагане на <b>обществени</b> <b>поръчки</b> <b>за</b> доставки и <b>за</b> строителство (89/665...",
+   "matched": {
+    "kind": "para",
+    "label": "§ 2"
+   },
+   "relevance": 18.958279151616466
   }
  ]
 }

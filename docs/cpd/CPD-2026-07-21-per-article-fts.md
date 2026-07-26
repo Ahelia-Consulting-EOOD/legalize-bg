@@ -1,6 +1,6 @@
 # CPD-2026-07-21: Per-Article (Per-Segment) FTS5 Index
 
-**Status:** Proposed (direction owner-agreed 2026-07-21; ratification = D-056 on merge of the plan PR)
+**Status:** RATIFIED 2026-07-23 (plan PR #15 merged by owner; design §11 Q1–Q5 answered — see Ratification below)
 **Origin:** D1 2 MB value cap → PR #13 body truncation of 3 acts; lineage D-051 option (b) / D-054
 **Author:** Claude session on owner (ekimir) dispatch, 2026-07-21
 **Design:** `docs/plans/2026-07-21-fr032-per-article-fts-design.md` (authoritative for all technical detail)
@@ -11,6 +11,30 @@
 > FastAPI query layer, Cloudflare exporter, API Worker, and the cf-data-plane spec
 > across three open PRs), which is exactly the situation the DRS portfolio handles
 > with a CPD. The D-056 row stays the canonical ledger entry and points here.
+
+## Ratification (2026-07-23)
+
+Owner merged plan PR #15 and approved implementation "as proposed", adopting the
+design §11 recommendations:
+
+- **Q1 (aggregation):** MIN — best-segment bm25 is the act-level relevance.
+- **Q2 (sequencing):** merge #13 → #12 → #14 first — **already executed** on main
+  (`e1d4e5d0`, `3b62505c`, `3aedaa36`) before ratification, plus #16 (float-exact
+  parity goldens) and #17 (CORS); the v1 capped baseline is live.
+- **Q3 (additive `matched: {kind, label}` field):** YES, in this implementation
+  cycle; minor-version bump on tools.json and openapi-rest.json (additive,
+  Surface 3).
+- **Q4 (`SEG_MAX_BYTES`):** start at 400,000 UTF-8 bytes; final value calibrated by
+  the §8 spike.
+- **Q5 (DEFERRED `D-2026-07-02-01` disposition):** decided by spike data at landing.
+
+**Q1 AMENDED (2026-07-23, post-spike, owner):** plain MIN showed a measured
+short-segment bias (Кодекс на труда #31 for "трудов договор", ЗАНН #6 for
+"административни нарушения"). Act score = best-segment bm25 **− 4·n/(n+5)**
+(n = matching segments within the fixed 500-row overscan window; rational form for
+cross-plane float parity). Evidence: `docs/research/2026-07-23-fr032-spike.md` §5.
+
+Implementation branch: `feat/fr032-per-article-fts`.
 
 ## Problem
 

@@ -7,6 +7,8 @@ import { beforeAll, describe, expect, it } from "vitest";
 import worker from "../src/index";
 import { seedFixtures, KODEKS_BODY_V1, KODEKS_BODY_V3 } from "./fixtures";
 import { textHash16 } from "../src/acts";
+import { bgNormalize } from "../src/normalize";
+import { BREADTH_ALPHA, BREADTH_SATURATION, TIER2_ACT_POOL, TIER2_OVERSCAN } from "../src/fts";
 
 async function call(
   path: string,
@@ -44,8 +46,8 @@ describe("GET /api/v1/laws", () => {
   it("lists laws ordered by title with totals", async () => {
     const { status, body } = await getJson("/api/v1/laws");
     expect(status).toBe(200);
-    expect(body.total).toBe(7);
-    expect(body.items.length).toBe(7);
+    expect(body.total).toBe(9);
+    expect(body.items.length).toBe(9);
     const first = body.items[0];
     expect(first).toEqual({
       law_id: "neizvesten-akt",
@@ -60,7 +62,7 @@ describe("GET /api/v1/laws", () => {
   });
   it("filters by category and estado, paginates", async () => {
     const { body } = await getJson("/api/v1/laws?category=laws&limit=2&offset=1");
-    expect(body.total).toBe(4);
+    expect(body.total).toBe(5);
     expect(body.items.length).toBe(2);
     const none = await getJson("/api/v1/laws?estado=derogado");
     expect(none.body.total).toBe(0);
@@ -386,6 +388,7 @@ describe("GET /api/v1/search", () => {
       "category",
       "title_snippet",
       "body_snippet",
+      "matched",
       "relevance",
     ]);
     // rang-aware tier sort: the law outranks the ordinance.
@@ -393,6 +396,7 @@ describe("GET /api/v1/search", () => {
     expect(body.map((h: any) => h.law_id)).toContain("naredba-za-testovite-porachki");
     expect(hit.title_snippet).toContain("<b>");
     expect(hit.body_snippet).toBe("");
+    expect(hit.matched).toBeNull(); // title-tier hit (FR-032)
     expect(hit.relevance).toBeGreaterThan(0);
   });
   it("expands single-token abbreviations (ЗОП) to the canonical title", async () => {
@@ -400,12 +404,122 @@ describe("GET /api/v1/search", () => {
     expect(body.length).toBeGreaterThanOrEqual(1);
     expect(body[0].law_id).toBe("zakon-za-obshtestvenite-porachki");
   });
-  it("generates body snippets for the top 2 hits when include_body=true", async () => {
+  it("upgrades the top 2 TITLE-tier hits with a scoped segment snippet when include_body=true", async () => {
     const { body } = await getJson(
       "/api/v1/search?q=" + encodeURIComponent("тестовите поръчки") + "&include_body=true",
     );
+    expect(body[0].matched).toBeNull(); // still a title-tier hit
     expect(body[0].body_snippet).toContain("<b>");
-    for (const h of body.slice(2)) expect(h.body_snippet).toBe("");
+    for (const h of body.slice(2)) {
+      if (h.matched === null) expect(h.body_snippet).toBe("");
+    }
+  });
+
+  // ── FR-032 tier-2 (per-segment index) behavior ────────────────────────
+  it("serves body-tier hits with matched attribution and a free segment snippet", async () => {
+    // Neither title mentions the term — tier 2 must serve, and its hits
+    // carry matched {kind,label} + body_snippet WITHOUT include_body.
+    const { status, body } = await getJson(
+      "/api/v1/search?q=" + encodeURIComponent("киберсигурност"),
+    );
+    expect(status).toBe(200);
+    const ids = body.map((h: any) => h.law_id);
+    expect(new Set(ids)).toEqual(new Set(["zakon-za-mrezhite", "naredba-za-pechatite"]));
+    expect(ids.length).toBe(new Set(ids).size); // dedup by act
+    // rang-aware tier sort applies to body-tier hits too.
+    expect(body[0].law_id).toBe("zakon-za-mrezhite");
+    for (const h of body) {
+      expect(["article", "para"]).toContain(h.matched.kind);
+      expect(h.matched.label).toBeTruthy();
+      expect(h.body_snippet).toContain("<b>киберсигурност</b>");
+      expect(h.title_snippet).toBe(h.title); // _trim_title passthrough (≤12 tokens)
+    }
+  });
+  it("computes the breadth-corrected act score exactly (FR-032 formula)", async () => {
+    // Mirror of tests/index/test_fts_v2.py::test_breadth_corrected_score_formula:
+    // recompute expected = best_bm25 − α·n/(n+5) from a raw bm25 query
+    // over the fixed overscan window and require float-exact equality.
+    const { body } = await getJson("/api/v1/search?q=" + encodeURIComponent("киберсигурност"));
+    expect(body.length).toBeGreaterThan(0);
+    const raw = await env.DB.prepare(
+      "SELECT law_id, bm25(articles_fts) AS s FROM articles_fts" +
+        " WHERE articles_fts MATCH ? ORDER BY bm25(articles_fts) LIMIT ?",
+    )
+      .bind(bgNormalize("киберсигурност"), TIER2_OVERSCAN)
+      .all<{ law_id: string; s: number }>();
+    const best = new Map<string, number>();
+    const cnt = new Map<string, number>();
+    for (const r of raw.results) {
+      if (!best.has(r.law_id)) best.set(r.law_id, r.s);
+      cnt.set(r.law_id, (cnt.get(r.law_id) ?? 0) + 1);
+    }
+    for (const h of body) {
+      const n = cnt.get(h.law_id)!;
+      const expected = -(best.get(h.law_id)! - (BREADTH_ALPHA * n) / (n + BREADTH_SATURATION));
+      expect(h.relevance).toBe(expected); // exact, no tolerance
+    }
+  });
+  it("dedups acts across tiers (title tier wins) without disturbing rang sort", async () => {
+    // "тестовите поръчки" matches both acts' titles AND their body
+    // segments — the two-phase tier 2 must not duplicate them, and the
+    // surviving hits stay title-tier (matched=null, FTS title snippet).
+    const { body } = await getJson("/api/v1/search?q=" + encodeURIComponent("тестовите поръчки"));
+    const ids = body.map((h: any) => h.law_id);
+    expect(ids.length).toBe(new Set(ids).size);
+    expect(ids[0]).toBe("zakon-za-testovite-porachki"); // rang: law before ordinance
+    for (const h of body) {
+      expect(h.matched).toBeNull();
+      expect(h.title_snippet).toContain("<b>");
+    }
+  });
+  it("applies the category filter to the body tier", async () => {
+    const { body } = await getJson(
+      "/api/v1/search?q=" + encodeURIComponent("киберсигурност") + "&category=ordinances",
+    );
+    expect(body.map((h: any) => h.law_id)).toEqual(["naredba-za-pechatite"]);
+  });
+  it("rang-rescues laws from the 20-act pool, not the caller's limit (FR-032)", async () => {
+    // Mirror of tests/index/test_fts_v2.py::
+    // test_rang_rescue_operates_on_the_act_pool_not_limit. A parent law
+    // whose breadth-corrected rank lands BETWEEN `limit` and
+    // TIER2_ACT_POOL must be rang-rescued; one outside the pool must
+    // not. Ranks are pinned via strictly decreasing term frequency
+    // (bm25 is monotonic in tf here), asserted below before use.
+    expect(TIER2_ACT_POOL).toBe(20);
+    const inserts: D1PreparedStatement[] = [];
+    for (let i = 0; i < 21; i++) {
+      const lid = i === 11 ? "law-inside-pool" : i === 20 ? "law-outside-pool" : `ord-${i}`;
+      const cat = i === 11 || i === 20 ? "laws" : "ordinances";
+      inserts.push(
+        env.DB.prepare(
+          "INSERT INTO laws (law_id, doc_id, title, category, status, current_commit) VALUES (?, ?, ?, ?, 'vigente', 'x')",
+        ).bind(lid, 900 + i, `АКТ ${i}`, cat),
+      );
+      inserts.push(
+        env.DB.prepare(
+          "INSERT INTO articles_fts (law_id, seg_no, kind, label, body, category) VALUES (?, ?, ?, ?, ?, ?)",
+        ).bind(lid, "0", "article", `чл. ${i}`, Array(40 - i).fill("уникатерм").join(" "), cat),
+      );
+    }
+    await env.DB.batch(inserts);
+    // Sanity: the constructed corpus really yields ranks 12 and 21.
+    const raw = await env.DB.prepare(
+      "SELECT law_id FROM articles_fts WHERE articles_fts MATCH ? ORDER BY bm25(articles_fts) LIMIT ?",
+    )
+      .bind("уникатерм", TIER2_OVERSCAN)
+      .all<{ law_id: string }>();
+    expect(raw.results[11]!.law_id).toBe("law-inside-pool");
+    expect(raw.results[20]!.law_id).toBe("law-outside-pool");
+
+    const { body } = await getJson("/api/v1/search?q=" + encodeURIComponent("уникатерм") + "&limit=5");
+    const ids = body.map((h: any) => h.law_id);
+    expect(ids[0]).toBe("law-inside-pool"); // rescued from the 20-act pool
+    expect(ids).not.toContain("law-outside-pool"); // rank 21: outside the pool
+    expect(ids.length).toBe(5);
+    // Enrichment ran only for the survivors, after truncation.
+    expect(body[0].title).toBe("АКТ 11");
+    expect(body[0].body_snippet).toContain("<b>уникатерм</b>");
+    expect(body[0].matched).toEqual({ kind: "article", label: "чл. 11" });
   });
   it("filters by category", async () => {
     const { body } = await getJson(
@@ -470,6 +584,14 @@ describe("GET /api/v1/search", () => {
     expect(bad.body.detail.map((d: any) => d.type)).toEqual(["int_parsing", "bool_parsing"]);
     expect(bad.body.detail[1].msg).toBe("Input should be a valid boolean, unable to interpret input");
   });
+  it("INDEX_MISSING 503 when articles_fts is gone (tier-2 errors propagate)", async () => {
+    await env.DB.prepare("DROP TABLE articles_fts").run();
+    const { status, body } = await getJson(
+      "/api/v1/search?q=" + encodeURIComponent("киберсигурност"),
+    );
+    expect(status).toBe(503);
+    expect(body.code).toBe("INDEX_MISSING");
+  });
   it("INDEX_MISSING 503 when the FTS table is gone", async () => {
     await env.DB.prepare("DROP TABLE laws_fts").run();
     const { status, body } = await getJson("/api/v1/search?q=" + encodeURIComponent("тест"));
@@ -486,9 +608,9 @@ describe("GET /api/v1/stats", () => {
     const { status, body } = await getJson("/api/v1/stats");
     expect(status).toBe(200);
     expect(body).toEqual({
-      total_acts: 7,
-      by_category: { codes: 1, laws: 4, ordinances: 2 },
-      by_status: { vigente: 7 },
+      total_acts: 9,
+      by_category: { codes: 1, laws: 5, ordinances: 3 },
+      by_status: { vigente: 9 },
       multi_version_acts: 1,
       latest_version_date: "2026-04-20",
     });
@@ -521,7 +643,7 @@ describe("GET /api/v1/metrics and /api/v1/openapi.json", () => {
   it("serves the checked-in OpenAPI spec verbatim", async () => {
     const { status, body } = await getJson("/api/v1/openapi.json");
     expect(status).toBe(200);
-    expect(body.info).toEqual({ title: "legalize-bg REST API", version: "1.0.0" });
+    expect(body.info).toEqual({ title: "legalize-bg REST API", version: "1.1.0" });
     expect(Object.keys(body.paths).length).toBe(9);
   });
 });

@@ -36,7 +36,8 @@ def main(argv: list[str] | None = None) -> int:
     counts = manifest["counts"]
     print(f"exported {counts['acts_json']} acts, "
           f"{counts['versions_json']} versions, "
-          f"{counts['laws_fts']} FTS rows → {args.out} "
+          f"{counts['laws_fts']} title rows, "
+          f"{counts['articles_fts']} segment rows → {args.out} "
           f"in {dt:.1f}s")
 
     if args.verify:
@@ -46,9 +47,11 @@ def main(argv: list[str] | None = None) -> int:
         except VerifyError as e:
             print(f"verify: FAILED\n{e}", file=sys.stderr)
             return 1
-        print(f"verify: OK ({report['sampled_acts']} acts sampled, "
+        print(f"verify: OK ({report['sampled_acts']} acts + "
+              f"{report['sampled_segments']} segments sampled, "
               f"{report['laws_rows']} laws, "
-              f"{report['fts_rows']} FTS rows) "
+              f"{report['fts_rows']} title rows, "
+              f"{report['articles_fts_rows']} segment rows) "
               f"in {time.monotonic() - t1:.1f}s")
     return 0
 

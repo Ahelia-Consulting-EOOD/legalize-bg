@@ -1,6 +1,6 @@
 # legalize-bg MCP Error Taxonomy
 
-**Version:** 1.3.0  (matches `tools.json` `version`)
+**Version:** 1.4.0  (matches `tools.json` `version`)
 **Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`; Phase 2 adds `INVALID_DATE_RANGE`; 2.x-a adds the `get_articles` tool (FR-018) which reuses `INVALID_ARTICLE_SPEC` / `ARTICLE_NOT_FOUND` — no new codes; the 2026-07-02 P2 input-validation hardening adds `INVALID_DATE`. 1.3.0 bump is version-parity only (field-level output schemas, no error-code change).
 
 This document catalogs every error code the legalize-bg MCP server returns through the FastMCP error envelope. Codes are stable: additive changes (new code) bump the minor version; removing or renaming a code bumps the major version (compatibility break).

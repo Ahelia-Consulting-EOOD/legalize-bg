@@ -321,6 +321,24 @@
         "title": "LawSummaryDict",
         "type": "object"
       },
+      "MatchedSegmentDict": {
+        "properties": {
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "label": {
+            "title": "Label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "label"
+        ],
+        "title": "MatchedSegmentDict",
+        "type": "object"
+      },
       "SearchHitDict": {
         "properties": {
           "body_snippet": {
@@ -338,6 +356,16 @@
           "law_id": {
             "title": "Law Id",
             "type": "string"
+          },
+          "matched": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MatchedSegmentDict"
+              },
+              {
+                "type": "null"
+              }
+            ]
           },
           "relevance": {
             "title": "Relevance",
@@ -359,6 +387,7 @@
           "category",
           "title_snippet",
           "body_snippet",
+          "matched",
           "relevance"
         ],
         "title": "SearchHitDict",
@@ -503,7 +532,7 @@
   },
   "info": {
     "title": "legalize-bg REST API",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "openapi": "3.1.0",
   "paths": {

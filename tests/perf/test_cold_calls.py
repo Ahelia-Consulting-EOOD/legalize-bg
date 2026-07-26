@@ -62,6 +62,12 @@ COLD_BUDGETS = {
     "search_cold_p95":          0.050,  # 50 ms cold, title-tier-only (D-051)
     "get_law_cold_current_p95": 0.100,
     "get_article_cold_p95":     0.050,
+    # FR-032 / D-057: the previously UNLOCKABLE body-only cold case
+    # (DEFERRED D-2026-07-02-01; 5.4-6.5s raw under the one-row-per-act
+    # index) — the per-segment split brings the pathological set to
+    # 99-346 ms cold on the reference machine; ratified formula
+    # (measured worst p95 x 1.5) + busy-machine headroom -> 0.60s.
+    "search_body_only_cold_p95": 0.600,
 }
 
 # Smaller query set than test_budgets.py REPRESENTATIVE_QUERIES — cold
@@ -197,3 +203,31 @@ def test_get_article_cold_p95():
         finally:
             c.close()
     _hard_assert(_p95(durations), "get_article_cold_p95")
+
+
+# FR-032 / D-057: body-only queries fall through to the articles_fts
+# tier (two-phase overscan). These two are the documented pathological
+# cases from D-051/D-054 and the FR-032 spike — genuinely body-only
+# (title tier < 3 hits), broad postings lists.
+BODY_ONLY_QUERIES = ("административни нарушения", "трудов договор")
+
+
+def test_search_body_only_cold_p95():
+    """The DEFERRED D-2026-07-02-01 closure lock: fresh-connection
+    body-only search must stay under the re-ratified budget. Before
+    FR-032 this case measured 5.4-6.5s and was deliberately left
+    unlocked (a budget would only have codified a known-slow number,
+    D-054); the per-segment index makes it lockable."""
+    from index.fts import search_fts
+
+    durations: list[float] = []
+    for _ in range(5):
+        for q in BODY_ONLY_QUERIES:
+            c = _open_fresh()
+            try:
+                t0 = time.monotonic()
+                search_fts(c, q, limit=10)
+                durations.append(time.monotonic() - t0)
+            finally:
+                c.close()
+    _hard_assert(_p95(durations), "search_body_only_cold_p95")

@@ -7,53 +7,53 @@
   "cache-control": null
  },
  "body": {
-  "/api/v1/stats": {
-   "calls": 5,
+  "/healthz": {
+   "calls": 2,
    "errors": 0,
-   "total_ms": 595.234665001044,
-   "avg_ms": 119.05
+   "total_ms": 1.6827080107759684,
+   "avg_ms": 0.84
+  },
+  "/api/v1/stats": {
+   "calls": 1,
+   "errors": 0,
+   "total_ms": 89.30320799117908,
+   "avg_ms": 89.3
   },
   "/api/v1/laws": {
-   "calls": 16,
-   "errors": 2,
-   "total_ms": 47.51983497408219,
-   "avg_ms": 2.97
-  },
-  "/api/v1/search": {
-   "calls": 35,
-   "errors": 16,
-   "total_ms": 14535.53075203672,
-   "avg_ms": 415.3
+   "calls": 7,
+   "errors": 1,
+   "total_ms": 18.479708960512653,
+   "avg_ms": 2.64
   },
   "/api/v1/laws/{slug}": {
-   "calls": 36,
-   "errors": 19,
-   "total_ms": 238.45003901806194,
-   "avg_ms": 6.62
-  },
-  "/healthz": {
-   "calls": 4,
-   "errors": 0,
-   "total_ms": 22.723916990798898,
-   "avg_ms": 5.68
-  },
-  "/api/v1/laws/{slug}/diff": {
-   "calls": 18,
-   "errors": 12,
-   "total_ms": 77.8580839978531,
-   "avg_ms": 4.33
+   "calls": 14,
+   "errors": 7,
+   "total_ms": 73.67550098570064,
+   "avg_ms": 5.26
   },
   "/api/v1/laws/{slug}/articles/{art}": {
-   "calls": 21,
-   "errors": 12,
-   "total_ms": 32.08229099982418,
-   "avg_ms": 1.53
+   "calls": 9,
+   "errors": 5,
+   "total_ms": 16.366874071536586,
+   "avg_ms": 1.82
   },
   "/api/v1/laws/{slug}/history": {
+   "calls": 3,
+   "errors": 1,
+   "total_ms": 12.47950000106357,
+   "avg_ms": 4.16
+  },
+  "/api/v1/laws/{slug}/diff": {
    "calls": 7,
-   "errors": 2,
-   "total_ms": 17.794500003219582,
-   "avg_ms": 2.54
+   "errors": 5,
+   "total_ms": 22.449666023021564,
+   "avg_ms": 3.21
+  },
+  "/api/v1/search": {
+   "calls": 14,
+   "errors": 6,
+   "total_ms": 2552.94008195051,
+   "avg_ms": 182.35
   }
  }
 }

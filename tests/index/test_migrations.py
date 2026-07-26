@@ -55,3 +55,35 @@ def test_migration_004_adds_date_uncertain_column():
     cols = [r[1] for r in conn.execute("PRAGMA table_info(law_versions)")]
     assert "date_uncertain" in cols, \
         f"expected 'date_uncertain' in law_versions cols, got {cols}"
+
+
+# ── migration 005: FR-032 two-index split (D-056) ──────────────────────
+
+def test_migration_005_laws_fts_is_title_only():
+    conn = sqlite3.connect(":memory:")
+    migrate(conn)
+    cols = [r[1] for r in conn.execute("PRAGMA table_info(laws_fts)")]
+    assert cols == ["law_id", "title", "category"], cols
+
+
+def test_migration_005_creates_articles_fts():
+    conn = sqlite3.connect(":memory:")
+    migrate(conn)
+    cols = [r[1] for r in conn.execute("PRAGMA table_info(articles_fts)")]
+    assert cols == ["law_id", "seg_no", "kind", "label", "body",
+                    "category"], cols
+
+
+def test_migration_005_drops_v1_laws_fts_content():
+    """A v4 db with a populated one-row-per-act laws_fts migrates to an
+    EMPTY title-only laws_fts (catalog.db is derived; the migration
+    mandates a full rebuild rather than in-place re-segmentation)."""
+    conn = sqlite3.connect(":memory:")
+    migrate(conn, [m for m in MIGRATIONS if m.version <= 4])
+    conn.execute(
+        "INSERT INTO laws_fts (law_id, title, body, category)"
+        " VALUES ('a', 'заглавие', 'тяло', 'laws')")
+    migrate(conn)
+    assert conn.execute("SELECT COUNT(*) FROM laws_fts").fetchone()[0] == 0
+    cols = [r[1] for r in conn.execute("PRAGMA table_info(laws_fts)")]
+    assert "body" not in cols

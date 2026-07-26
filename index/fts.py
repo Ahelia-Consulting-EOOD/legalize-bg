@@ -91,14 +91,43 @@ def bg_normalize(text: str | None) -> str:
     return " ".join(_strip_definite_article(t) for t in tokens)
 
 
+
+# ── FR-032 (D-056): two-index split ────────────────────────────────────
+#
+# `laws_fts` is TITLE-ONLY (tier-1 ranking unchanged by construction);
+# `articles_fts` holds one row per body segment produced by
+# index/segments.py, chunked to ≤ SEG_MAX_BYTES so no value approaches
+# Cloudflare D1's 2 MB cap (which retired FTS_BODY_MAX_BYTES / spec
+# v1.2). Design: docs/plans/2026-07-21-fr032-per-article-fts-design.md;
+# measurements: docs/research/2026-07-23-fr032-spike.md.
+
+from index.segments import segment_texts  # noqa: E402
+
+
 def create_laws_fts_table(conn: sqlite3.Connection) -> None:
-    """Idempotent helper — migrations.py already creates this, but build.py
-    uses this when working on a non-migrated test db."""
+    """Idempotent helper — migrations.py already creates this, but tests
+    working on a non-migrated db use it. Title-only since migration 005."""
     conn.executescript(
         """
         CREATE VIRTUAL TABLE IF NOT EXISTS laws_fts USING fts5(
             law_id UNINDEXED,
             title,
+            category UNINDEXED,
+            tokenize='unicode61 remove_diacritics 2'
+        );
+        """
+    )
+
+
+def create_articles_fts_table(conn: sqlite3.Connection) -> None:
+    """Idempotent helper for the per-segment index (migration 005)."""
+    conn.executescript(
+        """
+        CREATE VIRTUAL TABLE IF NOT EXISTS articles_fts USING fts5(
+            law_id UNINDEXED,
+            seg_no UNINDEXED,
+            kind UNINDEXED,
+            label UNINDEXED,
             body,
             category UNINDEXED,
             tokenize='unicode61 remove_diacritics 2'
@@ -107,44 +136,51 @@ def create_laws_fts_table(conn: sqlite3.Connection) -> None:
     )
 
 
-# Cap on the indexed (normalized) body, in UTF-8 bytes. Cloudflare D1
-# rejects strings >= 2,000,000 bytes (SQLITE_TOOBIG), and the D1 export
-# mirrors this index verbatim; both sides truncate identically so bm25
-# document-length statistics — and therefore relevance floats — match.
-# Only the search-index tail of oversized acts is affected; full text
-# serving is untouched. Spec: cf-data-plane v1.2.
-FTS_BODY_MAX_BYTES = 1_900_000
+def create_fts_tables(conn: sqlite3.Connection) -> None:
+    create_laws_fts_table(conn)
+    create_articles_fts_table(conn)
 
 
-def _cap_utf8(text: str, max_bytes: int) -> str:
-    raw = text.encode("utf-8")
-    if len(raw) <= max_bytes:
-        return text
-    return raw[:max_bytes].decode("utf-8", errors="ignore")
-
-
-def insert_fts_row(conn: sqlite3.Connection, law_id: str, title: str,
-                   body: str, category: str) -> None:
+def insert_title_row(conn: sqlite3.Connection, law_id: str, title: str,
+                     category: str) -> None:
     conn.execute(
-        "INSERT INTO laws_fts (law_id, title, body, category) VALUES (?, ?, ?, ?)",
-        (law_id, bg_normalize(title),
-         _cap_utf8(bg_normalize(body), FTS_BODY_MAX_BYTES), category),
+        "INSERT INTO laws_fts (law_id, title, category) VALUES (?, ?, ?)",
+        (law_id, bg_normalize(title), category),
     )
 
 
-# Single-stage SELECT with snippet() on the TITLE column (FTS5 column
-# index 1), not the body (index 2). Body-snippet via FTS5 was the perf
-# killer in 1b.1: extracting a fragment from large indexed bodies takes
-# ~700ms even with limit 20. Title-snippet runs in ~75ms and produces
-# useful "which act is this?" output for callers.
-#
-# FR-017 closed in Phase 1b.3 with an OPT-IN body-snippet path: see
-# `mcp_server/queries.py:_make_body_snippet`, gated on the new
-# `include_body=True` parameter on the `search` tool. Default `search`
-# calls preserve the title-only behavior here. FR-015 (synonym
-# expansion + rang-aware re-rank) and FR-016 (single-word category
-# query reject) are also closed; remaining open deferral is FR-014
-# (Phase 4 incremental rebuild).
+def insert_segment_rows(conn: sqlite3.Connection, law_id: str, body: str,
+                        category: str) -> None:
+    """Segment `body` (index/segments.py, coverage-invariant) and write
+    one articles_fts row per (possibly chunked) segment. seg_no is the
+    0-based emission order; kind/label are advisory display metadata.
+
+    Coverage gate (design §9, the D-047 lesson): the segment spans must
+    tile the body exactly — contiguous, gap-free, first at 0, last at
+    len(body). A violation aborts the act's indexing loudly rather than
+    silently indexing partial text."""
+    rows = segment_texts(body, bg_normalize)
+    pos = 0
+    for seg, _ in rows:
+        if seg.start != pos:
+            raise ValueError(
+                f"{law_id}: segmentation coverage invariant violated — "
+                f"gap/overlap at offset {pos} (segment starts {seg.start})")
+        pos = seg.end
+    if pos != len(body):
+        raise ValueError(
+            f"{law_id}: segmentation coverage invariant violated — spans "
+            f"end at {pos}, body has {len(body)} chars")
+    for seg_no, (seg, norm) in enumerate(rows):
+        conn.execute(
+            "INSERT INTO articles_fts (law_id, seg_no, kind, label, body,"
+            " category) VALUES (?, ?, ?, ?, ?, ?)",
+            (law_id, str(seg_no), seg.kind, seg.label, norm, category),
+        )
+
+
+# Tier-1 SELECT: snippet() on the TITLE column (index 1 — unchanged by
+# the title-only recreation: law_id 0, title 1, category 2).
 _FTS_SELECT = """
     SELECT laws_fts.law_id          AS law_id,
            laws.doc_id              AS doc_id,
@@ -157,9 +193,88 @@ _FTS_SELECT = """
      WHERE laws_fts MATCH ?
 """
 
+# Tier-2 phase 1 (FR-032): SCORE-ONLY overscan over articles_fts — the
+# spike proved MIN(bm25) cannot run inside GROUP BY over an FTS5 aux
+# function and the MATERIALIZED-CTE form pays 700–1050 ms materializing
+# snippets for every matching segment on broad terms. Measured on the
+# live catalog: snippet() over the 500-row window costs 425–560 ms warm
+# vs 1–10 ms for bm25-only — so phase 1 fetches NO text; act-level
+# aggregation happens host-side, and phase 2 below extracts snippets
+# for the ≤limit winning segments only.
+_SEGMENT_SCORE_SELECT = """
+    SELECT articles_fts.law_id     AS law_id,
+           articles_fts.seg_no     AS seg_no,
+           articles_fts.kind       AS kind,
+           articles_fts.label      AS label,
+           articles_fts.category   AS category,
+           bm25(articles_fts)      AS score
+      FROM articles_fts
+     WHERE articles_fts MATCH ?
+"""
+
+# Tier-2 phase 2: snippet extraction for the winning segments. SQLite
+# evaluates SELECT expressions only for rows surviving the WHERE, so
+# one MATCH scan with the (law_id:seg_no) allowlist computes ≤limit
+# snippets. snippet() column index 4 = body (law_id 0, seg_no 1,
+# kind 2, label 3, body 4, category 5).
+_SEGMENT_SNIPPET_SELECT = """
+    SELECT articles_fts.law_id     AS law_id,
+           articles_fts.seg_no     AS seg_no,
+           snippet(articles_fts, 4, '<b>', '</b>', '...', 12) AS seg_snippet
+      FROM articles_fts
+     WHERE articles_fts MATCH ?
+       AND (articles_fts.law_id || ':' || articles_fts.seg_no) IN ({keys})
+"""
+
+# Fixed overscan window for tier 2. FIXED (not K×limit) so the breadth
+# count below — and therefore every act score — is deterministic and
+# independent of the caller's limit (parity + testability requirement,
+# spike §2).
+TIER2_OVERSCAN = 500
+
+# Breadth-corrected best-segment score (D-056 Q1 as AMENDED 2026-07-23):
+#   act_score = best_segment_bm25 − BREADTH_ALPHA · n / (n + BREADTH_SATURATION)
+# where n = the act's matching segments within the overscan window.
+# Plain MIN showed a measured short-segment bias (Кодекс на труда #31
+# for "трудов договор", ЗАНН #6 for "административни нарушения" —
+# spike §5); the saturating RATIONAL form (not ln) keeps the correction
+# float-identical across CPython/libm and V8/fdlibm for cross-plane
+# bm25 parity.
+BREADTH_ALPHA = 4.0
+BREADTH_SATURATION = 5.0
+
+# Act pool handed to the FR-015 rang-tier sort. FIXED at 20 (not
+# `limit`): the sort must see enough body-tier acts to rescue parent
+# laws whose breadth-corrected rank lands below the caller's limit —
+# the spike's Кодекс-на-труда case sits at raw rank ~20 for
+# "трудов договор" and must surface at limit=10. Truncation to `limit`
+# happens AFTER the sort; snippets are fetched after truncation, for
+# the surviving hits only.
+TIER2_ACT_POOL = 20
+
+
+def _is_user_input_error(e: sqlite3.OperationalError) -> bool:
+    """FTS5 raises OperationalError for malformed query terms — the
+    error families verified empirically in plan
+    docs/plans/2026-05-09-phase1b1-review-fixes.md Task 1, plus the
+    historic "fts5"/"syntax error" prefixes some builds emit. Shared by
+    both tiers (the consolidation the pre-FR-032 comments tracked).
+    Other OperationalErrors (table missing, DB locked, corruption) must
+    propagate so callers see INDEX_STALE / INDEX_MISSING instead of
+    silent empty results (audit D-8 + review Issue #1)."""
+    msg = str(e).lower()
+    return (
+        "fts5" in msg
+        or "syntax error" in msg
+        or "unknown special query" in msg
+        or "unterminated string" in msg
+        or msg.startswith("no such column")
+    )
+
 
 def _run_match(conn: sqlite3.Connection, match_query: str,
                category: str | None, limit: int) -> list[sqlite3.Row]:
+    """Tier-1 MATCH over title-only laws_fts."""
     sql = _FTS_SELECT
     params: list = [match_query]
     if category:
@@ -170,44 +285,57 @@ def _run_match(conn: sqlite3.Connection, match_query: str,
     try:
         return conn.execute(sql, params).fetchall()
     except sqlite3.OperationalError as e:
-        # FTS5 raises OperationalError for malformed query terms — three
-        # user-input error families verified empirically (see plan
-        # docs/plans/2026-05-09-phase1b1-review-fixes.md, Task 1) plus
-        # the historic "fts5"/"syntax error" prefixes some SQLite builds
-        # emit:
-        #   - "unknown special query: "              (lone '*' / bareword)
-        #   - "unterminated string"                  (any unbalanced quote)
-        #   - "no such column: ..."                  (invalid x:foo column qualifier)
-        #   - "fts5: ..." / "syntax error"           (build-specific prefixes)
-        # Suppress those — the user gave us a string FTS5 can't tokenize,
-        # so treat as no results. Other OperationalErrors (table missing,
-        # DB locked, disk full, corruption) must propagate so callers
-        # see INDEX_STALE / INDEX_MISSING instead of silent empty
-        # results (audit D-8 + review Issue #1). Mirrors
-        # mcp_server.queries.resolve_name_to_law_id in spirit;
-        # consolidating the two allowlists into a shared tuple is
-        # tracked separately.
-        #
-        # Known limitation (reviewed Round-3): startswith("no such
-        # column") would also swallow a hypothetical schema-corruption
-        # case where laws.* columns are renamed/dropped. Realistic
-        # exposure is near-zero (the schema is fixed code behind a
-        # protected-surface preflight) but the tighter form
-        # `startswith("no such column: ") and ":" in match_query`
-        # would gate suppression on the user actually typing a
-        # column-qualifier — fold into the consolidation work
-        # mentioned above.
-        msg = str(e).lower()
-        is_user_input_error = (
-            "fts5" in msg
-            or "syntax error" in msg
-            or "unknown special query" in msg
-            or "unterminated string" in msg
-            or msg.startswith("no such column")
-        )
-        if not is_user_input_error:
+        if not _is_user_input_error(e):
             raise
         return []
+
+
+def _run_segment_match(conn: sqlite3.Connection, match_query: str,
+                       category: str | None) -> list[sqlite3.Row]:
+    """Tier-2 phase-1 MATCH over articles_fts (score-only), fixed
+    TIER2_OVERSCAN window, bm25-ordered. Same user-input error contract
+    as _run_match."""
+    sql = _SEGMENT_SCORE_SELECT
+    params: list = [match_query]
+    if category:
+        sql += " AND articles_fts.category = ?"
+        params.append(category)
+    sql += " ORDER BY bm25(articles_fts) LIMIT ?"
+    params.append(TIER2_OVERSCAN)
+    try:
+        return conn.execute(sql, params).fetchall()
+    except sqlite3.OperationalError as e:
+        if not _is_user_input_error(e):
+            raise
+        return []
+
+
+def _fetch_segment_snippets(conn: sqlite3.Connection, match_query: str,
+                            keys: list[str]) -> dict[str, str]:
+    """Phase 2: {'law_id:seg_no': snippet} for the winning segments."""
+    if not keys:
+        return {}
+    sql = _SEGMENT_SNIPPET_SELECT.format(
+        keys=", ".join("?" for _ in keys))
+    try:
+        rows = conn.execute(sql, [match_query, *keys]).fetchall()
+    except sqlite3.OperationalError as e:
+        if not _is_user_input_error(e):
+            raise
+        return {}
+    return {f"{r['law_id']}:{r['seg_no']}": r["seg_snippet"] for r in rows}
+
+
+def _fetch_laws_meta(conn: sqlite3.Connection,
+                     law_ids: list[str]) -> dict[str, sqlite3.Row]:
+    """doc_id/title for the winning acts (PK lookups; phase 1 carries
+    no laws JOIN so the 500-row window stays text-free)."""
+    if not law_ids:
+        return {}
+    sql = ("SELECT law_id, doc_id, title FROM laws WHERE law_id IN ({})"
+           .format(", ".join("?" for _ in law_ids)))
+    return {r["law_id"]: r
+            for r in conn.execute(sql, law_ids).fetchall()}
 
 
 # FR-015 part 2 / D-2026-05-09-04: rang-aware re-rank tiers. Lower
@@ -224,90 +352,148 @@ _RANG_TIER: dict[str, int] = {
 }
 
 
-def _rang_tier(row: sqlite3.Row) -> int:
-    """Return the rang-tier for a search result row (0 = parent
-    laws/codes, 1 = regulations/implementing/ordinances, 2 = unknown).
-    Used as the primary sort key in search_fts's final tier sort."""
-    try:
-        category = row["category"]
-    except (IndexError, KeyError):
-        return 2
-    return _RANG_TIER.get(category, 2)
+def _rang_tier(hit: dict) -> int:
+    return _RANG_TIER.get(hit.get("category"), 2)
+
+
+def _rang_tier_sort(hits: list[dict]) -> list[dict]:
+    """Stable tier sort — parent laws/codes float to the top, score
+    order is preserved within each tier."""
+    indexed = list(enumerate(hits))
+    indexed.sort(key=lambda pair: (_rang_tier(pair[1]), pair[0]))
+    return [hit for _, hit in indexed]
+
+
+def _trim_title(title: str | None, max_tokens: int = 12) -> str:
+    """Deterministic title fragment for tier-2 hits (whose MATCH ran on
+    articles_fts, so no FTS title-snippet is available): the leading 12
+    whitespace tokens, '...'-terminated when truncated — mirroring the
+    v1 snippet() shape for non-matching titles."""
+    if not title:
+        return ""
+    tokens = title.split()
+    if len(tokens) <= max_tokens:
+        return title
+    return " ".join(tokens[:max_tokens]) + "..."
+
+
+def _title_hit(row: sqlite3.Row) -> dict:
+    return {
+        "law_id": row["law_id"], "doc_id": row["doc_id"],
+        "title": row["title"], "category": row["category"],
+        "snippet": row["snippet"], "score": row["score"],
+        "matched_kind": None, "matched_label": None, "seg_snippet": None,
+    }
+
+
+def _segment_hits(rows: list[sqlite3.Row]) -> list[dict]:
+    """Aggregate phase-1 window rows (bm25-ordered) to LIGHT act-level
+    hits: first occurrence per act = its best segment; n = occurrences
+    in the window; score per the breadth-corrected formula above.
+    Returns the top TIER2_ACT_POOL acts, un-enriched (no titles, no
+    snippets — see _enrich_segment_hits, called post-truncation)."""
+    order: list[str] = []
+    best: dict[str, sqlite3.Row] = {}
+    count: dict[str, int] = {}
+    for row in rows:
+        lid = row["law_id"]
+        if lid not in best:
+            best[lid] = row
+            order.append(lid)
+        count[lid] = count.get(lid, 0) + 1
+
+    scored = []
+    for lid in order:
+        row = best[lid]
+        n = count[lid]
+        scored.append(
+            (row["score"] - BREADTH_ALPHA * n / (n + BREADTH_SATURATION),
+             lid, row))
+    scored.sort(key=lambda t: t[0])
+
+    hits = []
+    for score, lid, row in scored[:TIER2_ACT_POOL]:
+        hits.append({
+            "law_id": lid, "doc_id": None, "title": None,
+            "category": row["category"], "snippet": "",
+            "score": score,
+            "matched_kind": row["kind"], "matched_label": row["label"],
+            "seg_snippet": "", "_seg_no": row["seg_no"],
+        })
+    return hits
+
+
+def _enrich_segment_hits(conn: sqlite3.Connection, match_query: str,
+                         hits: list[dict]) -> None:
+    """Phase 2, applied to the ≤limit SURVIVING body-tier hits only:
+    fetch act metadata (title/doc_id) and the best-segment snippet,
+    fill the display fields in place."""
+    if not hits:
+        return
+    keys = [f"{h['law_id']}:{h['_seg_no']}" for h in hits]
+    snippets = _fetch_segment_snippets(conn, match_query, keys)
+    meta = _fetch_laws_meta(conn, [h["law_id"] for h in hits])
+    for h in hits:
+        m = meta.get(h["law_id"])
+        title = m["title"] if m else None
+        h["doc_id"] = m["doc_id"] if m else None
+        h["title"] = title
+        h["snippet"] = _trim_title(title)
+        h["seg_snippet"] = snippets.get(
+            f"{h['law_id']}:{h['_seg_no']}", "")
+        del h["_seg_no"]
 
 
 def search_fts(conn: sqlite3.Connection, query: str,
                category: str | None = None,
-               limit: int = 20) -> list[sqlite3.Row]:
-    """FTS5 search with two-tier ranking: title-restricted matches
-    first, body matches second.
+               limit: int = 20) -> list[dict]:
+    """Two-tier search over the FR-032 split index.
 
-    BM25 alone over title+body produces inverted rankings for canonical
-    title queries — e.g., "обществени поръчки" puts the implementing
-    regulation above ЗОП itself because the implementing reg has a
-    shorter body where the terms repeat more densely. Two-tier search
-    fixes the dominant case without a stemmer:
-      tier 1: docs whose TITLE contains every query token (high
-              precision; a doc with all query tokens in the title is
-              almost always the right answer)
-      tier 2: BM25 over the full corpus (recall — catches body matches
-              and abbreviations like 'ЗОП' that don't appear in titles)
+    Tier 1 (unchanged, D-051 gating): title-restricted MATCH over the
+    title-only laws_fts — same documents and token statistics as v1, so
+    title-tier ordering is preserved by construction.
 
-    Both tiers honor the optional category filter. Results are
-    deduplicated by law_id (title-tier wins). FR-015 tracks the
-    Phase 1b.3 stemmer + synonym dictionary that will further refine
-    ranking once usage data exists.
+    Tier 2 (FR-032): overscan MATCH over articles_fts, aggregated
+    host-side to acts via the breadth-corrected best-segment score.
+    Tier-2 hits carry matched_kind/matched_label/seg_snippet (the Q3
+    additive attribution); title-tier hits carry None there.
+
+    Results are deduplicated by law_id (title tier wins) and finish
+    with the FR-015 rang-tier sort.
     """
     normalized = bg_normalize(query)
     if not normalized:
         return []
 
-    # Tier 1: column-restricted title query (e.g. "title:наказателен
-    # title:кодекс"). FTS5's column qualifier requires lowercased
-    # column name and the same normalized tokens.
     tokens = [t for t in normalized.split() if t]
     if tokens:
         title_q = " ".join(f"title:{t}" for t in tokens)
-        title_rows = _run_match(conn, title_q, category, limit)
+        title_hits = [_title_hit(r)
+                      for r in _run_match(conn, title_q, category, limit)]
     else:
-        title_rows = []
+        title_hits = []
 
-    # Skip tier 2 when tier 1 already filled the limit — the second
-    # FTS5 query is the bigger of the two (full-corpus body match) and
-    # adds ~100ms even when its results are discarded by the dedup loop.
-    #
-    # FR-027 (D-051): tier 2 (full-corpus body MATCH over 223M chars) is
-    # the latency driver — run it only when the title tier can't serve
-    # the query (title-shaped queries are the dominant real traffic).
+    # Skip tier 2 when the title tier can serve the query (FR-027 /
+    # D-051 — title-shaped queries are the dominant real traffic).
     _TIER2_MIN_TITLE_HITS = 3
-    if len(title_rows) >= min(limit, _TIER2_MIN_TITLE_HITS):
-        return _rang_tier_sort(list(title_rows))[:limit]
+    if len(title_hits) >= min(limit, _TIER2_MIN_TITLE_HITS):
+        return _rang_tier_sort(title_hits)[:limit]
 
-    # Tier 2: general FTS5 over title+body (covers abbreviations and
-    # body-only matches when no title fully covers the query).
-    body_rows = _run_match(conn, normalized, category, limit)
+    body_hits = _segment_hits(_run_segment_match(conn, normalized,
+                                                  category))
 
-    seen_ids = {r["law_id"] for r in title_rows}
-    merged = list(title_rows)
-    for r in body_rows:
-        if r["law_id"] in seen_ids:
+    seen_ids = {h["law_id"] for h in title_hits}
+    merged = list(title_hits)
+    for h in body_hits:
+        if h["law_id"] in seen_ids:
             continue
-        merged.append(r)
-        seen_ids.add(r["law_id"])
-        if len(merged) >= limit:
-            break
+        merged.append(h)
+        seen_ids.add(h["law_id"])
 
-    # FR-015 part 2 / D-2026-05-09-04: rang-aware tier sort. Parent
-    # laws (закон / кодекс categories) outrank implementing regs /
-    # ordinances within the result set. Sort is stable within each
-    # tier (key = (tier, original_index)), preserving bm25 ordering
-    # among same-rang results.
-    return _rang_tier_sort(merged[:limit])
-
-
-def _rang_tier_sort(rows: list[sqlite3.Row]) -> list[sqlite3.Row]:
-    """Stable tier sort by `_rang_tier(row)` then original position —
-    parent laws/codes float to the top, bm25 order is preserved within
-    each tier."""
-    indexed = list(enumerate(rows))
-    indexed.sort(key=lambda pair: (_rang_tier(pair[1]), pair[0]))
-    return [row for _, row in indexed]
+    # Rang-sort over the full pool (title hits + TIER2_ACT_POOL body
+    # acts), truncate to the caller's limit, then enrich the surviving
+    # body-tier hits (phase-2 snippet + metadata; ≤limit extractions).
+    final = _rang_tier_sort(merged)[:limit]
+    _enrich_segment_hits(conn, normalized,
+                         [h for h in final if "_seg_no" in h])
+    return final

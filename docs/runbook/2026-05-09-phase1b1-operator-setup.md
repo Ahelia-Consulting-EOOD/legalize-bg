@@ -47,7 +47,8 @@ frontmatter + body, and populates the SQLite catalog:
 | laws | 3,601 | Act metadata + current_commit |
 | law_versions | 3,833 | Temporal index — one row per historical version (FR-020, `git log`-derived); 225 acts carry 2+ versions, the rest exactly one |
 | provisions | 451,587 | Article + alinea text rows (D-023) |
-| laws_fts | 3,601 | FTS5 virtual table for `bg_normalize`-ed title + body |
+| laws_fts | 3,602 | FTS5 virtual table, `bg_normalize`-ed TITLES only (FR-032, migration 005) |
+| articles_fts | ~182,000 | FTS5 virtual table, one row per body SEGMENT (article/§/annex/preamble; `index/segments.py`, ≤400KB per row) — FR-032 |
 
 Full-rebuild time is now **~2–2.5 minutes** on the live corpus (Apple
 M4 measured, `docs/research/2026-07-02-fr027-search-perf.md`) — up from
@@ -323,7 +324,7 @@ A request DOES write to:
 | Tool | Inputs | Returns |
 |---|---|---|
 | `get_law` | name, date=None | title / slug / identificador lookup → full text + metadata + warnings. Date fields (`fecha_publicacion`, `ultima_actualizacion`, `effective_date`) are ISO 8601 strings — PyYAML's `datetime.date` is coerced via `mcp_server.server._iso` before serialization, so JSON-RPC consumers never see Python objects. With `date` set, resolves the historical version in force at that date (FR-020). |
-| `search` | query, category=None, limit=20, include_body=False | Ranked list of hits. Each hit carries `title_snippet` (always populated, cheap) and `body_snippet` (empty unless `include_body=True`, then non-empty for top-2 only). Result list is rang-tier-sorted (laws/codes outrank implementing/regulations/ordinances per FR-015). Single-token Bulgarian abbreviation queries (`ЗОП`, `НК`, `ГПК` — see `index/synonyms.py`) are auto-expanded to canonical long forms before FTS5 runs. |
+| `search` | query, category=None, limit=20, include_body=False | Ranked list of hits. Each hit carries `title_snippet` (always populated, cheap), `body_snippet` (FR-032: body-tier hits ALWAYS carry an FTS5 segment snippet; title-tier hits get one for the top 2 only when `include_body=True`), and the additive `matched` object (`{kind, label}`, e.g. `{article, чл. 24д}` — which provision produced a body-tier hit; null for title-tier hits; tools.json 1.4.0). Result list is rang-tier-sorted (laws/codes outrank implementing/regulations/ordinances per FR-015). Single-token Bulgarian abbreviation queries (`ЗОП`, `НК`, `ГПК` — see `index/synonyms.py`) are auto-expanded to canonical long forms before FTS5 runs. |
 | `get_article` | law, article, date=None | Act + article spec (`чл. 14`, `14.2`, `чл. 14а`) → article or alinea text. Rejects a range spec (`чл. 14-16`) with `INVALID_ARTICLE_SPEC` and a hint pointing at `get_articles`. |
 | `get_articles` | law, articles, date=None | Superset of `get_article` — accepts a single article or a RANGE (`чл. 14-16`), expanding to every article number in `[start, end]` including Cyrillic-suffixed ones present in the act (FR-018). |
 | `history` | law | Amendment timeline, oldest→newest: `{date, dv_issue, operation, commit_hash}` per entry. `operation` is `"enacted"` for the original promulgation, `"amendment"` for each DV amendment event. |

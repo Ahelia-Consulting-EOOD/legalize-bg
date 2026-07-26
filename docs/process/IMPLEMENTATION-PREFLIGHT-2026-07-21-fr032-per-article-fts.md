@@ -2,8 +2,9 @@
 
 Filed 2026-07-21 with the plan PR (design: `docs/plans/2026-07-21-fr032-per-article-fts-design.md`;
 CPD: `docs/cpd/CPD-2026-07-21-per-article-fts.md`). Template: `docs/process/IMPLEMENTATION-PREFLIGHT.md`.
-Status: **filed ahead of implementation** — implementation may proceed only after the plan PR
-(D-056) merges and the owner answers design §11 Q1–Q5.
+Status: **UNBLOCKED 2026-07-23** — plan PR #15 merged; owner ratified D-056 with design §11
+Q1–Q5 answered (see the CPD's Ratification section). Implementation proceeding on
+`feat/fr032-per-article-fts`.
 
 - **protected surface:** 4 (SQLite schema) — primary; touches Surface 3 (MCP tool
   interfaces) only additively; Surface 6 (index builder / FTS normalizer) per-act
@@ -52,6 +53,6 @@ Status: **filed ahead of implementation** — implementation may proceed only af
   implementation gate).
 - **owner confirmation:** direction agreed 2026-07-21 (dispatch for this plan);
   ratification = merge of the plan PR + answers to design §11 Q1–Q5.
-- **implementation may proceed:** NOT YET — after D-056 ratification. Then: TDD,
+- **implementation may proceed:** YES (2026-07-23, D-056 ratified). Discipline: TDD,
   measurement spike first (design §8), full-corpus rebuild gate, standing
   fresh-subagent per-task review loop, coordinated four-component rollout (§12).

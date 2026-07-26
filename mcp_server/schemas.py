@@ -60,18 +60,20 @@ class SearchHit:
     body). Cheap (~75 ms p95) — FTS5's snippet() over the title column.
     Always populated.
 
-    `body_snippet` is a Python-extracted ±60-char window around the
-    first matching query token in the act's body, with `<b>...</b>`
-    highlighting. Generated **only** when the caller passes
-    `include_body=True` to `search` (default False). When enabled,
-    cost-bounded to the top 2 hits — results 3+ always carry the
-    empty string. When disabled (the default), every hit carries
-    the empty string. The non-optional `str` type is intentional:
-    callers always get a string, never None. Closed FR-017 /
-    D-2026-05-09-02 in Phase 1b.3 — opt-in design preserves the
-    100 ms warm / 250 ms cold p95 search budget for the default
-    path; the live catalog has 1+ MB indexed bodies that make any
-    body fetch expensive.
+    `body_snippet` (FR-017 as reworked by FR-032/D-056): body-tier
+    hits carry an FTS5 `snippet()` over their best-matching SEGMENT —
+    always populated, at no extra cost. Title-tier hits carry the
+    empty string by default; `include_body=True` upgrades the top 2
+    title-tier hits via one scoped segment MATCH each. The
+    non-optional `str` type is intentional: callers always get a
+    string, never None.
+
+    `matched` (ADDITIVE, tools.json 1.4.0, FR-032/D-056 Q3): for
+    body-tier hits, the segment that produced the hit —
+    `{"kind": "article"|"para"|"annex"|"preamble"|"other",
+    "label": "чл. 5"|"§ 3"|"приложение 2"|""}`. `label` is an
+    advisory display/citation hint, not a lookup key (resolve
+    articles via `get_article`). None for title-tier hits.
     """
 
     law_id: str
@@ -79,8 +81,9 @@ class SearchHit:
     title: str
     category: str
     title_snippet: str
-    body_snippet: str  # FR-017 — empty for results 6-N (cost bound)
+    body_snippet: str
     relevance: float
+    matched: dict[str, str] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -177,6 +180,11 @@ class AmendmentEntry:
 # keep every field list in lockstep with its dataclass.
 
 
+class MatchedSegmentDict(TypedDict):
+    kind: str   # article | para | annex | preamble | other
+    label: str  # 'чл. 5' / '§ 3' / 'приложение 2' / '' (advisory)
+
+
 class SearchHitDict(TypedDict):
     law_id: str
     identificador: str
@@ -184,6 +192,7 @@ class SearchHitDict(TypedDict):
     category: str
     title_snippet: str
     body_snippet: str
+    matched: MatchedSegmentDict | None
     relevance: float
 
 

@@ -17,7 +17,7 @@ def test_openapi_export_covers_all_endpoints():
     from api.export_openapi import generate_spec
     spec = generate_spec()
     assert set(spec["paths"].keys()) == EXPECTED_PATHS
-    assert spec["info"]["version"] == "1.0.0"
+    assert spec["info"]["version"] == "1.1.0"  # FR-032 additive `matched`
 
 
 def test_committed_spec_matches_live():
