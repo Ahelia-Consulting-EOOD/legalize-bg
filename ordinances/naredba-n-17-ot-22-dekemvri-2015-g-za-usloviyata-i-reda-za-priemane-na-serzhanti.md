@@ -6,8 +6,8 @@ identificador: '2136733649'
 pais: bg
 rango: наредба
 fecha_publicacion: '2016-01-29'
-ultima_actualizacion: '2025-06-27'
-estado: vigente
+ultima_actualizacion: '2026-07-28'
+estado: derogado
 fuente: lex.bg
 dv_issue: '8'
 dv_year: 2016
@@ -25,6 +25,8 @@ amendment_history:
   date: '2021-07-02'
 - dv: 52/2025
   date: '2025-06-27'
+- dv: 68/2026
+  date: '2026-07-28'
 ---
 
 # НАРЕДБА № Н-17 ОТ 22 ДЕКЕМВРИ 2015 Г. ЗА УСЛОВИЯТА И РЕДА ЗА ПРИЕМАНЕ НА СЕРЖАНТИ (СТАРШИНИ) И ВОЙНИЦИ (МАТРОСИ) ЗА ОБУЧЕНИЕ В ПРОФЕСИОНАЛНИТЕ СЕРЖАНТСКИ (СТАРШИНСКИ) КОЛЕЖИ
