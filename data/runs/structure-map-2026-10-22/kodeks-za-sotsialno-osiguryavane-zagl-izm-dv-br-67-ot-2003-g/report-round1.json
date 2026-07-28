@@ -1,0 +1,348 @@
+{
+ "slug": "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g",
+ "round": 1,
+ "blocks": 6343,
+ "sections": 192,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 3062,
+   "kind": "low_confidence",
+   "detail": "a chapter heading line in form; its title (3063) carries only the ДВ бр. 92/2017 change and may be a wording lex.bg keeps for a deferred entry into force or one already superseded; chapter_heading or editorial_note, which version is current is for the versioning step"
+  },
+  {
+   "block": 3063,
+   "kind": "low_confidence",
+   "detail": "second line of the chapter heading opened at 3062; same doubt as 3062 (chapter_heading or editorial_note for a wording that may be superseded)"
+  },
+  {
+   "block": 3064,
+   "kind": "low_confidence",
+   "detail": "a chapter heading line in form, paired with the original title at 3065 that carries no amendment note; likely a wording lex.bg keeps alongside the amended ones; chapter_heading or editorial_note, the version choice is for the versioning step"
+  },
+  {
+   "block": 3065,
+   "kind": "low_confidence",
+   "detail": "second line of the chapter heading opened at 3064; same doubt as 3064 (chapter_heading or editorial_note for the original wording)"
+  },
+  {
+   "block": 6068,
+   "kind": "low_confidence",
+   "detail": "name of the amending act whose Заключителни разпоредби follow, printed above that heading line; part of the provisions heading block, not the codex's title and not chrome; alternative is editorial_note"
+  },
+  {
+   "block": 4900,
+   "kind": "item_order",
+   "detail": "38. after 38."
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 96,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1605,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1899,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1944,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1969,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2005,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2021,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2053,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2073,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2077,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2093,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3472,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3508,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3542,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3868,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 5,
+  "item_order": 1
+ },
+ "source_finding_kinds": {
+  "fragment": 15
+ },
+ "labels": {
+  "drop": 40,
+  "title": 1,
+  "prehistory": 1,
+  "article_title": 568,
+  "article_head": 569,
+  "item": 1880,
+  "letter": 321,
+  "part_heading": 18,
+  "chapter_heading": 96,
+  "alinea": 1841,
+  "section_heading": 44,
+  "table_row": 26,
+  "editorial_note": 201,
+  "provisions_heading": 292,
+  "paragraph_sign": 362,
+  "continuation": 8,
+  "quoted": 74,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 5264,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; not the dotted elision line; editorial_note plausible"
+  },
+  {
+   "block": 6305,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU acts appended after the act; not part of the act"
+  },
+  {
+   "block": 6306,
+   "text": "Директиви:",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6307,
+   "text": "ДИРЕКТИВА (ЕС) 2023/2864 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 202",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6308,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2556 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 202",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6309,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1158 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6310,
+   "text": "ДИРЕКТИВА (ЕС) 2017/828 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2017 г. з",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6311,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2341 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 201",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6312,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6313,
+   "text": "ДИРЕКТИВА 2014/65/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6314,
+   "text": "ДИРЕКТИВА 2014/50/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 годин",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6315,
+   "text": "ДИРЕКТИВА 2013/14/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 май 2013 година ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6316,
+   "text": "ДИРЕКТИВА 2011/61/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2011 година о",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6317,
+   "text": "ДИРЕКТИВА 2010/41/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 7 юли 2010 година з",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6318,
+   "text": "ДИРЕКТИВА 2006/54/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юли 2006 година з",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6319,
+   "text": "ДИРЕКТИВА 2004/113/ЕО НА СЪВЕТА от 13 декември 2004 година относно прилагане на ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6320,
+   "text": "ДИРЕКТИВА 2000/78/ЕО НА СЪВЕТА от 27 ноември 2000 година за създаване на основна",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6321,
+   "text": "ДИРЕКТИВА 98/49 ЕО НА СЪВЕТА от 29 юни 1998 година за запазване на правото на до",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6322,
+   "text": "ДИРЕКТИВА 96/71/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 1996 годи",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6323,
+   "text": "ДИРЕКТИВА 92/85/ЕИО НА СЪВЕТА от 19 октомври 1992 година за въвеждане на мерки з",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6324,
+   "text": "ДИРЕКТИВА 79/7/ЕИО НА СЪВЕТА от 19 декември 1978 година относно постепенното при",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6325,
+   "text": "Регламенти:",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6326,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2554 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 202",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6327,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/852 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 юни 2020 годи",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6328,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/2088 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6329,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/1238 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6330,
+   "text": "РЕГЛАМЕНТ (ЕС) 2015/2365 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2015",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6331,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1286/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 ноември 20",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6332,
+   "text": "РЕГЛАМЕНТ (ЕС) № 648/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 юли 2012 год",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6333,
+   "text": "РЕГЛАМЕНТ (ЕС) № 492/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 април 2011 г",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6334,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1095/2010 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 20",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6335,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1060/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6336,
+   "text": "РЕГЛАМЕНТ (ЕО) № 987/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6337,
+   "text": "РЕГЛАМЕНТ (ЕО) № 883/2004 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 29 април 2004 ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6338,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1223/98 НА СЪВЕТА от 4 юни 1998 година за изменение на Регламен",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6339,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 1247/92 НА СЪВЕТА от 30 април 1992 година за изменение на Регл",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6340,
+   "text": "РЕГЛАМЕНТ (ЕИО, Евратом, ЕОВС) № 259/68 НА СЪВЕТА от 29 февруари 1968 година отн",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6341,
+   "text": "Решения:",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6342,
+   "text": "РЕШЕНИЕ № 151 от 22 април 1993 г. относно приложението на член 10а от Регламент ",
+   "note": "lex.bg's related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 6,
+ "diff_lines": 1997
+}
