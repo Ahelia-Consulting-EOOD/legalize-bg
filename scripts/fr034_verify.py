@@ -9,11 +9,19 @@ from the CURRENT catalog.db (pre-sweep).
   R3  ЗЗД spot-checks: чл. 36 has implicit rows ал.1+ал.2; ал.2 text
       starts with 'Последиците'; чл. 36 whole text contains BOTH a
       blank-line separator and 'Последиците' (structure preserved);
+      NB чл. 36 currently has a single anchor; if ЗЗД ever gains a
+      duplicate чл. 36 anchor the last-wins dict and whole[0] pick
+      become order-fragile;
   R4  зakon-za-sobstvenostta has >0 implicit rows;
   R5  corpus-wide: no provisions row has implicit=1 AND a paragraph value
       that also exists with implicit=0 for the same (law_id, article)
-      at the same valid_from (explicit/implicit never mix in one article).
+      at the same valid_from (explicit/implicit never mix in one article),
+      excluding duplicate-anchor articles (see the R5 comment below).
 Failures print a per-law diff and exit 1.
+
+MUST be run from the repo root: DB and BASELINE are relative paths, so
+elsewhere sqlite3 silently creates an empty db and check fails non-zero
+but confusingly (mass R2 'law vanished' rather than a real regression).
 """
 import json, sqlite3, sys
 
@@ -82,11 +90,21 @@ def check():
             AND {CURRENT}""").fetchone()[0]
     if zs == 0:
         failures.append("R4 ЗС has no implicit alinea rows")
+    # R5 scope (review round 1): restrict to single-anchor articles. Laws
+    # carrying a quoted ПЗР copy of an article (FR-030 family, e.g.
+    # zakon-za-patishtata чл. 8) legitimately produce explicit rows from
+    # the real block and implicit rows from the quoted block — 277 such
+    # collisions exist corpus-wide and are FR-030's remit, not FR-034's.
+    # With the duplicate-anchor exclusion the residual is exactly 0.
     mixed = conn.execute(
         f"""SELECT COUNT(*) FROM provisions a JOIN provisions b
             ON a.law_id=b.law_id AND a.article=b.article
             AND a.valid_from=b.valid_from AND a.paragraph=b.paragraph
-            WHERE a.implicit=1 AND b.implicit=0""").fetchone()[0]
+            WHERE a.implicit=1 AND b.implicit=0
+            AND (SELECT COUNT(*) FROM provisions w
+                 WHERE w.law_id=a.law_id AND w.article=a.article
+                   AND w.valid_from=a.valid_from
+                   AND w.paragraph IS NULL) = 1""").fetchone()[0]
     if mixed:
         failures.append(f"R5 {mixed} mixed explicit/implicit paragraph pairs")
     if failures:
