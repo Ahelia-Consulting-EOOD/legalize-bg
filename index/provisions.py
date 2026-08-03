@@ -69,15 +69,59 @@ def _is_structural_header(para: str) -> bool:
 # точки ("1."), букви ("а)"), "(Изм. …)"-prefixed алинеи — arrives as
 # separate plain paragraphs. While an article is open, everything
 # continues it EXCEPT the named closers: '#' structural headers,
-# '*' PreHistory italics, standalone '(ОБН' gazette banners, and annex
-# starts ('Приложение № …' / 'ПРИЛОЖЕНИЕ'). Without the annex closer
-# default-continue swallows appendix forms into the last open article —
-# measured: ППЗ-акцизи чл. 102б absorbed 86,503 chars of annexes.
-# Default-continue restores pre-FR-034 article-body parity (measured on
-# ЗОП: the Cyrillic-only alternative lost 60% of indexed article text).
-# High-recall by design (D-055 lesson) — corpus-wide validation via the
-# structural gate + fr034_verify rebuild-diff.
-_CONTINUATION_CLOSER_RE = re.compile(r"^(?:#|\*|\(ОБН|Приложение\s*№|ПРИЛОЖЕНИЕ)")
+# parser-emitted emphasis (see below), standalone '(ОБН' gazette
+# banners, and annex starts ('Приложение № …' / 'ПРИЛОЖЕНИЕ'). Without
+# the annex closer default-continue swallows appendix forms into the
+# last open article — measured: ППЗ-акцизи чл. 102б absorbed 86,503
+# chars of annexes. Default-continue restores pre-FR-034 article-body
+# parity (measured on ЗОП: the Cyrillic-only alternative lost 60% of
+# indexed article text). High-recall by design (D-055 lesson) —
+# corpus-wide validation via the structural gate + fr034_verify
+# rebuild-diff.
+#
+# THE EMPHASIS CLOSER (FR-034 sweep run 2, anomaly B2). The rule was
+# once a bare '^\*': any leading asterisk closed the article, on the
+# assumption that it was a PreHistory italics block. It is not. Only
+# TWO leading-asterisk forms are emitted by `fetcher.bg.text_parser`
+# itself — `*{text}*` for `.PreHistory` and `**§ N.**` / `**Чл. N.**`
+# bold anchors — and both are CLOSED emphasis spans. Every other
+# leading asterisk is verbatim source text: bullets ("* когато са
+# заети…"), footnote markers ("*Забележка…", "** За точна оценка…",
+# "*** - група Б"), and table-cell asterisks. Those are article
+# content, and closing on them stranded every алинея that followed —
+# measured: 9 acts, 40 stranded алинея paragraphs, the clearest being
+# Наредба на Великотърновския общински съвет … чл. 6, whose ал. 6–7
+# fell out of the index after ал. 5's bullet list (R1 47 → 45).
+# So: close only on a COMPLETE emphasis span at the paragraph start —
+# '**…**' bold, or a whole-line '*…*' italic.
+# Corpus evidence for the split (3,624 acts, paragraph-level):
+#   '**…'  bold-leading        157,510 total · 1,667 reachable with an
+#                              article open — the '**§ N.**' ЗИД
+#                              provisions the closer must keep closing;
+#   '*…*'  wrapped italics       4,961 total · 0 (zero) occurrences
+#                              after the first article anchor — genuine
+#                              PreHistory only ever sits in the
+#                              preamble, so this branch is a safety net,
+#                              not a working closer;
+#   '* …'  bullets               1,294 total · 42 reachable → B2;
+#   '*X…'  footnote markers        468 total · 48 reachable → B2;
+#   '*'    bare asterisk cells     687 total ·  8 reachable → B2.
+# Effect of the narrowing, measured over the whole corpus: 24 acts
+# change, explicit алинея rows 309,906 → 310,003 (+97, zero acts lose
+# any), implicit rows 23,747 → 24,340, article text +92,675 chars
+# (+0.07%). Rejected alternatives, same measurement: '\*(?!\s)' (only
+# '* ' bullets continue) covers 7 of the 9 B2 acts; '\*(?!\**\s)'
+# (asterisk RUN + space) also 7 of 9; treating every '**' as a closer
+# covers 8 of 9 — only the complete-span rule below covers all nine.
+_CONTINUATION_CLOSER_RE = re.compile(
+    r"^(?:"
+    r"#"                        # structural header
+    r"|\*\*[^*\n]+\*\*"         # parser-emitted bold: '**§ 5.**', '**Чл. 1.**'
+    r"|\*[^*\s][^*\n]*\*\s*$"   # parser-emitted PreHistory italics: '*В сила от …*'
+    r"|\(ОБН"                   # gazette banner
+    r"|Приложение\s*№|ПРИЛОЖЕНИЕ"  # annex start
+    r")"
+)
 
 
 def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
@@ -98,9 +142,12 @@ def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
       - 0 anchors, article open, paragraph is not a closer: append to the
         current article body.
       - 0 anchors and the paragraph IS a closer — '#' structural header,
-        '*' PreHistory italics, '(ОБН' gazette banner, or an annex start
-        ('Приложение № …' / 'ПРИЛОЖЕНИЕ') — flush pending and discard.
-        See `_CONTINUATION_CLOSER_RE`.
+        a complete parser-emitted emphasis span ('**§ N.**' bold or a
+        whole-line '*…*' PreHistory italic), '(ОБН' gazette banner, or an
+        annex start ('Приложение № …' / 'ПРИЛОЖЕНИЕ') — flush pending and
+        discard. A leading asterisk that is NOT a closed emphasis span is
+        source text (bullet, footnote marker) and continues the article —
+        FR-034 sweep run 2, anomaly B2. See `_CONTINUATION_CLOSER_RE`.
       - 0 anchors with no article open: discard (preamble, narrative).
       - 1 anchor: flush pending and start a new article.
       - 2+ anchors: cite-list or template (e.g., a декларация template
@@ -205,7 +252,14 @@ def _split_alineas(body: str) -> list[tuple[str, str]]:
 # "57д."). Missing the suffix variants made a точки list look like a run
 # of unnumbered алинеи (measured: all 27 ППЗ-акцизи implicit rows came
 # from чл. 85а alone, so "ал. 5" resolved to точка 10а).
-_SUBPOINT_RE = re.compile(r"^(?:[а-я]\)|\d{1,2}[а-я]?[\.\)])\s")
+# Asterisk bullets ("* когато са заети…") join the same set: they are
+# sub-points of the алинея above them, never алинеи of their own. Before
+# the FR-034 B2 narrowing of `_CONTINUATION_CLOSER_RE` no asterisk
+# paragraph could reach an article body at all, so this alternative is a
+# no-op for pre-B2 behaviour; without it the newly-admitted bullets would
+# renumber the implicit алинеи of marker-less articles (measured: 19
+# corpus rows).
+_SUBPOINT_RE = re.compile(r"^(?:[а-я]\)|\d{1,2}[а-я]?[\.\)]|\*+)\s")
 # NOT ^-anchored on purpose — rule 1a glues a title preamble in front of
 # the anchor, so ал. 1's text begins after the anchor MATCH END wherever
 # that falls („Предмет Чл. 1. Този кодекс…" -> „Този кодекс…").

@@ -413,6 +413,100 @@ def test_uppercase_annex_start_also_closes():
     assert "ПРИЛОЖЕНИЕ" not in whole[0].text and "Образец" not in whole[0].text
 
 
+# --- FR-034 sweep run 2, anomaly B2: bullets are not PreHistory italics ---
+
+# Shape lifted verbatim (abridged) from
+# `naredba-na-velikotarnovskiya-obshtinski-savet-za-upravlenie-stopanisvane-i-polzv-2`
+# чл. 6: ал. 5 introduces a bullet list, ал. 6 and ал. 7 follow it. The
+# `*` closer used to end the article at the first bullet and strand both.
+VELIKO_TARNOVO_MD = """\
+**Чл. 6.** (1) Земеделските земи от ОПФ се управляват в интерес на населението.
+
+(5) (Нова - Решение № 1086) Земите могат да се отдават под наем без търг или конкурс:
+
+* когато са заети с трайни насаждения;
+
+* когато не са били използвани две или повече стопански години;
+
+(6) (Нова - Решение № 1086) Общинският съвет определя маломерни имоти.
+
+(7) (Предишна ал. 4) В договорите за наем се предвижда увеличаване на наемната цена.
+"""
+
+
+def test_bullet_paragraph_continues_the_open_article():
+    """FR-034 sweep run 2, anomaly B2: a `* …` bullet is source text, not a
+    PreHistory italics block. Treating it as a closer stranded every алинея
+    that followed it (measured corpus-wide: 9 acts, 40 stranded paragraphs)."""
+    rows = parse(VELIKO_TARNOVO_MD, law_id="vt")
+    whole = [r for r in rows if r.article == "6" and r.paragraph is None]
+    assert len(whole) == 1
+    assert "трайни насаждения" in whole[0].text
+    alineas = [r for r in rows if r.article == "6" and r.paragraph is not None]
+    assert [r.paragraph for r in alineas] == ["1", "5", "6", "7"]
+    assert "маломерни имоти" in [r for r in alineas if r.paragraph == "6"][0].text
+    assert all(r.implicit is False for r in alineas)
+
+
+def test_asterisk_footnote_paragraph_continues_the_open_article():
+    """Table footnotes marked `*X`, `** X`, `*** X` are source text too —
+    the same B2 class (naredba-14/2012 letishta, naredba-rd-02-20-2/2012)."""
+    md = ("**Чл. 9.** (1) Стойностите са дадени в таблица 3.\n\n"
+          "*Забележка. Конструкции, които могат да бъдат демонтирани.\n\n"
+          "** За точна оценка може да се използва динамичен анализ.\n\n"
+          "(2) Втора алинея след забележките.\n")
+    rows = parse(md, law_id="x")
+    whole = [r for r in rows if r.article == "9" and r.paragraph is None]
+    assert "Забележка" in whole[0].text and "динамичен анализ" in whole[0].text
+    alineas = [r for r in rows if r.article == "9" and r.paragraph is not None]
+    assert [r.paragraph for r in alineas] == ["1", "2"]
+    assert alineas[1].text.startswith("Втора алинея")
+
+
+def test_bullets_merge_into_preceding_implicit_alinea():
+    """A bullet subdivides an алинея, it does not start one — same rule as
+    букви/точки. Without this the newly-admitted bullets would renumber the
+    implicit алинеи of marker-less (pre-Указ-883) articles."""
+    md = ("**Чл. 41.** Дружеството се прекратява в следните случаи:\n\n"
+          "* с постигане целта на дружеството;\n\n"
+          "* с изтичането на времето.\n\n"
+          "Втора алинея след изброяването.\n")
+    rows = parse(md, law_id="zzd")
+    alineas = [r for r in rows if r.article == "41" and r.paragraph is not None]
+    assert [(r.paragraph, r.implicit) for r in alineas] == [("1", True), ("2", True)]
+    assert "с изтичането на времето" in alineas[0].text
+    assert alineas[1].text.startswith("Втора алинея")
+
+
+def test_prehistory_italics_still_closes_the_article():
+    """The narrowing must not regress the closer it was written for: a
+    whole-line `*…*` italics block (text_parser emits PreHistory as
+    `*{text}*`) still ends the open article."""
+    md = ("**Чл. 3.** Официалният език в републиката е българският.\n\n"
+          "*В сила от 13.07.1991 г.*\n\n"
+          "Текст извън члена.\n")
+    rows = parse(md, law_id="x")
+    whole = [r for r in rows if r.article == "3" and r.paragraph is None]
+    assert len(whole) == 1
+    assert "В сила от" not in whole[0].text
+    assert "Текст извън члена" not in whole[0].text
+
+
+def test_bold_edict_paragraph_still_closes_the_article():
+    """`**§ N.**` provisions are parser-emitted bold (text_parser
+    `_format_edict_article`) and must keep closing the preceding article —
+    1,667 such paragraphs are reachable with an article open."""
+    md = ("**Чл. 11.** Изпълнението се възлага на министъра на финансите.\n\n"
+          "**§ 5.** В Закона за митниците се правят следните допълнения:\n\n"
+          "(1) Цитиран текст от изменението.\n")
+    rows = parse(md, law_id="x")
+    whole = [r for r in rows if r.article == "11" and r.paragraph is None]
+    assert len(whole) == 1
+    assert "§ 5" not in whole[0].text
+    assert "Цитиран текст" not in whole[0].text
+    assert [r for r in rows if r.article == "11" and r.paragraph is not None] == []
+
+
 def test_zzd_fixture_unnumbered_alineas_are_implicit_and_correct():
     """FR-034 rule 6 spot-assert against a REAL pre-Указ-883 act.
 
