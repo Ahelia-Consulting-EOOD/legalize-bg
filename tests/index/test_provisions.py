@@ -205,6 +205,11 @@ def test_inline_alineas_within_single_paragraph():
     ("naredba-04-14", "naredba-04-14"),
     ("pravilnik-sadilishta", "pravilnik-sadilishta"),
     ("ppz-aktsizi", "ppz-aktsizi"),
+    # FR-034 rule 6: a REAL pre-Указ-883 act (trimmed live lex.bg fetch of
+    # ЗЗД, 2026-07-31, чл. 1–41 incl. чл. 36). Unnumbered алинеи only, so
+    # explicit_rows must be 0 and every alinea row implicit — the only
+    # fixture that actually exercises the feature this FR exists for.
+    ("zzd", "zzd"),
 ])
 def test_golden_provisions_per_fixture(fixture_name, law_id):
     """Lock the parser against each fixture. Goldens summarize counts
@@ -240,6 +245,18 @@ def test_golden_provisions_per_fixture(fixture_name, law_id):
     md = HtmlToMarkdown().convert(soup)
 
     rows = parse(md, law_id=law_id)
+
+    # Pollution tripwire (FR-034 rule 4): lex.bg nests an AdOcean ad slot
+    # and <script>/<style> blocks inside Article elements. Nothing that
+    # looks like markup or JavaScript may ever reach a provision row —
+    # it would go straight into FTS and into get_article output.
+    for r in rows:
+        for token in ("ado.", "javascript", "function(", "<"):
+            assert token not in r.text, (
+                f"{fixture_name}: {token!r} leaked into чл. {r.article} "
+                f"(paragraph={r.paragraph}): {r.text[:160]!r}"
+            )
+
     summary = {
         "law_id": law_id,
         "total_rows": len(rows),
@@ -394,3 +411,30 @@ def test_uppercase_annex_start_also_closes():
     rows = parse(md, law_id="x")
     whole = [r for r in rows if r.article == "7" and r.paragraph is None]
     assert "ПРИЛОЖЕНИЕ" not in whole[0].text and "Образец" not in whole[0].text
+
+
+def test_zzd_fixture_unnumbered_alineas_are_implicit_and_correct():
+    """FR-034 rule 6 spot-assert against a REAL pre-Указ-883 act.
+
+    ЗЗД carries no `(N)` markers at all, yet ВКС cites its алинеи by
+    position („чл. 36, ал. 2 ЗЗД"). This pins the end-to-end behaviour
+    the whole FR exists for: HTML -> Markdown -> position-derived rows.
+    """
+    from bs4 import BeautifulSoup
+    from fetcher.bg.text_parser import HtmlToMarkdown
+
+    fixture = pathlib.Path(__file__).parent.parent / "fixtures" / "html" / "zzd.html"
+    md = HtmlToMarkdown().convert(
+        BeautifulSoup(fixture.read_bytes().decode("cp1251"), "lxml")
+    )
+    rows = parse(md, law_id="zzd")
+
+    # No source-numbered alineas anywhere in a pre-1974 act.
+    assert [r for r in rows if r.paragraph is not None and not r.implicit] == []
+
+    art36 = [r for r in rows if r.article == "36"]
+    alineas = [r for r in art36 if r.paragraph is not None]
+    assert [(r.paragraph, r.implicit) for r in alineas] == [("1", True), ("2", True)]
+    # ал. 1 has the anchor stripped; ал. 2 is the second unnumbered алинея.
+    assert alineas[0].text.startswith("Едно лице може да представлява")
+    assert alineas[1].text.startswith("Последиците")

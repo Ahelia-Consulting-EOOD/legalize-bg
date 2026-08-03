@@ -3,7 +3,7 @@
 import logging
 import re
 
-from bs4 import BeautifulSoup, Comment, Tag
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 log = logging.getLogger(__name__)
 
@@ -36,6 +36,20 @@ CHROME_DENYLIST: frozenset[str] = frozenset({
     "HistoryItem", "HistoryReference",
     "NewDocReference", "SameDocReference", "LegalDocReference", "contextads",
 })
+
+# CHROME_DENYLIST entries that are safe to drop from INSIDE an article.
+# The denylist is written for `_walk`, which sees these classes as
+# block-level chrome. Inside an Article element they mean something else:
+# measured across all seven fixtures, `NewDocReference` carries text in
+# 2,212 of 2,214 occurrences („Регламент (ЕО) № 2195/2002") and wraps the
+# article ANCHOR itself, `SameDocReference` carries inline cross-references
+# in 1,662 of 1,662 („чл. 5, ал. 1"), `contextads` wraps ordinary words
+# („строител", „процедура") and `LegalDocReference` carries defined terms.
+# Skipping the whole denylist here deleted 485 of ГПК's 745 articles and
+# 693 of its explicit alinea rows. `buttons` is the only true chrome
+# inside articles (1,776 occurrences, 0 with any text). Ad JavaScript is
+# excluded by the NavigableString check below, not by this set.
+_INLINE_CHROME: frozenset[str] = frozenset({"buttons"})
 
 # Spine classes used to locate the legal-content region (LCA of these elements).
 _SPINE: frozenset[str] = frozenset(c for c, (_, inc) in CLASS_MAP.items() if inc)
@@ -167,6 +181,8 @@ class HtmlToMarkdown:
         def walk(node: Tag) -> None:
             for child in node.children:
                 if isinstance(child, Tag):
+                    if set(child.get("class", [])) & _INLINE_CHROME:
+                        continue
                     if child.name == "br":
                         parts.append("\n")
                     elif child.name in ("div", "p", "li", "tr"):
@@ -175,14 +191,14 @@ class HtmlToMarkdown:
                         parts.append("\n")
                     else:
                         walk(child)
-                elif isinstance(child, Comment):
-                    # HTML comments (lex.bg leaves stale <a>/<img> markup
-                    # commented out inside Article children) are not
-                    # content — get_text() already excluded them; a naive
-                    # str(child) here would leak the raw commented-out
-                    # HTML into the Markdown body.
-                    continue
-                else:
+                elif type(child) is NavigableString:
+                    # Only PLAIN strings are content. bs4 models comments,
+                    # <script> and <style> bodies as NavigableString
+                    # SUBCLASSES (Comment/Script/Stylesheet), and the old
+                    # get_text() excluded them; an isinstance check or a
+                    # bare `str(child)` fallback would emit lex.bg's stale
+                    # commented-out <a> markup and its ad JavaScript
+                    # verbatim into the Markdown body.
                     parts.append(str(child))
 
         walk(element)

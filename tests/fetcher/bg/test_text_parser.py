@@ -260,3 +260,43 @@ def test_article_without_title_preamble_is_untouched():
     blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
     assert blocks[0] == "**Чл. 21.** Първа алинея."
     assert blocks[1] == "Втора алинея."
+
+
+def test_script_style_and_chrome_never_reach_article_text():
+    """FR-034 rule 4: lex.bg embeds an AdOcean ad slot in a
+    `NewDocReference` span INSIDE Article elements, and bs4 exposes
+    <script>/<style> bodies as NavigableString subclasses that
+    `_block_text`'s raw fallback would emit verbatim. HEAD's get_text()
+    excluded both — the delegation must not regress that."""
+    html = '''
+    <div class="Article">
+        <div><b>Чл. 1.</b> Този закон урежда нещо.</div>
+        <span class="NewDocReference"><script>ado.slave('adoceanbg', {myMaster: 'x'});</script></span>
+        <script>function etargetPostload(){var e="x";}</script>
+        <style>.ad { display: none; }</style>
+        <p class="buttons">Печат на документа</p>
+        <div>Втора алинея.</div>
+    </div>
+    '''
+    md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
+    for token in ("ado.", "adoceanbg", "function", "display: none", "Печат"):
+        assert token not in md, f"{token!r} leaked into Markdown:\n{md}"
+    blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
+    assert blocks[0].startswith("**Чл. 1.**")
+    assert blocks[1] == "Втора алинея."
+
+
+def test_chrome_between_title_and_anchor_does_not_break_glue():
+    """The ad slot sits between the title div and the anchor div; if it
+    survived as a paragraph it would break rule-1a glue and hand the
+    title to the previous article (measured on ГПК чл. 1/чл. 2)."""
+    html = '''
+    <div class="Article">
+        <p>Предмет</p>
+        <span class="NewDocReference"><script>ado.slave('x');</script></span>
+        <div><b>Чл. 1.</b> Този кодекс урежда производството по граждански дела.</div>
+    </div>
+    '''
+    md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
+    blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
+    assert blocks[0].startswith("Предмет Чл. 1."), blocks

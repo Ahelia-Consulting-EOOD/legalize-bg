@@ -64,8 +64,6 @@ def _is_structural_header(para: str) -> bool:
     return para.startswith("#")
 
 
-_ALINEA_CONTINUATION_RE = re.compile(r"^\s*\(\s*\d{1,3}[а-я]?\s*\)")
-
 # FR-034: after the Task-1 parser fix, article content that lex.bg
 # renders as child <div>s — unnumbered алинеи (pre-Указ-883 acts),
 # точки ("1."), букви ("а)"), "(Изм. …)"-prefixed алинеи — arrives as
@@ -82,16 +80,6 @@ _ALINEA_CONTINUATION_RE = re.compile(r"^\s*\(\s*\d{1,3}[а-я]?\s*\)")
 _CONTINUATION_CLOSER_RE = re.compile(r"^(?:#|\*|\(ОБН|Приложение\s*№|ПРИЛОЖЕНИЕ)")
 
 
-def _looks_like_alinea_continuation(para: str) -> bool:
-    """A paragraph starting with '(N)' is the continuation of the
-    previous article — Phase 1a's text_parser separates alineas with
-    \\n\\n when the source HTML has <br> between them (test_text_parser
-    `test_preserves_paragraph_structure` enforces this), but inline
-    alineas in a single paragraph are also common (most ЗОП articles).
-    Both cases must be supported."""
-    return bool(_ALINEA_CONTINUATION_RE.match(para))
-
-
 def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
     """Return list of (article_id, body_text).
 
@@ -102,16 +90,22 @@ def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
     paragraphs back onto their parent article so `_split_alineas` can
     find all (N) markers regardless of source layout.
 
-    Acceptance rules per paragraph:
-      - 0 anchors and looks like alinea continuation: append to current
-        article body.
-      - 0 anchors and not a continuation: flush pending article and
-        discard the paragraph (preamble, narrative, etc.).
+    Acceptance rules per paragraph (FR-034: DEFAULT-CONTINUE — lex.bg
+    renders точки, букви and unnumbered алинеи as child <div>s, so an
+    article's own text arrives as many plain paragraphs; the previous
+    "continue only on (N)" rule discarded all of them and dropped 60% of
+    ЗОП's indexed article text):
+      - 0 anchors, article open, paragraph is not a closer: append to the
+        current article body.
+      - 0 anchors and the paragraph IS a closer — '#' structural header,
+        '*' PreHistory italics, '(ОБН' gazette banner, or an annex start
+        ('Приложение № …' / 'ПРИЛОЖЕНИЕ') — flush pending and discard.
+        See `_CONTINUATION_CLOSER_RE`.
+      - 0 anchors with no article open: discard (preamble, narrative).
       - 1 anchor: flush pending and start a new article.
       - 2+ anchors: cite-list or template (e.g., a декларация template
         citing "Чл. 102а и Чл. 102б"). Flush pending and skip — never
         emit a row for paragraphs with multiple anchors.
-      - structural header ('## ПРЕХОДНИ', '#'): flush pending and skip.
 
     Phase 4 amendment-detection will need a separate
     `body_text_minus_preamble` projection (the article-as-whole text
@@ -206,8 +200,16 @@ def _split_alineas(body: str) -> list[tuple[str, str]]:
     return out
 
 
-_SUBPOINT_RE = re.compile(r"^(?:[а-я]\)|\d{1,2}[\.\)])\s")
-_ANCHOR_PREFIX_RE = re.compile(r"^(?:\*\*)?Чл\.\s+\d+[а-я]?\.(?:\*\*)?\s*")
+# Sub-point markers: букви "а)" and точки "1." / "1)" — including the
+# Cyrillic-suffixed forms lex.bg uses for inserted точки ("1а.", "4б.",
+# "57д."). Missing the suffix variants made a точки list look like a run
+# of unnumbered алинеи (measured: all 27 ППЗ-акцизи implicit rows came
+# from чл. 85а alone, so "ал. 5" resolved to точка 10а).
+_SUBPOINT_RE = re.compile(r"^(?:[а-я]\)|\d{1,2}[а-я]?[\.\)])\s")
+# NOT ^-anchored on purpose — rule 1a glues a title preamble in front of
+# the anchor, so ал. 1's text begins after the anchor MATCH END wherever
+# that falls („Предмет Чл. 1. Този кодекс…" -> „Този кодекс…").
+_ANCHOR_PREFIX_RE = re.compile(r"(?:\*\*)?Чл\.\s+\d+[а-я]?\.(?:\*\*)?\s*")
 
 
 def _split_implicit_alineas(body: str) -> list[tuple[str, str]]:
@@ -233,7 +235,13 @@ def _split_implicit_alineas(body: str) -> list[tuple[str, str]]:
     out: list[tuple[str, str]] = []
     for i, text in enumerate(merged, start=1):
         if i == 1:
-            text = _ANCHOR_PREFIX_RE.sub("", text, count=1)
+            # Strip everything up to and including the anchor, located by
+            # SEARCH rather than a ^-anchored sub: rule 1a glues a title
+            # preamble in front of the anchor, so a ^-anchored strip
+            # silently no-ops and ал. 1 keeps „Предмет Чл. 1. …".
+            m = _ANCHOR_PREFIX_RE.search(text)
+            if m:
+                text = text[m.end():]
         out.append((str(i), text))
     return out
 
