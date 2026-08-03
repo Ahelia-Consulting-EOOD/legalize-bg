@@ -129,3 +129,34 @@ def file_catalog(tmp_path_factory) -> tuple[Path, str]:
     db = str(corpus / "catalog.db")
     build(corpus, db)
     return corpus, db
+
+
+@pytest.fixture
+def conn_with_implicit_alineas(populated_conn):
+    """`populated_conn` + a pre-1974-style act (ЗЗД чл. 36: two unnumbered
+    paragraphs) run through the REAL parser and written to `provisions`
+    exactly the way `index.build` does — so FR-034's implicit flag is
+    carried end-to-end (parser → column → tool) rather than hand-stubbed.
+    Shared by test_get_article.py and test_get_articles.py.
+    """
+    from index.provisions import parse
+    from tests.index.test_provisions import ZZD_STYLE_MD
+
+    populated_conn.execute(
+        "INSERT INTO laws (law_id, doc_id, title, category, status,"
+        " current_commit) VALUES ('zzd', 900, 'Закон за задълженията и"
+        " договорите', 'laws', 'vigente', ?)", (FAKE_COMMIT_HASH,))
+    populated_conn.execute(
+        "INSERT INTO law_versions (law_id, valid_from, commit_hash)"
+        " VALUES ('zzd', '1950-12-01', ?)", (FAKE_COMMIT_HASH,))
+    for prov in parse(ZZD_STYLE_MD, law_id="zzd"):
+        populated_conn.execute(
+            """INSERT INTO provisions
+               (law_id, article, paragraph, valid_from, text, text_hash,
+                implicit)
+               VALUES (?, ?, ?, '1950-12-01', ?, ?, ?)""",
+            (prov.law_id, prov.article, prov.paragraph, prov.text,
+             prov.text_hash, int(prov.implicit)),
+        )
+    populated_conn.commit()
+    return populated_conn

@@ -1,3 +1,8 @@
+from pathlib import Path
+
+import pytest
+
+
 def test_get_law_current(client):
     r = client.get("/api/v1/laws/zakon-vremeto")
     assert r.status_code == 200
@@ -82,6 +87,59 @@ def test_get_article_carries_implicit_flag(client):
     r = client.get("/api/v1/laws/zakon-vremeto/articles/чл. 1, ал. 2")
     assert r.status_code == 200
     assert r.json()["implicit"] is False
+
+
+@pytest.fixture(scope="module")
+def pre1974_client(tmp_path_factory):
+    """A separate one-act corpus + catalog whose act is pre-Указ-883/1974
+    style (чл. 36 has two UNNUMBERED paragraphs), served through the real
+    app. Kept out of `api_corpus` on purpose — that fixture's act count is
+    asserted verbatim by tests/api/test_laws_list.py."""
+    import subprocess
+    from fastapi.testclient import TestClient
+    from api.app import create_app
+    from index.build import build
+
+    corpus = tmp_path_factory.mktemp("api-pre1974-corpus")
+    law = corpus / "laws" / "zzd.md"
+    law.parent.mkdir(parents=True)
+    law.write_text(
+        "---\ntitulo: Закон за задълженията и договорите\n"
+        "identificador: 900\nfecha_publicacion: 1950-12-01\n---\n\n"
+        "**Чл. 36.** Едно лице може да представлява друго.\n\n"
+        "Последиците възникват направо за представлявания.\n",
+        encoding="utf-8")
+    subprocess.run(["git", "init", "-q"], cwd=corpus, check=True)
+    subprocess.run(["git", "add", "-A"], cwd=corpus, check=True)
+    subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t",
+                    "commit", "-q", "-m", "[bootstrap] ЗЗД"],
+                   cwd=corpus, check=True)
+    db = str(corpus / "catalog.db")
+    build(corpus, db)
+    app = create_app(db_path=db, corpus_root=Path(corpus))
+    with TestClient(app) as c:
+        yield c
+
+
+def test_rest_implicit_alinea_flags_and_warns(pre1974_client):
+    """FR-034 review round 1 (minor 1): REST parity — an implicit alinea
+    carries BOTH the machine flag and the bilingual human warning, the
+    same pair the MCP get_article tool emits."""
+    r = pre1974_client.get("/api/v1/laws/zzd/articles/чл. 36, ал. 2")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["paragraph"] == "2"
+    assert body["implicit"] is True
+    assert any(w["code"] == "IMPLICIT_ALINEA" for w in body["warnings"]), \
+        body["warnings"]
+
+
+def test_rest_whole_article_has_no_implicit_warning(pre1974_client):
+    r = pre1974_client.get("/api/v1/laws/zzd/articles/чл. 36")
+    assert r.status_code == 200
+    body = r.json()
+    assert body["implicit"] is False
+    assert not any(w["code"] == "IMPLICIT_ALINEA" for w in body["warnings"])
 
 
 def test_get_article_range_rejected(client):

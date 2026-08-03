@@ -69,8 +69,8 @@ Payload (as warning entry):
 
 ### `IMPLICIT_ALINEA` (warning, rides in successful response)
 
-Raised by: `get_article` (as a warning in the `warnings` array, not as a thrown error).
-When: FR-034 — the requested alinea's number was **derived from paragraph position**, not read from an `(N)` marker. Acts promulgated before Указ № 883/1974 print their алинеи unnumbered, so the indexer numbers them by position and flags the row (`provisions.implicit = 1`, surfaced as the response's `implicit: true`). Never set for the article-as-whole row, nor for alineas that carry an explicit marker.
+Raised by: `get_article`, `get_articles` (single-alinea spec only), and the REST `GET /laws/{slug}/articles/{art}` route — always as a warning in the `warnings` array, never as a thrown error.
+When: FR-034 — the requested alinea's number was **derived from paragraph position**, not read from an `(N)` marker. Acts promulgated before Указ № 883/1974 print their алинеи unnumbered, so the indexer numbers them by position and flags the row (`provisions.implicit = 1`, surfaced as the response's `implicit: true`). Never set for the article-as-whole row, for `get_articles` RANGE entries (a range addresses whole articles), nor for alineas that carry an explicit marker.
 Payload (as warning entry):
 - `code: "IMPLICIT_ALINEA"`.
 - `message` (string, bilingual BG/EN) — states that the number is position-derived and must not be cited as if the source text printed it.

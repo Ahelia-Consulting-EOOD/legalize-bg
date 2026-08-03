@@ -4,7 +4,6 @@ import pytest
 
 from mcp_server.errors import ToolError
 from mcp_server.server import build_app
-from tests.mcp_server.conftest import FAKE_COMMIT_HASH
 
 
 @pytest.fixture
@@ -111,32 +110,8 @@ def _sk(article: str):
 # ── FR-034: implicit (position-derived) alineas ────────────────────────
 
 @pytest.fixture
-def app_with_implicit_alineas(populated_conn, tmp_path):
-    """A pre-1974-style act (ЗЗД чл. 36: two unnumbered paragraphs) run
-    through the REAL parser, then written to `provisions` exactly the way
-    `index.build` does — so the implicit flag is carried end-to-end
-    (parser → column → tool) rather than hand-stubbed."""
-    from index.provisions import parse
-    from tests.index.test_provisions import ZZD_STYLE_MD
-
-    populated_conn.execute(
-        "INSERT INTO laws (law_id, doc_id, title, category, status,"
-        " current_commit) VALUES ('zzd', 900, 'Закон за задълженията и"
-        " договорите', 'laws', 'vigente', ?)", (FAKE_COMMIT_HASH,))
-    populated_conn.execute(
-        "INSERT INTO law_versions (law_id, valid_from, commit_hash)"
-        " VALUES ('zzd', '1950-12-01', ?)", (FAKE_COMMIT_HASH,))
-    for prov in parse(ZZD_STYLE_MD, law_id="zzd"):
-        populated_conn.execute(
-            """INSERT INTO provisions
-               (law_id, article, paragraph, valid_from, text, text_hash,
-                implicit)
-               VALUES (?, ?, ?, '1950-12-01', ?, ?, ?)""",
-            (prov.law_id, prov.article, prov.paragraph, prov.text,
-             prov.text_hash, int(prov.implicit)),
-        )
-    populated_conn.commit()
-    return build_app(conn=populated_conn, corpus_root=tmp_path)
+def app_with_implicit_alineas(conn_with_implicit_alineas, tmp_path):
+    return build_app(conn=conn_with_implicit_alineas, corpus_root=tmp_path)
 
 
 def test_get_article_implicit_alinea_flags_and_warns(app_with_implicit_alineas):

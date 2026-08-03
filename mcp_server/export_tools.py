@@ -43,8 +43,9 @@ from mcp_server.server import build_app
 #   D-056 Q3 — best-segment attribution for body-tier results).
 # 1.2.0 → 1.3.0: field-level output schemas (TypedDict annotations),
 # INVALID_DATE code, JSON error wire format — all additive.
-# 1.4.0 → 1.5.0: ADDITIVE get_article field `implicit` + warning code
-#   IMPLICIT_ALINEA (FR-034).
+# 1.4.0 → 1.5.0: ADDITIVE get_article field `implicit` and get_articles
+#   ArticleEntry field `implicit`, + warning code IMPLICIT_ALINEA on both
+#   (FR-034).
 TOOLS_JSON_VERSION = "1.5.0"
 
 

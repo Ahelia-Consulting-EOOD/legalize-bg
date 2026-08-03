@@ -308,6 +308,24 @@ def version_at_date(conn: sqlite3.Connection, law_id: str,
     )
 
 
+def implicit_alinea_warning() -> dict:
+    """The canonical IMPLICIT_ALINEA warning entry (FR-034).
+
+    Built here — next to the DATE_UNCERTAIN warning — so all three
+    surfaces that emit it (`get_article`, `get_articles`, the REST
+    article route) carry byte-identical text. Returns a FRESH dict per
+    call: callers append it to a per-request `warnings` list.
+    """
+    return {
+        "code": "IMPLICIT_ALINEA",
+        "message": ("Алинеята е изведена по позиция: актът е отпреди "
+                    "Указ № 883/1974 и алинеите му не са номерирани в "
+                    "оригиналния текст. / Alinea number derived from "
+                    "paragraph position: pre-1974 act, alineas are "
+                    "unnumbered in the source text."),
+    }
+
+
 def version_with_warnings(conn: sqlite3.Connection, law_id: str,
                           date: str | None) -> tuple[str, list[dict]]:
     """Same as `version_at_date` but also returns warnings.

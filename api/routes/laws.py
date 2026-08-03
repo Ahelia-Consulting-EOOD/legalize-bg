@@ -71,14 +71,19 @@ def get_article(slug: str, art: str, response: Response,
     rows = queries.article_lookup(conn, law_id, spec.article,
                                   spec.paragraph, date)
     row = rows[0]
+    # FR-034: alinea number derived from paragraph position
+    # (pre-Указ-883/1974 acts carry unnumbered алинеи). Emit the same
+    # flag + warning pair the MCP get_article tool does — `warnings` is
+    # a fresh per-request list from version_with_warnings.
+    implicit = bool(row["implicit"])
+    if implicit:
+        warnings.append(queries.implicit_alinea_warning())
     response.headers["Cache-Control"] = CACHE_HEADER_300
     return {
         "law_id": law_id,
         "article": row["article"],
         "paragraph": row["paragraph"],
-        # FR-034: alinea number derived from paragraph position
-        # (pre-Указ-883/1974 acts carry unnumbered алинеи).
-        "implicit": bool(row["implicit"]),
+        "implicit": implicit,
         "text": row["text"],
         "text_hash": row["text_hash"],
         "commit_hash": commit,

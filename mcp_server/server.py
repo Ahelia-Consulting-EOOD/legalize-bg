@@ -555,16 +555,12 @@ def build_app(conn: sqlite3.Connection | None = None,
         # FR-034: an alinea whose number came from paragraph POSITION
         # (pre-Указ-883/1974 acts have unnumbered алинеи) is flagged so a
         # caller never cites a derived number as if the source printed it.
-        implicit = bool(target.get("implicit", 0))
+        # article_lookup always selects the column, so index it directly —
+        # a pre-migration-006 catalog fails in the SELECT (surfacing
+        # INDEX_MISSING), which a .get() default would only mask.
+        implicit = bool(target["implicit"])
         if implicit:
-            warnings.append({
-                "code": "IMPLICIT_ALINEA",
-                "message": ("Алинеята е изведена по позиция: актът е отпреди "
-                            "Указ № 883/1974 и алинеите му не са номерирани в "
-                            "оригиналния текст. / Alinea number derived from "
-                            "paragraph position: pre-1974 act, alineas are "
-                            "unnumbered in the source text."),
-            })
+            warnings.append(queries.implicit_alinea_warning())
         resp = GetArticleResponse(
             law_id=law_id,
             article=target["article"],
@@ -604,11 +600,16 @@ def build_app(conn: sqlite3.Connection | None = None,
 
         Returns:
             {law_id, articles, commit_hash, warnings}. `articles` is a list
-            of {article, paragraph, text, text_hash} entries in legal-number
-            order. `paragraph` is null for whole-article/range entries and
-            carries the alinea id for a single alinea spec. `commit_hash`
-            and `warnings` are shared across all entries (same act + date →
-            same resolved version).
+            of {article, paragraph, text, text_hash, implicit} entries in
+            legal-number order. `paragraph` is null for whole-article/range
+            entries and carries the alinea id for a single alinea spec.
+            `implicit` is true when that alinea's number was DERIVED from
+            paragraph position (pre-Указ-883/1974 act with unnumbered
+            алинеи) and must not be cited as if the source text printed it;
+            it is always false for whole-article and range entries, and any
+            implicit entry also raises an IMPLICIT_ALINEA warning.
+            `commit_hash` and `warnings` are shared across all entries
+            (same act + date → same resolved version).
 
         Raises:
             INVALID_ARTICLE_SPEC: the article reference can't be parsed, OR
@@ -674,11 +675,20 @@ def build_app(conn: sqlite3.Connection | None = None,
                 "available_articles": e.available_articles,
             })
 
+        # FR-034: the single-alinea path shares article_lookup's rows with
+        # get_article, so it carries the same flag AND the same warning.
+        # RANGE rows come from articles_lookup, which serves whole articles
+        # only (paragraph IS NULL) and does not select the column — hence
+        # the .get() default, which is load-bearing here (unlike in
+        # get_article) and always yields implicit=False for a range.
         entries = [
             ArticleEntry(article=r["article"], paragraph=r["paragraph"],
-                         text=r["text"], text_hash=r["text_hash"]).to_dict()
+                         text=r["text"], text_hash=r["text_hash"],
+                         implicit=bool(r.get("implicit", 0))).to_dict()
             for r in rows
         ]
+        if any(e["implicit"] for e in entries):
+            warnings.append(queries.implicit_alinea_warning())
         resp = GetArticlesResponse(
             law_id=law_id, articles=entries,
             commit_hash=commit, warnings=warnings)

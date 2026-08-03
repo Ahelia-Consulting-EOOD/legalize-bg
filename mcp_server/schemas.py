@@ -123,11 +123,17 @@ class ArticleEntry:
     `paragraph`. `text_hash` is the same stable per-row digest as
     GetArticleResponse, so Phase 4 amendment detection can compare ranged
     and single lookups uniformly.
+
+    `implicit` (FR-034) mirrors `GetArticleResponse.implicit`: true only
+    when the entry is an alinea whose number was DERIVED from paragraph
+    position (pre-Указ-883/1974 act). Always false for RANGE entries — a
+    range addresses whole articles, which are never position-derived.
     """
     article: str
     paragraph: str | None
     text: str
     text_hash: str
+    implicit: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -239,6 +245,7 @@ class ArticleEntryDict(TypedDict):
     paragraph: str | None
     text: str
     text_hash: str
+    implicit: bool
 
 
 class GetArticlesResponseDict(TypedDict):

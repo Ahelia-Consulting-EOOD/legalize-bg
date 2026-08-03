@@ -109,7 +109,8 @@
     {
       "code": "IMPLICIT_ALINEA",
       "raised_by": [
-        "get_article"
+        "get_article",
+        "get_articles"
       ],
       "category": "warning",
       "since_phase": "FR-034",
