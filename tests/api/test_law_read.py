@@ -75,6 +75,15 @@ def test_get_article(client):
     assert "Втора алинея" in body["text"]
 
 
+def test_get_article_carries_implicit_flag(client):
+    """FR-034: the article payload exposes the position-derived-alinea
+    marker. The fixture act is modern (numbered alineas), so the flag is
+    present and False — the additive key must exist regardless."""
+    r = client.get("/api/v1/laws/zakon-vremeto/articles/чл. 1, ал. 2")
+    assert r.status_code == 200
+    assert r.json()["implicit"] is False
+
+
 def test_get_article_range_rejected(client):
     r = client.get("/api/v1/laws/zakon-vremeto/articles/чл. 1-3")
     assert r.status_code == 400

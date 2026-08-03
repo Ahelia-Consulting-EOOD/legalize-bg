@@ -66,8 +66,9 @@ def test_tool_error_maps_to_http_status_and_json_body(client):
     from api.errors import HTTP_STATUS_BY_CODE
     from mcp_server.errors import ERROR_CODES
     mapped = set(HTTP_STATUS_BY_CODE)
-    assert mapped == ERROR_CODES - {"DATE_UNCERTAIN"}, (
-        "every error code except the DATE_UNCERTAIN warning must map")
+    assert mapped == ERROR_CODES - {"DATE_UNCERTAIN", "IMPLICIT_ALINEA"}, (
+        "every error code except the DATE_UNCERTAIN / IMPLICIT_ALINEA "
+        "warnings must map")
 
 
 def test_unknown_route_is_plain_404(client):

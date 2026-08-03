@@ -3,7 +3,7 @@
   "$id": "https://github.com/Ahelia-Consulting-EOOD/legalize-bg/docs/api/error-codes.json",
   "title": "legalize-bg MCP error taxonomy",
   "description": "Machine-readable catalog of every error code the legalize-bg MCP server returns. Mirror of docs/api/error-codes.md.",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "codes": [
     {
       "code": "LAW_NOT_FOUND",
@@ -103,6 +103,26 @@
           "type": "string",
           "optional": false,
           "description": "always 'unknown'"
+        }
+      }
+    },
+    {
+      "code": "IMPLICIT_ALINEA",
+      "raised_by": [
+        "get_article"
+      ],
+      "category": "warning",
+      "since_phase": "FR-034",
+      "payload": {
+        "code": {
+          "type": "string",
+          "optional": false,
+          "description": "always 'IMPLICIT_ALINEA'"
+        },
+        "message": {
+          "type": "string",
+          "optional": false,
+          "description": "bilingual BG/EN note that the alinea number was derived from paragraph position (pre-1974 act with unnumbered alineas) and must not be cited as if the source text printed it"
         }
       }
     },

@@ -511,7 +511,8 @@ def article_lookup(conn: sqlite3.Connection, law_id: str,
     date = _validate_date(date, "date")
     target = date or _date.today().isoformat()
     sql = """
-        SELECT article, paragraph, text, text_hash, valid_from, valid_to
+        SELECT article, paragraph, text, text_hash, valid_from, valid_to,
+               implicit
           FROM provisions
          WHERE law_id = ? AND article = ?
            AND valid_from <= ?

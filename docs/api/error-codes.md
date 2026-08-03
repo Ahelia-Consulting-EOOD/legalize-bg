@@ -1,7 +1,7 @@
 # legalize-bg MCP Error Taxonomy
 
-**Version:** 1.4.0  (matches `tools.json` `version`)
-**Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`; Phase 2 adds `INVALID_DATE_RANGE`; 2.x-a adds the `get_articles` tool (FR-018) which reuses `INVALID_ARTICLE_SPEC` / `ARTICLE_NOT_FOUND` — no new codes; the 2026-07-02 P2 input-validation hardening adds `INVALID_DATE`. 1.3.0 bump is version-parity only (field-level output schemas, no error-code change).
+**Version:** 1.5.0  (matches `tools.json` `version`)
+**Spec since:** Phase 1b.1 — D-026; extended in Phase 1b.2 with `QUERY_TOO_BROAD`; Phase 2 adds `INVALID_DATE_RANGE`; 2.x-a adds the `get_articles` tool (FR-018) which reuses `INVALID_ARTICLE_SPEC` / `ARTICLE_NOT_FOUND` — no new codes; the 2026-07-02 P2 input-validation hardening adds `INVALID_DATE`. 1.3.0 bump is version-parity only (field-level output schemas, no error-code change); 1.5.0 adds the `IMPLICIT_ALINEA` warning (FR-034).
 
 This document catalogs every error code the legalize-bg MCP server returns through the FastMCP error envelope. Codes are stable: additive changes (new code) bump the minor version; removing or renaming a code bumps the major version (compatibility break).
 
@@ -66,6 +66,14 @@ When: §7.2 — the act's `fecha_publicacion` was null at index time, so `valid_
 Payload (as warning entry):
 - `code: "DATE_UNCERTAIN"`.
 - `source_date_marker: "unknown"` — signals to the model that the publication date in the response is approximate.
+
+### `IMPLICIT_ALINEA` (warning, rides in successful response)
+
+Raised by: `get_article` (as a warning in the `warnings` array, not as a thrown error).
+When: FR-034 — the requested alinea's number was **derived from paragraph position**, not read from an `(N)` marker. Acts promulgated before Указ № 883/1974 print their алинеи unnumbered, so the indexer numbers them by position and flags the row (`provisions.implicit = 1`, surfaced as the response's `implicit: true`). Never set for the article-as-whole row, nor for alineas that carry an explicit marker.
+Payload (as warning entry):
+- `code: "IMPLICIT_ALINEA"`.
+- `message` (string, bilingual BG/EN) — states that the number is position-derived and must not be cited as if the source text printed it.
 
 ### `INVALID_ARTICLE_SPEC`
 

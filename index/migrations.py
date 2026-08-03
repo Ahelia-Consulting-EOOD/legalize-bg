@@ -96,6 +96,19 @@ MIGRATIONS: tuple[Migration, ...] = (
         );
         """,
     ),
+    Migration(
+        version=6,
+        name="provisions_implicit_column",
+        # FR-034: alinea rows whose number was DERIVED from paragraph
+        # position rather than read from an "(N)" marker — pre-Указ-883/
+        # 1974 acts carry unnumbered алинеи. NOT NULL DEFAULT 0 keeps the
+        # flag strictly additive: every row indexed before this migration
+        # (and every INSERT that omits the column) reads back as 0.
+        sql=(
+            "ALTER TABLE provisions ADD COLUMN "
+            "implicit INTEGER NOT NULL DEFAULT 0;"
+        ),
+    ),
 )
 
 

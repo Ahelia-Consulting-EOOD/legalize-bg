@@ -30,6 +30,10 @@ ERROR_CODES = frozenset({
     "INVALID_DATE_RANGE",  # Phase 2: diff/amendments_in_period with from > to
     "DIFF_FAILED",         # Phase 2: underlying git diff invocation failed
     "INVALID_DATE",  # malformed/empty date parameter (YYYY-MM-DD required)
+    # FR-034 warning, rides in a successful get_article response: the
+    # alinea number was derived from paragraph POSITION (pre-Указ-883/
+    # 1974 acts print no "(N)" markers).
+    "IMPLICIT_ALINEA",
 })
 
 

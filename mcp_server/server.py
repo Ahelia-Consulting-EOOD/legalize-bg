@@ -456,10 +456,15 @@ def build_app(conn: sqlite3.Connection | None = None,
 
         Returns:
             {law_id, article, paragraph, text, text_hash, commit_hash,
-            warnings}. `paragraph` is null for the article-as-whole row
-            and a string ("1", "2", "1а"...) for an alinea row.
-            `text_hash` is a stable per-row digest — Phase 4 amendment
-            detection compares hashes to pinpoint changed alineas.
+            implicit, warnings}. `paragraph` is null for the
+            article-as-whole row and a string ("1", "2", "1а"...) for an
+            alinea row. `text_hash` is a stable per-row digest — Phase 4
+            amendment detection compares hashes to pinpoint changed
+            alineas. `implicit` is true when the alinea number was
+            DERIVED from paragraph position because the act predates
+            Указ № 883/1974 and prints no "(N)" markers; such responses
+            also carry an IMPLICIT_ALINEA warning, and the number must
+            not be cited as if the source text printed it.
 
         Raises:
             INVALID_ARTICLE_SPEC: the article reference can't be parsed,
@@ -547,6 +552,19 @@ def build_app(conn: sqlite3.Connection | None = None,
         # silent bug; switch to explicit "highest valid_from" tie-break
         # at that point.
         target = rows[0]
+        # FR-034: an alinea whose number came from paragraph POSITION
+        # (pre-Указ-883/1974 acts have unnumbered алинеи) is flagged so a
+        # caller never cites a derived number as if the source printed it.
+        implicit = bool(target.get("implicit", 0))
+        if implicit:
+            warnings.append({
+                "code": "IMPLICIT_ALINEA",
+                "message": ("Алинеята е изведена по позиция: актът е отпреди "
+                            "Указ № 883/1974 и алинеите му не са номерирани в "
+                            "оригиналния текст. / Alinea number derived from "
+                            "paragraph position: pre-1974 act, alineas are "
+                            "unnumbered in the source text."),
+            })
         resp = GetArticleResponse(
             law_id=law_id,
             article=target["article"],
@@ -554,6 +572,7 @@ def build_app(conn: sqlite3.Connection | None = None,
             text=target["text"],
             text_hash=target["text_hash"],
             commit_hash=commit,
+            implicit=implicit,
             warnings=warnings,
         )
         return resp.to_dict()

@@ -76,6 +76,9 @@ def get_article(slug: str, art: str, response: Response,
         "law_id": law_id,
         "article": row["article"],
         "paragraph": row["paragraph"],
+        # FR-034: alinea number derived from paragraph position
+        # (pre-Указ-883/1974 acts carry unnumbered алинеи).
+        "implicit": bool(row["implicit"]),
         "text": row["text"],
         "text_hash": row["text_hash"],
         "commit_hash": commit,

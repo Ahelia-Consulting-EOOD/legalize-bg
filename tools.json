@@ -1,5 +1,5 @@
 {
-  "version": "1.4.0",
+  "version": "1.5.0",
   "spec": "https://modelcontextprotocol.io/specification/server/tools",
   "server": {
     "name": "legalize-bg",
@@ -260,7 +260,7 @@
     },
     {
       "name": "get_article",
-      "description": "Return a specific article (or alinea) of a Bulgarian act.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n    article: Article reference. Accepts:\n        \"чл. 14\" / \"14\" / \"Чл. 14\" — whole article\n        \"чл. 14а\" / \"14а\" — Cyrillic-suffix variant\n        \"чл. 14, ал. 2\" / \"14.2\" / \"14, ал. 2\" — specific alinea\n        For an article RANGE (\"чл. 14-16\"), use the get_articles\n        tool instead — get_article serves a single article and\n        rejects a range spec with INVALID_ARTICLE_SPEC.\n    date: ISO 8601 date for historical retrieval. If omitted,\n        returns the current text.\n\nReturns:\n    {law_id, article, paragraph, text, text_hash, commit_hash,\n    warnings}. `paragraph` is null for the article-as-whole row\n    and a string (\"1\", \"2\", \"1а\"...) for an alinea row.\n    `text_hash` is a stable per-row digest — Phase 4 amendment\n    detection compares hashes to pinpoint changed alineas.\n\nRaises:\n    INVALID_ARTICLE_SPEC: the article reference can't be parsed,\n        OR it parses to a range (\"чл. 14-16\") — get_article\n        serves a single article and rejects ranges; use\n        get_articles instead (payload carries a `hint`).\n    ARTICLE_NOT_FOUND: no article/alinea row matches the spec at\n        the requested date (payload carries available_articles\n        for retry).\n    NO_VERSION_AT_DATE: the date precedes the act's earliest version.\n    LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.\n    INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.",
+      "description": "Return a specific article (or alinea) of a Bulgarian act.\n\nArgs:\n    law: The act's title, slug, or identificador (see get_law).\n    article: Article reference. Accepts:\n        \"чл. 14\" / \"14\" / \"Чл. 14\" — whole article\n        \"чл. 14а\" / \"14а\" — Cyrillic-suffix variant\n        \"чл. 14, ал. 2\" / \"14.2\" / \"14, ал. 2\" — specific alinea\n        For an article RANGE (\"чл. 14-16\"), use the get_articles\n        tool instead — get_article serves a single article and\n        rejects a range spec with INVALID_ARTICLE_SPEC.\n    date: ISO 8601 date for historical retrieval. If omitted,\n        returns the current text.\n\nReturns:\n    {law_id, article, paragraph, text, text_hash, commit_hash,\n    implicit, warnings}. `paragraph` is null for the\n    article-as-whole row and a string (\"1\", \"2\", \"1а\"...) for an\n    alinea row. `text_hash` is a stable per-row digest — Phase 4\n    amendment detection compares hashes to pinpoint changed\n    alineas. `implicit` is true when the alinea number was\n    DERIVED from paragraph position because the act predates\n    Указ № 883/1974 and prints no \"(N)\" markers; such responses\n    also carry an IMPLICIT_ALINEA warning, and the number must\n    not be cited as if the source text printed it.\n\nRaises:\n    INVALID_ARTICLE_SPEC: the article reference can't be parsed,\n        OR it parses to a range (\"чл. 14-16\") — get_article\n        serves a single article and rejects ranges; use\n        get_articles instead (payload carries a `hint`).\n    ARTICLE_NOT_FOUND: no article/alinea row matches the spec at\n        the requested date (payload carries available_articles\n        for retry).\n    NO_VERSION_AT_DATE: the date precedes the act's earliest version.\n    LAW_NOT_FOUND / AMBIGUOUS_NAME: name resolution failed.\n    INVALID_DATE: a date parameter is not a valid YYYY-MM-DD string.",
       "input_schema": {
         "additionalProperties": false,
         "properties": {
@@ -318,6 +318,9 @@
           "commit_hash": {
             "type": "string"
           },
+          "implicit": {
+            "type": "boolean"
+          },
           "warnings": {
             "items": {
               "additionalProperties": true,
@@ -333,6 +336,7 @@
           "text",
           "text_hash",
           "commit_hash",
+          "implicit",
           "warnings"
         ],
         "type": "object"
@@ -618,6 +622,7 @@
     "ARTICLE_NOT_FOUND",
     "DATE_UNCERTAIN",
     "DIFF_FAILED",
+    "IMPLICIT_ALINEA",
     "INDEX_MISSING",
     "INDEX_STALE",
     "INVALID_ARTICLE_SPEC",
