@@ -1,8 +1,9 @@
 {
   "law_id": "naredba-04-14",
-  "total_rows": 21,
+  "total_rows": 24,
   "article_rows": 7,
-  "alinea_rows": 14,
+  "explicit_rows": 14,
+  "implicit_rows": 3,
   "first_articles": [
     "1",
     "2",

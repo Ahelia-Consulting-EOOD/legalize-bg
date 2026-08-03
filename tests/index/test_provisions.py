@@ -208,7 +208,29 @@ def test_inline_alineas_within_single_paragraph():
 ])
 def test_golden_provisions_per_fixture(fixture_name, law_id):
     """Lock the parser against each fixture. Goldens summarize counts
-    and the first 10 articles; regenerate via REGENERATE_GOLDENS=1."""
+    and the first 10 articles; regenerate via REGENERATE_GOLDENS=1.
+
+    FR-034: `explicit_rows` (source-numbered "(N)" alineas) and
+    `implicit_rows` (position-derived alineas in pre-Указ-883 acts) are
+    pinned SEPARATELY and must never be folded into one `alinea_rows`
+    total — a single count lets a loss of explicit rows hide behind a
+    gain of implicit ones, which is exactly how silent corpus loss gets
+    ratified.
+
+    `explicit_rows` equals the pre-FR-034 values EXACTLY, except these
+    verified recoveries of text HEAD had silently dropped:
+      - gpk 1,486 -> 1,497: чл. 22а +2, чл. 22з +3, чл. 22и +1 (HEAD
+        truncated the article at a top-level <br>; чл. 22и kept only
+        73 of 596 chars). The remaining +5 (чл. 16, 37, 54, 61, 165)
+        are quoted ЗИД amendment text absorbed onto the DUPLICATE ПЗР
+        article rows that HEAD already emitted — not new articles.
+      - ppz-aktsizi 824 -> 842: чл. 102а +6 and чл. 102б +10 were
+        absent from HEAD entirely (lex.bg emits them as
+        "Чл. 102а./span>.", so HEAD's glued paragraph tripped the
+        2+-anchor cite-list rule and discarded both real articles);
+        чл. 58 +2 (HEAD kept 233 of 2,943 chars).
+      - zop stays at 1,156 and zeu at 232 — exact parity.
+    """
     import os
     from bs4 import BeautifulSoup
     from fetcher.bg.text_parser import HtmlToMarkdown
@@ -222,7 +244,10 @@ def test_golden_provisions_per_fixture(fixture_name, law_id):
         "law_id": law_id,
         "total_rows": len(rows),
         "article_rows": sum(1 for r in rows if r.paragraph is None),
-        "alinea_rows": sum(1 for r in rows if r.paragraph is not None),
+        "explicit_rows": sum(
+            1 for r in rows if r.paragraph is not None and not r.implicit
+        ),
+        "implicit_rows": sum(1 for r in rows if r.implicit),
         "first_articles": sorted(
             {r.article for r in rows if r.paragraph is None},
             key=_article_sort_key,
@@ -264,3 +289,108 @@ def _article_sort_key(article: str):
     if not m:
         return (0, article)
     return (int(m.group(1)), m.group(2))
+
+
+# --- FR-034: unnumbered алинеи (pre-1974 acts) + child-div continuation ---
+
+ZZD_STYLE_MD = """\
+**Чл. 36.** Едно лице може да представлява друго по разпоредба на закона или по волята на представлявания.
+
+Последиците от правните действия, които представителят извършва, възникват направо за представлявания.
+
+**Чл. 37.** Еднолинейна разпоредба без втора алинея.
+
+## ПРЕХОДНИ РАЗПОРЕДБИ
+
+(ОБН. - ДВ, БР. 2 ОТ 1950 Г.)
+"""
+
+
+def test_implicit_alineas_for_markerless_multiparagraph_article():
+    rows = parse(ZZD_STYLE_MD, law_id="zzd")
+    art36 = [r for r in rows if r.article == "36"]
+    whole = [r for r in art36 if r.paragraph is None]
+    alineas = [r for r in art36 if r.paragraph is not None]
+    # article-as-whole keeps BOTH paragraphs (continuation accepted)
+    assert len(whole) == 1
+    assert "Последиците" in whole[0].text
+    assert whole[0].implicit is False
+    # two implicit alinea rows, position-numbered
+    assert [(r.paragraph, r.implicit) for r in alineas] == [("1", True), ("2", True)]
+    assert alineas[0].text.startswith("Едно лице")   # anchor stripped
+    assert alineas[1].text.startswith("Последиците")
+
+
+def test_single_paragraph_article_gets_no_implicit_rows():
+    rows = parse(ZZD_STYLE_MD, law_id="zzd")
+    art37 = [r for r in rows if r.article == "37"]
+    assert len(art37) == 1 and art37[0].paragraph is None
+
+
+def test_obn_banner_not_swallowed_as_continuation():
+    """Both closers must hold: the ## heading closes чл. 37, and a bare
+    ^(ОБН banner with no intervening heading also closes an open article."""
+    rows = parse(ZZD_STYLE_MD, law_id="zzd")
+    art37 = [r for r in rows if r.article == "37"]
+    assert "ОБН" not in art37[0].text
+    md = ("**Чл. 5.** Първа алинея.\n\n"
+          "(ОБН. - ДВ, БР. 2 ОТ 1950 Г.)\n")
+    rows2 = parse(md, law_id="x")
+    art5 = [r for r in rows2 if r.article == "5"]
+    assert "ОБН" not in art5[0].text
+
+
+def test_digit_tochki_continue_the_open_article():
+    """Modern acts: точки arrive as their own paragraphs post-Task-1;
+    they must stay in the article body and inside the right alinea."""
+    md = ("**Чл. 12.** (1) Изисквания:\n\n"
+          "1. първо изискване;\n\n"
+          "2. второ изискване.\n\n"
+          "(2) Втора алинея.\n")
+    rows = parse(md, law_id="x")
+    whole = [r for r in rows if r.article == "12" and r.paragraph is None]
+    assert "второ изискване" in whole[0].text
+    al1 = [r for r in rows if r.article == "12" and r.paragraph == "1"]
+    assert "второ изискване" in al1[0].text and al1[0].implicit is False
+
+
+def test_letter_points_merge_into_preceding_implicit_alinea():
+    md = ("**Чл. 363.** Дружеството се прекратява:\n\n"
+          "а) с постигане целта на дружеството;\n\n"
+          "б) с изтичането на времето.\n\n"
+          "Втора алинея след буквите.\n")
+    rows = parse(md, law_id="zzd")
+    alineas = [r for r in rows if r.article == "363" and r.paragraph is not None]
+    assert [r.paragraph for r in alineas] == ["1", "2"]
+    assert "б) с изтичането" in alineas[0].text
+    assert alineas[1].text.startswith("Втора алинея")
+
+
+def test_numbered_articles_unchanged_and_not_implicit():
+    md = "**Чл. 1.** (1) Първа. (2) Втора.\n"
+    rows = parse(md, law_id="x")
+    alineas = [r for r in rows if r.paragraph is not None]
+    assert [(r.paragraph, r.implicit) for r in alineas] == [("1", False), ("2", False)]
+
+
+def test_annex_start_closes_the_open_article():
+    """FR-034 rule 1: without an annex closer, default-continue swallows
+    appendix forms into the last open article (measured: ППЗ-акцизи
+    чл. 102б absorbed 86,503 chars of annexes)."""
+    md = ("**Чл. 102б.** (1) Подлежащите на контрол лица са длъжни да съдействат.\n\n"
+          "Приложение № 28 към чл. 102б\n\n"
+          "ОБЯСНИТЕЛНИ БЕЛЕЖКИ по образеца на декларацията.\n")
+    rows = parse(md, law_id="ppz")
+    whole = [r for r in rows if r.article == "102б" and r.paragraph is None]
+    assert len(whole) == 1
+    assert "Приложение" not in whole[0].text
+    assert "ОБЯСНИТЕЛНИ" not in whole[0].text
+
+
+def test_uppercase_annex_start_also_closes():
+    md = ("**Чл. 7.** Разпоредба.\n\n"
+          "ПРИЛОЖЕНИЕ към чл. 7\n\n"
+          "Образец на декларация.\n")
+    rows = parse(md, law_id="x")
+    whole = [r for r in rows if r.article == "7" and r.paragraph is None]
+    assert "ПРИЛОЖЕНИЕ" not in whole[0].text and "Образец" not in whole[0].text

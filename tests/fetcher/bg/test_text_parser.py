@@ -187,3 +187,76 @@ def test_undersection_rendered_as_level5_heading():
     md = HtmlToMarkdown().convert(BeautifulSoup(html, "lxml"))
     assert "#### Раздел I. Общи разпоредби" in md
     assert "##### Подраздел I. Общи положения" in md
+
+
+def test_child_div_alineas_become_paragraphs():
+    """Pre-Указ-883 acts (ЗЗД, ЗС, ЗН, ЗЛС) have unnumbered алинеи, each
+    in its own child <div> of the Article element (verified against live
+    lex.bg HTML for doc_id 2121934337, чл. 36 ЗЗД, 2026-07-31). They must
+    become separate Markdown paragraphs, not be glued with spaces."""
+    html = '''
+    <div class="Article">
+        <div><b>Чл. 36.</b> Едно лице може да представлява друго по разпоредба на закона или по волята на представлявания.</div>
+        <div>Последиците от правните действия, които представителят извършва, възникват направо за представлявания.</div>
+        <br/>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    md = HtmlToMarkdown().convert(soup)
+    blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
+    assert blocks[0].startswith("**Чл. 36.**")
+    assert blocks[0].endswith("представлявания.")
+    assert "Последиците" not in blocks[0], "алинеи glued into one paragraph"
+    assert blocks[1].startswith("Последиците")
+
+
+def test_mixed_layout_br_inside_child_div():
+    """A child div that itself contains <br>-separated runs must split on
+    those too (belt-and-braces for mixed layouts)."""
+    html = '''
+    <div class="Article">
+        <div><b>Чл. 5.</b> Първа алинея.<br/>Втора алинея.</div>
+        <div>Трета алинея.</div>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    md = HtmlToMarkdown().convert(soup)
+    blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
+    assert len(blocks) == 3
+    assert blocks[1] == "Втора алинея."
+    assert blocks[2] == "Трета алинея."
+
+
+def test_title_preamble_glued_to_article_anchor():
+    """FR-034 rule 1a: lex.bg renders the article заглавие as its own child
+    element preceding the anchor. Post-fix it would become a standalone
+    paragraph that index.provisions routes to the PREVIOUS article's tail;
+    glue it back into the documented „Title preamble Чл. N. …" form."""
+    html = '''
+    <div class="Article">
+        <p>Стойностни прагове</p>
+        <div><b>Чл. 20.</b> (1) Процедурите се прилагат, когато:</div>
+        <div>1. публични възложители възлагат обществени поръчки.</div>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    md = HtmlToMarkdown().convert(soup)
+    blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
+    assert blocks[0].startswith("Стойностни прагове Чл. 20."), blocks[:2]
+    # the точка stays its own paragraph — only the title is glued
+    assert blocks[1].startswith("1. публични")
+
+
+def test_article_without_title_preamble_is_untouched():
+    """The glue must not fire when the first line already carries the anchor."""
+    html = '''
+    <div class="Article">
+        <div><b>Чл. 21.</b> Първа алинея.</div>
+        <div>Втора алинея.</div>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    md = HtmlToMarkdown().convert(soup)
+    blocks = [b.strip() for b in md.split("\n\n") if b.strip()]
+    assert blocks[0] == "**Чл. 21.** Първа алинея."
+    assert blocks[1] == "Втора алинея."

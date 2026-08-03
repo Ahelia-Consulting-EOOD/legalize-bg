@@ -1,8 +1,9 @@
 {
   "law_id": "ppz-aktsizi",
-  "total_rows": 1084,
-  "article_rows": 260,
-  "alinea_rows": 824,
+  "total_rows": 1131,
+  "article_rows": 262,
+  "explicit_rows": 842,
+  "implicit_rows": 27,
   "first_articles": [
     "1",
     "2",

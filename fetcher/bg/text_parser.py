@@ -3,9 +3,13 @@
 import logging
 import re
 
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, Comment, Tag
 
 log = logging.getLogger(__name__)
+
+# An article anchor ("Чл. 20."). Used to tell a title-preamble line (no
+# anchor) from the anchor line itself — see `_extract_article_text`.
+_ARTICLE_ANCHOR_RE = re.compile(r"Чл\.\s*\d")
 
 # CSS class -> (markdown prefix, include in output)
 CLASS_MAP = {
@@ -171,6 +175,13 @@ class HtmlToMarkdown:
                         parts.append("\n")
                     else:
                         walk(child)
+                elif isinstance(child, Comment):
+                    # HTML comments (lex.bg leaves stale <a>/<img> markup
+                    # commented out inside Article children) are not
+                    # content — get_text() already excluded them; a naive
+                    # str(child) here would leak the raw commented-out
+                    # HTML into the Markdown body.
+                    continue
                 else:
                     parts.append(str(child))
 
@@ -207,33 +218,35 @@ class HtmlToMarkdown:
         return text
 
     def _extract_article_text(self, element: Tag) -> str:
-        """Extract article text, treating <br> as a paragraph break.
+        """Extract article text, treating <br> AND child block elements as
+        paragraph breaks.
 
-        Bulgarian legal articles have numbered alineas ((1), (2), ...)
-        separated by <br>. In Markdown, a single newline is a soft break
-        (rendered as a space) — we need a blank line between alineas so
-        each renders as its own paragraph.
+        lex.bg uses two article layouts:
+        - modern (post-Указ-883/1974) acts: numbered alineas ((1), (2), …)
+          separated by <br> inside one Article element;
+        - pre-1974 acts (ЗЗД, ЗС, ЗН, ЗЛС): unnumbered alineas, each its
+          own child <div> of the Article element (FR-034 — the old code
+          honored only <br>, silently gluing those алинеи into one flowed
+          paragraph).
+        `_block_text` already implements exactly these semantics for
+        §-provisions (recursive walk, breaks on <br> and div/p/li/tr,
+        blank-line-joined) — delegate to it so the rule lives in one place.
+
+        Title-preamble glue (FR-034 rule 1a): lex.bg renders the article
+        заглавие as its own child element preceding the anchor element, so
+        the delegation would emit it as a standalone paragraph — which
+        `index.provisions._extract_article_blocks` then attributes to the
+        PREVIOUS article's tail (the title carries no anchor of its own).
+        Re-join it with the anchor line to reproduce the documented
+        pre-FR-034 shape, „Title preamble Чл. N. …" in one paragraph
+        (ЗОП has 261 such articles, ГПК 715).
         """
-        lines: list[str] = []
-        buf: list[str] = []
-
-        def flush():
-            if buf:
-                line = " ".join(s for s in buf if s).strip()
-                if line:
-                    lines.append(line)
-                buf.clear()
-
-        for child in element.children:
-            if isinstance(child, Tag):
-                if child.name == "br":
-                    flush()
-                else:
-                    buf.append(child.get_text().strip())
-            else:
-                text = str(child).strip()
-                if text:
-                    buf.append(text)
-        flush()
-
+        text = self._block_text(element)
+        lines = text.split("\n\n")
+        if (
+            len(lines) >= 2
+            and not _ARTICLE_ANCHOR_RE.search(lines[0])
+            and lines[1].startswith("Чл.")
+        ):
+            lines[:2] = [f"{lines[0]} {lines[1]}"]
         return "\n\n".join(lines)

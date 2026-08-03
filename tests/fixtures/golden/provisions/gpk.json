@@ -1,8 +1,9 @@
 {
   "law_id": "gpk",
-  "total_rows": 2231,
+  "total_rows": 2248,
   "article_rows": 745,
-  "alinea_rows": 1486,
+  "explicit_rows": 1497,
+  "implicit_rows": 6,
   "first_articles": [
     "1",
     "2",

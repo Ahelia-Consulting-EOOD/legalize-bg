@@ -51,6 +51,7 @@ class Provision:
     paragraph: str | None
     text: str
     text_hash: str
+    implicit: bool = False
 
 
 def _hash(s: str) -> str:
@@ -64,6 +65,21 @@ def _is_structural_header(para: str) -> bool:
 
 
 _ALINEA_CONTINUATION_RE = re.compile(r"^\s*\(\s*\d{1,3}[а-я]?\s*\)")
+
+# FR-034: after the Task-1 parser fix, article content that lex.bg
+# renders as child <div>s — unnumbered алинеи (pre-Указ-883 acts),
+# точки ("1."), букви ("а)"), "(Изм. …)"-prefixed алинеи — arrives as
+# separate plain paragraphs. While an article is open, everything
+# continues it EXCEPT the named closers: '#' structural headers,
+# '*' PreHistory italics, standalone '(ОБН' gazette banners, and annex
+# starts ('Приложение № …' / 'ПРИЛОЖЕНИЕ'). Without the annex closer
+# default-continue swallows appendix forms into the last open article —
+# measured: ППЗ-акцизи чл. 102б absorbed 86,503 chars of annexes.
+# Default-continue restores pre-FR-034 article-body parity (measured on
+# ЗОП: the Cyrillic-only alternative lost 60% of indexed article text).
+# High-recall by design (D-055 lesson) — corpus-wide validation via the
+# structural gate + fr034_verify rebuild-diff.
+_CONTINUATION_CLOSER_RE = re.compile(r"^(?:#|\*|\(ОБН|Приложение\s*№|ПРИЛОЖЕНИЕ)")
 
 
 def _looks_like_alinea_continuation(para: str) -> bool:
@@ -126,7 +142,7 @@ def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
             pending_id = article_ids[0]
             pending_parts = [para]
         elif n == 0:
-            if pending_id is not None and _looks_like_alinea_continuation(para):
+            if pending_id is not None and not _CONTINUATION_CLOSER_RE.match(para):
                 pending_parts.append(para)
             else:
                 flush()
@@ -190,6 +206,38 @@ def _split_alineas(body: str) -> list[tuple[str, str]]:
     return out
 
 
+_SUBPOINT_RE = re.compile(r"^(?:[а-я]\)|\d{1,2}[\.\)])\s")
+_ANCHOR_PREFIX_RE = re.compile(r"^(?:\*\*)?Чл\.\s+\d+[а-я]?\.(?:\*\*)?\s*")
+
+
+def _split_implicit_alineas(body: str) -> list[tuple[str, str]]:
+    """Position-derived alineas for marker-less multi-paragraph articles
+    (pre-Указ-883 acts: ЗЗД, ЗС, ЗН, ЗЛС…). ВКС cites their алинеи by
+    paragraph position („чл. 36, ал. 2 ЗЗД“) even though the source text
+    carries no (N) markers. Sub-points (букви а), б)… and точки 1., 2)…)
+    merge into the preceding alinea — they subdivide an алинея, they do
+    not start one.
+    Returns [] for single-paragraph articles (no implicit ал. 1 row —
+    mirrors numbered acts, where a marker-less article gets no rows)."""
+    paras = [p.strip() for p in _PARAGRAPH_SPLIT_RE.split(body) if p.strip()]
+    if len(paras) < 2:
+        return []
+    merged: list[str] = []
+    for p in paras:
+        if merged and _SUBPOINT_RE.match(p):
+            merged[-1] = merged[-1] + "\n\n" + p
+        else:
+            merged.append(p)
+    if len(merged) < 2:
+        return []
+    out: list[tuple[str, str]] = []
+    for i, text in enumerate(merged, start=1):
+        if i == 1:
+            text = _ANCHOR_PREFIX_RE.sub("", text, count=1)
+        out.append((str(i), text))
+    return out
+
+
 def parse(markdown: str, law_id: str) -> list[Provision]:
     """Emit one article-as-whole row + one row per alinea (D-023).
 
@@ -209,12 +257,15 @@ def parse(markdown: str, law_id: str) -> list[Provision]:
             text=body,
             text_hash=_hash(body),
         ))
-        for paragraph_id, alinea_text in _split_alineas(body):
+        explicit = _split_alineas(body)
+        implicit_rows = [] if explicit else _split_implicit_alineas(body)
+        for paragraph_id, alinea_text in explicit or implicit_rows:
             rows.append(Provision(
                 law_id=law_id,
                 article=article_id,
                 paragraph=paragraph_id,
                 text=alinea_text,
                 text_hash=_hash(alinea_text),
+                implicit=not explicit,
             ))
     return rows
