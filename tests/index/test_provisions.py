@@ -532,3 +532,238 @@ def test_zzd_fixture_unnumbered_alineas_are_implicit_and_correct():
     # ал. 1 has the anchor stripped; ал. 2 is the second unnumbered алинея.
     assert alineas[0].text.startswith("Едно лице може да представлява")
     assert alineas[1].text.startswith("Последиците")
+
+
+# --- FR-034 Task 6c-d: subpoint, header and sentence-continuation rules ---
+# Every shape below is lifted from a real corpus row sampled in
+# `docs/research/2026-08-02-fr034-sweep-report.md` §9 (row ids S01–S31).
+
+
+def test_multi_letter_subpoint_merges_into_preceding_implicit_alinea():
+    """§9.1c shape 1 (271 rows): ЗАДС чл. 4 / наредба 11/2003 чл. 10 number
+    their букви `аа) бб) вв)` once the single letters run out. `_SUBPOINT_RE`
+    knew only the single-letter form, so each one started a new алинея."""
+    md = ("**Чл. 4.** По смисъла на този закон:\n\n"
+          "я) последната еднобуквена точка;\n\n"
+          "аа) за Германия: Остров Хелиголанд;\n\n"
+          "бб) за Италия: Ливиньо;\n\n"
+          "ввв) за трибуквения вариант;\n\n"
+          "Втора алинея след изброяването.\n")
+    rows = parse(md, law_id="zads")
+    alineas = [r for r in rows if r.article == "4" and r.paragraph is not None]
+    assert [(r.paragraph, r.implicit) for r in alineas] == [("1", True), ("2", True)]
+    assert "Остров Хелиголанд" in alineas[0].text
+    assert "трибуквения вариант" in alineas[0].text
+    assert alineas[1].text.startswith("Втора алинея")
+
+
+def test_multi_level_decimal_subpoint_merges_into_preceding_implicit_alinea():
+    """§9.1c shape 2 (304 rows): правилник СОС чл. 16 numbers its subpoints
+    `1.1. 1.2. 1.3.`, наредба 3/2004 goes as deep as `2.3.1.2.5.`."""
+    md = ("**Чл. 16.** Председателят на СВСУ:\n\n"
+          "1.1. свиква заседанията;\n\n"
+          "1.3. представлява СВСУ;\n\n"
+          "2.3.1.2.5. Ако спирачките са в изправност, се допуска работа.\n\n"
+          "Втора алинея след изброяването.\n")
+    rows = parse(md, law_id="sos")
+    alineas = [r for r in rows if r.article == "16" and r.paragraph is not None]
+    assert [(r.paragraph, r.implicit) for r in alineas] == [("1", True), ("2", True)]
+    assert "представлява СВСУ" in alineas[0].text
+    assert "Ако спирачките" in alineas[0].text
+    assert alineas[1].text.startswith("Втора алинея")
+
+
+def test_dash_bullet_merges_into_preceding_implicit_alinea():
+    """§9.1c shape 3 (515 rows): правилник СОС (обществен посредник) чл. 29
+    bullets its grounds with `- …`. Includes the en/em-dash variants."""
+    md = ("**Чл. 29.** Мандатът се прекратява предсрочно:\n\n"
+          "- за нарушаване на този правилник;\n\n"
+          "– при трайна невъзможност да изпълнява задълженията си;\n\n"
+          "— по негово искане.\n\n"
+          "Втора алинея след изброяването.\n")
+    rows = parse(md, law_id="sos")
+    alineas = [r for r in rows if r.article == "29" and r.paragraph is not None]
+    assert [(r.paragraph, r.implicit) for r in alineas] == [("1", True), ("2", True)]
+    assert "по негово искане" in alineas[0].text
+    assert alineas[1].text.startswith("Втора алинея")
+
+
+def test_plain_text_section_header_closes_the_article():
+    """§9.1c shape 6: „Допълнителна разпоредба" in the SINGULAR is not
+    emitted as a `##` header by text_parser, so the article stayed open and
+    swallowed it as an алинея (ЗОТ чл. 106 ал. 2, правилник ВГС чл. 33 ал. 2,
+    ЗСП чл. 140 ал. 2/3/5)."""
+    md = ("**Чл. 106.** Контролът се осъществява от министъра.\n\n"
+          "Допълнителна разпоредба\n\n"
+          "§ 1. По смисъла на този закон:\n")
+    rows = parse(md, law_id="zot")
+    whole = [r for r in rows if r.article == "106" and r.paragraph is None]
+    assert len(whole) == 1
+    assert "Допълнителна разпоредба" not in whole[0].text
+    assert "По смисъла" not in whole[0].text
+    assert [r for r in rows if r.article == "106" and r.paragraph is not None] == []
+
+
+def test_section_header_closer_variants():
+    """The plural, the all-caps and the „Преходни наредби:" form are the other
+    51 reachable header paragraphs measured corpus-wide."""
+    for header in ("Допълнителни разпоредби", "Заключителна разпоредба",
+                   "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "Преходни и Заключителни разпоредби",
+                   "Преходни наредби:"):
+        md = f"**Чл. 5.** Основен текст.\n\n{header}\n\nСлед заглавието.\n"
+        whole = [r for r in parse(md, law_id="x")
+                 if r.article == "5" and r.paragraph is None]
+        assert header not in whole[0].text, header
+        assert "След заглавието" not in whole[0].text, header
+
+
+def test_section_header_closer_does_not_fire_on_ordinary_prose():
+    """Guard: the closer must match a WHOLE header paragraph, not the prefix
+    „Допълнителн…". These three shapes are real corpus rows that a loose
+    prefix pattern would wrongly treat as headers (наредба 14/2012 чл. 679,
+    наредба 10/2011 чл. 28, правилник за безопасност чл. 182)."""
+    for prose in ("Допълнителни огнегасящи вещества",
+                  "Допълнителна информация, по преценка на организацията.",
+                  "Допълнителни електро-"):
+        md = f"**Чл. 7.** Първа алинея.\n\n{prose}\n\nТрета алинея.\n"
+        whole = [r for r in parse(md, law_id="x")
+                 if r.article == "7" and r.paragraph is None]
+        assert prose in whole[0].text, prose
+
+
+def test_annex_kam_start_closes_the_article():
+    """§9.1c shape 4: „Приложение към чл. 5" carries no `№`, so the annex
+    closer did not fire and the form was absorbed as алинеи (S04 —
+    наредба за формата…информация чл. 11, наредба Н-1/2025 чл. 16,
+    правилник ЦПО чл. 16). 10 such paragraphs are reachable corpus-wide."""
+    for header in ("Приложение към чл. 5", "Приложение към чл. 3, ал. 3",
+                   "Приложение към споразумение за сътрудничество"):
+        md = (f"**Чл. 11.** Отчетът се изготвя по образец.\n\n{header}\n\n"
+              "СПРАВКА за състоянието на системите\n\nв ……\n")
+        whole = [r for r in parse(md, law_id="x")
+                 if r.article == "11" and r.paragraph is None]
+        assert header not in whole[0].text, header
+        assert "СПРАВКА" not in whole[0].text, header
+
+
+def test_annex_citation_does_not_close_the_article():
+    """Guard: „Приложение II, Регламент (ЕС) 2021/1165" is a CITATION, not an
+    annex start — the closer keys on „към", not on a bare „Приложение"."""
+    md = ("**Чл. 39.** Продуктите се вписват съгласно правилата.\n\n"
+          "Приложение II, Регламент (ЕС) 2021/1165\n\n"
+          "Втора алинея.\n")
+    whole = [r for r in parse(md, law_id="x")
+             if r.article == "39" and r.paragraph is None]
+    assert "Регламент (ЕС) 2021/1165" in whole[0].text
+
+
+# Abridged verbatim from `nakazatelen-kodeks` чл. 418 (sample row S24). The
+# article carries NO алинеи; the lead ends in a colon, the четири букви are
+# merged by `_SUBPOINT_RE`, and the tail „се наказва с…" used to become a
+# manufactured „ал. 2".
+NK_418_MD = """\
+**Чл. 418.** (Нов - ДВ, бр. 95 от 1975 г.) Който с целта по предходния член:
+
+а) незаконно лиши от свобода членове на расова група хора;
+
+г) отнема основни права и свободи на организации или лица, понеже те се противопоставят на апартейда,
+
+се наказва с лишаване от свобода от пет до петнадесет години.
+"""
+
+
+def test_sentence_tail_does_not_become_a_separate_implicit_alinea():
+    """§9.3 class 5 (S24 НК чл. 418, S10 ЗГМО чл. 2а): one sentence cut into
+    two rows. An алинея is a sentence and a Bulgarian sentence opens with a
+    capital or a marker — a paragraph opening with a LOWERCASE Cyrillic letter
+    is therefore a continuation of the paragraph above it, never a new алинея.
+    чл. 418 has no алинеи at all, so it must emit none."""
+    rows = parse(NK_418_MD, law_id="nk")
+    alineas = [r for r in rows if r.article == "418" and r.paragraph is not None]
+    assert alineas == []
+    whole = [r for r in rows if r.article == "418" and r.paragraph is None]
+    assert "се наказва с лишаване от свобода" in whole[0].text
+
+
+def test_lowercase_continuation_merges_after_an_unpunctuated_lead():
+    """S20 (УП МТСП чл. 24): the source breaks буква „ж)" mid-clause after the
+    word „съгласно" — no terminal punctuation at all. A rule keyed on the
+    PREVIOUS paragraph's punctuation misses this; the lowercase-opening rule
+    does not."""
+    md = ("**Чл. 24.** Дирекцията подпомага министъра при:\n\n"
+          "ж) осигурява съхранението на финансово-счетоводните документи съгласно\n\n"
+          "изискванията на Закона за счетоводството и действащите нормативни актове;\n\n"
+          "Втора алинея.\n")
+    rows = parse(md, law_id="mtsp")
+    alineas = [r for r in rows if r.article == "24" and r.paragraph is not None]
+    assert [(r.paragraph, r.implicit) for r in alineas] == [("1", True), ("2", True)]
+    assert "изискванията на Закона за счетоводството" in alineas[0].text
+    assert alineas[1].text.startswith("Втора алинея")
+
+
+def test_capitalised_paragraph_still_starts_a_new_implicit_alinea():
+    """Guard against over-merging: the continuation rule keys on a lowercase
+    OPENING only. Real алинеи — capitals, „(Изм. …)" prefixes, digits, quoted
+    text — must keep starting their own row."""
+    md = ("**Чл. 30.** Първа алинея.\n\n"
+          "Втора алинея с главна буква.\n\n"
+          "(Изм. - ДВ, бр. 12 от 1993 г.) Трета алинея.\n\n"
+          "„Цитиран текст в кавички.\"\n")
+    rows = parse(md, law_id="x")
+    alineas = [r for r in rows if r.article == "30" and r.paragraph is not None]
+    assert [r.paragraph for r in alineas] == ["1", "2", "3", "4"]
+
+
+# Verbatim from `zakon-za-zadalzheniyata-i-dogovorite` чл. 265 — the доктринален
+# target. The lead ends in a colon and its two enumeration items carry NO
+# marker at all, so they were numbered as ал. 2 and ал. 3 and pushed the two
+# real алинеи to ал. 4 and ал. 5.
+ZZD_265_MD = """\
+**Чл. 265.** Ако при извършване на работата изпълнителят се е отклонил от поръчката или ако изпълнената работа има недостатъци, поръчващият може да иска:
+
+поправяне на работата в даден от него подходящ срок без заплащане;
+
+заплащане на разходите, необходими за поправката, или съответно намаление на възнаграждението.
+
+Ако отклонението от поръчката или недостатъците са толкова съществени, че работата е негодна за нейното договорно или обикновено предназначение, поръчващият може да развали договора.
+
+Тия права се погасяват в шест месеца, а при строителни работи - в пет години.
+"""
+
+
+def test_zzd_265_unmarked_enumeration_does_not_shift_the_alinea_numbering():
+    """The doctrinal payoff: ЗЗД чл. 265 has three алинеи, and the six-month /
+    five-year prescription is ал. 3. The unmarked enumeration items are
+    grammatical completions of „поръчващият може да иска: …", not алинеи."""
+    rows = parse(ZZD_265_MD, law_id="zzd")
+    alineas = [r for r in rows if r.article == "265" and r.paragraph is not None]
+    assert [r.paragraph for r in alineas] == ["1", "2", "3"]
+    assert "поправяне на работата" in alineas[0].text
+    assert alineas[1].text.startswith("Ако отклонението")
+    assert alineas[2].text.startswith("Тия права се погасяват")
+
+
+def test_amendment_marker_does_not_mask_a_sentence_continuation():
+    """НК чл. 410/411/412/417 carry the same split-sentence shape as чл. 418,
+    but their tail opens with a `(изм. - ДВ …)` marker, which masked the
+    lowercase letter behind it. The continuation rule therefore looks PAST a
+    leading parenthetical. Measured: 17 rows corpus-wide, all artifacts
+    (4 НК war-crimes articles, the rest formula legends and form labels);
+    zero genuine алинеи."""
+    md = ("**Чл. 410.** Който в нарушение на правилата за водене на война:\n\n"
+          "а) извърши убийство спрямо ранени или болни;\n\n"
+          "(изм. - ДВ, бр. 153 от 1998 г.) се наказва с лишаване от свобода "
+          "от пет до двадесет години.\n")
+    rows = parse(md, law_id="nk")
+    assert [r for r in rows if r.article == "410" and r.paragraph is not None] == []
+
+
+def test_amendment_marker_before_a_capital_still_starts_an_alinea():
+    """Guard: the parenthetical is skipped only to read the letter behind it.
+    „(Изм. …) Трета алинея." opens with a CAPITAL and keeps its own row."""
+    md = ("**Чл. 30.** Първа алинея.\n\n"
+          "(Изм. - ДВ, бр. 12 от 1993 г.) Втора алинея.\n\n"
+          "(Нова - ДВ, бр. 8 от 2001 г.) Трета алинея.\n")
+    rows = parse(md, law_id="x")
+    alineas = [r for r in rows if r.article == "30" and r.paragraph is not None]
+    assert [r.paragraph for r in alineas] == ["1", "2", "3"]
