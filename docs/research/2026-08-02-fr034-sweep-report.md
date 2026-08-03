@@ -319,7 +319,8 @@ Cloudflare event.
 `refresh.py` never run; all catalog access read-only.
 
 Headline: **all four verify-red lines are baseline artifacts, none is FR-034 damage** — but the
-implicit-row population is **77 % artifacts** in a stratified sample, which is far over the 10 %
+implicit-row population is **84 % artifacts** in a stratified sample (74.8–93.3 % across three
+independent sampling frames, §9.1b), which is far over the 10 %
 threshold the plan set, and routes to a fix round before governance (§9.4, §10).
 
 ## 8.1 R1 — the two `[reforma]` acts: CONFIRMED lawful amendments
@@ -332,9 +333,20 @@ Confirmed lawful amendment, evidence: the sweep commit carries the ДВ бр. 61
 title is amended („ЗАГЛ. ИЗМ. - ДВ, БР. 61 ОТ 2026 Г., В СИЛА ОТ 01.01.2027 Г.“), `amendment_history`
 gains `dv: 61/2026 / 2026-07-03`, and **чл. 2 is wholly repealed**
 („**Чл. 2.** (Отм - ДВ, бр. 61 от 2026 г., в сила от 01.01.2027 г.)“), taking its four explicit
-алинеи with it. A marker census of the parent blob gives exactly the baseline 9
-(`(1)`×2, `(2)`×2, `(3)`×2, `(4)`×2, `(5)`×1 — чл. 2 ал. 1–4 plus чл. 3 ал. 1–5); the post-sweep
-catalog holds 6, all under чл. 3. чл. 3 ал. 4 and ал. 5 survive as „(Отм. …)“ markers.
+алинеи with it. A marker census of the parent blob gives exactly the baseline 9:
+
+```
+$ git show 6f39175a^:ordinances/naredba-69-ot-15-yuni-2021-…-po-chl-169-al-1-.md \
+    | grep -o '([0-9]\+)' | sort | uniq -c
+   2 (1)
+   2 (2)
+   2 (3)
+   2 (4)
+   1 (5)
+```
+
+— чл. 2 ал. 1–4 plus чл. 3 ал. 1–5. The post-sweep catalog holds 6, all under чл. 3;
+чл. 3 ал. 4 and ал. 5 survive as „(Отм. …)“ markers.
 Side observation, upstream shape not FR-034: lex.bg renders чл. 3 with a **doubled marker** —
 „**Чл. 3.** (1) (Изм - ДВ, бр. 61 …) (1) Пожизнените пенсии …“ — so чл. 3 carries two rows with
 `paragraph='1'`, one of them the amendment note alone.
@@ -385,14 +397,68 @@ body of this one act. At HEAD, `Посети форума` matches **1** corpus 
 to EOF — and `© Lex.bg` matches none. Because news and forum headlines change daily, the act churns
 on every refresh and any „Чл. N“ appearing in a thread title manufactures a phantom article.
 
-## 9. Implicit-row sampling — artifact rate 77 %, **over the 10 % bar**
+## 9. Implicit-row sampling — artifact rate 84 %, **over the 10 % bar**
 
-Sample drawn deterministically (`random.Random(20260804)`): one law at a time within each category,
-then one row within that law — **24 random rows across 24 distinct laws** in all five categories
-(ordinances 9, laws 7, regulations 4, implementing 2, codes 2) — plus the **7 mandated rows**
-(4 from `naredba-3-ot-9-yuni-2004-…`, the act contributing +451 of the B2 fix's +593 implicit rows,
-and 3 from `naredba-1-ot-25-yanuari-2023-…`, the annex cells under the false anchor
-„Чл. 17. т. 5, буква „б“ от Регламент…“). **31 rows / 26 laws.**
+### 9.0 Sampling frame — exact selector
+
+The frame is **law-uniform within a category**, not row-weighted: within each category the distinct
+`law_id`s carrying implicit rows are sorted, shuffled once with a fixed seed, and the first *n* are
+taken; then **one row is drawn uniformly at random from within that law**. The full selector, which
+reproduces the 31 rows exactly (verified by re-running it against the same `catalog.db`):
+
+```python
+import sqlite3, random
+conn = sqlite3.connect("catalog.db")
+rows = conn.execute("""SELECT p.id, p.law_id, l.category, p.article, p.paragraph, p.text
+                         FROM provisions p JOIN laws l USING(law_id)
+                        WHERE p.implicit = 1 AND p.valid_to IS NULL""").fetchall()
+by = {}
+for r in rows:
+    by.setdefault(r[2], []).append(r)
+rnd = random.Random(20260804)                      # fixed seed
+quota = {"ordinances": 9, "laws": 7, "regulations": 4, "implementing": 2, "codes": 2}
+picked = []
+for cat, n in quota.items():
+    laws = sorted({r[1] for r in by[cat]})         # law-uniform frame
+    rnd.shuffle(laws)
+    for lw in laws[:n]:
+        picked.append(rnd.choice([r for r in by[cat] if r[1] == lw]))
+for lw, n in [("naredba-3-ot-9-yuni-2004-g-za-ustroystvoto-na-elektricheskite-uredbi-i-elektropr", 4),
+              ("naredba-1-ot-25-yanuari-2023-g-za-usloviyata-i-reda-za-izvarshvane-na-natsionaln", 3)]:
+    picked += rnd.sample([r for r in rows if r[1] == lw], n)
+```
+
+Row ids produced (stable across re-runs):
+`270844 388491 392112 359493 175877 294109 308504 208012 194972 · 37215 19644 5540 127010 68669
+68019 47405 · 412845 412587 450143 460311 · 467470 468319 · 135778 149316` (the 24 random rows),
+then `233501 233022 231219 234837 · 160523 160714 160875` (the 7 mandated rows).
+**31 rows / 26 laws.**
+
+The mandated rows are 4 from `naredba-3-ot-9-yuni-2004-…` (the act reported in the Task 6c-a
+analysis as contributing +451 of the B2 fix's +593 implicit rows — **that split is not re-verifiable
+at this HEAD**, since the pre-B2 catalog no longer exists, and is quoted here only as the reason the
+act was mandated into the sample) and 3 from `naredba-1-ot-25-yanuari-2023-…` (annex cells under the
+false anchor „Чл. 17. т. 5, буква „б“ от Регламент…“).
+
+**Caveat that cuts against this sample, stated for the record:** the `laws` stratum drew **both**
+state-budget acts (ЗДБРБ 2025 and ЗДБРБ 2026) among its 7 laws. Under the law-uniform frame with 45
+eligible laws that is a ≈2.1 % coincidence, and it makes the `laws` stratum more artifact-heavy than
+a typical draw would be. It reproduces deterministically from the seed above; it is not a
+row-weighted draw dressed up as law-uniform. The strata re-weighting in §9.1a is the honest way to
+read past it — and it moves the number **up**, not down.
+
+### 9.0a Category allocation is neither row- nor law-proportional
+
+| category | eligible laws | implicit rows | row share | sampled | row-proportional would be | law-proportional would be |
+|---|---:|---:|---:|---:|---:|---:|
+| ordinances | 201 | 12,803 | 52.60 % | 9 | 12.6 | 15.2 |
+| laws | 45 | 10,476 | 43.04 % | 7 | 10.3 | 3.4 |
+| regulations | 56 | 896 | 3.68 % | 4 | 0.9 | 4.2 |
+| implementing | 7 | 97 | 0.40 % | 2 | 0.1 | 0.5 |
+| codes | 8 | 68 | 0.28 % | 2 | 0.07 | 0.6 |
+
+The three small categories are over-represented roughly tenfold by row share — and they are the
+**least** artifact-dense strata in the sample. Correcting for that raises the rate; see §9.1a.
 
 Standard applied: **genuine** = a self-contained normative paragraph of the article body;
 **artifact** = table cell, fragment of a split sentence or enumeration, annex/form/template
@@ -409,7 +475,7 @@ material, quoted-ЗИД or false-anchor material, section header, separator or c
 | S07 | наредба Iз-1971/2009 (ord) | чл. 273 ал. 32 = „c“ | artifact | table cell |
 | S08 | наредба 2/2021 (ord) | чл. 21а ал. 3 | artifact | `/span>` tag-leak false anchor + absorbed article title |
 | S09 | наредба 16/2010 (ord) | чл. 9 ал. 2 = „да посочат страна на произход…“ | artifact | trailing clause of the lead sentence after an enumeration |
-| S10 | ЗГМО (law) | чл. 2а ал. 1 | genuine | sibling ал. 2 („при условие че…“) is a sentence tail — artifact |
+| S10 | ЗГМО (law) | чл. 2а ал. 1 | **artifact** (corrected) | чл. 2а has **no** алинеи; ал. 1 and its sibling ал. 2 („при условие че…“) are the two halves of one sentence |
 | S11 | ЗДБРБ 2025 (law) | чл. 53 ал. 871 = „998,5“ | artifact | budget table cell |
 | S12 | ЗАДС (law) | чл. 4 ал. 2 = „аа) за Германия: Остров Хелиголанд…“ | artifact | doubled-letter subpoint |
 | S13 | ЗДБРБ 2026 (law) | чл. 52 ал. 40 = „7 041,6“ | artifact | budget table cell |
@@ -423,13 +489,53 @@ material, quoted-ЗИД or false-anchor material, section header, separator or c
 | S21 | ППЗДвП (impl) | чл. 66 ал. 2 = „Светлоотразяващият елемент…“ | artifact | trailing sentence of an enumeration item (verified in source at line 1488) |
 | S22 | ППЗ филмовата индустрия (impl) | чл. 35 ал. 1 | genuine | article lead + точки |
 | S23 | ГПК (code) | чл. 22н ал. 1 | artifact | quoted-ЗИД text under a `/span>` tag-leak false anchor |
-| S24 | НК (code) | чл. 418 ал. 1 | genuine | sibling ал. 2 („се наказва с…“) is the sentence tail — artifact |
+| S24 | НК (code) | чл. 418 ал. 1 | **artifact** (corrected) | чл. 418 has **no** алинеи; ал. 1 and its sibling ал. 2 („се наказва с лишаване от свобода от пет до петнадесет години.“) are the two halves of one sentence |
 | S25–S28 | наредба 3/2004 (ord, **mandated**) | чл. 693 ал. 47 · чл. 583 ал. 40 · чл. 61 ал. 856 · чл. 1194 ал. 102 | artifact ×4 | electrical-installation table cells („стълба плюс 10 m“, „на или“, „10“, „средства под тях“) |
 | S29–S31 | наредба 1/2023 (ord, **mandated**) | чл. 17 ал. 2 · ал. 193 · ал. 354 | artifact ×3 | annex cells under the false anchor „Чл. 17. т. 5, буква „б“ от Регламент…“ |
 
-**Genuine 7 / artifact 24 = 77.4 %.** Excluding the 7 mandated rows the random half alone is
-**genuine 7 / artifact 17 = 70.8 %**. Either way the 10 % bar is not merely missed, it is missed by
+**Genuine 5 / artifact 26 = 83.9 %.** Excluding the 7 mandated rows the random half alone is
+**genuine 5 / artifact 19 = 79.2 %**. Either way the 10 % bar is not merely missed, it is missed by
 an order of magnitude.
+
+S10 and S24 were originally scored genuine. That was **inconsistent with the standard stated above**:
+in both acts the article carries no алинеи at all, so the parser manufactured *both* rows by cutting
+one sentence in two, and the head is as much a fragment as the tail. Correcting them moves the
+headline from 77.4 % to 83.9 % and the random half from 70.8 % to 79.2 %. Both corrections move the
+number **against** the „acceptable“ direction; the earlier figures were the conservative ones.
+The head-of-a-split-sentence class belongs with the trailing-clause segmentation ruling in §11.5.
+
+### 9.1a Strata re-weighting — the number survives it and rises
+
+Because the three small categories are over-sampled ~10× by row share (§9.0a) and are the least
+artifact-dense strata, the unweighted random-half figure **understates** the corpus rate. Weighting
+each stratum's observed rate by its row share:
+
+| stratum | observed artifact rate (random half) | row weight |
+|---|---:|---:|
+| ordinances | 7/9 = 77.8 % | 52.60 % |
+| laws | 6/7 = 85.7 % | 43.04 % |
+| regulations | 3/4 = 75.0 % | 3.68 % |
+| implementing | 1/2 = 50.0 % | 0.40 % |
+| codes | 2/2 = 100 % | 0.28 % |
+
+**Row-share-weighted rate = 81.0 %** (74.8 % under the pre-correction classification). Every way of
+reading the sample lands far above 10 %.
+
+### 9.1b Three independent estimates converge
+
+| method | artifact rate |
+|---|---:|
+| strata-reweighted, pre-correction classification | 74.8 % |
+| random half, standard applied consistently | 79.2 % |
+| strata-reweighted, standard applied consistently | 81.0 % |
+| full 31-row sample (incl. the 2 mandated concentrations) | 83.9 % |
+| **independent row-uniform sample of 15 rows (review round)** | **14/15 = 93.3 %** |
+
+The review round's row-uniform draw — budget cells, electrical table cells, a formula fragment and a
+`/span>` remnant, with only `naredba-7-ot-22-fevruari-2008-…` чл. 198 ал. 24 genuine — is the
+highest of the five because row-uniform sampling weights the tabular giants at their true mass. The
+spread 74.8 %–93.3 % across three independent frames is what makes the >10 % routing unarguable: no
+frame, classification standard, or weighting brings the rate within an order of magnitude of the bar.
 
 ### 9.1 Judgement-free corroboration
 
@@ -443,9 +549,49 @@ an order of magnitude.
 
 The two state-budget acts alone hold 9,302 rows — 38.2 % of the corpus total — at 99.6 % under 40
 chars. Even excluding the top-10 acts by implicit rows, 56.2 % of the remaining 7,656 rows are under
-40 chars. Rows by leading shape: doubled-letter subpoint 267 · multi-level decimal 402 · dash bullet
-514 · `Таблица…` 129 · section header (`Допълнителн…`/`Преходни…`/`Заключителн…`) 31 ·
-`Приложение…` 4.
+40 chars.
+
+### 9.1c Rows by leading shape — definitions shipped with the counts
+
+An earlier draft of this section quoted three counts derived from loose SQL `GLOB` patterns that
+could not be reproduced from the text of the report. They are replaced here by Python `re.match`
+counts over an explicitly stated frame, so the fix round can measure its own before/after against
+the same definition.
+
+**Frame:** `SELECT text FROM provisions WHERE implicit = 1 AND valid_to IS NULL` — 24,340 rows,
+`catalog.db` built at HEAD `f0d414c3`. Each pattern is applied with `re.match` (anchored at the
+start of the row text).
+
+| shape | pattern | rows |
+|---|---|---:|
+| doubled-letter subpoint | `^[а-я]{2,3}\)\s` | **271** |
+| multi-level decimal subpoint | `^\d+(?:\.\d+)+\.?\s` | **304** |
+| dash bullet | `^[-–—]\s` | **515** |
+| annex marker | `^(?:Приложение\|ПРИЛОЖЕНИЕ)` | **4** |
+| table marker | `^(?:Таблица\|ТАБЛИЦА\|Табл\.)` | **129** |
+| section header | `^(?:Допълнителн\|ДОПЪЛНИТЕЛН\|Преходни\|ПРЕХОДНИ\|Заключителн\|ЗАКЛЮЧИТЕЛН)` | **31** |
+
+The first three are the `_SUBPOINT_RE` gaps; the space requirement is deliberate, because
+`_SUBPOINT_RE` itself ends in `\s` and a fix must match that shape. **Union of the three gaps =
+1,090 rows; with the 31 section headers = 1,121 rows** (this supersedes the „1,183 rows“ figure in
+an earlier draft of §11.1).
+
+Sensitivity — these counts are pattern-brittle, which is why the pattern ships with the number:
+
+| variant | rows |
+|---|---:|
+| doubled letter, exactly two letters `^[а-я]{2}\)\s` | 267 |
+| doubled letter, two or three `^[а-я]{2,3}\)\s` (adopted) | 271 |
+| decimal, separator space required `^\d+(?:\.\d+)+\.?\s` (adopted) | 304 |
+| decimal, no space required `^\d+(?:\.\d+)+\.?` | 386 |
+| dash, ASCII only `^-\s` | 515 |
+| table marker without `Табл.` | 127 |
+| table marker with `Табл.` (adopted) | 129 |
+
+The three discrepancies raised in review resolve exactly here: 267 vs 271 is „exactly two letters“ vs
+„two or three“; 386 vs 304 is „no separator space required“ vs „required“; 127 vs 129 is the
+`Табл.` abbreviation. The dash-bullet, annex-marker and section-header counts were already
+reproducible and are unchanged.
 
 ### 9.2 Where the artifacts cluster — the distinction that changes the ruling
 
@@ -463,26 +609,44 @@ FR-034 is **clean**:
 Spot reads of ЗЗД (чл. 127 ал. 1, чл. 204 ал. 2, чл. 244 ал. 4, чл. 292 ал. 2) and ЗС (чл. 56 ал. 1,
 чл. 72 ал. 3) return well-formed, self-contained алинеи. **FR-034's own objective is met.**
 
+**Known limitation of this table.** „% rows under 40 chars“ is a proxy for *table cells*, not for
+artifacts in general, and it **systematically understates** the artifact rate in doctrinal acts:
+four of the five mechanisms in §9.3 — trailing clauses (S09, S21), mid-sentence subpoint splits
+(S20), and split-sentence heads and tails (S10, S24) — produce **long** artifacts that the proxy
+scores as clean. The low percentages for ЗЗД, ЗС and ЗЛС are therefore evidence that those acts are
+free of *table-cell* contamination, and are consistent with — but do not prove — freedom from the
+segmentation artifacts. The row-level reads above are the actual evidence for the doctrinal claim;
+the table is corroboration only.
+
 ### 9.3 …but four mechanisms do contaminate ordinary doctrinal articles
 
 These are not annex material and are cheap to fix in `index/provisions.py`:
 
-1. `_SUBPOINT_RE` misses **doubled-letter** subpoints `аа) бб) вв)` — 267 rows.
-2. `_SUBPOINT_RE` misses **multi-level decimal** subpoints `1.3.`, `2.3.1.2.5.` — 402 rows.
-3. `_SUBPOINT_RE` has no **dash-bullet** alternative `- …` — 514 rows.
+1. `_SUBPOINT_RE` misses **doubled-letter** subpoints `аа) бб) вв)` — 271 rows.
+2. `_SUBPOINT_RE` misses **multi-level decimal** subpoints `1.3.`, `2.3.1.2.5.` — 304 rows.
+3. `_SUBPOINT_RE` has no **dash-bullet** alternative `- …` — 515 rows.
 4. Plain-text section headers — „Допълнителна разпоредба“ in the singular is not emitted as a `##`
    header, so it does not close the article and becomes an алинея — 31 rows
    (ЗОТ чл. 106 ал. 2, правилник ВГС чл. 33 ал. 2).
 
-A fifth class — enumeration **trailing clauses** (S09, S21, and the ал. 2 siblings of S10 and S24) —
-is a segmentation-rule decision, not a regex gap, and needs an explicit ruling.
+(Counts and their patterns: §9.1c. Union of 1–3 = 1,090 rows; with 4 = 1,121 rows.)
+
+A fifth class — **one sentence cut into two or more rows** — is a segmentation-rule decision, not a
+regex gap, and needs an explicit ruling. It is larger than the four regex gaps suggest, because it
+covers both halves of each cut, not only the tail: enumeration trailing clauses (S09, S21), the
+mid-sentence subpoint split (S20), **and** the split-sentence pairs where the article has no алинеи
+at all and both rows are fragments (S10 ЗГМО чл. 2а ал. 1+2, S24 НК чл. 418 ал. 1+2). Five of the 24
+random rows — 21 % of the random half on its own — sit in this class.
 
 ### 9.4 Ruling
 
 **The artifact rate does not clear the bar and the plan's own condition applies: a fix round before
-governance.** The FR-034 doctrinal claim stands; what does not stand is the aggregate figure —
-`24,340 implicit rows` must not be quoted as an FR-034 achievement number until annex and table
-material is classified. The defensible number today is the doctrinal subset.
+governance.** The verdict holds under every frame tried — 74.8 % strata-reweighted on the original
+classification, 79.2 % on the random half with the standard applied consistently, 81.0 %
+strata-reweighted, 83.9 % on the full sample, 93.3 % on an independent row-uniform draw (§9.1b). The
+FR-034 doctrinal claim stands; what does not stand is the aggregate figure — `24,340 implicit rows`
+must not be quoted as an FR-034 achievement number until annex and table material is classified. The
+defensible number today is the doctrinal subset.
 
 ## 10. Structure-mismatch census — 51 acts in 4 families
 
@@ -496,8 +660,12 @@ record **what stopped attribution**.
 |---|---:|---|
 | **A. `SUP>` / `/span>` tag remnant makes „чл. N¹“ a duplicate of „чл. N“** | 21 | **new class** — not FR-034, not FR-030 |
 | **B. Duplicate article number from an annex- or ПЗР-embedded act** | 20 | FR-026 (annex-as-separate-document) + FR-030 |
-| **C. Capitalized inline citation „Чл. N.“ inside an article body** | 2 | FR-030 |
-| **D. One source `div.Article` spanning several articles or a whole annex** | 8 | FR-026 + check-side over-count |
+| **C. Capitalized inline citation „Чл. N.“ read as an anchor** | 3 | FR-030 |
+| **D. One source `div.Article` spanning several articles or a whole annex** | 7 | FR-026 + check-side over-count |
+
+(C is 3 and D is 7, not 2 and 8: `naredba-4-ot-22-yuli-2016-…` чл. 107 is a citation-false-anchor
+case by mechanism — „0Чл. 107. параграф 3, буква „в“ от ДФЕС“ — and is counted in C, where its
+prose already placed it.)
 
 **None of the 51 is residual FR-034 scope.** Residual FR-034 in the strict sense: zero.
 
@@ -519,31 +687,71 @@ element's block count against the real article's paragraph count. Representative
 `pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie-2` чл. 1, expected 46 / got 1 — the
 real чл. 1 is a single sentence, while the 46 blocks belong to
 „Чл. 1./STRONG>. (1) Самостоятелният бюджет на Народното събрание…“ inside „Приложение към
-правилника“. Same shape for ЗМДТ чл. 1 (185/13), наредба 5/2018 чл. 46 (45/13), наредба 1/2023
-чл. 17 (270/8), and the Столична-община and Великотърновска-община наредби and правилници.
+правилника“. Full membership (act · reported article · expected/got):
 
-**Family C — 2 acts.** ЗБЛД чл. 59 (56/37): attribution dies at точка 18, whose text carries **two**
+| act | art | exp/got |
+|---|---|---|
+| `naredba-na-stolichen-obshtinski-savet-za-pazarite-na-teritoriyata-na-stolichna-o` | 1 | 96/2 |
+| `naredba-6-za-izpolzuvane-i-predstavyane-na-nedvizhimite-pametnitsi-na-kulturata` | 1 | 50/2 |
+| `zakon-za-mestnite-danatsi-i-taksi` | 1 | 185/13 |
+| `pravilnik-na-stolichen-obshtinski-savet-za-organizatsiyata-i-deynostta-na-stolic-2` | 1 | 43/2 |
+| `naredba-7-ot-22-fevruari-2008-g-za-utvarzhdavane-na-obraztsite-na-knizha-svarzan` | 44 | 2/1 |
+| `naredba-na-stolichen-obshtinski-savet-za-predostavyane-na-sotsialnite-uslugi-asi` | 8 | 5/1 |
+| `naredba-na-stolichen-obshtinski-savet-za-tsenite-pri-sdelki-s-nedvizhimi-imoti-n` | 1 | 5/1 |
+| `naredba-41-ot-10-dekemvri-2008-g-za-iziskvaniyata-kam-obekti-v-koito-se-otglezhd` | 59 | 6/3 |
+| `naredba-na-stolichen-obshtinski-savet-za-sastavyane-izpalnenie-otchitane-i-kontr` | 1 | 60/2 |
+| `naredba-14-ot-11-septemvri-2012-g-za-usloviyata-i-reda-za-predostavyane-na-bezva` | 1 | 2/1 |
+| `pravilnik-po-bezopasnostta-na-truda-pri-vzrivnite-raboti` | 2 | 5/2 |
+| `naredba-na-velikotarnovskiya-obshtinski-savet-za-opredelyaneto-i-administriranet` | 1 | 50/1 |
+| `naredba-5-ot-3-septemvri-2018-g-za-prilagane-na-pravilata-na-biologichno-proizvo` | 46 | 45/13 |
+| `pravilnik-na-stolichen-obshtinski-savet-za-ustroystvoto-i-deynostta-na-sofiyska-` | 1 | 44/1 |
+| `naredba-na-velikotarnovskiya-obshtinski-savet-za-izgrazhdane-poddarzhane-i-opazv` | 1 | 49/5 |
+| `pravilnik-za-ustroystvoto-i-deynostta-na-tsentara-za-profesionalno-obuchenie-pri` | 1 | 58/1 |
+| `naredba-1-ot-25-yanuari-2023-g-za-usloviyata-i-reda-za-izvarshvane-na-natsionaln` | 17 | 270/8 |
+| `naredba-na-stolichen-obshtinski-savet-za-priem-na-detsa-v-obshtinskite-samostoya` | 1 | 2/1 |
+| `naredba-za-kriteriite-usloviyata-i-reda-za-opredelyane-na-statut-na-domakinstvo-` | 1 | 27/4 |
+| `pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie-2` | 1 | 46/1 |
+
+**Family C — 3 acts.** ЗБЛД чл. 59 (56/37): attribution dies at точка 18, whose text carries **two**
 capitalized „Чл. N.“ citations, so the paragraph is treated as a cite list and the remaining ~19
-paragraphs of чл. 59 are attributed to nobody. Наредба на СОС за именуване чл. 5 (3/0): the
+paragraphs of чл. 59 are attributed to nobody.
+`naredba-na-stolichen-obshtinski-savet-za-imenuvane-i-preimenuvane-na-obshtinski-` чл. 5 (3/0): the
 article's own opening paragraph cites „по реда на **Чл. 98.** т.13 от Конституцията“ — two anchors
-in one paragraph, so чл. 5 never starts at all. The same false-anchor mechanism drives
-наредба 4/2016 („0Чл. 107. параграф 3, буква „в“ от ДФЕС“) and наредба 1/2023 чл. 17 (the row family
-sampled in §9).
+in one paragraph, so чл. 5 never starts at all.
+`naredba-4-ot-22-yuli-2016-g-za-opredelyane-na-reda-za-saglasuvane-na-proektite-n` чл. 107 (14/6):
+„0Чл. 107. параграф 3, буква „в“ от ДФЕС“ — an EU-treaty citation inside an annex table read as an
+anchor. The same mechanism produces наредба 1/2023 чл. 17's false anchor (counted in B, since that
+act's dominant defect is the annex duplicate; it is the row family sampled in §9).
 
-**Family D — 8 acts.** One source `div.Article` carries several articles or an entire annex, so
+**Family D — 7 acts.** One source `div.Article` carries several articles or an entire annex, so
 `expected_blocks` is not a valid lower bound for one article. КТ чл. 131 (3/1): „Чл. 131. (Отм.)“ and
 „Чл. 132. (Отм.)“ share one source div and our markdown splits them correctly — a **check-side false
 positive**. Наредба 1/2016 чл. 1 (383/8): the act itself has only „Член единствен“, and the reported
 „чл. 1“ lives in the annexed МЕТОДИКА. ЗОРВКС чл. 8 (27/3): quoted ЗИД text
-(„§ 2. Чл. 330.се изменя така:“).
+(„§ 2. Чл. 330.се изменя така:“). Full membership:
+
+| act | art | exp/got |
+|---|---|---|
+| `naredba-1-za-spasitelnata-deynost-v-minite-himicheskite-i-metalurgichnite-zavodi` | 121 | 4/2 |
+| `kodeks-na-truda` | 131 | 3/1 |
+| `pravilnik-na-stolichen-obshtinski-savet-za-ustroystvoto-i-deynostta-na-obshtinsk-2` | 12 | 12/9 |
+| `naredba-na-stolichen-obshtinski-savet-za-reda-za-poluchavane-i-upravlenie-na-dar` | 1 | 2/1 |
+| `naredba-1-ot-1-yuli-2016-g-za-odobryavane-na-metodika-za-prilagane-na-izklyuchen` | 1 | 383/8 |
+| `naredba-na-velikotarnovskiya-obshtinski-savet-za-opredelyaneto-i-administriranet-2` | 23 | 85/9 |
+| `zakon-za-oblekchenie-rabotata-na-varhovniya-kasatsionen-sad-i-vav-vrazka-s-tova-` | 8 | 27/3 |
+
+Family A's 21 members are named above; B, C and D are enumerated here, so all 51 lines of the
+run-2 census are attributable from this document alone.
 
 ## 11. Routing out of Task 6c-b
 
 Fix round, before governance:
 
-1. **Implicit-row artifact rate 77 %** (§9). Minimum first cut: `_SUBPOINT_RE` gains doubled-letter,
-   multi-level-decimal and dash-bullet alternatives (1,183 rows); plain-text section headers close
-   the article (31 rows); the annex closer learns „Приложение към …“. Then re-measure the rate.
+1. **Implicit-row artifact rate 84 %** (§9; 74.8–93.3 % across three independent frames, §9.1b).
+   Minimum first cut: `_SUBPOINT_RE` gains doubled-letter, multi-level-decimal and dash-bullet
+   alternatives (**1,090 rows** by the §9.1c definitions); plain-text section headers close the
+   article (31 rows) — 1,121 rows together; the annex closer learns „Приложение към …“. Then
+   re-measure the rate against the §9.1c patterns, which are the stated before-state.
 2. **FR-026 annex/table classification** — now the dominant artifact mass (top-10 acts hold 16,684
    implicit rows, mostly table cells). Blocks any corpus-level claim about implicit-row counts.
 3. **New FR — `SUP>` / `/span>` HTML-tag remnants** (§10, family A): 190 + 577 occurrences,
@@ -551,7 +759,10 @@ Fix round, before governance:
 4. **New FR — lex.bg chrome leak** in `naredba-5-ot-10-may-1999-…kadastralni` (§8.2): one act,
    volatile content, manufactures phantom articles and guarantees refresh churn. Pre-existing on
    `main`.
-5. A ruling on **enumeration trailing clauses** (§9.3) — segmentation policy, not a regex gap.
+5. A ruling on **sentences cut across rows** (§9.3, class 5) — segmentation policy, not a regex gap.
+   Covers enumeration trailing clauses (S09, S21), mid-sentence subpoint splits (S20) **and
+   split-sentence pairs in articles with no алинеи at all**, where head and tail are both fragments
+   (S10 ЗГМО чл. 2а, S24 НК чл. 418). 5 of the 24 random rows.
 
 No change is required to `scripts/fr034_verify.py`: all four verify-red lines are baseline
 artifacts — two lawful ДВ amendments, one lex.bg editorial corrigendum, one phantom article that
