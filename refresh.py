@@ -225,7 +225,15 @@ def partition(lex_ids: set[int], corpus_ids: set[int]):
 
 # --- normalization for change detection -------------------------------------
 
-_WS_RE = re.compile(r"\s+")
+# Horizontal whitespace only (spaces, tabs, NBSP...) — newlines survive so the
+# paragraph structure can be canonicalized separately.
+_HSPACE_RE = re.compile(r"[^\S\n]+")
+# Spaces hugging a newline are cosmetic; drop them before counting newlines.
+_SPACE_AROUND_NL_RE = re.compile(r" *\n *")
+# Any run of >=2 newlines is one paragraph boundary.
+_PARA_RE = re.compile(r"\n{2,}")
+# A newline with no newline neighbour is a soft line wrap == a space.
+_SOFT_NL_RE = re.compile(r"(?<!\n)\n(?!\n)")
 
 # Bulgarian/typographic quote variants -> straight ASCII quotes, matching the
 # design's lex.bg-oracle comparison (normalize whitespace + quotes before diff).
@@ -236,12 +244,29 @@ _QUOTE_MAP = {
 
 
 def normalize_for_compare(text: str) -> str:
-    """Collapse whitespace and unify quotes so cosmetic churn doesn't read as
-    a real change. Used to compare a freshly-assembled file against the
-    committed one."""
+    """Canonicalize cosmetic churn but PRESERVE paragraph structure, so a
+    freshly-assembled file can be compared against the committed one.
+
+    Cosmetic (normalized away): horizontal whitespace runs, soft line wraps
+    (a single newline), quote variants, leading/trailing whitespace.
+    Structural (preserved): a blank line, i.e. a run of >=2 newlines, which is
+    canonicalized to exactly ``\\n\\n``.
+
+    Why paragraphs are structural: in this corpus a blank line separates
+    alineas. FR-034 restored unnumbered alineas as separate paragraphs for
+    pre-1974 acts; because this function used to collapse ALL whitespace,
+    sweep run 1 read those structure-only rewrites as ``unchanged`` and never
+    wrote them — ЗЗД, ЗН and ЗС were silently skipped. That is the third
+    instance of the text-presence blind-spot class (a check that cannot see
+    the very property being fixed), so structure must survive normalization.
+    """
     for variant, plain in _QUOTE_MAP.items():
         text = text.replace(variant, plain)
-    return _WS_RE.sub(" ", text).strip()
+    text = text.replace("\r\n", "\n").replace("\r", "\n")
+    text = _HSPACE_RE.sub(" ", text)
+    text = _SPACE_AROUND_NL_RE.sub("\n", text)
+    text = _PARA_RE.sub("\n\n", text)
+    return _SOFT_NL_RE.sub(" ", text).strip()
 
 
 # --- amendment-history helpers ----------------------------------------------
