@@ -35,7 +35,12 @@ import yaml
 
 from bootstrap import TreeTransport, _format_author_date, _git_checkout_branch, _unique_slug
 from fetcher.bg.assembler import assemble_file, generate_slug
-from fetcher.bg.coverage import make_gate_record, uncovered_legal_text
+from fetcher.bg.coverage import (
+    make_gate_record,
+    safe_structure_mismatches,
+    structure_mismatches,
+    uncovered_legal_text,
+)
 from fetcher.bg.client import (
     CloudflareChallenge,
     HttpTransport,
@@ -415,23 +420,35 @@ class RefreshReport:
 
 
 def _fetch_assemble(client, parser, metadata_parser, doc_id, category,
-                    coverage_gate=uncovered_legal_text):
-    """Fetch + convert + parse one act into (meta, body, gate).
+                    coverage_gate=uncovered_legal_text,
+                    structure_check=structure_mismatches):
+    """Fetch + convert + parse one act into (meta, body, gate, structure).
 
     gate is the result of coverage_gate(soup, body): a dict with
     ``uncovered_chars`` and ``buckets``.  Callers must check the gate before
     writing any .md file — see refresh() for the threshold logic.
 
-    coverage_gate is injectable so orchestration tests can pass a no-op lambda
-    (their FakeClient returns an opaque int token, not a real BeautifulSoup).
-    The real default gate (uncovered_legal_text) must never be weakened in
-    production.
+    structure is the FR-034 paragraph-topology observation (list of
+    ``{article, expected_blocks, got_blocks}``).  REPORT MODE ONLY this
+    cycle: it is recorded in the gate record and never gates a write
+    (enforcement is a deliberate later flip, D-058).
+
+    coverage_gate / structure_check are injectable so orchestration tests can
+    pass no-op lambdas (their FakeClient returns an opaque int token, not a
+    real BeautifulSoup).  The real default gate (uncovered_legal_text) must
+    never be weakened in production.
     """
     soup = client.fetch_soup(doc_id)
     body = parser.convert(soup)
     gate = coverage_gate(soup, body)
+    structure = safe_structure_mismatches(soup, body, check=structure_check)
+    if structure:
+        log.warning(
+            "structure mismatch (report-only) doc_id=%d: %d article(s), first=%s",
+            doc_id, len(structure), structure[0],
+        )
     meta = metadata_parser.parse(soup, doc_id=doc_id, category=category)
-    return meta, body, gate
+    return meta, body, gate, structure
 
 
 def refresh(
@@ -450,6 +467,7 @@ def refresh(
     parser=None,
     metadata_parser=None,
     coverage_gate=uncovered_legal_text,
+    structure_check=structure_mismatches,
 ) -> RefreshReport:
     """Re-photograph lex.bg and refresh the corpus as a fresh snapshot.
 
@@ -544,9 +562,9 @@ def refresh(
         # categories land in directories index/build.py never scans.
         corpus_dir = CATEGORY_DIRS.get(entry["category"], entry["category"])
         try:
-            meta, body, gate = _fetch_assemble(
+            meta, body, gate, structure = _fetch_assemble(
                 client, parser, metadata_parser, doc_id, corpus_dir,
-                coverage_gate=coverage_gate)
+                coverage_gate=coverage_gate, structure_check=structure_check)
             if not (meta.get("titulo") or "").strip():
                 # A page with no parseable titulo is not a legal act —
                 # blank/challenge/soft-404 pages must never be written
@@ -556,7 +574,8 @@ def refresh(
                 report.gate_failures.append(make_gate_record(
                     doc_id, str(doc_id), "<no titulo>",
                     {"uncovered_chars": len(body),
-                     "buckets": {"<missing-titulo>": len(body)}}))
+                     "buckets": {"<missing-titulo>": len(body)}},
+                    structure_mismatches=structure))
                 state[doc_id] = "gate-fail"
                 save_state(state_path, state)
                 log.warning("titulo precondition FAIL doc_id=%d — skipping write",
@@ -565,7 +584,9 @@ def refresh(
             title = meta.get("titulo") or entry["name"]
             if gate["uncovered_chars"] > threshold:
                 slug_hint = generate_slug(title) or str(doc_id)
-                report.gate_failures.append(make_gate_record(doc_id, slug_hint, title, gate))
+                report.gate_failures.append(make_gate_record(
+                    doc_id, slug_hint, title, gate,
+                    structure_mismatches=structure))
                 state[doc_id] = "gate-fail"
                 save_state(state_path, state)
                 log.warning(
@@ -597,9 +618,9 @@ def refresh(
             continue
         ce = corpus[doc_id]
         try:
-            meta, body, gate = _fetch_assemble(
+            meta, body, gate, structure = _fetch_assemble(
                 client, parser, metadata_parser, doc_id, ce.category,
-                coverage_gate=coverage_gate)
+                coverage_gate=coverage_gate, structure_check=structure_check)
             if not (meta.get("titulo") or "").strip():
                 # A page with no parseable titulo is not a legal act —
                 # blank/challenge/soft-404 pages must never be written
@@ -609,7 +630,8 @@ def refresh(
                 report.gate_failures.append(make_gate_record(
                     doc_id, ce.slug, "<no titulo>",
                     {"uncovered_chars": len(body),
-                     "buckets": {"<missing-titulo>": len(body)}}))
+                     "buckets": {"<missing-titulo>": len(body)}},
+                    structure_mismatches=structure))
                 state[doc_id] = "gate-fail"
                 save_state(state_path, state)
                 log.warning("titulo precondition FAIL doc_id=%d — skipping write",
@@ -625,7 +647,9 @@ def refresh(
             if ce.frontmatter.get("estado") == "derogado":
                 meta["estado"] = "derogado"
             if gate["uncovered_chars"] > threshold:
-                report.gate_failures.append(make_gate_record(doc_id, ce.slug, title, gate))
+                report.gate_failures.append(make_gate_record(
+                    doc_id, ce.slug, title, gate,
+                    structure_mismatches=structure))
                 state[doc_id] = "gate-fail"
                 save_state(state_path, state)
                 log.warning(

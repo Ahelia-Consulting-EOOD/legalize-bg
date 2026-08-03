@@ -282,6 +282,12 @@ def test_coverage_gate_blocks_write_on_drop(tmp_path, monkeypatch):
     assert len(failures) == 1, f"Expected 1 gate failure, got: {failures}"
     assert failures[0]["doc_id"] == 9001
     assert failures[0]["uncovered_chars"] > 64
+    # (c) FR-034 REPORT mode: the record carries the paragraph-topology
+    # observation. The stub parser emits one short paragraph, so every
+    # multi-block Article in zop.html is reported as structurally lost.
+    mismatches = failures[0]["structure_mismatches"]
+    assert mismatches, "gate record must carry the structure observation"
+    assert set(mismatches[0]) == {"article", "expected_blocks", "got_blocks"}
 
 
 def test_coverage_gate_allows_complete_act(tmp_path, monkeypatch):

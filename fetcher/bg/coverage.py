@@ -35,12 +35,15 @@ act or layout change causes that test to fail, the fix is a targeted denylist
 exception (not a blanket class addition) and requires IMPLEMENTATION-PREFLIGHT.
 """
 
+import logging
 import re
 from collections import defaultdict
 
 from bs4 import BeautifulSoup, Comment, NavigableString, Tag
 
 from fetcher.bg.text_parser import CHROME_DENYLIST, CLASS_MAP, content_region
+
+log = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
 # Public constant
@@ -61,6 +64,17 @@ _LEGAL_CLASSES: frozenset[str] = frozenset(c for c, (_, inc) in CLASS_MAP.items(
 # ---------------------------------------------------------------------------
 
 _CYR = re.compile(r"[А-Яа-я]")
+
+# Article anchor, duplicated from index/provisions.py by design —
+# fetcher/bg/ ships upstream without the Ahelia-private index/ package,
+# so coverage.py must not import from index/.
+_STRUCT_ARTICLE_RE = re.compile(r"(?:\*\*)?Чл\.\s+(\d+[а-я]?)\.")
+
+# Child elements the parser (_block_text) turns into their own Markdown
+# paragraph.  <br>-separated alineas inside ONE child are not counted here,
+# which makes the source-side count a deliberate LOWER bound (see
+# structure_mismatches).
+_BLOCK_CHILD_TAGS = ("div", "p")
 
 
 def _normalize(text: str) -> str:
@@ -112,7 +126,13 @@ def _nearest_legal_ancestor(node: NavigableString, region_id: int) -> Tag | None
 # ---------------------------------------------------------------------------
 
 
-def make_gate_record(doc_id: int, slug: str, title: str, gate: dict) -> dict:
+def make_gate_record(
+    doc_id: int,
+    slug: str,
+    title: str,
+    gate: dict,
+    structure_mismatches: list[dict] | None = None,
+) -> dict:
     """Build the canonical gate-failure record written to gate-report.json.
 
     Extracted to avoid the three-site duplication in bootstrap.py and refresh.py.
@@ -123,8 +143,14 @@ def make_gate_record(doc_id: int, slug: str, title: str, gate: dict) -> dict:
             "slug": str,
             "title": str,
             "uncovered_chars": int,
-            "top_buckets": {class: count, ...}  # top 5 by descending count
+            "top_buckets": {class: count, ...},  # top 5 by descending count
+            "structure_mismatches": [ {article, expected_blocks, got_blocks}, ... ]
         }
+
+    ``structure_mismatches`` is the FR-034 paragraph-topology observation
+    (see :func:`structure_mismatches`).  It is REPORT-only data: it never
+    participates in the pass/fail decision this cycle, and the key defaults
+    to ``[]`` so every existing caller keeps working unchanged.
     """
     return {
         "doc_id": doc_id,
@@ -134,7 +160,125 @@ def make_gate_record(doc_id: int, slug: str, title: str, gate: dict) -> dict:
         "top_buckets": dict(
             sorted(gate["buckets"].items(), key=lambda x: -x[1])[:5]
         ),
+        "structure_mismatches": list(structure_mismatches or []),
     }
+
+
+def structure_mismatches(soup: BeautifulSoup, markdown: str) -> list[dict]:
+    """Paragraph-topology check (FR-034), REPORT mode.
+
+    Text-presence coverage (:func:`uncovered_legal_text`) is structure-blind:
+    a flattened алинея preserves every character, so an article whose source
+    paragraphs were glued into one flowed block passes with 0 uncovered chars.
+    This check closes that blind spot by comparing TOPOLOGY: every ``Article``
+    element whose source contributes N>=2 Markdown paragraphs must map to a
+    markdown article block with at least N blank-line-separated paragraphs.
+
+    Source side (expected_blocks)
+        Direct child ``<div>``/``<p>`` elements carrying Cyrillic text — the
+        blocks ``text_parser._block_text`` turns into separate paragraphs.
+        Two deliberate adjustments:
+
+        * **Title glue (parser rule 1a).**  lex.bg renders the article
+          заглавие as its own child element before the anchor element, and
+          ``_extract_article_text`` re-joins those two into ONE paragraph
+          („Предмет Чл. 1. …“).  So when the first block carries no ``Чл. N.``
+          anchor and the next block starts with one, the pair counts as a
+          single expected block.  Without this, every titled article (ЗОП 261,
+          ГПК 715) would be a false positive.
+        * **Lower bound by construction.**  ``<br>``-separated alineas inside
+          one child element also become separate Markdown paragraphs but are
+          NOT counted here, and nested child blocks are counted once at the
+          top level.  Both make expected_blocks <= the paragraph count a
+          correct parser produces, so the check can only under-report — never
+          invent a loss.
+
+    Markdown side (got_blocks)
+        Blank-line-separated paragraphs, attributed to the running article by
+        the same rule ``index/provisions._extract_article_blocks`` uses (that
+        module cannot be imported here — upstream layering): exactly one
+        anchor starts an article, zero anchors continue it, a ``#`` header or
+        a 2+-anchor paragraph (cite list / template) closes it.  Anchors are
+        matched anywhere in the paragraph, not only at its start, because
+        rule-1a glue puts the title in front of the anchor.  The first
+        occurrence of an article number wins: quoted anchors in ПЗР
+        (FR-030 family) must not overwrite the real article's count.
+
+    Returns one dict ``{"article", "expected_blocks", "got_blocks"}`` per
+    Article element whose source block count exceeds its markdown paragraph
+    count.  REPORT mode: callers record the list next to the coverage data;
+    enforcement (hard-fail) is a separate, later decision (D-058) taken only
+    after the corpus-wide sweep proves cleanliness.
+    """
+    region, _ = content_region(soup)
+
+    # --- Markdown side: article number -> paragraph count of its block ---
+    md_counts: dict[str, int] = {}
+    current: str | None = None
+    for para in re.split(r"\n\n+", markdown):
+        para = para.strip()
+        if not para:
+            continue
+        if para.startswith("#"):
+            current = None
+            continue
+        anchors = _STRUCT_ARTICLE_RE.findall(para)
+        if len(anchors) == 1:
+            art = anchors[0]
+            if art in md_counts:
+                # already seen — a quoted/duplicated anchor; do not attribute
+                current = None
+                continue
+            current = art
+            md_counts[art] = 1
+        elif not anchors:
+            if current is not None:
+                md_counts[current] += 1
+        else:  # 2+ anchors: cite list or template — attributable to nobody
+            current = None
+
+    # --- Source side ---
+    out: list[dict] = []
+    for el in region.find_all("div", class_="Article"):
+        blocks = [
+            c for c in el.children
+            if isinstance(c, Tag) and c.name in _BLOCK_CHILD_TAGS
+            and _CYR.search(c.get_text())
+        ]
+        expected = len(blocks)
+        if expected >= 2:
+            first = _normalize(blocks[0].get_text())
+            second = _normalize(blocks[1].get_text())
+            if not _STRUCT_ARTICLE_RE.search(first) and second.startswith("Чл."):
+                expected -= 1  # rule-1a title glue: title + anchor = 1 block
+        if expected < 2:
+            continue
+        m = _STRUCT_ARTICLE_RE.search(el.get_text())
+        if not m:
+            continue
+        art = m.group(1)
+        got = md_counts.get(art, 0)
+        if got < expected:
+            out.append({"article": art,
+                        "expected_blocks": expected,
+                        "got_blocks": got})
+    return out
+
+
+def safe_structure_mismatches(soup, markdown: str, check=structure_mismatches) -> list[dict]:
+    """REPORT-mode wrapper around :func:`structure_mismatches`.
+
+    The paragraph-topology observation is diagnostic data, not a gate: it must
+    never abort a 3 600-act run over a layout the topology walk cannot read.
+    Any exception is logged and downgraded to an empty list.  ``check`` is
+    injectable for the same reason ``refresh``'s ``coverage_gate`` is —
+    orchestration tests feed opaque stand-ins instead of real soups.
+    """
+    try:
+        return check(soup, markdown)
+    except Exception as e:  # noqa: BLE001 — report-only data, never fatal
+        log.warning("structure check skipped (report-mode only): %s", e)
+        return []
 
 
 def uncovered_legal_text(

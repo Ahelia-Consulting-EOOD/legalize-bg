@@ -496,3 +496,77 @@ def test_derogado_estado_survives_existing_rescrape(tmp_path):
     # (2) nothing else changed → classified "unchanged", no spurious [popravka]
     assert report.unchanged == [100]
     assert [p["doc_id"] for p in report.popravka] == []
+
+
+# ---------------------------------------------------------------------------
+# FR-034 structural paragraph-topology observation — REPORT MODE
+# ---------------------------------------------------------------------------
+
+_MISMATCH = [{"article": "36", "expected_blocks": 2, "got_blocks": 1}]
+
+
+def test_structure_mismatches_land_in_the_gate_record(tmp_path):
+    """A gate-failing act's record carries the FR-034 topology observation."""
+    _init_repo(tmp_path)
+
+    tree = FakeTreeTransport([500])
+    client = FakeClient([500])
+    parser = FakeParser({500: "Член 1. Тест.\n"})
+    meta = FakeMeta({500: _meta(500, "Закон петстотин")})
+    fail_gate = lambda soup, body: {"uncovered_chars": 999, "buckets": {"Article": 999}}
+
+    report = refresh(
+        tmp_path, branch=None, crawl_config={"laws": 1}, today_iso="2026-06-21",
+        tree_transport=tree, client=client, parser=parser, metadata_parser=meta,
+        coverage_gate=fail_gate,
+        structure_check=lambda soup, body: list(_MISMATCH),
+    )
+
+    assert report.gate_failures[0]["structure_mismatches"] == _MISMATCH
+    records = json.loads((tmp_path / "gate-report.json").read_text(encoding="utf-8"))
+    assert records[0]["structure_mismatches"] == _MISMATCH
+
+
+def test_structure_mismatch_never_blocks_a_write(tmp_path):
+    """REPORT mode (D-058): mismatches must not gate the write this cycle."""
+    _init_repo(tmp_path)
+
+    tree = FakeTreeTransport([500])
+    client = FakeClient([500])
+    parser = FakeParser({500: "Член 1. Тест.\n"})
+    meta = FakeMeta({500: _meta(500, "Закон петстотин")})
+    pass_gate = lambda soup, body: {"uncovered_chars": 0, "buckets": {}}
+
+    report = refresh(
+        tmp_path, branch=None, crawl_config={"laws": 1}, today_iso="2026-06-21",
+        tree_transport=tree, client=client, parser=parser, metadata_parser=meta,
+        coverage_gate=pass_gate,
+        structure_check=lambda soup, body: list(_MISMATCH),
+    )
+
+    assert report.gate_failures == []
+    assert len(report.added) == 1
+    assert list((tmp_path / "laws").glob("*.md")), "report-mode check must not block the write"
+
+
+def test_structure_check_failure_is_downgraded_not_fatal(tmp_path):
+    """A topology walk that raises must not abort the act (report-only data)."""
+    _init_repo(tmp_path)
+
+    def boom(soup, body):
+        raise RuntimeError("unreadable layout")
+
+    tree = FakeTreeTransport([500])
+    client = FakeClient([500])
+    parser = FakeParser({500: "Член 1. Тест.\n"})
+    meta = FakeMeta({500: _meta(500, "Закон петстотин")})
+    pass_gate = lambda soup, body: {"uncovered_chars": 0, "buckets": {}}
+
+    report = refresh(
+        tmp_path, branch=None, crawl_config={"laws": 1}, today_iso="2026-06-21",
+        tree_transport=tree, client=client, parser=parser, metadata_parser=meta,
+        coverage_gate=pass_gate, structure_check=boom,
+    )
+
+    assert report.errors == []
+    assert len(report.added) == 1
