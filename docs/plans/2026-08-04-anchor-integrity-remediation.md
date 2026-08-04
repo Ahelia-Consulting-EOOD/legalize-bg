@@ -330,7 +330,7 @@ git commit -m "feat(index): provisions.kind column, annex classification (FR-026
 - Consumes: `provisions.kind` (Task 2), `provisions.implicit` (FR-034), `laws.fecha_publicacion`.
 - Produces: module constant `IMPLICIT_ERA_CUTOFF = "1974-01-01"` and `include_ineligible: bool = False` on the article-lookup path; a new warning code `IMPLICIT_INELIGIBLE`.
 
-**Design note (D-c, D-1):** no row is deleted and no rebuild is required to change this. Flipping the default is one constant. If the owner answers D-1 „off", set `_ELIGIBILITY_DEFAULT = True` in one place and the corpus behaves exactly as it does today.
+**Design note (D-c, D-1):** no row is deleted and no rebuild is required to change this. Flipping the default is one constant. If the owner answers D-1 "off", set `_ELIGIBILITY_DEFAULT = True` in one place and the corpus behaves exactly as it does today.
 
 - [ ] **Step 1: Write the failing tests.** In the mcp get_article test file, build a catalog containing (a) a pre-1974 act with implicit rows and (b) a post-1974 act with implicit rows, then:
 
@@ -457,7 +457,7 @@ git commit -m "feat(mcp,rest): pre-1974 implicit-eligibility filter, reversible 
 **Interfaces:**
 - Produces: parsed Markdown free of literal `SUP>`, `/span>`, `/STRONG>` remnants. Task 7's sweep writes the result to the corpus.
 
-**Evidence:** 190 `SUP>` occurrences across 36 corpus files, 577 `/span>` across 47 — verified identical on `main` before FR-034, so this is pre-existing, not FR-034 damage. The remnants make „чл. N¹" collide with „чл. N" in 21 of the 51 structure-mismatch census acts, and directly cause 3 of ЗБППМН's 7 implicit rows.
+**Evidence:** 190 `SUP>` occurrences across 36 corpus files, 577 `/span>` across 47 — verified identical on `main` before FR-034, so this is pre-existing, not FR-034 damage. The remnants make „чл. N¹“ collide with „чл. N“ in 21 of the 51 structure-mismatch census acts, and directly cause 3 of ЗБППМН's 7 implicit rows.
 
 - [ ] **Step 1: Write the failing test:**
 
@@ -517,7 +517,7 @@ git commit -m "fix(parser): strip literal tag remnants from extracted text (FR-0
 - Modify: `fetcher/bg/text_parser.py`
 - Test: `tests/fetcher/bg/test_text_parser.py`, `tests/test_corpus_hygiene.py` (new)
 
-**Evidence:** `naredba-5-ot-10-may-1999-…kadastralni` carried a phantom чл. 42 manufactured from a forum thread title („Чл. 42 и прилагането на чл. 24 от ЗУТ…"). At HEAD, „Посети форума" still matches exactly 1 corpus file, chrome running from line 12003 to EOF.
+**Evidence:** `naredba-5-ot-10-may-1999-…kadastralni` carried a phantom чл. 42 manufactured from a forum thread title („Чл. 42 и прилагането на чл. 24 от ЗУТ…“). At HEAD, „Посети форума“ still matches exactly 1 corpus file, chrome running from line 12003 to EOF.
 
 - [ ] **Step 1: Write the failing tests:**
 
@@ -570,7 +570,7 @@ def test_no_chrome_marker_survives_in_the_corpus(marker):
 Run: `.venv/bin/python -m pytest tests/fetcher/bg/test_text_parser.py tests/test_corpus_hygiene.py -q`
 Expected: the unit test FAILS; the tripwire FAILS on the pre-sweep corpus (that is correct — it goes green after Task 7's sweep). Mark the tripwire `@pytest.mark.xfail(strict=False)` for this task only, with a comment saying Task 7 removes the mark.
 
-- [ ] **Step 3: Implement.** Add `"forum"` and any sibling sidebar class you find in the live fixture to `CHROME_DENYLIST` in `fetcher/bg/text_parser.py` — **not** to `_INLINE_CHROME`, which must stay `{"buttons"}` (widening it destroyed 485/745 ГПК articles when measured during FR-034). Verify the class name against the staged live HTML rather than guessing; if the sidebar has no stable class, key on the „Посети форума" / „© Lex.bg" marker region instead and document why.
+- [ ] **Step 3: Implement.** Add `"forum"` and any sibling sidebar class you find in the live fixture to `CHROME_DENYLIST` in `fetcher/bg/text_parser.py` — **not** to `_INLINE_CHROME`, which must stay `{"buttons"}` (widening it destroyed 485/745 ГПК articles when measured during FR-034). Verify the class name against the staged live HTML rather than guessing; if the sidebar has no stable class, key on the „Посети форума“ / „© Lex.bg“ marker region instead and document why.
 
 - [ ] **Step 4: Run tests and the full gate**
 
@@ -598,7 +598,7 @@ git commit -m "fix(parser): drop lex.bg forum-sidebar chrome, add corpus tripwir
 - [ ] **Step 6:** `.venv/bin/python -m index.build --corpus . --db catalog.db 2>&1 | tee rebuild-p2.log`
 - [ ] **Step 7:** `.venv/bin/python scripts/fr034_verify.py article-check` → **must print OK.** Chrome removal deletes phantom articles, so expect `A2 … article vanished` lines for exactly the phantom anchors. **Every such line must be individually adjudicated and shown to be a phantom** before proceeding — a real article vanishing is a stop-the-line event. Record each in the report.
 - [ ] **Step 8:** `.venv/bin/python -m pytest -m "not perf" -q` → green, tripwire included.
-- [ ] **Step 9:** Write the report: acts changed by prefix; `SUP>` / `/span>` / „Посети форума" occurrence counts before and after (expect 0); the phantom articles removed with their adjudication; the structure-mismatch census from the log (grep `structure mismatch (report-only)`), compared against the FR-034 figure of 51.
+- [ ] **Step 9:** Write the report: acts changed by prefix; `SUP>` / `/span>` / „Посети форума“ occurrence counts before and after (expect 0); the phantom articles removed with their adjudication; the structure-mismatch census from the log (grep `structure mismatch (report-only)`), compared against the FR-034 figure of 51.
 - [ ] **Step 10:** `git add docs/research/2026-08-04-phase2-chrome-sweep-report.md tests/test_corpus_hygiene.py && git commit -m "docs(fr035,fr036): chrome sweep quantification"`
 
 ---
@@ -660,7 +660,7 @@ Run: `.venv/bin/python -m pytest tests/index/test_anchors.py -q` → FAIL, modul
 """FR-030 anchor discrimination — signal extraction.
 
 An act's ПЗР routinely QUOTES articles of other acts („В Закона за X се
-правят следните изменения: … Чл. N. …"). The parser adopts those anchors
+правят следните изменения: … Чл. N. …“). The parser adopts those anchors
 as articles of the host act, which then receive position-derived алинеи
 (FR-034). ЗЗД чл. 1001а/б/г (quoted ГПК/ЗПИ), ЗЛС чл. 915–934 (quoted
 ЗГС) and 50 rows in ЗОРВКС are all this class.
