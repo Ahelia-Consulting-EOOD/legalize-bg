@@ -19,11 +19,16 @@ from the CURRENT catalog.db (pre-sweep).
       excluding duplicate-anchor articles (see the R5 comment below).
 Failures print a per-law diff and exit 1.
 
+`baseline` REFUSES to overwrite an existing BASELINE file (set
+`FR034_FORCE=1` to replace it deliberately): the pre-sweep floor cannot
+be recomputed once the corpus has been swept and the catalog rebuilt,
+and `baseline` is one habit-typo away from `check`.
+
 MUST be run from the repo root: DB and BASELINE are relative paths, so
 elsewhere sqlite3 silently creates an empty db and check fails non-zero
 but confusingly (mass R2 'law vanished' rather than a real regression).
 """
-import json, sqlite3, sys
+import json, os, sqlite3, sys
 
 DB = "catalog.db"
 BASELINE = ".fr034-baseline.json"
@@ -41,6 +46,17 @@ def _counts(conn):
 
 
 def baseline():
+    # The baseline is the PRE-SWEEP floor: once the sweep has rewritten
+    # the corpus and catalog.db has been rebuilt, it cannot be recomputed
+    # from anything on disk. `baseline` is one habit-typo away from
+    # `check`, so refuse to clobber an existing file.
+    if os.path.exists(BASELINE) and os.environ.get("FR034_FORCE") != "1":
+        sys.exit(
+            f"refusing to overwrite the existing baseline {BASELINE} — it "
+            "is the irreplaceable pre-sweep floor and cannot be recomputed "
+            "after a rebuild. Did you mean `check`? To replace it "
+            "deliberately: FR034_FORCE=1 python scripts/fr034_verify.py "
+            "baseline")
     conn = sqlite3.connect(DB)
     cols = [r[1] for r in conn.execute("PRAGMA table_info(provisions)")]
     if "implicit" not in cols:  # pre-migration baseline: all rows explicit
