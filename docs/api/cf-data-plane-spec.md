@@ -207,6 +207,15 @@ Versions 1.0 to 1.3.2 are reconstructed from the merged commit trail
   invariant locked.
 - **v1.3.2** (PR #13): idempotent import semantics; d1-data split into
   d1-meta (non-idempotent) + d1-fts (guarded); byte-offset append guards.
+- **v2.0** (FR-032 / D-056, first committed edition of this document):
+  two-index split. `laws_fts` becomes title-only;
+  new `articles_fts` with one row per body segment
+  (schema version 5, migration 005); the fts emission becomes two series
+  (`d1-fts-laws`, `d1-fts-articles`) with the idempotency guard moved to
+  (law_id, seg_no) granularity; the v1.2 truncation cap and `fts_truncated`
+  are retired in favor of the SEG_MAX_BYTES = 400,000 chunking contract and
+  the `max_fts_body_bytes` guard; verify gains articles_fts parity and
+  segment spot-hashing.
 - **v2.1** (FR-034 / D-058, final review 2026-08-04): every article entry in
   the R2 act payload gains `implicit_paragraphs` — the list of `paragraphs`
   keys whose NUMBER was derived from paragraph position rather than read off
@@ -220,11 +229,3 @@ Versions 1.0 to 1.3.2 are reconstructed from the merged commit trail
   response (the `implicit` field + `IMPLICIT_ALINEA` warning that the MCP and
   REST surfaces emit) or skips such rows must be decided before the D1
   regeneration/cutover — see the FR-032 row in `docs/frs/INDEX.md`.
-- **v2.0** (FR-032 / D-056, this document): two-index split. `laws_fts`
-  becomes title-only; new `articles_fts` with one row per body segment
-  (schema version 5, migration 005); the fts emission becomes two series
-  (`d1-fts-laws`, `d1-fts-articles`) with the idempotency guard moved to
-  (law_id, seg_no) granularity; the v1.2 truncation cap and `fts_truncated`
-  are retired in favor of the SEG_MAX_BYTES = 400,000 chunking contract and
-  the `max_fts_body_bytes` guard; verify gains articles_fts parity and
-  segment spot-hashing.
