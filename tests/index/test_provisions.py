@@ -511,7 +511,7 @@ def test_zzd_fixture_unnumbered_alineas_are_implicit_and_correct():
     """FR-034 rule 6 spot-assert against a REAL pre-Указ-883 act.
 
     ЗЗД carries no `(N)` markers at all, yet ВКС cites its алинеи by
-    position („чл. 36, ал. 2 ЗЗД"). This pins the end-to-end behaviour
+    position („чл. 36, ал. 2 ЗЗД“). This pins the end-to-end behaviour
     the whole FR exists for: HTML -> Markdown -> position-derived rows.
     """
     from bs4 import BeautifulSoup
@@ -589,7 +589,7 @@ def test_dash_bullet_merges_into_preceding_implicit_alinea():
 
 
 def test_plain_text_section_header_closes_the_article():
-    """§9.1c shape 6: „Допълнителна разпоредба" in the SINGULAR is not
+    """§9.1c shape 6: „Допълнителна разпоредба“ in the SINGULAR is not
     emitted as a `##` header by text_parser, so the article stayed open and
     swallowed it as an алинея (ЗОТ чл. 106 ал. 2, правилник ВГС чл. 33 ал. 2,
     ЗСП чл. 140 ал. 2/3/5)."""
@@ -605,7 +605,7 @@ def test_plain_text_section_header_closes_the_article():
 
 
 def test_section_header_closer_variants():
-    """The plural, the all-caps and the „Преходни наредби:" form are the other
+    """The plural, the all-caps and the „Преходни наредби:“ form are the other
     51 reachable header paragraphs measured corpus-wide."""
     for header in ("Допълнителни разпоредби", "Заключителна разпоредба",
                    "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "Преходни и Заключителни разпоредби",
@@ -619,7 +619,7 @@ def test_section_header_closer_variants():
 
 def test_section_header_closer_does_not_fire_on_ordinary_prose():
     """Guard: the closer must match a WHOLE header paragraph, not the prefix
-    „Допълнителн…". These three shapes are real corpus rows that a loose
+    „Допълнителн…“. These three shapes are real corpus rows that a loose
     prefix pattern would wrongly treat as headers (наредба 14/2012 чл. 679,
     наредба 10/2011 чл. 28, правилник за безопасност чл. 182)."""
     for prose in ("Допълнителни огнегасящи вещества",
@@ -632,7 +632,7 @@ def test_section_header_closer_does_not_fire_on_ordinary_prose():
 
 
 def test_annex_kam_start_closes_the_article():
-    """§9.1c shape 4: „Приложение към чл. 5" carries no `№`, so the annex
+    """§9.1c shape 4: „Приложение към чл. 5“ carries no `№`, so the annex
     closer did not fire and the form was absorbed as алинеи (S04 —
     наредба за формата…информация чл. 11, наредба Н-1/2025 чл. 16,
     правилник ЦПО чл. 16). 10 such paragraphs are reachable corpus-wide."""
@@ -647,8 +647,8 @@ def test_annex_kam_start_closes_the_article():
 
 
 def test_annex_citation_does_not_close_the_article():
-    """Guard: „Приложение II, Регламент (ЕС) 2021/1165" is a CITATION, not an
-    annex start — the closer keys on „към", not on a bare „Приложение"."""
+    """Guard: „Приложение II, Регламент (ЕС) 2021/1165“ is a CITATION, not an
+    annex start — the closer keys on „към“, not on a bare „Приложение“."""
     md = ("**Чл. 39.** Продуктите се вписват съгласно правилата.\n\n"
           "Приложение II, Регламент (ЕС) 2021/1165\n\n"
           "Втора алинея.\n")
@@ -659,8 +659,8 @@ def test_annex_citation_does_not_close_the_article():
 
 # Abridged verbatim from `nakazatelen-kodeks` чл. 418 (sample row S24). The
 # article carries NO алинеи; the lead ends in a colon, the четири букви are
-# merged by `_SUBPOINT_RE`, and the tail „се наказва с…" used to become a
-# manufactured „ал. 2".
+# merged by `_SUBPOINT_RE`, and the tail „се наказва с…“ used to become a
+# manufactured „ал. 2“.
 NK_418_MD = """\
 **Чл. 418.** (Нов - ДВ, бр. 95 от 1975 г.) Който с целта по предходния член:
 
@@ -686,8 +686,8 @@ def test_sentence_tail_does_not_become_a_separate_implicit_alinea():
 
 
 def test_lowercase_continuation_merges_after_an_unpunctuated_lead():
-    """S20 (УП МТСП чл. 24): the source breaks буква „ж)" mid-clause after the
-    word „съгласно" — no terminal punctuation at all. A rule keyed on the
+    """S20 (УП МТСП чл. 24): the source breaks буква „ж)“ mid-clause after the
+    word „съгласно“ — no terminal punctuation at all. A rule keyed on the
     PREVIOUS paragraph's punctuation misses this; the lowercase-opening rule
     does not."""
     md = ("**Чл. 24.** Дирекцията подпомага министъра при:\n\n"
@@ -703,7 +703,7 @@ def test_lowercase_continuation_merges_after_an_unpunctuated_lead():
 
 def test_capitalised_paragraph_still_starts_a_new_implicit_alinea():
     """Guard against over-merging: the continuation rule keys on a lowercase
-    OPENING only. Real алинеи — capitals, „(Изм. …)" prefixes, digits, quoted
+    OPENING only. Real алинеи — capitals, „(Изм. …)“ prefixes, digits, quoted
     text — must keep starting their own row."""
     md = ("**Чл. 30.** Първа алинея.\n\n"
           "Втора алинея с главна буква.\n\n"
@@ -734,7 +734,7 @@ ZZD_265_MD = """\
 def test_zzd_265_unmarked_enumeration_does_not_shift_the_alinea_numbering():
     """The doctrinal payoff: ЗЗД чл. 265 has three алинеи, and the six-month /
     five-year prescription is ал. 3. The unmarked enumeration items are
-    grammatical completions of „поръчващият може да иска: …", not алинеи."""
+    grammatical completions of „поръчващият може да иска: …“, not алинеи."""
     rows = parse(ZZD_265_MD, law_id="zzd")
     alineas = [r for r in rows if r.article == "265" and r.paragraph is not None]
     assert [r.paragraph for r in alineas] == ["1", "2", "3"]
@@ -760,7 +760,7 @@ def test_amendment_marker_does_not_mask_a_sentence_continuation():
 
 def test_amendment_marker_before_a_capital_still_starts_an_alinea():
     """Guard: the parenthetical is skipped only to read the letter behind it.
-    „(Изм. …) Трета алинея." opens with a CAPITAL and keeps its own row."""
+    „(Изм. …) Трета алинея.“ opens with a CAPITAL and keeps its own row."""
     md = ("**Чл. 30.** Първа алинея.\n\n"
           "(Изм. - ДВ, бр. 12 от 1993 г.) Втора алинея.\n\n"
           "(Нова - ДВ, бр. 8 от 2001 г.) Трета алинея.\n")
