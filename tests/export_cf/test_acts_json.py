@@ -128,3 +128,72 @@ def test_articles_map_paragraph_first_wins_per_key():
     arts = articles_map(md, law_id="x")
     assert arts["7"]["paragraphs"]["1"] == "Първи блок ал. 1."
     assert arts["7"]["paragraphs"]["2"] == "Само тук."
+
+
+# --- FR-034: position-derived alinea numbers must be distinguishable on
+# the cf data plane too (final-review Important 1a). ------------------
+
+def test_implicit_paragraphs_listed_for_position_derived_alineas():
+    """A pre-Указ-883 article (no `(N)` markers, >= 2 paragraphs) gets
+    position-derived alinea numbers. The cf-plane payload must say so —
+    the third serving surface may not present a derived number as one
+    the legislator printed (D-058 (b))."""
+    from export_cf.acts import articles_map
+
+    md = ("**Чл. 36.** Първата алинея на стария член.\n\n"
+          "Последиците от отмяната настъпват занапред.\n")
+    arts = articles_map(md, law_id="x")
+    assert set(arts["36"]["paragraphs"]) == {"1", "2"}
+    assert arts["36"]["implicit_paragraphs"] == ["1", "2"]
+
+
+def test_implicit_paragraphs_empty_for_numbered_alineas():
+    from export_cf.acts import articles_map
+
+    md = "**Чл. 1.** (1) Първа алинея. (2) Втора алинея.\n"
+    arts = articles_map(md, law_id="x")
+    assert arts["1"]["implicit_paragraphs"] == []
+
+
+def test_implicit_paragraphs_key_always_present():
+    """Unconditional key: a consumer must never need a presence guard to
+    tell „no derived numbers here“ from „this export predates the flag“.
+    Holds for articles with alineas AND for those without."""
+    from export_cf.acts import articles_map
+
+    md = ("**Чл. 1.** (1) Първа алинея. (2) Втора алинея.\n\n"
+          "**Чл. 2.** Без алинеи.\n")
+    arts = articles_map(md, law_id="x")
+    for art in arts.values():
+        assert art["implicit_paragraphs"] == []
+    # key order is stable and additive (new key last)
+    assert list(arts["1"]) == ["text", "text_hash", "paragraphs",
+                               "implicit_paragraphs"]
+
+
+def test_implicit_paragraphs_follow_first_wins():
+    """FIRST-wins applies to the flag as well: чл. 5's real block prints
+    numbered алинеи, the quoted ПЗР copy (FR-030 family) contributes an
+    extra paragraph key by position. The flag must describe the row that
+    actually WON each key, not the last one seen."""
+    from export_cf.acts import articles_map
+
+    md = ("**Чл. 5.** (1) Първа алинея на истинския член. "
+          "(2) Втора алинея.\n\n"
+          "## ПРЕХОДНИ И ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ\n\n"
+          "Чл. 5. Цитиран стар текст без номерирани алинеи.\n\n"
+          "Втори абзац на цитирания текст.\n")
+    arts = articles_map(md, law_id="x")
+    assert arts["5"]["paragraphs"]["1"] == "Първа алинея на истинския член."
+    assert arts["5"]["paragraphs"]["2"] == "Втора алинея."
+    # both keys were won by the real (explicit) block
+    assert arts["5"]["implicit_paragraphs"] == []
+
+
+def test_acts_json_carries_implicit_paragraphs_on_the_wire(acts_dir):
+    """End-to-end: the exported JSON, not just the builder."""
+    doc = _load(acts_dir, "zakon-stariyat")
+    art = doc["articles"]["1"]
+    assert art["implicit_paragraphs"] == list(art["paragraphs"])
+    assert art["implicit_paragraphs"]  # non-empty: this act is the point
+    assert doc["articles"]["2"]["implicit_paragraphs"] == []

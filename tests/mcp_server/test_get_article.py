@@ -105,3 +105,30 @@ def _sk(article: str):
     if not m:
         return (10**9, article)
     return (int(m.group(1)), m.group(2))
+
+
+# ── FR-034: implicit (position-derived) alineas ────────────────────────
+
+@pytest.fixture
+def app_with_implicit_alineas(conn_with_implicit_alineas, tmp_path):
+    return build_app(conn=conn_with_implicit_alineas, corpus_root=tmp_path)
+
+
+def test_get_article_implicit_alinea_flags_and_warns(app_with_implicit_alineas):
+    r = app_with_implicit_alineas.call_tool_sync(
+        "get_article", {"law": "zzd", "article": "чл. 36, ал. 2"})
+    assert r["paragraph"] == "2"
+    assert r["implicit"] is True
+    assert any(w["code"] == "IMPLICIT_ALINEA" for w in r["warnings"]), \
+        r["warnings"]
+    msg = next(w["message"] for w in r["warnings"]
+               if w["code"] == "IMPLICIT_ALINEA")
+    assert "883" in msg and "position" in msg
+
+
+def test_get_article_whole_article_is_not_implicit(app_with_implicit_alineas):
+    r = app_with_implicit_alineas.call_tool_sync(
+        "get_article", {"law": "zzd", "article": "чл. 36"})
+    assert r["paragraph"] is None
+    assert r["implicit"] is False
+    assert not any(w["code"] == "IMPLICIT_ALINEA" for w in r["warnings"])

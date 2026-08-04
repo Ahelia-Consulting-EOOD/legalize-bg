@@ -102,3 +102,42 @@ def test_get_articles_no_version_at_date(app_with_range):
             "get_articles",
             {"law": "100", "articles": "чл. 14", "date": "1900-01-01"})
     assert exc.value.code == "NO_VERSION_AT_DATE"
+
+
+# ── FR-034: implicit (position-derived) alineas ────────────────────────
+
+@pytest.fixture
+def app_implicit(conn_with_implicit_alineas, tmp_path):
+    return build_app(conn=conn_with_implicit_alineas, corpus_root=tmp_path)
+
+
+def test_get_articles_single_alinea_carries_implicit_and_warns(app_implicit):
+    """FR-034 review round 1: the single-alinea path of get_articles goes
+    through the same article_lookup rows as get_article, so it must carry
+    the same flag AND the same warning — otherwise a published tool serves
+    a position-derived alinea number as if the source text printed it."""
+    r = app_implicit.call_tool_sync(
+        "get_articles", {"law": "zzd", "articles": "чл. 36, ал. 2"})
+    entry = r["articles"][0]
+    assert entry["paragraph"] == "2"
+    assert entry["implicit"] is True
+    assert any(w["code"] == "IMPLICIT_ALINEA" for w in r["warnings"]), \
+        r["warnings"]
+
+
+def test_get_articles_whole_article_is_not_implicit(app_implicit):
+    r = app_implicit.call_tool_sync(
+        "get_articles", {"law": "zzd", "articles": "чл. 36"})
+    assert r["articles"][0]["implicit"] is False
+    assert not any(w["code"] == "IMPLICIT_ALINEA" for w in r["warnings"])
+
+
+def test_get_articles_range_entries_are_never_implicit(app_implicit):
+    """Range rows come from `articles_lookup`, which serves WHOLE articles
+    only (paragraph IS NULL) and does not select the column — every entry
+    must still expose implicit=False rather than KeyError or omit it."""
+    r = app_implicit.call_tool_sync(
+        "get_articles", {"law": "zzd", "articles": "чл. 36-37"})
+    assert [a["article"] for a in r["articles"]] == ["36", "37"]
+    assert all(a["implicit"] is False for a in r["articles"])
+    assert not any(w["code"] == "IMPLICIT_ALINEA" for w in r["warnings"])

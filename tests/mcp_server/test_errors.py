@@ -9,6 +9,7 @@ def test_all_codes_are_defined():
       - INVALID_DATE_RANGE added in Phase 2
       - DIFF_FAILED added in Phase 2
       - INVALID_DATE added in the 2026-07-02 P2 input-validation hardening
+      - IMPLICIT_ALINEA added in FR-034 (warning, like DATE_UNCERTAIN)
     See docs/api/error-codes.md for the catalog."""
     expected = {
         "LAW_NOT_FOUND", "AMBIGUOUS_NAME", "NO_VERSION_AT_DATE",
@@ -18,6 +19,7 @@ def test_all_codes_are_defined():
         "INVALID_DATE_RANGE",  # Phase 2
         "DIFF_FAILED",  # Phase 2
         "INVALID_DATE",  # 2026-07-02 P2 hardening (Task 7)
+        "IMPLICIT_ALINEA",  # FR-034 warning, rides in get_article response
     }
     assert ERROR_CODES == expected
 

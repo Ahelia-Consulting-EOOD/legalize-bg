@@ -456,10 +456,15 @@ def build_app(conn: sqlite3.Connection | None = None,
 
         Returns:
             {law_id, article, paragraph, text, text_hash, commit_hash,
-            warnings}. `paragraph` is null for the article-as-whole row
-            and a string ("1", "2", "1а"...) for an alinea row.
-            `text_hash` is a stable per-row digest — Phase 4 amendment
-            detection compares hashes to pinpoint changed alineas.
+            implicit, warnings}. `paragraph` is null for the
+            article-as-whole row and a string ("1", "2", "1а"...) for an
+            alinea row. `text_hash` is a stable per-row digest — Phase 4
+            amendment detection compares hashes to pinpoint changed
+            alineas. `implicit` is true when the alinea number was
+            DERIVED from paragraph position because the act predates
+            Указ № 883/1974 and prints no "(N)" markers; such responses
+            also carry an IMPLICIT_ALINEA warning, and the number must
+            not be cited as if the source text printed it.
 
         Raises:
             INVALID_ARTICLE_SPEC: the article reference can't be parsed,
@@ -547,6 +552,15 @@ def build_app(conn: sqlite3.Connection | None = None,
         # silent bug; switch to explicit "highest valid_from" tie-break
         # at that point.
         target = rows[0]
+        # FR-034: an alinea whose number came from paragraph POSITION
+        # (pre-Указ-883/1974 acts have unnumbered алинеи) is flagged so a
+        # caller never cites a derived number as if the source printed it.
+        # article_lookup always selects the column, so index it directly —
+        # a pre-migration-006 catalog fails in the SELECT (surfacing
+        # INDEX_MISSING), which a .get() default would only mask.
+        implicit = bool(target["implicit"])
+        if implicit:
+            warnings.append(queries.implicit_alinea_warning())
         resp = GetArticleResponse(
             law_id=law_id,
             article=target["article"],
@@ -554,6 +568,7 @@ def build_app(conn: sqlite3.Connection | None = None,
             text=target["text"],
             text_hash=target["text_hash"],
             commit_hash=commit,
+            implicit=implicit,
             warnings=warnings,
         )
         return resp.to_dict()
@@ -585,11 +600,16 @@ def build_app(conn: sqlite3.Connection | None = None,
 
         Returns:
             {law_id, articles, commit_hash, warnings}. `articles` is a list
-            of {article, paragraph, text, text_hash} entries in legal-number
-            order. `paragraph` is null for whole-article/range entries and
-            carries the alinea id for a single alinea spec. `commit_hash`
-            and `warnings` are shared across all entries (same act + date →
-            same resolved version).
+            of {article, paragraph, text, text_hash, implicit} entries in
+            legal-number order. `paragraph` is null for whole-article/range
+            entries and carries the alinea id for a single alinea spec.
+            `implicit` is true when that alinea's number was DERIVED from
+            paragraph position (pre-Указ-883/1974 act with unnumbered
+            алинеи) and must not be cited as if the source text printed it;
+            it is always false for whole-article and range entries, and any
+            implicit entry also raises an IMPLICIT_ALINEA warning.
+            `commit_hash` and `warnings` are shared across all entries
+            (same act + date → same resolved version).
 
         Raises:
             INVALID_ARTICLE_SPEC: the article reference can't be parsed, OR
@@ -655,11 +675,20 @@ def build_app(conn: sqlite3.Connection | None = None,
                 "available_articles": e.available_articles,
             })
 
+        # FR-034: the single-alinea path shares article_lookup's rows with
+        # get_article, so it carries the same flag AND the same warning.
+        # RANGE rows come from articles_lookup, which serves whole articles
+        # only (paragraph IS NULL) and does not select the column — hence
+        # the .get() default, which is load-bearing here (unlike in
+        # get_article) and always yields implicit=False for a range.
         entries = [
             ArticleEntry(article=r["article"], paragraph=r["paragraph"],
-                         text=r["text"], text_hash=r["text_hash"]).to_dict()
+                         text=r["text"], text_hash=r["text_hash"],
+                         implicit=bool(r.get("implicit", 0))).to_dict()
             for r in rows
         ]
+        if any(e["implicit"] for e in entries):
+            warnings.append(queries.implicit_alinea_warning())
         resp = GetArticlesResponse(
             law_id=law_id, articles=entries,
             commit_hash=commit, warnings=warnings)

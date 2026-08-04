@@ -2,7 +2,8 @@
   "law_id": "zeu",
   "total_rows": 334,
   "article_rows": 102,
-  "alinea_rows": 232,
+  "explicit_rows": 232,
+  "implicit_rows": 0,
   "first_articles": [
     "1",
     "2",

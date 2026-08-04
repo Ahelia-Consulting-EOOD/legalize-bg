@@ -87,3 +87,27 @@ def test_migration_005_drops_v1_laws_fts_content():
     assert conn.execute("SELECT COUNT(*) FROM laws_fts").fetchone()[0] == 0
     cols = [r[1] for r in conn.execute("PRAGMA table_info(laws_fts)")]
     assert "body" not in cols
+
+
+# ── migration 006: FR-034 implicit-alinea marker ───────────────────────
+
+def test_migration_006_adds_implicit_column_to_provisions():
+    conn = sqlite3.connect(":memory:")
+    migrate(conn)
+    cols = {r[1]: r for r in conn.execute("PRAGMA table_info(provisions)")}
+    assert "implicit" in cols, \
+        f"expected 'implicit' in provisions cols, got {list(cols)}"
+
+
+def test_migration_006_implicit_defaults_to_zero():
+    """Pre-existing rows (and any INSERT that omits the column) must read
+    back as 0 — the column is NOT NULL DEFAULT 0 so the FR-034 flag is
+    strictly additive for every act indexed before the migration."""
+    conn = sqlite3.connect(":memory:")
+    migrate(conn, [m for m in MIGRATIONS if m.version <= 5])
+    conn.execute(
+        "INSERT INTO provisions(law_id, article, paragraph, valid_from,"
+        " text, text_hash) VALUES ('a', '1', NULL, '2020-01-01', 't', 'h')")
+    migrate(conn)
+    assert conn.execute(
+        "SELECT implicit FROM provisions").fetchone()[0] == 0

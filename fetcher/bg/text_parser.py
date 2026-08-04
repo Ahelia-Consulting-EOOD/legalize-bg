@@ -3,9 +3,13 @@
 import logging
 import re
 
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, NavigableString, Tag
 
 log = logging.getLogger(__name__)
+
+# An article anchor ("Чл. 20."). Used to tell a title-preamble line (no
+# anchor) from the anchor line itself — see `_extract_article_text`.
+_ARTICLE_ANCHOR_RE = re.compile(r"Чл\.\s*\d")
 
 # CSS class -> (markdown prefix, include in output)
 CLASS_MAP = {
@@ -32,6 +36,20 @@ CHROME_DENYLIST: frozenset[str] = frozenset({
     "HistoryItem", "HistoryReference",
     "NewDocReference", "SameDocReference", "LegalDocReference", "contextads",
 })
+
+# CHROME_DENYLIST entries that are safe to drop from INSIDE an article.
+# The denylist is written for `_walk`, which sees these classes as
+# block-level chrome. Inside an Article element they mean something else:
+# measured across all seven fixtures, `NewDocReference` carries text in
+# 2,212 of 2,214 occurrences („Регламент (ЕО) № 2195/2002") and wraps the
+# article ANCHOR itself, `SameDocReference` carries inline cross-references
+# in 1,662 of 1,662 („чл. 5, ал. 1"), `contextads` wraps ordinary words
+# („строител", „процедура") and `LegalDocReference` carries defined terms.
+# Skipping the whole denylist here deleted 485 of ГПК's 745 articles and
+# 693 of its explicit alinea rows. `buttons` is the only true chrome
+# inside articles (1,776 occurrences, 0 with any text). Ad JavaScript is
+# excluded by the NavigableString check below, not by this set.
+_INLINE_CHROME: frozenset[str] = frozenset({"buttons"})
 
 # Spine classes used to locate the legal-content region (LCA of these elements).
 _SPINE: frozenset[str] = frozenset(c for c, (_, inc) in CLASS_MAP.items() if inc)
@@ -163,6 +181,8 @@ class HtmlToMarkdown:
         def walk(node: Tag) -> None:
             for child in node.children:
                 if isinstance(child, Tag):
+                    if set(child.get("class", [])) & _INLINE_CHROME:
+                        continue
                     if child.name == "br":
                         parts.append("\n")
                     elif child.name in ("div", "p", "li", "tr"):
@@ -171,7 +191,14 @@ class HtmlToMarkdown:
                         parts.append("\n")
                     else:
                         walk(child)
-                else:
+                elif type(child) is NavigableString:
+                    # Only PLAIN strings are content. bs4 models comments,
+                    # <script> and <style> bodies as NavigableString
+                    # SUBCLASSES (Comment/Script/Stylesheet), and the old
+                    # get_text() excluded them; an isinstance check or a
+                    # bare `str(child)` fallback would emit lex.bg's stale
+                    # commented-out <a> markup and its ad JavaScript
+                    # verbatim into the Markdown body.
                     parts.append(str(child))
 
         walk(element)
@@ -207,33 +234,35 @@ class HtmlToMarkdown:
         return text
 
     def _extract_article_text(self, element: Tag) -> str:
-        """Extract article text, treating <br> as a paragraph break.
+        """Extract article text, treating <br> AND child block elements as
+        paragraph breaks.
 
-        Bulgarian legal articles have numbered alineas ((1), (2), ...)
-        separated by <br>. In Markdown, a single newline is a soft break
-        (rendered as a space) — we need a blank line between alineas so
-        each renders as its own paragraph.
+        lex.bg uses two article layouts:
+        - modern (post-Указ-883/1974) acts: numbered alineas ((1), (2), …)
+          separated by <br> inside one Article element;
+        - pre-1974 acts (ЗЗД, ЗС, ЗН, ЗЛС): unnumbered alineas, each its
+          own child <div> of the Article element (FR-034 — the old code
+          honored only <br>, silently gluing those алинеи into one flowed
+          paragraph).
+        `_block_text` already implements exactly these semantics for
+        §-provisions (recursive walk, breaks on <br> and div/p/li/tr,
+        blank-line-joined) — delegate to it so the rule lives in one place.
+
+        Title-preamble glue (FR-034 rule 1a): lex.bg renders the article
+        заглавие as its own child element preceding the anchor element, so
+        the delegation would emit it as a standalone paragraph — which
+        `index.provisions._extract_article_blocks` then attributes to the
+        PREVIOUS article's tail (the title carries no anchor of its own).
+        Re-join it with the anchor line to reproduce the documented
+        pre-FR-034 shape, „Title preamble Чл. N. …" in one paragraph
+        (ЗОП has 261 such articles, ГПК 715).
         """
-        lines: list[str] = []
-        buf: list[str] = []
-
-        def flush():
-            if buf:
-                line = " ".join(s for s in buf if s).strip()
-                if line:
-                    lines.append(line)
-                buf.clear()
-
-        for child in element.children:
-            if isinstance(child, Tag):
-                if child.name == "br":
-                    flush()
-                else:
-                    buf.append(child.get_text().strip())
-            else:
-                text = str(child).strip()
-                if text:
-                    buf.append(text)
-        flush()
-
+        text = self._block_text(element)
+        lines = text.split("\n\n")
+        if (
+            len(lines) >= 2
+            and not _ARTICLE_ANCHOR_RE.search(lines[0])
+            and lines[1].startswith("Чл.")
+        ):
+            lines[:2] = [f"{lines[0]} {lines[1]}"]
         return "\n\n".join(lines)

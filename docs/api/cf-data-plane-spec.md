@@ -1,6 +1,6 @@
 # Cloudflare Data-Plane Specification (cf-data-plane-spec)
 
-**Version: 2.0** (2026-07-24)
+**Version: 2.1** (2026-08-04)
 **Status: normative.** Enforcing code: `export_cf/` (emitter and `--verify`
 self-check), consumed by `cf-worker/` (D1/R2 serving plane).
 **History note:** versions 1.0 through 1.3.2 of this spec were cited
@@ -37,6 +37,8 @@ cf-export/
   manifest.json            counts, guards, hashes (section 7)
   r2/
     acts/<law_id>.json     act payload with baked articles map
+                           (each article: text, text_hash, paragraphs,
+                            implicit_paragraphs — section 9, v2.1)
     versions/<law_id>/...  historical version payloads
     meta/stats.json        precomputed /stats payload
 ```
@@ -182,8 +184,9 @@ every artifact and class aggregate, rescans all emitted SQL quote-aware
 (statement budget + per-statement guards in both fts series), reimports both
 fts series into a scratch SQLite database to prove row-count parity and
 spot-hash sampled segment bodies against the catalog, and samples 25 acts'
-R2 JSON against live `provisions` lookups. Any failure raises with the full
-failure list.
+R2 JSON against live `provisions` lookups (article text + text_hash, alinea
+text, and `implicit_paragraphs` against the `provisions.implicit` column).
+Any failure raises with the full failure list.
 
 ## 9. Version history
 
@@ -204,11 +207,25 @@ Versions 1.0 to 1.3.2 are reconstructed from the merged commit trail
   invariant locked.
 - **v1.3.2** (PR #13): idempotent import semantics; d1-data split into
   d1-meta (non-idempotent) + d1-fts (guarded); byte-offset append guards.
-- **v2.0** (FR-032 / D-056, this document): two-index split. `laws_fts`
-  becomes title-only; new `articles_fts` with one row per body segment
+- **v2.0** (FR-032 / D-056, first committed edition of this document):
+  two-index split. `laws_fts` becomes title-only;
+  new `articles_fts` with one row per body segment
   (schema version 5, migration 005); the fts emission becomes two series
   (`d1-fts-laws`, `d1-fts-articles`) with the idempotency guard moved to
   (law_id, seg_no) granularity; the v1.2 truncation cap and `fts_truncated`
   are retired in favor of the SEG_MAX_BYTES = 400,000 chunking contract and
   the `max_fts_body_bytes` guard; verify gains articles_fts parity and
   segment spot-hashing.
+- **v2.1** (FR-034 / D-058, final review 2026-08-04): every article entry in
+  the R2 act payload gains `implicit_paragraphs` — the list of `paragraphs`
+  keys whose NUMBER was derived from paragraph position rather than read off
+  a printed `(N)` marker (pre-Указ-883/1974 acts print their алинеи
+  unnumbered). Additive: a new key, no renames, no removals; `paragraphs`
+  keeps its plain-string values. The key is emitted unconditionally (`[]`
+  included) so key presence never has to stand in for the flag, it follows
+  the same FIRST-wins row as the paragraph text, and `--verify` checks it
+  against `provisions.implicit`. **The worker-side behaviour is NOT settled
+  by this version:** whether the cf plane labels a derived alinea in its
+  response (the `implicit` field + `IMPLICIT_ALINEA` warning that the MCP and
+  REST surfaces emit) or skips such rows must be decided before the D1
+  regeneration/cutover — see the FR-032 row in `docs/frs/INDEX.md`.

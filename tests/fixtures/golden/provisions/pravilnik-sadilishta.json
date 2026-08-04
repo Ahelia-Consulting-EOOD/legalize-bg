@@ -2,7 +2,8 @@
   "law_id": "pravilnik-sadilishta",
   "total_rows": 533,
   "article_rows": 176,
-  "alinea_rows": 357,
+  "explicit_rows": 357,
+  "implicit_rows": 0,
   "first_articles": [
     "1",
     "2",

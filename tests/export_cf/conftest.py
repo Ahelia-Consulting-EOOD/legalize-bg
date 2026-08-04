@@ -68,6 +68,18 @@ def export_corpus(tmp_path_factory):
         "Приложение № 1\n\n" + annex_para + "\n",
         encoding="utf-8")
 
+    # Pre-Указ-883 act (FR-034): чл. 1's алинеи are UNNUMBERED and derived
+    # by position, чл. 2's are printed — one act covering both sides of
+    # the `implicit` flag on the R2 payload.
+    old = corpus / "laws" / "zakon-stariyat.md"
+    old.write_text(
+        "---\ntitulo: Закон стар\nidentificador: 444\n"
+        "fecha_publicacion: 1950-01-01\n---\n\n"
+        "**Чл. 1.** Договорът поражда действие между страните.\n\n"
+        "Последиците от отмяната настъпват занапред.\n\n"
+        "**Чл. 2.** (1) Първа алинея. (2) Втора алинея.\n",
+        encoding="utf-8")
+
     ord_ = corpus / "ordinances" / "naredba-bez-data.md"
     ord_.write_text(
         "---\ntitulo: Наредба без дата\nidentificador: 888\n---\n\n"

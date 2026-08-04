@@ -91,12 +91,22 @@ class SearchHit:
 
 @dataclass(frozen=True)
 class GetArticleResponse:
+    """`get_article` response.
+
+    `implicit` (FR-034) is True only for an alinea row whose number was
+    DERIVED from paragraph position because the act predates Указ №
+    883/1974 and its алинеи carry no "(N)" markers in the source text.
+    It is always False for the article-as-whole row and for alineas read
+    from an explicit marker. Responses with implicit=True also carry an
+    IMPLICIT_ALINEA warning.
+    """
     law_id: str
     article: str
     paragraph: str | None
     text: str
     text_hash: str
     commit_hash: str
+    implicit: bool = False
     warnings: list[dict] = field(default_factory=list)
 
     def to_dict(self) -> dict[str, Any]:
@@ -113,11 +123,17 @@ class ArticleEntry:
     `paragraph`. `text_hash` is the same stable per-row digest as
     GetArticleResponse, so Phase 4 amendment detection can compare ranged
     and single lookups uniformly.
+
+    `implicit` (FR-034) mirrors `GetArticleResponse.implicit`: true only
+    when the entry is an alinea whose number was DERIVED from paragraph
+    position (pre-Указ-883/1974 act). Always false for RANGE entries — a
+    range addresses whole articles, which are never position-derived.
     """
     article: str
     paragraph: str | None
     text: str
     text_hash: str
+    implicit: bool = False
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
@@ -220,6 +236,7 @@ class GetArticleResponseDict(TypedDict):
     text: str
     text_hash: str
     commit_hash: str
+    implicit: bool
     warnings: list[dict]
 
 
@@ -228,6 +245,7 @@ class ArticleEntryDict(TypedDict):
     paragraph: str | None
     text: str
     text_hash: str
+    implicit: bool
 
 
 class GetArticlesResponseDict(TypedDict):

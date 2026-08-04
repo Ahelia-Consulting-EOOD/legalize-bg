@@ -10,7 +10,11 @@ import time
 from pathlib import Path
 
 from fetcher.bg.client import LexBgClient, HttpTransport, RateLimitedSession
-from fetcher.bg.coverage import make_gate_record, uncovered_legal_text
+from fetcher.bg.coverage import (
+    make_gate_record,
+    safe_structure_mismatches,
+    uncovered_legal_text,
+)
 from fetcher.bg.discovery import CatalogCrawler, CATEGORY_DIRS
 from fetcher.bg.text_parser import HtmlToMarkdown
 from fetcher.bg.metadata import MetadataParser
@@ -131,6 +135,15 @@ def bootstrap(
 
             body = parser.convert(soup)
             gate = uncovered_legal_text(soup, body)
+            # FR-034 paragraph-topology observation — REPORT MODE ONLY.
+            # Recorded next to the coverage data; it never blocks a write
+            # this cycle (enforcement is a deliberate later flip, D-058).
+            structure = safe_structure_mismatches(soup, body)
+            if structure:
+                log.warning(
+                    "structure mismatch (report-only) doc_id=%d: %d article(s), "
+                    "first=%s", doc_id, len(structure), structure[0],
+                )
             meta = metadata_parser.parse(soup, doc_id=doc_id, category=corpus_dir)
 
             if not (meta.get("titulo") or "").strip():
@@ -140,14 +153,17 @@ def bootstrap(
                 gate_failures.append(make_gate_record(
                     doc_id, str(doc_id), "<no titulo>",
                     {"uncovered_chars": len(body),
-                     "buckets": {"<missing-titulo>": len(body)}}))
+                     "buckets": {"<missing-titulo>": len(body)}},
+                    structure_mismatches=structure))
                 log.warning("titulo precondition FAIL doc_id=%d — skipping write", doc_id)
                 continue
 
             if gate["uncovered_chars"] > threshold:
                 slug_hint = generate_slug(meta.get("titulo", "")) or str(doc_id)
                 title = meta.get("titulo") or name
-                gate_failures.append(make_gate_record(doc_id, slug_hint, title, gate))
+                gate_failures.append(make_gate_record(
+                    doc_id, slug_hint, title, gate,
+                    structure_mismatches=structure))
                 log.warning(
                     "coverage gate FAIL: %s (doc_id=%d) uncovered_chars=%d — skipping write",
                     meta.get("titulo") or name, doc_id, gate["uncovered_chars"],

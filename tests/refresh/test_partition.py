@@ -63,8 +63,19 @@ def test_partition_identical_sets():
 # --- normalize_for_compare --------------------------------------------------
 
 
-def test_normalize_collapses_whitespace():
-    assert normalize_for_compare("a   b\n\n\nc") == normalize_for_compare("a b\nc")
+def test_normalize_collapses_horizontal_whitespace_and_single_newlines():
+    # Space runs and line wrapping are cosmetic: they normalize identically.
+    assert normalize_for_compare("a   b\nc") == normalize_for_compare("a b c")
+
+
+def test_normalize_preserves_paragraph_boundaries():
+    # FR-034: a blank line is structure (a separate alinea), not cosmetics.
+    assert normalize_for_compare("a\n\nb") != normalize_for_compare("a b")
+
+
+def test_normalize_canonicalizes_paragraph_runs():
+    # Any run of >=2 newlines (with surrounding spaces) is one paragraph break.
+    assert normalize_for_compare("a\n\n\n  \n b") == normalize_for_compare("a\n\nb")
 
 
 def test_normalize_unifies_quotes():
@@ -74,6 +85,11 @@ def test_normalize_unifies_quotes():
 
 def test_normalize_is_idempotent():
     once = normalize_for_compare("  foo   bar  ")
+    assert normalize_for_compare(once) == once
+
+
+def test_normalize_is_idempotent_with_paragraphs():
+    once = normalize_for_compare("  foo \n\n\n   bar  \n baz ")
     assert normalize_for_compare(once) == once
 
 
@@ -135,3 +151,26 @@ def test_classify_unchanged_ignores_cosmetic_whitespace():
     committed = _file(2, "Член 1.   Текст.")
     candidate = _file(2, "Член 1. Текст.")
     assert classify_change(committed, candidate, hist_grew=False) == "unchanged"
+
+
+def test_classify_unchanged_ignores_line_wrapping():
+    committed = _file(2, "Член 1. Текст на\nедин ред.")
+    candidate = _file(2, "Член 1. Текст на един ред.")
+    assert classify_change(committed, candidate, hist_grew=False) == "unchanged"
+
+
+def test_classify_unchanged_ignores_quote_variants():
+    committed = _file(2, "Член 1. „Закон“ означава акт.")
+    candidate = _file(2, 'Член 1. "Закон" означава акт.')
+    assert classify_change(committed, candidate, hist_grew=False) == "unchanged"
+
+
+def test_classify_popravka_when_only_paragraph_structure_changed():
+    # FR-034: an unnumbered alinea split out into its own paragraph is a real
+    # change. Sweep run 1 skipped ЗЗД/ЗН/ЗС because the classifier was
+    # structure-blind and read these rewrites as "unchanged".
+    committed = _file(2, "Член 36. Пълномощието се прекратява. Пълномощникът "
+                         "може да се откаже.")
+    candidate = _file(2, "Член 36. Пълномощието се прекратява.\n\n"
+                         "Пълномощникът може да се откаже.")
+    assert classify_change(committed, candidate, hist_grew=False) == "popravka"

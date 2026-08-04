@@ -2,7 +2,8 @@
   "law_id": "zop",
   "total_rows": 1443,
   "article_rows": 287,
-  "alinea_rows": 1156,
+  "explicit_rows": 1156,
+  "implicit_rows": 0,
   "first_articles": [
     "1",
     "2",

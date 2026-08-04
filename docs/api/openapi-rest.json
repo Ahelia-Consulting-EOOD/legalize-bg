@@ -53,6 +53,10 @@
             "title": "Commit Hash",
             "type": "string"
           },
+          "implicit": {
+            "title": "Implicit",
+            "type": "boolean"
+          },
           "law_id": {
             "title": "Law Id",
             "type": "string"
@@ -92,6 +96,7 @@
           "text",
           "text_hash",
           "commit_hash",
+          "implicit",
           "warnings"
         ],
         "title": "GetArticleResponseDict",

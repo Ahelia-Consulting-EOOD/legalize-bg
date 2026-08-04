@@ -321,10 +321,11 @@ def _reindex_act(conn: sqlite3.Connection, corpus_root: Path, cat: str,
     for prov in parse_provisions(body, law_id=law_id):
         conn.execute(
             """INSERT INTO provisions
-               (law_id, article, paragraph, valid_from, text, text_hash)
-               VALUES (?, ?, ?, ?, ?, ?)""",
+               (law_id, article, paragraph, valid_from, text, text_hash,
+                implicit)
+               VALUES (?, ?, ?, ?, ?, ?, ?)""",
             (prov.law_id, prov.article, prov.paragraph,
-             effective, prov.text, prov.text_hash),
+             effective, prov.text, prov.text_hash, int(prov.implicit)),
         )
     insert_title_row(conn, law_id=law_id, title=title, category=cat)
     insert_segment_rows(conn, law_id=law_id, body=body, category=cat)

@@ -5,7 +5,11 @@ import pytest
 from bs4 import BeautifulSoup, Tag
 
 from fetcher.bg.text_parser import HtmlToMarkdown, CHROME_DENYLIST, CLASS_MAP, content_region
-from fetcher.bg.coverage import uncovered_legal_text
+from fetcher.bg.coverage import (
+    make_gate_record,
+    structure_mismatches,
+    uncovered_legal_text,
+)
 
 FIXTURES = pathlib.Path(__file__).parent.parent.parent / "fixtures"
 
@@ -203,3 +207,119 @@ def test_trailing_punctuation_variance_still_passes():
     markdown = text.strip().rstrip(".")           # trailing '.' lost only
     result = uncovered_legal_text(soup, markdown)
     assert result["uncovered_chars"] == 0
+
+
+# ---------------------------------------------------------------------------
+# FR-034 Task 4 — structural paragraph-topology check (REPORT mode)
+# ---------------------------------------------------------------------------
+
+
+def test_structure_mismatch_detects_flattened_alineas():
+    html = '''
+    <div class="Article">
+        <div><b>Чл. 36.</b> Първа алинея текст.</div>
+        <div>Втора алинея текст.</div>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    flattened_md = "**Чл. 36.** Първа алинея текст. Втора алинея текст.\n"
+    mismatches = structure_mismatches(soup, flattened_md)
+    assert mismatches == [
+        {"article": "36", "expected_blocks": 2, "got_blocks": 1}]
+
+
+def test_structure_mismatch_clean_when_paragraphs_preserved():
+    html = '''
+    <div class="Article">
+        <div><b>Чл. 36.</b> Първа алинея текст.</div>
+        <div>Втора алинея текст.</div>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    good_md = "**Чл. 36.** Първа алинея текст.\n\nВтора алинея текст.\n"
+    assert structure_mismatches(soup, good_md) == []
+
+
+def test_structure_mismatch_title_glue_is_not_a_lost_paragraph():
+    """Rule-1a accounting: the заглавие block is merged INTO the anchor
+    block by the parser, so a titled article with N source blocks maps to
+    N-1 markdown paragraphs by design — never a mismatch."""
+    html = '''
+    <div class="boxi">
+        <div class="Article">
+            <div>Предмет на закона</div>
+            <div><b>Чл. 1.</b> Първа алинея текст.</div>
+            <div>Втора алинея текст.</div>
+        </div>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    md = HtmlToMarkdown().convert(soup)
+    # Lock the parser side: title glued onto the anchor line (rule 1a)
+    assert "Предмет на закона Чл. 1. Първа алинея текст." in md
+    assert structure_mismatches(soup, md) == []
+
+
+def test_structure_mismatch_titled_article_flattening_still_detected():
+    """Glue awareness must not blind the check: a titled article whose
+    алинеи ARE flattened still reports expected 2 / got 1."""
+    html = '''
+    <div class="Article">
+        <div>Предмет на закона</div>
+        <div><b>Чл. 1.</b> Първа алинея текст.</div>
+        <div>Втора алинея текст.</div>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    flattened_md = "Предмет на закона Чл. 1. Първа алинея текст. Втора алинея текст.\n"
+    assert structure_mismatches(soup, flattened_md) == [
+        {"article": "1", "expected_blocks": 2, "got_blocks": 1}]
+
+
+def test_structure_mismatch_ignores_headers_and_cite_paragraphs():
+    """A structural header closes the running article; a paragraph with
+    2+ anchors (cite list / template) is never counted as continuation."""
+    html = '''
+    <div class="Article">
+        <div><b>Чл. 5.</b> Първа алинея текст.</div>
+        <div>Втора алинея текст.</div>
+    </div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    md = (
+        "**Чл. 5.** Първа алинея текст.\n\n"
+        "Втора алинея текст.\n\n"
+        "## Глава втора\n\n"
+        "Декларация по Чл. 5. и Чл. 6. от закона.\n"
+    )
+    assert structure_mismatches(soup, md) == []
+
+
+@pytest.mark.parametrize("fixture", [
+    "zeu.html",
+    "gpk.html",
+    "zop.html",
+    "ppz-aktsizi.html",
+    "pravilnik-sadilishta.html",
+    "naredba-04-14.html",
+    "zzd.html",
+])
+def test_structure_mismatch_zero_on_real_fixtures(fixture: str):
+    """Post-FR-034 parser: no act fixture loses a source block. This is the
+    corpus-facing false-positive guard for the report-mode gate."""
+    soup = _load_soup(fixture)
+    md = HtmlToMarkdown().convert(soup)
+    assert structure_mismatches(soup, md) == []
+
+
+def test_make_gate_record_carries_structure_mismatches():
+    """REPORT mode: the gate record gains a structure_mismatches key
+    without changing any pass/fail semantics."""
+    gate = {"uncovered_chars": 120, "buckets": {"Article": 120}}
+    rec = make_gate_record(7, "slug", "Заглавие", gate)
+    assert rec["structure_mismatches"] == []
+
+    mm = [{"article": "36", "expected_blocks": 2, "got_blocks": 1}]
+    rec2 = make_gate_record(7, "slug", "Заглавие", gate, structure_mismatches=mm)
+    assert rec2["structure_mismatches"] == mm
+    assert rec2["uncovered_chars"] == 120
