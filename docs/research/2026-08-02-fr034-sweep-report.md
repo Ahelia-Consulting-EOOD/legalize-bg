@@ -767,3 +767,127 @@ Fix round, before governance:
 No change is required to `scripts/fr034_verify.py`: all four verify-red lines are baseline
 artifacts — two lawful ДВ amendments, one lex.bg editorial corrigendum, one phantom article that
 existed in the baseline and not in the sweep.
+
+---
+
+# 12. Post-fix state (Task 6c-d) — the doctrinal/annex split governance should publish
+
+Routing item 1 of §11 was executed on branch `fix/fr034-unnumbered-alineas`, commit `3d325f66`
+(`index/provisions.py` + `tests/index/test_provisions.py`; full task record in
+`.superpowers/sdd/2026-08-02-fr034-unnumbered-alinea-remediation/task-6c-d-report.md`).
+This section supersedes §9.2's „the doctrinal target is clean“ table as the doctrinal claim, and
+supersedes the „24,340 implicit rows“ figure everywhere it appears.
+
+## 12.1 What was fixed
+
+`_SUBPOINT_RE` gained the multi-letter буква, multi-level-decimal and dash-bullet alternatives;
+`_CONTINUATION_CLOSER_RE` gained a whole-paragraph section-header branch and „Приложение към …“;
+and a new `_CONTINUATION_RE` treats a paragraph opening with a lowercase Cyrillic letter (looking
+past any leading `(…)` amendment marker) as a sentence continuation rather than a new алинея.
+
+Two of this report's own counts did not survive being read row by row and are corrected here:
+
+* **§9.1c „section header — 31“** selects 31 rows with a loose prefix, but **only 19 are section
+  headers**; the other 12 are table cells starting with the same prefix („Допълнителни огнегасящи
+  вещества“, „Допълнителни електро-“, „Допълнителна информация, по преценка на организацията“,
+  „ДОПЪЛНИТЕЛНИ КРИТЕРИИ“). The shipped closer requires the whole paragraph to be a header.
+* **§9.1c „annex marker — 4“** includes one CITATION („Приложение II, Регламент (ЕС) 2021/1165“),
+  not an annex start. The shipped closer keys on „към“, not on a bare „Приложение“.
+
+## 12.2 Shape counts, same §9.1c frame and patterns
+
+| shape | before (§9.1c) | after |
+|---|---:|---:|
+| multi-letter subpoint `^[а-я]{2,3}\)\s` | 271 | **0** |
+| multi-level decimal `^\d+(?:\.\d+)+\.?\s` | 304 | **0** |
+| dash bullet `^[-–—]\s` | 515 | **7** |
+| annex marker `^(?:Приложение\|ПРИЛОЖЕНИЕ)` | 4 | **2** |
+| table marker `^(?:Таблица\|ТАБЛИЦА\|Табл\.)` | 129 | **129** |
+| section header (loose prefix) | 31 | **12** |
+| union of 3 gaps | 1,090 | **7** |
+| union with headers | 1,121 | **19** |
+| **total implicit rows** | **24,340** | **21,043** |
+
+All 19 residual rows were read and are correct behaviour: the 7 dash rows are article-FIRST table
+cells that by construction cannot merge into a predecessor; the 12 header-prefix rows are the
+table cells §12.1 identifies as not headers; the 2 annex-prefix rows are the citation above and a
+form label. `table marker` is unchanged by design — table markers are FR-026 scope.
+
+Article rows are unchanged (147,771). Explicit alinea rows move 310,003 → 309,999, in exactly two
+acts, both repairs: `naredba-14-ot-11-septemvri-2012-…` чл. 4 returns to its pre-FR-034 baseline
+of 144 (the annex form „Приложение към споразумение за сътрудничество“ is no longer swallowed),
+and `naredba-5-ot-10-may-1999-…kadastralni` чл. 43 no longer absorbs the „Допълнителни
+разпоредби“ section. `scripts/fr034_verify.py check` returns exactly the four known adjudicated
+residuals of §4.1/§8; R3/R4/R5 clean; no new failure.
+
+## 12.3 The split — this, not an aggregate, is the publishable figure
+
+The stratum criterion is `fecha_publicacion` before 1974 (Указ 883): the drafting population
+FR-034 exists for, versus everything else.
+
+| stratum | acts | rows | share | artifact rate |
+|---|---:|---:|---:|---:|
+| **doctrinal** (pre-1974) | 13 | 761 | 3.6 % | **6.8 %** (census, §12.4) |
+| **annex/table** (1974+ and undated municipal) | 205 | 20,282 | 96.4 % | **95.0 %** (19/20 sampled) |
+
+Row-share-weighted ≈ 92 %, consistent with §9.1b's row-uniform draw of 93.3 %. **The aggregate
+barely moved, and that is the correct outcome**: 96.4 % of the frame is annex and table mass —
+the two state-budget acts alone are 9,266 rows — which FR-034 must not and cannot touch. The
+3,297 rows removed were the part that contaminated ordinary articles, never the mass.
+
+**`21,043 implicit rows` must not be quoted as an FR-034 achievement number** any more than
+24,340 could be. The publishable figure is the doctrinal subset in §12.4, and §11's routing item 2
+(FR-026 annex/table classification) still blocks any corpus-level claim.
+
+## 12.4 Doctrinal census — all 761 rows, enumerated
+
+A 20-row sample of the doctrinal stratum scores 15.0 % artifact, but a sample cannot say WHERE
+the residue is, and an earlier draft of the task report wrongly generalised its draw into „the
+artifacts come from one act“. Every doctrinal row was therefore read. Two classes account for all
+of it — **false or quoted anchors** (the article number belongs to another law reproduced in the
+act's ПЗР) and **chrome rows** (ЗИД stubs, `/span>` remnants, headings, separator rules,
+promulgation formulae):
+
+| act | rows | artifacts | what |
+|---|---:|---:|---|
+| ЗЗД | 459 | 10 | false-anchor blocks чл. 1001а/1001б/1001г (quoted ГПК + ЗПИ text) |
+| ЗС | 103 | 2 | false-anchor duplicate чл. 84 |
+| ЗОРВКС | 57 | 23 | false anchors чл. 330/516/517/518/562/677/683 |
+| ЗЛС | 44 | 9 | чл. 11 ал. 1; чл. 212а ал. 3/4/5; чл. 284а ал. 3; чл. 918 ал. 3/4/5; чл. 934 ал. 1 |
+| ЗБППМН | 7 | 3 | чл. 45/47/155 ал. 1 — `/span>`-chrome ЗИД stubs |
+| ЗОС | 4 | 2 | чл. 3 ал. 2 separator; ал. 3 promulgation formula |
+| ЗВТ | 5 | 2 | чл. 24 ал. 2 separator; ал. 3 „Издаден в София…“ |
+| ЗА-1947 | 11 | 1 | чл. 1 ал. 2 „А. По Военно-наказателния закон - книга II“ |
+| ППУ техн. правоспособност · ЗУПКНИ · ЗА-1964 · наредба 13а-10403 · ЗА-1950 | 71 | 0 | — |
+| **total** | **761** | **52 = 6.8 %** | **8 of 13 acts contribute** |
+
+A broader reading gives 100 / 761 = 13.1 %: ЗЛС's чл. 915–934 are ЗГС articles inserted by ЗЛС, so
+all 44 of its rows could be classed as quoted-anchor material rather than only the 9 chrome rows
+(+35); ЗА-1947's ал. 3–11 are unmarked enumeration items under a colon-terminated lead (+9); and
+ЗБППМН's 4 quoted-НК provisions (+4). The conservative 52 counts only rows that are chrome or sit
+under an anchor the act demonstrably does not own.
+
+**None of these 52 is FR-034 segmentation** — they are the pre-existing false-anchor and
+tag-remnant classes of §10 families A/C/D, i.e. routing item 3. What the fix round removed was the
+segmentation class; what remains in the doctrinal stratum is anchor-detection work.
+
+**Doctrinal claim, restated for governance:** of 761 implicit rows across 13 pre-Указ-883 acts,
+**709 are clean position-derived алинеи and 52 are enumerated pre-existing artifacts in 8 acts**.
+Spot reads of ЗЗД, ЗС and ЗЛС continue to return well-formed алинеи, and ЗЗД чл. 265 now numbers
+correctly (the six-month / five-year prescription is ал. 3, not ал. 5). FR-034's own objective is
+met on its own population.
+
+## 12.5 What the fix round did NOT fix
+
+* **§9.3 class 5, capital-initial half.** Sample row S21 (ППЗДвП чл. 66) is a trailing sentence
+  that opens with a capital („Светлоотразяващият елемент…“) and is indistinguishable from a real
+  алинея without semantics. No rule of this kind reaches it. → FR-026.
+* **A „not a provision“ guard was measured and DECLINED.** Candidate signals (bare number, lone
+  punctuation, dotted filler, „< 4 words with no terminal punctuation“) select 14,874 rows —
+  **70.7 % of the frame** — with only 2 doctrinal hits, both separator rules already enumerated in
+  §12.4. The refusal is not about the separation: it is that deleting is not classifying (routing
+  item 2 needs those rows to label), that 14,400 of the 14,874 come from a length heuristic with
+  no test of provision-hood, and that a 70.7 % deletion is the D-055 failure shape. The correct
+  instrument is a `kind` / `is_annex` column on `provisions`, which makes the split a query.
+  Carry this measurement into FR-026 as evidence the population is separable.
+* Routing items 2, 3, 4 and the capital-initial part of 5 remain open exactly as written in §11.
