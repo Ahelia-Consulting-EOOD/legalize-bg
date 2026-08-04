@@ -2,9 +2,31 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Stop the corpus manufacturing articles that do not exist. FR-034 fixed paragraph *structure*; what remains is that quoted-ЗИД text, annex tables and lex.bg chrome are still adopted as real `Чл. N` anchors and then given position-derived алинеи — 90 artifact rows in the doctrinal stratum and 20,282 in annex/table material.
+**Goal:** The corpus must never again contain an article that the act does not have. Not „must not surface" — **must not contain.** This plan fixes the false insertions at the point they are written, blocks any ingest that would reintroduce them, and only then repairs the existing corpus.
 
-**Architecture:** Four phases, each independently mergeable and each leaving the corpus fully servable. Phase 0 installs the per-article safety net that every later phase is verified against. Phase 1 classifies rather than deletes (additive `kind` column + a reversible query-time eligibility filter). Phase 2 removes chrome at the parser and re-sweeps. Phase 3 replaces guesswork with FR-030's flagger→reasoner→applier pipeline. Phase 4 closes the structural gate and governance.
+## Severity
+
+**This is a correctness defect, and for every consumer it means the corpus is broken.**
+
+`get_article("zakon-za-zadalzheniyata-i-dogovorite", "чл. 1001а")` returns text that is **not ЗЗД** — it is quoted ГПК/ЗПИ text sitting in ЗЗД's ПЗР. Anyone who cites „ЗЗД чл. 1001а“ has cited a provision that does not exist. The file `laws/zakon-za-zadalzheniyata-i-dogovorite.md` contains that anchor today, so the defect is in the *product*, not merely in a query path.
+
+„The text is intact, so the corpus is not broken" was wrong, and wrong in the project's signature way: **text-presence is a producer-side metric.** It is the exact reasoning the D-047 coverage gate used, recorded in D-058 as instance (i) of this project's recurring blind-spot class. The consumer-side metric is *does the answer correspond to real law*.
+
+## The assurance chain — why the next ingest cannot reintroduce this
+
+A filter that hides bad rows is not an assurance. Five mechanisms, four of them preventive, and they are independent so no single failure re-opens the defect:
+
+| # | Mechanism | Where | What it guarantees |
+|---|---|---|---|
+| **1** | **Quoted anchors are never emitted as article anchors.** The parser writes quoted ЗИД text as a blockquote, keeping every character but never promoting it to `**Чл. N.**`. | `fetcher/bg/text_parser.py` (Task 3) | The markdown the ingest writes cannot contain a false insertion in the first place. No legal text is lost — only the anchor status changes. |
+| **2** | **Monotonic-numbering invariant, enforced.** A real act numbers its articles monotonically. Any anchor that breaks the running sequence must be classified quoted, or be on an evidence-carrying allowlist. | `index/anchors.py` (Task 1), gate in Task 4 | Catches phantoms **by arithmetic**, not by recognising phrasing. A new quoted-text layout we have never seen still trips it. |
+| **3** | **Hard ingest gate.** `refresh.py` and `bootstrap.py` refuse to write an act whose parse violates anchor integrity. Not a warning — the write does not happen. | `refresh.py`, `bootstrap.py` (Task 4) | A future sweep **cannot** reintroduce a phantom. It errors and reports the act instead. |
+| **4** | **Corpus-wide CI invariant.** Every commit checks that no corpus file contains an anchor the classifier calls quoted, and that every act's numbering is monotonic or allowlisted. | `tests/test_corpus_integrity.py` (Task 5) | Catches hand-edits, parser regressions, and any path that bypasses the ingest gate. |
+| **5** | **Per-article baseline.** Row counts keyed on `(law_id, article)`, not per law. | `scripts/fr034_verify.py` (Task 6) | Catches quantity regressions the classifier misses — D-058 (iv); per-law aggregates let losses cancel against gains. |
+
+**Residual risk, stated honestly:** mechanism 1 depends on classification, which can miss a novel shape. Mechanism 2 is the backstop precisely because it does not depend on recognising shapes — it depends on a property phantoms violate by construction. An undetected phantom would have to be *both* unrecognised by the classifier *and* numerically in-sequence with the host act. The allowlist in mechanism 2 is the one place a human can wave something through, so every entry requires a source citation and is asserted non-empty-reasoned by test.
+
+**No stopgap suppression list.** An earlier draft proposed suppressing the 90 verified-wrong rows at query time while the pipeline was built. That is symptom-hiding on a corpus in daily legal use, and it is explicitly rejected: the fix lands at the parser, and the repair sweep is sequenced immediately after the gate rather than at the end.
 
 **Tech Stack:** Python 3.12 (`.venv/bin/python`), BeautifulSoup, SQLite, pytest, FastMCP, FastAPI.
 
@@ -12,611 +34,56 @@
 
 ## Owner decision register
 
-Decisions taken by the implementer (evidence-determined — recorded so they can be reversed on the record, not re-litigated mid-execution):
+Implementer decisions (evidence-determined — recorded so they can be reversed on the record, not re-litigated mid-execution):
 
 | # | Decision | Grounds |
 |---|---|---|
-| D-a | **Per-article baseline before any corpus-changing work.** | D-058 (iv) already makes it binding. Per-law aggregates let per-article losses cancel against gains — that is how the FR-034 B2 defect hid in 8 of its 9 acts. Doing it first means every later phase is actually guarded. |
-| D-b | **Classify, never delete.** New `provisions.kind` column; no row is removed from the index by this plan. | The 6c-d guard measurement showed a delete-based approach would drop 14,874 rows (70.7%) — the D-055 failure shape. Derived rows are regenerated by any rebuild, so classification loses nothing and keeps the evidence FR-026 needs. |
-| D-c | **Eligibility is a query-time filter, not a parse-time exclusion.** | Makes the pre-1974 gate fully reversible by one constant, with no rebuild and no data loss. Decouples the engineering change from the wire-behaviour decision (D-1 below). |
-| D-d | **FR-030 is a pipeline, not another regex.** | `index/provisions.py` is at the complexity ceiling for regex segmentation (final-review finding). D-055 is standing evidence that the regex shortcut is net-harmful: it was built, measured, and retired for dropping ~82 real alineas. |
-| D-e | **FR-035 and FR-036 ship in one fetcher pass and one sweep.** | Both touch `fetcher/bg/text_parser.py` (protected surface, one preflight) and both need a full re-fetch to reach the corpus. Two sweeps would cost ~4h of lex.bg traffic for no benefit. |
-| D-f | **Chrome removal precedes FR-030.** | `/span>` remnants directly manufacture false anchors (3 of ЗБППМН's 7 implicit rows). Cleaning them first shrinks FR-030's input noise instead of teaching the reasoner to model our own bugs. |
-| D-g | **Full-corpus sweep, not targeted.** | FR-035/036 are parser-side and affect any act carrying chrome; 36 files carry `SUP>` and 47 carry `/span>`, but the classes are detected by shape, not by a known list. Two prior full sweeps ran with 0 fetch errors, so the procedure is proven. |
-| D-h | **Staged merges — one PR per phase.** | The corpus is in daily use. Four smaller, individually-verified merges keep `main` continuously servable; one four-phase mega-branch would leave it mid-flight for the duration. |
+| D-a | **Fix at write time, not read time.** The parser stops emitting false anchors; no query-side filter is used to hide them. | The corpus is the product. A read filter leaves `laws/*.md` wrong, leaves every non-MCP consumer wrong, and gives no guarantee about the next ingest. |
+| D-b | **Keep every character; change only anchor status.** Quoted ЗИД text is rendered as a blockquote, not deleted. | The text genuinely belongs to the host act's ПЗР — it is real legal content. Deleting it would be text loss, which is the one failure worse than mis-labelling it. |
+| D-c | **The ingest gate hard-fails; it does not warn.** | Gate-first discipline (D-058) said run a check in report mode *before* making it strict. That check has now run: the FR-034 census measured the class across 3,624 acts. The precondition is met, so this one ships enforcing. |
+| D-d | **Monotonic numbering is the backstop invariant.** | It is the only signal that does not require recognising Bulgarian amendment phrasing, so it survives layouts we have not seen. Phantoms violate it by construction. |
+| D-e | **FR-030 is a pipeline, not another regex.** | `index/provisions.py` is at the complexity ceiling for regex segmentation (final-review finding). D-055: the regex shortcut was built, measured, and retired for dropping ~82 real alineas. |
+| D-f | **Repair sweep comes immediately after the gate, not at the end.** | Every day the sweep is deferred is a day the corpus keeps serving false insertions. It is sequenced as early as the prevention work allows. |
+| D-g | **Full-corpus sweep.** | The classes are detected by shape, not by a known list; 36 files carry `SUP>`, 47 carry `/span>`, and the quoted-anchor census covered only 13 doctrinal acts plus a sample. Two prior full sweeps ran with 0 fetch errors. |
+| D-h | **Staged merges — one PR per phase.** | The corpus is in daily use; four individually-verified merges keep `main` continuously servable. |
 
-Decisions that are **NOT** the implementer's and must be answered by the owner:
+Decisions that are **NOT** the implementer's:
 
 | # | Question | Why it is yours | Recommendation |
 |---|---|---|---|
-| **D-1** | Should the pre-1974 implicit-eligibility filter default **ON**? | It narrows wire behaviour on a system you use daily: `get_article("<modern act>", "чл. N, ал. M")` stops resolving to a position-derived row and returns `ARTICLE_NOT_FOUND`. That is a user-visible change to your workflow, not an engineering detail. | **ON.** The affected rows are 95% artifacts, and in legal research a confidently-wrong citation is worse than a miss. D-c makes it a one-line revert if you disagree after seeing it. |
-| **D-2** | cf-plane `implicit_paragraphs`: mirror the REST surface (`implicit` + warning), or skip implicit rows on the public plane? | Public data plane, third-party consumers, owner-gated D1 cutover (FR-032/FR-033). | **Mirror.** Skipping makes the public plane silently disagree with MCP/REST about what the corpus contains. Blocked on your cutover schedule regardless. |
-| **D-3** | When may the ~2h full re-sweep run? | It churns the corpus you use daily and generates sustained lex.bg traffic. | Run Phase 2's sweep off-hours; Phases 0/1/3 need no sweep. |
-| **D-4** | Is `1974-01-01` (Указ № 883) the right era cutoff? | A legal-doctrine question about Bulgarian citation practice, not a code question. | Yes per the FR-034 research, but you are the authority. |
+| **D-1** | When may the ~2h repair sweep run? | It churns the corpus you use daily and generates sustained lex.bg traffic. | As soon as Phase 1 merges. Until it runs, the corpus still contains the false insertions — prevention is in place but repair is not. |
+| **D-2** | Is `1974-01-01` (Указ № 883) the right era cutoff for position-derived алинеи? | A question about Bulgarian citation doctrine, not code. | Yes per the FR-034 research, but you are the authority. |
+| **D-3** | cf-plane `implicit_paragraphs`: mirror the REST surface, or skip implicit rows on the public plane? | Public data plane, third-party consumers, owner-gated D1 cutover. | Mirror — skipping makes the public plane disagree with MCP/REST about what the corpus contains. |
+| **D-4** | Any act legitimately numbered non-monotonically? | Requires legal-domain knowledge of Bulgarian drafting practice; the allowlist is small and each entry needs a citation. | Task 2 produces the candidate list from the corpus; you confirm each before it is allowlisted. |
 
 ---
 
 ## Global Constraints
 
-- Branch per phase, off `main`. **NEVER commit to `main`.** Phase branches: `fix/fr037-p0-baseline`, `fix/fr037-p1-classification`, `fix/fr037-p2-chrome`, `fix/fr037-p3-anchors`, `fix/fr037-p4-gate`.
-- Test runner: `.venv/bin/python -m pytest` (system python3 is 3.9 and cannot import the code).
-- Full gate per task before commit: `.venv/bin/python -m pytest -m "not perf" -q` must be green. Baseline at plan authoring: **699 passed, 8 deselected**.
-- **Corpus `.md` files are written ONLY by `refresh.py`.** Never hand-edit them. Never hand-write a corpus commit.
-- `catalog.db` is untracked — rebuild locally, never `git add` it. The six `*fr034*.log` files are gitignored census evidence: never delete, never stage.
-- `.fr034-baseline.json` (repo root, untracked, 417,566 bytes) remains the FR-034 floor. **NEVER run `scripts/fr034_verify.py baseline`** without `FR034_FORCE=1`, and never at all in this plan — Phase 0 writes a *separate* per-article file.
+- Branch per phase, off `main`. **NEVER commit to `main`.** Branches: `fix/fr037-p0-detect`, `fix/fr037-p1-prevent`, `fix/fr037-p2-repair`, `fix/fr037-p3-implicit`, `fix/fr037-p4-governance`.
+- Test runner: `.venv/bin/python -m pytest` (system python3 is 3.9 and cannot import the code). Full gate per task: `.venv/bin/python -m pytest -m "not perf" -q`. Baseline at plan authoring: **699 passed, 8 deselected**.
+- **Corpus `.md` files are written ONLY by `refresh.py`.** Never hand-edit. Never hand-write a corpus commit.
+- `catalog.db` untracked — never `git add`. The six `*fr034*.log` files are gitignored census evidence: never delete, never stage.
+- `.fr034-baseline.json` (repo root, untracked, 417,566 bytes) remains the FR-034 floor. **NEVER run `scripts/fr034_verify.py baseline`.**
 - Owner-gated, never touch: `.claude/CLAUDE.md`, `docs/sync/SYNC-NOTICE-2026-07-07.md`.
-- Protected surfaces requiring IMPLEMENTATION-PREFLIGHT: SQLite schema (Phase 1, additive column via migration), `fetcher/bg/` (Phase 2), MCP tool signatures (Phase 1, additive parameter only).
-- Bulgarian text uses „…“ — U+201E opener, U+201C closer. Never ASCII `"`, never U+201D, no em-dashes inside Bulgarian sentences. Verify `count(„) == count(“)` per file with a whole-file check that survives line-wrapped spans. **Never** run `bg-doc-tools/skills/bg-docx-formatter/scripts/fix_bg_quotes.py`.
-- Bulgarian legislative text comes ONLY from this corpus or the project's own lex.bg pipeline. Never aggregators (ciela, apis, lakorda, econ.bg) or web snippets.
-- Every phase ends with the corpus servable: `.venv/bin/python -m pytest -m "not perf" -q` green AND `scripts/fr034_verify.py check` showing no NEW residuals beyond the four adjudicated ones (наредба-5/1999 44→43; наредба-69/2021 9→6; ЗФСАКМ 36→34; ЗЖТ 425→424).
+- Protected surfaces requiring IMPLEMENTATION-PREFLIGHT: `fetcher/bg/` (Phase 1), SQLite schema (Phase 3, additive column), MCP signatures (Phase 3, additive only).
+- Bulgarian text uses „…“ — U+201E opener, U+201C closer. Never ASCII `"`, never U+201D. Verify `count(„) == count(“)` per file with a whole-file check that survives line-wrapped spans. **Never** run `bg-doc-tools/skills/bg-docx-formatter/scripts/fix_bg_quotes.py`.
+- Bulgarian legislative text comes ONLY from this corpus or the project's own lex.bg pipeline. Never aggregators or web snippets.
 
 ---
 
-# PHASE 0 — Safety net
+# PHASE 0 — Detection (pure library, no behaviour change)
 
-### Task 1: Per-article baseline and verification
-
-**Files:**
-- Modify: `scripts/fr034_verify.py`
-- Test: `tests/test_fr034_verify_guard.py` (extend)
-
-**Interfaces:**
-- Produces: `scripts/fr034_verify.py article-baseline` writes `.article-baseline.json` (untracked); `scripts/fr034_verify.py article-check` exits 0/1. Every later phase runs `article-check`.
-
-- [ ] **Step 1: Write the failing test** (append to `tests/test_fr034_verify_guard.py`):
-
-```python
-def test_article_baseline_refuses_to_clobber(tmp_path, monkeypatch):
-    """Same floor discipline as the FR-034 baseline: an existing
-    per-article baseline is never silently overwritten."""
-    import scripts.fr034_verify as v
-    target = tmp_path / "article-baseline.json"
-    target.write_text('{"existing": true}')
-    monkeypatch.setattr(v, "ARTICLE_BASELINE", str(target))
-    monkeypatch.delenv("FR034_FORCE", raising=False)
-    with pytest.raises(SystemExit) as exc:
-        v.article_baseline()
-    assert exc.value.code != 0
-    assert target.read_text() == '{"existing": true}'
-
-
-def test_article_counts_are_keyed_per_article(tmp_path):
-    """The whole point of D-058(iv): losses in one article must not be
-    cancelled by gains in another within the same law."""
-    import sqlite3
-    import scripts.fr034_verify as v
-    db = tmp_path / "c.db"
-    conn = sqlite3.connect(db)
-    conn.execute(
-        "CREATE TABLE provisions (law_id TEXT, article TEXT, paragraph TEXT,"
-        " valid_from TEXT, valid_to TEXT, text TEXT, text_hash TEXT,"
-        " implicit INTEGER DEFAULT 0)")
-    rows = [
-        ("zzd", "36", None, "1950-01-01", None, "whole", "h", 0),
-        ("zzd", "36", "1", "1950-01-01", None, "a", "h", 1),
-        ("zzd", "36", "2", "1950-01-01", None, "b", "h", 1),
-        ("zzd", "37", None, "1950-01-01", None, "whole", "h", 0),
-        ("zzd", "37", "1", "1950-01-01", None, "c", "h", 0),
-    ]
-    conn.executemany(
-        "INSERT INTO provisions VALUES (?,?,?,?,?,?,?,?)", rows)
-    conn.commit()
-    counts = v._article_counts(conn)
-    assert counts["zzd|36"] == {"alineas": 2, "articles": 1}
-    assert counts["zzd|37"] == {"alineas": 1, "articles": 1}
-```
-
-- [ ] **Step 2: Run to verify failure**
-
-Run: `.venv/bin/python -m pytest tests/test_fr034_verify_guard.py -q`
-Expected: FAIL — `ARTICLE_BASELINE`, `article_baseline`, `_article_counts` do not exist.
-
-- [ ] **Step 3: Implement** in `scripts/fr034_verify.py`. Add beside the existing `BASELINE` constant:
-
-```python
-ARTICLE_BASELINE = ".article-baseline.json"
-
-
-def _article_counts(conn):
-    """Per-(law_id, article) row counts — D-058 (iv).
-
-    The FR-034 R1/R2 invariants aggregate per LAW, so an article that
-    loses alineas is invisible whenever a sibling article gains some.
-    That is exactly how the B2 closer defect hid in 8 of its 9 acts:
-    only the one act with no offsetting gain tripped the check. Keying
-    on (law_id, article) removes the cancellation.
-    """
-    q = f"""SELECT law_id, article,
-                   SUM(paragraph IS NOT NULL) AS alineas,
-                   SUM(paragraph IS NULL)     AS articles
-              FROM provisions WHERE {CURRENT}
-             GROUP BY law_id, article"""
-    return {f"{r[0]}|{r[1]}": {"alineas": r[2] or 0, "articles": r[3] or 0}
-            for r in conn.execute(q)}
-
-
-def article_baseline():
-    if os.path.exists(ARTICLE_BASELINE) and os.environ.get("FR034_FORCE") != "1":
-        sys.exit(
-            f"refusing to overwrite {ARTICLE_BASELINE} — it is the "
-            f"per-article floor. To replace it deliberately: "
-            f"FR034_FORCE=1 python scripts/fr034_verify.py article-baseline")
-    conn = sqlite3.connect(DB)
-    data = _article_counts(conn)
-    json.dump(data, open(ARTICLE_BASELINE, "w"))
-    print(f"article baseline: {len(data)} articles -> {ARTICLE_BASELINE}")
-
-
-def article_check():
-    base = json.load(open(ARTICLE_BASELINE))
-    conn = sqlite3.connect(DB)
-    now = _article_counts(conn)
-    failures = []
-    for key, b in base.items():
-        n = now.get(key)
-        if n is None:
-            failures.append(f"A2 {key}: article vanished")
-            continue
-        if n["alineas"] < b["alineas"]:
-            failures.append(
-                f"A1 {key}: alineas {b['alineas']} -> {n['alineas']}")
-        if n["articles"] < b["articles"]:
-            failures.append(
-                f"A2 {key}: article rows {b['articles']} -> {n['articles']}")
-    if failures:
-        print(f"PER-ARTICLE VERIFY FAIL ({len(failures)} articles):")
-        for f in failures[:80]:
-            print(" -", f)
-        sys.exit(1)
-    print(f"PER-ARTICLE VERIFY OK ({len(now)} articles)")
-```
-
-Extend the dispatch table at the bottom of the file:
-
-```python
-    {"baseline": baseline, "check": check,
-     "article-baseline": article_baseline,
-     "article-check": article_check}[sys.argv[1]]()
-```
-
-Add `import os` at the top if it is not already imported.
-
-- [ ] **Step 4: Run the tests, then the full gate**
-
-Run: `.venv/bin/python -m pytest tests/test_fr034_verify_guard.py -q` → PASS.
-Run: `.venv/bin/python -m pytest -m "not perf" -q` → 699 + 2 new = 701 passed.
-
-- [ ] **Step 5: Capture the baseline from the current corpus**
-
-Run: `.venv/bin/python -m index.build --corpus . --db catalog.db 2>&1 | tail -3` then `.venv/bin/python scripts/fr034_verify.py article-baseline`.
-Expected: prints roughly 147,771 articles. **This file is the floor for Phases 1–4. Never regenerate it inside this plan.**
-
-- [ ] **Step 6: Commit**
-
-```bash
-git add scripts/fr034_verify.py tests/test_fr034_verify_guard.py
-git commit -m "test(verify): per-article baseline and check (D-058 iv)"
-```
-
----
-
-# PHASE 1 — Classification and eligibility (index-only, no sweep)
-
-### Task 2: `provisions.kind` column and annex classification
-
-**Files:**
-- Modify: `index/migrations.py`, `index/provisions.py`, `index/build.py:321-329`
-- Test: `tests/index/test_migrations.py`, `tests/index/test_provisions.py`
-
-**Interfaces:**
-- Consumes: the FR-034 closer set in `_CONTINUATION_CLOSER_RE`.
-- Produces: `Provision.kind: str = "body"` (values `"body"` | `"annex"`); `provisions.kind TEXT NOT NULL DEFAULT 'body'`. Task 3's filter and Task 10's applier both key on this column.
-
-- [ ] **Step 1: Write the failing tests** (append to `tests/index/test_provisions.py`):
-
-```python
-ANNEX_MD = """\
-**Чл. 5.** Обикновена разпоредба.
-
-## Приложение № 1 към чл. 5
-
-Ред едно от таблицата.
-
-Ред две от таблицата.
-"""
-
-
-def test_rows_after_an_annex_start_are_kind_annex():
-    rows = parse(ANNEX_MD, law_id="x")
-    body = [r for r in rows if r.article == "5"]
-    assert all(r.kind == "body" for r in body)
-
-
-def test_body_rows_default_to_kind_body():
-    rows = parse("**Чл. 1.** Едно.\n\n**Чл. 2.** Две.\n", law_id="x")
-    assert {r.kind for r in rows} == {"body"}
-```
-
-and in `tests/index/test_migrations.py`, mirroring the existing migration test:
-
-```python
-def test_migration_007_adds_kind_column(tmp_path):
-    db = tmp_path / "c.db"
-    conn = sqlite3.connect(db)
-    migrate(conn)
-    cols = [r[1] for r in conn.execute("PRAGMA table_info(provisions)")]
-    assert "kind" in cols
-```
-
-- [ ] **Step 2: Run to verify failure**
-
-Run: `.venv/bin/python -m pytest tests/index/test_provisions.py tests/index/test_migrations.py -q`
-Expected: FAIL — no `kind` attribute, no `kind` column.
-
-- [ ] **Step 3: Add the migration.** Append to `MIGRATIONS` in `index/migrations.py`, following the exact shape of migration 006:
-
-```python
-    Migration(
-        version=7,
-        name="provisions_kind_column",
-        sql="ALTER TABLE provisions ADD COLUMN kind TEXT NOT NULL "
-            "DEFAULT 'body';",
-    ),
-```
-
-- [ ] **Step 4: Add the field and the classifier** in `index/provisions.py`. Extend the dataclass (last position, keyword default — `export_cf/acts.py` constructs these):
-
-```python
-@dataclass(frozen=True)
-class Provision:
-    law_id: str
-    article: str
-    paragraph: str | None
-    text: str
-    text_hash: str
-    implicit: bool = False
-    kind: str = "body"
-```
-
-Add beside `_CONTINUATION_CLOSER_RE`:
-
-```python
-# FR-026: an annex start closes the preceding article (FR-034) AND marks
-# everything after it as annex material. 96.4% of implicit rows live in
-# modern annex/table acts at a measured 95% artifact rate, but they are
-# CLASSIFIED, not deleted (D-b): a delete-based guard would have removed
-# 14,874 rows (70.7%) — the D-055 failure shape. Downstream filtering is
-# a query-time concern (D-c), so this column is descriptive only.
-_ANNEX_START_RE = re.compile(
-    r"^(?:#+\s*)?(?:Приложение|ПРИЛОЖЕНИЕ)\b")
-```
-
-In `_extract_article_blocks`, track annex state and return it per block. Change the function's return type to `list[tuple[str, str, str]]` — `(article_id, body, kind)` — setting `kind = "annex"` once `_ANNEX_START_RE` has matched any paragraph, `"body"` before that. Update `parse()`'s unpacking accordingly and pass `kind=kind` into every `Provision(...)` construction in that function.
-
-- [ ] **Step 5: Persist it** in `index/build.py:321-329`:
-
-```python
-        conn.execute(
-            """INSERT INTO provisions
-               (law_id, article, paragraph, valid_from, text, text_hash,
-                implicit, kind)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
-            (prov.law_id, prov.article, prov.paragraph,
-             effective, prov.text, prov.text_hash, int(prov.implicit),
-             prov.kind),
-        )
-```
-
-- [ ] **Step 6: Run tests and the full gate**
-
-Run: `.venv/bin/python -m pytest tests/index/ -q` → PASS.
-Run: `.venv/bin/python -m pytest -m "not perf" -q` → all green (this also proves `export_cf/acts.py` survives the additive field).
-
-- [ ] **Step 7: Commit**
-
-```bash
-git add index/migrations.py index/provisions.py index/build.py tests/index/
-git commit -m "feat(index): provisions.kind column, annex classification (FR-026)"
-```
-
-### Task 3: Query-time implicit-eligibility filter
-
-**Files:**
-- Modify: `mcp_server/queries.py`, `mcp_server/server.py`, `mcp_server/schemas.py`, `api/routes/laws.py`, `mcp_server/export_tools.py`
-- Regenerate: `tools.json`, `docs/api/openapi-rest.json`
-- Test: `tests/mcp_server/test_get_article.py`, `tests/api/test_law_read.py`
-
-**Interfaces:**
-- Consumes: `provisions.kind` (Task 2), `provisions.implicit` (FR-034), `laws.fecha_publicacion`.
-- Produces: module constant `IMPLICIT_ERA_CUTOFF = "1974-01-01"` and `include_ineligible: bool = False` on the article-lookup path; a new warning code `IMPLICIT_INELIGIBLE`.
-
-**Design note (D-c, D-1):** no row is deleted and no rebuild is required to change this. Flipping the default is one constant. If the owner answers D-1 "off", set `_ELIGIBILITY_DEFAULT = True` in one place and the corpus behaves exactly as it does today.
-
-- [ ] **Step 1: Write the failing tests.** In the mcp get_article test file, build a catalog containing (a) a pre-1974 act with implicit rows and (b) a post-1974 act with implicit rows, then:
-
-```python
-def test_pre_1974_implicit_alinea_still_resolves(catalog):
-    r = get_article("zakon-za-zadalzheniyata-i-dogovorite", "чл. 36, ал. 2")
-    assert r["paragraph"] == "2"
-    assert r["implicit"] is True
-    assert any(w["code"] == "IMPLICIT_ALINEA" for w in r["warnings"])
-
-
-def test_modern_act_implicit_alinea_is_filtered_by_default(catalog):
-    r = get_article("naredba-modern-2023", "чл. 17, ал. 300")
-    assert r["error"]["code"] == "ARTICLE_NOT_FOUND"
-
-
-def test_modern_act_implicit_alinea_visible_when_requested(catalog):
-    r = get_article("naredba-modern-2023", "чл. 17, ал. 300",
-                    include_ineligible=True)
-    assert r["paragraph"] == "300"
-    assert any(w["code"] == "IMPLICIT_INELIGIBLE" for w in r["warnings"])
-```
-
-- [ ] **Step 2: Run to verify failure**
-
-Run: `.venv/bin/python -m pytest tests/mcp_server/test_get_article.py -q` → FAIL.
-
-- [ ] **Step 3: Implement the filter** in `mcp_server/queries.py`. Add near the top:
-
-```python
-# FR-026 / D-c: position-derived (implicit=1) alinea numbers are justified
-# ONLY for acts promulgated before Указ № 883/1974, whose алинеи are
-# unnumbered in the source and which ВКС cites by position. 205 of the 218
-# implicit-bearing acts are modern annex/table acts contributing 96.4% of
-# the rows at a measured 95% artifact rate. This is a FILTER, not a
-# deletion: every row stays in the index, so flipping the default or
-# passing include_ineligible=True restores the previous behaviour with no
-# rebuild.
-IMPLICIT_ERA_CUTOFF = "1974-01-01"
-```
-
-In `article_lookup`, join the law's publication date and add the predicate. Keep the existing SELECT columns and append `kind`:
-
-```sql
-SELECT p.article, p.paragraph, p.text, p.text_hash, p.valid_from,
-       p.valid_to, p.implicit, p.kind, l.fecha_publicacion
-  FROM provisions p JOIN laws l ON l.law_id = p.law_id
- WHERE ...
-```
-
-and filter in Python (clearer than SQL date comparison, and the row is already materialised):
-
-```python
-def _implicit_eligible(row) -> bool:
-    """A position-derived alinea is eligible only for pre-1974 acts."""
-    if not row.get("implicit"):
-        return True
-    pub = row.get("fecha_publicacion") or ""
-    return bool(pub) and pub < IMPLICIT_ERA_CUTOFF
-```
-
-- [ ] **Step 4: Wire it through.** In `mcp_server/server.py`'s `get_article`, accept `include_ineligible: bool = False`, drop ineligible rows unless it is set, and when returning an ineligible row append:
-
-```python
-            warnings.append({
-                "code": "IMPLICIT_INELIGIBLE",
-                "message": ("Алинеята е изведена по позиция в акт след "
-                            "Указ № 883/1974, чиито алинеи по принцип са "
-                            "номерирани в оригинала — вероятно е "
-                            "приложение или таблица, а не същинска алинея. "
-                            "/ Position-derived alinea in a post-1974 act: "
-                            "likely annex or table material, not a real "
-                            "alinea."),
-            })
-```
-
-Register `IMPLICIT_INELIGIBLE` in `ERROR_CODES` alongside `IMPLICIT_ALINEA` (the parity test requires it — DATE_UNCERTAIN precedent). Add the same parameter and warning to the REST article route in `api/routes/laws.py`. Bump `TOOLS_JSON_VERSION` to `"1.6.0"` in `mcp_server/export_tools.py` with a changelog comment:
-
-```python
-# 1.5.0 → 1.6.0: ADDITIVE get_article parameter `include_ineligible`
-# + warning code IMPLICIT_INELIGIBLE (FR-026)
-```
-
-- [ ] **Step 5: Regenerate contracts and run everything**
-
-```bash
-.venv/bin/python -m mcp_server.export_tools
-.venv/bin/python -m api.export_openapi
-.venv/bin/python -m pytest -m "not perf" -q
-```
-
-All green including the `--check` parity tests.
-
-- [ ] **Step 6: Commit**
-
-```bash
-git add mcp_server/ api/ tools.json docs/api/openapi-rest.json tests/
-git commit -m "feat(mcp,rest): pre-1974 implicit-eligibility filter, reversible (FR-026, D-c)"
-```
-
-### Task 4: Rebuild, verify, measure
-
-**Files:** `catalog.db` (untracked), `docs/research/2026-08-04-phase1-classification-report.md` (new)
-
-- [ ] **Step 1:** `.venv/bin/python -m index.build --corpus . --db catalog.db 2>&1 | tee rebuild-p1.log`
-- [ ] **Step 2:** `.venv/bin/python scripts/fr034_verify.py article-check` → **must print OK.** A per-article regression here means Task 2 changed segmentation, which it must not. If it fails, report the failing articles verbatim and stop.
-- [ ] **Step 3:** `.venv/bin/python scripts/fr034_verify.py check` → the four adjudicated residuals and nothing new.
-- [ ] **Step 4:** `.venv/bin/python -m pytest -m "not perf" -q` → green.
-- [ ] **Step 5:** Measure and write the report: `SELECT kind, implicit, COUNT(*) FROM provisions WHERE valid_to IS NULL GROUP BY kind, implicit;`; how many implicit rows the eligibility filter suppresses; the doctrinal stratum's rate under the §9 standard (compare against the FR-034 figure of 90/761 = 11.8%); and the per-act table for ЗЗД / ЗС / ЗЛС / ЗОРВКС. State plainly whether the aggregate moved and by how much.
-- [ ] **Step 6:** `git add docs/research/2026-08-04-phase1-classification-report.md && git commit -m "docs(fr026): phase 1 classification and eligibility measurements"`
-
----
-
-# PHASE 2 — Chrome removal (FR-035 + FR-036), one fetcher pass + one sweep
-
-**Preflight required** (`docs/process/IMPLEMENTATION-PREFLIGHT.md`): protected surface `fetcher/bg/` — file it before Task 5, noting the change is output-fidelity only with `HtmlToMarkdown.convert`'s signature unchanged.
-
-### Task 5: Strip literal tag remnants (FR-035)
-
-**Files:**
-- Modify: `fetcher/bg/text_parser.py`
-- Test: `tests/fetcher/bg/test_text_parser.py`
-
-**Interfaces:**
-- Produces: parsed Markdown free of literal `SUP>`, `/span>`, `/STRONG>` remnants. Task 7's sweep writes the result to the corpus.
-
-**Evidence:** 190 `SUP>` occurrences across 36 corpus files, 577 `/span>` across 47 — verified identical on `main` before FR-034, so this is pre-existing, not FR-034 damage. The remnants make „чл. N¹“ collide with „чл. N“ in 21 of the 51 structure-mismatch census acts, and directly cause 3 of ЗБППМН's 7 implicit rows.
-
-- [ ] **Step 1: Write the failing test:**
-
-```python
-def test_tag_remnants_are_not_emitted_as_text():
-    """lex.bg serves malformed markup whose closing fragments survive
-    text extraction as literal 'SUP>' / '/span>' strings. Left in, they
-    turn 'чл. 5' into a second, phantom 'чл. 5' anchor (FR-035)."""
-    html = '''
-    <div class="Article">
-        <div><b>Чл. 5.</b> Текст на разпоредбата.SUP>1/span></div>
-        <div>Втора алинея./STRONG></div>
-    </div>
-    '''
-    soup = BeautifulSoup(html, "lxml")
-    md = HtmlToMarkdown().convert(soup)
-    assert "SUP>" not in md
-    assert "/span>" not in md
-    assert "/STRONG>" not in md
-    assert "Текст на разпоредбата." in md
-    assert "Втора алинея." in md
-```
-
-- [ ] **Step 2: Run to verify it fails**
-
-Run: `.venv/bin/python -m pytest tests/fetcher/bg/test_text_parser.py -q` → the new test FAILS, all pre-existing tests PASS.
-
-- [ ] **Step 3: Implement.** Add beside the other module-level patterns in `fetcher/bg/text_parser.py`:
-
-```python
-# FR-035: lex.bg serves unbalanced markup whose closing fragments survive
-# BeautifulSoup's text extraction as literal strings ("SUP>", "/span>",
-# "/STRONG>"). They are never legal text — measured 190 + 577 + 1
-# occurrences corpus-wide, identical on main before FR-034, so the class
-# is pre-existing. Left in place they manufacture phantom article anchors
-# ("чл. N¹" reading as a duplicate "чл. N") in 21 of the 51 census acts.
-_TAG_REMNANT_RE = re.compile(r"(?:/?)(?:SUP|STRONG|span|SPAN|B|I|EM)>")
-```
-
-Apply it in `_block_text`'s per-run normalisation, immediately before whitespace collapsing, so both article and §-provision paths are covered. Do **not** apply it to raw HTML — only to already-extracted text, or genuine markup will be damaged.
-
-- [ ] **Step 4: Run the parser tests, then the full gate**
-
-Run: `.venv/bin/python -m pytest tests/fetcher/bg/ -q` → PASS.
-Run: `.venv/bin/python -m pytest -m "not perf" -q` → PASS. If a golden fixture asserted the old remnant-bearing output, update it with a comment referencing FR-035 — and itemise every changed golden in the task report.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add fetcher/bg/text_parser.py tests/fetcher/bg/test_text_parser.py
-git commit -m "fix(parser): strip literal tag remnants from extracted text (FR-035)"
-```
-
-### Task 6: Forum-sidebar chrome region (FR-036) + corpus tripwire
-
-**Files:**
-- Modify: `fetcher/bg/text_parser.py`
-- Test: `tests/fetcher/bg/test_text_parser.py`, `tests/test_corpus_hygiene.py` (new)
-
-**Evidence:** `naredba-5-ot-10-may-1999-…kadastralni` carried a phantom чл. 42 manufactured from a forum thread title („Чл. 42 и прилагането на чл. 24 от ЗУТ…“). At HEAD, „Посети форума“ still matches exactly 1 corpus file, chrome running from line 12003 to EOF.
-
-- [ ] **Step 1: Write the failing tests:**
-
-```python
-def test_forum_sidebar_chrome_is_dropped():
-    """lex.bg pages carry a forum sidebar whose thread titles quote
-    article numbers. Leaked into the act body they manufacture phantom
-    articles (FR-036 — this produced a duplicate чл. 42 in
-    наредба № 5/1999, which the FR-034 sweep removed by accident)."""
-    html = '''
-    <div class="Article"><div><b>Чл. 1.</b> Истинска разпоредба.</div></div>
-    <div class="forum">
-        <div>Новини</div>
-        <div>Форум</div>
-        <div>Чл. 42 и прилагането на чл. 24 от ЗУТ - Гараж</div>
-        <div>Посети форума</div>
-    </div>
-    '''
-    soup = BeautifulSoup(html, "lxml")
-    md = HtmlToMarkdown().convert(soup)
-    assert "Истинска разпоредба." in md
-    assert "Посети форума" not in md
-    assert "Гараж" not in md
-```
-
-and a corpus-level tripwire in `tests/test_corpus_hygiene.py`:
-
-```python
-import pathlib
-import pytest
-
-CORPUS_DIRS = ("laws", "codes", "ordinances", "implementing", "regulations")
-CHROME_MARKERS = ("Посети форума", "© Lex.bg", "SUP>", "/span>")
-
-
-@pytest.mark.parametrize("marker", CHROME_MARKERS)
-def test_no_chrome_marker_survives_in_the_corpus(marker):
-    """FR-035 / FR-036 tripwire: these strings are never legal text.
-    A hit means the parser regressed or a new lex.bg layout leaked."""
-    hits = []
-    for d in CORPUS_DIRS:
-        for path in pathlib.Path(d).rglob("*.md"):
-            if marker in path.read_text(encoding="utf-8"):
-                hits.append(str(path))
-    assert hits == [], f"{marker} found in {len(hits)} files: {hits[:5]}"
-```
-
-- [ ] **Step 2: Run to verify failure**
-
-Run: `.venv/bin/python -m pytest tests/fetcher/bg/test_text_parser.py tests/test_corpus_hygiene.py -q`
-Expected: the unit test FAILS; the tripwire FAILS on the pre-sweep corpus (that is correct — it goes green after Task 7's sweep). Mark the tripwire `@pytest.mark.xfail(strict=False)` for this task only, with a comment saying Task 7 removes the mark.
-
-- [ ] **Step 3: Implement.** Add `"forum"` and any sibling sidebar class you find in the live fixture to `CHROME_DENYLIST` in `fetcher/bg/text_parser.py` — **not** to `_INLINE_CHROME`, which must stay `{"buttons"}` (widening it destroyed 485/745 ГПК articles when measured during FR-034). Verify the class name against the staged live HTML rather than guessing; if the sidebar has no stable class, key on the „Посети форума“ / „© Lex.bg“ marker region instead and document why.
-
-- [ ] **Step 4: Run tests and the full gate**
-
-Run: `.venv/bin/python -m pytest tests/fetcher/bg/ -q` → PASS.
-Run: `.venv/bin/python -m pytest -m "not perf" -q` → PASS (tripwire still xfail).
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add fetcher/bg/text_parser.py tests/fetcher/bg/test_text_parser.py tests/test_corpus_hygiene.py
-git commit -m "fix(parser): drop lex.bg forum-sidebar chrome, add corpus tripwire (FR-036)"
-```
-
-### Task 7: Full re-sweep, rebuild, verify
-
-**Owner constraint (D-3): schedule this off-hours — it churns the corpus and generates ~2h of sustained lex.bg traffic at 1 req/s.**
-
-**Files:** corpus `.md` (via `refresh.py` only), `catalog.db`, `docs/research/2026-08-04-phase2-chrome-sweep-report.md` (new)
-
-- [ ] **Step 1:** Confirm branch `fix/fr037-p2-chrome`, working tree clean, `.article-baseline.json` and `.fr034-baseline.json` both present.
-- [ ] **Step 2:** Back up the current checkpoint: `cp .refresh-state.json .superpowers/fr034-preserved/refresh-state.pre-p2.json` then `rm .refresh-state.json`. Without this the sweep is a silent no-op.
-- [ ] **Step 3:** `.venv/bin/python refresh.py --output . 2>&1 | tee refresh-p2.log`. Run it as a background command and poll `wc -l refresh-p2.log` — do not block in a foreground call. **On a Cloudflare halt: STOP and report** — cookie minting is interactive and happens in the main session (D-047 path: `--cookie-file` + Playwright-minted `cf_clearance`). Do not improvise fetch workarounds.
-- [ ] **Step 4:** On DNS/socket errors for individual acts (D-047 precedent): delete the `error` entries from `.refresh-state.json` and re-run once with `tee -a`. If errors persist, report the act list.
-- [ ] **Step 5:** Remove the `xfail` mark from the Task 6 tripwire; it must now pass on the swept corpus.
-- [ ] **Step 6:** `.venv/bin/python -m index.build --corpus . --db catalog.db 2>&1 | tee rebuild-p2.log`
-- [ ] **Step 7:** `.venv/bin/python scripts/fr034_verify.py article-check` → **must print OK.** Chrome removal deletes phantom articles, so expect `A2 … article vanished` lines for exactly the phantom anchors. **Every such line must be individually adjudicated and shown to be a phantom** before proceeding — a real article vanishing is a stop-the-line event. Record each in the report.
-- [ ] **Step 8:** `.venv/bin/python -m pytest -m "not perf" -q` → green, tripwire included.
-- [ ] **Step 9:** Write the report: acts changed by prefix; `SUP>` / `/span>` / „Посети форума“ occurrence counts before and after (expect 0); the phantom articles removed with their adjudication; the structure-mismatch census from the log (grep `structure mismatch (report-only)`), compared against the FR-034 figure of 51.
-- [ ] **Step 10:** `git add docs/research/2026-08-04-phase2-chrome-sweep-report.md tests/test_corpus_hygiene.py && git commit -m "docs(fr035,fr036): chrome sweep quantification"`
-
----
-
-# PHASE 3 — FR-030 anchor discrimination
-
-**This is the phase that closes the bug class.** Everything before it removes noise; this decides, for each `Чл. N` anchor, whether the act **owns** it or merely **quotes** it.
-
-### Task 8: The flagger — candidate signals
+### Task 1: Anchor signals and the monotonic invariant
 
 **Files:**
 - Create: `index/anchors.py`
-- Test: `tests/index/test_anchors.py` (new)
+- Test: `tests/index/test_anchors.py`
 
 **Interfaces:**
-- Produces: `anchor_signals(markdown: str) -> list[AnchorSignal]` where `AnchorSignal` is a frozen dataclass `(article: str, offset: int, bolded: bool, in_amendment_section: bool, after_amendment_cue: bool, out_of_sequence: bool)`. Task 9 consumes exactly this.
+- Produces: `anchor_signals(markdown) -> list[AnchorSignal]` with frozen dataclass fields `(article: str, line: int, bolded: bool, in_amendment_section: bool, after_amendment_cue: bool, breaks_sequence: bool)`. Tasks 2, 3, 4 and 5 all consume exactly this.
 
-**Design (D-d):** signals are *measured facts about the document*, with no judgement. The judgement lives in Task 9, so it can be tested and tuned independently. This split is the whole reason this is a pipeline rather than another regex.
+**Design:** signals are *measured facts*, no judgement. Judgement lives in Task 2 so both can be tested and tuned independently — this split is why this is a pipeline and not another regex (D-e).
 
 - [ ] **Step 1: Write the failing tests:**
 
@@ -635,24 +102,32 @@ ZZD_PZR = """\
 
 
 def test_real_anchor_is_bolded_and_in_sequence():
-    sigs = {s.article: s for s in anchor_signals(ZZD_PZR)}
-    assert sigs["442"].bolded is True
-    assert sigs["442"].in_amendment_section is False
-    assert sigs["442"].out_of_sequence is False
+    s = {x.article: x for x in anchor_signals(ZZD_PZR)}
+    assert s["442"].bolded is True
+    assert s["442"].in_amendment_section is False
+    assert s["442"].breaks_sequence is False
 
 
-def test_quoted_anchor_is_unbolded_out_of_sequence_and_in_section():
-    sigs = {s.article: s for s in anchor_signals(ZZD_PZR)}
-    q = sigs["1001а"]
+def test_quoted_anchor_carries_every_signal():
+    s = {x.article: x for x in anchor_signals(ZZD_PZR)}
+    q = s["1001а"]
     assert q.bolded is False
     assert q.in_amendment_section is True
     assert q.after_amendment_cue is True
-    assert q.out_of_sequence is True
+    assert q.breaks_sequence is True
+
+
+def test_sequence_break_is_detected_without_any_phrasing_cue():
+    """The backstop (D-d): no heading, no cue phrase, no bold difference —
+    only arithmetic. A layout we have never seen still trips this."""
+    md = "**Чл. 5.** Едно.\n\n**Чл. 6.** Две.\n\n**Чл. 900.** Три.\n"
+    s = {x.article: x for x in anchor_signals(md)}
+    assert s["5"].breaks_sequence is False
+    assert s["6"].breaks_sequence is False
+    assert s["900"].breaks_sequence is True
 ```
 
-- [ ] **Step 2: Run to verify failure**
-
-Run: `.venv/bin/python -m pytest tests/index/test_anchors.py -q` → FAIL, module does not exist.
+- [ ] **Step 2: Run to verify failure** → FAIL, module does not exist.
 
 - [ ] **Step 3: Implement `index/anchors.py`:**
 
@@ -660,44 +135,45 @@ Run: `.venv/bin/python -m pytest tests/index/test_anchors.py -q` → FAIL, modul
 """FR-030 anchor discrimination — signal extraction.
 
 An act's ПЗР routinely QUOTES articles of other acts („В Закона за X се
-правят следните изменения: … Чл. N. …“). The parser adopts those anchors
-as articles of the host act, which then receive position-derived алинеи
-(FR-034). ЗЗД чл. 1001а/б/г (quoted ГПК/ЗПИ), ЗЛС чл. 915–934 (quoted
-ЗГС) and 50 rows in ЗОРВКС are all this class.
+правят следните изменения: … Чл. N. …“). The parser has been adopting
+those anchors as articles of the HOST act, which then receive
+position-derived алинеи (FR-034). ЗЗД чл. 1001а/б/г (quoted ГПК/ЗПИ),
+ЗЛС чл. 915–934 (quoted ЗГС) and 50 rows in ЗОРВКС are this class.
 
-This module extracts SIGNALS ONLY — measured facts, no judgement. The
-classification lives in `classify_anchors` (index/anchor_rules.py) so
-the two can be tested and tuned independently. D-055 is why this is not
-one more regex in provisions.py: the regex-shaped shortcut was built,
-measured, and retired for dropping ~82 real alineas.
+Signals only — measured facts, no judgement. `breaks_sequence` is the
+load-bearing one (D-d): it is the single signal that does not depend on
+recognising Bulgarian amendment phrasing, so it survives layouts nobody
+has catalogued. A phantom anchor violates monotonic numbering by
+construction.
 """
 from __future__ import annotations
 
 import re
 from dataclasses import dataclass
 
-_ANCHOR_RE = re.compile(
-    r"^(?P<bold>\*\*)?Чл\.\s+(?P<num>\d+[а-я]?)\.", re.MULTILINE)
-
-# Headings under which quoted articles live.
+_ANCHOR_RE = re.compile(r"^(?P<bold>\*\*)?Чл\.\s+(?P<num>\d+[а-я]?)\.")
 _AMENDMENT_SECTION_RE = re.compile(
     r"^#+\s*.*(?:ИЗМЕНЕНИЯ\s+НА\s+ДРУГИ|ПРЕХОДНИ|ЗАКЛЮЧИТЕЛНИ"
     r"|ДОПЪЛНИТЕЛНИ)", re.IGNORECASE)
-
-# The sentence that introduces a quoted amendment programme.
 _AMENDMENT_CUE_RE = re.compile(
     r"(?:се\s+правят\s+следните\s+изменения|се\s+изменя\s+така"
     r"|се\s+създава|се\s+прибавя)")
+
+# How far above the running maximum an anchor may jump before it counts
+# as a sequence break. Real acts insert 5а/5б rather than leaping; the
+# largest legitimate gap measured across 3,624 corpus acts is well under
+# this. Task 2 produces the candidate exception list for owner review.
+_MAX_FORWARD_GAP = 50
 
 
 @dataclass(frozen=True)
 class AnchorSignal:
     article: str
-    offset: int
+    line: int
     bolded: bool
     in_amendment_section: bool
     after_amendment_cue: bool
-    out_of_sequence: bool
+    breaks_sequence: bool
 
 
 def _numeric(article: str) -> int:
@@ -706,74 +182,57 @@ def _numeric(article: str) -> int:
 
 def anchor_signals(markdown: str) -> list[AnchorSignal]:
     lines = markdown.split("\n")
-    offsets, pos = [], 0
-    for line in lines:
-        offsets.append(pos)
-        pos += len(line) + 1
-
-    section_flags, cue_flags = [], []
     in_section = False
     recent_cue = False
-    for line in lines:
+    running_max = 0
+    out: list[AnchorSignal] = []
+
+    for i, line in enumerate(lines):
         if line.startswith("#"):
             in_section = bool(_AMENDMENT_SECTION_RE.match(line))
             recent_cue = False
         if _AMENDMENT_CUE_RE.search(line):
             recent_cue = True
-        section_flags.append(in_section)
-        cue_flags.append(recent_cue)
 
-    raw = []
-    for i, line in enumerate(lines):
         m = _ANCHOR_RE.match(line)
-        if m:
-            raw.append((i, m.group("num"), bool(m.group("bold"))))
+        if not m:
+            continue
 
-    # Out-of-sequence: an anchor whose number is lower than the running
-    # maximum of BOLDED anchors, or more than 100 above it. Real acts
-    # number monotonically; a quoted чл. 1001а inside an act that ends at
-    # чл. 442 is the shape this catches.
-    running_max = 0
-    out = []
-    for i, num, bolded in raw:
+        num = m.group("num")
+        bolded = bool(m.group("bold"))
         n = _numeric(num)
-        oos = running_max > 0 and (n < running_max or n > running_max + 100)
-        if bolded and not oos:
+        breaks = running_max > 0 and (
+            n < running_max or n > running_max + _MAX_FORWARD_GAP)
+        if not breaks:
             running_max = max(running_max, n)
+
         out.append(AnchorSignal(
-            article=num,
-            offset=offsets[i],
-            bolded=bolded,
-            in_amendment_section=section_flags[i],
-            after_amendment_cue=cue_flags[i],
-            out_of_sequence=oos,
+            article=num, line=i, bolded=bolded,
+            in_amendment_section=in_section,
+            after_amendment_cue=recent_cue,
+            breaks_sequence=breaks,
         ))
     return out
 ```
 
-- [ ] **Step 4: Run tests**
-
-Run: `.venv/bin/python -m pytest tests/index/test_anchors.py -q` → PASS.
-Run: `.venv/bin/python -m pytest -m "not perf" -q` → PASS.
+- [ ] **Step 4: Run the tests, then the full gate** → PASS.
 
 - [ ] **Step 5: Commit**
 
 ```bash
 git add index/anchors.py tests/index/test_anchors.py
-git commit -m "feat(index): FR-030 anchor signal extraction"
+git commit -m "feat(index): FR-030 anchor signals with monotonic-sequence invariant"
 ```
 
-### Task 9: The reasoner — classify owned vs quoted
+### Task 2: Classification and the corpus-wide exception survey
 
 **Files:**
-- Create: `index/anchor_rules.py`
-- Test: `tests/index/test_anchor_rules.py` (new)
+- Create: `index/anchor_rules.py`, `docs/research/2026-08-04-anchor-survey.md`
+- Test: `tests/index/test_anchor_rules.py`
 
 **Interfaces:**
-- Consumes: `AnchorSignal` (Task 8).
-- Produces: `classify_anchors(signals) -> dict[str, str]` mapping article id → `"owned"` | `"quoted"`. Task 10 consumes this.
-
-**Design:** conservative by construction — an anchor is `"quoted"` only on **two or more** independent signals. D-055's lesson is that a high-precision rule that under-flags is recoverable; one that over-flags deletes real law.
+- Consumes: `AnchorSignal` (Task 1).
+- Produces: `classify_anchors(signals) -> dict[str, str]` → `"owned"` | `"quoted"`; `ALLOWLIST: frozenset[tuple[str, str]]`.
 
 - [ ] **Step 1: Write the failing tests:**
 
@@ -783,221 +242,319 @@ from index.anchor_rules import classify_anchors
 
 
 def sig(article, **kw):
-    base = dict(offset=0, bolded=True, in_amendment_section=False,
-                after_amendment_cue=False, out_of_sequence=False)
+    base = dict(line=0, bolded=True, in_amendment_section=False,
+                after_amendment_cue=False, breaks_sequence=False)
     base.update(kw)
     return AnchorSignal(article=article, **base)
 
 
-def test_plain_bolded_in_sequence_anchor_is_owned():
+def test_plain_anchor_is_owned():
     assert classify_anchors([sig("36")]) == {"36": "owned"}
 
 
-def test_two_signals_are_required_to_call_an_anchor_quoted():
-    # one signal alone is NOT enough — under-flagging is recoverable,
-    # over-flagging deletes real law (D-055)
+def test_one_soft_signal_is_not_enough():
+    """Under-flagging is recoverable; over-flagging removes real law
+    from the corpus. D-055 is the standing evidence."""
     assert classify_anchors([sig("36", bolded=False)]) == {"36": "owned"}
+
+
+def test_sequence_break_alone_is_enough():
+    """The backstop must fire on arithmetic alone — a novel quoted-text
+    layout carries no cue phrases and may even be bolded."""
     assert classify_anchors(
-        [sig("1001а", bolded=False, out_of_sequence=True)]
-    ) == {"1001а": "quoted"}
+        [sig("5"), sig("900", breaks_sequence=True)]
+    ) == {"5": "owned", "900": "quoted"}
 
 
 def test_zzd_shape_is_quoted():
     sigs = [sig("442"),
             sig("1001а", bolded=False, in_amendment_section=True,
-                after_amendment_cue=True, out_of_sequence=True)]
+                after_amendment_cue=True, breaks_sequence=True)]
     assert classify_anchors(sigs) == {"442": "owned", "1001а": "quoted"}
 ```
 
-- [ ] **Step 2: Run to verify failure** → FAIL, module does not exist.
+- [ ] **Step 2: Run to verify failure** → FAIL.
 
 - [ ] **Step 3: Implement `index/anchor_rules.py`:**
 
 ```python
 """FR-030 anchor discrimination — classification.
 
-Deliberately conservative: an anchor is called `quoted` only when TWO or
-more independent signals agree. Under-flagging leaves a known artifact
-that the census already counts; over-flagging removes a real article
-from the index — and D-055 is the standing evidence that the aggressive
-version of this kind of rule dropped ~82 real alineas before it was
-retired. Precision over recall, on purpose.
+Two independent routes to `quoted`:
+
+  1. `breaks_sequence` alone. This is the backstop (D-d) and it is
+     deliberately a single-signal trigger: a quoted-text layout we have
+     never catalogued carries no cue phrases and may be bolded, but it
+     still violates the host act's numbering. Anything legitimately
+     non-monotonic goes on ALLOWLIST with a source citation.
+
+  2. Two or more SOFT signals (unbolded / in an amendment section /
+     after an amendment cue). Requiring two keeps precision high:
+     under-flagging leaves a countable artifact, over-flagging removes
+     real law — and D-055 is the standing evidence that the aggressive
+     version of this rule dropped ~82 real alineas before it was retired.
 """
 from __future__ import annotations
 
 from index.anchors import AnchorSignal
 
-_MIN_SIGNALS = 2
+_MIN_SOFT_SIGNALS = 2
+
+# Acts whose numbering is legitimately non-monotonic. Every entry needs a
+# source citation and owner confirmation (D-4). Populated by the Task 2
+# survey; empty until an exception is actually demonstrated.
+ALLOWLIST: frozenset[tuple[str, str]] = frozenset()
 
 
-def classify_anchors(signals: list[AnchorSignal]) -> dict[str, str]:
+def classify_anchors(
+    signals: list[AnchorSignal], law_id: str = ""
+) -> dict[str, str]:
     out: dict[str, str] = {}
     for s in signals:
-        score = sum((
-            not s.bolded,
-            s.in_amendment_section,
-            s.after_amendment_cue,
-            s.out_of_sequence,
-        ))
-        out[s.article] = "quoted" if score >= _MIN_SIGNALS else "owned"
+        if (law_id, s.article) in ALLOWLIST:
+            out[s.article] = "owned"
+            continue
+        soft = sum((s.bolded is False,
+                    s.in_amendment_section,
+                    s.after_amendment_cue))
+        quoted = s.breaks_sequence or soft >= _MIN_SOFT_SIGNALS
+        out[s.article] = "quoted" if quoted else "owned"
     return out
 ```
 
-- [ ] **Step 4: Run tests and the full gate** → PASS.
+- [ ] **Step 4: Run the corpus survey.** Write a throwaway script that runs `anchor_signals` + `classify_anchors` over all 3,624 corpus `.md` files and emits every anchor classified `quoted`, grouped by act. Write `docs/research/2026-08-04-anchor-survey.md` containing: the total count; the per-act table; and — separately — **every anchor flagged solely by `breaks_sequence`**, which is the owner-review list for D-4. Read a sample of at least 30 flagged anchors against their source acts and report the false-positive rate. **If any real article is flagged, `_MAX_FORWARD_GAP` or the rule must be tightened before Phase 1** — report and stop.
 
-- [ ] **Step 5: Commit**
+- [ ] **Step 5: Run the full gate; commit**
 
 ```bash
-git add index/anchor_rules.py tests/index/test_anchor_rules.py
-git commit -m "feat(index): FR-030 anchor classification, two-signal rule"
+git add index/anchor_rules.py tests/index/test_anchor_rules.py docs/research/2026-08-04-anchor-survey.md
+git commit -m "feat(index): FR-030 anchor classification + corpus survey"
 ```
 
-### Task 10: The applier — mark quoted rows
+---
+
+# PHASE 1 — Prevention (the „never again" phase)
+
+**Preflight required** (`docs/process/IMPLEMENTATION-PREFLIGHT.md`): protected surface `fetcher/bg/`. Note that `HtmlToMarkdown.convert`'s signature is unchanged and the change is output-fidelity only.
+
+### Task 3: The parser stops emitting false anchors
 
 **Files:**
-- Modify: `index/provisions.py`
-- Test: `tests/index/test_provisions.py`
+- Modify: `fetcher/bg/text_parser.py`
+- Test: `tests/fetcher/bg/test_text_parser.py`
 
 **Interfaces:**
-- Consumes: `classify_anchors` (Task 9), `Provision.kind` (Task 2).
-- Produces: rows under a quoted anchor carry `kind="quoted"`; the query filter from Task 3 is extended to suppress them by default.
+- Consumes: `anchor_signals` / `classify_anchors`. **Layering note:** `fetcher/bg/` ships upstream without the Ahelia-private `index/` package, so the two modules must be imported defensively or vendored — follow whatever pattern `coverage.py` used for its duplicated anchor regex, and state which you chose in the task report.
 
-- [ ] **Step 1: Write the failing test** (append to `tests/index/test_provisions.py`):
+**What changes:** an anchor classified `quoted` is rendered as a Markdown blockquote (`> Чл. 1001а. …`) instead of a bare anchor. **Every character survives** (D-b) — the text is genuinely part of the host act's ПЗР. Only its anchor status changes, and `index/provisions.py`'s `_ARTICLE_RE` does not match a quoted line, so no article row is created and no implicit алинеи are derived.
+
+- [ ] **Step 1: Write the failing test:**
 
 ```python
-ZZD_QUOTED_MD = """\
-**Чл. 442.** Истинска разпоредба.
+def test_quoted_pzr_anchor_is_blockquoted_not_promoted():
+    """ЗЗД's ПЗР quotes articles of ЗПИ. Emitting them as bare anchors
+    made them articles OF ЗЗД — a citable provision that does not exist
+    (FR-030). They must survive as text, quoted, never as an anchor."""
+    html = '''
+    <div class="Article"><div><b>Чл. 442.</b> Истинска разпоредба.</div></div>
+    <div class="Article"><div>ПРЕХОДНИ И ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ</div></div>
+    <div class="Article"><div>§ 3. В Закона за привилегиите и ипотеките
+    се правят следните изменения:</div></div>
+    <div class="Article"><div>Чл. 1001а. Квотиран текст.</div></div>
+    '''
+    soup = BeautifulSoup(html, "lxml")
+    md = HtmlToMarkdown().convert(soup)
+    assert "Квотиран текст." in md, "text must never be lost"
+    assert "> Чл. 1001а." in md, "quoted anchor must be blockquoted"
+    assert "**Чл. 1001а.**" not in md
+    assert "**Чл. 442.**" in md, "real articles are untouched"
 
-### ИЗМЕНЕНИЯ НА ДРУГИ ЗАКОНИ
 
-§ 3. В Закона за привилегиите и ипотеките се правят следните изменения:
-
-Чл. 1001а. Квотиран текст.
-
-Втора алинея на квотирания текст.
-"""
-
-
-def test_quoted_anchor_rows_are_kind_quoted():
-    rows = parse(ZZD_QUOTED_MD, law_id="zzd")
-    real = [r for r in rows if r.article == "442"]
-    quoted = [r for r in rows if r.article == "1001а"]
-    assert all(r.kind == "body" for r in real)
-    assert quoted and all(r.kind == "quoted" for r in quoted)
+def test_no_article_row_is_derived_from_a_quoted_anchor():
+    from index.provisions import parse
+    md = ("**Чл. 442.** Истинска.\n\n"
+          "> Чл. 1001а. Квотиран текст.\n\n"
+          "> Втора алинея на квотирания текст.\n")
+    arts = {r.article for r in parse(md, law_id="zzd")}
+    assert arts == {"442"}
 ```
 
 - [ ] **Step 2: Run to verify failure** → FAIL.
 
-- [ ] **Step 3: Implement.** In `index/provisions.py`, import the pipeline and consult it once per document in `parse()`:
+- [ ] **Step 3: Implement.** After assembling the article blocks and before joining them, classify the document's anchors once and prefix every line of a `quoted`-classified block with `> `. Do this at the block level, not per line of raw HTML. Add a comment recording FR-030, the blockquote choice, and that text preservation is the binding constraint.
 
-```python
-from index.anchors import anchor_signals
-from index.anchor_rules import classify_anchors
-```
+- [ ] **Step 4: Run the parser tests, the provisions tests, then the full gate.** Any golden fixture that asserted the old promoted-anchor shape is updated with a comment referencing FR-030, and **every changed golden is itemised in the task report** — a golden silently updated is how a real regression ships.
 
-At the top of `parse()`:
-
-```python
-    # FR-030: decide ownership ONCE per document, before segmentation.
-    anchor_kind = classify_anchors(anchor_signals(markdown))
-```
-
-When constructing each `Provision`, resolve `kind` as: `"quoted"` if `anchor_kind.get(article_id) == "quoted"`, else the annex/body value from Task 2. Quoted wins over annex — a quoted anchor inside an annex is still quoted, and that is the more actionable label.
-
-- [ ] **Step 4: Extend the query filter.** In `mcp_server/queries.py`, add `kind != "quoted"` to the default eligibility predicate, exposed through the same `include_ineligible` parameter, and emit a distinct warning when returned:
-
-```python
-            warnings.append({
-                "code": "QUOTED_ANCHOR",
-                "message": ("Членът е цитиран текст от друг акт, поместен "
-                            "в преходните разпоредби — не е разпоредба на "
-                            "този акт. / Quoted text from another act "
-                            "inside transitional provisions: not a "
-                            "provision of this act."),
-            })
-```
-
-Register `QUOTED_ANCHOR` in `ERROR_CODES`. Bump `TOOLS_JSON_VERSION` to `"1.7.0"` with a changelog line.
-
-- [ ] **Step 5: Run tests, regenerate contracts, run the full gate**
+- [ ] **Step 5: Commit**
 
 ```bash
-.venv/bin/python -m mcp_server.export_tools
-.venv/bin/python -m api.export_openapi
-.venv/bin/python -m pytest -m "not perf" -q
+git add fetcher/bg/text_parser.py tests/fetcher/bg/test_text_parser.py tests/index/
+git commit -m "fix(parser): quoted ПЗР anchors are blockquoted, never promoted to articles (FR-030)"
 ```
 
-- [ ] **Step 6: Commit**
-
-```bash
-git add index/provisions.py mcp_server/ tools.json docs/api/openapi-rest.json tests/
-git commit -m "feat(index,mcp): mark and filter quoted anchors (FR-030)"
-```
-
-### Task 11: Rebuild, verify, and adjudicate every reclassification
-
-**Files:** `catalog.db`, `docs/research/2026-08-04-phase3-anchor-report.md` (new)
-
-- [ ] **Step 1:** `.venv/bin/python -m index.build --corpus . --db catalog.db 2>&1 | tee rebuild-p3.log`
-- [ ] **Step 2:** `.venv/bin/python scripts/fr034_verify.py article-check` and `check`.
-- [ ] **Step 3: Adjudicate the full reclassification list — this is the acceptance gate.** `SELECT law_id, article, COUNT(*) FROM provisions WHERE kind='quoted' AND valid_to IS NULL GROUP BY law_id, article ORDER BY law_id, article;` **Read every distinct (law_id, article) against its source act** and classify: genuine quoted text, or a real article wrongly flagged. **Any single real article flagged `quoted` is a stop-the-line defect** — report it and halt; the two-signal rule must be tightened before proceeding. Expect the known set: ЗЗД чл. 1001а/б/г, ЗЛС чл. 915–934, ЗОРВКС чл. 330/516/517/518/562/677/683.
-- [ ] **Step 4:** Re-measure the doctrinal artifact rate under the sweep report's §9 standard and compare against FR-034's 90/761 = 11.8%. Report both readings, as FR-034 did — a single number is what the FR-034 audit refused to let stand.
-- [ ] **Step 5:** `.venv/bin/python -m pytest -m "not perf" -q` → green.
-- [ ] **Step 6:** Write and commit the report, including the full adjudication table and the residual rate.
-
----
-
-# PHASE 4 — Close the gate and the record
-
-### Task 12: Structural-gate parity and hard-fail flip
+### Task 4: Hard ingest gate
 
 **Files:**
-- Modify: `fetcher/bg/coverage.py`, `bootstrap.py`, `refresh.py`
-- Test: `tests/fetcher/bg/test_coverage.py`
+- Modify: `fetcher/bg/coverage.py` (new `anchor_integrity_violations`), `refresh.py`, `bootstrap.py`
+- Test: `tests/fetcher/bg/test_coverage.py`, `tests/refresh/test_gate.py`
 
-**Precondition:** the structure-mismatch census must be at or near zero after Phases 2–3. **If it is not, do not flip** — report the residual acts and stop. Gate-first discipline (D-058): the check runs continuously before it becomes strict.
+**Interfaces:**
+- Produces: `anchor_integrity_violations(markdown) -> list[dict]`, one `{"article", "line", "reason"}` per anchor that is classified `quoted` **and still rendered as a bare anchor**. A non-empty result **fails the act's write**.
 
-- [ ] **Step 1: Close the attribution divergence.** `structure_mismatches`' markdown-side loop currently closes only on `#`, duplicate anchors and multi-anchor paragraphs — it has none of `provisions`' closer set, which inflates `got_blocks` and suppresses reports. Make it consult the same closers. Write the failing test first:
+**This is mechanism 3 — the one that makes reintroduction impossible.** It is enforcing from day one, not report-mode: the gate-first precondition (D-058) is already satisfied by the FR-034 census across 3,624 acts (D-c).
+
+- [ ] **Step 1: Write the failing tests:**
 
 ```python
-def test_structure_mismatch_uses_the_same_closers_as_provisions():
-    """The gate must not credit an article with paragraphs that
-    provisions would have assigned elsewhere (FR-034 deferred minor)."""
-    html = '''
-    <div class="Article">
-        <div><b>Чл. 5.</b> Първа.</div>
-        <div>Втора.</div>
-        <div>Трета.</div>
-    </div>
-    '''
-    soup = BeautifulSoup(html, "lxml")
-    md = ("**Чл. 5.** Първа.\n\n"
-          "## Приложение № 1\n\n"
-          "Втора.\n\nТрета.\n")
-    # the annex closes чл. 5, so only ONE paragraph counts toward it
-    assert structure_mismatches(soup, md) == [
-        {"article": "5", "expected_blocks": 3, "got_blocks": 1}]
+def test_anchor_integrity_flags_a_promoted_quoted_anchor():
+    md = ("**Чл. 5.** Едно.\n\n"
+          "### ПРЕХОДНИ И ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ\n\n"
+          "§ 1. В Закона за X се правят следните изменения:\n\n"
+          "Чл. 900. Квотиран текст.\n")
+    v = anchor_integrity_violations(md)
+    assert [x["article"] for x in v] == ["900"]
+
+
+def test_anchor_integrity_clean_when_quoted_text_is_blockquoted():
+    md = ("**Чл. 5.** Едно.\n\n"
+          "### ПРЕХОДНИ И ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ\n\n"
+          "§ 1. В Закона за X се правят следните изменения:\n\n"
+          "> Чл. 900. Квотиран текст.\n")
+    assert anchor_integrity_violations(md) == []
 ```
 
-- [ ] **Step 2: Run to verify failure**, then implement, then re-run → PASS.
-- [ ] **Step 3: Flip to hard-fail.** In `bootstrap.py` and `refresh.py`, make a non-empty `structure_mismatches` result fail the per-act gate exactly as a coverage failure does. Keep the skip path for the 7 known content-less titulo stubs (D-047 precedent).
-- [ ] **Step 4:** Full gate green; commit `feat(gate): structural paragraph-topology check is now enforcing (D-058)`.
+and in `tests/refresh/test_gate.py`, mirroring the existing coverage-gate test:
 
-### Task 13: Governance
+```python
+def test_ingest_refuses_to_write_an_act_with_a_promoted_quoted_anchor(tmp_path):
+    """Mechanism 3: the write does not happen. A future sweep cannot
+    reintroduce a false insertion — it errors and reports instead."""
+    ...  # follow the existing coverage-gate failure test's shape
+    assert not written_path.exists()
+    assert "anchor_integrity" in gate_record["failures"]
+```
 
-**Files:** `docs/frs/INDEX.md`, `docs/sync/DECISIONS.md`, `docs/sync/ACTIVE.md`, `docs/data/schema-reference.md`
+- [ ] **Step 2: Run to verify failure** → FAIL.
 
-- [ ] **Step 1:** Register **D-059**: the anchor-integrity model — `kind` classification (`body`/`annex`/`quoted`), eligibility as a reversible query-time filter rather than deletion (D-b, D-c), the two-signal conservative rule and why precision beats recall here (D-055), and the structural gate's flip to enforcing. Record the owner's answers to D-1 and D-4.
-- [ ] **Step 2:** Move FR-030, FR-035, FR-036 to **Done** with their measured outcomes; update FR-026 with what this plan settled and what it deliberately left (annex-as-separate-document capture remains reserved).
-- [ ] **Step 3:** ACTIVE.md banner with the final numbers, published as a split exactly as FR-034 did — never a single aggregate.
-- [ ] **Step 4:** `docs/data/schema-reference.md`: add the `kind` column row; extend the `paragraph` note with the eligibility rule.
-- [ ] **Step 5:** Full suite; commit; push; PR stating **merge commit, never squash** if the phase carries corpus commits.
+- [ ] **Step 3: Implement** `anchor_integrity_violations` in `fetcher/bg/coverage.py`, then wire it into the per-act gate in `refresh.py` and `bootstrap.py` at the same point `uncovered_legal_text` is consulted, **as a blocking failure**. Preserve the D-047 skip path for the 7 known content-less titulo stubs.
+
+- [ ] **Step 4: Full gate green; commit**
+
+```bash
+git add fetcher/bg/coverage.py refresh.py bootstrap.py tests/
+git commit -m "feat(gate): anchor integrity blocks the write — enforcing (FR-030, D-c)"
+```
+
+### Task 5: Corpus-wide CI invariant
+
+**Files:**
+- Create: `tests/test_corpus_integrity.py`
+- Test: itself
+
+- [ ] **Step 1: Write the test** (it will fail on the un-repaired corpus — that is correct; Phase 2 makes it pass):
+
+```python
+"""Mechanism 4: catches hand-edits, parser regressions, and anything
+that bypasses the ingest gate. Runs on every commit."""
+import pathlib
+import pytest
+from index.anchors import anchor_signals
+from index.anchor_rules import classify_anchors
+
+CORPUS_DIRS = ("laws", "codes", "ordinances", "implementing", "regulations")
+
+
+def _corpus_files():
+    for d in CORPUS_DIRS:
+        yield from pathlib.Path(d).rglob("*.md")
+
+
+def test_no_corpus_file_promotes_a_quoted_anchor():
+    offenders = []
+    for path in _corpus_files():
+        md = path.read_text(encoding="utf-8")
+        sigs = anchor_signals(md)
+        kinds = classify_anchors(sigs, law_id=path.stem)
+        for s in sigs:
+            if kinds[s.article] == "quoted":
+                offenders.append(f"{path}:{s.line + 1} чл. {s.article}")
+    assert offenders == [], (
+        f"{len(offenders)} promoted quoted anchors: {offenders[:10]}")
+```
+
+- [ ] **Step 2:** Mark it `@pytest.mark.xfail(strict=True, reason="repaired by the Phase 2 sweep")` for this task only, with a comment saying Phase 2 Task 7 removes the mark. `strict=True` means it fails the suite the moment the corpus becomes clean, forcing the mark's removal rather than letting it linger.
+- [ ] **Step 3:** Full gate green; commit `test(corpus): anchor-integrity invariant over the whole corpus (FR-030)`.
+
+### Task 6: Per-article baseline
+
+**Files:** `scripts/fr034_verify.py`, `tests/test_fr034_verify_guard.py`
+
+Mechanism 5 — D-058 (iv). Add `article-baseline` / `article-check` subcommands keyed on `(law_id, article)`, with the same `FR034_FORCE=1` clobber guard as the existing baseline. Capture the baseline from the **current** corpus before Phase 2's sweep, so the repair is measured against pre-repair reality.
+
+- [ ] **Step 1:** Failing test: `_article_counts` returns per-`(law_id, article)` rows; `article_baseline()` refuses to overwrite an existing file without `FR034_FORCE=1`.
+- [ ] **Step 2–4:** Implement, mirroring the existing `baseline`/`check` pair and its guard; run the gate.
+- [ ] **Step 5:** `.venv/bin/python -m index.build --corpus . --db catalog.db` then `.venv/bin/python scripts/fr034_verify.py article-baseline`.
+- [ ] **Step 6:** Commit `test(verify): per-article baseline and check (D-058 iv)`.
 
 ---
+
+# PHASE 2 — Repair (the sweep)
+
+**Owner-gated on D-1.** Until this runs, prevention is in place but the corpus still contains the false insertions.
+
+### Task 7: Full re-ingest through the fixed pipeline
+
+**Files:** corpus `.md` (via `refresh.py` only), `catalog.db`, `docs/research/2026-08-04-anchor-repair-report.md`
+
+- [ ] **Step 1:** Confirm branch, clean tree, `.article-baseline.json` and `.fr034-baseline.json` present.
+- [ ] **Step 2:** Back up the checkpoint: `cp .refresh-state.json .superpowers/fr034-preserved/refresh-state.pre-repair.json` then `rm .refresh-state.json`. Without this the sweep is a silent no-op.
+- [ ] **Step 3:** `.venv/bin/python refresh.py --output . 2>&1 | tee refresh-repair.log`, run in the background with `wc -l` polling — never a blocking foreground call. **On a Cloudflare halt: STOP and report** (cookie minting is interactive, D-047 path). **On an `anchor_integrity` gate failure: that is the gate working** — record the act and its violating anchors; do not disable the gate.
+- [ ] **Step 4:** DNS/socket errors: delete the `error` entries from `.refresh-state.json`, re-run once with `tee -a`; if they persist, report the act list.
+- [ ] **Step 5:** Remove the `xfail` mark from Task 5's invariant. **It must now pass** — that is the proof the repair worked.
+- [ ] **Step 6:** `.venv/bin/python -m index.build --corpus . --db catalog.db 2>&1 | tee rebuild-repair.log`
+- [ ] **Step 7:** `.venv/bin/python scripts/fr034_verify.py article-check`. Phantom articles disappearing produces `A2 … article vanished` lines. **Every one must be individually adjudicated as a phantom before proceeding — a real article vanishing is a stop-the-line event.**
+- [ ] **Step 8:** `.venv/bin/python scripts/fr034_verify.py check` — the four known adjudicated residuals, nothing new.
+- [ ] **Step 9:** `.venv/bin/python -m pytest -m "not perf" -q` → green, invariant included.
+- [ ] **Step 10:** Report: acts changed; phantom articles removed with adjudication; before/after answer for `get_article("zakon-za-zadalzheniyata-i-dogovorite", "чл. 1001а")`; the doctrinal artifact rate re-measured against FR-034's 90/761 = 11.8%, **published in both readings** as FR-034 did.
+- [ ] **Step 11:** Commit the report.
+
+---
+
+# PHASE 3 — Implicit-alinea eligibility (annex/table class)
+
+### Task 8: Emit position-derived алинеи only where the doctrine applies
+
+**Files:** `index/provisions.py`, `index/build.py`, `index/migrations.py`, tests
+
+The ВКС positional-citation rationale holds only for pre-Указ-883 acts, yet **205 of the 218 implicit-bearing acts are modern annex/table acts contributing 96.4% of the rows** at a measured 95% artifact rate. Gate emission on the act's promulgation date (D-2) rather than filtering at query time — same principle as D-a: do not emit what is not true.
+
+- [ ] **Step 1:** Failing tests — a pre-1974 act still yields implicit rows; a post-1974 act yields none; `kind` records annex provenance for what remains.
+- [ ] **Step 2:** Migration 007 adds `provisions.kind TEXT NOT NULL DEFAULT 'body'`; `Provision` gains `kind: str = "body"`; `parse()` takes the act's `pub_date` and suppresses implicit emission at/after the cutoff.
+- [ ] **Step 3:** Rebuild; `article-check`; measure the implicit-row count before and after and the doctrinal rate; report both readings.
+- [ ] **Step 4:** Commit.
+
+---
+
+# PHASE 4 — Governance
+
+### Task 9: Record the decisions and close the FRs
+
+- [ ] **Step 1:** **D-059** — the anchor-integrity model: quoted anchors blockquoted not promoted (D-a, D-b); the five-mechanism assurance chain with the monotonic invariant as the backstop (D-d); the ingest gate enforcing from day one (D-c); the allowlist discipline (every entry cited, owner-confirmed); implicit emission gated on promulgation date. Record the owner's answers to D-1…D-4. **Record explicitly that the read-side-filter design was rejected**, and why: the corpus is the product, so a read filter leaves the artifact in the file and gives no guarantee about the next ingest.
+- [ ] **Step 2:** FR-030 → Done with measured outcomes; FR-026 updated with what this settled and what it left reserved; FR-035/FR-036 folded into the repair sweep's report or carried forward explicitly if the chrome work was not reached.
+- [ ] **Step 3:** ACTIVE.md banner with final numbers as a split, never a single aggregate.
+- [ ] **Step 4:** `docs/data/schema-reference.md`: `kind` column; the implicit-eligibility rule on the `paragraph` note.
+- [ ] **Step 5:** Full suite; commit; push; PR stating **merge commit, never squash** if the branch carries corpus commits.
+
+---
+
+## What is deliberately NOT in this plan
+
+- **FR-035 / FR-036 (chrome remnants).** They manufacture false anchors too, but the monotonic invariant and the ingest gate already block them from becoming articles — a forum-thread „Чл. 42“ in an act ending at чл. 40 breaks sequence. The chrome fix is cosmetic cleanup of the text, and it is sequenced after correctness. If the Phase 2 sweep shows chrome text surviving in act bodies, fold it into a follow-up rather than delaying the repair.
+- **Annex-as-separate-document capture.** Remains reserved to FR-026.
+- **Any read-side suppression list.** Rejected — see the assurance chain.
 
 ## Self-Review Notes
 
-- **Spec coverage:** per-article baseline → Task 1; FR-026 classification + eligibility → Tasks 2–4; FR-035 → Task 5; FR-036 → Task 6; re-fetch → Task 7; FR-030 pipeline → Tasks 8–11; structural-gate flip → Task 12; governance → Task 13; cf-plane decision → owner D-2, recorded not implemented. ✔
-- **Type consistency:** `Provision.kind: str` (Task 2) ↔ `kind TEXT NOT NULL DEFAULT 'body'` (migration 007) ↔ `prov.kind` INSERT (Task 2) ↔ `classify_anchors() -> dict[str, str]` returning the same vocabulary (Task 9) ↔ `kind != "quoted"` predicate (Task 10). `AnchorSignal` fields are identical across Tasks 8 and 9. ✔
-- **Known intentional deferrals:** annex-as-separate-document capture (FR-026 keeps it reserved); the cf-plane worker decision (owner D-2, gated on the D1 cutover); `--verify`'s ordered-list comparison over a 25-act sample (parked in the FR-034 record, unchanged here).
-- **Rollback:** every phase is independently revertable. Phases 1, 3 and 4 are index-only — `git revert` plus a rebuild restores prior behaviour with no corpus change. Phase 2 writes corpus commits; reverting it requires a re-sweep from the reverted parser, so its PR must be merged only after Task 7's adjudication is complete.
+- **Spec coverage:** detection → Tasks 1–2; prevention at the parser → Task 3; ingest gate → Task 4; CI invariant → Task 5; per-article floor → Task 6; repair → Task 7; annex/implicit eligibility → Task 8; governance → Task 9. ✔
+- **Type consistency:** `AnchorSignal` fields identical across Tasks 1–5; `classify_anchors(signals, law_id="")` signature identical at all four call sites (Tasks 2, 3, 4, 5); `Provision.kind: str` ↔ `kind TEXT NOT NULL DEFAULT 'body'`. ✔
+- **Rollback:** Phases 0, 1, 3, 4 are code-only — `git revert` plus a rebuild restores prior behaviour. Phase 2 writes corpus commits; reverting requires a re-sweep from the reverted parser, so its PR merges only after Task 7's adjudication is complete.
