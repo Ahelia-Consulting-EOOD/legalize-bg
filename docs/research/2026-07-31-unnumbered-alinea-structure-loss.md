@@ -1,7 +1,7 @@
 # Unnumbered-alinea structure loss (ЗЗД class) — verification, root cause, lineage
 
 **Date:** 2026-07-31 · **Status:** VERIFIED (end-to-end, live-source round-trip)
-**Trigger:** external session constatation: „every ЗЗД article returns paragraph: null and any ал. lookup fails" — claimed corpus parse gap.
+**Trigger:** external session constatation: „every ЗЗД article returns paragraph: null and any ал. lookup fails“ — claimed corpus parse gap.
 
 ## Verdict
 
@@ -17,13 +17,13 @@ accident and not a corpus-integrity failure**. It is the composition of:
 2. **Defect B (data model, scope gap):** `index/provisions.py::_split_alineas` emits
    alinea rows only for explicit `(N)` markers (per D-023). Marker-less (pre-1974)
    acts get zero alinea rows even though their алинеи are legally citable
-   (ВКС routinely cites „чл. 36, ал. 2 ЗЗД"). Even with Defect A fixed, Defect B
+   (ВКС routinely cites „чл. 36, ал. 2 ЗЗД“). Even with Defect A fixed, Defect B
    independently keeps ал.-lookups failing until implicit position-based numbering
    is added.
 3. **Defect C (minor, distinct):** ЗЗД's 1950 ПЗР *quote* articles inserted into the
    old Закон за гражданското съдопроизводство; the extractor adopted the quoted
    anchors as ЗЗД's own articles → bogus `available_articles` entries
-   „1001а"–„1001г". Same family as FR-030 (quoted-anchor false positives), but at
+   „1001а“–„1001г“. Same family as FR-030 (quoted-anchor false positives), but at
    article level, not alinea level.
 
 **Text content is NOT lost anywhere** — the D-047 coverage gate (text-presence,
@@ -47,9 +47,9 @@ character-level) held; what is lost for the affected class is intra-article
 
 - **2026-04-20 `0ffe7a09`** — initial converter: `_extract_article_text` breaks on `<br>` only.
 - **2026-04-20 `f9ccb7db`** (Phase 1a I7 fix) — „preserve alinea structure as Markdown
-  paragraphs": fixed the `<br>` layout; test `test_preserves_paragraph_structure`
+  paragraphs“: fixed the `<br>` layout; test `test_preserves_paragraph_structure`
   pins ONLY a `<br>`-separated fixture. The child-`<div>` layout never had a fixture.
-- **2026-05-09 D-023** — provisions populated „one row per `(K)` alinea": the
+- **2026-05-09 D-023** — provisions populated „one row per `(K)` alinea“: the
   numbered-marker assumption became the data-model contract. No doc anywhere
   mentions the unnumbered pre-1974 class — an undocumented blind spot, not a
   documented limitation.
@@ -71,7 +71,7 @@ all of them.
 - **Undercount warning:** the zero-alinea query MISSES mixed acts — ЗН has 3
   amendment-era `(N)` markers, so it escapes the query while 49/97 of its articles
   are flattened. The true affected set = „acts where lex.bg uses child-div alinea
-  layout", establishable only by a corpus refetch sweep (~3,600 req @ 1 req/s ≈ 1 h).
+  layout“, establishable only by a corpus refetch sweep (~3,600 req @ 1 req/s ≈ 1 h).
 - **Concentration:** the class is small in count but is the **civil-law backbone**
   (ЗЗД, ЗС, ЗН, ЗЛС) — maximal practical citation impact (ВКС practice cites their
   алинеи constantly).
@@ -84,8 +84,8 @@ all of them.
 - Does NOT impugn: text completeness (D-047 gate held), metadata, numbered-act alinea
   rows, search, time-machine. The corpus remains reliable as *text*.
 - DOES impugn: intra-article paragraph structure and ал.-addressability for the
-  old-act class; any consumer that equates „no alinea row" with „single-alinea
-  article"; blind trust that text-coverage gates certify *structure*.
+  old-act class; any consumer that equates „no alinea row“ with „single-alinea
+  article“; blind trust that text-coverage gates certify *structure*.
 
 ## Remediation options (not executed — for owner decision)
 

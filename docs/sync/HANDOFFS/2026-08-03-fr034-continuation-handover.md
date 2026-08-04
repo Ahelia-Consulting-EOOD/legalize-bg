@@ -31,4 +31,4 @@ ALL execution agents (implementers, task reviewers, re-reviewers, sweep runner) 
 
 ## Kickoff prompt for next session
 
-„Continue FR-034 execution per docs/sync/HANDOFFS/2026-08-03-fr034-continuation-handover.md: run Tasks 6b, 6c, then 7 from docs/plans/2026-08-02-fr034-unnumbered-alinea-remediation.md, subagent-driven (Opus 5 execution agents, Fable 5 final review), continuing the ledger at .superpowers/sdd/2026-08-02-fr034-unnumbered-alinea-remediation/progress.md."
+„Continue FR-034 execution per docs/sync/HANDOFFS/2026-08-03-fr034-continuation-handover.md: run Tasks 6b, 6c, then 7 from docs/plans/2026-08-02-fr034-unnumbered-alinea-remediation.md, subagent-driven (Opus 5 execution agents, Fable 5 final review), continuing the ledger at .superpowers/sdd/2026-08-02-fr034-unnumbered-alinea-remediation/progress.md.“
