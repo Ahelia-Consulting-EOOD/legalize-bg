@@ -144,9 +144,17 @@ def _is_structural_header(para: str) -> bool:
 #     „Приложението по ал. 1 …“. Measured: 931 „Приложение към …“
 #     paragraphs corpus-wide, 10 of them reachable with an article open,
 #     all 10 genuine annex starts.
+#
+# THE '#' BRANCH IS CURRENTLY UNREACHABLE — kept deliberately.
+# `_extract_article_blocks` calls `_is_structural_header` first and
+# flushes on '#' before this regex is ever consulted, so no paragraph
+# reaches the branch below. It is retained as defence in depth for the
+# same reason as the буква branch in `_SUBPOINT_RE`: if the early flush
+# is ever narrowed or reordered, '#' must not silently stop closing
+# articles. Reachability, not correctness, is what is missing here.
 _CONTINUATION_CLOSER_RE = re.compile(
     r"^(?:"
-    r"#"                        # structural header
+    r"#"                        # structural header (unreachable — see above)
     r"|\*\*[^*\n]+\*\*"         # parser-emitted bold: '**§ 5.**', '**Чл. 1.**'
     r"|\*[^*\s][^*\n]*\*\s*$"   # parser-emitted PreHistory italics: '*В сила от …*'
     r"|\(ОБН"                   # gazette banner
@@ -175,11 +183,15 @@ def _extract_article_blocks(markdown: str) -> list[tuple[str, str]]:
     ЗОП's indexed article text):
       - 0 anchors, article open, paragraph is not a closer: append to the
         current article body.
-      - 0 anchors and the paragraph IS a closer — '#' structural header,
-        a complete parser-emitted emphasis span ('**§ N.**' bold or a
-        whole-line '*…*' PreHistory italic), '(ОБН' gazette banner, or an
-        annex start ('Приложение № …' / 'ПРИЛОЖЕНИЕ') — flush pending and
-        discard. A leading asterisk that is NOT a closed emphasis span is
+      - 0 anchors and the paragraph IS a closer — a complete
+        parser-emitted emphasis span ('**§ N.**' bold or a whole-line
+        '*…*' PreHistory italic), '(ОБН' gazette banner, or an annex
+        start ('Приложение № …' / 'ПРИЛОЖЕНИЕ') — flush pending and
+        discard. ('#' structural headers are ALSO in
+        `_CONTINUATION_CLOSER_RE`, but they never get there: the
+        `_is_structural_header` test below flushes them first. That
+        branch is unreachable-but-kept — see the note above the regex.)
+        A leading asterisk that is NOT a closed emphasis span is
         source text (bullet, footnote marker) and continues the article —
         FR-034 sweep run 2, anomaly B2. See `_CONTINUATION_CLOSER_RE`.
       - 0 anchors with no article open: discard (preamble, narrative).
@@ -398,6 +410,12 @@ _CONTINUATION_RE = re.compile(r"^(?:\([^)\n]{0,120}\)\s*)?[а-я]")
 # NOT ^-anchored on purpose — rule 1a glues a title preamble in front of
 # the anchor, so ал. 1's text begins after the anchor MATCH END wherever
 # that falls („Предмет Чл. 1. Този кодекс…“ -> „Този кодекс…“).
+# ASYMMETRY WITH `_ARTICLE_RE`, noted not fixed (final review 2026-08-04):
+# `_ARTICLE_RE` makes the trailing dot optional („Чл. 36“ still anchors an
+# article) while the pattern below REQUIRES it, so a dotless-anchor article
+# would keep „Чл. 36“ in front of its implicit ал. 1 text. Currently
+# unreachable — the corpus contains no dotless anchor that reaches this
+# path — so both regexes are left exactly as they are.
 _ANCHOR_PREFIX_RE = re.compile(r"(?:\*\*)?Чл\.\s+\d+[а-я]?\.(?:\*\*)?\s*")
 
 

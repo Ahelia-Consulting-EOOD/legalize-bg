@@ -195,14 +195,30 @@ def structure_mismatches(soup: BeautifulSoup, markdown: str) -> list[dict]:
 
     Markdown side (got_blocks)
         Blank-line-separated paragraphs, attributed to the running article by
-        the same rule ``index/provisions._extract_article_blocks`` uses (that
-        module cannot be imported here — upstream layering): exactly one
-        anchor starts an article, zero anchors continue it, a ``#`` header or
-        a 2+-anchor paragraph (cite list / template) closes it.  Anchors are
-        matched anywhere in the paragraph, not only at its start, because
-        rule-1a glue puts the title in front of the anchor.  The first
-        occurrence of an article number wins: quoted anchors in ПЗР
-        (FR-030 family) must not overwrite the real article's count.
+        a rule MODELLED ON — but deliberately WEAKER than —
+        ``index/provisions._extract_article_blocks`` (that module cannot be
+        imported here: upstream layering).  Shared: exactly one anchor starts
+        an article, zero anchors continue it, a ``#`` header or a 2+-anchor
+        paragraph (cite list / template) closes it.  Anchors are matched
+        anywhere in the paragraph, not only at its start, because rule-1a
+        glue puts the title in front of the anchor.  The first occurrence of
+        an article number wins: quoted anchors in ПЗР (FR-030 family) must
+        not overwrite the real article's count.
+
+        **The divergence.**  ``provisions`` also closes an article on
+        ``_CONTINUATION_CLOSER_RE`` — parser-emitted emphasis (``**§ N.**``
+        bold, whole-line ``*…*`` italics), ``(ОБН`` gazette banners, annex
+        starts (``Приложение № …`` / ``ПРИЛОЖЕНИЕ`` / ``Приложение към …``)
+        and singular section headers.  This loop does NOT: it keeps counting
+        such paragraphs onto the running article, so ``got_blocks`` is
+        INFLATED relative to what the indexer actually produces, and a real
+        topology loss can be hidden behind the surplus.  The error direction
+        is the safe one for REPORT mode — over-counting only ever SUPPRESSES
+        a report, never invents one — which is why it is tolerated here and
+        not in the indexer.  **It must be revisited when the D-058 hard-fail
+        flip is designed:** a strict gate needs got_blocks to mean what
+        ``provisions`` will index, so either mirror the closer set or move
+        the check to where the module can be imported.
 
     Returns one dict ``{"article", "expected_blocks", "got_blocks"}`` per
     Article element whose source block count exceeds its markdown paragraph
