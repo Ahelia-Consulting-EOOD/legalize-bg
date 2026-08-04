@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** The corpus must never again contain an article that the act does not have. Not „must not surface" — **must not contain.** This plan fixes the false insertions at the point they are written, blocks any ingest that would reintroduce them, and only then repairs the existing corpus.
+**Goal:** The corpus must never again contain an article that the act does not have. Not „must not surface“ — **must not contain.** This plan fixes the false insertions at the point they are written, blocks any ingest that would reintroduce them, and only then repairs the existing corpus.
 
 ## Severity
 
@@ -10,7 +10,7 @@
 
 `get_article("zakon-za-zadalzheniyata-i-dogovorite", "чл. 1001а")` returns text that is **not ЗЗД** — it is quoted ГПК/ЗПИ text sitting in ЗЗД's ПЗР. Anyone who cites „ЗЗД чл. 1001а“ has cited a provision that does not exist. The file `laws/zakon-za-zadalzheniyata-i-dogovorite.md` contains that anchor today, so the defect is in the *product*, not merely in a query path.
 
-„The text is intact, so the corpus is not broken" was wrong, and wrong in the project's signature way: **text-presence is a producer-side metric.** It is the exact reasoning the D-047 coverage gate used, recorded in D-058 as instance (i) of this project's recurring blind-spot class. The consumer-side metric is *does the answer correspond to real law*.
+„The text is intact, so the corpus is not broken“ was wrong, and wrong in the project's signature way: **text-presence is a producer-side metric.** It is the exact reasoning the D-047 coverage gate used, recorded in D-058 as instance (i) of this project's recurring blind-spot class. The consumer-side metric is *does the answer correspond to real law*.
 
 ## The assurance chain — why the next ingest cannot reintroduce this
 
@@ -333,7 +333,7 @@ git commit -m "feat(index): FR-030 anchor classification + corpus survey"
 
 ---
 
-# PHASE 1 — Prevention (the „never again" phase)
+# PHASE 1 — Prevention (the „never again“ phase)
 
 **Preflight required** (`docs/process/IMPLEMENTATION-PREFLIGHT.md`): protected surface `fetcher/bg/`. Note that `HtmlToMarkdown.convert`'s signature is unchanged and the change is output-fidelity only.
 
