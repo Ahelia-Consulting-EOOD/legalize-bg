@@ -595,6 +595,13 @@ reproducible and are unchanged.
 
 ### 9.2 Where the artifacts cluster — the distinction that changes the ruling
 
+> **SUPERSEDED IN PART — see §12.** The row counts below are the pre-fix state (ЗЗД 461 is now
+> 459) and the „clean“ verdict is qualified: a census of all 761 doctrinal rows in §12.4 finds
+> **11.8 %** of them artifact under this report's own §9 standard. The clustering claim itself
+> stands — the doctrinal stratum is an order of magnitude cleaner than the annex/table stratum's
+> 95 % — but „clean“ overstates it, and the „% rows under 40 chars“ proxy below is not a general
+> artifact measure (see the limitation note at the end of this section).
+
 They cluster in **annex and table material** (FR-026 reserved scope). The doctrinal target of
 FR-034 is **clean**:
 
@@ -827,7 +834,7 @@ FR-034 exists for, versus everything else.
 
 | stratum | acts | rows | share | artifact rate |
 |---|---:|---:|---:|---:|
-| **doctrinal** (pre-1974) | 13 | 761 | 3.6 % | **6.8 %** (census, §12.4) |
+| **doctrinal** (pre-1974) | 13 | 761 | 3.6 % | **11.8 %** (census, §12.4; 17.6 % broad) |
 | **annex/table** (1974+ and undated municipal) | 205 | 20,282 | 96.4 % | **95.0 %** (19/20 sampled) |
 
 Row-share-weighted ≈ 92 %, consistent with §9.1b's row-uniform draw of 93.3 %. **The aggregate
@@ -841,41 +848,76 @@ the two state-budget acts alone are 9,266 rows — which FR-034 must not and can
 
 ## 12.4 Doctrinal census — all 761 rows, enumerated
 
-A 20-row sample of the doctrinal stratum scores 15.0 % artifact, but a sample cannot say WHERE
-the residue is, and an earlier draft of the task report wrongly generalised its draw into „the
-artifacts come from one act“. Every doctrinal row was therefore read. Two classes account for all
-of it — **false or quoted anchors** (the article number belongs to another law reproduced in the
-act's ПЗР) and **chrome rows** (ЗИД stubs, `/span>` remnants, headings, separator rules,
-promulgation formulae):
+A 20-row sample of the doctrinal stratum scores 15.0 % artifact, but a sample cannot say WHERE the
+residue is. Every doctrinal row was therefore read.
+
+**The standard applied is this report's own §9 standard, unchanged:** genuine = a self-contained
+normative paragraph of the article body; artifact = table cell, fragment of a split sentence or
+enumeration, annex/form/template material, **quoted-ЗИД or false-anchor material**, section
+header, separator or chrome. Three classes account for the doctrinal residue: **false anchors**
+(the article number belongs to another law reproduced in the act's ПЗР), **quoted-ЗИД and
+amendment mechanics** (`§ N.` markers, „…се изменя така:“ stubs and the inserted text they
+introduce, positionally sliced into алинеи of an article that has none), and **chrome** (`/span>`
+remnants, headings, separator rules, promulgation formulae).
 
 | act | rows | artifacts | what |
 |---|---:|---:|---|
-| ЗЗД | 459 | 10 | false-anchor blocks чл. 1001а/1001б/1001г (quoted ГПК + ЗПИ text) |
-| ЗС | 103 | 2 | false-anchor duplicate чл. 84 |
-| ЗОРВКС | 57 | 23 | false anchors чл. 330/516/517/518/562/677/683 |
-| ЗЛС | 44 | 9 | чл. 11 ал. 1; чл. 212а ал. 3/4/5; чл. 284а ал. 3; чл. 918 ал. 3/4/5; чл. 934 ал. 1 |
-| ЗБППМН | 7 | 3 | чл. 45/47/155 ал. 1 — `/span>`-chrome ЗИД stubs |
-| ЗОС | 4 | 2 | чл. 3 ал. 2 separator; ал. 3 promulgation formula |
-| ЗВТ | 5 | 2 | чл. 24 ал. 2 separator; ал. 3 „Издаден в София…“ |
-| ЗА-1947 | 11 | 1 | чл. 1 ал. 2 „А. По Военно-наказателния закон - книга II“ |
+| ЗОРВКС | 57 | **50** | 23 under false anchors чл. 330/516/517/518/562/677/683 + 27 of the 34 rows under its OWN чл. 1–8 (§-markers, „…се изменя така:“ stubs, quoted insertions); only the 7 article leads are genuine |
+| ЗЛС | 44 | **16** | 9 chrome (чл. 11 ал. 1; чл. 212а ал. 3/4/5; чл. 284а ал. 3; чл. 918 ал. 3/4/5; чл. 934 ал. 1) + 7 quoted insertions (чл. 11 ал. 2/3/4, чл. 212а ал. 1/2, чл. 284а ал. 1/2) |
+| ЗЗД | 459 | **10** | false-anchor block чл. 1001а/1001б/1001г (quoted ГПК + ЗПИ text) |
+| ЗБППМН | 7 | **7** | 3 `/span>`-chrome ЗИД stubs (чл. 45/47/155 ал. 1) + 4 quoted-НК insertions |
+| ЗС | 103 | **2** | false-anchor duplicate чл. 84 |
+| ЗОС | 4 | **2** | чл. 3 ал. 2 separator; ал. 3 promulgation formula |
+| ЗВТ | 5 | **2** | чл. 24 ал. 2 separator; ал. 3 „Издаден в София…“ |
+| ЗА-1947 | 11 | **1** | чл. 1 ал. 2 „А. По Военно-наказателния закон - книга II“ |
 | ППУ техн. правоспособност · ЗУПКНИ · ЗА-1964 · наредба 13а-10403 · ЗА-1950 | 71 | 0 | — |
-| **total** | **761** | **52 = 6.8 %** | **8 of 13 acts contribute** |
+| **total** | **761** | **90 = 11.8 %** | **8 of 13 acts contribute** |
 
-A broader reading gives 100 / 761 = 13.1 %: ЗЛС's чл. 915–934 are ЗГС articles inserted by ЗЛС, so
-all 44 of its rows could be classed as quoted-anchor material rather than only the 9 chrome rows
-(+35); ЗА-1947's ал. 3–11 are unmarked enumeration items under a colon-terminated lead (+9); and
-ЗБППМН's 4 quoted-НК provisions (+4). The conservative 52 counts only rows that are chrome or sit
-under an anchor the act demonstrably does not own.
+**A broader reading gives 134 / 761 = 17.6 %**, on three further judgement calls: ЗЛС's
+чл. 915–934 are ЗГС articles inserted BY ЗЛС, so all 44 of its rows could count as quoted-anchor
+material rather than only 16 (+28); ЗА-1947's ал. 3–11 are unmarked enumeration items under a
+colon-terminated lead, the same standard that made ЗЗД чл. 265's items artifacts (+9); and
+ЗОРВКС's 7 article leads are the heads of manufactured splits, which §9's S10/S24 correction
+treats as artifacts alongside their tails (+7).
 
-**None of these 52 is FR-034 segmentation** — they are the pre-existing false-anchor and
-tag-remnant classes of §10 families A/C/D, i.e. routing item 3. What the fix round removed was the
-segmentation class; what remains in the doctrinal stratum is anchor-detection work.
+**The 20-row sample's 15.0 % sits between the two readings**, as it should — a sample estimating
+the same quantity the census enumerates.
 
-**Doctrinal claim, restated for governance:** of 761 implicit rows across 13 pre-Указ-883 acts,
-**709 are clean position-derived алинеи and 52 are enumerated pre-existing artifacts in 8 acts**.
-Spot reads of ЗЗД, ЗС and ЗЛС continue to return well-formed алинеи, and ЗЗД чл. 265 now numbers
-correctly (the six-month / five-year prescription is ал. 3, not ал. 5). FR-034's own objective is
-met on its own population.
+> **Standard-consistency note, stated because it is the call that moves the number most.** An
+> earlier version of this section reported 6.8 % / 13.1 % from a narrower census criterion — only
+> chrome, or rows under an anchor the act demonstrably does not own. That criterion excluded 38
+> quoted-ЗИД and amendment-mechanics rows (27 in ЗОРВКС, 7 in ЗЛС, 4 in ЗБППМН) that this
+> report's §9 standard, §10 family D („ЗОРВКС чл. 8 (27/3): quoted ЗИД text“) and the 20-row
+> sample itself all class as artifacts — two of them, ЗОРВКС чл. 6 ал. 10 and ал. 18, are rows the
+> sample scored as artifacts. Presenting 6.8 %, 13.1 % and 15.0 % side by side implied three
+> estimates of one quantity when two standards were in play. The figures above apply the §9
+> standard throughout. The 52 rows of the narrower enumeration remain individually verified and
+> are a subset of the 90; they are an enumeration, not a rate.
+
+**None of these 90 is FR-034 segmentation** — they are the pre-existing false-anchor, quoted-ЗИД
+and tag-remnant classes of §10 families A/C/D, i.e. routing item 3. What the fix round removed was
+the segmentation class; what remains in the doctrinal stratum is anchor-detection work on
+nineteenth- and mid-twentieth-century amending acts.
+
+**Doctrinal claim, restated for governance — and it does not turn on the 10 % bar.** Of 761
+implicit rows across 13 pre-Указ-883 acts, **671 are clean position-derived алинеи and 90
+(11.8 %, or 134 / 17.6 % on the broader reading) are pre-existing artifacts concentrated in 8
+acts — 66 of them in just two, ЗОРВКС and ЗЛС, both mid-century acts whose bodies are amendment
+programmes rather than ordinary articles.** The doctrinal stratum is therefore **above** the
+plan's 10 % bar on this measure. Three things follow, none of which depends on where the number
+lands:
+
+1. The residue is **not** the class FR-034 owns. Every one of the 90 is anchor-detection or
+   chrome (routing item 3); the segmentation class the fix round targeted is gone.
+2. The doctrinal stratum is still **an order of magnitude cleaner** than the annex/table stratum
+   (11.8 % vs 95.0 %), which is the split §12.3 exists to publish.
+3. On the acts FR-034 was actually written for — ЗЗД, ЗС, ЗЛС's family-law articles, ЗУПКНИ,
+   ЗА-1964, ППУ — spot reads return well-formed алинеи, and ЗЗД чл. 265 now numbers correctly
+   (the six-month / five-year prescription is ал. 3, not ал. 5). ЗЗД's own rate is 10 / 459 =
+   2.2 % and ЗС's is 2 / 103 = 1.9 %.
+
+Governance should quote the split and the per-act table, not a single doctrinal percentage: the
+aggregate is dominated by two amending acts whose defect class is already routed elsewhere.
 
 ## 12.5 What the fix round did NOT fix
 
