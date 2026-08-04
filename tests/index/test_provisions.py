@@ -767,3 +767,19 @@ def test_amendment_marker_before_a_capital_still_starts_an_alinea():
     rows = parse(md, law_id="x")
     alineas = [r for r in rows if r.article == "30" and r.paragraph is not None]
     assert [r.paragraph for r in alineas] == ["1", "2", "3"]
+
+
+def test_subpoint_re_matches_bukva_shapes_in_isolation():
+    """`_SUBPOINT_RE`'s буква branch is currently subsumed by
+    `_CONTINUATION_RE` (a bare lowercase Cyrillic opening already merges
+    every `а)` / `аа)` / `ввв)` paragraph), so no behavioural test can
+    isolate it — deleting the branch leaves all 3,624 corpus files parsing
+    identically. It is kept as defence in depth against a later narrowing of
+    `_CONTINUATION_RE`, and this test pins it directly so that narrowing
+    cannot silently take буква handling with it."""
+    from index.provisions import _SUBPOINT_RE
+    for shape in ("а) текст", "я) текст", "аа) текст", "бб) текст", "ввв) текст"):
+        assert _SUBPOINT_RE.match(shape), shape
+    # Not sub-points: a capitalised opening, and a буква with no separator.
+    assert not _SUBPOINT_RE.match("А) текст")
+    assert not _SUBPOINT_RE.match("абвг) текст")

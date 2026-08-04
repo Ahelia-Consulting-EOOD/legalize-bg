@@ -118,30 +118,30 @@ def _is_structural_header(para: str) -> bool:
 # Two closers were keyed too narrowly and let non-article material be
 # swallowed as алинеи:
 #
-#   * SECTION HEADERS. lex.bg emits „Допълнителни разпоредби" in the
+#   * SECTION HEADERS. lex.bg emits „Допълнителни разпоредби“ in the
 #     PLURAL as a `##` heading, but the SINGULAR „Допълнителна
-#     разпоредба" arrives as an ordinary paragraph, so the article
+#     разпоредба“ arrives as an ordinary paragraph, so the article
 #     stayed open and absorbed it (measured: 31 implicit rows by the
 #     report's loose prefix pattern). The prefix alone over-matches —
 #     of those 31 rows only 19 are headers; the rest are table cells
-#     („Допълнителни огнегасящи вещества", „Допълнителни електро-",
-#     „Допълнителна информация, по преценка на организацията"). So the
+#     („Допълнителни огнегасящи вещества“, „Допълнителни електро-“,
+#     „Допълнителна информация, по преценка на организацията“). So the
 #     branch below requires the WHOLE paragraph to be
-#     „{Допълнителн|Преходн|Заключителн}… [и …] {разпоредб|наредб}…"
+#     „{Допълнителн|Преходн|Заключителн}… [и …] {разпоредб|наредб}…“
 #     with an optional trailing colon. Measured corpus-wide over 3,624
 #     acts: 140 such paragraphs, 51 of them reachable with an article
-#     open, and all 51 are genuine headers — „Допълнителна разпоредба"
-#     ×32, „Заключителна разпоредба" ×13, „Преходни наредби:" ×2,
-#     „Допълнителни разпоредби", „Преходни и Заключителни разпоредби",
-#     „ДОПЪЛНИТЕЛНИ РАЗПОРЕДБИ", „ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ" ×1 each.
+#     open, and all 51 are genuine headers — „Допълнителна разпоредба“
+#     ×32, „Заключителна разпоредба“ ×13, „Преходни наредби:“ ×2,
+#     „Допълнителни разпоредби“, „Преходни и Заключителни разпоредби“,
+#     „ДОПЪЛНИТЕЛНИ РАЗПОРЕДБИ“, „ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ“ ×1 each.
 #     Zero false positives.
 #
-#   * ANNEXES WITHOUT A NUMBER. „Приложение № 3" closed the article but
-#     „Приложение към чл. 5" did not, so the annexed form was indexed as
-#     алинеи of the last article (sample row S04). The key is „към", NOT
-#     a bare „Приложение": that prefix also opens the citation
-#     „Приложение II, Регламент (ЕС) 2021/1165" and the noun form
-#     „Приложението по ал. 1 …". Measured: 931 „Приложение към …"
+#   * ANNEXES WITHOUT A NUMBER. „Приложение № 3“ closed the article but
+#     „Приложение към чл. 5“ did not, so the annexed form was indexed as
+#     алинеи of the last article (sample row S04). The key is „към“, NOT
+#     a bare „Приложение“: that prefix also opens the citation
+#     „Приложение II, Регламент (ЕС) 2021/1165“ and the noun form
+#     „Приложението по ал. 1 …“. Measured: 931 „Приложение към …“
 #     paragraphs corpus-wide, 10 of them reachable with an article open,
 #     all 10 genuine annex starts.
 _CONTINUATION_CLOSER_RE = re.compile(
@@ -151,7 +151,7 @@ _CONTINUATION_CLOSER_RE = re.compile(
     r"|\*[^*\s][^*\n]*\*\s*$"   # parser-emitted PreHistory italics: '*В сила от …*'
     r"|\(ОБН"                   # gazette banner
     r"|Приложение\s*№|ПРИЛОЖЕНИЕ"  # annex start, numbered / all-caps
-    r"|Приложение\s+към\b"      # annex start, „Приложение към чл. 5" (§9.1c)
+    r"|Приложение\s+към\b"      # annex start, „Приложение към чл. 5“ (§9.1c)
     r"|(?:Допълнителн|ДОПЪЛНИТЕЛН|Преходн|ПРЕХОДН|Заключителн|ЗАКЛЮЧИТЕЛН)\S*"
     r"(?:\s+и\s+\S+)?\s+(?:разпоредб|РАЗПОРЕДБ|наредб|НАРЕДБ)\S*\s*:?\s*$"
     r")"
@@ -297,22 +297,38 @@ def _split_alineas(body: str) -> list[tuple[str, str]]:
 # FR-034 Task 6c-d — three further sub-point shapes, each measured over
 # the frame `implicit = 1 AND valid_to IS NULL` (24,340 rows) with the
 # patterns shipped in sweep report §9.1c:
-#   * MULTI-LETTER букви `аа) бб) вв)` — 271 rows. lex.bg continues a
-#     буква list past „я)" by doubling (and occasionally tripling) the
-#     letter; the old `[а-я]\)` matched only the single-letter form.
+#   * MULTI-LETTER букви `аа) бб) вв)` — 271 rows by the report's count.
+#     lex.bg continues a буква list past „я)“ by doubling (and
+#     occasionally tripling) the letter; the old `[а-я]\)` matched only
+#     the single-letter form.
 #     NOTE for anyone reconciling the prose with the code: the report
-#     calls these „doubled-letter", but the pattern it shipped —
+#     calls these „doubled-letter“, but the pattern it shipped —
 #     and the count of 271 — is the general two-to-three-letter form.
 #     Truly doubled (`^([а-я])\1\)\s`) is only 256 rows. The general
 #     form is authoritative; `{1,3}` below subsumes both it and the
 #     original single letter.
+#     ATTRIBUTION, measured (Task 6c-d review): this branch contributes
+#     ZERO INCREMENTAL ROWS as the file currently stands, because
+#     `_CONTINUATION_RE`'s bare `[а-я]` already matches every буква
+#     paragraph — deleting the branch and re-parsing all 3,624 corpus
+#     files yields the identical 21,043 implicit rows and 0 acts
+#     differing. The 271 rows above are the SHAPE COUNT the report
+#     measured, not this branch's marginal effect. It is retained
+#     deliberately as defence in depth: if `_CONTINUATION_RE` is ever
+#     narrowed (e.g. to the punctuation-gated V3 variant below), буква
+#     handling must not vanish with it. `test_subpoint_re_matches_bukva_
+#     shapes_in_isolation` pins the branch directly for that reason.
 #   * MULTI-LEVEL DECIMAL точки `1.3.`, `2.3.1.2.5.` — 304 rows
 #     (правилник СОС чл. 16, наредба 3/2004). The old `\d{1,2}[.)]`
 #     stopped at the first dot, so `1.3.` was not a sub-point.
+#     LATENT: unlike the old pattern this also matches a date-shaped
+#     opener („2026.05.01 г.“). Zero such paragraph openers exist in the
+#     corpus today, so it is not a live defect; if dated openers ever
+#     appear, bound the first group (`\d{1,2}`) to exclude a year.
 #   * DASH BULLETS `- …` (plus the en/em-dash variants) — 515 rows.
 #     The report notes a 514↔515 wobble: `^- ` with a literal space
 #     gives 514, `^-\s` gives 515 (the extra row is „-\n\n2. Детски
-#     заведения"). The shipped `^[-–—]\s` is what is implemented.
+#     заведения“). The shipped `^[-–—]\s` is what is implemented.
 # Union of the three = 1,090 rows; with the section headers above, 1,121.
 _SUBPOINT_RE = re.compile(
     r"^(?:"
@@ -332,56 +348,56 @@ _SUBPOINT_RE = re.compile(
 # letter is therefore the continuation of the paragraph above it, never the
 # start of a new алинея. The parser was manufacturing алинеи out of the two
 # halves of one sentence: НК чл. 418 has no алинеи at all, yet the lead
-# („Който с целта по предходния член:") became ал. 1 and the tail („се
-# наказва с лишаване от свобода от пет до петнадесет години.") became ал. 2;
-# same shape at НК чл. 341/356ж/356и and ЗГМО чл. 2а („при условие че…").
+# („Който с целта по предходния член:“) became ал. 1 and the tail („се
+# наказва с лишаване от свобода от пет до петнадесет години.“) became ал. 2;
+# same shape at НК чл. 341/356ж/356и and ЗГМО чл. 2а („при условие че…“).
 #
 # WHY THE BARE-LOWERCASE FORM AND NOT A PUNCTUATION-GATED ONE. Four rules
 # were measured by re-running `_split_implicit_alineas` over every
 # implicit-eligible article body in `catalog.db` (63,163 bodies):
 #   baseline                                        24,340 rows
 #   + the three sub-point gaps only                 23,156
-#   + lowercase, gated on prev ending „:"           23,074  ← ЗЗД=460
-#   + lowercase, gated on prev ending „:", „," „;"  22,843  ← ЗЗД=459
+#   + lowercase, gated on prev ending „:“           23,074  ← ЗЗД=460
+#   + lowercase, gated on prev ending „:“, „,“ „;“  22,843  ← ЗЗД=459
 #   + lowercase, ungated (adopted)                  21,149  ← ЗЗД=459
-# The „:"-only gate is internally inconsistent — in ЗЗД чл. 265 it merges
-# the first enumeration item but not the second, which follows a „;".
-# The „:,;" gate and the ungated rule agree on every doctrinal act, and the
+# The „:“-only gate is internally inconsistent — in ЗЗД чл. 265 it merges
+# the first enumeration item but not the second, which follows a „;“.
+# The „:,;“ gate and the ungated rule agree on every doctrinal act, and the
 # tiebreak is COVERAGE of the measured defect set (the same criterion that
 # settled the B2 narrowing): the gated rule covers sample rows S10 and S24
-# but MISSES S20 (УП МТСП чл. 24, where the source breaks буква „ж)"
-# mid-clause after the word „съгласно" — no terminal punctuation at all).
+# but MISSES S20 (УП МТСП чл. 24, where the source breaks буква „ж)“
+# mid-clause after the word „съгласно“ — no terminal punctuation at all).
 # Only the ungated rule covers all three. Its extra 1,672 merges were
 # audited: they fall in 89 table/form-heavy acts (наредба 3/2004 ×350,
 # наредба 10/2011 ×253, наредба 1/2010 ×228 …), 86 % are under 40 chars,
 # and all 15 sampled from the highest-risk band (>= 100 chars) are annex,
 # form or table material — zero genuine алинеи. Sample row S21 (ППЗДвП
 # чл. 66) is NOT covered by any of the four: its trailing sentence opens
-# with a capital („Светлоотразяващият елемент…") and is indistinguishable
+# with a capital („Светлоотразяващият елемент…“) and is indistinguishable
 # from a real алинея without semantics. Left to FR-026.
 #
 # Doctrinal effect, measured: ЗС 103 → 103, ЗЛС 44 → 44, ЗЗД 461 → 459.
 # The two ЗЗД rows are чл. 265's unmarked enumeration items („поправяне на
-# работата…", „заплащане на разходите…"), which are grammatical completions
-# of „поръчващият може да иска: …", not алинеи. Merging them restores the
+# работата…“, „заплащане на разходите…“), which are grammatical completions
+# of „поръчващият може да иска: …“, not алинеи. Merging them restores the
 # citation-practice numbering: the six-month / five-year prescription is
 # чл. 265, ал. 3 ЗЗД, not ал. 5.
 #
 # The optional leading parenthetical exists because an amendment marker can
 # sit in front of the continuation and mask its lowercase opening: НК
 # чл. 410/411/412/417 have exactly чл. 418's shape, but their tail reads
-# „(изм. - ДВ, бр. 153 от 1998 г.) се наказва с …". So the test is applied to
+# „(изм. - ДВ, бр. 153 от 1998 г.) се наказва с …“. So the test is applied to
 # the first letter AFTER any leading `(…)`. Measured: 17 rows corpus-wide
 # match — 4 НК war-crimes articles plus formula legends („(Аф-ф)г = …,
-# където а = f Sin a"), table cells and form-field labels — and none is a
+# където а = f Sin a“), table cells and form-field labels — and none is a
 # genuine алинея. The bound `{0,120}` and the `[^)\n]` class keep the scan
 # inside one short parenthetical instead of running across a table cell.
 # An алинея that genuinely opens with an amendment marker continues with a
-# CAPITAL („(Изм. - ДВ …) Трета алинея.") and is unaffected.
+# CAPITAL („(Изм. - ДВ …) Трета алинея.“) and is unaffected.
 _CONTINUATION_RE = re.compile(r"^(?:\([^)\n]{0,120}\)\s*)?[а-я]")
 # NOT ^-anchored on purpose — rule 1a glues a title preamble in front of
 # the anchor, so ал. 1's text begins after the anchor MATCH END wherever
-# that falls („Предмет Чл. 1. Този кодекс…" -> „Този кодекс…").
+# that falls („Предмет Чл. 1. Този кодекс…“ -> „Този кодекс…“).
 _ANCHOR_PREFIX_RE = re.compile(r"(?:\*\*)?Чл\.\s+\d+[а-я]?\.(?:\*\*)?\s*")
 
 
@@ -415,7 +431,7 @@ def _split_implicit_alineas(body: str) -> list[tuple[str, str]]:
             # Strip everything up to and including the anchor, located by
             # SEARCH rather than a ^-anchored sub: rule 1a glues a title
             # preamble in front of the anchor, so a ^-anchored strip
-            # silently no-ops and ал. 1 keeps „Предмет Чл. 1. …".
+            # silently no-ops and ал. 1 keeps „Предмет Чл. 1. …“.
             m = _ANCHOR_PREFIX_RE.search(text)
             if m:
                 text = text[m.end():]
