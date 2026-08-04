@@ -173,7 +173,7 @@ CREATE TABLE provisions (
 | `id` | INTEGER | PRIMARY KEY, autoincrement | Surrogate key. |
 | `law_id` | TEXT | FOREIGN KEY → laws(law_id) | Which act this provision belongs to. |
 | `article` | TEXT | NOT NULL | Article number, including suffixes (e.g., "1", "14а", "115б"). |
-| `paragraph` | TEXT | Nullable | Paragraph number within the article (e.g., "1", "2"). NULL if the provision is the entire article. |
+| `paragraph` | TEXT | Nullable | Paragraph number within the article (e.g., "1", "2"). NULL if the provision is the entire article. For pre-1974 acts alinea numbers are position-derived (`implicit=1`, D-058) — those acts print their алинеи unnumbered, so the number is this parser's positional derivation, not a number the legislator printed; always check the `implicit` column before citing an ал. number from such an act. |
 | `valid_from` | DATE | NOT NULL | Date this provision version entered into force. |
 | `valid_to` | DATE | Nullable. **INCLUSIVE.** | Last date this provision version was in force. NULL means currently in force. See "Predicate semantics" at end of §2. |
 | `text_hash` | TEXT | Nullable | First 16 hex characters of the SHA-256 digest of the provision's text content (`hashlib.sha256(...).hexdigest()[:16]`). Used for change detection — if the hash changes between versions, the text was amended. ~64-bit collision domain, adequate for ~125k provisions across 3,573 acts. Implementation: `index/provisions.py:_hash`. |
