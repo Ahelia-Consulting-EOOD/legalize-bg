@@ -64,6 +64,44 @@ def test_verify_catches_tampered_act(export_run, tmp_path):
         victim.write_text(original, encoding="utf-8")
 
 
+def test_verify_catches_tampered_implicit_paragraphs(export_run):
+    """FR-034 (final-review Important 1a): the R2 sample check must hold
+    `implicit_paragraphs` to the `provisions.implicit` column, or the
+    flag is decorative — an export could claim a legislator-printed
+    number for a position-derived alinea and pass."""
+    corpus, db, out = export_run
+    victim = out / "r2" / "acts" / "zakon-vremeto.json"
+    original = victim.read_text(encoding="utf-8")
+    doc = json.loads(original)
+    assert doc["articles"]["1"]["implicit_paragraphs"] == []
+    doc["articles"]["1"]["implicit_paragraphs"] = ["1"]
+    victim.write_text(json.dumps(doc, ensure_ascii=False,
+                                 separators=(",", ":")), encoding="utf-8")
+    try:
+        with pytest.raises(VerifyError, match="implicit"):
+            verify_export(db_path=db, out_dir=out, sample_n=25)
+    finally:
+        victim.write_text(original, encoding="utf-8")
+
+
+def test_verify_catches_dropped_implicit_flag(export_run):
+    """The other direction: an act whose alineas ARE position-derived
+    must not be able to drop the flag and still verify."""
+    corpus, db, out = export_run
+    victim = out / "r2" / "acts" / "zakon-stariyat.json"
+    original = victim.read_text(encoding="utf-8")
+    doc = json.loads(original)
+    assert doc["articles"]["1"]["implicit_paragraphs"] == ["1", "2"]
+    doc["articles"]["1"]["implicit_paragraphs"] = []
+    victim.write_text(json.dumps(doc, ensure_ascii=False,
+                                 separators=(",", ":")), encoding="utf-8")
+    try:
+        with pytest.raises(VerifyError, match="implicit"):
+            verify_export(db_path=db, out_dir=out, sample_n=25)
+    finally:
+        victim.write_text(original, encoding="utf-8")
+
+
 def test_verify_catches_missing_d1_chunk(export_run):
     corpus, db, out = export_run
     chunk = next(out.glob("d1-fts-*.sql"))

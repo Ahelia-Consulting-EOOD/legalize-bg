@@ -5,7 +5,8 @@ payload shape (spec §R2):
 
     {"meta": {...}, "preamble_raw": "...", "body_markdown": "...",
      "articles": {"<art>": {"text": ..., "text_hash": ...,
-                            "paragraphs": {"<n>": "<text>", ...}}}}
+                            "paragraphs": {"<n>": "<text>", ...},
+                            "implicit_paragraphs": ["<n>", ...]}}}
 
 - `meta` mirrors the REST API's get_law composition (api/routes/laws.py)
   plus `rango`/`estado` from frontmatter (spec lists them explicitly).
@@ -16,6 +17,9 @@ payload shape (spec §R2):
   `text_hash` is article-level only (cf-worker interface agreement
   2026-07-21 — the Worker recomputes alinea hashes with the same
   sha256[:16] recipe when needed).
+- `implicit_paragraphs` (FR-034, spec v2.1) lists the keys of
+  `paragraphs` whose NUMBER was derived from paragraph position rather
+  than read off a printed `(N)` marker — see `articles_map`.
 - `preamble_raw` (cf-worker interface agreement 2026-07-21): the raw
   file prefix such that `preamble_raw + body_markdown` == the .md file
   byte-exactly — lets the Worker reproduce FastAPI's whole-file
@@ -67,7 +71,31 @@ def articles_map(body_markdown: str, law_id: str) -> dict[str, dict]:
     row) for each (article, paragraph) key, so the article text/hash
     keep the FIRST block and each paragraph key keeps its FIRST
     occurrence — while a paragraph that exists only in a later block is
-    still included (FastAPI would return it too)."""
+    still included (FastAPI would return it too).
+
+    FR-034 — `implicit_paragraphs` (final review 2026-08-04, Important
+    1a). Pre-Указ-883/1974 acts print their алинеи UNNUMBERED, so
+    `index.provisions` numbers them BY POSITION and marks the rows
+    `implicit`. D-058 (b) requires that a derived number never be
+    indistinguishable from one the legislator printed; the MCP and REST
+    surfaces carry an `implicit` field plus an `IMPLICIT_ALINEA`
+    warning, and this is the same flag on the third serving surface.
+    `paragraphs` keeps its plain-string values (cf-worker interface
+    agreement 2026-07-21 — changing them to objects would be a breaking
+    reshape), so the flag rides alongside as the list of `paragraphs`
+    keys that are position-derived.
+
+    The key is emitted UNCONDITIONALLY, `[]` included: a consumer must
+    never have to tell „no derived numbers in this article“ apart from
+    „this export predates the flag“ by key presence. Measured cost of
+    the uniform key at 2026-08-04 catalog state — 147,771 current
+    article rows over 3,624 acts, ~25 bytes each ≈ 3.7 MB across
+    `acts/`, plus the same again per exported version.
+
+    FIRST-wins applies to the flag exactly as it does to the text: the
+    flag describes the row that WON each paragraph key, so an explicit
+    alinea is never mislabelled because a later duplicate (quoted-ПЗР)
+    block re-emitted the same key implicitly."""
     arts: dict[str, dict] = {}
     for prov in parse_provisions(body_markdown, law_id=law_id):
         if prov.paragraph is None:
@@ -76,12 +104,17 @@ def articles_map(body_markdown: str, law_id: str) -> dict[str, dict]:
                     "text": prov.text,
                     "text_hash": prov.text_hash,
                     "paragraphs": {},
+                    "implicit_paragraphs": [],
                 }
         else:
             entry = arts.setdefault(prov.article, {
                 "text": "", "text_hash": "", "paragraphs": {},
+                "implicit_paragraphs": [],
             })
-            entry["paragraphs"].setdefault(prov.paragraph, prov.text)
+            if prov.paragraph not in entry["paragraphs"]:
+                entry["paragraphs"][prov.paragraph] = prov.text
+                if prov.implicit:
+                    entry["implicit_paragraphs"].append(prov.paragraph)
     return arts
 
 

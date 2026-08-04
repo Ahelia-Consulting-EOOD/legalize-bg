@@ -13,7 +13,8 @@
    spot-hash sampled segment bodies against the live catalog,
 5. sample N=25 acts (deterministic: sorted law_ids, even stride) and
    assert the R2 JSON articles match live `provisions` lookups (text +
-   text_hash for article-as-whole rows, text for alinea rows).
+   text_hash for article-as-whole rows, text for alinea rows, and
+   `implicit_paragraphs` against the `provisions.implicit` column).
 
 Raises VerifyError with a full failure list; returns a report dict.
 """
@@ -63,8 +64,8 @@ def _check_act_articles(conn: sqlite3.Connection, out_dir: Path,
     # FIRST-wins (rowid order), mirroring article_lookup's rows[0]
     # semantics and export_cf.acts.articles_map — see its docstring.
     rows = conn.execute(
-        "SELECT article, paragraph, text, text_hash FROM provisions "
-        "WHERE law_id = ? ORDER BY rowid", (law_id,)).fetchall()
+        "SELECT article, paragraph, text, text_hash, implicit FROM "
+        "provisions WHERE law_id = ? ORDER BY rowid", (law_id,)).fetchall()
     whole: dict = {}
     alineas: dict = {}
     for r in rows:
@@ -85,6 +86,15 @@ def _check_act_articles(conn: sqlite3.Connection, out_dir: Path,
                           if a == art_id}
         if art["paragraphs"] != expected_paras:
             failures.append(f"{law_id} чл.{art_id}: paragraphs diverge")
+        # FR-034: the position-derived flag must agree with the
+        # `provisions.implicit` column of the SAME first-wins row —
+        # otherwise the cf plane could serve a derived alinea number as
+        # one the legislator printed (D-058 (b), final review 2026-08-04)
+        expected_implicit = [p for (a, p), r in alineas.items()
+                             if a == art_id and r["implicit"]]
+        if art.get("implicit_paragraphs") != expected_implicit:
+            failures.append(
+                f"{law_id} чл.{art_id}: implicit_paragraphs diverge")
 
 
 def _check_fts_guards(out_dir: Path, failures: list[str]) -> None:
