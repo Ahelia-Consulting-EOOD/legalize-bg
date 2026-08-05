@@ -35,7 +35,7 @@ The fix lands **at the parser**, the guarantee is **a gate that blocks the write
 
 ## Execution state
 
-- Plan and this handover are on branch **`docs/anchor-integrity-plan`** (off `main` at `00e93494`). **Merge that branch first**, or branch execution work from it — the plan must be reachable from wherever you work.
+- Plan and this handover are **on `main`** (merged via PR #21, docs-only). Branch execution work off `main` — no checkout dance needed, the plan is reachable from any fresh worktree.
 - No execution work has started. Task 1 is the first thing to write.
 - Phases: P0 detect (Tasks 1–2, no behaviour change) → P1 prevent (Tasks 3–6, the „never again“ phase) → P2 repair (Task 7, the ~2h sweep) → P3 implicit eligibility (Task 8) → P4 governance (Task 9). One PR per phase (D-h).
 
