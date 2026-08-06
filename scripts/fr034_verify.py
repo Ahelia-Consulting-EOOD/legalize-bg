@@ -19,10 +19,29 @@ from the CURRENT catalog.db (pre-sweep).
       excluding duplicate-anchor articles (see the R5 comment below).
 Failures print a per-law diff and exit 1.
 
-`baseline` REFUSES to overwrite an existing BASELINE file (set
-`FR034_FORCE=1` to replace it deliberately): the pre-sweep floor cannot
-be recomputed once the corpus has been swept and the catalog rebuilt,
-and `baseline` is one habit-typo away from `check`.
+`article-baseline` / `article-check`: the same pair keyed one level
+finer, on (law_id, article) — D-058 (iv), mechanism 5 of the
+anchor-integrity assurance chain. R1/R2 above are per-LAW aggregates,
+so an article that LOSES rows is silently cancelled by another article
+of the same act that GAINS them; a real defect hid exactly that way in
+8 of the 9 acts it affected and surfaced only because the ninth had no
+offsetting gain. Keyed per article, a loss cannot be offset:
+  A1  an article lost explicit alinea rows vs baseline;
+  A2  something in the baseline is ABSENT now — an article (or, in one
+      summary line, a whole law) that the baseline recorded no longer
+      exists in the catalog;
+  A3  an article lost whole-article (anchor) rows vs baseline, i.e. it
+      still exists but with fewer anchors than before.
+A2 is the line the repair sweep's review step greps for: after the
+sweep every removed phantom article shows up as an A2, and each one is
+adjudicated by hand. A2 is therefore expected to be non-empty after a
+repair — the net is there so nothing REAL vanishes unnoticed alongside
+the phantoms, not to force the list to zero.
+
+Both `baseline` and `article-baseline` REFUSE to overwrite an existing
+baseline file (set `FR034_FORCE=1` to replace it deliberately): the
+pre-sweep floor cannot be recomputed once the corpus has been swept and
+the catalog rebuilt, and each is one habit-typo away from its `check`.
 
 MUST be run from the repo root: DB and BASELINE are relative paths, so
 elsewhere sqlite3 silently creates an empty db and check fails non-zero
@@ -32,6 +51,7 @@ import json, os, sqlite3, sys
 
 DB = "catalog.db"
 BASELINE = ".fr034-baseline.json"
+ARTICLE_BASELINE = ".article-baseline.json"
 
 CURRENT = "valid_to IS NULL"
 
@@ -43,6 +63,25 @@ def _counts(conn):
               FROM provisions WHERE {CURRENT} GROUP BY law_id"""
     return {r[0]: {"explicit_alineas": r[1] or 0, "articles": r[2] or 0}
             for r in conn.execute(q)}
+
+
+def _article_counts(conn):
+    """`_counts` with (law_id, article) as the key instead of law_id —
+    the SAME two quantities, one level finer. `explicit_alineas` stays
+    'numbered alinea rows the parser marked explicit'; `articles` stays
+    'whole-article rows' (paragraph IS NULL), which per article is that
+    article's anchor multiplicity: 1 normally, >1 where the act carries
+    a duplicate anchor. Returned nested, {law_id: {article: {...}}}, so
+    it serialises to JSON as directly as `_counts` does."""
+    q = f"""SELECT law_id, article,
+                   SUM(paragraph IS NOT NULL AND implicit = 0) AS explicit_alineas,
+                   SUM(paragraph IS NULL) AS articles
+              FROM provisions WHERE {CURRENT} GROUP BY law_id, article"""
+    out = {}
+    for law, article, alineas, articles in conn.execute(q):
+        out.setdefault(law, {})[article] = {
+            "explicit_alineas": alineas or 0, "articles": articles or 0}
+    return out
 
 
 def baseline():
@@ -131,5 +170,63 @@ def check():
     print(f"FR-034 VERIFY OK ({len(now)} laws)")
 
 
+def article_baseline():
+    # Same irreplaceability, same habit-typo risk as `baseline` — see the
+    # comment there. This one is the quantity regression net for the
+    # repair sweep, so it must be captured from the corpus as it stands
+    # PRE-repair.
+    if os.path.exists(ARTICLE_BASELINE) and os.environ.get("FR034_FORCE") != "1":
+        sys.exit(
+            f"refusing to overwrite the existing baseline "
+            f"{ARTICLE_BASELINE} — it is the irreplaceable pre-sweep "
+            "per-article floor and cannot be recomputed after a rebuild. "
+            "Did you mean `article-check`? To replace it deliberately: "
+            "FR034_FORCE=1 python scripts/fr034_verify.py article-baseline")
+    conn = sqlite3.connect(DB)
+    data = _article_counts(conn)
+    json.dump(data, open(ARTICLE_BASELINE, "w"))
+    pairs = sum(len(a) for a in data.values())
+    print(f"article baseline: {len(data)} laws, {pairs} articles -> "
+          f"{ARTICLE_BASELINE}")
+
+
+def article_check():
+    base = json.load(open(ARTICLE_BASELINE))
+    conn = sqlite3.connect(DB)
+    now = _article_counts(conn)
+    failures = []
+    for law, arts in base.items():
+        n_law = now.get(law)
+        if n_law is None:
+            # one summary line rather than an A2 per article — a whole
+            # law vanishing would otherwise flood the report
+            failures.append(f"A2 {law}: law vanished from catalog "
+                            f"({len(arts)} baseline articles)")
+            continue
+        for art, b in arts.items():
+            n = n_law.get(art)
+            if n is None:
+                failures.append(f"A2 {law} чл.{art}: article vanished "
+                                "from catalog")
+                continue
+            if n["explicit_alineas"] < b["explicit_alineas"]:
+                failures.append(
+                    f"A1 {law} чл.{art}: explicit alineas "
+                    f"{b['explicit_alineas']} -> {n['explicit_alineas']}")
+            if n["articles"] < b["articles"]:
+                failures.append(
+                    f"A3 {law} чл.{art}: article rows "
+                    f"{b['articles']} -> {n['articles']}")
+    if failures:
+        print(f"FR-034 ARTICLE VERIFY FAIL ({len(failures)} findings):")
+        for f in failures[:50]:
+            print(" -", f)
+        sys.exit(1)
+    pairs = sum(len(a) for a in now.values())
+    print(f"FR-034 ARTICLE VERIFY OK ({len(now)} laws, {pairs} articles)")
+
+
 if __name__ == "__main__":
-    {"baseline": baseline, "check": check}[sys.argv[1]]()
+    {"baseline": baseline, "check": check,
+     "article-baseline": article_baseline,
+     "article-check": article_check}[sys.argv[1]]()

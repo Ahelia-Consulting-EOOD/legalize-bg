@@ -22,6 +22,10 @@ cf-export/
 # FR-034 sweep verification baseline (derived from catalog.db, per-run)
 .fr034-baseline.json
 
+# D-058 (iv) per-(law_id, article) baseline (derived from catalog.db,
+# per-run)
+.article-baseline.json
+
 # FR-034 sweep + rebuild run logs (census evidence, per-run — keep the
 # files on disk, never commit them)
 refresh-fr034*.log
