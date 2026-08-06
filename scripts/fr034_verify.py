@@ -36,7 +36,15 @@ A2 is the line the repair sweep's review step greps for: after the
 sweep every removed phantom article shows up as an A2, and each one is
 adjudicated by hand. A2 is therefore expected to be non-empty after a
 repair — the net is there so nothing REAL vanishes unnoticed alongside
-the phantoms, not to force the list to zero.
+the phantoms, not to force the list to zero. A3 needs the same
+adjudication: a phantom that collides with a real article number
+removes an anchor instead of an article, so it lands in A3, not A2.
+
+Because that report is expected to run to ~a thousand lines,
+`article-check` writes EVERY finding to ARTICLE_FINDINGS and prints a
+capped view. Only A2 is capped; A1/A3 and the whole-law summary always
+print in full, so no loss signal can be pushed out of sight by A2
+volume. Adjudicate from the file, not from stdout.
 
 Both `baseline` and `article-baseline` REFUSE to overwrite an existing
 baseline file (set `FR034_FORCE=1` to replace it deliberately): the
@@ -52,6 +60,14 @@ import json, os, sqlite3, sys
 DB = "catalog.db"
 BASELINE = ".fr034-baseline.json"
 ARTICLE_BASELINE = ".article-baseline.json"
+ARTICLE_FINDINGS = ".article-check-findings.txt"
+
+# `check` expects ZERO failures, so its 50-line print cap is a courtesy.
+# `article-check` expects a NON-EMPTY report after the repair sweep (on
+# the order of a thousand A2 lines), so a cap there decides what the
+# operator is even able to see. Only A2 is capped, and only in the
+# printed report — the full list always lands in ARTICLE_FINDINGS.
+A2_PRINT_CAP = 50
 
 CURRENT = "valid_to IS NULL"
 
@@ -194,34 +210,62 @@ def article_check():
     base = json.load(open(ARTICLE_BASELINE))
     conn = sqlite3.connect(DB)
     now = _article_counts(conn)
-    failures = []
+    # Kept apart rather than sniffed back out of the strings later: only
+    # arts_gone may be capped, and laws_gone/losses must always print.
+    laws_gone, losses, arts_gone = [], [], []
     for law, arts in base.items():
         n_law = now.get(law)
         if n_law is None:
-            # one summary line rather than an A2 per article — a whole
-            # law vanishing would otherwise flood the report
-            failures.append(f"A2 {law}: law vanished from catalog "
-                            f"({len(arts)} baseline articles)")
+            # ONE summary line rather than an A2 per article — a whole
+            # law vanishing would otherwise flood the report. The sweep
+            # rewrites acts and never deletes them, so this is not a
+            # phantom-shaped event at all; it is stop-the-line however
+            # many articles it covers. It still has to answer a bare
+            # `A2` grep AND the plan's `article vanished` phrasing,
+            # because it is the worst line this command can emit.
+            laws_gone.append(
+                f"A2 {law} чл.*: article vanished from catalog — the "
+                f"WHOLE LAW vanished, all {len(arts)} baseline articles "
+                "(STOP THE LINE)")
             continue
         for art, b in arts.items():
             n = n_law.get(art)
             if n is None:
-                failures.append(f"A2 {law} чл.{art}: article vanished "
-                                "from catalog")
+                arts_gone.append(f"A2 {law} чл.{art}: article vanished "
+                                 "from catalog")
                 continue
             if n["explicit_alineas"] < b["explicit_alineas"]:
-                failures.append(
+                losses.append(
                     f"A1 {law} чл.{art}: explicit alineas "
                     f"{b['explicit_alineas']} -> {n['explicit_alineas']}")
             if n["articles"] < b["articles"]:
-                failures.append(
+                losses.append(
                     f"A3 {law} чл.{art}: article rows "
                     f"{b['articles']} -> {n['articles']}")
+    failures = laws_gone + losses + arts_gone
     if failures:
-        print(f"FR-034 ARTICLE VERIFY FAIL ({len(failures)} findings):")
-        for f in failures[:50]:
+        # The full set first, on disk: the repair's adjudication step
+        # works from this file, never from the truncated stdout.
+        with open(ARTICLE_FINDINGS, "w", encoding="utf-8") as fh:
+            fh.write("\n".join(failures) + "\n")
+        print(f"FR-034 ARTICLE VERIFY FAIL ({len(failures)} findings: "
+              f"{len(laws_gone)} whole-law, {len(losses)} A1/A3, "
+              f"{len(arts_gone)} A2):")
+        # laws_gone and losses are NEVER truncated — a loss buried behind
+        # A2 volume is a silent regression, which is the whole point of
+        # this baseline.
+        for f in laws_gone + losses:
             print(" -", f)
+        for f in arts_gone[:A2_PRINT_CAP]:
+            print(" -", f)
+        if len(arts_gone) > A2_PRINT_CAP:
+            print(f"   ... and {len(arts_gone) - A2_PRINT_CAP} more A2 "
+                  "lines (printed report only)")
+        print(f"all {len(failures)} findings -> {ARTICLE_FINDINGS}")
         sys.exit(1)
+    # never leave a stale finding list sitting next to a green run
+    if os.path.exists(ARTICLE_FINDINGS):
+        os.remove(ARTICLE_FINDINGS)
     pairs = sum(len(a) for a in now.values())
     print(f"FR-034 ARTICLE VERIFY OK ({len(now)} laws, {pairs} articles)")
 
