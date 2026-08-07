@@ -1,0 +1,361 @@
+{
+ "slug": "zakon-za-obshtestvenite-porachki",
+ "round": 0,
+ "blocks": 4333,
+ "sections": 106,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 537,
+   "kind": "low_confidence",
+   "detail": "second 'Раздел IV.' right after the amended one; section_heading or editorial_note (old heading kept by lex.bg)"
+  },
+  {
+   "block": 538,
+   "kind": "low_confidence",
+   "detail": "old title of the repeated Раздел IV; section_heading or editorial_note"
+  },
+  {
+   "block": 1318,
+   "kind": "low_confidence",
+   "detail": "repeated chapter heading with the earlier title wording printed by lex.bg; could be drop"
+  },
+  {
+   "block": 1319,
+   "kind": "low_confidence",
+   "detail": "earlier title of the same chapter (before the 2018 change); could be drop"
+  },
+  {
+   "block": 1322,
+   "kind": "low_confidence",
+   "detail": "repeated section heading with the earlier title wording; could be drop"
+  },
+  {
+   "block": 1323,
+   "kind": "low_confidence",
+   "detail": "earlier title of the same section; could be drop"
+  },
+  {
+   "block": 1341,
+   "kind": "low_confidence",
+   "detail": "repeated section heading with the earlier title wording; could be drop"
+  },
+  {
+   "block": 1342,
+   "kind": "low_confidence",
+   "detail": "earlier title of the same section (before the 2018 change); could be drop"
+  },
+  {
+   "block": 2769,
+   "kind": "low_confidence",
+   "detail": "dashed separator before the adoption formula; editorial_note or drop"
+  },
+  {
+   "block": 4267,
+   "kind": "low_confidence",
+   "detail": "CPV table of Annex 21 printed after § 74; table_row if it belongs to § 74"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 536,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 537"
+  },
+  {
+   "block": 1321,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1322"
+  },
+  {
+   "block": 1340,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1341"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 10
+ },
+ "source_finding_kinds": {
+  "empty_section": 3
+ },
+ "labels": {
+  "drop": 50,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 16,
+  "chapter_heading": 64,
+  "article_title": 263,
+  "article_head": 287,
+  "item": 902,
+  "alinea": 955,
+  "letter": 211,
+  "section_heading": 80,
+  "provisions_heading": 59,
+  "paragraph_sign": 86,
+  "continuation": 6,
+  "quoted": 17,
+  "editorial_note": 45,
+  "adoption_formula": 1,
+  "annex_heading": 38,
+  "annex_row": 1249,
+  "repeal_note": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 4284,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU acts block, not part of the act"
+  },
+  {
+   "block": 4285,
+   "text": "КОНСОЛИДИРАН ТЕКСТ НА ДОГОВОРА ЗА ФУНКЦИОНИРАНЕТО НА ЕВРОПЕЙСКИЯ СЪЮЗ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4286,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4287,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1161 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4288,
+   "text": "ДИРЕКТИВА (ЕС) 2019/944 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юни 2019 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4289,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4290,
+   "text": "ДИРЕКТИВА 2014/55/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4291,
+   "text": "ДИРЕКТИВА 2014/25/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 февруари 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4292,
+   "text": "ДИРЕКТИВА 2014/24/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 февруари 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4293,
+   "text": "ДИРЕКТИВА 2012/34/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 ноември 2012 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4294,
+   "text": "ДИРЕКТИВА 2011/7/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 февруари 2011 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4295,
+   "text": "ДИРЕКТИВА 2009/81/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юли 2009 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4296,
+   "text": "ДИРЕКТИВА 2009/73/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юли 2009 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4297,
+   "text": "ДИРЕКТИВА 2009/33/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4298,
+   "text": "ДИРЕКТИВА 2007/66/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2007 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4299,
+   "text": "ДИРЕКТИВА 2006/123/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2006 г",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4300,
+   "text": "ДИРЕКТИВА 97/67/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 декември 1997 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4301,
+   "text": "ДИРЕКТИВА 94/22/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 30 май 1994 година от",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4302,
+   "text": "ДИРЕКТИВА 92/13/ЕИО НА СЪВЕТА от 25 февруари 1992 година относно съгласуването н",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4303,
+   "text": "ДИРЕКТИВА 89/665/ЕИО НА СЪВЕТА от 21 декември 1989 година относно координирането",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4304,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4305,
+   "text": "РЕГЛАМЕНТ (ЕС) 2023/1315 НА КОМИСИЯТА от 23 юни 2023 година за изменение на Регл",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4306,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2022/2303 НА КОМИСИЯТА от 24 ноември 2022 година за",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4307,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2021/1953 НА КОМИСИЯТА от 10 ноември 2021 година за изм",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4308,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2021/1952 НА КОМИСИЯТА от 10 ноември 2021 година за изм",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4309,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2021/1950 НА КОМИСИЯТА от 10 ноември 2021 година за изм",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4310,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2019/1780 НА КОМИСИЯТА от 23 септември 2019 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4311,
+   "text": "РЕГЛАМЕНТ (ЕС) 2018/858 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 30 май 2018 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4312,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2017/2365 НА КОМИСИЯТА от 18 декември 2017 година за из",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4313,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2017/2364 НА КОМИСИЯТА от 18 декември 2017 година за из",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4314,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4315,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2015/1986 НА КОМИСИЯТА от 11 ноември 2015 година за",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4316,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4317,
+   "text": "РЕГЛАМЕНТ (ЕС) № 651/2014 НА КОМИСИЯТА от 17 юни 2014 година за обявяване на няк",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4318,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1303/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 декември 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4319,
+   "text": "РЕГЛАМЕНТ (ЕС) № 952/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 октомври 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4320,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1025/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4321,
+   "text": "РЕГЛАМЕНТ (ЕС) № 305/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 март 2011 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4322,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1221/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 20",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4323,
+   "text": "РЕГЛАМЕНТ (ЕО) № 765/2008 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 юли 2008 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4324,
+   "text": "РЕГЛАМЕНТ (ЕО) № 213/2008 НА КОМИСИЯТА от 28 ноември 2007 година за изменение на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4325,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1370/2007 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4326,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1082/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юли 2006 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4327,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2195/2002 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 ноември 200",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4328,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2380/74 НА СЪВЕТА от 17 септември 1974 година относно приемане",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4329,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4330,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2017/1870 НА КОМИСИЯТА от 16 октомври 2017 година за ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4331,
+   "text": "РЕШЕНИЕ 2011/130/ЕС НА КОМИСИЯТА от 25 февруари 2011 година за установяване на м",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4332,
+   "text": "РЕШЕНИЕ 2009/767/ЕО НА КОМИСИЯТА от 16 октомври 2009 година за определяне на мер",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 10,
+ "diff_lines": 940
+}
