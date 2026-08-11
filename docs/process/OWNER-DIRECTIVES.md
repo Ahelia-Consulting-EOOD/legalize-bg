@@ -8,6 +8,7 @@ If this file conflicts with a weaker planning doc, this file wins.
 - status: active
 - owner: ekimir
 - effective date: 2026-04-19
+- last amended: 2026-08-11 (directives 9-14, corpus-correctness standard)
 - review cadence: per-phase gate (before each phase transition)
 
 ## Directives
@@ -36,8 +37,27 @@ If this file conflicts with a weaker planning doc, this file wins.
 8. **cp1251 encoding for all lex.bg fetches.**
    All HTTP responses from lex.bg must be explicitly decoded as `cp1251`. Never assume UTF-8, never rely on auto-detection. Set `resp.encoding = 'cp1251'` immediately after every `requests.get()` call to lex.bg. Output files are UTF-8 (Markdown in git).
 
+9. **Zero errors is the acceptance standard for corpus correctness.**
+   A single wrong article address is a defect, not a statistic. Percentages, artifact rates and sample-based adjudication are diagnostic tools only; they are never evidence of closure. This corpus is in daily legal use, and a citation to a provision that does not exist is the failure mode this project exists to prevent. The operational definition of a zero-error output is `docs/process/COVERAGE-FLOOR.md` section "Correctness floor".
+
+10. **Detection precedes repair.**
+    No fix is written, no sweep is run and no class is called closed before corpus-wide, exhaustive detection exists for that class and has been executed over every act. A census of a subset, however carefully adjudicated, does not authorise a repair.
+
+11. **Correctness is enforced at write time, never at read time.**
+    Fixes land in the parser; guarantees land in gates that refuse the write. Query-time filtering, suppression lists and consumer-side exclusion are forbidden as remedies, including as temporary measures.
+
+12. **Gates block or they do not exist.**
+    A gate that records a violation and permits the write is not a gate. Report-only mode is permitted solely as a measurement phase, requires a dated waiver naming its expiry condition, and may not be the state in which a class is closed.
+
+13. **Every known defect class is registered before work proceeds.**
+    Any defect discovered in any session is recorded as an FR row and a follow-up entry before further work on the surrounding area. Findings held only in a session transcript, a plan appendix or a commit message are treated as unrecorded.
+
+14. **One repair sweep per pipeline generation.**
+    All parser fixes for known classes land before the repair sweep is authorised, so that a single sweep repairs the corpus. Sequential per-class sweeps are forbidden; they multiply cost and leave interleaved states no baseline can describe.
+
 ## Notes
 
 - Do not bury hard constraints in brainstorming notes or informal PR comments.
 - Directives 1-8 derive from HANDOVER.md "Decisions Already Made" and the approved design doc (2026-04-19).
+- Directives 9-14 derive from the owner's ruling of 2026-08-11, following the anchor-integrity status review: "1 error, and the corpus is unreliable. Zero errors is the only acceptable standard." They strengthen the oversight baseline, which local repos may do without a waiver.
 - Waiver of any directive requires a dated entry in `docs/process/WAIVERS.md` with owner sign-off.
