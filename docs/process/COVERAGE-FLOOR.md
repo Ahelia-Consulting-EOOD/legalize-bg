@@ -44,10 +44,18 @@ Both floors must hold. Meeting one does not offset the other.
 
 - required floor: for every act in the corpus, all five properties hold.
 
-  1. **No fabricated address.** Every emitted anchor is a provision *of this act* as printed in
-     the source. Text quoted from another act, site chrome and markup remnants never yield an
+  1. **No fabricated address.** Every emitted anchor is *licensed*: it traces either to the act's
+     own promulgated text, or to exactly one applied amendment operation whose target address
+     resolved. Text quoted from another act, site chrome and markup remnants never yield an
      address. Reference defect: ЗЗД чл. 1001а, quoted Закон за гражданското съдопроизводство
      text served as a ЗЗД provision.
+
+     *Why "licensed" and not "as printed in the source":* under lex.bg the corpus photographs an
+     already-consolidated page, so faithfulness to the source is the whole test. Under ДВ the
+     corpus **constructs** the consolidated text, and a newly inserted чл. 5а is correct precisely
+     because no source prints it yet. A source-fidelity wording would make this property
+     unsatisfiable the day the source changes, so it is stated on the licence for the address
+     instead. Both readings coincide for lex.bg-sourced text.
   2. **No lost address.** Every provision the act carries is addressable. Nothing is swallowed
      by paragraph flattening or collapsed by a dropped superscript index. Reference defects:
      the pre-Указ-883 unnumbered-alinea flattening (FR-034 Defect A, closed); ТЗ чл. 260и¹ and
