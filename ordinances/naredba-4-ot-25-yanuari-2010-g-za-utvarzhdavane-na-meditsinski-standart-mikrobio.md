@@ -4,8 +4,8 @@ identificador: '2135662600'
 pais: bg
 rango: наредба
 fecha_publicacion: '2010-02-09'
-ultima_actualizacion: '2024-04-02'
-estado: vigente
+ultima_actualizacion: '2026-08-18'
+estado: derogado
 fuente: lex.bg
 dv_issue: '11'
 dv_year: 2010
@@ -21,6 +21,8 @@ amendment_history:
   date: '2021-07-30'
 - dv: 29/2024
   date: '2024-04-02'
+- dv: 74/2026
+  date: '2026-08-18'
 ---
 
 # НАРЕДБА № 4 ОТ 25 ЯНУАРИ 2010 Г. ЗА УТВЪРЖДАВАНЕ НА МЕДИЦИНСКИ СТАНДАРТ "МИКРОБИОЛОГИЯ"
