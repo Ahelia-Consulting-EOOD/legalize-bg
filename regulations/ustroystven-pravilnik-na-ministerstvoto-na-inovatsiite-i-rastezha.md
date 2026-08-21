@@ -4,8 +4,8 @@ identificador: '2137219666'
 pais: bg
 rango: правилник
 fecha_publicacion: '2022-03-01'
-ultima_actualizacion: '2025-08-05'
-estado: vigente
+ultima_actualizacion: '2026-08-21'
+estado: derogado
 fuente: lex.bg
 dv_issue: '17'
 dv_year: 2022
@@ -23,6 +23,8 @@ amendment_history:
   date: '2025-07-25'
 - dv: 64/2025
   date: '2025-08-05'
+- dv: 76/2026
+  date: '2026-08-21'
 ---
 
 # УСТРОЙСТВЕН ПРАВИЛНИК НА МИНИСТЕРСТВОТО НА ИНОВАЦИИТЕ И РАСТЕЖА
