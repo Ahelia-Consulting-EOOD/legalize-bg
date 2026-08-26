@@ -1,0 +1,88 @@
+{
+ "slug": "zakon-za-darzhavniya-sluzhitel",
+ "round": 2,
+ "blocks": 1314,
+ "sections": 43,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    787,
+    788
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    915
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1136
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1228,
+    1229
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   787,
+   788,
+   915,
+   1136,
+   1228,
+   1229
+  ],
+  "D-072/8": [
+   981
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 2,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 20,
+  "article_title": 169,
+  "article_head": 169,
+  "alinea": 371,
+  "item": 262,
+  "letter": 7,
+  "section_heading": 24,
+  "editorial_note": 68,
+  "provisions_heading": 103,
+  "paragraph_sign": 108,
+  "quoted": 7,
+  "adoption_formula": 1,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 981,
+   "text": "-------------------------",
+   "note": "separator dash line before adoption formula; editorial_note also plausible"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 666
+}
