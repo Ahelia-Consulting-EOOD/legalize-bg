@@ -4,8 +4,8 @@ identificador: '2135730108'
 pais: bg
 rango: наредба
 fecha_publicacion: '2011-05-13'
-ultima_actualizacion: '2014-06-10'
-estado: vigente
+ultima_actualizacion: '2026-09-04'
+estado: derogado
 fuente: lex.bg
 dv_issue: '37'
 dv_year: 2011
@@ -17,6 +17,8 @@ amendment_history:
   date: '2011-05-13'
 - dv: 48/2014
   date: '2014-06-10'
+- dv: 81/2026
+  date: '2026-09-04'
 ---
 
 # НАРЕДБА № 15 ОТ 13 АПРИЛ 2011 Г. ЗА АЕРОНАВИГАЦИОННОТО ИНФОРМАЦИОННО ОБСЛУЖВАНЕ
