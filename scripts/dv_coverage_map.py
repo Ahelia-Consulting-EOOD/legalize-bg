@@ -10,11 +10,12 @@ source model from a definition into numbers: which acts, which events,
 how many Gazette PDF pages stand between grade B and grade A.
 
 It is a RESEARCH ARTIFACT. It reads the corpus frontmatter and the two
-JSONL tables the acquisition layer wrote, and it writes seven files under
+JSONL tables the acquisition layer wrote, and it writes eight files under
 `--out`: `coverage-map.csv`, `acts-summary.csv`, `chain-omissions.csv`,
-`unresolved.csv`, `estado-disputes.csv`, `pdf-era-inventory.csv` and
-`report.md`. It writes nothing into the corpus tree and derives no grade
-that any consumer surface sees; the provenance block that does is P1.
+`predecessor-materials.csv`, `unresolved.csv`, `estado-disputes.csv`,
+`pdf-era-inventory.csv` and `report.md`. It writes nothing into the
+corpus tree and derives no grade that any consumer surface sees; the
+provenance block that does is P1.
 
 What it records, per act and per event of `amendment_history`:
 
@@ -27,7 +28,7 @@ What it records, per act and per event of `amendment_history`:
 - for PDF-era rows, an estimated page count.
 
 Three of the outputs answer D-064, the owner's decisions of 2026-09-05.
-`pdf-era-inventory.csv` is the reading budget for the 1989 to бр. 42/2005
+`pdf-era-inventory.csv` is the reading budget for the 1989 to бр. 120/2002
 tables of contents the owner has not bought yet (item 6); the
 `dv_identifier` column carries the `dv-<idMat>` form an act with no
 lex.bg document would be identified by (item 4); and
@@ -46,8 +47,8 @@ every act, no act can reach grade A, and `chain-omissions.csv` carries
 the column `pass` so that its title-pass rows are never mistaken for the
 complete answer.
 
-Before бр. 43 от 2005 there is no ДВ-side check at all: PDF-era issues
-expose no materials list, so chains from 1989 to 2004 are inherited from
+Before бр. 1 от 2003 there is no ДВ-side check at all: PDF-era issues
+expose no materials list, so chains from 1989 to 2002 are inherited from
 lex.bg. The report says so in as many words.
 
 **The P0 inputs to the grade procedure are fixed and the map says why.**
@@ -73,6 +74,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from fetcher.dv.resolver import (  # noqa: E402
+    FUZZY_THRESHOLD,
     CorpusAct,
     Resolver,
     act_type_of,
@@ -85,19 +87,57 @@ from fetcher.dv.resolver import (  # noqa: E402
 #: is a grade C track of its own (D-059).
 FIRST_ONLINE_YEAR = 1989
 
-#: The first issue with per-material HTML: бр. 43 от 20 май 2005. Before
+#: The first issue with per-material HTML: бр. 1 от 3 януари 2003. Before
 #: it an issue is a whole-issue PDF, so its events are `dv_pdf` and its
-#: chain is inherited from lex.bg.
-HTML_ERA_YEAR = 2005
+#: chain is inherited from lex.bg. Measured on 2026-09-05 by the full
+#: materials enumeration, which found 2,487 issues with an HTML materials
+#: list, the first of them бр. 1/2003, and 1,583 PDF-only issues before
+#: it (`data/dv/ENUMERATION-2026-09-05.md`).
+HTML_ERA_YEAR = 2003
+
+#: Why an `unlocated` row could not be placed on the ДВ side, in the
+#: order the report tabulates them and with the sentence it prints for
+#: each. The vocabulary is `classify`'s, and the point of printing it is
+#: that only the first label is a failed match: the rest say the ДВ side
+#: could not be consulted at all, which is an acquisition or a citation
+#: gap and is closed by a different piece of work.
+UNCERTAINTY_GLOSS = {
+    "chain_unconfirmed": (
+        "The issue has an HTML materials list and no title in it named this act."
+    ),
+    "materials_not_enumerated": (
+        "The issue is in the table and exposes no materials online, so there "
+        "is nothing to check the row against."
+    ),
+    "issue_not_in_table": (
+        "The cited issue does not exist in the ДВ enumeration at all."
+    ),
+    "promulgation_unknown": (
+        "The act cites no ДВ issue for its own promulgation, so there is "
+        "nothing to locate."
+    ),
+    "issue_number_unknown": (
+        "The row carries a date and no issue number, so the issue cannot be "
+        "looked up."
+    ),
+    "event_reference_unknown": (
+        "The event's „dv“ reference could not be read, and its date places it "
+        "in the online era."
+    ),
+}
 
 #: Act types the page-length medians are grouped by, per §5.2. Everything
 #: else is measured together as „other“.
 PAGE_ACT_TYPES = ("закон", "кодекс", "наредба", "правилник", "постановление")
 
-#: The last issue before per-material HTML begins: бр. 42 от 2005, since
-#: idMat 300 is бр. 43 от 20 май 2005. It is a probe result rather than a
-#: certainty, so `--pdf-era-end` moves it without touching the code.
-DEFAULT_PDF_ERA_END = (2005, 42)
+#: The last issue before per-material HTML begins: бр. 120 от 29 декември
+#: 2002, an extraordinary issue, which the enumeration of 2026-09-05 read
+#: as the last of the 1,583 issues with no materials list. The earlier
+#: figure, бр. 42 от 2005, came from a probe that found idMat 300 to be
+#: бр. 43 от 20 май 2005 and was therefore a lower bound on the HTML era,
+#: never its boundary. `--pdf-era-end` still moves it without touching
+#: the code, because the enumeration can be rerun.
+DEFAULT_PDF_ERA_END = (2002, 120)
 
 log = logging.getLogger("dv_coverage_map")
 
@@ -435,7 +475,10 @@ def classify(
         return Classification("dv_pdf", None, 0.0, (), (), ())
     if issue.status is None and row.year < HTML_ERA_YEAR:
         # The materials sweep has not reached it, and it is older than
-        # the HTML era, so PDF is what it is.
+        # the HTML era, so PDF is what it is. The year comparison is
+        # exact rather than approximate: the last PDF-only issue is
+        # бр. 120 от 29 декември 2002 and the first with materials is
+        # бр. 1 от 3 януари 2003, so no year holds issues of both eras.
         return Classification("dv_pdf", None, 0.0, (), (), ())
     return Classification(
         "unlocated", None, 0.0, (), ("materials_not_enumerated",), ()
@@ -570,7 +613,7 @@ def build_inventory(issues, citing, estimator, pdf_era_end) -> list[dict]:
     """One row per Gazette issue that exists online only as a PDF.
 
     D-064 item 6: the owner is not buying the vision reading of the
-    1989 to бр. 42/2005 tables of contents yet, and needs the size of the
+    1989 to бр. 120/2002 tables of contents yet, and needs the size of the
     bill first. So this is a budget, not a finding, and every number in it
     is an estimate until an issue PDF is actually opened.
 
@@ -626,6 +669,95 @@ def build_inventory(issues, citing, estimator, pdf_era_end) -> list[dict]:
     return rows
 
 
+#: The three shapes a predecessor material takes, and the token each row
+#: of `predecessor-materials.csv` carries in its `reason` column. They
+#: are ordered as `predecessor_reason` tests them, strongest first.
+PREDECESSOR_REASONS = ("before_promulgation", "promulgation_issue", "chain_continues")
+
+
+def last_chain_date(act) -> str | None:
+    """The date of the act's latest dated `amendment_history` row.
+
+    lex.bg's chain is a witness rather than an authority, and the map
+    already trusts it that far: the whole chain-omission file is built
+    from it. What it witnesses here is that the act went on being amended
+    after some date, which is the one thing that tells a repeal OF this
+    act from a repeal of a same-titled predecessor.
+
+    The rows are not guaranteed to be ordered, so the maximum decides,
+    and a chain whose rows carry no date at all yields None, which
+    refuses the inference rather than guessing it.
+    """
+    dates = [str(date) for _reference, date in act.amendment_history if date]
+    return max(dates) if dates else None
+
+
+def predecessor_reason(material, act, issues, kind) -> str | None:
+    """Why a material is about a predecessor act, or None if it is not.
+
+    A Gazette title names an act by name, and Bulgarian acts are replaced
+    by new acts of the same name: the Закон за горите of 1997 was
+    repealed and replaced by the Закон за горите of 2011, the Граждански
+    процесуален кодекс of 1952 by the code of 2007, the Изборен кодекс of
+    2011 by the one of 2014. Only the current act is in the corpus, so
+    every material about the predecessor resolves to it, and 712 of the
+    737 rows the title pass called chain omissions on 2026-09-05 were of
+    that kind: „Закон за изменение и допълнение на Закона за горите“ in
+    бр. 64/2007 cannot be an event of an act promulgated in 2011.
+
+    Three shapes, and the row says which one it is rather than being
+    routed silently.
+
+    `before_promulgation`: the material's issue is strictly earlier than
+    the act's own `fecha_publicacion`. That is the amending instruction
+    of a predecessor, and it is 712 of the 719 rows.
+
+    `promulgation_issue`: a repeal-kind material in the act's OWN
+    promulgation issue. The issue that promulgated an act cannot also
+    repeal it, and the material names its target by the adopting decree
+    the corpus act does not carry („..., приет с Постановление № 201 на
+    Министерския съвет от 2003 г.“).
+
+    `chain_continues`: a repeal-kind material published before the act's
+    last recorded amendment. An act amended in 2021 was not repealed in
+    2014, so the repeal was of a same-titled predecessor. This one is an
+    INFERENCE from lex.bg's chain rather than a reading of the material,
+    which is why it is a token in the file and a sentence in the report;
+    where the chain records nothing later, the inference is refused and
+    the row stays an `estado` dispute.
+
+    Two boundaries, stated rather than implied. The date comparison is on
+    the issue's publication date, so a predecessor repealed on the same
+    day as its successor is promulgated, in a DIFFERENT issue, compares
+    equal and is not caught by the first test; 31 dates in the table
+    carry more than one issue and no such case occurs today. And the
+    issue-number fallback below is a guard, not the operating rule: every
+    issue in the table carries a date, so no real material reaches it.
+    """
+    issue = issues.get((material.year, material.number))
+    date = issue.date if issue is not None else None
+
+    if date and act.fecha_publicacion:
+        if str(date) < str(act.fecha_publicacion):
+            return "before_promulgation"
+    elif (
+        act.promulgation is not None
+        and (material.year, material.number) < act.promulgation
+    ):
+        return "before_promulgation"
+
+    # The other two shapes are about a repeal and nothing else. An
+    # amending instruction published after the act amends the act.
+    if kind != "repeal":
+        return None
+    if (material.year, material.number) == act.promulgation:
+        return "promulgation_issue"
+    last = last_chain_date(act)
+    if date and last and str(date) < str(last):
+        return "chain_continues"
+    return None
+
+
 def parse_era_end(text: str) -> tuple[int, int]:
     """„YEAR:NUMBER“, the last issue of the PDF era."""
     try:
@@ -633,7 +765,7 @@ def parse_era_end(text: str) -> tuple[int, int]:
         return (int(year), int(number))
     except ValueError:
         raise SystemExit(
-            f"--pdf-era-end wants YEAR:NUMBER, for example 2005:42, not {text!r}"
+            f"--pdf-era-end wants YEAR:NUMBER, for example 2002:120, not {text!r}"
         ) from None
 
 
@@ -642,7 +774,7 @@ def parse_era_end(text: str) -> tuple[int, int]:
 
 def build(corpus_root: Path, issues_path: Path, materials_path: Path,
           pdf_era_end=DEFAULT_PDF_ERA_END):
-    """Read everything, attribute everything, and return the six tables.
+    """Read everything, attribute everything, and return the seven tables.
 
     Plus the issue index, the act categories and the page estimator, which
     the report needs and which nothing else recomputes.
@@ -805,12 +937,50 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
             )
 
     omissions = []
+    predecessors = []
     disputes = []
+    #: Where every repeal-titled material ended up, so the dispute count is
+    #: read against its denominator: zero disputes among seven attributed
+    #: repeals says nothing about the repeal titles the resolver never
+    #: attributed at all.
+    repeal_census: Counter = Counter()
     for material, law_id, score, flags, candidates in resolutions:
         if law_id is None:
+            if instruction_kind(material.title) == "repeal":
+                repeal_census["unattributed"] += 1
             continue
         act = by_id[law_id]
         kind = instruction_kind(material.title)
+        reason = predecessor_reason(material, act, issues, kind)
+        if kind == "repeal":
+            repeal_census[
+                "predecessor" if reason is not None
+                else "disputed" if act.estado == "vigente"
+                else "already_derogado"
+            ] += 1
+        if reason is not None:
+            # The material is about a same-titled act the corpus does not
+            # hold. It is neither an omission of this act's chain nor a
+            # dispute about this act's `estado`, and the test runs before
+            # both branches so that a repeal in the act's own
+            # promulgation issue never reaches the dispute writer.
+            predecessors.append(
+                {
+                    "pass": "title",
+                    "law_id": law_id,
+                    "dv_year": material.year,
+                    "dv_number": material.number,
+                    "id_mat": material.id_mat,
+                    "section": material.section,
+                    "title": material.title,
+                    "title_kind": kind,
+                    "resolver_score": f"{score:.3f}",
+                    "resolver_flags": ";".join(flags),
+                    "act_promulgated": act.fecha_publicacion or "",
+                    "reason": reason,
+                }
+            )
+            continue
         if kind == "repeal" and act.estado == "vigente":
             # The Gazette repealed an act lex.bg still records as in
             # force. Data, never a correction: D-064 item 5 keeps every
@@ -878,8 +1048,8 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
 
     inventory = build_inventory(issues, citing, estimator, pdf_era_end)
     categories = {act.law_id: act.category for act in acts}
-    return (coverage, summary, omissions, unresolved, disputes, inventory,
-            issues, categories, estimator)
+    return (coverage, summary, omissions, predecessors, unresolved, disputes,
+            inventory, issues, categories, estimator, repeal_census)
 
 
 # --- writing --------------------------------------------------------------
@@ -907,6 +1077,10 @@ OMISSION_FIELDS = [
     "pass", "law_id", "dv_year", "dv_number", "id_mat", "section", "title",
     "title_kind", "resolver_score", "resolver_flags",
 ]
+#: The omission row plus the act's own promulgation date and the reason
+#: the row was routed here, so that no row is a predecessor by a rule the
+#: reader has to reconstruct.
+PREDECESSOR_FIELDS = OMISSION_FIELDS + ["act_promulgated", "reason"]
 UNRESOLVED_FIELDS = [
     "kind", "law_id", "dv_year", "dv_number", "title", "candidates",
     "resolver_score", "resolver_flags", "dv_identifier", "reason",
@@ -922,8 +1096,9 @@ INVENTORY_FIELDS = [
 ]
 
 
-def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
-                 inventory, issues, categories, estimator):
+def write_report(path: Path, coverage, summary, omissions, predecessors,
+                 unresolved, disputes, inventory, issues, categories, estimator,
+                 repeal_census=None):
     """The short report of §5.2: the totals, and what they do not cover."""
     grades = Counter(row["candidate_grade"] for row in summary)
     by_source = Counter(row["source"] for row in coverage if row["row_kind"] == "event")
@@ -982,6 +1157,8 @@ def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
     ]
     for source in ("dv_html", "dv_pdf", "dv_offline", "unlocated"):
         lines.append(f"| {source} | {by_source.get(source, 0)} |")
+
+    lines += _uncertainty_lines(coverage)
 
     lines += [
         "",
@@ -1048,12 +1225,17 @@ def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
         "`chain_scan_complete` is false for every act, and no act can reach "
         "grade A from this map.",
         "",
-        f"**Before бр. 43 от {HTML_ERA_YEAR} there is no ДВ-side check at "
+        f"**Before бр. 1 от {HTML_ERA_YEAR} there is no ДВ-side check at "
         "all.** PDF-era issues expose no materials list, so every chain from "
         f"{FIRST_ONLINE_YEAR} to {HTML_ERA_YEAR - 1} is inherited from "
-        "lex.bg and is stated as inherited rather than verified. Reading the "
-        "issue tables of contents by vision is the owner-decided way to "
-        "close that gap (section 8, P3).",
+        "lex.bg and is stated as inherited rather than verified. The "
+        "boundary is measured, not probed: the full materials enumeration "
+        f"of 2026-09-05 found {DEFAULT_PDF_ERA_END[0] - FIRST_ONLINE_YEAR + 1} "
+        "years of PDF-only issues ending with бр. "
+        f"{DEFAULT_PDF_ERA_END[1]} от {DEFAULT_PDF_ERA_END[0]}, and the "
+        "first issue with a materials list is бр. 1 от 3 януари "
+        f"{HTML_ERA_YEAR}. Reading the issue tables of contents by vision "
+        "is the owner-decided way to close that gap (section 8, P3).",
         "",
         f"**Before {FIRST_ONLINE_YEAR} the Gazette is not online at all.** "
         "Those acts are grade C and a separate track (D-059).",
@@ -1066,9 +1248,63 @@ def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
     for kind, count in sorted(Counter(row["kind"] for row in unresolved).items()):
         lines.append(f"| {kind} | {count} |")
 
+    near_misses = sum(
+        1
+        for row in unresolved
+        if row["kind"] == "unattributed_material"
+        and _score_of(row["resolver_score"]) >= FUZZY_THRESHOLD
+    )
     lines += [
         "",
+        "Unattributed materials with a resolver score of "
+        f"{FUZZY_THRESHOLD:.2f} or more: {near_misses}. Each is a refused "
+        "near miss: it cleared the floor and was then refused by the margin, "
+        "the digit guard or the content guard, so its `candidates` column "
+        "names the act it nearly matched. They are the first input the "
+        "reasoning pass reads, and the only unattributed rows a reader can "
+        "act on without opening the Gazette.",
+        "",
         f"Chain omissions found by the title pass: {len(omissions)}.",
+        "",
+        "## Predecessor acts",
+        "",
+        f"Predecessor materials: {len(predecessors)}, in "
+        "`predecessor-materials.csv`. Each is a Gazette material about a "
+        "same-titled act the corpus does not hold rather than about the act "
+        "its title resolved to: Bulgarian acts are replaced by new acts of "
+        "the same name, and only the current one is in the corpus. „Закон за "
+        "изменение и допълнение на Закона за горите“ in бр. 64/2007 cannot be "
+        "an event of the Закон за горите promulgated in 2011, and the "
+        "постановление that repealed the правилник of the ВВМУ in бр. 92/2018 "
+        "cannot have repealed the правилник promulgated in that same issue.",
+        "",
+        "These rows are data for the corpus-completeness question, which is "
+        "which repealed predecessors the corpus should hold, and never a "
+        "chain omission of the act they resolved to. A repeal among them "
+        "disputes no `estado` either, for the same reason: it repealed the "
+        "predecessor. The `act_promulgated` column carries the act's own "
+        "publication date and the `reason` column says which of three rules "
+        "routed the row.",
+        "",
+        "| Reason | Rows |",
+        "|---|---|",
+    ]
+    by_reason = Counter(row["reason"] for row in predecessors)
+    for reason in PREDECESSOR_REASONS:
+        lines.append(f"| {reason} | {by_reason.get(reason, 0)} |")
+    lines += [
+        "",
+        "`before_promulgation` is the material's issue published earlier than "
+        "the act. `promulgation_issue` is a repeal in the act's OWN "
+        "promulgation issue, which cannot repeal the act it promulgates and "
+        "which names its target by an adopting decree the corpus act does not "
+        "carry. `chain_continues` is a repeal published before the act's last "
+        "recorded amendment, so the act outlived it; that one is inferred "
+        "from the corpus chain, which is lex.bg's witness and not the "
+        "material's own words, and where the chain records nothing later the "
+        "inference is refused and the row stays an `estado` dispute.",
+        "",
+        "## Estado disputes",
         "",
         f"`estado` disputes found by the title pass: {len(disputes)}. A dispute "
         "is a Gazette material whose title repeals an act the corpus still "
@@ -1077,9 +1313,99 @@ def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
         "dates the body scan reads, so the title pass does not claim it. Every "
         "row is data and none of them changes a corpus file (D-064 item 5).",
         "",
+        _repeal_denominator(repeal_census or Counter(), len(disputes)),
+        "",
     ]
     lines += _inventory_lines(inventory, estimator)
     path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def _repeal_denominator(census: Counter, disputes: int) -> str:
+    """The dispute count with its denominator, or the zero says nothing."""
+    attributed = (
+        census["disputed"] + census["already_derogado"] + census["predecessor"]
+    )
+    total = attributed + census["unattributed"]
+    return (
+        f"Repeal-titled materials in the enumeration: {total}. Attributed to a "
+        f"corpus act: {attributed}, of which {census['already_derogado']} to an "
+        f"act the corpus already records as repealed, {census['predecessor']} "
+        "to a same-titled predecessor (`predecessor-materials.csv`) and "
+        f"{census['disputed']} disputing a `vigente`. So the count above is "
+        f"{disputes} of {attributed} attributed repeals, and the "
+        f"{census['unattributed']} repeal titles the resolver never attributed "
+        "are the open question rather than evidence of agreement; they sit in "
+        "`unresolved.csv` with their candidates."
+    )
+
+
+def _score_of(text) -> float:
+    """The resolver score of one unresolved row, or 0.0 where it has none."""
+    try:
+        return float(text)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _uncertainty_lines(coverage) -> list[str]:
+    """What the `unlocated` rows are, which is mostly not a resolver miss.
+
+    `unlocated` is the largest source class of the title pass and it is
+    read as „the resolver failed“ unless the report says otherwise. It is
+    not: run against the corpus and the 2026-09-05 enumeration on this
+    tree, 939 of the 10,812 unlocated rows named an issue that exposes no
+    materials online, or that is not in the enumeration, or no issue at
+    all. None of those is closed by a better resolver.
+
+    Those two figures are an illustration and go stale the moment either
+    input changes. The report never repeats them: it counts the rows it
+    was given, and `test_the_unlocated_census_in_the_report_agrees_with_the_csv`
+    holds the printed pair to `coverage-map.csv`.
+    """
+    counts: Counter = Counter()
+    for row in coverage:
+        if row["source"] != "unlocated":
+            continue
+        labels = row["uncertainty"].split(";") if row["uncertainty"] else ["unlabelled"]
+        for label in labels:
+            counts[(label, row["row_kind"])] += 1
+    if not counts:
+        return []
+
+    labels = list(UNCERTAINTY_GLOSS)
+    labels += sorted({label for label, _kind in counts if label not in UNCERTAINTY_GLOSS})
+    total = sum(counts.values())
+    matched = sum(count for (label, _kind), count in counts.items()
+                  if label == "chain_unconfirmed")
+
+    lines = [
+        "",
+        "## Unlocated rows by uncertainty",
+        "",
+        "An `unlocated` row is not a failed match by default. The label says "
+        "why the row could not be placed, and only `chain_unconfirmed` means "
+        "the ДВ side was read and named this act nowhere. Bases are counted "
+        "beside events, because a base that cannot be located blocks a grade "
+        "exactly as an event does and because `promulgation_unknown` can only "
+        "be a base.",
+        "",
+        "| Uncertainty | Events | Bases | What it means |",
+        "|---|---|---|---|",
+    ]
+    for label in labels:
+        lines.append(
+            f"| {label} | {counts.get((label, 'event'), 0)} | "
+            f"{counts.get((label, 'base'), 0)} | "
+            f"{UNCERTAINTY_GLOSS.get(label, 'No gloss: the vocabulary grew.')} |"
+        )
+    lines += [
+        "",
+        f"Of the {total} unlocated rows, {total - matched} are an acquisition "
+        "or a citation gap rather than a failed match, and no resolver closes "
+        "any of them: the materials of that issue have to be enumerated, or "
+        "the issue found, or the act's promulgation located by other means.",
+    ]
+    return lines
 
 
 def _inventory_lines(inventory, estimator) -> list[str]:
@@ -1142,8 +1468,8 @@ def main(argv=None) -> int:
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    (coverage, summary, omissions, unresolved, disputes, inventory, issues,
-     categories, estimator) = build(
+    (coverage, summary, omissions, predecessors, unresolved, disputes,
+     inventory, issues, categories, estimator, repeal_census) = build(
         Path(args.corpus), Path(args.issues), Path(args.materials),
         pdf_era_end=parse_era_end(args.pdf_era_end),
     )
@@ -1152,6 +1478,8 @@ def main(argv=None) -> int:
     summary.sort(key=lambda row: row["law_id"])
     omissions.sort(key=lambda row: (row["law_id"], row["dv_year"], row["dv_number"],
                                     row["id_mat"]))
+    predecessors.sort(key=lambda row: (row["law_id"], row["dv_year"],
+                                       row["dv_number"], row["id_mat"]))
     unresolved.sort(
         key=lambda row: (
             row["kind"], row["law_id"], str(row["dv_year"]), str(row["dv_number"])
@@ -1163,16 +1491,18 @@ def main(argv=None) -> int:
     write_csv(out / "coverage-map.csv", COVERAGE_FIELDS, coverage)
     write_csv(out / "acts-summary.csv", SUMMARY_FIELDS, summary)
     write_csv(out / "chain-omissions.csv", OMISSION_FIELDS, omissions)
+    write_csv(out / "predecessor-materials.csv", PREDECESSOR_FIELDS, predecessors)
     write_csv(out / "unresolved.csv", UNRESOLVED_FIELDS, unresolved)
     write_csv(out / "estado-disputes.csv", DISPUTE_FIELDS, disputes)
     write_csv(out / "pdf-era-inventory.csv", INVENTORY_FIELDS, inventory)
-    write_report(out / "report.md", coverage, summary, omissions, unresolved,
-                 disputes, inventory, issues, categories, estimator)
+    write_report(out / "report.md", coverage, summary, omissions, predecessors,
+                 unresolved, disputes, inventory, issues, categories, estimator,
+                 repeal_census=repeal_census)
     log.info(
-        "wrote %d chain rows, %d acts, %d omissions, %d unresolved, "
-        "%d estado disputes and %d PDF-era issues to %s",
-        len(coverage), len(summary), len(omissions), len(unresolved),
-        len(disputes), max(len(inventory) - 1, 0), out,
+        "wrote %d chain rows, %d acts, %d omissions, %d predecessor materials, "
+        "%d unresolved, %d estado disputes and %d PDF-era issues to %s",
+        len(coverage), len(summary), len(omissions), len(predecessors),
+        len(unresolved), len(disputes), max(len(inventory) - 1, 0), out,
     )
     return 0
 

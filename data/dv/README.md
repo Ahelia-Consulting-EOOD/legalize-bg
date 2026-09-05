@@ -205,7 +205,7 @@ python scripts/dv_coverage_map.py --corpus . \
     --out docs/research/2026-09-05-dv-coverage-map/
 ```
 
-Reads the corpus frontmatter and the two tables above, and writes seven
+Reads the corpus frontmatter and the two tables above, and writes eight
 files. It is a **research artifact**: it writes nothing into the corpus
 tree and no consumer surface reads it. The provenance block that does is
 P1.
@@ -215,6 +215,7 @@ P1.
 | `coverage-map.csv` | act base, and act amendment event |
 | `acts-summary.csv` | act |
 | `chain-omissions.csv` | Gazette material the act's chain does not know |
+| `predecessor-materials.csv` | Gazette material older than the act it names |
 | `unresolved.csv` | event, act or material nothing could be said about |
 | `estado-disputes.csv` | Gazette repeal of an act the corpus calls current |
 | `pdf-era-inventory.csv` | Gazette issue online only as a PDF |
@@ -224,9 +225,12 @@ P1.
 here: it holds the instructions the ЗИД segmenter could not classify, and
 the segmenter belongs to the body scan. It arrives with that leg.
 
-`--pdf-era-end YEAR:NUMBER` (default `2005:42`) is the last issue of the
-PDF era, which bounds the inventory. It is a probe result rather than a
-certainty, so it moves without touching the code.
+`--pdf-era-end YEAR:NUMBER` (default `2002:120`) is the last issue of the
+PDF era, which bounds the inventory. The default is the enumeration of
+2026-09-05, which read 1,583 issues with no materials list from 1989 to
+бр. 120 от 29 декември 2002 and 2,487 with one from бр. 1 от 3 януари
+2003 on. The flag moves the bound without touching the code, because the
+enumeration can be rerun.
 
 **The source class** of every base and every event, per §4.1:
 
@@ -236,11 +240,21 @@ certainty, so it moves without touching the code.
   text needs the vision reading path.
 - `dv_offline`: before 1989, which is not online at all.
 - `unlocated`: everything else, and never „lex.bg-sourced“. The
-  `uncertainty` column says which: `issue_not_in_table`,
-  `chain_unconfirmed` (the issue has materials and none is about this
-  act), `issue_number_unknown`, `promulgation_unknown`,
-  `materials_not_enumerated` (the sweep has not reached that issue,
+  `uncertainty` column says which, and these six are all `classify`
+  emits: `issue_not_in_table`, `chain_unconfirmed` (the issue has
+  materials and none is about this act), `issue_number_unknown` (the row
+  carries a date and no issue number), `promulgation_unknown` (the act
+  cites no issue for its own promulgation), `event_reference_unknown`
+  (an event whose „dv“ reference could not be read, dated in the online
+  era), `materials_not_enumerated` (the sweep has not reached that issue,
   which is not the same as the issue holding nothing).
+
+`report.md` tabulates those labels, with a gloss and the base and event
+counts, because only `chain_unconfirmed` is a failed match: the rest say
+the ДВ side could not be consulted at all, and no resolver closes any of
+them. It also counts the unattributed materials that scored 0.90 or more,
+which are the refused near misses whose `candidates` column names the act
+they nearly matched, and which are the reasoning pass's first input.
 
 **The candidate grade** is derived by the procedure of §4.2, never set by
 hand. In P0 every event is `applied = pending`, every base is an unfrozen
@@ -258,7 +272,7 @@ need the issue's page count to bound it, and the `issues` table does not
 carry one, so it contributes no measurement.
 
 **The PDF-era inventory** answers D-064 item 6: the owner has not bought
-the vision reading of the 1989 to бр. 42/2005 tables of contents and
+the vision reading of the 1989 to бр. 120/2002 tables of contents and
 wants the size of the bill first. One row per PDF-era issue, with the
 issue identity, the number of corpus chain rows that cite it (base rows
 included, since a PDF-era base has to be read for its structural audit),
@@ -285,6 +299,27 @@ identifier form D-064 item 4 settled for an act with no lex.bg document.
 No corpus act is in that position today, so the column exists to fix the
 form rather than to be read.
 
+**`predecessor-materials.csv`** records a Gazette material about a
+same-titled act the corpus does not hold. Bulgarian acts are replaced by
+new acts of the same name and only the current one is in the corpus, so
+„Закон за изменение и допълнение на Закона за горите“ in бр. 64/2007
+resolves to the Закон за горите of 2011 and cannot be an event of it. The
+rows are data for the corpus-completeness question, which repealed
+predecessors the corpus should hold, and never a chain omission or an
+`estado` dispute of the act they resolved to. `act_promulgated` carries
+the act's own `fecha_publicacion` and `reason` says which of three rules
+routed the row:
+
+| `reason` | The material is |
+|---|---|
+| `before_promulgation` | in an issue published before the act |
+| `promulgation_issue` | a repeal in the act's own promulgation issue, which cannot repeal the act it promulgates |
+| `chain_continues` | a repeal published before the act's last recorded amendment, so the act outlived it |
+
+`chain_continues` is inferred from lex.bg's chain rather than read from
+the material, and where the chain records no later amendment the
+inference is refused and the row stays an `estado` dispute.
+
 **`estado-disputes.csv`** records a Gazette material whose title repeals
 an act the corpus still records as `vigente`. Data, never a correction:
 D-064 item 5 keeps every `estado` finding out of the corpus until the
@@ -296,7 +331,7 @@ the body scan reads, so the title pass does not claim it.
 **title** pass, so every row of `chain-omissions.csv` and of
 `estado-disputes.csv` carries `pass = title`, `chain_scan_complete` is
 false for every act, and no act can reach grade A from this map; the body
-pass over the cache that `bodies` fills is the next leg. And before бр. 43
-от 2005 there is no ДВ-side check at all, so every chain from 1989 to
-2004 is inherited from lex.bg and is reported as inherited rather than as
+pass over the cache that `bodies` fills is the next leg. And before бр. 1
+от 2003 there is no ДВ-side check at all, so every chain from 1989 to
+2002 is inherited from lex.bg and is reported as inherited rather than as
 verified.

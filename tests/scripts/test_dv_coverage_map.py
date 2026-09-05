@@ -105,7 +105,10 @@ def corpus(tmp_path):
         "- dv: 32/2026\n  date: '2026-04-01'\n",
     )
     # `fecha_publicacion` but no ДВ citation: the 39 acts whose three
-    # output rows used to disagree with one another.
+    # output rows used to disagree with one another. Its one event cites
+    # бр. 5/2021, an issue the table holds and the materials sweep has
+    # never reached, which is `materials_not_enumerated`: an acquisition
+    # gap rather than a failed match.
     synthetic_act(
         root,
         "laws",
@@ -114,7 +117,9 @@ def corpus(tmp_path):
         "rango: закон\n"
         "estado: vigente\n"
         "fecha_publicacion: '2015-05-05'\n"
-        "amendment_history:\n- date: '2015-05-05'\n",
+        "amendment_history:\n"
+        "- date: '2015-05-05'\n"
+        "- dv: 5/2021\n  date: '2021-01-15'\n",
     )
     return root
 
@@ -125,6 +130,11 @@ ISSUES = [
     (1998, 11, "1998-01-30", 11),
     (2010, 24, "2010-03-26", 24),
     (2019, 52, "2019-07-02", 52),
+    # In the table, and no material of it was ever enumerated.
+    (2021, 5, "2021-01-15", 205),
+    # One material, and it carries no start page, so this issue is
+    # invisible to the page model and perturbs no estimate.
+    (2022, 7, "2022-02-02", 220),
     (2026, 32, "2026-04-01", 100),
 ]
 
@@ -146,6 +156,10 @@ MATERIALS = [
         12,
     ),
     (100, 3, 242222, "Народно събрание", "Закон за ратифициране на трето нещо", 20),
+    # One letter away from ЗАКОН ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРТ: above the
+    # 0.90 floor and refused by the content guard, which is the refused
+    # near miss the report counts.
+    (220, 1, 250001, "Народно събрание", "ЗАКОН ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРД", None),
     (
         100, 4, 242223, "Народно събрание",
         "Закон за отмяна на Закона за събранията, митингите и манифестациите",
@@ -248,13 +262,14 @@ def rows(path: pathlib.Path, **where):
 # --- the files ------------------------------------------------------------
 
 
-def test_the_map_writes_seven_files_and_no_corpus_file(outputs, corpus):
+def test_the_map_writes_eight_files_and_no_corpus_file(outputs, corpus):
     assert sorted(p.name for p in outputs.iterdir()) == [
         "acts-summary.csv",
         "chain-omissions.csv",
         "coverage-map.csv",
         "estado-disputes.csv",
         "pdf-era-inventory.csv",
+        "predecessor-materials.csv",
         "report.md",
         "unresolved.csv",
     ]
@@ -292,7 +307,8 @@ def test_the_order_is_deterministic(cmap, corpus, tables, tmp_path):
             ]
         )
     for name in ("coverage-map.csv", "acts-summary.csv", "chain-omissions.csv",
-                 "unresolved.csv", "pdf-era-inventory.csv", "estado-disputes.csv"):
+                 "unresolved.csv", "pdf-era-inventory.csv", "estado-disputes.csv",
+                 "predecessor-materials.csv"):
         assert (first / name).read_bytes() == (second / name).read_bytes()
 
 
@@ -457,6 +473,246 @@ def test_a_material_the_chain_already_knows_is_not_an_omission(outputs):
     assert [(row["dv_year"], row["id_mat"]) for row in found] == [("2026", "242223")]
 
 
+# --- predecessor materials ------------------------------------------------
+
+#: One act, promulgated in бр. 19 от 20 юли 2007. A Gazette material of an
+#: earlier issue that resolves to it names a same-titled act the corpus
+#: does not hold: the real case is „Закон за изменение и допълнение на
+#: Закона за горите“ in бр. 64/2007, which resolves to the 2011 Закон за
+#: горите because the 1997 one was never bootstrapped.
+FORESTS_ACT = (
+    "titulo: ЗАКОН ЗА ГОРИТЕ\n"
+    "rango: закон\n"
+    "estado: vigente\n"
+    "fecha_publicacion: '2007-07-20'\n"
+    "dv_issue: '19'\n"
+    "dv_year: 2007\n"
+    "amendment_history:\n- dv: 19/2007\n  date: '2007-07-20'\n"
+)
+#: The same act, amended in 2010: its chain goes on after any repeal
+#: published in between, which is what tells a repeal of the predecessor
+#: from a repeal of this act.
+FORESTS_ACT_AMENDED = FORESTS_ACT + "- dv: 41/2010\n  date: '2010-05-20'\n"
+ZID_FORESTS = "Закон за изменение и допълнение на Закона за горите"
+REPEAL_FORESTS = "Закон за отмяна на Закона за горите"
+
+
+def one_act_map(cmap, tmp_path, name, *, issue, title, act=FORESTS_ACT):
+    """The map over one act and one Gazette material, in its own tree.
+
+    `issue` is (year, number, date) and `title` is the material's title.
+    A corpus of one act keeps the resolver's answer beyond doubt and
+    keeps these cases out of the shared fixture, whose page medians and
+    inventory rows are pinned by other tests.
+
+    The act's own promulgation issue, бр. 19 от 20 юли 2007, is always in
+    the issues table; when the material sits in that same issue, the two
+    are one row and one `id_obj`, as they are in the real tables.
+    """
+    root = tmp_path / f"corpus-{name}"
+    synthetic_act(root, "laws", "zakon-za-gorite", act)
+
+    year, number, date = issue
+    promulgation = (2007, 19)
+    id_obj = 700 if (year, number) == promulgation else 900
+    table = {promulgation: ("2007-07-20", 700), (year, number): (date, id_obj)}
+    issues_path = tmp_path / f"issues-{name}.jsonl"
+    with issues_path.open("w", encoding="utf-8") as handle:
+        for (row_year, row_number), (row_date, row_id) in sorted(table.items()):
+            handle.write(
+                json.dumps(
+                    {
+                        "year": row_year,
+                        "number": row_number,
+                        "date": row_date,
+                        "id_obj": row_id,
+                        "extraordinary": False,
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n"
+            )
+
+    materials_path = tmp_path / f"materials-{name}.jsonl"
+    materials_path.write_text(
+        json.dumps(
+            {
+                "id_obj": id_obj,
+                "issue_year": year,
+                "issue_number": number,
+                "issue_date": date,
+                "status": "ok",
+                "position": 1,
+                "id_mat": 9001,
+                "section": "Народно събрание",
+                "title": title,
+                "start_page": 2,
+            },
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    out = tmp_path / name
+    assert (
+        cmap.main(
+            [
+                "--corpus", str(root),
+                "--issues", str(issues_path),
+                "--materials", str(materials_path),
+                "--out", str(out),
+            ]
+        )
+        == 0
+    )
+    return out
+
+
+def test_a_material_older_than_the_act_is_a_predecessor_not_an_omission(cmap, tmp_path):
+    # A ЗИД of 2003 cannot amend an act promulgated in 2007. It amends a
+    # same-titled predecessor the corpus does not hold, which is a fact
+    # about corpus completeness and not a gap in this act's chain.
+    out = one_act_map(
+        cmap, tmp_path, "older", issue=(2003, 84, "2003-09-19"), title=ZID_FORESTS
+    )
+    found = rows(out / "predecessor-materials.csv")
+    assert len(found) == 1
+    assert found[0]["law_id"] == "zakon-za-gorite"
+    assert found[0]["dv_year"] == "2003"
+    assert found[0]["dv_number"] == "84"
+    assert found[0]["title_kind"] == "amending"
+    assert found[0]["act_promulgated"] == "2007-07-20"
+    assert found[0]["reason"] == "before_promulgation"
+    assert rows(out / "chain-omissions.csv") == []
+
+
+def test_the_same_material_after_the_act_is_an_omission(cmap, tmp_path):
+    # The same title in an issue the act could have been amended by is a
+    # chain omission exactly as before.
+    out = one_act_map(
+        cmap, tmp_path, "newer", issue=(2010, 41, "2010-05-20"), title=ZID_FORESTS
+    )
+    found = rows(out / "chain-omissions.csv")
+    assert len(found) == 1
+    assert found[0]["law_id"] == "zakon-za-gorite"
+    assert found[0]["dv_year"] == "2010"
+    assert rows(out / "predecessor-materials.csv") == []
+
+
+def test_a_repeal_older_than_the_act_is_not_an_estado_dispute(cmap, tmp_path):
+    # A repeal published four years before the act existed repealed the
+    # predecessor, so it disputes nothing about this act's `estado`.
+    out = one_act_map(
+        cmap, tmp_path, "repeal", issue=(2003, 84, "2003-09-19"), title=REPEAL_FORESTS
+    )
+    assert rows(out / "estado-disputes.csv") == []
+    found = rows(out / "predecessor-materials.csv")
+    assert len(found) == 1
+    assert found[0]["title_kind"] == "repeal"
+    assert found[0]["reason"] == "before_promulgation"
+
+
+def test_a_repeal_in_the_acts_own_promulgation_issue_repeals_the_predecessor(
+    cmap, tmp_path
+):
+    # The issue that promulgated the act cannot also repeal it. This is
+    # the ВВМУ правилник of бр. 92/2018, where the material names the
+    # predecessor by its adopting decree and the corpus act was adopted
+    # by another.
+    out = one_act_map(
+        cmap,
+        tmp_path,
+        "same-issue",
+        issue=(2007, 19, "2007-07-20"),
+        title=REPEAL_FORESTS,
+    )
+    found = rows(out / "predecessor-materials.csv")
+    assert len(found) == 1
+    assert found[0]["reason"] == "promulgation_issue"
+    assert rows(out / "estado-disputes.csv") == []
+    assert rows(out / "chain-omissions.csv") == []
+
+
+def test_a_repeal_an_act_outlived_repealed_its_predecessor(cmap, tmp_path):
+    # The repeal is published after the act and the act goes on being
+    # amended for years afterwards, so it repealed a same-titled
+    # predecessor. This is the МВР академия правилник of бр. 93/2014 and
+    # the ВМА правилник of бр. 108/2018, four days and one day after
+    # their acts, with chains running to 2021 and 2020.
+    out = one_act_map(
+        cmap,
+        tmp_path,
+        "outlived",
+        issue=(2008, 60, "2008-07-08"),
+        title=REPEAL_FORESTS,
+        act=FORESTS_ACT_AMENDED,
+    )
+    found = rows(out / "predecessor-materials.csv")
+    assert len(found) == 1
+    assert found[0]["reason"] == "chain_continues"
+    assert found[0]["title_kind"] == "repeal"
+    assert rows(out / "estado-disputes.csv") == []
+    assert rows(out / "chain-omissions.csv") == []
+
+
+def test_a_repeal_the_act_did_not_outlive_is_still_a_dispute(cmap, tmp_path):
+    # The same repeal against an act whose chain stops at its own
+    # promulgation. Nothing says the act survived it, so the row stays
+    # the `estado` dispute it is, and the inference is refused rather
+    # than guessed.
+    out = one_act_map(
+        cmap, tmp_path, "outlived-not", issue=(2008, 60, "2008-07-08"),
+        title=REPEAL_FORESTS,
+    )
+    assert rows(out / "predecessor-materials.csv") == []
+    found = rows(out / "estado-disputes.csv")
+    assert len(found) == 1
+    assert found[0]["finding"] == "repeal"
+
+
+def test_the_report_counts_the_predecessor_materials_by_reason(cmap, tmp_path):
+    out = one_act_map(
+        cmap, tmp_path, "report", issue=(2003, 84, "2003-09-19"), title=ZID_FORESTS
+    )
+    text = (out / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Predecessor acts", 1)[1].split("\n## ", 1)[0]
+    assert "1" in section
+    assert "never a chain omission" in section
+    assert "| before_promulgation | 1 |" in section
+    assert "| promulgation_issue | 0 |" in section
+    assert "| chain_continues | 0 |" in section
+    # The chain reason is an inference from lex.bg's chain, and the
+    # report has to say so rather than let it read as the material's own
+    # words.
+    assert "inferred from the corpus chain" in section
+
+
+def test_the_estado_section_states_its_denominator(cmap, tmp_path):
+    # Zero disputes is zero of how many attributed repeals, beside how
+    # many repeal titles were never attributed at all. The section says
+    # both, or a zero reads as agreement between the Gazette and lex.bg.
+    out = one_act_map(
+        cmap, tmp_path, "denominator", issue=(2008, 60, "2008-07-08"),
+        title=REPEAL_FORESTS,
+    )
+    text = (out / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Estado disputes", 1)[1].split("\n## ", 1)[0]
+    assert "Repeal-titled materials in the enumeration: 1." in section
+    assert "1 disputing a `vigente`" in section
+    assert "1 of 1 attributed repeals" in section
+    out = one_act_map(
+        cmap, tmp_path, "denominator-derogado", issue=(2008, 60, "2008-07-08"),
+        title=REPEAL_FORESTS,
+        act=FORESTS_ACT.replace("estado: vigente", "estado: derogado"),
+    )
+    text = (out / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Estado disputes", 1)[1].split("\n## ", 1)[0]
+    assert rows(out / "estado-disputes.csv") == []
+    assert "1 to an act the corpus already records as repealed" in section
+    assert "0 of 1 attributed repeals" in section
+
+
 # --- unresolved -----------------------------------------------------------
 
 
@@ -496,13 +752,94 @@ def test_an_act_with_no_promulgation_is_b_pending_and_says_which_item(outputs):
 # --- the report -----------------------------------------------------------
 
 
-def test_the_report_states_the_totals_and_the_pre_2005_inheritance(outputs):
+def test_the_html_era_boundary_is_the_measured_one(cmap):
+    """Per-material HTML begins with бр. 1 от 2003, not бр. 43 от 2005.
+
+    Measured on 2026-09-05 by the full materials enumeration, recorded in
+    `data/dv/ENUMERATION-2026-09-05.md` on branch
+    `data/dv-enumeration-2026-09-05`: 2,487 issues carry an HTML
+    materials list and the first of them is бр. 1 от 3 януари 2003, while
+    the 1,583 issues from 1989 to бр. 120 от 29 декември 2002 carry none.
+    The earlier figure came from a probe, idMat 300 being бр. 43 от 20
+    май 2005, which was a lower bound and never the boundary.
+    """
+    assert cmap.HTML_ERA_YEAR == 2003
+    assert cmap.DEFAULT_PDF_ERA_END == (2002, 120)
+
+
+def test_the_report_states_the_totals_and_the_pre_2003_inheritance(outputs):
     text = (outputs / "report.md").read_text(encoding="utf-8")
     assert "B-pending" in text
     assert "C" in text
-    assert "2005" in text
+    assert "Before бр. 1 от 2003" in text
+    # The stale probe boundary is gone from the prose, not merely
+    # supplemented by the measured one.
+    assert "2005" not in text
     assert "по десетилетие" in text or "by decade" in text
     assert "—" not in text  # no em-dashes
+
+
+def test_the_readme_lists_every_uncertainty_label_the_code_can_emit(cmap):
+    # `data/dv/README.md` presents the labels as a closed list and the
+    # sentence under it says the report tabulates them, so a label
+    # missing there is a reader told the vocabulary is smaller than it
+    # is. The list named five and `classify` emits six.
+    readme = (CORPUS / "data" / "dv" / "README.md").read_text(encoding="utf-8")
+    section = readme.split("- `unlocated`:", 1)[1].split("\n\n", 1)[0]
+    for label in cmap.UNCERTAINTY_GLOSS:
+        assert f"`{label}`" in section, label
+
+
+def test_the_unlocated_census_in_the_report_agrees_with_the_csv(outputs):
+    # The pair the reader takes away, „of the N unlocated rows, M are an
+    # acquisition or a citation gap“, has to be the pair in
+    # `coverage-map.csv`. A figure that says 2026-09-05 and belongs to an
+    # earlier run is exactly what fix 1 of this branch was written to
+    # remove, and prose beside the code is where it came back.
+    unlocated = rows(outputs / "coverage-map.csv", source="unlocated")
+    gaps = [row for row in unlocated if row["uncertainty"] != "chain_unconfirmed"]
+    text = (outputs / "report.md").read_text(encoding="utf-8")
+    assert (
+        f"Of the {len(unlocated)} unlocated rows, {len(gaps)} are an "
+        "acquisition or a citation gap" in text
+    )
+
+
+def test_the_report_tabulates_the_unlocated_uncertainty(outputs):
+    # 939 of the 10,812 unlocated rows of the run this tree produces are
+    # not a failed match at all: the issue exposes no materials, or is
+    # not in the enumeration, or was never cited. The reader has to be
+    # able to see that without opening the CSV.
+    text = (outputs / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Unlocated rows by uncertainty", 1)[1].split("\n## ", 1)[0]
+    # One event cites бр. 5/2021, which the table holds and the sweep has
+    # never reached.
+    assert "materials_not_enumerated | 1" in section
+    for label in (
+        "chain_unconfirmed",
+        "issue_not_in_table",
+        "promulgation_unknown",
+        "issue_number_unknown",
+        "event_reference_unknown",
+    ):
+        assert label in section
+    # A gloss per label, not a bare vocabulary listing.
+    assert "no materials" in section
+
+
+def test_the_report_counts_the_refused_near_misses(outputs):
+    # A material that scored above the floor and was refused names the
+    # act it nearly matched in its `candidates` column, which is what the
+    # reasoning pass reads first.
+    near = [
+        row
+        for row in rows(outputs / "unresolved.csv", kind="unattributed_material")
+        if float(row["resolver_score"]) >= 0.90
+    ]
+    text = (outputs / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Unresolved", 1)[1].split("\n## ", 1)[0]
+    assert f"score of 0.90 or more: {len(near)}" in section
+    assert "candidates" in section
 
 
 def test_the_report_groups_by_corpus_category(outputs):
@@ -703,9 +1040,9 @@ def test_the_html_era_issues_are_not_in_the_inventory(outputs):
 
 
 def test_the_boundary_issue_is_a_parameter(cmap, corpus, tables, tmp_path):
-    # бр. 42/2005 is the last issue before per-material HTML begins, and
-    # the exact boundary is a probe result rather than a certainty, so it
-    # moves without touching the code.
+    # бр. 120/2002 is the last issue before per-material HTML begins, as
+    # the enumeration of 2026-09-05 measured it, and the flag moves that
+    # bound without touching the code.
     issues, materials = tables
     out = tmp_path / "narrow"
     cmap.main(
