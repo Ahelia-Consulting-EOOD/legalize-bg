@@ -8,8 +8,13 @@ The script's only protection used to be prose in its docstring, while
 `{"baseline": baseline, "check": check}[sys.argv[1]]()` sits one habit
 typo away from destroying it. These tests pin the guard.
 
-The real `.fr034-baseline.json` is NEVER touched: `BASELINE` (and `DB`)
-are monkeypatched onto tmp_path for every test here.
+The same applies to `.article-baseline.json`, the per-(law_id, article)
+floor of D-058 (iv): it is the quantity regression net for the repair
+sweep, and it is equally unrecomputable once the sweep has run.
+
+The real baseline files are NEVER touched: `BASELINE`,
+`ARTICLE_BASELINE` and `DB` are monkeypatched onto tmp_path for every
+test here.
 """
 
 import importlib.util
@@ -73,3 +78,219 @@ def test_baseline_overwrites_with_force(fr034, monkeypatch):
     fr034.baseline()
     data = json.loads(Path(fr034.BASELINE).read_text(encoding="utf-8"))
     assert "zakon-x" in data
+
+
+# --- D-058 (iv): the per-(law_id, article) baseline -------------------
+#
+# `check`'s R1/R2 are per-LAW aggregates, so an article that loses rows
+# is cancelled by any other article of the same law that gains them. The
+# per-article baseline keys the counts on (law_id, article) so a loss
+# cannot be offset by a gain elsewhere in the act.
+
+
+@pytest.fixture
+def fr034_articles(fr034, tmp_path, monkeypatch):
+    """`fr034`, with ARTICLE_BASELINE and ARTICLE_FINDINGS also
+    redirected into tmp_path so the real `.article-baseline.json` and
+    `.article-check-findings.txt` are never touched."""
+    monkeypatch.setattr(fr034, "ARTICLE_BASELINE",
+                        str(tmp_path / "article-baseline.json"))
+    monkeypatch.setattr(fr034, "ARTICLE_FINDINGS",
+                        str(tmp_path / "article-check-findings.txt"))
+    return fr034
+
+
+def _insert(mod, rows):
+    conn = sqlite3.connect(mod.DB)
+    conn.executemany("INSERT INTO provisions VALUES (?,?,?,?,?,?,?)", rows)
+    conn.commit()
+    conn.close()
+
+
+def test_article_counts_are_keyed_per_article(fr034_articles):
+    _insert(fr034_articles, [
+        # чл. 2: one whole-article row, one explicit alinea, one implicit
+        ("zakon-x", "2", None, "2020-01-01", None, "т", 0),
+        ("zakon-x", "2", "1", "2020-01-01", None, "т", 0),
+        ("zakon-x", "2", "2", "2020-01-01", None, "т", 1),
+        # чл. 3: a superseded row must not be counted
+        ("zakon-x", "3", None, "2020-01-01", None, "т", 0),
+        ("zakon-x", "3", "1", "2019-01-01", "2020-01-01", "т", 0),
+        # a second law must not merge into the first
+        ("zakon-y", "2", None, "2020-01-01", None, "т", 0),
+    ])
+    counts = fr034_articles._article_counts(sqlite3.connect(fr034_articles.DB))
+    assert counts["zakon-x"]["1"] == {"explicit_alineas": 0, "articles": 1}
+    assert counts["zakon-x"]["2"] == {"explicit_alineas": 1, "articles": 1}
+    assert counts["zakon-x"]["3"] == {"explicit_alineas": 0, "articles": 1}
+    assert counts["zakon-y"]["2"] == {"explicit_alineas": 0, "articles": 1}
+    assert set(counts["zakon-x"]) == {"1", "2", "3"}
+    assert set(counts["zakon-y"]) == {"2"}
+
+
+def test_article_baseline_writes_when_absent(fr034_articles):
+    fr034_articles.article_baseline()
+    data = json.loads(
+        Path(fr034_articles.ARTICLE_BASELINE).read_text(encoding="utf-8"))
+    assert data["zakon-x"]["1"]["articles"] == 1
+
+
+def test_article_baseline_refuses_to_overwrite(fr034_articles):
+    Path(fr034_articles.ARTICLE_BASELINE).write_text(
+        '{"pre-sweep": "floor"}', encoding="utf-8")
+    with pytest.raises(SystemExit) as exc:
+        fr034_articles.article_baseline()
+    assert exc.value.code != 0
+    # untouched
+    assert Path(fr034_articles.ARTICLE_BASELINE).read_text(
+        encoding="utf-8") == '{"pre-sweep": "floor"}'
+    msg = str(exc.value)
+    assert "article-baseline.json" in msg and "FR034_FORCE=1" in msg
+
+
+def test_article_baseline_overwrites_with_force(fr034_articles, monkeypatch):
+    Path(fr034_articles.ARTICLE_BASELINE).write_text(
+        '{"pre-sweep": "floor"}', encoding="utf-8")
+    monkeypatch.setenv("FR034_FORCE", "1")
+    fr034_articles.article_baseline()
+    data = json.loads(
+        Path(fr034_articles.ARTICLE_BASELINE).read_text(encoding="utf-8"))
+    assert "zakon-x" in data
+
+
+def test_article_check_passes_when_unchanged(fr034_articles, capsys):
+    fr034_articles.article_baseline()
+    fr034_articles.article_check()
+    assert "OK" in capsys.readouterr().out
+
+
+def test_article_check_flags_a_vanished_article_as_A2(fr034_articles, capsys):
+    _insert(fr034_articles, [
+        ("zakon-x", "2", None, "2020-01-01", None, "т", 0)])
+    fr034_articles.article_baseline()
+    conn = sqlite3.connect(fr034_articles.DB)
+    conn.execute("DELETE FROM provisions WHERE law_id='zakon-x' "
+                 "AND article='2'")
+    conn.commit()
+    conn.close()
+    with pytest.raises(SystemExit) as exc:
+        fr034_articles.article_check()
+    assert exc.value.code != 0
+    out = capsys.readouterr().out
+    assert "A2 zakon-x чл.2" in out
+    # чл. 1 is untouched and must not be reported
+    assert "чл.1" not in out
+
+
+def _bury_one_loss_behind_many_vanished(mod):
+    """Baseline order is law order, so `zakon-a`'s A2 volume sorts ahead
+    of `zakon-z`'s A1. Returns after leaving the DB in the post-sweep
+    state: 10 vanished articles in zakon-a, one lost alinea in zakon-z."""
+    _insert(mod, [("zakon-a", str(i), None, "2020-01-01", None, "т", 0)
+                  for i in range(1, 12)]
+                 + [("zakon-z", "1", None, "2020-01-01", None, "т", 0),
+                    ("zakon-z", "1", "1", "2020-01-01", None, "т", 0)])
+    mod.article_baseline()
+    conn = sqlite3.connect(mod.DB)
+    # zakon-a keeps чл. 11 so the LAW survives and each loss is its own
+    # A2 line rather than one collapsed law-vanished summary
+    conn.execute("DELETE FROM provisions WHERE law_id='zakon-a' "
+                 "AND article != '11'")
+    conn.execute("DELETE FROM provisions WHERE law_id='zakon-z' "
+                 "AND paragraph='1'")
+    conn.commit()
+    conn.close()
+
+
+def test_article_check_never_truncates_loss_findings(fr034_articles,
+                                                     monkeypatch, capsys):
+    """A1/A3 are the loss signals. A2 volume from the sweep must never
+    push them out of the printed report — the biased-visible-sample
+    failure this repo already shipped once as the coverage-gate
+    middle-truncation P0."""
+    _bury_one_loss_behind_many_vanished(fr034_articles)
+    monkeypatch.setattr(fr034_articles, "A2_PRINT_CAP", 3)
+    with pytest.raises(SystemExit) as exc:
+        fr034_articles.article_check()
+    assert exc.value.code != 0
+    out = capsys.readouterr().out
+    assert "A1 zakon-z чл.1" in out          # NOT truncated away
+    assert out.count("A2 zakon-a") == 3      # A2 capped
+    assert "7 more" in out                   # and the cap is declared
+
+
+def test_article_check_dumps_every_finding_to_a_file(fr034_articles,
+                                                     monkeypatch):
+    _bury_one_loss_behind_many_vanished(fr034_articles)
+    monkeypatch.setattr(fr034_articles, "A2_PRINT_CAP", 3)
+    with pytest.raises(SystemExit):
+        fr034_articles.article_check()
+    dumped = Path(fr034_articles.ARTICLE_FINDINGS).read_text(
+        encoding="utf-8").splitlines()
+    # 10 vanished articles + 1 lost alinea, nothing capped
+    assert len(dumped) == 11
+    assert sum(f.startswith("A2 zakon-a") for f in dumped) == 10
+    assert any(f.startswith("A1 zakon-z") for f in dumped)
+
+
+def test_article_check_clears_a_stale_findings_file_when_green(
+        fr034_articles, capsys):
+    Path(fr034_articles.ARTICLE_FINDINGS).write_text("A2 stale finding\n",
+                                                     encoding="utf-8")
+    fr034_articles.article_baseline()
+    fr034_articles.article_check()
+    assert "OK" in capsys.readouterr().out
+    assert not Path(fr034_articles.ARTICLE_FINDINGS).exists()
+
+
+def test_article_check_law_vanished_line_reads_as_article_vanished(
+        fr034_articles, capsys):
+    """The plan tells the operator to look for `A2 ... article vanished`
+    lines. The whole-law summary is the most catastrophic line the
+    command can emit, so it must answer that grep too — and never be
+    truncated."""
+    _insert(fr034_articles, [
+        ("zakon-gone", str(i), None, "2020-01-01", None, "т", 0)
+        for i in range(1, 4)])
+    fr034_articles.article_baseline()
+    conn = sqlite3.connect(fr034_articles.DB)
+    conn.execute("DELETE FROM provisions WHERE law_id='zakon-gone'")
+    conn.commit()
+    conn.close()
+    with pytest.raises(SystemExit):
+        fr034_articles.article_check()
+    out = capsys.readouterr().out
+    line = next(ln for ln in out.splitlines() if "zakon-gone" in ln)
+    assert line.lstrip(" -").startswith("A2 ")
+    assert "article vanished" in line
+    assert "WHOLE LAW" in line
+    # still collapsed to ONE line, not one per baseline article
+    assert out.count("zakon-gone") == 1
+
+
+def test_article_check_catches_a_loss_offset_by_a_gain(fr034_articles, capsys):
+    """The whole point of D-058 (iv): per-law aggregates net this to
+    zero, so `check` sees nothing. Per-article, the loss must surface."""
+    _insert(fr034_articles, [
+        ("zakon-x", "1", "1", "2020-01-01", None, "т", 0),
+        ("zakon-x", "2", None, "2020-01-01", None, "т", 0),
+    ])
+    fr034_articles.article_baseline()
+    conn = sqlite3.connect(fr034_articles.DB)
+    # чл. 1 loses its explicit alinea; чл. 2 gains one — per-law totals
+    # are unchanged.
+    conn.execute("DELETE FROM provisions WHERE law_id='zakon-x' "
+                 "AND article='1' AND paragraph='1'")
+    conn.execute("INSERT INTO provisions VALUES "
+                 "('zakon-x','2','1','2020-01-01',NULL,'т',0)")
+    conn.commit()
+    conn.close()
+    # the per-LAW aggregate really is blind to it: same totals, so R1
+    # cannot fire
+    per_law = fr034_articles._counts(sqlite3.connect(fr034_articles.DB))
+    assert per_law["zakon-x"]["explicit_alineas"] == 1
+    with pytest.raises(SystemExit) as exc:
+        fr034_articles.article_check()
+    assert exc.value.code != 0
+    out = capsys.readouterr().out
+    assert "A1" in out
