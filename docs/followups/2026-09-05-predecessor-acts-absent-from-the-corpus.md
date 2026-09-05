@@ -19,4 +19,4 @@ Two questions for the owner, neither of which the instrument can settle:
 
 ## Verification
 
-The rule is pinned by tests in `tests/scripts/test_dv_coverage_map.py` (one per reason and one for the repeal that stays a dispute). Every predecessor row's issue precedes the act's `fecha_publicacion`, sits in its promulgation issue, or precedes the act's last dated chain event; the round-2 review of PR #43 reconciled the 722 against the 737 rows of the pre-fix run.
+The rule is pinned by tests in `tests/scripts/test_dv_coverage_map.py` (one per reason and one for the repeal that stays a dispute). Every predecessor row's issue precedes the act's `fecha_publicacion`, sits in its promulgation issue, or precedes the act's last dated chain event; the review of PR #43 reconciled the 722 against the 737 rows of the pre-fix run.
