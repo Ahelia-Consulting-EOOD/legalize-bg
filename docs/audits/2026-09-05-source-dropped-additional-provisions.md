@@ -1,6 +1,6 @@
 # Audit 2026-09-05: additional provisions dropped by the source (lex.bg)
 
-**Status:** open, evidence complete for two acts, adjudication of the rest pending
+**Status:** open, evidence complete for two acts, adjudication of the rest folded into the approach C coverage map (FR-042, D-059)
 **Author:** Claude session on owner (ekimir) dispatch from the takt-plan programme, 2026-09-05
 **Tool:** `scripts/structure_gaps.py` (tests in `tests/test_structure_gaps.py`), run at `origin/main` 5e92aa30
 **Related:** `docs/cpd/CPD-2026-09-05-dv-gap-fill-additional-provisions.md`
@@ -140,9 +140,9 @@ Files flagged: 95; `additional-empty` 25; `paragraph-start-above-1` 95.
 
 ## Disposition
 
-- ЗОТ: gap filled from the State Gazette in this change (`gap_fill` provenance in the frontmatter,
-  commit type `[popravka]`, Source-Id `dv-242220`).
-- The other 24 acts where both rules fire: adjudicate against the State Gazette one by one; the
-  CPD proposes the process.
+- ЗОТ: NOT hand-filled. The hand-edited `[popravka]` commit proposed in PR #24 was rejected (D-063);
+  the act is rebuilt from ДВ бр. 32/2026 as the first grade A pilot of the graded source model (D-059).
+- The other 24 acts where both rules fire: adjudicate against the State Gazette one by one as part
+  of the coverage map (FR-024 / FR-042); the CPD's gap-fill process is superseded by D-059.
 - The 70 acts where only the numbering rule fires: adjudicate; a legitimate case should be
   recorded so the scanner can carry an allow-list.

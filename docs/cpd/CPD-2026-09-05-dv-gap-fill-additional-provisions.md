@@ -1,6 +1,14 @@
 # CPD-2026-09-05: State Gazette gap fill for provisions lex.bg omits
 
-**Status:** PROPOSED 2026-09-05 (this PR carries the first instance and the detector; the process needs the owner's ratification)
+**Status:** SUPERSEDED 2026-09-05 by the graded source model (D-059, D-063). The detector and the
+audit stand; the proposed process does not. Under approach C an act whose promulgated text lex.bg
+omits is rebuilt from the Gazette through the sanctioned write gate (grade A) or has its Gazette
+events audited (grade B); no corpus file is hand-edited and no `gap_fill` frontmatter extension is
+adopted. The hand-edited `[popravka]` commit for Закон за обществения транспорт that accompanied the
+first version of this proposal (PR #24) was not merged; that act is the first grade A pilot. The
+class is registered as FR-042. The three owner questions below are answered by D-059: no `gap_fill`
+field, the scanner runs strict only once its candidates are adjudicated, provenance is exposed via
+the per-act grade.
 **Origin:** takt-plan programme, TP-001 review round 1 finding F1 and follow-up FU-002 (the definitions section of Закон за обществения транспорт renders empty); confirmed 2026-09-05 against the State Gazette
 **Author:** Claude session on owner (ekimir) dispatch, 2026-09-05
 **Evidence:** `docs/audits/2026-09-05-source-dropped-additional-provisions.md`
