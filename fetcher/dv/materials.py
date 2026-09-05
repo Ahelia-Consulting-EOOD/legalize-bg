@@ -448,6 +448,30 @@ def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
     return parse_materials_all(fetch_all_materials_pages(session, id_obj))
 
 
+def cached_material(cache_dir: Path | None, id_mat: int) -> str | None:
+    """The cached body of a material, or None if the cache has no usable one.
+
+    One rule for „the cache holds this material“, shared by the single
+    fetch and by the bulk sweep. A file holding the site's „недостъпен“
+    stub is not a hit: it is the record of an outage that an older run
+    stored before the guard below existed, and it must be asked for
+    again rather than read as the Gazette's answer.
+    """
+    if cache_dir is None:
+        return None
+    path = Path(cache_dir) / f"{id_mat}.html"
+    if not path.exists():
+        return None
+    stored = path.read_text(encoding="utf-8")
+    if is_dv_error_body(stored):
+        log.warning(
+            "cached body for material %d is the site's error stub; re-fetching",
+            id_mat,
+        )
+        return None
+    return stored
+
+
 def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:
     """GET one material, returning its raw HTML.
 
@@ -470,16 +494,11 @@ def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:
     deleted the files by hand. A stub already on disk, from a run of the
     code that lacked this guard, counts as a miss and is re-fetched.
     """
+    stored = cached_material(cache_dir, id_mat)
+    if stored is not None:
+        log.info("cache hit for material %d", id_mat)
+        return stored
     cached = Path(cache_dir) / f"{id_mat}.html" if cache_dir else None
-    if cached is not None and cached.exists():
-        stored = cached.read_text(encoding="utf-8")
-        if not is_dv_error_body(stored):
-            log.info("cache hit for material %d", id_mat)
-            return stored
-        log.warning(
-            "cached body for material %d is the site's error stub; re-fetching",
-            id_mat,
-        )
     html = session.get(MATERIAL_URL, params={"idMat": id_mat})
     if cached is not None and not is_dv_error_body(html):
         cached.parent.mkdir(parents=True, exist_ok=True)
