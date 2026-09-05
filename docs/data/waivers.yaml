@@ -1,0 +1,132 @@
+# docs/data/waivers.yaml
+# Enumerated exceptions to the correctness floor. Equality is enforced on the
+# COUNT: an act that stops violating must be removed here, an act whose count
+# falls must have its count updated here, and a new violation in a waived act
+# is reported as an excess. Any of the three fails the run.
+#
+# Every entry is dated, signed and names its expiry condition; a waiver that
+# carries less is refused at load (Owner Directive 12).
+#
+# Act lists are produced by running the detectors and pasting their
+# enumeration, never hand-typed:
+#
+#   python -m corpus_integrity --root . --check CHECK --enumerate
+#
+# A waived act is not re-enumerated while it is waived. To re-census a class
+# during a repair sweep, run the detector against a copy of this file with
+# that entry's acts emptied.
+#
+# The first three entries carry rulings that are already adjudicated in the
+# record, but their detectors are NOT part of Part II (the machine floor ships
+# tag_remnants and chrome only), so their act lists stay empty until the
+# detector that fills each one exists. An empty list is not an assertion that
+# the class is clean; it is the absence of a census, and Owner Directive 10
+# forbids repairing before that census exists.
+frontmatter_dates:
+  ruling: "FR-011 triage — faithful to lex.bg, which carries no date signal for these acts"
+  owner_signed: 2026-08-11
+  expires: "the frontmatter-date detector ships and its corpus-wide census replaces this empty list"
+  acts: []  # fill from: python -m corpus_integrity --check frontmatter_dates --enumerate
+empty_body:
+  ruling: "lex.bg content-less stub pages; surfaced to callers as <doc_id=N>"
+  owner_signed: 2026-08-11
+  expires: "the empty-body detector ships and its corpus-wide census replaces this empty list"
+  acts: []  # detector not yet implemented
+no_article_anchor:
+  ruling: "single-§ instruments (денонсиране, оттегляне на резерва, опрощаване) and ethics codes"
+  owner_signed: 2026-08-11
+  expires: "the article-anchor detector ships and its corpus-wide census replaces this empty list"
+  acts: []  # detector not yet implemented
+# Census of 2026-09-05 over the committed corpus: 771 occurrences over 80 acts.
+tag_remnants:
+  ruling: "W-002: FR-035 tag remnants (SUP>, /span>, /STRONG>) pending the Part V sweep; fixed in fetcher/bg/text_parser.py first"
+  owner_signed: 2026-09-05
+  expires: "Part V repair sweep (PR #23 phase 7); each act leaves the waiver as it is repaired"
+  acts:
+    administrativnoprotsesualen-kodeks: 1
+    danachno-osiguritelen-protsesualen-kodeks: 22
+    grazhdanski-protsesualen-kodeks: 20
+    kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g: 1
+    kodeks-na-truda: 1
+    kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g: 15
+    nakazatelen-kodeks: 1
+    nakazatelno-protsesualen-kodeks: 12
+    naredba-1-ot-1-yuli-2016-g-za-odobryavane-na-metodika-za-prilagane-na-izklyuchen: 5
+    naredba-11-ot-30-oktomvri-2023-g-za-strukturata-i-organizatsiyata-na-deynostta-n: 1
+    naredba-16-ot-12-avgust-1999-g-za-ogranichavane-emisiite-na-letlivi-organichni-s: 3
+    naredba-2-ot-9-noemvri-2021-g-za-parvonachalno-i-posledvashto-razkrivane-na-info: 2
+    naredba-21-ot-3-may-2007-g-za-obstoyatelstvata-i-dannite-koito-se-vpisvat-v-regi: 1
+    naredba-44-ot-20-oktomvri-2011-g-za-iziskvaniyata-kam-deynostta-na-kolektivnite-: 2
+    naredba-5-ot-1-septemvri-2004-g-za-korabnite-dokumenti: 1
+    naredba-50-ot-30-mart-2022-g-za-kapitalovata-adekvatnost-likvidnostta-na-investi: 1
+    naredba-55-ot-29-yanuari-2004-g-za-proektirane-i-stroitelstvo-na-zhelezopatni-li: 3
+    naredba-7-ot-22-fevruari-2008-g-za-utvarzhdavane-na-obraztsite-na-knizha-svarzan: 249
+    naredba-70-ot-29-yuni-2021-g-za-iziskvaniyata-kam-fondovete-za-izvarshvane-na-pl: 5
+    naredba-9-ot-19112003-g-za-otsenka-na-aktivite-i-pasivite-na-pensionnoosiguritel: 1
+    naredba-h-1-ot-9-yanuari-2014-g-za-registratsiya-parvonachalno-opredelyane-podda: 5
+    naredba-n-18-ot-13-dekemvri-2006-g-za-registrirane-i-otchitane-chrez-fiskalni-us: 2
+    naredba-na-stolichen-obshtinski-savet-za-obshtinskite-lechebni-zavedeniya: 1
+    naredba-na-stolichen-obshtinski-savet-za-pazarite-na-teritoriyata-na-stolichna-o: 16
+    naredba-na-stolichen-obshtinski-savet-za-priem-na-detsa-v-obshtinskite-samostoya: 1
+    naredba-na-stolichen-obshtinski-savet-za-reda-za-uchredyavane-i-uprazhnyavane-pr: 119
+    naredba-rd-02-20-1-ot-1-april-2024-g-za-usloviyata-i-reda-za-izpolzvane-na-ogran: 2
+    naredba-za-rabotnoto-vreme-pochivkite-i-otpuskite: 1
+    naredba-za-reda-za-sazdavane-i-organizirane-na-deynostta-na-dobrovolnite-formiro: 14
+    naredba-za-stipendiantskata-programa-v-darzhavnata-administratsiya: 18
+    pravilnik-za-deynostta-na-tsentralen-depozitar-ad: 3
+    pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie-2: 4
+    pravilnik-za-prilagane-na-zakona-za-aktsizite-i-danachnite-skladove: 2
+    pravilnik-za-prilagane-na-zakona-za-chuzhdentsite-v-republika-balgariya: 1
+    pravilnik-za-uskoreni-proizvodstva-po-arbitrazhni-dela: 1
+    pravilnik-za-ustroystvoto-i-deynostta-na-dializnite-tsentrove: 1
+    semeen-kodeks: 6
+    targovski-zakon: 2
+    zakon-za-aktsizite-i-danachnite-skladove: 1
+    zakon-za-avtomobilnite-prevozi: 1
+    zakon-za-avtorskoto-pravo-i-srodnite-mu-prava: 32
+    zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet: 2
+    zakon-za-chistotata-na-atmosferniya-vazduh: 1
+    zakon-za-darzhavna-agentsiya-natsionalna-sigurnost: 9
+    zakon-za-darzhavniya-byudzhet-na-republika-balgariya-za-2025-g: 15
+    zakon-za-dostap-do-obshtestvena-informatsiya: 2
+    zakon-za-dvizhenieto-po-patishtata: 3
+    zakon-za-elektronnite-saobshteniya: 1
+    zakon-za-energetikata: 1
+    zakon-za-furazhite: 2
+    zakon-za-kadastara-i-imotniya-registar: 4
+    zakon-za-komisiyata-za-finansov-nadzor: 3
+    zakon-za-korporativnoto-podohodno-oblagane: 40
+    zakon-za-kreditnite-institutsii: 1
+    zakon-za-lekarstvenite-produkti-v-humannata-meditsina: 4
+    zakon-za-litsata-obsluzhvashti-krediti-i-kupuvachite-na-krediti: 1
+    zakon-za-markite-i-geografskite-oznacheniya: 3
+    zakon-za-merkite-sreshtu-finansiraneto-na-terorizma-i-na-razprostranenieto-na-or: 1
+    zakon-za-merkite-sreshtu-izpiraneto-na-pari: 2
+    zakon-za-morskite-prostranstva-vatreshnite-vodni-patishta-i-pristanishtata-na-re: 3
+    zakon-za-notariusite-i-notarialnata-deynost-zagl-izm-dv-br-123-ot-1997-g: 4
+    zakon-za-obshtestvenite-biblioteki: 2
+    zakon-za-obshtite-iziskvaniya-za-bezopasnost-pri-predostavyane-na-atraktsionni-u: 1
+    zakon-za-patishtata: 3
+    zakon-za-pazarite-na-finansovi-instrumenti: 9
+    zakon-za-pazarite-na-kriptoaktivi: 2
+    zakon-za-pokritite-obligatsii: 2
+    zakon-za-predostavyane-na-finansovi-uslugi-ot-razstoyanie: 2
+    zakon-za-privatizatsiya-i-sledprivatizatsionen-kontrol: 1
+    zakon-za-profesionalnoto-obrazovanie-i-obuchenie: 6
+    zakon-za-publichnoto-predlagane-na-tsenni-knizha: 13
+    zakon-za-saslovnata-organizatsiya-na-veterinarnite-lekari-v-balgariya: 7
+    zakon-za-sotsialnite-uslugi: 5
+    zakon-za-trudovata-migratsiya-i-trudovata-mobilnost: 6
+    zakon-za-vazstanovyavane-i-prestrukturirane-na-kreditni-institutsii-i-investitsi: 19
+    zakon-za-veterinarnomeditsinskata-deynost: 2
+    zakon-za-zadalzheniyata-i-dogovorite: 2
+    zakon-za-zakrivane-na-natsionalnata-sluzhba-po-zarnoto: 5
+    zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-: 1
+    zakon-za-zdravnoto-osiguryavane: 1
+# Census of 2026-09-05 over the committed corpus: 2 occurrences over 1 acts.
+chrome:
+  ruling: "W-003: FR-036 lex.bg sidebar chrome in one act pending re-fetch"
+  owner_signed: 2026-09-05
+  expires: "Part V repair sweep (PR #23 phase 7); each act leaves the waiver as it is repaired"
+  acts:
+    naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni: 2
