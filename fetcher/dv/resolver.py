@@ -92,6 +92,19 @@ writes nothing false.
 Ambiguity that survives all three keys is broken by the inline
 promulgation citation „(ДВ, бр. N от YYYY г.)“, cross-checked against the
 candidate's `dv_issue`/`dv_year` and its chain. Nothing else breaks it.
+
+**Every entry point cleans its input first.** The Gazette's own titles
+carry the soft hyphen its typesetter left inside a word broken across a
+line: 960 of them inside 777 of the 32,117 material titles of the
+2026-09-05 enumeration, „Репуб­лика“, „Постанов­ление“. The character is
+invisible in every viewer and it sits inside the act-type noun, which is
+the first thing `act_type_of`, `numbered_key`, `strip_amending_prefix`
+and `instruction_kind` read, so a hyphenated title used to take a
+different path through all of them and `normalise_title` turned the
+character into a SPACE, which split the word and missed the exact key
+too. `clean_title` removes it and its five zero-width relatives, and
+resolving 683 such titles that the coverage map had left unattributed
+attributes 54 of them, 36 by the exact key and 18 by the numbered one.
 """
 
 import copy
@@ -271,6 +284,33 @@ _HOMOGLYPHS = str.maketrans(
 _DASHES = str.maketrans({"‐": "-", "‑": "-", "‒": "-",
                          "–": "-", "—": "-", "−": "-"})
 
+#: Characters that occupy a position in the string and none on the page:
+#: the soft hyphen the Gazette's typesetter left inside a word broken
+#: across lines, the zero-width space and the two zero-width joiners, the
+#: word joiner and the byte-order mark. They are written here as escapes
+#: rather than as themselves, because a literal one in this file would be
+#: invisible to every reader of it.
+#:
+#: The enumeration of 2026-09-05 counted 960 soft hyphens inside 777 of
+#: the 32,117 material titles: „Репуб­лика“, „Постанов­ление“.
+#: One inside the act-type noun is the worst place it can sit, since the
+#: noun is what `act_type_of`, `numbered_key` and `strip_amending_prefix`
+#: read first, and `normalise_title` turns the character into a SPACE,
+#: which splits the word and misses the exact key too.
+_INVISIBLE_RE = re.compile("[\\u00ad\\u200b\\u200c\\u200d\\u2060\\ufeff]")
+
+
+def clean_title(text: str | None) -> str:
+    """A title with the invisible characters taken out.
+
+    Every entry point of this module calls it on its own input, so that a
+    hyphenated title and a clean one are one string by the time anything
+    is parsed, whichever door the caller came through.
+    """
+    if not text:
+        return ""
+    return _INVISIBLE_RE.sub("", str(text))
+
 
 @dataclass(frozen=True)
 class NumberedKey:
@@ -405,7 +445,7 @@ def strip_amending_prefix(text: str) -> str:
     the target, and both must go: the first would attribute the event to
     whichever наредба happens to carry number 238.
     """
-    stripped = _CORRIGENDUM_RE.sub("", text)
+    stripped = _CORRIGENDUM_RE.sub("", clean_title(text))
     match = _PREFIX_RE.match(stripped)
     if match is not None and names_an_act(stripped[match.end():]):
         stripped = stripped[match.end():]
@@ -444,9 +484,10 @@ def instruction_kind(title: str | None) -> str:
     """
     if not title:
         return "promulgation"
-    if _CORRIGENDUM_RE.match(str(title)):
+    title = clean_title(title)
+    if _CORRIGENDUM_RE.match(title):
         return "corrigendum"
-    cleaned = _TITLE_NOTE_RE.sub("", str(title))
+    cleaned = _TITLE_NOTE_RE.sub("", title)
     match = _PREFIX_RE.match(cleaned)
     if match is None or not names_an_act(cleaned[match.end():]):
         return "promulgation"
@@ -467,7 +508,7 @@ def normalise_title(text: str | None) -> str:
     """
     if not text:
         return ""
-    stripped = _TITLE_NOTE_RE.sub("", str(text))
+    stripped = _TITLE_NOTE_RE.sub("", clean_title(text))
     stripped = _TRAILING_CITATION_RE.sub("", stripped)
     stripped = strip_amending_prefix(stripped)
     folded = stripped.casefold()
@@ -519,7 +560,7 @@ def title_variants(normalised: str) -> frozenset[str]:
 
 def act_type_of(title: str | None) -> str | None:
     """The act type a title opens with, or None if it opens with nothing known."""
-    normalised = normalise_title(title)
+    normalised = normalise_title(clean_title(title))
     if not normalised:
         return None
     head = normalised.split(" ", 1)[0]
@@ -546,7 +587,7 @@ def numbered_key(title: str | None) -> NumberedKey | None:
     """
     if not title:
         return None
-    target = strip_amending_prefix(_TITLE_NOTE_RE.sub("", str(title)))
+    target = strip_amending_prefix(_TITLE_NOTE_RE.sub("", clean_title(title)))
     act_type = act_type_of(target)
     if act_type is None:
         return None
@@ -789,7 +830,15 @@ class Resolver:
         the numbered key. `dv_citation` is the inline promulgation
         citation, as a string or an already-parsed (number, year); when it
         is not given the title itself is searched for one.
+
+        The title is cleaned of invisible characters before anything else
+        happens, because the three keys below and the citation parser
+        each read the raw text and a soft hyphen inside the act-type noun
+        sends them down different paths.
         """
+        title = clean_title(title)
+        if dv_citation is not None and not isinstance(dv_citation, tuple):
+            dv_citation = clean_title(dv_citation)
         normalised = normalise_title(title)
         if not normalised:
             return Resolution(None, (), 0.0, ("empty_title", "title_ambiguous"), "none")

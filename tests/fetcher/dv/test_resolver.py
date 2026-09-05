@@ -23,6 +23,8 @@ from fetcher.dv.resolver import (
     _content,
     NumberedKey,
     Resolver,
+    act_type_of,
+    clean_title,
     load_corpus_acts,
     normalise_title,
     numbered_key,
@@ -1232,3 +1234,65 @@ def test_an_exact_key_whose_subject_is_unrelated_is_refused(resolver):
     )
     assert result.law_id is None
     assert "subject_unrelated" in result.flags
+
+
+# --- invisible characters in a Gazette title ------------------------------
+
+#: The Gazette's own titles carry 960 U+00AD SOFT HYPHEN characters
+#: inside 777 of the 32,117 material titles of the 2026-09-05
+#: enumeration, left by the typesetter's line breaking: „Репуб­лика“,
+#: „Постанов­ление“. They are invisible in every viewer and they sit
+#: inside the act-type noun, which is the first thing every reader here
+#: parses.
+SOFT_HYPHEN = "­"
+
+#: A real corpus act, and the one section a ПМС is published under.
+PMS_46 = "postanovlenie-46-ot-21-mart-2005-g-za-priemane-na-natsionalni-schetovodni-standa"
+COUNCIL_SECTION = "Министерски съвет"
+
+
+def hyphenate(title: str, after: int = 8) -> str:
+    """The same title with a soft hyphen inside its first word."""
+    return title[:after] + SOFT_HYPHEN + title[after:]
+
+
+def test_clean_title_removes_the_invisible_characters():
+    for char in ("­", "​", "‌", "‍", "⁠", "﻿"):
+        assert clean_title(f"Закон{char} за туризма") == "Закон за туризма"
+    assert clean_title(None) == ""
+
+
+def test_a_soft_hyphen_inside_the_act_type_noun_is_ignored():
+    # The character splits „Постановление“ in two, and every reader that
+    # runs on the raw title then sees a word it does not know.
+    dirty = (
+        f"Постанов{SOFT_HYPHEN}ление № 5 от 11 януари 2019 г. за изменение на "
+        "нормативни актове"
+    )
+    clean = dirty.replace(SOFT_HYPHEN, "")
+    assert act_type_of(dirty) == act_type_of(clean) == "постановление"
+
+
+def test_a_soft_hyphen_does_not_hide_a_numbered_key(corpus_acts):
+    act = next(one for one in corpus_acts if one.law_id == PMS_46)
+    assert numbered_key(hyphenate(act.title)) == numbered_key(act.title)
+    assert numbered_key(act.title) is not None
+
+
+def test_a_soft_hyphen_does_not_hide_the_act_a_title_names(resolver, corpus_acts):
+    # The whole chain, end to end: a Gazette title that carries the
+    # character must reach the same corpus act as the one that does not.
+    act = next(one for one in corpus_acts if one.law_id == PMS_46)
+    clean = resolver.resolve(act.title, section=COUNCIL_SECTION)
+    dirty = resolver.resolve(hyphenate(act.title), section=COUNCIL_SECTION)
+    assert clean.law_id == PMS_46
+    assert dirty.law_id == clean.law_id
+
+
+def test_a_soft_hyphen_inside_the_amended_act_still_strips():
+    # `strip_amending_prefix` decides WHICH act a ЗИД is about, and the
+    # gate on the strip is that what follows the verb names an act. The
+    # character inside „Закона“ makes it name nothing, so the prefix
+    # stays and the event is attributed to the amending act's own number.
+    dirty = f"Постановление № 5 от 2019 г. за изменение на Зако{SOFT_HYPHEN}на за туризма"
+    assert strip_amending_prefix(dirty) == "Закона за туризма"
