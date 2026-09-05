@@ -1,10 +1,20 @@
 """Aggregate runner: run every registered check and hard-fail on any violation.
 
-Design decision 3 of Part II: exit code 1 on any unwaived violation or any
-stale waiver. There is no report mode, because a gate that records a violation
-and permits the write is not a gate (Owner Directive 12).
+Design decision 3 of Part II: exit code 1 on any unwaived violation, any stale
+waiver or any count drift. There is no report mode, because a gate that records
+a violation and permits the write is not a gate (Owner Directive 12).
 
-Exit codes: 0 clean, 1 violations or stale waivers, 2 usage error.
+Exit codes: 0 clean, 1 violations or a rotted waiver, 2 usage error.
+
+Row shape, one per line, four tab-separated columns, so a waiver list can be
+regenerated straight from `--enumerate`:
+
+    tag_remnants<TAB>slug<TAB>line 42<TAB>markup remnant '/span>'
+    STALE_WAIVER<TAB>slug<TAB>tag_remnants<TAB>no longer violates; remove it
+    COUNT_DRIFT<TAB>slug<TAB>tag_remnants<TAB>expected 41, found 12; ...
+
+The label is always column 1 and the act slug always column 2, so filtering on
+the check name cannot pick up a row label as if it were a slug.
 """
 
 import argparse
@@ -37,30 +47,52 @@ def main(argv: list[str] | None = None) -> int:
     if not args.waivers.is_file():
         parser.error(f"waiver file not found: {args.waivers}")
 
-    waivers = load_waivers(args.waivers)
+    try:
+        waivers = load_waivers(args.waivers)
+    except ValueError as exc:
+        parser.error(str(exc))
     unknown = sorted(set(waivers) - {c.name for c in CHECKS})
+
     acts = list(iter_acts(args.root))
+    if not acts:
+        # A clean report over nothing is indistinguishable from a clean corpus.
+        parser.error(
+            f"zero acts loaded under {args.root}: refusing to report a clean run"
+        )
+
     failed, summary = False, {}
 
     for check in CHECKS:
         if args.check not in ("all", check.name):
             continue
-        unwaived, stale = reconcile(
-            check.name, check.run(acts), waivers.get(check.name, set())
+        unwaived, stale, drift = reconcile(
+            check.name, check.run(acts), waivers.get(check.name, {})
         )
         summary[check.name] = {
             "violations": len(unwaived),
-            "stale_waivers": len(stale),
+            "stale_waivers": stale,
+            "count_drift": [
+                {"slug": d.slug, "expected": d.expected, "actual": d.actual}
+                for d in drift
+            ],
         }
-        if unwaived or stale:
+        if unwaived or stale or drift:
             failed = True
+        if args.json:
+            continue  # nothing but the payload goes to stdout in --json mode
         if args.enumerate:
             for v in unwaived:
                 print(f"{v.check}\t{v.slug}\t{v.locator}\t{v.detail}")
         for slug in stale:
             print(
-                f"{check.name}\tSTALE WAIVER\t{slug}\t"
+                f"STALE_WAIVER\t{slug}\t{check.name}\t"
                 "no longer violates; remove from waivers"
+            )
+        for d in drift:
+            print(
+                f"COUNT_DRIFT\t{d.slug}\t{check.name}\t"
+                f"expected {d.expected} violations, found {d.actual}; "
+                "update the waiver count"
             )
 
     if args.json:
@@ -75,7 +107,8 @@ def main(argv: list[str] | None = None) -> int:
         for name, counts in sorted(summary.items()):
             print(
                 f"{name}: {counts['violations']} violations, "
-                f"{counts['stale_waivers']} stale waivers"
+                f"{len(counts['stale_waivers'])} stale waivers, "
+                f"{len(counts['count_drift'])} count drifts"
             )
         # Waiver entries seeded ahead of their detector are inert, not stale:
         # reconciliation cannot reach them, so they are reported separately.
