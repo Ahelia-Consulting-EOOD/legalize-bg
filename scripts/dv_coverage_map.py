@@ -939,12 +939,25 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
     omissions = []
     predecessors = []
     disputes = []
+    #: Where every repeal-titled material ended up, so the dispute count is
+    #: read against its denominator: zero disputes among seven attributed
+    #: repeals says nothing about the repeal titles the resolver never
+    #: attributed at all.
+    repeal_census: Counter = Counter()
     for material, law_id, score, flags, candidates in resolutions:
         if law_id is None:
+            if instruction_kind(material.title) == "repeal":
+                repeal_census["unattributed"] += 1
             continue
         act = by_id[law_id]
         kind = instruction_kind(material.title)
         reason = predecessor_reason(material, act, issues, kind)
+        if kind == "repeal":
+            repeal_census[
+                "predecessor" if reason is not None
+                else "disputed" if act.estado == "vigente"
+                else "already_derogado"
+            ] += 1
         if reason is not None:
             # The material is about a same-titled act the corpus does not
             # hold. It is neither an omission of this act's chain nor a
@@ -1084,7 +1097,8 @@ INVENTORY_FIELDS = [
 
 
 def write_report(path: Path, coverage, summary, omissions, predecessors,
-                 unresolved, disputes, inventory, issues, categories, estimator):
+                 unresolved, disputes, inventory, issues, categories, estimator,
+                 repeal_census=None):
     """The short report of §5.2: the totals, and what they do not cover."""
     grades = Counter(row["candidate_grade"] for row in summary)
     by_source = Counter(row["source"] for row in coverage if row["row_kind"] == "event")
@@ -1299,9 +1313,30 @@ def write_report(path: Path, coverage, summary, omissions, predecessors,
         "dates the body scan reads, so the title pass does not claim it. Every "
         "row is data and none of them changes a corpus file (D-064 item 5).",
         "",
+        _repeal_denominator(repeal_census or Counter(), len(disputes)),
+        "",
     ]
     lines += _inventory_lines(inventory, estimator)
     path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def _repeal_denominator(census: Counter, disputes: int) -> str:
+    """The dispute count with its denominator, or the zero says nothing."""
+    attributed = (
+        census["disputed"] + census["already_derogado"] + census["predecessor"]
+    )
+    total = attributed + census["unattributed"]
+    return (
+        f"Repeal-titled materials in the enumeration: {total}. Attributed to a "
+        f"corpus act: {attributed}, of which {census['already_derogado']} to an "
+        f"act the corpus already records as repealed, {census['predecessor']} "
+        "to a same-titled predecessor (`predecessor-materials.csv`) and "
+        f"{census['disputed']} disputing a `vigente`. So the count above is "
+        f"{disputes} of {attributed} attributed repeals, and the "
+        f"{census['unattributed']} repeal titles the resolver never attributed "
+        "are the open question rather than evidence of agreement; they sit in "
+        "`unresolved.csv` with their candidates."
+    )
 
 
 def _score_of(text) -> float:
@@ -1461,7 +1496,8 @@ def main(argv=None) -> int:
     write_csv(out / "estado-disputes.csv", DISPUTE_FIELDS, disputes)
     write_csv(out / "pdf-era-inventory.csv", INVENTORY_FIELDS, inventory)
     write_report(out / "report.md", coverage, summary, omissions, predecessors,
-                 unresolved, disputes, inventory, issues, categories, estimator)
+                 unresolved, disputes, inventory, issues, categories, estimator,
+                 repeal_census=repeal_census)
     log.info(
         "wrote %d chain rows, %d acts, %d omissions, %d predecessor materials, "
         "%d unresolved, %d estado disputes and %d PDF-era issues to %s",

@@ -688,6 +688,31 @@ def test_the_report_counts_the_predecessor_materials_by_reason(cmap, tmp_path):
     assert "inferred from the corpus chain" in section
 
 
+def test_the_estado_section_states_its_denominator(cmap, tmp_path):
+    # Zero disputes is zero of how many attributed repeals, beside how
+    # many repeal titles were never attributed at all. The section says
+    # both, or a zero reads as agreement between the Gazette and lex.bg.
+    out = one_act_map(
+        cmap, tmp_path, "denominator", issue=(2008, 60, "2008-07-08"),
+        title=REPEAL_FORESTS,
+    )
+    text = (out / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Estado disputes", 1)[1].split("\n## ", 1)[0]
+    assert "Repeal-titled materials in the enumeration: 1." in section
+    assert "1 disputing a `vigente`" in section
+    assert "1 of 1 attributed repeals" in section
+    out = one_act_map(
+        cmap, tmp_path, "denominator-derogado", issue=(2008, 60, "2008-07-08"),
+        title=REPEAL_FORESTS,
+        act=FORESTS_ACT.replace("estado: vigente", "estado: derogado"),
+    )
+    text = (out / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Estado disputes", 1)[1].split("\n## ", 1)[0]
+    assert rows(out / "estado-disputes.csv") == []
+    assert "1 to an act the corpus already records as repealed" in section
+    assert "0 of 1 attributed repeals" in section
+
+
 # --- unresolved -----------------------------------------------------------
 
 
