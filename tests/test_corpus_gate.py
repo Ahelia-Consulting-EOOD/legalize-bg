@@ -412,6 +412,80 @@ def test_the_scan_catches_open_in_write_mode_and_shutil_copy(tmp_path):
     ]
 
 
+def test_the_scan_catches_a_stage_outside_then_rename_in_bypass(tmp_path):
+    """The write-then-rename shape is the gate's OWN idiom, and the P0/P1
+    rebuild stages a candidate before committing it, so an adapter author
+    copying either would produce an unaudited writer."""
+    _module(tmp_path, "stager.py", """
+        import os
+        from pathlib import Path
+        from fetcher.bg.assembler import assemble_file
+
+        OUT = Path("laws")
+
+        def save(meta, body, slug):
+            tmp = Path("/tmp/staging") / f"{slug}.md"
+            tmp.write_text(assemble_file(meta, body), encoding="utf-8")
+            os.replace(tmp, OUT / f"{slug}.md")
+    """)
+    offenders = find_corpus_writers(root=tmp_path)
+    assert [o.split(":")[0] for o in offenders] == ["stager.py"]
+    assert "os.replace" in offenders[0]
+
+
+def test_the_scan_catches_path_rename_and_path_replace(tmp_path):
+    _module(tmp_path, "a.py", """
+        from pathlib import Path
+
+        def go(staged):
+            Path(staged).replace(Path("codes") / "x.md")
+    """)
+    _module(tmp_path, "b.py", """
+        from pathlib import Path
+
+        def go(staged):
+            Path(staged).rename("ordinances/x.md")
+    """)
+    _module(tmp_path, "c.py", """
+        import shutil
+
+        def go(staged):
+            shutil.move(staged, "laws/x.md")
+    """)
+    assert sorted({o.split(":")[0] for o in find_corpus_writers(root=tmp_path)}) == [
+        "a.py", "b.py", "c.py",
+    ]
+
+
+def test_the_scan_clears_an_atomic_rename_of_a_state_file(tmp_path):
+    """`tmp.replace(path)` is how refresh checkpoints its resume state. The
+    module names a corpus directory and assembles acts, so the unresolved-path
+    fallback would flag it; a rename is judged on positive evidence only."""
+    _module(tmp_path, "runner.py", """
+        import json
+        from pathlib import Path
+        from fetcher.bg.assembler import assemble_file
+
+        CATEGORY_DIRS = {"laws": "laws"}
+
+        def save_state(path, processed):
+            path = Path(path)
+            tmp = path.with_suffix(path.suffix + ".tmp")
+            tmp.write_text(json.dumps(processed), encoding="utf-8")
+            tmp.replace(path)
+    """)
+    assert find_corpus_writers(root=tmp_path) == []
+
+
+def test_the_scan_does_not_read_a_string_replace_as_a_rename(tmp_path):
+    """`str.replace` always takes two arguments; `Path.replace` takes one."""
+    _module(tmp_path, "text.py", """
+        def clean(body):
+            return body.replace("/span>", "").replace("laws", "codes")
+    """)
+    assert find_corpus_writers(root=tmp_path) == []
+
+
 def test_the_scan_resolves_a_path_built_through_local_variables(tmp_path):
     """`filepath = output_dir / corpus_dir / f"{slug}.md"` is how the real
     writers address the corpus; a literal-only scan would miss every one."""
