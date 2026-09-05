@@ -51,7 +51,7 @@ server, SQLite index, consolidation engine, and municipal pipeline.
 
 ## Project Status
 
-**Phase:** Phase 1b.1 (MCP server) shipping 2026-05-09.
+**Phase:** graded source model track (D-059, 2026-09-05); current state in `docs/sync/ACTIVE.md`. The milestones below are historical.
 
 - Phase 1a (bootstrap, 3,573 acts) — **complete** on `main`.
 - Phase 1b.1 (MCP server with `get_law` / `search` / `get_article`) —

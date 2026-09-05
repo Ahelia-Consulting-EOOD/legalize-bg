@@ -17,4 +17,4 @@ entry, which Directive 13 treats as unrecorded. This record gives them a home in
 Sources: `.superpowers/fr034-preserved/fr037-transcript-findings-2026-08-06.md`,
 `.superpowers/fr034-preserved/anchor-integrity-independent-findings-2026-08-11.md`,
 `.superpowers/fr034-preserved/assurance-audit-2026-08-11.md`,
-`docs/audits/2026-09-05-source-dropped-additional-provisions.md`.
+`docs/audits/2026-09-05-source-dropped-additional-provisions.md` (PR #27, open at the time of writing).

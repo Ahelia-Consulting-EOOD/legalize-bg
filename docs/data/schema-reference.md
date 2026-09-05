@@ -6,7 +6,7 @@ Technical reference for all structured data schemas in legalize-bg. Two schemas 
 
 ## Section 1: YAML Frontmatter Schema
 
-Every Markdown file in the repository begins with a YAML frontmatter block delimited by `---`. The frontmatter contains 13 fields (8 mandatory Legalize SPEC fields + 5 Bulgarian extensions) plus an `amendment_history` array.
+Every Markdown file in the repository begins with a YAML frontmatter block delimited by `---`. The frontmatter contains 13 fields (8 mandatory Legalize SPEC fields + 5 Bulgarian extensions) plus an `amendment_history` array. The provenance fields of the graded source model (D-059: a `provenance` block; per-event `source`, `id_mat`, `applied`, `uncertainty`) are added through a Surface 2 preflight and are documented here when it lands.
 
 ### Example
 
@@ -44,7 +44,7 @@ amendment_history:
 | `fecha_publicacion` | date | Required. ISO 8601 format (YYYY-MM-DD). May be null in ~3.4% of bootstrapped acts — see `canonical-data-model.md` §7.2. | Date the act was first published in the State Gazette (Държавен вестник). |
 | `ultima_actualizacion` | date | Required. ISO 8601 format (YYYY-MM-DD). May be null when `fecha_publicacion` is null (same set of ~121 acts). | Date of the most recent amendment's publication in DV. Equals `fecha_publicacion` if the act has never been amended. |
 | `estado` | enum | Required. One of: `vigente`, `derogado`. | Current status. `vigente` = in force; `derogado` = repealed. |
-| `fuente` | literal | Required. Must be `lex.bg`. | Data source used for bootstrapping. May change to `dv.parliament.bg` for acts tracked via the DV monitor pipeline. |
+| `fuente` | literal | Required. `lex.bg` for every act today; `dv.parliament.bg` for Gazette-sourced acts under D-059 (Surface 2 preflight pending). | Base source of the act's text. |
 
 ### Bulgarian Extension Fields (5)
 

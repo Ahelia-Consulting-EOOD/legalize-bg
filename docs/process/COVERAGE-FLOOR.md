@@ -95,13 +95,25 @@ in the corpus and the correctness floor says whether their addresses are right; 
 
 - required floor: every act carries a machine-readable provenance grade and every amendment event a
   source class, both surfaced at every consumer surface (frontmatter, index, MCP, REST, cf-plane).
-  1. **Grade A, ДВ-complete.** Base text and every amendment event come from Gazette HTML materials;
-     the replay passes the Phase 4 invariants; unadjudicated witness divergences are zero.
-  2. **Grade B, ДВ-audited snapshot.** Base text is a lex.bg snapshot; every Gazette event since the
-     HTML era is replayed or verified; events from the 1989 to 2004 PDF era are read from the issue
-     PDFs by vision and applied, and the grade records how many of them still are not.
-  3. **Grade C, pre-1989 base.** The origin or some events exist only offline. The base is a lex.bg
-     snapshot that cannot be verified against the Gazette online. Handled as a separate track.
+  These definitions are canonical; Directive 2, the FR rows and the ledgers cite them.
+  1. **Grade A, ДВ-complete.** The base text is a Gazette HTML material rebuilt through the corpus
+     write gate; every amendment event is a Gazette HTML material replayed by the engine (until the
+     engine exists, only acts with no amendment events can hold A). Gate: the write gate accepts the
+     text, the Phase 4 replay invariants pass, and unadjudicated witness divergences are zero.
+  2. **Grade B, ДВ-audited.** The base text is a lex.bg snapshot or a Gazette text read from an issue
+     PDF; every Gazette event that is online (HTML, or PDF read by vision) has been replayed or
+     verified clean against the text. Gate: the snapshot was frozen only after the single lex.bg
+     repair sweep (Directive 14) and the FR-041 reference capture ran on it, and every online event
+     carries a recorded `applied` state of `replayed` or `verified`.
+  3. **Grade B-pending.** As B, but at least one online Gazette event is still `pending`: located but
+     not yet read, replayed or verified. The record carries the count of pending events and the
+     estimated Gazette pages still to read. This is a grade in its own right, not the absence of one;
+     most older acts hold it during the transition.
+  4. **Grade C, pre-1989 base.** The promulgation or at least one event exists only offline. Every
+     online event is still sourced and verified as for B, and the pending counter applies. Handled as
+     a separate track.
+  **ДВ-anchored** means grade A or B. B-pending and C acts are not anchored, and lex.bg re-scrape
+  remains permitted for them (Directive 2).
 - acceptance rule: a grade is earned by gates, never assigned by source. An act's grade is the weakest
   link in its current text. A grade may rise only when the corresponding events have been sourced and
   replayed clean; it never rises by declaration.
@@ -123,8 +135,8 @@ This section is only for sequencing. It does NOT weaken the coverage floor.
 
 ## Evidence
 
-- expected verification artifact: `docs/process/BOOTSTRAP-MANIFEST.md` listing all acts processed, with per-category counts matching the floor (3,624 on 2026-09-05; live count in `docs/sync/CORPUS-STATUS.json`)
-- expected review artifact: per-phase gate review confirming category counts, MCP tool functionality, and validation accuracy metrics
+- expected verification artifact: `docs/process/BOOTSTRAP-MANIFEST.md` (never produced for the 2026-04 bootstrap; `docs/sync/CORPUS-STATUS.json` and the FR-040 records check stand in) listing all acts processed, with per-category counts matching the floor (3,624 on 2026-09-05; live count in `docs/sync/CORPUS-STATUS.json`)
+- expected review artifact: per-phase gate review confirming category counts, MCP tool functionality, and adjudicated divergence counts (D-060; percentages are diagnostics)
 - waiver path: dated entry in `docs/process/WAIVERS.md` with owner sign-off, specifying which floor element is deferred and the remediation plan
 - correctness floor verification artifact: a corpus-wide integrity check that runs over every
   act in CI and hard-fails on any violation of the five properties, plus, per defect class, the

@@ -2,7 +2,7 @@
 
 Bulgarian legislation as code — 3,624 national legislative acts (counted 2026-09-05; live count in `docs/sync/CORPUS-STATUS.json`) as Markdown+YAML in git, with MCP server and REST API for Claude Code and web access.
 
-**Source model (D-059, 2026-09-05):** Държавен вестник is the source of truth wherever its text exists online; lex.bg is a base snapshot and a witness, never truth. Every act carries a provenance grade (A ДВ-complete, B ДВ-audited snapshot, C pre-1989 base). Corpus `.md` files are written only by the pipeline through the single write gate; never hand-edit, never hand-commit a corpus file.
+**Source model (D-059, 2026-09-05):** Държавен вестник is the source of truth wherever its text exists online; lex.bg is a base snapshot and a witness, never truth. Every act carries a provenance grade (A ДВ-complete, B ДВ-audited snapshot, C pre-1989 base). Corpus `.md` files are written only by the pipeline (`refresh.py` and `bootstrap.py` today; the single write gate of PR #23 Part IV will make this structural); never hand-edit, never hand-commit a corpus file.
 
 **DRS topology:** this repo is the S5 surface of the DRS topology (oversight `registry/topology/drs.yaml`). Consumers poll `docs/sync/CORPUS-STATUS.json` and detect per-act freshness by frontmatter `ultima_actualizacion` (D-048), never by git dates. `/sync-drs` run from any DRS repo reads those surfaces read-only.
 
