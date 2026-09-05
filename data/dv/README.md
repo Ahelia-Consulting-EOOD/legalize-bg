@@ -10,7 +10,12 @@ which act and which amendment event can reach which provenance grade.
 |---|---|---|
 | `issues.jsonl` | `python -m fetcher.dv issues` | yes, when the run is complete |
 | `materials.jsonl` | `python -m fetcher.dv materials` | yes, when the run is complete |
-| `cache/` | `python -m fetcher.dv material`, and any caller passing `--cache-dir` | never (`.gitignore`) |
+| `cache/` | `python -m fetcher.dv bodies`, `python -m fetcher.dv material` | never (`.gitignore`) |
+
+The coverage map itself is not written here. It reads these files and
+writes five research artifacts under
+`docs/research/2026-09-05-dv-coverage-map/`; see „The coverage map“ at
+the end of this file.
 
 ## `issues.jsonl`
 
@@ -93,17 +98,72 @@ that answered is recorded and the sweep continues.
 
 ## `cache/`
 
-Raw `showMaterialDV.jsp` responses, one file per material, named
-`<id_mat>.html`. A promulgated text does not change once published, so a
-cache hit is served without a request and the cache is a permanent local
-record rather than an expiring one. It is large, it is reproducible from
-the ids in `materials.jsonl`, and it is never committed.
+Raw `showMaterialDV.jsp` responses, one flat file per material, named
+`<id_mat>.html`, UTF-8, exactly as the site served it. A promulgated text
+does not change once published, so a cache hit is served without a
+request and the cache is a permanent local record rather than an
+expiring one. It is large, it is reproducible from the ids in
+`materials.jsonl`, and it is never committed.
 
 Because it is permanent, the „недостъпен“ stub never enters it: a stub
 is not written, and a stub found on disk counts as a miss and is
 re-fetched. Otherwise one maintenance window during a sweep would make
 every material fetched during it unreachable for good, with no request
 ever made again to find out.
+
+## `python -m fetcher.dv bodies`: filling the cache
+
+```
+python -m fetcher.dv bodies --materials data/dv/materials.jsonl \
+    --cache-dir data/dv/cache [--sections NAME ...] [--resume] \
+    [--limit N] [--max-consecutive-errors N]
+```
+
+The ДВ-side pass of §5.2 is a **body** scan, not a title scan. In
+Bulgarian drafting most cross-act amendments ride in the преходни и
+заключителни разпоредби of a different act: a ЗИД of act X amends acts Y
+and Z in its own §§, under X's title. A title pass never attributes those
+events, so the chain would stay lex.bg's, which is the thing the design
+forbids. The scan therefore needs the body of every HTML-era material in
+the sections that issue corpus acts.
+
+That is on the order of forty-two thousand fetches, about 11.7 hours at
+one request per second. The cache makes it a one-time cost. This
+subcommand writes no JSONL: its output is the cache.
+
+**Which materials.** By default every material whose section is Народно
+събрание, Министерски съвет, or names a ministry. The rest of the
+официален раздел, the courts, the Централна избирателна комисия and the
+sector regulators, issues decisions and rules that are not corpus acts.
+`--sections` **widens** that set and never narrows it, since a scan that
+skipped a default section would leave `chain_scan_complete` claiming a
+coverage it has not got; `--sections all` reads every section.
+
+**Order.** By `(id_obj, position)`, which is issue by issue and, inside
+an issue, the order of publication. Two runs over the same file ask for
+the same materials in the same order, so the log line of a halted run
+names a real resume point.
+
+**Progress.** Every hundred materials, with the count fetched, the count
+served from the cache, the elapsed time and an ETA at one request per
+second. The ETA counts the materials not yet in the cache when the run
+started, so it is one second optimistic per stub an older run left
+behind.
+
+**Resuming.** The cache is the resume: a material already in it costs no
+request, so the plain command continues yesterday's run. `--resume`
+additionally trusts the cache by file name instead of reading each cached
+body to check it, which over forty-two thousand files is the difference
+between a fast start and a slow one; the price is that it also skips a
+„недостъпен“ stub an older run stored, so run without it once after an
+outage.
+
+**Halting.** Five „недостъпен“ answers in a row (`--max-consecutive-errors`,
+default 5) are an outage rather than five missing materials. The run logs
+at ERROR naming the last material that answered and exits non-zero.
+Nothing is cached for those five, so the outage leaves no trace to
+mistake for a Gazette gap later. An isolated missing material does not
+trip the guard: it costs one request per run and is asked for again.
 
 ## Re-running
 
@@ -136,3 +196,61 @@ straight back to the page the run died on and pay only for what is left.
 
 Politeness is not optional: one request per second, a descriptive
 User-Agent, every request logged, and a bot challenge halts the run.
+
+## The coverage map
+
+```
+python scripts/dv_coverage_map.py --corpus . \
+    --issues data/dv/issues.jsonl --materials data/dv/materials.jsonl \
+    --out docs/research/2026-09-05-dv-coverage-map/
+```
+
+Reads the corpus frontmatter and the two tables above, and writes five
+files. It is a **research artifact**: it writes nothing into the corpus
+tree and no consumer surface reads it. The provenance block that does is
+P1.
+
+| Output | One row per |
+|---|---|
+| `coverage-map.csv` | act base, and act amendment event |
+| `acts-summary.csv` | act |
+| `chain-omissions.csv` | Gazette material the act's chain does not know |
+| `unresolved.csv` | event, act or material nothing could be said about |
+| `report.md` | the totals, in prose |
+
+**The source class** of every base and every event, per §4.1:
+
+- `dv_html`: the issue has a materials list and the resolver attributed
+  one of its materials to this act. `locator_id_mat` names it.
+- `dv_pdf`: the issue is online only as a whole-issue attachment, so the
+  text needs the vision reading path.
+- `dv_offline`: before 1989, which is not online at all.
+- `unlocated`: everything else, and never „lex.bg-sourced“. The
+  `uncertainty` column says which: `issue_not_in_table`,
+  `chain_unconfirmed` (the issue has materials and none is about this
+  act), `issue_number_unknown`, `promulgation_unknown`,
+  `materials_not_enumerated` (the sweep has not reached that issue,
+  which is not the same as the issue holding nothing).
+
+**The candidate grade** is derived by the procedure of §4.2, never set by
+hand. In P0 every event is `applied = pending`, every base is an unfrozen
+and unaudited `snapshot`, and the body scan has not run, so only rules 1
+and 3 can fire: every act with anything offline in scope is **C** and
+every other act is **B-pending**, with its open items listed in
+`pending_items` (`events_pending`, `chain_scan`, `promulgation_unlocated`,
+`promulgation_unknown`, `base_audit`, `freeze`).
+
+**The page estimate** is the median HTML-era length by act type and
+decade, applied to every `dv_pdf` row, base rows included, because a
+PDF-era base has to be read for its structural audit. Lengths come from
+consecutive materials' start pages; the last material of an issue would
+need the issue's page count to bound it, and the `issues` table does not
+carry one, so it contributes no measurement.
+
+**Two limits, stated in the report rather than hidden.** This is a
+**title** pass, so every row of `chain-omissions.csv` carries
+`pass = title`, `chain_scan_complete` is false for every act, and no act
+can reach grade A from this map; the body pass over the cache that
+`bodies` fills is the next leg. And before бр. 43 от 2005 there is no
+ДВ-side check at all, so every chain from 1989 to 2004 is inherited from
+lex.bg and is reported as inherited rather than as verified.
