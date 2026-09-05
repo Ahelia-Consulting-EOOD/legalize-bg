@@ -4,6 +4,15 @@
 > execute this plan task-by-task. Process design follows `legal-corpus:iterative-doc-train`;
 > read that skill before dispatching any leg. Steps use checkbox (`- [ ]`) syntax.
 
+> **Amended 2026-09-05 for the graded source model (D-059).** The owner adopted approach C: acts are
+> rebuilt from Държавен вестник wherever the Gazette text is online (grade A) and graded B or C
+> otherwise; see `docs/plans/2026-09-05-dv-graded-source-design.md` and the CPD
+> `docs/cpd/CPD-2026-09-05-graded-source-model.md`. Parts I to IV stand unchanged: the machine floor,
+> the write gate and the per-class ladders are source-agnostic and are the base of grades B and C.
+> Part V's single sweep is re-scoped to the acts that keep a lex.bg base; grade A acts are repaired by
+> rebuild. A tenth class, C10 provenance integrity, is added. Owner decisions O-5, O-6, O-8, O-9, O-10
+> and O-11 are resolved by PR #25 and noted in place.
+
 **Goal:** Drive the corpus to a state where every article and alinea address resolves to
 exactly the text the act carries at that address, prove it by exhaustive corpus-wide checks
 that hard-fail in CI, and make the guarantee binding on every future ingestion path,
@@ -838,8 +847,8 @@ fabricated article.
 **Reference defect:** ЗЗД чл. 1001а, 1001б, 1001г, which are Закон за гражданското
 съдопроизводство articles reproduced inside ЗЗД's ПЗР and adopted as ЗЗД's own; plus duplicate
 keys 5, 10 and 81, where the second row is a repeal-list citation to another act.
-**Registered as:** FR-030 article variant (governance annotation only). Working branch used the
-number FR-037, which is registered nowhere — register it or fold it into FR-030 before any leg.
+**Registered as:** **FR-037** (2026-09-05, PR #25; re-homed from the FR-030 addendum). The working
+branch `fix/fr037-p0-detect` is pushed as PR #26.
 
 **Plan.** Adjudicate the decision procedure separating a structural anchor of *this* act from an
 article number inside reproduced text. Four candidate signals, to be ruled on explicitly:
@@ -975,8 +984,7 @@ excluded. Crossed with C5 mandatorily.
 surfaces take `rows[0]`, so which article a caller receives is decided by file order. A
 three-article range returns six entries. Measured 698 colliding article keys across 144 acts;
 a transcript-only count reports 2,290 ambiguous addresses across 232 acts with 4,382 shadowed rows.
-**Registered as:** nothing. **Register first** — Directive 13 blocks work on the surrounding area
-until it exists as an FR row and a follow-up entry.
+**Registered as:** **FR-038** (2026-09-05, PR #25).
 
 **Plan.** This class is partly *derived*: C1 and C4 each remove collisions. The adjudication must
 therefore define the class as the **residual** after those land, and rule on what a legitimate
@@ -1006,7 +1014,8 @@ test on MCP and REST.
 
 **Reported:** 12 751 headings across 408 acts where `ГЛАВА`, `Раздел`, `Част` and `Дял` are emitted
 without a Markdown `#`, so every heading-resetting state machine leaks to end of file.
-**Status:** transcript-only and **unverified**; registered nowhere.
+**Status:** transcript-only and **unverified**; registered as **FR-039** (2026-09-05, PR #25) with the
+count marked unverified.
 
 **Plan.** The first action is verification, not fixing: reproduce the count independently and
 publish it. Only then adjudicate. This class is **upstream of C1**, because any anchor rule keyed
@@ -1062,7 +1071,8 @@ acts; `.ahelia/constraint-profile.yaml` and `.ahelia/protected-surfaces.yaml` sa
 `.claude/CLAUDE.md` declares **does not exist**. `gate-report.json` is gitignored, has no history
 and is overwritten on every run, so a fall in gate-pass rate between runs is undetectable by
 construction.
-**Registered as:** nothing.
+**Registered as:** **FR-040** (2026-09-05, PR #25). The counts were refreshed to 3,624 and the
+declared-but-unbuilt gates struck in the same PR; the durable check remains to be built.
 
 **Plan.** Treat documents of record as a surface with its own lens. Rule that every corpus-state
 claim is machine-checkable or removed, and that the declared gates in `.claude/CLAUDE.md` are either
@@ -1084,8 +1094,10 @@ declared counts and gate status, not prose descriptions. Re-swept whenever any a
 
 ### C9 — Cross-references are not modelled at all
 
-**Status:** registered nowhere, and **the invariant that would detect it cannot be written today.**
-Surfaced by the ДВ path research, 2026-08-11.
+**Status:** registered as **FR-041** (2026-09-05, PR #25); **the invariant that would detect it
+cannot be written today.** Surfaced by the ДВ path research, 2026-08-11. Under the graded source
+model the capture-now decision applies to every act that keeps a lex.bg base (grades B and C);
+grade A acts have their references reconstructed from Gazette text by the resolver.
 
 **The finding.** The corpus has no reference model: `index/catalog.py` defines four tables and none
 of them holds an edge. Worse, lex.bg **marks these references up** — `SameDocReference` carries
@@ -1130,6 +1142,36 @@ doing so once deleted 485 of ГПК's 745 articles.
 leaves a dangling or silently redirected reference.* Boundary: inter-act references are captured
 but not resolved until the resolver exists. **This is the one invariant in the catalogue that is
 declared and not yet implementable, and it is recorded as such rather than omitted.**
+
+---
+
+### C10 — Provenance integrity (added 2026-09-05, D-059)
+
+**The class.** Under the graded source model every act carries a provenance grade (A ДВ-complete,
+B ДВ-audited snapshot, C pre-1989 base) derived from the source class and application state of its
+base and of every amendment event. A grade that is not derivable from the recorded events, a grade
+that rose without the sourcing its definition requires, or a consumer surface (index, MCP, REST,
+cf-plane) that disagrees with the frontmatter derivation is a defect of this class. So is any
+grade B or C text served without its grade.
+**Registered as:** the provenance floor in `docs/process/COVERAGE-FLOOR.md` (PR #25) and FR-024 as
+redirected; the design is `docs/plans/2026-09-05-dv-graded-source-design.md` section 4.
+
+**Plan.** The derivation table in the design (section 4.2) is the decision procedure; the excluded
+boundary is the correctness of the text itself, which classes C1 to C7 own.
+
+**Research.** Attack the derivation with mixed-era acts (a 1950 base with post-2005 events, a 2003
+base with PDF-era events), with an act whose chain the coverage map extends beyond lex.bg's, and
+with a consumer that caches payloads across a grade change.
+
+**Solve.** Detector `checks/provenance.py` over the Markdown tree: parse the block, re-derive the
+grade from the events, compare; a serve-time contract test on MCP and REST compares the wire field
+to the frontmatter.
+
+**Apply.** Lands with the provenance block (design phase P1), before the first grade A write.
+
+**Guarantee.** INV-010: *every act's grade equals the derivation from its recorded events, and every
+consumer surface reports that grade.* Boundary: does not cover the truth of the events themselves
+(the coverage map and the witnesses do). Bound at the write gate and in CI.
 
 ## Part IV — The source-agnostic guarantee
 
@@ -1261,6 +1303,11 @@ Two consequences follow, and they are the strongest argument in this plan:
    switched to ДВ until every detector reports zero. Passing through that door with known defects
    converts a repairable problem into a permanent one.
 
+*Amended 2026-09-05:* under the graded source model the door is passed **per act**, not once for the
+corpus. An act moves to grade A only when the detectors report zero on it and its rebuild from the
+Gazette passes the write gate; acts that keep a lex.bg base keep the re-photograph repair path and
+remain subject to this gate until they move.
+
 ## Part V — Sequencing and the single sweep
 
 Order is dictated by dependency, not by severity. Two classes are upstream of the rest, and putting
@@ -1276,12 +1323,13 @@ precisely why the previous attempt stalled.
 | **4** | C5 addresses: residual after 1 to 3; surfaces stop resolving by order | detector zero; serve-time contract test green | none |
 | **5** | C2 citation-as-alinea: flagger, reasoner, applier | every flagged marker carries a verdict or a flag | none |
 | **6** | C7 annex classification; eligibility gate | classified or flagged, never guessed | **1974 cutoff** |
-| **7** | **The single sweep** | full re-ingest through the fixed pipeline | **when it may run** |
+| **7** | **The single sweep** (re-scoped 2026-09-05: grade B and C acts only; grade A acts are repaired by rebuild from the Gazette, not by re-photograph) | full re-ingest of the snapshot-based acts through the fixed pipeline | **when it may run** |
 | **8** | Close catalogue; flip every gate hard-fail; assert ДВ-readiness | zero across all detectors; both review tracks clean | none |
 
 ### The sweep, phase 7
 
-One sweep repairs everything, per Directive 14. Preconditions, all mandatory:
+One sweep repairs every act that keeps a lex.bg base, per Directive 14; its traffic shrinks with
+every act that moves to grade A (design section 8). Preconditions, all mandatory:
 
 - Every parser fix from phases 1 to 6 is merged to `main`.
 - Every detector reports its expected pre-sweep floor, recorded per class.
@@ -1320,13 +1368,13 @@ phase 0 or phase 1 waits on any of them, so execution can begin immediately.
 | **O-2** | **Era cutoff for position-derived алинеи** — is 1974 (Указ 883) the right boundary for emitting implicit alineas | phase 6 | A doctrinal question about Bulgarian citation practice, not an engineering one |
 | **O-3** | **When the repair sweep may run** — it is roughly two hours of lex.bg traffic and needs interactive Cloudflare cookie minting | phase 7 | Operational and traffic-policy judgement |
 | **O-4** | **cf-plane implicit-alinea behaviour** — mirror the labelled REST surface or skip implicit rows on the public plane | the D1 regeneration, independently of this plan | Without it an unlabelled export would serve 21 043 position-derived numbers as if the legislator had printed them |
-| **O-5** | **Register FR-037 or fold it into FR-030** — the working branch uses an FR number registered nowhere | phase 3 (Directive 13) | Governance identity |
-| **O-6** | **Directive 2 amendment or waiver** — „lex.bg = bootstrap only; ДВ = ongoing source“ is contradicted by current practice, since `refresh.py` is an ongoing lex.bg pipeline and the ДВ monitor is Backlog | nothing, but it misstates the operating model | Only the owner may amend a directive |
+| **O-5** | **Register FR-037 or fold it into FR-030** — the working branch uses an FR number registered nowhere. *Resolved 2026-09-05: registered as FR-037 (PR #25); branch pushed as PR #26.* | phase 3 (Directive 13) | Governance identity |
+| **O-6** | **Directive 2 amendment or waiver** — „lex.bg = bootstrap only; ДВ = ongoing source“ is contradicted by current practice, since `refresh.py` is an ongoing lex.bg pipeline and the ДВ monitor is Backlog. *Resolved 2026-09-05: Directive 2 rewritten to the graded source model (D-059, PR #25).* | nothing, but it misstates the operating model | Only the owner may amend a directive |
 | **O-7** | **Non-monotonic allowlist** — confirm each entry with a source citation once phase 3 produces the candidate list | phase 3 closure | Each entry is an assertion about a specific act's real numbering |
-| **O-8** | **Capture cross-reference spans now, or lose them** (C9) — lex.bg marks up all 1 662 inline references and the converter discards them; ДВ has no equivalent markup | nothing today, everything after cutover | A capture-now-or-lose-it call, not a build-the-graph call |
-| **O-9** | **Reconcile the operation taxonomy** — the coverage floor names **7** ЗИД operation types, FR-003 names **5**, and the ratified engine model is a **4-operation kernel** in which renumbering and restructuring are explicitly not operation types. A gate written against "all 7" cannot be satisfied against a 4-operation kernel | Phase 4 acceptance | Three live authority surfaces disagree; only the owner can pick the canonical set |
-| **O-10** | **Strike the percentage bar in the delivery contract** — its Phase 4 definition of done still requires "accuracy ≥ 70 % regex-only, ≥ 90 % with fallback", which Directive 9 now forbids as evidence of closure. Both are live and binding | Phase 4 acceptance | Two authority surfaces in direct contradiction |
-| **O-11** | **Record the decisions that were ratified and never written** — the LawVM two-level model was ratified in substance, its governance edits were held, and the identifiers reserved for them (D-043 to D-046) were later consumed by other work. The engine model currently has no decision record at all | Phase 4 start | Governance integrity |
+| **O-8** | **Capture cross-reference spans now, or lose them** (C9) — lex.bg marks up all 1 662 inline references and the converter discards them; ДВ has no equivalent markup. *Answered 2026-09-05: yes, for every act that keeps a lex.bg base (grades B and C), before its snapshot is frozen; unnecessary for grade A acts (FR-041).* | nothing today, everything after cutover | A capture-now-or-lose-it call, not a build-the-graph call |
+| **O-9** | *Resolved 2026-09-05 (D-060, PR #25): canonical = 4-operation kernel + enumerated elaboration grammar.* **Reconcile the operation taxonomy** — the coverage floor names **7** ЗИД operation types, FR-003 names **5**, and the ratified engine model is a **4-operation kernel** in which renumbering and restructuring are explicitly not operation types. A gate written against "all 7" cannot be satisfied against a 4-operation kernel | Phase 4 acceptance | Three live authority surfaces disagree; only the owner can pick the canonical set |
+| **O-10** | *Resolved 2026-09-05 (D-060, PR #25): struck; Phase 4 DoD rewritten.* **Strike the percentage bar in the delivery contract** — its Phase 4 definition of done still requires "accuracy ≥ 70 % regex-only, ≥ 90 % with fallback", which Directive 9 now forbids as evidence of closure. Both are live and binding | Phase 4 acceptance | Two authority surfaces in direct contradiction |
+| **O-11** | *Resolved 2026-09-05 (D-060 to D-062, PR #25).* **Record the decisions that were ratified and never written** — the LawVM two-level model was ratified in substance, its governance edits were held, and the identifiers reserved for them (D-043 to D-046) were later consumed by other work. The engine model currently has no decision record at all | Phase 4 start | Governance integrity |
 
 ### Recommendation on scope
 
