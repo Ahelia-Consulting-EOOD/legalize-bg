@@ -497,7 +497,10 @@ def test_the_runner_json_carries_the_violation_rows(tmp_path):
 
     d = tmp_path / "laws"
     d.mkdir()
-    (d / "bad.md").write_text("---\ntitulo: X\n---\n**Чл. 1.**/span>\n", encoding="utf-8")
+    # Written exactly as the gate renders an act, so the locator the runner
+    # prints is the locator the gate would have printed for the same act.
+    (d / "bad.md").write_text(render_act({"titulo": "X"}, "**Чл. 1.**/span>\n"),
+                              encoding="utf-8")
     _waivers(tmp_path)
     r = subprocess.run(
         [sys.executable, "-m", "corpus_integrity", "--root", str(tmp_path),
