@@ -24,6 +24,7 @@ The corpus is a photograph of a private consolidation it cannot verify and whose
 | cf-plane | act payload carries the grade; worker mirrors the warning; spec version bump; decided together with the FR-032 implicit-rows label-or-skip question | `docs/api/cf-data-plane-spec.md` | with the D1 cutover decision |
 | Commit conventions | `Source-Id: dv-<idMat>` for Gazette-sourced commits (already used once in PR #24's rejected commit); `[popravka]` for a rebuild that corrects a snapshot, `[nova]` for a first Gazette-sourced promulgation, `[reforma]` for a replayed amendment | **Surface 5** (additive namespace) | note in the preflight, no format change |
 | Write gate and corpus-integrity | unchanged from PR #23 Parts II and IV; new check `checks/provenance.py` (grade derivable from events; consumer fields agree) | none | none |
+| Corrections ledger and editorial-changes report (new, design 5.9) | two channels: Gazette поправка recorded on the event they correct; consolidator-side corrections and parser normalisations listed per act by the pipeline | none | none |
 | `docs/sync/CORPUS-STATUS.json` | already carries `correctness_grade` and `source_model` (PR #25); gains per-grade act counts when the block ships | DRS S5 surface (D-048) | announce via `/sync-drs` |
 | PR #23 plan | Part V sweep re-scoped to grade B and C acts; class C10 provenance integrity; O-5/O-6/O-8/O-9/O-10/O-11 marked resolved | none | none |
 

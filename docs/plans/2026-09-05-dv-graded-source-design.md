@@ -69,7 +69,7 @@ Every amendment event (a row of `amendment_history`, or a Gazette material the r
 |---|---|---|
 | `source` | `dv_html`, `dv_pdf`, `dv_offline`, `lexbg` | where the event's text comes from: a Gazette HTML material, a Gazette issue PDF (read by vision), a Gazette issue not online, or only lex.bg's history block |
 | `id_mat` | integer or null | the Gazette material identifier when `source` is `dv_html` |
-| `applied` | `rebuilt`, `replayed`, `verified`, `snapshot`, `pending` | how the event reached the current text: the act was rebuilt from this material as its base; the operation stream was replayed; the lex.bg text was verified against the material without replay; the event is present only through the lex.bg snapshot; the material is located but not yet processed |
+| `applied` | `rebuilt`, `replayed`, `verified`, `snapshot`, `pending`, `not_incorporated` | how the event reached the current text: the act was rebuilt from this material as its base; the operation stream was replayed; the lex.bg text was verified against the material without replay; the event is present only through the lex.bg snapshot; the material is located but not yet processed; the instruction could not be applied (it addresses a provision that does not exist or replaces words that are not present) and is recorded without changing the text, the Australian „misdescribed amendment“ pattern (section 12) |
 | `uncertainty` | list, may be empty | flags per correctness property 5: `title_ambiguous`, `date_uncertain`, `partial_read`, `operation_unresolved` |
 
 ### 4.2 Grade per act
@@ -94,9 +94,9 @@ long as its origin is offline, with every post-1989 event nevertheless sourced a
 
 ### 4.3 Where the grade lives
 
-- Frontmatter: a `provenance` block (`grade`, `derived_at`, `base: {source, id_mat, issue, year}`, `events_pending`, `pdf_pages_estimate`) and per-event `source` / `id_mat` / `applied` / `uncertainty` on `amendment_history` rows. Additive; frontmatter is protected surface 1, so an IMPLEMENTATION-PREFLIGHT precedes the schema change, and the eight Legalize mandatory fields are untouched. `fuente` becomes `dv.parliament.bg` for grade A acts and stays `lex.bg` otherwise.
+- Frontmatter: a `provenance` block (`grade`, `derived_at`, `base: {source, id_mat, issue, year}`, `current_to: {issue, year, date}` as a bounded currency statement in the legislation.gov.uk form, „up to date with all changes known to be in force on or before“ that issue, `events_pending`, `pdf_pages_estimate`, and a fixed `status` line stating that the consolidated text has no official value and the Gazette prevails on any discrepancy) and per-event `source` / `id_mat` / `applied` / `uncertainty` on `amendment_history` rows. Additive; frontmatter is protected surface 1, so an IMPLEMENTATION-PREFLIGHT precedes the schema change, and the eight Legalize mandatory fields are untouched. `fuente` becomes `dv.parliament.bg` for grade A acts and stays `lex.bg` otherwise.
 - Index: `laws.provenance_grade`, `laws.events_pending`, and an `amendment_events` table with the per-event fields (SQLite schema is protected surface 4; preflight).
-- MCP and REST: `get_law` and the search hit carry `provenance_grade`; a `PROVENANCE_GRADE_B` or `_C` warning rides in successful responses the way `IMPLICIT_ALINEA` does (D-058), so a consumer never receives snapshot text unlabelled. Additive per surface 3; `tools.json` minor bump.
+- MCP and REST: `get_law` and the search hit carry `provenance_grade` and `current_to`; a `PROVENANCE_GRADE_B` or `_C` warning rides in successful responses the way `IMPLICIT_ALINEA` does (D-058), so a consumer never receives snapshot text unlabelled; the disclaimer and tie-break rule travel in `tools.json` response metadata so a downstream consumer cannot drop them (BOE obliges reusers to carry its label and update date; section 12). Additive per surface 3; `tools.json` minor bump.
 - cf-plane: the act payload carries the grade; the worker mirrors the REST warning (the same label-or-skip question as FR-032's implicit rows, decided together).
 
 ## 5. Architecture
@@ -141,15 +141,28 @@ The engine receives: a base version (grade A: the parsed promulgated act; grade 
 
 ### 5.6 Snapshot audit (grade B before the engine exists)
 
-For an act with a lex.bg base, `applied = verified` for an event means: the material was fetched, its instructions were segmented, and each instruction's quoted target text and replacement text were located in the lex.bg text at the addressed position (or their absence explained by a later event). This is a deterministic witness check with a reasoning pass for the ambiguous cases, and it produces exactly the evidence PR #24 produced by hand for one act: lex.bg has or has not applied this Gazette event correctly. It is weaker than replay and it is honest about that in the grade record.
+For an act with a lex.bg base, `applied = verified` for an event means: the material was fetched, its instructions were segmented, and each instruction's quoted target text and replacement text were located in the lex.bg text at the addressed position (or their absence explained by a later event). This is a deterministic witness check with a reasoning pass for the ambiguous cases, and it produces exactly the evidence PR #24 produced by hand for one act: lex.bg has or has not applied this Gazette event correctly. It is weaker than replay and it is honest about that in the grade record. A divergence between our text and a witness is a **candidate** finding until a Gazette material resolves it, and **confirmed** only then, the vocabulary LawVM uses for its oracle comparisons (section 12); the adjudication lanes of D-061 record which.
 
 ### 5.7 Vision reading of PDF-era material
 
-For events whose issue is PDF-only (1989 to 2004, about 2,250 events), the deterministic pipeline fetches the issue PDF, splits the pages the table of contents assigns to the material, and hands them to the orchestrating session, which reads each page and emits structured Markdown (or an operation stream) with a per-page `partial_read` flag where a scan is illegible. No external OCR library, per the global rule. The coverage map's page estimate is the budget for this work and the owner decides how much of it to buy and in what order (by act importance, by decade).
+For events whose issue is PDF-only (1989 to 2004, about 2,250 events), the deterministic pipeline fetches the issue PDF, splits the pages the table of contents assigns to the material, and hands them to the orchestrating session, which reads each page and emits structured Markdown (or an operation stream) with a per-page `partial_read` flag where a scan is illegible. No external OCR library, per the global rule. The coverage map's page estimate is the budget for this work and the owner decides how much of it to buy and in what order (by act importance, by decade). Annexes, tariffs and tables in the scan era that do not survive transcription are stored as page images with a visible marker and graded accordingly, the Normattiva treatment of graphic parts (section 12), rather than forced into lossy text.
 
 ### 5.8 Write gate and corpus-integrity checks
 
 Unchanged from PR #23 Parts II and IV: one function writes corpus files, it runs the same checks CI runs, there is no force flag, and a static test forbids a second writer. Both the lex.bg refresh path and the ДВ paths call it. The provenance block is validated by a new check (`checks/provenance.py`): a grade must be derivable from the recorded events, and no consumer-facing field may disagree with the derivation.
+
+### 5.9 Corrections ledger and editorial-changes report
+
+Two channels, kept apart as every system studied keeps them (section 12). Gazette-side corrigenda
+(поправка, published in ДВ) are absorbed into the base or the affected event and are not counted as
+amendments, but each is recorded with its ДВ citation on the event it corrects. Consolidator-side
+corrections, where our own pipeline changed a text for a reason other than a Gazette event, are
+stored as data with the error's first appearance, its correction, the fixing commit and a severity
+class (can mislead a legal reader, or not). Parser normalisations that alter form without altering
+law (a superscript index written as `260и¹`, a position-derived алинея number, quotation-mark
+normalisation) are editorial changes in the Australian sense and are listed per act in a running
+editorial-changes report generated by the pipeline. Neither channel changes any grade; both make the
+record truthful under FR-040.
 
 ## 6. Data flow
 
@@ -203,6 +216,7 @@ PR #23's remaining phases (heading state, remnants, anchors, addresses, citation
 | PDF-era reading is larger than budgeted | the page estimate is published before any reading starts; reading is ordered by owner priority and each page carries a `partial_read` flag rather than a guess |
 | Grade exposure changes consumer behaviour (a B warning on most acts today) | additive fields and a warning class, like `IMPLICIT_ALINEA`; consumers that ignore warnings see unchanged payloads; the DRS status file documents the semantics |
 | The provenance block is hand-edited or drifts from events | `checks/provenance.py` derives the grade from events and fails on disagreement; the write gate refuses |
+| The PDF-era rebuild (1989 to 2004) is more ambitious than any national precedent; every system studied declared a base edition instead (section 12) | grade B-pending makes the unread events honest instead of hidden; the owner buys reading page by page against the map's estimate; if the cost proves prohibitive, the 2005 HTML boundary becomes the declared base for those acts and their pre-2005 events stay recorded as `snapshot`, exactly the UK 1991 model |
 
 ## 11. Open decisions for the owner
 
@@ -214,8 +228,27 @@ PR #23's remaining phases (heading state, remnants, anchors, addresses, citation
 
 ## 12. Precedents
 
-*Filled from `docs/research/2026-09-05-consolidation-precedents.md` when the research leg reports; the section is a stub until then and must not be read as evidence.*
+Source: `docs/research/2026-09-05-consolidation-precedents.md` and its source log (96 extract rows, 14 logged negatives), covering legislation.gov.uk, Normattiva, RIS, Finlex and LawVM, wetten.overheid.nl, the eCFR and U.S. Code, BOE and Légifrance as contrast, and the graded systems of Australia, Canada, Estonia, Germany, Ireland and New Zealand. The findings below are the research's; the design decisions they drove are marked.
+
+**Divergence is prevented procedurally, never detected by diffing.** No state system compares its consolidation against another consolidator's text. Each analyses the amending act into a typed effects record first, applies it second, and publishes a bounded currency claim rather than a correctness claim: the UK's „up to date with all changes known to be in force on or before“ a date, the eCFR's „current within two business days“, Finlex's „up to and including statute N“. Only legislation.gov.uk publishes the effects machine-readably with an applied status, and only for changes since 2002. *Adopted:* the event table of 4.1 is the effects record and comes before any text change; `current_to` in 4.3 is the currency statement; the witness comparison of D-061 stays, but as adjudication of candidates (5.6), since it has no state precedent to copy.
+
+**Every quality or provenance grade found is categorical and rule-backed.** Applied versus requires-applied per effect (UK), authorised version and „(md not incorp)“ per amendment (Australia), „textlich nachgewiesen, dokumentarisch noch nicht abschließend bearbeitet“ per act (Germany), prima facie versus positive law per title (U.S. Code), evidence with the original prevailing (Canada). No system publishes a numeric confidence. *Adopted:* grades A, B, B-pending and C are tiers with gates, never a percentage; the `not_incorporated` state of 4.1 is the misdescribed-amendment pattern, recorded without guessing and without a statutory editorial power to fix the text, which this project does not have.
+
+**Nobody rebuilds pre-digital history from the gazette.** Every system with history declares a base edition and date and lists what it does not carry: the UK at 1 February 1991 from Statutes in Force, the Netherlands at 2002, Canada at 2003 and 2006, Estonia at 1990. Normattiva alone claims multivigenza from 1861 and does so by versioning scanned parts as marked images. Finland's state bought the copyright of its vendor consolidation in 2025 rather than rebuild it. *Adopted:* grade C is a declared base edition (the lex.bg photograph as of the bootstrap date) with the earliest verified ДВ item stated per act, and the two Gazette boundaries, 2005 for HTML and 1989 for scans, are grade boundaries rather than one base; the PDF-era rebuild is kept but named as beyond precedent in section 10, with the UK model as the fallback.
+
+**Versioning is per provision with validity intervals, and the act at a date is a query.** RIS stores one document per paragraph, article or annex with entry and exit dates; BWB stores article states with a per-article history row naming the Staatsblad item; CLML marks each section's validity window. Provenance is always the gazette item, never the consolidator's edit. *Deferred to Phase 4:* the replay engine's address and lineage model; this design keeps act-level versions (FR-020) and records provenance per event, which is what the provision-level model needs as input.
+
+**Corrections run in two channels.** Gazette errata are absorbed into the original and not counted as amendments (Normattiva, BOE); consolidator-side corrections are either a statutory editorial power with a public report (Australia, New Zealand) or a data resource with dates and citations (eCFR) or a measured error class (BWB's A-fouten). *Adopted:* 5.9.
+
+**The legal-status ladder is climbed by statute, not by quality.** Estonia, New Zealand and Canada made consolidations official by amending their gazette or legislation acts. Until Bulgaria's Закон за нормативните актове does anything similar, this corpus sits on the bottom rung with Normattiva, BOE and Légifrance, and the honest label is the disclaimer with the tie-break rule carried into every response (4.3). Whether that rung should ever change is a policy question outside this design.
 
 ## 13. Self-review notes
 
-*Completed after the first full draft.*
+Completed 2026-09-05 after the research leg reported and after PR #25's review forced one canonical grade definition.
+
+- **Placeholders:** none remain; section 12 was the only stub and is filled from the research.
+- **Internal consistency:** 4.2 restates the coverage floor's canonical grades (A, B, B-pending, C; ДВ-anchored = A or B) with the same gates; 4.1's `applied` values cover every state 4.2 references, including `not_incorporated`; 5.5 and 4.2 agree that `replayed` cannot occur before the engine exists, so the first grade A acts are single-issue acts; 7's pilot is exactly such an act; 8's phases match the CPD's sequencing table; 9 matches the amended PR #23.
+- **Scope:** P0 and P1 (coverage map, acquisition layer, material parser, provenance block, exposure, pilot) are one implementation plan; P2 to P4 are later plans that depend on P1's evidence and on Phase 4. The replay engine, historical re-derivation, grade C sourcing and municipal acts are named non-goals.
+- **Ambiguity resolved:** „ДВ-anchored“ is defined; „verified“ is defined in 5.6; „grade earned by gates“ names the gate per transition in 4.2; the pilot's commit form is deferred to the Surface 5 preflight rather than guessed.
+- **Evidence status:** the ДВ facts in 3 were verified live on 2026-09-05; the chain statistics are floors computed over the 3,464 acts with an `amendment_history`; the precedents are cited to a source log. The acquisition layer's JSF mechanics (5.1) were confirmed by a live page-2 POST; the implementation branch `feat/dv-acquisition` will supersede the description here where it differs.
+
