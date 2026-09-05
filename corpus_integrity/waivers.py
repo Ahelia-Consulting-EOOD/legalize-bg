@@ -29,8 +29,10 @@ _DIGITS = re.compile(r"(\d+)")
 # open-ended waiver. A missing field is a load error, not a default.
 REQUIRED_FIELDS: tuple[str, ...] = ("ruling", "owner_signed", "expires")
 
-# `{act slug: expected violation count}`; a `None` count is count-agnostic and
-# arises only from the legacy list form of `acts`.
+# `{act slug: expected violation count}`. A `None` count is count-agnostic; the
+# waiver file can no longer produce one, and `reconcile` still accepts it so a
+# caller holding a bare set of slugs (a census in progress) can reconcile
+# without inventing counts.
 Waived = Mapping[str, int | None]
 
 
@@ -65,13 +67,19 @@ def _expected_counts(acts: object, path: Path, check: str) -> dict[str, int | No
     if acts is None:
         return {}
     if isinstance(acts, list):
-        # Backward compatibility only. A list pins no count, so it cannot
-        # catch a new violation landing in an already waived act.
-        return {str(slug): None for slug in acts}
+        # The legacy list form pinned no count, so a waived act was a blind
+        # spot for every new violation of the same class landing in it. It is
+        # a schema error rather than a tolerated shape, so count-blind waiving
+        # cannot be reinstated by writing a list: an empty entry is `{}`.
+        raise ValueError(
+            f"{path}: waiver entry {check!r} has a list of acts; the count-blind "
+            "list form is no longer accepted, write a mapping of slug to "
+            "expected count (an entry with no acts yet is '{}')"
+        )
     if not isinstance(acts, dict):
         raise ValueError(
-            f"{path}: waiver entry {check!r} has an 'acts' that is neither "
-            "a mapping of slug to expected count nor a list"
+            f"{path}: waiver entry {check!r} has an 'acts' that is not a "
+            "mapping of slug to expected count"
         )
     counts: dict[str, int | None] = {}
     for slug, count in acts.items():
