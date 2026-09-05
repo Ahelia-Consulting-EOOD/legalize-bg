@@ -210,7 +210,13 @@ def material_body_html(html: str) -> str:
 
 
 def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
-    """GET one issue's contents and parse it."""
+    """GET one issue's contents and parse it.
+
+    Returns an empty list both for an issue with no HTML materials and
+    for an idObj that does not exist. A caller that needs to tell those
+    apart, as the bulk enumeration does, fetches the body itself and asks
+    `is_error_page` first.
+    """
     html = session.get(MATERIALS_URL, params={"idObj": id_obj})
     return parse_materials(html)
 
