@@ -205,7 +205,7 @@ python scripts/dv_coverage_map.py --corpus . \
     --out docs/research/2026-09-05-dv-coverage-map/
 ```
 
-Reads the corpus frontmatter and the two tables above, and writes seven
+Reads the corpus frontmatter and the two tables above, and writes eight
 files. It is a **research artifact**: it writes nothing into the corpus
 tree and no consumer surface reads it. The provenance block that does is
 P1.
@@ -215,6 +215,7 @@ P1.
 | `coverage-map.csv` | act base, and act amendment event |
 | `acts-summary.csv` | act |
 | `chain-omissions.csv` | Gazette material the act's chain does not know |
+| `predecessor-materials.csv` | Gazette material older than the act it names |
 | `unresolved.csv` | event, act or material nothing could be said about |
 | `estado-disputes.csv` | Gazette repeal of an act the corpus calls current |
 | `pdf-era-inventory.csv` | Gazette issue online only as a PDF |
@@ -287,6 +288,17 @@ carried on every act whose base resolves to `dv_html`. It is the
 identifier form D-064 item 4 settled for an act with no lex.bg document.
 No corpus act is in that position today, so the column exists to fix the
 form rather than to be read.
+
+**`predecessor-materials.csv`** records a Gazette material published
+before the act its title resolved to was promulgated. Bulgarian acts are
+replaced by new acts of the same name and only the current one is in the
+corpus, so „Закон за изменение и допълнение на Закона за горите“ in
+бр. 64/2007 resolves to the Закон за горите of 2011 and cannot be an
+event of it. The rows are data for the corpus-completeness question,
+which repealed predecessors the corpus should hold, and never a chain
+omission or an `estado` dispute of the act they resolved to; the routing
+coordinate, the act's own `fecha_publicacion`, is carried in
+`act_promulgated`.
 
 **`estado-disputes.csv`** records a Gazette material whose title repeals
 an act the corpus still records as `vigente`. Data, never a correction:

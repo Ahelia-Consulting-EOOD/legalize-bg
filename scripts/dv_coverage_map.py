@@ -10,11 +10,12 @@ source model from a definition into numbers: which acts, which events,
 how many Gazette PDF pages stand between grade B and grade A.
 
 It is a RESEARCH ARTIFACT. It reads the corpus frontmatter and the two
-JSONL tables the acquisition layer wrote, and it writes seven files under
+JSONL tables the acquisition layer wrote, and it writes eight files under
 `--out`: `coverage-map.csv`, `acts-summary.csv`, `chain-omissions.csv`,
-`unresolved.csv`, `estado-disputes.csv`, `pdf-era-inventory.csv` and
-`report.md`. It writes nothing into the corpus tree and derives no grade
-that any consumer surface sees; the provenance block that does is P1.
+`predecessor-materials.csv`, `unresolved.csv`, `estado-disputes.csv`,
+`pdf-era-inventory.csv` and `report.md`. It writes nothing into the
+corpus tree and derives no grade that any consumer surface sees; the
+provenance block that does is P1.
 
 What it records, per act and per event of `amendment_history`:
 
@@ -636,6 +637,38 @@ def build_inventory(issues, citing, estimator, pdf_era_end) -> list[dict]:
     return rows
 
 
+def is_predecessor_material(material, act, issues) -> bool:
+    """Whether a material published before the act it resolved to.
+
+    A Gazette title names an act by name, and Bulgarian acts are replaced
+    by new acts of the same name: the Закон за горите of 1997 was
+    repealed and replaced by the Закон за горите of 2011, the Граждански
+    процесуален кодекс of 1952 by the code of 2007, the Изборен кодекс of
+    2011 by the one of 2014. Only the current act is in the corpus, so
+    every material about the predecessor resolves to it, and 712 of the
+    737 rows the title pass called chain omissions on 2026-09-05 were of
+    that kind: „Закон за изменение и допълнение на Закона за горите“ in
+    бр. 64/2007 cannot be an event of an act promulgated in 2011.
+
+    So a material whose issue is strictly earlier than the act's own
+    `fecha_publicacion` is a fact about what the corpus does NOT hold,
+    never a gap in the chain of the act it resolved to.
+
+    The comparison is on the issue's publication date, which the `issues`
+    table carries. When the table has no date for it, the issue numbers
+    decide instead, against the act's own promulgation issue, which is
+    the same ordering by a coarser measure; an act that cites neither a
+    date nor a promulgation cannot be compared and is left alone.
+    """
+    issue = issues.get((material.year, material.number))
+    if issue is not None and issue.date and act.fecha_publicacion:
+        return str(issue.date) < str(act.fecha_publicacion)
+    promulgation = act.promulgation
+    if promulgation is None:
+        return False
+    return (material.year, material.number) < promulgation
+
+
 def parse_era_end(text: str) -> tuple[int, int]:
     """„YEAR:NUMBER“, the last issue of the PDF era."""
     try:
@@ -652,7 +685,7 @@ def parse_era_end(text: str) -> tuple[int, int]:
 
 def build(corpus_root: Path, issues_path: Path, materials_path: Path,
           pdf_era_end=DEFAULT_PDF_ERA_END):
-    """Read everything, attribute everything, and return the six tables.
+    """Read everything, attribute everything, and return the seven tables.
 
     Plus the issue index, the act categories and the page estimator, which
     the report needs and which nothing else recomputes.
@@ -815,12 +848,35 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
             )
 
     omissions = []
+    predecessors = []
     disputes = []
     for material, law_id, score, flags, candidates in resolutions:
         if law_id is None:
             continue
         act = by_id[law_id]
         kind = instruction_kind(material.title)
+        if is_predecessor_material(material, act, issues):
+            # The material is older than the act it resolved to, so it is
+            # about a same-titled act the corpus does not hold. It is
+            # neither an omission of this act's chain nor a dispute about
+            # this act's `estado`: a repeal published before the act
+            # existed repealed the predecessor.
+            predecessors.append(
+                {
+                    "pass": "title",
+                    "law_id": law_id,
+                    "dv_year": material.year,
+                    "dv_number": material.number,
+                    "id_mat": material.id_mat,
+                    "section": material.section,
+                    "title": material.title,
+                    "title_kind": kind,
+                    "resolver_score": f"{score:.3f}",
+                    "resolver_flags": ";".join(flags),
+                    "act_promulgated": act.fecha_publicacion or "",
+                }
+            )
+            continue
         if kind == "repeal" and act.estado == "vigente":
             # The Gazette repealed an act lex.bg still records as in
             # force. Data, never a correction: D-064 item 5 keeps every
@@ -888,8 +944,8 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
 
     inventory = build_inventory(issues, citing, estimator, pdf_era_end)
     categories = {act.law_id: act.category for act in acts}
-    return (coverage, summary, omissions, unresolved, disputes, inventory,
-            issues, categories, estimator)
+    return (coverage, summary, omissions, predecessors, unresolved, disputes,
+            inventory, issues, categories, estimator)
 
 
 # --- writing --------------------------------------------------------------
@@ -917,6 +973,10 @@ OMISSION_FIELDS = [
     "pass", "law_id", "dv_year", "dv_number", "id_mat", "section", "title",
     "title_kind", "resolver_score", "resolver_flags",
 ]
+#: The omission row plus the act's own promulgation date, which is the
+#: coordinate the row was routed here by and the one a reader needs to
+#: see the material is older than the act it names.
+PREDECESSOR_FIELDS = OMISSION_FIELDS + ["act_promulgated"]
 UNRESOLVED_FIELDS = [
     "kind", "law_id", "dv_year", "dv_number", "title", "candidates",
     "resolver_score", "resolver_flags", "dv_identifier", "reason",
@@ -932,8 +992,8 @@ INVENTORY_FIELDS = [
 ]
 
 
-def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
-                 inventory, issues, categories, estimator):
+def write_report(path: Path, coverage, summary, omissions, predecessors,
+                 unresolved, disputes, inventory, issues, categories, estimator):
     """The short report of §5.2: the totals, and what they do not cover."""
     grades = Counter(row["candidate_grade"] for row in summary)
     by_source = Counter(row["source"] for row in coverage if row["row_kind"] == "event")
@@ -1085,6 +1145,26 @@ def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
         "",
         f"Chain omissions found by the title pass: {len(omissions)}.",
         "",
+        "## Predecessor acts",
+        "",
+        f"Predecessor materials: {len(predecessors)}, in "
+        "`predecessor-materials.csv`. Each is a Gazette material published "
+        "BEFORE the act its title resolved to was promulgated, so it names a "
+        "same-titled act the corpus does not hold: Bulgarian acts are "
+        "replaced by new acts of the same name, and only the current one is "
+        "in the corpus. „Закон за изменение и допълнение на Закона за "
+        "горите“ in бр. 64/2007 cannot be an event of the Закон за горите "
+        "promulgated in 2011.",
+        "",
+        "These rows are data for the corpus-completeness question, which is "
+        "which repealed predecessors the corpus should hold, and never a "
+        "chain omission of the act they resolved to. A repeal among them "
+        "disputes no `estado` either, for the same reason: it repealed the "
+        "predecessor. The `act_promulgated` column carries the act's own "
+        "publication date, which is the coordinate the row was routed by.",
+        "",
+        "## Estado disputes",
+        "",
         f"`estado` disputes found by the title pass: {len(disputes)}. A dispute "
         "is a Gazette material whose title repeals an act the corpus still "
         "records as `vigente`. The other direction, the corpus calling an act "
@@ -1157,8 +1237,8 @@ def main(argv=None) -> int:
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    (coverage, summary, omissions, unresolved, disputes, inventory, issues,
-     categories, estimator) = build(
+    (coverage, summary, omissions, predecessors, unresolved, disputes,
+     inventory, issues, categories, estimator) = build(
         Path(args.corpus), Path(args.issues), Path(args.materials),
         pdf_era_end=parse_era_end(args.pdf_era_end),
     )
@@ -1167,6 +1247,8 @@ def main(argv=None) -> int:
     summary.sort(key=lambda row: row["law_id"])
     omissions.sort(key=lambda row: (row["law_id"], row["dv_year"], row["dv_number"],
                                     row["id_mat"]))
+    predecessors.sort(key=lambda row: (row["law_id"], row["dv_year"],
+                                       row["dv_number"], row["id_mat"]))
     unresolved.sort(
         key=lambda row: (
             row["kind"], row["law_id"], str(row["dv_year"]), str(row["dv_number"])
@@ -1178,16 +1260,17 @@ def main(argv=None) -> int:
     write_csv(out / "coverage-map.csv", COVERAGE_FIELDS, coverage)
     write_csv(out / "acts-summary.csv", SUMMARY_FIELDS, summary)
     write_csv(out / "chain-omissions.csv", OMISSION_FIELDS, omissions)
+    write_csv(out / "predecessor-materials.csv", PREDECESSOR_FIELDS, predecessors)
     write_csv(out / "unresolved.csv", UNRESOLVED_FIELDS, unresolved)
     write_csv(out / "estado-disputes.csv", DISPUTE_FIELDS, disputes)
     write_csv(out / "pdf-era-inventory.csv", INVENTORY_FIELDS, inventory)
-    write_report(out / "report.md", coverage, summary, omissions, unresolved,
-                 disputes, inventory, issues, categories, estimator)
+    write_report(out / "report.md", coverage, summary, omissions, predecessors,
+                 unresolved, disputes, inventory, issues, categories, estimator)
     log.info(
-        "wrote %d chain rows, %d acts, %d omissions, %d unresolved, "
-        "%d estado disputes and %d PDF-era issues to %s",
-        len(coverage), len(summary), len(omissions), len(unresolved),
-        len(disputes), max(len(inventory) - 1, 0), out,
+        "wrote %d chain rows, %d acts, %d omissions, %d predecessor materials, "
+        "%d unresolved, %d estado disputes and %d PDF-era issues to %s",
+        len(coverage), len(summary), len(omissions), len(predecessors),
+        len(unresolved), len(disputes), max(len(inventory) - 1, 0), out,
     )
     return 0
 

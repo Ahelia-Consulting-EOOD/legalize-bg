@@ -248,13 +248,14 @@ def rows(path: pathlib.Path, **where):
 # --- the files ------------------------------------------------------------
 
 
-def test_the_map_writes_seven_files_and_no_corpus_file(outputs, corpus):
+def test_the_map_writes_eight_files_and_no_corpus_file(outputs, corpus):
     assert sorted(p.name for p in outputs.iterdir()) == [
         "acts-summary.csv",
         "chain-omissions.csv",
         "coverage-map.csv",
         "estado-disputes.csv",
         "pdf-era-inventory.csv",
+        "predecessor-materials.csv",
         "report.md",
         "unresolved.csv",
     ]
@@ -292,7 +293,8 @@ def test_the_order_is_deterministic(cmap, corpus, tables, tmp_path):
             ]
         )
     for name in ("coverage-map.csv", "acts-summary.csv", "chain-omissions.csv",
-                 "unresolved.csv", "pdf-era-inventory.csv", "estado-disputes.csv"):
+                 "unresolved.csv", "pdf-era-inventory.csv", "estado-disputes.csv",
+                 "predecessor-materials.csv"):
         assert (first / name).read_bytes() == (second / name).read_bytes()
 
 
@@ -455,6 +457,136 @@ def test_a_material_the_chain_already_knows_is_not_an_omission(outputs):
         law_id="zakon-za-sabraniyata-mitingite-i-manifestatsiite",
     )
     assert [(row["dv_year"], row["id_mat"]) for row in found] == [("2026", "242223")]
+
+
+# --- predecessor materials ------------------------------------------------
+
+#: One act, promulgated in бр. 19 от 20 юли 2007. A Gazette material of an
+#: earlier issue that resolves to it names a same-titled act the corpus
+#: does not hold: the real case is „Закон за изменение и допълнение на
+#: Закона за горите“ in бр. 64/2007, which resolves to the 2011 Закон за
+#: горите because the 1997 one was never bootstrapped.
+FORESTS_ACT = (
+    "titulo: ЗАКОН ЗА ГОРИТЕ\n"
+    "rango: закон\n"
+    "estado: vigente\n"
+    "fecha_publicacion: '2007-07-20'\n"
+    "dv_issue: '19'\n"
+    "dv_year: 2007\n"
+    "amendment_history:\n- dv: 19/2007\n  date: '2007-07-20'\n"
+)
+ZID_FORESTS = "Закон за изменение и допълнение на Закона за горите"
+REPEAL_FORESTS = "Закон за отмяна на Закона за горите"
+
+
+def one_act_map(cmap, tmp_path, name, *, issue, title):
+    """The map over one act and one Gazette material, in its own tree.
+
+    `issue` is (year, number, date) and `title` is the material's title.
+    A corpus of one act keeps the resolver's answer beyond doubt and
+    keeps these cases out of the shared fixture, whose page medians and
+    inventory rows are pinned by other tests.
+    """
+    root = tmp_path / f"corpus-{name}"
+    synthetic_act(root, "laws", "zakon-za-gorite", FORESTS_ACT)
+
+    year, number, date = issue
+    issues_path = tmp_path / f"issues-{name}.jsonl"
+    with issues_path.open("w", encoding="utf-8") as handle:
+        for row in (
+            {"year": 2007, "number": 19, "date": "2007-07-20", "id_obj": 700},
+            {"year": year, "number": number, "date": date, "id_obj": 900},
+        ):
+            handle.write(
+                json.dumps({**row, "extraordinary": False}, ensure_ascii=False) + "\n"
+            )
+
+    materials_path = tmp_path / f"materials-{name}.jsonl"
+    materials_path.write_text(
+        json.dumps(
+            {
+                "id_obj": 900,
+                "issue_year": year,
+                "issue_number": number,
+                "issue_date": date,
+                "status": "ok",
+                "position": 1,
+                "id_mat": 9001,
+                "section": "Народно събрание",
+                "title": title,
+                "start_page": 2,
+            },
+            ensure_ascii=False,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+
+    out = tmp_path / name
+    assert (
+        cmap.main(
+            [
+                "--corpus", str(root),
+                "--issues", str(issues_path),
+                "--materials", str(materials_path),
+                "--out", str(out),
+            ]
+        )
+        == 0
+    )
+    return out
+
+
+def test_a_material_older_than_the_act_is_a_predecessor_not_an_omission(cmap, tmp_path):
+    # A ЗИД of 2003 cannot amend an act promulgated in 2007. It amends a
+    # same-titled predecessor the corpus does not hold, which is a fact
+    # about corpus completeness and not a gap in this act's chain.
+    out = one_act_map(
+        cmap, tmp_path, "older", issue=(2003, 84, "2003-09-19"), title=ZID_FORESTS
+    )
+    found = rows(out / "predecessor-materials.csv")
+    assert len(found) == 1
+    assert found[0]["law_id"] == "zakon-za-gorite"
+    assert found[0]["dv_year"] == "2003"
+    assert found[0]["dv_number"] == "84"
+    assert found[0]["title_kind"] == "amending"
+    assert found[0]["act_promulgated"] == "2007-07-20"
+    assert rows(out / "chain-omissions.csv") == []
+
+
+def test_the_same_material_after_the_act_is_an_omission(cmap, tmp_path):
+    # The same title in an issue the act could have been amended by is a
+    # chain omission exactly as before.
+    out = one_act_map(
+        cmap, tmp_path, "newer", issue=(2010, 41, "2010-05-20"), title=ZID_FORESTS
+    )
+    found = rows(out / "chain-omissions.csv")
+    assert len(found) == 1
+    assert found[0]["law_id"] == "zakon-za-gorite"
+    assert found[0]["dv_year"] == "2010"
+    assert rows(out / "predecessor-materials.csv") == []
+
+
+def test_a_repeal_older_than_the_act_is_not_an_estado_dispute(cmap, tmp_path):
+    # A repeal published four years before the act existed repealed the
+    # predecessor, so it disputes nothing about this act's `estado`.
+    out = one_act_map(
+        cmap, tmp_path, "repeal", issue=(2003, 84, "2003-09-19"), title=REPEAL_FORESTS
+    )
+    assert rows(out / "estado-disputes.csv") == []
+    found = rows(out / "predecessor-materials.csv")
+    assert len(found) == 1
+    assert found[0]["title_kind"] == "repeal"
+
+
+def test_the_report_counts_the_predecessor_materials(cmap, tmp_path):
+    out = one_act_map(
+        cmap, tmp_path, "report", issue=(2003, 84, "2003-09-19"), title=ZID_FORESTS
+    )
+    text = (out / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Predecessor acts", 1)[1].split("\n## ", 1)[0]
+    assert "1" in section
+    assert "never a chain omission" in section
 
 
 # --- unresolved -----------------------------------------------------------
