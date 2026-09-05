@@ -29,13 +29,21 @@ statement about this module, never about the issue.
 
 import logging
 import re
-from dataclasses import dataclass
+from collections.abc import Iterable, Sequence
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
-from fetcher.dv.client import is_dv_error_body, url_for
-from fetcher.dv.issues import parse_result_count
+from fetcher.dv.client import DvUnavailable, is_dv_error_body, url_for
+from fetcher.dv.issues import (
+    PaginationError,
+    find_page_select,
+    parse_current_page,
+    parse_page_count,
+    parse_result_count,
+    parse_view_state,
+)
 
 MATERIALS_PATH = "materiali.faces"
 MATERIAL_PATH = "showMaterialDV.jsp"
@@ -43,6 +51,11 @@ MATERIALS_URL = url_for(MATERIALS_PATH)
 MATERIAL_URL = url_for(MATERIAL_PATH)
 
 _TABLE_ID = "material_form:dataTable1"
+#: The listing is the same MyFaces pagination as the issue list, under
+#: another form name: thirty rows a page, a select of one option per page
+#: and a `chP` link that submits the form.
+_FORM_NAME = "material_form"
+_PAGE_SELECT_ID = "material_form:selectPage"
 
 log = logging.getLogger(__name__)
 
@@ -101,18 +114,38 @@ def classify_page(html: str) -> str:
     count. A listing is believed only when the number of rows parsed
     equals the „Намерени резултати“ the page printed; any disagreement,
     including a missing count, is `"unrecognized"`.
+
+    That count is the whole issue's, not the page's, so an issue longer
+    than thirty materials is classified over all of its pages at once:
+    see `classify_pages`, of which this is the one-page case.
     """
-    if is_dv_error_body(html):
+    return classify_pages([html])
+
+
+def classify_pages(pages: Sequence[str]) -> str:
+    """`classify_page` over every page of one issue's listing.
+
+    The „Намерени резултати“ figure counts the issue's materials, while
+    a page shows at most thirty of them, so the comparison that decides
+    whether the listing was read is between the count and the rows of ALL
+    the pages. Judging page 1 alone would call every issue with more than
+    thirty materials unreadable, which is what it did to eleven issues on
+    2026-09-05 before the pagination existed here.
+    """
+    if not pages:
+        raise ValueError("no pages to classify")
+    if is_dv_error_body(pages[0]):
         return "error_page"
     try:
-        expected = parse_result_count(html)
+        expected = parse_result_count(pages[0])
     except ValueError:
         log.warning("no „Намерени резултати“ count in this response")
         return "unrecognized"
-    found = len(parse_materials(html))
+    found = len(parse_materials_all(pages))
     if found != expected:
         log.warning(
-            "page reports %d materials, %d parsed; not reading it", expected, found
+            "issue reports %d materials, %d parsed over %d page(s); not reading it",
+            expected, found, len(pages),
         )
         return "unrecognized"
     return "materials" if found else "empty"
@@ -147,6 +180,31 @@ def parse_materials(html: str) -> list[MaterialRow]:
                 position=position,
             )
         )
+    return rows
+
+
+def parse_materials_all(pages: Iterable[str]) -> list[MaterialRow]:
+    """Every material of one issue, read across the pages of its listing.
+
+    Pages are read in the order given, which is the order they were
+    fetched and therefore the order of publication inside the issue, and
+    `position` runs on across the boundary: the first material of page 2
+    is number 31, not number 1 again.
+
+    A material seen twice is kept once. Two pages of one issue never
+    share an idMat, so a repeat means a page was served twice, a stale
+    ViewState answering with page 1 again, and counting it would both
+    inflate the issue and hide the shortfall from `classify_pages`.
+    """
+    rows: list[MaterialRow] = []
+    seen: set[int] = set()
+    for html in pages:
+        for row in parse_materials(html):
+            if row.id_mat in seen:
+                log.warning("idMat %d appears twice in this listing", row.id_mat)
+                continue
+            seen.add(row.id_mat)
+            rows.append(replace(row, position=len(rows) + 1))
     return rows
 
 
@@ -265,15 +323,129 @@ def fetch_materials_page(session, id_obj: int) -> str:
     return session.get(MATERIALS_URL, params={"idObj": id_obj})
 
 
+def parse_material_page_count(html: str) -> int:
+    """How many pages this issue's listing has.
+
+    A listing that fits on one page prints no select at all. idObj 6121,
+    eighteen materials, has none, so the absence of a pager is one page
+    rather than markup this code cannot read.
+    """
+    if find_page_select(html, _PAGE_SELECT_ID) is None:
+        return 1
+    return parse_page_count(html, _PAGE_SELECT_ID)
+
+
+def parse_material_current_page(html: str) -> int:
+    """The page this response actually is.
+
+    One page when there is no pager; otherwise the `selected` option. A
+    pager that marks nothing raises, because taking it for page 1 is how
+    a walk silently reads the same page three times.
+    """
+    if find_page_select(html, _PAGE_SELECT_ID) is None:
+        return 1
+    return parse_current_page(html, _PAGE_SELECT_ID)
+
+
+def parse_material_view_state(html: str) -> str:
+    """The `javax.faces.ViewState` of `material_form`.
+
+    The page carries two forms and two tokens; this is the one the
+    pagination POST belongs to.
+    """
+    return parse_view_state(html, _FORM_NAME)
+
+
+def build_material_page_post_body(view_state: str, page: int) -> dict[str, str]:
+    """The form POST that moves an issue's listing to `page`.
+
+    Replays `material_form` the way the browser does when the page select
+    fires `gogoChangePage_()`: the change-page link named as the source of
+    the submit, both selects moved together, and the ViewState of the
+    response that produced them.
+    """
+    return {
+        "material_form_SUBMIT": "1",
+        "material_form:_link_hidden_": "",
+        "material_form:_idcl": "material_form:chP",
+        "material_form:not_first": "1",
+        "material_form:selectPage": str(page),
+        "material_form:selectPageTop": str(page),
+        "active_tab": "2",
+        "javax.faces.ViewState": view_state,
+    }
+
+
+def fetch_all_materials_pages(session, id_obj: int) -> list[str]:
+    """Every page of one issue's contents, in order, as raw HTML.
+
+    Page 1 comes from a GET on a fresh session, which is what binds the
+    issue to the server session; every later page is a POST inside THAT
+    session, so the jar is cleared once per issue and never between its
+    pages. Clearing it in between would unbind the issue and page 2 would
+    belong to whatever issue the new session bound first.
+
+    The walk is driven by the issue's own „Намерени резултати“ figure and
+    ends when the rows reach it or the pager runs out; the shortfall in
+    the second case is left for `classify_pages` to name. A response that
+    is not the page that was asked for is a stale ViewState and raises,
+    rather than being appended as thirty rows already read.
+    """
+    html = fetch_materials_page(session, id_obj)
+    pages = [html]
+    if is_dv_error_body(html):
+        return pages
+    try:
+        expected = parse_result_count(html)
+    except ValueError:
+        # Unreadable markup: there is no count to walk towards, and the
+        # caller is told so by `classify_pages` rather than by a walk
+        # that cannot end.
+        return pages
+    total_pages = parse_material_page_count(html)
+
+    page = 1
+    found = len(parse_materials(html))
+    while found < expected and page < total_pages:
+        page += 1
+        body = session.post(
+            MATERIALS_URL, build_material_page_post_body(parse_material_view_state(html), page)
+        )
+        if is_dv_error_body(body):
+            raise DvUnavailable(
+                f"the contents of idObj {id_obj} served their „недостъпен“ view "
+                f"for page {page} of {total_pages}; the site went down mid-issue"
+            )
+        actual = parse_material_current_page(body)
+        if actual != page:
+            raise PaginationError(
+                f"asked for page {page} of the materials of idObj {id_obj}, "
+                f"got page {actual}"
+            )
+        html = body
+        pages.append(html)
+        found += len(parse_materials(html))
+
+    if found < expected:
+        log.warning(
+            "idObj %d reports %d materials; %d read over %d page(s)",
+            id_obj, expected, found, len(pages),
+        )
+    return pages
+
+
 def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
     """GET one issue's contents and parse it.
+
+    Reads every page of the listing, so an issue of more than thirty
+    materials comes back whole.
 
     Returns an empty list for an issue with no HTML materials, for an
     idObj that does not exist and for markup this module cannot read. A
     caller that needs to tell those apart, as the bulk enumeration does,
-    fetches the body itself and asks `classify_page`.
+    fetches the bodies itself and asks `classify_pages`.
     """
-    return parse_materials(fetch_materials_page(session, id_obj))
+    return parse_materials_all(fetch_all_materials_pages(session, id_obj))
 
 
 def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:

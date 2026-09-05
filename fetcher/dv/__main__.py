@@ -38,15 +38,15 @@ import sys
 from dataclasses import asdict
 from pathlib import Path
 
-from fetcher.dv.client import DvSession, is_dv_error_body
-from fetcher.dv.issues import enumerate_issues
+from fetcher.dv.client import DvSession, DvUnavailable, is_dv_error_body
+from fetcher.dv.issues import PaginationError, enumerate_issues
 from fetcher.dv.materials import (
-    classify_page,
+    classify_pages,
+    fetch_all_materials_pages,
     fetch_material,
     parse_material_header,
-    parse_materials,
+    parse_materials_all,
 )
-from fetcher.dv.materials import fetch_materials_page
 
 #: Consecutive „недостъпен“ stubs that mean the site is down rather than
 #: the id space being sparse. Five neighbouring real gaps would be needed
@@ -227,8 +227,31 @@ def cmd_materials(args, session) -> int:
                 "issue_number": issue.get("number"),
                 "issue_date": issue.get("date"),
             }
-            html = fetch_materials_page(session, id_obj)
-            status = classify_page(html)
+            try:
+                pages = fetch_all_materials_pages(session, id_obj)
+            except (PaginationError, DvUnavailable) as failure:
+                # Half an issue is worse than none: the file would look
+                # complete and the missing materials would never be asked
+                # for again. Nothing of this issue is written, so --resume
+                # comes back to it whole.
+                #
+                # The stubs waiting in the buffer go with it, for the
+                # reason they were buffered: „no such issue“ and „the site
+                # is down“ are the same body, and only a readable answer
+                # settles which one arrived. This halt is the site going
+                # down mid-issue, so committing them here would record
+                # them as gaps on the evidence the buffer exists to
+                # distrust, and nothing would ask about them again.
+                discarded = len(pending_errors)
+                pending_errors.clear()
+                halt = (
+                    f"the listing of id_obj {id_obj} could not be read to its end: "
+                    f"{failure}. Nothing from this issue was written, and the "
+                    f"{discarded} stub(s) behind it were discarded rather than "
+                    f"recorded as gaps; re-run with --resume."
+                )
+                break
+            status = classify_pages(pages)
             processed += 1
 
             if status == "error_page":
@@ -275,7 +298,7 @@ def cmd_materials(args, session) -> int:
                 _write_line(handle, {**identity, "status": "empty"})
                 continue
 
-            rows = parse_materials(html)
+            rows = parse_materials_all(pages)
             ids = {row.id_mat for row in rows}
             repeated = ids & seen_ids
             if repeated:
