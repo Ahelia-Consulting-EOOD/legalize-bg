@@ -4,6 +4,16 @@
 
 ---
 
+> **Superseded in part on 2026-09-05 (D-059 to D-062, PR #25).** Where this document says lex.bg is
+> the validation oracle, that ДВ is polled on Tue/Fri as the detection rule, that consolidation
+> accuracy is measured as a percentage against lex.bg, or that the corpus holds about 3,574 acts,
+> the current authority is: Държавен вестник is the source wherever its text is online and lex.bg
+> is a base snapshot and a witness (Directive 2); witnesses are adjudicated, never deferred to
+> (Directive 3); detection is by issue high-water mark including извънредни issues (D-062);
+> closure is a zero count of unadjudicated divergences (D-060); the corpus holds 3,624 acts
+> (`docs/sync/CORPUS-STATUS.json`). Diagrams and tables below are otherwise unchanged and read
+> with that substitution.
+
 ## 3.1 System Context Diagram
 
 ```

@@ -1,11 +1,11 @@
 # legalize-bg protected surfaces
 # Surfaces that require preflight review before modification.
-# Changes to these surfaces have blast radius across the corpus (3,574 acts)
+# Changes to these surfaces have blast radius across the corpus (3,624 acts on 2026-09-05)
 # and/or affect downstream consumers (MCP server, Legalize upstream, SQLite index).
 
 paths:
   # --- YAML Frontmatter Schema ---
-  # Any change to frontmatter fields affects all 3,574 acts and every downstream
+  # Any change to frontmatter fields affects all 3,624 acts and every downstream
   # consumer (MCP server, SQLite index, Legalize CI, search). Adding, removing,
   # or renaming a field requires migration of the entire corpus.
   - path: "*.md frontmatter schema (13 fields)"
@@ -15,7 +15,7 @@ paths:
       Changes break MCP tools, SQLite index rebuild, Legalize CI validation,
       and any external tool consuming the Markdown files.
     edit_mode: owner_review_required
-    blast_radius: "3,574 acts + all downstream consumers"
+    blast_radius: "3,624 acts + all downstream consumers"
     affected_fields:
       mandatory:
         - titulo
@@ -158,7 +158,7 @@ paths:
 
 rules:
   - "Before modifying any protected surface: review blast radius and affected consumers"
-  - "Before changing frontmatter schema: plan migration for all 3,574 existing acts"
+  - "Before changing frontmatter schema: plan migration for all 3,624 existing acts"
   - "Before changing MCP signatures: verify no Claude Code skill depends on old signature"
   - "Before changing SQLite schema: plan full re-index and update all MCP queries"
   - "Before changing Legalize interfaces: coordinate with legalize-dev upstream"
