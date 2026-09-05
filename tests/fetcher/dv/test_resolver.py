@@ -1049,8 +1049,9 @@ def test_dropping_a_function_word_still_resolves(corpus_acts):
 
     A word of two characters or fewer is never a content word, so this
     variant leaves the content set untouched and measures the floor and
-    the margin, which is what it is here for. Measured: 2,992 of 3,608,
-    which is 0.829, and the assertion is that minus a 0.02 margin.
+    the margin, which is what it is here for. Measured on 2026-09-05 by
+    running the loop below: 2,977 of 3,608, which is 0.8251, and the
+    assertion is that minus a margin of 0.015.
     """
     resolver = Resolver(corpus_acts)
     random.seed(11)
@@ -1091,14 +1092,19 @@ def test_a_dropped_content_word_never_crosses_the_content_guard_silently(corpus_
     („закон за по пътищата“ is, by content, Закон за пътищата).
 
     What no path may do is attribute across a changed content set with
-    no flag. Measured on 2026-09-05 over 3,608 mutations: 706 silent,
-    663 of them the exact key, 40 a repeated word, 2 a head word, 1 a
-    genuine other act; 2,902 refused or flagged.
+    no flag. Measured on 2026-09-05 by instrumenting the loop below:
+    3,617 mutations, 2,911 refused or flagged, 706 silent. The silent
+    rows classified by the precedence this code applies, `exact_key`
+    first, then `content_equal`, then `subject_equal`: 665 the exact key,
+    41 content-equal, of which 40 repeat the dropped word elsewhere in
+    the title and 1 genuinely names another act, and 0 that only
+    `subject_equal` explains.
     """
     resolver = Resolver(corpus_acts)
     by_id = {act.law_id: act for act in corpus_acts}
     random.seed(11)
     unexplained = []
+    crossed_to_another_act = []
     for act in corpus_acts:
         if not act.title:
             continue
@@ -1128,7 +1134,19 @@ def test_a_dropped_content_word_never_crosses_the_content_guard_silently(corpus_
             unexplained.append(
                 (round(result.score, 4), result.method, act.law_id, result.law_id)
             )
+        elif result.law_id != act.law_id:
+            crossed_to_another_act.append((act.law_id, result.law_id))
     assert unexplained == []
+    # `content_equal` and `subject_equal` compare the query against the
+    # act it RESOLVED to, not against the act it was mutated from, so
+    # either can excuse a mutation that made the query name a DIFFERENT
+    # act by content. `exact_key` cannot, since it requires the row to
+    # resolve back to its own act. Exactly one such crossing exists
+    # today, and it is pinned rather than allowed: a second row of this
+    # shape is a new silent crossing and must fail this test.
+    assert crossed_to_another_act == [
+        ("zakon-za-dvizhenieto-po-patishtata", "zakon-za-patishtata")
+    ]
 
 
 # --- I3: the single-candidate numbered branch is bounded too --------------
@@ -1139,7 +1157,6 @@ def test_a_dropped_content_word_never_crosses_the_content_guard_silently(corpus_
 # content check, and no flag to triage the row by.
 
 BALNEO = "naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal"
-SPORT = "naredba-1-ot-30-avgust-2016-g-za-usloviyata-i-reda-za-priem-i-spetsializirana-po"
 #: (наредба, РД-07-8) names exactly one corpus act, so a citation of it
 #: lands on the single-candidate branch, and its subject carries digits.
 CHL_327 = "naredba-rd-07-8-ot-27-oktomvri-2010-g-za-reda-za-izvarshvane-na-proverka-po-chl-"
@@ -1151,7 +1168,8 @@ def test_a_swapped_content_word_in_a_year_only_citation_is_flagged(resolver):
     # match one act, so the branch attributes it; the point is that the
     # row can no longer look clean. Refusing instead would trade against
     # the renamed titles this branch exists to catch, so the finding is a
-    # flag and the coverage map routes it to the reasoning pass.
+    # flag: the row is attributed and carries `content_mismatch` in the
+    # `resolver_flags` column a reader can filter by.
     result = resolver.resolve(
         "Наредба № 04-14 от 2019 г. за условията и реда за сертифициране на "
         "пчеларство медикъл спа център спа център уелнес център и таласотерапевтичен "
@@ -1161,10 +1179,17 @@ def test_a_swapped_content_word_in_a_year_only_citation_is_flagged(resolver):
     assert "content_mismatch" in result.flags
 
 
-def test_a_renamed_title_in_a_year_only_citation_still_resolves(resolver):
-    # The other side of the same branch: lex.bg renamed this наредба in
-    # 2019, so a 2016 material and the corpus differ by one content word
-    # and are one act. It resolves, and the flag says why it is not exact.
+def test_a_year_only_citation_of_an_unchanged_title_resolves_without_a_flag(resolver):
+    # The other side of the same branch, and the guard against
+    # over-refusal. The subject clause below is the corpus act's own,
+    # word for word; only the day is missing from the date, which is the
+    # ordinary Gazette citation form and the shape that skips the
+    # exact-key branch. Nothing about the content set changed, so the
+    # branch must attribute it and must NOT flag it.
+    #
+    # The renamed title, where a content word really did change, is the
+    # sibling `test_a_swapped_content_word_in_a_year_only_citation_is_
+    # flagged`, which asserts both the attribution and the flag.
     result = resolver.resolve(
         "Наредба № 04-14 от 2019 г. за условията и реда за сертифициране на "
         "балнеолечебен медикъл спа център спа център уелнес център и "

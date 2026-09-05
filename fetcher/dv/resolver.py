@@ -34,9 +34,19 @@ The key alone does not identify: 363 keys of (act type, number, year)
 name two or more corpus acts and 1,038 acts sit in such a group, because
 ministries number independently. So a stated year is never crossed, a
 stated date must agree, and an exact key needs every coordinate the
-citation states. Anything less is settled on the SUBJECT clause, the part
-after the number and the date, under the same bounds as the fuzzy step
-and reported with its real score and the flag `numbered_key_tie`.
+citation states. A citation whose key and stated full date name one act
+is then decided by the key alone, and refused only when the two SUBJECT
+clauses, the part after the number and the date, share not one content
+word (`subject_unrelated`). Anything less is settled on the subject
+clause, under the 0.90 floor and the digit guard and nothing else when
+exactly one candidate survives the date narrowing, where a content-word
+difference is the flag `content_mismatch` rather than a refusal, and
+under the fuzzy step's four bounds when more than one does, where it is
+a refusal. Every refusal that got as far as comparing the subject
+clauses reports its real score, so `unresolved.csv` shows the reader the
+same near miss the resolver saw; a stated date that contradicts is
+refused before any comparison and has none. `numbered_key_tie` is
+reported when, and only when, the key named more than one act.
 
 **A bounded fuzzy match**, for a title the Gazette and lex.bg word
 differently. Four bounds, and a win needs all four:
@@ -71,8 +81,8 @@ against „СЪОРЪЖЕНИЯТА ПОД НАЛЯГАНЕ“ at 0.9451, „И�
 „МАШИНИТЕ“ at 0.9388. None of them differs in a digit.
 
 The content guard costs nothing measurable. A reworded title, one
-function word dropped, still resolves in 2,983 of 3,608 cases, and the
-looser readings the guard was first written with, a superset or a
+function word dropped, still resolves in 2,977 of 3,608 cases, and when
+the guard was first written the looser readings of it, a superset or a
 one-token difference, resolved exactly as many while leaving four wrong
 attributions. What the guard does cost is stated plainly: a one-letter
 typo inside a content word is a token substitution and is refused, so
@@ -215,7 +225,7 @@ _INSTRUCTION_BY_VERB = {
 #: The tail says which instrument adopted the target, not what the target
 #: is called.
 #:
-#: An adoption is always in the instrumental: adopted WITH a decree. „, "
+#: An adoption is always in the instrumental: adopted WITH a decree. „,
 #: издадени ОТ Международната федерация на счетоводителите“ names an
 #: author, „, приети СЪГЛАСНО чл. 15“ a legal basis, „, приета В Ню Йорк“
 #: a place, and „, ОБНОВЯВАНЕ, ПОДДЪРЖАНЕ“ is a list item, not an
@@ -845,9 +855,16 @@ class Resolver:
         2021, so the subject must still clear the floor.
 
         Where the dates agree or the citation states none, the subject
-        decides: under the floor and the digit guard always, under the
-        content guard as a refusal when the key named several acts and as
-        the flag `content_mismatch` when it named one.
+        decides: under the floor and the digit guard always, and under
+        the content guard by how many candidates SURVIVE the date
+        narrowing below, not by how many the key named. Exactly one
+        survivor takes the single-candidate branch, where a content-word
+        difference is the flag `content_mismatch`; more than one goes to
+        `_rank`, where the content guard is a veto and the row is
+        refused. The two are independent, so a key that named several
+        acts and was narrowed by a stated full date to one is attributed
+        with `numbered_key_tie` for the tie and `content_mismatch` for
+        the difference.
         """
         key = numbered_key(title)
         if key is None:
@@ -907,7 +924,12 @@ class Resolver:
                 # date), and two subjects with not one content word in
                 # common are not one act under any renaming.
                 if _shares_nothing(subject, other_subject):
-                    return [], matched, 0.0, ("subject_unrelated",)
+                    return (
+                        [],
+                        matched,
+                        self._similarity(subject, other),
+                        ("subject_unrelated",),
+                    )
                 return matched, matched, 1.0, ()
 
             # Otherwise the subject has to carry it. Either the key named
@@ -922,7 +944,12 @@ class Resolver:
             # not „чл. 328“. A renaming does not change a title's digits,
             # so the exemption below does not reach them.
             if _digits(other_subject) != _digits(subject):
-                return [], matched, 0.0, flags + ("numbered_digit_mismatch",)
+                return (
+                    [],
+                    matched,
+                    self._similarity(subject, other),
+                    flags + ("numbered_digit_mismatch",),
+                )
 
             score = self._similarity(subject, other)
             if score < FUZZY_THRESHOLD:
@@ -935,8 +962,14 @@ class Resolver:
             # наредба differ by a content word („спортна подготовка“ became
             # „специализирана подготовка“ in 2019) and are one act. The
             # number and the year pin it, so refusing would lose the act
-            # the branch is for; the flag lets the coverage map route the
-            # row to the reasoning pass instead of attributing it silently.
+            # the branch is for. What the flag buys is that the row does
+            # not look clean: it is attributed, and it carries
+            # `content_mismatch` in the `resolver_flags` column of
+            # `coverage-map.csv`, which a reader can filter by. It is NOT
+            # a route. `scripts/dv_coverage_map.py` writes
+            # `unresolved.csv` only for rows with no law id, so a flagged
+            # row never reaches it; whether the reasoning pass reviews
+            # these rows is that script's concern and is not built here.
             if not _content_compatible(_content(subject), _content(other_subject)):
                 flags = flags + ("content_mismatch",)
             return matched, matched, score, flags
