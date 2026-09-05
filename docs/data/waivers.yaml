@@ -1,0 +1,24 @@
+# docs/data/waivers.yaml
+# Enumerated exceptions to the correctness floor. Equality is enforced:
+# an act that stops violating must be removed here, or the run fails.
+#
+# Act lists are produced by running the detectors and pasting their
+# enumeration, never hand-typed. The three entries below carry rulings that
+# are already adjudicated in the record, but their detectors are NOT part of
+# Part II (the machine floor ships tag_remnants and chrome only), so their
+# act lists stay empty until the detector that fills each one exists. An
+# empty list is not an assertion that the class is clean; it is the absence
+# of a census, and Owner Directive 10 forbids repairing before that census
+# exists.
+frontmatter_dates:
+  ruling: "FR-011 triage — faithful to lex.bg, which carries no date signal for these acts"
+  owner_signed: 2026-08-11
+  acts: []  # fill from: python -m corpus_integrity --check frontmatter_dates --enumerate
+empty_body:
+  ruling: "lex.bg content-less stub pages; surfaced to callers as <doc_id=N>"
+  owner_signed: 2026-08-11
+  acts: []  # detector not yet implemented
+no_article_anchor:
+  ruling: "single-§ instruments (денонсиране, оттегляне на резерва, опрощаване) and ethics codes"
+  owner_signed: 2026-08-11
+  acts: []  # detector not yet implemented
