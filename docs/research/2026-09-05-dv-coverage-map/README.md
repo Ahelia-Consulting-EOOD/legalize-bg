@@ -26,14 +26,14 @@ The instrument is deterministic: two runs on the same inputs were byte-identical
 | --- | --- | --- |
 | `report.md` | | The instrument's summary: grades, event and base sources, unlocated rows by uncertainty, reading budget, predecessor acts, estado disputes with their denominator, PDF-era inventory |
 | `acts-summary.csv` | 3,624 | One row per act: candidate grade, pending items, event counts by source, base source, page estimate, `dv_identifier` |
-| `coverage-map.csv.gz` | 20,266 | One row per chain row (16,642 events, 3,624 bases): source, locator, score, flags, uncertainty. Gzipped (2.6 MB plain) |
+| `coverage-map.csv.gz` | 20,266 | One row per chain row (16,642 events, 3,624 bases): source, locator, score, flags, uncertainty. Gzipped (2.7 MB plain) |
 | `chain-omissions.csv` | 23 | Title-pass materials that resolved to an act at an issue its chain lacks, `pass = title` |
 | `predecessor-materials.csv` | 722 | Materials about a same-titled predecessor act the corpus does not hold, with the `reason` that routed each (FR-043) |
-| `unresolved.csv.gz` | 34,175 | Every row the pass could not settle: 23,689 unattributed materials, 10,319 unlocated events, 160 acts citing no promulgation, 7 acts with no title. Gzipped (13.4 MB plain) |
+| `unresolved.csv.gz` | 34,175 | Every row the pass could not settle: 23,689 unattributed materials, 10,319 unlocated events, 160 acts citing no promulgation, 7 acts with no title. Gzipped (13.3 MB plain) |
 | `estado-disputes.csv` | 0 | Repeal titles against acts the corpus holds as `vigente`; the report states the denominator |
-| `pdf-era-inventory.csv` | 1,583 | One row per PDF-only issue 1989 to 2002 with the page estimates for the reading budget |
+| `pdf-era-inventory.csv` | 1,583 + 1 | One row per PDF-only issue 1989 to 2002 with the page estimates for the reading budget, plus a final `TOTAL` row (`year = TOTAL`, no date) whose page columns are the column sums |
 
-`gunzip -k` restores the two gzipped tables. Every CSV is UTF-8 with a header row.
+The command writes `coverage-map.csv` and `unresolved.csv` plain; they were gzipped afterwards with `gzip -9 -n`, and `gunzip -k` restores them. On the data branch the materials table is stored as `materials.jsonl.gz` and must be gunzipped before the command runs. Every CSV is UTF-8 with a header row.
 
 ## What the run found
 
@@ -56,4 +56,4 @@ The instrument is deterministic: two runs on the same inputs were byte-identical
 ## Known instrument limits registered
 
 - `numbered_key` reads a cited regulation's number as the act's own for 7 of 1,987 keyed acts (follow-up of 2026-09-05); contained by the resolver's bounds, zero wrong attributions measured.
-- The `no_candidate` flag is set whenever nothing was chosen, including rows with a near miss reported in `candidates`; filter by `resolver_score` to separate them.
+- The refusal flags do not say whether a near miss exists. `no_candidate` means the resolver chose nothing from an empty candidate list; `ambiguous_candidates` means it chose nothing from a non-empty one (52 unattributed materials, every one at score 1.000, so they sit inside the 314 near misses). Filter by `resolver_score` and read `candidates`; a filter on `no_candidate` alone drops the highest-confidence rows.
