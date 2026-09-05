@@ -1049,7 +1049,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
     inventory = build_inventory(issues, citing, estimator, pdf_era_end)
     categories = {act.law_id: act.category for act in acts}
     return (coverage, summary, omissions, predecessors, unresolved, disputes,
-            inventory, issues, categories, estimator)
+            inventory, issues, categories, estimator, repeal_census)
 
 
 # --- writing --------------------------------------------------------------
@@ -1469,7 +1469,7 @@ def main(argv=None) -> int:
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     (coverage, summary, omissions, predecessors, unresolved, disputes,
-     inventory, issues, categories, estimator) = build(
+     inventory, issues, categories, estimator, repeal_census) = build(
         Path(args.corpus), Path(args.issues), Path(args.materials),
         pdf_era_end=parse_era_end(args.pdf_era_end),
     )
