@@ -47,8 +47,8 @@ Copied from the authorities that bind this work. Every task's requirements impli
 | A2 body-scan integration | `feat/dv-coverage-map` rebased on `origin/main` (amendment note 4), A1, B2 (the canonical `pending_items` strings) | real run GATED on the body fetch |
 | A3 candidates for the uncited acts | `feat/dv-coverage-map` rebased on `origin/main` | no |
 | A4 coverage-map run and report | A2, A3, a valid `data/dv/materials.jsonl` | body pass GATED |
-| A5 resolver reasoning pass | A4 title pass (it consumes `unresolved.csv`) | no |
-| B0 `corpus_commit.py` | nothing | no |
+| A5 resolver reasoning pass | A4 title pass (it consumes `unresolved.csv`), A3 (the `uncited_corpus` fixture its tests share) | no |
+| B0 `corpus_commit` package | nothing | no |
 | B1 four preflights | nothing | no |
 | B2 provenance package | nothing for Steps 1 to 5; `feat/dv-coverage-map` merged for Step 6 (deleting the map's copy) | no |
 | B3 provenance check (INV-010) | PR #23 Part II Tasks 1 to 5 (registry), B2 | no |
@@ -63,7 +63,9 @@ Copied from the authorities that bind this work. Every task's requirements impli
 | B11 pilot | B5, B5b, B6, B7, B10, **and `chain_scan_complete` for the pilot act** | **GATED**: grade A needs the body scan (see B11's preconditions) |
 | B12 governance close-out | B11 | no |
 
-Two rows carry a condition that is easy to lose and expensive to discover late.
+Three rows carry a condition that is easy to lose and expensive to discover late.
+
+**B2 Step 6 and the merge order.** Step 6 deletes the coverage map's own `derive_grade` and rewrites the map's property tests against the canonical one, so it needs `feat/dv-coverage-map` merged; A2 in turn needs B2 for the canonical `pending_items` strings. The order is therefore: merge the map, then B2 Step 6, then A2. Steps 1 to 5 of B2 depend on nothing and can land first.
 
 **B6 and the write gate.** `corpus_gate.write_act` runs the whole registered `CHECKS` set on the act it is writing and raises `CorpusIntegrityError` on any violation, so a backfill of 3,624 acts walks every act past every registered class. Waiver reconciliation lives in the runner (`corpus_integrity/waivers.py`), not in the gate, so without a change the first act carrying any outstanding violation of any class aborts the batch. **Requirement on PR #23 Part II Task 6: the write gate applies the same waiver reconciliation as the runner, count-equality per act (the PR #34 fix round), so a waived act writes while keeping its expected violation count and an act that regressed past its waived count still fails.** With that in place the backfill passes and the 81 waived acts keep their expected counts. B6's own tests do not change.
 
@@ -594,6 +596,7 @@ and `tests/scripts/test_dv_coverage_map.py` pins them (`rows(..., kind="empty_ti
 
 **Files:**
 - Modify: `scripts/dv_coverage_map.py`
+- Create: `tests/scripts/conftest.py` (the `uncited_corpus` fixture, shared with Task A5)
 - Test: `tests/scripts/test_dv_coverage_map_uncited.py`
 
 **Interfaces:**
@@ -603,25 +606,55 @@ and `tests/scripts/test_dv_coverage_map.py` pins them (`rows(..., kind="empty_ti
 - [ ] **Step 1: Write the failing test**
 
 ```python
-# tests/scripts/test_dv_coverage_map_uncited.py
-import csv, json
+# tests/scripts/conftest.py
+import json
 from pathlib import Path
-from scripts.dv_coverage_map import main
+
+import pytest
 
 UNCITED = "---\ntitulo: НАРЕДБА ЗА ПРИМЕР\nidentificador: '1'\npais: bg\nrango: наредба\nfecha_publicacion: null\nultima_actualizacion: null\nestado: vigente\nfuente: lex.bg\ncategory: ordinances\namendment_history: []\n---\n\n**Чл. 1.** Текст.\n"
 NOTITLE = "---\ntitulo: ''\nidentificador: '2'\npais: bg\nrango: наредба\nfecha_publicacion: null\nultima_actualizacion: null\nestado: vigente\nfuente: lex.bg\ncategory: ordinances\namendment_history: []\n---\n\n**Чл. 1.** Текст.\n"
 
 
-def test_uncited_acts_get_candidates_from_material_titles(tmp_path: Path):
+@pytest.fixture
+def uncited_corpus(tmp_path: Path) -> tuple[Path, Path, Path]:
+    """One act that cites no promulgation, one with no titulo, and the single
+    issue and material they are resolved against.
+
+    Returns `(corpus_root, issues_jsonl, materials_jsonl)`. Shared by A3, which
+    asserts the `candidates` column on the `promulgation_unknown` row, and A5,
+    which applies a resolution record to that same row. Two tasks reading one
+    fixture is what keeps their row identities in agreement.
+    """
     (tmp_path / "ordinances").mkdir()
     (tmp_path / "ordinances" / "naredba-za-primer.md").write_text(UNCITED, encoding="utf-8")
     (tmp_path / "ordinances" / "no-title.md").write_text(NOTITLE, encoding="utf-8")
     issues = tmp_path / "issues.jsonl"
-    issues.write_text(json.dumps({"year": 2011, "number": 5, "date": "2011-01-18", "id_obj": 9, "section": 1, "extraordinary": False}) + "\n", encoding="utf-8")
+    issues.write_text(json.dumps({"year": 2011, "number": 5, "date": "2011-01-18",
+                                  "id_obj": 9, "section": 1, "extraordinary": False}) + "\n",
+                      encoding="utf-8")
     materials = tmp_path / "materials.jsonl"
-    materials.write_text(json.dumps({"id_obj": 9, "issue_year": 2011, "issue_number": 5, "issue_date": "2011-01-18", "status": "ok", "position": 1, "id_mat": 55, "section": "Министерство на финансите", "title": "Наредба за пример", "start_page": 3}) + "\n", encoding="utf-8")
+    materials.write_text(json.dumps({"id_obj": 9, "issue_year": 2011, "issue_number": 5,
+                                     "issue_date": "2011-01-18", "status": "ok", "position": 1,
+                                     "id_mat": 55, "section": "Министерство на финансите",
+                                     "title": "Наредба за пример", "start_page": 3}) + "\n",
+                         encoding="utf-8")
+    return tmp_path, issues, materials
+```
+
+```python
+# tests/scripts/test_dv_coverage_map_uncited.py
+import csv
+from pathlib import Path
+
+from scripts.dv_coverage_map import main
+
+
+def test_uncited_acts_get_candidates_from_material_titles(tmp_path: Path, uncited_corpus):
+    corpus, issues, materials = uncited_corpus
     out = tmp_path / "out"
-    assert main(["--corpus", str(tmp_path), "--issues", str(issues), "--materials", str(materials), "--out", str(out)]) == 0
+    assert main(["--corpus", str(corpus), "--issues", str(issues),
+                 "--materials", str(materials), "--out", str(out)]) == 0
     rows = {(r["kind"], r["law_id"]): r
             for r in csv.DictReader((out / "unresolved.csv").open(encoding="utf-8"))}
     assert rows[("promulgation_unknown", "naredba-za-primer")]["candidates"].startswith("55:2011/5:")
@@ -648,7 +681,7 @@ Expected: all passed.
 - [ ] **Step 5: Commit**
 
 ```bash
-git add scripts/dv_coverage_map.py tests/scripts/test_dv_coverage_map_uncited.py
+git add scripts/dv_coverage_map.py tests/scripts/conftest.py tests/scripts/test_dv_coverage_map_uncited.py
 git commit -m "feat(coverage-map): candidates for the 121 acts that cite no promulgation"
 ```
 
@@ -696,17 +729,44 @@ Design section 8 puts „5.3 resolver **with its reasoning pass**“ inside P0, 
 **Files:**
 - Create: `docs/research/2026-09-05-dv-coverage-map/resolutions.yaml`
 - Modify: `scripts/dv_coverage_map.py` (`--resolutions PATH`)
-- Test: `tests/scripts/test_dv_coverage_map_resolutions.py`
+- Test: `tests/scripts/test_dv_coverage_map_resolutions.py` (with the `uncited_corpus` fixture Task A3 adds to `tests/scripts/conftest.py`)
+
+**The record key is the row's own identifying columns, read off the merged writer.** The header and the values are not the same thing, and the earlier draft keyed on values the rows do not carry:
+
+```python
+# as in scripts/dv_coverage_map.py:893 on feat/dv-coverage-map
+UNRESOLVED_FIELDS = [
+    "kind", "law_id", "dv_year", "dv_number", "title", "candidates",
+    "resolver_score", "resolver_flags", "dv_identifier", "reason",
+]
+# as in scripts/dv_coverage_map.py:781-794 (the row for an act citing no promulgation)
+        if not act.fecha_publicacion:
+            unresolved.append(
+                {
+                    "kind": "promulgation_unknown",
+                    "law_id": act.law_id,
+                    "dv_year": "",
+                    "dv_number": "",
+                    "title": act.title,
+                    "candidates": "",
+                    ...
+```
+
+So an uncited act's row carries `dv_year` and `dv_number` EMPTY: the issue in a candidate `id_mat` belongs to the material, never to the row. The `unattributed_material` rows are the mirror image, carrying the material's issue and an empty `law_id` (`dv_coverage_map.py:849-852`).
 
 **Interfaces:**
+- The key is the five identifying columns, compared as strings after stripping: `(kind, law_id, dv_year, dv_number, title)`. For an uncited act the two issue columns are empty, so the key is in effect `(kind, law_id, title)`; for an unattributed material `law_id` is empty, so it is in effect `(kind, dv_year, dv_number, title)`. One rule covers both, defined on what the file actually holds. If two rows share a key the applier exits non-zero naming them, so a record can never land on the wrong row.
 - The file is a list of records, one per unresolved row:
 
 ```yaml
 - kind: promulgation_unknown   # the `kind` of the unresolved.csv row
-  law_id: naredba-za-primer    # the corpus act the row is about, or null
-  dv_year: 2011
-  dv_number: 5
+  law_id: naredba-za-primer    # the row's law_id, or '' for a material row
+  dv_year: ''                  # the ROW's issue columns, empty for an uncited act
+  dv_number: ''
+  title: НАРЕДБА ЗА ПРИМЕР     # the row's title column, part of the key
   id_mat: 55                   # the material the reasoning settled on, or null
+  material_year: 2011          # that material's issue, recorded for the reviewer;
+  material_number: 5           # not part of the key
   verdict: resolved            # resolved | no_target | unresolvable
   reason: >-
     The material title matches the act title exactly and its section is
@@ -715,30 +775,45 @@ Design section 8 puts „5.3 resolver **with its reasoning pass**“ inside P0, 
 
 - The applier is deterministic and total: for `verdict: resolved` the row leaves `unresolved.csv` and its attribution is written into `coverage-map.csv` with `resolver_flags` carrying `reasoned`; for `no_target` the row leaves `unresolved.csv` and is counted in `report.md` as settled with no corpus target; for `unresolvable` the row stays in `unresolved.csv` with the uncertainty `operation_unresolved`. A record naming a row that is not in `unresolved.csv` is an error, not a silent skip, so the file cannot rot.
 
+**What this task does NOT close, stated because design 5.2 names a number that looks like it.** `segmenter-residue.csv` is written by the body pass of Task A2 and only when `--cache-dir` is given, so it does not exist until the gated run of A4 Step 4. A5 reads it **if it is there**, purely to report: `report.md` gains the residue row count next to the resolution counts, labelled as the P2 exit-gate number that this task does not close. A5's own number is the count of `unresolved.csv` rows with no record at all. Clearing residue to zero is the reasoning pass over instruction targets, which is P2 work on a file with a different shape (`RESIDUE_FIELDS = ["id_mat", "dv_year", "dv_number", "paragraph", "text"]`, no `kind` and no `law_id`), and inventing half of it here would leave an untested applier branch behind.
+
 - [ ] **Step 1: Write the failing test**
 
 ```python
 # tests/scripts/test_dv_coverage_map_resolutions.py
 import csv
 from pathlib import Path
+
 import yaml
+
 from scripts.dv_coverage_map import main
+
+# The row this fixture produces is `kind=promulgation_unknown`,
+# `law_id=naredba-za-primer`, `dv_year=''`, `dv_number=''`,
+# `title=НАРЕДБА ЗА ПРИМЕР`. The record's key columns are those, not the
+# candidate material's issue, which travels in material_year/material_number.
+ROW_KEY = {"kind": "promulgation_unknown", "law_id": "naredba-za-primer",
+           "dv_year": "", "dv_number": "", "title": "НАРЕДБА ЗА ПРИМЕР"}
+
+
+def _resolutions(tmp_path: Path, record: dict) -> Path:
+    res = tmp_path / "resolutions.yaml"
+    res.write_text(yaml.safe_dump([record], allow_unicode=True, sort_keys=False),
+                   encoding="utf-8")
+    return res
 
 
 def test_a_resolved_record_moves_the_row_out_of_unresolved(tmp_path: Path, uncited_corpus):
-    """`uncited_corpus` is the A3 fixture: one act with kind=promulgation_unknown."""
     corpus, issues, materials = uncited_corpus
-    res = tmp_path / "resolutions.yaml"
-    res.write_text(yaml.safe_dump([{
-        "kind": "promulgation_unknown", "law_id": "naredba-za-primer",
-        "dv_year": 2011, "dv_number": 5, "id_mat": 55,
-        "verdict": "resolved", "reason": "title and issuing section both match",
-    }], allow_unicode=True, sort_keys=False), encoding="utf-8")
+    res = _resolutions(tmp_path, {**ROW_KEY, "id_mat": 55, "material_year": 2011,
+                                  "material_number": 5, "verdict": "resolved",
+                                  "reason": "title and issuing section both match"})
     out = tmp_path / "out"
     assert main(["--corpus", str(corpus), "--issues", str(issues), "--materials", str(materials),
                  "--resolutions", str(res), "--out", str(out)]) == 0
     unresolved = list(csv.DictReader((out / "unresolved.csv").open(encoding="utf-8")))
-    assert not [r for r in unresolved if r["law_id"] == "naredba-za-primer"]
+    assert not [r for r in unresolved
+                if r["law_id"] == "naredba-za-primer" and r["kind"] == "promulgation_unknown"]
     coverage = [r for r in csv.DictReader((out / "coverage-map.csv").open(encoding="utf-8"))
                 if r["law_id"] == "naredba-za-primer"]
     assert coverage and coverage[0]["locator_id_mat"] == "55"
@@ -747,12 +822,9 @@ def test_a_resolved_record_moves_the_row_out_of_unresolved(tmp_path: Path, uncit
 
 def test_an_unresolvable_record_keeps_the_row_and_flags_it(tmp_path: Path, uncited_corpus):
     corpus, issues, materials = uncited_corpus
-    res = tmp_path / "resolutions.yaml"
-    res.write_text(yaml.safe_dump([{
-        "kind": "promulgation_unknown", "law_id": "naredba-za-primer",
-        "dv_year": 2011, "dv_number": 5, "id_mat": None,
-        "verdict": "unresolvable", "reason": "three ministries issued наредби № 3 that year",
-    }], allow_unicode=True, sort_keys=False), encoding="utf-8")
+    res = _resolutions(tmp_path, {**ROW_KEY, "id_mat": None, "material_year": None,
+                                  "material_number": None, "verdict": "unresolvable",
+                                  "reason": "three ministries issued наредби № 3 that year"})
     out = tmp_path / "out"
     assert main(["--corpus", str(corpus), "--issues", str(issues), "--materials", str(materials),
                  "--resolutions", str(res), "--out", str(out)]) == 0
@@ -763,11 +835,20 @@ def test_an_unresolvable_record_keeps_the_row_and_flags_it(tmp_path: Path, uncit
 
 def test_a_record_for_a_row_that_does_not_exist_is_an_error(tmp_path: Path, uncited_corpus):
     corpus, issues, materials = uncited_corpus
-    res = tmp_path / "resolutions.yaml"
-    res.write_text(yaml.safe_dump([{
-        "kind": "promulgation_unknown", "law_id": "gone", "dv_year": 2011, "dv_number": 5,
-        "id_mat": 55, "verdict": "resolved", "reason": "x",
-    }], allow_unicode=True, sort_keys=False), encoding="utf-8")
+    res = _resolutions(tmp_path, {**ROW_KEY, "law_id": "gone", "id_mat": 55,
+                                  "verdict": "resolved", "reason": "x"})
+    out = tmp_path / "out"
+    assert main(["--corpus", str(corpus), "--issues", str(issues), "--materials", str(materials),
+                 "--resolutions", str(res), "--out", str(out)]) != 0
+
+
+def test_a_record_keyed_on_the_material_issue_instead_of_the_row_is_an_error(
+        tmp_path: Path, uncited_corpus):
+    """The defect this key exists to prevent: 2011/5 is the CANDIDATE's issue,
+    and the row it targets carries neither column."""
+    corpus, issues, materials = uncited_corpus
+    res = _resolutions(tmp_path, {**ROW_KEY, "dv_year": 2011, "dv_number": 5,
+                                  "id_mat": 55, "verdict": "resolved", "reason": "x"})
     out = tmp_path / "out"
     assert main(["--corpus", str(corpus), "--issues", str(issues), "--materials", str(materials),
                  "--resolutions", str(res), "--out", str(out)]) != 0
@@ -780,7 +861,7 @@ Expected: FAIL (unknown argument `--resolutions`).
 
 - [ ] **Step 3: Implement the applier**
 
-Load the YAML, key every record on `(kind, law_id, dv_year, dv_number)`, and apply it after the unresolved rows are built and before they are written. Unmatched records raise and exit non-zero with the list. `report.md` gains a line: records applied by verdict, and the count of unresolved rows with no record at all, which is the P2 exit-gate number.
+Load the YAML, key every record on `(kind, law_id, dv_year, dv_number, title)` with every part stripped and compared as a string, and apply it after the unresolved rows are built and before they are written. Unmatched records raise and exit non-zero with the list; two rows sharing a key is the same error. `report.md` gains a line: records applied by verdict, and the count of unresolved rows with no record at all, which is A5's exit number. If `segmenter-residue.csv` exists in the output directory from a previous body pass, add its row count on the next line, labelled as the P2 exit gate this task does not close.
 
 - [ ] **Step 4: The reasoning procedure (orchestration, not code)**
 
@@ -798,7 +879,7 @@ git commit -m "feat(coverage-map): reasoning-pass resolutions file and its deter
 
 # Part B: P1 (provenance block, exposure, § addressing, Gazette parser, pilot)
 
-### Task B0: `corpus_commit.py`, the one place the three trailers are written
+### Task B0: `corpus_commit`, the one place the three trailers are written
 
 `refresh._git_commit_typed` hardcodes two of the three mandatory trailers:
 
@@ -812,8 +893,10 @@ git commit -m "feat(coverage-map): reasoning-pass resolutions file and its deter
 Its docstring says why (`Source-Id stays lexbg-{doc_id} because this coarse pass re-pulls from lex.bg`), and that reasoning is sound for `refresh.py`. It is wrong for everything this plan commits: B6 needs `Source-Id: dvmap-2026-09`, B10 needs `Source-Id: dv-<idMat>` with `Norm-Id: <identificador>`, and B11 Step 3 asserts exactly those lines. Rather than growing keyword arguments on a lex.bg-specific helper, the trailer format gets its own module and `refresh.py` becomes one of its callers.
 
 **Files:**
-- Create: `corpus_commit.py`, `tests/test_corpus_commit.py`
-- Modify: `refresh.py` (`_git_commit_typed` becomes a thin wrapper)
+- Create: `corpus_commit/__init__.py`, `tests/test_corpus_commit.py`
+- Modify: `refresh.py` (`_git_commit_typed` becomes a thin wrapper), `pyproject.toml` (`corpus_commit*` in the include list, with B2's packaging paragraph)
+
+**A package directory, not a bare `corpus_commit.py`.** `pyproject.toml` ships code through `[tool.setuptools.packages.find]` alone (quoted in B2's Packaging paragraph), and that directive finds directories with an `__init__.py`; a single-module `corpus_commit.py` needs a `py-modules` list the repository does not have. B10's `fetcher/dv/rebuild.py` is inside the packaged `fetcher` tree and imports this module, so a bare module would ship a `fetcher.dv.rebuild` that cannot import. The import stays `from corpus_commit import commit_corpus_change` either way.
 
 **Interfaces:**
 - Produces `commit_corpus_change(path, commit_type, title, *, norm_id, source_id, source_date, cwd) -> bool` writing
@@ -911,7 +994,9 @@ Expected: FAIL, `ModuleNotFoundError: No module named 'corpus_commit'`.
 
 - [ ] **Step 3: Implement**
 
-Move the body of `refresh._git_commit_typed` into `corpus_commit.commit_corpus_change`, parameterising `Source-Id` and `Norm-Id` and returning `True`/`False` for committed/skipped. `COMMIT_TYPES` moves with it (or is imported from where it lives; do not duplicate the tuple). `refresh._git_commit_typed` keeps its docstring, shortened to say that it is the lex.bg caller of the shared helper.
+Move the body of `refresh._git_commit_typed` into `corpus_commit/__init__.py` as `commit_corpus_change`, parameterising `Source-Id` and `Norm-Id` and returning `True`/`False` for committed/skipped. `COMMIT_TYPES` moves with it (or is imported from where it lives; do not duplicate the tuple). `refresh._git_commit_typed` keeps its docstring, shortened to say that it is the lex.bg caller of the shared helper. Note the one signature change the move makes: `refresh._git_commit_typed` returns `None`, and the shared helper returns `bool`, which is what B6 and B10 need to tell a committed act from a resume skip.
+
+Add `corpus_commit*` to the `include` list in the same commit and run the reachability test from B2's packaging paragraph if that task has already landed; otherwise B2 picks it up.
 
 - [ ] **Step 4: Run the tests and the refresh suite**
 
@@ -921,7 +1006,7 @@ Expected: all passed. `refresh.py`'s existing commit-format tests must pass unch
 - [ ] **Step 5: Commit**
 
 ```bash
-git add corpus_commit.py refresh.py tests/test_corpus_commit.py
+git add corpus_commit/ refresh.py pyproject.toml tests/test_corpus_commit.py
 git commit -m "refactor(commits): one module writes the Source-Id, Source-Date and Norm-Id trailers; refresh becomes its lex.bg caller"
 ```
 
@@ -951,7 +1036,7 @@ provenance:
     frozen_at: null           # date the Directive 14 sweep and FR-041 capture ran
     audited: false
     declared_at: null         # UK-model declared base date, if any
-    chain_scanned_through: null   # {issue, year, date} or null
+    chain_scanned_through: null   # {issue, year} or null: an ISSUE, no date
     chain_inherited_before: '2005-01-01'
     uncertainty: []           # design 4.1; `promulgation_unknown` for the 121
   checked_through: {issue: '32', year: 2026, date: '2026-04-01'}
@@ -968,6 +1053,8 @@ and per row of `amendment_history`: `source`, `locator`, `applied` (`replayed | 
 Two definitions the preflight states in these words, because both are load-bearing and both were ambiguous in the design:
 
 - **`checked_through` is the scan currency mark for this act**: the last Gazette issue whose materials the coverage map has attributed to it. It is NOT the date of the last amendment; `ultima_actualizacion` keeps that meaning. This is what makes `chain_scan_complete` (`base.chain_scanned_through == checked_through`) decidable for an act last amended in 2011 whose scan ran through 2026, and for a freshly rebuilt act the two values are equal by construction.
+
+  **The two marks have two shapes and the comparison is on two keys, and this record is where that is fixed.** The block stores `base.chain_scanned_through` as `{issue, year}`, because a scan mark is an issue and carries no publication date of its own, and `checked_through` as `{issue, year, date}`, because the currency statement served to a consumer needs a date. `chain_scan_complete` is therefore `(issue, year) == (issue, year)`; a whole-dict equality would be false for every act, including a correct one, and the C10 check would report `chain scan incomplete` against a block that recorded it complete. The INDEX projects only the date: `laws.checked_through` (migration 007) holds `checked_through.date`, which is what MCP, REST and the cf act payload serve, and `laws.chain_inherited_before` holds `base.chain_inherited_before`. The issue half of the mark lives in the block alone and is read from there by `checks/provenance.py`.
 - **The promulgation row of `amendment_history` is the base, not an event.** The event multiset of design 4.2 is `amendment_history` minus the row whose `dv` equals `f"{base.issue}/{base.year}"`. The row itself stays in `amendment_history`, because FR-020 and `history()` read it; it is excluded only from the grade derivation. One helper, `provenance.model.events_of(fm, base)`, implements the filter for every caller.
 
 - [ ] **Step 2: Surface 4, the schema.** Migration 007: `ALTER TABLE laws ADD COLUMN provenance_grade TEXT`, `ADD COLUMN events_pending INTEGER NOT NULL DEFAULT 0`, `ADD COLUMN checked_through TEXT`, `ADD COLUMN chain_inherited_before TEXT`; new table `amendment_events(law_id TEXT REFERENCES laws(law_id), seq INTEGER, dv TEXT, date TEXT, source TEXT, locator TEXT, applied TEXT, verified_against TEXT, uncertainty TEXT, PRIMARY KEY(law_id, seq))`. Migration 008 (Task B7): `ALTER TABLE provisions ADD COLUMN kind TEXT NOT NULL DEFAULT 'article'`, `ADD COLUMN section_ref TEXT` and an index on `(law_id, article, kind, section_ref)`. Violation: any consumer query that breaks on the added columns; a `provisions` row whose `kind` is not in the enumerated set; two `para_amending` rows on one act sharing `(article, section_ref)`. Allowed scope: additive columns with defaults; full rebuild path unchanged.
@@ -1002,7 +1089,30 @@ git commit -m "docs(preflight): Surfaces 2, 3, 4 and 5 for the provenance block,
 - Produces: `Base(source, state, locator, issue, year, frozen_at, audited, declared_at, chain_scanned_through, chain_inherited_before, uncertainty)` with the property `Base.promulgation_cited`, `Event(dv, date, source, locator, applied, verified_against, uncertainty)`, `Provenance(grade, derived_at, base, events, checked_through, in_force_as_of, events_not_in_force, events_pending, pdf_pages_estimate, status)` with `to_frontmatter() -> dict` and `Provenance.from_frontmatter(fm: dict) -> Provenance | None`; **`events_of(fm: dict, base: Base) -> list[Event]`**, the one filter that turns `amendment_history` into the event multiset of design 4.2; `derive_grade(base: Base, events: list[Event], *, chain_scan_complete: bool, divergences_unadjudicated: int, promulgation_cited: bool = True) -> Derivation(grade: str | None, pending_items: list[str])` where `grade None` means staging (rule 0); `DomainError` for inputs outside the constraints of design 4.2; `EVENT_SOURCES`, `EVENT_APPLIED`, `BASE_STATES`, `GRADES` tuples.
 - **The canonical `pending_items` vocabulary**, used by every consumer including the coverage map: `events pending: N`, `chain scan incomplete`, `promulgation unlocated`, `promulgation unknown`, `base not audited`, `snapshot not frozen`, `events before declared base not carried: N`, `witness divergences unadjudicated`. No second vocabulary exists after Step 6.
 
-**Packaging.** `pyproject.toml` has `include = ["fetcher*", "index*", "mcp_server*", "api*"]`. This task adds a top-level `provenance/`, B3 extends `corpus_integrity/`, B0 adds `corpus_commit.py` and B9 puts `import provenance...` inside `fetcher/dv/metadata.py`, which **is** packaged. A `pip install .` or the Docker image would therefore ship a `fetcher` that cannot import, and `tests/test_packaging.py` checks only the console entry point, so nothing would catch it. Add `provenance*`, `corpus_integrity*`, `corpus_gate` and `corpus_commit` to the include list, and extend `tests/test_packaging.py` with a test that walks the repository root and asserts every top-level runtime package or module (anything importable that is not under `tests/`, `scripts/`, `research/` or `docs/`) is matched by an include pattern.
+**Packaging.** The current declaration, read off `origin/main`:
+
+```toml
+# as in pyproject.toml:36-38
+[tool.setuptools.packages.find]
+include = ["fetcher*", "index*", "mcp_server*", "api*"]
+exclude = ["tests*", "scripts*", "research*", "docs*"]
+```
+
+`packages.find` finds PACKAGES, that is, directories carrying an `__init__.py`. It cannot ship a bare top-level module however it is patterned, which is why Task B0 creates `corpus_commit/__init__.py` rather than `corpus_commit.py`: the repository ships nothing through `py-modules` today and adding that second mechanism for one function is the weaker trade. `corpus_integrity/` on `feat/corpus-integrity-floor` is already a package (`corpus_integrity/__init__.py`), and `corpus_gate` will be one or the other depending on how PR #23 Part II Task 6 lands.
+
+This task adds a top-level `provenance/`, B3 extends `corpus_integrity/`, B0 adds `corpus_commit/`, B9 puts `import provenance...` inside `fetcher/dv/metadata.py` and B10 puts `from corpus_commit import ...` and `from corpus_gate import ...` inside `fetcher/dv/rebuild.py`; all three of those files are inside the packaged `fetcher` tree. A `pip install .` or the Docker image would therefore ship a `fetcher` that cannot import. The exact change:
+
+```toml
+[tool.setuptools.packages.find]
+include = ["fetcher*", "index*", "mcp_server*", "api*", "provenance*",
+           "corpus_integrity*", "corpus_gate*", "corpus_commit*"]
+exclude = ["tests*", "scripts*", "research*", "docs*"]
+```
+
+`tests/test_packaging.py` today holds two tests (`test_console_entry_target_is_importable_and_callable` and `test_pyproject_declares_console_script_and_build_system`) over `REPO = pathlib.Path(__file__).resolve().parents[1]`, neither of which can catch this. Add two more:
+
+- **The reachability test, which is the one that has to carry the guarantee.** Walk every top-level package the `include` patterns actually match, parse each `.py` with `ast`, collect the top-level name of every absolute `import`/`from` statement, keep the names that resolve to something in the repository root (a directory with an `__init__.py`, or a `*.py` file), and assert each of them is itself shipped, that is, matched by an `include` pattern or listed in `[tool.setuptools] py-modules` if that key ever appears. This is falsifiable against the defect: a shipped `fetcher.dv.rebuild` importing an unshipped `corpus_commit` fails it. Verified against `origin/main` as written: the four shipped packages import no unshipped local name, so the test is green the day it lands. It deliberately says nothing about `export_cf/`, `bootstrap.py` and `refresh.py`, which are top-level and unshipped today; nothing shipped imports them, so they are operator entry points rather than a packaging defect, and a test that failed on them would be reverted rather than fixed.
+- **The wheel test, guarded.** `pytest.importorskip("setuptools")` first, then copy `pyproject.toml` and each matched top-level package directory into `tmp_path`, run `pip wheel --no-deps --no-build-isolation` into it, and assert the built wheel's namelist carries `provenance/derive.py` and `corpus_commit/__init__.py`. **This test skips in the current `.venv`, which has no `setuptools`**, so it is a bonus check for the CI install job and not the guarantee; do not let it stand in for the first test.
 
 - [ ] **Step 1: Write the failing tests**
 
@@ -1035,6 +1145,17 @@ def test_pre_1989_base_is_c_even_with_verified_events():
     b = _base(source="dv_offline", frozen_at="2026-09-06", audited=True)
     d = derive_grade(b, [_ev(applied="verified")], chain_scan_complete=True, divergences_unadjudicated=0)
     assert d.grade == "C"
+
+def test_a_grade_c_act_still_enumerates_its_open_items():
+    """§4.2 rule 1 and COVERAGE-FLOOR.md: a grade C act's online events are still
+    sourced and verified as for B and the pending counter still applies, so its
+    record names the same open items a B-pending act's would."""
+    b = _base(source="dv_offline", frozen_at=None, audited=False)
+    d = derive_grade(b, [_ev(applied="pending")], chain_scan_complete=False, divergences_unadjudicated=0)
+    assert d.grade == "C"
+    assert "events pending: 1" in d.pending_items
+    assert "chain scan incomplete" in d.pending_items
+    assert "snapshot not frozen" in d.pending_items
 
 def test_verified_events_before_the_sweep_are_b_pending_with_the_freeze_listed():
     b = _base(audited=True)  # frozen_at None
@@ -1171,6 +1292,34 @@ def test_an_act_whose_base_issue_is_unknown_keeps_every_row_as_an_event():
     fm = {"amendment_history": [{"dv": "5/2011", "date": "2011-01-18"}],
           "provenance": {**_fm([])["provenance"], "base": base, "grade": "B-pending"}}
     assert [e.dv for e in events_of(fm, Base(**base))] == ["5/2011"]
+
+
+def test_a_leading_zero_in_the_history_row_still_matches_the_base():
+    """The corpus writes the issue both ways; a string comparison would count
+    the act's own promulgation as a pending event."""
+    base = {**BASE, "issue": "32", "year": 1999}
+    fm = {"amendment_history": [{"dv": "032/1999", "date": "1999-09-14"},
+                                {"dv": "70/2005", "date": "2005-08-26"}],
+          "provenance": {**_fm([])["provenance"], "base": base}}
+    assert [e.dv for e in events_of(fm, Base(**base))] == ["70/2005"]
+
+
+def test_a_second_row_on_the_promulgation_issue_stays_an_event():
+    """A corrigendum published in the same брой is an event, not the base. Only
+    the FIRST matching row is the promulgation."""
+    fm = _fm([{"dv": "32/2026", "date": "2026-04-01"},
+              {"dv": "32/2026", "date": "2026-04-08"},
+              {"dv": "70/2026", "date": "2026-08-01"}])
+    assert [e.date for e in events_of(fm, Base(**BASE))] == ["2026-04-08", "2026-08-01"]
+
+
+def test_the_recorded_pending_items_survive_a_round_trip():
+    """`to_frontmatter` writes them, so `from_frontmatter` must read them back."""
+    fm = _fm([{"dv": "32/2026", "date": "2026-04-01"}])
+    fm["provenance"]["pending_items"] = ["chain scan incomplete", "snapshot not frozen"]
+    prov = Provenance.from_frontmatter(fm)
+    assert prov.pending_items == ["chain scan incomplete", "snapshot not frozen"]
+    assert prov.to_frontmatter()["pending_items"] == prov.pending_items
 ```
 
 - [ ] **Step 2: Run them and confirm they fail**
@@ -1287,7 +1436,27 @@ class Provenance:
                    events=events_of(fm, base), checked_through=blk.get("checked_through"),
                    in_force_as_of=blk.get("in_force_as_of"),
                    events_not_in_force=int(blk.get("events_not_in_force", 0)), events_pending=int(blk.get("events_pending", 0)),
-                   pdf_pages_estimate=int(blk.get("pdf_pages_estimate", 0)), status=blk.get("status", STATUS_LINE))
+                   pdf_pages_estimate=int(blk.get("pdf_pages_estimate", 0)), status=blk.get("status", STATUS_LINE),
+                   # `to_frontmatter` writes the list, so the round trip has to
+                   # read it back: `checks/provenance.py` reports the RECORDED
+                   # items next to the ones it re-derives, and without this they
+                   # would always read as empty.
+                   pending_items=list(blk.get("pending_items") or []))
+
+
+def _dv_key(dv) -> tuple[str, str] | None:
+    """`'032/1999'` and `'32/1999'` are the same issue.
+
+    The corpus was scraped over years and writes the issue number both ways, so
+    a string comparison would fail to recognise an act's own promulgation and
+    count it as a pending event, which is the difference between grade A and
+    B-pending for a single-issue act.
+    """
+    parts = str(dv or "").strip().split("/")
+    if len(parts) != 2:
+        return None
+    issue, year = parts[0].strip(), parts[1].strip()
+    return (issue.lstrip("0") or "0", year.lstrip("0") or "0")
 
 
 def is_base_row(row: dict, base: Base) -> bool:
@@ -1299,7 +1468,8 @@ def is_base_row(row: dict, base: Base) -> bool:
     """
     if base.issue is None or base.year is None:
         return False
-    return str(row.get("dv") or "").strip() == f"{base.issue}/{base.year}"
+    key = _dv_key(row.get("dv"))
+    return key is not None and key == _dv_key(f"{base.issue}/{base.year}")
 
 
 def event_from_row(row: dict) -> Event:
@@ -1317,9 +1487,21 @@ def events_of(fm: dict, base: Base) -> list[Event]:
     builder and `checks/provenance.py` all call this and never rebuild it, so
     a single-issue act derives grade A instead of B-pending on its own
     promulgation.
+
+    EXACTLY ONE row is removed: the FIRST that matches, in file order. An act
+    can carry two rows on its promulgation issue, the promulgation and a
+    corrigendum published in the same брой, and the second one is a real event
+    that has to be sourced like any other. Filtering by predicate over the
+    whole list would silently drop it and overstate the act's grade.
     """
-    return [event_from_row(row) for row in (fm.get("amendment_history") or [])
-            if not is_base_row(row, base)]
+    events: list[Event] = []
+    taken = False
+    for row in fm.get("amendment_history") or []:
+        if not taken and is_base_row(row, base):
+            taken = True
+            continue
+        events.append(event_from_row(row))
+    return events
 ```
 
 ```python
@@ -1329,6 +1511,11 @@ def events_of(fm: dict, base: Base) -> list[Event]:
 Ordered rules, first match decides. Inputs are the persisted base record, the
 events and two computed values. Domain constraints raise DomainError so a
 property test enumerates only possible states.
+
+The open items are computed once, before the rules, and every grade carries
+them: §4.2 rule 1 says a grade C act's online events are still sourced and
+verified as for B and the pending counter still applies. Only rule 0 replaces
+them, because a file held in staging is not in the corpus at all.
 """
 from __future__ import annotations
 from dataclasses import dataclass
@@ -1403,21 +1590,12 @@ def derive_grade(base: Base, events: list[Event], *, chain_scan_complete: bool,
     in_scope, declared_note = _in_scope(base, events)
     if declared_note:
         pending.append(declared_note)
-    # rule 0: staging
-    if base.state in ("rebuilt", "read") and divergences_unadjudicated > 0:
-        return Derivation(None, ["witness divergences unadjudicated"])
-    # rule 1: offline
-    if base.source == "dv_offline" or any(e.source == "dv_offline" for e in in_scope):
-        n = sum(1 for e in in_scope if e.applied == "pending")
-        if n:
-            pending.append(f"events pending: {n}")
-        return Derivation("C", pending)
-    # rule 2: ДВ-complete
-    if (base.state == "rebuilt" and base.source == "dv_html" and chain_scan_complete
-            and all(e.source == "dv_html" and e.applied in ("replayed", "not_incorporated") for e in in_scope)
-            and divergences_unadjudicated == 0):
-        return Derivation("A", pending)
-    # rule 3: open items
+    # THE OPEN ITEMS ARE COMPUTED THE SAME WAY WHATEVER THE GRADE, before any
+    # rule fires. Design 4.2 rule 1 reads „C, pre-1989 base. Online events are
+    # still sourced and verified as for B, and the pending counter applies“, and
+    # COVERAGE-FLOOR.md's grade C definition repeats it. So a pre-1989 act keeps
+    # `chain scan incomplete`, `base not audited` and `snapshot not frozen` in
+    # its record; the items decide the GRADE only through rule 3.
     n_pending = sum(1 for e in in_scope if e.applied == "pending")
     if n_pending:
         pending.append(f"events pending: {n_pending}")
@@ -1430,16 +1608,30 @@ def derive_grade(base: Base, events: list[Event], *, chain_scan_complete: bool,
         pending.append("base not audited")
     if base.state == "snapshot" and base.frozen_at is None:
         pending.append("snapshot not frozen")
-    # The declared-base note is informational: it records a decision the owner
-    # made, not an item still open, so it never by itself forces B-pending.
-    # Tracked by identity rather than by re-deriving the string, which is what
-    # made the earlier draft diverge from its own count.
+    # rule 0: staging. The only rule that replaces the items rather than
+    # carrying them: the file is not in the corpus, so nothing else is open yet.
+    if base.state in ("rebuilt", "read") and divergences_unadjudicated > 0:
+        return Derivation(None, ["witness divergences unadjudicated"])
+    # rule 1: offline
+    if base.source == "dv_offline" or any(e.source == "dv_offline" for e in in_scope):
+        return Derivation("C", pending)
+    # rule 2: ДВ-complete
+    if (base.state == "rebuilt" and base.source == "dv_html" and chain_scan_complete
+            and all(e.source == "dv_html" and e.applied in ("replayed", "not_incorporated") for e in in_scope)
+            and divergences_unadjudicated == 0):
+        return Derivation("A", pending)
+    # rule 3: open items. The declared-base note is informational: it records a
+    # decision the owner made, not an item still open, so it never by itself
+    # forces B-pending. Tracked by identity rather than by re-deriving the
+    # string, which is what made the earlier draft diverge from its own count.
     blocking = [p for p in pending if p != declared_note]
     if blocking:
         return Derivation("B-pending", pending)
     # rule 4
     return Derivation("B", pending)
 ```
+
+Rule 2 can only be reached with `chain_scan_complete`, a `rebuilt` base and no pending event, so a grade A act carries at most the declared-base note; nothing else can be open under it.
 
 - [ ] **Step 4: Run the tests and confirm they pass**
 
@@ -1459,10 +1651,240 @@ git commit -m "feat(provenance): data model and the total grade derivation of de
 
 Delete the map's copy. Import `from provenance.derive import derive_grade` and `from provenance.model import Base, Event`, and adapt the single call site: the map already knows every input, so it builds a `Base` and a list of `Event` (source and applied per event row, promulgation excluded, which the map already separates with `row_kind = base`) and reads `Derivation.grade` and `Derivation.pending_items`. `pending_items` is written to the CSV joined by `; `.
 
-The map's `derive_grade` tests in `tests/scripts/test_dv_coverage_map.py` move to asserting the canonical strings. This is the change that gives A2's `test_pending_items_use_the_canonical_derive_strings` something to pass against.
+**The grade C question, decided against the authorities rather than left to the executor.** The merged `derive_grade` computes the open items for every grade and says why in its docstring; the draft of `provenance/derive.py` returned only the pending-event count from rule 1, which would have stripped `chain scan incomplete`, `base not audited` and `snapshot not frozen` from every pre-1989 act's CSV row and, after B6, from its frontmatter block. `docs/process/COVERAGE-FLOOR.md` (Provenance floor, grade C) settles it: „Every online event is still sourced and verified as for B, and the pending counter applies“, and design 4.2's rule 1 row says the same. **Decision: the open items are computed once for every grade, before the rules, exactly as the merged map does it.** The derivation above implements that, and it is why one of the three failing tests below turns green rather than needing an edit.
+
+**The merged property tests must be rewritten, not merely re-stringed.** `tests/scripts/test_dv_coverage_map.py` on `feat/dv-coverage-map` carries a generator `valid_inputs(cmap)` and eight tests that call `cmap.derive_grade(**inputs)` with the map's keyword signature and unpack a `(grade, pending)` TUPLE. After this step `cmap.derive_grade` does not exist and the canonical one returns a `Derivation` dataclass, so every one of them needs an edit. Three fail on semantics rather than on call shape, and they are named here so the executor does not discover them as a red suite:
+
+1. **`test_the_grade_procedure_is_total`** pins `assert count == 6352` „so that a change to the domain constraints is visible rather than silent“, and asserts `seen == {"A", "B", "B-pending", "C", "none"}`. Both change. `provenance.derive._check_domain` adds one constraint the merged `valid_inputs` does not filter, „an unlocated event is always pending“ (`e.source == "unlocated" and e.applied != "pending"`), which removes 1,936 of the 6,352 enumerated inputs. **The new pin is 4,416, and it is an expected change, not a regression:** the domain got smaller because a constraint the merged map only documented is now enforced. The staging grade is `None`, not the string `"none"`.
+2. **`test_the_pending_items_come_from_the_fixed_vocabulary`** allows the six snake_case tokens (`events_pending`, `chain_scan`, `promulgation_unlocated`, `promulgation_unknown`, `base_audit`, `freeze`). The canonical vocabulary is the eight prose strings, two of which carry a count, so the membership test becomes exact-match against six plus a prefix test for the two counted ones.
+3. **`test_the_p0_inputs_can_only_produce_b_pending_or_c`** asserts `pending` is non-empty for every P0 input, including `base_source="dv_offline"` with `events=()`. It fails against the draft where rule 1 returned only the pending-event count, and PASSES against the derivation above, where rule 1 carries the same items as rule 3. It is the test that pins the decision recorded in this step, so it is kept unchanged in substance.
+
+`test_pending_items_are_named_exactly_when_something_is_open` keeps passing, because the enumeration sets no `declared_at` and so no grade A or B act can carry the declared-base note; its A/B assertion is widened anyway, so it stays true if the enumeration is ever extended.
+
+Replace the whole derivation block of `tests/scripts/test_dv_coverage_map.py` (the `BASE_SOURCES` constant through `test_the_p0_inputs_can_only_produce_b_pending_or_c`) with this. The `outputs`-based tests above it are untouched.
+
+```python
+# tests/scripts/test_dv_coverage_map.py, the derivation block
+# The map's own derive_grade is gone (Task B2 Step 6); these tests exercise the
+# canonical one through the inputs §4.2 names, so the enumeration stays readable.
+import itertools
+
+import pytest
+
+from provenance.derive import DomainError, derive_grade
+from provenance.model import Base, Event
+
+BASE_SOURCES = ("dv_html", "dv_pdf", "dv_offline", "unlocated")
+BASE_STATES = ("rebuilt", "read", "snapshot")
+EVENT_SOURCES = ("dv_html", "dv_pdf", "dv_offline", "unlocated")
+APPLIED = ("replayed", "verified", "not_incorporated", "pending")
+
+CANONICAL = {
+    "chain scan incomplete",
+    "promulgation unlocated",
+    "promulgation unknown",
+    "base not audited",
+    "snapshot not frozen",
+    "witness divergences unadjudicated",
+}
+COUNTED = ("events pending: ", "events before declared base not carried: ")
+
+
+def _derive(*, base_source, base_state, base_frozen_at, base_audited,
+            chain_scan_complete, divergences_unadjudicated, events):
+    base = Base(source=base_source, state=base_state, locator=None, issue="32",
+                year=2026, frozen_at=base_frozen_at, audited=base_audited,
+                declared_at=None, chain_scanned_through=None,
+                chain_inherited_before=None)
+    evs = [Event(dv=f"{i + 1}/2010", date=f"2010-01-0{i + 1}", source=source,
+                 locator=None, applied=applied, verified_against=None)
+           for i, (source, applied) in enumerate(events)]
+    return derive_grade(base, evs, chain_scan_complete=chain_scan_complete,
+                        divergences_unadjudicated=divergences_unadjudicated)
+
+
+def valid_inputs():
+    """Every input of §4.2 that its domain constraints allow.
+
+    `hypothesis` is not installed, and the input space is finite and small, so
+    it is enumerated rather than sampled. The constraints §4.2 states as domain
+    rather than as rules are filtered out here, which is what makes them
+    constraints; `provenance.derive._check_domain` raises DomainError on every
+    one of them, and the last filter is the one the map's own copy documented
+    but never enforced.
+    """
+    pairs = [(source, applied) for source in EVENT_SOURCES for applied in APPLIED]
+    multisets = [()]
+    multisets += [(pair,) for pair in pairs]
+    multisets += list(itertools.combinations_with_replacement(pairs, 2))
+
+    for source, state, frozen, audited, scanned, divergences in itertools.product(
+        BASE_SOURCES, BASE_STATES, (None, "2026-01-01"), (False, True),
+        (False, True), (0, 1),
+    ):
+        if state == "rebuilt" and source != "dv_html":
+            continue
+        if state == "read" and source != "dv_pdf":
+            continue
+        if state in ("rebuilt", "read") and frozen is None:
+            continue
+        if state == "snapshot" and divergences != 0:
+            continue
+        for events in multisets:
+            if state != "snapshot" and any(
+                applied == "verified" for _, applied in events
+            ):
+                continue
+            if any(event_source == "unlocated" and applied != "pending"
+                   for event_source, applied in events):
+                continue
+            yield dict(
+                base_source=source,
+                base_state=state,
+                base_frozen_at=frozen,
+                base_audited=audited,
+                chain_scan_complete=scanned,
+                divergences_unadjudicated=divergences,
+                events=events,
+            )
+
+
+def test_the_grade_procedure_is_total():
+    seen = set()
+    count = 0
+    for inputs in valid_inputs():
+        d = _derive(**inputs)
+        assert d.grade in {None, "A", "B", "B-pending", "C"}
+        assert isinstance(d.pending_items, list)
+        seen.add(d.grade)
+        count += 1
+    # The exact size of the enumerated space, pinned so that a change to the
+    # domain constraints is visible rather than silent. It was 6,352 against the
+    # map's own copy; enforcing „an unlocated event is always pending“ removes
+    # 1,936 impossible inputs.
+    assert count == 4416
+    assert seen == {None, "A", "B", "B-pending", "C"}
+
+
+def test_every_input_the_enumeration_skips_is_a_domain_error():
+    """The filters above are the domain, not a convenience: the derivation
+    refuses the same inputs rather than grading them."""
+    base = Base(source="dv_html", state="snapshot", locator=None, issue="32",
+                year=2026, frozen_at="2026-01-01", audited=True,
+                declared_at=None, chain_scanned_through=None,
+                chain_inherited_before=None)
+    ev = Event(dv="1/2010", date="2010-01-01", source="unlocated", locator=None,
+               applied="replayed", verified_against=None)
+    with pytest.raises(DomainError):
+        derive_grade(base, [ev], chain_scan_complete=True,
+                     divergences_unadjudicated=0)
+
+
+def test_rule_zero_holds_a_rebuilt_act_out_of_the_corpus():
+    for inputs in valid_inputs():
+        if (
+            inputs["base_state"] in ("rebuilt", "read")
+            and inputs["divergences_unadjudicated"] > 0
+        ):
+            assert _derive(**inputs).grade is None
+
+
+def test_anything_offline_in_scope_is_grade_c():
+    for inputs in valid_inputs():
+        d = _derive(**inputs)
+        if d.grade is None:
+            continue
+        offline = inputs["base_source"] == "dv_offline" or any(
+            source == "dv_offline" for source, _ in inputs["events"]
+        )
+        assert (d.grade == "C") == offline
+
+
+def test_a_grade_c_act_still_enumerates_its_open_items():
+    """§4.2 rule 1: the pending counter and the other open items apply to a
+    grade C act too, so the map's CSV row names them."""
+    d = _derive(base_source="dv_offline", base_state="snapshot",
+                base_frozen_at=None, base_audited=False,
+                chain_scan_complete=False, divergences_unadjudicated=0,
+                events=())
+    assert d.grade == "C"
+    assert "chain scan incomplete" in d.pending_items
+    assert "snapshot not frozen" in d.pending_items
+
+
+def test_grade_a_implies_every_condition_of_rule_two():
+    for inputs in valid_inputs():
+        if _derive(**inputs).grade != "A":
+            continue
+        assert inputs["base_state"] == "rebuilt"
+        assert inputs["base_source"] == "dv_html"
+        assert inputs["chain_scan_complete"]
+        assert inputs["divergences_unadjudicated"] == 0
+        for source, applied in inputs["events"]:
+            assert source == "dv_html"
+            assert applied in ("replayed", "not_incorporated")
+
+
+def test_pending_items_are_named_exactly_when_something_is_open():
+    for inputs in valid_inputs():
+        d = _derive(**inputs)
+        if d.grade == "B-pending":
+            assert d.pending_items, inputs
+        if d.grade in ("A", "B"):
+            # The declared-base note is informational and never blocks; every
+            # other item does, so an A or B act carries none of them.
+            blocking = [p for p in d.pending_items
+                        if not p.startswith(COUNTED[1])]
+            assert blocking == [], inputs
+
+
+def test_the_pending_items_come_from_the_fixed_vocabulary():
+    for inputs in valid_inputs():
+        d = _derive(**inputs)
+        for item in d.pending_items:
+            assert item in CANONICAL or item.startswith(COUNTED), item
+        assert list(d.pending_items) == sorted(
+            set(d.pending_items), key=list(d.pending_items).index
+        )
+
+
+def test_a_not_incorporated_event_never_blocks_a_grade():
+    d = _derive(
+        base_source="dv_html",
+        base_state="snapshot",
+        base_frozen_at="2026-01-01",
+        base_audited=True,
+        chain_scan_complete=True,
+        divergences_unadjudicated=0,
+        events=(("dv_html", "not_incorporated"), ("dv_html", "verified")),
+    )
+    assert d.grade == "B"
+    assert d.pending_items == []
+
+
+def test_the_p0_inputs_can_only_produce_b_pending_or_c():
+    # In P0 every event is `pending`, the base is a `snapshot`, nothing is
+    # frozen, nothing is audited and the body scan has not run. Rules 1 and 3
+    # are the only ones that can fire, and both enumerate the open items.
+    for base_source in BASE_SOURCES:
+        for events in ((), (("dv_html", "pending"),), (("dv_offline", "pending"),)):
+            d = _derive(
+                base_source=base_source,
+                base_state="snapshot",
+                base_frozen_at=None,
+                base_audited=False,
+                chain_scan_complete=False,
+                divergences_unadjudicated=0,
+                events=events,
+            )
+            assert d.grade in ("B-pending", "C")
+            assert d.pending_items
+```
+
+The map's CSV column keeps its name: `pending_items` now holds the canonical strings joined by `; `. This is the change that gives A2's `test_pending_items_use_the_canonical_derive_strings` something to pass against.
 
 Run: `.venv/bin/python -m pytest -q -p no:cacheprovider tests/scripts tests/provenance`
-Expected: all passed, and `grep -n "def derive_grade" scripts/dv_coverage_map.py` returns nothing.
+Expected: all passed, and `grep -n "def derive_grade" scripts/dv_coverage_map.py` returns nothing. If `test_the_grade_procedure_is_total` reports a count other than 4,416, a domain constraint changed: recompute it, state the new number and why it moved, and do not adjust the assertion to whatever came out.
 
 ```bash
 git add scripts/dv_coverage_map.py tests/scripts/test_dv_coverage_map.py
@@ -1811,11 +2233,42 @@ import pytest
 from mcp_server.errors import ERROR_CODES
 from mcp_server.queries import provenance_warning
 from mcp_server.server import build_app
+from tests.mcp_server.conftest import FAKE_COMMIT_HASH
+
+# The frontmatter of `zakon-a`, copied from the `app` fixture in
+# tests/mcp_server/test_get_law.py:29-50 so this file exercises the same act the
+# rest of the tool tests do. The provenance BLOCK is not needed here: the tools
+# read the four `laws` columns migration 007 adds, not the frontmatter.
+ACT_MD = (
+    "---\n"
+    "titulo: 'Закон за А'\n"
+    "identificador: '100'\n"
+    "pais: bg\n"
+    "rango: закон\n"
+    "fecha_publicacion: '2020-01-01'\n"
+    "ultima_actualizacion: '2020-01-01'\n"
+    "estado: vigente\n"
+    "fuente: lex.bg\n"
+    "dv_issue: '1'\n"
+    "dv_year: 2020\n"
+    "effective_date: '2020-01-01'\n"
+    "category: laws\n"
+    "eli: /eli/bg/закон/2020/1/1/zakon-a/con\n"
+    "amendment_history: []\n"
+    "---\n\n# ЗАКОН ЗА А\n\nТекст.\n"
+)
 
 
 @pytest.fixture
 def prov_app(populated_conn, tmp_path):
-    """The existing populated catalog, with a grade recorded on one act."""
+    """The existing populated catalog, with a grade recorded on one act.
+
+    `populated_conn` stamps every law's `current_commit` as FAKE_COMMIT_HASH,
+    which is what lets `get_law`'s working-tree fast path read `tmp_path`
+    without a real git repository. Same coupling, and same use-site assertion,
+    as the `app` fixture in test_get_law.py.
+    """
+    assert FAKE_COMMIT_HASH == "a" * 40
     populated_conn.execute(
         "UPDATE laws SET provenance_grade=?, events_pending=?, checked_through=?,"
         " chain_inherited_before=? WHERE law_id='zakon-a'",
@@ -1864,7 +2317,7 @@ def test_error_taxonomy_parity_includes_the_new_codes():
     assert "AMBIGUOUS_ARTICLE_SPEC" in ERROR_CODES
 ```
 
-`ACT_MD` is the Task B4 test act; `populated_conn` and the `zakon-a` / `zakon-b` law ids are whatever the existing `tests/mcp_server/conftest.py` provides. Adapt the names to that file rather than inventing fixtures.
+`populated_conn` and the `zakon-a` / `zakon-b` law ids come from `tests/mcp_server/conftest.py:39-98`, which seeds eight acts including those two. Adapt the names to that file rather than inventing fixtures; `zakon-a` is `identificador` 100, which is why `get_law` is called with `{"name": "100"}`.
 
 - [ ] **Step 2: Run it and confirm it fails**
 
@@ -1890,12 +2343,48 @@ git commit -m "feat(mcp,rest): provenance grade, checked_through and chain_inher
 Design 4.3 requires the grade on the cf plane („the act payload carries the grade; the worker mirrors the REST warning“) and design section 8 lists P1 content as „MCP/**REST/cf** grade exposure“. `COVERAGE-FLOOR.md`, Provenance floor, counts „serving a grade B or C text without the grade at the consumer surface“ as an omission. After B6 every act is B-pending or C, so **from the moment the backfill lands the cf plane is in breach of the floor this plan enforces** unless the payload carries the grade. This task is the exporter half; the worker's response shape is an owner decision, recorded below and not implemented here.
 
 **Files:**
-- Modify: `export_cf/acts.py` (`build_act_payload`'s `meta`), `export_cf/ddl.py` and `export_cf/verify.py`, `docs/api/cf-data-plane-spec.md` (version 2.1 to 2.2)
+- Modify: `export_cf/acts.py` (`build_act_payload`'s `meta`), `export_cf/verify.py`, `docs/api/cf-data-plane-spec.md` (version 2.1 to 2.2)
 - Test: `tests/export_cf/test_acts_provenance.py`
 
+**The payload is built from the act's file, not from a `laws` row.** Read the function before writing the change:
+
+```python
+# as in export_cf/acts.py:121
+def build_act_payload(law_id: str, doc_id: int, category: str,
+                      raw_markdown: str, commit_hash: str,
+                      warnings: list[dict]) -> dict:
+# as in export_cf/acts.py:124
+    fm, body = split_frontmatter(raw_markdown)
+# as in export_cf/acts.py:136 (every meta value is read off `fm`)
+        "dv_issue": fm.get("dv_issue"),
+```
+
+It takes no connection and no corpus root: `export_acts` reads the markdown first (`read_law_markdown`, `acts.py:157`) and hands it in. So the two new keys come from the `provenance` block in the frontmatter the payload already parses, and no signature changes.
+
 **Interfaces:**
-- `build_act_payload`'s `meta` gains `provenance_grade: str | None` and `checked_through: str | None`, read from the `laws` row the payload is already built from. Additive: no existing key changes name, type or value, so a worker that ignores them keeps working.
-- The D1 side needs nothing new: `laws` is copied verbatim from the source catalog's `sqlite_master`, so migration 007's four columns arrive in D1 by the existing mechanism. `export_cf/verify.py` gains one check holding the payload's two fields to the `laws` columns they came from, in the shape of the existing recount checks, so an exporter that silently drops them fails `--verify`.
+- `build_act_payload`'s `meta` gains `provenance_grade: str | None` and `checked_through: str | None`, read from the block: `(fm.get("provenance") or {}).get("grade")` and `((fm.get("provenance") or {}).get("checked_through") or {}).get("date")`. The second is the DATE of the currency mark, the same projection migration 007 stores in `laws.checked_through` (Task B4), so the two surfaces carry one value. Additive: no existing key changes name, type or value, so a worker that ignores them keeps working.
+- The D1 side needs nothing new, so `export_cf/ddl.py` is not touched: table DDL is read from the source catalog's `sqlite_master` (`export_cf/ddl.py:3`, and `docs/api/cf-data-plane-spec.md:59` states the same for the emitted schema), so migration 007's four columns arrive in D1 by the existing mechanism.
+- `export_cf/verify.py` gains `_check_act_provenance`, in the shape of the existing per-act check:
+
+```python
+# as in export_cf/verify.py:55
+def _check_act_articles(conn: sqlite3.Connection, out_dir: Path,
+                        law_id: str, failures: list[str]) -> None:
+# as in export_cf/verify.py:57
+    path = out_dir / "r2" / "acts" / f"{law_id}.json"
+```
+
+  called next to it in the sampled loop:
+
+```python
+# as in export_cf/verify.py:297-300
+        law_ids = [r[0] for r in conn.execute("SELECT law_id FROM laws")]
+        sampled = _sample(law_ids, sample_n)
+        for law_id in sampled:
+            _check_act_articles(conn, out_dir, law_id, failures)
+```
+
+  This is a genuine cross-check, not an identity: the payload's two values come from the act's frontmatter, and `laws.provenance_grade` / `laws.checked_through` come from `index.build`'s own read of the same block (B4), so a divergence means the export and the catalog disagree about an act and `--verify` fails. That is stronger than the check the earlier draft described, which compared the payload against the row it had been copied from.
 - `docs/api/cf-data-plane-spec.md` goes to 2.2 with a section-9 history entry naming the two `meta` keys, matching how v2.1 recorded `implicit_paragraphs`.
 
 **Owner decision, listed not implemented.** Whether `cf-worker` mirrors the `PROVENANCE_GRADE` warning in its responses or skips non-A acts entirely is the same label-or-skip question design 4.3 flags for FR-032's implicit rows, and 4.3 says to decide the two together. It is recorded here as pending and belongs in FR-032's decision, not in this plan. Until it is taken, the cf plane carries the grade in the payload (so a consumer can read it) and mirrors no warning.
@@ -1904,31 +2393,104 @@ Design 4.3 requires the grade on the cf plane („the act payload carries the gr
 
 ```python
 # tests/export_cf/test_acts_provenance.py
+import json
+import sqlite3
+
 from export_cf.acts import build_act_payload
+from export_cf.verify import _check_act_provenance
+from index.migrations import migrate
+
+WITH_BLOCK = """---
+titulo: ТЕСТ
+identificador: '5'
+pais: bg
+rango: закон
+fecha_publicacion: '2026-04-01'
+ultima_actualizacion: '2026-08-01'
+estado: vigente
+fuente: lex.bg
+category: laws
+amendment_history: []
+provenance:
+  grade: B-pending
+  derived_at: '2026-09-06'
+  base: {source: dv_html, state: snapshot, locator: null, issue: '32', year: 2026,
+    frozen_at: null, audited: false, declared_at: null, chain_scanned_through: null,
+    chain_inherited_before: '2005-01-01', uncertainty: []}
+  checked_through: {issue: '70', year: 2026, date: '2026-08-01'}
+  in_force_as_of: '2026-04-16'
+  events_not_in_force: 0
+  events_pending: 1
+  pending_items: [chain scan incomplete]
+  pdf_pages_estimate: 0
+  status: consolidated text without official value
+---
+
+**Чл. 1.** Текст.
+"""
+
+NO_BLOCK = ("---\ntitulo: Закон за А\nidentificador: '100'\n"
+            "fecha_publicacion: '2020-01-01'\n---\n\n**Чл. 1.** Текст.\n")
 
 
-def test_the_act_payload_carries_the_grade_and_the_currency_mark(provenance_catalog):
-    conn, corpus = provenance_catalog   # the B4 test act, grade B-pending
-    payload = build_act_payload("test", 5, "laws", conn=conn, corpus_root=corpus)
+def test_the_act_payload_carries_the_grade_and_the_currency_mark():
+    payload = build_act_payload("test", 5, "laws", WITH_BLOCK, "c" * 40, [])
     assert payload["meta"]["provenance_grade"] == "B-pending"
     assert payload["meta"]["checked_through"] == "2026-08-01"
 
 
-def test_a_payload_for_an_act_without_a_block_carries_nulls(populated_catalog):
-    conn, corpus = populated_catalog
-    payload = build_act_payload("zakon-a", 100, "laws", conn=conn, corpus_root=corpus)
+def test_a_payload_for_an_act_without_a_block_carries_nulls():
+    payload = build_act_payload("zakon-a", 100, "laws", NO_BLOCK, "c" * 40, [])
     assert payload["meta"]["provenance_grade"] is None
     assert payload["meta"]["checked_through"] is None
+
+
+def test_verify_fails_when_the_payload_and_the_catalog_disagree(tmp_path):
+    """The check is a cross-check: the payload came from the frontmatter, the
+    columns from index.build's read of the same block."""
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    migrate(conn)
+    conn.execute(
+        "INSERT INTO laws (law_id, doc_id, title, category, current_commit,"
+        " provenance_grade, checked_through) VALUES"
+        " ('test', 5, 'ТЕСТ', 'laws', 'c', 'B-pending', '2026-08-01')")
+    acts = tmp_path / "r2" / "acts"
+    acts.mkdir(parents=True)
+    (acts / "test.json").write_text(
+        json.dumps({"meta": {"provenance_grade": None, "checked_through": None}}),
+        encoding="utf-8")
+    failures: list[str] = []
+    _check_act_provenance(conn, tmp_path, "test", failures)
+    assert failures and "provenance" in failures[0]
+
+
+def test_verify_passes_when_they_agree(tmp_path):
+    conn = sqlite3.connect(":memory:")
+    conn.row_factory = sqlite3.Row
+    migrate(conn)
+    conn.execute(
+        "INSERT INTO laws (law_id, doc_id, title, category, current_commit,"
+        " provenance_grade, checked_through) VALUES"
+        " ('test', 5, 'ТЕСТ', 'laws', 'c', 'B-pending', '2026-08-01')")
+    acts = tmp_path / "r2" / "acts"
+    acts.mkdir(parents=True)
+    (acts / "test.json").write_text(
+        json.dumps(build_act_payload("test", 5, "laws", WITH_BLOCK, "c" * 40, [])),
+        encoding="utf-8")
+    failures: list[str] = []
+    _check_act_provenance(conn, tmp_path, "test", failures)
+    assert failures == []
 ```
 
-Adapt the `build_act_payload` call to its real signature, read off `export_cf/acts.py`; the assertion is on the two `meta` keys, not on the call shape.
+The first two tests need no fixture at all, which is the point: `build_act_payload` takes the markdown. `tests/export_cf/conftest.py` provides `export_corpus` and `export_run` (both module-scoped) and nothing else, so the last two build their own catalog through `index.migrations.migrate` rather than naming a fixture that does not exist.
 
 - [ ] **Step 2: Run them and confirm they fail**
 
 Run: `.venv/bin/python -m pytest -q -p no:cacheprovider tests/export_cf/test_acts_provenance.py`
-Expected: FAIL, `KeyError: 'provenance_grade'`.
+Expected: FAIL, `KeyError: 'provenance_grade'` on the first two and `ImportError` on `_check_act_provenance`.
 
-- [ ] **Step 3: Implement** the two `meta` keys, the `verify.py` check and the spec bump.
+- [ ] **Step 3: Implement** the two `meta` keys, the `verify.py` check (called in the sampled loop next to `_check_act_articles`) and the spec bump.
 
 - [ ] **Step 4: Run the export suite and a real verify**
 
@@ -2029,6 +2591,22 @@ def test_a_single_issue_act_is_not_pending_on_its_own_promulgation():
     assert len(history) == 1, "the row itself stays in amendment_history"
 
 
+def test_the_scan_mark_from_the_map_reaches_the_block_and_decides_the_scan(tmp_path):
+    """The map measured the scan; the block records what it measured. With the
+    mark equal to checked_through the act no longer says `chain scan incomplete`."""
+    events = [_event(row_kind="base", dv_number="32", date="2026-04-01",
+                     locator_id_mat="242220")]
+    fm = {"amendment_history": [{"dv": "32/2026", "date": "2026-04-01"}],
+          "fuente": "lex.bg", "estado": "vigente"}
+    block, _ = build_block(_summary(chain_scanned_through="2026/70"), events, fm,
+                           derived_at="2026-09-06")
+    assert block["base"]["chain_scanned_through"] == {"issue": "70", "year": 2026}
+    assert "chain scan incomplete" not in block["pending_items"]
+    behind, _ = build_block(_summary(chain_scanned_through="2026/50"), events, fm,
+                            derived_at="2026-09-06")
+    assert "chain scan incomplete" in behind["pending_items"]
+
+
 def test_an_act_citing_no_promulgation_gets_the_unknown_item(tmp_path):
     events = []
     fm = {"amendment_history": [], "fuente": "lex.bg", "estado": "vigente"}
@@ -2108,13 +2686,31 @@ def build_block(summary: dict, events: list[dict], fm: dict, *, derived_at: str)
     `locator` column).
     """
     cited = bool(summary.get("base_issue"))
+    # Both currency marks come from the map row, in the two shapes the block
+    # stores: the scan mark is an ISSUE (no date), the currency statement is an
+    # issue plus the date it was published. Hard-coding the scan mark to None
+    # would record „chain scan incomplete“ on every act forever, including after
+    # the body pass has covered it, and B3 re-derives the same way so nothing
+    # would catch the untruth.
+    cst = None
+    if summary.get("chain_scanned_through"):
+        y, n = summary["chain_scanned_through"].split("/")
+        cst = {"issue": n, "year": int(y)}
+    ct = None
+    if summary.get("checked_through"):
+        y, n = summary["checked_through"].split("/")
+        ct = {"issue": n, "year": int(y), "date": summary.get("checked_through_date") or None}
     base = Base(source=summary["base_source"] or "unlocated", state="snapshot",
                 locator={"id_mat": int(summary["base_locator"])} if summary.get("base_locator") else None,
                 issue=summary.get("base_issue") or None,
                 year=int(summary["base_year"]) if summary.get("base_year") else None,
-                frozen_at=None, audited=False, declared_at=None, chain_scanned_through=None,
+                frozen_at=None, audited=False, declared_at=None, chain_scanned_through=cst,
                 chain_inherited_before=summary.get("chain_inherited_before") or "2005-01-01",
                 uncertainty=[] if cited else ["promulgation_unknown"])
+    # The same equality B3 checks, on (issue, year): the scan mark carries no
+    # date and the currency statement does.
+    scan_complete = bool(cst) and ct is not None and \
+        (str(cst["issue"]), int(cst["year"])) == (str(ct["issue"]), int(ct["year"]))
     by_dv = {f"{e['dv_number']}/{e['dv_year']}": e for e in events if e.get("row_kind") != "base"}
     history = []
     for row in fm.get("amendment_history") or []:
@@ -2131,12 +2727,8 @@ def build_block(summary: dict, events: list[dict], fm: dict, *, derived_at: str)
     # events_of takes a frontmatter dict, so it is handed the history just
     # built. One filter, called here and nowhere reimplemented.
     ev_objs = events_of({"amendment_history": history}, base)
-    d = derive_grade(base, ev_objs, chain_scan_complete=False, divergences_unadjudicated=0,
-                     promulgation_cited=cited)
-    ct = None
-    if summary.get("checked_through"):
-        y, n = summary["checked_through"].split("/")
-        ct = {"issue": n, "year": int(y), "date": summary.get("checked_through_date") or None}
+    d = derive_grade(base, ev_objs, chain_scan_complete=scan_complete,
+                     divergences_unadjudicated=0, promulgation_cited=cited)
     prov = Provenance(grade=d.grade, derived_at=derived_at, base=base, events=ev_objs, checked_through=ct,
                       in_force_as_of=fm.get("effective_date") or fm.get("fecha_publicacion"),
                       events_not_in_force=0, events_pending=sum(1 for e in ev_objs if e.applied == "pending"),
@@ -2189,6 +2781,8 @@ The `write_act` signature and `SourceRef` come from Part II Task 6; adapt the im
 
 Run: `.venv/bin/python -m pytest -q -p no:cacheprovider tests/scripts/test_provenance_backfill.py` then `.venv/bin/python scripts/provenance_backfill.py --summary docs/research/2026-09-05-dv-coverage-map/acts-summary.csv --events docs/research/2026-09-05-dv-coverage-map/coverage-map.csv --dry-run`
 Expected: tests pass; the dry run prints 3,624 and no `NO MAP ROW` lines (every act must have a map row; if one is missing, fix the map, not the script).
+
+**One more number the dry run must print: how many acts with a known `base_issue` filtered no row.** `events_of` removes the promulgation by matching `dv`; an act whose history writes the issue in a form the normaliser does not recognise keeps its own promulgation as a pending event and reads one grade worse than it is. The count belongs in the dry-run output because it is silent otherwise, and the whole corpus passes through this script exactly once. A non-zero count is investigated against the offending rows before the real run, not waived.
 
 - [ ] **Step 5: Commit the tooling WITHOUT the registration**
 
@@ -2295,22 +2889,58 @@ The first expected value is `"**§ 1.** По смисъла "` with a trailing s
 
 ```python
 # tests/mcp_server/test_paragraph_addressing.py
+import subprocess
+
 import pytest
 
+from index.build import build
 from mcp_server.errors import ToolError
 from mcp_server.queries import parse_article_spec
 from mcp_server.server import build_app
+# The § document lives in the index test that pins the parser, and this file
+# addresses the SAME text through the tools. Cross-importing a fixture document
+# is the established shape here:
+#   # as in tests/mcp_server/conftest.py:143
+#   from tests.index.test_provisions import ZZD_STYLE_MD
+from tests.index.test_provisions_paragraphs import DOC
+
+FM = ("---\ntitulo: {titulo}\nidentificador: '{ident}'\npais: bg\n"
+      "rango: закон\nfecha_publicacion: '2026-04-01'\n"
+      "ultima_actualizacion: '2026-04-01'\nestado: vigente\nfuente: lex.bg\n"
+      "category: laws\namendment_history: []\n---\n\n")
+
+PRIMER_MD = FM.format(titulo="Закон за пример", ident="700") + DOC
+
+# The same body with a SECOND own-act section opening at § 1, so the act carries
+# a `para_dr` § 1 AND a `para_pzr` § 1: the ambiguity `get_article` must refuse
+# to guess at. Its own identificador, or the two acts collide in the catalog.
+PRIMER_DUP_MD = FM.format(titulo="Закон за пример дубъл", ident="701") + DOC + (
+    "\n## Преходни разпоредби\n\n"
+    "**§ 1.** Заварените производства се довършват по досегашния ред.\n"
+)
 
 
 @pytest.fixture
-def para_app(populated_conn, tmp_path):
-    """A catalog carrying DOC above as `primer`, and a variant `primer-dup`
-    whose own ПЗР restarts at § 1 twice."""
-    (tmp_path / "laws").mkdir()
-    (tmp_path / "laws" / "primer.md").write_text(DOC_MD, encoding="utf-8")
-    (tmp_path / "laws" / "primer-dup.md").write_text(DOC_DUP_MD, encoding="utf-8")
-    # index both acts into populated_conn with index.build's provisions path
-    return build_app(conn=populated_conn, corpus_root=tmp_path)
+def para_app(tmp_path):
+    """A REAL one-commit corpus with both acts, indexed by `index.build`.
+
+    Built the way `tests/mcp_server/conftest.py`'s `file_catalog` builds its
+    corpus (git init, one commit, then `build`), because the § rows have to come
+    from the parser through the real provisions path; hand-inserted rows would
+    test the fixture rather than the change.
+    """
+    corpus = tmp_path / "corpus"
+    (corpus / "laws").mkdir(parents=True)
+    (corpus / "laws" / "primer.md").write_text(PRIMER_MD, encoding="utf-8")
+    (corpus / "laws" / "primer-dup.md").write_text(PRIMER_DUP_MD, encoding="utf-8")
+    subprocess.run(["git", "init", "-q"], cwd=corpus, check=True)
+    subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t",
+                    "add", "."], cwd=corpus, check=True)
+    subprocess.run(["git", "-c", "user.email=t@t", "-c", "user.name=t",
+                    "commit", "-qm", "[bootstrap] § fixture"], cwd=corpus, check=True)
+    db = str(corpus / "catalog.db")
+    build(corpus, db)
+    return build_app(db_path=db, corpus_root=corpus)
 
 
 @pytest.mark.parametrize("spec", ["§ 1", "§1", "пар. 1", "§ 1."])
@@ -2344,7 +2974,7 @@ def test_two_own_act_paragraphs_with_one_number_are_an_error_not_a_first_row(par
     assert len(exc.value.payload["candidates"]) == 2
 ```
 
-`populated_conn` and the `call_tool_sync` shape come from `tests/mcp_server/test_connection_model.py` and its conftest; read that file before writing this one. There is no `app_handle.get_article(...)` method and no `paragraph_catalog` fixture.
+The `call_tool_sync` shape comes from `tests/mcp_server/test_connection_model.py`, and `build_app(db_path=...)` from the `file_catalog` fixture in `tests/mcp_server/conftest.py:112-131`, whose docstring says why a file DB is needed („Per-call `mode=ro` connections (FR-029, via build_app(db_path=)) require a file DB“). Read both before writing this one. There is no `app_handle.get_article(...)` method and no `paragraph_catalog` fixture. `populated_conn` is deliberately not used here: its rows are hand-inserted and carry no `provisions`, so it cannot answer a § lookup at all.
 
 - [ ] **Step 2: Run them and confirm they fail**
 
@@ -2389,12 +3019,12 @@ The Gazette material is Word-exported HTML: one `<p>` per paragraph, `<b>` aroun
 
 **The Gazette's quote convention is U+201C and U+201D, not `„…“`.** Measured on the two ДВ material fixtures on `origin/main`:
 
-| fixture | `"` U+0022 | `„` U+201E | `“` U+201C | `”` U+201D |
+| fixture | U+0022 | U+201E | U+201C | U+201D |
 |---|---|---|---|---|
 | showMaterial-idMat300-zid.html | 688 | 0 | 108 | 108 |
 | showMaterial-idMat1000.html | 208 | 0 | 0 | 0 |
 
-(the ЗИД fixture stores them as the entities `&ldquo;` and `&rdquo;`, 108 each, which is why a byte grep for the characters finds nothing; the count is after entity decoding). The material opens with `“` and closes with `”`. A parser that normalises only `„` and `“` therefore leaves every U+201D closer in the body, and the corpus is frozen on ASCII `"`, so the rebuilt act would carry mismatched quotes and the witness diff would fill with quote hunks.
+(the ЗИД fixture stores them as the entities `&ldquo;` and `&rdquo;`, 108 each, which is why a byte grep for the characters finds nothing; the count is after entity decoding). The material opens with U+201C and closes with U+201D. A parser that normalises only the pair this repository writes, `„` and `“`, therefore leaves every U+201D closer in the body, and the corpus is frozen on ASCII `"`, so the rebuilt act would carry mismatched quotes and the witness diff would fill with quote hunks.
 
 One shared constant, used by this parser and by B10's witness normaliser:
 
@@ -2732,17 +3362,20 @@ Until one of them has run, **the pilot commits at `B-pending` with `chain scan i
 
 ## Self-review (plan against the design)
 
-**Spec coverage.** Design 4.1 and 4.2: Task B2 (model, `events_of`, total derivation, domain constraints) and B3 (INV-010), with the promulgation-row reading recorded as Global Constraints amendment note 1 and carried into the design by B12 Step 0. 4.3: B1 (Surface 2 block), B4 (index), B5 (MCP/REST, warning shape per D-064, plus the `x-disclaimer` metadata the design's last MCP clause requires), **B5b (cf plane)**, B7 (§ addressing). 5.1: merged (PR #29, PR #32); the `bodies` command is on `feat/dv-coverage-map` and gains `--from-issue` in A2. 5.2: A2 (body scan), A3 (candidates for the uncited acts), A4 (run), with the `pdf-era-inventory.csv` of D-064 already specified to the coverage-map agent. 5.3: the deterministic resolver is on `feat/dv-coverage-map` and exercised by A2; **its reasoning pass is A5**. 5.4: B8 for promulgated acts, A1 for instruction segmentation; lowering to kernel operations is FR-003 and out of scope by the design's non-goals. 5.5: out of scope (Phase 4). 5.6: the base structural audit for grade B acts is NOT in this plan; it is a P3 deliverable per the design's sequencing table and is listed as a gap to plan next. 5.7: GATED (owner). 5.8: PR #23 Part II (in flight) plus B3, with the gate-side waiver reconciliation stated as a precondition on B6. 5.9: the editorial-changes list is produced by B8 per act; the corpus-wide report file is deferred to P2 and noted as a gap. Section 7 (pilot): B11 step by step, marked GATED on the body scan with a stated B-pending intermediate. Section 8: P0 = A1 to A5 plus Part II; P1 = B0 to B12 including the backfill (B6) the review required in the P1 exit gate. Section 11 / D-064: warning shape (B5), identifier (B9), findings as data (A2, A4), inventory (A4 via the agent's addendum), reading order (P3, out of scope). Surface 5 commit format: B0 builds the one module that writes the trailers, B1 Step 4 names it.
+**Spec coverage.** Design 4.1 and 4.2: Task B2 (model, `events_of`, total derivation, domain constraints) and B3 (INV-010), with the promulgation-row reading recorded as Global Constraints amendment note 1 and carried into the design by B12 Step 0. 4.3: B1 (Surface 2 block), B4 (index), B5 (MCP/REST, warning shape per D-064, plus the `x-disclaimer` metadata the design's last MCP clause requires), **B5b (cf plane)**, B7 (§ addressing). 5.1: merged (PR #29, PR #32); the `bodies` command is on `feat/dv-coverage-map` and gains `--from-issue` in A2. 5.2: A2 (body scan), A3 (candidates for the uncited acts), A4 (run), with the `pdf-era-inventory.csv` of D-064 already specified to the coverage-map agent. 5.3: the deterministic resolver is on `feat/dv-coverage-map` and exercised by A2; **its reasoning pass over `unresolved.csv` is A5**, which reports but does not close the `segmenter-residue.csv` number of 5.2 (gap 5). 5.4: B8 for promulgated acts, A1 for instruction segmentation; lowering to kernel operations is FR-003 and out of scope by the design's non-goals. 5.5: out of scope (Phase 4). 5.6: the base structural audit for grade B acts is NOT in this plan; it is a P3 deliverable per the design's sequencing table and is listed as a gap to plan next. 5.7: GATED (owner). 5.8: PR #23 Part II (in flight) plus B3, with the gate-side waiver reconciliation stated as a precondition on B6. 5.9: the editorial-changes list is produced by B8 per act; the corpus-wide report file is deferred to P2 and noted as a gap. Section 7 (pilot): B11 step by step, marked GATED on the body scan with a stated B-pending intermediate. Section 8: P0 = A1 to A5 plus Part II; P1 = B0 to B12 including the backfill (B6) the review required in the P1 exit gate. Section 11 / D-064: warning shape (B5), identifier (B9), findings as data (A2, A4), inventory (A4 via the agent's addendum), reading order (P3, out of scope). Surface 5 commit format: B0 builds the one module that writes the trailers, B1 Step 4 names it.
 
-**Gaps, stated.** Four, all deliberate:
+**Gaps, stated.** Five, all deliberate:
 
 1. **The grade B base structural audit** (design 5.6): P3 by the design's own sequencing table, its own plan.
 2. **The corpus-wide editorial-changes report** (design 5.9): P2; B8 produces the per-act list this plan needs.
 3. **The `cf-worker` response shape** for non-A acts (mirror the `PROVENANCE_GRADE` warning, or skip): design 4.3 says to decide it together with FR-032's implicit rows, so it is an owner decision recorded in B5b and in B12 Step 1, not implemented here. B5b closes the floor exposure by putting the grade in the act payload, so the Provenance floor is satisfied from the moment B6 lands even before that decision is taken.
 4. **The body fetch and the body pass of the map** are GATED by owner instruction (2026-09-05), and B11 is GATED behind whichever fetch satisfies its window.
+5. **The reasoning pass over `segmenter-residue.csv`** (design 5.2's P2 exit gate): the file exists only after the gated body pass, and its rows carry neither `kind` nor `law_id`, so the applier for them is a different shape. A5 reports the residue count next to its own number and says which is which; clearing it to zero is P2.
 
-**Placeholder scan.** No placeholders and no deferral markers anywhere in the file. B10's second test is written out in full, because it is the gate that makes design 4.2 rule 0 real and leaving it to the executor would leave the pilot's most consequential invariant untested.
+**Placeholder scan.** No placeholders and no deferral markers anywhere in the file, and every test fixture the plan names is now written out where it is used rather than referenced by a name that exists nowhere: `uncited_corpus` in `tests/scripts/conftest.py` (A3, shared with A5), `read_golden` and `zot-snapshot.md` (B10 Step 0), `PRIMER_MD` and `PRIMER_DUP_MD` (B7), `ACT_MD` (B5), the two markdown constants in B5b. B10's second test is written out in full, because it is the gate that makes design 4.2 rule 0 real and leaving it to the executor would leave the pilot's most consequential invariant untested.
 
-**Type consistency.** `Base` (ten fields plus `uncertainty` and the `promulgation_cited` property), `Event`, `Provenance` (with `pending_items`), `events_of(fm, base)`, `derive_grade(base, events, *, chain_scan_complete, divergences_unadjudicated, promulgation_cited) -> Derivation(grade, pending_items)` are used identically in A2 (through the map's import), B2, B3, B6 and B9, and `provenance/derive.py` is the only implementation after B2 Step 6. `Provision.kind` values (`article`, `para_dr`, `para_pzr`, `para_amending`) plus `section_ref` are the same in B7's parser, migration 008 and grammar. `write_act(path, frontmatter, body, *, source=SourceRef(kind, ident))` matches PR #23 Part II Task 6 and is used in B6 and B10. `commit_corpus_change(path, commit_type, title, *, norm_id, source_id, source_date, cwd)` is B0's and is called by B6, B10 and (wrapped) `refresh.py`. `fetch_materials_page` / `fetch_material` / `cached_material` / `sections.selected` are the merged names (PR #29, #32, `feat/dv-coverage-map`). `Resolver.resolve(title, *, section=None, dv_citation=None) -> Resolution(law_id, candidates, score, flags, method)` has **five** fields, verified against `feat/dv-coverage-map:fetcher/dv/resolver.py`. CSV headers are quoted from `SUMMARY_FIELDS`, `COVERAGE_FIELDS`, `OMISSION_FIELDS`, `UNRESOLVED_FIELDS` and `DISPUTE_FIELDS` as merged, with every addition named by the task that makes it.
+**Interfaces quoted, not remembered.** Every function, header and fixture this plan names was read on the branch it lives on and quoted with its file and line: `build_act_payload` and `_check_act_articles` (B5b), `UNRESOLVED_FIELDS` and the uncited row the writer emits (A5), `SUMMARY_FIELDS` / `COVERAGE_FIELDS` / `OMISSION_FIELDS` / `DISPUTE_FIELDS` (A2, A4, B6), the merged `derive_grade` and its property tests (B2 Step 6), `[tool.setuptools.packages.find]` (B2 packaging), `populated_conn` and `file_catalog` (B5, B7), `refresh._git_commit_typed` (B0). Two earlier defects came from inferring an interface instead of opening the file, which is why this is now a rule of the plan rather than a habit.
+
+**Type consistency.** `Base` (ten fields plus `uncertainty` and the `promulgation_cited` property), `Event`, `Provenance` (with `pending_items`, written by `to_frontmatter` and read back by `from_frontmatter`), `events_of(fm, base)` (which removes exactly one row, the first that matches after leading-zero normalisation), `derive_grade(base, events, *, chain_scan_complete, divergences_unadjudicated, promulgation_cited) -> Derivation(grade, pending_items)` are used identically in A2 (through the map's import), B2, B3, B6 and B9, and `provenance/derive.py` is the only implementation after B2 Step 6. The two currency marks keep their two shapes everywhere: `base.chain_scanned_through` is `{issue, year}`, `checked_through` is `{issue, year, date}`, the comparison is on `(issue, year)`, and the index projects the date alone. `Provision.kind` values (`article`, `para_dr`, `para_pzr`, `para_amending`) plus `section_ref` are the same in B7's parser, migration 008 and grammar. `write_act(path, frontmatter, body, *, source=SourceRef(kind, ident))` matches PR #23 Part II Task 6 and is used in B6 and B10. `commit_corpus_change(path, commit_type, title, *, norm_id, source_id, source_date, cwd)` is B0's and is called by B6, B10 and (wrapped) `refresh.py`. `fetch_materials_page` / `fetch_material` / `cached_material` / `sections.selected` are the merged names (PR #29, #32, `feat/dv-coverage-map`). `Resolver.resolve(title, *, section=None, dv_citation=None) -> Resolution(law_id, candidates, score, flags, method)` has **five** fields, verified against `feat/dv-coverage-map:fetcher/dv/resolver.py`. CSV headers are quoted from `SUMMARY_FIELDS`, `COVERAGE_FIELDS`, `OMISSION_FIELDS`, `UNRESOLVED_FIELDS` and `DISPUTE_FIELDS` as merged, with every addition named by the task that makes it.
 
 **Model policy.** Every task here is implementation to a fixed specification and runs on Opus 5 with a fresh Opus 5 reviewer per task; the whole-branch review before each merge runs on the session model.
