@@ -49,13 +49,14 @@ Norm-Id: 2136735703
 
 - **Source-Id:** Identifier for the source document (DV issue or lex.bg doc)
 - **Source-Date:** Publication date of the source (DV issue date)
-- **Norm-Id:** lex.bg document ID for the affected law
+- **Norm-Id:** lex.bg document ID for the affected law (for an act with no lex.bg document the identifier form is settled in the Surface 5 preflight below)
+- **Gazette-sourced commits (D-059):** `Source-Id: dv-<idMat>` with the Gazette material identifier and `Source-Date` = the issue date. The commit type for a Gazette rebuild that replaces a lex.bg snapshot, and the `Norm-Id` form for acts without a lex.bg document, are settled in a Surface 5 IMPLEMENTATION-PREFLIGHT before the pilot; until then no Gazette-sourced corpus commit is made.
 
 ### Commit Granularity
 
 - **Bootstrap (Phase 1a):** One commit per act. Not one massive commit for all 3,573 acts.
 - **Ongoing amendments:** One commit per amendment event.
-- **GIT_AUTHOR_DATE + GIT_COMMITTER_DATE:** Must be set to the DV publication date of the amendment, not the session date. This enables `git log --follow` to reconstruct legislative history chronologically.
+- **GIT_AUTHOR_DATE:** set to the ДВ publication date of the amendment, not the session date, so `git log --format=%ad` reconstructs legislative history chronologically. **GIT_COMMITTER_DATE is not backdated** (D-048, 2026-07-01); it stays at real commit time so freshness monitoring and the DRS consumers see when the corpus actually changed.
   - **Format constraint:** git refuses bare `YYYY-MM-DD` with `fatal: invalid date format`. Always emit full ISO 8601 with time and timezone — `YYYY-MM-DDT00:00:00+00:00`. Reference: `bootstrap._format_author_date()`.
   - **Pre-1970 dates:** this git build also rejects negative Unix timestamps. Clamp pre-1970 publication dates to `1970-01-01` for the env var; keep the true date in the `Source-Date:` body line. Reference: D-017, D-018.
 
@@ -69,7 +70,7 @@ Commits to pipeline code (fetcher, consolidation engine, MCP server, tooling) us
 
 ### Data Accuracy (Corpus Commits)
 
-- **Self-review against lex.bg oracle:** After bootstrap or consolidation, compare generated Markdown against current lex.bg text for the same law. Normalize whitespace and quotes before diff.
+- **Witness comparison:** After bootstrap or consolidation, compare generated Markdown against the lex.bg and Ministry of Justice consolidated texts for the same law. Normalize whitespace and quotes before diff. Every divergence is adjudicated per Directive 3 (D-061); none is accepted by deference to a witness, and the Gazette text arbitrates.
 - **Frontmatter validation:** All 13 YAML fields must be present and correctly populated.
 - **Encoding verification:** Output must be valid UTF-8 with no cp1251 artifacts.
 
@@ -111,7 +112,7 @@ Before promoting from any phase X to phase Y, every Open row in `docs/sync/DEFER
 
 ### Phase 1a -- Bootstrap Scrape
 
-- [ ] All ~3,574 acts scraped from lex.bg and converted to Markdown
+- [ ] All acts in the 5 browsable categories scraped from lex.bg and converted to Markdown (about 3,574 at the 2026-04 bootstrap; 3,624 on 2026-09-05)
 - [ ] YAML frontmatter with all 13 fields populated for every act
 - [ ] One `[bootstrap]` commit per act with correct Source-Id, Source-Date, Norm-Id
 - [ ] SQLite catalog index built and queryable
@@ -136,17 +137,22 @@ Before promoting from any phase X to phase Y, every Open row in `docs/sync/DEFER
 
 ### Phase 3 -- DV Monitor
 
-- [ ] Poller detects new DV issues on Tue/Fri schedule
-- [ ] Amendment detector identifies affected laws
+*(Rewritten 2026-09-05, D-062. Detection is parse-not-fetch: ДВ exposes no amendment graph, only the ЗИД title and an inline citation.)*
+
+- [ ] Poller detects new ДВ issues by issue high-water mark (year, number), including извънредни issues published on any day; Tue/Fri is the baseline cadence, not the detection rule
+- [ ] Amendment detector resolves the amended act from the ЗИД title and the inline (ДВ, бр. N от YYYY г.) citation with a declension-aware matcher; an ambiguous match is flagged, never guessed
+- [ ] Every material of every polled issue is classified (in-corpus operation, or out of scope with reason); none is dropped silently
 - [ ] Alert or log for new amendments requiring processing
 - [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 4 -- Consolidation Engine
 
-- [ ] ZID parser handles substitution, addition, deletion (covers ~80% of amendments)
-- [ ] Patcher applies parsed amendments to Markdown
-- [ ] Validator compares result against lex.bg oracle
-- [ ] Accuracy >= 70% on regex-only; >= 90% with LLM fallback
+*(Rewritten 2026-09-05, D-060. The former bullets required ЗИД coverage of about 80 percent and accuracy of 70 to 90 percent. Directive 9 forbids a percentage as evidence of closure, and the owner ratified the LawVM two-level acceptance model on 2026-06-22.)*
+
+- [ ] ЗИД parser lowers every form of the enumerated amendment grammar into the 4-operation kernel (replace, insert, repeal, text_replace); renumbering and restructuring are elaborations that lower to the kernel; an unrecognised form is flagged for reasoning-assisted elaboration, never guessed
+- [ ] Patcher applies operations only through the single corpus write gate; replay invariants hard-fail (a failed operation writes nothing, no operation touches outside its target, text_replace requires the declared occurrence count, no duplicate sibling labels, no silent target guessing or date estimation)
+- [ ] Validator compares the result against both witnesses (lex.bg, Ministry of Justice portal) and adjudicates every divergence into a lane; the Gazette text arbitrates
+- [ ] Closure: zero unadjudicated divergences over the acts in scope, and every act carries its provenance grade (A, B or C per Directive 2)
 - [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 5 -- Legalize Contribution
@@ -161,7 +167,7 @@ Before promoting from any phase X to phase Y, every Open row in `docs/sync/DEFER
 
 ## Rate Limiting Protocol
 
-All HTTP access to lex.bg must follow these rules:
+All HTTP access to lex.bg and to dv.parliament.bg must follow these rules:
 
 1. **Maximum 1 request per second.** Enforce with `time.sleep()` or equivalent.
 2. **Set a descriptive User-Agent** identifying the project (not a browser UA string).
@@ -170,11 +176,11 @@ All HTTP access to lex.bg must follow these rules:
 5. **Log all requests** with timestamp, URL, status code, and response time.
 6. **Full bootstrap crawl** takes ~2 hours at 1 req/sec for 3,573 acts plus ~104 tree pages. Plan accordingly — do not rush.
 7. **Off-peak preferred:** Run large crawls outside Bulgarian business hours when possible.
-8. **lex.bg is the validation oracle, not the ongoing source.** After bootstrap, DV (dv.parliament.bg) is the primary source. lex.bg is used only for validation comparisons.
+8. **Държавен вестник is the source wherever its text is online (Directive 2, D-059); lex.bg is a base snapshot and a witness (Directive 3, D-061).** Ongoing lex.bg fetches are permitted only for acts not yet ДВ-anchored and are recorded per act; fetches for anchored acts are witness-only. dv.parliament.bg is UTF-8, has no Cloudflare and no robots.txt; the same 1 req/s ceiling, UA and logging apply to it, and the ДВ session (`fetcher/dv/client.py`, on branch `feat/dv-acquisition`, PR #29, not yet merged) must enforce rules 1 to 5 the way `RateLimitedSession` does.
 
 ### Reference implementation
 
-All 5 rules are enforced in `fetcher/bg/client.py:RateLimitedSession`:
+Rules 1 to 5 are enforced in `fetcher/bg/client.py:RateLimitedSession` (rules 6 and 7 are operational, rule 8 is the source model):
 - Rule 1: `rate_limit_sec` gate before every request; `HttpTransport` (doc pages) and `bootstrap.py:TreeTransport` (tree crawl) share one session so the ceiling is global across the pipeline.
 - Rule 2: `USER_AGENT = "legalize-bg/0.1 (https://github.com/Ahelia-Consulting-EOOD/legalize-bg)"`.
 - Rule 3: `max_retries=3`, `retry_base_sec=2.0` (2 / 4 / 8 s backoff) on HTTP 429 and 500-599; connection/timeout errors also retry.

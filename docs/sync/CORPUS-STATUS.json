@@ -5,9 +5,34 @@
   "remediated_at": "2026-07-01",
   "remediation_commit": "25a79389662afdc7585a697058948fc627135071",
   "remediation_tag": "corpus-d047-remediated",
-  "acts_indexed": 3600,
+  "acts_indexed": 3624,
   "acts_with_definitions": 1826,
   "acts_with_definitions_before": 31,
   "notes": "D-047 parser data-loss fully remediated: Допълнителни разпоредби and §-numbered transitional/final provision bodies restored corpus-wide via a coverage-gated corrective re-bootstrap. The corpus .md files (the authoritative source DRS consumes by path) are complete. Detect freshness by CONTENT or this file, not commit author-date (legislative by design, D-048).",
-  "how_to_poll": "git ls-remote --tags origin corpus-d047-remediated  (non-empty = safe)  OR  git show origin/main:docs/sync/CORPUS-STATUS.json | jq -e '.corpus_trustworthy == true'"
+  "how_to_poll": "git ls-remote --tags origin corpus-d047-remediated  (non-empty = safe)  OR  git show origin/main:docs/sync/CORPUS-STATUS.json | jq -e '.corpus_trustworthy == true'  Consumers that need completeness against the Gazette must ALSO check  jq -e '.text_complete_vs_gazette == true'  (false as of 2026-09-05).",
+  "acts_on_disk": 3624,
+  "counted_at": "2026-09-05",
+  "count_semantics": "acts_indexed = rows in catalog.db laws table; acts_on_disk = *.md files under laws/, codes/, ordinances/, regulations/, implementing/. Both must agree with every declaring file (FR-040).",
+  "corpus_trustworthy_semantics": "corpus_trustworthy and safe_for_full_content_consumption record the D-047 PARSER data-loss remediation of 2026-07-01 (Допълнителни разпоредби and § bodies that OUR parser had dropped are restored). They do NOT assert completeness against the Gazette: lex.bg itself omits promulgated sections of some acts, see source_omissions and text_complete_vs_gazette.",
+  "correctness_grade": "open",
+  "known_open_defect_classes": [
+    "FR-030",
+    "FR-035",
+    "FR-036",
+    "FR-037",
+    "FR-038",
+    "FR-039",
+    "FR-041",
+    "FR-042"
+  ],
+  "source_model": "D-059 graded source model (2026-09-05): provenance grades A/B/C per act are being introduced; until an act carries a grade in its frontmatter, treat it as a lex.bg snapshot.",
+  "text_complete_vs_gazette": false,
+  "source_omissions": {
+    "open": true,
+    "fr": "FR-042",
+    "confirmed_acts": 2,
+    "candidate_acts": 25,
+    "detector": "scripts/structure_gaps.py (PR #27)",
+    "resolution": "Gazette rebuild or audit under D-059; no hand gap fill"
+  }
 }

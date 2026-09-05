@@ -17,7 +17,7 @@ EXPECTED = {
     "regs": (350, 650, 490),
     "reg_laws": (40, 100, 61),
 }
-EXPECTED_TOTAL = 3574  # target; acceptable band is sum of category mins/maxes
+EXPECTED_TOTAL = 3624  # on-disk count 2026-09-05 (FR-040); the category bands above are the 2026-04 bootstrap estimates
 
 
 def verify(path: Path) -> int:

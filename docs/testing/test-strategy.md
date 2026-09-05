@@ -12,7 +12,7 @@ Testing strategy for the legalize-bg pipeline. Covers unit through validation te
 
 - **HTML parser correctness** — For each CSS class (`.TitleDocument`, `.PreHistory`, `.HistoryOfDocument`, `.Part`, `.Heading`, `.Section`, `.Article`, `.TransitionalFinalEdicts`), verify that the parser produces the correct Markdown structure. One test per class, using minimal HTML snippets as input.
 - **YAML field extraction** — Verify that metadata extraction produces all 13 frontmatter fields with correct types and values. Test edge cases: missing DV references, acts with no amendments, acts with status `derogado`.
-- **ЗИД regex patterns** — For each of the 8 operation types (substitution, addition, deletion, renumbering, restructuring, full repeal, new chapter, table/annex), verify pattern matching against real-world amendment text extracted from DV. Test both positive matches and negative cases (text that looks similar but is not an amendment instruction).
+- **ЗИД grammar lowering** *(rewritten 2026-09-05, D-060)* — For each form of the enumerated amendment grammar, verify that it lowers to the 4-operation kernel (replace, insert, repeal, text_replace) with the right address and payload, and that an unrecognised form is flagged rather than guessed, against real-world amendment text extracted from ДВ. Test both positive matches and negative cases (text that looks similar but is not an amendment instruction).
 - **Slug generation** — Verify that Bulgarian titles produce correct filesystem slugs (Cyrillic transliteration, abbreviation handling).
 - **Encoding** — Verify correct cp1251 to UTF-8 conversion for all Bulgarian characters and edge cases (special quotes, em-dashes, section signs).
 
@@ -27,17 +27,17 @@ Testing strategy for the legalize-bg pipeline. Covers unit through validation te
 
 ### Validation Tests
 
-**Scope:** Consolidation engine output compared against lex.bg as oracle (Phase 4v).
+**Scope:** Consolidation engine output compared against the witnesses, lex.bg and the Ministry of Justice portal (Phase 4v, D-061).
 
 - **Round-trip validation** — For each law in the test set: (1) apply a known ЗИД to the pre-amendment version using the consolidation engine, (2) fetch the post-amendment version from lex.bg, (3) normalize both (strip whitespace, normalize quotes and dashes), (4) diff and report.
-- **Accuracy tracking** — Maintain a running accuracy metric (percentage of test laws where consolidation matches lex.bg within normalization tolerance). Target: >95%.
+- **Divergence adjudication** *(rewritten 2026-09-05, D-060/D-061; the former bullet kept a running accuracy percentage with a >95 % target, which Directive 9 forbids as closure evidence)* — every divergence against a witness (lex.bg, Ministry of Justice portal) is adjudicated into a lane (source pathology, replay defect, risk signal, editorial); closure is a zero count of unadjudicated divergences.
 - **Failure classification** — When consolidation diverges from lex.bg, classify the cause: regex pattern gap, renumbering error, structural change, lex.bg editorial correction, etc.
 
 ### Contract Tests
 
 **Scope:** Compliance with external interface contracts.
 
-- **YAML frontmatter vs. Legalize SPEC** — Validate that every Markdown file in the repository has all 8 mandatory Legalize fields with correct types and allowed values. Run as a CI check on every commit.
+- **YAML frontmatter vs. Legalize SPEC** — Validate that every Markdown file in the repository has all 8 mandatory Legalize fields with correct types and allowed values. Run as a CI check on every commit. **Status 2026-09-05: NOT BUILT** (FR-040). The only write-path checks are a blocking `titulo` precondition and a non-blocking warning covering `fecha_publicacion` and `ultima_actualizacion`, both in `bootstrap.py`; `refresh.py` has none. Planned home: `corpus_integrity` (PR #23 Part II).
 - **MCP tool response format** — Validate that MCP tool responses match the expected JSON schema (correct keys, types, non-null required fields). Tests run against a local MCP server instance.
 - **Legalize hard gates** — The 4 gates from the Legalize contribution guide must pass before Phase 5 submission: (1) valid YAML frontmatter on all files, (2) correct commit message format, (3) no duplicate `identificador` values, (4) CI pipeline green.
 
@@ -58,7 +58,7 @@ The `populated_conn` conftest fixture stamps `current_commit = "a"*40` (FAKE_COM
 
 ### Phase 1a: Bootstrap Scrape
 
-- All 5 categories scraped: laws (~394), codes (~24), ordinances (~2,604), regulations (~490), implementing (~61).
+- All 5 categories scraped: laws (~394), codes (~24), ordinances (~2,604), regulations (~490), implementing (~61) *(2026-04 bootstrap estimates; 3,624 acts on 2026-09-05)*.
 - Every act has a valid YAML frontmatter block with all 13 fields populated.
 - Markdown output preserves article structure: parts, chapters, sections, articles, paragraphs are correctly nested using Markdown heading levels.
 - No cp1251 encoding artifacts in any file (all output is valid UTF-8).
@@ -74,9 +74,8 @@ The `populated_conn` conftest fixture stamps `current_commit = "a"*40` (FAKE_COM
 
 ### Phase 4: Consolidation Engine
 
-- Consolidation accuracy >95% vs. lex.bg for a test set of 50 frequently-amended laws.
-- All 7 non-LLM operation types (substitution, addition, deletion, renumbering, full repeal, new chapter, table/annex) correctly handled. Renumbering uses programmatic logic rather than regex but does not require LLM.
-- LLM fallback correctly handles restructuring cases (move, split, merge).
+- *(Rewritten 2026-09-05, D-060; the former criteria required >95 % agreement with lex.bg over 50 laws and listed 7 operation types.)* Zero unadjudicated witness divergences over the acts in scope; every divergence is in a lane with the Gazette as arbiter.
+- Every form of the enumerated amendment grammar lowers to the 4-operation kernel; renumbering and restructuring (move, split, merge) are elaborations that lower to the kernel; an unrecognised form is flagged, never guessed.
 - Cross-law amendments via ПЗР are detected and applied to all target laws.
 
 ### Phase 5: Legalize Contribution
@@ -94,7 +93,7 @@ The `populated_conn` conftest fixture stamps `current_commit = "a"*40` (FAKE_COM
 
 Cached HTML responses from lex.bg, stored in `tests/fixtures/html/`. Each fixture is a complete HTTP response body saved as a file with cp1251 encoding preserved.
 
-One fixture per corpus category so structural divergence in CSS classes and metadata shapes surfaces in unit tests, not at 3,574-act scale. Captured via `scripts/capture_fixtures.py` (rate-limited at 1 req/sec, idempotent — re-running skips files already on disk):
+One fixture per corpus category so structural divergence in CSS classes and metadata shapes surfaces in unit tests, not at corpus scale (3,624 acts on 2026-09-05). Captured via `scripts/capture_fixtures.py` (rate-limited at 1 req/sec, idempotent — re-running skips files already on disk):
 
 | Fixture | Category | Act | Why Selected |
 |---------|----------|-----|--------------|
@@ -113,7 +112,7 @@ Additional fixtures added as bugs are discovered (see Regression Policy below).
 
 Expected Markdown output for each HTML fixture, stored in `tests/fixtures/golden/`. Each golden file is the correct Markdown + YAML frontmatter that the parser should produce from the corresponding HTML fixture.
 
-Golden files are manually reviewed and approved before being committed. They serve as the ground truth for parser correctness.
+Golden files are manually reviewed and approved before being committed. They serve as the ground truth for parser correctness. **Status 2026-09-05: only `tests/fixtures/golden/provisions/` exists; there are no act-level golden files** (FR-040). The regression rule below is therefore half-realised.
 
 ### No Mocking of lex.bg
 
@@ -127,6 +126,8 @@ Rate-limited live tests that actually fetch from lex.bg are run only in CI night
 - Compare a sample of fresh fetches against cached fixtures to detect site changes.
 - Rate-limited to 1 request per second, with a maximum of 20 requests per nightly run.
 - Failures in live tests trigger an alert but do not block the build — they indicate lex.bg changes that require parser updates.
+
+**Status 2026-09-05: no nightly workflow exists** (FR-040). lex.bg is also Cloudflare-gated, so an unattended nightly fetch would halt by design; under the graded source model the live surface to monitor is dv.parliament.bg.
 
 ---
 

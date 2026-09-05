@@ -34,7 +34,7 @@ Bulgarian legislation is locked behind commercial portals (lex.bg, Ciela, APIS) 
 
 ### Capability 1: Full Corpus Access
 
-All ~3,574 national legislative acts available as Markdown files with YAML frontmatter, stored in git.
+Every in-scope national legislative act (3,624 on 2026-09-05; live count in `docs/sync/CORPUS-STATUS.json`) available as a Markdown file with YAML frontmatter, stored in git.
 
 **Acceptance Criteria:**
 - All 5 categories covered: laws (~394), codes (~24), ordinances (~2,604), regulations (~490), implementing regulations (~61)
@@ -71,7 +71,7 @@ Users can view legislation at any historical date, compare versions, and list am
 Automated monitoring of Darzhaven Vestnik (DV) detects new amendments. The consolidation engine applies amendments to the Markdown corpus and commits changes.
 
 **Acceptance Criteria:**
-- DV poller checks dv.parliament.bg on Tuesday and Friday publication days
+- ДВ poller detects new issues by issue high-water mark (year, number), including извънредни issues on any day; Tue/Fri is the baseline cadence (D-062)
 - New ZID (amendment acts) detected and logged within 48 hours of DV publication
 - Consolidation engine parses ZID amendment instructions and applies them to target laws
 - Each amendment committed as a `[reforma]` commit with correct `GIT_AUTHOR_DATE` and DV metadata
@@ -79,13 +79,13 @@ Automated monitoring of Darzhaven Vestnik (DV) detects new amendments. The conso
 
 ### Capability 5: Consolidation Validation
 
-Engine output validated against lex.bg as an oracle to measure and maintain consolidation accuracy.
+Engine output compared against the witnesses (lex.bg, Ministry of Justice portal); every divergence adjudicated with the Gazette as arbiter (D-061). *Rewritten 2026-09-05; the former text made lex.bg an oracle and tracked a percentage.*
 
 **Acceptance Criteria:**
-- After consolidation, fetch the same law from lex.bg and compare
+- After consolidation, fetch the same law from every witness that carries it (lex.bg; the Ministry of Justice portal for the acts it covers) and compare
 - Both texts normalized (whitespace, quotes, formatting) before comparison
 - Non-trivial diffs flagged for human review
-- Consolidation accuracy tracked over time with a target of > 95% agreement with lex.bg
+- Zero unadjudicated witness divergences over the acts in scope (D-060); divergence counts per lane are tracked over time as diagnostics
 - Validation results logged per law per amendment event
 
 ### Capability 6: Legalize Ecosystem Integration
@@ -114,10 +114,12 @@ Municipal ordinances starting with Sofia, then scaling to all 265 municipalities
 
 ## 4. Success Metrics
 
+> Amended 2026-09-05 (D-059, D-060): percentages are diagnostics, never closure; correctness is a zero count of unadjudicated divergences and a provenance grade per act.
+
 | Metric | Target | Measurement Method |
 |--------|--------|-------------------|
-| Corpus completeness | 3,574 / 3,574 national acts | Count files in git by category |
-| Consolidation accuracy | > 95% vs lex.bg | Automated diff after each consolidation run |
+| Corpus completeness | every in-scope act; 3,624 on 2026-09-05 (`docs/sync/CORPUS-STATUS.json`) | Count files in git by category; FR-040 records check |
+| Consolidation correctness | zero unadjudicated witness divergences (D-060); provenance grade per act (D-059) | Adjudication ledger after each consolidation run; grade derivation |
 | MCP response time | < 2 seconds (single-law queries) | Instrumented tool latency |
 | Amendment detection latency | < 48 hours from DV publication | Timestamp comparison: DV publish date vs commit date |
 | Legalize integration | PR merged, CI green | GitHub PR status and CI dashboard |
@@ -129,8 +131,8 @@ Municipal ordinances starting with Sofia, then scaling to all 265 municipalities
 
 | Source | URL | Role | Access Method | Encoding |
 |--------|-----|------|--------------|----------|
-| **lex.bg** | lex.bg/laws/ldoc/{doc_id} | Bootstrap scrape + validation oracle | HTTP GET (server-rendered HTML) | windows-1251 |
-| **dv.parliament.bg** | dv.parliament.bg | Ongoing amendment detection | HTTP polling (Tue/Fri) | UTF-8 |
+| **lex.bg** | lex.bg/laws/ldoc/{doc_id} | Base snapshot + validation witness (D-059, D-061) | HTTP GET (server-rendered HTML, Cloudflare-gated) | windows-1251 |
+| **dv.parliament.bg** | dv.parliament.bg/DVWeb/showMaterialDV.jsp?idMat={material} | Source of truth wherever its text is online; ongoing amendment detection | HTTP GET, issue high-water mark polling (D-062) | UTF-8 |
 | **Municipal websites** | council.sofia.bg, others | Municipal ordinances (Phase 6) | HTTP GET, per-site parsers | Varies |
 
 Key findings from research:
@@ -187,7 +189,7 @@ Every Markdown file must include these 8 mandatory YAML frontmatter fields:
 | ID | Risk | Severity | Mitigation | Acceptance Criteria for Mitigation |
 |----|------|----------|------------|-----------------------------------|
 | R1 | Cloudflare starts blocking lex.bg scraping | Medium | Keep Playwright as emergency fallback; rate-limit to 1 req/sec | Playwright fallback tested and documented; scraper completes within 4 hours |
-| R2 | ZID parser accuracy < 70% | Medium | LLM fallback for complex cases; human review for structural changes | Parser accuracy measured per ZID pattern type; LLM fallback covers restructuring and table/annex changes |
+| R2 | ZID parser accuracy < 70% *(superseded 2026-09-05, D-060: percentages are not closure evidence; see delivery contract Phase 4)* | Medium | LLM fallback for complex cases; human review for structural changes | Parser accuracy measured per ZID pattern type; LLM fallback covers restructuring and table/annex changes |
 | R3 | Legalize project becomes inactive | Low | We own the data and pipeline; can operate independently | All pipeline components runnable without upstream dependencies |
 | R4 | Municipal websites change structure | High | Per-municipality parsers with breakage monitoring | Automated tests detect parser failures within 24 hours; parser isolation limits blast radius |
 | R5 | lex.bg changes HTML structure | Medium | CSS class selectors are semantic and stable; monitor for changes | Scraper includes structural assertions; alerts on class name changes |
@@ -203,6 +205,6 @@ The following are explicitly excluded from this product:
 - **EU regulations** -- Published in the Official Journal of the EU, not in DV. Different legal system and access patterns.
 - **Court decisions** -- Jurisprudence (case law) is a separate corpus with different structure and sources.
 - **Private sector contracts** -- Not normative acts; not published in official sources.
-- **Real-time notification** -- The system operates on a polling model (Tue/Fri DV check). Push notifications or webhooks for law changes are not planned.
+- **Real-time notification** -- The system operates on a polling model (ДВ issue high-water mark; Tue/Fri baseline cadence). Push notifications or webhooks for law changes are not planned.
 - **Akoma Ntoso / LegalDocML** -- While the international gold standard, adopting it adds complexity without proportional benefit for our use case. Markdown+YAML is the Legalize ecosystem standard.
 - **APIS Pravo integration** -- Commercial service (EUR 269/year) with its own consolidation. We use free public sources only.

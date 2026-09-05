@@ -89,13 +89,14 @@ commit_granularity:
 # --- Data Volume Constraints ---
 
 corpus:
-  total_acts: 3574
+  # Counted on disk 2026-09-05 (FR-040). Live count: docs/sync/CORPUS-STATUS.json.
+  total_acts: 3624
   categories:
-    laws: 394
-    codes: 24
-    ordinances: 2604
-    regulations: 490
-    implementing_regs: 61
+    laws: 399
+    codes: 25
+    ordinances: 2645
+    regulations: 495
+    implementing_regs: 60
   estimated_plain_text_size: "150-200 MB"
   estimated_with_metadata_size: "500 MB - 1 GB"
   initial_crawl_time: "~2 hours at 1 req/sec"

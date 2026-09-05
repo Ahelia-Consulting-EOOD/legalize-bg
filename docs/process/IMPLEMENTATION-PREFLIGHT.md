@@ -20,7 +20,7 @@ Copy the relevant section into your task notes and fill in the answers before pr
 
 - governing spec: Legalize SPEC.md (8 mandatory YAML fields, commit message format, directory conventions)
 - related owner directive: Directive 1 (contribute upstream, not fork)
-- related coverage floor: all 5 categories and ~3,574 acts must be fetchable through the interfaces
+- related coverage floor: all 5 categories and every act (3,624 on 2026-09-05; live count in `docs/sync/CORPUS-STATUS.json`) must be fetchable through the interfaces
 - follow-up: Phase 5 gate review before PR submission
 
 ---
@@ -31,7 +31,7 @@ Copy the relevant section into your task notes and fill in the answers before pr
 
 - authoritative source: `legalize-dev/legalize/SPEC.md` for mandatory fields; design doc "Markdown File Format" section for Bulgarian extensions
 - hard constraint: the 8 mandatory Legalize SPEC fields (`titulo`, `identificador`, `pais`, `rango`, `fecha_publicacion`, `ultima_actualizacion`, `estado`, `fuente`) must never be removed, renamed, or have their semantics changed. Bulgarian extension fields (`dv_issue`, `dv_year`, `effective_date`, `category`, `eli`, `amendment_history`) must remain backward-compatible.
-- what counts as violation: removing a mandatory field, renaming a field without migrating all ~3,574 act files, adding a required field without backfilling existing files, changing a field's type (e.g., string to array) without updating all downstream consumers (MCP server, SQLite indexer)
+- what counts as violation: removing a mandatory field, renaming a field without migrating all act files (3,624 on 2026-09-05), adding a required field without backfilling existing files, changing a field's type (e.g., string to array) without updating all downstream consumers (MCP server, SQLite indexer)
 - allowed scope: adding new optional extension fields is allowed without preflight. Any other schema change requires preflight.
 - protected files or directories touched: every `.md` file under `laws/`, `codes/`, `ordinances/`, `regulations/`, `implementing/`, `municipal/`
 - waiver required: yes, if deviating from Legalize SPEC mandatory fields

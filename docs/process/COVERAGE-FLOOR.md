@@ -16,14 +16,14 @@ This file defines what must eventually be covered with no silent omissions.
 ## Completeness rule
 
 - required floor:
-  - **All 5 lex.bg BROWSABLE categories:** laws (~394), codes (~24), ordinances (~2,604), regulations (~490), implementing regs (~61) = ~3,574 total acts
+  - **All 5 lex.bg BROWSABLE categories:** laws, codes, ordinances, regulations, implementing regs. Count on 2026-09-05: 3,624 acts on disk (laws 399, codes 25, ordinances 2,645, regulations 495, implementing 60). The live count is published in `docs/sync/CORPUS-STATUS.json` and its agreement with the tree and with every declaring file is enforced by the records check (FR-040); the 2026-04 bootstrap estimate of about 3,574 is historical.
     - **KNOWN COVERAGE GAP (D-049 / FR-025, finding 2026-07-02):** other act-types — ПМС, тарифи, инструкции, решения на МС, разпореждания, укази — are NOT covered. This is not silent: lex.bg exposes only the 5 browsable trees above; those act-types are not tree-enumerable there (`docs/research/2026-07-02-fr025-category-gap.md`). Sourcing is redirected to the ДВ acquisition layer (FR-024) with on-demand per-act capture as the interim posture; a comprehensive delegation-chain discovery is to be brainstormed. Until then this floor covers ONLY the 5 browsable categories, by documented limitation, not omission.
   - **All 6 phases must eventually ship:** 1a, 1b, 2, 3, 4/4v, 5, 6a-6c
   - **MCP server** with at minimum: `get_law`, `search`, `get_article` tools (Phase 1b); extended with `history`, `diff`, `amendments_in_period` (Phase 2+); extended with `get_municipal_ordinance` (Phase 6)
     - **Phase scoping (per D-027):** Phase 1b.1 ships exactly 3 tools (`get_law`, `search`, `get_article`); Phase 2 adds the other 3 (`history`, `diff`, `amendments_in_period`) once the temporal index (FR-001) is populated. The `get_municipal_ordinance` tool is Phase 6.
   - **SQLite temporal index** covering all acts with tables: `laws`, `law_versions`, `amendments`, `provisions`
-  - **Consolidation engine** for ongoing DV amendments: ZID parser + patcher covering substitution, addition, deletion, repeal, renumbering, restructuring, new chapter operations
-  - **Validation pipeline** comparing engine output against lex.bg consolidated text, with diff reporting and human-review flagging for non-trivial discrepancies
+  - **Consolidation engine** for ongoing ДВ amendments: ЗИД parser lowering the enumerated amendment grammar into the 4-operation kernel (replace, insert, repeal, text_replace), with renumbering, restructuring, full repeal and new-chapter forms handled as elaborations that lower to the kernel (D-060)
+  - **Validation pipeline** comparing engine output against the witnesses (lex.bg, Ministry of Justice portal), adjudicating every divergence into a lane with the Gazette as arbiter (D-061)
   - **YAML frontmatter** on every act with all 8 mandatory Legalize SPEC fields plus Bulgarian extensions
 
 - acceptance rule: coverage is met when every category has zero acts silently dropped, every phase has shipped or has a documented waiver, and every MCP tool listed above is functional.
@@ -32,9 +32,9 @@ This file defines what must eventually be covered with no silent omissions.
   - Skipping an entire lex.bg category (e.g., omitting implementing regs)
   - Dropping individual acts silently during bootstrap (every act must be accounted for -- converted or listed in a skip manifest with reason)
   - Shipping MCP server without `search` tool
-  - Skipping validation against lex.bg (Phase 4v)
+  - Skipping witness validation (Phase 4v)
   - Omitting a phase from the roadmap without a dated waiver
-  - Deploying consolidation engine without covering all 7 ZID operation types (substitution, addition, deletion, renumbering, restructuring, full repeal, new chapter)
+  - Deploying the consolidation engine with any enumerated grammar form that neither lowers to the kernel nor flags (D-060; this supersedes the former list of 7 operation types, which conflicted with FR-003's 5 and the ratified 4-operation kernel)
 
 ## Correctness floor
 
@@ -87,6 +87,43 @@ Both floors must hold. Meeting one does not offset the other.
   - Any defect known but unregistered.
   - Any uncertainty served without a flag.
 
+## Provenance floor
+
+Added 2026-09-05 by Owner Directive 2 as amended (D-059). The completeness floor says which acts are
+in the corpus and the correctness floor says whether their addresses are right; this floor says
+**where each text came from and how far that origin has been verified**.
+
+- required floor: every act carries a machine-readable provenance grade and every amendment event a
+  source class, both surfaced at every consumer surface (frontmatter, index, MCP, REST, cf-plane).
+  These definitions are canonical; Directive 2, the FR rows and the ledgers cite them.
+  1. **Grade A, ДВ-complete.** The base text is a Gazette HTML material rebuilt through the corpus
+     write gate; every amendment event is a Gazette HTML material replayed by the engine (until the
+     engine exists, only acts with no amendment events can hold A). Gate: the write gate accepts the
+     text, the Phase 4 replay invariants pass, and unadjudicated witness divergences are zero.
+  2. **Grade B, ДВ-audited.** The base text is a lex.bg snapshot or a Gazette text read from an issue
+     PDF; every Gazette event that is online (HTML, or PDF read by vision) has been replayed or
+     verified clean against the text. Gate: the snapshot was frozen only after the single lex.bg
+     repair sweep (Directive 14) and the FR-041 reference capture ran on it, and every online event
+     carries a recorded `applied` state of `replayed` or `verified`.
+  3. **Grade B-pending.** As B, but at least one online Gazette event is still `pending`: located but
+     not yet read, replayed or verified. The record carries the count of pending events and the
+     estimated Gazette pages still to read. This is a grade in its own right, not the absence of one;
+     most older acts hold it during the transition.
+  4. **Grade C, pre-1989 base.** The promulgation or at least one event exists only offline. Every
+     online event is still sourced and verified as for B, and the pending counter applies. Handled as
+     a separate track.
+  **ДВ-anchored** means grade A or B. B-pending and C acts are not anchored, and lex.bg re-scrape
+  remains permitted for them (Directive 2).
+- acceptance rule: a grade is earned by gates, never assigned by source. An act's grade is the weakest
+  link in its current text. A grade may rise only when the corresponding events have been sourced and
+  replayed clean; it never rises by declaration.
+- what counts as omission:
+  - An act without a grade, or a grade not derivable from its recorded events.
+  - Serving a grade B or C text without the grade at the consumer surface.
+  - Raising a grade without the sourcing that the grade definition requires.
+- verification artifact: the coverage map (per act, per event: Gazette HTML available, PDF only, or
+  not online) and the per-act grade derivation, both regenerated by the pipeline.
+
 ## Priority ordering
 
 This section is only for sequencing. It does NOT weaken the coverage floor.
@@ -98,8 +135,8 @@ This section is only for sequencing. It does NOT weaken the coverage floor.
 
 ## Evidence
 
-- expected verification artifact: `docs/process/BOOTSTRAP-MANIFEST.md` listing all acts processed, with per-category counts matching the floor (~3,574 total)
-- expected review artifact: per-phase gate review confirming category counts, MCP tool functionality, and validation accuracy metrics
+- expected verification artifact: `docs/process/BOOTSTRAP-MANIFEST.md` (never produced for the 2026-04 bootstrap; `docs/sync/CORPUS-STATUS.json` and the FR-040 records check stand in) listing all acts processed, with per-category counts matching the floor (3,624 on 2026-09-05; live count in `docs/sync/CORPUS-STATUS.json`)
+- expected review artifact: per-phase gate review confirming category counts, MCP tool functionality, and adjudicated divergence counts (D-060; percentages are diagnostics)
 - waiver path: dated entry in `docs/process/WAIVERS.md` with owner sign-off, specifying which floor element is deferred and the remediation plan
 - correctness floor verification artifact: a corpus-wide integrity check that runs over every
   act in CI and hard-fails on any violation of the five properties, plus, per defect class, the

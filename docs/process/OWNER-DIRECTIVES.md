@@ -8,7 +8,7 @@ If this file conflicts with a weaker planning doc, this file wins.
 - status: active
 - owner: ekimir
 - effective date: 2026-04-19
-- last amended: 2026-08-11 (directives 9-14, corpus-correctness standard)
+- last amended: 2026-09-05 (directives 2 and 3 rewritten for the graded source model, D-059/D-061)
 - review cadence: per-phase gate (before each phase transition)
 
 ## Directives
@@ -16,14 +16,16 @@ If this file conflicts with a weaker planning doc, this file wins.
 1. **Option A: Contribute to Legalize upstream, not fork.**
    All pipeline code (fetcher, transformer, committer) must be Legalize-compatible. We implement the 4 standard interfaces (`LegislativeClient`, `NormDiscovery`, `TextParser`, `MetadataParser`) under `fetcher/bg/`. Private-layer code (MCP server, SQLite index, consolidation engine) lives at Ahelia but must not break upstream compatibility.
 
-2. **lex.bg = bootstrap only; DV = ongoing source.**
-   Do NOT build ongoing dependency on lex.bg scraping. lex.bg is used once in Phase 1a to populate the initial corpus. After bootstrap, all updates come from dv.parliament.bg (Tue/Fri gazette monitoring) and the consolidation engine. New lex.bg fetches are allowed only for validation (Directive 3) and one-off gap-filling with explicit justification.
+2. **Държавен вестник is the source wherever its text exists online; lex.bg is a base snapshot and a witness.**
+   *Amended 2026-09-05 (D-059). Former wording: lex.bg = bootstrap only; DV = ongoing source. That wording was contradicted by practice for months, since `refresh.py` is an ongoing lex.bg re-scrape pipeline.*
+   The Gazette text is the source of truth for every act and every amendment it carries online: per-material HTML from about 2005, issue PDFs from 1 January 1989, nothing before. lex.bg is (a) the base snapshot for text whose Gazette origin is not online and (b) a witness for validation (Directive 3). Every act carries a machine-readable provenance grade and every amendment event its source class. The grades (**A** ДВ-complete, **B** ДВ-audited, **B-pending**, **C** pre-1989 base) and the gate each transition must pass are defined canonically in `docs/process/COVERAGE-FLOOR.md`, section Provenance floor; every other document cites that definition. An act is **ДВ-anchored** at grades A and B. A grade is earned by passing gates, never assigned by source. Ongoing lex.bg re-scrape is permitted only for acts not yet ДВ-anchored (B-pending and C) and is recorded per act; once an act is ДВ-anchored, lex.bg fetches for it are witness-only. A Gazette rebuild of an act is a new pipeline generation for that act, not a repair sweep under Directive 14; the lex.bg snapshot of a grade B or C act is frozen only after the single lex.bg repair sweep (Directive 14) and the FR-041 reference capture have run on it. The provenance fields enter the frontmatter through a Surface 2 IMPLEMENTATION-PREFLIGHT (Directive 4). Grade C acts are handled as a separate track; a paid consolidator account as a one-time source for them is a later owner decision that must revisit D-038 and D-039 first.
 
-3. **lex.bg = validation oracle for consolidation engine.**
-   Compare consolidation engine output against lex.bg consolidated text. lex.bg is NOT the source of truth for ongoing updates -- it is the reference answer to validate our own consolidation. Workflow: engine produces consolidated text, fetcher grabs lex.bg version of same law, diff and report. Non-trivial diffs are flagged for human review.
+3. **Consolidated texts from lex.bg and from the Ministry of Justice portal are witnesses, not truth.**
+   *Amended 2026-09-05 (D-061). Former wording: lex.bg = validation oracle for consolidation engine.*
+   Engine output is compared against every witness that carries the act (lex.bg; `justice.government.bg/home/normdoc/`, a Ciela-maintained consolidation on a government domain covering a curated subset of major acts). A divergence is never silently accepted and never resolved by deference to a witness: it is adjudicated into a lane (source pathology, replay defect, risk signal, editorial) with the Gazette text as the arbiter. A class is closed when the count of unadjudicated divergences is zero (Directive 9). A witness check that cannot block a build is not a gate (Directive 12) and is therefore never the guarantee; the guarantee is the write-time correctness floor in `docs/process/COVERAGE-FLOOR.md`.
 
 4. **Markdown + YAML format, not Akoma Ntoso.**
-   Matches the Legalize ecosystem. All acts stored as Markdown with YAML frontmatter containing the 8 mandatory Legalize SPEC fields (`titulo`, `identificador`, `pais`, `rango`, `fecha_publicacion`, `ultima_actualizacion`, `estado`, `fuente`) plus 5 Bulgarian extensions (`dv_issue`, `dv_year`, `effective_date`, `category`, `eli`). The `amendment_history` array is an optional nested structure, not a named extension field.
+   Matches the Legalize ecosystem. All acts stored as Markdown with YAML frontmatter containing the 8 mandatory Legalize SPEC fields (`titulo`, `identificador`, `pais`, `rango`, `fecha_publicacion`, `ultima_actualizacion`, `estado`, `fuente`) plus 5 Bulgarian extensions (`dv_issue`, `dv_year`, `effective_date`, `category`, `eli`). The `amendment_history` array is an optional nested structure, not a named extension field. *Amended 2026-09-05 (D-059):* the provenance fields of the graded source model (a `provenance` block, and per-event `source`, `id_mat`, `applied`, `uncertainty` on `amendment_history` rows) are further Bulgarian extensions, introduced through the Surface 2 IMPLEMENTATION-PREFLIGHT, additive and backfilled at introduction; `fuente` takes the value `dv.parliament.bg` for Gazette-sourced acts.
 
 5. **Git + SQLite hybrid storage.**
    Git is the versioned store for legislation text (each amendment = one commit with `GIT_AUTHOR_DATE`). SQLite is the derived temporal index for date-range queries, provision-level lookups, and amendment cross-references. SQLite is always rebuildable from git history.
@@ -59,5 +61,6 @@ If this file conflicts with a weaker planning doc, this file wins.
 
 - Do not bury hard constraints in brainstorming notes or informal PR comments.
 - Directives 1-8 derive from HANDOVER.md "Decisions Already Made" and the approved design doc (2026-04-19).
+- Directives 2 and 3 were rewritten on 2026-09-05 on the owner's ruling to adopt the graded source model (approach C): D-059 to D-063 in `docs/sync/DECISIONS.md`. The June 2026 rulings on the consolidation engine (LawVM two-level acceptance, witnesses, forward replay) that had been ratified in substance but never recorded are written there too.
 - Directives 9-14 derive from the owner's ruling of 2026-08-11, following the anchor-integrity status review: "1 error, and the corpus is unreliable. Zero errors is the only acceptable standard." They strengthen the oversight baseline, which local repos may do without a waiver.
 - Waiver of any directive requires a dated entry in `docs/process/WAIVERS.md` with owner sign-off.
