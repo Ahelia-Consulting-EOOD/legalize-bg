@@ -739,7 +739,7 @@ UNRESOLVED_FIELDS = [
     "kind", "law_id", "dv_year", "dv_number", "title", "candidates",
     "resolver_score", "resolver_flags", "dv_identifier", "reason",
 ]
-# as in scripts/dv_coverage_map.py:781-794 (the row for an act citing no promulgation)
+# as in scripts/dv_coverage_map.py:780-794 (the row for an act citing no promulgation)
         if not act.fecha_publicacion:
             unresolved.append(
                 {
@@ -1445,12 +1445,11 @@ class Provenance:
 
 
 def _dv_key(dv) -> tuple[str, str] | None:
-    """`'032/1999'` and `'32/1999'` are the same issue.
+    """Normalise a Gazette citation to (issue, year) without leading zeros.
 
-    The corpus was scraped over years and writes the issue number both ways, so
-    a string comparison would fail to recognise an act's own promulgation and
-    count it as a pending event, which is the difference between grade A and
-    B-pending for a single-issue act.
+    Defensive: across the 8,097 `dv:` rows of the corpus none carries a leading zero today, but a
+    Gazette-side row (a material header or a resolver result) might; both the base filter and the
+    backfill join go through this key so the two paths can never disagree.
     """
     parts = str(dv or "").strip().split("/")
     if len(parts) != 2:
@@ -2711,10 +2710,10 @@ def build_block(summary: dict, events: list[dict], fm: dict, *, derived_at: str)
     # date and the currency statement does.
     scan_complete = bool(cst) and ct is not None and \
         (str(cst["issue"]), int(cst["year"])) == (str(ct["issue"]), int(ct["year"]))
-    by_dv = {f"{e['dv_number']}/{e['dv_year']}": e for e in events if e.get("row_kind") != "base"}
+    by_dv = {_dv_key(e["dv_number"], e["dv_year"]): e for e in events if e.get("row_kind") != "base"}
     history = []
     for row in fm.get("amendment_history") or []:
-        e = by_dv.get(str(row.get("dv")), {})
+        e = by_dv.get(_dv_key(*str(row.get("dv")).split("/")), {})
         history.append({
             **row,
             "source": e.get("source") or "unlocated",
