@@ -281,6 +281,25 @@ def test_render_act_is_byte_identical_to_the_assembler(tmp_path):
     assert render_act(meta, body) == assemble_file(meta, body)
 
 
+def test_the_two_renderers_diverge_only_where_the_gate_means_them_to(tmp_path):
+    """Byte identity holds for a whitelist frontmatter and a body with no
+    leading newline. Both divergences are deliberate, so both are asserted
+    rather than left to a test that cannot fail."""
+    from fetcher.bg.assembler import assemble_file
+
+    # 1. A leading newline: the assembler keeps it and accretes a blank line
+    #    per rewrite; the gate drops exactly one.
+    assert assemble_file(_FM, "\n# Заглавие\n") != render_act(_FM, "\n# Заглавие\n")
+    assert render_act(_FM, "\n# Заглавие\n") == assemble_file(_FM, "# Заглавие\n")
+
+    # 2. A key outside the whitelist: the assembler drops it, the gate keeps it
+    #    and writes it after the keys it knows.
+    enriched = dict(_FM, provenance={"grade": "A"})
+    assert "provenance" not in assemble_file(enriched, "x")
+    rendered = render_act(enriched, "x")
+    assert rendered.index("provenance:") > rendered.index("titulo:")
+
+
 def test_render_act_round_trips_a_committed_act_without_churn(tmp_path):
     """Split it, change nothing, write it back: the bytes must be identical.
 

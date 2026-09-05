@@ -36,7 +36,7 @@ from typing import Iterable
 
 import yaml
 
-from corpus_integrity.__main__ import CHECKS
+from corpus_integrity.__main__ import CHECKS  # registered by append, see below
 from corpus_integrity.loader import CATEGORY_DIRS, act_from_text
 from corpus_integrity.protocol import Act, Violation
 from corpus_integrity.waivers import load_waivers, reconcile
@@ -150,6 +150,11 @@ def load_waiver_set(path: Path | str | None = None) -> dict[str, dict[str, int |
     A sweep calls the gate once per act, so re-parsing the file 3 600 times is
     pure waste; keying the cache on the file's identity as well as its path
     keeps a test that rewrites its own waiver file honest.
+
+    The identity is `(mtime_ns, size)`. On a filesystem with coarse mtime
+    granularity, a rewrite that changes no byte count within one tick would
+    read a stale waiver set; the fix if that ever bites is to key on a hash,
+    not to drop the cache.
     """
     resolved = Path(path or DEFAULT_WAIVERS).resolve()
     stat = resolved.stat()  # FileNotFoundError here is the right failure
@@ -171,6 +176,10 @@ def run_write_checks(
     """
     waivers = load_waiver_set() if waivers is None else waivers
     refusals: list[Violation] = []
+    # CHECKS is held by reference, so a later class registered with
+    # `CHECKS.append(...)` is gated from the moment it is registered. Rebinding
+    # the name in the runner would leave the gate on the old list, so a new
+    # detector is appended and never assigned.
     for check in CHECKS:
         waived = waivers.get(check.name, {})
         expected = {act.slug: waived[act.slug]} if act.slug in waived else {}
@@ -299,7 +308,15 @@ _EXCLUDED_PARTS: frozenset[str] = frozenset(
 )
 
 _WRITE_MODE_CHARS = frozenset("wax+")
-_COPY_FUNCS = frozenset({"copy", "copy2", "copyfile", "copytree", "move"})
+_COPY_FUNCS = frozenset({"copy", "copy2", "copyfile", "copytree"})
+
+# Moves. A file that arrives by rename is as written as one that arrives by
+# `write_text`, and staging outside the corpus then renaming in is both the
+# gate's own idiom and the shape the Gazette rebuild is specified to use. They
+# are judged on positive evidence only: a rename's destination is routinely a
+# plain local, and the unresolved-path fallback would flag every atomic
+# checkpoint write in a module that also touches the corpus.
+_MOVE_FUNCS = frozenset({"replace", "rename", "move"})
 
 
 def find_corpus_writers(
@@ -311,7 +328,14 @@ def find_corpus_writers(
     CI. Each offender is reported as `relative/path.py:LINE: reason`, so the
     failure names the line to route rather than the file to argue about.
 
-    A write site is an offender when either holds:
+    A site puts a file somewhere: `write_text`, `write_bytes`, `open` in a
+    write mode either bare or as `Path.open`, a `shutil` copy, and the moves —
+    `os.replace`, `os.rename`, `shutil.move`, `Path.replace`, `Path.rename` —
+    because a file that arrives by rename is as written as one that arrives by
+    `write_text`, and staging outside the corpus then renaming in is both this
+    module's own idiom and the shape the Gazette rebuild is specified to use.
+
+    A site is an offender when either holds:
 
     1. its target path resolves — through local assignments, transitively — to
        a corpus category directory, or to a symbol that maps categories onto
@@ -320,7 +344,10 @@ def find_corpus_writers(
     2. its target resolves to no path evidence at all *and* the module both
        names a corpus directory and assembles act content. This catches
        `entry.path.write_text(assemble_file(meta, body))`, where the path comes
-       out of a record the scan cannot follow.
+       out of a record the scan cannot follow. The move shapes are exempt from
+       this second rule and judged on rule 1 alone: a rename's destination is
+       routinely a plain local, so applying it would flag every atomic
+       checkpoint write in a module that also touches the corpus.
 
     Not scanned: `.venv`, `.git`, `__pycache__`, `node_modules`, any
     `worktrees` directory, and `tests/`, where a test writes its own temp
@@ -328,10 +355,12 @@ def find_corpus_writers(
     skipped, because a scan that silently drops a file reports a clean tree
     over an unread one.
 
-    The residual, stated rather than hidden: a module that names no category
+    Two residuals, stated rather than hidden. A module that names no category
     directory, assembles nothing, and writes to a path built entirely at
-    runtime is not caught here. Layer 2, the corpus-wide CI runner, is what
-    catches its output.
+    runtime is not caught. Neither is a write performed by a subprocess — a
+    shelled-out `tee`, `cp` or `git checkout` — since the scan reads Python
+    and not the commands Python runs. Layer 2, the corpus-wide CI runner, is
+    what catches the output of both.
     """
     exclude = set(exclude or ()) | {"corpus_gate.py"}
     root = Path(root or REPO_ROOT).resolve()
@@ -368,11 +397,11 @@ def _scan_module(tree: ast.Module) -> list[tuple[int, str]]:
     assembles = bool(_ASSEMBLY_SYMBOLS & module_names)
 
     found: list[tuple[int, str]] = []
-    for line, kind, target in _write_sites(tree):
+    for line, kind, target, positive_only in _write_sites(tree):
         strings, names = _evidence(target, assignments)
         if any(_names_a_corpus_dir(s) for s in strings) or (_CORPUS_SYMBOLS & names):
             found.append((line, f"{kind} into a corpus path"))
-        elif not strings and corpus_aware and assembles:
+        elif not positive_only and not strings and corpus_aware and assembles:
             found.append((line, f"{kind} to an unresolved path in a module that "
                                 "names a corpus directory and assembles acts"))
     return found
@@ -442,27 +471,44 @@ def _evidence(
     return strings, names
 
 
-def _write_sites(tree: ast.Module) -> Iterable[tuple[int, str, ast.expr | None]]:
-    """Every call that writes a file, with the expression naming its target."""
+def _write_sites(
+    tree: ast.Module,
+) -> Iterable[tuple[int, str, ast.expr | None, bool]]:
+    """Every call that puts a file somewhere, and the expression naming where.
+
+    The fourth element is `positive_only`: true for the move shapes, which are
+    judged on resolved corpus evidence alone and never on an unresolved path.
+    """
     for node in ast.walk(tree):
         if not isinstance(node, ast.Call):
             continue
         func = node.func
         if isinstance(func, ast.Attribute):
+            module = func.value.id if isinstance(func.value, ast.Name) else None
             if func.attr in ("write_text", "write_bytes"):
-                yield node.lineno, f"{func.attr}()", func.value
+                yield node.lineno, f"{func.attr}()", func.value, False
             elif func.attr == "open" and _is_write_mode(node, first_arg_is_mode=True):
-                yield node.lineno, "Path.open(w)", func.value
-            elif (
-                func.attr in _COPY_FUNCS
-                and isinstance(func.value, ast.Name)
-                and func.value.id == "shutil"
-            ):
+                yield node.lineno, "Path.open(w)", func.value, False
+            elif func.attr in _COPY_FUNCS and module == "shutil":
                 target = node.args[1] if len(node.args) > 1 else None
-                yield node.lineno, f"shutil.{func.attr}()", target
+                yield node.lineno, f"shutil.{func.attr}()", target, False
+            elif func.attr in _MOVE_FUNCS and module in ("os", "shutil"):
+                # os.replace(src, dst), os.rename(src, dst), shutil.move(src, dst)
+                target = node.args[1] if len(node.args) > 1 else None
+                yield node.lineno, f"{module}.{func.attr}()", target, True
+            elif func.attr in ("replace", "rename") and _is_path_move(node):
+                # p.replace(dst) / p.rename(dst). One positional argument and no
+                # keywords is what separates these from str.replace, which
+                # always takes two.
+                yield node.lineno, f"Path.{func.attr}()", node.args[0], True
         elif isinstance(func, ast.Name) and func.id == "open":
             if _is_write_mode(node, first_arg_is_mode=False):
-                yield node.lineno, "open(w)", node.args[0] if node.args else None
+                yield node.lineno, "open(w)", node.args[0] if node.args else None, False
+
+
+def _is_path_move(call: ast.Call) -> bool:
+    """True for `p.replace(dst)` / `p.rename(dst)`, false for `s.replace(a, b)`."""
+    return len(call.args) == 1 and not call.keywords
 
 
 def _is_write_mode(call: ast.Call, *, first_arg_is_mode: bool) -> bool:
