@@ -110,18 +110,25 @@ def parse_issue_rows(html: str) -> list[IssueRow]:
     return rows
 
 
-def parse_view_state(html: str) -> str:
+#: The form the issue list paginates. The three helpers below take the
+#: form and select they read as arguments, because the issue-contents
+#: page is the same MyFaces pagination under other names
+#: (`material_form`) and reading it twice, once per module, is how the
+#: two copies drift apart.
+_FORM_NAME = "broi_form"
+
+
+def parse_view_state(html: str, form: str = _FORM_NAME) -> str:
     """The `javax.faces.ViewState` token the next POST has to echo.
 
-    A response carries one token per form; the one inside `broi_form` is
-    the one the pagination POST belongs to. They have been identical on
+    A response carries one token per form; the one inside the form being
+    paginated is the one its POST belongs to. They have been identical on
     every capture, but the form-scoped lookup is the correct one.
     """
     soup = BeautifulSoup(html, "lxml")
-    form = soup.find("form", attrs={"name": "broi_form"}) or soup.find(
-        "form", id="broi_form"
-    )
-    scope = form if form is not None else soup
+    scope = soup.find("form", attrs={"name": form}) or soup.find("form", id=form)
+    if scope is None:
+        scope = soup
     field = scope.find("input", attrs={"name": "javax.faces.ViewState"})
     if field is None:
         field = soup.find("input", attrs={"name": "javax.faces.ViewState"})
@@ -130,22 +137,31 @@ def parse_view_state(html: str) -> str:
     return field["value"]
 
 
-def _page_select(html: str):
-    soup = BeautifulSoup(html, "lxml")
-    select = soup.find("select", id=_PAGE_SELECT_ID)
+def find_page_select(html: str, select_id: str = _PAGE_SELECT_ID):
+    """The page-jump select, or None when the response prints no pager.
+
+    A caller that treats „no pager“ as „one page“ needs to tell it apart
+    from a pager it could not read, which `_page_select` cannot: both
+    arrive as ValueError.
+    """
+    return BeautifulSoup(html, "lxml").find("select", id=select_id)
+
+
+def _page_select(html: str, select_id: str = _PAGE_SELECT_ID):
+    select = find_page_select(html, select_id)
     if select is None:
-        raise ValueError(f"no <select id={_PAGE_SELECT_ID!r}> in the response")
+        raise ValueError(f"no <select id={select_id!r}> in the response")
     return select
 
 
-def parse_page_count(html: str) -> int:
+def parse_page_count(html: str, select_id: str = _PAGE_SELECT_ID) -> int:
     """How many pages the list has: one option per page."""
-    return len(_page_select(html).find_all("option"))
+    return len(_page_select(html, select_id).find_all("option"))
 
 
-def parse_current_page(html: str) -> int:
+def parse_current_page(html: str, select_id: str = _PAGE_SELECT_ID) -> int:
     """The page this response actually is, from the `selected` option."""
-    for option in _page_select(html).find_all("option"):
+    for option in _page_select(html, select_id).find_all("option"):
         if option.has_attr("selected"):
             return int(option["value"])
     raise ValueError("no page is marked selected in the response")

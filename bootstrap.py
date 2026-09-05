@@ -9,6 +9,7 @@ import subprocess
 import time
 from pathlib import Path
 
+from corpus_gate import CorpusIntegrityError, SourceRef, write_act
 from fetcher.bg.client import LexBgClient, HttpTransport, RateLimitedSession
 from fetcher.bg.coverage import (
     make_gate_record,
@@ -18,7 +19,7 @@ from fetcher.bg.coverage import (
 from fetcher.bg.discovery import CatalogCrawler, CATEGORY_DIRS
 from fetcher.bg.text_parser import HtmlToMarkdown
 from fetcher.bg.metadata import MetadataParser
-from fetcher.bg.assembler import assemble_file, generate_slug
+from fetcher.bg.assembler import generate_slug
 from index.catalog import CatalogIndex
 
 logging.basicConfig(
@@ -120,6 +121,7 @@ def bootstrap(
         )
         threshold = 64
     gate_failures: list[dict] = []
+    gate_refusals: list[dict] = []
     errors = []
     used_slugs: set[str] = set()
     for i, entry in enumerate(catalog, 1):
@@ -183,9 +185,24 @@ def bootstrap(
             base_slug = generate_slug(meta["titulo"]) or str(doc_id)
             slug = _unique_slug(base_slug, used_slugs)
             filepath = output_dir / corpus_dir / f"{slug}.md"
-            content = assemble_file(meta, body)
 
-            filepath.write_text(content, encoding="utf-8")
+            # The corpus write gate is the second layer and it sees what
+            # coverage cannot: a body that reproduces every source character
+            # and carries a markup remnant while doing it. A refusal skips the
+            # write, the commit and the index row, and the run ends non-zero.
+            try:
+                write_act(filepath, meta, body,
+                          source=SourceRef("lexbg", str(doc_id)))
+            except CorpusIntegrityError as exc:
+                violations = [
+                    f"{v.check}@{v.locator}: {v.detail}" for v in exc.violations
+                ]
+                gate_refusals.append(
+                    {"doc_id": doc_id, "slug": slug, "violations": violations}
+                )
+                log.error("WRITE GATE REFUSED %s (doc_id=%d): %s",
+                          meta["titulo"], doc_id, "; ".join(violations))
+                continue
 
             _git_commit(
                 filepath=filepath,
@@ -224,9 +241,20 @@ def bootstrap(
         len(gate_failures), len(catalog),
     )
 
+    # The write-gate refusals are a separate record from the coverage report:
+    # a different gate, a different failure, and the file `main()` reads to
+    # decide the exit code.
+    (output_dir / "write-gate-refusals.json").write_text(
+        json.dumps(gate_refusals, ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
+    if gate_refusals:
+        log.error("write gate: %d/%d acts refused", len(gate_refusals), len(catalog))
+
     log.info(
         "Bootstrap complete: %d succeeded, %d failed",
-        len(catalog) - len(errors) - len(gate_failures), len(errors),
+        len(catalog) - len(errors) - len(gate_failures) - len(gate_refusals),
+        len(errors),
     )
     if errors:
         log.warning("Failed acts:")
@@ -388,7 +416,7 @@ def _unique_slug(slug: str, used: set[str]) -> str:
     return candidate
 
 
-if __name__ == "__main__":
+def _build_arg_parser() -> argparse.ArgumentParser:
     ap = argparse.ArgumentParser(description="Bootstrap Bulgarian legislation corpus")
     ap.add_argument("--output", type=Path, default=Path("."), help="Output directory")
     ap.add_argument("--db", default="catalog.db", help="SQLite database path")
@@ -398,8 +426,32 @@ if __name__ == "__main__":
     ap.add_argument("--push-every", type=int, default=0,
                     help="Push to remote after every N commits (0 = no intermediate pushes)")
     ap.add_argument("--remote", default="origin", help="Remote to push to")
-    args = ap.parse_args()
+    return ap
+
+
+def main(argv: list[str] | None = None) -> int:
+    """Run a bootstrap and report a write-gate refusal in the exit code.
+
+    A refusal is not an error the run recovers from: the act is absent from
+    the corpus. Exiting 0 would let a sweep that dropped acts look like a
+    clean one, which is the state Owner Directive 12 exists to prevent.
+    """
+    args = _build_arg_parser().parse_args(argv)
     bootstrap(
         args.output, args.db, args.dry_run,
         branch=args.branch, push_every=args.push_every, remote=args.remote,
     )
+    refusals_path = Path(args.output) / "write-gate-refusals.json"
+    if args.dry_run or not refusals_path.exists():
+        # A dry run writes nothing, so a file left by an earlier run says
+        # nothing about this one and must not colour its exit code.
+        return 0
+    refusals = json.loads(refusals_path.read_text(encoding="utf-8"))
+    for refusal in refusals:
+        log.error("REFUSED %s (doc_id=%s): %s", refusal["slug"],
+                  refusal["doc_id"], "; ".join(refusal["violations"]))
+    return 1 if refusals else 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

@@ -34,6 +34,27 @@ def materials_html() -> str:
 
 
 @pytest.fixture
+def materials_page1_html() -> str:
+    """Page 1 of idObj 10984 (бр. 102/2022), captured live on 2026-09-05.
+
+    The listing paginates at thirty rows: this page prints „Намерени
+    резултати: 65“, lists thirty of them and offers a three-option page
+    select. It is the shape that left eleven issues `unrecognized`.
+    """
+    return read_fixture("materiali-idObj10984-paginated-p1.html")
+
+
+@pytest.fixture
+def materials_page2_html() -> str:
+    """Page 2 of the same issue: thirty further materials, no overlap.
+
+    Obtained by POSTing `material_form` back to `materiali.faces` inside
+    the SAME session as the GET that produced page 1.
+    """
+    return read_fixture("materiali-idObj10984-paginated-p2.html")
+
+
+@pytest.fixture
 def materials_empty_html() -> str:
     """A valid issue page with „Намерени резултати: 0“, the PDF-era signal."""
     return read_fixture("materiali-idObj5000-empty.html")
@@ -105,6 +126,7 @@ class FakeSession:
 
     def post(self, url: str, data, *, timeout: int = 30) -> str:
         self.posts.append((url, dict(data)))
+        self.events.append(("post", dict(data)))
         page = int(dict(data)[self._page_key])
         if page not in self._post_bodies:
             raise AssertionError(f"FakeSession has no POST body for page {page}")

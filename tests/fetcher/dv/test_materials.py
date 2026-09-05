@@ -131,6 +131,17 @@ def test_a_short_listing_under_a_larger_count_is_unrecognized(materials_html):
     assert classify_page(mutated) == "unrecognized"
 
 
+def test_a_listing_longer_than_its_own_count_is_unrecognized(materials_html):
+    # The other direction of the same disagreement: more rows parsed than
+    # the page says it found. It reads as harmless and it is not. Rows
+    # arriving from somewhere other than the result table is exactly the
+    # shape that would let a redesign add material the issue does not
+    # contain. One `!=` decides both directions; this pins the second.
+    mutated = materials_html.replace("Намерени резултати: 18", "Намерени резултати: 17")
+    assert len(parse_materials(mutated)) == 18
+    assert classify_page(mutated) == "unrecognized"
+
+
 # --- material header ------------------------------------------------------
 
 

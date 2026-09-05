@@ -8,6 +8,10 @@ subdivision classes and de-glues headings. Does NOT edit the protected parser mo
 Fetch: live lex.bg (ldoc 2135802037) with the project's rate-limited client; on any
 network/Cloudflare failure, fall back to the 2026-06-21 capture (ЗУО is unchanged since
 dv 81/2024, so the fallback is the same current text).
+
+HISTORICAL (2026-06-29): a one-shot forensics run, kept for the record. Its corpus
+write is routed through corpus_gate.write_act so the single-writer guarantee holds by
+construction rather than by this file never running again.
 """
 import re, sys, shutil
 from pathlib import Path
@@ -18,6 +22,7 @@ from fetcher.bg.text_parser import HtmlToMarkdown, CLASS_MAP
 from fetcher.bg.metadata import MetadataParser
 from fetcher.bg.assembler import assemble_file
 from fetcher.bg.client import LexBgClient, HttpTransport
+from corpus_gate import SourceRef, write_act  # every corpus write is gated
 
 DOC_ID = 2135802037
 CATEGORY = "laws"
@@ -111,7 +116,7 @@ def main():
     # backup the old broken file for diffing
     if TARGET.exists():
         shutil.copy(TARGET, RESEARCH / "zuo-OLD-broken.md")
-    TARGET.write_text(out, encoding="utf-8")
+    write_act(TARGET, meta, body, source=SourceRef("lexbg", str(DOC_ID)))
     shutil.copy(TARGET, RESEARCH / "zuo-NEW-fixed.md")
 
     # ---- verification ----

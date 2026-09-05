@@ -6,6 +6,10 @@ a violation and permits the write is not a gate (Owner Directive 12).
 
 Exit codes: 0 clean, 1 violations or a rotted waiver, 2 usage error.
 
+`--json` reports the same run as a payload: per check, the violation rows
+themselves (`check`, `slug`, `locator`, `detail`), their count, the stale
+waivers and the count drifts.
+
 Row shape, one per line, four tab-separated columns, so a waiver list can be
 regenerated straight from `--enumerate`:
 
@@ -69,7 +73,15 @@ def main(argv: list[str] | None = None) -> int:
             check.name, check.run(acts), waivers.get(check.name, {})
         )
         summary[check.name] = {
-            "violations": len(unwaived),
+            # The rows, not only how many: a machine consumer that has to
+            # re-run the checker to find out which lines failed is reading a
+            # number, not a report.
+            "violations": [
+                {"check": v.check, "slug": v.slug, "locator": v.locator,
+                 "detail": v.detail}
+                for v in unwaived
+            ],
+            "violation_count": len(unwaived),
             "stale_waivers": stale,
             "count_drift": [
                 {"slug": d.slug, "expected": d.expected, "actual": d.actual}
@@ -106,7 +118,7 @@ def main(argv: list[str] | None = None) -> int:
     else:
         for name, counts in sorted(summary.items()):
             print(
-                f"{name}: {counts['violations']} violations, "
+                f"{name}: {counts['violation_count']} violations, "
                 f"{len(counts['stale_waivers'])} stale waivers, "
                 f"{len(counts['count_drift'])} count drifts"
             )

@@ -12,7 +12,14 @@ The enumerated per-act exception sets that the corpus-integrity checks consume l
 create them. Equality there is equality on the **count**: each waived act carries the exact number
 of violations its census found, so a new violation in a waived act is reported as an excess, a
 partial repair is reported as count drift, and a full repair is reported as a stale waiver. All
-three fail the run, so a waiver is a pinned census and never a blind spot.
+three fail the run, so a waiver is a pinned census and never a blind spot. `acts` is therefore a
+mapping of act slug to count and never a list: the count-blind list form is a schema error at the
+runner (exit 2) and at the corpus write gate (`ValueError`), so it cannot be reinstated silently by
+an entry that happens to be written as a list. An entry seeded ahead of its detector carries `{}`.
+
+The same reconciliation runs at the write gate (`corpus_gate.write_act`), on the single act being
+written: a waived act may be rewritten with exactly the number of violations pinned here, and the
+repair of a waived act lands together with its waiver update, never before it.
 
 | ID | Date | Directive or floor element | Scope (enumerated) | Reason | Expiry condition | Owner |
 |---|---|---|---|---|---|---|
