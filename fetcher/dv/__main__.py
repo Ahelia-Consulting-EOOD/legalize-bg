@@ -94,27 +94,41 @@ def _read_jsonl(path: Path) -> list[dict]:
 
 
 def _finished_ids(path: Path, resume: bool) -> set[int]:
-    """The `id_obj` values already fully written to `path`, when resuming.
+    """The `id_obj` values already read from the site, when resuming.
 
-    The last issue in the file is NOT one of them. The materials sweep
-    writes one line per material, so an interruption between two lines of
-    the same issue leaves it looking complete while most of its rows are
-    missing; trusting it loses those materials silently and for good.
-    Its rows are removed from the file, wherever they sit, and the issue
-    is fetched again. One issue re-fetched per resume is one request.
+    Two kinds of row are not finished and are dropped from the file so
+    that the sweep asks for them again:
+
+    The LAST issue in the file. The materials sweep writes one line per
+    material, so an interruption between two lines of the same issue
+    leaves it looking complete while most of its rows are missing;
+    trusting it loses those materials silently and for good. One issue
+    re-fetched per resume is one request.
+
+    Every issue recorded as `unrecognized`, which means „this parser
+    could not read the page“. Resuming after the parser is fixed must
+    come back to exactly those issues, not skip them as done.
+
+    Rows are removed wherever in the file they sit, so the rewrite also
+    de-duplicates the issue that is about to be fetched again.
     """
     if not resume:
         return set()
     rows = _read_jsonl(path)
     if not rows:
         return set()
-    last = rows[-1].get("id_obj")
-    kept = [row for row in rows if row.get("id_obj") != last]
+    retry = {row.get("id_obj") for row in rows if row.get("status") == "unrecognized"}
+    retry.add(rows[-1].get("id_obj"))
+    kept = [row for row in rows if row.get("id_obj") not in retry]
     path.write_text(
         "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in kept),
         encoding="utf-8",
     )
-    log.info("resuming: re-fetching issue %s, whose listing may be half written", last)
+    log.info(
+        "resuming: re-fetching %d issue(s) that were unread or half written: %s",
+        len(retry),
+        ", ".join(str(i) for i in sorted(retry, key=lambda v: (v is None, v))),
+    )
     return {row["id_obj"] for row in kept if "id_obj" in row}
 
 

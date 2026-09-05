@@ -110,12 +110,20 @@ Both enumerations are resumable. `--resume` appends to the output and
 skips the issues already finished in it. Without `--resume` the output
 file is rewritten from scratch.
 
-**The last issue in the output is not trusted.** `materials.jsonl` holds
-one line per material, so an interruption between two lines of the same
-issue leaves that issue looking complete while most of its rows are
-missing. On `--resume` the last `id_obj` in the file has all its rows
-removed and is fetched again, which costs one request and cannot lose a
-material. The same rule runs for `issues.jsonl`, where it costs nothing.
+Two kinds of row are not treated as finished, and `--resume` drops them
+from the file and asks the site again:
+
+**The last issue in the output.** `materials.jsonl` holds one line per
+material, so an interruption between two lines of the same issue leaves
+that issue looking complete while most of its rows are missing. The last
+`id_obj` in the file has all its rows removed and is fetched again, which
+costs one request and cannot lose a material. The same rule runs for
+`issues.jsonl`, where it costs nothing.
+
+**Every issue recorded as `unrecognized`,** which means the parser could
+not read the page. Resuming after the parser is fixed comes back to
+exactly those issues instead of skipping them as done.
+
 A final line cut in half by the kill is dropped with a warning; a
 malformed line anywhere else stops the run.
 

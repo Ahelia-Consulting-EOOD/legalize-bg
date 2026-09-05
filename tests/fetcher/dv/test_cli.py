@@ -338,6 +338,44 @@ def test_unrecognized_markup_is_written_as_its_own_status(
     ]
 
 
+def test_resume_comes_back_to_the_pages_it_could_not_read(
+    tmp_path, materials_html, materials_empty_html
+):
+    # `unrecognized` means „fix the parser and try again“, so resuming
+    # must not treat it as an issue already done. Otherwise the run after
+    # the fix skips exactly the issues the fix was for.
+    broken = materials_html.replace("material_form:dataTable1", "material_form:grid1")
+    issues = write_issues(tmp_path, 6121, 5000, 9999)
+    out = tmp_path / "materials.jsonl"
+    session = FakeSession(
+        by_param={
+            ("idObj", 6121): broken,
+            ("idObj", 5000): materials_empty_html,
+            ("idObj", 9999): materials_empty_html,
+        }
+    )
+    main(["materials", "--issues", str(issues), "--out", str(out)], session=session)
+    assert [r["status"] for r in read_jsonl(out)] == [
+        "unrecognized", "empty", "empty",
+    ]
+
+    fixed = FakeSession(
+        by_param={
+            ("idObj", 6121): materials_html,
+            ("idObj", 9999): materials_empty_html,
+        }
+    )
+    main(
+        ["materials", "--issues", str(issues), "--out", str(out), "--resume"],
+        session=fixed,
+    )
+    # 6121 because it was unreadable, 9999 because it was last in the file.
+    assert [g[1]["idObj"] for g in fixed.gets] == [6121, 9999]
+    rows = read_jsonl(out)
+    assert len([r for r in rows if r["id_obj"] == 6121 and r["status"] == "ok"]) == 18
+    assert not [r for r in rows if r["status"] == "unrecognized"]
+
+
 def test_a_run_of_unrecognized_pages_halts_the_sweep(tmp_path, materials_html):
     # A markup rename would otherwise write 4,146 false rows. Eleven
     # unreadable pages inside the first fifty is already a redesign.
