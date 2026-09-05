@@ -30,14 +30,14 @@ Testing strategy for the legalize-bg pipeline. Covers unit through validation te
 **Scope:** Consolidation engine output compared against lex.bg as oracle (Phase 4v).
 
 - **Round-trip validation** — For each law in the test set: (1) apply a known ЗИД to the pre-amendment version using the consolidation engine, (2) fetch the post-amendment version from lex.bg, (3) normalize both (strip whitespace, normalize quotes and dashes), (4) diff and report.
-- **Accuracy tracking** — Maintain a running accuracy metric (percentage of test laws where consolidation matches lex.bg within normalization tolerance). Target: >95%.
+- **Divergence adjudication** *(rewritten 2026-09-05, D-060/D-061; the former bullet kept a running accuracy percentage with a >95 % target, which Directive 9 forbids as closure evidence)* — every divergence against a witness (lex.bg, Ministry of Justice portal) is adjudicated into a lane (source pathology, replay defect, risk signal, editorial); closure is a zero count of unadjudicated divergences.
 - **Failure classification** — When consolidation diverges from lex.bg, classify the cause: regex pattern gap, renumbering error, structural change, lex.bg editorial correction, etc.
 
 ### Contract Tests
 
 **Scope:** Compliance with external interface contracts.
 
-- **YAML frontmatter vs. Legalize SPEC** — Validate that every Markdown file in the repository has all 8 mandatory Legalize fields with correct types and allowed values. Run as a CI check on every commit.
+- **YAML frontmatter vs. Legalize SPEC** — Validate that every Markdown file in the repository has all 8 mandatory Legalize fields with correct types and allowed values. Run as a CI check on every commit. **Status 2026-09-05: NOT BUILT** (FR-040). The only write-path check is a non-blocking warning in `bootstrap.py` covering 2 of 8 fields; `refresh.py` has none. Planned home: `corpus_integrity` (PR #23 Part II).
 - **MCP tool response format** — Validate that MCP tool responses match the expected JSON schema (correct keys, types, non-null required fields). Tests run against a local MCP server instance.
 - **Legalize hard gates** — The 4 gates from the Legalize contribution guide must pass before Phase 5 submission: (1) valid YAML frontmatter on all files, (2) correct commit message format, (3) no duplicate `identificador` values, (4) CI pipeline green.
 
@@ -113,7 +113,7 @@ Additional fixtures added as bugs are discovered (see Regression Policy below).
 
 Expected Markdown output for each HTML fixture, stored in `tests/fixtures/golden/`. Each golden file is the correct Markdown + YAML frontmatter that the parser should produce from the corresponding HTML fixture.
 
-Golden files are manually reviewed and approved before being committed. They serve as the ground truth for parser correctness.
+Golden files are manually reviewed and approved before being committed. They serve as the ground truth for parser correctness. **Status 2026-09-05: only `tests/fixtures/golden/provisions/` exists; there are no act-level golden files** (FR-040). The regression rule below is therefore half-realised.
 
 ### No Mocking of lex.bg
 
@@ -127,6 +127,8 @@ Rate-limited live tests that actually fetch from lex.bg are run only in CI night
 - Compare a sample of fresh fetches against cached fixtures to detect site changes.
 - Rate-limited to 1 request per second, with a maximum of 20 requests per nightly run.
 - Failures in live tests trigger an alert but do not block the build — they indicate lex.bg changes that require parser updates.
+
+**Status 2026-09-05: no nightly workflow exists** (FR-040). lex.bg is also Cloudflare-gated, so an unattended nightly fetch would halt by design; under the graded source model the live surface to monitor is dv.parliament.bg.
 
 ---
 

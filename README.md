@@ -1,14 +1,15 @@
 # legalize-bg
 
-Bulgarian legislation corpus as Markdown in git. The pipeline scrapes ~3,574 national
-legislative acts from lex.bg (bootstrap) and dv.parliament.bg (ongoing amendments),
+Bulgarian legislation corpus as Markdown in git. The corpus holds 3,624 national
+legislative acts, bootstrapped from lex.bg and being re-anchored on Държавен вестник
+(dv.parliament.bg) under a graded source model (D-059),
 converts them to Markdown with YAML frontmatter, and stores each amendment as a git
 commit with temporal metadata. An MCP server exposes the corpus to Claude Code sessions
 for legal research, legislative drafting, and public procurement analysis.
 
 ## What This Repo Produces
 
-- ~3,574 Bulgarian legislative acts (394 laws, 24 codes, 2,604 ordinances, 490 regulations, 61 implementing regs) as Markdown + YAML frontmatter
+- 3,624 Bulgarian legislative acts (399 laws, 25 codes, 2,645 ordinances, 495 regulations, 60 implementing regs, counted 2026-09-05) as Markdown + YAML frontmatter
 - SQLite temporal index for date-based queries and amendment tracking
 - MCP server with 7 tools: `get_law`, `search`, `get_article`, `get_articles`, `history`, `amendments_in_period`, `diff`
 - Git history where each commit represents one legislative amendment event
@@ -23,8 +24,8 @@ for legal research, legislative drafting, and public procurement analysis.
 
 | Source | Role |
 |--------|------|
-| lex.bg | Bootstrap scrape (consolidated texts) and validation oracle |
-| dv.parliament.bg | Ongoing amendments (Tue/Fri gazette issues) |
+| lex.bg | Bootstrap snapshot (consolidated texts) and validation witness (D-061) |
+| dv.parliament.bg | Source of truth wherever its text is online: HTML materials from about 2005, issue PDFs from 1989 (D-059) |
 | Municipal websites | Phase 6+ (Sofia first) |
 
 ## Legalize Ecosystem

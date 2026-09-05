@@ -187,7 +187,7 @@ Every Markdown file must include these 8 mandatory YAML frontmatter fields:
 | ID | Risk | Severity | Mitigation | Acceptance Criteria for Mitigation |
 |----|------|----------|------------|-----------------------------------|
 | R1 | Cloudflare starts blocking lex.bg scraping | Medium | Keep Playwright as emergency fallback; rate-limit to 1 req/sec | Playwright fallback tested and documented; scraper completes within 4 hours |
-| R2 | ZID parser accuracy < 70% | Medium | LLM fallback for complex cases; human review for structural changes | Parser accuracy measured per ZID pattern type; LLM fallback covers restructuring and table/annex changes |
+| R2 | ZID parser accuracy < 70% *(superseded 2026-09-05, D-060: percentages are not closure evidence; see delivery contract Phase 4)* | Medium | LLM fallback for complex cases; human review for structural changes | Parser accuracy measured per ZID pattern type; LLM fallback covers restructuring and table/annex changes |
 | R3 | Legalize project becomes inactive | Low | We own the data and pipeline; can operate independently | All pipeline components runnable without upstream dependencies |
 | R4 | Municipal websites change structure | High | Per-municipality parsers with breakage monitoring | Automated tests detect parser failures within 24 hours; parser isolation limits blast radius |
 | R5 | lex.bg changes HTML structure | Medium | CSS class selectors are semantic and stable; monitor for changes | Scraper includes structural assertions; alerts on class name changes |

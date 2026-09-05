@@ -69,7 +69,7 @@ Commits to pipeline code (fetcher, consolidation engine, MCP server, tooling) us
 
 ### Data Accuracy (Corpus Commits)
 
-- **Self-review against lex.bg oracle:** After bootstrap or consolidation, compare generated Markdown against current lex.bg text for the same law. Normalize whitespace and quotes before diff.
+- **Witness comparison:** After bootstrap or consolidation, compare generated Markdown against the lex.bg and Ministry of Justice consolidated texts for the same law. Normalize whitespace and quotes before diff. Every divergence is adjudicated per Directive 3 (D-061); none is accepted by deference to a witness, and the Gazette text arbitrates.
 - **Frontmatter validation:** All 13 YAML fields must be present and correctly populated.
 - **Encoding verification:** Output must be valid UTF-8 with no cp1251 artifacts.
 
@@ -136,17 +136,22 @@ Before promoting from any phase X to phase Y, every Open row in `docs/sync/DEFER
 
 ### Phase 3 -- DV Monitor
 
-- [ ] Poller detects new DV issues on Tue/Fri schedule
-- [ ] Amendment detector identifies affected laws
+*(Rewritten 2026-09-05, D-062. Detection is parse-not-fetch: ДВ exposes no amendment graph, only the ЗИД title and an inline citation.)*
+
+- [ ] Poller detects new ДВ issues by issue high-water mark (year, number), including извънредни issues published on any day; Tue/Fri is the baseline cadence, not the detection rule
+- [ ] Amendment detector resolves the amended act from the ЗИД title and the inline (ДВ, бр. N от YYYY г.) citation with a declension-aware matcher; an ambiguous match is flagged, never guessed
+- [ ] Every material of every polled issue is classified (in-corpus operation, or out of scope with reason); none is dropped silently
 - [ ] Alert or log for new amendments requiring processing
 - [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 4 -- Consolidation Engine
 
-- [ ] ZID parser handles substitution, addition, deletion (covers ~80% of amendments)
-- [ ] Patcher applies parsed amendments to Markdown
-- [ ] Validator compares result against lex.bg oracle
-- [ ] Accuracy >= 70% on regex-only; >= 90% with LLM fallback
+*(Rewritten 2026-09-05, D-060. The former bullets required ЗИД coverage of about 80 percent and accuracy of 70 to 90 percent. Directive 9 forbids a percentage as evidence of closure, and the owner ratified the LawVM two-level acceptance model on 2026-06-22.)*
+
+- [ ] ЗИД parser lowers every form of the enumerated amendment grammar into the 4-operation kernel (replace, insert, repeal, text_replace); renumbering and restructuring are elaborations that lower to the kernel; an unrecognised form is flagged for reasoning-assisted elaboration, never guessed
+- [ ] Patcher applies operations only through the single corpus write gate; replay invariants hard-fail (a failed operation writes nothing, no operation touches outside its target, text_replace requires the declared occurrence count, no duplicate sibling labels, no silent target guessing or date estimation)
+- [ ] Validator compares the result against both witnesses (lex.bg, Ministry of Justice portal) and adjudicates every divergence into a lane; the Gazette text arbitrates
+- [ ] Closure: zero unadjudicated divergences over the acts in scope, and every act carries its provenance grade (A, B or C per Directive 2)
 - [ ] All Open rows in `docs/sync/DEFERRED.md` with Target ≤ this phase have been resolved per the universal phase-promotion gate above.
 
 ### Phase 5 -- Legalize Contribution

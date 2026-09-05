@@ -58,6 +58,7 @@ Tasks 1–6 can proceed with none of these answered.
 - **NEVER run `scripts/fr034_verify.py baseline`.** `.fr034-baseline.json` (repo root, untracked, **417,566 bytes**) is the irreplaceable pre-sweep floor. It now has a `FR034_FORCE=1` guard — do not set that variable. Task 6's `article-baseline` gets the same guard and the same discipline.
 - **NEVER `git add -A` / `git add .`.** Untracked and never to be committed: `catalog.db` (1.4 GB) and the six `*fr034*.log` census files (gitignored as of `main`).
 - **Owner-gated — never touch, stage, or revert:** `.claude/CLAUDE.md` (carries a pre-existing uncommitted modification) and `docs/sync/SYNC-NOTICE-2026-07-07.md` (untracked).
+  *Resolved 2026-09-05 on owner instruction (D-063): the notice was folded into the ledgers and deleted, and the CLAUDE.md inbox block removed. The clause above is historical.*
 - **Corpus `.md` files are written ONLY by `refresh.py`.** Never hand-edit. Never hand-write a corpus commit.
 - Before any sweep: back up `.refresh-state.json` into `.superpowers/fr034-preserved/`, then delete it. A surviving checkpoint makes the sweep a **silent no-op** — this bit two prior sessions.
 - On a Cloudflare halt: **STOP and report.** Cookie minting is interactive and happens in the main session (D-047 path: `--cookie-file` + Playwright-minted `cf_clearance`). Do not improvise fetch workarounds.
