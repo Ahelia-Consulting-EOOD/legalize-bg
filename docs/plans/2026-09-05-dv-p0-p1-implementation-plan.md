@@ -726,6 +726,8 @@ After the body fetch has run (`python -m fetcher.dv bodies --materials data/dv/m
 
 Design section 8 puts „5.3 resolver **with its reasoning pass**“ inside P0, and design 5.3 says what shape it takes: a `title_ambiguous` event is recorded `unlocated` and `pending` and queued for a pass that reads the material and emits `{id_mat, instruction, law_id, verdict, reason}` as data, cached and re-runnable, exactly the flagger-reasoner-applier shape D-055 chose for FR-030. Neither the merged branch nor the rest of this plan contains one, and without it every `title_ambiguous` event stays `pending`, which pins its act at B-pending permanently. This task builds the file format and the applier; **the reasoning itself is performed at orchestration time by the session reading the material, not by code.**
 
+**Inputs beyond `unresolved.csv`.** Rows of `coverage-map.csv` whose `resolver_flags` contain `content_mismatch` or `numbered_key_tie` are reviewed in the reasoning pass alongside `unresolved.csv`, because they are attributions the resolver made across a changed content word or a non-unique key. Under this task that review is advisory: the record key of `resolutions.yaml` admits only rows of `unresolved.csv`, so a wrong attribution found this way is recorded as a finding in the research note that accompanies the map (`report.md` is regenerated on every run and has no input channel for it), and the attribution itself is corrected only once a later task widens the record key to a `coverage-map.csv` row.
+
 **Files:**
 - Create: `docs/research/2026-09-05-dv-coverage-map/resolutions.yaml`
 - Modify: `scripts/dv_coverage_map.py` (`--resolutions PATH`)

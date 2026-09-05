@@ -41,4 +41,5 @@ exclude = ["tests*", "scripts*", "research*", "docs*"]
 testpaths = ["tests"]
 markers = [
     "perf: latency budgets against the live catalog (excluded in CI; run locally on a quiet machine)",
+    "slow: whole-corpus measurements (tens of seconds; they run in CI, since they are the evidence the resolver's bounds are justified by)",
 ]
