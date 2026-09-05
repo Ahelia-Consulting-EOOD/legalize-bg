@@ -92,7 +92,8 @@ def _article_counts(conn):
     q = f"""SELECT law_id, article,
                    SUM(paragraph IS NOT NULL AND implicit = 0) AS explicit_alineas,
                    SUM(paragraph IS NULL) AS articles
-              FROM provisions WHERE {CURRENT} GROUP BY law_id, article"""
+              FROM provisions WHERE {CURRENT} GROUP BY law_id, article
+         ORDER BY law_id, article"""
     out = {}
     for law, article, alineas, articles in conn.execute(q):
         out.setdefault(law, {})[article] = {
@@ -207,6 +208,16 @@ def article_baseline():
 
 
 def article_check():
+    """Per-article loss check against ``.article-baseline.json`` (D-058 iv).
+
+    Reports losses only: an article present in the baseline and absent now
+    (A2), an act absent now (one summary line), and per-article alinea losses
+    (A1/A3). Articles that exist now but not in the baseline are deliberately
+    not reported, so a renumbering that moves чл. 5 to чл. 5а shows as
+    "5 vanished" and nothing more; an act whose law_id changed is
+    indistinguishable from a removed act and raises the loudest line. Rows are
+    ordered by (law_id, article) so the findings file diffs cleanly between runs.
+    """
     base = json.load(open(ARTICLE_BASELINE))
     conn = sqlite3.connect(DB)
     now = _article_counts(conn)
