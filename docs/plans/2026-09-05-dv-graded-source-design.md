@@ -1,4 +1,4 @@
-# Design: the graded source model (approach C) — a ДВ-anchored corpus
+# Design: the graded source model (approach C), a ДВ-anchored corpus
 
 **Status:** DESIGN, owner-ratified in direction on 2026-09-05 (D-059 to D-063); written 2026-09-05 for owner review before the implementation plan.
 **Owner:** ekimir. **Author:** Claude session of 2026-09-05.
@@ -74,16 +74,23 @@ Every amendment event (a row of `amendment_history`, or a Gazette material the r
 
 ### 4.2 Grade per act
 
-The grade is derived, never set by hand, as the weakest link over the act's base and events:
+The grade is derived, never set by hand, as the weakest link over the act's base and events. The
+canonical definitions live in `docs/process/COVERAGE-FLOOR.md`, section Provenance floor (PR #25);
+this table restates them with the derivation in terms of the event fields of 4.1.
 
-| Grade | Derivation |
-|---|---|
-| **A, ДВ-complete** | base `source = dv_html` and `applied = rebuilt`; every event `source = dv_html` and `applied in {rebuilt, replayed}`; replay invariants pass; unadjudicated witness divergences = 0 |
-| **B, ДВ-audited snapshot** | base is a lex.bg snapshot or a `dv_pdf` reading; every event dated 1989 or later has `source in {dv_html, dv_pdf}` and `applied in {replayed, verified}`; the grade record carries the count of events still `pending` and the estimated Gazette pages to read for them |
-| **B-pending** | as B but at least one 1989-or-later event is `pending` or `snapshot`; this is the state most old acts will hold during the transition and it is a grade, not an absence of one |
-| **C, pre-1989 base** | the promulgation or at least one event is `dv_offline` |
+| Grade | Derivation | Gate that earns it |
+|---|---|---|
+| **A, ДВ-complete** | base `source = dv_html`, `applied = rebuilt`; every event `source = dv_html`, `applied = replayed` (until the engine exists, only acts with no events qualify) | write gate accepts; replay invariants pass; unadjudicated witness divergences = 0 |
+| **B, ДВ-audited** | base is a lex.bg snapshot (`source = lexbg`) or a PDF-read Gazette text (`source = dv_pdf`); every event with `source in {dv_html, dv_pdf}` has `applied in {replayed, verified}`; no event `pending` | snapshot frozen only after the single lex.bg repair sweep (Directive 14) and the FR-041 capture ran on it; every online event's `applied` state recorded |
+| **B-pending** | as B, but at least one online event is `pending` (located, not yet read, replayed or verified); the record carries the pending count and the estimated Gazette pages to read | none yet; a grade in its own right, held by most older acts during the transition |
+| **C, pre-1989 base** | the promulgation or at least one event has `source = dv_offline`; every online event is still sourced and verified as for B, and the pending counter applies | separate track; never rises without a sourcing decision (D-038/D-039 revisit) |
 
-A rebuilt single-issue act (no amendments) is grade A the moment its base passes the gates. An act promulgated in 2003 and amended twelve times since is grade B until its base has been read from the issue PDF, after which it can become A only if the replay from that base is clean. ЗЗД (1950) is C for as long as its origin is offline, with every post-1989 event nevertheless sourced and verified.
+**ДВ-anchored** means grade A or B. B-pending and C acts are not anchored; lex.bg re-scrape stays
+permitted for them and is recorded per act (Directive 2). A rebuilt single-issue act is grade A the
+moment its base passes the gates. An act promulgated in 2003 and amended twelve times since is
+B-pending until its 2003 base has been read from the issue PDF and every event verified, B after
+that, and A only if a clean replay from a Gazette base replaces the snapshot. ЗЗД (1950) is C for as
+long as its origin is offline, with every post-1989 event nevertheless sourced and verified.
 
 ### 4.3 Where the grade lives
 
@@ -162,7 +169,7 @@ A 2026 act, promulgated in ДВ бр. 32/2026 (idMat 242220), with a one-issue c
 3. The write gate accepts the file; `fuente` becomes `dv.parliament.bg`; the provenance block records grade A with base `dv_html`, `id_mat` 242220.
 4. Witness diff against lex.bg: the expected divergences are exactly the § 1 definitions, the en-dash versus hyphen style, the two й/и typos and lex.bg's consolidation notes; each is adjudicated into a lane (source pathology on lex.bg's side for the omission and the typos, editorial for the rest); unadjudicated count 0.
 5. `get_article` answers § 1 through the provisions index (which today carries no § rows for any act; adding them is a small provisions change registered in the plan, since the pilot's whole point is a § the corpus lacked).
-6. The commit is a `[popravka]` with `Source-Id: dv-242220`, `Source-Date: 2026-04-01`, through the pipeline, never by hand.
+6. The commit carries `Source-Id: dv-242220` and `Source-Date: 2026-04-01` and is made by the pipeline, never by hand; its commit type and the `Norm-Id` form for Gazette-sourced acts are settled in the Surface 5 IMPLEMENTATION-PREFLIGHT the delivery contract now requires before the pilot (PR #25).
 
 Acceptance for the pilot as a whole: every step above passes with the gates strict, the act is grade A in frontmatter, index, MCP and REST, and the takt-plan programme's follow-up FU-002 can close against it.
 
@@ -176,7 +183,7 @@ Acceptance for the pilot as a whole: every step above passes with the gates stri
 | **P3** | Grade B audit over the remaining acts; PDF-era reading in owner-chosen order | every 1989-or-later event `verified` or `pending` with a page estimate | reading budget |
 | **P4** | Grade C track | separate design | source decision (D-038/D-039 revisit) |
 
-PR #23's remaining phases (heading state, remnants, anchors, addresses, citations, annex classification) run on the snapshot acts as before, since they are the base of grades B and C, and they are the pre-cutover gate for any act that stays snapshot-based. Its single repair sweep (Part V phase 7) is re-scoped to the acts that keep a lex.bg base; grade A acts are repaired by rebuild, not by re-photograph.
+PR #23's remaining phases (heading state, remnants, anchors, addresses, citations, annex classification) run on the snapshot acts as before, since they are the base of grades B and C, and they are the pre-cutover gate for any act that stays snapshot-based. Its single repair sweep (Part V phase 7) is re-scoped to the acts that keep a lex.bg base; grade A acts are repaired by rebuild, not by re-photograph. A Gazette rebuild is a new pipeline generation for the act, not a repair sweep under Directive 14, and a grade B or C snapshot is frozen only after that sweep and the FR-041 capture have run on it (Directive 2 as amended).
 
 ## 9. Changes to PR #23
 

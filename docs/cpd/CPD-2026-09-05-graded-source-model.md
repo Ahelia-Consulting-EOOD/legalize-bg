@@ -1,4 +1,4 @@
-# CPD-2026-09-05: graded source model (approach C) — re-anchoring the corpus on Държавен вестник
+# CPD-2026-09-05: graded source model (approach C), re-anchoring the corpus on Държавен вестник
 
 **Status:** PROPOSED 2026-09-05; direction ratified by the owner the same day (D-059 to D-063, PR #25). This CPD records the cross-cutting change so every affected component is changed together and none by surprise.
 **Origin:** owner review of 2026-09-05 after PR #24 proved that lex.bg omits promulgated sections and after six correction sweeps failed to bound lex.bg's parser blind-spot classes.
