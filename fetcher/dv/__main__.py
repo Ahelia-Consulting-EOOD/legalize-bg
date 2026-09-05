@@ -57,7 +57,7 @@ from fetcher.dv.materials import (
     parse_material_header,
     parse_materials,
 )
-from fetcher.dv.materials import MATERIALS_URL
+from fetcher.dv.materials import fetch_materials_page
 from fetcher.dv.sections import selected
 
 #: Consecutive „недостъпен“ stubs that mean the site is down rather than
@@ -177,6 +177,20 @@ def _finished_ids(path: Path, resume: bool) -> set[int]:
     return {row["id_obj"] for row in kept if "id_obj" in row}
 
 
+def _written_material_ids(path: Path) -> set[int]:
+    """Every idMat already in the output file, the seed of the leak guard.
+
+    Two issues never share a material, so a material that reappears under a
+    second issue means the server ignored idObj (session-bound selection,
+    2026-09-05). Seeding from the whole file rather than from the previous
+    issue in memory keeps the guard armed across a resume boundary and
+    catches a repeat that is not adjacent.
+    """
+    if not path.exists():
+        return set()
+    return {row["id_mat"] for row in _read_jsonl(path) if "id_mat" in row}
+
+
 def _too_many_unrecognized(unrecognized: int, processed: int) -> bool:
     """Whether unreadable pages have stopped being an anomaly."""
     if processed <= UNRECOGNIZED_EARLY_WINDOW:
@@ -243,6 +257,11 @@ def cmd_materials(args, session) -> int:
     # A run of them that ends in a halt is discarded rather than written,
     # because „no such issue“ is exactly what those rows would claim.
     pending_errors: list[dict] = []
+    # Every idMat written so far, including those already in the file when
+    # resuming. Two different issues never share a material, so any overlap
+    # means the server ignored idObj (session-bound issue selection, found
+    # 2026-09-05) and every further row would be a copy of the wrong issue.
+    seen_ids: set[int] = _written_material_ids(out) if args.resume else set()
 
     with out.open("a" if args.resume else "w", encoding="utf-8") as handle:
         for issue in issues:
@@ -253,7 +272,7 @@ def cmd_materials(args, session) -> int:
                 "issue_number": issue.get("number"),
                 "issue_date": issue.get("date"),
             }
-            html = session.get(MATERIALS_URL, params={"idObj": id_obj})
+            html = fetch_materials_page(session, id_obj)
             status = classify_page(html)
             processed += 1
 
@@ -306,6 +325,19 @@ def cmd_materials(args, session) -> int:
                 continue
 
             rows = parse_materials(html)
+            ids = {row.id_mat for row in rows}
+            repeated = ids & seen_ids
+            if repeated:
+                halt = (
+                    f"id_obj {id_obj} returned {len(repeated)} material(s) already "
+                    f"written under another issue (the same materials as before). Two "
+                    f"issues never share a material: the server is serving a "
+                    f"session-bound issue and ignoring idObj. Nothing from this issue "
+                    f"was written; fix the client (fresh session per request) and "
+                    f"re-run with --resume."
+                )
+                break
+            seen_ids |= ids
             counts["ok"] += len(rows)
             for row in rows:
                 _write_line(
@@ -324,9 +356,9 @@ def cmd_materials(args, session) -> int:
         counts["error_page"] += _flush(handle, pending_errors)
 
     log.info(
-        "wrote %d materials, %d empty issues, %d error pages, "
+        "wrote %d materials (%d distinct idMat), %d empty issues, %d error pages, "
         "%d unreadable pages to %s",
-        counts["ok"], counts["empty"], counts["error_page"],
+        counts["ok"], len(seen_ids), counts["empty"], counts["error_page"],
         counts["unrecognized"], out,
     )
     if halt is not None:

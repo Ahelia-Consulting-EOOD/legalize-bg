@@ -61,6 +61,18 @@ def material_zid_html() -> str:
     return read_fixture("showMaterial-idMat300-zid.html")
 
 
+class FakeJar:
+    """Stand-in for the requests cookie jar; records every clear()."""
+
+    def __init__(self, owner):
+        self._owner = owner
+        self.clears = 0
+
+    def clear(self) -> None:
+        self.clears += 1
+        self._owner.events.append(("clear", None))
+
+
 class FakeSession:
     """A DvSession stand-in that serves canned bodies and records calls.
 
@@ -75,9 +87,14 @@ class FakeSession:
         self._page_key = page_key or "broi_form:selectPage"
         self.gets: list[tuple[str, dict | None]] = []
         self.posts: list[tuple[str, dict]] = []
+        # Ordered record of jar clears and requests, so a test can assert
+        # that a clear happened BEFORE a request and not merely somewhere.
+        self.events: list[tuple[str, object]] = []
+        self.cookies = FakeJar(self)
 
     def get(self, url: str, *, params=None, timeout: int = 30) -> str:
         self.gets.append((url, dict(params) if params else None))
+        self.events.append(("get", dict(params) if params else None))
         for key, value in (params or {}).items():
             if (key, value) in self._by_param:
                 return self._by_param[(key, value)]
