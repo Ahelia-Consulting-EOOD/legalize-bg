@@ -48,6 +48,16 @@ _ERROR_MARKERS = (
 log = logging.getLogger(__name__)
 
 
+class DvUnavailable(RuntimeError):
+    """The site served its „недостъпен“ view where a page was expected.
+
+    On `materiali.faces` this body is an ordinary answer, because the
+    idObj space is sparse and a gap answers this way. Anywhere else it
+    means the site is down, and the run must say so rather than report a
+    missing HTML element it went looking for afterwards.
+    """
+
+
 def url_for(path: str) -> str:
     """Absolute URL for a page of the ДВ web application."""
     return urljoin(BASE, path)
@@ -165,8 +175,12 @@ class DvSession:
             )
 
             if resp.status_code == 429 or 500 <= resp.status_code < 600:
-                body = resp.content.decode(ENCODING)
-                if is_dv_error_body(body):
+                # Lenient for the marker test only: whether a byte
+                # sequence is legal UTF-8 must not decide whether a 5xx is
+                # retried. A proxy's Latin-1 error page during an outage
+                # would otherwise raise out of the retry path. The body
+                # that is returned is still decoded strictly.
+                if is_dv_error_body(resp.content.decode(ENCODING, errors="replace")):
                     # A permanent „no such object“ wearing a 500. Hand the
                     # body back so the caller records it as a fact about
                     # the id instead of paying three retries for it.
@@ -174,7 +188,7 @@ class DvSession:
                         "%s %s -> site error view (status %d); not retrying",
                         method, url, resp.status_code,
                     )
-                    return body
+                    return resp.content.decode(ENCODING)
                 if attempt < self._max_retries:
                     backoff = self._retry_base_sec * (2 ** attempt)
                     log.warning(

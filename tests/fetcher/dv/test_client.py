@@ -127,6 +127,22 @@ def test_the_sites_error_stub_is_a_permanent_answer_not_a_retry():
     assert session.clock.slept == []
 
 
+def test_a_5xx_body_that_is_not_utf8_is_retried_not_raised():
+    # The marker test must not be the thing that decides whether a byte
+    # sequence is legal. A proxy's Latin-1 error page during an outage
+    # would otherwise raise UnicodeDecodeError out of the retry path.
+    class RawResponse(FakeResponse):
+        def __init__(self, raw: bytes, status: int):
+            self.content = raw
+            self.status_code = status
+
+    session = make_session(
+        [RawResponse(b"<html>\xff\xfe not utf-8</html>", 502), FakeResponse("done")]
+    )
+    assert session.get(url_for("a")) == "done"
+    assert len(session.calls) == 2
+
+
 def test_a_server_error_with_a_real_body_is_still_retried():
     session = make_session(
         [FakeResponse("<html>oops</html>", 500), FakeResponse("done")]

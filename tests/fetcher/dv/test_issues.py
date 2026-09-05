@@ -7,6 +7,7 @@ rather than as an empty list.
 
 import pytest
 
+from fetcher.dv.client import DvUnavailable
 from fetcher.dv.issues import (
     ISSUE_LIST_PATH,
     IssueRow,
@@ -20,7 +21,10 @@ from fetcher.dv.issues import (
     parse_view_state,
 )
 
-from .conftest import FakeSession
+from .conftest import FakeSession, read_fixture
+
+#: The 489-byte „недостъпен“ stub, which the site can serve for any URL.
+ERROR_BODY = read_fixture("materiali-idObj6000-error.html")
 
 
 # --- pure parsers ---------------------------------------------------------
@@ -39,9 +43,7 @@ def test_page1_first_row_fields(issue_page1):
     assert first.date == "2026-09-04"
     assert first.year == 2026
     assert first.section == 1
-    # The row markup carries no regular/extraordinary marker, so the flag
-    # stays unknown rather than being guessed.
-    assert first.extraordinary is None
+    assert first.extraordinary is False
 
 
 def test_page1_rows_are_in_document_order(issue_page1):
@@ -54,6 +56,55 @@ def test_page2_first_and_last_rows(issue_page2):
     assert len(rows) == 10
     assert (rows[0].number, rows[0].id_obj, rows[0].date) == (71, 12620, "2026-08-07")
     assert (rows[-1].number, rows[-1].id_obj, rows[-1].date) == (62, 12599, "2026-07-07")
+
+
+# --- редовен / извънреден -------------------------------------------------
+
+
+def test_an_extraordinary_issue_is_flagged(issue_page1):
+    # Two rows of the captured page print „(извънреден)“ after the date:
+    # „Брой 78, 26.8.2026 г. (извънреден)“ and the same for брой 75.
+    rows = parse_issue_rows(issue_page1)
+    assert (rows[3].number, rows[3].extraordinary) == (78, True)
+    assert (rows[6].number, rows[6].extraordinary) == (75, True)
+    assert [r.number for r in rows if r.extraordinary] == [78, 75]
+
+
+def test_a_regular_issue_is_flagged_false_not_unknown(issue_page1):
+    # The list marks извънредни issues explicitly and says nothing about
+    # the rest, so silence is evidence of a редовен issue rather than an
+    # absence of evidence. A constant in either direction fails here.
+    assert [r.extraordinary for r in parse_issue_rows(issue_page1)] == [
+        False, False, False, True, False, False, True, False, False, False,
+    ]
+
+
+def test_a_page_of_regular_issues_flags_none(issue_page2):
+    rows = parse_issue_rows(issue_page2)
+    # The filter select above the results offers „извънреден“ as an
+    # option; that is not a row and must not flag one.
+    assert "извънреден" in issue_page2
+    assert [r.extraordinary for r in rows] == [False] * 10
+
+
+def test_the_word_in_a_title_does_not_flag_a_row(issue_page1):
+    # The marker is the parenthesised word on the issue's own line, not
+    # the word anywhere in the cell.
+    mutated = issue_page1.replace(
+        "Брой 81, 4.9.2026 г.", "Брой 81, 4.9.2026 г. извънредно положение"
+    )
+    rows = parse_issue_rows(mutated)
+    assert rows[0].number == 81
+    assert rows[0].extraordinary is False
+
+
+# --- the section ----------------------------------------------------------
+
+
+def test_a_row_without_a_section_reports_none(issue_page1):
+    # `0` is not a section of the Gazette; an absent parameter is unknown.
+    mutated = issue_page1.replace("['razdel_','1']", "['dial_','1']")
+    assert [r.section for r in parse_issue_rows(mutated)] == [None] * 10
 
 
 def test_download_links_are_not_mistaken_for_issue_rows(issue_page1):
@@ -183,6 +234,35 @@ def test_enumerate_is_deterministic(issue_page1, issue_page2):
     first = list(enumerate_issues(_session(issue_page1, issue_page2), max_pages=2))
     second = list(enumerate_issues(_session(issue_page1, issue_page2), max_pages=2))
     assert first == second
+
+
+def test_a_stub_answer_to_a_pagination_post_is_named_as_an_outage(issue_page1):
+    # It stopped before this change too, but with „no <select
+    # id='broi_form:selectPage'> in the response“, which names a missing
+    # element rather than the site being down.
+    session = FakeSession(
+        get_bodies={ISSUE_LIST_PATH: issue_page1},
+        post_bodies={2: ERROR_BODY},
+    )
+    with pytest.raises(DvUnavailable) as exc:
+        list(enumerate_issues(session, max_pages=2))
+    assert "page 2" in str(exc.value)
+
+
+def test_a_stub_answer_to_the_first_get_is_named_as_an_outage():
+    session = FakeSession(get_bodies={ISSUE_LIST_PATH: ERROR_BODY})
+    with pytest.raises(DvUnavailable):
+        list(enumerate_issues(session))
+
+
+def test_a_page_count_of_zero_says_so(issue_page1, monkeypatch):
+    # Not „start_page 1 is past the last page (0)“, which misnames the
+    # fault as the caller's.
+    monkeypatch.setattr("fetcher.dv.issues.parse_page_count", lambda html: 0)
+    session = FakeSession(get_bodies={ISSUE_LIST_PATH: issue_page1})
+    with pytest.raises(ValueError) as exc:
+        list(enumerate_issues(session))
+    assert "no pages" in str(exc.value)
 
 
 def test_enumerate_stops_at_the_last_page(issue_page1, issue_page2, monkeypatch):

@@ -18,14 +18,23 @@ One line per issue of the Gazette, in the order the list serves it
 (newest first). About 4,150 lines, 415 list pages, one request per page.
 
 ```json
-{"year": 2026, "number": 81, "date": "2026-09-04", "id_obj": 12640, "section": 1, "extraordinary": null}
+{"year": 2026, "number": 81, "date": "2026-09-04", "id_obj": 12640, "section": 1, "extraordinary": false}
 ```
 
 `number` is the issue number inside its year and `id_obj` the identifier
 `materiali.faces` takes. `id_obj` is sparse and not chronological, so it
-is never derived, only recorded. `extraordinary` is `null` unless the row
-says otherwise, which it does not today; the flag is there because the
-list form can filter on it and a later capture may expose it per row.
+is never derived, only recorded.
+
+`extraordinary` is read from the row itself, which prints the marker
+after the date: „Брой 78, 26.8.2026 г. (извънреден)“. Two of the ten
+rows of the captured first page carry it, брой 78 and брой 75 of 2026.
+It is `false`, not `null`, for the rest: the list marks извънредни
+issues explicitly and says nothing about the others, so silence is
+evidence of a редовен issue rather than an absence of evidence.
+
+`section` is `1` for официалния раздел and `null` only if a row omits
+`razdel_`, which no captured row does. It is never `0`, which would be a
+section that does not exist.
 
 ## `materials.jsonl`
 

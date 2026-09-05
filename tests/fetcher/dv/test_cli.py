@@ -34,9 +34,10 @@ def test_issues_writes_one_line_per_issue(tmp_path, issue_page1, issue_page2):
         "date": "2026-09-04",
         "id_obj": 12640,
         "section": 1,
-        "extraordinary": None,
+        "extraordinary": False,
     }
     assert rows[-1]["id_obj"] == 12599
+    assert [r["number"] for r in rows if r["extraordinary"]] == [78, 75]
 
 
 def test_issues_output_is_utf8_and_not_escaped(tmp_path, issue_page1):
@@ -91,7 +92,7 @@ def write_issues(tmp_path, *id_objs):
                         "date": "2016-09-20",
                         "id_obj": id_obj,
                         "section": 1,
-                        "extraordinary": None,
+                        "extraordinary": False,
                     },
                     ensure_ascii=False,
                 )

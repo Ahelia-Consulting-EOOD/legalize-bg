@@ -29,7 +29,7 @@ from dataclasses import dataclass
 
 from bs4 import BeautifulSoup
 
-from fetcher.dv.client import url_for
+from fetcher.dv.client import DvUnavailable, is_dv_error_body, url_for
 
 ISSUE_LIST_PATH = "broeveList.faces"
 ISSUE_LIST_URL = url_for(ISSUE_LIST_PATH)
@@ -59,13 +59,22 @@ class IssueRow:
     number: int
     date: str  # ISO 8601, yyyy-mm-dd
     id_obj: int
-    section: int
-    #: True when the row says „извънреден“; None when the row is silent,
-    #: which is the normal case. Never guessed from anything else.
-    extraordinary: bool | None
+    #: 1 is официалният раздел. None when the row omits `razdel_`, which
+    #: no captured row does; `0` would be a section that does not exist.
+    section: int | None
+    #: True when the row prints „(извънреден)“ after the date, as брой 78
+    #: and брой 75 of 2026 do. False otherwise: the list marks извънредни
+    #: issues explicitly and says nothing about the rest, so silence is
+    #: evidence of a редовен issue rather than an absence of evidence.
+    extraordinary: bool
 
 
 _PARAM_RE = re.compile(r"\['([A-Za-z_]+)','([^']*)'\]")
+
+#: The row prints „Брой 78, 26.8.2026 г. (извънреден)“. Matching the
+#: parenthesised word rather than the bare one keeps a title that happens
+#: to contain „извънредно“ from flagging its issue.
+_EXTRAORDINARY_RE = re.compile(r"\(\s*извънред", re.IGNORECASE)
 
 
 def _submit_params(onclick: str) -> dict[str, str]:
@@ -87,14 +96,15 @@ def parse_issue_rows(html: str) -> list[IssueRow]:
         date = params["date_izd_"]
         text = anchor.find_parent("td")
         markup = text.get_text(" ", strip=True) if text is not None else ""
+        razdel = params.get("razdel_")
         rows.append(
             IssueRow(
                 year=int(date[:4]),
                 number=int(params["broi_"]),
                 date=date,
                 id_obj=int(params["idObj"]),
-                section=int(params.get("razdel_", 0)),
-                extraordinary=True if "извънред" in markup.lower() else None,
+                section=int(razdel) if razdel else None,
+                extraordinary=_EXTRAORDINARY_RE.search(markup) is not None,
             )
         )
     return rows
@@ -183,6 +193,22 @@ def build_page_post_body(view_state: str, page: int) -> dict[str, str]:
     }
 
 
+def _demand_a_page(html: str, what: str) -> str:
+    """The body, unless the site answered with its „недостъпен“ view.
+
+    Without this the outage surfaces at the top of the next loop as „no
+    <select id='broi_form:selectPage'> in the response“, which names an
+    element this code went looking for rather than the reason it is not
+    there. The run stopped either way; only the log was misleading.
+    """
+    if is_dv_error_body(html):
+        raise DvUnavailable(
+            f"the issue list served its „недостъпен“ view for {what}; "
+            "the site is down"
+        )
+    return html
+
+
 def enumerate_issues(
     session,
     *,
@@ -207,8 +233,12 @@ def enumerate_issues(
     if start_page < 1:
         raise ValueError(f"start_page must be 1 or more, got {start_page}")
 
-    html = session.get(ISSUE_LIST_URL)
+    html = _demand_a_page(session.get(ISSUE_LIST_URL), "the first page")
     total_pages = parse_page_count(html)
+    if total_pages < 1:
+        raise ValueError(
+            "the issue list offered no pages at all; its markup has changed"
+        )
     if start_page > total_pages:
         raise ValueError(
             f"start_page {start_page} is past the last page ({total_pages})"
@@ -219,8 +249,11 @@ def enumerate_issues(
 
     page = start_page
     if start_page != 1:
-        html = session.post(
-            ISSUE_LIST_URL, build_page_post_body(parse_view_state(html), start_page)
+        html = _demand_a_page(
+            session.post(
+                ISSUE_LIST_URL, build_page_post_body(parse_view_state(html), start_page)
+            ),
+            f"page {start_page}",
         )
 
     yielded = 0
@@ -241,6 +274,9 @@ def enumerate_issues(
         if page >= total_pages:
             return
         page += 1
-        html = session.post(
-            ISSUE_LIST_URL, build_page_post_body(parse_view_state(html), page)
+        html = _demand_a_page(
+            session.post(
+                ISSUE_LIST_URL, build_page_post_body(parse_view_state(html), page)
+            ),
+            f"page {page}",
         )
