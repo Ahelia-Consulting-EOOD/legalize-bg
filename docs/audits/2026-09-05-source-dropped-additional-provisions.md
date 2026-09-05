@@ -33,8 +33,16 @@ Two rules over `laws/`, `codes/`, `ordinances/`, `implementing/`, `regulations/`
 
 The second rule over-approximates: an ordinance adopted by a decree whose §§ belong to the decree,
 or an act whose lex.bg rendering numbers its provisions from the amending act, can start above 1
-legitimately. Every row below is a candidate to adjudicate against the State Gazette, not a
-confirmed defect; the 25 rows where both rules fire are the strongest candidates.
+legitimately. It also fires when the act's own § 1 is present but unbolded, since the rule counts
+only bold `**§ N.**` marks: 8 of the 95 files below carry a plain `§ 1.` line at line start, and in
+those the low number is not evidence of a gap. Every row below is a candidate to adjudicate against
+the State Gazette, not a confirmed defect; the 25 rows where both rules fire are the strongest
+candidates.
+
+The first rule reaches only acts that keep the two sections under separate headings. Where an act
+combines them in one heading, as `ДОПЪЛНИТЕЛНИ И ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ` does in 5 corpus files,
+the heading-followed-by-heading shape cannot arise and an omission under that heading is invisible
+to the scan.
 
 ## Results at 5e92aa30
 
@@ -137,6 +145,41 @@ Files flagged: 95; `additional-empty` 25; `paragraph-start-above-1` 95.
 | `regulations/ustroystven-pravilnik-na-ministerstvoto-na-zdraveopazvaneto.md` | no | lowest § is 16 |
 | `regulations/ustroystven-pravilnik-na-natsionalniya-savet-po-tseni-i-reimbursirane-na-lekarst.md` | no | lowest § is 5 |
 | `regulations/ustroystven-pravilnik-na-oblastnite-administratsii.md` | no | lowest § is 3 |
+
+## Detector revision (review of 2026-09-05)
+
+The review of PR #27 found two heading forms the `additional-empty` rule could not reach, both
+present in the corpus. Two changes to `scripts/structure_gaps.py` close them:
+
+1. The forward scan from an additional-provisions heading now steps over the amendment-block
+   qualifier line as well as blank lines. A consolidated act puts the amending act's name
+   (`КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА ...`) or its promulgation note (`(ОБН. - ДВ, ...)`) on
+   its own line between the two headings, and the scan used to stop there.
+2. The final-provisions pattern lost its end anchor and gained the singular forms. It now matches a
+   heading that names the amending act after it (`Заключителни разпоредби КЪМ ...`) and the section
+   names `Преходна разпоредба`, `Заключителна разпоредба` and `Преходни и заключителна разпоредба`.
+
+Re-run over the same corpus state (the corpus is byte-identical between 5e92aa30 and this branch,
+so the two runs compare directly): `additional-empty` 33, `paragraph-start-above-1` 95, files 103.
+The numbering rule is untouched and its 95 rows are unchanged; the file total rises because none of
+the eight new `additional-empty` files fires the numbering rule. No row of the table above was lost.
+The Disposition below counts against the 25-row baseline; the adjudication batch grows by these
+eight.
+
+| file | heading line | form the earlier pattern missed |
+| --- | --- | --- |
+| `codes/nakazatelno-protsesualen-kodeks.md` | 5658 | qualifier line, then a qualified `Заключителни разпоредби КЪМ ...` |
+| `ordinances/naredba-2-ot-17-april-2026-g-za-usloviyata-i-reda-za-prilagane-i-nablyudenie-na-.md` | 124 | singular `Заключителна разпоредба` |
+| `ordinances/naredba-8-ot-26-noemvri-2007-g-za-usloviyata-i-reda-za-finansirane-na-diagnostik.md` | 229 | singular `Заключителна разпоредба` |
+| `ordinances/naredba-rd-02-20-2-ot-20-dekemvri-2017-g-za-planirane-i-proektirane-na-komunikat.md` | 2049 | qualifier line, then a qualified `Преходни и заключителни разпоредби КЪМ ...` |
+| `ordinances/naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p.md` | 700 | qualifier line, then singular `Преходна разпоредба` |
+| `ordinances/naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-2.md` | 1136 | qualifier line, then singular `Преходна разпоредба` |
+| `ordinances/naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-9.md` | 387 | qualifier line, then singular `Преходна разпоредба` |
+| `ordinances/naredba-za-usloviyata-i-reda-za-izplashtane-na-kompensatsionni-sumi-na-darzhavni-2.md` | 94 | singular `Заключителна разпоредба` |
+
+In each of the five qualifier cases the skipped line is an amending-act title, not section text, so
+none of the eight is a false positive of the skip itself. Each remains a candidate to adjudicate
+against the State Gazette on the same terms as the 25.
 
 ## Disposition
 

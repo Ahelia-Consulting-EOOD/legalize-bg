@@ -57,5 +57,5 @@ additional-provisions section.
 
 - `scripts/structure_gaps.py` and `tests/test_structure_gaps.py` (red first, four tests, self-test).
 - `docs/audits/2026-09-05-source-dropped-additional-provisions.md` (results and evidence).
-- `laws/zakon-za-obshtestveniya-transport.md`: § 1 with twelve definitions inserted from
-  ДВ бр. 32/2026, `gap_fill` provenance in the frontmatter.
+- `docs/cpd/CPD-2026-09-05-dv-gap-fill-additional-provisions.md`: this proposal, marked superseded
+  (D-059, D-063).
