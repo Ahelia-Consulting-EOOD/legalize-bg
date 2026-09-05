@@ -3,8 +3,8 @@
 Found on 2026-09-05, after the full sweep left eleven issues
 `unrecognized`: `materiali.faces?idObj=N` prints „Намерени резултати: 65“
 and lists thirty of them, with the rest behind the same JSF page select
-the issue list uses. The count-based discriminator did its job — it
-refused to call thirty of sixty-five a complete reading — and this is the
+the issue list uses. The count-based discriminator did its job. It
+refused to call thirty of sixty-five a complete reading, and this is the
 fix it was asking for.
 
 Page 2 is a POST inside the SAME session as the GET, because that GET is
@@ -470,6 +470,51 @@ def test_a_pagination_failure_halts_the_sweep_instead_of_truncating_the_issue(
         != 0
     )
     assert out.read_text(encoding="utf-8") == "", "half an issue is worse than none"
+
+
+def test_a_pagination_halt_discards_the_stubs_waiting_behind_it(
+    tmp_path, materials_page1_html, materials_page2_html, materials_page3_html
+):
+    # „No such issue“ and „the site is down“ arrive as the same 489-byte
+    # body, so a stub waits in the buffer until a readable answer proves
+    # the site was up. An outage in the middle of an issue is the site
+    # going down, by the exception's own message: committing the buffer
+    # then records three issues as non-existent on exactly the evidence
+    # the buffer exists to distrust, and --resume never asks again.
+    issues = write_issues(tmp_path, 9001, 9002, 9003, PAGINATED_ID_OBJ)
+    out = tmp_path / "materials.jsonl"
+    stubs = {("idObj", i): ERROR_PAGE for i in (9001, 9002, 9003)}
+    dying = FakeSession(
+        by_param={**stubs, ("idObj", PAGINATED_ID_OBJ): materials_page1_html},
+        post_bodies={2: ERROR_PAGE},
+        page_key="material_form:selectPage",
+    )
+    assert (
+        main(["materials", "--issues", str(issues), "--out", str(out)], session=dying)
+        != 0
+    )
+    assert out.read_text(encoding="utf-8") == "", "no gap was proven by this run"
+
+    healthy = FakeSession(
+        by_param={**stubs, ("idObj", PAGINATED_ID_OBJ): materials_page1_html},
+        post_bodies={2: materials_page2_html, 3: materials_page3_html},
+        page_key="material_form:selectPage",
+    )
+    assert (
+        main(
+            ["materials", "--issues", str(issues), "--out", str(out), "--resume"],
+            session=healthy,
+        )
+        == 0
+    )
+    assert [g[1]["idObj"] for g in healthy.gets] == [
+        9001, 9002, 9003, PAGINATED_ID_OBJ,
+    ], "the resume must ask the site about all four again"
+    rows = [json.loads(line) for line in out.read_text(encoding="utf-8").splitlines()]
+    assert [r["id_obj"] for r in rows if r["status"] == "error_page"] == [
+        9001, 9002, 9003,
+    ], "now a readable answer follows them, the gaps are real and recorded"
+    assert len([r for r in rows if r["status"] == "ok"]) == 65
 
 
 def test_resume_comes_back_to_an_issue_recorded_as_unrecognized(

@@ -234,10 +234,21 @@ def cmd_materials(args, session) -> int:
                 # complete and the missing materials would never be asked
                 # for again. Nothing of this issue is written, so --resume
                 # comes back to it whole.
+                #
+                # The stubs waiting in the buffer go with it, for the
+                # reason they were buffered: „no such issue“ and „the site
+                # is down“ are the same body, and only a readable answer
+                # settles which one arrived. This halt is the site going
+                # down mid-issue, so committing them here would record
+                # them as gaps on the evidence the buffer exists to
+                # distrust, and nothing would ask about them again.
+                discarded = len(pending_errors)
+                pending_errors.clear()
                 halt = (
                     f"the listing of id_obj {id_obj} could not be read to its end: "
-                    f"{failure}. Nothing from this issue was written; re-run with "
-                    f"--resume."
+                    f"{failure}. Nothing from this issue was written, and the "
+                    f"{discarded} stub(s) behind it were discarded rather than "
+                    f"recorded as gaps; re-run with --resume."
                 )
                 break
             status = classify_pages(pages)

@@ -38,3 +38,9 @@ rebuild-fr034*.log
 # Raw ДВ material HTML, cached by fetcher/dv (acquisition artefact, local only;
 # see data/dv/README.md). Never committed.
 data/dv/cache/
+
+# The raw materials sweep output (17 MB, ~33,700 lines). The corpus keeps
+# the compressed copy, data/dv/materials.jsonl.gz, and data/dv/issues.jsonl
+# stays committable; this is the working file the sweep and --resume
+# rewrite in place. See data/dv/README.md.
+data/dv/materials.jsonl

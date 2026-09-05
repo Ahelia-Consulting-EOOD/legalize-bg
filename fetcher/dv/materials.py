@@ -192,8 +192,8 @@ def parse_materials_all(pages: Iterable[str]) -> list[MaterialRow]:
     is number 31, not number 1 again.
 
     A material seen twice is kept once. Two pages of one issue never
-    share an idMat, so a repeat means a page was served twice — a stale
-    ViewState answered with page 1 again — and counting it would both
+    share an idMat, so a repeat means a page was served twice, a stale
+    ViewState answering with page 1 again, and counting it would both
     inflate the issue and hide the shortfall from `classify_pages`.
     """
     rows: list[MaterialRow] = []
@@ -326,8 +326,8 @@ def fetch_materials_page(session, id_obj: int) -> str:
 def parse_material_page_count(html: str) -> int:
     """How many pages this issue's listing has.
 
-    A listing that fits on one page prints no select at all — idObj 6121,
-    eighteen materials, has none — so the absence of a pager is one page
+    A listing that fits on one page prints no select at all. idObj 6121,
+    eighteen materials, has none, so the absence of a pager is one page
     rather than markup this code cannot read.
     """
     if find_page_select(html, _PAGE_SELECT_ID) is None:
