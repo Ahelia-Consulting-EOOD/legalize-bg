@@ -34,6 +34,7 @@ can be piped: its JSON is the only thing on stdout.
 import argparse
 import json
 import logging
+import os
 import sys
 from dataclasses import asdict
 from pathlib import Path
@@ -68,6 +69,15 @@ def _write_line(handle, obj: dict) -> None:
     handle.flush()
 
 
+def _flush(handle, pending: list[dict]) -> int:
+    """Commit the stub rows held back, and say how many. Empties `pending`."""
+    for row in pending:
+        _write_line(handle, row)
+    written = len(pending)
+    pending.clear()
+    return written
+
+
 def _read_jsonl(path: Path) -> list[dict]:
     """Read a JSONL file, tolerating a final line cut in half.
 
@@ -91,6 +101,25 @@ def _read_jsonl(path: Path) -> list[dict]:
                 break
             raise SystemExit(f"{path} line {number} is not JSON")
     return rows
+
+
+def _replace_atomically(path: Path, text: str) -> None:
+    """Put `text` in `path` without ever leaving `path` half written.
+
+    The resume rewrite is the one moment the sweep holds its whole record
+    in memory and nowhere else. A truncating write there turns a kill into
+    the loss of every row read so far, which is precisely the failure
+    `--resume` exists to survive. Writing beside the file and renaming
+    over it makes the swap a single filesystem operation: either the old
+    file or the new one, never half of either.
+    """
+    scratch = path.with_name(path.name + ".tmp")
+    scratch.write_text(text, encoding="utf-8")
+    try:
+        os.replace(scratch, path)
+    except OSError:
+        scratch.unlink(missing_ok=True)
+        raise
 
 
 def _finished_ids(path: Path, resume: bool) -> set[int]:
@@ -120,9 +149,9 @@ def _finished_ids(path: Path, resume: bool) -> set[int]:
     retry = {row.get("id_obj") for row in rows if row.get("status") == "unrecognized"}
     retry.add(rows[-1].get("id_obj"))
     kept = [row for row in rows if row.get("id_obj") not in retry]
-    path.write_text(
+    _replace_atomically(
+        path,
         "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in kept),
-        encoding="utf-8",
     )
     log.info(
         "resuming: re-fetching %d issue(s) that were unread or half written: %s",
@@ -230,6 +259,13 @@ def cmd_materials(args, session) -> int:
 
             if status == "unrecognized":
                 # Not a claim about the Gazette: a claim about this code.
+                # It is however a fact about the site: markup came back,
+                # so the site was up and the stubs behind us are real
+                # gaps. The run of stubs ends here, or the halt would
+                # fire on rows that were never adjacent and its message
+                # would say „consecutive“ of a set that is not.
+                counts["error_page"] += _flush(handle, pending_errors)
+                consecutive_errors = 0
                 counts["unrecognized"] += 1
                 _write_line(handle, {**identity, "status": "unrecognized"})
                 if _too_many_unrecognized(counts["unrecognized"], processed):
@@ -244,10 +280,7 @@ def cmd_materials(args, session) -> int:
 
             # A readable answer: the site is up, so the gaps behind us are
             # real gaps and can be committed.
-            for row in pending_errors:
-                _write_line(handle, row)
-            counts["error_page"] += len(pending_errors)
-            pending_errors.clear()
+            counts["error_page"] += _flush(handle, pending_errors)
             consecutive_errors = 0
             last_good = id_obj
 
@@ -272,9 +305,7 @@ def cmd_materials(args, session) -> int:
                     },
                 )
 
-        for row in pending_errors:
-            _write_line(handle, row)
-        counts["error_page"] += len(pending_errors)
+        counts["error_page"] += _flush(handle, pending_errors)
 
     log.info(
         "wrote %d materials, %d empty issues, %d error pages, "

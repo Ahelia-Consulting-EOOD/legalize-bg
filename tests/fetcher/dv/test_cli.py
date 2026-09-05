@@ -2,6 +2,7 @@
 
 import json
 import logging
+import os
 
 import pytest
 
@@ -503,3 +504,78 @@ def test_material_uses_the_cache_on_the_second_call(tmp_path, capsys, material_h
 def test_unknown_command_is_rejected():
     with pytest.raises(SystemExit):
         main(["nonsense"])
+
+
+# --- the resume rewrite must not be the step that loses the run -----------
+
+
+def test_a_failed_resume_rewrite_leaves_the_file_intact(
+    tmp_path, monkeypatch, materials_html, materials_empty_html
+):
+    # Resuming rewrites the output to drop the rows the sweep will ask for
+    # again. That rewrite must never be the step that destroys the record
+    # of everything read so far: a kill in the middle of a truncating
+    # write leaves half a file and the run's whole history is gone. A
+    # write beside the file followed by a rename makes the swap atomic, so
+    # a failure at the swap leaves the original untouched.
+    issues = write_issues(tmp_path, 6121, 5000)
+    out = tmp_path / "materials.jsonl"
+    session = FakeSession(
+        by_param={
+            ("idObj", 6121): materials_html,
+            ("idObj", 5000): materials_empty_html,
+        }
+    )
+    main(["materials", "--issues", str(issues), "--out", str(out)], session=session)
+    before = out.read_text(encoding="utf-8")
+    assert len(read_jsonl(out)) == 19
+
+    def boom(*args, **kwargs):
+        raise OSError("killed between the write and the rename")
+
+    monkeypatch.setattr(os, "replace", boom)
+    with pytest.raises(OSError):
+        main(
+            ["materials", "--issues", str(issues), "--out", str(out), "--resume"],
+            session=FakeSession(),
+        )
+    assert out.read_text(encoding="utf-8") == before
+    assert [p.name for p in tmp_path.iterdir() if p.name.startswith("materials")] == [
+        "materials.jsonl"
+    ]
+
+
+# --- an unreadable page ends the run of stubs -----------------------------
+
+
+def test_an_unreadable_page_ends_the_run_of_stubs(
+    tmp_path, materials_html, materials_empty_html
+):
+    # The halt exists because five „недостъпен“ stubs IN A ROW mean the
+    # site is down. A page this parser could not read is not a stub: the
+    # site answered with markup, so it was up, and the stubs before it are
+    # real gaps that can be committed. Counting through an unreadable page
+    # makes the halt fire on rows that were never adjacent and makes the
+    # message's „consecutive“ false.
+    broken = materials_html.replace("material_form:dataTable1", "material_form:grid1")
+    issues = write_issues(
+        tmp_path, 9001, 9002, 9003, 8000, 9004, 9005, 9006, 5000
+    )
+    out = tmp_path / "materials.jsonl"
+    session = FakeSession(
+        by_param={
+            ("idObj", 8000): broken,
+            ("idObj", 5000): materials_empty_html,
+        },
+        get_bodies={MATERIALS_PATH: ERROR_PAGE},
+    )
+    assert (
+        main(["materials", "--issues", str(issues), "--out", str(out)], session=session)
+        == 0
+    )
+    rows = read_jsonl(out)
+    assert [r["id_obj"] for r in rows if r["status"] == "error_page"] == [
+        9001, 9002, 9003, 9004, 9005, 9006,
+    ]
+    assert [r["id_obj"] for r in rows if r["status"] == "unrecognized"] == [8000]
+    assert [r["id_obj"] for r in rows if r["status"] == "empty"] == [5000]
