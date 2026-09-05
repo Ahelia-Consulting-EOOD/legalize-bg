@@ -53,6 +53,55 @@ RUNNING_TEXT = FRONT + textwrap.dedent("""
     **§ 1.** Законът влиза в сила от деня на обнародването му.
     """)
 
+# The consolidated form of the defect (Наказателно-процесуален кодекс, line 5658): the amending
+# act's name sits on its own line between the two headings, and the final heading carries the same
+# qualifier after it.
+QUALIFIER_BETWEEN_HEADINGS = FRONT + textwrap.dedent("""
+    **Чл. 1.** Този закон урежда нещо.
+
+    Допълнителна разпоредба
+
+    КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАКАЗАТЕЛНО-ПРОЦЕСУАЛНИЯ КОДЕКС
+
+    ## Заключителни разпоредби КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАКАЗАТЕЛНО-ПРОЦЕСУАЛНИЯ КОДЕКС
+
+    **§ 2.** Законът влиза в сила от деня на обнародването му.
+    """)
+
+# The singular form (Наредба № 2 от 17 април 2026 г., line 124): both section names singular.
+SINGULAR_HEADINGS = FRONT + textwrap.dedent("""
+    **Чл. 1.** Тази наредба урежда нещо.
+
+    Допълнителна разпоредба
+
+    Заключителна разпоредба
+
+    **§ 2.** Наредбата влиза в сила от деня на обнародването ѝ.
+    """)
+
+# A qualified final heading with real § text above it is healthy and must stay silent.
+CLEAN_QUALIFIED_FINAL = FRONT + textwrap.dedent("""
+    **Чл. 1.** Този закон урежда нещо.
+
+    ## Допълнителни разпоредби
+
+    **§ 1.** По смисъла на този закон "нещо" е нещо.
+
+    ## Заключителни разпоредби КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА ЕДИН ЗАКОН
+
+    **§ 2.** Законът влиза в сила от деня на обнародването му.
+    """)
+
+BOLD_HEADINGS = FRONT + textwrap.dedent("""
+    **Чл. 1.** Този закон урежда нещо.
+
+    **Допълнителна разпоредба**
+
+    **Заключителни разпоредби**
+
+    **§ 2.** Законът влиза в сила от деня на обнародването му.
+    """)
+
 
 class Rules(unittest.TestCase):
     def scan(self, text):
@@ -73,6 +122,22 @@ class Rules(unittest.TestCase):
 
     def test_running_text_is_not_a_heading(self):
         self.assertEqual(self.scan(RUNNING_TEXT), [])
+
+    def test_qualifier_line_between_the_two_headings_still_fires(self):
+        self.assertIn("additional-empty", self.scan(QUALIFIER_BETWEEN_HEADINGS))
+
+    def test_singular_section_names_fire(self):
+        self.assertIn("additional-empty", self.scan(SINGULAR_HEADINGS))
+
+    def test_qualified_final_heading_with_text_above_it_is_clean(self):
+        self.assertEqual(self.scan(CLEAN_QUALIFIED_FINAL), [])
+
+    def test_bold_headings_are_recognised(self):
+        self.assertIn("additional-empty", self.scan(BOLD_HEADINGS))
+
+    def test_empty_result_totals_line_names_the_absence(self):
+        mod = load()
+        self.assertEqual(mod.render([]).splitlines()[-1], "Totals: no findings; files 0.")
 
     def test_self_test_proves_every_rule(self):
         mod = load()
