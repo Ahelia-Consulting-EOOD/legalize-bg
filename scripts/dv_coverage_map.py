@@ -819,7 +819,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
                     "title": material.title,
                     "title_kind": kind,
                     "corpus_estado": act.estado or "",
-                    "gazette_signal": "repeal",
+                    "finding": "repeal",
                     "resolver_score": f"{score:.3f}",
                     "resolver_flags": ";".join(flags),
                 }
@@ -896,7 +896,7 @@ UNRESOLVED_FIELDS = [
 ]
 DISPUTE_FIELDS = [
     "pass", "law_id", "dv_year", "dv_number", "id_mat", "section", "title",
-    "title_kind", "corpus_estado", "gazette_signal", "resolver_score",
+    "title_kind", "corpus_estado", "finding", "resolver_score",
     "resolver_flags",
 ]
 INVENTORY_FIELDS = [

@@ -808,7 +808,7 @@ def test_a_gazette_repeal_of_an_act_the_corpus_calls_current_is_a_dispute(output
     assert row["dv_number"] == "32"
     assert row["id_mat"] == "242223"
     assert row["corpus_estado"] == "vigente"
-    assert row["gazette_signal"] == "repeal"
+    assert row["finding"] == "repeal"
 
 
 def test_an_ordinary_amendment_is_not_an_estado_dispute(outputs):

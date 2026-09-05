@@ -205,7 +205,7 @@ python scripts/dv_coverage_map.py --corpus . \
     --out docs/research/2026-09-05-dv-coverage-map/
 ```
 
-Reads the corpus frontmatter and the two tables above, and writes five
+Reads the corpus frontmatter and the two tables above, and writes seven
 files. It is a **research artifact**: it writes nothing into the corpus
 tree and no consumer surface reads it. The provenance block that does is
 P1.
@@ -216,7 +216,13 @@ P1.
 | `acts-summary.csv` | act |
 | `chain-omissions.csv` | Gazette material the act's chain does not know |
 | `unresolved.csv` | event, act or material nothing could be said about |
+| `estado-disputes.csv` | Gazette repeal of an act the corpus calls current |
+| `pdf-era-inventory.csv` | Gazette issue online only as a PDF |
 | `report.md` | the totals, in prose |
+
+`--pdf-era-end YEAR:NUMBER` (default `2005:42`) is the last issue of the
+PDF era, which bounds the inventory. It is a probe result rather than a
+certainty, so it moves without touching the code.
 
 **The source class** of every base and every event, per §4.1:
 
@@ -247,10 +253,46 @@ consecutive materials' start pages; the last material of an issue would
 need the issue's page count to bound it, and the `issues` table does not
 carry one, so it contributes no measurement.
 
+**The PDF-era inventory** answers D-064 item 6: the owner has not bought
+the vision reading of the 1989 to бр. 42/2005 tables of contents and
+wants the size of the bill first. One row per PDF-era issue, with the
+issue identity, the number of corpus chain rows that cite it (base rows
+included, since a PDF-era base has to be read for its structural audit),
+and three estimates, followed by a `TOTAL` row that is the line the
+token-cost evaluation is done against.
+
+| Estimate | What it would buy |
+|---|---|
+| `toc_pages_est` | reading only the table of contents |
+| `corpus_material_pages_est` | reading only the materials this corpus cites |
+| `issue_pages_est` | reading the whole issue |
+
+The page model is measured on the HTML era, where the Gazette states its
+own page numbers: contents pages are the first material's start page
+minus one, a material's length is the next material's start page minus
+its own, and an issue's length is its last material's start page plus one
+median material. **Every figure is an estimate** until an issue PDF is
+opened, and `report.md` prints the spread of the contents measurement
+rather than a single number to be taken on trust.
+
+**`dv_identifier`** is the `dv-<idMat>` of the promulgating material,
+carried on every act whose base resolves to `dv_html`. It is the
+identifier form D-064 item 4 settled for an act with no lex.bg document.
+No corpus act is in that position today, so the column exists to fix the
+form rather than to be read.
+
+**`estado-disputes.csv`** records a Gazette material whose title repeals
+an act the corpus still records as `vigente`. Data, never a correction:
+D-064 item 5 keeps every `estado` finding out of the corpus until the
+single write gate exists. The other direction, the corpus calling an act
+repealed while the Gazette goes on amending it, needs the in-force dates
+the body scan reads, so the title pass does not claim it.
+
 **Two limits, stated in the report rather than hidden.** This is a
-**title** pass, so every row of `chain-omissions.csv` carries
-`pass = title`, `chain_scan_complete` is false for every act, and no act
-can reach grade A from this map; the body pass over the cache that
-`bodies` fills is the next leg. And before бр. 43 от 2005 there is no
-ДВ-side check at all, so every chain from 1989 to 2004 is inherited from
-lex.bg and is reported as inherited rather than as verified.
+**title** pass, so every row of `chain-omissions.csv` and of
+`estado-disputes.csv` carries `pass = title`, `chain_scan_complete` is
+false for every act, and no act can reach grade A from this map; the body
+pass over the cache that `bodies` fills is the next leg. And before бр. 43
+от 2005 there is no ДВ-side check at all, so every chain from 1989 to
+2004 is inherited from lex.bg and is reported as inherited rather than as
+verified.
