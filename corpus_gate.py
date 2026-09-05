@@ -108,11 +108,21 @@ def render_act(frontmatter: dict, body: str) -> str:
     safe while the whitelist is the whole schema, and it stops being safe the
     moment a `provenance` block exists, so the gate writes the whitelist in the
     assembler's order and then every remaining key in insertion order.
+
+    One leading newline is dropped, because the format already separates the
+    frontmatter from the body with a blank line while every reader hands that
+    blank line back as part of the body. Without the drop, the ordinary
+    read-modify-write of an act — split it, change one field, write it — adds a
+    blank line at the top of every act it touches, and a corpus-wide pass
+    lands 3 600 spurious diffs. No parser output begins with a newline, so
+    this never changes what an ingestion adapter writes.
     """
     if not isinstance(frontmatter, dict):
         raise ValueError(f"frontmatter is not a mapping: {type(frontmatter)!r}")
     if not isinstance(body, str):
         raise ValueError(f"body is not text: {type(body)!r}")
+    if body.startswith("\n"):
+        body = body[1:]
 
     ordered: dict = {}
     for key in (*_MANDATORY, *_EXTENSIONS, *_TRAILING):

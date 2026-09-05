@@ -281,6 +281,21 @@ def test_render_act_is_byte_identical_to_the_assembler(tmp_path):
     assert render_act(meta, body) == assemble_file(meta, body)
 
 
+def test_render_act_round_trips_a_committed_act_without_churn(tmp_path):
+    """Split it, change nothing, write it back: the bytes must be identical.
+
+    Every reader hands the blank line after the frontmatter back as part of
+    the body, so a renderer that adds its own would accrete one blank line per
+    pass — 3 600 spurious diffs on the first corpus-wide backfill.
+    """
+    from corpus_integrity.loader import act_from_text
+
+    original = render_act(_FM, "# Заглавие\n\n**Чл. 1.** Текст.\n")
+    act = act_from_text(tmp_path / "laws" / "x.md", original, category="laws")
+    assert act.body.startswith("\n")  # the split really does carry it
+    assert render_act(act.frontmatter, act.body) == original
+
+
 def test_render_act_keeps_a_key_the_assembler_would_drop(tmp_path):
     """The Gazette work adds a `provenance` block; dropping it silently would
     be a data loss the gate itself caused."""
