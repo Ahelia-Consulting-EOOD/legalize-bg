@@ -74,6 +74,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from fetcher.dv.resolver import (  # noqa: E402
+    FUZZY_THRESHOLD,
     CorpusAct,
     Resolver,
     act_type_of,
@@ -93,6 +94,37 @@ FIRST_ONLINE_YEAR = 1989
 #: list, the first of them бр. 1/2003, and 1,583 PDF-only issues before
 #: it (`data/dv/ENUMERATION-2026-09-05.md`).
 HTML_ERA_YEAR = 2003
+
+#: Why an `unlocated` row could not be placed on the ДВ side, in the
+#: order the report tabulates them and with the sentence it prints for
+#: each. The vocabulary is `classify`'s, and the point of printing it is
+#: that only the first label is a failed match: the rest say the ДВ side
+#: could not be consulted at all, which is an acquisition or a citation
+#: gap and is closed by a different piece of work.
+UNCERTAINTY_GLOSS = {
+    "chain_unconfirmed": (
+        "The issue has an HTML materials list and no title in it named this act."
+    ),
+    "materials_not_enumerated": (
+        "The issue is in the table and exposes no materials online, so there "
+        "is nothing to check the row against."
+    ),
+    "issue_not_in_table": (
+        "The cited issue does not exist in the ДВ enumeration at all."
+    ),
+    "promulgation_unknown": (
+        "The act cites no ДВ issue for its own promulgation, so there is "
+        "nothing to locate."
+    ),
+    "issue_number_unknown": (
+        "The row carries a date and no issue number, so the issue cannot be "
+        "looked up."
+    ),
+    "event_reference_unknown": (
+        "The event's „dv“ reference could not be read, and its date places it "
+        "in the online era."
+    ),
+}
 
 #: Act types the page-length medians are grouped by, per §5.2. Everything
 #: else is measured together as „other“.
@@ -1053,6 +1085,8 @@ def write_report(path: Path, coverage, summary, omissions, predecessors,
     for source in ("dv_html", "dv_pdf", "dv_offline", "unlocated"):
         lines.append(f"| {source} | {by_source.get(source, 0)} |")
 
+    lines += _uncertainty_lines(coverage)
+
     lines += [
         "",
         "## Base source",
@@ -1141,7 +1175,21 @@ def write_report(path: Path, coverage, summary, omissions, predecessors,
     for kind, count in sorted(Counter(row["kind"] for row in unresolved).items()):
         lines.append(f"| {kind} | {count} |")
 
+    near_misses = sum(
+        1
+        for row in unresolved
+        if row["kind"] == "unattributed_material"
+        and _score_of(row["resolver_score"]) >= FUZZY_THRESHOLD
+    )
     lines += [
+        "",
+        "Unattributed materials with a resolver score of "
+        f"{FUZZY_THRESHOLD:.2f} or more: {near_misses}. Each is a refused "
+        "near miss: it cleared the floor and was then refused by the margin, "
+        "the digit guard or the content guard, so its `candidates` column "
+        "names the act it nearly matched. They are the first input the "
+        "reasoning pass reads, and the only unattributed rows a reader can "
+        "act on without opening the Gazette.",
         "",
         f"Chain omissions found by the title pass: {len(omissions)}.",
         "",
@@ -1175,6 +1223,69 @@ def write_report(path: Path, coverage, summary, omissions, predecessors,
     ]
     lines += _inventory_lines(inventory, estimator)
     path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def _score_of(text) -> float:
+    """The resolver score of one unresolved row, or 0.0 where it has none."""
+    try:
+        return float(text)
+    except (TypeError, ValueError):
+        return 0.0
+
+
+def _uncertainty_lines(coverage) -> list[str]:
+    """What the `unlocated` rows are, which is mostly not a resolver miss.
+
+    `unlocated` is the largest source class of the title pass and it is
+    read as „the resolver failed“ unless the report says otherwise. It is
+    not: on 2026-09-05, 908 of the 10,828 unlocated rows named an issue
+    that exposes no materials online, or that is not in the enumeration,
+    or no issue at all. None of those is closed by a better resolver.
+    """
+    counts: Counter = Counter()
+    for row in coverage:
+        if row["source"] != "unlocated":
+            continue
+        labels = row["uncertainty"].split(";") if row["uncertainty"] else ["unlabelled"]
+        for label in labels:
+            counts[(label, row["row_kind"])] += 1
+    if not counts:
+        return []
+
+    labels = list(UNCERTAINTY_GLOSS)
+    labels += sorted({label for label, _kind in counts if label not in UNCERTAINTY_GLOSS})
+    total = sum(counts.values())
+    matched = sum(count for (label, _kind), count in counts.items()
+                  if label == "chain_unconfirmed")
+
+    lines = [
+        "",
+        "## Unlocated events by uncertainty",
+        "",
+        "An `unlocated` row is not a failed match by default. The label says "
+        "why the row could not be placed, and only `chain_unconfirmed` means "
+        "the ДВ side was read and named this act nowhere. Bases are counted "
+        "beside events, because a base that cannot be located blocks a grade "
+        "exactly as an event does and because `promulgation_unknown` can only "
+        "be a base.",
+        "",
+        "| Uncertainty | Events | Bases | What it means |",
+        "|---|---|---|---|",
+    ]
+    for label in labels:
+        lines.append(
+            f"| {label} | {counts.get((label, 'event'), 0)} | "
+            f"{counts.get((label, 'base'), 0)} | "
+            f"{UNCERTAINTY_GLOSS.get(label, 'No gloss: the vocabulary grew.')} |"
+        )
+    lines += [
+        "",
+        f"Of the {total} unlocated rows, {total - matched} are an acquisition "
+        "or a citation gap rather than a failed match, and no resolver closes "
+        "any of them: the materials of that issue have to be enumerated, or "
+        "the issue found, or the act's promulgation located by other means.",
+    ]
+    return lines
 
 
 def _inventory_lines(inventory, estimator) -> list[str]:

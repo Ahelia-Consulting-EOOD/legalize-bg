@@ -246,6 +246,13 @@ enumeration can be rerun.
   `materials_not_enumerated` (the sweep has not reached that issue,
   which is not the same as the issue holding nothing).
 
+`report.md` tabulates those labels, with a gloss and the base and event
+counts, because only `chain_unconfirmed` is a failed match: the rest say
+the ДВ side could not be consulted at all, and no resolver closes any of
+them. It also counts the unattributed materials that scored 0.90 or more,
+which are the refused near misses whose `candidates` column names the act
+they nearly matched, and which are the reasoning pass's first input.
+
 **The candidate grade** is derived by the procedure of §4.2, never set by
 hand. In P0 every event is `applied = pending`, every base is an unfrozen
 and unaudited `snapshot`, and the body scan has not run, so only rules 1

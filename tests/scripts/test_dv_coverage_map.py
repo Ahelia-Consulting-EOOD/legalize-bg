@@ -105,7 +105,10 @@ def corpus(tmp_path):
         "- dv: 32/2026\n  date: '2026-04-01'\n",
     )
     # `fecha_publicacion` but no ДВ citation: the 39 acts whose three
-    # output rows used to disagree with one another.
+    # output rows used to disagree with one another. Its one event cites
+    # бр. 5/2021, an issue the table holds and the materials sweep has
+    # never reached, which is `materials_not_enumerated`: an acquisition
+    # gap rather than a failed match.
     synthetic_act(
         root,
         "laws",
@@ -114,7 +117,9 @@ def corpus(tmp_path):
         "rango: закон\n"
         "estado: vigente\n"
         "fecha_publicacion: '2015-05-05'\n"
-        "amendment_history:\n- date: '2015-05-05'\n",
+        "amendment_history:\n"
+        "- date: '2015-05-05'\n"
+        "- dv: 5/2021\n  date: '2021-01-15'\n",
     )
     return root
 
@@ -125,6 +130,11 @@ ISSUES = [
     (1998, 11, "1998-01-30", 11),
     (2010, 24, "2010-03-26", 24),
     (2019, 52, "2019-07-02", 52),
+    # In the table, and no material of it was ever enumerated.
+    (2021, 5, "2021-01-15", 205),
+    # One material, and it carries no start page, so this issue is
+    # invisible to the page model and perturbs no estimate.
+    (2022, 7, "2022-02-02", 220),
     (2026, 32, "2026-04-01", 100),
 ]
 
@@ -146,6 +156,10 @@ MATERIALS = [
         12,
     ),
     (100, 3, 242222, "Народно събрание", "Закон за ратифициране на трето нещо", 20),
+    # One letter away from ЗАКОН ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРТ: above the
+    # 0.90 floor and refused by the content guard, which is the refused
+    # near miss the report counts.
+    (220, 1, 250001, "Народно събрание", "ЗАКОН ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРД", None),
     (
         100, 4, 242223, "Народно събрание",
         "Закон за отмяна на Закона за събранията, митингите и манифестациите",
@@ -653,6 +667,43 @@ def test_the_report_states_the_totals_and_the_pre_2003_inheritance(outputs):
     assert "2005" not in text
     assert "по десетилетие" in text or "by decade" in text
     assert "—" not in text  # no em-dashes
+
+
+def test_the_report_tabulates_the_unlocated_uncertainty(outputs):
+    # 908 of the 10,828 unlocated rows of the 2026-09-05 run are not a
+    # failed match at all: the issue exposes no materials, or is not in
+    # the enumeration, or was never cited. The reader has to be able to
+    # see that without opening the CSV.
+    text = (outputs / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Unlocated events by uncertainty", 1)[1].split("\n## ", 1)[0]
+    # One event cites бр. 5/2021, which the table holds and the sweep has
+    # never reached.
+    assert "materials_not_enumerated | 1" in section
+    for label in (
+        "chain_unconfirmed",
+        "issue_not_in_table",
+        "promulgation_unknown",
+        "issue_number_unknown",
+        "event_reference_unknown",
+    ):
+        assert label in section
+    # A gloss per label, not a bare vocabulary listing.
+    assert "no materials" in section
+
+
+def test_the_report_counts_the_refused_near_misses(outputs):
+    # A material that scored above the floor and was refused names the
+    # act it nearly matched in its `candidates` column, which is what the
+    # reasoning pass reads first.
+    near = [
+        row
+        for row in rows(outputs / "unresolved.csv", kind="unattributed_material")
+        if float(row["resolver_score"]) >= 0.90
+    ]
+    text = (outputs / "report.md").read_text(encoding="utf-8")
+    section = text.split("## Unresolved", 1)[1].split("\n## ", 1)[0]
+    assert f"score of 0.90 or more: {len(near)}" in section
+    assert "candidates" in section
 
 
 def test_the_report_groups_by_corpus_category(outputs):
