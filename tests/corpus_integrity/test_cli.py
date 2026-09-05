@@ -63,7 +63,7 @@ def test_a_new_violation_in_a_waived_act_fails_the_run(tmp_path: Path):
     )
     r = _run("--root", str(root), "--waivers", str(root / "waivers.yaml"), "--json")
     assert r.returncode == 1
-    assert json.loads(r.stdout)["checks"]["tag_remnants"]["violations"] == 1
+    assert json.loads(r.stdout)["checks"]["tag_remnants"]["violation_count"] == 1
 
 
 def test_a_partial_repair_of_a_waived_act_fails_as_count_drift(tmp_path: Path):
@@ -143,11 +143,15 @@ def test_json_summary_reports_per_check_counts(tmp_path: Path):
     payload = json.loads(r.stdout)
     assert payload["acts"] == 1
     assert payload["checks"]["tag_remnants"] == {
-        "violations": 1,
+        "violations": [
+            {"check": "tag_remnants", "slug": "bad", "locator": "line 1",
+             "detail": "markup remnant '/span>'"}
+        ],
+        "violation_count": 1,
         "stale_waivers": [],
         "count_drift": [],
     }
-    assert payload["checks"]["chrome"]["violations"] == 0
+    assert payload["checks"]["chrome"]["violation_count"] == 0
     assert payload["inert_waivers"] == []
 
 
@@ -186,7 +190,7 @@ def test_json_and_enumerate_together_stay_valid_json(tmp_path: Path):
         "--json",
         "--enumerate",
     )
-    assert json.loads(r.stdout)["checks"]["tag_remnants"]["violations"] == 1
+    assert json.loads(r.stdout)["checks"]["tag_remnants"]["violation_count"] == 1
 
 
 def test_a_waiver_without_a_detector_is_reported_as_inert(tmp_path: Path):

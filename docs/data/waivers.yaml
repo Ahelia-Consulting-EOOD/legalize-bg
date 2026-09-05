@@ -16,27 +16,33 @@
 # during a repair sweep, run the detector against a copy of this file with
 # that entry's acts emptied.
 #
+# `acts` is a MAPPING of act slug to the exact violation count the census
+# found. The list form is a schema error, at the runner and at the write gate:
+# a list pins no count, so it cannot catch a new violation landing in an act
+# that is already waived, and reinstating it would quietly turn every waived
+# act back into a blind spot. An entry with no census yet carries `{}`.
+#
 # The first three entries carry rulings that are already adjudicated in the
 # record, but their detectors are NOT part of Part II (the machine floor ships
-# tag_remnants and chrome only), so their act lists stay empty until the
-# detector that fills each one exists. An empty list is not an assertion that
+# tag_remnants and chrome only), so their act maps stay empty until the
+# detector that fills each one exists. An empty map is not an assertion that
 # the class is clean; it is the absence of a census, and Owner Directive 10
 # forbids repairing before that census exists.
 frontmatter_dates:
   ruling: "FR-011 triage — faithful to lex.bg, which carries no date signal for these acts"
   owner_signed: 2026-08-11
-  expires: "the frontmatter-date detector ships and its corpus-wide census replaces this empty list"
-  acts: []  # fill from: python -m corpus_integrity --check frontmatter_dates --enumerate
+  expires: "the frontmatter-date detector ships and its corpus-wide census replaces this empty map"
+  acts: {}  # fill from: python -m corpus_integrity --check frontmatter_dates --enumerate
 empty_body:
   ruling: "lex.bg content-less stub pages; surfaced to callers as <doc_id=N>"
   owner_signed: 2026-08-11
-  expires: "the empty-body detector ships and its corpus-wide census replaces this empty list"
-  acts: []  # detector not yet implemented
+  expires: "the empty-body detector ships and its corpus-wide census replaces this empty map"
+  acts: {}  # detector not yet implemented
 no_article_anchor:
   ruling: "single-§ instruments (денонсиране, оттегляне на резерва, опрощаване) and ethics codes"
   owner_signed: 2026-08-11
-  expires: "the article-anchor detector ships and its corpus-wide census replaces this empty list"
-  acts: []  # detector not yet implemented
+  expires: "the article-anchor detector ships and its corpus-wide census replaces this empty map"
+  acts: {}  # detector not yet implemented
 # Census of 2026-09-05 over the committed corpus: 771 occurrences over 80 acts.
 tag_remnants:
   ruling: "W-002: FR-035 tag remnants (SUP>, /span>, /STRONG>) pending the Part V sweep; fixed in fetcher/bg/text_parser.py first"

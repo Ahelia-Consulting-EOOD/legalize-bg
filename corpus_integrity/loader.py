@@ -53,6 +53,18 @@ def _read_act(path: Path, category: str) -> Act:
         # slip is a real possibility. A byte offset with no file name is
         # unusable across 3,624 acts.
         raise ValueError(f"{path}: not valid UTF-8: {exc}") from exc
+    return act_from_text(path, raw, category=category)
+
+
+def act_from_text(path: Path, raw: str, *, category: str | None = None) -> Act:
+    """Split one act's serialised text exactly as the corpus walk splits it.
+
+    Public because the write gate checks an act before it is a file: reusing
+    this split is what makes a locator the gate prints identical to the one CI
+    prints for the same act, line for line.
+    """
+    path = Path(path)
+    category = category if category is not None else path.parent.name
     if not raw.startswith(_DELIMITER):
         raise ValueError(f"{path}: missing YAML frontmatter")
     rest = raw[len(_DELIMITER) :]

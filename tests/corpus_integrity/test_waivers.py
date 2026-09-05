@@ -107,19 +107,36 @@ def test_load_waivers_reads_an_expected_count_per_act(tmp_path: Path):
     assert load_waivers(path) == {"empty_body": {"one": 3, "two": 1}}
 
 
-def test_load_waivers_accepts_a_plain_list_as_count_agnostic(tmp_path: Path):
-    """Backward compatibility only: a list pins no count."""
+def test_load_waivers_rejects_the_legacy_count_blind_list_form(tmp_path: Path):
+    """A list pins no count, so it turns a waived act back into a blind spot
+    for every new violation of the same class. It is a schema error, at the
+    runner and at the write gate, so it cannot be reinstated silently."""
     path = tmp_path / "waivers.yaml"
     path.write_text(
         "empty_body:\n" + _REQUIRED + "  acts: [one, two]\n", encoding="utf-8"
     )
-    assert load_waivers(path) == {"empty_body": {"one": None, "two": None}}
+    with pytest.raises(ValueError, match="list form is no longer accepted"):
+        load_waivers(path)
 
 
-def test_load_waivers_tolerates_an_empty_act_list(tmp_path: Path):
+def test_load_waivers_rejects_an_empty_list_too(tmp_path: Path):
+    """An entry with no census yet is `{}`; `[]` is the same defect, smaller."""
+    path = tmp_path / "waivers.yaml"
+    path.write_text("empty_body:\n" + _REQUIRED + "  acts: []\n", encoding="utf-8")
+    with pytest.raises(ValueError, match="list form is no longer accepted"):
+        load_waivers(path)
+
+
+def test_load_waivers_tolerates_an_absent_act_map(tmp_path: Path):
     """A seeded entry whose detector does not exist yet carries no acts."""
     path = tmp_path / "waivers.yaml"
     path.write_text("empty_body:\n" + _REQUIRED + "  acts:\n", encoding="utf-8")
+    assert load_waivers(path) == {"empty_body": {}}
+
+
+def test_load_waivers_tolerates_an_empty_act_map(tmp_path: Path):
+    path = tmp_path / "waivers.yaml"
+    path.write_text("empty_body:\n" + _REQUIRED + "  acts: {}\n", encoding="utf-8")
     assert load_waivers(path) == {"empty_body": {}}
 
 
@@ -148,9 +165,7 @@ def test_load_waivers_rejects_an_entry_missing_a_mandatory_field(
         load_waivers(path)
 
 
-def test_load_waivers_rejects_acts_that_are_neither_a_mapping_nor_a_list(
-    tmp_path: Path,
-):
+def test_load_waivers_rejects_acts_that_are_not_a_mapping(tmp_path: Path):
     path = tmp_path / "waivers.yaml"
     path.write_text("empty_body:\n" + _REQUIRED + "  acts: 12\n", encoding="utf-8")
     with pytest.raises(ValueError, match="mapping"):

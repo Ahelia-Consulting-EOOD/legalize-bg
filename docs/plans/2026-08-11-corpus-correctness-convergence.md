@@ -651,7 +651,7 @@ def main(argv: list[str] | None = None) -> int:
         print(json.dumps({"acts": len(acts), "checks": summary}, ensure_ascii=False, indent=2))
     else:
         for name, s in sorted(summary.items()):
-            print(f"{name}: {s['violations']} violations, {s['stale_waivers']} stale waivers")
+            print(f"{name}: {s['violation_count']} violations, {s['stale_waivers']} stale waivers")
     return 1 if failed else 0
 
 if __name__ == "__main__":

@@ -12,6 +12,7 @@ catalog.db
 .refresh-state.json
 refresh-run.log
 gate-report.json
+write-gate-refusals.json
 
 # Playwright MCP browser session artifacts (snapshots/console logs)
 .playwright-mcp/
