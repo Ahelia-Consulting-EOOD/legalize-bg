@@ -1317,9 +1317,15 @@ def _uncertainty_lines(coverage) -> list[str]:
 
     `unlocated` is the largest source class of the title pass and it is
     read as „the resolver failed“ unless the report says otherwise. It is
-    not: on 2026-09-05, 908 of the 10,828 unlocated rows named an issue
-    that exposes no materials online, or that is not in the enumeration,
-    or no issue at all. None of those is closed by a better resolver.
+    not: run against the corpus and the 2026-09-05 enumeration on this
+    tree, 939 of the 10,812 unlocated rows named an issue that exposes no
+    materials online, or that is not in the enumeration, or no issue at
+    all. None of those is closed by a better resolver.
+
+    Those two figures are an illustration and go stale the moment either
+    input changes. The report never repeats them: it counts the rows it
+    was given, and `test_the_unlocated_census_in_the_report_agrees_with_the_csv`
+    holds the printed pair to `coverage-map.csv`.
     """
     counts: Counter = Counter()
     for row in coverage:

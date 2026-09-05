@@ -754,11 +754,26 @@ def test_the_report_states_the_totals_and_the_pre_2003_inheritance(outputs):
     assert "—" not in text  # no em-dashes
 
 
+def test_the_unlocated_census_in_the_report_agrees_with_the_csv(outputs):
+    # The pair the reader takes away, „of the N unlocated rows, M are an
+    # acquisition or a citation gap“, has to be the pair in
+    # `coverage-map.csv`. A figure that says 2026-09-05 and belongs to an
+    # earlier run is exactly what fix 1 of this branch was written to
+    # remove, and prose beside the code is where it came back.
+    unlocated = rows(outputs / "coverage-map.csv", source="unlocated")
+    gaps = [row for row in unlocated if row["uncertainty"] != "chain_unconfirmed"]
+    text = (outputs / "report.md").read_text(encoding="utf-8")
+    assert (
+        f"Of the {len(unlocated)} unlocated rows, {len(gaps)} are an "
+        "acquisition or a citation gap" in text
+    )
+
+
 def test_the_report_tabulates_the_unlocated_uncertainty(outputs):
-    # 908 of the 10,828 unlocated rows of the 2026-09-05 run are not a
-    # failed match at all: the issue exposes no materials, or is not in
-    # the enumeration, or was never cited. The reader has to be able to
-    # see that without opening the CSV.
+    # 939 of the 10,812 unlocated rows of the run this tree produces are
+    # not a failed match at all: the issue exposes no materials, or is
+    # not in the enumeration, or was never cited. The reader has to be
+    # able to see that without opening the CSV.
     text = (outputs / "report.md").read_text(encoding="utf-8")
     section = text.split("## Unlocated events by uncertainty", 1)[1].split("\n## ", 1)[0]
     # One event cites бр. 5/2021, which the table holds and the sweep has
