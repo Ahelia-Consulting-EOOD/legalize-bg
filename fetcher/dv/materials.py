@@ -19,8 +19,12 @@ An issue with no HTML materials answers with „Намерени резулта�
 which is the signal that the issue exists only as a PDF. An idObj that
 does not exist answers with HTTP 500 and a 489-byte stub saying the site
 is unavailable; `DvSession` returns that body instead of retrying it and
-`is_error_page` classifies it, so a gap in the sparse idObj space costs
-one request and is recorded as a fact about the id.
+`classify_page` names it, so a gap in the sparse idObj space costs one
+request and is recorded as a fact about the id.
+
+`classify_page` is also the guard against reading a redesign as a fact
+about the Gazette: markup it cannot read is `"unrecognized"`, which is a
+statement about this module, never about the issue.
 """
 
 import logging
@@ -31,6 +35,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup, Tag
 
 from fetcher.dv.client import is_dv_error_body, url_for
+from fetcher.dv.issues import parse_result_count
 
 MATERIALS_PATH = "materiali.faces"
 MATERIAL_PATH = "showMaterialDV.jsp"
@@ -73,18 +78,44 @@ _HEADER_RE = re.compile(
 )
 
 
-def is_error_page(html: str) -> bool:
-    """True when the response is the site's „недостъпен“ stub.
+def classify_page(html: str) -> str:
+    """What an answer to `materiali.faces?idObj=N` actually is.
 
-    Recorded as a fact about the idObj rather than retried: idObj values
-    are sparse, and the gaps between them answer this way every time
-    (with status 500, which `DvSession` already declines to retry).
+    Four outcomes, and the distinction between the last two is the point:
+
+    - `"materials"`: a listing whose rows were all read.
+    - `"empty"`: a listing that says „Намерени резултати: 0“. A true
+      statement about the issue: it is online as a whole-issue PDF only.
+    - `"error_page"`: the „недостъпен“ stub. A statement about the id,
+      which is sparse, so this is the ordinary answer for a gap in it.
+    - `"unrecognized"`: markup this module cannot read. A statement about
+      THIS CODE, never about the Gazette.
+
+    The old check collapsed the last two, so a renamed result table would
+    have written „this issue does not exist“ for all 4,146 issues and the
+    coverage map would have concluded the Gazette holds no HTML at all.
+    That is the failure shape D-058 records four times: a check that
+    measures a proxy rather than the property.
+
+    The property here is measurable, because the page states its own row
+    count. A listing is believed only when the number of rows parsed
+    equals the „Намерени резултати“ the page printed; any disagreement,
+    including a missing count, is `"unrecognized"`.
     """
     if is_dv_error_body(html):
-        return True
-    # Defensive second clause: a body with neither a result table nor a
-    # material header is not a page this module can read.
-    return _TABLE_ID not in html and 'class="mark"' not in html
+        return "error_page"
+    try:
+        expected = parse_result_count(html)
+    except ValueError:
+        log.warning("no „Намерени резултати“ count in this response")
+        return "unrecognized"
+    found = len(parse_materials(html))
+    if found != expected:
+        log.warning(
+            "page reports %d materials, %d parsed; not reading it", expected, found
+        )
+        return "unrecognized"
+    return "materials" if found else "empty"
 
 
 def parse_materials(html: str) -> list[MaterialRow]:
@@ -212,10 +243,10 @@ def material_body_html(html: str) -> str:
 def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
     """GET one issue's contents and parse it.
 
-    Returns an empty list both for an issue with no HTML materials and
-    for an idObj that does not exist. A caller that needs to tell those
-    apart, as the bulk enumeration does, fetches the body itself and asks
-    `is_error_page` first.
+    Returns an empty list for an issue with no HTML materials, for an
+    idObj that does not exist and for markup this module cannot read. A
+    caller that needs to tell those apart, as the bulk enumeration does,
+    fetches the body itself and asks `classify_page`.
     """
     html = session.get(MATERIALS_URL, params={"idObj": id_obj})
     return parse_materials(html)

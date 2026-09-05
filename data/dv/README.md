@@ -49,10 +49,37 @@ an issue that carries no HTML materials or that does not resolve. Around
   the sparse `id_obj` space. The client recognises it by body and hands
   it back rather than spending three retries on it, so one gap costs one
   request.
+- `unrecognized`: the answer was neither. This is a statement about the
+  parser, never about the Gazette, and it is written so that a reader of
+  the file can tell „I could not read this page“ from „this issue does
+  not exist“.
+
+A listing is believed only when the number of rows parsed equals the
+„Намерени резултати“ the page printed for itself. Any disagreement, a
+missing count included, is `unrecognized`: the page states the property
+being measured, so there is no need to trust a proxy for it.
 
 The issue identity on every line comes from the issue list row, never
 from the contents page header, which shows the site's current issue
 rather than the issue being listed.
+
+### The sweep stops rather than write a false map
+
+Both statuses above are read by the coverage map as claims about what the
+Gazette holds, so neither may be produced in bulk by a bad afternoon.
+
+- **Five „недостъпен“ stubs in a row** (`--max-consecutive-errors`,
+  default 5) are an outage, not five neighbouring gaps in a sparse id
+  space. The run logs at ERROR naming the last issue that answered,
+  **discards that run of stub rows instead of writing them**, and exits
+  non-zero. `--resume` picks it up when the site is back.
+- **Too many unreadable pages** — more than ten inside the first fifty
+  issues, or more than five percent of a longer run — mean the site's
+  markup has changed. The run halts the same way, so a redesign cannot
+  write „this issue holds nothing“ 4,146 times.
+
+An isolated gap does not trip either guard; a single stub between two
+issues that answered is recorded and the sweep continues.
 
 ## `cache/`
 
@@ -62,13 +89,32 @@ cache hit is served without a request and the cache is a permanent local
 record rather than an expiring one. It is large, it is reproducible from
 the ids in `materials.jsonl`, and it is never committed.
 
+Because it is permanent, the „недостъпен“ stub never enters it: a stub
+is not written, and a stub found on disk counts as a miss and is
+re-fetched. Otherwise one maintenance window during a sweep would make
+every material fetched during it unreachable for good, with no request
+ever made again to find out.
+
 ## Re-running
 
 Both enumerations are resumable. `--resume` appends to the output and
-skips the ids already in it, so an interrupted run continues where it
-stopped without re-fetching. Without `--resume` the output file is
-rewritten from scratch. The issue enumeration also takes `--start-page`
-so a run can jump straight back to the page it died on.
+skips the issues already finished in it. Without `--resume` the output
+file is rewritten from scratch.
+
+**The last issue in the output is not trusted.** `materials.jsonl` holds
+one line per material, so an interruption between two lines of the same
+issue leaves that issue looking complete while most of its rows are
+missing. On `--resume` the last `id_obj` in the file has all its rows
+removed and is fetched again, which costs one request and cannot lose a
+material. The same rule runs for `issues.jsonl`, where it costs nothing.
+A final line cut in half by the kill is dropped with a warning; a
+malformed line anywhere else stops the run.
+
+`--resume` on `materials` skips the finished issues and so makes no
+request for them. `--resume` on `issues` skips the rows already written
+but still re-walks the list from page 1 to reach the later pages, because
+the pagination is a POST chain: pass `--start-page` as well to jump
+straight back to the page the run died on and pay only for what is left.
 
 Politeness is not optional: one request per second, a descriptive
 User-Agent, every request logged, and a bot challenge halts the run.

@@ -7,9 +7,9 @@ from fetcher.dv.materials import (
     MATERIAL_PATH,
     MaterialHeader,
     MaterialRow,
+    classify_page,
     fetch_material,
     fetch_materials,
-    is_error_page,
     material_body_html,
     parse_material_header,
     parse_materials,
@@ -74,28 +74,61 @@ def test_an_issue_with_no_html_materials_parses_to_nothing(materials_empty_html)
     assert parse_materials(materials_empty_html) == []
 
 
-# --- error pages ----------------------------------------------------------
+# --- classifying an issue-contents response -------------------------------
 
 
-def test_error_page_is_detected(error_page_html):
-    assert is_error_page(error_page_html) is True
+def test_the_stub_is_classified_as_an_error_page(error_page_html):
+    assert classify_page(error_page_html) == "error_page"
     # A stub, not a page: half a kilobyte with no result table in it.
     assert len(error_page_html) < 1000
     assert "Сайтът е недостъпен в момента" in error_page_html
 
 
-def test_error_page_is_recognised_by_its_title_alone():
+def test_the_stub_is_recognised_by_its_title_alone():
     # The Bulgarian sentence may be reworded; the JSF error view's title
     # is the second, independent marker.
-    assert is_error_page("<html><head><title>ErrorPage</title></head></html>") is True
+    assert (
+        classify_page("<html><head><title>ErrorPage</title></head></html>")
+        == "error_page"
+    )
 
 
-def test_real_pages_are_not_error_pages(
-    materials_html, materials_empty_html, material_html
-):
-    assert is_error_page(materials_html) is False
-    assert is_error_page(materials_empty_html) is False
-    assert is_error_page(material_html) is False
+def test_an_issue_with_materials_is_classified_as_materials(materials_html):
+    assert classify_page(materials_html) == "materials"
+
+
+def test_an_issue_that_lists_nothing_is_classified_as_empty(materials_empty_html):
+    # „Намерени резултати: 0“ is a true statement about the issue: it is
+    # online as a whole-issue PDF only.
+    assert classify_page(materials_empty_html) == "empty"
+
+
+def test_a_renamed_result_table_is_unrecognized_rather_than_empty(materials_html):
+    # The page still says it found eighteen materials; the parser reads
+    # none. That is a defect in this module, not a fact about the issue,
+    # and calling it „empty“ or „error_page“ would write a false claim
+    # about the Gazette for every one of the 4,146 issues.
+    mutated = materials_html.replace("material_form:dataTable1", "material_form:grid1")
+    assert parse_materials(mutated) == []
+    assert classify_page(mutated) == "unrecognized"
+
+
+def test_a_page_without_the_result_count_is_unrecognized(materials_html):
+    mutated = materials_html.replace("Намерени резултати", "Found results")
+    assert classify_page(mutated) == "unrecognized"
+
+
+def test_markup_from_somewhere_else_entirely_is_unrecognized():
+    assert classify_page("<html><body>hello</body></html>") == "unrecognized"
+
+
+def test_a_short_listing_under_a_larger_count_is_unrecognized(materials_html):
+    # One row's link renamed, so seventeen of the eighteen parse. The
+    # page's own count and the parse disagree, which is the signal: a
+    # silent partial read is the shape D-058 keeps finding.
+    mutated = materials_html.replace("?idMat=107486", "?idDoc=107486")
+    assert len(parse_materials(mutated)) == 17
+    assert classify_page(mutated) == "unrecognized"
 
 
 # --- material header ------------------------------------------------------
