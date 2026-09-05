@@ -34,8 +34,9 @@ The key alone does not identify: 363 keys of (act type, number, year)
 name two or more corpus acts and 1,038 acts sit in such a group, because
 ministries number independently. So a stated year is never crossed, a
 stated date must agree, and an exact key needs every coordinate the
-citation states. A citation whose key and stated full date name one act
-is then decided by the key alone, and refused only when the two SUBJECT
+citation states. A citation whose key alone names one act and whose
+stated full date agrees is then decided by the key, and refused only
+when the two SUBJECT
 clauses, the part after the number and the date, share not one content
 word (`subject_unrelated`). Anything less is settled on the subject
 clause, under the 0.90 floor and the digit guard and nothing else when
@@ -46,7 +47,9 @@ a refusal. Every refusal that got as far as comparing the subject
 clauses reports its real score, so `unresolved.csv` shows the reader the
 same near miss the resolver saw; a stated date that contradicts is
 refused before any comparison and has none. `numbered_key_tie` is
-reported when, and only when, the key named more than one act.
+reported on every attribution and on every subject-clause refusal of a
+key that named more than one act; a contradicted date refuses before
+the flag is set, so that refusal never carries it.
 
 **A bounded fuzzy match**, for a title the Gazette and lex.bg word
 differently. Four bounds, and a win needs all four:
@@ -83,8 +86,8 @@ against „СЪОРЪЖЕНИЯТА ПОД НАЛЯГАНЕ“ at 0.9451, „И�
 The content guard costs nothing measurable. A reworded title, one
 function word dropped, still resolves in 2,977 of 3,608 cases, and when
 the guard was first written the looser readings of it, a superset or a
-one-token difference, resolved exactly as many while leaving four wrong
-attributions. What the guard does cost is stated plainly: a one-letter
+one-token difference, resolved exactly as many as equality did then,
+2,984 of 3,608, while leaving four wrong attributions. What the guard does cost is stated plainly: a one-letter
 typo inside a content word is a token substitution and is refused, so
 such an event stays `unlocated` and `pending`, which blocks a grade and
 writes nothing false.
@@ -540,9 +543,9 @@ def numbered_key(title: str | None) -> NumberedKey | None:
 
     The year is the one the title itself states („ОТ 22 АПРИЛ 2026 Г.“,
     „от 2026 г.“, „от 22.04.2026 г.“), taken from between the number and
-    the subject clause that „за“ opens. 365 of the corpus's numbered
-    наредби state no year at all, and for those the year is None and the
-    number carries the identity alone.
+    the subject clause that „за“ opens. 49 of the corpus's numbered
+    наредби state no year at all (measured 2026-09-05), and for those the
+    year is None and the number carries the identity alone.
     """
     if not title:
         return None
@@ -837,7 +840,7 @@ class Resolver:
     def _numbered(self, title, section):
         """The acts a numbered citation names, what was considered, the score.
 
-        A stated year is identifying and is never crossed. The 365
+        A stated year is identifying and is never crossed. The 49
         numbered наредби whose titles state no year stay candidates for
         any year, since silence cannot contradict; an act that states a
         DIFFERENT year is a different act, and widening to „any act with
@@ -966,9 +969,11 @@ class Resolver:
             # not look clean: it is attributed, and it carries
             # `content_mismatch` in the `resolver_flags` column of
             # `coverage-map.csv`, which a reader can filter by. It is NOT
-            # a route. `scripts/dv_coverage_map.py` writes
-            # `unresolved.csv` only for rows with no law id, so a flagged
-            # row never reaches it; whether the reasoning pass reviews
+            # a route. In `scripts/dv_coverage_map.py` a resolver flag reaches
+            # a chain row only through the `dv_html` branch of `classify`,
+            # and `unresolved.csv` takes an event only when its source is
+            # `unlocated`, whose flags are always empty, so a flagged row
+            # never reaches that file; whether the reasoning pass reviews
             # these rows is that script's concern and is not built here.
             if not _content_compatible(_content(subject), _content(other_subject)):
                 flags = flags + ("content_mismatch",)

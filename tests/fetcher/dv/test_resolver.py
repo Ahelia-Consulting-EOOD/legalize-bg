@@ -998,8 +998,8 @@ def test_a_stated_date_that_contradicts_the_only_candidate_refuses(corpus_acts):
 
 
 def test_a_corpus_act_that_states_no_date_is_not_contradicted(corpus_acts):
-    # 365 numbered наредби state no date at all. Silence cannot
-    # contradict a citation that states one.
+    # 61 numbered наредби state no date at all, measured 2026-09-05.
+    # Silence cannot contradict a citation that states one.
     result = Resolver(corpus_acts).resolve(
         "Наредба № 0-31 от 12 март 1975 г. за работа с радиационни дефектоскопи"
     )
@@ -1182,8 +1182,9 @@ def test_a_swapped_content_word_in_a_year_only_citation_is_flagged(resolver):
 def test_a_year_only_citation_of_an_unchanged_title_resolves_without_a_flag(resolver):
     # The other side of the same branch, and the guard against
     # over-refusal. The subject clause below is the corpus act's own,
-    # word for word; only the day is missing from the date, which is the
-    # ordinary Gazette citation form and the shape that skips the
+    # word for word; only the day and the month are missing from the
+    # date, which is the ordinary Gazette citation form and the shape
+    # that skips the
     # exact-key branch. Nothing about the content set changed, so the
     # branch must attribute it and must NOT flag it.
     #

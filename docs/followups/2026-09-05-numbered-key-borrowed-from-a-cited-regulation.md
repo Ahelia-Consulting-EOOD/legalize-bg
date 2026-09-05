@@ -34,7 +34,7 @@ A Gazette title of a different act citing the same regulation number would reach
 
 ## The action
 
-Restrict the number `numbered_key` reads to the one that directly follows the act-type noun (after `_TITLE_NOTE_RE` has removed a title note), so „НАРЕДБА № 5 ОТ ...“ keeps its key and „НАРЕДБА ЗА ... РЕГЛАМЕНТ (ЕО) № 1907/2006“ yields none. One test per source shape in the table above, Регламент, Решение, Указ and Приложение, red first. Then re-measure and correct every count the resolver tests and docstrings quote that the key feeds: dated numbered acts (1,932), (type, number) keys naming one act (176), numbered наредби stating no year (365).
+Restrict the number `numbered_key` reads to the one that directly follows the act-type noun (after `_TITLE_NOTE_RE` has removed a title note), so „НАРЕДБА № 5 ОТ ...“ keeps its key and „НАРЕДБА ЗА ... РЕГЛАМЕНТ (ЕО) № 1907/2006“ yields none. One test per source shape in the table above, Регламент, Решение, Указ and Приложение, red first. Then re-measure and correct every count the resolver tests and docstrings quote that the key feeds: dated numbered acts (1,932), (type, number) keys naming one act (176), numbered наредби stating no year (49; 61 state no date).
 
 ## Why it is deferred from PR #35
 
