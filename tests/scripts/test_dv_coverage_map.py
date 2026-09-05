@@ -754,6 +754,17 @@ def test_the_report_states_the_totals_and_the_pre_2003_inheritance(outputs):
     assert "—" not in text  # no em-dashes
 
 
+def test_the_readme_lists_every_uncertainty_label_the_code_can_emit(cmap):
+    # `data/dv/README.md` presents the labels as a closed list and the
+    # sentence under it says the report tabulates them, so a label
+    # missing there is a reader told the vocabulary is smaller than it
+    # is. The list named five and `classify` emits six.
+    readme = (CORPUS / "data" / "dv" / "README.md").read_text(encoding="utf-8")
+    section = readme.split("- `unlocated`:", 1)[1].split("\n\n", 1)[0]
+    for label in cmap.UNCERTAINTY_GLOSS:
+        assert f"`{label}`" in section, label
+
+
 def test_the_unlocated_census_in_the_report_agrees_with_the_csv(outputs):
     # The pair the reader takes away, „of the N unlocated rows, M are an
     # acquisition or a citation gap“, has to be the pair in

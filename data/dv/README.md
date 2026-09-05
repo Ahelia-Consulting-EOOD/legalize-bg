@@ -240,10 +240,13 @@ enumeration can be rerun.
   text needs the vision reading path.
 - `dv_offline`: before 1989, which is not online at all.
 - `unlocated`: everything else, and never „lex.bg-sourced“. The
-  `uncertainty` column says which: `issue_not_in_table`,
-  `chain_unconfirmed` (the issue has materials and none is about this
-  act), `issue_number_unknown`, `promulgation_unknown`,
-  `materials_not_enumerated` (the sweep has not reached that issue,
+  `uncertainty` column says which, and these six are all `classify`
+  emits: `issue_not_in_table`, `chain_unconfirmed` (the issue has
+  materials and none is about this act), `issue_number_unknown` (the row
+  carries a date and no issue number), `promulgation_unknown` (the act
+  cites no issue for its own promulgation), `event_reference_unknown`
+  (an event whose „dv“ reference could not be read, dated in the online
+  era), `materials_not_enumerated` (the sweep has not reached that issue,
   which is not the same as the issue holding nothing).
 
 `report.md` tabulates those labels, with a gloss and the base and event
