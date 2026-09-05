@@ -43,10 +43,14 @@ class TestFreshJar:
         assert kinds == ["clear", "get", "clear", "get"]
         assert session.cookies.clears == 2
 
-    def test_fetch_material_clears_the_jar_before_the_request(self, material_html):
+    def test_fetch_material_keeps_the_session(self, material_html):
+        # Measured live on 2026-09-05: showMaterialDV.jsp is not session-bound
+        # (one jar served idMat 242220, 300 and 1000 as three different
+        # issues), so the 42,000-body sweep must not mint a session per body.
         session = FakeSession(by_param={("idMat", 1000): material_html})
         fetch_material(session, 1000, cache_dir=None)
-        assert [kind for kind, _ in session.events] == ["clear", "get"]
+        assert [kind for kind, _ in session.events] == ["get"]
+        assert session.cookies.clears == 0
 
 
 class TestIdenticalSetGuard:
@@ -88,6 +92,33 @@ class TestIdenticalSetGuard:
         session = FakeSession(by_param={
             ("idObj", 6121): materials_html,
             ("idObj", 5000): materials_empty_html,
+            ("idObj", 6123): materials_html,
+        })
+        assert main(["materials", "--issues", str(issues), "--out", str(out)], session=session) != 0
+
+    def test_guard_is_seeded_from_the_file_across_a_resume(self, tmp_path, materials_html, materials_empty_html):
+        # First run wrote issue 6121 and then an EMPTY issue 5000 as its last
+        # row. The resume drops that last issue and re-fetches it, so the
+        # in-memory "previous non-empty set" would be blank; the guard must
+        # still recognise 6123's leaked materials as ones already written.
+        issues = _write_issues(tmp_path, 6121, 5000, 6123)
+        out = tmp_path / "materials.jsonl"
+        first = FakeSession(by_param={("idObj", 6121): materials_html, ("idObj", 5000): materials_empty_html})
+        assert main(["materials", "--issues", str(issues), "--out", str(out), "--limit", "2"], session=first) == 0
+        before = [json.loads(l) for l in out.read_text(encoding="utf-8").splitlines()]
+        assert {r["id_obj"] for r in before} == {6121, 5000}
+        resumed = FakeSession(by_param={("idObj", 5000): materials_empty_html, ("idObj", 6123): materials_html})
+        assert main(["materials", "--issues", str(issues), "--out", str(out), "--resume"], session=resumed) != 0
+        after = [json.loads(l) for l in out.read_text(encoding="utf-8").splitlines()]
+        assert {r["id_obj"] for r in after} == {6121, 5000}, "nothing from the leaked issue may be written"
+
+    def test_guard_catches_a_repeat_that_is_not_adjacent(self, tmp_path, materials_html, materials_empty_html):
+        issues = _write_issues(tmp_path, 6121, 5000, 5001, 6123)
+        out = tmp_path / "materials.jsonl"
+        session = FakeSession(by_param={
+            ("idObj", 6121): materials_html,
+            ("idObj", 5000): materials_empty_html,
+            ("idObj", 5001): materials_empty_html,
             ("idObj", 6123): materials_html,
         })
         assert main(["materials", "--issues", str(issues), "--out", str(out)], session=session) != 0

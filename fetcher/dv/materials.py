@@ -253,8 +253,10 @@ def forget_session_state(session) -> None:
     each materials or material request, and the rate limiter is untouched.
     """
     jar = getattr(session, "cookies", None)
-    if jar is not None:
-        jar.clear()
+    if jar is None:
+        log.warning("session exposes no cookie jar; the materials page may stay bound to a stale issue")
+        return
+    jar.clear()
 
 
 def fetch_materials_page(session, id_obj: int) -> str:
@@ -276,6 +278,12 @@ def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
 
 def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:
     """GET one material, returning its raw HTML.
+
+    The material page (`showMaterialDV.jsp`) is NOT session-bound: measured
+    live on 2026-09-05, one cookie jar served idMat 242220, 300 and 1000 as
+    брой 32/2026, 43/2005 and 88/2005. So, unlike the materials list, this
+    request keeps the session, and a 42,000-body sweep does not leave
+    thousands of server sessions behind.
 
     With `cache_dir` the raw response is stored as `<id_mat>.html` and a
     later call for the same id is served from disk without a request. A
@@ -300,7 +308,6 @@ def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:
             "cached body for material %d is the site's error stub; re-fetching",
             id_mat,
         )
-    forget_session_state(session)
     html = session.get(MATERIAL_URL, params={"idMat": id_mat})
     if cached is not None and not is_dv_error_body(html):
         cached.parent.mkdir(parents=True, exist_ok=True)
