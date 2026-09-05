@@ -669,8 +669,31 @@ def build_inventory(issues, citing, estimator, pdf_era_end) -> list[dict]:
     return rows
 
 
-def is_predecessor_material(material, act, issues) -> bool:
-    """Whether a material published before the act it resolved to.
+#: The three shapes a predecessor material takes, and the token each row
+#: of `predecessor-materials.csv` carries in its `reason` column. They
+#: are ordered as `predecessor_reason` tests them, strongest first.
+PREDECESSOR_REASONS = ("before_promulgation", "promulgation_issue", "chain_continues")
+
+
+def last_chain_date(act) -> str | None:
+    """The date of the act's latest dated `amendment_history` row.
+
+    lex.bg's chain is a witness rather than an authority, and the map
+    already trusts it that far: the whole chain-omission file is built
+    from it. What it witnesses here is that the act went on being amended
+    after some date, which is the one thing that tells a repeal OF this
+    act from a repeal of a same-titled predecessor.
+
+    The rows are not guaranteed to be ordered, so the maximum decides,
+    and a chain whose rows carry no date at all yields None, which
+    refuses the inference rather than guessing it.
+    """
+    dates = [str(date) for _reference, date in act.amendment_history if date]
+    return max(dates) if dates else None
+
+
+def predecessor_reason(material, act, issues, kind) -> str | None:
+    """Why a material is about a predecessor act, or None if it is not.
 
     A Gazette title names an act by name, and Bulgarian acts are replaced
     by new acts of the same name: the Закон за горите of 1997 was
@@ -682,23 +705,57 @@ def is_predecessor_material(material, act, issues) -> bool:
     that kind: „Закон за изменение и допълнение на Закона за горите“ in
     бр. 64/2007 cannot be an event of an act promulgated in 2011.
 
-    So a material whose issue is strictly earlier than the act's own
-    `fecha_publicacion` is a fact about what the corpus does NOT hold,
-    never a gap in the chain of the act it resolved to.
+    Three shapes, and the row says which one it is rather than being
+    routed silently.
 
-    The comparison is on the issue's publication date, which the `issues`
-    table carries. When the table has no date for it, the issue numbers
-    decide instead, against the act's own promulgation issue, which is
-    the same ordering by a coarser measure; an act that cites neither a
-    date nor a promulgation cannot be compared and is left alone.
+    `before_promulgation`: the material's issue is strictly earlier than
+    the act's own `fecha_publicacion`. That is the amending instruction
+    of a predecessor, and it is 712 of the 719 rows.
+
+    `promulgation_issue`: a repeal-kind material in the act's OWN
+    promulgation issue. The issue that promulgated an act cannot also
+    repeal it, and the material names its target by the adopting decree
+    the corpus act does not carry („..., приет с Постановление № 201 на
+    Министерския съвет от 2003 г.“).
+
+    `chain_continues`: a repeal-kind material published before the act's
+    last recorded amendment. An act amended in 2021 was not repealed in
+    2014, so the repeal was of a same-titled predecessor. This one is an
+    INFERENCE from lex.bg's chain rather than a reading of the material,
+    which is why it is a token in the file and a sentence in the report;
+    where the chain records nothing later, the inference is refused and
+    the row stays an `estado` dispute.
+
+    Two boundaries, stated rather than implied. The date comparison is on
+    the issue's publication date, so a predecessor repealed on the same
+    day as its successor is promulgated, in a DIFFERENT issue, compares
+    equal and is not caught by the first test; 31 dates in the table
+    carry more than one issue and no such case occurs today. And the
+    issue-number fallback below is a guard, not the operating rule: every
+    issue in the table carries a date, so no real material reaches it.
     """
     issue = issues.get((material.year, material.number))
-    if issue is not None and issue.date and act.fecha_publicacion:
-        return str(issue.date) < str(act.fecha_publicacion)
-    promulgation = act.promulgation
-    if promulgation is None:
-        return False
-    return (material.year, material.number) < promulgation
+    date = issue.date if issue is not None else None
+
+    if date and act.fecha_publicacion:
+        if str(date) < str(act.fecha_publicacion):
+            return "before_promulgation"
+    elif (
+        act.promulgation is not None
+        and (material.year, material.number) < act.promulgation
+    ):
+        return "before_promulgation"
+
+    # The other two shapes are about a repeal and nothing else. An
+    # amending instruction published after the act amends the act.
+    if kind != "repeal":
+        return None
+    if (material.year, material.number) == act.promulgation:
+        return "promulgation_issue"
+    last = last_chain_date(act)
+    if date and last and str(date) < str(last):
+        return "chain_continues"
+    return None
 
 
 def parse_era_end(text: str) -> tuple[int, int]:
@@ -887,12 +944,13 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
             continue
         act = by_id[law_id]
         kind = instruction_kind(material.title)
-        if is_predecessor_material(material, act, issues):
-            # The material is older than the act it resolved to, so it is
-            # about a same-titled act the corpus does not hold. It is
-            # neither an omission of this act's chain nor a dispute about
-            # this act's `estado`: a repeal published before the act
-            # existed repealed the predecessor.
+        reason = predecessor_reason(material, act, issues, kind)
+        if reason is not None:
+            # The material is about a same-titled act the corpus does not
+            # hold. It is neither an omission of this act's chain nor a
+            # dispute about this act's `estado`, and the test runs before
+            # both branches so that a repeal in the act's own
+            # promulgation issue never reaches the dispute writer.
             predecessors.append(
                 {
                     "pass": "title",
@@ -906,6 +964,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
                     "resolver_score": f"{score:.3f}",
                     "resolver_flags": ";".join(flags),
                     "act_promulgated": act.fecha_publicacion or "",
+                    "reason": reason,
                 }
             )
             continue
@@ -1005,10 +1064,10 @@ OMISSION_FIELDS = [
     "pass", "law_id", "dv_year", "dv_number", "id_mat", "section", "title",
     "title_kind", "resolver_score", "resolver_flags",
 ]
-#: The omission row plus the act's own promulgation date, which is the
-#: coordinate the row was routed here by and the one a reader needs to
-#: see the material is older than the act it names.
-PREDECESSOR_FIELDS = OMISSION_FIELDS + ["act_promulgated"]
+#: The omission row plus the act's own promulgation date and the reason
+#: the row was routed here, so that no row is a predecessor by a rule the
+#: reader has to reconstruct.
+PREDECESSOR_FIELDS = OMISSION_FIELDS + ["act_promulgated", "reason"]
 UNRESOLVED_FIELDS = [
     "kind", "law_id", "dv_year", "dv_number", "title", "candidates",
     "resolver_score", "resolver_flags", "dv_identifier", "reason",
@@ -1196,20 +1255,40 @@ def write_report(path: Path, coverage, summary, omissions, predecessors,
         "## Predecessor acts",
         "",
         f"Predecessor materials: {len(predecessors)}, in "
-        "`predecessor-materials.csv`. Each is a Gazette material published "
-        "BEFORE the act its title resolved to was promulgated, so it names a "
-        "same-titled act the corpus does not hold: Bulgarian acts are "
-        "replaced by new acts of the same name, and only the current one is "
-        "in the corpus. „Закон за изменение и допълнение на Закона за "
-        "горите“ in бр. 64/2007 cannot be an event of the Закон за горите "
-        "promulgated in 2011.",
+        "`predecessor-materials.csv`. Each is a Gazette material about a "
+        "same-titled act the corpus does not hold rather than about the act "
+        "its title resolved to: Bulgarian acts are replaced by new acts of "
+        "the same name, and only the current one is in the corpus. „Закон за "
+        "изменение и допълнение на Закона за горите“ in бр. 64/2007 cannot be "
+        "an event of the Закон за горите promulgated in 2011, and the "
+        "постановление that repealed the правилник of the ВВМУ in бр. 92/2018 "
+        "cannot have repealed the правилник promulgated in that same issue.",
         "",
         "These rows are data for the corpus-completeness question, which is "
         "which repealed predecessors the corpus should hold, and never a "
         "chain omission of the act they resolved to. A repeal among them "
         "disputes no `estado` either, for the same reason: it repealed the "
         "predecessor. The `act_promulgated` column carries the act's own "
-        "publication date, which is the coordinate the row was routed by.",
+        "publication date and the `reason` column says which of three rules "
+        "routed the row.",
+        "",
+        "| Reason | Rows |",
+        "|---|---|",
+    ]
+    by_reason = Counter(row["reason"] for row in predecessors)
+    for reason in PREDECESSOR_REASONS:
+        lines.append(f"| {reason} | {by_reason.get(reason, 0)} |")
+    lines += [
+        "",
+        "`before_promulgation` is the material's issue published earlier than "
+        "the act. `promulgation_issue` is a repeal in the act's OWN "
+        "promulgation issue, which cannot repeal the act it promulgates and "
+        "which names its target by an adopting decree the corpus act does not "
+        "carry. `chain_continues` is a repeal published before the act's last "
+        "recorded amendment, so the act outlived it; that one is inferred "
+        "from the corpus chain, which is lex.bg's witness and not the "
+        "material's own words, and where the chain records nothing later the "
+        "inference is refused and the row stays an `estado` dispute.",
         "",
         "## Estado disputes",
         "",

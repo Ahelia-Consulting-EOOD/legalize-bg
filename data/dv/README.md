@@ -296,16 +296,26 @@ identifier form D-064 item 4 settled for an act with no lex.bg document.
 No corpus act is in that position today, so the column exists to fix the
 form rather than to be read.
 
-**`predecessor-materials.csv`** records a Gazette material published
-before the act its title resolved to was promulgated. Bulgarian acts are
-replaced by new acts of the same name and only the current one is in the
-corpus, so „Закон за изменение и допълнение на Закона за горите“ in
-бр. 64/2007 resolves to the Закон за горите of 2011 and cannot be an
-event of it. The rows are data for the corpus-completeness question,
-which repealed predecessors the corpus should hold, and never a chain
-omission or an `estado` dispute of the act they resolved to; the routing
-coordinate, the act's own `fecha_publicacion`, is carried in
-`act_promulgated`.
+**`predecessor-materials.csv`** records a Gazette material about a
+same-titled act the corpus does not hold. Bulgarian acts are replaced by
+new acts of the same name and only the current one is in the corpus, so
+„Закон за изменение и допълнение на Закона за горите“ in бр. 64/2007
+resolves to the Закон за горите of 2011 and cannot be an event of it. The
+rows are data for the corpus-completeness question, which repealed
+predecessors the corpus should hold, and never a chain omission or an
+`estado` dispute of the act they resolved to. `act_promulgated` carries
+the act's own `fecha_publicacion` and `reason` says which of three rules
+routed the row:
+
+| `reason` | The material is |
+|---|---|
+| `before_promulgation` | in an issue published before the act |
+| `promulgation_issue` | a repeal in the act's own promulgation issue, which cannot repeal the act it promulgates |
+| `chain_continues` | a repeal published before the act's last recorded amendment, so the act outlived it |
+
+`chain_continues` is inferred from lex.bg's chain rather than read from
+the material, and where the chain records no later amendment the
+inference is refused and the row stays an `estado` dispute.
 
 **`estado-disputes.csv`** records a Gazette material whose title repeals
 an act the corpus still records as `vigente`. Data, never a correction:

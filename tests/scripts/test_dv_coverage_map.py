@@ -489,37 +489,55 @@ FORESTS_ACT = (
     "dv_year: 2007\n"
     "amendment_history:\n- dv: 19/2007\n  date: '2007-07-20'\n"
 )
+#: The same act, amended in 2010: its chain goes on after any repeal
+#: published in between, which is what tells a repeal of the predecessor
+#: from a repeal of this act.
+FORESTS_ACT_AMENDED = FORESTS_ACT + "- dv: 41/2010\n  date: '2010-05-20'\n"
 ZID_FORESTS = "Закон за изменение и допълнение на Закона за горите"
 REPEAL_FORESTS = "Закон за отмяна на Закона за горите"
 
 
-def one_act_map(cmap, tmp_path, name, *, issue, title):
+def one_act_map(cmap, tmp_path, name, *, issue, title, act=FORESTS_ACT):
     """The map over one act and one Gazette material, in its own tree.
 
     `issue` is (year, number, date) and `title` is the material's title.
     A corpus of one act keeps the resolver's answer beyond doubt and
     keeps these cases out of the shared fixture, whose page medians and
     inventory rows are pinned by other tests.
+
+    The act's own promulgation issue, бр. 19 от 20 юли 2007, is always in
+    the issues table; when the material sits in that same issue, the two
+    are one row and one `id_obj`, as they are in the real tables.
     """
     root = tmp_path / f"corpus-{name}"
-    synthetic_act(root, "laws", "zakon-za-gorite", FORESTS_ACT)
+    synthetic_act(root, "laws", "zakon-za-gorite", act)
 
     year, number, date = issue
+    promulgation = (2007, 19)
+    id_obj = 700 if (year, number) == promulgation else 900
+    table = {promulgation: ("2007-07-20", 700), (year, number): (date, id_obj)}
     issues_path = tmp_path / f"issues-{name}.jsonl"
     with issues_path.open("w", encoding="utf-8") as handle:
-        for row in (
-            {"year": 2007, "number": 19, "date": "2007-07-20", "id_obj": 700},
-            {"year": year, "number": number, "date": date, "id_obj": 900},
-        ):
+        for (row_year, row_number), (row_date, row_id) in sorted(table.items()):
             handle.write(
-                json.dumps({**row, "extraordinary": False}, ensure_ascii=False) + "\n"
+                json.dumps(
+                    {
+                        "year": row_year,
+                        "number": row_number,
+                        "date": row_date,
+                        "id_obj": row_id,
+                        "extraordinary": False,
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n"
             )
 
     materials_path = tmp_path / f"materials-{name}.jsonl"
     materials_path.write_text(
         json.dumps(
             {
-                "id_obj": 900,
+                "id_obj": id_obj,
                 "issue_year": year,
                 "issue_number": number,
                 "issue_date": date,
@@ -565,6 +583,7 @@ def test_a_material_older_than_the_act_is_a_predecessor_not_an_omission(cmap, tm
     assert found[0]["dv_number"] == "84"
     assert found[0]["title_kind"] == "amending"
     assert found[0]["act_promulgated"] == "2007-07-20"
+    assert found[0]["reason"] == "before_promulgation"
     assert rows(out / "chain-omissions.csv") == []
 
 
@@ -591,9 +610,68 @@ def test_a_repeal_older_than_the_act_is_not_an_estado_dispute(cmap, tmp_path):
     found = rows(out / "predecessor-materials.csv")
     assert len(found) == 1
     assert found[0]["title_kind"] == "repeal"
+    assert found[0]["reason"] == "before_promulgation"
 
 
-def test_the_report_counts_the_predecessor_materials(cmap, tmp_path):
+def test_a_repeal_in_the_acts_own_promulgation_issue_repeals_the_predecessor(
+    cmap, tmp_path
+):
+    # The issue that promulgated the act cannot also repeal it. This is
+    # the ВВМУ правилник of бр. 92/2018, where the material names the
+    # predecessor by its adopting decree and the corpus act was adopted
+    # by another.
+    out = one_act_map(
+        cmap,
+        tmp_path,
+        "same-issue",
+        issue=(2007, 19, "2007-07-20"),
+        title=REPEAL_FORESTS,
+    )
+    found = rows(out / "predecessor-materials.csv")
+    assert len(found) == 1
+    assert found[0]["reason"] == "promulgation_issue"
+    assert rows(out / "estado-disputes.csv") == []
+    assert rows(out / "chain-omissions.csv") == []
+
+
+def test_a_repeal_an_act_outlived_repealed_its_predecessor(cmap, tmp_path):
+    # The repeal is published after the act and the act goes on being
+    # amended for years afterwards, so it repealed a same-titled
+    # predecessor. This is the МВР академия правилник of бр. 93/2014 and
+    # the ВМА правилник of бр. 108/2018, four days and one day after
+    # their acts, with chains running to 2021 and 2020.
+    out = one_act_map(
+        cmap,
+        tmp_path,
+        "outlived",
+        issue=(2008, 60, "2008-07-08"),
+        title=REPEAL_FORESTS,
+        act=FORESTS_ACT_AMENDED,
+    )
+    found = rows(out / "predecessor-materials.csv")
+    assert len(found) == 1
+    assert found[0]["reason"] == "chain_continues"
+    assert found[0]["title_kind"] == "repeal"
+    assert rows(out / "estado-disputes.csv") == []
+    assert rows(out / "chain-omissions.csv") == []
+
+
+def test_a_repeal_the_act_did_not_outlive_is_still_a_dispute(cmap, tmp_path):
+    # The same repeal against an act whose chain stops at its own
+    # promulgation. Nothing says the act survived it, so the row stays
+    # the `estado` dispute it is, and the inference is refused rather
+    # than guessed.
+    out = one_act_map(
+        cmap, tmp_path, "outlived-not", issue=(2008, 60, "2008-07-08"),
+        title=REPEAL_FORESTS,
+    )
+    assert rows(out / "predecessor-materials.csv") == []
+    found = rows(out / "estado-disputes.csv")
+    assert len(found) == 1
+    assert found[0]["finding"] == "repeal"
+
+
+def test_the_report_counts_the_predecessor_materials_by_reason(cmap, tmp_path):
     out = one_act_map(
         cmap, tmp_path, "report", issue=(2003, 84, "2003-09-19"), title=ZID_FORESTS
     )
@@ -601,6 +679,13 @@ def test_the_report_counts_the_predecessor_materials(cmap, tmp_path):
     section = text.split("## Predecessor acts", 1)[1].split("\n## ", 1)[0]
     assert "1" in section
     assert "never a chain omission" in section
+    assert "| before_promulgation | 1 |" in section
+    assert "| promulgation_issue | 0 |" in section
+    assert "| chain_continues | 0 |" in section
+    # The chain reason is an inference from lex.bg's chain, and the
+    # report has to say so rather than let it read as the material's own
+    # words.
+    assert "inferred from the corpus chain" in section
 
 
 # --- unresolved -----------------------------------------------------------
