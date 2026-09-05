@@ -44,14 +44,20 @@ def test_clean_act_passes(tmp_path):
 def test_words_that_occur_in_legislative_prose_are_not_chrome(tmp_path):
     """„Новини“ and „Форум за“ are ordinary words in enacted text.
 
-    Both sentences below are quoted from the corpus. They are recorded as
-    rejected markers so that no later leg silently re-adds them.
+    Both lines below carry a phrase taken from the corpus. The first is ЗРТ
+    чл. 10, ал. 6, quoted verbatim from `laws/zakon-za-radioto-i-
+    televiziyata.md:556`. The second is the block named „Форум за строители“
+    in the ЦПРС правилник, `regulations/pravilnik-za-reda-za-vpisvane-i-
+    vodene-na-tsentralniya-profesionalen-registar-na.md:379`; its sentence is
+    shortened here and the corpus's ASCII quotation marks are normalised, so
+    that line is not a verbatim quotation. Both markers are recorded as
+    rejected so that no later leg silently re-adds them.
     """
     root = _act(
         tmp_path,
         "**Чл. 1.** Новините като информационни факти трябва да бъдат "
         "разграничавани от коментарите към тях.\n"
-        "**Чл. 2.** Информационни блокове: „Форум за въпроси и отговори“.\n",
+        "**Чл. 2.** Информационни блокове: „Форум за строители“.\n",
     )
     assert ChromeCheck().run(iter_acts(root)) == []
     assert "Новини" in NOT_CHROME and "Форум за" in NOT_CHROME
