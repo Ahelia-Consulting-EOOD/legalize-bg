@@ -40,6 +40,16 @@ def materials_empty_html() -> str:
 
 
 @pytest.fixture
+def error_page_html() -> str:
+    """The stub the site serves for an idObj that does not exist.
+
+    489 bytes, HTTP 500, „Сайтът е недостъпен в момента“. Captured live
+    for idObj 6000 on 2026-09-05.
+    """
+    return read_fixture("materiali-idObj6000-error.html")
+
+
+@pytest.fixture
 def material_html() -> str:
     """idMat 1000, an annex published in брой 88 от 4.11.2005."""
     return read_fixture("showMaterial-idMat1000.html")

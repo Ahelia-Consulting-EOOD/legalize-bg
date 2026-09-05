@@ -6,7 +6,12 @@ import pytest
 import requests
 
 from fetcher.bg.client import USER_AGENT, CloudflareChallenge
-from fetcher.dv.client import BASE, DvSession, url_for
+from fetcher.dv.client import BASE, DvSession, is_dv_error_body, url_for
+
+from .conftest import read_fixture
+
+#: The site answers an unknown idObj with HTTP 500 and this 489-byte body.
+ERROR_BODY = read_fixture("materiali-idObj6000-error.html")
 
 
 class FakeResponse:
@@ -108,6 +113,32 @@ def test_server_error_is_retried_with_exponential_backoff():
     # The first request needs no rate-limit wait; the two backoffs are 2 and 4,
     # and the rate-limit floor adds nothing because the backoff already spent it.
     assert session.clock.slept[:2] == [pytest.approx(2.0), pytest.approx(4.0)]
+
+
+def test_the_sites_error_stub_is_a_permanent_answer_not_a_retry():
+    # dv.parliament.bg returns HTTP 500 with its „недостъпен“ stub for an
+    # idObj that does not exist. Retrying it costs four requests per gap
+    # in a sparse id space and never changes the answer, so the body is
+    # handed back for the caller to classify.
+    session = make_session([FakeResponse(ERROR_BODY, 500)])
+    body = session.get(url_for("materiali.faces"))
+    assert "Сайтът е недостъпен" in body
+    assert len(session.calls) == 1
+    assert session.clock.slept == []
+
+
+def test_a_server_error_with_a_real_body_is_still_retried():
+    session = make_session(
+        [FakeResponse("<html>oops</html>", 500), FakeResponse("done")]
+    )
+    assert session.get(url_for("a")) == "done"
+    assert len(session.calls) == 2
+
+
+def test_is_dv_error_body_ignores_real_pages(materials_html, material_html):
+    assert is_dv_error_body(ERROR_BODY) is True
+    assert is_dv_error_body(materials_html) is False
+    assert is_dv_error_body(material_html) is False
 
 
 def test_retries_are_bounded():

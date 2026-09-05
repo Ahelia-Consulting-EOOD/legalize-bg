@@ -15,14 +15,11 @@ from fetcher.dv.materials import (
     parse_materials,
 )
 
-from .conftest import FakeSession
+from .conftest import FakeSession, read_fixture
 
-# The short body dv.parliament.bg returns for an idObj that does not exist.
-ERROR_PAGE = (
-    '<html><head><title>Държавен вестник</title></head><body>'
-    "<div class='titleHead'>Сайтът е недостъпен в момента</div>"
-    "</body></html>"
-)
+#: The 489-byte body dv.parliament.bg serves, with status 500, for an
+#: idObj that does not exist. Captured live for idObj 6000 on 2026-09-05.
+ERROR_PAGE = read_fixture("materiali-idObj6000-error.html")
 
 
 # --- issue contents -------------------------------------------------------
@@ -80,8 +77,17 @@ def test_an_issue_with_no_html_materials_parses_to_nothing(materials_empty_html)
 # --- error pages ----------------------------------------------------------
 
 
-def test_error_page_is_detected():
-    assert is_error_page(ERROR_PAGE) is True
+def test_error_page_is_detected(error_page_html):
+    assert is_error_page(error_page_html) is True
+    # A stub, not a page: half a kilobyte with no result table in it.
+    assert len(error_page_html) < 1000
+    assert "Сайтът е недостъпен в момента" in error_page_html
+
+
+def test_error_page_is_recognised_by_its_title_alone():
+    # The Bulgarian sentence may be reworded; the JSF error view's title
+    # is the second, independent marker.
+    assert is_error_page("<html><head><title>ErrorPage</title></head></html>") is True
 
 
 def test_real_pages_are_not_error_pages(

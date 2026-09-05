@@ -17,8 +17,10 @@ and the issuing body, and its text sits in a single content division.
 
 An issue with no HTML materials answers with „Намерени резултати: 0“,
 which is the signal that the issue exists only as a PDF. An idObj that
-does not exist answers with a short page saying the site is unavailable;
-that is `is_error_page`, and it is recorded, not retried.
+does not exist answers with HTTP 500 and a 489-byte stub saying the site
+is unavailable; `DvSession` returns that body instead of retrying it and
+`is_error_page` classifies it, so a gap in the sparse idObj space costs
+one request and is recorded as a fact about the id.
 """
 
 import logging
@@ -28,7 +30,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup, Tag
 
-from fetcher.dv.client import url_for
+from fetcher.dv.client import is_dv_error_body, url_for
 
 MATERIALS_PATH = "materiali.faces"
 MATERIAL_PATH = "showMaterialDV.jsp"
@@ -64,12 +66,6 @@ class MaterialHeader:
     body_org: str
 
 
-#: The one line the site returns instead of a page for an unknown idObj.
-_ERROR_MARKERS = (
-    "сайтът е недостъпен",
-    "сайта е недостъпен",
-)
-
 _START_PAGE_RE = re.compile(r"стр\.?\s*(\d+)")
 _ID_MAT_RE = re.compile(r"idMat=(\d+)")
 _HEADER_RE = re.compile(
@@ -81,10 +77,10 @@ def is_error_page(html: str) -> bool:
     """True when the response is the site's „недостъпен“ stub.
 
     Recorded as a fact about the idObj rather than retried: idObj values
-    are sparse, and the gaps between them answer this way every time.
+    are sparse, and the gaps between them answer this way every time
+    (with status 500, which `DvSession` already declines to retry).
     """
-    lowered = html.lower()
-    if any(marker in lowered for marker in _ERROR_MARKERS):
+    if is_dv_error_body(html):
         return True
     # Defensive second clause: a body with neither a result table nor a
     # material header is not a page this module can read.

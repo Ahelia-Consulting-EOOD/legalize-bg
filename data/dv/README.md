@@ -44,7 +44,11 @@ an issue that carries no HTML materials or that does not resolve. Around
   signal: the issue is online only as a whole-issue attachment, so every
   event published in it needs the vision reading path, not the HTML one.
 - `error_page`: the site answered its „недостъпен“ stub for this
-  `id_obj`. Recorded once and not retried.
+  `id_obj`. The stub arrives as HTTP 500 with a 489-byte body, which
+  looks transient and is not: it is the permanent answer for a gap in
+  the sparse `id_obj` space. The client recognises it by body and hands
+  it back rather than spending three retries on it, so one gap costs one
+  request.
 
 The issue identity on every line comes from the issue list row, never
 from the contents page header, which shows the site's current issue

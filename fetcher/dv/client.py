@@ -35,12 +35,34 @@ from fetcher.bg.client import (
 BASE = "https://dv.parliament.bg/DVWeb/"
 ENCODING = "utf-8"
 
+#: Markers of the site's own error view. Verified live on 2026-09-05:
+#: `materiali.faces?idObj=6000` answers HTTP 500 with a 489-byte body
+#: titled ErrorPage and carrying „Сайтът е недостъпен в момента“. The
+#: idObj space is sparse, so this is the ordinary answer for a gap in it.
+_ERROR_MARKERS = (
+    "<title>errorpage</title>",
+    "сайтът е недостъпен",
+    "сайта е недостъпен",
+)
+
 log = logging.getLogger(__name__)
 
 
 def url_for(path: str) -> str:
     """Absolute URL for a page of the ДВ web application."""
     return urljoin(BASE, path)
+
+
+def is_dv_error_body(text: str) -> bool:
+    """True when a body is the site's „недостъпен“ error view.
+
+    It arrives with status 500, which makes it look transient, but it is
+    the site's permanent answer for an object that does not exist.
+    Retrying it spends four requests per gap in the sparse idObj space
+    and never changes the answer.
+    """
+    lowered = text[:4000].lower()
+    return any(marker in lowered for marker in _ERROR_MARKERS)
 
 
 class DvSession:
@@ -143,6 +165,16 @@ class DvSession:
             )
 
             if resp.status_code == 429 or 500 <= resp.status_code < 600:
+                body = resp.content.decode(ENCODING)
+                if is_dv_error_body(body):
+                    # A permanent „no such object“ wearing a 500. Hand the
+                    # body back so the caller records it as a fact about
+                    # the id instead of paying three retries for it.
+                    log.info(
+                        "%s %s -> site error view (status %d); not retrying",
+                        method, url, resp.status_code,
+                    )
+                    return body
                 if attempt < self._max_retries:
                     backoff = self._retry_base_sec * (2 ** attempt)
                     log.warning(
