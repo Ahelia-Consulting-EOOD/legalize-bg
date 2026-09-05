@@ -11,6 +11,7 @@ ROOT = Path("/Users/ekimir/swprj/legalize-bg"); sys.path.insert(0, str(ROOT))
 from fetcher.bg.text_parser import HtmlToMarkdown, CLASS_MAP
 from fetcher.bg.metadata import MetadataParser
 from fetcher.bg.assembler import assemble_file
+from corpus_gate import SourceRef, write_act  # every corpus write is gated
 
 RAW = Path("/private/tmp/claude-501/-Users-ekimir-swprj-legalize-bg/acbebd20-17b3-48f9-b315-56c69fae83a7/scratchpad/raw12")
 RAW.mkdir(parents=True, exist_ok=True)
@@ -116,7 +117,7 @@ def main():
         body = FixedHtmlToMarkdown().convert(soup)
         out = assemble_file(meta, body)
         target = ROOT / f"laws/{slug}.md"
-        target.write_text(out, encoding="utf-8")
+        write_act(target, meta, body, source=SourceRef("lexbg", str(doc_id)))
         base_dr = len([m for m in re.finditer(r"Допълнителни разпоредби", out)
                        if "КЪМ" not in out[m.end():m.end()+30]])
         results.append((slug, doc_id, "OK", len(out)))

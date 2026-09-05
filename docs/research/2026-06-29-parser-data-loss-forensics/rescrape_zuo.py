@@ -18,6 +18,7 @@ from fetcher.bg.text_parser import HtmlToMarkdown, CLASS_MAP
 from fetcher.bg.metadata import MetadataParser
 from fetcher.bg.assembler import assemble_file
 from fetcher.bg.client import LexBgClient, HttpTransport
+from corpus_gate import SourceRef, write_act  # every corpus write is gated
 
 DOC_ID = 2135802037
 CATEGORY = "laws"
@@ -111,7 +112,7 @@ def main():
     # backup the old broken file for diffing
     if TARGET.exists():
         shutil.copy(TARGET, RESEARCH / "zuo-OLD-broken.md")
-    TARGET.write_text(out, encoding="utf-8")
+    write_act(TARGET, meta, body, source=SourceRef("lexbg", str(DOC_ID)))
     shutil.copy(TARGET, RESEARCH / "zuo-NEW-fixed.md")
 
     # ---- verification ----

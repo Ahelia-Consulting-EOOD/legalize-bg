@@ -34,6 +34,7 @@ from pathlib import Path
 import yaml
 
 from bootstrap import TreeTransport, _format_author_date, _git_checkout_branch, _unique_slug
+from corpus_gate import CorpusIntegrityError, SourceRef, write_act, write_act_text
 from fetcher.bg.assembler import assemble_file, generate_slug
 from fetcher.bg.coverage import (
     make_gate_record,
@@ -367,6 +368,25 @@ def save_state(path: Path | str, processed: dict[int, str]) -> None:
     tmp.replace(path)
 
 
+def _record_refusal(report, state, state_path, doc_id: int, slug: str,
+                    exc: CorpusIntegrityError) -> None:
+    """Record a corpus-write-gate refusal and let the sweep continue.
+
+    The act is not written and not committed, and the run ends non-zero, so a
+    refusal cannot pass as a quiet skip. It is checkpointed like a coverage
+    gate failure, so a resume does not re-fetch an act whose defect is in the
+    parser rather than in the fetch.
+    """
+    violations = [f"{v.check}@{v.locator}: {v.detail}" for v in exc.violations]
+    report.gate_refusals.append(
+        {"doc_id": doc_id, "slug": slug, "violations": violations}
+    )
+    state[doc_id] = "gate-refused"
+    save_state(state_path, state)
+    log.error("WRITE GATE REFUSED doc_id=%d slug=%s: %s",
+              doc_id, slug, "; ".join(violations))
+
+
 def classify_change(committed_raw: str, candidate_raw: str, hist_grew: bool) -> str:
     """Classify an EXISTING act's re-scrape outcome.
 
@@ -430,6 +450,11 @@ class RefreshReport:
     missing_not_repealed: list[dict] = field(default_factory=list)  # {doc_id, slug}
     errors: list[dict] = field(default_factory=list)       # {doc_id, error}
     gate_failures: list[dict] = field(default_factory=list)  # {doc_id, slug, uncovered_chars, top_buckets}
+    # Acts the corpus write gate refused: {doc_id, slug, violations[]}. A
+    # refusal during a sweep is the gate working, so the run records it, skips
+    # the write and the commit, and carries on; the exit code at the end is
+    # what makes it impossible to ignore (D-058, anchor-integrity handover).
+    gate_refusals: list[dict] = field(default_factory=list)
     stale_categories: dict = field(default_factory=dict)
     pages_used: dict = field(default_factory=dict)
 
@@ -440,6 +465,7 @@ class RefreshReport:
             f"MISSING(kept)={len(self.missing_kept)} OTMYANA={len(self.otmyana)} "
             f"NO-REPEAL={len(self.missing_not_repealed)} "
             f"ERRORS={len(self.errors)} GATE-FAIL={len(self.gate_failures)} "
+            f"REFUSED={len(self.gate_refusals)} "
             f"STALE={self.stale_categories or '{}'}"
         )
 
@@ -621,8 +647,12 @@ def refresh(
                 continue
             slug = mint_slug(meta.get("titulo", ""), doc_id, used_slugs)
             filepath = output_dir / corpus_dir / f"{slug}.md"
-            filepath.parent.mkdir(parents=True, exist_ok=True)
-            filepath.write_text(assemble_file(meta, body), encoding="utf-8")
+            try:
+                write_act(filepath, meta, body,
+                          source=SourceRef("lexbg", str(doc_id)))
+            except CorpusIntegrityError as exc:
+                _record_refusal(report, state, state_path, doc_id, slug, exc)
+                continue
             _git_commit_typed(filepath, "nova", title, doc_id,
                               meta.get("fecha_publicacion"), output_dir)
             report.added.append({"doc_id": doc_id, "slug": slug, "title": title})
@@ -690,8 +720,17 @@ def refresh(
                 report.unchanged.append(doc_id)
                 state[doc_id] = "unchanged"
             else:
-                # SAME slug — slug stability is the #1 invariant.
-                ce.path.write_text(candidate, encoding="utf-8")
+                # SAME slug — slug stability is the #1 invariant. The gate
+                # renders exactly what `assemble_file` rendered into
+                # `candidate` above (tests/test_corpus_gate.py pins the two
+                # byte-identical), so the classification and the written file
+                # can never describe different text.
+                try:
+                    write_act(ce.path, meta, body,
+                              source=SourceRef("lexbg", str(doc_id)))
+                except CorpusIntegrityError as exc:
+                    _record_refusal(report, state, state_path, doc_id, ce.slug, exc)
+                    continue
                 cdate = latest_amendment_date(fresh_hist) or meta.get("fecha_publicacion")
                 _git_commit_typed(ce.path, disposition, title, doc_id, cdate, output_dir)
                 bucket = report.reforma if disposition == "reforma" else report.popravka
@@ -730,7 +769,15 @@ def refresh(
                 continue
             flipped = _flip_estado_derogado(ce.raw_text)
             if flipped != ce.raw_text:
-                ce.path.write_text(flipped, encoding="utf-8")
+                # A one-line edit to committed bytes: the raw sibling of the
+                # gate runs the same checks without round-tripping the
+                # frontmatter, which would churn every act it touched.
+                try:
+                    write_act_text(ce.path, flipped,
+                                   source=SourceRef("lexbg", str(doc_id)))
+                except CorpusIntegrityError as exc:
+                    _record_refusal(report, state, state_path, doc_id, ce.slug, exc)
+                    continue
                 title = ce.frontmatter.get("titulo") or f"doc {doc_id}"
                 _git_commit_typed(ce.path, "otmyana", title, doc_id, repeal_date, output_dir)
                 report.otmyana.append({"doc_id": doc_id, "slug": ce.slug, "repeal_date": repeal_date})
@@ -832,6 +879,13 @@ def main() -> int:
         crawl_config=crawl_config,
     )
     print(report.summary())
+    if report.gate_refusals:
+        # A gate failure during a sweep is the gate working; it must not pass
+        # as a clean run (Owner Directive 12).
+        for refusal in report.gate_refusals:
+            log.error("REFUSED %s (doc_id=%s): %s", refusal["slug"],
+                      refusal["doc_id"], "; ".join(refusal["violations"]))
+        return 1
     return 0
 
 
