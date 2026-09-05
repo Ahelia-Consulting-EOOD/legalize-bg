@@ -1180,17 +1180,15 @@ def test_a_swapped_content_word_in_a_year_only_citation_is_flagged(resolver):
 
 
 def test_a_year_only_citation_of_an_unchanged_title_resolves_without_a_flag(resolver):
-    # The other side of the same branch, and the guard against
-    # over-refusal. The subject clause below is the corpus act's own,
-    # word for word; only the day and the month are missing from the
-    # date, which is the ordinary Gazette citation form and the shape
-    # that skips the
-    # exact-key branch. Nothing about the content set changed, so the
-    # branch must attribute it and must NOT flag it.
-    #
-    # The renamed title, where a content word really did change, is the
-    # sibling `test_a_swapped_content_word_in_a_year_only_citation_is_
-    # flagged`, which asserts both the attribution and the flag.
+    # The other side of the same branch, and the guard against over-refusal.
+    # The subject clause below is the corpus act's own, word for word; only
+    # the day and the month are missing from the date, which is the ordinary
+    # Gazette citation form and the shape that skips the exact-key branch.
+    # Nothing about the content set changed, so the branch must attribute it
+    # and must NOT flag it. The renamed title, where a content word really
+    # did change, is the sibling
+    # `test_a_swapped_content_word_in_a_year_only_citation_is_flagged`,
+    # which asserts both the attribution and the flag.
     result = resolver.resolve(
         "Наредба № 04-14 от 2019 г. за условията и реда за сертифициране на "
         "балнеолечебен медикъл спа център спа център уелнес център и "

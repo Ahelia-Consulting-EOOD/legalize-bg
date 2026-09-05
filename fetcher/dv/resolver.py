@@ -36,20 +36,20 @@ ministries number independently. So a stated year is never crossed, a
 stated date must agree, and an exact key needs every coordinate the
 citation states. A citation whose key alone names one act and whose
 stated full date agrees is then decided by the key, and refused only
-when the two SUBJECT
-clauses, the part after the number and the date, share not one content
-word (`subject_unrelated`). Anything less is settled on the subject
-clause, under the 0.90 floor and the digit guard and nothing else when
-exactly one candidate survives the date narrowing, where a content-word
-difference is the flag `content_mismatch` rather than a refusal, and
-under the fuzzy step's four bounds when more than one does, where it is
-a refusal. Every refusal that got as far as comparing the subject
-clauses reports its real score, so `unresolved.csv` shows the reader the
-same near miss the resolver saw; a stated date that contradicts is
-refused before any comparison and has none. `numbered_key_tie` is
-reported on every attribution and on every subject-clause refusal of a
-key that named more than one act; a contradicted date refuses before
-the flag is set, so that refusal never carries it.
+when the two SUBJECT clauses, the part after the number and the date,
+share not one content word (`subject_unrelated`). Anything less is
+settled on the subject clause, under the 0.90 floor and the digit guard
+and nothing else when exactly one candidate survives the date narrowing,
+where a content-word difference is the flag `content_mismatch` rather
+than a refusal, and under the fuzzy step's four bounds when more than
+one does, where it is a refusal. Every refusal that got as far as
+comparing the subject clauses reports its real score, so
+`unresolved.csv` shows the reader the same near miss the resolver saw; a
+stated date that contradicts is refused before any comparison and has
+none. `numbered_key_tie` is reported on every attribution and on every
+subject-clause refusal of a key that named more than one act; a
+contradicted date refuses before the flag is set, so that refusal never
+carries it.
 
 **A bounded fuzzy match**, for a title the Gazette and lex.bg word
 differently. Four bounds, and a win needs all four:
@@ -87,10 +87,10 @@ The content guard costs nothing measurable. A reworded title, one
 function word dropped, still resolves in 2,977 of 3,608 cases, and when
 the guard was first written the looser readings of it, a superset or a
 one-token difference, resolved exactly as many as equality did then,
-2,984 of 3,608, while leaving four wrong attributions. What the guard does cost is stated plainly: a one-letter
-typo inside a content word is a token substitution and is refused, so
-such an event stays `unlocated` and `pending`, which blocks a grade and
-writes nothing false.
+2,984 of 3,608, while leaving four wrong attributions. What the guard
+does cost is stated plainly: a one-letter typo inside a content word is
+a token substitution and is refused, so such an event stays `unlocated`
+and `pending`, which blocks a grade and writes nothing false.
 
 Ambiguity that survives all three keys is broken by the inline
 promulgation citation „(ДВ, бр. N от YYYY г.)“, cross-checked against the
@@ -965,16 +965,17 @@ class Resolver:
             # наредба differ by a content word („спортна подготовка“ became
             # „специализирана подготовка“ in 2019) and are one act. The
             # number and the year pin it, so refusing would lose the act
-            # the branch is for. What the flag buys is that the row does
-            # not look clean: it is attributed, and it carries
+            # the branch is for. What the flag buys is that the row does not
+            # look clean: it is attributed, and it carries
             # `content_mismatch` in the `resolver_flags` column of
-            # `coverage-map.csv`, which a reader can filter by. It is NOT
-            # a route. In `scripts/dv_coverage_map.py` a resolver flag reaches
+            # `coverage-map.csv`, which a reader can filter by. It is NOT a
+            # route. In `scripts/dv_coverage_map.py` a resolver flag reaches
             # a chain row only through the `dv_html` branch of `classify`,
             # and `unresolved.csv` takes an event only when its source is
-            # `unlocated`, whose flags are always empty, so a flagged row
-            # never reaches that file; whether the reasoning pass reviews
-            # these rows is that script's concern and is not built here.
+            # `unlocated`, whose flags are always empty, so a row flagged
+            # `content_mismatch` never reaches that file; whether the
+            # reasoning pass reviews these rows is that script's concern and
+            # is not built here.
             if not _content_compatible(_content(subject), _content(other_subject)):
                 flags = flags + ("content_mismatch",)
             return matched, matched, score, flags
