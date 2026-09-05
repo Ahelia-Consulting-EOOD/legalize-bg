@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Re-scrape the 12 DRS-consumer acts from lex.bg (Cloudflare cleared via cf_clearance),
 with the FIXED body parser. Writes laws/<slug>.md. Rate-limited 1 req/s. Saves raw HTML.
+
+HISTORICAL (2026-06-29): a one-shot forensics run, kept for the record. RAW below
+points at a session scratchpad that no longer exists, so it cannot execute as written;
+its corpus write is routed through corpus_gate.write_act so the single-writer guarantee
+holds by construction rather than by this file never running again.
 """
 import re, sys, time, shutil
 from pathlib import Path
