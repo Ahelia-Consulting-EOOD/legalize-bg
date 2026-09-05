@@ -4,7 +4,7 @@
 **Origin:** owner review of 2026-09-05 after PR #24 proved that lex.bg omits promulgated sections and after six correction sweeps failed to bound lex.bg's parser blind-spot classes.
 **Author:** Claude session on owner (ekimir) dispatch, 2026-09-05.
 **Design:** `docs/plans/2026-09-05-dv-graded-source-design.md`.
-**Directives touched:** OWNER-DIRECTIVES 2 and 3 (rewritten in PR #25); Directives 9 to 14 apply unchanged.
+**Directives touched:** OWNER-DIRECTIVES 2 and 3 (rewritten in PR #25), 4 (provenance fields as further extensions; field names aligned in PR #28); Directives 9 to 14 apply unchanged.
 
 ## Problem
 
@@ -14,10 +14,10 @@ The corpus is a photograph of a private consolidation it cannot verify and whose
 
 | Component | Change | Protected surface | Preflight |
 |---|---|---|---|
-| `fetcher/dv/` (new) | ДВ acquisition layer: issue enumeration over the JSF list, materials enumeration, material fetch with cache, issue PDF fetch; own rate-limited session sharing the UA and the halt-on-challenge check | none changed; `fetcher/bg/` untouched. The Legalize `LegislativeClient`/`TextParser` interfaces gain a second implementation, not a change | none for the layer itself; a note in the Phase 5 upstream plan |
+| `fetcher/dv/` (new) | ДВ acquisition layer: issue enumeration over the JSF list, materials enumeration, material fetch with cache, issue PDF fetch; own rate-limited session sharing the UA and the request ceiling, with its own challenge markers and outage-stub handling (F5 front end, not Cloudflare) | none changed; `fetcher/bg/` untouched. The Legalize `LegislativeClient`/`TextParser` interfaces gain a second implementation, not a change | none for the layer itself; a note in the Phase 5 upstream plan |
 | `fetcher/dv/text_parser.py` (new) | Gazette material to corpus Markdown; ЗИД material to segmented instruction stream | same as above | none |
 | Coverage map `scripts/dv_coverage_map.py` (new) + `data/dv/` tables | per-act, per-event Gazette availability, resolver attribution, chain omissions, page estimates | none | none |
-| YAML frontmatter | additive `provenance` block (grade, base record, `checked_through`, `in_force_as_of`, `events_not_in_force`, `events_pending`, `pdf_pages_estimate`, status line); additive per-event fields `source`, `locator`, `applied`, `verified_against`, `uncertainty` on `amendment_history` rows; `fuente` follows `base.source`; every one of the 3,624 acts backfilled with exactly one grade at introduction (Directive 4); identifier form for ДВ-only acts to be settled. The eight mandatory Legalize fields are untouched | **Surface 2** | **required** before the first write |
+| YAML frontmatter | additive `provenance` block (grade, base record with `chain_scanned_through` and `chain_inherited_before`, `checked_through`, `in_force_as_of`, `events_not_in_force`, `events_pending`, `pdf_pages_estimate`, status line); additive per-event fields `source`, `locator`, `applied`, `verified_against`, `uncertainty` on `amendment_history` rows; `fuente` follows `base.state` (`rebuilt` or `read` gives `dv.parliament.bg`); every one of the 3,624 acts backfilled with exactly one grade at introduction (Directive 4); identifier form for ДВ-only acts to be settled. The eight mandatory Legalize fields are untouched | **Surface 2** | **required** before the first write |
 | SQLite schema | `laws.provenance_grade`, `laws.events_pending`; new `amendment_events` table; § provision rows with a `kind` column; migration 007 | **Surface 4** | **required** |
 | MCP tools | `get_law` and search hits carry `provenance_grade` and `checked_through`; a warning for any grade other than A (shape per owner decision 3 of the design) riding in successful responses; `get_article` gains § addressing keyed by section context with a `kind` column (design 7.5, own task); `tools.json` minor bump | **Surface 3** (additive) | **required**, additive path |
 | REST API | same fields and warning on `/laws/{slug}` and `/search`; OpenAPI contract regenerated with `api.export_openapi --check` | contract file | with the MCP preflight |

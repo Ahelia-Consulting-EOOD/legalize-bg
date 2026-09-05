@@ -104,7 +104,11 @@ in the corpus and the correctness floor says whether their addresses are right; 
   `replayed`, `verified`, `not_incorporated` (a Gazette instruction that cannot be applied, recorded
   without changing the text, terminal, never blocking a grade, always warned) or `pending`; a base is
   `rebuilt`, `read` or `snapshot`, and a snapshot is `frozen` once the Directive 14 repair sweep and
-  the FR-041 capture have run on it.
+  the FR-041 capture have run on it; a base whose promulgation is cited but not found on the Gazette
+  side, or not cited at all, is `unlocated`; the base record persists `chain_scanned_through` (the
+  last HTML-era issue the ДВ-side body scan covered for the act) and `chain_inherited_before` (the
+  date before which the chain is inherited from lex.bg because the Gazette side has no materials
+  list), so the derivation is checkable from the tree alone.
   1. **Grade A, ДВ-complete.** The base text is a Gazette HTML material rebuilt through the corpus
      write gate; the ДВ-side body scan has covered every HTML-era issue in the act's lifetime; every
      amendment event is a Gazette HTML material replayed by the engine or recorded `not_incorporated`
@@ -113,14 +117,15 @@ in the corpus and the correctness floor says whether their addresses are right; 
      lex.bg snapshot has zero unadjudicated divergences; an act with open divergences is held in
      staging and is not a committed file.
   2. **Grade B, ДВ-audited.** The base text is a frozen lex.bg snapshot or a Gazette text read from
-     an issue PDF; where the promulgated material is online, the base structural audit (its address
-     inventory appears in the text or is explained by a located event) has passed; the ДВ-side body
+     an issue PDF; where the promulgated material is online (`dv_html`, or `dv_pdf` read by vision
+     for the audit without replacing the base), the base structural audit (its address inventory
+     appears in the text or is explained by a located event) has passed; the ДВ-side body
      scan has covered every HTML-era issue in the act's lifetime; every online Gazette event has been
      replayed, verified against the frozen snapshot's text hash, or recorded `not_incorporated`.
      Gate: the freeze, the audit, the scan and every event's recorded state.
   3. **Grade B-pending.** As B, but with at least one open item: an event `pending` (including every
-     `unlocated` one), the body scan not yet complete, the base audit not yet passed, or the snapshot
-     not yet frozen. The record enumerates the open items, the count of pending events and the
+     `unlocated` one), the body scan not yet complete, the promulgation `unlocated` or not cited, the
+     base audit not yet passed, or the snapshot not yet frozen. The record enumerates the open items, the count of pending events and the
      estimated Gazette pages still to read. This is a grade in its own right, not the absence of one;
      most older acts hold it during the transition, and every act audited before the repair sweep
      runs holds it.
@@ -135,7 +140,7 @@ in the corpus and the correctness floor says whether their addresses are right; 
   frozen, and is served with a truthful `checked_through` until the engine replays it.
 - acceptance rule: a grade is earned by gates, never assigned by source. An act's grade is the weakest
   link in its current text. A grade may rise only when the corresponding events have been sourced and
-  replayed clean; it never rises by declaration.
+  replayed or verified clean and the base audited; it never rises by declaration.
 - what counts as omission:
   - An act without a grade, or a grade not derivable from its recorded events.
   - Serving a grade B or C text without the grade at the consumer surface.
