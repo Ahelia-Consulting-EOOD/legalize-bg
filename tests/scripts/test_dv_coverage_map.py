@@ -786,7 +786,7 @@ def test_the_report_tabulates_the_unlocated_uncertainty(outputs):
     # not in the enumeration, or was never cited. The reader has to be
     # able to see that without opening the CSV.
     text = (outputs / "report.md").read_text(encoding="utf-8")
-    section = text.split("## Unlocated events by uncertainty", 1)[1].split("\n## ", 1)[0]
+    section = text.split("## Unlocated rows by uncertainty", 1)[1].split("\n## ", 1)[0]
     # One event cites бр. 5/2021, which the table holds and the sweep has
     # never reached.
     assert "materials_not_enumerated | 1" in section

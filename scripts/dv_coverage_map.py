@@ -1345,7 +1345,7 @@ def _uncertainty_lines(coverage) -> list[str]:
 
     lines = [
         "",
-        "## Unlocated events by uncertainty",
+        "## Unlocated rows by uncertainty",
         "",
         "An `unlocated` row is not a failed match by default. The label says "
         "why the row could not be placed, and only `chain_unconfirmed` means "
