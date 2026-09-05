@@ -5,9 +5,15 @@
     python -m fetcher.dv materials --issues data/dv/issues.jsonl
                                    --out data/dv/materials.jsonl [--limit N]
                                    [--resume] [--max-consecutive-errors N]
+    python -m fetcher.dv bodies    --materials data/dv/materials.jsonl
+                                   --cache-dir data/dv/cache [--sections N ...]
+                                   [--resume] [--limit N]
+                                   [--max-consecutive-errors N]
     python -m fetcher.dv material  --id-mat M [--cache-dir data/dv/cache]
 
-Everything is written as UTF-8 JSONL, one object per line, in the order
+`bodies` writes no JSONL: its output is the cache of raw material HTML
+that the ДВ-side body scan reads. The other three write UTF-8 JSONL, one
+object per line, in the order
 the site serves it, with the keys in a fixed order, so two runs over the
 same pages produce byte-identical files.
 
@@ -20,7 +26,9 @@ fetched again, which costs one request. Without `--resume` the output
 file is rewritten from scratch.
 
 The materials sweep also refuses to turn a bad afternoon into a
-permanent claim about the Gazette. Five „недостъпен“ stubs in a row are
+permanent claim about the Gazette. The same halt guards `bodies`, where
+the cost of writing an outage down would be a body the scan never reads.
+Five „недостъпен“ stubs in a row are
 an outage rather than five neighbouring gaps in the sparse id space, so
 the run halts, discards that run of stub rows and exits non-zero; and
 pages this code cannot read are recorded as `unrecognized` and halt the
@@ -36,18 +44,21 @@ import json
 import logging
 import os
 import sys
+import time
 from dataclasses import asdict
 from pathlib import Path
 
 from fetcher.dv.client import DvSession, is_dv_error_body
 from fetcher.dv.issues import enumerate_issues
 from fetcher.dv.materials import (
+    cached_material,
     classify_page,
     fetch_material,
     parse_material_header,
     parse_materials,
 )
 from fetcher.dv.materials import MATERIALS_URL
+from fetcher.dv.sections import selected
 
 #: Consecutive „недостъпен“ stubs that mean the site is down rather than
 #: the id space being sparse. Five neighbouring real gaps would be needed
@@ -60,6 +71,11 @@ DEFAULT_MAX_CONSECUTIVE_ERRORS = 5
 UNRECOGNIZED_EARLY_WINDOW = 50
 UNRECOGNIZED_EARLY_LIMIT = 10
 UNRECOGNIZED_RATIO = 0.05
+
+#: How often the body sweep says where it is. Over forty-two thousand
+#: materials at one request per second a run lasts half a day, so silence
+#: is indistinguishable from a wedge.
+PROGRESS_EVERY = 100
 
 log = logging.getLogger("fetcher.dv")
 
@@ -319,6 +335,119 @@ def cmd_materials(args, session) -> int:
     return 0
 
 
+def _material_rows(path: Path, extra_sections: tuple[str, ...]) -> list[dict]:
+    """The materials to read, in the order the sweep reads them.
+
+    The file also holds one row per empty issue, per error page and per
+    unreadable page; none of them names a material, so none is a row here.
+    The order is (id_obj, position), which is issue by issue and, inside
+    an issue, the order of publication: the only stable ordering the
+    contents page gives. Two runs over the same file therefore ask for the
+    same materials in the same order, so the log line of a halted run
+    names a real resume point.
+    """
+    rows = [
+        row
+        for row in _read_jsonl(path)
+        if row.get("id_mat") is not None and selected(row.get("section"), extra_sections)
+    ]
+    return sorted(rows, key=lambda row: (row.get("id_obj") or 0, row.get("position") or 0))
+
+
+def _eta(remaining: int) -> str:
+    """How long the rest of the run takes at the rate ceiling of one per second."""
+    seconds = int(remaining)
+    hours, rest = divmod(seconds, 3600)
+    minutes, seconds = divmod(rest, 60)
+    return f"{hours:d}:{minutes:02d}:{seconds:02d}"
+
+
+def cmd_bodies(args, session) -> int:
+    """Read the body of every material the ДВ-side body scan needs.
+
+    §5.2 of the design: most cross-act amendments ride inside another
+    act's преходни и заключителни разпоредби, so a title pass would leave
+    the chain lex.bg's. The scan needs the body, which is on the order of
+    forty-two thousand fetches, about 11.7 hours at one request per
+    second. The cache makes that a one-time cost: a promulgated text never
+    changes, so a cached body is never asked for again.
+    """
+    materials_path = Path(args.materials)
+    if not materials_path.exists():
+        raise SystemExit(f"no materials file at {materials_path}")
+    cache_dir = Path(args.cache_dir)
+    extra = tuple(args.sections or ())
+    rows = _material_rows(materials_path, extra)
+    if args.limit is not None:
+        rows = rows[: args.limit]
+
+    # An estimate, and one that says which way it is wrong: it counts a
+    # cached stub from an older run as a hit, and `--resume` aside, such a
+    # file is re-fetched. Each one costs the estimate one second.
+    already = sum(1 for row in rows if (cache_dir / f"{row['id_mat']}.html").exists())
+    to_fetch = len(rows) - already
+    log.info(
+        "%d materials selected, %d already cached, about %s of fetching left",
+        len(rows), already, _eta(to_fetch),
+    )
+
+    started = time.monotonic()
+    fetched = 0
+    cached = 0
+    missing = 0
+    consecutive_errors = 0
+    last_good: int | None = None
+    halt: str | None = None
+
+    for processed, row in enumerate(rows, start=1):
+        id_mat = row["id_mat"]
+        path = cache_dir / f"{id_mat}.html"
+        if args.resume:
+            # Trust the cache by name rather than reading forty-two
+            # thousand files. The price is a stub an older run stored.
+            hit = path.exists()
+        else:
+            hit = cached_material(cache_dir, id_mat) is not None
+        if hit:
+            cached += 1
+        else:
+            html = fetch_material(session, id_mat, cache_dir=cache_dir)
+            fetched += 1
+            if is_dv_error_body(html):
+                missing += 1
+                consecutive_errors += 1
+                if consecutive_errors >= args.max_consecutive_errors:
+                    halt = (
+                        f"{consecutive_errors} consecutive „недостъпен“ answers, "
+                        f"ending at id_mat {id_mat}: the site is down, not the "
+                        f"materials missing. Last material that answered: "
+                        f"{last_good if last_good is not None else 'none in this run'}."
+                        f" Nothing was cached for those {consecutive_errors}; re-run "
+                        f"with --resume when the site is back."
+                    )
+                    break
+                continue
+            consecutive_errors = 0
+            last_good = id_mat
+
+        if processed % PROGRESS_EVERY == 0:
+            elapsed = time.monotonic() - started
+            log.info(
+                "%d/%d materials, %d fetched, %d cached, elapsed %s, eta %s",
+                processed, len(rows), fetched, cached,
+                _eta(elapsed), _eta(max(to_fetch - fetched, 0)),
+            )
+
+    log.info(
+        "%d fetched, %d cached, %d unavailable, in %s",
+        fetched, cached, missing, _eta(time.monotonic() - started),
+    )
+    if halt is not None:
+        log.error("stopped: %s", halt)
+        return 1
+    return 0
+
+
 def cmd_material(args, session) -> int:
     cache_dir = Path(args.cache_dir) if args.cache_dir else None
     html = fetch_material(session, args.id_mat, cache_dir=cache_dir)
@@ -363,6 +492,37 @@ def build_parser() -> argparse.ArgumentParser:
         help="halt after this many „недостъпен“ stubs in a row (an outage)",
     )
     materials.set_defaults(func=cmd_materials)
+
+    bodies = sub.add_parser(
+        "bodies", help="fetch the body of every material the body scan needs"
+    )
+    bodies.add_argument(
+        "--materials", required=True, help="materials JSONL from `materials`"
+    )
+    bodies.add_argument("--cache-dir", required=True, help="raw HTML cache directory")
+    bodies.add_argument(
+        "--sections",
+        nargs="+",
+        default=None,
+        metavar="NAME",
+        help=(
+            "section names to read BEYOND the default set (Народно събрание, "
+            "Министерски съвет and every ministry); „all“ reads every section"
+        ),
+    )
+    bodies.add_argument("--limit", type=int, default=None, help="stop after N materials")
+    bodies.add_argument(
+        "--resume",
+        action="store_true",
+        help="trust the cache by file name instead of reading every cached body",
+    )
+    bodies.add_argument(
+        "--max-consecutive-errors",
+        type=int,
+        default=DEFAULT_MAX_CONSECUTIVE_ERRORS,
+        help="halt after this many „недостъпен“ answers in a row (an outage)",
+    )
+    bodies.set_defaults(func=cmd_bodies)
 
     material = sub.add_parser("material", help="fetch one material and print its header")
     material.add_argument("--id-mat", type=int, required=True, help="idMat of the material")
