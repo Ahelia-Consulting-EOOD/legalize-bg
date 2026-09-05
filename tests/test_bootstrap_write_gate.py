@@ -88,6 +88,19 @@ def test_the_exit_code_is_non_zero_when_an_act_was_refused(tmp_path, monkeypatch
     assert bootstrap_module.main() == 1
 
 
+def test_a_dry_run_ignores_a_refusal_file_left_by_an_earlier_run(tmp_path, monkeypatch):
+    """A dry run writes nothing, so a stale file says nothing about it."""
+    monkeypatch.setattr(bootstrap_module, "bootstrap", lambda *a, **k: [])
+    (tmp_path / "write-gate-refusals.json").write_text(
+        json.dumps([{"doc_id": 1, "slug": "x", "violations": ["old"]}]), encoding="utf-8"
+    )
+    monkeypatch.setattr(
+        "sys.argv",
+        ["bootstrap.py", "--output", str(tmp_path), "--db", ":memory:", "--dry-run"],
+    )
+    assert bootstrap_module.main() == 0
+
+
 def test_the_exit_code_is_zero_when_nothing_was_refused(tmp_path, monkeypatch):
     monkeypatch.setattr(bootstrap_module, "bootstrap", lambda *a, **k: [])
     (tmp_path / "write-gate-refusals.json").write_text("[]", encoding="utf-8")

@@ -442,8 +442,10 @@ def main(argv: list[str] | None = None) -> int:
         branch=args.branch, push_every=args.push_every, remote=args.remote,
     )
     refusals_path = Path(args.output) / "write-gate-refusals.json"
-    if not refusals_path.exists():
-        return 0  # dry run, or a run that never reached the write loop
+    if args.dry_run or not refusals_path.exists():
+        # A dry run writes nothing, so a file left by an earlier run says
+        # nothing about this one and must not colour its exit code.
+        return 0
     refusals = json.loads(refusals_path.read_text(encoding="utf-8"))
     for refusal in refusals:
         log.error("REFUSED %s (doc_id=%s): %s", refusal["slug"],

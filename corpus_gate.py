@@ -322,6 +322,12 @@ def find_corpus_writers(
        `entry.path.write_text(assemble_file(meta, body))`, where the path comes
        out of a record the scan cannot follow.
 
+    Not scanned: `.venv`, `.git`, `__pycache__`, `node_modules`, any
+    `worktrees` directory, and `tests/`, where a test writes its own temp
+    corpus by design. A file that cannot be parsed is reported rather than
+    skipped, because a scan that silently drops a file reports a clean tree
+    over an unread one.
+
     The residual, stated rather than hidden: a module that names no category
     directory, assembles nothing, and writes to a path built entirely at
     runtime is not caught here. Layer 2, the corpus-wide CI runner, is what
