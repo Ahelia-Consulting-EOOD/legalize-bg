@@ -51,7 +51,7 @@ def test_words_that_occur_in_legislative_prose_are_not_chrome(tmp_path):
         tmp_path,
         "**Чл. 1.** Новините като информационни факти трябва да бъдат "
         "разграничавани от коментарите към тях.\n"
-        '**Чл. 2.** Информационни блокове: "Форум за въпроси и отговори".\n',
+        "**Чл. 2.** Информационни блокове: „Форум за въпроси и отговори“.\n",
     )
     assert ChromeCheck().run(iter_acts(root)) == []
     assert "Новини" in NOT_CHROME and "Форум за" in NOT_CHROME

@@ -25,19 +25,19 @@ from typing import Iterable
 from corpus_integrity.protocol import Act, Violation
 
 # Site furniture that must never enter the content region. Sidebar headlines
-# containing "Чл. N" manufacture phantom articles and churn every refresh.
+# containing „Чл. N“ manufacture phantom articles and churn every refresh.
 CHROME_MARKERS: tuple[str, ...] = ("Посети форума", "Lex.bg")
 
 # Markers proposed for the failing set and rejected on measurement, because
 # they occur inside enacted text. Both were carried by the plan; each was
 # checked against every act before removal.
 #
-# - "Новини": 3 acts, of which 2 are enacted text. ЗРТ art. 10(6) contrasts
+# - „Новини“: 3 acts, of which 2 are enacted text. ЗРТ art. 10(6) contrasts
 #   news items with commentary; the Устройствен правилник of the transport
-#   ministry names the "Новини" section of the ministry website. The third act
+#   ministry names the „Новини“ section of the ministry website. The third act
 #   is the sidebar-bearing one, which the kept markers already flag, so the
 #   failing act set is unchanged by the removal.
-# - "Форум за": 1 act, and it is enacted text. The ЦПРС rules list the
+# - „Форум за“: 1 act, and it is enacted text. The ЦПРС rules list the
 #   information blocks of the register system, one of which is a forum.
 NOT_CHROME: tuple[str, ...] = ("Новини", "Форум за")
 
