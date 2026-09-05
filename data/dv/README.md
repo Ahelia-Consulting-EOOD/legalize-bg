@@ -13,7 +13,7 @@ which act and which amendment event can reach which provenance grade.
 | `cache/` | `python -m fetcher.dv bodies`, `python -m fetcher.dv material` | never (`.gitignore`) |
 
 The coverage map itself is not written here. It reads these files and
-writes five research artifacts under
+writes seven research artifacts under
 `docs/research/2026-09-05-dv-coverage-map/`; see „The coverage map“ at
 the end of this file.
 
@@ -219,6 +219,10 @@ P1.
 | `estado-disputes.csv` | Gazette repeal of an act the corpus calls current |
 | `pdf-era-inventory.csv` | Gazette issue online only as a PDF |
 | `report.md` | the totals, in prose |
+
+`segmenter-residue.csv`, which design 5.2 also lists, is not produced
+here: it holds the instructions the ЗИД segmenter could not classify, and
+the segmenter belongs to the body scan. It arrives with that leg.
 
 `--pdf-era-end YEAR:NUMBER` (default `2005:42`) is the last issue of the
 PDF era, which bounds the inventory. It is a probe result rather than a

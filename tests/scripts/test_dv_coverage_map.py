@@ -104,6 +104,18 @@ def corpus(tmp_path):
         "- dv: 52/2019\n  date: '2019-07-02'\n"
         "- dv: 32/2026\n  date: '2026-04-01'\n",
     )
+    # `fecha_publicacion` but no ДВ citation: the 39 acts whose three
+    # output rows used to disagree with one another.
+    synthetic_act(
+        root,
+        "laws",
+        "zakon-bez-tsitirane",
+        "titulo: ЗАКОН БЕЗ ЦИТИРАНЕ\n"
+        "rango: закон\n"
+        "estado: vigente\n"
+        "fecha_publicacion: '2015-05-05'\n"
+        "amendment_history:\n- date: '2015-05-05'\n",
+    )
     return root
 
 
@@ -236,7 +248,7 @@ def rows(path: pathlib.Path, **where):
 # --- the files ------------------------------------------------------------
 
 
-def test_the_map_writes_five_files_and_no_corpus_file(outputs, corpus):
+def test_the_map_writes_seven_files_and_no_corpus_file(outputs, corpus):
     assert sorted(p.name for p in outputs.iterdir()) == [
         "acts-summary.csv",
         "chain-omissions.csv",
@@ -248,6 +260,7 @@ def test_the_map_writes_five_files_and_no_corpus_file(outputs, corpus):
     ]
     # The map is a research artifact. Nothing under the corpus moved.
     assert sorted(p.name for p in (corpus / "laws").iterdir()) == [
+        "zakon-bez-tsitirane.md",
         "zakon-za-lipsvashtiya-broy.md",
         "zakon-za-obshtestveniya-transport.md",
         "zakon-za-probniya-sluchay.md",
@@ -263,6 +276,10 @@ def test_every_output_is_utf8_without_escapes(outputs):
 
 
 def test_the_order_is_deterministic(cmap, corpus, tables, tmp_path):
+    # Two runs in ONE process cannot catch a set-iteration dependency,
+    # since hash randomisation is per process. The resolver removes the
+    # one such dependency at the source by iterating `title_variants`
+    # sorted, so `Resolution.candidates` reads the same in every run.
     issues, materials = tables
     first, second = tmp_path / "a", tmp_path / "b"
     for out in (first, second):
@@ -455,6 +472,7 @@ def test_an_act_that_cites_no_promulgation_is_listed(outputs):
     assert [row["law_id"] for row in found] == [
         "-549676032",
         "etichen-kodeks-na-sadebnite-sluzhiteli",
+        "zakon-bez-tsitirane",
     ]
 
 
@@ -495,8 +513,8 @@ def test_the_report_groups_by_corpus_category(outputs):
     assert "laws" in section
     assert "codes" in section
     assert "ordinances" in section
-    # Five laws, one of them grade C (ЗЗД, promulgated in 1950).
-    assert "| laws | 4 | 1 |" in section
+    # Six laws, one of them grade C (ЗЗД, promulgated in 1950).
+    assert "| laws | 5 | 1 |" in section
 
 
 def test_the_report_counts_the_acts_whose_whole_chain_is_html(outputs):
@@ -530,9 +548,11 @@ def valid_inputs(cmap):
     multisets += [(pair,) for pair in pairs]
     multisets += list(itertools.combinations_with_replacement(pairs, 2))
 
-    for source, state, frozen, audited, scanned, divergences in itertools.product(
-        BASE_SOURCES, BASE_STATES, (None, "2026-01-01"), (False, True),
-        (False, True), (0, 1),
+    for source, state, frozen, audited, scanned, divergences, cited in (
+        itertools.product(
+            BASE_SOURCES, BASE_STATES, (None, "2026-01-01"), (False, True),
+            (False, True), (0, 1), (True, False),
+        )
     ):
         if state == "rebuilt" and source != "dv_html":
             continue
@@ -555,6 +575,7 @@ def valid_inputs(cmap):
                 chain_scan_complete=scanned,
                 divergences_unadjudicated=divergences,
                 events=events,
+                promulgation_cited=cited,
             )
 
 
@@ -569,7 +590,7 @@ def test_the_grade_procedure_is_total(cmap):
         count += 1
     # The exact size of the enumerated space, pinned so that a change to
     # the domain constraints is visible rather than silent.
-    assert count == 6352
+    assert count == 12704
     assert seen == {"A", "B", "B-pending", "C", "none"}
 
 
@@ -825,3 +846,114 @@ def test_the_repeal_is_also_a_chain_omission(outputs):
 def test_a_repeal_title_is_labelled_as_one(outputs):
     row = rows(outputs / "chain-omissions.csv", id_mat="242223")[0]
     assert row["title_kind"] == "repeal"
+
+
+# --- I1: one definition of „the promulgation was cited“ -------------------
+
+
+def test_the_three_files_agree_about_an_act_that_cites_no_issue(outputs):
+    # `fecha_publicacion` is a mandatory Legalize field every act carries,
+    # so it cannot stand in for a citation. What can be located on the ДВ
+    # side is an issue, and this act names none. The three files used to
+    # give three answers about the same 39 acts: `promulgation_unknown` in
+    # the coverage map, `promulgation_unlocated` in the summary, and
+    # absent from the unresolved list altogether.
+    law = "zakon-bez-tsitirane"
+    summary = rows(outputs / "acts-summary.csv", law_id=law)[0]
+    assert "promulgation_unknown" in summary["pending_items"].split(";")
+    assert "promulgation_unlocated" not in summary["pending_items"]
+    assert rows(outputs / "unresolved.csv", kind="promulgation_unknown", law_id=law)
+    base = rows(outputs / "coverage-map.csv", law_id=law, row_kind="base")[0]
+    assert base["source"] == "unlocated"
+
+
+def test_an_act_that_cites_an_issue_nobody_holds_is_unlocated_not_unknown(outputs):
+    # The other side of the same predicate: this act DOES cite бр. 99/2020.
+    summary = rows(outputs / "acts-summary.csv", law_id="zakon-za-lipsvashtiya-broy")[0]
+    assert "promulgation_unlocated" in summary["pending_items"].split(";")
+    assert "promulgation_unknown" not in summary["pending_items"]
+    assert not rows(
+        outputs / "unresolved.csv",
+        kind="promulgation_unknown",
+        law_id="zakon-za-lipsvashtiya-broy",
+    )
+
+
+# --- M2, M3, M7: the smaller findings ------------------------------------
+
+
+def test_an_acts_own_promulgating_material_is_never_a_chain_omission(outputs):
+    # An act sourced from the ДВ side has no lex.bg document and so no
+    # `amendment_history` at all, which is the D-064 item 4 shape the
+    # `dv_identifier` column exists for. Its own promulgation must not be
+    # reported as an event its chain does not know.
+    for row in rows(outputs / "chain-omissions.csv"):
+        summary = rows(outputs / "acts-summary.csv", law_id=row["law_id"])[0]
+        assert summary["dv_identifier"] != f"dv-{row['id_mat']}"
+
+
+def test_an_event_row_is_not_given_a_base_uncertainty(outputs):
+    # `promulgation_unknown` is a statement about a base. An event whose
+    # issue reference cannot be read is `event_reference_unknown`.
+    for row in rows(outputs / "coverage-map.csv", row_kind="event"):
+        assert "promulgation_unknown" not in row["uncertainty"]
+
+
+def test_a_repeal_of_an_act_with_no_estado_is_not_a_dispute(cmap, tmp_path, corpus,
+                                                            tables):
+    # A dispute is a contradiction. „The corpus says nothing“ contradicts
+    # nothing, and filing it with an empty `corpus_estado` is noise.
+    synthetic_act(
+        corpus,
+        "laws",
+        "zakon-bez-estado",
+        "titulo: ЗАКОН БЕЗ ЕСТАДО\nrango: закон\nfecha_publicacion: '2001-01-01'\n",
+    )
+    issues, materials = tables
+    with materials.open("a", encoding="utf-8") as handle:
+        handle.write(
+            json.dumps(
+                {
+                    "id_obj": 100, "issue_year": 2026, "issue_number": 32,
+                    "issue_date": "2026-04-01", "status": "ok", "position": 5,
+                    "id_mat": 242224, "section": "Народно събрание",
+                    "title": "Закон за отмяна на Закона без естадо",
+                    "start_page": 30,
+                },
+                ensure_ascii=False,
+            )
+            + "\n"
+        )
+    out = tmp_path / "no-estado"
+    cmap.main(
+        [
+            "--corpus", str(corpus), "--issues", str(issues),
+            "--materials", str(materials), "--out", str(out),
+        ]
+    )
+    assert not rows(out / "estado-disputes.csv", law_id="zakon-bez-estado")
+
+
+# --- M1: the enumeration varies every input ------------------------------
+
+
+def test_the_enumeration_varies_promulgation_cited(cmap):
+    seen = set()
+    for inputs in valid_inputs(cmap):
+        seen.add(inputs["promulgation_cited"])
+    assert seen == {True, False}
+
+
+def test_an_uncited_promulgation_is_named_as_such_by_the_procedure(cmap):
+    _, pending = cmap.derive_grade(
+        base_source="unlocated",
+        base_state="snapshot",
+        base_frozen_at=None,
+        base_audited=False,
+        chain_scan_complete=False,
+        divergences_unadjudicated=0,
+        events=(),
+        promulgation_cited=False,
+    )
+    assert "promulgation_unknown" in pending
+    assert "promulgation_unlocated" not in pending

@@ -12,7 +12,9 @@ each carries the law_id it must produce or the `None` it must not
 improve on.
 """
 
+import collections
 import pathlib
+import random
 
 import pytest
 
@@ -38,6 +40,26 @@ def corpus_acts():
 @pytest.fixture(scope="session")
 def resolver(corpus_acts):
     return Resolver(corpus_acts)
+
+
+def resolver_without(corpus_acts, title):
+    """A resolver that has never seen the act this title names.
+
+    The ordinary case across 42,000 Gazette materials is a title naming
+    an act the corpus does not hold: a repealed наредба, a superseded
+    устройствен правилник, an act not yet bootstrapped. Asking the full
+    corpus for a title it contains only measures the exact index.
+    """
+    key = normalise_title(title)
+    return Resolver(
+        [act for act in corpus_acts if normalise_title(act.title) != key]
+    )
+
+
+def resolver_excluding(corpus_acts, *law_ids):
+    """A resolver built without the named acts."""
+    dropped = set(law_ids)
+    return Resolver([act for act in corpus_acts if act.law_id not in dropped])
 
 
 # --- normalise_title ------------------------------------------------------
@@ -568,20 +590,6 @@ def test_the_digit_guard_keeps_the_annual_laws_apart(resolver):
     assert result.law_id is None
 
 
-def test_the_fuzzy_step_absorbs_a_source_typo(resolver):
-    # lex.bg prints й as и in at least two places of ЗОТ alone (§1 of the
-    # design), so a corpus title and the Gazette's can differ by one
-    # letter. That is what the fuzzy step is for, and it is the only
-    # thing it is for.
-    result = resolver.resolve(
-        "Закон за изменение и допълнение на Закона за задължениата и договорите",
-        section="Народно събрание",
-    )
-    assert result.law_id == "zakon-za-zadalzheniyata-i-dogovorite"
-    assert result.method == "fuzzy"
-    assert result.score >= 0.90
-
-
 def test_a_fuzzy_resolution_reports_its_score(resolver):
     result = resolver.resolve(
         "Закон за изменение и допълнение на Семейния кодекс", section="Народно събрание"
@@ -765,3 +773,294 @@ def test_every_numbered_corpus_act_has_a_numbered_key(corpus_acts):
         and numbered_key(act.title) is None
     ]
     assert missing == []
+
+
+# --- C1: a content word apart is a different act -------------------------
+
+# Real minimal pairs from the corpus. Each is two acts whose titles share
+# a frame and differ in one noun, which is what наредби and правилници
+# are built like: 88 % of the corpus is not laws and codes, and that is
+# where the fuzzy step meets its hardest cases.
+MINIMAL_PAIRS = [
+    (
+        "ПРАВИЛНИК ЗА УСТРОЙСТВОТО И ДЕЙНОСТТА НА ДЪРЖАВНИТЕ ГОРСКИ СТОПАНСТВА",
+        "pravilnik-za-ustroystvoto-i-deynostta-na-darzhavnite-lovni-stopanstva",
+    ),
+    (
+        "ПРАВИЛНИК ЗА ОРГАНИЗАЦИЯТА И ДЕЙНОСТТА НА ВЕЛИКОТО НАРОДНО СЪБРАНИЕ",
+        "pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie",
+    ),
+    (
+        "ЗАКОН ЗА ВЪЗСТАНОВЯВАНЕ НА СОБСТВЕНОСТТА ВЪРХУ ГОРИТЕ И ЗЕМИТЕ ОТ "
+        "РИБНИЯ ФОНД",
+        "zakon-za-vazstanovyavane-na-sobstvenostta-varhu-gorite-i-zemite-ot-gorskiya-fond",
+    ),
+    (
+        "ЗАКОН ЗА ЕКСПОРТНИЯ КОНТРОЛ НА ПРОДУКТИ, СВЪРЗАНИ С ЕНЕРГЕТИКАТА",
+        "zakon-za-eksportniya-kontrol-na-produkti-svarzani-s-otbranata-i-na-izdeliya-i-teh",
+    ),
+]
+
+
+@pytest.mark.parametrize("title, sibling", MINIMAL_PAIRS)
+def test_a_title_one_content_word_from_an_act_resolves_to_nothing(
+    corpus_acts, title, sibling
+):
+    resolver = resolver_without(corpus_acts, title)
+    # These score 0.91 to 0.95 and share every digit, so neither the floor
+    # nor the digit guard sees them. A Gazette material naming an act the
+    # corpus does not hold is the ordinary case across 42,000 materials,
+    # and attributing it to the sibling one word away files a chain
+    # omission, and possibly an `estado` repeal, against a live act.
+    result = resolver.resolve(title)
+    assert result.law_id is None, f"attributed to {result.law_id} at {result.score:.4f}"
+    assert "title_ambiguous" in result.flags
+
+
+def test_the_refusal_still_names_what_it_considered(corpus_acts):
+    resolver = resolver_without(corpus_acts, MINIMAL_PAIRS[0][0])
+    result = resolver.resolve(MINIMAL_PAIRS[0][0])
+    assert result.law_id is None
+    # The candidate is reported so `unresolved.csv` can show the reader
+    # the same near miss the resolver saw.
+    assert MINIMAL_PAIRS[0][1] in result.candidates
+
+
+def test_the_fuzzy_step_still_absorbs_a_wording_difference(resolver):
+    # What the fuzzy step is for after the guard: the same content words,
+    # worded differently. Function words are not content words, so an
+    # extra „за“ costs nothing.
+    result = resolver.resolve(
+        "Закон за задълженията и за договорите", section="Народно събрание"
+    )
+    assert result.law_id == "zakon-za-zadalzheniyata-i-dogovorite"
+    assert result.method == "fuzzy"
+    assert result.score >= 0.90
+
+
+def test_a_typo_inside_a_content_word_is_refused(resolver):
+    # The narrowing the guard buys, stated rather than hidden: a
+    # one-letter defect inside a content word is indistinguishable from a
+    # different act at the token level, so the resolver refuses instead of
+    # guessing. The event becomes `unlocated` and `pending`, which blocks
+    # a grade and writes nothing false.
+    result = resolver.resolve(
+        "Закон за изменение и допълнение на Закона за задължениата и договорите",
+        section="Народно събрание",
+    )
+    assert result.law_id is None
+
+
+# --- C2: the numbered key must not cross a stated year -------------------
+
+
+def test_a_number_with_a_different_year_is_not_its_sibling(corpus_acts):
+    # „НАРЕДБА № РД-07-7 ОТ 5 ОКТОМВРИ 2010 Г.“ is not in the corpus; the
+    # 2019 наредба of the same number is. Falling back to „any act with
+    # this number“ resolved the one to the other and reported 1.000.
+    title = (
+        "Наредба № РД-07-7 от 5 октомври 2010 г. за условията и реда за водене "
+        "и съхраняване на регистри"
+    )
+    result = resolver_excluding(
+        corpus_acts,
+        "naredba-rd-07-7-ot-5-oktomvri-2010-g-za-usloviyata-i-reda-za-vodene-i-sahranyava",
+    ).resolve(
+        title,
+        section="Министерство на труда и социалната политика",
+    )
+    assert result.law_id is None
+
+
+def test_a_numbered_tie_reports_its_real_score_and_says_it_was_a_tie(resolver):
+    # (наредба, 1, 2016) names six corpus acts. The subject clause after
+    # the number and the date is what separates them, and the decision is
+    # a comparison, not an exact key, so it may not report 1.000.
+    result = resolver.resolve(
+        "Наредба № 1 от 30 август 2016 г. за условията и реда за прием и спортна "
+        "подготовка на учениците в спортните училища",
+        section="Министерство на младежта и спорта",
+    )
+    assert result.law_id == (
+        "naredba-1-ot-30-avgust-2016-g-za-usloviyata-i-reda-za-priem-i-spetsializirana-po"
+    )
+    assert result.method == "numbered"
+    assert "numbered_key_tie" in result.flags
+    assert 0.90 <= result.score < 1.0
+
+
+def test_a_unique_numbered_key_is_not_a_tie(resolver):
+    result = resolver.resolve(
+        "Наредба № 8121з-1006 от 24 август 2015 г. за реда за осъществяване на "
+        "пожарогасителната и спасителната дейност",
+        section="Министерство на вътрешните работи",
+    )
+    assert result.method == "numbered"
+    assert result.score == 1.0
+    assert "numbered_key_tie" not in result.flags
+
+
+def test_two_acts_of_one_number_whose_subjects_are_one_word_apart(resolver):
+    # The reviewer's group of four: „в областта на ветеринарната биология“
+    # is not in the corpus and must not become „ветеринарната медицина“.
+    result = resolver.resolve(
+        "Наредба № 6 от 11 февруари 2021 г. за реда и условията за придобиване "
+        "на специалност в областта на ветеринарната биология",
+        section="Министерство на земеделието",
+    )
+    assert result.law_id is None
+
+
+# --- I2: the adoption tail is an adoption, not any relative clause -------
+
+TRUNCATED_TITLES = [
+    "ЗАКОН ЗА ОТМЕНЯВАНЕ НА ВСИЧКИ ЗАКОНИ, ИЗДАДЕНИ ПРЕДИ 9.09.1944 Г.",
+    "ЗАКОН ЗА ОТТЕГЛЯНЕ НА РЕЗЕРВАТА, НАПРАВЕНА ОТ РЕПУБЛИКА БЪЛГАРИЯ ПО ЧЛ. 31 "
+    "ОТ КОНВЕНЦИЯТА ЗА СТАТУТА НА ЛИЦАТА БЕЗ ГРАЖДАНСТВО, ПРИЕТА В НЮ ЙОРК НА "
+    "28 СЕПТЕМВРИ 1954 Г.",
+    "НАРЕДБА № 14 ОТ 22 АПРИЛ 1998 Г. ЗА УСЛОВИЯТА И РЕДА ЗА ПРЕДОСТАВЯНЕ НА "
+    "СРЕДСТВА ЗА СЪЗДАВАНЕ, ОБНОВЯВАНЕ И ВЪЗПРОИЗВОДСТВО НА ГЕНОФОНД ОТ РИБИ",
+    "НАРЕДБА № 20 ОТ 25 ОКТОМВРИ 2022 Г. ЗА РЕГИСТЪРА НА ИЗДАДЕНИТЕ "
+    "УДОСТОВЕРЕНИЯ НА ЧУЖДЕНЦИ, ПРИЕТИ ЗА ОБУЧЕНИЕ В БЪЛГАРСКИ ВИСШИ УЧИЛИЩА",
+    "НАРЕДБА № 4 ОТ 4 ФЕВРУАРИ 2025 Г. ЗА УТВЪРЖДАВАНЕ НА МЕЖДУНАРОДНИТЕ "
+    "ОДИТОРСКИ СТАНДАРТИ, ИЗДАДЕНИ ОТ МЕЖДУНАРОДНАТА ФЕДЕРАЦИЯ НА СЧЕТОВОДИТЕЛИТЕ",
+    "НАРЕДБА № 5 ОТ 4 ФЕВРУАРИ 2025 Г. ЗА УТВЪРЖДАВАНЕ НА РЪКОВОДСТВО ПО "
+    "МЕЖДУНАРОДЕН ОДИТ, ИЗДАДЕНО ОТ МЕЖДУНАРОДНАТА ФЕДЕРАЦИЯ НА СЧЕТОВОДИТЕЛИТЕ",
+    "НАРЕДБА ЗА ДОПЪЛНИТЕЛНИТЕ МЕРКИ, СВЪРЗАНИ С ПРИЛАГАНЕТО НА РЕГЛАМЕНТИ, "
+    "ПРИЕТИ СЪГЛАСНО ЧЛ. 15 ОТ ДИРЕКТИВА 2009/125/ЕО",
+    "НАРЕДБА ЗА РЕДА ЗА СЪЗДАВАНЕ, СЪХРАНЯВАНЕ, ОБНОВЯВАНЕ, ПОДДЪРЖАНЕ, "
+    "ПРЕДОСТАВЯНЕ И ОТЧИТАНЕ НА ЗАПАСИТЕ ОТ ИНДИВИДУАЛНИ СРЕДСТВА ЗА ЗАЩИТА",
+]
+
+
+@pytest.mark.parametrize("title", TRUNCATED_TITLES)
+def test_a_relative_clause_is_not_an_adoption_tail(title):
+    # An adoption tail names the instrument that adopted the act, always
+    # in the instrumental: „, приета С Постановление № 97“. „, издадени ОТ
+    # Международната федерация“ names an author, „, приети СЪГЛАСНО чл.
+    # 15“ a legal basis, and „, ОБНОВЯВАНЕ“ is not an abbreviation at all.
+    # Cutting there threw away most of eight corpus titles, and two of
+    # them lost every digit, which voids the digit guard for them.
+    normalised = normalise_title(title)
+    tail_words = normalise_title(title.split(",")[-1]).split()
+    assert tail_words
+    assert tail_words[-1] in normalised.split(), normalised
+
+
+def test_a_real_adoption_tail_is_still_cut():
+    assert normalise_title(
+        "Постановление № 238 от 2016 г. за изменение на Наредбата за цените, "
+        "приета с Постановление № 97 на Министерския съвет от 2013 г."
+    ) == "наредба за цените"
+    assert normalise_title(
+        "Наредбата за нещо, обн. ДВ, бр. 12 от 2001 г."
+    ) == "наредба за нещо"
+
+
+def test_a_slash_inside_a_number_is_part_of_it():
+    # „№ РД-07/2“ and „№ РД-07/8“ are two наредби of the Ministry of
+    # Labour. Dropping the slash and everything after it folded both onto
+    # „РД-07“ and let each resolve to the other.
+    assert numbered_key("Наредба № РД-07/2 от 19 март 2008 г. за реда") == NumberedKey(
+        "наредба", "РД-07/2", 2008
+    )
+    assert numbered_key("Наредба № РД-07/8 от 20 декември 2008 г. за нещо") == (
+        NumberedKey("наредба", "РД-07/8", 2008)
+    )
+
+
+def test_a_slash_before_a_year_is_not_part_of_the_number():
+    # „Наредба № 3/2001“ writes the year after the number rather than
+    # inside it, so the slash separates rather than joins.
+    assert numbered_key("Наредба № 3/2001 г. за нещо") == NumberedKey(
+        "наредба", "3", 2001
+    )
+
+
+def test_a_stated_date_that_contradicts_the_only_candidate_refuses(corpus_acts):
+    # „НАРЕДБА № Н-9 ОТ 7 НОЕМВРИ 2018 Г.“ and „НАРЕДБА № Н-9 ОТ 4 АПРИЛ
+    # 2018 Г.“ are two acts. With the first held out, the key (наредба,
+    # Н-9, 2018) names exactly one act, and returning it reported an
+    # exact key at 1.000 for an act the citation does not describe: 230
+    # held-out titles resolved this way.
+    title = (
+        "Наредба № Н-9 от 7 ноември 2018 г. за регистрите, водени от Агенция "
+        "Митници"
+    )
+    result = resolver_excluding(
+        corpus_acts, "naredba-n-9-ot-7-noemvri-2018-g-za-registrite-vodeni-ot-agentsiya-mitnitsi"
+    ).resolve(title, section="Министерство на финансите")
+    assert result.law_id is None
+    assert "numbered_date_mismatch" in result.flags
+    assert result.candidates
+
+
+def test_a_corpus_act_that_states_no_date_is_not_contradicted(corpus_acts):
+    # 365 numbered наредби state no date at all. Silence cannot
+    # contradict a citation that states one.
+    result = Resolver(corpus_acts).resolve(
+        "Наредба № 0-31 от 12 март 1975 г. за работа с радиационни дефектоскопи"
+    )
+    assert result.law_id == "naredba-0-31-za-rabota-s-radiatsionni-defektoskopi"
+
+
+# --- the measurement the bounds are justified by --------------------------
+
+
+@pytest.mark.slow
+def test_leave_one_out_over_the_whole_corpus_attributes_nothing_wrongly(corpus_acts):
+    """Hold each title out and ask the rest of the corpus for it.
+
+    This is what a Gazette material naming an act the corpus does not
+    hold looks like, and across roughly 42,000 materials it is the
+    ordinary case rather than the exception: repealed наредби, superseded
+    устройствени правилници, acts not yet bootstrapped. The resolver's
+    first rule is that it never guesses, so the count that matters is not
+    how many titles it resolves but how many it resolves WRONGLY.
+
+    Two acts may share a normalised title (the corpus holds eight such
+    acts, mostly a правилник reissued under the same name), and holding
+    one out leaves the other as the only exact match. That is a correct
+    exact resolution to an identically titled act, not a guess.
+    """
+    resolver = Resolver(corpus_acts)
+    twins = collections.Counter(
+        normalise_title(act.title) for act in corpus_acts if act.title
+    )
+    wrong = []
+    for held in corpus_acts:
+        if not held.title:
+            continue
+        result = resolver.holding_out(held.law_id).resolve(held.title)
+        if result.law_id is None:
+            continue
+        if twins[normalise_title(held.title)] > 1 and result.method == "exact":
+            continue
+        wrong.append((round(result.score, 4), result.method, held.title[:60],
+                      result.law_id))
+    assert wrong == []
+
+
+@pytest.mark.slow
+def test_a_reworded_title_still_resolves(corpus_acts):
+    # The other side of the guard: what it must not cost. A function word
+    # dropped is a wording difference, not a different act, and the fuzzy
+    # step exists for exactly that.
+    resolver = Resolver(corpus_acts)
+    random.seed(11)
+    hit = total = 0
+    for act in corpus_acts:
+        if not act.title:
+            continue
+        words = normalise_title(act.title).split()
+        movable = [i for i, word in enumerate(words) if len(word) <= 2 and i > 0]
+        if not movable:
+            continue
+        index = random.choice(movable)
+        total += 1
+        if resolver.resolve(" ".join(words[:index] + words[index + 1:])).law_id == (
+            act.law_id
+        ):
+            hit += 1
+    assert total > 3500
+    assert hit / total > 0.80

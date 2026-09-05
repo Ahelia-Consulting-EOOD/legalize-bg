@@ -404,7 +404,10 @@ def classify(
     to look up.
     """
     if row.year is None:
-        return Classification("unlocated", None, 0.0, (), ("promulgation_unknown",), ())
+        unknown = (
+            "promulgation_unknown" if row.kind == "base" else "event_reference_unknown"
+        )
+        return Classification("unlocated", None, 0.0, (), (unknown,), ())
     if row.year < FIRST_ONLINE_YEAR:
         return Classification("dv_offline", None, 0.0, (), (), ())
     if row.number is None:
@@ -639,7 +642,11 @@ def parse_era_end(text: str) -> tuple[int, int]:
 
 def build(corpus_root: Path, issues_path: Path, materials_path: Path,
           pdf_era_end=DEFAULT_PDF_ERA_END):
-    """Read everything, attribute everything, and return the four tables."""
+    """Read everything, attribute everything, and return the six tables.
+
+    Plus the issue index, the act categories and the page estimator, which
+    the report needs and which nothing else recomputes.
+    """
     acts = load_corpus_acts(corpus_root)
     log.info("read %d acts from %s", len(acts), corpus_root)
     resolver = Resolver(acts)
@@ -736,7 +743,11 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
         grade, pending = derive_grade(
             base_source=base_class.source,
             base_state="snapshot",
-            promulgation_cited=bool(act.fecha_publicacion or act.promulgation),
+            # I1: one predicate, used by all three files. What can be
+            # located on the ДВ side is an ISSUE, and `fecha_publicacion`
+            # is a mandatory Legalize field every act carries, so it
+            # cannot stand in for a citation.
+            promulgation_cited=act.promulgation is not None,
             base_frozen_at=None,
             base_audited=False,
             chain_scan_complete=False,
@@ -777,7 +788,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
                     "reason": "no titulo: the act cannot be resolved by title at all",
                 }
             )
-        if not act.fecha_publicacion:
+        if act.promulgation is None:
             unresolved.append(
                 {
                     "kind": "promulgation_unknown",
@@ -789,7 +800,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
                     "resolver_score": "",
                     "resolver_flags": "",
                     "dv_identifier": dv_identifier,
-                    "reason": "the act cites no promulgation",
+                    "reason": "the act cites no ДВ issue for its promulgation",
                 }
             )
 
@@ -800,7 +811,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
             continue
         act = by_id[law_id]
         kind = instruction_kind(material.title)
-        if kind == "repeal" and act.estado != "derogado":
+        if kind == "repeal" and act.estado == "vigente":
             # The Gazette repealed an act lex.bg still records as in
             # force. Data, never a correction: D-064 item 5 keeps every
             # `estado` finding out of the corpus until the single write
@@ -824,7 +835,13 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path,
                     "resolver_flags": ";".join(flags),
                 }
             )
-        if (material.year, material.number) in act.chain:
+        if (material.year, material.number) in act.chain or (
+            material.year,
+            material.number,
+        ) == act.promulgation:
+            # An act sourced from the ДВ side has no lex.bg document and
+            # so no chain at all; its own promulgation is not an event its
+            # chain failed to record.
             continue
         omissions.append(
             {

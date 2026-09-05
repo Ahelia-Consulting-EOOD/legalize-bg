@@ -25,33 +25,66 @@ module calls `str.casefold` directly.
 Г. ЗА ...“ and an amending instruction cites „Наредба № N от YYYY г.“
 with no issuing ministry in either, so the key is (act type, number,
 year) gated by the Gazette section the material sits in. Numbers carry
-letters and dashes („№ Н-10“, „№ РД-02-20-1“, „№ 8121з-1006“, „№ І-3“)
-and the corpus writes the same series with Latin and with Cyrillic
-look-alikes, so the number is folded before it is compared.
+letters, dashes and slashes („№ Н-10“, „№ РД-02-20-1“, „№ 8121з-1006“,
+„№ І-3“, „№ РД-07/2“) and the corpus writes the same series with Latin
+and with Cyrillic look-alikes, so the number is folded before it is
+compared.
 
-**A bounded fuzzy match**, for a title lex.bg and the Gazette word
-differently. Three bounds, and the third is the one that matters:
+The key alone does not identify: 363 keys of (act type, number, year)
+name two or more corpus acts and 1,038 acts sit in such a group, because
+ministries number independently. So a stated year is never crossed, a
+stated date must agree, and an exact key needs every coordinate the
+citation states. Anything less is settled on the SUBJECT clause, the part
+after the number and the date, under the same bounds as the fuzzy step
+and reported with its real score and the flag `numbered_key_tie`.
+
+**A bounded fuzzy match**, for a title the Gazette and lex.bg word
+differently. Four bounds, and a win needs all four:
 
 - a floor of 0.90 on `difflib.SequenceMatcher.ratio`,
-- a margin of 0.05 over the runner-up, and
-- identical digit sequences in both titles.
+- a margin of 0.05 over the runner-up,
+- identical digit sequences, and
+- identical CONTENT words, which are the tokens of three letters or more
+  that are not act-type nouns, ЗИД verbs or long prepositions.
 
-Measured on the 424 laws and codes of the corpus, holding each title out
-and asking what the rest of the corpus offers in its place: at 0.85 with
-no guard, 32 of 424 held-out titles are attributed to some other act; at
-0.85 with the margin, 20; with the digit guard added, 8 at 0.85, 1 at
-0.88 and **0 at 0.90**. The digit guard does the work, because the
-confusable families are annual („за 2025 г.“ against „за 2026 г.“, 0.98)
-and numbers in a legal title identify the act rather than describe it.
-The 0.90 floor costs nothing: with the de-articling of `title_variants`
-the adjectival codes („Семейния кодекс“, „Административнопроцесуалния
-кодекс“) match exactly rather than fuzzily.
+**Measured by leave-one-out over all 3,624 corpus titles**, holding each
+out and asking what the rest of the corpus offers in its place, which is
+what a Gazette material naming an act the corpus does not hold looks
+like. Wrong attributions, before and after:
+
+| Step | Wrong |
+|---|---|
+| the digit guard and the 0.90 floor alone | 508 (33 fuzzy, 475 numbered) |
+| a stated year never crossed | 267 |
+| a stated date may contradict, and slashes stay in the number | 88 |
+| an exact key needs every stated coordinate | 6 |
+| content words must be equal | **0** |
+
+The earlier evidence for the floor was measured over the 424 laws and
+codes alone, where the digit guard does the work because the confusable
+families are annual („за 2025 г.“ against „за 2026 г.“, 0.98). Laws and
+codes are 12 % of the corpus. The other 3,200 acts are наредби and
+правилници built from a fixed frame plus one distinguishing noun, and
+that is where the minimal pairs live: „ДЪРЖАВНИТЕ ГОРСКИ СТОПАНСТВА“
+against „ДЪРЖАВНИТЕ ЛОВНИ СТОПАНСТВА“ at 0.9489, „СЪДОВЕТЕ ПОД НАЛЯГАНЕ“
+against „СЪОРЪЖЕНИЯТА ПОД НАЛЯГАНЕ“ at 0.9451, „ИГРАЧКИТЕ“ against
+„МАШИНИТЕ“ at 0.9388. None of them differs in a digit.
+
+The content guard costs nothing measurable. A reworded title, one
+function word dropped, still resolves in 2,983 of 3,608 cases, and the
+looser readings the guard was first written with, a superset or a
+one-token difference, resolved exactly as many while leaving four wrong
+attributions. What the guard does cost is stated plainly: a one-letter
+typo inside a content word is a token substitution and is refused, so
+such an event stays `unlocated` and `pending`, which blocks a grade and
+writes nothing false.
 
 Ambiguity that survives all three keys is broken by the inline
 promulgation citation „(ДВ, бр. N от YYYY г.)“, cross-checked against the
 candidate's `dv_issue`/`dv_year` and its chain. Nothing else breaks it.
 """
 
+import copy
 import difflib
 import logging
 import re
@@ -179,10 +212,19 @@ _INSTRUCTION_BY_VERB = {
 }
 
 #: „..., приета с Постановление № 97 ... от 2013 г.“ and its variants.
-#: The tail says who adopted the target, not what the target is called.
+#: The tail says which instrument adopted the target, not what the target
+#: is called.
+#:
+#: An adoption is always in the instrumental: adopted WITH a decree. „, "
+#: издадени ОТ Международната федерация на счетоводителите“ names an
+#: author, „, приети СЪГЛАСНО чл. 15“ a legal basis, „, приета В Ню Йорк“
+#: a place, and „, ОБНОВЯВАНЕ, ПОДДЪРЖАНЕ“ is a list item, not an
+#: abbreviation. Matching those cut most of eight corpus titles away,
+#: two of them losing every digit, which voids the digit guard for them.
+#: So the participle must be followed by „с“ or „със“, and „обн“ must be
+#: an actual abbreviation.
 _ADOPTION_TAIL_RE = re.compile(
-    r",\s*(?:приет|приета|прието|приети|издаден|издадена|издадено|издадени|"
-    r"утвърден|утвърдена|обн)\w*\b.*$",
+    r",\s*(?:(?:приет|издаден|утвърден|одобрен)\w*\s+(?:със|с)\s|обн\.).*$",
     re.IGNORECASE | re.DOTALL,
 )
 
@@ -197,7 +239,12 @@ _DV_CITATION_RE = re.compile(
     r"ДВ\s*,\s*бр\.?\s*(\d+)\s*от\s*(?:\d{1,2}\.\d{1,2}\.)?(\d{4})", re.IGNORECASE
 )
 
-_NUMBER_RE = re.compile(r"№\s*([\wІі-]+)", re.UNICODE)
+#: An act number as the Gazette writes it: digits, Cyrillic or Latin
+#: letters, dashes, and a slash when the slash is part of the number
+#: („№ РД-07/2“ and „№ РД-07/8“ are two наредби). A slash before a
+#: four-digit year separates the number from the year („№ 3/2001“), so it
+#: is not taken.
+_NUMBER_RE = re.compile(r"№\s*((?:[\wІі-]|/(?!\d{4}\b))+)", re.UNICODE)
 _YEAR_RE = re.compile(r"\b(1[89]\d{2}|20\d{2})\b")
 _DIGITS_RE = re.compile(r"\d+")
 
@@ -506,6 +553,115 @@ def numbered_key(title: str | None) -> NumberedKey | None:
     )
 
 
+#: Words that carry no identity: the act-type nouns, the operative verbs
+#: of a ЗИД, and the prepositions and conjunctions of three letters or
+#: more. Shorter function words („за“, „на“, „и“, „с“, „в“, „от“, „по“)
+#: fall out of `_content` on length alone.
+_STOP_WORDS = frozenset(_ACT_TYPE_WORDS) | frozenset(
+    {
+        "изменение", "изменението", "допълнение", "допълнението", "отмяна",
+        "отменяне", "отменяване", "приемане", "одобряване", "утвърждаване",
+        "поправка", "изм", "доп",
+        "или", "със", "към", "над", "под", "при", "без", "чрез", "след",
+        "преди", "между", "около", "срещу", "върху", "относно", "съгласно",
+        "спрямо", "поради", "освен", "като", "чл", "бр",
+    }
+)
+
+
+def _content(text: str) -> frozenset[str]:
+    """The words of a title that say WHICH act it is.
+
+    Tokens of three letters or more that are not act-type nouns, ЗИД
+    verbs or long prepositions. What is left is the subject matter, and
+    two titles whose subject matter differs are two acts.
+    """
+    words = []
+    for word in text.split():
+        letters = sum(1 for char in word if char.isalpha())
+        if letters >= 3 and word not in _STOP_WORDS:
+            words.append(word)
+    return frozenset(words)
+
+
+def _content_compatible(query: frozenset[str], candidate: frozenset[str]) -> bool:
+    """Whether two titles may be compared at all.
+
+    The guard the fuzzy step was missing. `difflib` measures characters,
+    and 88 % of this corpus is наредби and правилници built from a fixed
+    frame plus one distinguishing noun, so a single word apart scores 0.91
+    to 0.95 and shares every digit: „ДЪРЖАВНИТЕ ГОРСКИ СТОПАНСТВА“ against
+    „ДЪРЖАВНИТЕ ЛОВНИ СТОПАНСТВА“, „СЪДОВЕТЕ ПОД НАЛЯГАНЕ“ against
+    „СЪОРЪЖЕНИЯТА ПОД НАЛЯГАНЕ“, „ИГРАЧКИТЕ“ against „МАШИНИТЕ“. Neither
+    the 0.90 floor nor the digit guard sees any of them.
+
+    The rule is equality, and the looser readings were measured rather
+    than assumed. Allowing the query's content words to be a SUPERSET of
+    the candidate's, or the two sets to differ by one token, was tried
+    over the whole corpus by leave-one-out: it left four wrong
+    attributions and resolved exactly as many reworded titles, 2,984 of
+    3,608, as equality did. An extra content word names a different body
+    („Правилник за устройството и дейността на АКАДЕМИЯТА на
+    Министерството на вътрешните работи“ is not the правилник of the
+    ministry) or a different instrument („Правилник ЗА ПОМИРЕНИЕ на
+    Арбитражния съд“ is not its правилник), so the looser branches bought
+    nothing and cost four.
+    """
+    return query == candidate
+
+
+#: A day of the month inside the date segment of a numbered title. Its
+#: presence is what tells „от 30 август 2016 г.“, a full date, from
+#: „от 2016 г.“, which is a citation stating only the year.
+_DAY_RE = re.compile(r"\b\d{1,2}\b")
+
+
+def numbered_date(title: str | None) -> str | None:
+    """The full date a numbered title states, or None if it states a year.
+
+    „НАРЕДБА № 1 ОТ 30 АВГУСТ 2016 Г. ЗА ...“ gives „от 30 август 2016 г“.
+    Together with the act type and the number that is five coordinates,
+    which is as identifying as a numbered act gets, so it settles a tie on
+    (act type, number, year) before anything is compared. A citation that
+    states only the year cannot use it and falls through to the subject.
+    """
+    normalised = normalise_title(title)
+    if not normalised:
+        return None
+    match = _NUMBER_RE.search(normalised)
+    if match is None:
+        return None
+    rest = normalised[match.end():]
+    head = re.split(r"\s(?:за|относно)\s", rest, maxsplit=1)[0].strip()
+    if not head or not _DAY_RE.search(head):
+        return None
+    return head
+
+
+def numbered_subject(title: str | None) -> str:
+    """What a numbered title says after its number and its date.
+
+    „НАРЕДБА № 6 ОТ 11 ФЕВРУАРИ 2021 Г. ЗА РЕДА ... В ОБЛАСТТА НА
+    ВЕТЕРИНАРНАТА МЕДИЦИНА“ gives „реда ... в областта на ветеринарната
+    медицина“. 363 keys of (act type, number, year) name two or more
+    corpus acts and 1,038 acts sit in such a group, so the subject is
+    what tells them apart; comparing the whole title instead compares the
+    date the citation does not repeat.
+
+    A title with no number gives its whole normalised self, so the
+    function is total and the caller needs no special case.
+    """
+    normalised = normalise_title(title)
+    if not normalised:
+        return ""
+    match = _NUMBER_RE.search(normalised)
+    if match is None:
+        return normalised
+    rest = normalised[match.end():]
+    parts = re.split(r"\s(?:за|относно)\s", rest, maxsplit=1)
+    return parts[1].strip() if len(parts) > 1 else rest.strip()
+
+
 def _digits(text: str) -> tuple[str, ...]:
     """Every number in a title, in order.
 
@@ -563,20 +719,46 @@ class Resolver:
 
     def __init__(self, corpus_acts):
         self._acts = tuple(corpus_acts)
+        self._excluded: frozenset[str] = frozenset()
         self._by_id = {act.law_id: act for act in self._acts}
         self._by_title: dict[str, list[CorpusAct]] = {}
         self._by_number: dict[tuple[str, str], list[CorpusAct]] = {}
         self._normalised: dict[str, str] = {}
+        #: The subject clause of a numbered title, which is what a tie on
+        #: (act type, number, year) is broken on.
+        self._subjects: dict[str, str] = {}
+        #: The act's own (type, number, year) and stated date, so a
+        #: citation can be checked against them without re-parsing.
+        self._keys: dict[str, NumberedKey | None] = {}
+        self._dates: dict[str, str | None] = {}
         for act in self._acts:
             key = normalise_title(act.title)
             self._normalised[act.law_id] = key
+            self._subjects[act.law_id] = numbered_subject(act.title)
             if key:
                 self._by_title.setdefault(key, []).append(act)
+            self._dates[act.law_id] = numbered_date(act.title)
             numbered = numbered_key(act.title)
+            self._keys[act.law_id] = numbered
             if numbered is not None:
                 self._by_number.setdefault(
                     (numbered.act_type, numbered.number), []
                 ).append((act, numbered))
+
+    def holding_out(self, law_id: str) -> "Resolver":
+        """A view of this resolver that has never seen one act.
+
+        The leave-one-out measurement the fuzzy bounds are justified by
+        asks, for each of 3,624 corpus titles, what the REST of the corpus
+        offers in its place, which is what a Gazette material naming an
+        act the corpus does not hold looks like. Rebuilding the index
+        3,624 times is ten minutes; sharing it and hiding one act is
+        seconds, which is the difference between a measurement that can be
+        a test and one that can only be a note.
+        """
+        clone = copy.copy(self)
+        clone._excluded = frozenset({law_id})
+        return clone
 
     def resolve(self, title, *, section=None, dv_citation=None) -> Resolution:
         """The corpus act a Gazette title names, or None with the reason.
@@ -601,78 +783,191 @@ class Resolver:
         if exact:
             return self._decide(exact, 1.0, "exact", citation, target_type)
 
-        numbered = self._numbered(title, section)
-        if numbered:
-            return self._decide(numbered, 1.0, "numbered", citation, target_type)
+        numbered, considered, score, flags = self._numbered(title, section)
+        if considered:
+            return self._decide(
+                numbered, score, "numbered", citation, target_type,
+                extra=flags, reported=considered,
+            )
 
-        fuzzy, score = self._fuzzy(normalised, section, target_type)
-        return self._decide(fuzzy, score, "fuzzy", citation, target_type)
+        chosen, considered, score = self._fuzzy(normalised, section, target_type)
+        return self._decide(
+            chosen, score, "fuzzy", citation, target_type, reported=considered
+        )
 
     # --- the three keys ---------------------------------------------------
 
     def _exact(self, normalised: str) -> list[CorpusAct]:
         found: list[CorpusAct] = []
         seen: set[str] = set()
-        for variant in title_variants(normalised):
+        # Sorted, because `title_variants` is a frozenset and its
+        # iteration order is per-process: `Resolution.candidates` has to
+        # read the same in every run for the CSVs to be reproducible.
+        for variant in sorted(title_variants(normalised)):
             for act in self._by_title.get(variant, ()):
+                if act.law_id in self._excluded:
+                    continue
                 if act.law_id not in seen:
                     seen.add(act.law_id)
                     found.append(act)
         return found
 
-    def _numbered(self, title, section) -> list[CorpusAct]:
+    def _numbered(self, title, section):
+        """The acts a numbered citation names, what was considered, the score.
+
+        A stated year is identifying and is never crossed. The 365
+        numbered наредби whose titles state no year stay candidates for
+        any year, since silence cannot contradict; an act that states a
+        DIFFERENT year is a different act, and widening to „any act with
+        this number“ attributed 475 held-out titles to a sibling of
+        another year, each reported as an exact key at 1.000.
+
+        A key shared by several acts is settled first on the full date,
+        which adds a day and a month to the type, the number and the year.
+        That must survive a renamed title, because 282 corpus titles carry
+        „(ЗАГЛ. ИЗМ. ...)“ and a 2016 material can differ from lex.bg's
+        current text of the same наредба by a content word („спортна
+        подготовка“ became „специализирана подготовка“ in 2019). But a
+        date is not identifying on its own, since ministries number
+        independently and two наредби № 6 can both be dated 11 February
+        2021, so the subject must still clear the floor.
+
+        Where the dates agree or the citation states none, the subject
+        decides under all three bounds.
+        """
         key = numbered_key(title)
         if key is None:
-            return []
+            return [], [], 0.0, ()
         allowed = SECTION_ACT_TYPES.get(section_kind(section)) if section else None
         if allowed is not None and key.act_type not in allowed:
-            return []
-        rows = self._by_number.get((key.act_type, key.number), [])
-        matched = [act for act, other in rows if other.year == key.year]
-        if not matched:
-            # 365 numbered наредби state no year in their title, so a
-            # citation that states one still has to reach them; a year
-            # that matched something exactly is never widened this way.
+            return [], [], 0.0, ()
+        rows = [
+            pair
+            for pair in self._by_number.get((key.act_type, key.number), [])
+            if pair[0].law_id not in self._excluded
+        ]
+        if key.year is None:
             matched = [act for act, _ in rows]
-        if len(matched) <= 1:
-            return matched
-        # A number and a year name several acts often enough that the
-        # design makes the title tail part of the key: „Наредба № 1 от
-        # 2016 г.“ is six corpus acts. The digit guard is off here: the
-        # number and the year are already pinned, and what is left to
-        # compare is a date the citation does not repeat.
-        best, score = self._rank(normalise_title(title), matched, guard=False)
-        return best if score >= FUZZY_THRESHOLD else matched
+        else:
+            matched = [act for act, other in rows if other.year in (key.year, None)]
+        if not matched:
+            return [], [], 0.0, ()
+        unique_by_key = len(matched) == 1
 
-    def _fuzzy(self, normalised: str, section, target_type) -> tuple[list[CorpusAct], float]:
+        # A stated full date can CONTRADICT, not only settle. „№ Н-9 от 7
+        # ноември 2018“ and „№ Н-9 от 4 април 2018“ are two наредби, and
+        # with the first absent the key names exactly the second: 230
+        # held-out titles used to resolve that way at a reported 1.000.
+        # An act whose own title states no date is not contradicted by
+        # one, since silence cannot contradict.
+        stated = numbered_date(title)
+        if stated is not None:
+            same_date = [act for act in matched if numbered_date(act.title) == stated]
+            if same_date:
+                matched = same_date
+            else:
+                undated = [
+                    act for act in matched if numbered_date(act.title) is None
+                ]
+                if not undated:
+                    return [], matched, 0.0, ("numbered_date_mismatch",)
+                matched = undated
+
+        subject = numbered_subject(title)
+        if len(matched) == 1:
+            if unique_by_key and stated is not None and self._agrees(
+                key, stated, matched[0]
+            ):
+                # A full date, every coordinate matched, and the key named
+                # this act alone: an exact key, not a comparison. A year
+                # without a day is not enough, since 363 keys of (type,
+                # number, year) name two or more corpus acts, and two
+                # citations „Наредба № 28 от 2004 г.“ reached the wrong
+                # наредба that way.
+                return matched, matched, 1.0, ()
+            # Otherwise the subject has to carry it. Either the key named
+            # several acts and something narrowed it, or the candidate is
+            # silent about a year or a date the citation states, which is
+            # how 84 held-out titles reached the one наредба № 49 whose
+            # title carries no date at all. The comparison has to survive
+            # a renamed title, though: 282 corpus titles carry „(ЗАГЛ.
+            # ИЗМ. ...)“, so a 2016 material and lex.bg's current text of
+            # one наредба differ by a content word („спортна подготовка“
+            # became „специализирана подготовка“ in 2019) and are one act.
+            score = self._similarity(subject, matched[0])
+            chosen = matched if score >= FUZZY_THRESHOLD else []
+            flags = () if unique_by_key else ("numbered_key_tie",)
+            return chosen, matched, score, flags
+
+        chosen, considered, score = self._rank(subject, matched, subject=True)
+        return chosen, considered, score, ("numbered_key_tie",)
+
+    def _agrees(self, key: NumberedKey, stated: str | None, act: CorpusAct) -> bool:
+        """Whether an act matches every coordinate the citation states.
+
+        A citation that states a year or a date carries information; an
+        act whose own title is silent about it does not match it, it
+        merely fails to contradict. The difference decides whether this is
+        an exact key or a comparison.
+        """
+        other = self._keys.get(act.law_id)
+        if key.year is not None and (other is None or other.year != key.year):
+            return False
+        if stated is not None and self._dates.get(act.law_id) != stated:
+            return False
+        return True
+
+    def _similarity(self, subject: str, act: CorpusAct) -> float:
+        """How alike two subject clauses are. Reported, never decisive here."""
+        return difflib.SequenceMatcher(
+            None, self._subjects[act.law_id], subject
+        ).ratio()
+
+    def _fuzzy(self, normalised: str, section, target_type):
         pool = self._pool(section, target_type)
         return self._rank(normalised, pool)
 
     def _pool(self, section, target_type) -> list[CorpusAct]:
+        acts = [act for act in self._acts if act.law_id not in self._excluded]
         if target_type is not None:
-            return [act for act in self._acts if act.act_type == target_type]
+            return [act for act in acts if act.act_type == target_type]
         allowed = SECTION_ACT_TYPES.get(section_kind(section)) if section else None
         if allowed is None:
-            return list(self._acts)
-        return [act for act in self._acts if act.act_type in allowed]
+            return acts
+        return [act for act in acts if act.act_type in allowed]
 
-    def _rank(self, normalised: str, pool, *, guard: bool = True) -> tuple[list[CorpusAct], float]:
-        """The acts of `pool` above the floor, and the best score.
+    def _rank(self, normalised: str, pool, *, subject: bool = False):
+        """Who wins, who was considered, and the best score.
 
-        Returns every act at or above the floor, so two near-equal
-        candidates reach `_decide` as an ambiguity rather than as a
-        winner. The margin rule catches the other shape: one candidate
-        above the floor with a runner-up just below it.
+        Returns `(chosen, candidates, score)`. `chosen` is a one-element
+        list or empty; `candidates` is everything that cleared the floor,
+        reported whether or not it won, so `unresolved.csv` shows the
+        reader the same near miss the resolver saw.
+
+        Three bounds decide, and a win needs all three. The floor and the
+        margin over the runner-up are about how alike two strings are.
+        The content guard is about whether they are the same act at all:
+        `difflib` measures characters, and 88 % of this corpus is наредби
+        and правилници built from a fixed frame plus one distinguishing
+        noun, so a single word apart scores 0.91 to 0.95 and shares every
+        digit. It vetoes rather than prunes, so the near miss still
+        reaches the report.
+
+        `subject` only changes WHICH text is compared: the subject clause
+        when the number and the date are already pinned, the whole title
+        otherwise.
         """
+        side = self._subjects if subject else self._normalised
         wanted = _digits(normalised)
+        wanted_content = _content(normalised)
         matcher = difflib.SequenceMatcher(None)
         # `set_seq2` builds the index that `set_seq1` then reuses, so the
         # query goes in once and the candidates stream past it.
         matcher.set_seq2(normalised)
         scored: list[tuple[float, CorpusAct]] = []
         for act in pool:
-            other = self._normalised[act.law_id]
-            if not other or (guard and _digits(other) != wanted):
+            other = side[act.law_id]
+            if not other or _digits(other) != wanted:
                 continue
             matcher.set_seq1(other)
             if (
@@ -682,24 +977,29 @@ class Resolver:
                 continue
             scored.append((matcher.ratio(), act))
         if not scored:
-            return [], 0.0
+            return [], [], 0.0
         scored.sort(key=lambda pair: (-pair[0], pair[1].law_id))
         best = scored[0][0]
         runner_up = scored[1][0] if len(scored) > 1 else 0.0
-        if best < FUZZY_THRESHOLD:
-            return [], best
         above = [act for ratio, act in scored if ratio >= FUZZY_THRESHOLD]
-        if len(above) == 1 and best - runner_up < FUZZY_MARGIN:
+        if len(above) != 1:
+            return [], above, best
+        if best - runner_up < FUZZY_MARGIN:
             # Too close to call, even though only one cleared the floor.
-            return [act for _, act in scored[:2]], best
-        return above, best
+            return [], [act for _, act in scored[:2]], best
+        if not _content_compatible(wanted_content, _content(side[above[0].law_id])):
+            return [], above, best
+        return above, above, best
 
     # --- deciding ---------------------------------------------------------
 
-    def _decide(self, candidates, score, method, citation, target_type) -> Resolution:
-        ids = tuple(act.law_id for act in candidates)
+    def _decide(self, candidates, score, method, citation, target_type,
+                extra=(), reported=None) -> Resolution:
+        ids = tuple(
+            act.law_id for act in (candidates if reported is None else reported)
+        )
         if len(candidates) == 1:
-            return Resolution(candidates[0].law_id, ids, score, (), method)
+            return Resolution(candidates[0].law_id, ids, score, tuple(extra), method)
 
         if len(candidates) > 1 and citation is not None:
             narrowed = [act for act in candidates if _matches_citation(act, citation)]
@@ -708,11 +1008,11 @@ class Resolver:
                     narrowed[0].law_id,
                     ids,
                     score,
-                    ("disambiguated_by_citation",),
+                    tuple(extra) + ("disambiguated_by_citation",),
                     method,
                 )
 
-        flags = ["title_ambiguous"]
+        flags = list(extra) + ["title_ambiguous"]
         if candidates:
             flags.append("ambiguous_candidates")
         else:

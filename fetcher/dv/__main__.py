@@ -354,9 +354,13 @@ def _material_rows(path: Path, extra_sections: tuple[str, ...]) -> list[dict]:
     return sorted(rows, key=lambda row: (row.get("id_obj") or 0, row.get("position") or 0))
 
 
-def _eta(remaining: int) -> str:
-    """How long the rest of the run takes at the rate ceiling of one per second."""
-    seconds = int(remaining)
+def _duration(seconds: float) -> str:
+    """A count of seconds as h:mm:ss.
+
+    Used for elapsed time and, since the rate ceiling is one request per
+    second, for a count of remaining requests read as an ETA.
+    """
+    seconds = int(seconds)
     hours, rest = divmod(seconds, 3600)
     minutes, seconds = divmod(rest, 60)
     return f"{hours:d}:{minutes:02d}:{seconds:02d}"
@@ -388,7 +392,7 @@ def cmd_bodies(args, session) -> int:
     to_fetch = len(rows) - already
     log.info(
         "%d materials selected, %d already cached, about %s of fetching left",
-        len(rows), already, _eta(to_fetch),
+        len(rows), already, _duration(to_fetch),
     )
 
     started = time.monotonic()
@@ -435,12 +439,12 @@ def cmd_bodies(args, session) -> int:
             log.info(
                 "%d/%d materials, %d fetched, %d cached, elapsed %s, eta %s",
                 processed, len(rows), fetched, cached,
-                _eta(elapsed), _eta(max(to_fetch - fetched, 0)),
+                _duration(elapsed), _duration(max(to_fetch - fetched, 0)),
             )
 
     log.info(
         "%d fetched, %d cached, %d unavailable, in %s",
-        fetched, cached, missing, _eta(time.monotonic() - started),
+        fetched, cached, missing, _duration(time.monotonic() - started),
     )
     if halt is not None:
         log.error("stopped: %s", halt)
