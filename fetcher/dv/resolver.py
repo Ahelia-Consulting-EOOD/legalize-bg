@@ -71,6 +71,14 @@ log = logging.getLogger(__name__)
 FUZZY_THRESHOLD = 0.90
 FUZZY_MARGIN = 0.05
 
+#: Candidates below this cannot win and cannot be the runner-up the
+#: margin is measured against, so `difflib`'s two upper bounds throw them
+#: out before the real comparison. The body scan resolves on the order of
+#: forty-two thousand titles against 2,645 наредби, and the full ratio on
+#: every pair is hours of arithmetic for an answer the bounds already
+#: give.
+FUZZY_PREFILTER = FUZZY_THRESHOLD - FUZZY_MARGIN
+
 #: The categories of the corpus tree, which are also the only act types
 #: it holds. A Gazette title naming a постановление, указ, тарифа,
 #: решение or договор has no corpus counterpart, and saying so is more
@@ -201,6 +209,12 @@ class CorpusAct:
     #: Every (year, number) the act's `amendment_history` names, which is
     #: lex.bg's chain and therefore a witness, not an authority.
     chain: frozenset[tuple[int, int]]
+    #: The same rows in order, each as ((year, number) or None, date or
+    #: None). The order is the chain's order and the first row is the
+    #: promulgation, which the coverage map needs to tell a base from an
+    #: event; a row whose „dv“ is absent or unparseable keeps its date,
+    #: which is still enough to place it before or after 1989.
+    amendment_history: tuple[tuple[tuple[int, int] | None, str | None], ...]
 
     @classmethod
     def from_frontmatter(cls, *, law_id: str, category: str, frontmatter: dict):
@@ -209,11 +223,16 @@ class CorpusAct:
         # „ПРАВИЛНИК ЗА ПРИЛАГАНЕ“, so the matching act type is правилник.
         act_type = "правилник" if rango.startswith("правилник") else rango
         chain = set()
+        history: list[tuple[tuple[int, int] | None, str | None]] = []
         for row in frontmatter.get("amendment_history") or []:
-            pair = parse_dv_reference(row.get("dv") if isinstance(row, dict) else None)
+            if not isinstance(row, dict):
+                continue
+            pair = parse_dv_reference(row.get("dv"))
+            history.append((pair, _as_text(row.get("date"))))
             if pair is not None:
                 chain.add(pair)
         return cls(
+            amendment_history=tuple(history),
             law_id=law_id,
             title=(frontmatter.get("titulo") or "").strip(),
             act_type=act_type,
@@ -570,13 +589,22 @@ class Resolver:
         above the floor with a runner-up just below it.
         """
         wanted = _digits(normalised)
+        matcher = difflib.SequenceMatcher(None)
+        # `set_seq2` builds the index that `set_seq1` then reuses, so the
+        # query goes in once and the candidates stream past it.
+        matcher.set_seq2(normalised)
         scored: list[tuple[float, CorpusAct]] = []
         for act in pool:
             other = self._normalised[act.law_id]
             if not other or (guard and _digits(other) != wanted):
                 continue
-            ratio = difflib.SequenceMatcher(None, normalised, other).ratio()
-            scored.append((ratio, act))
+            matcher.set_seq1(other)
+            if (
+                matcher.real_quick_ratio() < FUZZY_PREFILTER
+                or matcher.quick_ratio() < FUZZY_PREFILTER
+            ):
+                continue
+            scored.append((matcher.ratio(), act))
         if not scored:
             return [], 0.0
         scored.sort(key=lambda pair: (-pair[0], pair[1].law_id))
