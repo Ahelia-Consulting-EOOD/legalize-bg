@@ -240,6 +240,31 @@ def material_body_html(html: str) -> str:
     return _content_div(BeautifulSoup(html, "lxml")).decode_contents()
 
 
+def forget_session_state(session) -> None:
+    """Drop the cookie jar so the next request starts a new server session.
+
+    dv.parliament.bg binds the issue a client asks for to its server-side
+    session on the FIRST request and then serves that issue for every later
+    `materiali.faces` call, whatever `idObj` says. Measured live on
+    2026-09-05 after a full sweep: one session over 4,146 issues yielded
+    3,843 copies of the first issue's twenty materials, and three fresh-jar
+    probes gave three different, correct issues. The issue LIST needs its
+    session (ViewState and pagination), so this is called only here, before
+    each materials or material request, and the rate limiter is untouched.
+    """
+    jar = getattr(session, "cookies", None)
+    if jar is None:
+        log.warning("session exposes no cookie jar; the materials page may stay bound to a stale issue")
+        return
+    jar.clear()
+
+
+def fetch_materials_page(session, id_obj: int) -> str:
+    """GET one issue's contents page from a fresh server session."""
+    forget_session_state(session)
+    return session.get(MATERIALS_URL, params={"idObj": id_obj})
+
+
 def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
     """GET one issue's contents and parse it.
 
@@ -248,12 +273,17 @@ def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
     caller that needs to tell those apart, as the bulk enumeration does,
     fetches the body itself and asks `classify_page`.
     """
-    html = session.get(MATERIALS_URL, params={"idObj": id_obj})
-    return parse_materials(html)
+    return parse_materials(fetch_materials_page(session, id_obj))
 
 
 def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:
     """GET one material, returning its raw HTML.
+
+    The material page (`showMaterialDV.jsp`) is NOT session-bound: measured
+    live on 2026-09-05, one cookie jar served idMat 242220, 300 and 1000 as
+    брой 32/2026, 43/2005 and 88/2005. So, unlike the materials list, this
+    request keeps the session, and a 42,000-body sweep does not leave
+    thousands of server sessions behind.
 
     With `cache_dir` the raw response is stored as `<id_mat>.html` and a
     later call for the same id is served from disk without a request. A
