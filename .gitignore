@@ -26,3 +26,7 @@ cf-export/
 # files on disk, never commit them)
 refresh-fr034*.log
 rebuild-fr034*.log
+
+# Raw ДВ material HTML, cached by fetcher/dv (acquisition artefact, local only;
+# see data/dv/README.md). Never committed.
+data/dv/cache/

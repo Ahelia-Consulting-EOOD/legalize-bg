@@ -29,25 +29,25 @@ def issue_page2() -> str:
 
 @pytest.fixture
 def materials_html() -> str:
-    """Съдържание of idObj 6121 — eighteen materials."""
+    """Съдържание of idObj 6121, which lists eighteen materials."""
     return read_fixture("materiali-idObj6121.html")
 
 
 @pytest.fixture
 def materials_empty_html() -> str:
-    """A valid issue page with „Намерени резултати: 0“ — the PDF-era signal."""
+    """A valid issue page with „Намерени резултати: 0“, the PDF-era signal."""
     return read_fixture("materiali-idObj5000-empty.html")
 
 
 @pytest.fixture
 def material_html() -> str:
-    """idMat 1000 — an annex published in брой 88 от 4.11.2005."""
+    """idMat 1000, an annex published in брой 88 от 4.11.2005."""
     return read_fixture("showMaterial-idMat1000.html")
 
 
 @pytest.fixture
 def material_zid_html() -> str:
-    """idMat 300 — a ЗИД promulgated in брой 43 от 20.5.2005."""
+    """idMat 300, a ЗИД promulgated in брой 43 от 20.5.2005."""
     return read_fixture("showMaterial-idMat300-zid.html")
 
 
