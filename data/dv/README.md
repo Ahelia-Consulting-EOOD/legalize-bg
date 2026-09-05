@@ -38,9 +38,9 @@ section that does not exist.
 
 ## `materials.jsonl`
 
-One line per material published in an issue, plus exactly one line for
-an issue that carries no HTML materials or that does not resolve. Around
-4,150 requests, one per issue.
+One line per material published in an issue, plus exactly one line for an
+issue that carries no HTML materials, that does not resolve, or whose
+page this parser could not read. Around 4,150 requests, one per issue.
 
 ```json
 {"id_obj": 6121, "issue_year": 2016, "issue_number": 74, "issue_date": "2016-09-20", "status": "ok", "position": 4, "id_mat": 107549, "section": "Народно събрание", "title": "Закон за изменение и допълнение на Административнопроцесуалния кодекс", "start_page": 12}
@@ -74,21 +74,22 @@ rather than the issue being listed.
 
 ### The sweep stops rather than write a false map
 
-Both statuses above are read by the coverage map as claims about what the
-Gazette holds, so neither may be produced in bulk by a bad afternoon.
+`error_page` and `unrecognized` are both read downstream as claims about
+what the Gazette holds, so neither may be produced in bulk by a bad
+afternoon.
 
 - **Five „недостъпен“ stubs in a row** (`--max-consecutive-errors`,
   default 5) are an outage, not five neighbouring gaps in a sparse id
   space. The run logs at ERROR naming the last issue that answered,
   **discards that run of stub rows instead of writing them**, and exits
   non-zero. `--resume` picks it up when the site is back.
-- **Too many unreadable pages** — more than ten inside the first fifty
-  issues, or more than five percent of a longer run — mean the site's
-  markup has changed. The run halts the same way, so a redesign cannot
-  write „this issue holds nothing“ 4,146 times.
+- **Too many unreadable pages** mean the site's markup has changed: more
+  than ten inside the first fifty issues, or more than five percent of a
+  longer run. The run halts the same way, so a redesign cannot write
+  „this issue holds nothing“ 4,146 times.
 
-An isolated gap does not trip either guard; a single stub between two
-issues that answered is recorded and the sweep continues.
+An isolated gap trips neither guard. A single stub between two issues
+that answered is recorded and the sweep continues.
 
 ## `cache/`
 
