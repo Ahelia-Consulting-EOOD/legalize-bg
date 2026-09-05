@@ -30,9 +30,11 @@ the act then asserts `estado: derogado` with no trace of the adjudication behind
 1. **Move the note out of the file** into `docs/data/` next to the scope-exclusion record it cites,
    and let the act carry ordinary frontmatter. Cheapest, and it puts a governance record where
    governance records live.
-2. **Promote it to a field**, e.g. an `estado_note` key. The gate preserves unknown frontmatter
-   keys, so it would survive every rewrite; it costs a frontmatter-schema preflight (protected
-   surface).
+2. **Promote it to a field**, e.g. an `estado_note` key. `corpus_gate.render_act` preserves
+   frontmatter keys outside the assembler's whitelist, and `refresh.merge_preserved` carries every
+   key the lex.bg metadata parser does not produce across a re-scrape, so such a field survives
+   both. It costs a frontmatter-schema preflight (protected surface), and every other writer that
+   builds frontmatter from scratch would have to preserve it too.
 3. **Preserve comments in the renderer** by switching to a round-tripping YAML library. Rejected on
    sight for this: a new dependency and a changed dumper for one act, with a real risk of moving
    the bytes of the other 3 623.

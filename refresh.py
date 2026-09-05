@@ -27,6 +27,7 @@ import logging
 import os
 import re
 import subprocess
+from copy import deepcopy
 from dataclasses import dataclass, field
 from datetime import date
 from pathlib import Path
@@ -34,8 +35,14 @@ from pathlib import Path
 import yaml
 
 from bootstrap import TreeTransport, _format_author_date, _git_checkout_branch, _unique_slug
-from corpus_gate import CorpusIntegrityError, SourceRef, write_act, write_act_text
-from fetcher.bg.assembler import assemble_file, generate_slug
+from corpus_gate import (
+    CorpusIntegrityError,
+    SourceRef,
+    render_act,
+    write_act,
+    write_act_text,
+)
+from fetcher.bg.assembler import generate_slug
 from fetcher.bg.coverage import (
     make_gate_record,
     safe_structure_mismatches,
@@ -75,6 +82,70 @@ class CorpusEntry:
     raw_text: str        # full committed file, for the normalized change compare
     frontmatter: dict
     amendment_history: list
+
+
+# Exactly what `fetcher/bg/metadata.MetadataParser.parse` returns: the fields
+# a lex.bg page can answer for. Everything else an act carries was written by
+# another writer — the Gazette provenance block, the per-event fields on the
+# amendment rows — and a re-scrape has nothing to say about it.
+# `tests/refresh/test_frontmatter_preservation.py` pins this against the real
+# parser, so a new parser field cannot silently join the preserved set.
+LEXBG_METADATA_KEYS: frozenset[str] = frozenset({
+    "titulo", "identificador", "pais", "rango", "fecha_publicacion",
+    "ultima_actualizacion", "estado", "fuente", "dv_issue", "dv_year",
+    "effective_date", "category", "eli", "amendment_history",
+})
+
+# The per-event fields the Gazette work adds to an amendment row. They are
+# listed for the record; the merge carries over every field on the committed
+# row that the fresh row does not have, so a field added later is preserved
+# without editing this list.
+PRESERVED_EVENT_FIELDS: tuple[str, ...] = (
+    "source", "locator", "applied", "verified_against", "uncertainty",
+)
+
+
+def merge_preserved(committed: dict, fresh: dict) -> dict:
+    """Fresh lex.bg metadata, plus everything lex.bg does not own.
+
+    A re-scrape is authoritative for what lex.bg publishes and silent about
+    the rest, so the fresh value wins for every key the parser produces and
+    the committed value survives for every key it does not.
+
+    Two harms this prevents, and the second is the worse one. The block is
+    deleted, so an act loses its provenance on the next refresh. And the
+    change classifier compares the rendered candidate against the committed
+    text, so an act whose committed frontmatter carries a key the candidate
+    lacks never compares equal: every act would be classified as changed on
+    every run, and a refresh would rewrite and re-commit the whole corpus for
+    ever.
+
+    Neither input is mutated; the amendment rows are matched on `dv`, and a
+    row lex.bg no longer serves is not resurrected.
+    """
+    merged = {key: value for key, value in fresh.items()}
+    for key, value in committed.items():
+        if key not in LEXBG_METADATA_KEYS and key not in merged:
+            merged[key] = deepcopy(value)
+
+    committed_rows = {
+        row.get("dv"): row
+        for row in (committed.get("amendment_history") or [])
+        if isinstance(row, dict)
+    }
+    if committed_rows and isinstance(merged.get("amendment_history"), list):
+        rows = []
+        for row in merged["amendment_history"]:
+            if not isinstance(row, dict):
+                rows.append(row)
+                continue
+            row = dict(row)
+            for key, value in (committed_rows.get(row.get("dv")) or {}).items():
+                if key not in row:
+                    row[key] = deepcopy(value)
+            rows.append(row)
+        merged["amendment_history"] = rows
+    return merged
 
 
 def _split_frontmatter(raw: str) -> tuple[dict, str]:
@@ -712,7 +783,16 @@ def refresh(
                     title, doc_id, gate["uncovered_chars"],
                 )
                 continue
-            candidate = assemble_file(meta, body)
+            # lex.bg is authoritative for what lex.bg publishes and silent
+            # about the rest, so everything the metadata parser does not
+            # produce is carried over from the committed file. Without this
+            # the re-scrape deletes it, and — worse — the candidate never
+            # compares equal to the committed text, so every act is
+            # classified as changed on every run.
+            meta = merge_preserved(ce.frontmatter, meta)
+            # The classification and the written bytes are the same text by
+            # construction: `candidate` is what `write_act` will render.
+            candidate = render_act(meta, body)
             fresh_hist = meta.get("amendment_history") or []
             grew = history_grew(ce.amendment_history, fresh_hist)
             disposition = classify_change(ce.raw_text, candidate, grew)
@@ -721,10 +801,9 @@ def refresh(
                 state[doc_id] = "unchanged"
             else:
                 # SAME slug — slug stability is the #1 invariant. The gate
-                # renders exactly what `assemble_file` rendered into
-                # `candidate` above (tests/test_corpus_gate.py pins the two
-                # byte-identical), so the classification and the written file
-                # can never describe different text.
+                # renders `candidate` above from this same mapping through
+                # this same renderer, so the classification and the written
+                # file describe the same text by construction.
                 try:
                     write_act(ce.path, meta, body,
                               source=SourceRef("lexbg", str(doc_id)))
