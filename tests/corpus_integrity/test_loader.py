@@ -64,3 +64,50 @@ def test_act_with_unterminated_frontmatter_is_an_error(tmp_path: Path):
     (d / "open.md").write_text("---\ntitulo: X\n", encoding="utf-8")
     with pytest.raises(ValueError, match="unterminated YAML frontmatter"):
         list(iter_acts(tmp_path))
+
+
+def test_a_delimiter_inside_a_block_scalar_does_not_truncate_the_frontmatter(
+    tmp_path: Path,
+):
+    """The split is line-anchored, so only a line that is exactly `---` closes.
+
+    An indented `---` inside a YAML block scalar used to end the frontmatter,
+    silently dropping every field after it into the body with no error.
+    """
+    d = tmp_path / "laws"
+    d.mkdir()
+    (d / "scalar.md").write_text(
+        "---\nnota: |\n  ред\n  ---\n  ред\ntitulo: ТЕСТОВ ЗАКОН\n---\nТЯЛО\n",
+        encoding="utf-8",
+    )
+    (act,) = iter_acts(tmp_path)
+    assert act.frontmatter["titulo"] == "ТЕСТОВ ЗАКОН"
+    assert act.frontmatter["nota"] == "ред\n---\nред\n"
+    assert act.body == "ТЯЛО\n"
+
+
+def test_a_horizontal_rule_in_the_body_stays_in_the_body(tmp_path: Path):
+    d = tmp_path / "laws"
+    d.mkdir()
+    (d / "rule.md").write_text(
+        "---\ntitulo: X\n---\nпреди\n---\nслед\n", encoding="utf-8"
+    )
+    (act,) = iter_acts(tmp_path)
+    assert act.body == "преди\n---\nслед\n"
+
+
+def test_a_closing_delimiter_at_end_of_file_is_accepted(tmp_path: Path):
+    d = tmp_path / "laws"
+    d.mkdir()
+    (d / "nobody.md").write_text("---\ntitulo: X\n---", encoding="utf-8")
+    (act,) = iter_acts(tmp_path)
+    assert act.body == ""
+
+
+def test_a_file_that_is_not_utf8_names_itself_in_the_error(tmp_path: Path):
+    """A byte offset with no file name is unusable across 3,624 acts."""
+    d = tmp_path / "laws"
+    d.mkdir()
+    (d / "cp1251.md").write_bytes("---\ntitulo: ЗАКОН\n---\nТЯЛО\n".encode("cp1251"))
+    with pytest.raises(ValueError, match=r"cp1251\.md: not valid UTF-8"):
+        list(iter_acts(tmp_path))

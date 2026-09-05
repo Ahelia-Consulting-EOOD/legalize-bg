@@ -5,6 +5,7 @@ only. That is what lets it gate every pull request, where `catalog.db` is
 absent and 21 real-corpus tests self-skip.
 """
 
+import re
 from pathlib import Path
 from typing import Iterator
 
@@ -26,6 +27,12 @@ CATEGORY_DIRS: tuple[str, ...] = (
 
 _DELIMITER = "---\n"
 
+# The closing delimiter is a LINE that is exactly `---`, never a substring. A
+# plain `raw.split("---\n", 2)` ends the frontmatter on an indented `---`
+# inside a YAML block scalar, silently dropping every field after it into the
+# body with no error at all.
+_CLOSING = re.compile(r"(?m)^---$\n?")
+
 
 def iter_acts(root: Path) -> Iterator[Act]:
     """Yield every act under `root`, ordered by category then by file name."""
@@ -39,13 +46,20 @@ def iter_acts(root: Path) -> Iterator[Act]:
 
 
 def _read_act(path: Path, category: str) -> Act:
-    raw = path.read_text(encoding="utf-8")
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError as exc:
+        # lex.bg serves windows-1251 and the pipeline transcodes, so a decode
+        # slip is a real possibility. A byte offset with no file name is
+        # unusable across 3,624 acts.
+        raise ValueError(f"{path}: not valid UTF-8: {exc}") from exc
     if not raw.startswith(_DELIMITER):
         raise ValueError(f"{path}: missing YAML frontmatter")
-    parts = raw.split(_DELIMITER, 2)
-    if len(parts) < 3:
+    rest = raw[len(_DELIMITER) :]
+    closing = _CLOSING.search(rest)
+    if closing is None:
         raise ValueError(f"{path}: unterminated YAML frontmatter")
-    _, frontmatter_text, body = parts
+    frontmatter_text, body = rest[: closing.start()], rest[closing.end() :]
     try:
         frontmatter = yaml.safe_load(frontmatter_text) or {}
     except yaml.YAMLError as exc:
