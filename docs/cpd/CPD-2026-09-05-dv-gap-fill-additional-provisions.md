@@ -23,8 +23,8 @@ For Закон за обществения транспорт the missing § 1 h
 "Възел за достъп", "Eдинен превозен документ" and others) that downstream consumers need; the
 takt-plan programme had to carry the gap as a follow-up for four months.
 
-The scanner `scripts/structure_gaps.py` finds 95 candidate acts, 25 of them with an empty
-additional-provisions section.
+The scanner `scripts/structure_gaps.py` found 95 candidate acts, 25 of them with an empty
+additional-provisions section. After the review revision of the detector (audit, section Detector revision) the counts are 103 and 33.
 
 ## Proposal
 
@@ -55,7 +55,7 @@ additional-provisions section.
 
 ## This change
 
-- `scripts/structure_gaps.py` and `tests/test_structure_gaps.py` (red first, four tests, self-test).
+- `scripts/structure_gaps.py` and `tests/test_structure_gaps.py` (red first, four tests at the first version, nine after the review revision, self-test).
 - `docs/audits/2026-09-05-source-dropped-additional-provisions.md` (results and evidence).
 - `docs/cpd/CPD-2026-09-05-dv-gap-fill-additional-provisions.md`: this proposal, marked superseded
   (D-059, D-063).

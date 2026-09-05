@@ -18,7 +18,7 @@ https://dv.parliament.bg/DVWeb/showMaterialDV.jsp?idMat=242220) carries § 1 wit
 identical for all 106 articles apart from lex.bg's consolidation notes "(В сила от ...)", dash style
 (the Gazette uses the en dash, lex.bg the hyphen), and two places where lex.bg prints "и" for the
 Gazette's "й" ("административния й център", чл. 29 and чл. 32); the Gazette's own HTML carries a
-Latin "E" in "Eдинен превозен документ" (§ 1, т. 4), normalised to Cyrillic on gap fill.
+Latin "E" in "Eдинен превозен документ" (§ 1, т. 4), which a Gazette rebuild must normalise to Cyrillic.
 
 The same lex.bg-side gap was verified live for Закон за прозрачност при представителство на
 интереси (ldoc 2137259673: "Допълнителна разпоредба Преходни и Заключителни разпоредби § 2.").
@@ -147,6 +147,8 @@ Files flagged: 95; `additional-empty` 25; `paragraph-start-above-1` 95.
 | `regulations/ustroystven-pravilnik-na-oblastnite-administratsii.md` | no | lowest § is 3 |
 
 ## Detector revision (review of 2026-09-05)
+
+Known residual after the revision: a bare additional heading followed by a `(Загл. изм. ...)` note before the final heading is still not reached (`laws/zakon-za-smetnata-palata.md`, line 808, the only such file corpus-wide); that act is already in the adjudication batch through the numbering rule.
 
 The review of PR #27 found two heading forms the `additional-empty` rule could not reach, both
 present in the corpus. Two changes to `scripts/structure_gaps.py` close them:
