@@ -27,7 +27,7 @@ What it records, per act and per event of `amendment_history`:
 - for PDF-era rows, an estimated page count.
 
 Three of the outputs answer D-064, the owner's decisions of 2026-09-05.
-`pdf-era-inventory.csv` is the reading budget for the 1989 to бр. 42/2005
+`pdf-era-inventory.csv` is the reading budget for the 1989 to бр. 120/2002
 tables of contents the owner has not bought yet (item 6); the
 `dv_identifier` column carries the `dv-<idMat>` form an act with no
 lex.bg document would be identified by (item 4); and
@@ -46,8 +46,8 @@ every act, no act can reach grade A, and `chain-omissions.csv` carries
 the column `pass` so that its title-pass rows are never mistaken for the
 complete answer.
 
-Before бр. 43 от 2005 there is no ДВ-side check at all: PDF-era issues
-expose no materials list, so chains from 1989 to 2004 are inherited from
+Before бр. 1 от 2003 there is no ДВ-side check at all: PDF-era issues
+expose no materials list, so chains from 1989 to 2002 are inherited from
 lex.bg. The report says so in as many words.
 
 **The P0 inputs to the grade procedure are fixed and the map says why.**
@@ -85,19 +85,26 @@ from fetcher.dv.resolver import (  # noqa: E402
 #: is a grade C track of its own (D-059).
 FIRST_ONLINE_YEAR = 1989
 
-#: The first issue with per-material HTML: бр. 43 от 20 май 2005. Before
+#: The first issue with per-material HTML: бр. 1 от 3 януари 2003. Before
 #: it an issue is a whole-issue PDF, so its events are `dv_pdf` and its
-#: chain is inherited from lex.bg.
-HTML_ERA_YEAR = 2005
+#: chain is inherited from lex.bg. Measured on 2026-09-05 by the full
+#: materials enumeration, which found 2,487 issues with an HTML materials
+#: list, the first of them бр. 1/2003, and 1,583 PDF-only issues before
+#: it (`data/dv/ENUMERATION-2026-09-05.md`).
+HTML_ERA_YEAR = 2003
 
 #: Act types the page-length medians are grouped by, per §5.2. Everything
 #: else is measured together as „other“.
 PAGE_ACT_TYPES = ("закон", "кодекс", "наредба", "правилник", "постановление")
 
-#: The last issue before per-material HTML begins: бр. 42 от 2005, since
-#: idMat 300 is бр. 43 от 20 май 2005. It is a probe result rather than a
-#: certainty, so `--pdf-era-end` moves it without touching the code.
-DEFAULT_PDF_ERA_END = (2005, 42)
+#: The last issue before per-material HTML begins: бр. 120 от 29 декември
+#: 2002, an extraordinary issue, which the enumeration of 2026-09-05 read
+#: as the last of the 1,583 issues with no materials list. The earlier
+#: figure, бр. 42 от 2005, came from a probe that found idMat 300 to be
+#: бр. 43 от 20 май 2005 and was therefore a lower bound on the HTML era,
+#: never its boundary. `--pdf-era-end` still moves it without touching
+#: the code, because the enumeration can be rerun.
+DEFAULT_PDF_ERA_END = (2002, 120)
 
 log = logging.getLogger("dv_coverage_map")
 
@@ -435,7 +442,10 @@ def classify(
         return Classification("dv_pdf", None, 0.0, (), (), ())
     if issue.status is None and row.year < HTML_ERA_YEAR:
         # The materials sweep has not reached it, and it is older than
-        # the HTML era, so PDF is what it is.
+        # the HTML era, so PDF is what it is. The year comparison is
+        # exact rather than approximate: the last PDF-only issue is
+        # бр. 120 от 29 декември 2002 and the first with materials is
+        # бр. 1 от 3 януари 2003, so no year holds issues of both eras.
         return Classification("dv_pdf", None, 0.0, (), (), ())
     return Classification(
         "unlocated", None, 0.0, (), ("materials_not_enumerated",), ()
@@ -570,7 +580,7 @@ def build_inventory(issues, citing, estimator, pdf_era_end) -> list[dict]:
     """One row per Gazette issue that exists online only as a PDF.
 
     D-064 item 6: the owner is not buying the vision reading of the
-    1989 to бр. 42/2005 tables of contents yet, and needs the size of the
+    1989 to бр. 120/2002 tables of contents yet, and needs the size of the
     bill first. So this is a budget, not a finding, and every number in it
     is an estimate until an issue PDF is actually opened.
 
@@ -633,7 +643,7 @@ def parse_era_end(text: str) -> tuple[int, int]:
         return (int(year), int(number))
     except ValueError:
         raise SystemExit(
-            f"--pdf-era-end wants YEAR:NUMBER, for example 2005:42, not {text!r}"
+            f"--pdf-era-end wants YEAR:NUMBER, for example 2002:120, not {text!r}"
         ) from None
 
 
@@ -1048,12 +1058,17 @@ def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
         "`chain_scan_complete` is false for every act, and no act can reach "
         "grade A from this map.",
         "",
-        f"**Before бр. 43 от {HTML_ERA_YEAR} there is no ДВ-side check at "
+        f"**Before бр. 1 от {HTML_ERA_YEAR} there is no ДВ-side check at "
         "all.** PDF-era issues expose no materials list, so every chain from "
         f"{FIRST_ONLINE_YEAR} to {HTML_ERA_YEAR - 1} is inherited from "
-        "lex.bg and is stated as inherited rather than verified. Reading the "
-        "issue tables of contents by vision is the owner-decided way to "
-        "close that gap (section 8, P3).",
+        "lex.bg and is stated as inherited rather than verified. The "
+        "boundary is measured, not probed: the full materials enumeration "
+        f"of 2026-09-05 found {DEFAULT_PDF_ERA_END[0] - FIRST_ONLINE_YEAR + 1} "
+        "years of PDF-only issues ending with бр. "
+        f"{DEFAULT_PDF_ERA_END[1]} от {DEFAULT_PDF_ERA_END[0]}, and the "
+        "first issue with a materials list is бр. 1 от 3 януари "
+        f"{HTML_ERA_YEAR}. Reading the issue tables of contents by vision "
+        "is the owner-decided way to close that gap (section 8, P3).",
         "",
         f"**Before {FIRST_ONLINE_YEAR} the Gazette is not online at all.** "
         "Those acts are grade C and a separate track (D-059).",

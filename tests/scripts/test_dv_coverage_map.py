@@ -496,11 +496,29 @@ def test_an_act_with_no_promulgation_is_b_pending_and_says_which_item(outputs):
 # --- the report -----------------------------------------------------------
 
 
-def test_the_report_states_the_totals_and_the_pre_2005_inheritance(outputs):
+def test_the_html_era_boundary_is_the_measured_one(cmap):
+    """Per-material HTML begins with бр. 1 от 2003, not бр. 43 от 2005.
+
+    Measured on 2026-09-05 by the full materials enumeration, recorded in
+    `data/dv/ENUMERATION-2026-09-05.md` on branch
+    `data/dv-enumeration-2026-09-05`: 2,487 issues carry an HTML
+    materials list and the first of them is бр. 1 от 3 януари 2003, while
+    the 1,583 issues from 1989 to бр. 120 от 29 декември 2002 carry none.
+    The earlier figure came from a probe, idMat 300 being бр. 43 от 20
+    май 2005, which was a lower bound and never the boundary.
+    """
+    assert cmap.HTML_ERA_YEAR == 2003
+    assert cmap.DEFAULT_PDF_ERA_END == (2002, 120)
+
+
+def test_the_report_states_the_totals_and_the_pre_2003_inheritance(outputs):
     text = (outputs / "report.md").read_text(encoding="utf-8")
     assert "B-pending" in text
     assert "C" in text
-    assert "2005" in text
+    assert "Before бр. 1 от 2003" in text
+    # The stale probe boundary is gone from the prose, not merely
+    # supplemented by the measured one.
+    assert "2005" not in text
     assert "по десетилетие" in text or "by decade" in text
     assert "—" not in text  # no em-dashes
 
@@ -703,9 +721,9 @@ def test_the_html_era_issues_are_not_in_the_inventory(outputs):
 
 
 def test_the_boundary_issue_is_a_parameter(cmap, corpus, tables, tmp_path):
-    # бр. 42/2005 is the last issue before per-material HTML begins, and
-    # the exact boundary is a probe result rather than a certainty, so it
-    # moves without touching the code.
+    # бр. 120/2002 is the last issue before per-material HTML begins, as
+    # the enumeration of 2026-09-05 measured it, and the flag moves that
+    # bound without touching the code.
     issues, materials = tables
     out = tmp_path / "narrow"
     cmap.main(

@@ -224,9 +224,12 @@ P1.
 here: it holds the instructions the ЗИД segmenter could not classify, and
 the segmenter belongs to the body scan. It arrives with that leg.
 
-`--pdf-era-end YEAR:NUMBER` (default `2005:42`) is the last issue of the
-PDF era, which bounds the inventory. It is a probe result rather than a
-certainty, so it moves without touching the code.
+`--pdf-era-end YEAR:NUMBER` (default `2002:120`) is the last issue of the
+PDF era, which bounds the inventory. The default is the enumeration of
+2026-09-05, which read 1,583 issues with no materials list from 1989 to
+бр. 120 от 29 декември 2002 and 2,487 with one from бр. 1 от 3 януари
+2003 on. The flag moves the bound without touching the code, because the
+enumeration can be rerun.
 
 **The source class** of every base and every event, per §4.1:
 
@@ -258,7 +261,7 @@ need the issue's page count to bound it, and the `issues` table does not
 carry one, so it contributes no measurement.
 
 **The PDF-era inventory** answers D-064 item 6: the owner has not bought
-the vision reading of the 1989 to бр. 42/2005 tables of contents and
+the vision reading of the 1989 to бр. 120/2002 tables of contents and
 wants the size of the bill first. One row per PDF-era issue, with the
 issue identity, the number of corpus chain rows that cite it (base rows
 included, since a PDF-era base has to be read for its structural audit),
@@ -296,7 +299,7 @@ the body scan reads, so the title pass does not claim it.
 **title** pass, so every row of `chain-omissions.csv` and of
 `estado-disputes.csv` carries `pass = title`, `chain_scan_complete` is
 false for every act, and no act can reach grade A from this map; the body
-pass over the cache that `bodies` fills is the next leg. And before бр. 43
-от 2005 there is no ДВ-side check at all, so every chain from 1989 to
-2004 is inherited from lex.bg and is reported as inherited rather than as
+pass over the cache that `bodies` fills is the next leg. And before бр. 1
+от 2003 there is no ДВ-side check at all, so every chain from 1989 to
+2002 is inherited from lex.bg and is reported as inherited rather than as
 verified.
