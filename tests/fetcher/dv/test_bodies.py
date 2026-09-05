@@ -429,6 +429,31 @@ def test_progress_is_logged_every_hundred_materials(tmp_path, material_html, cap
     assert "eta" in progress[0]
 
 
+def test_a_missing_material_does_not_swallow_the_progress_line(
+    tmp_path, material_html, caplog
+):
+    # Progress is the only sign of life a twelve-hour run gives. If the
+    # hundredth material happens to be one the site does not hold, the
+    # line for that hundred must still appear.
+    rows = [(1, i, 1000 + i, "Народно събрание") for i in range(1, 121)]
+    materials = write_materials(tmp_path, *rows)
+    bodies = {("idMat", 1000 + i): material_html for i in range(1, 121)}
+    bodies[("idMat", 1100)] = ERROR_PAGE  # the hundredth material
+    session = FakeSession(by_param=bodies)
+    with caplog.at_level(logging.INFO, logger="fetcher.dv"):
+        main(
+            [
+                "bodies",
+                "--materials", str(materials),
+                "--cache-dir", str(tmp_path / "cache"),
+            ],
+            session=session,
+        )
+    progress = [r.getMessage() for r in caplog.records if "elapsed" in r.getMessage()]
+    assert len(progress) == 1
+    assert "100/120" in progress[0]
+
+
 def test_the_run_reports_what_it_fetched_and_what_it_skipped(
     tmp_path, material_html, caplog
 ):

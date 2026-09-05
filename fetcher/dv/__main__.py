@@ -426,9 +426,9 @@ def cmd_bodies(args, session) -> int:
                         f"with --resume when the site is back."
                     )
                     break
-                continue
-            consecutive_errors = 0
-            last_good = id_mat
+            else:
+                consecutive_errors = 0
+                last_good = id_mat
 
         if processed % PROGRESS_EVERY == 0:
             elapsed = time.monotonic() - started
