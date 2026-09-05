@@ -82,10 +82,27 @@ def corpus(tmp_path):
         "zakon-za-lipsvashtiya-broy",
         "titulo: ЗАКОН ЗА ЛИПСВАЩИЯ БРОЙ\n"
         "rango: закон\n"
+        "estado: vigente\n"
         "fecha_publicacion: '2020-12-01'\n"
         "dv_issue: '99'\n"
         "dv_year: 2020\n"
         "amendment_history:\n- dv: 99/2020\n  date: '2020-12-01'\n",
+    )
+    # An act whose base resolves to a material and whose one event does
+    # not: the case that has a `dv_identifier` AND an unresolved row.
+    synthetic_act(
+        root,
+        "laws",
+        "zakon-za-probniya-sluchay",
+        "titulo: ЗАКОН ЗА ПРОБНИЯ СЛУЧАЙ\n"
+        "rango: закон\n"
+        "estado: vigente\n"
+        "fecha_publicacion: '2019-07-02'\n"
+        "dv_issue: '52'\n"
+        "dv_year: 2019\n"
+        "amendment_history:\n"
+        "- dv: 52/2019\n  date: '2019-07-02'\n"
+        "- dv: 32/2026\n  date: '2026-04-01'\n",
     )
     return root
 
@@ -109,6 +126,7 @@ MATERIALS = [
     ),
     (24, 2, 5002, "Народно събрание", "Закон за ратифициране на нещо", 9),
     (52, 1, 6001, "Народно събрание", "Закон за ратифициране на друго нещо", 4),
+    (52, 2, 6002, "Народно събрание", "ЗАКОН ЗА ПРОБНИЯ СЛУЧАЙ", 10),
     (100, 1, 242220, "Народно събрание", "ЗАКОН ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРТ", 2),
     (
         100, 2, 242221, "Народно събрание",
@@ -116,6 +134,11 @@ MATERIALS = [
         12,
     ),
     (100, 3, 242222, "Народно събрание", "Закон за ратифициране на трето нещо", 20),
+    (
+        100, 4, 242223, "Народно събрание",
+        "Закон за отмяна на Закона за събранията, митингите и манифестациите",
+        26,
+    ),
 ]
 
 #: Issues online as a whole-issue PDF only: no materials list, which is
@@ -218,6 +241,8 @@ def test_the_map_writes_five_files_and_no_corpus_file(outputs, corpus):
         "acts-summary.csv",
         "chain-omissions.csv",
         "coverage-map.csv",
+        "estado-disputes.csv",
+        "pdf-era-inventory.csv",
         "report.md",
         "unresolved.csv",
     ]
@@ -225,6 +250,7 @@ def test_the_map_writes_five_files_and_no_corpus_file(outputs, corpus):
     assert sorted(p.name for p in (corpus / "laws").iterdir()) == [
         "zakon-za-lipsvashtiya-broy.md",
         "zakon-za-obshtestveniya-transport.md",
+        "zakon-za-probniya-sluchay.md",
         "zakon-za-sabraniyata-mitingite-i-manifestatsiite.md",
         "zakon-za-zadalzheniyata-i-dogovorite.md",
     ]
@@ -249,7 +275,7 @@ def test_the_order_is_deterministic(cmap, corpus, tables, tmp_path):
             ]
         )
     for name in ("coverage-map.csv", "acts-summary.csv", "chain-omissions.csv",
-                 "unresolved.csv"):
+                 "unresolved.csv", "pdf-era-inventory.csv", "estado-disputes.csv"):
         assert (first / name).read_bytes() == (second / name).read_bytes()
 
 
@@ -344,16 +370,16 @@ def test_a_pdf_era_base_with_an_html_event(outputs):
 
 
 def test_the_pdf_pages_estimate_comes_from_the_html_era(outputs):
-    # HTML-era lengths measured here: 10 and 8 pages in бр. 32/2026, 6 in
-    # бр. 24/2010; the last material of each issue has no next start page
-    # and the issue table carries no page count, so it contributes none.
-    # The median for a закон is 8, applied to the two PDF-era rows of this
-    # act: its 1990 base and its 1998 event.
+    # HTML-era lengths measured here: 6 in бр. 24/2010, 6 in бр. 52/2019,
+    # and 10, 8, 6 in бр. 32/2026. The last material of each issue has no
+    # next start page and the issue table carries no page count, so it
+    # contributes none. The median for a закон is 6, applied to the two
+    # PDF-era rows of this act: its 1990 base and its 1998 event.
     row = rows(
         outputs / "acts-summary.csv",
         law_id="zakon-za-sabraniyata-mitingite-i-manifestatsiite",
     )[0]
-    assert row["pdf_pages_estimate"] == "16"
+    assert row["pdf_pages_estimate"] == "12"
 
 
 def test_every_event_is_pending_in_p0(outputs):
@@ -399,13 +425,19 @@ def test_a_material_the_chain_does_not_know_is_an_omission(outputs):
 
 
 def test_a_material_the_chain_already_knows_is_not_an_omission(outputs):
+    # ЗОТ's own promulgation, and the 2010 ЗИД of the assemblies act, are
+    # both in their acts' chains already.
     assert not rows(
         outputs / "chain-omissions.csv", law_id="zakon-za-obshtestveniya-transport"
     )
     assert not rows(
+        outputs / "chain-omissions.csv", law_id="zakon-za-probniya-sluchay"
+    )
+    found = rows(
         outputs / "chain-omissions.csv",
         law_id="zakon-za-sabraniyata-mitingite-i-manifestatsiite",
     )
+    assert [(row["dv_year"], row["id_mat"]) for row in found] == [("2026", "242223")]
 
 
 # --- unresolved -----------------------------------------------------------
@@ -463,8 +495,8 @@ def test_the_report_groups_by_corpus_category(outputs):
     assert "laws" in section
     assert "codes" in section
     assert "ordinances" in section
-    # Four laws, one of them grade C (ЗЗД, 1950).
-    assert "| laws | 3 | 1 |" in section
+    # Five laws, one of them grade C (ЗЗД, promulgated in 1950).
+    assert "| laws | 4 | 1 |" in section
 
 
 def test_the_report_counts_the_acts_whose_whole_chain_is_html(outputs):
@@ -629,3 +661,167 @@ def test_the_p0_inputs_can_only_produce_b_pending_or_c(cmap):
             )
             assert grade in ("B-pending", "C")
             assert pending
+
+
+# --- the PDF-era inventory (D-064 item 6) --------------------------------
+
+
+def test_the_inventory_holds_one_row_per_pdf_era_issue_and_a_total(outputs):
+    found = rows(outputs / "pdf-era-inventory.csv")
+    assert [(row["year"], row["number"]) for row in found] == [
+        ("1990", "10"), ("1998", "11"), ("TOTAL", ""),
+    ]
+
+
+def test_the_html_era_issues_are_not_in_the_inventory(outputs):
+    # The inventory is the reading budget for the era with no materials
+    # list. An issue that has one is not part of it.
+    numbers = {(row["year"], row["number"]) for row in rows(outputs / "pdf-era-inventory.csv")}
+    assert ("2010", "24") not in numbers
+    assert ("2026", "32") not in numbers
+
+
+def test_the_boundary_issue_is_a_parameter(cmap, corpus, tables, tmp_path):
+    # бр. 42/2005 is the last issue before per-material HTML begins, and
+    # the exact boundary is a probe result rather than a certainty, so it
+    # moves without touching the code.
+    issues, materials = tables
+    out = tmp_path / "narrow"
+    cmap.main(
+        [
+            "--corpus", str(corpus),
+            "--issues", str(issues),
+            "--materials", str(materials),
+            "--out", str(out),
+            "--pdf-era-end", "1995:1",
+        ]
+    )
+    assert [(row["year"], row["number"]) for row in rows(out / "pdf-era-inventory.csv")] == [
+        ("1990", "10"), ("TOTAL", ""),
+    ]
+
+
+def test_the_inventory_carries_the_issue_identity(outputs):
+    row = rows(outputs / "pdf-era-inventory.csv", year="1990")[0]
+    assert row["number"] == "10"
+    assert row["date"] == "1990-02-02"
+    assert row["id_obj"] == "10"
+    assert row["extraordinary"] == "false"
+
+
+def test_the_inventory_counts_the_corpus_rows_that_cite_the_issue(outputs):
+    # бр. 10/1990 is the promulgation of the assemblies act and бр. 11/1998
+    # one of its events: one corpus row each.
+    for number in ("10", "11"):
+        row = rows(outputs / "pdf-era-inventory.csv", number=number)[0]
+        assert row["corpus_events_citing"] == "1"
+
+
+def test_the_page_model_is_measured_on_the_html_era(outputs):
+    # Table of contents pages per issue = the first material's start page
+    # minus one: 2 in бр. 24/2010, 3 in бр. 52/2019, 1 in бр. 32/2026.
+    # The median is 2, and it is what every PDF-era row carries.
+    # Issue pages = the last material's start page plus the median
+    # material length (6): 15, 16 and 32, whose median is 16.
+    row = rows(outputs / "pdf-era-inventory.csv", number="10")[0]
+    assert row["toc_pages_est"] == "2"
+    assert row["issue_pages_est"] == "16"
+    # One закон cites this issue and the median закон is 6 pages long.
+    assert row["corpus_material_pages_est"] == "6"
+
+
+def test_the_inventory_total_sums_the_three_estimates(outputs):
+    total = rows(outputs / "pdf-era-inventory.csv", year="TOTAL")[0]
+    assert total["corpus_events_citing"] == "2"
+    assert total["toc_pages_est"] == "4"
+    assert total["corpus_material_pages_est"] == "12"
+    assert total["issue_pages_est"] == "32"
+
+
+def test_the_report_carries_the_token_cost_table(outputs):
+    text = (outputs / "report.md").read_text(encoding="utf-8")
+    section = text.split("## PDF-era inventory", 1)[1].split("\n## ", 1)[0]
+    assert "| PDF-era issues | 2 |" in section
+    assert "| Issues cited by the corpus | 2 |" in section
+    assert "| Estimated table-of-contents pages | 4 |" in section
+    assert "| Estimated corpus-referenced material pages | 12 |" in section
+    assert "| Estimated issue pages | 32 |" in section
+
+
+def test_the_report_gives_the_toc_distribution_and_calls_it_an_estimate(outputs):
+    text = (outputs / "report.md").read_text(encoding="utf-8")
+    assert "estimate" in text
+    section = text.split("## PDF-era inventory", 1)[1].split("\n## ", 1)[0]
+    # Three HTML-era issues measured: 1, 2, 3 pages of contents.
+    assert "3 issues" in section
+    assert "minimum 1" in section
+    assert "median 2" in section
+    assert "maximum 3" in section
+
+
+# --- dv_identifier (D-064 item 4) ----------------------------------------
+
+
+def test_an_act_whose_base_resolves_carries_its_dv_identifier(outputs):
+    row = rows(
+        outputs / "acts-summary.csv", law_id="zakon-za-obshtestveniya-transport"
+    )[0]
+    assert row["dv_identifier"] == "dv-242220"
+
+
+def test_an_act_whose_base_does_not_resolve_carries_none(outputs):
+    for law_id in (
+        "zakon-za-zadalzheniyata-i-dogovorite",
+        "zakon-za-sabraniyata-mitingite-i-manifestatsiite",
+        "zakon-za-lipsvashtiya-broy",
+    ):
+        assert rows(outputs / "acts-summary.csv", law_id=law_id)[0]["dv_identifier"] == ""
+
+
+def test_the_dv_identifier_reaches_the_unresolved_rows(outputs):
+    # This act's base is a Gazette material and its 2026 event is not, so
+    # the row that reports the gap can still name the act on the ДВ side.
+    found = rows(
+        outputs / "unresolved.csv",
+        kind="unlocated_event",
+        law_id="zakon-za-probniya-sluchay",
+    )
+    assert [row["dv_identifier"] for row in found] == ["dv-6002"]
+
+
+def test_a_material_nobody_claimed_has_no_dv_identifier(outputs):
+    found = rows(outputs / "unresolved.csv", kind="unattributed_material")
+    assert found
+    assert {row["dv_identifier"] for row in found} == {""}
+
+
+# --- estado disputes ------------------------------------------------------
+
+
+def test_a_gazette_repeal_of_an_act_the_corpus_calls_current_is_a_dispute(outputs):
+    found = rows(outputs / "estado-disputes.csv")
+    assert len(found) == 1
+    row = found[0]
+    assert row["pass"] == "title"
+    assert row["law_id"] == "zakon-za-sabraniyata-mitingite-i-manifestatsiite"
+    assert row["dv_year"] == "2026"
+    assert row["dv_number"] == "32"
+    assert row["id_mat"] == "242223"
+    assert row["corpus_estado"] == "vigente"
+    assert row["gazette_signal"] == "repeal"
+
+
+def test_an_ordinary_amendment_is_not_an_estado_dispute(outputs):
+    # бр. 24/2010 amends the same act. Amending is not repealing.
+    assert not rows(outputs / "estado-disputes.csv", id_mat="5001")
+
+
+def test_the_repeal_is_also_a_chain_omission(outputs):
+    # Two signals, two files: the Gazette repealed the act, and lex.bg's
+    # chain does not know the issue that did it.
+    assert rows(outputs / "chain-omissions.csv", id_mat="242223")
+
+
+def test_a_repeal_title_is_labelled_as_one(outputs):
+    row = rows(outputs / "chain-omissions.csv", id_mat="242223")[0]
+    assert row["title_kind"] == "repeal"

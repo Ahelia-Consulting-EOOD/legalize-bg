@@ -10,9 +10,11 @@ source model from a definition into numbers: which acts, which events,
 how many Gazette PDF pages stand between grade B and grade A.
 
 It is a RESEARCH ARTIFACT. It reads the corpus frontmatter and the two
-JSONL tables the acquisition layer wrote, and it writes five files under
-`--out`. It writes nothing into the corpus tree and derives no grade that
-any consumer surface sees; the provenance block that does is P1.
+JSONL tables the acquisition layer wrote, and it writes seven files under
+`--out`: `coverage-map.csv`, `acts-summary.csv`, `chain-omissions.csv`,
+`unresolved.csv`, `estado-disputes.csv`, `pdf-era-inventory.csv` and
+`report.md`. It writes nothing into the corpus tree and derives no grade
+that any consumer surface sees; the provenance block that does is P1.
 
 What it records, per act and per event of `amendment_history`:
 
@@ -23,6 +25,15 @@ What it records, per act and per event of `amendment_history`:
   `unlocated`;
 - the candidate grade of §4.2, derived by `derive_grade` below;
 - for PDF-era rows, an estimated page count.
+
+Three of the outputs answer D-064, the owner's decisions of 2026-09-05.
+`pdf-era-inventory.csv` is the reading budget for the 1989 to бр. 42/2005
+tables of contents the owner has not bought yet (item 6); the
+`dv_identifier` column carries the `dv-<idMat>` form an act with no
+lex.bg document would be identified by (item 4); and
+`estado-disputes.csv` records a Gazette repeal of an act the corpus still
+calls current as DATA, never as a correction, because no `estado` finding
+may become a commit before the single write gate exists (item 5).
 
 **Two limits of this pass, both stated rather than hidden.**
 
@@ -65,8 +76,8 @@ from fetcher.dv.resolver import (  # noqa: E402
     CorpusAct,
     Resolver,
     act_type_of,
+    instruction_kind,
     load_corpus_acts,
-    strip_amending_prefix,
 )
 
 #: The first year Държавен вестник is online at all: dv.parliament.bg
@@ -82,6 +93,11 @@ HTML_ERA_YEAR = 2005
 #: Act types the page-length medians are grouped by, per §5.2. Everything
 #: else is measured together as „other“.
 PAGE_ACT_TYPES = ("закон", "кодекс", "наредба", "правилник", "постановление")
+
+#: The last issue before per-material HTML begins: бр. 42 от 2005, since
+#: idMat 300 is бр. 43 от 20 май 2005. It is a probe result rather than a
+#: certainty, so `--pdf-era-end` moves it without touching the code.
+DEFAULT_PDF_ERA_END = (2005, 42)
 
 log = logging.getLogger("dv_coverage_map")
 
@@ -182,6 +198,7 @@ class Issue:
     number: int
     date: str | None
     id_obj: int
+    extraordinary: bool
     #: „ok“ when the issue has a materials list, „empty“ when it answered
     #: „Намерени резултати: 0“ (the PDF-era signal), „error_page“ or
     #: „unrecognized“, and None when the materials sweep has not reached
@@ -245,6 +262,7 @@ def read_issues(path: Path, materials) -> dict[tuple[int, int], Issue]:
             number=int(number),
             date=row.get("date"),
             id_obj=row.get("id_obj"),
+            extraordinary=bool(row.get("extraordinary")),
             status=status_by_id.get(row.get("id_obj")),
         )
     return issues
@@ -424,21 +442,47 @@ def classify(
 # --- the page estimate ----------------------------------------------------
 
 
-def measure_page_lengths(materials) -> dict[tuple[str, int], list[int]]:
-    """How long a published act is, in Gazette pages, by act type and decade.
+@dataclass(frozen=True)
+class PageMeasurements:
+    """What the HTML era says a Gazette issue is shaped like.
 
-    §5.2: consecutive materials' start pages give the length of every
-    material but the last of an issue. The last one would need the
-    issue's page count, and the `issues` table does not carry it, so it
-    contributes nothing rather than a guess.
+    Everything the PDF-era estimate is built from, measured rather than
+    assumed, and kept as raw samples so the report can print the spread
+    instead of a single number the reader has to trust.
+    """
+
+    #: Material lengths in pages, by (act type, decade).
+    lengths: dict[tuple[str, int], list[int]]
+    #: Pages of table of contents per issue: the first material starts on
+    #: page N, so pages 1 to N-1 are the contents and the masthead.
+    toc_samples: list[int]
+    #: The start page of each issue's last material, which bounds the
+    #: issue from below once one material length is added to it.
+    last_start_pages: list[int]
+
+
+def measure_pages(materials) -> PageMeasurements:
+    """The page model of §5.2 and D-064 item 6, measured on the HTML era.
+
+    Consecutive materials' start pages give the length of every material
+    but the last of an issue. The last one would need the issue's page
+    count, and the `issues` table does not carry it, so it contributes no
+    length rather than a guess; it does contribute its start page, which
+    is what the issue-length estimate is built on.
     """
     by_issue: dict[tuple[int, int], list[Material]] = defaultdict(list)
     for material in materials:
         by_issue[(material.year, material.number)].append(material)
 
     lengths: dict[tuple[str, int], list[int]] = defaultdict(list)
-    for rows in by_issue.values():
-        rows = sorted(rows, key=lambda m: (m.position, m.id_mat))
+    toc_samples: list[int] = []
+    last_start_pages: list[int] = []
+    for rows in sorted(by_issue.items()):
+        rows = sorted(rows[1], key=lambda m: (m.position, m.id_mat))
+        if rows and rows[0].start_page is not None and rows[0].start_page >= 1:
+            toc_samples.append(rows[0].start_page - 1)
+        if rows and rows[-1].start_page is not None:
+            last_start_pages.append(rows[-1].start_page)
         for current, following in zip(rows, rows[1:]):
             if current.start_page is None or following.start_page is None:
                 continue
@@ -448,7 +492,11 @@ def measure_page_lengths(materials) -> dict[tuple[str, int], list[int]]:
             lengths[(page_act_type(current.title), decade_of(current.year))].append(
                 pages
             )
-    return lengths
+    return PageMeasurements(
+        lengths=dict(lengths),
+        toc_samples=toc_samples,
+        last_start_pages=last_start_pages,
+    )
 
 
 def page_act_type(title: str) -> str:
@@ -469,7 +517,8 @@ class PageEstimator:
     fallback it used rather than pretending to a precision it has not got.
     """
 
-    def __init__(self, lengths):
+    def __init__(self, measurements: PageMeasurements):
+        lengths = measurements.lengths
         self._by_pair = {key: statistics.median(values) for key, values in lengths.items()}
         by_type: dict[str, list[int]] = defaultdict(list)
         everything: list[int] = []
@@ -480,6 +529,24 @@ class PageEstimator:
             act_type: statistics.median(values) for act_type, values in by_type.items()
         }
         self._overall = statistics.median(everything) if everything else None
+
+        #: Pages of table of contents in one issue, the same for every
+        #: PDF-era issue because nothing in the tables distinguishes them.
+        self.toc_samples = sorted(measurements.toc_samples)
+        self.toc_pages = (
+            round(statistics.median(self.toc_samples)) if self.toc_samples else 0
+        )
+        #: Pages in one issue: where its last material starts, plus one
+        #: median material to carry that last material to its end.
+        if measurements.last_start_pages and self._overall is not None:
+            self.issue_pages = round(
+                statistics.median(
+                    [start + self._overall for start in measurements.last_start_pages]
+                )
+            )
+        else:
+            self.issue_pages = 0
+        self.issue_samples = len(measurements.last_start_pages)
 
     def pages(self, act_type: str, year: int | None) -> int:
         act_type = act_type if act_type in PAGE_ACT_TYPES else "other"
@@ -493,29 +560,85 @@ class PageEstimator:
         return round(self._overall) if self._overall is not None else 0
 
 
-# --- title kinds ----------------------------------------------------------
+# --- the PDF-era inventory (D-064 item 6) ---------------------------------
 
 
-def title_kind(title: str) -> str:
-    """Whether a material amends, corrects or promulgates.
+def build_inventory(issues, citing, estimator, pdf_era_end) -> list[dict]:
+    """One row per Gazette issue that exists online only as a PDF.
 
-    Only the first two can be a chain omission on lex.bg's side in the
-    sense §5.2 means; a promulgation whose issue the chain does not know
-    is a different and rarer defect, so it is labelled and kept rather
-    than dropped.
+    D-064 item 6: the owner is not buying the vision reading of the
+    1989 to бр. 42/2005 tables of contents yet, and needs the size of the
+    bill first. So this is a budget, not a finding, and every number in it
+    is an estimate until an issue PDF is actually opened.
+
+    Three estimates per issue, all built from the HTML era, where the
+    Gazette does state its own page numbers:
+
+    - `toc_pages_est`, the table of contents plus the masthead, which is
+      what reading only the contents would cost;
+    - `corpus_material_pages_est`, the pages of the materials this corpus
+      actually cites in that issue, which is what reading only what we
+      need would cost;
+    - `issue_pages_est`, the whole issue.
+
+    A final `TOTAL` row carries the three sums and the event count, which
+    is the line the token-cost evaluation is done against.
     """
-    lowered = (title or "").casefold()
-    if lowered.startswith("поправка"):
-        return "corrigendum"
-    if strip_amending_prefix(title) != (title or "").strip():
-        return "amending"
-    return "promulgation"
+    rows = []
+    for (year, number), issue in sorted(issues.items()):
+        if year < FIRST_ONLINE_YEAR or (year, number) > tuple(pdf_era_end):
+            continue
+        cited = citing.get((year, number), [])
+        material_pages = sum(
+            estimator.pages(act.act_type, row.year) for act, row in cited
+        )
+        rows.append(
+            {
+                "year": year,
+                "number": number,
+                "date": issue.date or "",
+                "id_obj": issue.id_obj if issue.id_obj is not None else "",
+                "extraordinary": "true" if issue.extraordinary else "false",
+                "corpus_events_citing": len(cited),
+                "toc_pages_est": estimator.toc_pages,
+                "corpus_material_pages_est": material_pages,
+                "issue_pages_est": estimator.issue_pages,
+            }
+        )
+    rows.append(
+        {
+            "year": "TOTAL",
+            "number": "",
+            "date": "",
+            "id_obj": "",
+            "extraordinary": "",
+            "corpus_events_citing": sum(row["corpus_events_citing"] for row in rows),
+            "toc_pages_est": sum(row["toc_pages_est"] for row in rows),
+            "corpus_material_pages_est": sum(
+                row["corpus_material_pages_est"] for row in rows
+            ),
+            "issue_pages_est": sum(row["issue_pages_est"] for row in rows),
+        }
+    )
+    return rows
+
+
+def parse_era_end(text: str) -> tuple[int, int]:
+    """„YEAR:NUMBER“, the last issue of the PDF era."""
+    try:
+        year, number = text.split(":", 1)
+        return (int(year), int(number))
+    except ValueError:
+        raise SystemExit(
+            f"--pdf-era-end wants YEAR:NUMBER, for example 2005:42, not {text!r}"
+        ) from None
 
 
 # --- the map --------------------------------------------------------------
 
 
-def build(corpus_root: Path, issues_path: Path, materials_path: Path):
+def build(corpus_root: Path, issues_path: Path, materials_path: Path,
+          pdf_era_end=DEFAULT_PDF_ERA_END):
     """Read everything, attribute everything, and return the four tables."""
     acts = load_corpus_acts(corpus_root)
     log.info("read %d acts from %s", len(acts), corpus_root)
@@ -543,12 +666,16 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path):
                 (material.year, material.number, result.law_id), material
             )
 
-    lengths = measure_page_lengths(materials)
-    estimator = PageEstimator(lengths)
+    measurements = measure_pages(materials)
+    estimator = PageEstimator(measurements)
 
     coverage: list[dict] = []
     summary: list[dict] = []
     unresolved: list[dict] = []
+    #: Every corpus chain row that cites an issue, base rows included: a
+    #: PDF-era base has to be read for its structural audit exactly as a
+    #: PDF-era event has to be read for its instructions.
+    citing: dict[tuple[int, int], list[tuple[CorpusAct, ChainRow]]] = defaultdict(list)
 
     for act in sorted(acts, key=lambda a: a.law_id):
         rows = act_chain(act)
@@ -556,8 +683,18 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path):
             (row, classify(row, act, issues, attributed, scores)) for row in rows
         ]
         counts = Counter(found.source for row, found in classified if row.kind == "event")
+        base_row, base_class = classified[0]
+        # D-064 item 4: an act with no lex.bg document is identified by
+        # the material that promulgated it. No corpus act is in that
+        # position today, so the column is empty for every act whose base
+        # did not resolve, and the form is fixed now rather than later.
+        dv_identifier = (
+            f"dv-{base_class.id_mat}" if base_class.source == "dv_html" else ""
+        )
         pages = 0
         for row, found in classified:
+            if row.year is not None and row.number is not None:
+                citing[(row.year, row.number)].append((act, row))
             estimate = (
                 estimator.pages(act.act_type, row.year) if found.source == "dv_pdf" else 0
             )
@@ -591,11 +728,11 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path):
                         "candidates": "",
                         "resolver_score": "",
                         "resolver_flags": "",
+                        "dv_identifier": dv_identifier,
                         "reason": ";".join(found.uncertainty),
                     }
                 )
 
-        base_row, base_class = classified[0]
         grade, pending = derive_grade(
             base_source=base_class.source,
             base_state="snapshot",
@@ -621,6 +758,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path):
                 "events_dv_offline": counts["dv_offline"],
                 "pdf_pages_estimate": pages,
                 "base_source": base_class.source,
+                "dv_identifier": dv_identifier,
             }
         )
 
@@ -635,6 +773,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path):
                     "candidates": "",
                     "resolver_score": "",
                     "resolver_flags": "",
+                    "dv_identifier": dv_identifier,
                     "reason": "no titulo: the act cannot be resolved by title at all",
                 }
             )
@@ -649,15 +788,42 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path):
                     "candidates": "",
                     "resolver_score": "",
                     "resolver_flags": "",
+                    "dv_identifier": dv_identifier,
                     "reason": "the act cites no promulgation",
                 }
             )
 
     omissions = []
+    disputes = []
     for material, law_id, score, flags, candidates in resolutions:
         if law_id is None:
             continue
         act = by_id[law_id]
+        kind = instruction_kind(material.title)
+        if kind == "repeal" and act.estado != "derogado":
+            # The Gazette repealed an act lex.bg still records as in
+            # force. Data, never a correction: D-064 item 5 keeps every
+            # `estado` finding out of the corpus until the single write
+            # gate exists. The other direction, lex.bg calling an act
+            # repealed while the Gazette goes on amending it, needs the
+            # in-force dates the body scan reads, so the title pass does
+            # not claim it.
+            disputes.append(
+                {
+                    "pass": "title",
+                    "law_id": law_id,
+                    "dv_year": material.year,
+                    "dv_number": material.number,
+                    "id_mat": material.id_mat,
+                    "section": material.section,
+                    "title": material.title,
+                    "title_kind": kind,
+                    "corpus_estado": act.estado or "",
+                    "gazette_signal": "repeal",
+                    "resolver_score": f"{score:.3f}",
+                    "resolver_flags": ";".join(flags),
+                }
+            )
         if (material.year, material.number) in act.chain:
             continue
         omissions.append(
@@ -669,7 +835,7 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path):
                 "id_mat": material.id_mat,
                 "section": material.section,
                 "title": material.title,
-                "title_kind": title_kind(material.title),
+                "title_kind": kind,
                 "resolver_score": f"{score:.3f}",
                 "resolver_flags": ";".join(flags),
             }
@@ -688,12 +854,15 @@ def build(corpus_root: Path, issues_path: Path, materials_path: Path):
                 "candidates": ";".join(candidates),
                 "resolver_score": f"{score:.3f}",
                 "resolver_flags": ";".join(flags),
+                "dv_identifier": "",
                 "reason": "no corpus act resolved from this title",
             }
         )
 
+    inventory = build_inventory(issues, citing, estimator, pdf_era_end)
     categories = {act.law_id: act.category for act in acts}
-    return coverage, summary, omissions, unresolved, issues, categories
+    return (coverage, summary, omissions, unresolved, disputes, inventory,
+            issues, categories, estimator)
 
 
 # --- writing --------------------------------------------------------------
@@ -715,7 +884,7 @@ COVERAGE_FIELDS = [
 SUMMARY_FIELDS = [
     "law_id", "title", "candidate_grade", "pending_items", "events_total",
     "events_dv_html", "events_dv_pdf", "events_unlocated", "events_dv_offline",
-    "pdf_pages_estimate", "base_source",
+    "pdf_pages_estimate", "base_source", "dv_identifier",
 ]
 OMISSION_FIELDS = [
     "pass", "law_id", "dv_year", "dv_number", "id_mat", "section", "title",
@@ -723,12 +892,21 @@ OMISSION_FIELDS = [
 ]
 UNRESOLVED_FIELDS = [
     "kind", "law_id", "dv_year", "dv_number", "title", "candidates",
-    "resolver_score", "resolver_flags", "reason",
+    "resolver_score", "resolver_flags", "dv_identifier", "reason",
+]
+DISPUTE_FIELDS = [
+    "pass", "law_id", "dv_year", "dv_number", "id_mat", "section", "title",
+    "title_kind", "corpus_estado", "gazette_signal", "resolver_score",
+    "resolver_flags",
+]
+INVENTORY_FIELDS = [
+    "year", "number", "date", "id_obj", "extraordinary", "corpus_events_citing",
+    "toc_pages_est", "corpus_material_pages_est", "issue_pages_est",
 ]
 
 
-def write_report(path: Path, coverage, summary, omissions, unresolved, issues,
-                 categories):
+def write_report(path: Path, coverage, summary, omissions, unresolved, disputes,
+                 inventory, issues, categories, estimator):
     """The short report of §5.2: the totals, and what they do not cover."""
     grades = Counter(row["candidate_grade"] for row in summary)
     by_source = Counter(row["source"] for row in coverage if row["row_kind"] == "event")
@@ -875,8 +1053,51 @@ def write_report(path: Path, coverage, summary, omissions, unresolved, issues,
         "",
         f"Chain omissions found by the title pass: {len(omissions)}.",
         "",
+        f"`estado` disputes found by the title pass: {len(disputes)}. A dispute "
+        "is a Gazette material whose title repeals an act the corpus still "
+        "records as `vigente`. The other direction, the corpus calling an act "
+        "repealed while the Gazette goes on amending it, needs the in-force "
+        "dates the body scan reads, so the title pass does not claim it. Every "
+        "row is data and none of them changes a corpus file (D-064 item 5).",
+        "",
     ]
+    lines += _inventory_lines(inventory, estimator)
     path.write_text("\n".join(lines), encoding="utf-8")
+
+
+def _inventory_lines(inventory, estimator) -> list[str]:
+    """The token-cost table D-064 item 6 asks for, and the model behind it."""
+    total = inventory[-1] if inventory else {}
+    issues = [row for row in inventory if row["year"] != "TOTAL"]
+    cited = sum(1 for row in issues if row["corpus_events_citing"])
+    toc = estimator.toc_samples
+    return [
+        "## PDF-era inventory",
+        "",
+        "The reading budget for the era with no materials list, one row per "
+        f"issue in `pdf-era-inventory.csv`. **Every figure is an estimate** "
+        "until an issue PDF is opened.",
+        "",
+        "| Measure | Estimate |",
+        "|---|---|",
+        f"| PDF-era issues | {len(issues)} |",
+        f"| Issues cited by the corpus | {cited} |",
+        f"| Estimated table-of-contents pages | {total.get('toc_pages_est', 0)} |",
+        "| Estimated corpus-referenced material pages | "
+        f"{total.get('corpus_material_pages_est', 0)} |",
+        f"| Estimated issue pages | {total.get('issue_pages_est', 0)} |",
+        "",
+        "The page model is measured on the HTML era, where the Gazette states "
+        "its own page numbers. Table-of-contents pages are the first "
+        f"material's start page minus one, over {len(toc)} issues: "
+        f"minimum {min(toc) if toc else 0}, median {estimator.toc_pages}, "
+        f"maximum {max(toc) if toc else 0}. A material's length is the next "
+        "material's start page minus its own. An issue's length is its last "
+        "material's start page plus one median material, over "
+        f"{estimator.issue_samples} issues, giving {estimator.issue_pages} "
+        "pages.",
+        "",
+    ]
 
 
 def main(argv=None) -> int:
@@ -888,6 +1109,12 @@ def main(argv=None) -> int:
     parser.add_argument("--issues", required=True, help="issues JSONL")
     parser.add_argument("--materials", required=True, help="materials JSONL")
     parser.add_argument("--out", required=True, help="output directory")
+    parser.add_argument(
+        "--pdf-era-end",
+        default=f"{DEFAULT_PDF_ERA_END[0]}:{DEFAULT_PDF_ERA_END[1]}",
+        metavar="YEAR:NUMBER",
+        help="last issue of the PDF era, the inventory's upper bound",
+    )
     args = parser.parse_args(argv)
 
     logging.basicConfig(
@@ -898,8 +1125,10 @@ def main(argv=None) -> int:
 
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
-    coverage, summary, omissions, unresolved, issues, categories = build(
-        Path(args.corpus), Path(args.issues), Path(args.materials)
+    (coverage, summary, omissions, unresolved, disputes, inventory, issues,
+     categories, estimator) = build(
+        Path(args.corpus), Path(args.issues), Path(args.materials),
+        pdf_era_end=parse_era_end(args.pdf_era_end),
     )
 
     coverage.sort(key=lambda row: (row["law_id"], row["position"]))
@@ -911,16 +1140,22 @@ def main(argv=None) -> int:
             row["kind"], row["law_id"], str(row["dv_year"]), str(row["dv_number"])
         )
     )
+    disputes.sort(key=lambda row: (row["law_id"], row["dv_year"], row["dv_number"],
+                                   row["id_mat"]))
 
     write_csv(out / "coverage-map.csv", COVERAGE_FIELDS, coverage)
     write_csv(out / "acts-summary.csv", SUMMARY_FIELDS, summary)
     write_csv(out / "chain-omissions.csv", OMISSION_FIELDS, omissions)
     write_csv(out / "unresolved.csv", UNRESOLVED_FIELDS, unresolved)
-    write_report(out / "report.md", coverage, summary, omissions, unresolved, issues,
-                 categories)
+    write_csv(out / "estado-disputes.csv", DISPUTE_FIELDS, disputes)
+    write_csv(out / "pdf-era-inventory.csv", INVENTORY_FIELDS, inventory)
+    write_report(out / "report.md", coverage, summary, omissions, unresolved,
+                 disputes, inventory, issues, categories, estimator)
     log.info(
-        "wrote %d chain rows, %d acts, %d omissions, %d unresolved to %s",
-        len(coverage), len(summary), len(omissions), len(unresolved), out,
+        "wrote %d chain rows, %d acts, %d omissions, %d unresolved, "
+        "%d estado disputes and %d PDF-era issues to %s",
+        len(coverage), len(summary), len(omissions), len(unresolved),
+        len(disputes), max(len(inventory) - 1, 0), out,
     )
     return 0
 

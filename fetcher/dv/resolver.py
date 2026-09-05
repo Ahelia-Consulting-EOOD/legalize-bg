@@ -135,19 +135,48 @@ _ACT_TYPE_WORDS = {
     "решението": "решение",
     "договор": "договор",
     "договора": "договор",
-    "методика": "методика",
-    "методиката": "методика",
 }
+
+#: How far into a name the act-type word may sit. It is the first word
+#: („Закона за X“, „Наредба № 3“) unless one or two adjectives precede it
+#: („Устройствения правилник“, „Данъчно-осигурителния процесуален
+#: кодекс“), which is as deep as the corpus goes.
+_ACT_TYPE_LOOKAHEAD = 4
 
 #: The operative verb of an amending, repealing or adopting title. What
 #: follows „на“ is the act the instruction is about, which is the act the
 #: event belongs to; what precedes it is the amending act's own name.
+#:
+#: The verb has to sit at the FIRST „за“ of the title, which is where a
+#: Bulgarian act's subject clause opens. Scanning further finds a „за
+#: отмяна на“ inside the subject of a title that repeals nothing:
+#: „НАРЕДБА № Н-1 ... ЗА УСЛОВИЯТА И РЕДА ЗА ПОДАВАНЕ НА ДАННИ ..., И ЗА
+#: ОТМЯНА НА ДИРЕКТИВА 2001/20/ЕО“ is a promulgation whose subject
+#: recounts what the EU directive it implements repealed. Read the other
+#: way it becomes a repeal, throws the наредба's own name away as the
+#: matching key, and files an `estado` dispute against an act nobody
+#: touched. `(?:(?!\bза\b).)*` is what keeps the search inside the head.
 _PREFIX_RE = re.compile(
-    r".*?\bза\s+(?:изменение\s+и\s+допълнение|изменение|допълнение|отмяна|"
-    r"отменяне|приемане|одобряване|утвърждаване)\s+на\s+",
+    r"(?:(?!\bза\b).)*\bза\s+(изменение\s+и\s+допълнение|изменение|допълнение|"
+    r"отмяна|отменяне|приемане|одобряване|утвърждаване)\s+на\s+",
     re.IGNORECASE | re.DOTALL,
 )
 _CORRIGENDUM_RE = re.compile(r"^\s*поправк[аи]\s+(?:в|на)\s+", re.IGNORECASE)
+
+#: What the operative verb of a title says the material does. Repeal is
+#: separated from the rest because it is the one instruction the title
+#: pass can turn into an `estado` finding: a Gazette repeal of an act the
+#: corpus still calls „vigente“ (§5.2, D-064 item 5).
+_INSTRUCTION_BY_VERB = {
+    "изменение и допълнение": "amending",
+    "изменение": "amending",
+    "допълнение": "amending",
+    "отмяна": "repeal",
+    "отменяне": "repeal",
+    "приемане": "adopting",
+    "одобряване": "adopting",
+    "утвърждаване": "adopting",
+}
 
 #: „..., приета с Постановление № 97 ... от 2013 г.“ and its variants.
 #: The tail says who adopted the target, not what the target is called.
@@ -206,6 +235,10 @@ class CorpusAct:
     dv_issue: str | None
     dv_year: int | None
     fecha_publicacion: str | None
+    #: „vigente“ or „derogado“ as lex.bg's history block left it. A
+    #: witness, not an authority: a Gazette repeal that contradicts it is
+    #: an `estado` dispute rather than a correction (D-064 item 5).
+    estado: str | None
     #: Every (year, number) the act's `amendment_history` names, which is
     #: lex.bg's chain and therefore a witness, not an authority.
     chain: frozenset[tuple[int, int]]
@@ -240,6 +273,7 @@ class CorpusAct:
             dv_issue=_as_text(frontmatter.get("dv_issue")),
             dv_year=_as_int(frontmatter.get("dv_year")),
             fecha_publicacion=_as_text(frontmatter.get("fecha_publicacion")),
+            estado=_as_text(frontmatter.get("estado")),
             chain=frozenset(chain),
         )
 
@@ -316,9 +350,51 @@ def strip_amending_prefix(text: str) -> str:
     """
     stripped = _CORRIGENDUM_RE.sub("", text)
     match = _PREFIX_RE.match(stripped)
-    if match is not None:
+    if match is not None and names_an_act(stripped[match.end():]):
         stripped = stripped[match.end():]
     return _ADOPTION_TAIL_RE.sub("", stripped).strip()
+
+
+def names_an_act(text: str | None) -> bool:
+    """Whether this text opens with the name of a normative act.
+
+    The gate on the prefix strip, and the difference between an
+    instruction about another act and an act's own subject. „НАРЕДБА № 1
+    ОТ 2016 Г. ЗА ОДОБРЯВАНЕ НА МЕТОДИКА ЗА ...“ approves a methodology,
+    which is what the наредба is FOR, not an instruction pointing at
+    another act; stripping there threw the наредба's own name away and
+    its number with it, and 95 numbered corpus acts were in that
+    position, unreachable by any citation „Наредба № N от YYYY г.“. The
+    same shape covers „ЗА ПРИЕМАНЕ НА ДЕКЛАРАЦИЯ ПО ЧЛ. 287 ...“ and „ЗА
+    ОТМЯНА НА НОРМАТИВНИ АКТОВЕ“, which repeals acts it does not name.
+    """
+    if not text:
+        return False
+    words = re.sub(r"[^\w\s-]", " ", str(text).casefold()).split()
+    return any(word in _ACT_TYPE_WORDS for word in words[:_ACT_TYPE_LOOKAHEAD])
+
+
+def instruction_kind(title: str | None) -> str:
+    """What a Gazette title says the material does to the act it names.
+
+    „repeal“, „amending“, „adopting“, „corrigendum“, or „promulgation“
+    for a title that names no other act and is therefore about itself.
+
+    The distinction the coverage map needs is repeal against the rest: a
+    material that repeals an act the corpus still records as `vigente` is
+    an `estado` dispute the title pass can find on its own, while an
+    amendment says nothing about whether the act is in force.
+    """
+    if not title:
+        return "promulgation"
+    if _CORRIGENDUM_RE.match(str(title)):
+        return "corrigendum"
+    cleaned = _TITLE_NOTE_RE.sub("", str(title))
+    match = _PREFIX_RE.match(cleaned)
+    if match is None or not names_an_act(cleaned[match.end():]):
+        return "promulgation"
+    verb = re.sub(r"\s+", " ", match.group(1)).casefold()
+    return _INSTRUCTION_BY_VERB.get(verb, "amending")
 
 
 def normalise_title(text: str | None) -> str:

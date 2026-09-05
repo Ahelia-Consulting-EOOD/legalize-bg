@@ -630,3 +630,138 @@ def test_a_row_without_a_dv_reference_does_not_break_the_chain():
         },
     )
     assert act.chain == frozenset()
+
+
+# --- the operative verb is the FIRST „за“, not any „за“ -------------------
+
+EU_TITLE = (
+    "НАРЕДБА № Н-1 ОТ 25 МАЙ 2022 Г. ЗА УСЛОВИЯТА И РЕДА ЗА ПОДАВАНЕ НА ДАННИ "
+    "И ИНФОРМАЦИЯ В ПОРТАЛА НА ЕВРОПЕЙСКИЯ СЪЮЗ (ЕС) ПО ЧЛ. 80, И ЗА ОТМЯНА НА "
+    "ДИРЕКТИВА 2001/20/ЕО"
+)
+
+
+def test_a_subject_clause_that_mentions_a_repeal_is_not_a_repeal():
+    # This наредба promulgates itself. Deep inside its own subject it says
+    # what the EU directive it implements repealed. Reading „ЗА ОТМЯНА НА“
+    # there as this material's operative verb turns a promulgation into a
+    # repeal of Directive 2001/20/ЕО and files an `estado` dispute against
+    # an act nobody repealed.
+    from fetcher.dv.resolver import instruction_kind
+
+    assert instruction_kind(EU_TITLE) == "promulgation"
+
+
+def test_a_subject_clause_that_mentions_a_repeal_keeps_its_whole_title():
+    # The same defect from the matching side: the prefix strip took
+    # „ДИРЕКТИВА 2001/20/ЕО“ as the act being named and threw the наредба's
+    # own name away.
+    assert normalise_title(EU_TITLE).startswith("наредба № н-1 от 25 май 2022 г")
+    assert strip_amending_prefix(EU_TITLE) == EU_TITLE
+
+
+@pytest.mark.parametrize(
+    "title, kind",
+    [
+        ("Закон за изменение и допълнение на Кодекса на труда", "amending"),
+        ("Закон за изменение на Наказателния кодекс", "amending"),
+        ("Закон за допълнение на Търговския закон", "amending"),
+        ("Закон за отмяна на Закона за счетоводството", "repeal"),
+        ("Закон за отменяне на Закона за счетоводството", "repeal"),
+        ("Поправка в Закона за счетоводството", "corrigendum"),
+        (
+            "Постановление № 235 от 13 септември 2016 г. за приемане на Правилник "
+            "за прилагане на Закона за електронната идентификация",
+            "adopting",
+        ),
+        ("ЗАКОН ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРТ", "promulgation"),
+        # „ратифициране“ is not an operative verb over a corpus act.
+        ("Закон за ратифициране на Споразумението за нещо", "promulgation"),
+        # The subject clause opens at the first „за“ and closes the door.
+        (
+            "Закон за тълкуване на чл. 47 от Закона за чужденците в Република "
+            "България",
+            "promulgation",
+        ),
+        (
+            "НАРЕДБА ЗА УСЛОВИЯТА И РЕДА ЗА ИЗМЕНЕНИЕ НА ПЛАНОВЕТЕ",
+            "promulgation",
+        ),
+        ("", "promulgation"),
+    ],
+)
+def test_instruction_kind(title, kind):
+    from fetcher.dv.resolver import instruction_kind
+
+    assert instruction_kind(title) == kind
+
+
+# --- a retargeting instruction names an ACT -------------------------------
+
+ADOPTS_A_METHODOLOGY = (
+    "НАРЕДБА № 1 ОТ 1 ЮЛИ 2016 Г. ЗА ОДОБРЯВАНЕ НА МЕТОДИКА ЗА ПРИЛАГАНЕ НА "
+    "ИЗКЛЮЧЕНИЯТА ПО ЧЛ. 156Б ОТ ЗАКОНА ЗА ВОДИТЕ"
+)
+REPEALS_UNNAMED_ACTS = (
+    "НАРЕДБА № 18 ОТ 6 СЕПТЕМВРИ 1996 Г. ЗА ОТМЯНА НА НОРМАТИВНИ АКТОВЕ"
+)
+ADOPTS_A_DECLARATION = (
+    "ЗАКОН ЗА ПРИЕМАНЕ НА ДЕКЛАРАЦИЯ ПО ЧЛ. 287, АЛ. 1 ОТ КОНВЕНЦИЯТА НА "
+    "ОРГАНИЗАЦИЯТА НА ОБЕДИНЕНИТЕ НАЦИИ ПО МОРСКО ПРАВО"
+)
+
+
+@pytest.mark.parametrize(
+    "title", [ADOPTS_A_METHODOLOGY, REPEALS_UNNAMED_ACTS, ADOPTS_A_DECLARATION]
+)
+def test_an_operative_verb_over_something_that_is_not_an_act_strips_nothing(title):
+    # These are the acts' own subjects, not instructions about other acts.
+    # Stripping „ЗА ОДОБРЯВАНЕ НА“ throws away the наредба's own name and
+    # its number with it, so a citation „Наредба № 1 от 2016 г.“ can never
+    # reach it again: 95 numbered corpus acts were in that position.
+    from fetcher.dv.resolver import instruction_kind
+
+    assert strip_amending_prefix(title) == title
+    assert instruction_kind(title) == "promulgation"
+
+
+def test_a_numbered_act_keeps_its_number_through_its_own_subject():
+    assert numbered_key(ADOPTS_A_METHODOLOGY) == NumberedKey("наредба", "1", 2016)
+    assert numbered_key(REPEALS_UNNAMED_ACTS) == NumberedKey("наредба", "18", 1996)
+
+
+def test_an_instruction_that_does_name_an_act_still_strips():
+    # The act type may be the first word, or hide behind one or two
+    # adjectives („Устройствения правилник“, „Данъчно-осигурителния
+    # процесуален кодекс“), so the whole opening of the name is read.
+    for title, target in [
+        ("Закон за отмяна на Закона за счетоводството", "закон за счетоводството"),
+        (
+            "Постановление № 236 от 2016 г. за изменение на Устройствения правилник "
+            "на Министерството на финансите",
+            "устройствения правилник на министерството на финансите",
+        ),
+        (
+            "Закон за изменение на Данъчно-осигурителния процесуален кодекс",
+            "данъчно-осигурителния процесуален кодекс",
+        ),
+        (
+            "Постановление № 235 от 2016 г. за приемане на Правилник за прилагане "
+            "на Закона за електронната идентификация",
+            "правилник за прилагане на закона за електронната идентификация",
+        ),
+    ]:
+        assert normalise_title(title) == target
+
+
+def test_every_numbered_corpus_act_has_a_numbered_key(corpus_acts):
+    # The numbered key is the only way a citation „Наредба № N от YYYY г.“
+    # reaches a наредба, so an act whose title carries a number and whose
+    # key is None is unreachable by that route.
+    missing = [
+        act.law_id
+        for act in corpus_acts
+        if act.title.startswith(("НАРЕДБА № ", "ПРАВИЛНИК № ", "ИНСТРУКЦИЯ № "))
+        and numbered_key(act.title) is None
+    ]
+    assert missing == []
