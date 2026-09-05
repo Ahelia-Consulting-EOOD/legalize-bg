@@ -95,25 +95,44 @@ in the corpus and the correctness floor says whether their addresses are right; 
 
 - required floor: every act carries a machine-readable provenance grade and every amendment event a
   source class, both surfaced at every consumer surface (frontmatter, index, MCP, REST, cf-plane).
-  These definitions are canonical; Directive 2, the FR rows and the ledgers cite them.
+  These definitions are canonical; Directive 2, the FR rows and the ledgers cite them. The decision
+  procedure that derives the grade from the recorded states is section 4.2 of
+  `docs/plans/2026-09-05-dv-graded-source-design.md`; `checks/provenance.py` implements it and
+  property-tests every combination of its inputs, so the derivation is total by construction.
+  Vocabulary: an event's `source` is `dv_html`, `dv_pdf`, `dv_offline` or `unlocated` (claimed by
+  lex.bg, not found on the Gazette side; always `pending`); an event's `applied` state is
+  `replayed`, `verified`, `not_incorporated` (a Gazette instruction that cannot be applied, recorded
+  without changing the text, terminal, never blocking a grade, always warned) or `pending`; a base is
+  `rebuilt`, `read` or `snapshot`, and a snapshot is `frozen` once the Directive 14 repair sweep and
+  the FR-041 capture have run on it.
   1. **Grade A, ДВ-complete.** The base text is a Gazette HTML material rebuilt through the corpus
-     write gate; every amendment event is a Gazette HTML material replayed by the engine (until the
-     engine exists, only acts with no amendment events can hold A). Gate: the write gate accepts the
-     text, the Phase 4 replay invariants pass, and unadjudicated witness divergences are zero.
-  2. **Grade B, ДВ-audited.** The base text is a lex.bg snapshot or a Gazette text read from an issue
-     PDF; every Gazette event that is online (HTML, or PDF read by vision) has been replayed or
-     verified clean against the text. Gate: the snapshot was frozen only after the single lex.bg
-     repair sweep (Directive 14) and the FR-041 reference capture ran on it, and every online event
-     carries a recorded `applied` state of `replayed` or `verified`.
-  3. **Grade B-pending.** As B, but at least one online Gazette event is still `pending`: located but
-     not yet read, replayed or verified. The record carries the count of pending events and the
+     write gate; the ДВ-side body scan has covered every HTML-era issue in the act's lifetime; every
+     amendment event is a Gazette HTML material replayed by the engine or recorded `not_incorporated`
+     (until the engine exists, only acts with no amendment events can hold A). Gate: the write gate
+     accepts the text, the Phase 4 replay invariants pass, and the offline diff against the committed
+     lex.bg snapshot has zero unadjudicated divergences; an act with open divergences is held in
+     staging and is not a committed file.
+  2. **Grade B, ДВ-audited.** The base text is a frozen lex.bg snapshot or a Gazette text read from
+     an issue PDF; where the promulgated material is online, the base structural audit (its address
+     inventory appears in the text or is explained by a located event) has passed; the ДВ-side body
+     scan has covered every HTML-era issue in the act's lifetime; every online Gazette event has been
+     replayed, verified against the frozen snapshot's text hash, or recorded `not_incorporated`.
+     Gate: the freeze, the audit, the scan and every event's recorded state.
+  3. **Grade B-pending.** As B, but with at least one open item: an event `pending` (including every
+     `unlocated` one), the body scan not yet complete, the base audit not yet passed, or the snapshot
+     not yet frozen. The record enumerates the open items, the count of pending events and the
      estimated Gazette pages still to read. This is a grade in its own right, not the absence of one;
-     most older acts hold it during the transition.
+     most older acts hold it during the transition, and every act audited before the repair sweep
+     runs holds it.
   4. **Grade C, pre-1989 base.** The promulgation or at least one event exists only offline. Every
      online event is still sourced and verified as for B, and the pending counter applies. Handled as
      a separate track.
-  **ДВ-anchored** means grade A or B. B-pending and C acts are not anchored, and lex.bg re-scrape
-  remains permitted for them (Directive 2).
+  An act may carry a declared base date (`base.declared_at`, the UK 1991 model): Gazette events before
+  it are listed as not carried, the act grades B at best on the rest, and the declaration is surfaced
+  with the grade. **ДВ-anchored** means grade A or B. B-pending and C acts are not anchored, and
+  lex.bg re-scrape remains permitted for them (Directive 2), except that a frozen snapshot is never
+  re-scraped: a frozen act that receives a new Gazette event becomes B-pending on that event, stays
+  frozen, and is served with a truthful `checked_through` until the engine replays it.
 - acceptance rule: a grade is earned by gates, never assigned by source. An act's grade is the weakest
   link in its current text. A grade may rise only when the corresponding events have been sourced and
   replayed clean; it never rises by declaration.

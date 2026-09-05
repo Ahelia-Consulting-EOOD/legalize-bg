@@ -17,12 +17,12 @@ The corpus is a photograph of a private consolidation it cannot verify and whose
 | `fetcher/dv/` (new) | ДВ acquisition layer: issue enumeration over the JSF list, materials enumeration, material fetch with cache, issue PDF fetch; own rate-limited session sharing the UA and the halt-on-challenge check | none changed; `fetcher/bg/` untouched. The Legalize `LegislativeClient`/`TextParser` interfaces gain a second implementation, not a change | none for the layer itself; a note in the Phase 5 upstream plan |
 | `fetcher/dv/text_parser.py` (new) | Gazette material to corpus Markdown; ЗИД material to segmented instruction stream | same as above | none |
 | Coverage map `scripts/dv_coverage_map.py` (new) + `data/dv/` tables | per-act, per-event Gazette availability, resolver attribution, chain omissions, page estimates | none | none |
-| YAML frontmatter | additive `provenance` block; additive per-event fields `source`, `id_mat`, `applied`, `uncertainty` on `amendment_history` rows; `fuente` takes `dv.parliament.bg` for grade A acts. The eight mandatory Legalize fields are untouched | **Surface 1** | **required** before the first write |
-| SQLite schema | `laws.provenance_grade`, `laws.events_pending`; new `amendment_events` table; migration 007 | **Surface 4** | **required** |
-| MCP tools | `get_law` and search hits carry `provenance_grade`; new warning class `PROVENANCE_GRADE` (shape per owner decision 3 of the design) riding in successful responses; `tools.json` minor bump | **Surface 3** (additive) | **required**, additive path |
+| YAML frontmatter | additive `provenance` block (grade, base record, `checked_through`, `in_force_as_of`, `events_not_in_force`, `events_pending`, `pdf_pages_estimate`, status line); additive per-event fields `source`, `locator`, `applied`, `verified_against`, `uncertainty` on `amendment_history` rows; `fuente` follows `base.source`; every one of the 3,624 acts backfilled with exactly one grade at introduction (Directive 4); identifier form for ДВ-only acts to be settled. The eight mandatory Legalize fields are untouched | **Surface 2** | **required** before the first write |
+| SQLite schema | `laws.provenance_grade`, `laws.events_pending`; new `amendment_events` table; § provision rows with a `kind` column; migration 007 | **Surface 4** | **required** |
+| MCP tools | `get_law` and search hits carry `provenance_grade` and `checked_through`; a warning for any grade other than A (shape per owner decision 3 of the design) riding in successful responses; `get_article` gains § addressing keyed by section context with a `kind` column (design 7.5, own task); `tools.json` minor bump | **Surface 3** (additive) | **required**, additive path |
 | REST API | same fields and warning on `/laws/{slug}` and `/search`; OpenAPI contract regenerated with `api.export_openapi --check` | contract file | with the MCP preflight |
 | cf-plane | act payload carries the grade; worker mirrors the warning; spec version bump; decided together with the FR-032 implicit-rows label-or-skip question | `docs/api/cf-data-plane-spec.md` | with the D1 cutover decision |
-| Commit conventions | `Source-Id: dv-<idMat>` for Gazette-sourced commits (already used once in PR #24's rejected commit); `[popravka]` for a rebuild that corrects a snapshot, `[nova]` for a first Gazette-sourced promulgation, `[reforma]` for a replayed amendment | **Surface 5** (additive namespace) | note in the preflight, no format change |
+| Commit conventions | `Source-Id: dv-<idMat>` for Gazette-sourced commits (already used once in PR #24's rejected commit). **Proposed for the Surface 5 preflight, not decided here:** the commit type for a Gazette rebuild that replaces a snapshot, for a first Gazette-sourced promulgation and for a replayed amendment, and the `Norm-Id` form for acts without a lex.bg document. Preflight input: `index/build.py` excludes `[popravka]` from `law_versions` boundaries (FR-020 D4), so a rebuild committed as `[popravka]` would create no version row | **Surface 5** | **required** before the pilot commit |
 | Write gate and corpus-integrity | unchanged from PR #23 Parts II and IV; new check `checks/provenance.py` (grade derivable from events; consumer fields agree) | none | none |
 | Corrections ledger and editorial-changes report (new, design 5.9) | two channels: Gazette поправка recorded on the event they correct; consolidator-side corrections and parser normalisations listed per act by the pipeline | none | none |
 | `docs/sync/CORPUS-STATUS.json` | already carries `correctness_grade` and `source_model` (PR #25); gains per-grade act counts when the block ships | DRS S5 surface (D-048) | announce via `/sync-drs` |
@@ -30,11 +30,11 @@ The corpus is a photograph of a private consolidation it cannot verify and whose
 
 ## Sequencing
 
-P0 coverage map and PR #23 Part II (no corpus write) → P1 material parser, provenance block, exposure, pilot → P2 grade A batch → P3 grade B audit → P4 grade C track. Full table in the design, section 8.
+P0 coverage map with the body scan and the resolver, and PR #23 Part II (no corpus write) → P1 material parser, provenance block with corpus-wide backfill, exposure, § rows, pilot → P2 grade A batch → P3 grade B audits and PDF-era reading → P4 grade C track. Full table in the design, section 8.
 
 ## Owner questions
 
-The five open decisions in the design, section 11: batch order after the pilot; PDF-era reading order; warning shape; `fuente` semantics; whether HTML-era chain omissions found by the map trigger `[reforma]` events before the engine exists.
+The six open decisions in the design, section 11: batch order after the pilot; PDF-era reading order; warning shape; identifier form for ДВ-only acts; whether HTML-era chain omissions found by the map trigger `[reforma]` events before the engine exists; whether to read the PDF-era tables of contents by vision.
 
 ## Not in this CPD
 
