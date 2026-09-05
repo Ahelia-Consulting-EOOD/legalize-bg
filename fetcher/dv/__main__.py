@@ -46,7 +46,7 @@ from fetcher.dv.materials import (
     parse_material_header,
     parse_materials,
 )
-from fetcher.dv.materials import MATERIALS_URL
+from fetcher.dv.materials import MATERIALS_URL, fetch_materials_page
 
 #: Consecutive „недостъпен“ stubs that mean the site is down rather than
 #: the id space being sparse. Five neighbouring real gaps would be needed
@@ -198,6 +198,11 @@ def cmd_materials(args, session) -> int:
     # A run of them that ends in a halt is discarded rather than written,
     # because „no such issue“ is exactly what those rows would claim.
     pending_errors: list[dict] = []
+    # The last non-empty set of idMat values written. Two different issues
+    # never share a material, so a repeat means the server ignored idObj
+    # (session-bound issue selection, found 2026-09-05) and every further
+    # row would be a copy of the wrong issue.
+    prev_ids: frozenset[int] = frozenset()
 
     with out.open("a" if args.resume else "w", encoding="utf-8") as handle:
         for issue in issues:
@@ -208,7 +213,7 @@ def cmd_materials(args, session) -> int:
                 "issue_number": issue.get("number"),
                 "issue_date": issue.get("date"),
             }
-            html = session.get(MATERIALS_URL, params={"idObj": id_obj})
+            html = fetch_materials_page(session, id_obj)
             status = classify_page(html)
             processed += 1
 
@@ -257,6 +262,17 @@ def cmd_materials(args, session) -> int:
                 continue
 
             rows = parse_materials(html)
+            ids = frozenset(row.id_mat for row in rows)
+            if ids and ids == prev_ids:
+                halt = (
+                    f"id_obj {id_obj} returned the same materials as the previous "
+                    f"non-empty issue ({len(ids)} idMat values). Two issues never share "
+                    f"a material: the server is serving a session-bound issue and "
+                    f"ignoring idObj. Nothing from this issue was written; fix the "
+                    f"client (fresh session per request) and re-run with --resume."
+                )
+                break
+            prev_ids = ids
             counts["ok"] += len(rows)
             for row in rows:
                 _write_line(

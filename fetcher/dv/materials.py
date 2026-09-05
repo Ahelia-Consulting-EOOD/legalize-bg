@@ -240,6 +240,29 @@ def material_body_html(html: str) -> str:
     return _content_div(BeautifulSoup(html, "lxml")).decode_contents()
 
 
+def forget_session_state(session) -> None:
+    """Drop the cookie jar so the next request starts a new server session.
+
+    dv.parliament.bg binds the issue a client asks for to its server-side
+    session on the FIRST request and then serves that issue for every later
+    `materiali.faces` call, whatever `idObj` says. Measured live on
+    2026-09-05 after a full sweep: one session over 4,146 issues yielded
+    3,843 copies of the first issue's twenty materials, and three fresh-jar
+    probes gave three different, correct issues. The issue LIST needs its
+    session (ViewState and pagination), so this is called only here, before
+    each materials or material request, and the rate limiter is untouched.
+    """
+    jar = getattr(session, "cookies", None)
+    if jar is not None:
+        jar.clear()
+
+
+def fetch_materials_page(session, id_obj: int) -> str:
+    """GET one issue's contents page from a fresh server session."""
+    forget_session_state(session)
+    return session.get(MATERIALS_URL, params={"idObj": id_obj})
+
+
 def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
     """GET one issue's contents and parse it.
 
@@ -248,8 +271,7 @@ def fetch_materials(session, id_obj: int) -> list[MaterialRow]:
     caller that needs to tell those apart, as the bulk enumeration does,
     fetches the body itself and asks `classify_page`.
     """
-    html = session.get(MATERIALS_URL, params={"idObj": id_obj})
-    return parse_materials(html)
+    return parse_materials(fetch_materials_page(session, id_obj))
 
 
 def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:
@@ -278,6 +300,7 @@ def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:
             "cached body for material %d is the site's error stub; re-fetching",
             id_mat,
         )
+    forget_session_state(session)
     html = session.get(MATERIAL_URL, params={"idMat": id_mat})
     if cached is not None and not is_dv_error_body(html):
         cached.parent.mkdir(parents=True, exist_ok=True)
