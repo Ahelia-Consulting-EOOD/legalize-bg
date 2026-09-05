@@ -623,20 +623,20 @@ def test_the_runner_json_carries_the_violation_rows(tmp_path):
     ]
 
 
-def test_shutil_move_to_an_unresolved_destination_is_still_caught(tmp_path, monkeypatch):
+def test_shutil_move_to_an_unresolved_destination_is_still_caught(tmp_path):
     """Re-review of PR #36: staging outside the corpus, then shutil.move to a
-    destination the scan cannot resolve, in a module that also touches the
-    corpus. shutil.move keeps the unresolved-path rule (it has no innocent
-    idiom to protect), unlike os.replace and Path.replace."""
-    from corpus_gate import find_corpus_writers
-    mod = tmp_path / "staging_mover.py"
-    mod.write_text(
-        "import shutil\nfrom pathlib import Path\n"
-        "CORPUS = Path('laws')\n"
-        "def flush(entry, tmp):\n"
-        "    shutil.move(tmp, entry.path)\n",
-        encoding="utf-8",
-    )
-    monkeypatch.chdir(tmp_path)
-    offenders = find_corpus_writers(exclude={"corpus_gate.py"})
-    assert any("staging_mover.py" in o for o in offenders), offenders
+    destination the scan cannot resolve, in a module that names a corpus
+    directory and assembles act text. shutil.move keeps rule 2 (it has no
+    innocent idiom to protect), unlike os.replace and Path.replace."""
+    _module(tmp_path, "staging_mover.py", """
+        import shutil
+        from fetcher.bg.assembler import assemble_file
+
+        CATEGORY_DIRS = {"laws": "laws"}
+
+        def flush(entry, meta, body, tmp):
+            tmp.write_text(assemble_file(meta, body), encoding="utf-8")
+            shutil.move(tmp, entry.path)
+    """)
+    offenders = [o for o in find_corpus_writers(root=tmp_path) if "shutil.move" in o]
+    assert offenders and offenders[0].startswith("staging_mover.py"), find_corpus_writers(root=tmp_path)
