@@ -82,7 +82,7 @@ Automated monitoring of Darzhaven Vestnik (DV) detects new amendments. The conso
 Engine output compared against the witnesses (lex.bg, Ministry of Justice portal); every divergence adjudicated with the Gazette as arbiter (D-061). *Rewritten 2026-09-05; the former text made lex.bg an oracle and tracked a percentage.*
 
 **Acceptance Criteria:**
-- After consolidation, fetch the same law from lex.bg and compare
+- After consolidation, fetch the same law from every witness that carries it (lex.bg; the Ministry of Justice portal for the acts it covers) and compare
 - Both texts normalized (whitespace, quotes, formatting) before comparison
 - Non-trivial diffs flagged for human review
 - Zero unadjudicated witness divergences over the acts in scope (D-060); divergence counts per lane are tracked over time as diagnostics

@@ -176,11 +176,11 @@ All HTTP access to lex.bg and to dv.parliament.bg must follow these rules:
 5. **Log all requests** with timestamp, URL, status code, and response time.
 6. **Full bootstrap crawl** takes ~2 hours at 1 req/sec for 3,573 acts plus ~104 tree pages. Plan accordingly — do not rush.
 7. **Off-peak preferred:** Run large crawls outside Bulgarian business hours when possible.
-8. **Държавен вестник is the source wherever its text is online (Directive 2, D-059); lex.bg is a base snapshot and a witness (Directive 3, D-061).** Ongoing lex.bg fetches are permitted only for acts not yet ДВ-anchored and are recorded per act; fetches for anchored acts are witness-only. dv.parliament.bg is UTF-8, has no Cloudflare and no robots.txt; the same 1 req/s ceiling, UA and logging apply to it, and the ДВ session (`fetcher/dv/client.py`) enforces rules 1 to 5 the way `RateLimitedSession` does.
+8. **Държавен вестник is the source wherever its text is online (Directive 2, D-059); lex.bg is a base snapshot and a witness (Directive 3, D-061).** Ongoing lex.bg fetches are permitted only for acts not yet ДВ-anchored and are recorded per act; fetches for anchored acts are witness-only. dv.parliament.bg is UTF-8, has no Cloudflare and no robots.txt; the same 1 req/s ceiling, UA and logging apply to it, and the ДВ session (`fetcher/dv/client.py`, on branch `feat/dv-acquisition`, PR #29, not yet merged) must enforce rules 1 to 5 the way `RateLimitedSession` does.
 
 ### Reference implementation
 
-All 5 rules are enforced in `fetcher/bg/client.py:RateLimitedSession`:
+Rules 1 to 5 are enforced in `fetcher/bg/client.py:RateLimitedSession` (rules 6 and 7 are operational, rule 8 is the source model):
 - Rule 1: `rate_limit_sec` gate before every request; `HttpTransport` (doc pages) and `bootstrap.py:TreeTransport` (tree crawl) share one session so the ceiling is global across the pipeline.
 - Rule 2: `USER_AGENT = "legalize-bg/0.1 (https://github.com/Ahelia-Consulting-EOOD/legalize-bg)"`.
 - Rule 3: `max_retries=3`, `retry_base_sec=2.0` (2 / 4 / 8 s backoff) on HTTP 429 and 500-599; connection/timeout errors also retry.
