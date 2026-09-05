@@ -195,3 +195,38 @@ def test_second_fetch_of_the_same_material_is_served_from_the_cache(
     second = fetch_material(session, 1000, cache_dir=tmp_path)
     assert first == second
     assert len(session.gets) == 1
+
+
+# --- the cache never keeps a stub -----------------------------------------
+
+
+def test_the_error_stub_is_never_cached(tmp_path):
+    # The stub arrives with status 500 and the session hands it back
+    # rather than retrying it. Writing it to a permanent cache would make
+    # the material unreachable for good.
+    session = FakeSession(get_bodies={MATERIAL_PATH: ERROR_PAGE})
+    assert fetch_material(session, 1000, cache_dir=tmp_path) == ERROR_PAGE
+    assert not (tmp_path / "1000.html").exists()
+
+
+def test_a_cached_stub_is_treated_as_a_miss_and_refetched(tmp_path, material_html):
+    # An earlier run of the previous code, or a stub written by hand, must
+    # not shadow the material once the site is healthy again.
+    (tmp_path / "1000.html").write_text(ERROR_PAGE, encoding="utf-8")
+    session = FakeSession(get_bodies={MATERIAL_PATH: material_html})
+    assert fetch_material(session, 1000, cache_dir=tmp_path) == material_html
+    assert len(session.gets) == 1
+    assert (tmp_path / "1000.html").read_text(encoding="utf-8") == material_html
+
+
+def test_a_stubbed_run_followed_by_a_healthy_one_gets_the_material(
+    tmp_path, material_html
+):
+    # Two runs, one cache directory: the site is down for the first and
+    # healthy for the second, and the second must reach the material.
+    down = FakeSession(get_bodies={MATERIAL_PATH: ERROR_PAGE})
+    assert fetch_material(down, 1000, cache_dir=tmp_path) == ERROR_PAGE
+
+    healthy = FakeSession(get_bodies={MATERIAL_PATH: material_html})
+    assert fetch_material(healthy, 1000, cache_dir=tmp_path) == material_html
+    assert len(healthy.gets) == 1

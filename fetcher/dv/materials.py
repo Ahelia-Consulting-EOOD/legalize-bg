@@ -228,13 +228,27 @@ def fetch_material(session, id_mat: int, cache_dir: Path | None = None) -> str:
     later call for the same id is served from disk without a request. A
     promulgated text never changes once published, so the cache is a
     permanent record rather than an expiring one.
+
+    Which is exactly why the site's „недостъпен“ stub never enters it. The
+    stub arrives with status 500 and `DvSession` hands it back instead of
+    retrying, so without this guard a five-minute maintenance window in
+    the middle of a sweep would write stubs into a permanent cache and
+    every one of those materials would be unreachable until someone
+    deleted the files by hand. A stub already on disk, from a run of the
+    code that lacked this guard, counts as a miss and is re-fetched.
     """
     cached = Path(cache_dir) / f"{id_mat}.html" if cache_dir else None
     if cached is not None and cached.exists():
-        log.info("cache hit for material %d", id_mat)
-        return cached.read_text(encoding="utf-8")
+        stored = cached.read_text(encoding="utf-8")
+        if not is_dv_error_body(stored):
+            log.info("cache hit for material %d", id_mat)
+            return stored
+        log.warning(
+            "cached body for material %d is the site's error stub; re-fetching",
+            id_mat,
+        )
     html = session.get(MATERIAL_URL, params={"idMat": id_mat})
-    if cached is not None:
+    if cached is not None and not is_dv_error_body(html):
         cached.parent.mkdir(parents=True, exist_ok=True)
         cached.write_text(html, encoding="utf-8")
     return html
