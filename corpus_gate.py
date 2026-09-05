@@ -308,7 +308,10 @@ _EXCLUDED_PARTS: frozenset[str] = frozenset(
 )
 
 _WRITE_MODE_CHARS = frozenset("wax+")
-_COPY_FUNCS = frozenset({"copy", "copy2", "copyfile", "copytree"})
+# `shutil.move` sits here, not in _MOVE_FUNCS: it has no innocent idiom to protect
+# (the repo has no production call to it), so it keeps BOTH rules, including the
+# unresolved-destination fallback (re-review of PR #36).
+_COPY_FUNCS = frozenset({"copy", "copy2", "copyfile", "copytree", "move"})
 
 # Moves. A file that arrives by rename is as written as one that arrives by
 # `write_text`, and staging outside the corpus then renaming in is both the
@@ -316,7 +319,7 @@ _COPY_FUNCS = frozenset({"copy", "copy2", "copyfile", "copytree"})
 # are judged on positive evidence only: a rename's destination is routinely a
 # plain local, and the unresolved-path fallback would flag every atomic
 # checkpoint write in a module that also touches the corpus.
-_MOVE_FUNCS = frozenset({"replace", "rename", "move"})
+_MOVE_FUNCS = frozenset({"replace", "rename"})
 
 
 def find_corpus_writers(
@@ -493,7 +496,7 @@ def _write_sites(
                 target = node.args[1] if len(node.args) > 1 else None
                 yield node.lineno, f"shutil.{func.attr}()", target, False
             elif func.attr in _MOVE_FUNCS and module in ("os", "shutil"):
-                # os.replace(src, dst), os.rename(src, dst), shutil.move(src, dst)
+                # os.replace(src, dst), os.rename(src, dst)
                 target = node.args[1] if len(node.args) > 1 else None
                 yield node.lineno, f"{module}.{func.attr}()", target, True
             elif func.attr in ("replace", "rename") and _is_path_move(node):
