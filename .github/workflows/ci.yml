@@ -19,6 +19,20 @@ jobs:
       - run: python -m pytest -q -m "not perf"
       - run: python -m mcp_server.export_tools --check
       - run: python -m api.export_openapi --check docs/api/openapi-rest.json
+  corpus-integrity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install pyyaml
+      # Runs over the committed Markdown tree only: no catalog.db needed,
+      # which is why this can gate every pull request. Exit 1 on any
+      # unwaived violation or any stale waiver; there is no report mode.
+      - name: Corpus integrity
+        run: python -m corpus_integrity --root . --waivers docs/data/waivers.yaml
   install-smoke:
     runs-on: ubuntu-latest
     steps:
