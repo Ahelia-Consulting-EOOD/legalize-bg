@@ -662,6 +662,18 @@ def numbered_subject(title: str | None) -> str:
     return parts[1].strip() if len(parts) > 1 else rest.strip()
 
 
+def _shares_nothing(one: str, other: str) -> bool:
+    """Whether two subject clauses have no content word in common.
+
+    Only a sanity check, and only where an exact key already decided: two
+    texts this far apart are not one act under any renaming. It says
+    nothing when either side has no content words at all, which a very
+    short subject can leave.
+    """
+    left, right = _content(one), _content(other)
+    return bool(left) and bool(right) and not (left & right)
+
+
 def _digits(text: str) -> tuple[str, ...]:
     """Every number in a title, in order.
 
@@ -833,7 +845,9 @@ class Resolver:
         2021, so the subject must still clear the floor.
 
         Where the dates agree or the citation states none, the subject
-        decides under all three bounds.
+        decides: under the floor and the digit guard always, under the
+        content guard as a refusal when the key named several acts and as
+        the flag `content_mismatch` when it named one.
         """
         key = numbered_key(title)
         if key is None:
@@ -875,8 +889,10 @@ class Resolver:
 
         subject = numbered_subject(title)
         if len(matched) == 1:
+            other = matched[0]
+            other_subject = self._subjects[other.law_id]
             if unique_by_key and stated is not None and self._agrees(
-                key, stated, matched[0]
+                key, stated, other
             ):
                 # A full date, every coordinate matched, and the key named
                 # this act alone: an exact key, not a comparison. A year
@@ -884,20 +900,46 @@ class Resolver:
                 # number, year) name two or more corpus acts, and two
                 # citations „Наредба № 28 от 2004 г.“ reached the wrong
                 # наредба that way.
+                #
+                # Four coordinates is a strong key and the subject is not
+                # compared against it, with one exception: the corpus
+                # holds five pairs of acts sharing (type, number, year,
+                # date), and two subjects with not one content word in
+                # common are not one act under any renaming.
+                if _shares_nothing(subject, other_subject):
+                    return [], matched, 0.0, ("subject_unrelated",)
                 return matched, matched, 1.0, ()
+
             # Otherwise the subject has to carry it. Either the key named
             # several acts and something narrowed it, or the candidate is
             # silent about a year or a date the citation states, which is
             # how 84 held-out titles reached the one наредба № 49 whose
-            # title carries no date at all. The comparison has to survive
-            # a renamed title, though: 282 corpus titles carry „(ЗАГЛ.
-            # ИЗМ. ...)“, so a 2016 material and lex.bg's current text of
-            # one наредба differ by a content word („спортна подготовка“
-            # became „специализирана подготовка“ in 2019) and are one act.
-            score = self._similarity(subject, matched[0])
-            chosen = matched if score >= FUZZY_THRESHOLD else []
+            # title carries no date at all.
             flags = () if unique_by_key else ("numbered_key_tie",)
-            return chosen, matched, score, flags
+
+            # The digit guard is absolute here as everywhere: „подмярка
+            # 19.4“ and „подмярка 19.5“ are two наредби, and „чл. 327“ is
+            # not „чл. 328“. A renaming does not change a title's digits,
+            # so the exemption below does not reach them.
+            if _digits(other_subject) != _digits(subject):
+                return [], matched, 0.0, flags + ("numbered_digit_mismatch",)
+
+            score = self._similarity(subject, other)
+            if score < FUZZY_THRESHOLD:
+                return [], matched, score, flags
+
+            # The content check is a FLAG here rather than a refusal, and
+            # this is the one place the two differ. The branch exists to
+            # catch a renamed title, and 282 corpus titles carry „(ЗАГЛ.
+            # ИЗМ. ...)“: a 2016 material and lex.bg's current text of one
+            # наредба differ by a content word („спортна подготовка“ became
+            # „специализирана подготовка“ in 2019) and are one act. The
+            # number and the year pin it, so refusing would lose the act
+            # the branch is for; the flag lets the coverage map route the
+            # row to the reasoning pass instead of attributing it silently.
+            if not _content_compatible(_content(subject), _content(other_subject)):
+                flags = flags + ("content_mismatch",)
+            return matched, matched, score, flags
 
         chosen, considered, score = self._rank(subject, matched, subject=True)
         return chosen, considered, score, ("numbered_key_tie",)

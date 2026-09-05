@@ -20,11 +20,13 @@ import pytest
 
 from fetcher.dv.resolver import (
     CorpusAct,
+    _content,
     NumberedKey,
     Resolver,
     load_corpus_acts,
     normalise_title,
     numbered_key,
+    numbered_subject,
     parse_dv_citation,
     strip_amending_prefix,
 )
@@ -1042,10 +1044,14 @@ def test_leave_one_out_over_the_whole_corpus_attributes_nothing_wrongly(corpus_a
 
 
 @pytest.mark.slow
-def test_a_reworded_title_still_resolves(corpus_acts):
-    # The other side of the guard: what it must not cost. A function word
-    # dropped is a wording difference, not a different act, and the fuzzy
-    # step exists for exactly that.
+def test_dropping_a_function_word_still_resolves(corpus_acts):
+    """What the content guard must NOT cost.
+
+    A word of two characters or fewer is never a content word, so this
+    variant leaves the content set untouched and measures the floor and
+    the margin, which is what it is here for. Measured: 2,992 of 3,608,
+    which is 0.829, and the assertion is that minus a 0.02 margin.
+    """
     resolver = Resolver(corpus_acts)
     random.seed(11)
     hit = total = 0
@@ -1063,4 +1069,141 @@ def test_a_reworded_title_still_resolves(corpus_acts):
         ):
             hit += 1
     assert total > 3500
-    assert hit / total > 0.80
+    assert hit / total > 0.81
+
+
+@pytest.mark.slow
+def test_a_dropped_content_word_never_crosses_the_content_guard_silently(corpus_acts):
+    """What the content guard DOES cost, measured rather than assumed.
+
+    Dropping a word of three letters or more changes the content set, so
+    this is the mutation the guard is about. Three answers are legitimate
+    and the test names each. The row is refused. The row is attributed
+    and flagged, which is the single-candidate numbered branch keeping a
+    renamed title under `content_mismatch`. Or the content guard was
+    never the deciding bound, which happens in exactly two shapes: an
+    exact four-coordinate key (type, number, year, full date) decides
+    alone by design and consults the subject only through
+    `subject_unrelated`; or the texts actually compared are still
+    content-equal, because the dropped word occurs twice in the title,
+    or sits in the head while the numbered branch compares subject
+    clauses, or the mutation genuinely names another act by content
+    („закон за по пътищата“ is, by content, Закон за пътищата).
+
+    What no path may do is attribute across a changed content set with
+    no flag. Measured on 2026-09-05 over 3,608 mutations: 706 silent,
+    663 of them the exact key, 40 a repeated word, 2 a head word, 1 a
+    genuine other act; 2,902 refused or flagged.
+    """
+    resolver = Resolver(corpus_acts)
+    by_id = {act.law_id: act for act in corpus_acts}
+    random.seed(11)
+    unexplained = []
+    for act in corpus_acts:
+        if not act.title:
+            continue
+        words = normalise_title(act.title).split()
+        content = _content(" ".join(words))
+        droppable = [i for i, word in enumerate(words) if word in content]
+        if not droppable:
+            continue
+        index = random.choice(droppable)
+        query = " ".join(words[:index] + words[index + 1:])
+        result = resolver.resolve(query)
+        if result.law_id is None or result.flags:
+            continue
+        got = by_id[result.law_id]
+        exact_key = (
+            result.method == "numbered"
+            and result.score == 1.0
+            and result.law_id == act.law_id
+        )
+        content_equal = _content(normalise_title(query)) == _content(
+            normalise_title(got.title)
+        )
+        subject_equal = result.method == "numbered" and _content(
+            numbered_subject(query)
+        ) == _content(numbered_subject(got.title))
+        if not (exact_key or content_equal or subject_equal):
+            unexplained.append(
+                (round(result.score, 4), result.method, act.law_id, result.law_id)
+            )
+    assert unexplained == []
+
+
+# --- I3: the single-candidate numbered branch is bounded too --------------
+
+# A citation with no day is the ordinary Gazette form, and it skips the
+# exact-key branch. What is left is one candidate and its subject clause,
+# which used to be compared by a bare ratio: no digit guard, no margin, no
+# content check, and no flag to triage the row by.
+
+BALNEO = "naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal"
+SPORT = "naredba-1-ot-30-avgust-2016-g-za-usloviyata-i-reda-za-priem-i-spetsializirana-po"
+#: (наредба, РД-07-8) names exactly one corpus act, so a citation of it
+#: lands on the single-candidate branch, and its subject carries digits.
+CHL_327 = "naredba-rd-07-8-ot-27-oktomvri-2010-g-za-reda-za-izvarshvane-na-proverka-po-chl-"
+CHL_327_SUBJECT = "реда за извършване на проверка по чл. 327, ал. 2 от Кодекса на труда"
+
+
+def test_a_swapped_content_word_in_a_year_only_citation_is_flagged(resolver):
+    # „балнеолечебен“ became „пчеларство“. The number and the year still
+    # match one act, so the branch attributes it; the point is that the
+    # row can no longer look clean. Refusing instead would trade against
+    # the renamed titles this branch exists to catch, so the finding is a
+    # flag and the coverage map routes it to the reasoning pass.
+    result = resolver.resolve(
+        "Наредба № 04-14 от 2019 г. за условията и реда за сертифициране на "
+        "пчеларство медикъл спа център спа център уелнес център и таласотерапевтичен "
+        "център"
+    )
+    assert result.law_id == BALNEO
+    assert "content_mismatch" in result.flags
+
+
+def test_a_renamed_title_in_a_year_only_citation_still_resolves(resolver):
+    # The other side of the same branch: lex.bg renamed this наредба in
+    # 2019, so a 2016 material and the corpus differ by one content word
+    # and are one act. It resolves, and the flag says why it is not exact.
+    result = resolver.resolve(
+        "Наредба № 04-14 от 2019 г. за условията и реда за сертифициране на "
+        "балнеолечебен медикъл спа център спа център уелнес център и "
+        "таласотерапевтичен център"
+    )
+    assert result.law_id == BALNEO
+    assert "content_mismatch" not in result.flags
+
+
+@pytest.mark.parametrize(
+    "subject",
+    [
+        "реда за извършване на проверка по чл. 328, ал. 2 от Кодекса на труда",
+        "реда за извършване на проверка по чл. 327, ал. 3 от Кодекса на труда",
+    ],
+)
+def test_a_digit_inside_the_subject_clause_is_never_crossed(resolver, subject):
+    # „чл. 327, ал. 2“ and „чл. 328, ал. 2“ are different provisions and
+    # so different наредби. A renamed title, which is what this branch
+    # exempts, does not change its digits, so nothing in the exemption
+    # covers dropping the digit guard.
+    result = resolver.resolve(f"Наредба № РД-07-8 от 2010 г. за {subject}")
+    assert result.law_id is None
+    assert "numbered_digit_mismatch" in result.flags
+
+
+def test_the_true_digits_still_resolve(resolver):
+    result = resolver.resolve(f"Наредба № РД-07-8 от 2010 г. за {CHL_327_SUBJECT}")
+    assert result.law_id == CHL_327
+
+
+def test_an_exact_key_whose_subject_is_unrelated_is_refused(resolver):
+    # Four coordinates agreeing is a strong key, and the corpus holds five
+    # pairs of acts sharing (type, number, year, full date), which is the
+    # collision this branch cannot see. Two subjects sharing not one
+    # content word are not one act under any renaming.
+    result = resolver.resolve(
+        "Наредба № 04-14 от 9 октомври 2019 г. за пчеларството и опазването на "
+        "пчелните семейства"
+    )
+    assert result.law_id is None
+    assert "subject_unrelated" in result.flags
