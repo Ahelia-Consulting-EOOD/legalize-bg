@@ -1,0 +1,451 @@
+{
+ "slug": "danachno-osiguritelen-protsesualen-kodeks",
+ "round": 1,
+ "blocks": 5559,
+ "sections": 158,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 358,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II.'"
+  },
+  {
+   "block": 359,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Писмени доказателства'"
+  },
+  {
+   "block": 1390,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел III \"а\".'"
+  },
+  {
+   "block": 1393,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Подраздел I.'"
+  },
+  {
+   "block": 2040,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел VI.'"
+  },
+  {
+   "block": 2041,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Процедура за обмен на информация с държавите - членки на Евр'"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 1698,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1711,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1735,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1747,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1750,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1761,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1780,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1798,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1801,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1803,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1867,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1938,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1966,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2007,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2037,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2151,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2179,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2213,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2235,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2242,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2249,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2264,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2276,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2301,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2316,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2353,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2363,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2383,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4253,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4262,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4267,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4270,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4277,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4392,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '2.В чл. 20:'"
+  }
+ ],
+ "exception_kinds": {
+  "drop_inside_act": 6
+ },
+ "source_finding_kinds": {
+  "fragment": 33,
+  "malformed_head": 1
+ },
+ "labels": {
+  "drop": 41,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 10,
+  "chapter_heading": 70,
+  "article_title": 460,
+  "article_head": 460,
+  "alinea": 1467,
+  "item": 1486,
+  "letter": 685,
+  "section_heading": 70,
+  "editorial_note": 173,
+  "subsection_heading": 16,
+  "continuation": 19,
+  "provisions_heading": 167,
+  "paragraph_sign": 248,
+  "quoted": 181,
+  "adoption_formula": 1,
+  "annex_heading": 1,
+  "repeal_note": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 358,
+   "text": "Раздел II.",
+   "note": "second print of Раздел II with its pre-amendment title (359) after the amended title at 357; duplicate of 356, not a new section; alternative editorial_note"
+  },
+  {
+   "block": 359,
+   "text": "Писмени доказателства",
+   "note": "pre-amendment title of Раздел II, second line of the duplicate heading at 358; the amended title is at 357; labelled the same as 358; alternative editorial_note"
+  },
+  {
+   "block": 1390,
+   "text": "Раздел III \"а\".",
+   "note": "repeats the Раздел III \"а\" number already printed with its title just above (1389), with no title of its own, directly before Подраздел I; a rendering duplicate, not a second section; alternative section_heading joined to the same section"
+  },
+  {
+   "block": 1393,
+   "text": "Подраздел I.",
+   "note": "repeats the Подраздел I number already printed with its title just above (1392), with no title of its own, before the first article title; a rendering duplicate, same pattern as the Раздел III \"а\" repeat; alternative subsection_heading joined to the same subsection"
+  },
+  {
+   "block": 2040,
+   "text": "Раздел VI.",
+   "note": "second print of Раздел VI with its pre-2017 title (2041) after the amended title (загл. изм. 2017) at 2039; duplicate of the same section, not a new one; alternative editorial_note"
+  },
+  {
+   "block": 2041,
+   "text": "Процедура за обмен на информация с държавите - членки на Европейския съюз, относ",
+   "note": "superseded pre-2017 title of Раздел VI, second line of the duplicate heading at 2040; the amended title is at 2039; labelled the same as 2040; alternative editorial_note"
+  },
+  {
+   "block": 4865,
+   "text": "-------------------------",
+   "note": "separator rule line before the adoption formula, not act text"
+  },
+  {
+   "block": 5526,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU legislation, not part of the act"
+  },
+  {
+   "block": 5527,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5528,
+   "text": "ДИРЕКТИВА (ЕС) 2025/872 НА СЪВЕТА от 14 април 2025 година за изменение на Директ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5529,
+   "text": "ДИРЕКТИВА (ЕС) 2023/2226 НА СЪВЕТА от 17 октомври 2023 година за изменение на Ди",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5530,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2523 НА СЪВЕТА от 14 декември 2022 година за гарантиране на ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5531,
+   "text": "ДИРЕКТИВА (ЕС) 2021/514 НА СЪВЕТА от 22 март 2021 година за изменение на Директи",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5532,
+   "text": "ДИРЕКТИВА (ЕС) 2020/876 НА СЪВЕТА от 24 юни 2020 година за изменение на Директив",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5533,
+   "text": "ДИРЕКТИВА (ЕС) 2018/822 НА СЪВЕТА от 25 май 2018 година за изменение на Директив",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5534,
+   "text": "ДИРЕКТИВА (ЕС) 2017/1852 НА СЪВЕТА от 10 октомври 2017 година относно механизми ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5535,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2258 НА СЪВЕТА от 6 декември 2016 година за изменение на Дир",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5536,
+   "text": "ДИРЕКТИВА (ЕС) 2016/881 НА СЪВЕТА от 25 май 2016 г. за изменение на Директива 20",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5537,
+   "text": "ДИРЕКТИВА (ЕС) 2015/2376 НА СЪВЕТА от 8 декември 2015 г. за изменение на Директи",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5538,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5539,
+   "text": "ДИРЕКТИВА 2014/107/ЕС НА СЪВЕТА от 9 декември 2014 година за изменение на Директ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5540,
+   "text": "ДИРЕКТИВА 2014/67/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5541,
+   "text": "ДИРЕКТИВА 2011/16/ЕС НА СЪВЕТА от 15 февруари 2011 година относно административн",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5542,
+   "text": "ДИРЕКТИВА 2010/24/ЕС НА СЪВЕТА от 16 март 2010 година относно взаимната помощ пр",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5543,
+   "text": "ДИРЕКТИВА 2006/112/ЕО НА СЪВЕТА от 28 ноември 2006 година относно общата система",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5544,
+   "text": "ДИРЕКТИВА 2006/98/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5545,
+   "text": "ДИРЕКТИВА 2004/106/ЕО НА СЪВЕТА от 16 ноември 2004 година за изменение на Директ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5546,
+   "text": "ДИРЕКТИВА 2004/56/ЕО НА СЪВЕТА от 21 април 2004 година за изменение на Директива",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5547,
+   "text": "ДИРЕКТИВА 2003/93/ЕО НА СЪВЕТА от 7 октомври 2003 година за изменение на Директи",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5548,
+   "text": "ДИРЕКТИВА 96/71/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 1996 годи",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5549,
+   "text": "ДИРЕКТИВА 79/1070/ЕИО НА СЪВЕТА от 6 декември 1979 година за изменение на Директ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5550,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5551,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2018/99 НА КОМИСИЯТА от 22 януари 2018 година за из",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5552,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2016/1963 НА КОМИСИЯТА от 9 ноември 2016 година за ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5553,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5554,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2015/2378 НА КОМИСИЯТА от 15 декември 2015 година з",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5555,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1024/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 2",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5556,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 1189/2011 НА КОМИСИЯТА от 18 ноември 2011 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5557,
+   "text": "РЕГЛАМЕНТ (ЕО) № 987/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5558,
+   "text": "РЕГЛАМЕНТ (ЕО) № 883/2004 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 29 април 2004 ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 6,
+ "diff_lines": 2055
+}
