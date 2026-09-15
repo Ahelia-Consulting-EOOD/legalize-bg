@@ -1,0 +1,152 @@
+{
+ "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+ "round": 2,
+ "blocks": 1537,
+ "sections": 47,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    741,
+    742
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    844,
+    845
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1216
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1301
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1342
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1381
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1399
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   741,
+   742,
+   844,
+   845,
+   1216,
+   1301,
+   1342,
+   1381,
+   1399
+  ],
+  "D-072/judgement": [
+   843
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 10,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 12,
+  "chapter_heading": 32,
+  "article_title": 92,
+  "article_head": 102,
+  "item": 375,
+  "alinea": 312,
+  "letter": 93,
+  "section_heading": 30,
+  "continuation": 21,
+  "editorial_note": 149,
+  "provisions_heading": 147,
+  "paragraph_sign": 156,
+  "adoption_formula": 1,
+  "annex_heading": 1,
+  "repeal_note": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1528,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act; editorial_note also plausible"
+  },
+  {
+   "block": 1529,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1530,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1531,
+   "text": "ДИРЕКТИВА 2009/133/ЕО НА СЪВЕТА от 19 октомври 2009 година относно общата систем",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1532,
+   "text": "ДИРЕКТИВА 2009/55/ЕО НА СЪВЕТА от 25 май 2009 година за освобождаване от данъчно",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1533,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1534,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2472 НА КОМИСИЯТА от 14 декември 2022 година относно деклари",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1535,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/972 НА КОМИСИЯТА от 2 юли 2020 година за изменение на Реглам",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1536,
+   "text": "РЕГЛАМЕНТ (ЕС) № 702/2014 НА КОМИСИЯТА от 25 юни 2014 година относно деклариране",
+   "note": "lex.bg related EU legislation list"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 470
+}
