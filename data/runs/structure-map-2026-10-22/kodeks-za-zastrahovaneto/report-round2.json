@@ -1,0 +1,354 @@
+{
+ "slug": "kodeks-za-zastrahovaneto",
+ "round": 2,
+ "blocks": 6186,
+ "sections": 188,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "duplicate_number",
+   "blocks": [
+    5362,
+    5363
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    159,
+    160
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1749,
+    1750
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2455,
+    2456
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2709,
+    2710
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    4282,
+    4283
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    4363,
+    4364
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    5692
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    5871
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   159,
+   160,
+   1749,
+   1750,
+   2455,
+   2456,
+   2709,
+   2710,
+   4282,
+   4283,
+   4363,
+   4364,
+   5692,
+   5871
+  ],
+  "D-072/judgement": [
+   3449
+  ],
+  "D-072/6": [
+   5363
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 45,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 48,
+  "chapter_heading": 120,
+  "article_title": 719,
+  "article_head": 719,
+  "item": 1649,
+  "alinea": 1844,
+  "letter": 263,
+  "section_heading": 152,
+  "editorial_note": 67,
+  "subsection_heading": 12,
+  "provisions_heading": 59,
+  "paragraph_sign": 96,
+  "continuation": 6,
+  "quoted": 11,
+  "adoption_formula": 1,
+  "annex_heading": 6,
+  "annex_row": 366
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome button"
+  },
+  {
+   "block": 6142,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6143,
+   "text": "Директиви:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6144,
+   "text": "ДИРЕКТИВА (ЕС) 2023/2864 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 202",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6145,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2556 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 202",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6146,
+   "text": "ДИРЕКТИВА (ЕС) 2021/2118 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 2021",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6147,
+   "text": "ДИРЕКТИВА (ЕС) 2019/2177 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 декември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6148,
+   "text": "ДИРЕКТИВА (ЕС) 2018/411 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 март 2018 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6149,
+   "text": "ДИРЕКТИВА (ЕС) 2017/828 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2017 г. з",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6150,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2341 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6151,
+   "text": "ДИРЕКТИВА (ЕС) 2016/1034 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юни 2016 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6152,
+   "text": "ДИРЕКТИВА (ЕС) 2016/97 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 януари 2016 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6153,
+   "text": "ДИРЕКТИВА 2014/65/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6154,
+   "text": "ДИРЕКТИВА 2014/51/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6155,
+   "text": "ДИРЕКТИВА 2013/58/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2013 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6156,
+   "text": "ДИРЕКТИВА 2013/36/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 юни 2013 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6157,
+   "text": "ДИРЕКТИВА 2012/23/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 септември 2012 г",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6158,
+   "text": "ДИРЕКТИВА 2011/89/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 ноември 2011 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6159,
+   "text": "ДИРЕКТИВА 2011/61/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2011 година о",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6160,
+   "text": "ДИРЕКТИВА 2009/138/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2009 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6161,
+   "text": "ДИРЕКТИВА 2009/103/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6162,
+   "text": "ДИРЕКТИВА 2009/65/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юли 2009 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6163,
+   "text": "ДИРЕКТИВА 2002/87/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 2002 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6164,
+   "text": "ДИРЕКТИВА 91/674/ЕИО НА СЪВЕТА от 19 декември 1991 година относно годишните счет",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6165,
+   "text": "ДИРЕКТИВА НА СЪВЕТА от 20 юни 1991 г. за прилагане на Споразумението между Европ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6166,
+   "text": "Регламенти:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6167,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2554 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 202",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6168,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/852 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 юни 2020 годи",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6169,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/2088 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6170,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/1238 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6171,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/1131 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2017 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6172,
+   "text": "РЕГЛАМЕНТ (EС) 2017/1129 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2017 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6173,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6174,
+   "text": "РЕГЛАМЕНТ (ЕС) 2015/2365 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2015",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6175,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2015/462 НА КОМИСИЯТА от 19 март 2015 година за уст",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6176,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2015/35 НА КОМИСИЯТА от 10 октомври 2014 година за допъ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6177,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1286/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 ноември 20",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6178,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6179,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1024/2013 НА СЪВЕТА от 15 октомври 2013 година за възлагане на ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6180,
+   "text": "РЕГЛАМЕНТ (ЕС) № 648/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 юли 2012 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6181,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1095/2010 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 20",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6182,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1094/2010 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 20",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6183,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1060/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6184,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1435/2003 НА СЪВЕТА от 22 юли 2003 година относно устава на Евр",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 6185,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2157/2001 НА СЪВЕТА от 8 октомври 2001 година относно Устава на",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 2826
+}
