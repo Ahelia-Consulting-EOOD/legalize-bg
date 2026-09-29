@@ -1,0 +1,337 @@
+{
+ "slug": "kodeks-na-truda",
+ "round": 1,
+ "blocks": 3209,
+ "sections": 107,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 2115,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Глава седемнадесета.'"
+  },
+  {
+   "block": 2116,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'ТРУДОВА КНИЖКА И ТРУДОВ СТАЖ'"
+  },
+  {
+   "block": 2117,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел I.'"
+  },
+  {
+   "block": 2118,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Трудова книжка'"
+  },
+  {
+   "block": 1007,
+   "kind": "low_confidence",
+   "detail": "unnumbered title line printed before the repeal note of Раздел II, so not that section's heading; likely title of the following article; section_heading plausible if no Раздел line follows"
+  },
+  {
+   "block": 2684,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law, printed in capitals as the last line of the heading Преходни разпоредби КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ НА КОДЕКСА НА ТРУДА; editorial_note plausible as a separate lex.bg note"
+  },
+  {
+   "block": 2688,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law, printed in capitals as the last line of the heading Преходни разпоредби КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА КОДЕКСА НА ТРУДА; editorial_note plausible as a separate lex.bg note"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 2673,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {
+  "drop_inside_act": 4,
+  "low_confidence": 3
+ },
+ "source_finding_kinds": {
+  "fragment": 1
+ },
+ "labels": {
+  "drop": 51,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 40,
+  "article_title": 513,
+  "article_head": 510,
+  "alinea": 828,
+  "item": 704,
+  "section_heading": 90,
+  "letter": 37,
+  "repeal_note": 8,
+  "unnumbered_item": 10,
+  "provisions_heading": 178,
+  "paragraph_sign": 144,
+  "continuation": 2,
+  "quoted": 10,
+  "editorial_note": 82
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site button"
+  },
+  {
+   "block": 2115,
+   "text": "Глава седемнадесета.",
+   "note": "second Глава седемнадесета line followed by the chapter's pre-2025 title, superseded by the amended title in force from 01.06.2025 printed just before; keeping it as chapter_heading would duplicate the chapter address; chapter_heading plausible if the old wording is to be kept"
+  },
+  {
+   "block": 2116,
+   "text": "ТРУДОВА КНИЖКА И ТРУДОВ СТАЖ",
+   "note": "pre-2025 title of Глава седемнадесета, superseded by the amended title in force from 01.06.2025 printed earlier; must share the label of block 2115 (its first line); chapter_heading plausible if the old wording is to be kept"
+  },
+  {
+   "block": 2117,
+   "text": "Раздел I.",
+   "note": "first of two Раздел I lines in this chapter; it carries the superseded old title (2118), and a second Раздел I with the amended title follows at 2119; keeping it would duplicate the section address; section_heading plausible if the old wording is to be kept"
+  },
+  {
+   "block": 2118,
+   "text": "Трудова книжка",
+   "note": "superseded old title of Раздел I; a second Раздел I line follows at 2119 with the amended title; must share the label of block 2117 (its first line); section_heading plausible if the old wording is to be kept"
+  },
+  {
+   "block": 3163,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's related EU legislation list heading, not part of the act"
+  },
+  {
+   "block": 3164,
+   "text": "Директиви:",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3165,
+   "text": "ДИРЕКТИВА (ЕС) 2023/970 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 10 май 2023 годи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3166,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2041 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 октомври 202",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3167,
+   "text": "ДИРЕКТИВА (ЕС) 2019/2034 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3168,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1158 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3169,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1152 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3170,
+   "text": "ДИРЕКТИВА (ЕС) 2018/957 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 28 юни 2018 годи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3171,
+   "text": "ДИРЕКТИВА (ЕС) 2017/164 НА КОМИСИЯТА от 31 януари 2017 година за установяване на",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3172,
+   "text": "ДИРЕКТИВА 2014/67/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3173,
+   "text": "ДИРЕКТИВА 2013/59/ЕВРАТОМ НА СЪВЕТА от 5 декември 2013 година за определяне на о",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3174,
+   "text": "ДИРЕКТИВА 2009/38/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 май 2009 година з",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3175,
+   "text": "ДИРЕКТИВА 2008/104/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 го",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3176,
+   "text": "ДИРЕКТИВА 2006/54/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юли 2006 година з",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3177,
+   "text": "ДИРЕКТИВА 2003/88/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 ноември 2003 годи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3178,
+   "text": "ДИРЕКТИВА 2003/72/ЕО НА СЪВЕТА от 22 юли 2003 година за допълване на Устава на Е",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3179,
+   "text": "ДИРЕКТИВА 2002/15/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 март 2002 година",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3180,
+   "text": "ДИРЕКТИВА 2002/14/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 март 2002 година",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3181,
+   "text": "ДИРЕКТИВА 2001/86/ЕО НА СЪВЕТА от 8 октомври 2001 година за допълнение на Устава",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3182,
+   "text": "ДИРЕКТИВА 2001/23/ЕО НА СЪВЕТА от 12 март 2001 година относно сближаването на за",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3183,
+   "text": "ДИРЕКТИВА 2000/79/ЕО НА СЪВЕТА от 27 ноември 2000 година относно Европейското сп",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3184,
+   "text": "ДИРЕКТИВА 2000/78/ЕО НА СЪВЕТА от 27 ноември 2000 година за създаване на основна",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3185,
+   "text": "ДИРЕКТИВА 1999/70/ЕО НА СЪВЕТА от 28 юни 1999 година относно Рамково споразумени",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3186,
+   "text": "ДИРЕКТИВА 1999/63/ЕО НА СЪВЕТА от 21 юни 1999 година относно Споразумението за о",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3187,
+   "text": "ДИРЕКТИВА 98/59/ЕО НА СЪВЕТА от 20 юли 1998 година за сближаване на законодателс",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3188,
+   "text": "ДИРЕКТИВА 97/81/ЕО НА СЪВЕТА от 15 декември 1997 година относно Рамково споразум",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3189,
+   "text": "ДИРЕКТИВА 97/74/ЕО НА СЪВЕТА от 15 декември 1997 година за включване на Обединен",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3190,
+   "text": "ДИРЕКТИВА 96/71/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 1996 годи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3191,
+   "text": "ДИРЕКТИВА 94/33/ЕО НА СЪВЕТА от 22 юни 1994 година за закрила на младите хора на",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3192,
+   "text": "ДИРЕКТИВА 92/104/ЕИО НА СЪВЕТА от 3 декември 1992 година относно минималните изи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3193,
+   "text": "ДИРЕКТИВА 92/91/ЕИО НА СЪВЕТА от 3 ноември 1992 година за минималните изисквания",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3194,
+   "text": "ДИРЕКТИВА 92/85/ЕИО НА СЪВЕТА от 19 октомври 1992 година за въвеждане на мерки з",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3195,
+   "text": "ДИРЕКТИВА 91/383/ЕИО НА СЪВЕТА от 25 юни 1991 година за допълнение на мерките за",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3196,
+   "text": "ДИРЕКТИВА 89/656/ЕИО НА СЪВЕТА от 30 ноември 1989 година относно минималните изи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3197,
+   "text": "ДИРЕКТИВА 89/391/ЕИО НА СЪВЕТА от 12 юни 1989 година за въвеждане на мерки за на",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3198,
+   "text": "Регламенти:",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3199,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/2033 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3200,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/2402 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 201",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3201,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/1129 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2017 г. ",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3202,
+   "text": "РЕГЛАМЕНТ (ЕС) № 909/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3203,
+   "text": "РЕГЛАМЕНТ (ЕС) № 600/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 го",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3204,
+   "text": "РЕГЛАМЕНТ (ЕС) № 596/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 ",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3205,
+   "text": "РЕГЛАМЕНТ (ЕС) № 575/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 юни 2013 го",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3206,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1024/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 2",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3207,
+   "text": "РЕГЛАМЕНТ (ЕС) № 492/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 април 2011 г",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3208,
+   "text": "РЕГЛАМЕНТ (ЕО) 1435/2003 НА СЪВЕТА от 22 юли 2003 година относно устава на Европ",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 7,
+ "diff_lines": 1804
+}
