@@ -1,0 +1,54 @@
+{
+ "act": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+ "materials": [
+  {
+   "material": 3951,
+   "issue": "59/2007",
+   "operations": 8,
+   "body_after_sha256": "cce9f5a507c913e8648aaa83daa28481710ef03ca51fd60ffe5d21cd83023c87"
+  },
+  {
+   "material": 22498,
+   "issue": "47/2009",
+   "operations": 5,
+   "body_after_sha256": "4780159324a60672f6cb0dc3aa1f2952e1554376c4e2fdae8b68f72876ba0dbf"
+  },
+  {
+   "material": 41709,
+   "issue": "100/2010",
+   "operations": 1,
+   "body_after_sha256": "449282293c0ff5bba9d78d15469de1e224dcf96106d7cc26b5d920e1d1d82851"
+  },
+  {
+   "material": 201987,
+   "issue": "106/2023",
+   "operations": 1,
+   "body_after_sha256": "99c5b86a075421f8b963deee54b8e01dd05a7766276fcbbe09095eb8e4ce1323"
+  },
+  {
+   "material": 214105,
+   "issue": "39/2024",
+   "operations": 1,
+   "body_after_sha256": "0999cf3ca2f44d22c5b985071d62945d87f28a7ba43d392acdca3b2ddf64f914"
+  },
+  {
+   "material": 246208,
+   "issue": "92/2026",
+   "operations": 6,
+   "body_after_sha256": "9d3dcb1b4a7a876355afacee09b7941975e6f6398e69613f075f02c5dc320677"
+  }
+ ],
+ "operations_by_kind": {
+  "no_text_change": 5,
+  "replace_words": 8,
+  "replace_sentence": 1,
+  "delete_words": 2,
+  "repeal": 1,
+  "replace_provision": 1,
+  "insert_provision": 2,
+  "renumber": 2
+ },
+ "unexplained_lexbg_issues": [],
+ "applied_sha256": "9d3dcb1b4a7a876355afacee09b7941975e6f6398e69613f075f02c5dc320677",
+ "applied_at": "2026-11-01T12:19:18+00:00"
+}
