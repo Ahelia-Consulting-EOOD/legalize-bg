@@ -1,0 +1,297 @@
+{
+ "slug": "zakon-za-sadebnata-vlast",
+ "round": 2,
+ "blocks": 3430,
+ "sections": 87,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 1756,
+   "kind": "malformed_head",
+   "detail": "alinea without its closing bracket: '(2 (Нова - ДВ, бр. 11 от 2020 '"
+  }
+ ],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    115
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    818,
+    819
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    867,
+    868
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1483,
+    1484
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1863,
+    1864
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1867,
+    1868
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2143,
+    2144
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2268,
+    2269
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2467,
+    2468
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2538
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3045,
+    3046
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3140,
+    3141
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3279
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3372,
+    3373
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   115,
+   818,
+   819,
+   867,
+   868,
+   1483,
+   1484,
+   1863,
+   1864,
+   1867,
+   1868,
+   2143,
+   2144,
+   2268,
+   2269,
+   2467,
+   2468,
+   2538,
+   3045,
+   3046,
+   3140,
+   3141,
+   3279,
+   3372,
+   3373
+  ],
+  "D-072/8": [
+   2837
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "malformed_head": 1
+ },
+ "labels": {
+  "drop": 25,
+  "title": 1,
+  "preamble": 1,
+  "chapter_heading": 48,
+  "article_head": 561,
+  "alinea": 1208,
+  "section_heading": 96,
+  "item": 982,
+  "letter": 36,
+  "provisions_heading": 158,
+  "paragraph_sign": 211,
+  "quoted": 1,
+  "adoption_formula": 1,
+  "editorial_note": 101
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 115,
+   "text": "Раздел I \"а\".",
+   "note": "repeated 'Раздел I \"а\".' after its title is already placed; lex.bg duplicate rendering of the heading; else section_heading"
+  },
+  {
+   "block": 1483,
+   "text": "Раздел II.",
+   "note": "repeated 'Раздел II.' introducing the superseded title wording shown by lex.bg; else section_heading"
+  },
+  {
+   "block": 1484,
+   "text": "Конкурс за младши съдии и младши прокурори. Конкурс за първоначално назначаване ",
+   "note": "superseded earlier wording of the section title (before 2016 amendment) repeated by lex.bg; else section_heading"
+  },
+  {
+   "block": 1863,
+   "text": "Глава десета.",
+   "note": "repeated 'Глава десета.' introducing the superseded chapter title shown by lex.bg; else chapter_heading"
+  },
+  {
+   "block": 1864,
+   "text": "МЛАДШИ СЪДИИ И МЛАДШИ ПРОКУРОРИ. СЪДЕБНИ ПОМОЩНИЦИ И ПРОКУРОРСКИ ПОМОЩНИЦИ (ЗАГЛ",
+   "note": "superseded earlier wording of chapter title (2009) repeated by lex.bg; else chapter_heading"
+  },
+  {
+   "block": 1867,
+   "text": "Раздел I.",
+   "note": "repeated 'Раздел I.' introducing the superseded section title shown by lex.bg; else section_heading"
+  },
+  {
+   "block": 1868,
+   "text": "Младши съдии и младши прокурори (Загл. изм. - ДВ, бр. 33 от 2009 г.)",
+   "note": "superseded earlier wording of section title (2009) repeated by lex.bg; else section_heading"
+  },
+  {
+   "block": 2143,
+   "text": "Раздел I.",
+   "note": "repeated 'Раздел I.' after its title is already placed, followed by truncated fragment; lex.bg duplicate rendering; else section_heading"
+  },
+  {
+   "block": 2144,
+   "text": "Дис",
+   "note": "truncated fragment 'Дис' of the section title already placed; rendering artifact; else section_heading"
+  },
+  {
+   "block": 2268,
+   "text": "Раздел II.",
+   "note": "repeated 'Раздел II.' after its title is already placed, followed by truncated fragment; lex.bg duplicate rendering; else section_heading"
+  },
+  {
+   "block": 2269,
+   "text": "Дисциплинарна",
+   "note": "truncated fragment 'Дисциплинарна' of the section title already placed; rendering artifact; else section_heading"
+  },
+  {
+   "block": 2467,
+   "text": "Глава осемнадесета \"а\".",
+   "note": "repeated 'Глава осемнадесета \"а\".' after its title is already placed, followed by truncated fragment; lex.bg duplicate rendering; else chapter_heading"
+  },
+  {
+   "block": 2468,
+   "text": "У",
+   "note": "truncated fragment 'У' of the chapter title already placed; rendering artifact; else chapter_heading"
+  },
+  {
+   "block": 2538,
+   "text": "Раздел III.",
+   "note": "repeated 'Раздел III.' after its title is already placed; lex.bg duplicate rendering; else section_heading"
+  },
+  {
+   "block": 2837,
+   "text": "-------------------------",
+   "note": "dashed separator line with no content; editorial_note also plausible"
+  },
+  {
+   "block": 3421,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU acts, not part of the act; editorial_note plausible"
+  },
+  {
+   "block": 3422,
+   "text": "Директиви:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3423,
+   "text": "ДИРЕКТИВА (ЕС) 2019/884 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 април 2019 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3424,
+   "text": "ДИРЕКТИВА (ЕС) 2016/680 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3425,
+   "text": "Регламенти:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3426,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3427,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3428,
+   "text": "Решения:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3429,
+   "text": "РАМКОВО РЕШЕНИЕ 2009/315/ПВР НА СЪВЕТА от 26 февруари 2009 година относно органи",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 230
+}

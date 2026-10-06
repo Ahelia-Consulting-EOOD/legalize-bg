@@ -1,0 +1,250 @@
+{
+ "slug": "zakon-za-sadebnata-vlast",
+ "round": 1,
+ "blocks": 3430,
+ "sections": 87,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 115,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел I \"а\".'"
+  },
+  {
+   "block": 1483,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II.'"
+  },
+  {
+   "block": 1484,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Конкурс за младши съдии и младши прокурори. Конкурс за първо'"
+  },
+  {
+   "block": 1863,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Глава десета.'"
+  },
+  {
+   "block": 1864,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'МЛАДШИ СЪДИИ И МЛАДШИ ПРОКУРОРИ. СЪДЕБНИ ПОМОЩНИЦИ И ПРОКУРО'"
+  },
+  {
+   "block": 1867,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел I.'"
+  },
+  {
+   "block": 1868,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Младши съдии и младши прокурори (Загл. изм. - ДВ, бр. 33 от '"
+  },
+  {
+   "block": 2143,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел I.'"
+  },
+  {
+   "block": 2144,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Дис'"
+  },
+  {
+   "block": 2268,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II.'"
+  },
+  {
+   "block": 2269,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Дисциплинарна'"
+  },
+  {
+   "block": 2467,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Глава осемнадесета \"а\".'"
+  },
+  {
+   "block": 2468,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'У'"
+  },
+  {
+   "block": 2538,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел III.'"
+  },
+  {
+   "block": 1756,
+   "kind": "label_text_mismatch",
+   "detail": "alinea n='2' on '(2 (Нова - ДВ, бр. 11 от 2020 '"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 817,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 818"
+  },
+  {
+   "block": 866,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 867"
+  }
+ ],
+ "exception_kinds": {
+  "drop_inside_act": 14,
+  "label_text_mismatch": 1
+ },
+ "source_finding_kinds": {
+  "empty_section": 2
+ },
+ "labels": {
+  "drop": 25,
+  "title": 1,
+  "preamble": 1,
+  "chapter_heading": 48,
+  "article_head": 561,
+  "alinea": 1208,
+  "section_heading": 96,
+  "item": 982,
+  "letter": 36,
+  "provisions_heading": 158,
+  "paragraph_sign": 211,
+  "quoted": 1,
+  "adoption_formula": 1,
+  "editorial_note": 101
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 115,
+   "text": "Раздел I \"а\".",
+   "note": "lex.bg duplicate of the Раздел I \"а\" number line already printed at 113; section_heading if duplicates are kept"
+  },
+  {
+   "block": 1483,
+   "text": "Раздел II.",
+   "note": "lex.bg duplicate Раздел II number line introducing the superseded title; section_heading if duplicates are kept"
+  },
+  {
+   "block": 1484,
+   "text": "Конкурс за младши съдии и младши прокурори. Конкурс за първоначално назначаване ",
+   "note": "superseded 2011 wording of the Раздел II title printed again by lex.bg; editorial_note also plausible"
+  },
+  {
+   "block": 1863,
+   "text": "Глава десета.",
+   "note": "lex.bg duplicate Глава десета number line introducing the superseded 2009 title; chapter_heading if duplicates are kept"
+  },
+  {
+   "block": 1864,
+   "text": "МЛАДШИ СЪДИИ И МЛАДШИ ПРОКУРОРИ. СЪДЕБНИ ПОМОЩНИЦИ И ПРОКУРОРСКИ ПОМОЩНИЦИ (ЗАГЛ",
+   "note": "superseded 2009 chapter title printed again by lex.bg; editorial_note also plausible"
+  },
+  {
+   "block": 1867,
+   "text": "Раздел I.",
+   "note": "lex.bg duplicate Раздел I number line introducing the superseded 2009 title; section_heading if duplicates are kept"
+  },
+  {
+   "block": 1868,
+   "text": "Младши съдии и младши прокурори (Загл. изм. - ДВ, бр. 33 от 2009 г.)",
+   "note": "superseded 2009 section title printed again by lex.bg; editorial_note also plausible"
+  },
+  {
+   "block": 2143,
+   "text": "Раздел I.",
+   "note": "lex.bg duplicate Раздел I number line followed by a truncated title fragment; section_heading if duplicates are kept"
+  },
+  {
+   "block": 2144,
+   "text": "Дис",
+   "note": "truncated fragment of the duplicated section title, site rendering artifact"
+  },
+  {
+   "block": 2268,
+   "text": "Раздел II.",
+   "note": "lex.bg duplicate Раздел II number line followed by a truncated title fragment; section_heading if duplicates are kept"
+  },
+  {
+   "block": 2269,
+   "text": "Дисциплинарна",
+   "note": "truncated fragment of the duplicated section title, site rendering artifact"
+  },
+  {
+   "block": 2467,
+   "text": "Глава осемнадесета \"а\".",
+   "note": "lex.bg duplicate Глава осемнадесета \"а\" number line followed by a truncated fragment; chapter_heading if duplicates are kept"
+  },
+  {
+   "block": 2468,
+   "text": "У",
+   "note": "truncated fragment of the duplicated chapter title, site rendering artifact"
+  },
+  {
+   "block": 2538,
+   "text": "Раздел III.",
+   "note": "lex.bg duplicate Раздел III number line after the section title; section_heading if duplicates are kept"
+  },
+  {
+   "block": 2837,
+   "text": "-------------------------",
+   "note": "dashed separator line with no content; editorial_note also plausible"
+  },
+  {
+   "block": 3421,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU acts, not part of the act; editorial_note plausible"
+  },
+  {
+   "block": 3422,
+   "text": "Директиви:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3423,
+   "text": "ДИРЕКТИВА (ЕС) 2019/884 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 април 2019 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3424,
+   "text": "ДИРЕКТИВА (ЕС) 2016/680 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3425,
+   "text": "Регламенти:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3426,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3427,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3428,
+   "text": "Решения:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3429,
+   "text": "РАМКОВО РЕШЕНИЕ 2009/315/ПВР НА СЪВЕТА от 26 февруари 2009 година относно органи",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 15,
+ "diff_lines": 253
+}
