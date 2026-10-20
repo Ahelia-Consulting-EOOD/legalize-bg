@@ -8,7 +8,7 @@
    "kind": "over-length",
    "line": 0,
    "col": 0,
-   "fp": "doc-86e15f2784",
+   "fp": "doc-2f0205d229",
    "repeat": 0,
    "verdict": "keep",
    "reason": "the owner asked for state, decisions and plan in one document; each section serves an item of section 7"
@@ -19,10 +19,10 @@
    "kind": "undefined-code-name",
    "line": 18,
    "col": 265,
-   "fp": "dd43a185a3",
+   "fp": "6a63eca42a",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
+   "reason": "defined in the glossary (decision log, future-requirements register)"
   },
   {
    "id": "r3",
@@ -96,7 +96,7 @@
    "kind": "long-sentence",
    "line": 60,
    "col": 0,
-   "fp": "14bdcd2f98",
+   "fp": "74bd39ee11",
    "repeat": 0,
    "verdict": "keep",
    "reason": "a list sentence the reader scans item by item"
@@ -137,24 +137,46 @@
   {
    "id": "r13",
    "gate": "reader",
-   "kind": "bare-number",
-   "line": 85,
+   "kind": "long-sentence",
+   "line": 83,
    "col": 0,
-   "fp": "7bab760692",
+   "fp": "9740395516",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "unit and scenario are in the same sentence"
+   "reason": "a list sentence the reader scans item by item"
   },
   {
    "id": "r14",
    "gate": "reader",
+   "kind": "bare-number",
+   "line": 85,
+   "col": 0,
+   "fp": "71b5500145",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r15",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 85,
+   "col": 0,
+   "fp": "71b5500145",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r16",
+   "gate": "reader",
    "kind": "undefined-code-name",
    "line": 102,
    "col": 82,
-   "fp": "e54f7df0f1",
+   "fp": "64f8342328",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
+   "reason": "defined in the glossary (decision log, future-requirements register)"
   }
  ]
 }
