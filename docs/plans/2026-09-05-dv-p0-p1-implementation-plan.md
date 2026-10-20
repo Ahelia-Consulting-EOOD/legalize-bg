@@ -1,5 +1,7 @@
 # Graded Source Model P0/P1 Implementation Plan (coverage map completion, provenance block, pilot)
 
+> **Amended 2026-10-21 (D-066, D-067, D-068).** The decision parts of Tasks A1 (instruction segmenter), A5 (resolver reasoning pass) and B8 (Gazette material parser) move to the reasoning run: a script lists, the reasoning run decides and records, the gate writes. The consolidation engine this plan defers to Phase 4 is the reasoning run, so `[reforma]` commits no longer wait for an engine (D-064 item 5 reopened). The body fetch (P0 bodies) is scheduled for the night of 22 October 2026. The daily update is the declared loop `dv-daily-sync` (D-067), not a session. The provenance block (B1 to B6), § addressing (B7) and consumer exposure (B5, B5b) stand as written. The plan of record for the direction is `docs/plans/2026-10-21-reasoning-driven-corpus.md`.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking. Simpler tasks run on Opus 5 agents; design questions and final whole-branch review on the session model (owner instruction 2026-09-05).
 
 **Goal:** Finish phase P0 of the graded source model (a coverage map whose chain check is a body scan of Gazette materials) and deliver phase P1 (the provenance block on every act, its exposure on every consumer surface, § addressing, the Gazette material parser, and the first grade A rebuild: Закон за обществения транспорт).

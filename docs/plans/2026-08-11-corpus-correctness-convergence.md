@@ -1,5 +1,7 @@
 # Corpus Correctness Convergence Plan
 
+> **Amended 2026-10-21 (D-065, D-066).** The per-class ladders of Parts III to V are rescoped. A class whose judgement needs the meaning of the text (C1, C2, the residue of C5 and C6, C7, C9) keeps its lister, loses its mechanical fixer, and exits on "zero items without a verdict": the lister prints an index of suspected places, a reasoning run reads each place with its context and records a verdict, and the write gate applies the verdicts. A class whose judgement needs only form (C3, C4, C8, C10, the structural halves of C5 and C6, frontmatter, topology, numbering grammar) keeps "detector zero" and keeps blocking. No further work goes into making pattern checks of free prose cleverer. The plan of record for the direction is `docs/plans/2026-10-21-reasoning-driven-corpus.md`; this document is kept for its evidence, its class definitions and its invariants.
+
 > **For agentic workers:** REQUIRED SUB-SKILL: `superpowers:subagent-driven-development` to
 > execute this plan task-by-task. Process design follows `legal-corpus:iterative-doc-train`;
 > read that skill before dispatching any leg. Steps use checkbox (`- [ ]`) syntax.

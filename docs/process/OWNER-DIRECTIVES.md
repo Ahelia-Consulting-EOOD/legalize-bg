@@ -8,7 +8,7 @@ If this file conflicts with a weaker planning doc, this file wins.
 - status: active
 - owner: ekimir
 - effective date: 2026-04-19
-- last amended: 2026-09-05 (directives 2 and 3 rewritten for the graded source model, D-059/D-061)
+- last amended: 2026-10-21 (directives 15 and 16 added, D-065/D-066; directive 2 gains the stage exit, D-068)
 - review cadence: per-phase gate (before each phase transition)
 
 ## Directives
@@ -18,6 +18,7 @@ If this file conflicts with a weaker planning doc, this file wins.
 
 2. **Държавен вестник is the source wherever its text exists online; lex.bg is a base snapshot and a witness.**
    *Amended 2026-09-05 (D-059). Former wording: lex.bg = bootstrap only; DV = ongoing source. That wording was contradicted by practice for months, since `refresh.py` is an ongoing lex.bg re-scrape pipeline.*
+   *Stage exit (2026-10-21, D-068): once every act's chain from бр. 1/2003 onward is established from Gazette materials by the reasoning run, lex.bg is no longer fetched as a source; it may remain a witness.*
    The Gazette text is the source of truth for every act and every amendment it carries online: per-material HTML from about 2005, issue PDFs from 1 January 1989, nothing before. lex.bg is (a) the base snapshot for text whose Gazette origin is not online and (b) a witness for validation (Directive 3). Every act carries a machine-readable provenance grade and every amendment event its source class. The grades (**A** ДВ-complete, **B** ДВ-audited, **B-pending**, **C** pre-1989 base) and the gate each transition must pass are defined canonically in `docs/process/COVERAGE-FLOOR.md`, section Provenance floor; every other document cites that definition. An act is **ДВ-anchored** at grades A and B. A grade is earned by passing gates, never assigned by source. Ongoing lex.bg re-scrape is permitted only for acts not yet ДВ-anchored (B-pending and C) and is recorded per act; once an act is ДВ-anchored, lex.bg fetches for it are witness-only. A Gazette rebuild of an act is a new pipeline generation for that act, not a repair sweep under Directive 14; the lex.bg snapshot of a grade B or C act is frozen only after the single lex.bg repair sweep (Directive 14) and the FR-041 reference capture have run on it. The provenance fields enter the frontmatter through a Surface 2 IMPLEMENTATION-PREFLIGHT (Directive 4). Grade C acts are handled as a separate track; a paid consolidator account as a one-time source for them is a later owner decision that must revisit D-038 and D-039 first.
 
 3. **Consolidated texts from lex.bg and from the Ministry of Justice portal are witnesses, not truth.**
@@ -56,6 +57,12 @@ If this file conflicts with a weaker planning doc, this file wins.
 
 14. **One repair sweep per pipeline generation.**
     All parser fixes for known classes land before the repair sweep is authorised, so that a single sweep repairs the corpus. Sequential per-class sweeps are forbidden; they multiply cost and leave interleaved states no baseline can describe.
+
+15. **Machines check form and block; the reasoning run decides meaning.**
+    *Added 2026-10-21 (D-065).* Wherever the text has a strict structure (frontmatter, counts, paragraph topology, provenance derivation, chrome and tag remnants, address uniqueness, heading sequence, numbering grammar, commit trailers), a mechanical check runs at the write gate and blocks. Over free prose a mechanical check changes nothing and only lists suspected places; the reasoning run reads the source with its context and decides each item, and the gate records the verdicts. No further work goes into making pattern checks of free prose cleverer. The owner's qualification: the rule is not absolute; what the judgement needs decides where it sits.
+
+16. **Scripts acquire; the reasoning run decides; every decision is recorded before the gate writes.**
+    *Added 2026-10-21 (D-066).* Scripts enumerate, fetch, diff and write through the single write gate. What a Gazette material does to which act, how the amended text reads, how a witness divergence is adjudicated and whether a listed defect is real are decided by a reasoning run, never by a script, and never silently: each decision is a record (act, event, citation, instruction, verdict, lane) that a later reader can re-check against the source. The reasoning run is the consolidation engine; no amendment grammar kernel is built.
 
 ## Notes
 
