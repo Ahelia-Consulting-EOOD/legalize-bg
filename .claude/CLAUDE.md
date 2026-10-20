@@ -86,3 +86,9 @@ Changes to these require IMPLEMENTATION-PREFLIGHT:
 | `docs/sync/ACTIVE.md` | Current work state |
 | `docs/sync/DECISIONS.md` | Decision log |
 | `.ahelia/repo-profile.yaml` | Machine-readable repo profile |
+
+## Owner facts
+
+Each entry is an agent's reading of what the owner said, with the date and where. Readings, not quotes; the owner corrects the line.
+
+- **Mechanical checks stay wherever the text has a strict structure** (owner, 21 October 2026, in the legalize-bg planning session). The 20 October rule that pattern checks of free text only list and the model decides covers free prose only. Code, code-like text and the structured skeleton of an act (YAML frontmatter, JSON and CSV tables, commit trailers, the article and paragraph numbering grammar, address uniqueness, heading sequence) keep mechanical checks, and those checks keep blocking. The rule is not absolute: what the judgement needs decides where it sits, meaning for prose, form for structure.
