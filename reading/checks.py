@@ -9,7 +9,9 @@ is an exception; a separator line of dashes or dots is never one.
 ``text``: a numbered label's number equals the number written in the block, and a
 block that opens like an article, §, alinea, item or letter carries a label that
 can open one; a block that opens with an article or § number carries ``article_head``,
-``paragraph_sign`` or ``quoted`` and nothing else (``hidden_address``); a ``quoted``
+``paragraph_sign`` or ``quoted`` and nothing else (``hidden_address``), except an
+``annex_row`` after an annex heading, since an annex (rules, a statute) keeps its
+own article numbering outside the act's addresses; a ``quoted``
 block that opens like a provision starts with a quotation mark or stands inside a
 quotation that an earlier quoted block opened with one (a run printed without
 marks, as in old acts, goes to the ladder and then to the whole-act read); a §
@@ -133,6 +135,7 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     if [i for _, idxs in lines for i in idxs] != placed:
         ex.append({"block": placed[0] if placed else 0, "kind": "reassembly", "detail": "the lines do not cover the placed blocks once each, in order"})
     run_open = False  # inside a quotation that a quoted block opened with a quotation mark and no block has closed yet
+    in_annex = False  # after the first annex heading: an annex keeps its own article numbering, outside the act's addresses
     for i in placed:
         e = smap.get(i)
         t = blocks[i].text
@@ -189,12 +192,14 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
                 run_open = True
             if _QUOTE_CLOSE.search(t) and not (_QUOTE_OPEN.match(t) and len(t) == 1):
                 run_open = False
-        elif _ADDRESS_LIKE.match(tn):
+        elif _ADDRESS_LIKE.match(tn) and not (label == "annex_row" and in_annex):
             ex.append({"block": i, "kind": "hidden_address", "detail": f"{label} on a line that opens with an address: {t[:40]!r}"})
         elif label not in _OPENERS and label not in _HEADINGS and label not in ("drop", "editorial_note", "repeal_note") and _PROVISION_LIKE.match(tn):
             ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"{label} on a line that opens like a provision: {t[:40]!r}"})
         if label != "quoted":
             run_open = False
+        if label == "annex_heading":
+            in_annex = True
     prev_heading: int | None = None
     for i in placed:
         e = smap.get(i)

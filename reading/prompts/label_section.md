@@ -21,7 +21,7 @@ Labels, with their meaning:
 - `quoted`: text quoted inside the current provision that looks like a provision ("Чл. 12." or "(1)" inside quotation marks or inside an amending instruction) and must not become an address of this act.
 - `provisions_heading`: a heading of Допълнителни, Преходни or Заключителни разпоредби, including those "към Закона за изменение и допълнение на …".
 - `paragraph_sign`: the line that opens a § provision, "§ N."; `n` is the number; "единствен" for "Параграф единствен".
-- `annex_heading`: a heading of a Приложение. `annex_row`: a line that belongs to an annex (table rows, forms, lists).
+- `annex_heading`: a heading of a Приложение. `annex_row`: a line that belongs to an annex (table rows, forms, lists), including the articles and paragraphs of rules or a statute printed as an annex: those keep the annex's own numbering and are never `article_head` or `alinea` of the act.
 - `table_row`: a table row inside a provision that is not an annex.
 - `editorial_note`: lex.bg's own note printed as a separate line, such as "(Изм. - ДВ, бр. 12 от 2020 г.)" or a "Загл. изм." remark.
 - `repeal_note`: a line stating that the act or a provision is repealed (отм.).

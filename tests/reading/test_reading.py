@@ -330,3 +330,11 @@ def test_fourth_review_quoted_runs_last_provisions_malformed_heads_and_placed_ch
     act = _act(["ДОБАВИ В МОИТЕ АКТОВЕ", "Чл. 1. Едно.", "Релевантни актове от Европейското законодателство"])
     _, ex = run_all(act.blocks, {0: {"label": "preamble"}, 1: {"label": "article_head", "n": "1"}, 2: {"label": "annex_heading"}})
     assert [e["block"] for e in ex if e["kind"] == "chrome_placed"] == [0, 2]
+
+
+def test_annex_articles_are_annex_rows_not_hidden_addresses():
+    act = _act(["Чл. 1. Едно.", "Чл. 2. Две.", "Приложение към чл. 2", "ФИНАНСОВИ ПРАВИЛА", "Чл. 1. Бюджетът.", "(2) Текст."])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "annex_row"}, 2: {"label": "annex_heading"}, 3: {"label": "annex_heading"},
+            4: {"label": "annex_row"}, 5: {"label": "annex_row"}}
+    _, ex = run_all(act.blocks, smap)
+    assert [e["block"] for e in ex if e["kind"] == "hidden_address"] == [1], "an annex_row before any annex heading still hides an address"
