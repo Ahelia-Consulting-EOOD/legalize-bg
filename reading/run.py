@@ -74,7 +74,7 @@ def _run_root(out: str) -> Path:
 
 
 def _slug(slug: str) -> str:
-    if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
+    if not re.fullmatch(r"-?[a-z0-9][a-z0-9-]*", slug):
         raise SystemExit(f"not a corpus slug: {slug!r}")
     return slug
 
@@ -129,7 +129,8 @@ def cmd_collect(args) -> int:
         nxt_maps.rename(stale)
         report_note = f"answers of an earlier round {rnd + 1} task set moved to {stale.name}"
     for old_report in run_dir.glob("report-round*.json"):
-        if int(old_report.stem.rsplit("round", 1)[1]) > rnd:
+        m = re.fullmatch(r"report-round(\d+)", old_report.stem)
+        if m and int(m.group(1)) > rnd:
             old_report.unlink()
     report["note"] = report_note
     if tasks:

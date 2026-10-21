@@ -155,16 +155,17 @@ def test_checks_catch_drops_text_mismatch_first_alinea_and_sign_order():
 
 def test_hidden_addresses_and_drops_inside_the_act_are_exceptions():
     """Second review, findings 7 and 8: a continuation or quoted label on an opener, and a drop between placed blocks."""
-    act = _act(["ДОБАВИ", "Чл. 1. Едно.", "Чл. 2. Две.", "§ 2. Текст.", "бележка", "Чл. 3. Три.", "Релевантни актове"])
+    act = _act(["ДОБАВИ В МОИТЕ АКТОВЕ", "Чл. 1. Едно.", "Чл. 2. Две.", "§ 2. Текст.", "бележка", "Чл. 3. Три.",
+                "Релевантни актове от Европейското законодателство", "Регламенти:", "РЕГЛАМЕНТ (ЕС) 2024/1183"])
     smap = {0: {"label": "drop", "note": "chrome"}, 1: {"label": "article_head", "n": "1"}, 2: {"label": "continuation"},
             3: {"label": "quoted"}, 4: {"label": "drop", "note": "looks like chrome"}, 5: {"label": "article_head", "n": "3"},
-            6: {"label": "drop", "note": "chrome"}}
+            6: {"label": "drop", "note": "chrome"}, 7: {"label": "drop", "note": "chrome"}, 8: {"label": "drop", "note": "chrome"}}
     md, ex = run_all(act.blocks, smap)
     by = {(e["kind"], e["block"]) for e in ex}
     assert ("label_text_mismatch", 2) in by, "continuation on Чл. 2."
     assert ("label_text_mismatch", 3) in by, "quoted on § 2. with no quotation mark"
     assert ("drop_inside_act", 4) in by
-    assert not any(e["block"] in (0, 6) and e["kind"].startswith("drop") for e in ex), "chrome before and after the act"
+    assert not any(e["block"] in (0, 6, 7, 8) and e["kind"].startswith("drop") for e in ex), "the page's known chrome before and after the act"
     smap[3] = {"label": "quoted"}
     act2 = _act(["Чл. 1. Едно.", "„Чл. 12. Цитат.“", "§ 2. След чл. 1001 се прибавя:", "Глава X-а", "Чл. 1001а. Текст.", "Чл. 1001б. Текст.", "-----", "Законът е приет."])
     smap2 = {0: {"label": "article_head", "n": "1"}, 1: {"label": "quoted"}, 2: {"label": "paragraph_sign", "n": "2"}, 3: {"label": "quoted"},
@@ -248,3 +249,52 @@ def test_collect_rebuilds_the_map_from_earlier_rounds(tmp_path, monkeypatch):
     assert all(v["label"] in ("title", "unknown") for v in m0.values())
     assert not (d / "report-round1.json").exists()
     assert not list((d / "maps" / "round1").glob("*.json"))
+
+
+def test_third_review_hidden_addresses_and_edge_drops():
+    """Third review, M1 to M4: addresses under other labels, after a closed quotation, in a gap or after the last head; act text dropped at the edges."""
+    # M1: a repealed article labelled repeal_note, also before a suffixed number
+    act = _act(["ЗАКОН", "Чл. 1. а", "Чл. 2. Две.", "Чл. 3. (Отм. - ДВ, бр. 1 от 2000 г.)", "Чл. 3а. Текст."])
+    smap = {0: {"label": "title"}, 1: {"label": "article_head", "n": "1"}, 2: {"label": "article_head", "n": "2"},
+            3: {"label": "repeal_note"}, 4: {"label": "article_head", "n": "3а"}}
+    _, ex = run_all(act.blocks, smap)
+    assert ("hidden_address", 3) in {(e["kind"], e["block"]) for e in ex}
+    for label in ("editorial_note", "unnumbered_alinea", "annex_row", "table_row", "chapter_heading", "unnumbered_item"):
+        smap[3] = {"label": label}
+        _, ex = run_all(act.blocks, smap)
+        assert ("hidden_address", 3) in {(e["kind"], e["block"]) for e in ex}, label
+    # M2: a quoted block after a closed quotation, in the act's own provisions and as the last §
+    act = _act(["Чл. 1. Едно.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. В чл. 5 се създава ал. 3:", "„(3) Текст.“", "§ 2. Текст.", "§ 3. Текст."])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "provisions_heading"}, 2: {"label": "paragraph_sign", "n": "1"},
+            3: {"label": "quoted"}, 4: {"label": "quoted"}, 5: {"label": "paragraph_sign", "n": "3"}}
+    _, ex = run_all(act.blocks, smap)
+    kinds = {(e["kind"], e["block"]) for e in ex}
+    assert ("label_text_mismatch", 4) in kinds, "§ 2 after a closed quotation is not in the run"
+    assert ("hidden_address", 4) in kinds, "§ 2 fills the gap between § 1 and § 3"
+    assert not any(e["kind"] == "sign_gap" for e in ex)
+    smap[5] = {"label": "quoted"}
+    act2 = _act(act.blocks[:5] and [b.text for b in act.blocks[:5]])
+    _, ex = run_all(act2.blocks, {k: v for k, v in smap.items() if k < 5})
+    assert ("hidden_address", 4) in {(e["kind"], e["block"]) for e in ex}, "§ 2 is the number after the last §"
+    # M2/M3: a chapter of the act hidden as a quoted run at the end of the article sequence
+    act = _act(["Чл. 1. Едно.", "Чл. 2. Две.", "Глава трета", "Чл. 3. Три.", "Чл. 4. Четири.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. Текст."])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "article_head", "n": "2"}, 2: {"label": "quoted"}, 3: {"label": "quoted"},
+            4: {"label": "quoted"}, 5: {"label": "provisions_heading"}, 6: {"label": "paragraph_sign", "n": "1"}}
+    _, ex = run_all(act.blocks, smap)
+    assert ("hidden_address", 3) in {(e["kind"], e["block"]) for e in ex}, "Чл. 3 is the number after the last article"
+    # the ЗЗД case still passes: an amending § introduces unmarked provisions of another act
+    act = _act(["Чл. 1. Едно.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. След чл. 1001 се прибавя:", "Глава X-а", "Чл. 1001а. Текст.", "Чл. 1001б. Текст."])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "provisions_heading"}, 2: {"label": "paragraph_sign", "n": "1"},
+            3: {"label": "quoted"}, 4: {"label": "quoted"}, 5: {"label": "quoted"}}
+    _, ex = run_all(act.blocks, smap)
+    assert not any(e["kind"] in ("hidden_address", "label_text_mismatch") for e in ex)
+    # M4: act text dropped at the edges; a separator cell inside a table is not a separator line
+    act = _act(["ЗАКОН ЗА X", "Чл. 1. Едно.", "Вид", "-", "Чл. 2. Две.", "Законът е приет от 41-ото Народно събрание.", "Приложение № 1 към чл. 1", "Образец"])
+    smap = {0: {"label": "drop", "note": "chrome"}, 1: {"label": "article_head", "n": "1"}, 2: {"label": "table_row"}, 3: {"label": "drop", "note": "dash"},
+            4: {"label": "article_head", "n": "2"}, 5: {"label": "drop", "note": "formula"}, 6: {"label": "drop", "note": "annex"}, 7: {"label": "drop", "note": "annex"}}
+    _, ex = run_all(act.blocks, smap)
+    by = {(e["kind"], e["block"]) for e in ex}
+    assert {("drop_outside_act", 0), ("drop_inside_act", 3), ("drop_outside_act", 5), ("drop_outside_act", 6), ("drop_outside_act", 7)} <= by
+    # the ЗЗД fragment
+    _, ex = run_all(_act(["Чл. 5./span> до 7"]).blocks, {0: {"label": "unnumbered_alinea"}})
+    assert any(e["kind"] == "fragment" for e in ex)
