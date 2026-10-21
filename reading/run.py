@@ -85,6 +85,8 @@ def cmd_prepare(args) -> int:
     doc_id = _doc_id(args.slug)
     raw = (RAW / f"{doc_id}.html").read_bytes()
     act = split_lexbg(raw)
+    if not act.has_spine:
+        raise SystemExit(f"{args.slug}: the page {doc_id} has no act (no spine of Title/Article blocks); it is site chrome only, a source finding for the owner")
     (run_dir / "blocks.json").write_text(json.dumps(act.to_dict(), ensure_ascii=False, indent=1), encoding="utf-8")
     (run_dir / "source.txt").write_text(act.source_text + "\n", encoding="utf-8")
     tasks = ladder.round0_tasks(act)

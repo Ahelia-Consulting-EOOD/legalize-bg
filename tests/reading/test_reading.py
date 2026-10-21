@@ -167,11 +167,11 @@ def test_hidden_addresses_and_drops_inside_the_act_are_exceptions():
     assert ("drop_inside_act", 4) in by
     assert not any(e["block"] in (0, 6, 7, 8) and e["kind"].startswith("drop") for e in ex), "the page's known chrome before and after the act"
     smap[3] = {"label": "quoted"}
-    act2 = _act(["Чл. 1. Едно.", "„Чл. 12. Цитат.“", "§ 2. След чл. 1001 се прибавя:", "Глава X-а", "Чл. 1001а. Текст.", "Чл. 1001б. Текст.", "-----", "Законът е приет."])
+    act2 = _act(["Чл. 1. Едно.", "„Чл. 12. Цитат.“", "§ 2. След чл. 1001 се прибавя:", "„Глава X-а", "Чл. 1001а. Текст.", "Чл. 1001б. Текст.“", "-----", "Законът е приет."])
     smap2 = {0: {"label": "article_head", "n": "1"}, 1: {"label": "quoted"}, 2: {"label": "paragraph_sign", "n": "2"}, 3: {"label": "quoted"},
              4: {"label": "quoted"}, 5: {"label": "quoted"}, 6: {"label": "drop", "note": "separator"}, 7: {"label": "adoption_formula"}}
     _, ex2 = run_all(act2.blocks, smap2)
-    assert not any(e["kind"] in ("label_text_mismatch", "drop_inside_act") for e in ex2), "a quoted run and a separator line pass"
+    assert not any(e["kind"] in ("label_text_mismatch", "drop_inside_act") for e in ex2), "a quoted run opened with a mark, and a separator line, pass"
 
 
 def test_numbering_gaps_are_source_findings():
@@ -270,26 +270,23 @@ def test_third_review_hidden_addresses_and_edge_drops():
     _, ex = run_all(act.blocks, smap)
     kinds = {(e["kind"], e["block"]) for e in ex}
     assert ("label_text_mismatch", 4) in kinds, "§ 2 after a closed quotation is not in the run"
-    assert ("hidden_address", 4) in kinds, "§ 2 fills the gap between § 1 and § 3"
-    assert not any(e["kind"] == "sign_gap" for e in ex)
-    smap[5] = {"label": "quoted"}
-    act2 = _act(act.blocks[:5] and [b.text for b in act.blocks[:5]])
+    act2 = _act([b.text for b in act.blocks[:5]])
     _, ex = run_all(act2.blocks, {k: v for k, v in smap.items() if k < 5})
-    assert ("hidden_address", 4) in {(e["kind"], e["block"]) for e in ex}, "§ 2 is the number after the last §"
+    assert ("label_text_mismatch", 4) in {(e["kind"], e["block"]) for e in ex}, "also when it is the act's last §"
     # M2/M3: a chapter of the act hidden as a quoted run at the end of the article sequence
     act = _act(["Чл. 1. Едно.", "Чл. 2. Две.", "Глава трета", "Чл. 3. Три.", "Чл. 4. Четири.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. Текст."])
     smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "article_head", "n": "2"}, 2: {"label": "quoted"}, 3: {"label": "quoted"},
             4: {"label": "quoted"}, 5: {"label": "provisions_heading"}, 6: {"label": "paragraph_sign", "n": "1"}}
     _, ex = run_all(act.blocks, smap)
-    assert ("hidden_address", 3) in {(e["kind"], e["block"]) for e in ex}, "Чл. 3 is the number after the last article"
-    # the ЗЗД case still passes: an amending § introduces unmarked provisions of another act
+    assert {("label_text_mismatch", 3), ("label_text_mismatch", 4)} <= {(e["kind"], e["block"]) for e in ex}, "a run with no mark cannot hide a chapter"
+    # the ЗЗД case: an amending § introduces provisions of another act printed without quotation marks; they go to the ladder
     act = _act(["Чл. 1. Едно.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. След чл. 1001 се прибавя:", "Глава X-а", "Чл. 1001а. Текст.", "Чл. 1001б. Текст."])
     smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "provisions_heading"}, 2: {"label": "paragraph_sign", "n": "1"},
             3: {"label": "quoted"}, 4: {"label": "quoted"}, 5: {"label": "quoted"}}
     _, ex = run_all(act.blocks, smap)
-    assert not any(e["kind"] in ("hidden_address", "label_text_mismatch") for e in ex)
+    assert [e["block"] for e in ex if e["kind"] == "label_text_mismatch"] == [4, 5]
     # M4: act text dropped at the edges; a separator cell inside a table is not a separator line
-    act = _act(["ЗАКОН ЗА X", "Чл. 1. Едно.", "Вид", "-", "Чл. 2. Две.", "Законът е приет от 41-ото Народно събрание.", "Приложение № 1 към чл. 1", "Образец"])
+    act = _act(["ЗАКОН ЗА X", "Чл. 1. Едно.", "Вид", "....................", "Чл. 2. Две.", "Законът е приет от 41-ото Народно събрание.", "Приложение № 1 към чл. 1", "Образец"])
     smap = {0: {"label": "drop", "note": "chrome"}, 1: {"label": "article_head", "n": "1"}, 2: {"label": "table_row"}, 3: {"label": "drop", "note": "dash"},
             4: {"label": "article_head", "n": "2"}, 5: {"label": "drop", "note": "formula"}, 6: {"label": "drop", "note": "annex"}, 7: {"label": "drop", "note": "annex"}}
     _, ex = run_all(act.blocks, smap)
@@ -298,3 +295,38 @@ def test_third_review_hidden_addresses_and_edge_drops():
     # the ЗЗД fragment
     _, ex = run_all(_act(["Чл. 5./span> до 7"]).blocks, {0: {"label": "unnumbered_alinea"}})
     assert any(e["kind"] == "fragment" for e in ex)
+
+
+def test_fourth_review_quoted_runs_last_provisions_malformed_heads_and_placed_chrome():
+    """Fourth review: a quoted run is anchored by an opening mark; the last alinea or item cannot hide as quoted;
+    a malformed § head is a source finding; the page's chrome under a content label is an exception."""
+    # A: a run that stays open through a block ending with a closing mark and punctuation
+    act = _act(["Чл. 1. Едно:", "„(4) Текстът се прилага.“;", "Чл. 1а. Текст.", "Чл. 2. Две."])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "quoted"}, 2: {"label": "quoted"}, 3: {"label": "article_head", "n": "2"}}
+    _, ex = run_all(act.blocks, smap)
+    assert ("label_text_mismatch", 2) in {(e["kind"], e["block"]) for e in ex}, "the quotation closed with “; so Чл. 1а is outside it"
+    # B: a run opened without a mark
+    act = _act(["Чл. 1. Едно:", "Текст без кавички", "Чл. 1а. Текст."])
+    _, ex = run_all(act.blocks, {0: {"label": "article_head", "n": "1"}, 1: {"label": "quoted"}, 2: {"label": "quoted"}})
+    assert ("label_text_mismatch", 2) in {(e["kind"], e["block"]) for e in ex}
+    # a marked run that spans blocks passes
+    act = _act(["§ 1. В чл. 5 се създава:", "„(3) Текст,", "който продължава", "и свършва.“", "§ 2. Текст."])
+    smap = {0: {"label": "paragraph_sign", "n": "1"}, 1: {"label": "quoted"}, 2: {"label": "quoted"}, 3: {"label": "quoted"}, 4: {"label": "paragraph_sign", "n": "2"}}
+    _, ex = run_all(act.blocks, smap)
+    assert not ex
+    # E: the last alinea or item labelled quoted
+    for last in ("(2) Втора.", "2. кметът."):
+        act = _act(["Чл. 1. Едно.", "(1) Първа:", "1. областният управител;", last, "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. Текст."])
+        smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "alinea", "n": "1"}, 2: {"label": "item", "n": "1"}, 3: {"label": "quoted"},
+                4: {"label": "provisions_heading"}, 5: {"label": "paragraph_sign", "n": "1"}}
+        _, ex = run_all(act.blocks, smap)
+        assert ("label_text_mismatch", 3) in {(e["kind"], e["block"]) for e in ex}, last
+    # malformed § heads are heads with a source finding, not label errors
+    act = _act(["Чл. 1. Едно.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1 По смисъла на наредбата", "§ 2 . Изпитът се провежда"])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "provisions_heading"}, 2: {"label": "paragraph_sign", "n": "1"}, 3: {"label": "paragraph_sign", "n": "2"}}
+    _, ex = run_all(act.blocks, smap)
+    assert [e["kind"] for e in ex] == ["malformed_head", "malformed_head"]
+    # the page's chrome under a content label
+    act = _act(["ДОБАВИ В МОИТЕ АКТОВЕ", "Чл. 1. Едно.", "Релевантни актове от Европейското законодателство"])
+    _, ex = run_all(act.blocks, {0: {"label": "preamble"}, 1: {"label": "article_head", "n": "1"}, 2: {"label": "annex_heading"}})
+    assert [e["block"] for e in ex if e["kind"] == "chrome_placed"] == [0, 2]

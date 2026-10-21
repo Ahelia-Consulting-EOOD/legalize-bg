@@ -10,9 +10,11 @@ is an exception; a separator line of dashes or dots is never one.
 block that opens like an article, §, alinea, item or letter carries a label that
 can open one; a block that opens with an article or § number carries ``article_head``,
 ``paragraph_sign`` or ``quoted`` and nothing else (``hidden_address``); a ``quoted``
-one starts with a quotation mark unless it continues a run of quoted blocks whose
-quotation is still open; a quoted block whose number fills a gap in the act's own
-numbering, or is the number after the last head, is a ``hidden_address``.
+block that opens like a provision starts with a quotation mark or stands inside a
+quotation that an earlier quoted block opened with one (a run printed without
+marks, as in old acts, goes to the ladder and then to the whole-act read); a §
+head not written as "§ N." is a ``malformed_head`` source finding; the page's
+known chrome under any label but ``drop`` is ``chrome_placed``.
 ``numbering``: article numbers do not go backwards; alineas start at (1) after an
 article head (or continue the one written in the head) and increase by one;
 items likewise per parent; letters follow the Bulgarian lettering order; § numbers
@@ -41,7 +43,7 @@ _LATIN_TO_CYR = str.maketrans("aBbeEkKmMHoOpPcCTxXy", "аВьеЕкКмМНоО�
 _ARTNUM = re.compile(r"^(\d+)([а-я]?)(\d?)$")
 _ART_TEXT = re.compile(r"^Чл\.\s*(\d+[а-я]?\d?)\.")
 _EDINSTVEN = re.compile(r"^Член\s+единствен\.")
-_SIGN_TEXT = re.compile(r"^(?:§\s*(\d+[а-я]?)|Параграф\s+(единствен))\.")
+_SIGN_TEXT = re.compile(r"^(?:§\s*(\d+[а-я]?)\s*\.?|Параграф\s+(единствен)\.)")  # tolerant: "§ 72 ." and "§ 26 В" are heads with a malformed form
 _ALINEA_TEXT = re.compile(r"^\((\d+[а-я]?)\)")
 _ITEM_TEXT = re.compile(r"^(\d+[а-я]?)\.\s")
 _LETTER_TEXT = re.compile(r"^([а-я])\)")
@@ -53,8 +55,9 @@ _HEADINGS = {"title", "part_heading", "chapter_heading", "section_heading", "sub
 _OPENERS = {"article_head", "paragraph_sign", "alinea", "item", "letter", "quoted", "annex_row", "table_row", "unnumbered_alinea", "unnumbered_item"}
 _ADDRESS_LIKE = re.compile(r"^(Чл\.\s*\d|Член\s+единствен|§\s*\d|Параграф\s+единствен)")
 _QUOTE_OPEN = re.compile(r"^[\"„“«]")
-_SEPARATOR = re.compile(r"^[-.*_ ]{3,}$")  # a separator line of dashes or dots: chrome wherever it stands
-_QUOTE_CLOSE = re.compile(r"[\"“”»]$")
+_SEPARATOR = re.compile(r"^-{3,}$")  # lex.bg's dashed separator line: chrome wherever it stands (dot lines are form fields, act content)
+_QUOTE_CLOSE = re.compile(r"[\"“”»][.;,:)]?$")
+_SIGN_FORM = re.compile(r"^(?:§\s*\d+[а-я]?\.|Параграф\s+единствен\.)(?:\s|$)")
 # the page chrome lex.bg prints before the title and after the act: the only drops allowed outside the act
 START_CHROME = re.compile(r"^(ДОБАВИ В МОИТЕ АКТОВЕ|Lex\.bg)")
 TAIL_CHROME = "Релевантни актове от Европейското законодателство"
@@ -129,17 +132,18 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             ex.append({"block": idxs[0], "kind": "reassembly", "detail": "the assembled line differs from its blocks"})
     if [i for _, idxs in lines for i in idxs] != placed:
         ex.append({"block": placed[0] if placed else 0, "kind": "reassembly", "detail": "the lines do not cover the placed blocks once each, in order"})
-    prev_label, prev_text = "", ""
-    quoted_addrs: dict[tuple[str, str], int] = {}  # addresses written at the start of quoted blocks: checked against the gaps below
+    run_open = False  # inside a quotation that a quoted block opened with a quotation mark and no block has closed yet
     for i in placed:
         e = smap.get(i)
         t = blocks[i].text
         if e is None or e["label"] == "unknown":
-            prev_label, prev_text = "", t
+            run_open = False
             ex.append({"block": i, "kind": "unknown", "detail": (e or {}).get("note", "no label")})
             continue
         if e.get("conf") == "low":
             ex.append({"block": i, "kind": "low_confidence", "detail": e.get("note", "")})
+        if e["label"] != "drop" and (START_CHROME.match(t) or t == TAIL_CHROME):
+            ex.append({"block": i, "kind": "chrome_placed", "detail": f"the page's chrome carries the label {e['label']}"})
         low = t.lower()
         if any(f in low for f in FRAGMENTS):
             ex.append({"block": i, "kind": "fragment", "detail": "contains a markup fragment"})
@@ -159,6 +163,8 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             m = _SIGN_TEXT.match(tn)
             if not m or (m.group(1) or m.group(2)) != n:
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"paragraph_sign n={n!r} on {t[:30]!r}"})
+            elif not _SIGN_FORM.match(tn):
+                ex.append({"block": i, "kind": "malformed_head", "detail": f"§ head not written as '§ N.': {t[:30]!r}"})
         elif label == "alinea":
             m = _ALINEA_TEXT.match(tn)
             if not m or m.group(1) != n:
@@ -175,19 +181,20 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             if _PROVISION_LIKE.match(tn):
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"continuation on a line that opens like a provision: {t[:40]!r}"})
         elif label == "quoted":
-            # a run of quoted provisions is anchored by its first block: that one opens with a quotation mark or is not an
-            # address, and the run ends with the block that closes the quotation
-            in_run = prev_label == "quoted" and not _QUOTE_CLOSE.search(prev_text)
-            if _ADDRESS_LIKE.match(tn) and not _QUOTE_OPEN.match(t) and not in_run:
-                ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"quoted on a line that opens with an address and no quotation mark: {t[:40]!r}"})
-            m = _ART_TEXT.match(tn) or _SIGN_TEXT.match(tn)
-            if m:
-                quoted_addrs[("art" if m.re is _ART_TEXT else "sign", m.group(1))] = i
+            # a quoted block that opens like a provision starts with a quotation mark, or stands inside a quotation that an
+            # earlier quoted block opened with one and no block since has closed; a run with no mark goes to the ladder
+            if _PROVISION_LIKE.match(tn) and not _QUOTE_OPEN.match(t) and not run_open:
+                ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"quoted on a line that opens like a provision, outside an open quotation: {t[:40]!r}"})
+            if _QUOTE_OPEN.match(t):
+                run_open = True
+            if _QUOTE_CLOSE.search(t) and not (_QUOTE_OPEN.match(t) and len(t) == 1):
+                run_open = False
         elif _ADDRESS_LIKE.match(tn):
             ex.append({"block": i, "kind": "hidden_address", "detail": f"{label} on a line that opens with an address: {t[:40]!r}"})
         elif label not in _OPENERS and label not in _HEADINGS and label not in ("drop", "editorial_note", "repeal_note") and _PROVISION_LIKE.match(tn):
             ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"{label} on a line that opens like a provision: {t[:40]!r}"})
-        prev_label, prev_text = label, t
+        if label != "quoted":
+            run_open = False
     prev_heading: int | None = None
     for i in placed:
         e = smap.get(i)
@@ -231,10 +238,9 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             if n in seen_art:
                 ex.append({"block": i, "kind": "duplicate_address", "detail": f"Чл. {n} already at block {seen_art[n]}"})
             elif last_art is None and key[0] != 1:
-                ex.append(_gap("art", quoted_addrs, range(1, key[0]), i, "article_gap", f"the first article is Чл. {n}"))
+                ex.append({"block": i, "kind": "article_gap", "detail": f"the first article is Чл. {n}"})
             elif last_art is not None and key > last_art and not key[1] and not key[2] and key[0] > last_art[0] + 1:
-                ex.append(_gap("art", quoted_addrs, range(last_art[0] + 1, key[0]), i, "article_gap",
-                               f"Чл. {n} after Чл. {last_art[0]}{last_art[1]}{last_art[2] or ''}"))
+                ex.append({"block": i, "kind": "article_gap", "detail": f"Чл. {n} after Чл. {last_art[0]}{last_art[1]}{last_art[2] or ''}"})
             seen_art[n] = i
             last_art = key
             in_article, in_sign = True, False
@@ -252,9 +258,9 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             elif amending:
                 pass
             elif last_sign is None and key[0] != 1:
-                ex.append(_gap("sign", quoted_addrs, range(1, key[0]), i, "sign_gap", f"the first § of the provisions block is § {n}"))
+                ex.append({"block": i, "kind": "sign_gap", "detail": f"the first § of the provisions block is § {n}"})
             elif last_sign is not None and not key[1] and key[0] > last_sign[0] + 1:
-                ex.append(_gap("sign", quoted_addrs, range(last_sign[0] + 1, key[0]), i, "sign_gap", f"§ {n} after § {last_sign[0]}{last_sign[1]}"))
+                ex.append({"block": i, "kind": "sign_gap", "detail": f"§ {n} after § {last_sign[0]}{last_sign[1]}"})
             seen_sign[n] = i
             last_sign = key
             in_sign, in_article = True, False
@@ -304,19 +310,4 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
                 elif not last_letter and pos > 0:
                     ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) opens the lettering"})
                 last_letter = n if pos >= 0 else last_letter
-    if last_art is not None and ("art", str(last_art[0] + 1)) in quoted_addrs:
-        j = quoted_addrs[("art", str(last_art[0] + 1))]
-        ex.append({"block": j, "kind": "hidden_address", "detail": f"quoted block opens with Чл. {last_art[0] + 1}, the number after the last article"})
-    if last_sign is not None and not amending and ("sign", str(last_sign[0] + 1)) in quoted_addrs:
-        j = quoted_addrs[("sign", str(last_sign[0] + 1))]
-        ex.append({"block": j, "kind": "hidden_address", "detail": f"quoted block opens with § {last_sign[0] + 1}, the number after the last §"})
     return md, ex
-
-
-def _gap(kind: str, quoted_addrs: dict, missing: range, block: int, finding: str, detail: str) -> dict:
-    """A gap is a source finding, unless a quoted block opens with one of the missing numbers: then that block hides an address."""
-    for m in missing:
-        j = quoted_addrs.get((kind, str(m)))
-        if j is not None:
-            return {"block": j, "kind": "hidden_address", "detail": f"quoted block opens with the missing {'Чл.' if kind == 'art' else '§'} {m}"}
-    return {"block": block, "kind": finding, "detail": detail}
