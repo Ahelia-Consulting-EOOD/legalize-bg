@@ -8,10 +8,10 @@
    "kind": "unlinked-glossary",
    "line": 0,
    "col": 0,
-   "fp": "doc-3da945154f",
+   "fp": "doc-7465fe036b",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "short document; glossary terms are defined where used"
+   "reason": "glossary terms are short codes; links would not help a reader of a table"
   },
   {
    "id": "r2",
@@ -19,10 +19,10 @@
    "kind": "long-sentence",
    "line": 7,
    "col": 0,
-   "fp": "c68a88364f",
+   "fp": "a01a39cbe9",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "a list sentence the reader scans item by item"
+   "reason": "read; one clause chain the reader needs whole, with colons"
   },
   {
    "id": "r3",
@@ -206,35 +206,24 @@
    "kind": "language-mix",
    "line": 18,
    "col": 3,
-   "fp": "fbc749cff4",
+   "fp": "4d4b415e82",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r20",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 18,
-   "col": 37,
-   "fp": "fbc749cff4",
+   "col": 36,
+   "fp": "4d4b415e82",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "defined in the glossary or at first use"
+   "reason": "label name in backticks, defined under Glossary (structure map) and in the vocabulary"
   },
   {
    "id": "r21",
-   "gate": "reader",
-   "kind": "undefined-code-name",
-   "line": 18,
-   "col": 44,
-   "fp": "fbc749cff4",
-   "repeat": 1,
-   "verdict": "keep",
-   "reason": "defined in the glossary or at first use"
-  },
-  {
-   "id": "r22",
    "gate": "reader",
    "kind": "language-mix",
    "line": 19,
@@ -245,7 +234,7 @@
    "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
   },
   {
-   "id": "r23",
+   "id": "r22",
    "gate": "reader",
    "kind": "language-mix",
    "line": 19,
@@ -256,7 +245,7 @@
    "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
   },
   {
-   "id": "r24",
+   "id": "r23",
    "gate": "reader",
    "kind": "undefined-acronym",
    "line": 19,
@@ -267,7 +256,7 @@
    "reason": "written out at first use or in the glossary"
   },
   {
-   "id": "r25",
+   "id": "r24",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 19,
@@ -278,10 +267,76 @@
    "reason": "defined in the glossary or at first use"
   },
   {
+   "id": "r25",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 20,
+   "col": 29,
+   "fp": "3dcf85ec96",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
    "id": "r26",
    "gate": "reader",
+   "kind": "language-mix",
+   "line": 20,
+   "col": 44,
+   "fp": "3dcf85ec96",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r27",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 20,
+   "col": 54,
+   "fp": "3dcf85ec96",
+   "repeat": 2,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r28",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 20,
+   "col": 61,
+   "fp": "3dcf85ec96",
+   "repeat": 3,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r29",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 20,
+   "col": 81,
+   "fp": "3dcf85ec96",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "label name in backticks, defined under Glossary (structure map) and in the vocabulary"
+  },
+  {
+   "id": "r30",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 22,
+   "col": 273,
+   "fp": "b7ee40a3b5",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r31",
+   "gate": "reader",
    "kind": "long-sentence",
-   "line": 27,
+   "line": 28,
    "col": 0,
    "fp": "298458d65a",
    "repeat": 0,
@@ -289,323 +344,345 @@
    "reason": "a list sentence the reader scans item by item"
   },
   {
-   "id": "r27",
-   "gate": "reader",
-   "kind": "language-mix",
-   "line": 30,
-   "col": 263,
-   "fp": "6f83f0f25c",
-   "repeat": 0,
-   "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
-  },
-  {
-   "id": "r28",
-   "gate": "reader",
-   "kind": "undefined-acronym",
-   "line": 30,
-   "col": 263,
-   "fp": "6f83f0f25c",
-   "repeat": 0,
-   "verdict": "keep",
-   "reason": "written out at first use or in the glossary"
-  },
-  {
-   "id": "r29",
-   "gate": "reader",
-   "kind": "language-mix",
-   "line": 30,
-   "col": 268,
-   "fp": "6f83f0f25c",
-   "repeat": 1,
-   "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
-  },
-  {
-   "id": "r30",
-   "gate": "reader",
-   "kind": "undefined-acronym",
-   "line": 30,
-   "col": 268,
-   "fp": "6f83f0f25c",
-   "repeat": 1,
-   "verdict": "keep",
-   "reason": "written out at first use or in the glossary"
-  },
-  {
-   "id": "r31",
-   "gate": "reader",
-   "kind": "bare-number",
-   "line": 36,
-   "col": 0,
-   "fp": "e5cccaebc2",
-   "repeat": 0,
-   "verdict": "keep",
-   "reason": "unit and scenario in the same sentence or table"
-  },
-  {
    "id": "r32",
    "gate": "reader",
-   "kind": "bare-number",
-   "line": 36,
+   "kind": "long-sentence",
+   "line": 28,
    "col": 0,
-   "fp": "e5cccaebc2",
+   "fp": "298458d65a",
    "repeat": 1,
    "verdict": "keep",
-   "reason": "unit and scenario in the same sentence or table"
+   "reason": "read; one clause chain the reader needs whole, with colons"
   },
   {
    "id": "r33",
    "gate": "reader",
-   "kind": "bare-number",
-   "line": 36,
+   "kind": "long-sentence",
+   "line": 28,
    "col": 0,
-   "fp": "e5cccaebc2",
+   "fp": "298458d65a",
    "repeat": 2,
    "verdict": "keep",
-   "reason": "unit and scenario in the same sentence or table"
+   "reason": "read; one clause chain the reader needs whole, with colons"
   },
   {
    "id": "r34",
    "gate": "reader",
-   "kind": "bare-number",
-   "line": 46,
-   "col": 0,
-   "fp": "db137d5acc",
+   "kind": "language-mix",
+   "line": 32,
+   "col": 263,
+   "fp": "e53f9dcbe3",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "unit and scenario in the same sentence or table"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r35",
    "gate": "reader",
-   "kind": "long-sentence",
-   "line": 46,
-   "col": 0,
-   "fp": "db137d5acc",
+   "kind": "undefined-acronym",
+   "line": 32,
+   "col": 263,
+   "fp": "e53f9dcbe3",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "a list sentence the reader scans item by item"
+   "reason": "the Bulgarian act abbreviations ЗОТ and ЗЗД are expanded at first use in the table"
   },
   {
    "id": "r36",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 19,
-   "fp": "db137d5acc",
-   "repeat": 0,
+   "line": 32,
+   "col": 268,
+   "fp": "e53f9dcbe3",
+   "repeat": 1,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r37",
    "gate": "reader",
-   "kind": "language-mix",
-   "line": 46,
-   "col": 29,
-   "fp": "db137d5acc",
+   "kind": "undefined-acronym",
+   "line": 32,
+   "col": 268,
+   "fp": "e53f9dcbe3",
    "repeat": 1,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "the Bulgarian act abbreviations ЗОТ and ЗЗД are expanded at first use in the table"
   },
   {
    "id": "r38",
    "gate": "reader",
-   "kind": "language-mix",
-   "line": 46,
-   "col": 48,
-   "fp": "db137d5acc",
-   "repeat": 2,
+   "kind": "bare-number",
+   "line": 38,
+   "col": 0,
+   "fp": "e5cccaebc2",
+   "repeat": 0,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "unit and scenario in the same sentence or table"
   },
   {
    "id": "r39",
    "gate": "reader",
-   "kind": "language-mix",
-   "line": 46,
-   "col": 60,
-   "fp": "db137d5acc",
-   "repeat": 3,
+   "kind": "bare-number",
+   "line": 38,
+   "col": 0,
+   "fp": "e5cccaebc2",
+   "repeat": 1,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "unit and scenario in the same sentence or table"
   },
   {
    "id": "r40",
    "gate": "reader",
-   "kind": "language-mix",
-   "line": 46,
-   "col": 73,
-   "fp": "db137d5acc",
-   "repeat": 4,
+   "kind": "bare-number",
+   "line": 38,
+   "col": 0,
+   "fp": "e5cccaebc2",
+   "repeat": 2,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "unit and scenario in the same sentence or table"
   },
   {
    "id": "r41",
    "gate": "reader",
-   "kind": "language-mix",
-   "line": 46,
-   "col": 81,
-   "fp": "db137d5acc",
-   "repeat": 5,
+   "kind": "bare-number",
+   "line": 48,
+   "col": 0,
+   "fp": "9910d04d73",
+   "repeat": 0,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "call counts per act, the unit is in the sentence"
   },
   {
    "id": "r42",
    "gate": "reader",
-   "kind": "language-mix",
-   "line": 46,
-   "col": 94,
-   "fp": "db137d5acc",
-   "repeat": 6,
+   "kind": "long-sentence",
+   "line": 48,
+   "col": 0,
+   "fp": "9910d04d73",
+   "repeat": 0,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "read; one clause chain the reader needs whole, with colons"
   },
   {
    "id": "r43",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 120,
-   "fp": "db137d5acc",
-   "repeat": 7,
+   "line": 48,
+   "col": 19,
+   "fp": "9910d04d73",
+   "repeat": 0,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r44",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 130,
-   "fp": "db137d5acc",
-   "repeat": 8,
+   "line": 48,
+   "col": 29,
+   "fp": "9910d04d73",
+   "repeat": 1,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r45",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 153,
-   "fp": "db137d5acc",
-   "repeat": 9,
+   "line": 48,
+   "col": 48,
+   "fp": "9910d04d73",
+   "repeat": 2,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r46",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 162,
-   "fp": "db137d5acc",
-   "repeat": 10,
+   "line": 48,
+   "col": 60,
+   "fp": "9910d04d73",
+   "repeat": 3,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r47",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 191,
-   "fp": "db137d5acc",
-   "repeat": 11,
+   "line": 48,
+   "col": 73,
+   "fp": "9910d04d73",
+   "repeat": 4,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r48",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 203,
-   "fp": "db137d5acc",
-   "repeat": 12,
+   "line": 48,
+   "col": 81,
+   "fp": "9910d04d73",
+   "repeat": 5,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r49",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 232,
-   "fp": "db137d5acc",
-   "repeat": 13,
+   "line": 48,
+   "col": 94,
+   "fp": "9910d04d73",
+   "repeat": 6,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r50",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 238,
-   "fp": "db137d5acc",
-   "repeat": 14,
+   "line": 48,
+   "col": 120,
+   "fp": "9910d04d73",
+   "repeat": 7,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r51",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 244,
-   "fp": "db137d5acc",
-   "repeat": 15,
+   "line": 48,
+   "col": 130,
+   "fp": "9910d04d73",
+   "repeat": 8,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r52",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 255,
-   "fp": "db137d5acc",
-   "repeat": 16,
+   "line": 48,
+   "col": 153,
+   "fp": "9910d04d73",
+   "repeat": 9,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r53",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 271,
-   "fp": "db137d5acc",
-   "repeat": 17,
+   "line": 48,
+   "col": 162,
+   "fp": "9910d04d73",
+   "repeat": 10,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r54",
    "gate": "reader",
    "kind": "language-mix",
-   "line": 46,
-   "col": 430,
-   "fp": "db137d5acc",
-   "repeat": 18,
+   "line": 48,
+   "col": 191,
+   "fp": "9910d04d73",
+   "repeat": 11,
    "verdict": "keep",
-   "reason": "Bulgarian act and heading names, the subject itself; glossed where they matter"
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
   },
   {
    "id": "r55",
    "gate": "reader",
+   "kind": "language-mix",
+   "line": 48,
+   "col": 203,
+   "fp": "9910d04d73",
+   "repeat": 12,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r56",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 48,
+   "col": 232,
+   "fp": "9910d04d73",
+   "repeat": 13,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r57",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 48,
+   "col": 238,
+   "fp": "9910d04d73",
+   "repeat": 14,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r58",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 48,
+   "col": 244,
+   "fp": "9910d04d73",
+   "repeat": 15,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r59",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 48,
+   "col": 255,
+   "fp": "9910d04d73",
+   "repeat": 16,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r60",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 48,
+   "col": 271,
+   "fp": "9910d04d73",
+   "repeat": 17,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r61",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 48,
+   "col": 401,
+   "fp": "9910d04d73",
+   "repeat": 18,
+   "verdict": "keep",
+   "reason": "Bulgarian act names, labels and quoted source text in an English note"
+  },
+  {
+   "id": "r62",
+   "gate": "reader",
    "kind": "undefined-acronym",
-   "line": 46,
-   "col": 443,
-   "fp": "db137d5acc",
+   "line": 48,
+   "col": 414,
+   "fp": "9910d04d73",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "written out at first use or in the glossary"
+   "reason": "the Bulgarian act abbreviations ЗОТ and ЗЗД are expanded at first use in the table"
   }
  ]
 }
