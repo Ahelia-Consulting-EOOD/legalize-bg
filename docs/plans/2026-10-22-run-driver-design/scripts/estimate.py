@@ -17,7 +17,7 @@ import csv, json, sys, statistics as st
 from pathlib import Path
 
 W_WRITE, W_READ, W_OUT = 1.25, 0.1, 5.0
-PRICE = {"input": 4.0, "write": 5.0, "read": 0.40, "output": 20.0}   # dollars per million tokens
+PRICE = {"input": 4.0, "write": 5.0, "write_1h": 10.0, "read": 0.40, "output": 20.0}   # dollars per million tokens; a one-hour cache write is 2x input, a five-minute one 1.25x
 PARALLEL = 8          # calls in flight at once, as the lean run ran them
 TTL_DEFAULT_S, TTL_LONG_S = 300, 3600
 SECTIONS = 8          # sections per round-0 call (the lean run's density, proved flat by position)
@@ -84,20 +84,23 @@ def main():
     warm_tok = cl["D1"][0]["warm_share"] * cl["D1"][0]["first_context"]      # the part of a lean first request read from a sibling's cache: system prompt and tool schemas
     per_call_fixed = max(0.0, fixed_d2 - warm_tok)                           # hook, git status, reminders: written on every call
 
-    def call(n_sections, task_tok, ans_tok, fixed, warm=True):
-        """Four token classes of the recommended call: request 1 (prompt, then the one Write) and request 2 (the reply)."""
+    def call(n_sections, task_tok, ans_tok, fixed, warm=True, ttl_1h=False):
+        """Token classes of the recommended call: request 1 (prompt, then the one Write) and request 2 (the reply)."""
         prompt = instr + n_sections * task_tok; out_t = n_sections * ans_tok
         shareable = warm_tok if warm else 0.0
         r1_write = (fixed - shareable) + prompt; r1_read = shareable
         r2_read = fixed + prompt + out_t; r2_write = 300
-        c = {"input": 0.0, "write": r1_write + r2_write, "read": r1_read + r2_read, "output": out_t + 30}
+        wk = "write_1h" if ttl_1h else "write"
+        c = {"input": 0.0, "write": 0.0, "write_1h": 0.0, "read": r1_read + r2_read, "output": out_t + 30}
+        c[wk] = r1_write + r2_write
         once = fixed + prompt + out_t
-        weighted = c["write"] * W_WRITE + c["read"] * W_READ + c["output"] * W_OUT
+        weighted = (c["write"] + c["write_1h"] * 1.6) * W_WRITE + c["read"] * W_READ + c["output"] * W_OUT
         dollars = sum(c[k] * PRICE[k] for k in c) / 1e6
         return once, weighted, c, dollars
 
     d2_once, d2_w, d2_c, d2_d = call(SECTIONS, task_c, ans_b, fixed_d2)
     d2cold_once, d2cold_w, d2cold_c, d2cold_d = call(SECTIONS, task_c, ans_b, fixed_d2, warm=False)
+    d2h_once, d2h_w, d2h_c, d2h_d = call(SECTIONS, task_c, ans_b, fixed_d2, warm=True, ttl_1h=True)
     l2_task_tok = 1_511 / task_bpt + 60   # a round-1 task file, median 1,511 bytes (step4/ladder.md)
     l2_once, l2_w, l2_c, l2_d = call(L2_TASKS, l2_task_tok, L2_ANS, fixed_d2)
     t1 = blocks * TARGET_SHARE_R1; t2 = t1 * R2_SHARE
@@ -127,15 +130,16 @@ def main():
     for name, calls, once, w, src in designs:
         lines.append(f"| {name} | {calls:,.0f} | {once:,.0f} | {once * sections / 1e6:,.0f} million | {w:,.0f} | {w * sections / 1e6:,.0f} million | {src} |")
     lines += ["\n## Round 0: the four token classes per call, dollars at list price, duration\n",
-              "| Driver | Uncached input | Cache write | Cache read | Output | Dollars per call | Cents per section | Dollars over the corpus | Duration per call, seconds |",
-              "|---|---|---|---|---|---|---|---|---|"]
+              "| Driver | Uncached input | Cache write, 5-minute | Cache write, 1-hour | Cache read | Output | Dollars per call | Cents per section | Dollars over the corpus | Duration per call, seconds |",
+              "|---|---|---|---|---|---|---|---|---|---|"]
     for name, (c, n), per in (("Current: general-purpose, 3 sections per call", cl["D0"], 3), ("Lean as measured: labeller, 8 sections per call", cl["D1"], 8)):
-        lines.append(f"| {name} ({n} calls measured) | {c['input']:,.0f} | {c['write']:,.0f} | {c['read']:,.0f} | {c['output']:,.0f} | {c['dollars']:.3f} | {100 * c['dollars'] / per * scale:.1f} | {c['dollars'] / per * scale * sections:,.0f} | {c['duration_s']:.0f} |")
-    for name, c, d in (("Recommended, warm prefix (a sibling call warmed the system part within the cache lifetime)", d2_c, d2_d), ("Recommended, cold prefix (first call of a batch, or after a gap longer than the cache lifetime)", d2cold_c, d2cold_d)):
-        lines.append(f"| {name} | {c['input']:,.0f} | {c['write']:,.0f} | {c['read']:,.0f} | {c['output']:,.0f} | {d:.3f} | {100 * d / SECTIONS * scale:.1f} | {d / SECTIONS * scale * sections:,.0f} | about {dur:.0f} (assumed as measured) |")
+        lines.append(f"| {name} ({n} calls measured) | {c['input']:,.0f} | {c['write']:,.0f} | 0 | {c['read']:,.0f} | {c['output']:,.0f} | {c['dollars']:.3f} | {100 * c['dollars'] / per * scale:.1f} | {c['dollars'] / per * scale * sections:,.0f} | {c['duration_s']:.0f} |")
+    for name, c, d in (("Recommended, five-minute cache, warm system part (a sibling call ran within five minutes)", d2_c, d2_d), ("Recommended, five-minute cache, cold (first call of a batch, or after a gap over five minutes)", d2cold_c, d2cold_d), ("Rejected: one-hour cache lifetime, warm (every write at twice the price)", d2h_c, d2h_d)):
+        lines.append(f"| {name} | {c['input']:,.0f} | {c['write']:,.0f} | {c['write_1h']:,.0f} | {c['read']:,.0f} | {c['output']:,.0f} | {d:.3f} | {100 * d / SECTIONS * scale:.1f} | {d / SECTIONS * scale * sections:,.0f} | about {dur:.0f} (assumed as measured) |")
     lines += [f"\nWall time of round 0 at {PARALLEL} calls in flight: {sections / SECTIONS:,.0f} calls of about {dur:.0f} seconds, about {wall_h:,.0f} hours. "
-              f"Calls launched back to back keep the five-minute subagent cache warm; a one-hour cache lifetime in the agent definition keeps it warm across the collect steps between batches. "
-              f"The warm prefix saves only the system part ({warm_tok:,.0f} tokens per call): the difference between the two recommended rows.",
+              f"Calls launched back to back keep the five-minute subagent cache warm by themselves. The warm prefix saves only the system part ({warm_tok:,.0f} tokens per call), "
+              f"{100 * (d2cold_d - d2_d):.1f} cents per call: the difference between the first two recommended rows. A one-hour lifetime would double the price of every write to save that, "
+              f"{100 * (d2h_d - d2_d):.1f} cents more per call, so the five-minute default stays.",
               "\n## The ladder over the whole corpus (rounds 1 and 2)\n",
               f"Round-1 targets at {100 * TARGET_SHARE_R1:.1f}% of blocks: {t1:,.0f}; round-2 targets at {100 * R2_SHARE:.0f}% of those: {t2:,.0f}.\n",
               "| Driver | Tasks per call | Calls | Tokens per task (context once) | Total, context once | Tokens per task, cost-weighted | Total, cost-weighted |",
@@ -143,9 +147,10 @@ def main():
               f"| Lean as measured | 10 | {(t1 + t2) / 10:,.0f} | {m['L1'][0]:,.0f} | {m['L1'][0] * (t1 + t2) / 1e6:,.0f} million | {m['L1'][1]:,.0f} | {m['L1'][1] * (t1 + t2) / 1e6:,.0f} million |",
               f"| Recommended | {L2_TASKS} | {(t1 + t2) / L2_TASKS:,.0f} | {l2_once / L2_TASKS:,.0f} | {l2_once / L2_TASKS * (t1 + t2) / 1e6:,.0f} million | {l2_w / L2_TASKS:,.0f} | {l2_w / L2_TASKS * (t1 + t2) / 1e6:,.0f} million |",
               f"\nLadder dollars at list price: lean as measured {cl['L1'][0]['dollars'] / 10 * (t1 + t2):,.0f} ({100 * cl['L1'][0]['dollars'] / 10:.1f} cents per re-label, {cl['L1'][0]['duration_s']:.0f} seconds per call of 10); recommended {l2_d / L2_TASKS * (t1 + t2):,.0f} ({100 * l2_d / L2_TASKS:.1f} cents per re-label).",
-              "\n## The two proposed measurements\n",
-              f"- Sixteen sections per call: {m16_calls} calls of {m16_once:,.0f} tokens counted once ({m16_w:,.0f} cost-weighted, {m16_d:.2f} dollars at list price), about {m16_calls * m16_once:,.0f} tokens in all.",
-              f"- The labeller inside a workflow, on the tiny and the known task of step 1: 2 calls, about {wf_once:,.0f} tokens in all at the lean agent's measured fixed context.",
+              "\n## What the first batch of the real run measures (no separate measurement run: the owner's word of 21 October 2026)\n",
+              f"- The fixed context of the labeller without the instruction files, read from the first call's usage record; expected {fixed_d2:,.0f} tokens.",
+              f"- Whether the labeller inside a workflow carries the same fixed context, read from the first workflow agent's record.",
+              f"- Whether sixteen sections per call hold as eight do: the first batch runs {m16_calls} of its calls at sixteen sections ({m16_once:,.0f} tokens counted once each, {m16_d:.2f} dollars at list price) and reads the exception rate by position; these calls label acts the audit needs anyway, so nothing is spent on measurement alone.",
               "\n## Assumptions\n",
               "- The recommended call makes two API requests: the prompt (instructions and sections inline) and the one Write of the answer file, then the one-line reply. Its system part is read from a sibling's cache when one has run within the cache lifetime; the hook, the git status and the prompt are written once; request 2 re-reads everything once.",
               "- The recommended call's duration is assumed equal to the lean call's measured median; it makes fewer requests but one long output.",

@@ -13,7 +13,7 @@ import csv, json, re, sys, statistics as st, collections
 from datetime import datetime, timezone
 from pathlib import Path
 
-PRICE = {"input": 4.0, "write": 5.0, "read": 0.40, "output": 20.0}   # dollars per million tokens, Opus 5.5 list, 6 October 2026
+PRICE = {"input": 4.0, "write": 5.0, "write_1h": 10.0, "read": 0.40, "output": 20.0}   # dollars per million tokens, Opus 5.5 list, 6 October 2026: a five-minute cache write 1.25x input, a one-hour write 2x
 TTL_S = 300                                                            # subagent prompt-cache lifetime by default: five minutes
 PATH = re.compile(r"structure-map-2026-10-22/([^/\s]+)/tasks/round(\d)/")
 BATCH = re.compile(r"\[((?:\d{4})(?:,\s*\d{4})*)\]")
@@ -43,7 +43,9 @@ def read_call(path):
         if t == "assistant" and isinstance(m, dict) and isinstance(m.get("usage"), dict) and m.get("id"):
             u = m["usage"]
             if m["id"] not in reqs:
-                reqs[m["id"]] = {"input": u.get("input_tokens", 0), "write": u.get("cache_creation_input_tokens", 0), "read": u.get("cache_read_input_tokens", 0), "output": 0, "t": when}
+                cc = u.get("cache_creation") or {}
+                reqs[m["id"]] = {"input": u.get("input_tokens", 0), "write": cc.get("ephemeral_5m_input_tokens", u.get("cache_creation_input_tokens", 0)), "write_1h": cc.get("ephemeral_1h_input_tokens", 0),
+                                 "read": u.get("cache_read_input_tokens", 0), "output": 0, "t": when}
                 t1 = t1 or when
             reqs[m["id"]]["output"] = max(reqs[m["id"]]["output"], u.get("output_tokens", 0))
     return key, t0, t1, tend, list(reqs.values())
@@ -65,7 +67,7 @@ def main():
             if c is None:
                 continue
             first = reqs[0]
-            tot = {k: sum(r[k] for r in reqs) for k in ("input", "write", "read", "output")}
+            tot = {k: sum(r[k] for r in reqs) for k in ("input", "write", "write_1h", "read", "output")}
             rows.append({"session": name, "agent": c["agent"], "round": c["round"], "n_tasks": int(c["n_tasks"]), "start": t0, "first_response": t1, "end": tend,
                          "duration_s": round(tend - t0, 1), "first_request_s": round((t1 or t0) - t0, 1), "requests": len(reqs),
                          "first_context": first["input"] + first["write"] + first["read"], "first_read": first["read"],
@@ -84,8 +86,8 @@ def main():
     with open(out / "cache_timing.csv", "w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=fields); w.writeheader(); w.writerows([{k: r[k] for k in fields} for r in rows])
     lines = ["## Per call: the four token classes, duration and cache use (medians by agent, round and sections per call)\n",
-             "| Agent | Round | Tasks per call | Calls | Duration, seconds | Time to first response, seconds | Uncached input | Cache write | Cache read | Output | First request read from a warm prefix | Warm prefix available at start | Dollars per call at list price | Cents per task |",
-             "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+             "| Agent | Round | Tasks per call | Calls | Duration, seconds | Time to first response, seconds | Uncached input | Cache write, 5-minute | Cache write, 1-hour | Cache read | Output | First request read from a warm prefix | Warm prefix available at start | Dollars per call at list price | Cents per task |",
+             "|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
     g = collections.defaultdict(list)
     for r in rows:
         g[(r["session"], r["agent"], r["round"], r["n_tasks"])].append(r)
@@ -94,9 +96,12 @@ def main():
         if len(v) < 2:
             continue
         med = lambda f: st.median(r[f] for r in v)
-        lines.append(f"| {k[1]} ({k[0]}) | {k[2]} | {k[3]} | {len(v)} | {med('duration_s'):.0f} | {med('first_request_s'):.0f} | {med('input'):,.0f} | {med('write'):,.0f} | {med('read'):,.0f} | {med('output'):,.0f} | "
+        lines.append(f"| {k[1]} ({k[0]}) | {k[2]} | {k[3]} | {len(v)} | {med('duration_s'):.0f} | {med('first_request_s'):.0f} | {med('input'):,.0f} | {med('write'):,.0f} | {med('write_1h'):,.0f} | {med('read'):,.0f} | {med('output'):,.0f} | "
                      f"{100 * med('warm_share'):.0f}% | {100 * sum(r['warm_available'] for r in v) / len(v):.0f}% of calls | {med('dollars'):.3f} | {100 * med('dollars') / k[3]:.2f} |")
-    lines.append("\nList prices of Claude Opus 5.5 (6 October 2026): uncached input 4, cache write 5, cache read 0.40, output 20 dollars per million tokens. The dollar figures compare designs; the runs draw on the owner's plan, whose metering is not published.\n")
+    lines.append("\nList prices of Claude Opus 5.5 (6 October 2026): uncached input 4, five-minute cache write 5, one-hour cache write 10, cache read 0.40, output 20 dollars per million tokens. The dollar figures compare designs; the runs draw on the owner's plan, whose metering is not published.\n")
+    w5 = sum(r["write"] for r in rows); w1 = sum(r["write_1h"] for r in rows); rd = sum(r["read"] for r in rows); ot = sum(r["output"] for r in rows); inp = sum(r["input"] for r in rows)
+    lines.append(f"Over all {len(rows)} measured calls: uncached input {inp:,} tokens ({inp * PRICE['input'] / 1e6:,.2f} dollars), five-minute cache writes {w5:,} ({w5 * PRICE['write'] / 1e6:,.2f}), one-hour cache writes {w1:,} ({w1 * PRICE['write_1h'] / 1e6:,.2f}), cache reads {rd:,} ({rd * PRICE['read'] / 1e6:,.2f}), output {ot:,} ({ot * PRICE['output'] / 1e6:,.2f}). "
+                 "Every cache write of both runs was a five-minute write: the subagent default. The API reports reads as one figure whatever the lifetime of the entry read, so hits are not split by cache type. The cache breakpoints of every request sit on the system blocks only, which is why a sibling call shares only the system part.\n")
     # warm availability against warm reads
     for sess in sorted({r["session"] for r in rows}):
         v = [r for r in rows if r["session"] == sess and r["round"] == "0"]

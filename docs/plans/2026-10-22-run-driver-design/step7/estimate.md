@@ -21,14 +21,15 @@ Corpus: 3,616 act pages with an act (7 pages of site chrome only), 2,538,140 blo
 
 ## Round 0: the four token classes per call, dollars at list price, duration
 
-| Driver | Uncached input | Cache write | Cache read | Output | Dollars per call | Cents per section | Dollars over the corpus | Duration per call, seconds |
-|---|---|---|---|---|---|---|---|---|
-| Current: general-purpose, 3 sections per call (84 calls measured) | 10 | 54,410 | 332,488 | 4,822 | 0.514 | 16.1 | 7,599 | 68 |
-| Lean as measured: labeller, 8 sections per call (96 calls measured) | 20 | 61,912 | 347,324 | 9,440 | 0.658 | 7.7 | 3,648 | 89 |
-| Recommended, warm prefix (a sibling call warmed the system part within the cache lifetime) | 0 | 26,857 | 36,229 | 5,617 | 0.261 | 3.1 | 1,448 | about 89 (assumed as measured) |
-| Recommended, cold prefix (first call of a batch, or after a gap longer than the cache lifetime) | 0 | 28,900 | 34,187 | 5,617 | 0.271 | 3.2 | 1,500 | about 89 (assumed as measured) |
+| Driver | Uncached input | Cache write, 5-minute | Cache write, 1-hour | Cache read | Output | Dollars per call | Cents per section | Dollars over the corpus | Duration per call, seconds |
+|---|---|---|---|---|---|---|---|---|---|
+| Current: general-purpose, 3 sections per call (84 calls measured) | 10 | 54,410 | 0 | 332,488 | 4,822 | 0.514 | 16.1 | 7,599 | 68 |
+| Lean as measured: labeller, 8 sections per call (96 calls measured) | 20 | 61,912 | 0 | 347,324 | 9,440 | 0.658 | 7.7 | 3,648 | 89 |
+| Recommended, five-minute cache, warm system part (a sibling call ran within five minutes) | 0 | 26,857 | 0 | 36,229 | 5,617 | 0.261 | 3.1 | 1,448 | about 89 (assumed as measured) |
+| Recommended, five-minute cache, cold (first call of a batch, or after a gap over five minutes) | 0 | 28,900 | 0 | 34,187 | 5,617 | 0.271 | 3.2 | 1,500 | about 89 (assumed as measured) |
+| Rejected: one-hour cache lifetime, warm (every write at twice the price) | 0 | 0 | 26,857 | 36,229 | 5,617 | 0.395 | 4.7 | 2,193 | about 89 (assumed as measured) |
 
-Wall time of round 0 at 8 calls in flight: 5,894 calls of about 89 seconds, about 18 hours. Calls launched back to back keep the five-minute subagent cache warm; a one-hour cache lifetime in the agent definition keeps it warm across the collect steps between batches. The warm prefix saves only the system part (2,042 tokens per call): the difference between the two recommended rows.
+Wall time of round 0 at 8 calls in flight: 5,894 calls of about 89 seconds, about 18 hours. Calls launched back to back keep the five-minute subagent cache warm by themselves. The warm prefix saves only the system part (2,042 tokens per call), 0.9 cents per call: the difference between the first two recommended rows. A one-hour lifetime would double the price of every write to save that, 13.4 cents more per call, so the five-minute default stays.
 
 ## The ladder over the whole corpus (rounds 1 and 2)
 
@@ -41,10 +42,11 @@ Round-1 targets at 1.5% of blocks: 38,072; round-2 targets at 19% of those: 7,23
 
 Ladder dollars at list price: lean as measured 1,475 (3.3 cents per re-label, 37 seconds per call of 10); recommended 218 (0.5 cents per re-label).
 
-## The two proposed measurements
+## What the first batch of the real run measures (no separate measurement run: the owner's word of 21 October 2026)
 
-- Sixteen sections per call: 6 calls of 62,882 tokens counted once (124,971 cost-weighted, 0.50 dollars at list price), about 377,291 tokens in all.
-- The labeller inside a workflow, on the tiny and the known task of step 1: 2 calls, about 40,355 tokens in all at the lean agent's measured fixed context.
+- The fixed context of the labeller without the instruction files, read from the first call's usage record; expected 4,068 tokens.
+- Whether the labeller inside a workflow carries the same fixed context, read from the first workflow agent's record.
+- Whether sixteen sections per call hold as eight do: the first batch runs 6 of its calls at sixteen sections (62,882 tokens counted once each, 0.50 dollars at list price) and reads the exception rate by position; these calls label acts the audit needs anyway, so nothing is spent on measurement alone.
 
 ## Assumptions
 
