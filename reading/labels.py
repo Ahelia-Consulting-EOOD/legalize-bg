@@ -44,7 +44,7 @@ _NUM = {
     "article_head": re.compile(r"^(\d+[а-я]?\d{0,2}|единствен)$"),  # the superscript may have two digits (ДОПК Чл. 143я¹³)
     "paragraph_sign": re.compile(r"^(\d+[а-я]?|единствен)$"),
     "alinea": re.compile(r"^\d+[а-я]?$"),
-    "item": re.compile(r"^\d+[а-я]?$"),
+    "item": re.compile(r"^\d+(?:([а-я])\1?)?$"),  # 27аа is the item between 27а and 27б (ЗЕ § 1, D-072 ruling 6)
     "letter": re.compile(r"^([а-я])\1{0,2}$"),  # аа), бб) … are sub-letters under a letter (ЗДДС § 1); ааа) … one level deeper (ДОПК § 1а)
 }
 

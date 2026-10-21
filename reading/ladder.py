@@ -12,6 +12,7 @@ driver (Claude Code subagents under the owner's plans).
 """
 from __future__ import annotations
 
+from . import rules
 from .checks import run_all
 from .labels import validate_entries
 from .splitter import Block, SplitAct
@@ -19,7 +20,7 @@ from .splitter import Block, SplitAct
 MAX_ROUNDS = 2
 NEIGHBOURS = 1
 # exceptions that describe the source, not a label: recorded as findings, never re-labelled
-SOURCE_FINDINGS = frozenset({"empty_section", "fragment", "article_gap", "sign_gap", "malformed_head"})
+SOURCE_FINDINGS = frozenset({"empty_section", "fragment", "article_gap", "sign_gap", "malformed_head", "alinea_gap", "item_gap"})
 
 
 def _context(act: SplitAct, first: int) -> list[str]:
@@ -77,9 +78,15 @@ def next_round_tasks(act: SplitAct, smap: dict[int, dict], exceptions: list[dict
     return tasks
 
 
-def evaluate(act: SplitAct, smap: dict[int, dict], problems: list[dict]) -> tuple[str, list[dict]]:
-    md, ex = run_all(act.blocks, smap)
-    return md, problems + ex
+def evaluate(act: SplitAct, smap: dict[int, dict], problems: list[dict],
+             slug: str | None = None) -> tuple[str, list[dict], list[dict], dict[int, dict]]:
+    """Apply the rulings of D-072 to the labeller's map, then run the checks: (markdown, exceptions, omissions, ruled map).
+
+    A validator problem on a block that a ruling has since labelled is settled by the ruling.
+    """
+    ruled, blocks, omissions = rules.apply(act.blocks, smap, slug)
+    md, ex = run_all(blocks, ruled)
+    return md, [p for p in problems if not ruled.get(p.get("block"), {}).get("rule")] + ex, omissions, ruled
 
 
 def classify_residue(residue: list[int], rounds: list[tuple[dict[int, dict], list[dict]]],

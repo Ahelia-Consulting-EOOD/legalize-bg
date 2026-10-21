@@ -128,14 +128,14 @@ def cmd_collect(args) -> int:
     answers, missing = _answers(run_dir, rnd)
     call_defects = _call_defects(run_dir, rnd)
     smap, problems = ladder.merge(smap, answers)
-    md, exceptions = ladder.evaluate(act, smap, problems)
+    md, exceptions, omissions, ruled = ladder.evaluate(act, smap, problems, args.slug)
     mp.write_text(json.dumps({str(k): v for k, v in sorted(smap.items())}, ensure_ascii=False, indent=1), encoding="utf-8")
     (run_dir / "staged.md").write_text(md, encoding="utf-8")
     source_findings = [e for e in exceptions if e["kind"] in ladder.SOURCE_FINDINGS]
     label_exceptions = [e for e in exceptions if e["kind"] not in ladder.SOURCE_FINDINGS]
     report = {"slug": args.slug, "round": rnd, "blocks": len(act.blocks), "sections": len(act.sections),
               "answers_missing": missing, "call_defects": call_defects, "exceptions": label_exceptions, "source_findings": source_findings,
-              "exception_kinds": _count(label_exceptions), "source_finding_kinds": _count(source_findings),
+              "omissions": omissions, "ruled": _ruled_blocks(ruled), "exception_kinds": _count(label_exceptions), "source_finding_kinds": _count(source_findings),
               "labels": _count_labels(smap),
               "dropped": [{"block": i, "text": act.blocks[i].text[:80], "note": smap.get(i, {}).get("note", "")}
                           for i in range(len(act.blocks)) if smap.get(i, {}).get("label") == "drop"]}
@@ -371,6 +371,15 @@ def cmd_dispatch(args) -> int:
         print(json.dumps(listed, ensure_ascii=False))
     print(f"# {printed} calls listed, {remaining} tasks unanswered in round {rnd}", file=sys.stderr)
     return 0
+
+
+def _ruled_blocks(ruled: dict[int, dict]) -> dict[str, list[int]]:
+    """The blocks each ruling of D-072 labelled, by rule: the map on disk is the labeller's, this is what the rules changed."""
+    out: dict[str, list[int]] = {}
+    for i, e in sorted(ruled.items()):
+        if e.get("rule"):
+            out.setdefault(e["rule"], []).append(i)
+    return out
 
 
 def _count(ex: list[dict]) -> dict[str, int]:
