@@ -85,14 +85,20 @@ def main():
     per_call_fixed = max(0.0, fixed_d2 - warm_tok)                           # hook, git status, reminders: written on every call
 
     def call(n_sections, task_tok, ans_tok, fixed, warm=True, ttl_1h=False):
-        """Token classes of the recommended call: request 1 (prompt, then the one Write) and request 2 (the reply)."""
-        prompt = instr + n_sections * task_tok; out_t = n_sections * ans_tok
-        shareable = warm_tok if warm else 0.0
-        r1_write = (fixed - shareable) + prompt; r1_read = shareable
-        r2_read = fixed + prompt + out_t; r2_write = 300
+        """Token classes of the recommended call, three requests: the dispatch prompt (two paths) and the Read of the
+        call file; the call file's content and the one Write of the answer file; the tool result and the one-line
+        reply. The labelling instructions live in the agent's system prompt, so they are part of the shareable
+        system part and are not re-sent in the call file."""
+        content = n_sections * task_tok; out_t = n_sections * ans_tok
+        sys_part = warm_tok + instr                                   # system prompt, tool schemas, instructions: shared by sibling calls
+        shareable = sys_part if warm else 0.0
+        r1_write = (fixed + instr - shareable) + 120; r1_read = shareable          # the prompt names two files
+        r2_write = content + 60; r2_read = fixed + instr + 120                      # the Read result
+        r3_write = 300; r3_read = fixed + instr + 120 + content + 60 + out_t         # the Write result, then the reply
         wk = "write_1h" if ttl_1h else "write"
-        c = {"input": 0.0, "write": 0.0, "write_1h": 0.0, "read": r1_read + r2_read, "output": out_t + 30}
-        c[wk] = r1_write + r2_write
+        c = {"input": 0.0, "write": 0.0, "write_1h": 0.0, "read": r1_read + r2_read + r3_read, "output": out_t + 120}
+        c[wk] = r1_write + r2_write + r3_write
+        prompt = instr + content
         once = fixed + prompt + out_t
         weighted = (c["write"] + c["write_1h"] * 1.6) * W_WRITE + c["read"] * W_READ + c["output"] * W_OUT
         dollars = sum(c[k] * PRICE[k] for k in c) / 1e6
@@ -118,15 +124,15 @@ def main():
              f"- The first-principles hook: {hook_chars:,} characters, about {hook_tokens:,.0f} tokens per call; over {sections / SECTIONS:,.0f} round-0 calls about {hook_tokens * sections / SECTIONS / 1e6:,.0f} million.",
              f"- Task text rate: {task_bpt:.2f} bytes per token ({len(reads)} reads); the instructions file {len(prompt_file.read_bytes()):,} bytes, about {instr:,.0f} tokens.",
              f"- Per section: task in form C {task_c:,.0f} tokens, answer in form B {ans_b:,.0f} tokens (step 3).",
-             f"- Of the lean agent's first request, {100 * cl['D1'][0]['warm_share']:.0f}% ({warm_tok:,.0f} tokens: the system prompt and the tool schemas) was read from a sibling call's warm cache; the instruction files, the hook and the git status were written on every call. Without the instruction files the per-call written part is {per_call_fixed:,.0f} tokens.",
-             f"- The recommended round-0 call: {d2_once:,.0f} tokens counted once, {d2_w:,.0f} cost-weighted, 2 API requests; the lean driver as measured {m['D1_call'][0]:,.0f} and {m['D1_call'][1]:,.0f}.",
+             f"- Of the lean agent's first request, {100 * cl['D1'][0]['warm_share']:.0f}% ({warm_tok:,.0f} tokens: the system prompt and the tool schemas) was read from a sibling call's warm cache; the instruction files, the hook and the git status were written on every call. Without the instruction files the per-call written part is {per_call_fixed:,.0f} tokens. With the labelling instructions moved into the agent's system prompt, the shareable part becomes {warm_tok + instr:,.0f} tokens.",
+             f"- The recommended round-0 call: {d2_once:,.0f} tokens counted once, {d2_w:,.0f} cost-weighted, 3 API requests; the lean driver as measured {m['D1_call'][0]:,.0f} and {m['D1_call'][1]:,.0f}.",
              f"- The recommended ladder call: {L2_TASKS} tasks of {l2_task_tok:,.0f} tokens, {l2_once:,.0f} counted once, {l2_w:,.0f} cost-weighted.",
              "\n## Round 0 over the whole corpus\n",
              "| Driver | Calls | Tokens per section (context once) | Total, context once | Tokens per section, cost-weighted | Total, cost-weighted | Basis |",
              "|---|---|---|---|---|---|---|"]
     designs = [("Current driver: general-purpose subagent, 3 sections per call", sections / 3, m["D0"][0] * scale, m["D0"][1] * scale, f"{m['D0'][2]} calls of the night of 21 to 22 October"),
                ("Lean driver as measured: labeller, 8 sections per call, one Read and one Write per task", sections / 8, m["D1"][0] * scale, m["D1"][1] * scale, f"{m['D1'][2]} calls of the lean run"),
-               ("Recommended: labeller without instruction files, warm cache, 8 sections inline, one compact answer file, 2 requests per call", sections / SECTIONS, d2_once / SECTIONS * scale, d2_w / SECTIONS * scale, "derived above")]
+               ("Recommended: labeller without instruction files, instructions in its system prompt, 8 sections per call file, one compact answer file, 3 requests per call", sections / SECTIONS, d2_once / SECTIONS * scale, d2_w / SECTIONS * scale, "derived above")]
     for name, calls, once, w, src in designs:
         lines.append(f"| {name} | {calls:,.0f} | {once:,.0f} | {once * sections / 1e6:,.0f} million | {w:,.0f} | {w * sections / 1e6:,.0f} million | {src} |")
     lines += ["\n## Round 0: the four token classes per call, dollars at list price, duration\n",
@@ -152,7 +158,7 @@ def main():
               f"- Whether the labeller inside a workflow carries the same fixed context, read from the first workflow agent's record.",
               f"- Whether sixteen sections per call hold as eight do: the first batch runs {m16_calls} of its calls at sixteen sections ({m16_once:,.0f} tokens counted once each, {m16_d:.2f} dollars at list price) and reads the exception rate by position; these calls label acts the audit needs anyway, so nothing is spent on measurement alone.",
               "\n## Assumptions\n",
-              "- The recommended call makes two API requests: the prompt (instructions and sections inline) and the one Write of the answer file, then the one-line reply. Its system part is read from a sibling's cache when one has run within the cache lifetime; the hook, the git status and the prompt are written once; request 2 re-reads everything once.",
+              "- The recommended call makes three API requests: the dispatch prompt names the call file and the answer file; the agent reads the call file (eight sections as tab-separated lines) and writes the answer file; then it replies with one line. The labelling instructions live in the agent's system prompt, so a sibling call that ran within the cache lifetime reads them and the tool schemas from the cache; the git status and the call file's content are written once each; the last request re-reads everything once. The tasks do not travel in the dispatch prompt itself, because the parent session would then carry them in its own context at its own price.",
               "- The recommended call's duration is assumed equal to the lean call's measured median; it makes fewer requests but one long output.",
               "- Exception rates are the lean run's at 8 sections per call over the sixteen test-set acts, which include the hardest cases on purpose; the corpus at large is expected at or below them.",
               "- The reads of what survives round 2 are decided per batch and not estimated.",

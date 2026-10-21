@@ -412,3 +412,82 @@ def test_fifth_review_sub_letters_superscripts_elisions_quoted_chapters_and_nest
     _, ex = run_all(act.blocks, smap)
     assert any(e["kind"] == "letter_order" and e["block"] == 8 for e in ex)
     assert any(e["kind"] == "item_order" and e["block"] == 16 for e in ex)
+
+
+def test_call_file_round_trip_and_compact_answers():
+    """D-070: a call file holds several tasks as tab-separated lines; the answer file is one object with compact entries."""
+    import json
+    from reading.calls import decode_answer_file, decode_entries, encode_tasks, task_names
+    tasks = [{"round": 0, "task": 3, "target": None, "context": ["Глава първа.", "ОБЩИ ПОЛОЖЕНИЯ"],
+              "blocks": [{"i": 10, "hint": "Article", "text": "Чл. 1. (1) Текст\tс табулация"}, {"i": 11, "hint": "Article", "text": "(2) Друг текст"}]},
+             {"round": 0, "task": 4, "target": None, "context": [], "blocks": [{"i": 12, "hint": "Title", "text": "Глава втора."}]}]
+    text = encode_tasks(tasks)
+    assert task_names(text) == ["0003", "0004"]
+    assert "10\tArticle\tЧл. 1. (1) Текст с табулация" in text and "# context: Глава първа." in text
+    answer = json.dumps({"0003": [{"i": 10, "l": "article_head", "n": "1"}, {"i": 11, "l": "alinea", "n": 2, "c": "low", "note": "or continuation"}], "4": [{"i": 12, "l": "chapter_heading"}]})
+    got = decode_answer_file(answer, ["0003", "0004"])
+    assert [e["label"] for e in got["0003"]] == ["article_head", "alinea"] and got["0003"][0]["conf"] == "high" and got["0003"][1]["conf"] == "low"
+    assert got["0004"][0]["label"] == "chapter_heading"
+    # the validator reads the compact form directly too, and the long form still
+    m, problems = validate_entries([{"i": 10, "l": "article_head", "n": "1"}, {"i": 11, "label": "alinea", "n": "2", "conf": "low"}], [10, 11])
+    assert not problems and m[10]["label"] == "article_head" and m[10]["conf"] == "high" and m[11]["conf"] == "low"
+    # a bare array serves a one-task call; a missing task or an unparsable file is an error value, not a crash
+    assert decode_answer_file("[{\"i\": 12, \"l\": \"chapter_heading\"}]", ["0004"])["0004"][0]["label"] == "chapter_heading"
+    assert isinstance(decode_answer_file("{\"0003\": []}", ["0003", "0004"])["0004"], str)
+    assert isinstance(decode_answer_file("not json", ["0003"])["0003"], str)
+    assert decode_entries("x") == "x"
+
+
+def test_ladder_round1_tasks_encode_target_and_neighbours(zzd):
+    from reading.calls import encode_tasks
+    smap = {i: {"i": i, "label": "continuation", "n": None, "conf": "high", "note": ""} for i in range(len(zzd.blocks))}
+    tasks = next_round_tasks(zzd, smap, [{"block": 5, "kind": "low_confidence", "detail": "two labels"}], 1)
+    text = encode_tasks(tasks)
+    assert "# target: 5" in text and "# exception on the target: low_confidence: two labels" in text
+    lines = [l for l in text.splitlines() if l.startswith(("4\t", "5\t", "6\t"))]
+    assert len(lines) == 3 and lines[0].endswith("\tcontinuation") and lines[1].count("\t") == 2
+
+
+def test_agent_definition_carries_the_instructions_and_the_lean_fields():
+    """D-070: the labeller's system prompt holds the labelling instructions (shared through the cache), no CLAUDE.md, no principles hook."""
+    root = Path(__file__).resolve().parents[2]
+    agent = (root / ".claude" / "agents" / "labeller.md").read_text(encoding="utf-8")
+    prompt = (root / "reading" / "prompts" / "label_section.md").read_text(encoding="utf-8")
+    front = agent.split("\n---", 1)[0]
+    assert "omitClaudeMd: true" in front and "ahelia-principles: exempt" in front and "tools: Read, Write" in front
+    assert prompt.strip() in agent
+
+
+def test_dispatch_groups_tasks_into_call_files_and_collect_splits_call_answers(tmp_path):
+    import json
+    import subprocess
+    import sys
+    run = tmp_path / "runs"
+    slug = "zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato"
+    root = Path(__file__).resolve().parents[2]
+    import re as _re
+    corpus = root / "laws" / f"{slug}.md"
+    if not corpus.exists():
+        pytest.skip("corpus file not on disk")
+    doc_id = _re.search(r"^identificador:\s*'?(-?\d+)'?", corpus.read_text(encoding="utf-8"), _re.M).group(1)
+    if not (root / "data" / "raw" / "lexbg" / f"{doc_id}.html").exists():
+        pytest.skip("raw page not fetched")
+    py = sys.executable
+    assert subprocess.run([py, "reading/run.py", "prepare", "--slug", slug, "--out", str(run)], cwd=root, capture_output=True).returncode == 0
+    d = run / slug
+    task_files = sorted((d / "tasks" / "round0").glob("*.json"))
+    assert "\n" not in task_files[0].read_text(encoding="utf-8").strip(), "task files are compact JSON"
+    out = subprocess.run([py, "reading/run.py", "dispatch", slug, "--round", "0", "--out", str(run), "--prompts"], cwd=root, capture_output=True, text=True)
+    assert out.returncode == 0 and "1 tasks" in out.stdout and "Read " in out.stdout
+    line = out.stdout.splitlines()[0]
+    call_file, answer_file = line.split("\t")[1], line.split("\t")[2]
+    assert Path(call_file).exists() and "## task 0000" in Path(call_file).read_text(encoding="utf-8")
+    blocks = json.loads((d / "blocks.json").read_text(encoding="utf-8"))["blocks"]
+    Path(answer_file).write_text(json.dumps({"0000": [{"i": b["i"], "l": "title" if b["i"] == 0 else "continuation"} for b in blocks]}), encoding="utf-8")
+    # once answered, dispatch lists nothing more
+    out2 = subprocess.run([py, "reading/run.py", "dispatch", slug, "--round", "0", "--out", str(run)], cwd=root, capture_output=True, text=True)
+    assert "0 calls listed, 0 tasks unanswered" in out2.stderr
+    assert subprocess.run([py, "reading/run.py", "collect", "--slug", slug, "--round", "0", "--out", str(run)], cwd=root, capture_output=True).returncode == 0
+    assert (d / "maps" / "round0" / "0000.json").exists(), "the call answer was split into the task's own answer file"
+    m = json.loads((d / "map.json").read_text(encoding="utf-8"))
+    assert m["0"]["label"] == "title" and all(v["conf"] == "high" for v in m.values())

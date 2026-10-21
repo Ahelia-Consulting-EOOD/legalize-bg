@@ -1,8 +1,9 @@
 """The structure map: one entry per block, returned by the model and validated here.
 
 An entry is ``{"i": <block index>, "label": <one of LABELS>, "n": <number or null>,
-"conf": "high" | "low", "note": <optional short reason>}``. The model never returns
-text. ``validate_entries`` refuses an entry with an unknown label, a missing or
+"conf": "high" | "low", "note": <optional short reason>}``; the compact form of the call
+driver (``l`` for ``label``, ``c`` for ``conf``, ``n`` and ``c`` left out when null or
+high) is accepted too. The model never returns text. ``validate_entries`` refuses an entry with an unknown label, a missing or
 duplicated index, or a number of the wrong shape, so a malformed answer is an
 exception on its blocks rather than a silent gap.
 """
@@ -72,7 +73,7 @@ def validate_entries(entries, expected: list[int], *, target: int | None = None)
         if i in seen:
             problems.append({"block": i, "kind": "duplicate_entry", "detail": "the block was labelled twice"})
             continue
-        label = e.get("label")
+        label = e.get("label", e.get("l"))
         if not isinstance(label, str) or label not in LABELS:
             problems.append({"block": i, "kind": "bad_label", "detail": f"label {label!r}"})
             continue
@@ -84,7 +85,7 @@ def validate_entries(entries, expected: list[int], *, target: int | None = None)
                 problems.append({"block": i, "kind": "bad_number", "detail": f"{label} with n={n!r}"})
                 continue
         seen.add(i)
-        conf = e.get("conf", "high")
+        conf = e.get("conf", e.get("c", "high"))
         note = e.get("note")
         out[i] = {"i": i, "label": label, "n": n if label in NUMBERED else None,
                   "conf": conf if conf in ("high", "low") else "low", "note": note if isinstance(note, str) else ""}
