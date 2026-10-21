@@ -3,7 +3,10 @@
 Round 0 labels every section. The checks turn failures into exceptions on
 blocks. Round 1 re-labels each excepted block together with its previous and
 next block; round 2 once more. What is still excepted after round 2 is the
-residue for a whole-act read by a Fable model or the owner. The ladder only
+residue for a whole-act read by a Fable model or the owner. The residue is
+sorted by what another round could change: a block whose last two answers
+agree is a reading the labeller holds and the checks refuse, so it needs a
+rule, not a round; any other block is the labeller's doubt. The ladder only
 prepares tasks and merges answers; the calls themselves are made by the run
 driver (Claude Code subagents under the owner's plans).
 """
@@ -77,3 +80,29 @@ def next_round_tasks(act: SplitAct, smap: dict[int, dict], exceptions: list[dict
 def evaluate(act: SplitAct, smap: dict[int, dict], problems: list[dict]) -> tuple[str, list[dict]]:
     md, ex = run_all(act.blocks, smap)
     return md, problems + ex
+
+
+def classify_residue(residue: list[int], rounds: list[tuple[dict[int, dict], list[dict]]],
+                     exceptions: list[dict]) -> list[dict]:
+    """Sort the residue into ``rule_needed`` and ``labeller_unsure`` from each round's own answers.
+
+    ``rounds`` holds, per round, the map of that round's answers alone and the validator's problems.
+    A refused answer (a label or number the validator rejects) counts as an answer, so a number
+    the grammar cannot read, given twice, is also a rule the checks lack.
+    """
+    out = []
+    for i in residue:
+        seq: list[list | None] = []
+        for got, problems in rounds:
+            if i in got:
+                seq.append([got[i]["label"], got[i].get("n")])
+            else:
+                kinds = sorted({p["kind"] for p in problems if p.get("block") == i and p["kind"] in ("bad_label", "bad_number")})
+                seq.append(["refused", ",".join(kinds)] if kinds else None)
+        answered = [a for a in seq if a is not None]
+        last = next((got[i] for got, _ in reversed(rounds) if i in got), {})
+        out.append({"block": i,
+                    "class": "rule_needed" if len(answered) >= 2 and answered[-1] == answered[-2] else "labeller_unsure",
+                    "labels": seq, "kinds": sorted({e["kind"] for e in exceptions if e.get("block") == i}),
+                    "note": last.get("note", "")})
+    return out

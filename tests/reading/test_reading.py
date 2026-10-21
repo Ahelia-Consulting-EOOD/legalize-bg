@@ -6,7 +6,7 @@ import pytest
 from reading.assembler import assemble, strip_markers
 from reading.checks import run_all
 from reading.labels import validate_entries
-from reading.ladder import merge, next_round_tasks, round0_tasks
+from reading.ladder import classify_residue, merge, next_round_tasks, round0_tasks
 from reading.splitter import Block, SplitAct, split_lexbg
 
 FIX = Path(__file__).resolve().parents[1] / "fixtures" / "html"
@@ -703,3 +703,16 @@ def test_dispatch_json_lists_calls_for_a_workflow(tmp_path):
     calls = json.loads(lines[0])
     assert len(calls) == 2 and calls[0]["tasks"] == 8 and calls[1]["tasks"] == 1
     assert calls[0]["prompt"].startswith("Read ") and calls[0]["call_file"] in calls[0]["prompt"] and calls[0]["answer_file"] in calls[0]["prompt"]
+
+
+def test_residue_is_sorted_into_rule_needed_and_labeller_unsure():
+    """A reading the labeller held in its last two answers needs a rule; a changed or single answer is doubt."""
+    r0 = ({1: {"label": "section_heading", "n": None}, 2: {"label": "section_heading", "n": None}, 3: {"label": "item", "n": "1"}}, [])
+    r1 = ({1: {"label": "drop", "n": None, "note": "superseded repeat"}, 2: {"label": "drop", "n": None}}, [{"block": 3, "kind": "bad_number"}])
+    r2 = ({1: {"label": "drop", "n": None, "note": "superseded repeat"}, 2: {"label": "editorial_note", "n": None}}, [{"block": 3, "kind": "bad_number"}])
+    ex = [{"block": 1, "kind": "drop_inside_act"}, {"block": 2, "kind": "low_confidence"}, {"block": 3, "kind": "bad_number"}, {"block": 4, "kind": "unknown"}]
+    got = {d["block"]: d for d in classify_residue([1, 2, 3, 4], [r0, r1, r2], ex)}
+    assert got[1]["class"] == "rule_needed" and got[1]["note"] == "superseded repeat" and got[1]["kinds"] == ["drop_inside_act"]
+    assert got[2]["class"] == "labeller_unsure"
+    assert got[3]["class"] == "rule_needed" and got[3]["labels"][1] == ["refused", "bad_number"]
+    assert got[4]["class"] == "labeller_unsure" and got[4]["labels"] == [None, None, None]

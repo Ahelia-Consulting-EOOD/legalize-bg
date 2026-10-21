@@ -31,6 +31,7 @@ def rows(run_root: Path) -> list[dict]:
             "act": act_dir.name, "blocks": nb, "sections": tasks0, "round": r["round"],
             "exceptions": " ".join(per_round), "kinds": ", ".join(f"{k} {v}" for k, v in sorted(kinds.items())) or "none",
             "residue": len(r.get("residue", [])) if "residue" in r else "-",
+            "residue_classes": ", ".join(f"{k} {v}" for k, v in sorted(r.get("residue_classes", {}).items())) or "-",
             "source_findings": ", ".join(f"{k} {v}" for k, v in sorted(r.get("source_finding_kinds", {}).items())) or "none",
             "missing_answers": len(r.get("answers_missing", [])), "diff_lines": r.get("diff_lines", "-"),
             "state": "done" if "residue" in r else f"round {r['round']} collected, {r.get('next_round_tasks', 0)} tasks pending",
@@ -43,10 +44,10 @@ def main() -> int:
     root = Path(args[0]) if args else Path("data/runs/structure-map-2026-10-22")
     rs = rows(root)
     if "--md" in sys.argv:
-        print("| act | blocks | sections | exceptions per round | kinds (latest) | residue | source findings | diff lines | state |")
-        print("|---|---|---|---|---|---|---|---|---|")
+        print("| act | blocks | sections | exceptions per round | kinds (latest) | residue | residue by class | source findings | diff lines | state |")
+        print("|---|---|---|---|---|---|---|---|---|---|")
         for r in rs:
-            print(f"| {r['act']} | {r['blocks']} | {r['sections']} | {r.get('exceptions', '-')} | {r.get('kinds', '-')} | {r.get('residue', '-')} | {r.get('source_findings', '-')} | {r.get('diff_lines', '-')} | {r['state']} |")
+            print(f"| {r['act']} | {r['blocks']} | {r['sections']} | {r.get('exceptions', '-')} | {r.get('kinds', '-')} | {r.get('residue', '-')} | {r.get('residue_classes', '-')} | {r.get('source_findings', '-')} | {r.get('diff_lines', '-')} | {r['state']} |")
     else:
         for r in rs:
             print(json.dumps(r, ensure_ascii=False))

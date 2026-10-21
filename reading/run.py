@@ -122,8 +122,9 @@ def cmd_collect(args) -> int:
     # the map is rebuilt from the answers of rounds 0 to R in order, so re-collecting a round never keeps a later round's labels
     smap: dict[int, dict] = {}
     mp = run_dir / "map.json"
-    for r in range(rnd):
-        smap, _ = ladder.merge(smap, _answers(run_dir, r)[0])
+    earlier = [_answers(run_dir, r)[0] for r in range(rnd)]
+    for a in earlier:
+        smap, _ = ladder.merge(smap, a)
     answers, missing = _answers(run_dir, rnd)
     call_defects = _call_defects(run_dir, rnd)
     smap, problems = ladder.merge(smap, answers)
@@ -151,6 +152,10 @@ def cmd_collect(args) -> int:
         report["next_round_tasks"] = len(tasks)
     else:
         report["residue"] = sorted({e["block"] for e in label_exceptions if isinstance(e["block"], int) and e["block"] >= 0})
+        # each round's answers alone, so the residue is sorted by whether the labeller held its reading
+        per_round = [ladder.merge({}, a) for a in earlier + [answers]]
+        report["residue_detail"] = ladder.classify_residue(report["residue"], per_round, label_exceptions)
+        report["residue_classes"] = _count([{"kind": d["class"]} for d in report["residue_detail"]])
     cf = _corpus_file(args.slug)
     if cf:
         current = cf.read_text(encoding="utf-8").split("---", 2)[-1].lstrip("\n")
