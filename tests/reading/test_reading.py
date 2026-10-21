@@ -355,3 +355,15 @@ def test_provisions_heading_groups_without_kam_and_quoted_section_numbers():
     md, ex = run_all(act.blocks, smap)
     assert not [e for e in ex if e["kind"] in ("empty_section", "sign_order", "sign_gap", "article_gap")], ex
     assert '#### Раздел I "а". Престъпления против кредиторите' in md
+
+
+def test_news_and_forum_footer_is_tail_chrome():
+    """Наредба № 5's page ends with lex.bg's news-and-forum footer instead of the EU list; forum titles open like provisions."""
+    act = _act(["Чл. 1. Едно.", "Новини", "Почина съдия", "Форум", "Чл.159 Ал. 1 от ЗДП", "© Lex.bg | общи условия"])
+    smap = {0: {"label": "article_head", "n": "1"}}
+    smap.update({i: {"label": "drop", "note": "footer"} for i in range(1, 6)})
+    _, ex = run_all(act.blocks, smap)
+    assert not [e for e in ex if e["kind"].startswith("drop")], ex
+    smap[1] = {"label": "annex_row"}
+    _, ex = run_all(act.blocks, smap)
+    assert any(e["kind"] == "chrome_placed" and e["block"] == 1 for e in ex)

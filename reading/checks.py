@@ -3,7 +3,8 @@
 ``coverage``: every block is placed once or dropped once; a dropped block carries
 the ``drop`` label with a reason; a dropped block that opens like a provision, or
 that lies between placed blocks, or that lies before or after the act without
-being the page's known chrome (``START_CHROME``, the list under ``TAIL_CHROME``),
+being the page's known chrome (``START_CHROME``; after the act, everything from a
+line in ``TAIL_STARTS`` on: the EU-acts list or the news-and-forum footer),
 is an exception; a separator line of dashes or dots is never one.
 ``reassembly``: each assembled line, markers removed, equals its blocks joined.
 ``text``: a numbered label's number equals the number written in the block, and a
@@ -63,6 +64,8 @@ _SIGN_FORM = re.compile(r"^(?:§\s*\d+[а-я]?\.|Параграф\s+единст
 # the page chrome lex.bg prints before the title and after the act: the only drops allowed outside the act
 START_CHROME = re.compile(r"^(ДОБАВИ В МОИТЕ АКТОВЕ|Lex\.bg)")
 TAIL_CHROME = "Релевантни актове от Европейското законодателство"
+# the first line of each tail lex.bg prints after an act: the EU-acts list, or the news-and-forum footer
+TAIL_STARTS = frozenset({TAIL_CHROME, "Новини"})
 
 
 def _art_key(n: str) -> tuple[int, str, int]:
@@ -115,12 +118,14 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     for i in sorted(idx - touched):
         ex.append({"block": i, "kind": "not_covered", "detail": "neither placed nor dropped"})
     first_placed, last_placed = (placed[0], placed[-1]) if placed else (-1, -1)
-    tail_from = next((i for i in dropped if blocks[i].text == TAIL_CHROME and i > last_placed), None)
+    tail_from = next((i for i in dropped if blocks[i].text in TAIL_STARTS and i > last_placed), None)
     for i in dropped:
         e = smap.get(i, {})
         t = blocks[i].text
         if e.get("label") != "drop":
             ex.append({"block": i, "kind": "dropped_without_label", "detail": "left out without a drop label"})
+        elif tail_from is not None and i >= tail_from:
+            continue  # the page's tail chrome: forum post titles there may open like a provision
         elif _PROVISION_LIKE.match(t):
             ex.append({"block": i, "kind": "drop_of_provision", "detail": f"a line that opens like a provision was dropped: {t[:60]!r}"})
         elif _SEPARATOR.match(t):
@@ -149,7 +154,7 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             continue
         if e.get("conf") == "low":
             ex.append({"block": i, "kind": "low_confidence", "detail": e.get("note", "")})
-        if e["label"] != "drop" and (START_CHROME.match(t) or t == TAIL_CHROME):
+        if e["label"] != "drop" and (START_CHROME.match(t) or t in TAIL_STARTS):
             ex.append({"block": i, "kind": "chrome_placed", "detail": f"the page's chrome carries the label {e['label']}"})
         low = t.lower()
         if any(f in low for f in FRAGMENTS):
