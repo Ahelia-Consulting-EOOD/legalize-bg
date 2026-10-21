@@ -43,13 +43,16 @@ from .splitter import Block
 
 FRAGMENTS = ("sup>", "<sup", "span>", "<span", "div>", "<div", "&nbsp;", "<br", "&lt;", "&amp;", "<p", "</", "<b>", "<i>", "&quot;", "&#")
 _LATIN_TO_CYR = str.maketrans("aBbeEkKmMHoOpPcCTxXy", "аВьеЕкКмМНоОрРсСТхХу")
-_ARTNUM = re.compile(r"^(\d+)([а-я]?)(\d?)$")
-_ART_TEXT = re.compile(r"^Чл\.\s*(\d+[а-я]?\d?)\.")
+_ARTNUM = re.compile(r"^(\d+)([а-я]?)(\d{0,2})$")
+# the superscript digit of an article number (Чл. 88а¹) reaches the page as "88а.SUP>1." when lex.bg's markup leaks
+# (the text is read after the Latin-to-Cyrillic translation, which turns SUP> into SUР>)
+_ART_TEXT = re.compile(r"^Чл\.\s*(\d+[а-я]?)(\d{1,2})?(?:\.?(?:SU[PР]>|<sup>)(\d{1,2})(?:</sup>|/sup>)?)?\.")
 _EDINSTVEN = re.compile(r"^Член\s+единствен\.")
 _SIGN_TEXT = re.compile(r"^(?:§\s*(\d+[а-я]?)\s*\.?|Параграф\s+(единствен)\.)")  # tolerant: "§ 72 ." and "§ 26 В" are heads with a malformed form
 _ALINEA_TEXT = re.compile(r"^\((\d+[а-я]?)\)")
 _ITEM_TEXT = re.compile(r"^(\d+[а-я]?)\.\s")
-_LETTER_TEXT = re.compile(r"^([а-я])\)")
+_ITEM_TIGHT = re.compile(r"^(\d+[а-я]?)\.(?=[А-Яа-я(\"„])")  # "8.Член 708" — an item head whose space the source lost
+_LETTER_TEXT = re.compile(r"^(([а-я])\2{0,2})\)")
 # the first alinea written in an article or § head: right after the number, or after one editorial note in parentheses
 _FIRST_ALINEA = re.compile(r"^(?:Чл\.\s*\S+\.|§\s*\S+\.|Член\s+единствен\.|Параграф\s+единствен\.)\s*(?:\((?:[^()]|\([^()]*\))*\)\s*)*\((\d+)\)")
 _PROVISION_LIKE = re.compile(r"^(Чл\.\s*\d|Член\s+единствен|§\s*\d|Параграф\s+единствен|\(\d+[а-я]?\)|\d+[а-я]?\.\s|[а-я]\)\s)")
@@ -59,6 +62,9 @@ _OPENERS = {"article_head", "paragraph_sign", "alinea", "item", "letter", "quote
 _ADDRESS_LIKE = re.compile(r"^(Чл\.\s*\d|Член\s+единствен|§\s*\d|Параграф\s+единствен)")
 _QUOTE_OPEN = re.compile(r"^[\"„“«]")
 _SEPARATOR = re.compile(r"^-{3,}$")  # lex.bg's dashed separator line: chrome wherever it stands (dot lines are form fields, act content)
+_KNOWN_CHROME = re.compile(r"^Таблица за съответствие между разпоредбите")  # lex.bg's link to a correspondence table, printed under the title (ГПК)
+_ELISION = re.compile(r"^(?:\.\s*){5,}$")  # ". . . . ." — lex.bg's mark that the amending act's other paragraphs are left out; what follows need not open a list
+_QUOTE_MARKS = re.compile(r"[\"„“”«»]")
 _QUOTE_CLOSE = re.compile(r"[\"“”»][.;,:)]?$")
 _SIGN_FORM = re.compile(r"^(?:§\s*\d+[а-я]?\.|Параграф\s+единствен\.)(?:\s|$)")
 # the page chrome lex.bg prints before the title and after the act: the only drops allowed outside the act
@@ -80,8 +86,13 @@ def _num_key(n: str | None) -> tuple[int, str]:
     return (int(m.group(1)), m.group(2)) if m else (0, n or "")
 
 
+_ANY = (-1, "")  # the list resumes after an elision line: whatever comes next follows
+
+
 def _follows(prev: tuple[int, str] | None, cur: tuple[int, str]) -> bool:
     """(n) follows (n-1); (n-suffix) follows (n) or the previous suffix of n; the first is (1)."""
+    if prev == _ANY:
+        return True
     if prev is None:
         return cur[0] == 1
     if cur[1]:
@@ -128,7 +139,7 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             continue  # the page's tail chrome: forum post titles there may open like a provision
         elif _PROVISION_LIKE.match(t):
             ex.append({"block": i, "kind": "drop_of_provision", "detail": f"a line that opens like a provision was dropped: {t[:60]!r}"})
-        elif _SEPARATOR.match(t):
+        elif _SEPARATOR.match(t) or _KNOWN_CHROME.match(t):
             continue
         elif first_placed < i < last_placed:
             ex.append({"block": i, "kind": "drop_inside_act", "detail": f"a line between placed blocks was dropped: {t[:60]!r}"})
@@ -164,8 +175,9 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
         if label == "article_head":
             m = _ART_TEXT.match(tn)
             if m:
-                if m.group(1) != n:
-                    ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"article_head n={n!r} but the text says Чл. {m.group(1)}"})
+                written = m.group(1) + (m.group(2) or m.group(3) or "")
+                if written != n:
+                    ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"article_head n={n!r} but the text says Чл. {written}"})
             elif _EDINSTVEN.match(tn):
                 if n != "единствен":
                     ex.append({"block": i, "kind": "label_text_mismatch", "detail": "Член единствен needs n 'единствен'"})
@@ -182,9 +194,11 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             if not m or m.group(1) != n:
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"alinea n={n!r} on {t[:30]!r}"})
         elif label == "item":
-            m = _ITEM_TEXT.match(tn)
+            m = _ITEM_TEXT.match(tn) or _ITEM_TIGHT.match(tn)
             if not m or m.group(1) != n:
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"item n={n!r} on {t[:30]!r}"})
+            elif not _ITEM_TEXT.match(tn):
+                ex.append({"block": i, "kind": "malformed_head", "detail": f"item head without a space after the number: {t[:30]!r}"})
         elif label == "letter":
             m = _LETTER_TEXT.match(tn)
             if not m or m.group(1) != n:
@@ -197,10 +211,13 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             # earlier quoted block opened with one and no block since has closed; a run with no mark goes to the ladder
             if _PROVISION_LIKE.match(tn) and not _QUOTE_OPEN.match(t) and not run_open:
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"quoted on a line that opens like a provision, outside an open quotation: {t[:40]!r}"})
+            # the marks pair up inside a line: a line that opens with one leaves the quotation open when its count is odd
+            # ('"Глава трета "а"' opens a chapter quoted in full); any other line with an odd count closes or reopens it
+            odd = len(_QUOTE_MARKS.findall(t)) % 2 == 1
             if _QUOTE_OPEN.match(t):
-                run_open = True
-            if _QUOTE_CLOSE.search(t) and not (_QUOTE_OPEN.match(t) and len(t) == 1):
-                run_open = False
+                run_open = odd
+            elif odd:
+                run_open = not run_open
         elif _ADDRESS_LIKE.match(tn) and not (label == "annex_row" and in_annex):
             ex.append({"block": i, "kind": "hidden_address", "detail": f"{label} on a line that opens with an address: {t[:40]!r}"})
         elif label not in _OPENERS and label not in _HEADINGS and label not in ("drop", "editorial_note", "repeal_note") and _PROVISION_LIKE.match(tn):
@@ -228,6 +245,9 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     last_alinea: tuple[int, str] | None = None
     last_item: tuple[int, str] | None = None
     last_letter = ""
+    last_subletter: dict[int, str] = {}
+    last_item_text = ""
+    item_stack: list = []
     item_parent_ok = False
     amending = False  # after the first "КЪМ …" provisions heading lex.bg prints a selection of another act's §§: no gap check there
     prov_groups = 0  # provisions-heading groups seen; a new group begins when a provisions heading follows a non-heading block
@@ -242,6 +262,7 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             in_article = in_sign = False
             last_alinea = last_item = None
             last_letter = ""
+            last_subletter = {}
             item_parent_ok = False
             if label == "provisions_heading" and prev_heading_label not in _HEADINGS:
                 prov_groups += 1
@@ -255,6 +276,9 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             prev_heading_label = ""
         if label in _HEADINGS:
             pass
+        elif _ELISION.match(t):
+            last_alinea = last_item = _ANY
+            last_letter = "*"
         elif label == "article_head":
             key = _art_key(n)
             if last_art is not None and key < last_art:
@@ -271,7 +295,9 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             m = _FIRST_ALINEA.search(t)
             last_alinea = (int(m.group(1)), "") if m else None
             last_item = None
+            item_stack = []
             last_letter = ""
+            last_subletter = {}
             item_parent_ok = True
         elif label == "paragraph_sign":
             key = _num_key(n) if n != "единствен" else (1, "")
@@ -291,7 +317,9 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             m = _FIRST_ALINEA.search(t)
             last_alinea = (int(m.group(1)), "") if m else None
             last_item = None
+            item_stack = []
             last_letter = ""
+            last_subletter = {}
             item_parent_ok = True
         elif label == "alinea":
             if not (in_article or in_sign):
@@ -301,37 +329,70 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
                 ex.append({"block": i, "kind": "alinea_order", "detail": f"({n}) after ({last_alinea[0]}{last_alinea[1]})" if last_alinea else f"({n}) opens the article"})
             last_alinea = key
             last_item = None
+            item_stack = []
             last_letter = ""
+            last_subletter = {}
             item_parent_ok = True
         elif label == "unnumbered_alinea":
             if not (in_article or in_sign):
                 ex.append({"block": i, "kind": "nesting", "detail": "paragraph outside an article or §"})
             last_item = None
+            item_stack = []
             last_letter = ""
+            last_subletter = {}
             item_parent_ok = True
         elif label == "unnumbered_item":
             if not item_parent_ok:
                 ex.append({"block": i, "kind": "nesting", "detail": "list line outside an article, alinea or §"})
             last_letter = ""
+            last_subletter = {}
         elif label == "item":
             if not item_parent_ok:
                 ex.append({"block": i, "kind": "nesting", "detail": "item outside an article, alinea or §"})
             key = _num_key(n)
-            if not _follows(last_item, key):
+            if _follows(last_item, key):
+                pass
+            elif key == (1, "") and last_item not in (None, _ANY) and last_item_text.rstrip().endswith(":"):
+                item_stack.append(last_item)  # "41. … е:" then "1. …": a numbered sub-list under the item
+            elif item_stack and _follows(item_stack[-1], key):
+                item_stack.pop()  # the outer list resumes
+            else:
                 ex.append({"block": i, "kind": "item_order", "detail": f"{n}. after {last_item[0]}{last_item[1]}." if last_item else f"{n}. opens the list"})
             last_item = key
+            last_item_text = t
             last_letter = ""
+            last_subletter = {}
         elif label == "letter":
             if not item_parent_ok:
                 ex.append({"block": i, "kind": "nesting", "detail": "letter outside an article, alinea, § or item"})
-            if n:
+            if n and len(n) > 1:
+                # a doubled or tripled sub-letter runs its own sequence under the current letter (or doubled letter)
+                depth = len(n)
+                pos = BULGARIAN_LETTERS.find(n[0])
+                prev_n = last_subletter.get(depth, "")
+                prev = BULGARIAN_LETTERS.find(prev_n[0]) if prev_n else -1
+                if pos < 0:
+                    ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) is not a lettering letter"})
+                elif prev_n and pos != prev + 1:
+                    ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) after {prev_n})"})
+                elif not prev_n and pos > 0 and last_letter != "*":
+                    ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) opens the sub-lettering"})
+                if pos >= 0:
+                    last_subletter[depth] = n
+                    for d in list(last_subletter):
+                        if d > depth:
+                            del last_subletter[d]
+            elif n:
                 pos = BULGARIAN_LETTERS.find(n)
                 prev = BULGARIAN_LETTERS.find(last_letter) if last_letter else -1
                 if pos < 0 and n not in "йъь":
                     ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) is not a lettering letter"})
+                elif last_letter == "*":
+                    pass  # the list resumes after an elision line
                 elif last_letter and pos >= 0 and pos != prev + 1:
                     ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) after {last_letter})"})
                 elif not last_letter and pos > 0:
                     ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) opens the lettering"})
                 last_letter = n if pos >= 0 else last_letter
+                last_subletter = {}
     return md, ex
