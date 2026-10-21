@@ -8,7 +8,7 @@
    "kind": "unlinked-glossary",
    "line": 0,
    "col": 0,
-   "fp": "doc-c489071f02",
+   "fp": "doc-969ae026b6",
    "repeat": 0,
    "verdict": "keep",
    "reason": "glossary terms are short codes; links would not help a reader of a table"
@@ -30,7 +30,7 @@
    "kind": "bare-number",
    "line": 9,
    "col": 0,
-   "fp": "8fd1da8e8d",
+   "fp": "d50e54fa05",
    "repeat": 0,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -41,13 +41,57 @@
    "kind": "bare-number",
    "line": 9,
    "col": 0,
-   "fp": "8fd1da8e8d",
+   "fp": "d50e54fa05",
    "repeat": 1,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
   },
   {
    "id": "r5",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 9,
+   "col": 358,
+   "fp": "d50e54fa05",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
+  },
+  {
+   "id": "r6",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 9,
+   "col": 378,
+   "fp": "d50e54fa05",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
+  },
+  {
+   "id": "r7",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 9,
+   "col": 387,
+   "fp": "d50e54fa05",
+   "repeat": 2,
+   "verdict": "keep",
+   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
+  },
+  {
+   "id": "r8",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 9,
+   "col": 402,
+   "fp": "d50e54fa05",
+   "repeat": 3,
+   "verdict": "keep",
+   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
+  },
+  {
+   "id": "r9",
    "gate": "reader",
    "kind": "bare-number",
    "line": 11,
@@ -58,7 +102,7 @@
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
   },
   {
-   "id": "r6",
+   "id": "r10",
    "gate": "reader",
    "kind": "bare-number",
    "line": 11,
@@ -69,7 +113,7 @@
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
   },
   {
-   "id": "r7",
+   "id": "r11",
    "gate": "reader",
    "kind": "bare-number",
    "line": 11,
@@ -80,7 +124,7 @@
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
   },
   {
-   "id": "r8",
+   "id": "r12",
    "gate": "reader",
    "kind": "long-sentence",
    "line": 11,
@@ -91,7 +135,7 @@
    "reason": "read; the night's sentence, one clause chain with parentheses the reader needs whole"
   },
   {
-   "id": "r9",
+   "id": "r13",
    "gate": "reader",
    "kind": "language-mix",
    "line": 11,
@@ -102,7 +146,7 @@
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r10",
+   "id": "r14",
    "gate": "reader",
    "kind": "language-mix",
    "line": 11,
@@ -113,7 +157,7 @@
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r11",
+   "id": "r15",
    "gate": "reader",
    "kind": "language-mix",
    "line": 11,
@@ -124,7 +168,7 @@
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r12",
+   "id": "r16",
    "gate": "reader",
    "kind": "language-mix",
    "line": 11,
@@ -135,7 +179,7 @@
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r13",
+   "id": "r17",
    "gate": "reader",
    "kind": "language-mix",
    "line": 11,
@@ -146,51 +190,40 @@
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r14",
+   "id": "r18",
    "gate": "reader",
    "kind": "language-mix",
    "line": 19,
-   "col": 3,
+   "col": 12,
    "fp": "0b9d792f20",
    "repeat": 0,
    "verdict": "keep",
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r15",
+   "id": "r19",
    "gate": "reader",
    "kind": "language-mix",
    "line": 19,
-   "col": 12,
+   "col": 24,
    "fp": "0b9d792f20",
    "repeat": 1,
    "verdict": "keep",
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r16",
+   "id": "r20",
    "gate": "reader",
    "kind": "language-mix",
    "line": 19,
-   "col": 24,
+   "col": 35,
    "fp": "0b9d792f20",
    "repeat": 2,
    "verdict": "keep",
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r17",
-   "gate": "reader",
-   "kind": "language-mix",
-   "line": 19,
-   "col": 35,
-   "fp": "0b9d792f20",
-   "repeat": 3,
-   "verdict": "keep",
-   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
-  },
-  {
-   "id": "r18",
+   "id": "r21",
    "gate": "reader",
    "kind": "undefined-acronym",
    "line": 19,
@@ -201,7 +234,7 @@
    "reason": "read; the acronym is defined in the same cell, after the full name"
   },
   {
-   "id": "r19",
+   "id": "r22",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 19,
@@ -212,7 +245,7 @@
    "reason": "read; the test-set case codes are explained in the glossary and referenced"
   },
   {
-   "id": "r20",
+   "id": "r23",
    "gate": "reader",
    "kind": "language-mix",
    "line": 20,
@@ -223,7 +256,7 @@
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r21",
+   "id": "r24",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 20,
@@ -234,7 +267,7 @@
    "reason": "read; the test-set case codes are explained in the glossary and referenced"
   },
   {
-   "id": "r22",
+   "id": "r25",
    "gate": "reader",
    "kind": "language-mix",
    "line": 21,
@@ -245,40 +278,29 @@
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r23",
+   "id": "r26",
    "gate": "reader",
    "kind": "language-mix",
    "line": 21,
-   "col": 25,
+   "col": 39,
    "fp": "a1f5bae6b4",
    "repeat": 1,
    "verdict": "keep",
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r24",
+   "id": "r27",
    "gate": "reader",
    "kind": "language-mix",
    "line": 21,
-   "col": 39,
+   "col": 51,
    "fp": "a1f5bae6b4",
    "repeat": 2,
    "verdict": "keep",
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
-   "id": "r25",
-   "gate": "reader",
-   "kind": "language-mix",
-   "line": 21,
-   "col": 51,
-   "fp": "a1f5bae6b4",
-   "repeat": 3,
-   "verdict": "keep",
-   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
-  },
-  {
-   "id": "r26",
+   "id": "r28",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 21,
@@ -289,37 +311,15 @@
    "reason": "read; the test-set case codes are explained in the glossary and referenced"
   },
   {
-   "id": "r27",
-   "gate": "reader",
-   "kind": "language-mix",
-   "line": 22,
-   "col": 3,
-   "fp": "a3df9f2c9a",
-   "repeat": 0,
-   "verdict": "keep",
-   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
-  },
-  {
-   "id": "r28",
+   "id": "r29",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 22,
    "col": 36,
-   "fp": "a3df9f2c9a",
+   "fp": "eaf7986b05",
    "repeat": 0,
    "verdict": "keep",
    "reason": "read; the test-set case codes are explained in the glossary and referenced"
-  },
-  {
-   "id": "r29",
-   "gate": "reader",
-   "kind": "language-mix",
-   "line": 23,
-   "col": 27,
-   "fp": "6ee5761324",
-   "repeat": 0,
-   "verdict": "keep",
-   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
   {
    "id": "r30",
@@ -327,8 +327,8 @@
    "kind": "language-mix",
    "line": 23,
    "col": 39,
-   "fp": "6ee5761324",
-   "repeat": 1,
+   "fp": "8f1cdb3a00",
+   "repeat": 0,
    "verdict": "keep",
    "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   },
@@ -338,10 +338,10 @@
    "kind": "undefined-acronym",
    "line": 23,
    "col": 39,
-   "fp": "6ee5761324",
+   "fp": "8f1cdb3a00",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "read; the acronym is defined in the same cell, after the full name"
+   "reason": "read; the acronym is defined in the same cell or sentence, after the full name"
   },
   {
    "id": "r32",
@@ -349,7 +349,7 @@
    "kind": "undefined-code-name",
    "line": 23,
    "col": 63,
-   "fp": "6ee5761324",
+   "fp": "8f1cdb3a00",
    "repeat": 0,
    "verdict": "keep",
    "reason": "read; the test-set case codes are explained in the glossary and referenced"
@@ -1141,7 +1141,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 0,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1152,7 +1152,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 1,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1163,7 +1163,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 2,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1174,7 +1174,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 3,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1185,7 +1185,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 4,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1196,7 +1196,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 5,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1207,7 +1207,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 6,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1218,7 +1218,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 7,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1229,7 +1229,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 8,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1240,7 +1240,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 9,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1251,7 +1251,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 10,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1262,7 +1262,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 11,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1273,7 +1273,7 @@
    "kind": "bare-number",
    "line": 82,
    "col": 0,
-   "fp": "59cf7d3b26",
+   "fp": "3cb2380abd",
    "repeat": 12,
    "verdict": "keep",
    "reason": "read; counts of blocks, pages, calls or tokens, the unit is in the sentence"
@@ -1310,6 +1310,30 @@
    "repeat": 0,
    "verdict": "keep",
    "reason": "read; the how-to paragraph of Provenance, each step named in order"
+  }
+ ],
+ "held": [
+  {
+   "id": "r21",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 19,
+   "col": 35,
+   "fp": "0b9d792f20",
+   "repeat": 3,
+   "verdict": "keep",
+   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
+  },
+  {
+   "id": "r29",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 21,
+   "col": 51,
+   "fp": "a1f5bae6b4",
+   "repeat": 3,
+   "verdict": "keep",
+   "reason": "read; Bulgarian act names and page text quoted as the source prints them, in an English report"
   }
  ]
 }
