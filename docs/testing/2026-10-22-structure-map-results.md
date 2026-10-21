@@ -6,7 +6,7 @@ Who this is for: the owner, reading this on the morning of 22 October 2026 befor
 
 The pipeline of plan step 3 (decision D-069, the reading architecture of 21 October 2026) was built during the night and run on six acts of the test set, all on Claude Opus 5.5 through this session's plan: the structure map per section (one subagent call per section of up to 60 blocks), the assembler that copies the blocks under the labels, the mechanical checks, and the exception ladder (round 1 re-labels an excepted block with its neighbours). Nothing was written to the corpus; every output is kept per act in the run folder named in the Provenance section (blocks, tasks, the model's maps, the staged Markdown, the diff against the corpus file, a report per round).
 
-The raw fetch of all 3,624 lex.bg act pages (plan step 2) ran in parallel and was still fetching at the time of writing; its log (Provenance) says where it ended.
+The raw fetch of all 3,624 lex.bg act pages (plan step 2) ran in parallel at one request per second and ended at 05:25 with 3,623 pages in the raw store (1.6 GB) and no Cloudflare halt. The one page missing is Указ № 883 от 1974 г. за прилагане на Закона за нормативните актове: lex.bg answers its address with a server error („Unauthorized … Error retrieving document!"), on two tries; its corpus file was never from lex.bg (its source field says strategy.bg), so it stays an act outside the lex.bg path.
 
 ## Results per act
 
@@ -45,7 +45,7 @@ Every diff line was read. They fall into five kinds, none of them a wording chan
 
 ## What is left of the test set
 
-Not yet labelled: Кодекс на труда (107 calls), Наказателен кодекс (78), Данъчно-осигурителен процесуален кодекс (158), Търговски закон (184), Кодекс за социално осигуряване (192), Кодекс на търговското корабоплаване (87), Закон за данък върху добавената стойност (118), Граждански процесуален кодекс (131), and the two acts whose raw pages were not fetched when the run started (Наредба № 5 от 1999, Правилник на НС). Together about 1,055 calls on the current driver. The order is yours; the pipeline is ready and resumable per act and per round.
+Not yet labelled, all prepared (split into blocks and tasks): Кодекс на труда (107 calls), Наказателен кодекс (78), Данъчно-осигурителен процесуален кодекс (158), Търговски закон (184), Кодекс за социално осигуряване (192), Кодекс на търговското корабоплаване (87), Закон за данък върху добавената стойност (119, re-split after the table-cell fix), Граждански процесуален кодекс (131), Правилник за организацията и дейността на Народното събрание (19; the repealed-act case E15), and Наредба № 5 от 1999 г. за структурата на записа в цифров вид на кадастралните планове (79; 6,030 blocks, nearly all annex rows). Together about 1,154 calls on the current driver. The order is yours; the pipeline is ready and resumable per act and per round.
 
 ## Glossary
 
