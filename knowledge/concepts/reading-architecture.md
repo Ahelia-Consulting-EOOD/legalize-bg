@@ -79,7 +79,7 @@ Because the model returns labels and indices, not text, the output is small and 
 
 ## 5. What is not decided here
 
-Whether the backfill runs on the Batch API (half price, up to 24 hours); the scope questions of the catch-up (ratification laws, stand-alone decrees), which are the owner's. Decided on 21 October 2026 by D-069: the tier is Opus 5.5 for labelling and operations, with the exception ladder of section 3.
+How the runs are batched across the owner's Claude session plans, since the owner ruled on 21 October 2026 that no model call goes through an API key until the project is public and hosted (the Batch API figures of the run are comparisons, not spend); the scope questions of the catch-up (ratification laws, stand-alone decrees), which are the owner's. Decided on 21 October 2026 by D-069: the tier is Opus 5.5 for labelling and operations, with the exception ladder of section 3.
 
 [^anthropic-top]: Anthropic, Prompting best practices: "Place your long documents and inputs near the top of your prompt, above your query, instructions, and examples."
 [^anthropic-quotes]: Anthropic, Prompting best practices: "ask Claude to quote relevant parts of the documents first before carrying out its task."
