@@ -17,6 +17,7 @@ from __future__ import annotations
 
 import argparse
 import difflib
+from datetime import datetime
 import json
 import re
 import sys
@@ -64,8 +65,16 @@ def _write_tasks(run_dir: Path, tasks: list[dict]) -> None:
         (run_dir / "maps" / f"round{t['round']}").mkdir(parents=True, exist_ok=True)
 
 
+def _run_root(out: str) -> Path:
+    root = (ROOT / out).resolve() if not Path(out).is_absolute() else Path(out).resolve()
+    for cat in CATEGORIES:
+        if root == (ROOT / cat).resolve() or (ROOT / cat).resolve() in root.parents:
+            raise SystemExit(f"refusing to write under the corpus folder {cat}/")
+    return root
+
+
 def cmd_prepare(args) -> int:
-    run_dir = Path(args.out) / args.slug
+    run_dir = _run_root(args.out) / args.slug
     run_dir.mkdir(parents=True, exist_ok=True)
     doc_id = _doc_id(args.slug)
     raw = (RAW / f"{doc_id}.html").read_bytes()
@@ -80,7 +89,7 @@ def cmd_prepare(args) -> int:
 
 
 def cmd_collect(args) -> int:
-    run_dir = Path(args.out) / args.slug
+    run_dir = _run_root(args.out) / args.slug
     act = _load_act(run_dir)
     rnd = args.round
     smap: dict[int, dict] = {}
@@ -102,22 +111,40 @@ def cmd_collect(args) -> int:
         try:
             entries = json.loads(text)
         except json.JSONDecodeError as exc:
-            answers.append((task, [{"i": None, "label": "unknown", "note": f"unparsable answer: {exc}"}]))
+            targets = [task["target"]] if task.get("target") is not None else [b["i"] for b in task["blocks"]]
+            answers.append((task, [{"i": i, "label": "unknown", "note": f"unparsable answer: {exc}"} for i in targets]))
             continue
         answers.append((task, entries))
     smap, problems = ladder.merge(smap, answers)
     md, exceptions = ladder.evaluate(act, smap, problems)
     mp.write_text(json.dumps({str(k): v for k, v in sorted(smap.items())}, ensure_ascii=False, indent=1), encoding="utf-8")
     (run_dir / "staged.md").write_text(md, encoding="utf-8")
+    source_findings = [e for e in exceptions if e["kind"] in ladder.SOURCE_FINDINGS]
+    label_exceptions = [e for e in exceptions if e["kind"] not in ladder.SOURCE_FINDINGS]
     report = {"slug": args.slug, "round": rnd, "blocks": len(act.blocks), "sections": len(act.sections),
-              "answers_missing": missing, "exceptions": exceptions,
-              "exception_kinds": _count(exceptions), "labels": _count_labels(smap)}
-    if rnd < ladder.MAX_ROUNDS and exceptions:
-        tasks = ladder.next_round_tasks(act, smap, exceptions, rnd + 1)
+              "answers_missing": missing, "exceptions": label_exceptions, "source_findings": source_findings,
+              "exception_kinds": _count(label_exceptions), "source_finding_kinds": _count(source_findings),
+              "labels": _count_labels(smap),
+              "dropped": [{"block": i, "text": act.blocks[i].text[:80], "note": smap.get(i, {}).get("note", "")}
+                          for i in range(len(act.blocks)) if smap.get(i, {}).get("label") == "drop"]}
+    tasks = ladder.next_round_tasks(act, smap, label_exceptions, rnd + 1) if rnd < ladder.MAX_ROUNDS else []
+    # resumable: the next round's tasks are rewritten from scratch, and answers to an earlier task set are set aside
+    nxt_tasks = run_dir / "tasks" / f"round{rnd + 1}"
+    nxt_maps = run_dir / "maps" / f"round{rnd + 1}"
+    report_note = ""
+    if nxt_tasks.exists():
+        for f in nxt_tasks.glob("*.json"):
+            f.unlink()
+    if nxt_maps.exists() and any(nxt_maps.glob("*.json")):
+        stale = run_dir / "maps" / f"round{rnd + 1}-stale-{datetime.now().strftime('%H%M%S')}"
+        nxt_maps.rename(stale)
+        report_note = f"answers of an earlier round {rnd + 1} task set moved to {stale.name}"
+    report["note"] = report_note
+    if tasks:
         _write_tasks(run_dir, tasks)
         report["next_round_tasks"] = len(tasks)
     else:
-        report["residue"] = sorted({e["block"] for e in exceptions})
+        report["residue"] = sorted({e["block"] for e in label_exceptions})
     cf = _corpus_file(args.slug)
     if cf:
         current = cf.read_text(encoding="utf-8").split("---", 2)[-1].lstrip("\n")

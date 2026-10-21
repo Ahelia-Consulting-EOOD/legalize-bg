@@ -26,6 +26,7 @@ HEADING_HINTS = frozenset({
 # Classes whose text is inline content inside an article (cross-references, anchors).
 INLINE_KEEP = frozenset({"NewDocReference", "SameDocReference", "LegalDocReference"})
 SKIP_CLASSES = (CHROME_DENYLIST - INLINE_KEEP) | {"HistoryOfDocument"}
+INLINE_TAGS = frozenset({"a", "span", "b", "i", "em", "strong", "u", "sup", "sub", "font"})
 KNOWN = set(CLASS_MAP) | {"Title"}
 MAX_SECTION_BLOCKS = 60
 MIN_SECTION_BLOCKS = 25
@@ -95,16 +96,18 @@ def split_lexbg(raw: bytes) -> SplitAct:
             if isinstance(child, Tag):
                 cls = _classes(child)
                 skip = cls & SKIP_CLASSES
-                if skip and not (cls & INLINE_KEEP):
+                # an inline element carries the act's own words even under a chrome class:
+                # lex.bg wraps words in <a class="contextads"> links; only block-level chrome is dropped
+                if skip and not (cls & INLINE_KEEP) and child.name not in INLINE_TAGS:
                     flush()
                     for c in skip:
                         dropped[c] = dropped.get(c, 0) + 1
                     continue
                 known = cls & KNOWN
-                child_hint = next(iter(known)) if known else hint
+                child_hint = sorted(known)[0] if known else hint
                 if child.name == "br":
                     flush()
-                elif child.name in ("div", "p", "li", "tr", "table", "h1", "h2", "h3", "h4"):
+                elif child.name in ("div", "p", "li", "tr", "td", "th", "table", "h1", "h2", "h3", "h4"):
                     flush()
                     prev = cur_hint[0]
                     cur_hint[0] = child_hint
@@ -112,15 +115,8 @@ def split_lexbg(raw: bytes) -> SplitAct:
                     flush()
                     cur_hint[0] = prev
                 else:
-                    if known and child_hint != cur_hint[0]:
-                        flush()
-                        prev = cur_hint[0]
-                        cur_hint[0] = child_hint
-                        walk(child, child_hint)
-                        flush()
-                        cur_hint[0] = prev
-                    else:
-                        walk(child, hint)
+                    # an inline element never starts a block, whatever its class
+                    walk(child, hint)
             elif type(child) is NavigableString:
                 buf.append(str(child))
 

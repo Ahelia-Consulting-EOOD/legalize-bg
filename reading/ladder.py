@@ -15,11 +15,24 @@ from .splitter import Block, SplitAct
 
 MAX_ROUNDS = 2
 NEIGHBOURS = 1
+# exceptions that describe the source, not a label: recorded as findings, never re-labelled
+SOURCE_FINDINGS = frozenset({"empty_section", "fragment"})
+
+
+def _context(act: SplitAct, first: int) -> list[str]:
+    """The last three heading-hinted blocks before ``first``: orientation for a section cut inside a chapter or annex."""
+    from .splitter import HEADING_HINTS
+    out = [b.text for b in act.blocks[:first]
+           if b.hint in HEADING_HINTS or b.text.startswith("Приложение") or b.text.startswith(("Чл. ", "§ "))]
+    # the last three headings or annex lines, plus the last article or § opened before the section
+    heads = [t for t in out if not t.startswith(("Чл. ", "§ "))][-3:]
+    opener = [t for t in out if t.startswith(("Чл. ", "§ "))][-1:]
+    return heads + [t[:120] for t in opener]
 
 
 def round0_tasks(act: SplitAct) -> list[dict]:
-    return [{"round": 0, "task": s.k, "target": None, "blocks": [_b(act.blocks[i]) for i in s.blocks]}
-            for s in act.sections]
+    return [{"round": 0, "task": s.k, "target": None, "context": _context(act, s.blocks[0]),
+             "blocks": [_b(act.blocks[i]) for i in s.blocks]} for s in act.sections]
 
 
 def _b(b: Block) -> dict:
@@ -27,25 +40,26 @@ def _b(b: Block) -> dict:
 
 
 def merge(smap: dict[int, dict], answers: list[tuple[dict, list[dict]]]) -> tuple[dict[int, dict], list[dict]]:
-    """Merge task answers into the map; later answers for a task's target override earlier ones."""
+    """Merge task answers into the map; a targeted task changes only its target block."""
     problems: list[dict] = []
     for task, entries in answers:
         expected = [b["i"] for b in task["blocks"]]
-        got, probs = validate_entries(entries, expected)
-        problems.extend(probs)
         target = task.get("target")
+        got, probs = validate_entries(entries, expected, target=target)
+        problems.extend(probs)
         if target is None:
             smap.update(got)
         elif target in got:
             smap[target] = got[target]
-        else:
-            problems.append({"block": target, "kind": "missing_entry", "detail": "the target block was not labelled"})
     return smap, problems
 
 
 def next_round_tasks(act: SplitAct, smap: dict[int, dict], exceptions: list[dict], rnd: int) -> list[dict]:
     tasks = []
-    for k, i in enumerate(sorted({e["block"] for e in exceptions if e["block"] >= 0})):
+    n_blocks = len(act.blocks)
+    targets = sorted({e["block"] for e in exceptions
+                      if isinstance(e.get("block"), int) and 0 <= e["block"] < n_blocks and e["kind"] not in SOURCE_FINDINGS})
+    for k, i in enumerate(targets):
         lo, hi = max(0, i - NEIGHBOURS), min(len(act.blocks) - 1, i + NEIGHBOURS)
         blocks = []
         for j in range(lo, hi + 1):
@@ -54,8 +68,8 @@ def next_round_tasks(act: SplitAct, smap: dict[int, dict], exceptions: list[dict
                 d["current_label"] = smap[j]["label"]
                 d["current_n"] = smap[j].get("n")
             blocks.append(d)
-        reasons = [e for e in exceptions if e["block"] == i]
-        tasks.append({"round": rnd, "task": k, "target": i, "blocks": blocks,
+        reasons = [e for e in exceptions if e["block"] == i and e["kind"] not in SOURCE_FINDINGS]
+        tasks.append({"round": rnd, "task": k, "target": i, "context": _context(act, lo), "blocks": blocks,
                       "exceptions": reasons, "previous_label": smap.get(i, {}).get("label")})
     return tasks
 
