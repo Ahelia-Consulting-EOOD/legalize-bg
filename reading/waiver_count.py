@@ -11,26 +11,32 @@ from pathlib import Path
 _SECTION = re.compile(r"^(\w+):\s*$")
 _ACTS = re.compile(r"^\s+acts:\s*$")
 _ENTRY = re.compile(r"^(\s+)([\w-]+):\s*(\d+)\s*$")
+_EXPIRES = re.compile(r"^\s+expires:.*each act leaves the waiver as it is repaired")
 
 
 def lower_count(waivers_path: Path, check: str, slug: str, count: int) -> str | None:
     """Set the act's count under ``check`` to ``count`` when that is lower, removing the act at zero.
+
+    Only a waiver whose expiry says each act leaves it as it is repaired (W-002, W-003) is lowered;
+    any other stale count stays for the gate to refuse.
 
     Returns the file's text before the change, for ``restore``, or None when nothing changed.
     A count is only ever lowered: a text with more violations than waived is the gate's to refuse.
     """
     before = waivers_path.read_text(encoding="utf-8")
     lines = before.split("\n")
-    section, head = None, None
+    section, head, per_act = None, None, False
     for k, line in enumerate(lines):
         if _SECTION.match(line):
-            section, head = _SECTION.match(line).group(1), None
+            section, head, per_act = _SECTION.match(line).group(1), None, False
             continue
+        if section == check and _EXPIRES.match(line):
+            per_act = True
         if section == check and _ACTS.match(line):
             head = k
             continue
         m = _ENTRY.match(line)
-        if section != check or head is None or not m or m.group(2) != slug or count >= int(m.group(3)):
+        if section != check or not per_act or head is None or not m or m.group(2) != slug or count >= int(m.group(3)):
             continue
         if count:
             lines[k] = f"{m.group(1)}{slug}: {count}"

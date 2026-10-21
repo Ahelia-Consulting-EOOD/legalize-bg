@@ -14,8 +14,8 @@ exception and commits it to the corpus through the single write gate:
    over the page, ``merge_preserved`` over the committed frontmatter, a repealed
    act kept repealed), and the ``provenance`` block of ruling 12 is filled;
 4. ``corpus_gate.write_act`` writes the file or refuses it, leaving it unchanged;
-5. the act, its run record (``map.json`` and the round reports, D-073) and a
-   lowered ``tag_remnants`` waiver count go into one commit, ``[reforma]`` when
+5. the act, its run record (``map.json`` and the round reports, D-073) and any
+   waiver count the repair lowers go into one commit, ``[reforma]`` when
    the amendment list grew and ``[popravka]`` otherwise (ruling 11), with the
    three trailers and ``Record-Id``.
 
@@ -46,7 +46,7 @@ sys.path.insert(0, str(ROOT))
 
 from bootstrap import _format_author_date  # noqa: E402
 from corpus_gate import DEFAULT_WAIVERS, CorpusIntegrityError, SourceRef, render_act, write_act  # noqa: E402
-from corpus_integrity.checks.remnants import RemnantCheck  # noqa: E402
+from corpus_integrity.__main__ import CHECKS  # noqa: E402
 from corpus_integrity.loader import CATEGORY_DIRS, act_from_text  # noqa: E402
 from fetcher.bg.discovery import ENCODING  # noqa: E402
 from fetcher.bg.metadata import MetadataParser  # noqa: E402
@@ -56,7 +56,6 @@ from refresh import _split_frontmatter, classify_change, history_grew, latest_am
 
 RAW = ROOT / "data" / "raw" / "lexbg"
 RUNS = ROOT / "data" / "runs"
-REMNANT_WAIVER = "tag_remnants"
 WAIVERS = DEFAULT_WAIVERS.relative_to(ROOT)
 
 
@@ -134,8 +133,14 @@ def reread(slug: str, run_dir: Path, raw_dir: Path, doc_id: str) -> tuple[str, l
     return body, omissions, provenance
 
 
-def _remnant_count(path: Path, text: str) -> int:
-    return len(RemnantCheck().run([act_from_text(path, text, category=path.parent.name)]))
+def _lower_waivers(waivers_path: Path, slug: str, path: Path, text: str) -> str | None:
+    """Lower the act's count under every gated check to what the new text carries; the file's text before, or None."""
+    act = act_from_text(path, text, category=path.parent.name)
+    before = None
+    for check in CHECKS:
+        prior = waiver_count.lower_count(waivers_path, check.name, slug, len(check.run([act])))
+        before = before if before is not None else prior
+    return before
 
 
 def _git(root: Path, *args: str, env: dict | None = None) -> str:
@@ -168,7 +173,7 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
     if commit_type == "unchanged":
         return Written(slug, "unchanged", record_id, None)
 
-    before = waiver_count.lower_count(waivers_path, REMNANT_WAIVER, slug, _remnant_count(path, text))
+    before = _lower_waivers(waivers_path, slug, path, text)
     lowered = before is not None
     try:
         write_act(path, meta, body, source=SourceRef("lexbg", doc_id), waivers_path=waivers_path)

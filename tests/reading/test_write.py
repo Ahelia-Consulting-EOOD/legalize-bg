@@ -50,8 +50,8 @@ def _setup(tmp_path, *, tail=".", committed=None, old_body="# ЗАКОН ЗА П
     (root / "docs" / "data").mkdir(parents=True)
     waivers = (REPO / "docs" / "data" / "waivers.yaml").read_text(encoding="utf-8")
     if waived is not None:
-        waivers = waivers.replace("  acts:\n    administrativnoprotsesualen-kodeks: 1\n",
-                                  f"  acts:\n    administrativnoprotsesualen-kodeks: 1\n    {SLUG}: {waived}\n")
+        head = waivers.index("  acts:\n", waivers.index("\ntag_remnants:\n")) + len("  acts:\n")
+        waivers = waivers[:head] + f"    {SLUG}: {waived}\n" + waivers[head:]
     (root / "docs" / "data" / "waivers.yaml").write_text(waivers, encoding="utf-8")
     (root / "laws" / f"{SLUG}.md").write_text(render_act(committed or COMMITTED, old_body), encoding="utf-8")
     _git(root, "init", "-q")
@@ -184,7 +184,10 @@ def test_a_refused_write_restores_a_lowered_waiver(tmp_path, monkeypatch):
 
 def test_lower_count_only_lowers_and_leaves_an_empty_map(tmp_path):
     p = tmp_path / "w.yaml"
-    p.write_text("other:\n  acts:\n    a: 1\ntag_remnants:\n  ruling: r\n  acts:\n    a: 4\n    b: 2\nlast:\n  acts:\n    c: 1\n", encoding="utf-8")
+    each = '  expires: "the sweep; each act leaves the waiver as it is repaired"\n'
+    p.write_text("other:\n" + each + "  acts:\n    a: 1\ntag_remnants:\n  ruling: r\n" + each + "  acts:\n    a: 4\n    b: 2\n"
+                 "last:\n" + each + "  acts:\n    c: 1\nwhole:\n  expires: \"a detector ships\"\n  acts:\n    d: 3\n", encoding="utf-8")
+    assert waiver_count.lower_count(p, "whole", "d", 0) is None  # an expiry that is not per act: the gate's to refuse
     assert waiver_count.lower_count(p, "tag_remnants", "a", 5) is None
     assert waiver_count.lower_count(p, "tag_remnants", "c", 0) is None  # c is waived under another check
     assert waiver_count.lower_count(p, "tag_remnants", "a", 1) is not None
@@ -208,3 +211,16 @@ def test_the_cli_prints_written_and_refused(tmp_path, monkeypatch, capsys):
     report = json.loads(out[out.index("{"):])
     assert [x["slug"] for x in report["written"]] == [SLUG]
     assert [(x["slug"], x["by"]) for x in report["refused"]] == [("zakon-bez-fayl", "reading")]
+
+
+def test_a_repaired_chrome_line_leaves_the_chrome_waiver_in_the_same_commit(tmp_path):
+    # the page's own chrome is dropped by the reading (ruling 9); the old file carried it, so the act was waived
+    root, run_dir, raw_dir = _setup(tmp_path, old_body="# ЗАКОН ЗА ПРОБАТА\n\nДОБАВИ В МОИТЕ АКТОВЕ\n")
+    wp = root / "docs" / "data" / "waivers.yaml"
+    wp.write_text(wp.read_text(encoding="utf-8").replace(
+        "    naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni: 2\n",
+        f"    naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni: 2\n    {SLUG}: 1\n"), encoding="utf-8")
+    _git(root, "commit", "-qam", "waive")
+    _write(root, run_dir, raw_dir)
+    assert f"{SLUG}:" not in wp.read_text(encoding="utf-8")
+    assert "docs/data/waivers.yaml" in _git(root, "show", "--name-only", "--format=", "HEAD").split()
