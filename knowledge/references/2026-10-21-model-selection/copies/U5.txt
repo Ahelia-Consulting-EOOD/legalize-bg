@@ -1,0 +1,241 @@
+ACL Anthology
+About
+Announcements
+Communication channels
+Related work
+Copyright
+Credits
+Volunteer
+Development
+Feedback
+Using
+Author directory
+Citing papers
+Links in the Anthology
+Data access
+All FAQs
+Details
+Anthology identifiers
+Names
+ORCID iDs
+DOIs
+Verified authors
+Contributions
+Submissions
+Corrections
+Maintain author pages
+Attachments
+GitHub
+Algorithm for Automatic Legislative Text Consolidation
+Matias Etcheverry, Thibaud Real, Pauline Chavallard
+Correct Metadata for
+Use this form to create a GitHub issue with structured data describing the correction. You will need a GitHub account. Once you create that issue, the correction will be reviewed by a staff member.
+⚠️ Mobile Users: Submitting this form to create a new issue will only work with github.com, not the GitHub Mobile app.
+Important: The Anthology treat PDFs as authoritative. Please use this form only to correct data that is out of line with the PDF. See our corrections guidelines if you need to change the PDF.
+Title Adjust the title. Retain tags such as <fixed-case>.
+Authors Adjust author names and order to match the PDF.
+Add Author
+Abstract Correct abstract if needed. Retain XML formatting tags such as <tex-math>. You may use <b>...</b> for bold, <i>...</i> for italic, <u>...</u> for underline, <sc>...</sc> for small-caps, <tt>...<tt> for typewriter text, <url>...</url> for URLs, <a href=...> for hyperlinks, and <par/> for paragraph breaks.
+Verification against PDF Ensure that the new title/authors match the snapshot below. (If there is no snapshot or it is too small, consult the PDF.)
+Authors concatenated from the text boxes above:
+ALL author names match the snapshot above—including middle initials, hyphens, and accents.
+Create GitHub issue for staff review
+Abstract
+This study introduces a method for automating the consolidation process in a legal context, a time-consuming task traditionally performed by legal professionals. We present a generative approach that processes legislative texts to automatically apply amendments. Our method employs light quantized generative model, finetuned with LoRA, to generate accurate and reliable amended texts. To the authors knowledge, this is the first time generative models are used on legislative text consolidation. Our dataset is publicly available on HuggingFace. Experimental results demonstrate a significant improvement in efficiency, offering faster updates to legal documents. A full automated pipeline of legislative text consolidation can be done in a few hours, with a success rate of more than 63% on a difficult bill.
+Anthology ID:
+2024.nllp-1.13
+Volume:
+Proceedings of the Natural Legal Language Processing Workshop 2024
+Month:
+November
+Year:
+2024
+Address:
+Miami, FL, USA
+Editors:
+Nikolaos Aletras, Ilias Chalkidis, Leslie Barrett, Cătălina Goanță, Daniel Preoțiuc-Pietro, Gerasimos Spanakis
+Venues:
+NLLP | WS
+SIG:
+Publisher:
+Association for Computational Linguistics
+Note:
+Pages:
+166–175
+Language:
+URL:
+https://aclanthology.org/2024.nllp-1.13/
+DOI:
+10.18653/v1/2024.nllp-1.13
+Bibkey:
+etcheverry-etal-2024-algorithm
+Cite (ACL):
+Matias Etcheverry, Thibaud Real, and Pauline Chavallard. 2024. Algorithm for Automatic Legislative Text Consolidation. In Proceedings of the Natural Legal Language Processing Workshop 2024, pages 166–175, Miami, FL, USA. Association for Computational Linguistics.
+Cite (Informal):
+Algorithm for Automatic Legislative Text Consolidation (Etcheverry et al., NLLP 2024)
+Copy Citation:
+BibTeX Markdown MODS XML Endnote More options…
+PDF:
+https://aclanthology.org/2024.nllp-1.13.pdf
+PDF Cite Search  Fix data
+Export citation
+BibTeX
+MODS XML
+Endnote
+Preformatted
+@inproceedings{etcheverry-etal-2024-algorithm,
+    title = "Algorithm for Automatic Legislative Text Consolidation",
+    author = "Etcheverry, Matias  and
+      Real, Thibaud  and
+      Chavallard, Pauline",
+    editor = "Aletras, Nikolaos  and
+      Chalkidis, Ilias  and
+      Barrett, Leslie  and
+      Goanț{\u{a}}, C{\u{a}}t{\u{a}}lina  and
+      Preoțiuc-Pietro, Daniel  and
+      Spanakis, Gerasimos",
+    booktitle = "Proceedings of the Natural Legal Language Processing Workshop 2024",
+    month = nov,
+    year = "2024",
+    address = "Miami, FL, USA",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.nllp-1.13/",
+    doi = "10.18653/v1/2024.nllp-1.13",
+    pages = "166--175",
+    abstract = "This study introduces a method for automating the consolidation process in a legal context, a time-consuming task traditionally performed by legal professionals. We present a generative approach that processes legislative texts to automatically apply amendments. Our method employs light quantized generative model, finetuned with LoRA, to generate accurate and reliable amended texts. To the authors knowledge, this is the first time generative models are used on legislative text consolidation. Our dataset is publicly available on HuggingFace. Experimental results demonstrate a significant improvement in efficiency, offering faster updates to legal documents. A full automated pipeline of legislative text consolidation can be done in a few hours, with a success rate of more than 63{\%} on a difficult bill."
+}
+Download as File Copy to Clipboard
+<?xml version="1.0" encoding="UTF-8"?>
+<modsCollection xmlns="http://www.loc.gov/mods/v3">
+<mods ID="etcheverry-etal-2024-algorithm">
+    <titleInfo>
+        <title>Algorithm for Automatic Legislative Text Consolidation</title>
+    </titleInfo>
+    <name type="personal">
+        <namePart type="given">Matias</namePart>
+        <namePart type="family">Etcheverry</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Thibaud</namePart>
+        <namePart type="family">Real</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Pauline</namePart>
+        <namePart type="family">Chavallard</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <originInfo>
+        <dateIssued>2024-11</dateIssued>
+    </originInfo>
+    <typeOfResource>text</typeOfResource>
+    <relatedItem type="host">
+        <titleInfo>
+            <title>Proceedings of the Natural Legal Language Processing Workshop 2024</title>
+        </titleInfo>
+        <name type="personal">
+            <namePart type="given">Nikolaos</namePart>
+            <namePart type="family">Aletras</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Ilias</namePart>
+            <namePart type="family">Chalkidis</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Leslie</namePart>
+            <namePart type="family">Barrett</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Cătălina</namePart>
+            <namePart type="family">Goanță</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Daniel</namePart>
+            <namePart type="family">Preoțiuc-Pietro</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Gerasimos</namePart>
+            <namePart type="family">Spanakis</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <originInfo>
+            <publisher>Association for Computational Linguistics</publisher>
+            <place>
+                <placeTerm type="text">Miami, FL, USA</placeTerm>
+            </place>
+        </originInfo>
+        <genre authority="marcgt">conference publication</genre>
+    </relatedItem>
+    <abstract>This study introduces a method for automating the consolidation process in a legal context, a time-consuming task traditionally performed by legal professionals. We present a generative approach that processes legislative texts to automatically apply amendments. Our method employs light quantized generative model, finetuned with LoRA, to generate accurate and reliable amended texts. To the authors knowledge, this is the first time generative models are used on legislative text consolidation. Our dataset is publicly available on HuggingFace. Experimental results demonstrate a significant improvement in efficiency, offering faster updates to legal documents. A full automated pipeline of legislative text consolidation can be done in a few hours, with a success rate of more than 63% on a difficult bill.</abstract>
+    <identifier type="citekey">etcheverry-etal-2024-algorithm</identifier>
+    <identifier type="doi">10.18653/v1/2024.nllp-1.13</identifier>
+    <location>
+        <url>https://aclanthology.org/2024.nllp-1.13/</url>
+    </location>
+    <part>
+        <date>2024-11</date>
+        <extent unit="page">
+            <start>166</start>
+            <end>175</end>
+        </extent>
+    </part>
+</mods>
+</modsCollection>
+
+Download as File Copy to Clipboard
+%0 Conference Proceedings
+%T Algorithm for Automatic Legislative Text Consolidation
+%A Etcheverry, Matias
+%A Real, Thibaud
+%A Chavallard, Pauline
+%Y Aletras, Nikolaos
+%Y Chalkidis, Ilias
+%Y Barrett, Leslie
+%Y Goanță, Cătălina
+%Y Preoțiuc-Pietro, Daniel
+%Y Spanakis, Gerasimos
+%S Proceedings of the Natural Legal Language Processing Workshop 2024
+%D 2024
+%8 November
+%I Association for Computational Linguistics
+%C Miami, FL, USA
+%F etcheverry-etal-2024-algorithm
+%X This study introduces a method for automating the consolidation process in a legal context, a time-consuming task traditionally performed by legal professionals. We present a generative approach that processes legislative texts to automatically apply amendments. Our method employs light quantized generative model, finetuned with LoRA, to generate accurate and reliable amended texts. To the authors knowledge, this is the first time generative models are used on legislative text consolidation. Our dataset is publicly available on HuggingFace. Experimental results demonstrate a significant improvement in efficiency, offering faster updates to legal documents. A full automated pipeline of legislative text consolidation can be done in a few hours, with a success rate of more than 63% on a difficult bill.
+%R 10.18653/v1/2024.nllp-1.13
+%U https://aclanthology.org/2024.nllp-1.13/
+%U https://doi.org/10.18653/v1/2024.nllp-1.13
+%P 166-175
+Download as File Copy to Clipboard
+Markdown (Informal)
+[Algorithm for Automatic Legislative Text Consolidation](https://aclanthology.org/2024.nllp-1.13/) (Etcheverry et al., NLLP 2024)
+Algorithm for Automatic Legislative Text Consolidation (Etcheverry et al., NLLP 2024)
+ACL
+Matias Etcheverry, Thibaud Real, and Pauline Chavallard. 2024. Algorithm for Automatic Legislative Text Consolidation. In Proceedings of the Natural Legal Language Processing Workshop 2024, pages 166–175, Miami, FL, USA. Association for Computational Linguistics.
+Copy Markdown to Clipboard Copy ACL to Clipboard
+ACL materials are Copyright © 1963–2026 ACL; other materials are copyrighted by their respective copyright holders. Materials prior to 2016 here are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 International License. Permission is granted to make copies for the purposes of teaching and research. Materials published in or after 2016 are licensed on a Creative Commons Attribution 4.0 International License.
+The ACL Anthology is managed and built by the ACL Anthology team of volunteers.
+Site last built on 19 October 2026 at 13:00 UTC with commit 0d4dd55.

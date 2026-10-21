@@ -1,0 +1,74 @@
+# Ahelia loop spec for legalize-bg: the daily Gazette sync.
+# Governed by ahelia-oversight policies/loop-governance.md; template
+# loops/loop-spec-template.yaml. Decided by D-067 on 2026-10-21.
+
+catalog_id: ~                       # no catalog entry yet; class custom
+loop_id: dv-daily-sync
+repo_id: legalize-bg
+owner: emihailov
+description: keep the corpus current from Държавен вестник, each material read and recorded by a reasoning run, written through the gate
+
+# proposed: spec committed, the loop does not run except owner dry-runs.
+# supervised: runs, opens one pull request per run, never merges (>= 2 weeks).
+# active: may apply within permissions.may, still never merges.
+status: proposed
+
+class: custom
+scope: per_repo
+
+trigger:
+  mechanism: schedule
+  cadence: "0 7 * * *"              # daily 07:00 Sofia; the Gazette publishes Tuesday and Friday plus извънредни issues on any day
+  event: ~
+
+prompt:
+  entry_point: /dv-daily-sync       # checked-in command; identical every run (to be written in stage 1 step 4)
+  context_policy: clean
+
+permissions:
+  may:
+    - read_repo
+    - fetch_dv_parliament_bg        # 1 request per second
+    - fetch_lex_bg_witness          # 1 request per second, witness only (D-061, D-068)
+    - write_through_corpus_gate     # corpus_gate.write_act, never a hand edit
+    - open_prs                      # one pull request per run on a branch refresh/dv-<date>
+    - append_ledger
+  must_not:
+    - merge
+    - push_to_main
+    - hand_edit_corpus_file
+    - write_without_findings_record # every corpus write cites its findings record (D-066)
+    - fetch_beyond_rate_limit
+    - edit_own_spec
+
+success_criteria:
+  - every Gazette issue after the ledger's last mark is enumerated, and every material of its read sections has a findings record (acts touched, event kind, citation, instructions, consolidated provisions where an act is amended)
+  - every touched corpus act is written through the gate on the run's branch, or carries a recorded reason why not
+  - every lex.bg witness divergence for a touched act is adjudicated into a lane and recorded
+  - one pull request per run holds the corpus commits and links the findings records
+  - a run with no new issue appends a ledger row stating so
+
+forbidden_shortcuts:
+  - attributing a material to an act by title alone when its body names other acts
+  - deferring to lex.bg on a divergence instead of adjudicating it
+  - writing a corpus file outside the gate, or editing one by hand
+  - skipping a material because it is long
+
+failure_handling:
+  max_retries_per_item: 1           # per material
+  on_exhaustion: write_blocked_record_and_stop
+  escalation: docs/sync/ACTIVE.md + notify owner
+
+observability:
+  ledger: .ahelia/loops/ledger/dv-daily-sync.md
+  heartbeat_max_silence: 2d
+
+budget:
+  per_run_token_ceiling: 1.5M       # about 15 materials on a heavy day at the measured 12k tokens of text each, with consolidation
+  per_period_token_ceiling: 15M
+  period: week
+
+review:
+  output_review: required           # the pull request is reviewed in clean context; a human merges
+
+baseline_version: "2026.06.10"
