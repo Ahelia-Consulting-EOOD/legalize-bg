@@ -514,7 +514,7 @@ def _dispatch(run_root, slug, rnd, **kw):
     import io, contextlib, sys as _sys
     from reading import run as runmod
     ns = type("A", (), {})(); ns.out = str(run_root); ns.slugs = [slug]; ns.round = rnd
-    ns.per = kw.get("per", 0); ns.max = kw.get("max", 20); ns.prompts = False; ns.relist = kw.get("relist", False)
+    ns.per = kw.get("per", 0); ns.max = kw.get("max", 20); ns.prompts = False; ns.relist = kw.get("relist", False); ns.json = kw.get("json", False)
     out, err = io.StringIO(), io.StringIO()
     with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
         runmod.cmd_dispatch(ns)
@@ -693,3 +693,13 @@ def test_task_set_id_ignores_stray_files(tmp_path):
     (tdir / "notes.json").write_text("{}", encoding="utf-8")
     (tdir / "0001 copy.json").write_text("{}", encoding="utf-8")
     assert task_set_id(list(tdir.glob("*.json"))) == before
+
+
+def test_dispatch_json_lists_calls_for_a_workflow(tmp_path):
+    import json
+    run_root = tmp_path / "runs"; slug = "synthetic-act"
+    _synthetic_round(run_root / slug, 0, 9)
+    lines, _ = _dispatch(run_root, slug, 0, json=True)
+    calls = json.loads(lines[0])
+    assert len(calls) == 2 and calls[0]["tasks"] == 8 and calls[1]["tasks"] == 1
+    assert calls[0]["prompt"].startswith("Read ") and calls[0]["call_file"] in calls[0]["prompt"] and calls[0]["answer_file"] in calls[0]["prompt"]

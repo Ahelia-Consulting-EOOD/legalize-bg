@@ -323,6 +323,7 @@ def cmd_dispatch(args) -> int:
     per = args.per or PER_CALL.get(rnd, PER_CALL_LADDER)
     printed = 0
     remaining = 0
+    listed: list[dict] = []
     for slug in args.slugs:
         run_dir = root / _slug(slug)
         tdir = run_dir / "tasks" / f"round{rnd}"
@@ -354,10 +355,15 @@ def cmd_dispatch(args) -> int:
                 # a retry of a call whose earlier answer was bad or partial: the old answer is set aside so the labeller writes
                 # a fresh file; the sidecar stays, so the per-task files that answer produced remain owned by this call
                 answer_file.rename(answer_file.with_name(f"{name}.superseded-{datetime.now().strftime('%H%M%S%f')}.json"))
-            print(f"{slug} round{rnd} {name} {len(tasks)} tasks\t{call_file}\t{answer_file}")
-            if args.prompts:
-                print("  " + calls.DISPATCH_PROMPT.format(call_file=call_file, answer_file=answer_file))
+            prompt = calls.DISPATCH_PROMPT.format(call_file=call_file, answer_file=answer_file)
+            listed.append({"slug": slug, "round": rnd, "name": name, "tasks": len(tasks), "call_file": str(call_file), "answer_file": str(answer_file), "prompt": prompt})
+            if not args.json:
+                print(f"{slug} round{rnd} {name} {len(tasks)} tasks\t{call_file}\t{answer_file}")
+                if args.prompts:
+                    print("  " + prompt)
             printed += 1
+    if args.json:
+        print(json.dumps(listed, ensure_ascii=False))
     print(f"# {printed} calls listed, {remaining} tasks unanswered in round {rnd}", file=sys.stderr)
     return 0
 
@@ -383,7 +389,8 @@ def main() -> int:
     c = sub.add_parser("collect"); c.add_argument("--slug", required=True); c.add_argument("--round", type=int, default=0); c.add_argument("--out", default="data/runs/structure-map-2026-10-22"); c.set_defaults(fn=cmd_collect)
     d = sub.add_parser("dispatch"); d.add_argument("slugs", nargs="+"); d.add_argument("--round", type=int, default=0); d.add_argument("--per", type=int, default=0, help="tasks per call (default 8 in round 0, 25 above)")
     d.add_argument("--max", type=int, default=20, help="calls to list"); d.add_argument("--prompts", action="store_true", help="print the labeller prompt under each call")
-    d.add_argument("--relist", action="store_true", help="list again the calls listed less than 15 minutes ago and still unanswered"); d.add_argument("--out", default="data/runs/structure-map-2026-10-22"); d.set_defaults(fn=cmd_dispatch)
+    d.add_argument("--relist", action="store_true", help="list again the calls listed less than 15 minutes ago and still unanswered"); d.add_argument("--json", action="store_true", help="print the calls as a JSON list (for a workflow script's args)")
+    d.add_argument("--out", default="data/runs/structure-map-2026-10-22"); d.set_defaults(fn=cmd_dispatch)
     args = ap.parse_args()
     return args.fn(args)
 

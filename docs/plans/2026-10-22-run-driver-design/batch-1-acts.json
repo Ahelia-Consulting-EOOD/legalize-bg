@@ -1,0 +1,240 @@
+[
+ {
+  "slug": "zakon-za-obshtestvenite-porachki",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ОБЩЕСТВЕНИТЕ ПОРЪЧКИ",
+  "sections": 106,
+  "blocks": 4333
+ },
+ {
+  "slug": "zakon-za-normativnite-aktove",
+  "type": "закон",
+  "title": "ЗАКОН ЗА НОРМАТИВНИТЕ АКТОВЕ",
+  "sections": 5,
+  "blocks": 166
+ },
+ {
+  "slug": "zakon-za-ustroystvo-na-teritoriyata",
+  "type": "закон",
+  "title": "ЗАКОН ЗА УСТРОЙСТВО НА ТЕРИТОРИЯТА",
+  "sections": 66,
+  "blocks": 2673
+ },
+ {
+  "slug": "administrativnoprotsesualen-kodeks",
+  "type": "кодекс",
+  "title": "АДМИНИСТРАТИВНОПРОЦЕСУАЛЕН КОДЕКС",
+  "sections": 68,
+  "blocks": 2158
+ },
+ {
+  "slug": "nakazatelno-protsesualen-kodeks",
+  "type": "кодекс",
+  "title": "НАКАЗАТЕЛНО-ПРОЦЕСУАЛЕН КОДЕКС",
+  "sections": 120,
+  "blocks": 3490
+ },
+ {
+  "slug": "izboren-kodeks",
+  "type": "кодекс",
+  "title": "ИЗБОРЕН КОДЕКС",
+  "sections": 119,
+  "blocks": 3646
+ },
+ {
+  "slug": "kodeks-za-zastrahovaneto",
+  "type": "кодекс",
+  "title": "КОДЕКС ЗА ЗАСТРАХОВАНЕТО",
+  "sections": 188,
+  "blocks": 6186
+ },
+ {
+  "slug": "semeen-kodeks",
+  "type": "кодекс",
+  "title": "СЕМЕЕН КОДЕКС",
+  "sections": 35,
+  "blocks": 975
+ },
+ {
+  "slug": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+  "type": "кодекс",
+  "title": "КОДЕКС НА МЕЖДУНАРОДНОТО ЧАСТНО ПРАВО",
+  "sections": 21,
+  "blocks": 599
+ },
+ {
+  "slug": "zakon-za-mestnoto-samoupravlenie-i-mestnata-administratsiya",
+  "type": "закон",
+  "title": "ЗАКОН ЗА МЕСТНОТО САМОУПРАВЛЕНИЕ И МЕСТНАТА АДМИНИСТРАЦИЯ",
+  "sections": 18,
+  "blocks": 680
+ },
+ {
+  "slug": "zakon-za-administratsiyata",
+  "type": "закон",
+  "title": "ЗАКОН ЗА АДМИНИСТРАЦИЯТА",
+  "sections": 14,
+  "blocks": 542
+ },
+ {
+  "slug": "zakon-za-darzhavniya-sluzhitel",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ДЪРЖАВНИЯ СЛУЖИТЕЛ",
+  "sections": 43,
+  "blocks": 1314
+ },
+ {
+  "slug": "zakon-za-sadebnata-vlast",
+  "type": "закон",
+  "title": "ЗАКОН ЗА СЪДЕБНАТА ВЛАСТ",
+  "sections": 87,
+  "blocks": 3430
+ },
+ {
+  "slug": "zakon-za-publichnite-finansi",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ПУБЛИЧНИТЕ ФИНАНСИ",
+  "sections": 37,
+  "blocks": 1601
+ },
+ {
+  "slug": "zakon-za-darzhavnata-sobstvenost",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ДЪРЖАВНАТА СОБСТВЕНОСТ",
+  "sections": 21,
+  "blocks": 764
+ },
+ {
+  "slug": "zakon-za-obshtinskata-sobstvenost",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ОБЩИНСКАТА СОБСТВЕНОСТ",
+  "sections": 18,
+  "blocks": 650
+ },
+ {
+  "slug": "zakon-za-dostap-do-obshtestvena-informatsiya",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ДОСТЪП ДО ОБЩЕСТВЕНА ИНФОРМАЦИЯ",
+  "sections": 19,
+  "blocks": 551
+ },
+ {
+  "slug": "zakon-za-elektronnoto-upravlenie",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ЕЛЕКТРОННОТО УПРАВЛЕНИЕ",
+  "sections": 28,
+  "blocks": 835
+ },
+ {
+  "slug": "zakon-za-zashtita-na-lichnite-danni",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ЗАЩИТА НА ЛИЧНИТЕ ДАННИ",
+  "sections": 19,
+  "blocks": 743
+ },
+ {
+  "slug": "zakon-za-yuridicheskite-litsa-s-nestopanska-tsel",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ЮРИДИЧЕСКИТЕ ЛИЦА С НЕСТОПАНСКА ЦЕЛ",
+  "sections": 14,
+  "blocks": 433
+ },
+ {
+  "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ДАНЪЦИТЕ ВЪРХУ ДОХОДИТЕ НА ФИЗИЧЕСКИТЕ ЛИЦА",
+  "sections": 47,
+  "blocks": 1537
+ },
+ {
+  "slug": "zakon-za-korporativnoto-podohodno-oblagane",
+  "type": "закон",
+  "title": "ЗАКОН ЗА КОРПОРАТИВНОТО ПОДОХОДНО ОБЛАГАНЕ",
+  "sections": 117,
+  "blocks": 4042
+ },
+ {
+  "slug": "zakon-za-mestnite-danatsi-i-taksi",
+  "type": "закон",
+  "title": "ЗАКОН ЗА МЕСТНИТЕ ДАНЪЦИ И ТАКСИ",
+  "sections": 50,
+  "blocks": 2415
+ },
+ {
+  "slug": "zakon-za-kadastara-i-imotniya-registar",
+  "type": "закон",
+  "title": "ЗАКОН ЗА КАДАСТЪРА И ИМОТНИЯ РЕГИСТЪР",
+  "sections": 24,
+  "blocks": 993
+ },
+ {
+  "slug": "zakon-za-sobstvenostta",
+  "type": "закон",
+  "title": "ЗАКОН ЗА СОБСТВЕНОСТТА",
+  "sections": 10,
+  "blocks": 312
+ },
+ {
+  "slug": "zakon-za-energetikata",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ЕНЕРГЕТИКАТА",
+  "sections": 86,
+  "blocks": 3782
+ },
+ {
+  "slug": "zakon-za-opazvane-na-okolnata-sreda",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ОПАЗВАНЕ НА ОКОЛНАТА СРЕДА",
+  "sections": 61,
+  "blocks": 2982
+ },
+ {
+  "slug": "zakon-za-upravlenie-na-otpadatsite",
+  "type": "закон",
+  "title": "ЗАКОН ЗА УПРАВЛЕНИЕ НА ОТПАДЪЦИТЕ",
+  "sections": 45,
+  "blocks": 2269
+ },
+ {
+  "slug": "zakon-za-avtomobilnite-prevozi",
+  "type": "закон",
+  "title": "ЗАКОН ЗА АВТОМОБИЛНИТЕ ПРЕВОЗИ",
+  "sections": 38,
+  "blocks": 1673
+ },
+ {
+  "slug": "zakon-za-dvizhenieto-po-patishtata",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ДВИЖЕНИЕТО ПО ПЪТИЩАТА",
+  "sections": 65,
+  "blocks": 2890
+ },
+ {
+  "slug": "zakon-za-patishtata",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ПЪТИЩАТА",
+  "sections": 32,
+  "blocks": 1324
+ },
+ {
+  "slug": "zakon-za-kontsesiite",
+  "type": "закон",
+  "title": "ЗАКОН ЗА КОНЦЕСИИТЕ",
+  "sections": 47,
+  "blocks": 2250
+ },
+ {
+  "slug": "zakon-za-elektronnite-saobshteniya",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ЕЛЕКТРОННИТЕ СЪОБЩЕНИЯ",
+  "sections": 85,
+  "blocks": 3587
+ },
+ {
+  "slug": "zakon-za-zashtita-na-konkurentsiyata",
+  "type": "закон",
+  "title": "ЗАКОН ЗА ЗАЩИТА НА КОНКУРЕНЦИЯТА",
+  "sections": 45,
+  "blocks": 1426
+ }
+]
