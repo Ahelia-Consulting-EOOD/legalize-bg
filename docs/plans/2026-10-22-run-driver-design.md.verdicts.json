@@ -547,7 +547,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -558,7 +558,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 1,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -569,7 +569,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 2,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -580,7 +580,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 3,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -591,7 +591,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 4,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -602,7 +602,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 5,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -613,7 +613,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 6,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -624,7 +624,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 7,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -635,7 +635,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 8,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -646,24 +646,13 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "efff181ddf",
+   "fp": "73bae06976",
    "repeat": 9,
    "verdict": "keep",
    "reason": "unit and scenario stated"
   },
   {
    "id": "r60",
-   "gate": "reader",
-   "kind": "long-sentence",
-   "line": 99,
-   "col": 0,
-   "fp": "efff181ddf",
-   "repeat": 0,
-   "verdict": null,
-   "reason": ""
-  },
-  {
-   "id": "r61",
    "gate": "reader",
    "kind": "bare-number",
    "line": 105,
@@ -674,7 +663,7 @@
    "reason": "unit and scenario stated (tokens, calls, blocks, bytes or percent, with the design or run it belongs to)"
   },
   {
-   "id": "r62",
+   "id": "r61",
    "gate": "reader",
    "kind": "bare-number",
    "line": 105,
@@ -685,7 +674,7 @@
    "reason": "unit and scenario stated (tokens, calls, blocks, bytes or percent, with the design or run it belongs to)"
   },
   {
-   "id": "r63",
+   "id": "r62",
    "gate": "reader",
    "kind": "bare-number",
    "line": 105,
@@ -696,12 +685,23 @@
    "reason": "unit and scenario stated (tokens, calls, blocks, bytes or percent, with the design or run it belongs to)"
   },
   {
-   "id": "r64",
+   "id": "r63",
    "gate": "reader",
    "kind": "bare-number",
    "line": 111,
    "col": 0,
    "fp": "b0fc5330a7",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
+  },
+  {
+   "id": "r64",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 121,
+   "col": 0,
+   "fp": "b0c734a543",
    "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
@@ -713,7 +713,7 @@
    "line": 121,
    "col": 0,
    "fp": "b0c734a543",
-   "repeat": 0,
+   "repeat": 1,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -724,7 +724,7 @@
    "line": 121,
    "col": 0,
    "fp": "b0c734a543",
-   "repeat": 1,
+   "repeat": 2,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -735,7 +735,7 @@
    "line": 121,
    "col": 0,
    "fp": "b0c734a543",
-   "repeat": 2,
+   "repeat": 3,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -746,7 +746,7 @@
    "line": 121,
    "col": 0,
    "fp": "b0c734a543",
-   "repeat": 3,
+   "repeat": 4,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -757,7 +757,7 @@
    "line": 121,
    "col": 0,
    "fp": "b0c734a543",
-   "repeat": 4,
+   "repeat": 5,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -768,7 +768,7 @@
    "line": 121,
    "col": 0,
    "fp": "b0c734a543",
-   "repeat": 5,
+   "repeat": 6,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -776,10 +776,10 @@
    "id": "r71",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 121,
+   "line": 123,
    "col": 0,
-   "fp": "b0c734a543",
-   "repeat": 6,
+   "fp": "1bfd9048ad",
+   "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -790,7 +790,7 @@
    "line": 123,
    "col": 0,
    "fp": "1bfd9048ad",
-   "repeat": 0,
+   "repeat": 1,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -801,7 +801,7 @@
    "line": 123,
    "col": 0,
    "fp": "1bfd9048ad",
-   "repeat": 1,
+   "repeat": 2,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -812,7 +812,7 @@
    "line": 123,
    "col": 0,
    "fp": "1bfd9048ad",
-   "repeat": 2,
+   "repeat": 3,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -823,7 +823,7 @@
    "line": 123,
    "col": 0,
    "fp": "1bfd9048ad",
-   "repeat": 3,
+   "repeat": 4,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -834,23 +834,12 @@
    "line": 123,
    "col": 0,
    "fp": "1bfd9048ad",
-   "repeat": 4,
-   "verdict": "keep",
-   "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
-  },
-  {
-   "id": "r77",
-   "gate": "reader",
-   "kind": "bare-number",
-   "line": 123,
-   "col": 0,
-   "fp": "1bfd9048ad",
    "repeat": 5,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
   {
-   "id": "r78",
+   "id": "r77",
    "gate": "reader",
    "kind": "bare-number",
    "line": 127,
@@ -861,7 +850,7 @@
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
   {
-   "id": "r79",
+   "id": "r78",
    "gate": "reader",
    "kind": "bare-number",
    "line": 131,
@@ -872,7 +861,7 @@
    "reason": "unit and scenario stated (tokens, calls, dispatches, sections or percent, with the design or run it belongs to)"
   },
   {
-   "id": "r80",
+   "id": "r79",
    "gate": "reader",
    "kind": "bare-number",
    "line": 132,
@@ -883,7 +872,7 @@
    "reason": "unit and scenario stated (tokens, calls, blocks, bytes or percent, with the design or run it belongs to)"
   },
   {
-   "id": "r81",
+   "id": "r80",
    "gate": "reader",
    "kind": "bare-number",
    "line": 132,
@@ -894,13 +883,24 @@
    "reason": "unit and scenario stated (tokens, calls, blocks, bytes or percent, with the design or run it belongs to)"
   },
   {
-   "id": "r82",
+   "id": "r81",
    "gate": "reader",
    "kind": "bare-number",
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
    "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
+  },
+  {
+   "id": "r82",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 136,
+   "col": 0,
+   "fp": "047c6bee1b",
+   "repeat": 1,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -911,7 +911,7 @@
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
-   "repeat": 1,
+   "repeat": 2,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -922,7 +922,7 @@
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
-   "repeat": 2,
+   "repeat": 3,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -933,7 +933,7 @@
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
-   "repeat": 3,
+   "repeat": 4,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -944,7 +944,7 @@
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
-   "repeat": 4,
+   "repeat": 5,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -955,7 +955,7 @@
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
-   "repeat": 5,
+   "repeat": 6,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -966,7 +966,7 @@
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
-   "repeat": 6,
+   "repeat": 7,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -977,7 +977,7 @@
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
-   "repeat": 7,
+   "repeat": 8,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -988,7 +988,7 @@
    "line": 136,
    "col": 0,
    "fp": "047c6bee1b",
-   "repeat": 8,
+   "repeat": 9,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
   },
@@ -996,12 +996,12 @@
    "id": "r91",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 136,
+   "line": 138,
    "col": 0,
-   "fp": "047c6bee1b",
-   "repeat": 9,
+   "fp": "6796437730",
+   "repeat": 0,
    "verdict": "keep",
-   "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls or percent, with the design or run)"
+   "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
   },
   {
    "id": "r92",
@@ -1010,7 +1010,7 @@
    "line": 138,
    "col": 0,
    "fp": "6796437730",
-   "repeat": 0,
+   "repeat": 1,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
   },
@@ -1021,7 +1021,7 @@
    "line": 138,
    "col": 0,
    "fp": "6796437730",
-   "repeat": 1,
+   "repeat": 2,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
   },
@@ -1032,7 +1032,7 @@
    "line": 138,
    "col": 0,
    "fp": "6796437730",
-   "repeat": 2,
+   "repeat": 3,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
   },
@@ -1043,7 +1043,7 @@
    "line": 138,
    "col": 0,
    "fp": "6796437730",
-   "repeat": 3,
+   "repeat": 4,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
   },
@@ -1054,7 +1054,7 @@
    "line": 138,
    "col": 0,
    "fp": "6796437730",
-   "repeat": 4,
+   "repeat": 5,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
   },
@@ -1065,7 +1065,7 @@
    "line": 138,
    "col": 0,
    "fp": "6796437730",
-   "repeat": 5,
+   "repeat": 6,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
   },
@@ -1076,23 +1076,12 @@
    "line": 138,
    "col": 0,
    "fp": "6796437730",
-   "repeat": 6,
-   "verdict": "keep",
-   "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
-  },
-  {
-   "id": "r99",
-   "gate": "reader",
-   "kind": "bare-number",
-   "line": 138,
-   "col": 0,
-   "fp": "6796437730",
    "repeat": 7,
    "verdict": "keep",
    "reason": "unit and scenario stated (tokens, calls, acts, pages, blocks, sections, bytes or percent, with the design or run it belongs to)"
   },
   {
-   "id": "r100",
+   "id": "r99",
    "gate": "reader",
    "kind": "bare-number",
    "line": 146,
@@ -1103,7 +1092,7 @@
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls, sections or percent, with the design or run)"
   },
   {
-   "id": "r101",
+   "id": "r100",
    "gate": "reader",
    "kind": "bare-number",
    "line": 146,
@@ -1114,7 +1103,7 @@
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls, sections or percent, with the design or run)"
   },
   {
-   "id": "r102",
+   "id": "r101",
    "gate": "reader",
    "kind": "bare-number",
    "line": 146,
@@ -1125,7 +1114,7 @@
    "reason": "unit and scenario stated (tokens of a named class, dollars or cents at list price, seconds, calls, sections or percent, with the design or run)"
   },
   {
-   "id": "r103",
+   "id": "r102",
    "gate": "reader",
    "kind": "bare-number",
    "line": 151,
@@ -1136,7 +1125,7 @@
    "reason": "unit and scenario stated (tokens, calls, pages, blocks, characters or percent, with the design or run it belongs to)"
   },
   {
-   "id": "r104",
+   "id": "r103",
    "gate": "reader",
    "kind": "long-sentence",
    "line": 189,
