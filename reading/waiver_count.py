@@ -5,6 +5,7 @@ This module writes the waiver file only; it neither names a corpus directory nor
 """
 from __future__ import annotations
 
+import os
 import re
 from pathlib import Path
 
@@ -46,11 +47,18 @@ def lower_count(waivers_path: Path, check: str, slug: str, count: int) -> str | 
             end = next((j for j, r in enumerate(rest) if _SECTION.match(r)), len(rest))
             if not any(_ENTRY.match(r) for r in rest[:end]):
                 lines[head] = lines[head].rstrip() + " {}"  # the last act left: an empty map, not a null
-        waivers_path.write_text("\n".join(lines), encoding="utf-8")
+        _replace(waivers_path, "\n".join(lines))
         return before
     return None
 
 
+def _replace(waivers_path: Path, text: str) -> None:
+    """Write the file whole or not at all: every gate call loads it, so a half-written file would refuse them all."""
+    tmp = waivers_path.with_name(waivers_path.name + ".tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, waivers_path)
+
+
 def restore(waivers_path: Path, before: str) -> None:
     """Put the waiver file back as ``lower_count`` found it, when the write it was lowered for is refused."""
-    waivers_path.write_text(before, encoding="utf-8")
+    _replace(waivers_path, before)

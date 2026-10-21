@@ -44,7 +44,7 @@ no_article_anchor:
   expires: "the article-anchor detector ships and its corpus-wide census replaces this empty map"
   acts: {}  # detector not yet implemented
 # Census of 2026-09-05 over the committed corpus: 771 occurrences over 80 acts.
-# The write path of 2026-10-22 repaired 19 of them to none: 633 occurrences over 61 acts remain.
+# Acts leave this waiver in their own commits as they are repaired (D-072 ruling 13); the acts below are the live census.
 tag_remnants:
   ruling: "W-002: FR-035 tag remnants (SUP>, /span>, /STRONG>) pending the Part V sweep; fixed in fetcher/bg/text_parser.py first"
   owner_signed: 2026-09-05

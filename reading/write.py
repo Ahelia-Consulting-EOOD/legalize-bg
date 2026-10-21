@@ -19,6 +19,11 @@ exception and commits it to the corpus through the single write gate:
    the amendment list grew and ``[popravka]`` otherwise (ruling 11), with the
    three trailers and ``Record-Id``.
 
+The act and the waiver file must carry no uncommitted change when a commit is
+asked for, so a failure anywhere after the waiver is lowered puts both back as
+git holds them: the waiver file from its text before, the act by ``git checkout``
+of its committed version, never by writing it here.
+
 The text parser is not called: the body is the reading run's. This module writes
 the corpus only through the gate.
 
@@ -147,12 +152,24 @@ def _git(root: Path, *args: str, env: dict | None = None) -> str:
     return subprocess.run(["git", *args], cwd=root, check=True, capture_output=True, text=True, env=env).stdout.strip()
 
 
+def _rel(root: Path, f: Path) -> str:
+    try:
+        return str(f.relative_to(root))
+    except ValueError:
+        raise WriteRefused(f"{f} lies outside the repository {root}") from None
+
+
 def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw_dir: Path | str = RAW,
                  waivers_path: Path | str | None = None, commit: bool = True) -> Written:
     """Write one read act through the gate and commit it with its run record."""
     root, run_dir, raw_dir = Path(root), Path(run_dir), Path(raw_dir)
     waivers_path = Path(waivers_path) if waivers_path else root / WAIVERS
     path = corpus_file(root, slug)
+    if commit:
+        own = [_rel(root, path), _rel(root, waivers_path)]
+        if _git(root, "status", "--porcelain", "--", *own):
+            # a write left uncommitted (an earlier failure, a hand edit) would otherwise read as unchanged
+            raise WriteRefused(f"{slug}: uncommitted changes in {' or '.join(own)}; commit or restore them first")
     committed_raw = path.read_text(encoding="utf-8")
     committed, _ = _split_frontmatter(committed_raw)
     doc_id = str(committed.get("identificador", "")).strip()
@@ -173,31 +190,37 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
     if commit_type == "unchanged":
         return Written(slug, "unchanged", record_id, None)
 
+    record = [run_dir / "map.json", *sorted(run_dir.glob("report-round*.json"))]
+    files = [_rel(root, f) for f in [path, *record]]
     before = _lower_waivers(waivers_path, slug, path, text)
     lowered = before is not None
+    written = False
     try:
         write_act(path, meta, body, source=SourceRef("lexbg", doc_id), waivers_path=waivers_path)
-    except CorpusIntegrityError:
+        written = True
+        if not commit:
+            return Written(slug, commit_type, record_id, None)
+        files += [_rel(root, waivers_path)] if lowered else []
+        _git(root, "add", "--", *files)
+        date = latest_amendment_date(fresh_hist) or meta.get("fecha_publicacion")
+        message = (f"[{commit_type}] {meta['titulo']}\n\n"
+                   f"Source-Id: lexbg-{doc_id}\n"
+                   f"Source-Date: {date or 'unknown'}\n"
+                   f"Norm-Id: {doc_id}\n"
+                   f"Record-Id: {record_id}\n")
+        env = os.environ.copy()
+        author_date = _format_author_date(date)
+        if author_date:
+            env["GIT_AUTHOR_DATE"] = author_date  # the legislative date; the committer date stays real (D-048)
+        _git(root, "commit", "-m", message, "--", *files, env=env)
+    except BaseException:
+        if commit:
+            subprocess.run(["git", "reset", "-q", "--", *files], cwd=root, capture_output=True)
+            if written:
+                _git(root, "checkout", "HEAD", "--", _rel(root, path))  # the committed act, as the check above found it
         if lowered:
             waiver_count.restore(waivers_path, before)
         raise
-    if not commit:
-        return Written(slug, commit_type, record_id, None)
-
-    record = [run_dir / "map.json", *sorted(run_dir.glob("report-round*.json"))]
-    files = [path, *record] + ([waivers_path] if lowered else [])
-    _git(root, "add", "--", *(str(f.relative_to(root)) for f in files))
-    date = latest_amendment_date(fresh_hist) or meta.get("fecha_publicacion")
-    message = (f"[{commit_type}] {meta['titulo']}\n\n"
-               f"Source-Id: lexbg-{doc_id}\n"
-               f"Source-Date: {date or 'unknown'}\n"
-               f"Norm-Id: {doc_id}\n"
-               f"Record-Id: {record_id}\n")
-    env = os.environ.copy()
-    author_date = _format_author_date(date)
-    if author_date:
-        env["GIT_AUTHOR_DATE"] = author_date  # the legislative date; the committer date stays real (D-048)
-    _git(root, "commit", "-m", message, "--", *(str(f.relative_to(root)) for f in files), env=env)
     return Written(slug, commit_type, record_id, _git(root, "rev-parse", "--short", "HEAD"))
 
 
@@ -222,6 +245,9 @@ def main(argv: list[str] | None = None) -> int:
         except WriteRefused as exc:
             refused.append((slug, "reading", [str(exc)]))
             print(f"refused  {slug}: {exc}")
+        except Exception as exc:  # one broken run folder or git call stops that act, not the pass and its report
+            refused.append((slug, "error", [f"{type(exc).__name__}: {exc}"]))
+            print(f"refused  {slug}: {type(exc).__name__}: {exc}")
     print(json.dumps({"written": [{"slug": w.slug, "type": w.commit_type, "commit": w.commit} for w in written],
                       "refused": [{"slug": s, "by": by, "violations": v[:5], "count": len(v)} for s, by, v in refused]},
                      ensure_ascii=False, indent=1))

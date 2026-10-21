@@ -189,15 +189,16 @@ def test_the_repository_waiver_file_loads():
     assert {"frontmatter_dates", "empty_body", "no_article_anchor"} <= set(waivers)
 
 
-def test_the_repository_waiver_file_pins_the_census_counts():
+def test_the_repository_waiver_file_never_grows_past_the_census():
     """W-002 and W-003: the enumerated sets the machine floor runs green against.
 
-    The census of 2026-09-05 found 771 remnants over 80 acts and 2 chrome lines in one act. The
-    write path of 22 October 2026 repaired 19 acts to no remnant and the chrome act, and each left
-    its waiver in its own commit, as the waivers' expiry provides.
+    The census of 2026-09-05 found 771 remnants over 80 acts and 2 chrome lines in one act. Acts
+    leave these waivers in their own commits as they are repaired (D-072 ruling 13), so the counts
+    only fall; the per-act equality is the gate's and ``corpus_integrity``'s to enforce, and this
+    test refuses a waiver that grows past the census.
     """
     repo = Path(__file__).resolve().parents[2]
     waivers = load_waivers(repo / "docs" / "data" / "waivers.yaml")
     remnants, chrome = waivers["tag_remnants"], waivers["chrome"]
-    assert (len(remnants), sum(remnants.values())) == (61, 633)
-    assert (len(chrome), sum(chrome.values())) == (0, 0)
+    assert len(remnants) <= 80 and sum(remnants.values()) <= 771
+    assert len(chrome) <= 1 and sum(chrome.values()) <= 2
