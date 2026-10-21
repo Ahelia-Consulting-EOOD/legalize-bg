@@ -5,17 +5,6 @@
   {
    "id": "r1",
    "gate": "reader",
-   "kind": "over-length",
-   "line": 0,
-   "col": 0,
-   "fp": "doc-952cd9b991",
-   "repeat": 0,
-   "verdict": "keep",
-   "reason": "the owner asked for state, decisions and plan in one document"
-  },
-  {
-   "id": "r2",
-   "gate": "reader",
    "kind": "undefined-code-name",
    "line": 18,
    "col": 265,
@@ -25,7 +14,7 @@
    "reason": "defined in the glossary (decision log, future-requirements register)"
   },
   {
-   "id": "r3",
+   "id": "r2",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 31,
@@ -36,7 +25,7 @@
    "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
   },
   {
-   "id": "r4",
+   "id": "r3",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 52,
@@ -47,7 +36,7 @@
    "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
   },
   {
-   "id": "r5",
+   "id": "r4",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 52,
@@ -58,7 +47,7 @@
    "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
   },
   {
-   "id": "r6",
+   "id": "r5",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 52,
@@ -69,7 +58,7 @@
    "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
   },
   {
-   "id": "r7",
+   "id": "r6",
    "gate": "reader",
    "kind": "undefined-code-name",
    "line": 52,
@@ -80,7 +69,7 @@
    "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
   },
   {
-   "id": "r8",
+   "id": "r7",
    "gate": "reader",
    "kind": "undefined-acronym",
    "line": 55,
@@ -91,7 +80,7 @@
    "reason": "written out at first use or defined in the glossary"
   },
   {
-   "id": "r9",
+   "id": "r8",
    "gate": "reader",
    "kind": "long-sentence",
    "line": 64,
@@ -102,7 +91,7 @@
    "reason": "a list sentence the reader scans item by item"
   },
   {
-   "id": "r10",
+   "id": "r9",
    "gate": "reader",
    "kind": "internal-path",
    "line": 64,
@@ -113,32 +102,120 @@
    "reason": "the path names the knowledge-base run the reader opens next"
   },
   {
-   "id": "r11",
+   "id": "r10",
    "gate": "reader",
-   "kind": "bare-number",
-   "line": 74,
+   "kind": "long-sentence",
+   "line": 70,
    "col": 0,
-   "fp": "0d59a5c4f0",
+   "fp": "3619b101c0",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "unit and scenario are in the same sentence"
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r11",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
   },
   {
    "id": "r12",
    "gate": "reader",
-   "kind": "bare-number",
-   "line": 74,
+   "kind": "long-sentence",
+   "line": 72,
    "col": 0,
-   "fp": "0d59a5c4f0",
+   "fp": "34e5608a78",
    "repeat": 1,
    "verdict": "keep",
-   "reason": "unit and scenario are in the same sentence"
+   "reason": "a list sentence the reader scans item by item"
   },
   {
    "id": "r13",
    "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 2,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r14",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 3,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r15",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 4,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r16",
+   "gate": "reader",
+   "kind": "semicolon-chain",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read and kept"
+  },
+  {
+   "id": "r17",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 73,
+   "col": 0,
+   "fp": "074a8235fb",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r18",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 77,
+   "col": 0,
+   "fp": "6f6301ac9e",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r19",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 80,
+   "col": 0,
+   "fp": "b231a9b611",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r20",
+   "gate": "reader",
    "kind": "undefined-code-name",
-   "line": 78,
+   "line": 84,
    "col": 5,
    "fp": "62aa9cb77a",
    "repeat": 0,
@@ -146,10 +223,10 @@
    "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
   },
   {
-   "id": "r14",
+   "id": "r21",
    "gate": "reader",
    "kind": "long-sentence",
-   "line": 86,
+   "line": 92,
    "col": 0,
    "fp": "9740395516",
    "repeat": 0,
@@ -157,10 +234,10 @@
    "reason": "a list sentence the reader scans item by item"
   },
   {
-   "id": "r15",
+   "id": "r22",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 88,
+   "line": 94,
    "col": 0,
    "fp": "71b5500145",
    "repeat": 0,
@@ -168,10 +245,10 @@
    "reason": "unit and scenario in the same sentence"
   },
   {
-   "id": "r16",
+   "id": "r23",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 88,
+   "line": 94,
    "col": 0,
    "fp": "71b5500145",
    "repeat": 1,
@@ -179,10 +256,10 @@
    "reason": "unit and scenario in the same sentence"
   },
   {
-   "id": "r17",
+   "id": "r24",
    "gate": "reader",
    "kind": "undefined-code-name",
-   "line": 105,
+   "line": 111,
    "col": 82,
    "fp": "64f8342328",
    "repeat": 0,

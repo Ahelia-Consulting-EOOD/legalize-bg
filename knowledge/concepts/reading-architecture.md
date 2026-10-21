@@ -3,7 +3,7 @@ type: Recommendation
 title: "Reading architecture for the reasoning run"
 description: "The reasoning run reads one provision at a time, returns block-index citations and edit operations, and a script assembles and checks the text; model tiers are chosen by the check's pass rate per block."
 topic: reading-architecture
-status: draft
+status: stable
 generated: { by: claude-code/claude-fable-5-1, at: "2026-10-21T05:10:00+03:00" }
 sources:
   - id: anthropic-top
@@ -52,7 +52,7 @@ sources:
 
 # Reading architecture for the reasoning run
 
-A recommendation for how the legalize-bg reasoning run reads materials of Държавен вестник (the State Gazette) and audits existing acts, drawn from the research run of 21 October 2026. It is a draft until the owner adopts it in the decision log. Sections: [Terms](#terms), [1. Unit of work](#1-unit-of-work-one-provision), [2. Output](#2-output-pointers-and-operations-never-text), [3. Checks](#3-checks-total-on-form-recorded-on-meaning), [4. Model tiers](#4-model-tiers-decided-by-the-check).
+A recommendation for how the legalize-bg reasoning run reads materials of Държавен вестник (the State Gazette) and audits existing acts, drawn from the research run of 21 October 2026. Adopted by the owner on 21 October 2026 (decision D-069 in the repository decision log), with Claude Opus 5.5 for labelling and operations. Sections: [Terms](#terms), [1. Unit of work](#1-unit-of-work-one-provision), [2. Output](#2-output-pointers-and-operations-never-text), [3. Checks](#3-checks-total-on-form-recorded-on-meaning), [4. Model tiers](#4-model-tiers-decided-by-the-check).
 
 ## Terms
 
@@ -71,7 +71,7 @@ The blocks go to the model as custom content blocks, which the API cites by inde
 
 ## 3. Checks: total on form, recorded on meaning
 
-The concatenation of the cited blocks, in order, must equal the source text; an edit's old string must occur exactly once at its address and must be gone afterwards. These are string equalities, decidable without reading.[^check-inference] The label and the operation kind are judgements; each is recorded with its citation so a later reader can re-check it. A block the check rejects, or that the model marks doubtful, is escalated.
+The concatenation of the cited blocks, in order, must equal the source text; an edit's old string must occur exactly once at its address and must be gone afterwards. These are string equalities, decidable without reading.[^check-inference] The label and the operation kind are judgements; each is recorded with its citation so a later reader can re-check it. A block the check rejects, or that the model marks doubtful, is an exception, not a blocked write: round 1 re-labels it together with its previous and next block, round 2 once more, and what is still excepted goes to a whole-act read by a Fable model or the owner, whose verdict is final and recorded (the owner's ladder of 21 October 2026).
 
 ## 4. Model tiers, decided by the check
 
@@ -79,7 +79,7 @@ Because the model returns labels and indices, not text, the output is small and 
 
 ## 5. What is not decided here
 
-Whether the daily loop and the backfill run on the Batch API (half price, up to 24 hours) or in the session; and the scope questions of the catch-up (ratification laws, stand-alone decrees), which are the owner's.
+Whether the backfill runs on the Batch API (half price, up to 24 hours); the scope questions of the catch-up (ratification laws, stand-alone decrees), which are the owner's. Decided on 21 October 2026 by D-069: the tier is Opus 5.5 for labelling and operations, with the exception ladder of section 3.
 
 [^anthropic-top]: Anthropic, Prompting best practices: "Place your long documents and inputs near the top of your prompt, above your query, instructions, and examples."
 [^anthropic-quotes]: Anthropic, Prompting best practices: "ask Claude to quote relevant parts of the documents first before carrying out its task."
