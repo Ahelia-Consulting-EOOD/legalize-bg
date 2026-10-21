@@ -547,7 +547,7 @@
    "kind": "bare-number",
    "line": 93,
    "col": 0,
-   "fp": "bca5ea3573",
+   "fp": "b07a611573",
    "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -558,7 +558,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -569,7 +569,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 1,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -580,7 +580,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 2,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -591,7 +591,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 3,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -602,7 +602,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 4,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -613,7 +613,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 5,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -624,7 +624,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 6,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -635,7 +635,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 7,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -646,7 +646,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 8,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -657,7 +657,7 @@
    "kind": "bare-number",
    "line": 99,
    "col": 0,
-   "fp": "ded50a6d4b",
+   "fp": "eba8286e8e",
    "repeat": 9,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -1211,19 +1211,6 @@
    "repeat": 0,
    "verdict": "keep",
    "reason": "nine short sentences; the dots inside the file names confuse the sentence splitter"
-  }
- ],
- "held": [
-  {
-   "id": "r105",
-   "gate": "reader",
-   "kind": "undefined-code-name",
-   "line": 150,
-   "col": 432,
-   "fp": "032042b89d",
-   "repeat": 0,
-   "verdict": "keep",
-   "reason": "D-070 is the decision log's identifier, defined in the glossary beside D-069"
   }
  ]
 }
