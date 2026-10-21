@@ -151,3 +151,100 @@ def test_checks_catch_drops_text_mismatch_first_alinea_and_sign_order():
     assert "label_text_mismatch" in kinds, "Чл. 3 labelled n=4"
     assert "sign_order" in kinds
     assert "letter_order" not in kinds, "и) then к) is the Bulgarian lettering order"
+
+
+def test_hidden_addresses_and_drops_inside_the_act_are_exceptions():
+    """Second review, findings 7 and 8: a continuation or quoted label on an opener, and a drop between placed blocks."""
+    act = _act(["ДОБАВИ", "Чл. 1. Едно.", "Чл. 2. Две.", "§ 2. Текст.", "бележка", "Чл. 3. Три.", "Релевантни актове"])
+    smap = {0: {"label": "drop", "note": "chrome"}, 1: {"label": "article_head", "n": "1"}, 2: {"label": "continuation"},
+            3: {"label": "quoted"}, 4: {"label": "drop", "note": "looks like chrome"}, 5: {"label": "article_head", "n": "3"},
+            6: {"label": "drop", "note": "chrome"}}
+    md, ex = run_all(act.blocks, smap)
+    by = {(e["kind"], e["block"]) for e in ex}
+    assert ("label_text_mismatch", 2) in by, "continuation on Чл. 2."
+    assert ("label_text_mismatch", 3) in by, "quoted on § 2. with no quotation mark"
+    assert ("drop_inside_act", 4) in by
+    assert not any(e["block"] in (0, 6) and e["kind"].startswith("drop") for e in ex), "chrome before and after the act"
+    smap[3] = {"label": "quoted"}
+    act2 = _act(["Чл. 1. Едно.", "„Чл. 12. Цитат.“", "§ 2. След чл. 1001 се прибавя:", "Глава X-а", "Чл. 1001а. Текст.", "Чл. 1001б. Текст.", "-----", "Законът е приет."])
+    smap2 = {0: {"label": "article_head", "n": "1"}, 1: {"label": "quoted"}, 2: {"label": "paragraph_sign", "n": "2"}, 3: {"label": "quoted"},
+             4: {"label": "quoted"}, 5: {"label": "quoted"}, 6: {"label": "drop", "note": "separator"}, 7: {"label": "adoption_formula"}}
+    _, ex2 = run_all(act2.blocks, smap2)
+    assert not any(e["kind"] in ("label_text_mismatch", "drop_inside_act") for e in ex2), "a quoted run and a separator line pass"
+
+
+def test_numbering_gaps_are_source_findings():
+    from reading.ladder import SOURCE_FINDINGS
+    act = _act(["Чл. 2. Две.", "Чл. 3. Три.", "Чл. 5. Пет.", "Чл. 5а. Пет-а.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 2. Текст.", "§ 4. Текст.",
+                "КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ", "§ 45. Текст.", "§ 48. Текст."])
+    smap = {0: {"label": "article_head", "n": "2"}, 1: {"label": "article_head", "n": "3"}, 2: {"label": "article_head", "n": "5"},
+            3: {"label": "article_head", "n": "5а"}, 4: {"label": "provisions_heading"}, 5: {"label": "paragraph_sign", "n": "2"},
+            6: {"label": "paragraph_sign", "n": "4"}, 7: {"label": "provisions_heading"}, 8: {"label": "paragraph_sign", "n": "45"},
+            9: {"label": "paragraph_sign", "n": "48"}}
+    _, ex = run_all(act.blocks, smap)
+    gaps = [(e["kind"], e["block"]) for e in ex if e["kind"] in ("article_gap", "sign_gap")]
+    assert gaps == [("article_gap", 0), ("article_gap", 2), ("sign_gap", 5), ("sign_gap", 6)]
+    act = _act(["Чл. 1. Едно.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. Текст.", "§ 2. Текст."])
+    _, ex = run_all(act.blocks, {0: {"label": "article_head", "n": "1"}, 1: {"label": "provisions_heading"},
+                                 2: {"label": "paragraph_sign", "n": "1"}, 3: {"label": "paragraph_sign", "n": "2"}})
+    assert not any(e["kind"] in ("article_gap", "sign_gap") for e in ex)
+    assert {"article_gap", "sign_gap"} <= SOURCE_FINDINGS
+
+
+def test_first_alinea_is_read_only_from_the_head():
+    act = _act(["Чл. 1. Лицата по т. 1 (2) са длъжни.", "(1) Първа", "Чл. 2. (Изм. - ДВ, бр. 1 от 2020 г., в сила от 01.01.2007 г. (*)) (1) Първа.", "(2) Втора",
+                "§ 3. (1) Първа.", "(2) Втора"])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "alinea", "n": "1"}, 2: {"label": "article_head", "n": "2"},
+            3: {"label": "alinea", "n": "2"}, 4: {"label": "paragraph_sign", "n": "3"}, 5: {"label": "alinea", "n": "2"}}
+    _, ex = run_all(act.blocks, smap)
+    assert not any(e["kind"] == "alinea_order" for e in ex)
+
+
+def test_validator_accepts_integer_numbers_and_splitter_folds_newlines():
+    got, probs = validate_entries([{"i": 0, "label": "item", "n": 1}], [0])
+    assert got[0]["n"] == "1" and not probs
+    from reading.splitter import _WS
+    assert _WS.sub(" ", "Чл. 1. Текст\r\n\nвтори ред") == "Чл. 1. Текст втори ред"
+
+
+def test_collect_rebuilds_the_map_from_earlier_rounds(tmp_path, monkeypatch):
+    """Second review, finding 5: re-collecting a round never keeps a later round's labels."""
+    import json
+    import subprocess
+    import sys
+    run = tmp_path / "runs"
+    slug = "zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato"
+    raw = Path(__file__).resolve().parents[2] / "data" / "raw" / "lexbg"
+    import re as _re
+    corpus = Path(__file__).resolve().parents[2] / "laws" / f"{slug}.md"
+    if not corpus.exists():
+        pytest.skip("corpus file not on disk")
+    doc_id = _re.search(r"^identificador:\s*'?(-?\d+)'?", corpus.read_text(encoding="utf-8"), _re.M).group(1)
+    if not (raw / f"{doc_id}.html").exists():
+        pytest.skip("raw page not fetched")
+    py = sys.executable
+    root = Path(__file__).resolve().parents[2]
+    assert subprocess.run([py, "reading/run.py", "prepare", "--slug", slug, "--out", str(run)], cwd=root, capture_output=True).returncode == 0
+    d = run / slug
+    blocks = json.loads((d / "blocks.json").read_text(encoding="utf-8"))["blocks"]
+    # round 0: every block labelled continuation except the first (title), one of them with low confidence
+    entries = [{"i": b["i"], "label": "title" if b["i"] == 0 else "unknown", "conf": "high"} for b in blocks]
+    for t in sorted((d / "tasks" / "round0").glob("*.json")):
+        task = json.loads(t.read_text(encoding="utf-8"))
+        mine = [e for e in entries if e["i"] in {b["i"] for b in task["blocks"]}]
+        (d / "maps" / "round0" / t.name).write_text(json.dumps(mine), encoding="utf-8")
+    assert subprocess.run([py, "reading/run.py", "collect", "--slug", slug, "--round", "0", "--out", str(run)], cwd=root, capture_output=True).returncode == 0
+    r1 = sorted((d / "tasks" / "round1").glob("*.json"))
+    assert r1, "unknown labels make round-1 tasks"
+    for t in r1:
+        task = json.loads(t.read_text(encoding="utf-8"))
+        (d / "maps" / "round1" / t.name).write_text(json.dumps([{"i": task["target"], "label": "editorial_note", "conf": "high"}]), encoding="utf-8")
+    assert subprocess.run([py, "reading/run.py", "collect", "--slug", slug, "--round", "1", "--out", str(run)], cwd=root, capture_output=True).returncode == 0
+    m1 = json.loads((d / "map.json").read_text(encoding="utf-8"))
+    assert all(v["label"] in ("title", "editorial_note") for v in m1.values())
+    # re-collect round 0: the round-1 labels are gone from the map, its answers set aside, its report removed
+    assert subprocess.run([py, "reading/run.py", "collect", "--slug", slug, "--round", "0", "--out", str(run)], cwd=root, capture_output=True).returncode == 0
+    m0 = json.loads((d / "map.json").read_text(encoding="utf-8"))
+    assert all(v["label"] in ("title", "unknown") for v in m0.values())
+    assert not (d / "report-round1.json").exists()
+    assert not list((d / "maps" / "round1").glob("*.json"))

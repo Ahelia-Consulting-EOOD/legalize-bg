@@ -77,6 +77,8 @@ def validate_entries(entries, expected: list[int], *, target: int | None = None)
             problems.append({"block": i, "kind": "bad_label", "detail": f"label {label!r}"})
             continue
         n = e.get("n")
+        if isinstance(n, int) and not isinstance(n, bool):
+            n = str(n)
         if label in NUMBERED:
             if not isinstance(n, str) or not _NUM[label].match(n):
                 problems.append({"block": i, "kind": "bad_number", "detail": f"{label} with n={n!r}"})

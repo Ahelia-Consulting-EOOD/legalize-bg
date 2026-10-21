@@ -30,7 +30,7 @@ INLINE_TAGS = frozenset({"a", "span", "b", "i", "em", "strong", "u", "sup", "sub
 KNOWN = set(CLASS_MAP) | {"Title"}
 MAX_SECTION_BLOCKS = 60
 MIN_SECTION_BLOCKS = 25
-_WS = re.compile(r"[ \t ]+")
+_WS = re.compile(r"[ \t \r\n]+")
 
 
 @dataclass

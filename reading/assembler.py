@@ -21,8 +21,8 @@ HEADING_PREFIX = {
     "provisions_heading": "## ",
     "annex_heading": "## ",
 }
-_ART = re.compile(r"^(Чл\.\s*\d+[а-яa-z]?\d?\.)")
-_SIGN = re.compile(r"^(§\s*\d+[а-я]?\.)")
+_ART = re.compile(r"^(Чл\.\s*\d+[а-яa-z]?\d?\.|Член\s+единствен\.)")
+_SIGN = re.compile(r"^(§\s*\d+[а-яa-z]?\.|Параграф\s+единствен\.)")
 
 
 JOIN_PREVIOUS = {"continuation"}

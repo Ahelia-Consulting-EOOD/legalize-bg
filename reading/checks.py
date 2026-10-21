@@ -1,20 +1,26 @@
 """Mechanical checks over a structure map. None of them reads meaning.
 
 ``coverage``: every block is placed once or dropped once; a dropped block carries
-the ``drop`` label with a reason, and a dropped block that opens like a provision
-is an exception.
+the ``drop`` label with a reason; a dropped block that opens like a provision, or
+that lies between placed blocks (inside the act, not in the page chrome before
+its title or after its last line), is an exception.
 ``reassembly``: each assembled line, markers removed, equals its blocks joined.
 ``text``: a numbered label's number equals the number written in the block, and a
 block that opens like an article, §, alinea, item or letter carries a label that
-can open one (or is quoted or a continuation).
+can open one; a ``continuation`` never opens like a provision, and a ``quoted``
+block that opens with an article or § number starts with a quotation mark unless
+it continues a run of quoted blocks.
 ``numbering``: article numbers do not go backwards; alineas start at (1) after an
 article head (or continue the one written in the head) and increase by one;
 items likewise per parent; letters follow the Bulgarian lettering order; § numbers
 increase and are unique within the act's own provisions, restarting only in a
 block "към ЗИД …".
 ``nesting``: an alinea only after an article head or §; an item only inside an
-article, alinea or §; a letter only inside an item.
-``addresses``: one Чл. N per act.
+article, alinea or §; a letter only inside an item, alinea, article or §.
+``addresses``: one Чл. N per act; a gap in the article or § numbering, or a first
+number other than 1, is a source finding (``article_gap``, ``sign_gap``); the §§
+printed after a "КЪМ …" heading are a selection from another act and are not
+checked for gaps.
 ``fragments``: no literal markup fragment in placed text (a source finding).
 ``confidence``: a block labelled ``unknown`` or with low confidence.
 ``empty_section``: a heading with nothing under it (a source finding).
@@ -27,7 +33,7 @@ import re
 from .assembler import assemble_lines, strip_line
 from .splitter import Block
 
-FRAGMENTS = ("sup>", "<sup", "</span>", "<span", "</div>", "<div", "&nbsp;", "<br", "&lt;", "&amp;", "<p")
+FRAGMENTS = ("sup>", "<sup", "</span>", "<span", "</div>", "<div", "&nbsp;", "<br", "&lt;", "&amp;", "<p", "</", "<b>", "<i>", "&quot;", "&#")
 _LATIN_TO_CYR = str.maketrans("aBbeEkKmMHoOpPcCTxXy", "аВьеЕкКмМНоОрРсСТхХу")
 _ARTNUM = re.compile(r"^(\d+)([а-я]?)(\d?)$")
 _ART_TEXT = re.compile(r"^Чл\.\s*(\d+[а-я]?\d?)\.")
@@ -36,11 +42,15 @@ _SIGN_TEXT = re.compile(r"^(?:§\s*(\d+[а-я]?)|Параграф\s+(единс�
 _ALINEA_TEXT = re.compile(r"^\((\d+[а-я]?)\)")
 _ITEM_TEXT = re.compile(r"^(\d+[а-я]?)\.\s")
 _LETTER_TEXT = re.compile(r"^([а-я])\)")
-_FIRST_ALINEA = re.compile(r"\((\d+)\)")
+# the first alinea written in an article or § head: right after the number, or after one editorial note in parentheses
+_FIRST_ALINEA = re.compile(r"^(?:Чл\.\s*\S+\.|§\s*\S+\.|Член\s+единствен\.|Параграф\s+единствен\.)\s*(?:\((?:[^()]|\([^()]*\))*\)\s*)*\((\d+)\)")
 _PROVISION_LIKE = re.compile(r"^(Чл\.\s*\d|Член\s+единствен|§\s*\d|Параграф\s+единствен|\(\d+[а-я]?\)|\d+[а-я]?\.\s|[а-я]\)\s)")
 BULGARIAN_LETTERS = "абвгдежзиклмнопрстуфхцчшщюя"  # the lettering order used in acts; й, ъ and ь are skipped
 _HEADINGS = {"title", "part_heading", "chapter_heading", "section_heading", "subsection_heading", "provisions_heading", "annex_heading"}
-_OPENERS = {"article_head", "paragraph_sign", "alinea", "item", "letter", "quoted", "continuation", "annex_row", "table_row", "unnumbered_alinea", "unnumbered_item"}
+_OPENERS = {"article_head", "paragraph_sign", "alinea", "item", "letter", "quoted", "annex_row", "table_row", "unnumbered_alinea", "unnumbered_item"}
+_ADDRESS_LIKE = re.compile(r"^(Чл\.\s*\d|Член\s+единствен|§\s*\d|Параграф\s+единствен)")
+_QUOTE_OPEN = re.compile(r"^[\"„“«]")
+_NO_LETTERS = re.compile(r"^[^\w]*$")  # a separator line of dashes or dots: chrome wherever it stands
 
 
 def _art_key(n: str) -> tuple[int, str, int]:
@@ -88,12 +98,15 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     touched = set(placed) | set(dropped)
     for i in sorted(idx - touched):
         ex.append({"block": i, "kind": "not_covered", "detail": "neither placed nor dropped"})
+    first_placed, last_placed = (placed[0], placed[-1]) if placed else (-1, -1)
     for i in dropped:
         e = smap.get(i, {})
         if e.get("label") != "drop":
             ex.append({"block": i, "kind": "dropped_without_label", "detail": "left out without a drop label"})
         elif _PROVISION_LIKE.match(blocks[i].text):
             ex.append({"block": i, "kind": "drop_of_provision", "detail": f"a line that opens like a provision was dropped: {blocks[i].text[:60]!r}"})
+        elif first_placed < i < last_placed and not _NO_LETTERS.match(blocks[i].text):
+            ex.append({"block": i, "kind": "drop_inside_act", "detail": f"a line between placed blocks was dropped: {blocks[i].text[:60]!r}"})
         elif not e.get("note"):
             ex.append({"block": i, "kind": "drop_without_reason", "detail": "drop carries no note"})
     for line, idxs in lines:
@@ -101,10 +114,12 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             ex.append({"block": idxs[0], "kind": "reassembly", "detail": "the assembled line differs from its blocks"})
     if [i for _, idxs in lines for i in idxs] != placed:
         ex.append({"block": placed[0] if placed else 0, "kind": "reassembly", "detail": "the lines do not cover the placed blocks once each, in order"})
+    prev_label = ""
     for i in placed:
         e = smap.get(i)
         t = blocks[i].text
         if e is None or e["label"] == "unknown":
+            prev_label = ""
             ex.append({"block": i, "kind": "unknown", "detail": (e or {}).get("note", "no label")})
             continue
         if e.get("conf") == "low":
@@ -140,8 +155,16 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             m = _LETTER_TEXT.match(tn)
             if not m or m.group(1) != n:
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"letter n={n!r} on {t[:30]!r}"})
+        elif label == "continuation":
+            if _PROVISION_LIKE.match(tn):
+                ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"continuation on a line that opens like a provision: {t[:40]!r}"})
+        elif label == "quoted":
+            # a run of quoted provisions is anchored by its first block: that one opens with a quotation mark or is not an address
+            if _ADDRESS_LIKE.match(tn) and not _QUOTE_OPEN.match(t) and prev_label != "quoted":
+                ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"quoted on a line that opens with an address and no quotation mark: {t[:40]!r}"})
         elif label not in _OPENERS and label not in _HEADINGS and label not in ("drop", "editorial_note", "repeal_note") and _PROVISION_LIKE.match(tn):
             ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"{label} on a line that opens like a provision: {t[:40]!r}"})
+        prev_label = label
     prev_heading: int | None = None
     for i in placed:
         e = smap.get(i)
@@ -162,6 +185,7 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     last_item: tuple[int, str] | None = None
     last_letter = ""
     item_parent_ok = False
+    amending = False  # after the first "КЪМ …" provisions heading lex.bg prints a selection of another act's §§: no gap check there
     for i in placed:
         e = smap.get(i)
         if not e or e["label"] == "unknown":
@@ -176,12 +200,17 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             if label == "provisions_heading" and re.search(r"(КЪМ|Към|към)\s", t):
                 seen_sign = {}
                 last_sign = None
+                amending = True
         elif label == "article_head":
             key = _art_key(n)
             if last_art is not None and key < last_art:
                 ex.append({"block": i, "kind": "article_order", "detail": f"Чл. {n} after Чл. {last_art[0]}{last_art[1]}{last_art[2] or ''}"})
             if n in seen_art:
                 ex.append({"block": i, "kind": "duplicate_address", "detail": f"Чл. {n} already at block {seen_art[n]}"})
+            elif last_art is None and key[0] != 1:
+                ex.append({"block": i, "kind": "article_gap", "detail": f"the first article is Чл. {n}"})
+            elif last_art is not None and key > last_art and not key[1] and not key[2] and key[0] > last_art[0] + 1:
+                ex.append({"block": i, "kind": "article_gap", "detail": f"Чл. {n} after Чл. {last_art[0]}{last_art[1]}{last_art[2] or ''}"})
             seen_art[n] = i
             last_art = key
             in_article, in_sign = True, False
@@ -196,6 +225,12 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
                 ex.append({"block": i, "kind": "duplicate_address", "detail": f"§ {n} already at block {seen_sign[n]} in this provisions block"})
             elif last_sign is not None and key <= last_sign and not key[1] and n != "единствен":
                 ex.append({"block": i, "kind": "sign_order", "detail": f"§ {n} after § {last_sign[0]}{last_sign[1]}"})
+            elif amending:
+                pass
+            elif last_sign is None and key[0] != 1:
+                ex.append({"block": i, "kind": "sign_gap", "detail": f"the first § of the provisions block is § {n}"})
+            elif last_sign is not None and not key[1] and key[0] > last_sign[0] + 1:
+                ex.append({"block": i, "kind": "sign_gap", "detail": f"§ {n} after § {last_sign[0]}{last_sign[1]}"})
             seen_sign[n] = i
             last_sign = key
             in_sign, in_article = True, False

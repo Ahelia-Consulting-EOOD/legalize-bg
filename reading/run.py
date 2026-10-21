@@ -73,8 +73,14 @@ def _run_root(out: str) -> Path:
     return root
 
 
+def _slug(slug: str) -> str:
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]*", slug):
+        raise SystemExit(f"not a corpus slug: {slug!r}")
+    return slug
+
+
 def cmd_prepare(args) -> int:
-    run_dir = _run_root(args.out) / args.slug
+    run_dir = _run_root(args.out) / _slug(args.slug)
     run_dir.mkdir(parents=True, exist_ok=True)
     doc_id = _doc_id(args.slug)
     raw = (RAW / f"{doc_id}.html").read_bytes()
@@ -89,32 +95,15 @@ def cmd_prepare(args) -> int:
 
 
 def cmd_collect(args) -> int:
-    run_dir = _run_root(args.out) / args.slug
+    run_dir = _run_root(args.out) / _slug(args.slug)
     act = _load_act(run_dir)
     rnd = args.round
+    # the map is rebuilt from the answers of rounds 0 to R in order, so re-collecting a round never keeps a later round's labels
     smap: dict[int, dict] = {}
     mp = run_dir / "map.json"
-    if mp.exists() and rnd > 0:
-        smap = {int(k): v for k, v in json.loads(mp.read_text(encoding="utf-8")).items()}
-    answers = []
-    tdir = run_dir / "tasks" / f"round{rnd}"
-    mdir = run_dir / "maps" / f"round{rnd}"
-    missing = []
-    for tf in sorted(tdir.glob("*.json")):
-        task = json.loads(tf.read_text(encoding="utf-8"))
-        af = mdir / tf.name
-        if not af.exists():
-            missing.append(tf.name)
-            continue
-        text = af.read_text(encoding="utf-8").strip()
-        text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.M).strip()
-        try:
-            entries = json.loads(text)
-        except json.JSONDecodeError as exc:
-            targets = [task["target"]] if task.get("target") is not None else [b["i"] for b in task["blocks"]]
-            answers.append((task, [{"i": i, "label": "unknown", "note": f"unparsable answer: {exc}"} for i in targets]))
-            continue
-        answers.append((task, entries))
+    for r in range(rnd):
+        smap, _ = ladder.merge(smap, _answers(run_dir, r)[0])
+    answers, missing = _answers(run_dir, rnd)
     smap, problems = ladder.merge(smap, answers)
     md, exceptions = ladder.evaluate(act, smap, problems)
     mp.write_text(json.dumps({str(k): v for k, v in sorted(smap.items())}, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -139,12 +128,15 @@ def cmd_collect(args) -> int:
         stale = run_dir / "maps" / f"round{rnd + 1}-stale-{datetime.now().strftime('%H%M%S')}"
         nxt_maps.rename(stale)
         report_note = f"answers of an earlier round {rnd + 1} task set moved to {stale.name}"
+    for old_report in run_dir.glob("report-round*.json"):
+        if int(old_report.stem.rsplit("round", 1)[1]) > rnd:
+            old_report.unlink()
     report["note"] = report_note
     if tasks:
         _write_tasks(run_dir, tasks)
         report["next_round_tasks"] = len(tasks)
     else:
-        report["residue"] = sorted({e["block"] for e in label_exceptions})
+        report["residue"] = sorted({e["block"] for e in label_exceptions if isinstance(e["block"], int) and e["block"] >= 0})
     cf = _corpus_file(args.slug)
     if cf:
         current = cf.read_text(encoding="utf-8").split("---", 2)[-1].lstrip("\n")
@@ -154,6 +146,30 @@ def cmd_collect(args) -> int:
     (run_dir / f"report-round{rnd}.json").write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps({k: v for k, v in report.items() if k != "exceptions"}, ensure_ascii=False))
     return 0
+
+
+def _answers(run_dir: Path, rnd: int) -> tuple[list[tuple[dict, list[dict]]], list[str]]:
+    """The (task, entries) pairs of a round and the names of the tasks without an answer."""
+    answers: list[tuple[dict, list[dict]]] = []
+    missing: list[str] = []
+    tdir = run_dir / "tasks" / f"round{rnd}"
+    mdir = run_dir / "maps" / f"round{rnd}"
+    for tf in sorted(tdir.glob("*.json")):
+        task = json.loads(tf.read_text(encoding="utf-8"))
+        af = mdir / tf.name
+        if not af.exists():
+            missing.append(tf.name)
+            continue
+        text = af.read_text(encoding="utf-8").strip()
+        text = re.sub(r"^```(?:json)?|```$", "", text, flags=re.M).strip()
+        try:
+            entries = json.loads(text)
+        except json.JSONDecodeError as exc:
+            targets = [task["target"]] if task.get("target") is not None else [b["i"] for b in task["blocks"]]
+            answers.append((task, [{"i": i, "label": "unknown", "note": f"unparsable answer: {exc}"} for i in targets]))
+            continue
+        answers.append((task, entries))
+    return answers, missing
 
 
 def _count(ex: list[dict]) -> dict[str, int]:

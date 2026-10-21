@@ -16,7 +16,7 @@ from .splitter import Block, SplitAct
 MAX_ROUNDS = 2
 NEIGHBOURS = 1
 # exceptions that describe the source, not a label: recorded as findings, never re-labelled
-SOURCE_FINDINGS = frozenset({"empty_section", "fragment"})
+SOURCE_FINDINGS = frozenset({"empty_section", "fragment", "article_gap", "sign_gap"})
 
 
 def _context(act: SplitAct, first: int) -> list[str]:
