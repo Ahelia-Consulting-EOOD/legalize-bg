@@ -367,3 +367,48 @@ def test_news_and_forum_footer_is_tail_chrome():
     smap[1] = {"label": "annex_row"}
     _, ex = run_all(act.blocks, smap)
     assert any(e["kind"] == "chrome_placed" and e["block"] == 1 for e in ex)
+
+
+def test_fifth_review_sub_letters_superscripts_elisions_quoted_chapters_and_nested_items():
+    """ЗДДС, ДОПК, ГПК, КТК: doubled and tripled sub-letters, a two-digit superscript leaked as 'SUP>13', lex.bg's
+    dotted elision line before a list that resumes at 5., a chapter quoted in full whose first line holds an inner
+    quotation, a numbered sub-list under an item that ends with a colon, an item head without its space, and the
+    correspondence-table link under the title."""
+    # the validator accepts аа) and ааа), and a superscript of two digits
+    smap, problems = validate_entries([{"i": 0, "label": "letter", "n": "аа"}, {"i": 1, "label": "letter", "n": "ббб"},
+                                       {"i": 2, "label": "article_head", "n": "143я13"}], [0, 1, 2])
+    assert not problems and len(smap) == 3
+    act = _act(["ГРАЖДАНСКИ ПРОЦЕСУАЛЕН КОДЕКС", "Таблица за съответствие между разпоредбите на ГПК (нов) и ГПК (отм.)",
+                "Чл. 1. Едно:", "1. първо:", "а) буква:", "аа) под-буква;", "бб) под-буква:", "ааа) под-под-буква;", "ббб) под-под-буква;",
+                "вв) под-буква;", "б) буква;", "2. второ.",
+                "Чл. 143я.SUP>13. (Нов - ДВ, бр. 100 от 2022 г.) (1) Текст.", "(2) Текст.",
+                "Чл. 144. (1) Списък:", "1. Лице е:", "1. едно;", "2. две.", "2. Друго.",
+                "Чл. 145. Текст:", "1.Член 708 се изменя така:",
+                "Преходни и Заключителни разпоредби", "§ 1. В Закона:", "1. Създава се глава трета \"а\":",
+                '"Глава трета "а"', "ПРОИЗВОДСТВО ЗА ВРЪЩАНЕ", "Чл. 22а. (1) Молбата.", "(2) Текст.", 'Чл. 22б. Съдът."',
+                "2. В чл. 25 се създава т. 5:", '"5. в случаите."',
+                "§ 2. В Кодекса:", ". . . . . . . . . . . . . . . . . .", "5. Навсякъде думите се заменят.", "6. В останалите текстове.",
+                '7. В чл. 20 думите "7:1" се заменят със "съотношение, както следва:', "а) за 2000 г. - 80:20;", 'б) за 2002 г. - 75:25."', "8. Член 109 се отменя."])
+    smap = {0: {"label": "title"}, 1: {"label": "drop", "note": "lex.bg link to a correspondence table"},
+            2: {"label": "article_head", "n": "1"}, 3: {"label": "item", "n": "1"}, 4: {"label": "letter", "n": "а"},
+            5: {"label": "letter", "n": "аа"}, 6: {"label": "letter", "n": "бб"}, 7: {"label": "letter", "n": "ааа"}, 8: {"label": "letter", "n": "ббб"},
+            9: {"label": "letter", "n": "вв"}, 10: {"label": "letter", "n": "б"}, 11: {"label": "item", "n": "2"},
+            12: {"label": "article_head", "n": "143я13"}, 13: {"label": "alinea", "n": "2"},
+            14: {"label": "article_head", "n": "144"}, 15: {"label": "item", "n": "1"}, 16: {"label": "item", "n": "1"}, 17: {"label": "item", "n": "2"},
+            18: {"label": "item", "n": "2"}, 19: {"label": "article_head", "n": "145"}, 20: {"label": "item", "n": "1"},
+            21: {"label": "provisions_heading"}, 22: {"label": "paragraph_sign", "n": "1"}, 23: {"label": "item", "n": "1"}}
+    smap.update({i: {"label": "quoted"} for i in range(24, 29)})
+    smap.update({29: {"label": "item", "n": "2"}, 30: {"label": "quoted"}, 31: {"label": "paragraph_sign", "n": "2"},
+                 32: {"label": "editorial_note"}, 33: {"label": "item", "n": "5"}, 34: {"label": "item", "n": "6"},
+                 35: {"label": "item", "n": "7"}, 36: {"label": "quoted"}, 37: {"label": "quoted"}, 38: {"label": "item", "n": "8"}})
+    _, ex = run_all(act.blocks, smap)
+    kinds = {e["kind"] for e in ex}
+    assert not kinds & {"letter_order", "item_order", "alinea_order", "label_text_mismatch", "drop_inside_act", "article_gap"}, ex
+    assert [e["block"] for e in ex if e["kind"] == "malformed_head"] == [20]
+    assert [e["block"] for e in ex if e["kind"] == "fragment"] == [12]
+    # the same sub-letters out of order, and a sub-list that does not open under a colon, are still exceptions
+    smap[8] = {"label": "letter", "n": "ггг"}
+    act.blocks[15].text = "1. Лице е;"
+    _, ex = run_all(act.blocks, smap)
+    assert any(e["kind"] == "letter_order" and e["block"] == 8 for e in ex)
+    assert any(e["kind"] == "item_order" and e["block"] == 16 for e in ex)

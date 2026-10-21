@@ -24,7 +24,7 @@ LABELS: dict[str, str] = {
     "unnumbered_alinea": "a paragraph line of the current article without a number (pre-1974 drafting)",
     "item": "a numbered item line 1., 2. … under the current article or paragraph (n = the number)",
     "unnumbered_item": "a list line without a number under the current article or paragraph (older drafting: lines ending with ';')",
-    "letter": "a lettered item line а), б) … (n = the letter)",
+    "letter": "a lettered item line а), б) … or a doubled or tripled sub-letter line аа), бб), ааа) … under a letter (n = the letters as written)",
     "continuation": "a line that continues the previous provision's text (a wrapped or split line)",
     "quoted": "a line that is quoted text inside the current provision and must not become an address, even if it looks like Чл. N. or (1)",
     "provisions_heading": "a heading of Допълнителни, Преходни or Заключителни разпоредби, including the ones 'към ЗИД …'",
@@ -40,11 +40,11 @@ LABELS: dict[str, str] = {
 }
 NUMBERED = {"article_head", "alinea", "item", "letter", "paragraph_sign"}
 _NUM = {
-    "article_head": re.compile(r"^(\d+[а-я]?\d?|единствен)$"),
+    "article_head": re.compile(r"^(\d+[а-я]?\d{0,2}|единствен)$"),  # the superscript may have two digits (ДОПК Чл. 143я¹³)
     "paragraph_sign": re.compile(r"^(\d+[а-я]?|единствен)$"),
     "alinea": re.compile(r"^\d+[а-я]?$"),
     "item": re.compile(r"^\d+[а-я]?$"),
-    "letter": re.compile(r"^[а-я]$"),
+    "letter": re.compile(r"^([а-я])\1{0,2}$"),  # аа), бб) … are sub-letters under a letter (ЗДДС § 1); ааа) … one level deeper (ДОПК § 1а)
 }
 
 
