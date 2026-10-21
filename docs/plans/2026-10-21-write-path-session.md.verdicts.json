@@ -1,0 +1,237 @@
+{
+ "source": "2026-10-21-write-path-session.md",
+ "note": "Write each item's verdict: \"change\", then change the source and run the gate again, or \"keep\" with a reason of a few words. Read the source at each position; the kinds are explained in self-contained-deliverable's references/index-kinds.md. A verdict stays while its line is unchanged.",
+ "items": [
+  {
+   "id": "r1",
+   "gate": "reader",
+   "kind": "unlinked-glossary",
+   "line": 0,
+   "col": 0,
+   "fp": "doc-ee7c6e4cfb",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read; a list of parallel items, one thought"
+  },
+  {
+   "id": "r2",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 7,
+   "col": 0,
+   "fp": "930964cf1c",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read; a list of parallel items, one thought"
+  },
+  {
+   "id": "r3",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 11,
+   "col": 0,
+   "fp": "b0d95e568c",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read; parallel items, one thought"
+  },
+  {
+   "id": "r4",
+   "gate": "reader",
+   "kind": "bare-legal-citation",
+   "line": 12,
+   "col": 0,
+   "fp": "cb4920cd4b",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "an act name, not a provision"
+  },
+  {
+   "id": "r5",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 20,
+   "col": 0,
+   "fp": "c1698b1d64",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read; a list of parallel items, one thought"
+  },
+  {
+   "id": "r6",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 20,
+   "col": 134,
+   "fp": "c1698b1d64",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "Bulgarian page text quoted as printed"
+  },
+  {
+   "id": "r7",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 20,
+   "col": 140,
+   "fp": "c1698b1d64",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "Bulgarian page text quoted as printed"
+  },
+  {
+   "id": "r8",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 22,
+   "col": 41,
+   "fp": "9b61d41fd6",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "Bulgarian page text quoted as printed"
+  },
+  {
+   "id": "r9",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 22,
+   "col": 46,
+   "fp": "9b61d41fd6",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "Bulgarian page text quoted as printed"
+  },
+  {
+   "id": "r10",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 35,
+   "col": 0,
+   "fp": "8b52838eaf",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read; parallel items, one thought"
+  },
+  {
+   "id": "r11",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 35,
+   "col": 83,
+   "fp": "8b52838eaf",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a plan for a session in this repository; paths are the work items"
+  },
+  {
+   "id": "r12",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 35,
+   "col": 204,
+   "fp": "8b52838eaf",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "a plan for a session in this repository; paths are the work items"
+  },
+  {
+   "id": "r13",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 35,
+   "col": 329,
+   "fp": "8b52838eaf",
+   "repeat": 2,
+   "verdict": "keep",
+   "reason": "a plan for a session in this repository; paths are the work items"
+  },
+  {
+   "id": "r14",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 36,
+   "col": 50,
+   "fp": "6bb3a96c4e",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a plan for a session in this repository; paths are the work items, also listed under Provenance"
+  },
+  {
+   "id": "r15",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 36,
+   "col": 74,
+   "fp": "6bb3a96c4e",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "a plan for a session in this repository; paths are the work items, also listed under Provenance"
+  },
+  {
+   "id": "r16",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 36,
+   "col": 98,
+   "fp": "6bb3a96c4e",
+   "repeat": 2,
+   "verdict": "keep",
+   "reason": "a plan for a session in this repository; paths are the work items, also listed under Provenance"
+  },
+  {
+   "id": "r17",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 37,
+   "col": 38,
+   "fp": "14abcca871",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a plan for a session in this repository; paths are the work items, also listed under Provenance"
+  },
+  {
+   "id": "r18",
+   "gate": "reader",
+   "kind": "undefined-acronym",
+   "line": 37,
+   "col": 707,
+   "fp": "14abcca871",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "defined in the Glossary"
+  },
+  {
+   "id": "r19",
+   "gate": "reader",
+   "kind": "undefined-acronym",
+   "line": 38,
+   "col": 204,
+   "fp": "37838db52b",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "defined in the Glossary"
+  },
+  {
+   "id": "r20",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 54,
+   "col": 67,
+   "fp": "19f5d5cbef",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a plan for a session in this repository; paths are the work items, also listed under Provenance"
+  },
+  {
+   "id": "r21",
+   "gate": "reader",
+   "kind": "semicolon-chain",
+   "line": 81,
+   "col": 0,
+   "fp": "ad9aa38a49",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "the goal line is a single command block the owner pastes"
+  }
+ ]
+}
