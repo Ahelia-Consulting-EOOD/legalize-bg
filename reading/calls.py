@@ -21,6 +21,7 @@ import re
 
 TASK_HEAD = re.compile(r"^## task (\d{4,})$")
 SET_HEAD = re.compile(r"^# task set: ([0-9a-f]{12})$")
+CALL_NAME = re.compile(r"([0-9a-f]{12})-(\d{4,})-(\d{4,})")   # <task set>-<first task>-<last task>: the stem of a call file and of its answer file
 KEY = re.compile(r"\s*(?:task\s*)?(\d+)\s*", re.ASCII)
 SHORT_KEYS = {"l": "label", "c": "conf"}
 
@@ -120,10 +121,10 @@ def decode_answer_file(text: str, expected_tasks: list[str]) -> dict[str, object
     if not isinstance(obj, dict):
         return {t: "the answer file is neither an object nor an array" for t in expected_tasks}
     found: dict[str, object] = {}
-    width = max((len(t) for t in expected_tasks), default=4)
+    by_int = {int(t): t for t in expected_tasks if t.isdigit()}
     for k, v in obj.items():
         m = KEY.fullmatch(str(k))
-        name = f"{int(m.group(1)):0{width}d}" if m else str(k)
+        name = by_int.get(int(m.group(1)), str(k)) if m else str(k)
         found[name] = decode_entries(v)
     return {t: found.get(t, f"no answer for task {t} in the answer file") for t in expected_tasks}
 

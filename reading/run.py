@@ -97,7 +97,14 @@ def cmd_prepare(args) -> int:
     (run_dir / "blocks.json").write_text(json.dumps(act.to_dict(), ensure_ascii=False, indent=1), encoding="utf-8")
     (run_dir / "source.txt").write_text(act.source_text + "\n", encoding="utf-8")
     tasks = ladder.round0_tasks(act)
+    before = calls.task_set_id(list((run_dir / "tasks" / "round0").glob("*.json"))) if (run_dir / "tasks" / "round0").exists() else None
+    if before is not None:
+        for f in (run_dir / "tasks" / "round0").glob("*.json"):
+            f.unlink()
     _write_tasks(run_dir, tasks)
+    after = calls.task_set_id(list((run_dir / "tasks" / "round0").glob("*.json")))
+    if before is not None and before != after:
+        print(_set_aside_round(run_dir, 0, "prepare changed the round-0 task set") or "round-0 task set changed", file=sys.stderr)
     print(f"{args.slug}: doc {doc_id}, {len(act.blocks)} blocks, {len(act.sections)} sections, "
           f"dropped by splitter {act.dropped_by_splitter}, spine={act.has_spine}")
     return 0
@@ -113,7 +120,7 @@ def cmd_collect(args) -> int:
     for r in range(rnd):
         smap, _ = ladder.merge(smap, _answers(run_dir, r)[0])
     answers, missing = _answers(run_dir, rnd)
-    call_defects = _split_call_answers(run_dir, rnd)   # already applied inside _answers; the list is for the report
+    call_defects = _call_defects(run_dir, rnd)
     smap, problems = ladder.merge(smap, answers)
     md, exceptions = ladder.evaluate(act, smap, problems)
     mp.write_text(json.dumps({str(k): v for k, v in sorted(smap.items())}, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -129,19 +136,10 @@ def cmd_collect(args) -> int:
     tasks = ladder.next_round_tasks(act, smap, label_exceptions, rnd + 1) if rnd < ladder.MAX_ROUNDS else []
     # resumable: the next round's tasks are rewritten from scratch, and answers to an earlier task set are set aside
     nxt_tasks = run_dir / "tasks" / f"round{rnd + 1}"
-    nxt_maps = run_dir / "maps" / f"round{rnd + 1}"
-    nxt_calls = run_dir / "calls" / f"round{rnd + 1}"
-    report_note = ""
     if nxt_tasks.exists():
         for f in nxt_tasks.glob("*.json"):
             f.unlink()
-    stamp = datetime.now().strftime('%H%M%S')
-    if nxt_maps.exists() and any(nxt_maps.glob("*.json")):
-        stale = run_dir / "maps" / f"round{rnd + 1}-stale-{stamp}"
-        nxt_maps.rename(stale)
-        report_note = f"answers of an earlier round {rnd + 1} task set moved to {stale.name}"
-    if nxt_calls.exists() and any(nxt_calls.iterdir()):
-        nxt_calls.rename(run_dir / "calls" / f"round{rnd + 1}-stale-{stamp}")
+    report_note = _set_aside_round(run_dir, rnd + 1, "an earlier task set was replaced")
     for old_report in run_dir.glob("report-round*.json"):
         m = re.fullmatch(r"report-round(\d+)", old_report.stem)
         if m and int(m.group(1)) > rnd:
@@ -187,22 +185,29 @@ def _answers(run_dir: Path, rnd: int) -> tuple[list[tuple[dict, list[dict]]], li
 
 
 def _split_call_answers(run_dir: Path, rnd: int) -> list[dict]:
-    """Split every call answer file ``maps/round<R>/NNNN-MMMM.json`` into one ``<task>.json`` per task it answers.
+    """Split every call answer file ``maps/round<R>/<set>-NNNN-MMMM.json`` into one ``<task>.json`` per task it answers.
 
-    Only a task whose answer is a list gets its own file; a task the call answered badly (an unparsable file, a
-    missing key, a bare array for several tasks) gets none, stays unanswered, is listed by ``dispatch`` again, and
-    the defect is returned so ``collect`` can report it. A sidecar ``NNNN-MMMM.split.json`` records the answer
-    file's size and modification time and the tasks it produced: a rewritten answer file (a retry) is split again
-    and replaces the per-task files its earlier version produced, and never a per-task file another call produced.
-    An answer whose call file names another task set (the round was re-collected since) is set aside unread.
+    The call's name carries the id of the task set it was dispatched from; an answer whose set is not the round's
+    current set (the round was re-collected since) is set aside unread as ``.stale-*``. Only a task whose answer is
+    a list gets its own file; a task the call answered badly (an unparsable file, a missing key, a bare array for
+    several tasks) gets none, stays unanswered and is listed by ``dispatch`` again. A sidecar
+    ``<call>.split.json`` records the answer file's size and modification time, the tasks it produced and the
+    defects it had, so a rewritten answer file (a retry) is split again, replaces the per-task files its earlier
+    version produced where the retry has a valid entry, keeps them where it has none, and never touches a per-task
+    file another call produced. ``collect`` reports the defects of every sidecar of the round.
     """
     mdir = run_dir / "maps" / f"round{rnd}"
     tdir = run_dir / "tasks" / f"round{rnd}"
     current_set = calls.task_set_id(list(tdir.glob("*.json"))) if tdir.exists() else None
     defects: list[dict] = []
-    for af in sorted(mdir.glob("*-*.json")):
-        m = re.fullmatch(r"(\d{4,})-(\d{4,})", af.stem)
+    for af in sorted(mdir.glob("*-*-*.json")):
+        m = calls.CALL_NAME.fullmatch(af.stem)
         if not m:
+            continue
+        if current_set and m.group(1) != current_set:
+            stale = af.with_name(f"{af.stem}.stale-{datetime.now().strftime('%H%M%S%f')}.json")
+            af.rename(stale)
+            defects.append({"call": af.stem, "kind": "stale_task_set", "detail": f"the answer belongs to an earlier task set; set aside as {stale.name}"})
             continue
         side = mdir / f"{af.stem}.split.json"
         st = af.stat()
@@ -210,33 +215,66 @@ def _split_call_answers(run_dir: Path, rnd: int) -> list[dict]:
         if prev.get("size") == st.st_size and prev.get("mtime") == st.st_mtime_ns:
             continue
         cf = run_dir / "calls" / f"round{rnd}" / f"{af.stem}.tsv"
-        call_text = cf.read_text(encoding="utf-8") if cf.exists() else ""
-        if call_text and current_set and calls.task_set_of(call_text) not in (None, current_set):
-            stale = af.with_name(f"{af.stem}.stale-{datetime.now().strftime('%H%M%S')}.json")
-            af.rename(stale)
-            defects.append({"call": af.stem, "kind": "stale_task_set", "detail": f"the answer belongs to an earlier task set; set aside as {stale.name}"})
-            continue
-        names = calls.task_names(call_text) if call_text else [f"{k:04d}" for k in range(int(m.group(1)), int(m.group(2)) + 1)]
+        names = calls.task_names(cf.read_text(encoding="utf-8")) if cf.exists() else [f"{k:04d}" for k in range(int(m.group(2)), int(m.group(3)) + 1)]
         got = calls.decode_answer_file(af.read_text(encoding="utf-8"), names)
-        produced: list[str] = []
+        produced: list[str] = list(prev.get("tasks", []))
+        mine: list[dict] = []
         for name, entries in got.items():
             tf = mdir / f"{name}.json"
             if not isinstance(entries, list):
-                defects.append({"call": af.stem, "task": name, "kind": "bad_call_answer", "detail": str(entries)})
-                if name in prev.get("tasks", []) and tf.exists():
-                    tf.unlink()          # the earlier version of this call answered it; the retry does not
-                continue
-            if tf.exists() and name not in prev.get("tasks", []):
+                mine.append({"call": af.stem, "task": name, "kind": "bad_call_answer", "detail": str(entries)})
+                continue                 # an earlier good answer of this call, if any, is kept
+            if tf.exists() and name not in produced:
                 continue                 # another call (a re-dispatch of one task) answered it: keep that answer
             tf.write_text(json.dumps(entries, ensure_ascii=False), encoding="utf-8")
-            produced.append(name)
-        side.write_text(json.dumps({"size": st.st_size, "mtime": st.st_mtime_ns, "tasks": produced}), encoding="utf-8")
+            if name not in produced:
+                produced.append(name)
+        side.write_text(json.dumps({"size": st.st_size, "mtime": st.st_mtime_ns, "tasks": produced, "defects": mine}), encoding="utf-8")
+        defects.extend(mine)
     return defects
+
+
+def _call_defects(run_dir: Path, rnd: int) -> list[dict]:
+    """The defects recorded in the sidecars of the round's call answers (for the collect report)."""
+    out: list[dict] = []
+    for side in sorted((run_dir / "maps" / f"round{rnd}").glob("*.split.json")):
+        out.extend(json.loads(side.read_text(encoding="utf-8")).get("defects", []))
+    return out
+
+
+def _in_flight_tasks(run_dir: Path, rnd: int, task_set: str) -> set[str]:
+    """Tasks named by a call file of the current set written less than RELIST_AFTER_MIN ago whose answer file is absent."""
+    cdir = run_dir / "calls" / f"round{rnd}"
+    mdir = run_dir / "maps" / f"round{rnd}"
+    out: set[str] = set()
+    if not cdir.exists():
+        return out
+    now = datetime.now().timestamp()
+    for cf in cdir.glob(f"{task_set}-*-*.tsv"):
+        if (mdir / f"{cf.stem}.json").exists() or now - cf.stat().st_mtime >= 60 * RELIST_AFTER_MIN:
+            continue
+        out.update(calls.task_names(cf.read_text(encoding="utf-8")))
+    return out
+
+
+def _set_aside_round(run_dir: Path, rnd: int, why: str) -> str:
+    """Move a round's maps and calls aside (a task set that was replaced); returns a note for the report."""
+    stamp = datetime.now().strftime("%H%M%S%f")
+    note = ""
+    maps = run_dir / "maps" / f"round{rnd}"
+    if maps.exists() and any(maps.iterdir()):
+        stale = run_dir / "maps" / f"round{rnd}-stale-{stamp}"
+        maps.rename(stale)
+        note = f"{why}: answers of round {rnd} moved to {stale.name}"
+    cdir = run_dir / "calls" / f"round{rnd}"
+    if cdir.exists() and any(cdir.iterdir()):
+        cdir.rename(run_dir / "calls" / f"round{rnd}-stale-{stamp}")
+    return note
 
 
 PER_CALL = {0: 8}
 PER_CALL_LADDER = 25
-RELIST_AFTER_MIN = 15      # a call listed less than this many minutes ago is taken as still running
+RELIST_AFTER_MIN = 15      # a call file written less than this many minutes ago with no answer is taken as still running
 
 
 def cmd_dispatch(args) -> int:
@@ -254,32 +292,28 @@ def cmd_dispatch(args) -> int:
         _split_call_answers(run_dir, rnd)
         task_files = sorted(tdir.glob("*.json"))
         task_set = calls.task_set_id(task_files)
-        todo = [t for t in task_files if not (mdir / t.name).exists()]
-        remaining += len(todo)
+        unanswered = [t for t in task_files if not (mdir / t.name).exists()]
+        remaining += len(unanswered)
+        running = set() if args.relist else _in_flight_tasks(run_dir, rnd, task_set)
+        todo = [t for t in unanswered if t.stem not in running]
+        if running:
+            print(f"# {slug} round{rnd}: {len(running)} tasks in calls written less than {RELIST_AFTER_MIN} minutes ago and not answered, taken as running; --relist lists them again", file=sys.stderr)
         cdir = run_dir / "calls" / f"round{rnd}"
-        in_flight = 0
         for k in range(0, len(todo), per):
             group = todo[k:k + per]
-            name = f"{group[0].stem}-{group[-1].stem}"
-            marker = cdir / f"{name}.listed"
-            if marker.exists() and not args.relist and (datetime.now().timestamp() - marker.stat().st_mtime) < 60 * RELIST_AFTER_MIN:
-                in_flight += 1
-                continue
             if printed >= args.max:
-                continue
+                break
             tasks = [json.loads(t.read_text(encoding="utf-8")) for t in group]
+            name = f"{task_set}-{group[0].stem}-{group[-1].stem}"
             cdir.mkdir(parents=True, exist_ok=True)
             mdir.mkdir(parents=True, exist_ok=True)
             call_file = cdir / f"{name}.tsv"
             call_file.write_text(calls.encode_tasks(tasks, task_set), encoding="utf-8")
             answer_file = mdir / f"{name}.json"
-            marker.write_text(datetime.now().isoformat(), encoding="utf-8")
             print(f"{slug} round{rnd} {name} {len(tasks)} tasks\t{call_file}\t{answer_file}")
             if args.prompts:
                 print("  " + calls.DISPATCH_PROMPT.format(call_file=call_file, answer_file=answer_file))
             printed += 1
-        if in_flight:
-            print(f"# {slug} round{rnd}: {in_flight} calls listed less than {RELIST_AFTER_MIN} minutes ago and not answered, taken as running; --relist lists them again", file=sys.stderr)
     print(f"# {printed} calls listed, {remaining} tasks unanswered in round {rnd}", file=sys.stderr)
     return 0
 
