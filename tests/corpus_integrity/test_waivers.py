@@ -190,9 +190,14 @@ def test_the_repository_waiver_file_loads():
 
 
 def test_the_repository_waiver_file_pins_the_census_counts():
-    """W-002 and W-003: the enumerated sets the machine floor runs green against."""
+    """W-002 and W-003: the enumerated sets the machine floor runs green against.
+
+    The census of 2026-09-05 found 771 remnants over 80 acts and 2 chrome lines in one act. The
+    write path of 22 October 2026 repaired 19 acts to no remnant and the chrome act, and each left
+    its waiver in its own commit, as the waivers' expiry provides.
+    """
     repo = Path(__file__).resolve().parents[2]
     waivers = load_waivers(repo / "docs" / "data" / "waivers.yaml")
     remnants, chrome = waivers["tag_remnants"], waivers["chrome"]
-    assert (len(remnants), sum(remnants.values())) == (80, 771)
-    assert (len(chrome), sum(chrome.values())) == (1, 2)
+    assert (len(remnants), sum(remnants.values())) == (61, 633)
+    assert (len(chrome), sum(chrome.values())) == (0, 0)

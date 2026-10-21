@@ -217,9 +217,10 @@ def test_a_repaired_chrome_line_leaves_the_chrome_waiver_in_the_same_commit(tmp_
     # the page's own chrome is dropped by the reading (ruling 9); the old file carried it, so the act was waived
     root, run_dir, raw_dir = _setup(tmp_path, old_body="# ЗАКОН ЗА ПРОБАТА\n\nДОБАВИ В МОИТЕ АКТОВЕ\n")
     wp = root / "docs" / "data" / "waivers.yaml"
-    wp.write_text(wp.read_text(encoding="utf-8").replace(
-        "    naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni: 2\n",
-        f"    naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni: 2\n    {SLUG}: 1\n"), encoding="utf-8")
+    text = wp.read_text(encoding="utf-8")
+    head = text.index("  acts:", text.index("\nchrome:\n"))
+    end = text.index("\n", head)
+    wp.write_text(text[:head] + f"  acts:\n    {SLUG}: 1" + text[end:], encoding="utf-8")
     _git(root, "commit", "-qam", "waive")
     _write(root, run_dir, raw_dir)
     assert f"{SLUG}:" not in wp.read_text(encoding="utf-8")
