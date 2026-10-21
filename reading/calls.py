@@ -19,13 +19,22 @@ from __future__ import annotations
 import json
 import re
 
-TASK_HEAD = re.compile(r"^## task (\d{4})$")
+TASK_HEAD = re.compile(r"^## task (\d{4,})$")
+SET_HEAD = re.compile(r"^# task set: ([0-9a-f]{12})$")
+KEY = re.compile(r"\s*(?:task\s*)?(\d+)\s*", re.ASCII)
 SHORT_KEYS = {"l": "label", "c": "conf"}
 
 
-def encode_tasks(tasks: list[dict]) -> str:
-    """The call file text for a list of task dicts (the same dicts ``ladder`` writes as JSON)."""
+def encode_tasks(tasks: list[dict], task_set: str | None = None) -> str:
+    """The call file text for a list of task dicts (the same dicts ``ladder`` writes as JSON).
+
+    ``task_set`` is the id of the round's task set (``task_set_id``); the split refuses an answer whose call
+    file names another set, so an answer to a task set that a re-collect replaced is never filed under the new
+    tasks of the same numbers.
+    """
     out: list[str] = []
+    if task_set:
+        out.append(f"# task set: {task_set}")
     for t in tasks:
         out.append(f"## task {t['task']:04d}")
         if t.get("target") is not None:
@@ -50,11 +59,28 @@ def encode_tasks(tasks: list[dict]) -> str:
 
 
 def _one_line(s: str) -> str:
-    return str(s).replace("\t", " ").replace("\r", " ").replace("\n", " ")
+    return " ".join(str(s).replace("\t", " ").splitlines())
 
 
 def task_names(call_text: str) -> list[str]:
     return [m.group(1) for line in call_text.splitlines() if (m := TASK_HEAD.match(line))]
+
+
+def task_set_of(call_text: str) -> str | None:
+    for line in call_text.splitlines()[:2]:
+        m = SET_HEAD.match(line)
+        if m:
+            return m.group(1)
+    return None
+
+
+def task_set_id(task_files: list) -> str:
+    """A short hash of a round's task files (names and contents), the identity of the task set."""
+    import hashlib
+    h = hashlib.sha256()
+    for f in sorted(task_files, key=lambda f: f.name):
+        h.update(f.name.encode()); h.update(b"\0"); h.update(f.read_bytes()); h.update(b"\0")
+    return h.hexdigest()[:12]
 
 
 def decode_entries(entries) -> list:
@@ -94,8 +120,10 @@ def decode_answer_file(text: str, expected_tasks: list[str]) -> dict[str, object
     if not isinstance(obj, dict):
         return {t: "the answer file is neither an object nor an array" for t in expected_tasks}
     found: dict[str, object] = {}
+    width = max((len(t) for t in expected_tasks), default=4)
     for k, v in obj.items():
-        name = f"{int(k):04d}" if str(k).strip().isdigit() else str(k)
+        m = KEY.fullmatch(str(k))
+        name = f"{int(m.group(1)):0{width}d}" if m else str(k)
         found[name] = decode_entries(v)
     return {t: found.get(t, f"no answer for task {t} in the answer file") for t in expected_tasks}
 
