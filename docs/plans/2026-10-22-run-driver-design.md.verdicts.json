@@ -1152,35 +1152,13 @@
    "kind": "bare-number",
    "line": 150,
    "col": 0,
-   "fp": "89f6cb90ae",
+   "fp": "c8329c0843",
    "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated"
   },
   {
    "id": "r106",
-   "gate": "reader",
-   "kind": "long-sentence",
-   "line": 150,
-   "col": 0,
-   "fp": "89f6cb90ae",
-   "repeat": 0,
-   "verdict": null,
-   "reason": ""
-  },
-  {
-   "id": "r107",
-   "gate": "reader",
-   "kind": "long-sentence",
-   "line": 150,
-   "col": 0,
-   "fp": "89f6cb90ae",
-   "repeat": 1,
-   "verdict": null,
-   "reason": ""
-  },
-  {
-   "id": "r108",
    "gate": "reader",
    "kind": "bare-number",
    "line": 151,
@@ -1191,7 +1169,7 @@
    "reason": "unit and scenario stated"
   },
   {
-   "id": "r109",
+   "id": "r107",
    "gate": "reader",
    "kind": "long-sentence",
    "line": 188,
