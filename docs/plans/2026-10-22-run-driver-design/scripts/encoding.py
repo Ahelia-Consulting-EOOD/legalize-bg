@@ -114,6 +114,10 @@ def main():
              ]
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "encoding.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    json.dump({"sections": n_tasks, "blocks": n_blocks,
+               "task_tokens": {"A": tok(ta, TASK_BPT, TASK_FIXED, n_tasks) / n_tasks, "B": tok(tb, TASK_BPT, 0, n_tasks) / n_tasks, "C": tok(tc, TASK_BPT, 0, n_tasks) / n_tasks},
+               "answer_tokens": {"A": tok(aa, ANS_BPT, ANS_FIXED, n_tasks) / n_tasks, "B": tok(ab, ANS_BPT, ANS_FIXED, n_tasks) / n_tasks}},
+              open(out_dir / "encoding.json", "w"), indent=1)
     print("\n".join(lines))
 
 
