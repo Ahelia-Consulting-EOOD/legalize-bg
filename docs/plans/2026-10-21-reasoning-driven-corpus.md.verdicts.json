@@ -8,10 +8,10 @@
    "kind": "over-length",
    "line": 0,
    "col": 0,
-   "fp": "doc-2f0205d229",
+   "fp": "doc-952cd9b991",
    "repeat": 0,
    "verdict": "keep",
-   "reason": "the owner asked for state, decisions and plan in one document; each section serves an item of section 7"
+   "reason": "the owner asked for state, decisions and plan in one document"
   },
   {
    "id": "r2",
@@ -94,9 +94,9 @@
    "id": "r9",
    "gate": "reader",
    "kind": "long-sentence",
-   "line": 60,
+   "line": 64,
    "col": 0,
-   "fp": "74bd39ee11",
+   "fp": "f324514ba1",
    "repeat": 0,
    "verdict": "keep",
    "reason": "a list sentence the reader scans item by item"
@@ -104,8 +104,19 @@
   {
    "id": "r10",
    "gate": "reader",
+   "kind": "internal-path",
+   "line": 64,
+   "col": 291,
+   "fp": "f324514ba1",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "the path names the knowledge-base run the reader opens next"
+  },
+  {
+   "id": "r11",
+   "gate": "reader",
    "kind": "bare-number",
-   "line": 71,
+   "line": 74,
    "col": 0,
    "fp": "0d59a5c4f0",
    "repeat": 0,
@@ -113,10 +124,10 @@
    "reason": "unit and scenario are in the same sentence"
   },
   {
-   "id": "r11",
+   "id": "r12",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 71,
+   "line": 74,
    "col": 0,
    "fp": "0d59a5c4f0",
    "repeat": 1,
@@ -124,10 +135,10 @@
    "reason": "unit and scenario are in the same sentence"
   },
   {
-   "id": "r12",
+   "id": "r13",
    "gate": "reader",
    "kind": "undefined-code-name",
-   "line": 75,
+   "line": 78,
    "col": 5,
    "fp": "62aa9cb77a",
    "repeat": 0,
@@ -135,10 +146,10 @@
    "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
   },
   {
-   "id": "r13",
+   "id": "r14",
    "gate": "reader",
    "kind": "long-sentence",
-   "line": 83,
+   "line": 86,
    "col": 0,
    "fp": "9740395516",
    "repeat": 0,
@@ -146,10 +157,10 @@
    "reason": "a list sentence the reader scans item by item"
   },
   {
-   "id": "r14",
+   "id": "r15",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 85,
+   "line": 88,
    "col": 0,
    "fp": "71b5500145",
    "repeat": 0,
@@ -157,10 +168,10 @@
    "reason": "unit and scenario in the same sentence"
   },
   {
-   "id": "r15",
+   "id": "r16",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 85,
+   "line": 88,
    "col": 0,
    "fp": "71b5500145",
    "repeat": 1,
@@ -168,10 +179,10 @@
    "reason": "unit and scenario in the same sentence"
   },
   {
-   "id": "r16",
+   "id": "r17",
    "gate": "reader",
    "kind": "undefined-code-name",
-   "line": 102,
+   "line": 105,
    "col": 82,
    "fp": "64f8342328",
    "repeat": 0,

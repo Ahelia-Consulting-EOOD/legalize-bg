@@ -1,0 +1,9 @@
+# Log
+
+## 2026-10-21
+
+- New bundle `legalize-bg-knowledge`, created for the research run `/references/2026-10-21-model-selection/` (reading architecture, model selection and long-context reliability), feeding the architecture decision of 21 October 2026.
+- New hub `/concepts/hub-reading-architecture.md`, topic `reading-architecture`. The topic is new: the look-up made before the run (`/references/2026-10-21-model-selection/look-up.txt`) listed no bundle, no hub and no run in this repository, only four source logs outside bundles, and none of them is about how a model reads legal text.
+- New concept `/concepts/reading-architecture.md` (Recommendation, draft until the owner adopts it).
+- Earlier research: the look-up marked two source logs, `repo:docs/research/2026-06-22-I1-legalize-ecosystem-sources.md` (match "legal") and `repo:docs/research/2026-06-22-I4-official-consolidation-sources.md` (match "consolidation"). The I1 report (`repo:docs/research/2026-06-22-I1-legalize-ecosystem.md`) is used for the finding that no Legalize country self-consolidates. The I4 report (`repo:docs/research/2026-06-22-I4-official-consolidation.md`) was read and not used: it inventories Bulgarian official sources and finds no state consolidation, and says nothing about how a reader processes text (source log D4). Two unmarked logs: `repo:docs/research/2026-06-22-I2-lawvm.md` is used for the Finland numbers of the replay compiler; `repo:docs/research/2026-06-22-I3-dv-access.md` is not used (access mechanics of the Gazette site). Also used, not marked because its log is named differently: `repo:docs/research/2026-09-05-consolidation-precedents.md`, for the editor-versus-system division at legislation.gov.uk.
+- Review of the run before close: `/references/2026-10-21-model-selection/review.md`, 32 findings, all fixed in the same day.

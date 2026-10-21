@@ -1,0 +1,253 @@
+ACL Anthology
+About
+Announcements
+Communication channels
+Related work
+Copyright
+Credits
+Volunteer
+Development
+Feedback
+Using
+Author directory
+Citing papers
+Links in the Anthology
+Data access
+All FAQs
+Details
+Anthology identifiers
+Names
+ORCID iDs
+DOIs
+Verified authors
+Contributions
+Submissions
+Corrections
+Maintain author pages
+Attachments
+GitHub
+Risks and Limits of Automatic Consolidation of Statutes
+Max Prior, Adrian Hof, Niklas Wais, Matthias Grabmair
+Correct Metadata for
+Use this form to create a GitHub issue with structured data describing the correction. You will need a GitHub account. Once you create that issue, the correction will be reviewed by a staff member.
+⚠️ Mobile Users: Submitting this form to create a new issue will only work with github.com, not the GitHub Mobile app.
+Important: The Anthology treat PDFs as authoritative. Please use this form only to correct data that is out of line with the PDF. See our corrections guidelines if you need to change the PDF.
+Title Adjust the title. Retain tags such as <fixed-case>.
+Authors Adjust author names and order to match the PDF.
+Add Author
+Abstract Correct abstract if needed. Retain XML formatting tags such as <tex-math>. You may use <b>...</b> for bold, <i>...</i> for italic, <u>...</u> for underline, <sc>...</sc> for small-caps, <tt>...<tt> for typewriter text, <url>...</url> for URLs, <a href=...> for hyperlinks, and <par/> for paragraph breaks.
+Verification against PDF Ensure that the new title/authors match the snapshot below. (If there is no snapshot or it is too small, consult the PDF.)
+Authors concatenated from the text boxes above:
+ALL author names match the snapshot above—including middle initials, hyphens, and accents.
+Create GitHub issue for staff review
+Abstract
+As in many countries of the Civil Law tradition, consolidated versions of statutes - statutes with added amendments - are difficult to obtain reliably and promptly in Germany. This gap has prompted interest in using large language models (LLMs) to ‘synthesize’ current and historical versions from amendments. Our paper experiments with an LLM-based consolidation framework and a dataset of 908 amendment–law pairs drawn from 140 Federal Law Gazette documents across four major codes. While automated metrics show high textual similarity (93-99%) for single-step and multi-step amendment chains, only 50.3% of exact matches (single-step) and 20.51% (multi-step) could be achieved; our expert assessment reveals that non-trivial errors persist and that even small divergences can carry legal significance. We therefore argue that any public or private deployment must treat outputs as drafts subject to rigorous human verification.
+Anthology ID:
+2025.nllp-1.29
+Volume:
+Proceedings of the Natural Legal Language Processing Workshop 2025
+Month:
+November
+Year:
+2025
+Address:
+Suzhou, China
+Editors:
+Nikolaos Aletras, Ilias Chalkidis, Leslie Barrett, Cătălina Goanță, Daniel Preoțiuc-Pietro, Gerasimos Spanakis
+Venues:
+NLLP | WS
+SIG:
+Publisher:
+Association for Computational Linguistics
+Note:
+Pages:
+396–407
+Language:
+URL:
+https://aclanthology.org/2025.nllp-1.29/
+DOI:
+10.18653/v1/2025.nllp-1.29
+Bibkey:
+prior-etal-2025-risks
+Cite (ACL):
+Max Prior, Adrian Hof, Niklas Wais, and Matthias Grabmair. 2025. Risks and Limits of Automatic Consolidation of Statutes. In Proceedings of the Natural Legal Language Processing Workshop 2025, pages 396–407, Suzhou, China. Association for Computational Linguistics.
+Cite (Informal):
+Risks and Limits of Automatic Consolidation of Statutes (Prior et al., NLLP 2025)
+Copy Citation:
+BibTeX Markdown MODS XML Endnote More options…
+PDF:
+https://aclanthology.org/2025.nllp-1.29.pdf
+PDF Cite Search  Fix data
+Export citation
+BibTeX
+MODS XML
+Endnote
+Preformatted
+@inproceedings{prior-etal-2025-risks,
+    title = "Risks and Limits of Automatic Consolidation of Statutes",
+    author = "Prior, Max  and
+      Hof, Adrian  and
+      Wais, Niklas  and
+      Grabmair, Matthias",
+    editor = "Aletras, Nikolaos  and
+      Chalkidis, Ilias  and
+      Barrett, Leslie  and
+      Goanț{\u{a}}, C{\u{a}}t{\u{a}}lina  and
+      Preoțiuc-Pietro, Daniel  and
+      Spanakis, Gerasimos",
+    booktitle = "Proceedings of the Natural Legal Language Processing Workshop 2025",
+    month = nov,
+    year = "2025",
+    address = "Suzhou, China",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2025.nllp-1.29/",
+    doi = "10.18653/v1/2025.nllp-1.29",
+    pages = "396--407",
+    ISBN = "979-8-89176-338-8",
+    abstract = "As in many countries of the Civil Law tradition, consolidated versions of statutes - statutes with added amendments - are difficult to obtain reliably and promptly in Germany. This gap has prompted interest in using large language models (LLMs) to `synthesize' current and historical versions from amendments. Our paper experiments with an LLM-based consolidation framework and a dataset of 908 amendment{--}law pairs drawn from 140 Federal Law Gazette documents across four major codes. While automated metrics show high textual similarity (93-99{\%}) for single-step and multi-step amendment chains, only 50.3{\%} of exact matches (single-step) and 20.51{\%} (multi-step) could be achieved; our expert assessment reveals that non-trivial errors persist and that even small divergences can carry legal significance. We therefore argue that any public or private deployment must treat outputs as drafts subject to rigorous human verification."
+}
+Download as File Copy to Clipboard
+<?xml version="1.0" encoding="UTF-8"?>
+<modsCollection xmlns="http://www.loc.gov/mods/v3">
+<mods ID="prior-etal-2025-risks">
+    <titleInfo>
+        <title>Risks and Limits of Automatic Consolidation of Statutes</title>
+    </titleInfo>
+    <name type="personal">
+        <namePart type="given">Max</namePart>
+        <namePart type="family">Prior</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Adrian</namePart>
+        <namePart type="family">Hof</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Niklas</namePart>
+        <namePart type="family">Wais</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <name type="personal">
+        <namePart type="given">Matthias</namePart>
+        <namePart type="family">Grabmair</namePart>
+        <role>
+            <roleTerm authority="marcrelator" type="text">author</roleTerm>
+        </role>
+    </name>
+    <originInfo>
+        <dateIssued>2025-11</dateIssued>
+    </originInfo>
+    <typeOfResource>text</typeOfResource>
+    <relatedItem type="host">
+        <titleInfo>
+            <title>Proceedings of the Natural Legal Language Processing Workshop 2025</title>
+        </titleInfo>
+        <name type="personal">
+            <namePart type="given">Nikolaos</namePart>
+            <namePart type="family">Aletras</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Ilias</namePart>
+            <namePart type="family">Chalkidis</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Leslie</namePart>
+            <namePart type="family">Barrett</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Cătălina</namePart>
+            <namePart type="family">Goanță</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Daniel</namePart>
+            <namePart type="family">Preoțiuc-Pietro</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <name type="personal">
+            <namePart type="given">Gerasimos</namePart>
+            <namePart type="family">Spanakis</namePart>
+            <role>
+                <roleTerm authority="marcrelator" type="text">editor</roleTerm>
+            </role>
+        </name>
+        <originInfo>
+            <publisher>Association for Computational Linguistics</publisher>
+            <place>
+                <placeTerm type="text">Suzhou, China</placeTerm>
+            </place>
+        </originInfo>
+        <genre authority="marcgt">conference publication</genre>
+        <identifier type="isbn">979-8-89176-338-8</identifier>
+    </relatedItem>
+    <abstract>As in many countries of the Civil Law tradition, consolidated versions of statutes - statutes with added amendments - are difficult to obtain reliably and promptly in Germany. This gap has prompted interest in using large language models (LLMs) to ‘synthesize’ current and historical versions from amendments. Our paper experiments with an LLM-based consolidation framework and a dataset of 908 amendment–law pairs drawn from 140 Federal Law Gazette documents across four major codes. While automated metrics show high textual similarity (93-99%) for single-step and multi-step amendment chains, only 50.3% of exact matches (single-step) and 20.51% (multi-step) could be achieved; our expert assessment reveals that non-trivial errors persist and that even small divergences can carry legal significance. We therefore argue that any public or private deployment must treat outputs as drafts subject to rigorous human verification.</abstract>
+    <identifier type="citekey">prior-etal-2025-risks</identifier>
+    <identifier type="doi">10.18653/v1/2025.nllp-1.29</identifier>
+    <location>
+        <url>https://aclanthology.org/2025.nllp-1.29/</url>
+    </location>
+    <part>
+        <date>2025-11</date>
+        <extent unit="page">
+            <start>396</start>
+            <end>407</end>
+        </extent>
+    </part>
+</mods>
+</modsCollection>
+
+Download as File Copy to Clipboard
+%0 Conference Proceedings
+%T Risks and Limits of Automatic Consolidation of Statutes
+%A Prior, Max
+%A Hof, Adrian
+%A Wais, Niklas
+%A Grabmair, Matthias
+%Y Aletras, Nikolaos
+%Y Chalkidis, Ilias
+%Y Barrett, Leslie
+%Y Goanță, Cătălina
+%Y Preoțiuc-Pietro, Daniel
+%Y Spanakis, Gerasimos
+%S Proceedings of the Natural Legal Language Processing Workshop 2025
+%D 2025
+%8 November
+%I Association for Computational Linguistics
+%C Suzhou, China
+%@ 979-8-89176-338-8
+%F prior-etal-2025-risks
+%X As in many countries of the Civil Law tradition, consolidated versions of statutes - statutes with added amendments - are difficult to obtain reliably and promptly in Germany. This gap has prompted interest in using large language models (LLMs) to ‘synthesize’ current and historical versions from amendments. Our paper experiments with an LLM-based consolidation framework and a dataset of 908 amendment–law pairs drawn from 140 Federal Law Gazette documents across four major codes. While automated metrics show high textual similarity (93-99%) for single-step and multi-step amendment chains, only 50.3% of exact matches (single-step) and 20.51% (multi-step) could be achieved; our expert assessment reveals that non-trivial errors persist and that even small divergences can carry legal significance. We therefore argue that any public or private deployment must treat outputs as drafts subject to rigorous human verification.
+%R 10.18653/v1/2025.nllp-1.29
+%U https://aclanthology.org/2025.nllp-1.29/
+%U https://doi.org/10.18653/v1/2025.nllp-1.29
+%P 396-407
+Download as File Copy to Clipboard
+Markdown (Informal)
+[Risks and Limits of Automatic Consolidation of Statutes](https://aclanthology.org/2025.nllp-1.29/) (Prior et al., NLLP 2025)
+Risks and Limits of Automatic Consolidation of Statutes (Prior et al., NLLP 2025)
+ACL
+Max Prior, Adrian Hof, Niklas Wais, and Matthias Grabmair. 2025. Risks and Limits of Automatic Consolidation of Statutes. In Proceedings of the Natural Legal Language Processing Workshop 2025, pages 396–407, Suzhou, China. Association for Computational Linguistics.
+Copy Markdown to Clipboard Copy ACL to Clipboard
+ACL materials are Copyright © 1963–2026 ACL; other materials are copyrighted by their respective copyright holders. Materials prior to 2016 here are licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 3.0 International License. Permission is granted to make copies for the purposes of teaching and research. Materials published in or after 2016 are licensed on a Creative Commons Attribution 4.0 International License.
+The ACL Anthology is managed and built by the ACL Anthology team of volunteers.
+Site last built on 19 October 2026 at 13:00 UTC with commit 0d4dd55.
