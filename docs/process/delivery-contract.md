@@ -50,6 +50,7 @@ Norm-Id: 2136735703
 - **Source-Id:** Identifier for the source document (DV issue or lex.bg doc)
 - **Source-Date:** Publication date of the source (DV issue date)
 - **Norm-Id:** lex.bg document ID for the affected law (for an act with no lex.bg document the identifier form is settled in the Surface 5 preflight below)
+- **Record-Id (optional, D-071):** a corpus commit made from a reading run adds `Record-Id: <run>/<slug>/<first 12 characters of map_sha256>`, for example `Record-Id: structure-map-2026-10-22/zakon-za-publichnite-finansi/9c1e04b7a2d3`. It names the run folder whose map and reports are committed with the act (D-073) and matches the act's `provenance.record`. Commits without a reading run carry no `Record-Id`.
 - **Gazette-sourced commits (D-059):** `Source-Id: dv-<idMat>` with the Gazette material identifier and `Source-Date` = the issue date. The commit type for a Gazette rebuild that replaces a lex.bg snapshot, and the `Norm-Id` form for acts without a lex.bg document, are settled in a Surface 5 IMPLEMENTATION-PREFLIGHT before the pilot; until then no Gazette-sourced corpus commit is made.
 
 ### Commit Granularity
