@@ -27,7 +27,7 @@ _SIGN = re.compile(r"^(§\s*\d+[а-яa-z]?\.|Параграф\s+единстве
 
 JOIN_PREVIOUS = {"continuation"}
 # a heading line that is only a number, e.g. "Глава първа." or "Раздел I.", takes the name line that follows
-_NUMBERED_HEADING_ONLY = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+\.?$")
+_NUMBERED_HEADING_ONLY = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+(\s*\"[а-я]\")?\.?$")
 # the second line of a provisions heading: "КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ …"
 _KAM = re.compile(r"^(КЪМ|Към|към)\s")
 _HEADING_WORD = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел|Допълнителн|Преходни|Заключителни|Приложение)")

@@ -338,3 +338,20 @@ def test_annex_articles_are_annex_rows_not_hidden_addresses():
             4: {"label": "annex_row"}, 5: {"label": "annex_row"}}
     _, ex = run_all(act.blocks, smap)
     assert [e["block"] for e in ex if e["kind"] == "hidden_address"] == [1], "an annex_row before any annex heading still hides an address"
+
+
+def test_provisions_heading_groups_without_kam_and_quoted_section_numbers():
+    """Наказателен кодекс: lex.bg omits "КЪМ" on one amending block, inverts the heading order on another, numbers a section 'Раздел I "а".'."""
+    act = _act(["Чл. 1. Едно.", 'Раздел I "а".', "Престъпления против кредиторите", "Чл. 2. Две.",
+                "Преходни и Заключителни разпоредби", "§ 1. Текст.", "§ 2. Текст.",
+                "Преходни и Заключителни разпоредби", "ЗАКОНА ЗА БЮДЖЕТА ЗА 2015 Г.", "(ОБН. - ДВ, БР. 107 ОТ 2014 Г.)", "§ 10. Текст.",
+                "Преходни и Заключителни разпоредби", "КЪМ ЗАКОНА ЗА ДЪРЖАВНА АГЕНЦИЯ", "Преходни и Заключителни разпоредби", "§ 3. Текст.",
+                "Допълнителна разпоредба", "Обяснение на някои думи", "Чл. 3. Думите."])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "section_heading"}, 2: {"label": "section_heading"}, 3: {"label": "article_head", "n": "2"},
+            4: {"label": "provisions_heading"}, 5: {"label": "paragraph_sign", "n": "1"}, 6: {"label": "paragraph_sign", "n": "2"},
+            7: {"label": "provisions_heading"}, 8: {"label": "provisions_heading"}, 9: {"label": "editorial_note"}, 10: {"label": "paragraph_sign", "n": "10"},
+            11: {"label": "provisions_heading"}, 12: {"label": "provisions_heading"}, 13: {"label": "provisions_heading"}, 14: {"label": "paragraph_sign", "n": "3"},
+            15: {"label": "provisions_heading"}, 16: {"label": "provisions_heading"}, 17: {"label": "article_head", "n": "3"}}
+    md, ex = run_all(act.blocks, smap)
+    assert not [e for e in ex if e["kind"] in ("empty_section", "sign_order", "sign_gap", "article_gap")], ex
+    assert '#### Раздел I "а". Престъпления против кредиторите' in md

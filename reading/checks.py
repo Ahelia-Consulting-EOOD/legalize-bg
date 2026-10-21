@@ -89,9 +89,13 @@ def _follows(prev: tuple[int, str] | None, cur: tuple[int, str]) -> bool:
 def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -> bool:
     """Two consecutive heading blocks that form one heading (joined by the assembler), or a legal nesting."""
     ta, tb = blocks[a].text, blocks[b].text
-    if re.match(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+\.?$", ta):
+    if re.match(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+(\s*\"[а-я]\")?\.?$", ta):
         return True
-    if re.match(r"^(КЪМ|Към|към)\s", tb):
+    if re.match(r"^(КЪМ|Към|към)\s", tb) or re.search(r"\s(КЪМ|Към|към)$", ta):
+        return True
+    if la == "provisions_heading":
+        # lex.bg prints a provisions heading on two or three lines ("Преходни и Заключителни разпоредби" / "КЪМ ЗАКОНА …",
+        # sometimes without the "КЪМ", sometimes in the other order), and a sub-heading may follow ("Обяснение на някои думи")
         return True
     if la == "annex_heading" and lb == "annex_heading" and re.match(r"^Приложение", ta) and not re.match(r"^Приложение", tb):
         return True
@@ -221,6 +225,8 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     last_letter = ""
     item_parent_ok = False
     amending = False  # after the first "КЪМ …" provisions heading lex.bg prints a selection of another act's §§: no gap check there
+    prov_groups = 0  # provisions-heading groups seen; a new group begins when a provisions heading follows a non-heading block
+    prev_heading_label = ""
     for i in placed:
         e = smap.get(i)
         if not e or e["label"] == "unknown":
@@ -232,10 +238,18 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             last_alinea = last_item = None
             last_letter = ""
             item_parent_ok = False
-            if label == "provisions_heading" and re.search(r"(КЪМ|Към|към)\s", t):
+            if label == "provisions_heading" and prev_heading_label not in _HEADINGS:
+                prov_groups += 1
+            if label == "provisions_heading" and (re.search(r"\b(КЪМ|Към|към)\b", t) or prov_groups >= 2):
+                # the §§ of another act follow: lex.bg marks them "КЪМ …", or omits the word and starts a new heading group
                 seen_sign = {}
                 last_sign = None
                 amending = True
+            prev_heading_label = label
+        else:
+            prev_heading_label = ""
+        if label in _HEADINGS:
+            pass
         elif label == "article_head":
             key = _art_key(n)
             if last_art is not None and key < last_art:
