@@ -79,7 +79,7 @@ def task_set_id(task_files: list) -> str:
     """A short hash of a round's task files (names and contents), the identity of the task set."""
     import hashlib
     h = hashlib.sha256()
-    for f in sorted(task_files, key=lambda f: f.name):
+    for f in sorted((f for f in task_files if re.fullmatch(r"\d{4,}\.json", f.name)), key=lambda f: f.name):
         h.update(f.name.encode()); h.update(b"\0"); h.update(f.read_bytes()); h.update(b"\0")
     return h.hexdigest()[:12]
 

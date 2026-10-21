@@ -1150,9 +1150,9 @@
    "id": "r105",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 151,
+   "line": 150,
    "col": 0,
-   "fp": "8922d28338",
+   "fp": "89f6cb90ae",
    "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -1161,9 +1161,9 @@
    "id": "r106",
    "gate": "reader",
    "kind": "bare-number",
-   "line": 152,
+   "line": 151,
    "col": 0,
-   "fp": "d331f56050",
+   "fp": "8922d28338",
    "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated"
@@ -1175,7 +1175,7 @@
    "line": 152,
    "col": 0,
    "fp": "d331f56050",
-   "repeat": 1,
+   "repeat": 0,
    "verdict": "keep",
    "reason": "unit and scenario stated"
   },
@@ -1186,7 +1186,7 @@
    "line": 152,
    "col": 0,
    "fp": "d331f56050",
-   "repeat": 2,
+   "repeat": 1,
    "verdict": "keep",
    "reason": "unit and scenario stated"
   },
@@ -1197,12 +1197,23 @@
    "line": 152,
    "col": 0,
    "fp": "d331f56050",
-   "repeat": 3,
+   "repeat": 2,
    "verdict": "keep",
    "reason": "unit and scenario stated"
   },
   {
    "id": "r110",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 152,
+   "col": 0,
+   "fp": "d331f56050",
+   "repeat": 3,
+   "verdict": "keep",
+   "reason": "unit and scenario stated"
+  },
+  {
+   "id": "r111",
    "gate": "reader",
    "kind": "long-sentence",
    "line": 191,

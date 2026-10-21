@@ -104,7 +104,12 @@ def cmd_prepare(args) -> int:
     _write_tasks(run_dir, tasks)
     after = calls.task_set_id(list((run_dir / "tasks" / "round0").glob("*.json")))
     if before is not None and before != after:
-        print(_set_aside_round(run_dir, 0, "prepare changed the round-0 task set") or "round-0 task set changed", file=sys.stderr)
+        _set_aside_round(run_dir, 0, "prepare changed the round-0 task set")
+        _set_aside_from(run_dir, 1, "prepare changed the round-0 task set", drop_tasks=True)
+        for f in list(run_dir.glob("report-round*.json")) + [run_dir / "map.json", run_dir / "staged.md", run_dir / "diff.txt"]:
+            if f.exists():
+                f.unlink()
+        print("round-0 task set changed: every round's answers set aside, later rounds' tasks and the reports removed", file=sys.stderr)
     print(f"{args.slug}: doc {doc_id}, {len(act.blocks)} blocks, {len(act.sections)} sections, "
           f"dropped by splitter {act.dropped_by_splitter}, spine={act.has_spine}")
     return 0
@@ -135,11 +140,7 @@ def cmd_collect(args) -> int:
                           for i in range(len(act.blocks)) if smap.get(i, {}).get("label") == "drop"]}
     tasks = ladder.next_round_tasks(act, smap, label_exceptions, rnd + 1) if rnd < ladder.MAX_ROUNDS else []
     # resumable: the next round's tasks are rewritten from scratch, and answers to an earlier task set are set aside
-    nxt_tasks = run_dir / "tasks" / f"round{rnd + 1}"
-    if nxt_tasks.exists():
-        for f in nxt_tasks.glob("*.json"):
-            f.unlink()
-    report_note = _set_aside_round(run_dir, rnd + 1, "an earlier task set was replaced")
+    report_note = _set_aside_from(run_dir, rnd + 1, "an earlier task set was replaced", drop_tasks=True)
     for old_report in run_dir.glob("report-round*.json"):
         m = re.fullmatch(r"report-round(\d+)", old_report.stem)
         if m and int(m.group(1)) > rnd:
@@ -207,7 +208,12 @@ def _split_call_answers(run_dir: Path, rnd: int) -> list[dict]:
         if current_set and m.group(1) != current_set:
             stale = af.with_name(f"{af.stem}.stale-{datetime.now().strftime('%H%M%S%f')}.json")
             af.rename(stale)
-            defects.append({"call": af.stem, "kind": "stale_task_set", "detail": f"the answer belongs to an earlier task set; set aside as {stale.name}"})
+            d = {"call": af.stem, "kind": "stale_task_set", "detail": f"the answer belongs to an earlier task set; set aside as {stale.name}"}
+            defects.append(d)
+            log = mdir / "set-aside.json"
+            entries = json.loads(log.read_text(encoding="utf-8")) if log.exists() else []
+            entries.append(d)
+            log.write_text(json.dumps(entries, ensure_ascii=False, indent=1), encoding="utf-8")
             continue
         side = mdir / f"{af.stem}.split.json"
         st = af.stat()
@@ -235,10 +241,18 @@ def _split_call_answers(run_dir: Path, rnd: int) -> list[dict]:
 
 
 def _call_defects(run_dir: Path, rnd: int) -> list[dict]:
-    """The defects recorded in the sidecars of the round's call answers (for the collect report)."""
+    """The open defects of the round's calls (for the collect report): a sidecar's defect on a task that has an answer
+    file by now (a retry or another call answered it) is resolved and left out; set-asides of stale answers are listed."""
+    mdir = run_dir / "maps" / f"round{rnd}"
     out: list[dict] = []
-    for side in sorted((run_dir / "maps" / f"round{rnd}").glob("*.split.json")):
-        out.extend(json.loads(side.read_text(encoding="utf-8")).get("defects", []))
+    for side in sorted(mdir.glob("*.split.json")):
+        for d in json.loads(side.read_text(encoding="utf-8")).get("defects", []):
+            if d.get("task") and (mdir / f"{d['task']}.json").exists():
+                continue
+            out.append(d)
+    log = mdir / "set-aside.json"
+    if log.exists():
+        out.extend(json.loads(log.read_text(encoding="utf-8")))
     return out
 
 
@@ -270,6 +284,32 @@ def _set_aside_round(run_dir: Path, rnd: int, why: str) -> str:
     if cdir.exists() and any(cdir.iterdir()):
         cdir.rename(run_dir / "calls" / f"round{rnd}-stale-{stamp}")
     return note
+
+
+def _rounds_on_disk(run_dir: Path) -> list[int]:
+    out = set()
+    for kind in ("tasks", "maps", "calls"):
+        for d in (run_dir / kind).glob("round[0-9]*"):
+            m = re.fullmatch(r"round(\d+)", d.name)
+            if m:
+                out.add(int(m.group(1)))
+    return sorted(out)
+
+
+def _set_aside_from(run_dir: Path, first: int, why: str, drop_tasks: bool) -> str:
+    """Set aside every round from ``first`` upward: maps and calls moved aside, and (when asked) the task files of those
+    rounds deleted, so that no later round keeps answers or tasks built on a replaced task set or block list."""
+    notes = []
+    for r in _rounds_on_disk(run_dir):
+        if r < first:
+            continue
+        n = _set_aside_round(run_dir, r, why)
+        if n:
+            notes.append(n)
+        if drop_tasks:
+            for f in (run_dir / "tasks" / f"round{r}").glob("*.json"):
+                f.unlink()
+    return "; ".join(notes)
 
 
 PER_CALL = {0: 8}
@@ -310,6 +350,10 @@ def cmd_dispatch(args) -> int:
             call_file = cdir / f"{name}.tsv"
             call_file.write_text(calls.encode_tasks(tasks, task_set), encoding="utf-8")
             answer_file = mdir / f"{name}.json"
+            if answer_file.exists():
+                # a retry of a call whose earlier answer was bad or partial: the old answer is set aside so the labeller writes
+                # a fresh file; the sidecar stays, so the per-task files that answer produced remain owned by this call
+                answer_file.rename(answer_file.with_name(f"{name}.superseded-{datetime.now().strftime('%H%M%S%f')}.json"))
             print(f"{slug} round{rnd} {name} {len(tasks)} tasks\t{call_file}\t{answer_file}")
             if args.prompts:
                 print("  " + calls.DISPATCH_PROMPT.format(call_file=call_file, answer_file=answer_file))

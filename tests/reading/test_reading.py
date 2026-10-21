@@ -635,3 +635,61 @@ def test_call_file_breaks_and_digits():
     assert isinstance(decode_answer_file("{\"³\": []}", ["0000"])["0000"], str)
     got = decode_answer_file("{\"9999\": [], \"10000\": []}", ["9999", "10000"])
     assert got["9999"] == [] and got["10000"] == []
+
+
+def test_retry_of_a_whole_call_gets_a_fresh_answer_path_and_the_in_flight_guard(tmp_path):
+    """Review round 3: a call whose whole answer was bad is listed again under the same name with its old answer set aside."""
+    import json
+    from reading.run import _call_defects, _split_call_answers
+    run_root = tmp_path / "runs"; slug = "synthetic-act"
+    run_dir = run_root / slug
+    _synthetic_round(run_dir, 0, 4)
+    lines, _ = _dispatch(run_root, slug, 0)
+    name = lines[0].split()[2]
+    mdir = run_dir / "maps" / "round0"
+    (mdir / f"{name}.json").write_text("not json at all", encoding="utf-8")
+    assert len(_split_call_answers(run_dir, 0)) == 4
+    lines2, _ = _dispatch(run_root, slug, 0)                      # the retry: same name, old answer set aside
+    assert len(lines2) == 1 and lines2[0].split()[2] == name
+    assert not (mdir / f"{name}.json").exists() and list(mdir.glob(f"{name}.superseded-*.json"))
+    lines3, err3 = _dispatch(run_root, slug, 0)                   # straight after: the retry is in flight
+    assert lines3 == [] and "taken as running" in err3
+    (mdir / f"{name}.json").write_text(json.dumps({f"{k:04d}": [{"i": b, "l": "article_head", "n": str(b)} for b in range(k * 3, k * 3 + 3)] for k in range(4)}), encoding="utf-8")
+    assert _split_call_answers(run_dir, 0) == [] and all((mdir / f"{k:04d}.json").exists() for k in range(4))
+    assert _call_defects(run_dir, 0) == [], "the earlier defects are resolved once the tasks have answers"
+
+
+def test_reset_reaches_every_later_round_and_stale_set_asides_are_reported(tmp_path):
+    """Review round 3: a replaced task set or block list leaves no later round's tasks or answers behind."""
+    import json
+    from reading.run import _call_defects, _rounds_on_disk, _set_aside_from, _split_call_answers
+    run_dir = tmp_path / "runs" / "synthetic-act"
+    for r in (1, 2, 3):
+        _synthetic_round(run_dir, r, 2)
+        (run_dir / "maps" / f"round{r}" / "0000.json").write_text("[]", encoding="utf-8")
+        (run_dir / "calls" / f"round{r}").mkdir(parents=True, exist_ok=True)
+        (run_dir / "calls" / f"round{r}" / "x.tsv").write_text("", encoding="utf-8")
+    note = _set_aside_from(run_dir, 2, "test", drop_tasks=True)
+    assert "round 2" in note and "round 3" in note
+    assert (run_dir / "maps" / "round1" / "0000.json").exists() and list((run_dir / "tasks" / "round1").glob("*.json"))
+    for r in (2, 3):
+        assert not (run_dir / "maps" / f"round{r}").exists() and not list((run_dir / "tasks" / f"round{r}").glob("*.json"))
+        assert not (run_dir / "calls" / f"round{r}").exists() and list((run_dir / "maps").glob(f"round{r}-stale-*"))
+    assert _rounds_on_disk(run_dir) == [1, 2, 3]
+    # a stale set-aside shows in the collect report's call defects
+    lines, _ = _dispatch(tmp_path / "runs", "synthetic-act", 1)
+    old = lines[0].split()[2]
+    _set_aside_from(run_dir, 1, "test", drop_tasks=True); _synthetic_round(run_dir, 1, 3)
+    (run_dir / "maps" / "round1" / f"{old}.json").write_text(json.dumps({"0": []}), encoding="utf-8")
+    _split_call_answers(run_dir, 1)
+    assert [d["kind"] for d in _call_defects(run_dir, 1)] == ["stale_task_set"]
+
+
+def test_task_set_id_ignores_stray_files(tmp_path):
+    from reading.calls import task_set_id
+    run_dir = tmp_path / "runs" / "synthetic-act"
+    tdir = _synthetic_round(run_dir, 0, 2)
+    before = task_set_id(list(tdir.glob("*.json")))
+    (tdir / "notes.json").write_text("{}", encoding="utf-8")
+    (tdir / "0001 copy.json").write_text("{}", encoding="utf-8")
+    assert task_set_id(list(tdir.glob("*.json"))) == before
