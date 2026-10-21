@@ -1,82 +1,163 @@
-```
-Reader:        the repository owner, who pays for every model call of legalize-bg through Claude subscription plans, set the reading architecture on 21 October 2026 and objected on 22 October to a run that spent about 18 million tokens on fixed context
-Already knows: the corpus, the plan of record of 21 October 2026 (decision D-069: a script splits, the model labels, a script assembles and checks, a bounded ladder re-labels exceptions), the lean project agent rule of 22 October, that tokens are money
-Decision:      which run driver design legalize-bg adopts for step 6 of the plan, the audit of all 3,624 acts, the Gazette reading and the daily loop; and the owner's go at each spend of this study
-Language:      English, written, read on screen; plain sentences; no internal ids without their words
-Mode:          internal
-Check:         python3 /Users/ekimir/swprj/my-claude-skills/plugins/global-workflow/skills/self-contained-deliverable/scripts/check_reader_ready.py --length-target 3500 docs/plans/2026-10-22-run-driver-design.md ; cold read by a fresh agent (decision named, no unknown term)
-Length target: 3500 body words
-```
-
 # The run driver: how every token of a model run buys labelling
 
-Status: draft, step 0 of the study. The read-back and the goal contract below await the owner's go. No model call has been made for this study.
+Who this is for: the repository owner, who pays for every model call of legalize-bg through Claude subscription plans, adopted the reading architecture on 21 October 2026 and objected on 22 October to a run that spent about 18 million tokens on fixed context. Read on screen; the decisions are in section 10.
 
-## 1. The owner's words, read back
+## 1. The decision this document asks for
 
-The study turns the owner's words of 22 October 2026 into a goal. Each item names its source: the owner's words, an extract of evidence already recorded, or "my addition".
+Adopt one run driver for every model run of the corpus: plan step 6, the audit of all 3,624 acts, the Gazette reading and the daily loop. The driver is the lean [labeller](#glossary) agent started without the instruction files, with its cache kept warm for an hour. Each call carries eight [sections](#glossary) of an act inside the prompt in a tab-separated form and writes one compact answer file. The [ladder](#glossary)'s re-labels go twenty-five to a call. Measured on the test set, a labelled section cost 28,990 tokens under the driver of the night of 21 October and 7,676 under the lean driver as it ran on 22 October; under this design it costs about 4,100 tokens counted once. Weighted at list price per API request, the same three figures are 42,800, 20,600 and about 7,400. Over the whole corpus that is 192 million tokens counted once instead of 1,286 million, in 5,894 calls instead of 15,719. What the model judges and what the checks test do not change.
 
-1. "You should have been much more diligent in the run design re token optimization." The study measures before it runs: every step below names its cost first and prints its evidence, and no run of the driver starts without a per-section token figure in its goal line. (Owner, 22 October 2026.)
-2. "Why not combine the batches, as for a few sentences batch we stuff few k tokens system part of a prompt, this is very inefficient." The study measures the system part of a call (step 1), and the right number of sections per call for labelling (step 2) and for the ladder's re-labels (step 4), against the exception rate, so that the density is chosen from evidence, not guessed. (Owner, 22 October 2026.)
-3. "This agent stays as a rule for future runs." The lean project agent (Read and Write only, Opus) is the baseline of every design the study compares; it is not itself under study. (Owner, 22 October 2026; owner fact of 22 October in the project's instruction file.)
-4. "This is a total failure of the application of the first principles." The study checks its own design against the principles as a whole before the first call: the owner decides every spend (the human owns the intent); every figure is measured and printed (evidence over assertion); the alternatives are compared on one measured number, tokens per labelled section, and nothing is built for a future the measurements do not reach (don't over-engineer); every encoding or density chosen is cheap to change (embrace uncertainty). (Owner, 22 October 2026.)
-5. "Do not just record the failure, run a complete design session, well planned." This document is that session's plan of record; the failure record of 22 October stays as it is and is not rewritten here. (Owner, 22 October 2026.)
-6. A general-purpose subagent call carried about 65,000 tokens of fixed context (the session's tool catalogue, system prompt and instruction files) for 3,000 to 8,000 tokens of section content; about 260 calls and about 18 million tokens before the owner objected. (Evidence: the follow-up record of 22 October 2026 and the results document of the test set.)
-7. Measured plan usage from task notifications: 69,000 to 97,000 tokens per general-purpose call at one to three sections; 102,000 to 122,000 at eight sections; round-1 re-label calls (three blocks per task, six to ten tasks per call) 73,000 to 82,000. Whether the eight-section figure was measured on the general-purpose or the lean agent is not recorded; step 1 settles it. (Evidence: the figures relayed by the session that started this study, 22 October 2026.)
-8. The model returns only a structure map (one label per block); a script assembles the Markdown and runs the checks; the ladder re-labels excepted blocks with their neighbours for two rounds. The study changes none of these roles. (Evidence: decision D-069 and section 5 of the plan of record of 21 October 2026.)
-9. The owner rejected a route where a lister replaces the model's judgement, on 21 October 2026. The lex.bg CSS classes are counted in step 5 as evidence of agreement with the model, and nothing is proposed on them that changes the model's role. (Evidence: the owner's correction recorded in the plan of record's read-back, item 2, and the brief of this study.)
-10. Every answer is a file, a run stops by not launching the next batch, and resumes by listing the tasks without an answer. Every alternative in step 6 is judged against this. (Evidence: the group lister's own description in `reading/groups.py`.)
-11. My addition: the study counts the tokens of task and answer encodings (step 3) with a local estimate calibrated against the measured input of a labeller call with known content, because no token counter is available without an API key and the owner's rule forbids one. The calibration and its error are printed.
-12. My addition: steps 3, 4, 5 and 7 need no model call; they run on the test-set data already labelled and on the raw store, read-only.
-13. My addition: the study labels no new act. The sixteen test-set acts, labelled by the parallel run, are its only labelled data.
-14. My addition: the code changes to the driver come only after the owner's go on the recommendation, with tests, and a reviewer on a different model from this session's.
+The measurements that support this are in sections 4 to 9, each with the file that holds its raw figures. Section 10 lists the owner's decisions in one batch. Nothing in this document reopens decision D-069 (the model returns only a structure map, a script assembles and checks), the choice of Claude Opus 5.5, the lean agent rule, the rejected lister route, or the ladder of two rounds.
 
-## 2. The goal contract
+## 2. The owner's words, read back
 
-**Objective.** A plan of record for the run driver that gives, for each design, measured tokens per labelled section and its reliability, and one recommendation, so that step 6 of the plan, the audit of 3,624 acts, the Gazette reading and the daily loop run at a cost per section the owner has seen and agreed.
+The owner approved this read-back on 21 October 2026 before the first measurement. Each item names its source.
 
-**Done-condition, printed as evidence.**
+1. "You should have been much more diligent in the run design re token optimization." The study measures before it runs. Every step names its cost first and prints its evidence. No run of the driver starts without a per-section token figure in its goal line. (Owner, 22 October 2026.)
+2. "Why not combine the batches, as for a few sentences batch we stuff few k tokens system part of a prompt, this is very inefficient." The study measures the system part of a call (section 4), and the right number of sections per call for labelling (section 5) and for the ladder's re-labels (section 7), against the exception rate. (Owner, 22 October 2026.)
+3. "This agent stays as a rule for future runs." The lean agent is the baseline of every design compared here; it is not itself under study. (Owner, 22 October 2026; owner fact of 22 October in the project's instruction file.)
+4. "This is a total failure of the application of the first principles." The design is checked against the principles as a whole before the first call. The owner decides every spend. Every figure is measured and printed. The alternatives are compared on one measured number, tokens per labelled section. Every encoding or density chosen is cheap to change. (Owner, 22 October 2026.)
+5. "Do not just record the failure, run a complete design session, well planned." This document is that session's plan of record. (Owner, 22 October 2026.)
+6. A general-purpose subagent call carried about 65,000 tokens of fixed context for 3,000 to 8,000 tokens of section content; about 260 calls and about 18 million tokens before the owner objected. (Evidence: the follow-up record of 22 October 2026 and the results document of the test set.)
+7. Measured plan usage from the task notifications: 69,000 to 97,000 tokens per general-purpose call at one to three sections; 102,000 to 122,000 at eight; round-1 calls 73,000 to 82,000. (Evidence: the figures relayed by the session that started this study; section 5 confirms them from the transcripts and attributes the eight-section figure to the general-purpose agent.)
+8. The model returns only a structure map; a script assembles and checks; the ladder re-labels excepted blocks with their neighbours for two rounds. The study changes none of these roles. (Evidence: decision D-069 and section 5 of the plan of record of 21 October 2026.)
+9. The owner rejected a route where a lister replaces the model's judgement, on 21 October 2026. The lex.bg classes are counted in section 8 as evidence only. (Evidence: the plan of record's read-back, item 2, and the brief of this study.)
+10. Every answer is a file, a run stops by not launching the next batch, and resumes by listing the tasks without an answer. Every alternative in section 9 is judged against this. (Evidence: the group lister's own description.)
+11. My addition: token counts of the encodings (section 6) use rates fitted on the lean run's own API records (bytes per token of what the model read and wrote), since no token counter is available without an API key. The fit and its error are printed.
+12. My addition: sections 5 to 8 and the corpus count of section 9 needed no model call; they run on the test-set run data and on the raw store, read-only.
+13. My addition: the study labelled no new act. The sixteen test-set acts are its only labelled data.
+14. My addition: the code changes come only after the owner's go on the recommendation, with tests, and a reviewer on a different model from this session's.
 
-- The reader gate prints `items: N, judged: N` on this document, and a fresh agent's cold read names the decision and no unknown term.
-- Every figure in this document's tables is printed by a script under `docs/plans/2026-10-22-run-driver-design/`, re-runnable on the run data and the raw store, with its raw figures beside it.
-- The full-corpus table (step 7) gives tokens and calls for the current driver, the lean driver as measured, and the recommended design, with every assumption written out.
-- A draft pull request against the plan branch exists and its address is printed; nothing is merged.
+## 3. The goal contract and what the study spent
 
-**Non-goals.** No change to D-069's roles of script and model. No API key. No corpus write. No reopening of what the owner decided (the model Opus 5.5, the lean agent, the rejected lister route, the ladder of two rounds). No labelling of acts beyond the sixteen of the test set. No code change before the owner's go on the recommendation.
+**Objective.** A plan of record for the run driver that gives, for each design, measured tokens per labelled section and its reliability, and one recommendation, so that every later run starts at a cost per section the owner has seen and agreed.
 
-**Budget for the study's own model calls.** Tokens are the owner's plan usage. Each line is one spend the owner approves; a step that needs none says so.
+**Done-condition.** The reader gate prints `items: N, judged: N` on this document. A fresh agent's cold read names the decision and no unknown term. Every figure in the tables is printed by a script in the measurement folder. The full-corpus table gives tokens and calls for the current, the lean and the recommended driver. A draft pull request against the plan branch is open.
 
-| Step | Calls | Tokens, estimated | What each call is for |
+**Non-goals.** No change to D-069's roles. No API key. No corpus write. No reopening of what the owner decided. No labelling beyond the test set. No code before the owner's go.
+
+**Spent so far.** Four subagent calls, 134,000 tokens by the harness's count (the budget line was 250,000). Every other figure came from the two labelling sessions' exported transcripts (411 calls matched to their dispatches), the run data and the raw store. Not yet spent: the cold read (one call, about 100,000) and the workflow measurement of section 9 (two calls, about 60,000), both waiting for the owner's go. This session's own usage is not metered by the harness; it is estimated at 1.5 million tokens.
+
+## 4. What a call is made of
+
+**Cost of this step:** four calls, 134,000 tokens, approved on 21 October. **Evidence:** the step 1 files of the measurement folder (Provenance): the fixed-context note and the per-request sums.
+
+A general-purpose call starts with 65,771 tokens before it reads anything; a lean call with 16,680. Two thirds of the lean agent's fixed context is the owner's global instruction file, the project's instruction file and the memory index: 30,988 of about 46,300 characters. A custom agent loads them by default. The `omitClaudeMd` field of its definition removes them (Claude Code 2.1.271 and later; 2.1.306 is installed). The first principles and the work line, injected by the SubagentStart hook, are 16 percent; they reach every subagent by the owner's rule, so only the owner can exempt the labeller (decision 2 in section 10). The rest, about 8,000 characters, cannot go: the tool schemas of Read and Write and the two the harness adds, the agent's own prompt, the git status snapshot that every custom agent receives, and the harness's reminders.
+
+The harness's figure per call counts the context once. What a call sends is larger: every batch of tool calls is one API request, and every request re-reads the whole context so far. A lean call of eight sections makes ten to eleven requests and re-reads 347,000 tokens from the cache for 62,000 written and 9,400 of output. Weighted at the Claude Opus 5.5 list prices relative to one uncached input token (a cache write 1.25, a cache read 0.1, an output token 5), such a call costs 164,000 token-equivalents, 20,600 per section, against 7,676 counted once. The plan's own metering is not published, so both figures are carried through this document.
+
+Two more facts shape the design. First, output is the dear part: the 9,400 output tokens of a call weigh as much as 47,000 input tokens. Second, a sibling call can read the fixed prefix that an earlier call warmed. The night's general-purpose calls wrote only 39,500 of their 72,000 tokens. The lean run's calls wrote all of theirs: they were launched eight at a time, with gaps longer than the five-minute subagent cache lifetime between batches. The agent definition can request a one-hour cache lifetime (`experimental.cacheTtl`), and the first call of a batch can be launched alone to warm it.
+
+One caution on the measurement: the general-purpose call of this step ran on Fable 5.1, this session's model, because the dispatch did not name a model; the night's general-purpose calls named Opus, and the lean agent's definition names Opus. The fixed context's size does not depend on the model.
+
+## 5. Sections per call against reliability
+
+**Cost of this step:** no model call. **Evidence:** the step 2 files: the density tables, the calls table (435 calls) and the sections table (1,236 sections).
+
+| Agent and sections per call | Calls | Sections | Tokens per call, counted once (median) | Tokens per section | Exceptions per 100 blocks |
+|---|---|---|---|---|---|
+| General-purpose, 1 (night) | 84 | 84 | 72,318 | 72,318 | 4.2 |
+| General-purpose, 3 (night) | 83 | 252 | 86,972 | 28,990 | 0.7 |
+| General-purpose, 8 (night) | 14 | 102 | 107,630 | 13,453 | 1.8 |
+| Lean, 8 (22 October) | 96 | 768 | 61,414 | 7,676 | 0.9 |
+
+The exception rate is the round-0 count of label exceptions (low confidence, answer defects, check failures) over the blocks of those sections. It differs by act far more than by density: 0.0 per 100 blocks on the transport law, 10.8 on the 1950 obligations act. The night and the day labelled different acts, so the rows are not a clean comparison of densities. The clean measure is the position within a call, which holds the act constant:
+
+| Agent, 8 sections per call | Position 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+|---|---|---|---|---|---|---|---|---|
+| Lean, 96 calls, exceptions per 100 blocks | 1.1 | 0.7 | 1.0 | 0.6 | 1.0 | 0.9 | 0.9 | 1.1 |
+| General-purpose, 14 calls | 0.0 | 1.1 | 1.8 | 1.8 | 1.8 | 2.1 | 2.8 | 3.7 |
+
+At eight sections per call (about 290 blocks and 25,000 tokens of task text) the lean agent shows no drift from the first section to the last. The general-purpose agent, with 65,000 tokens of fixed context ahead of the same content, shows a rise, on fourteen calls only. Answer defects (a missing or malformed entry) were 0.01 per 100 blocks in the lean run. The model's reliable range for this task is therefore not reached at eight sections, and the existing data cannot say where it ends, because no call carried more. The smallest measurement that can is six lean calls of sixteen sections each over acts already labelled, with the new labels compared against the existing maps and the exception rate read by position. It costs about 360,000 tokens counted once under the recommended encoding (decision 3 in section 10).
+
+## 6. The size of the task and the answer
+
+**Cost of this step:** no model call. **Evidence:** the step 3 files: the encoding tables and the calibration records.
+
+The rates were fitted on the lean run's own records. A task file read with the Read tool cost 366 tokens plus one token per 3.44 bytes of the rendered text (56 reads, median error 114 tokens). A written answer cost 118 tokens plus one per 2.12 bytes (143 writes, median error 49 tokens). The rendered text of a Read carries a line number on every line, and the current task file has one line per field.
+
+| Task (input) per section, 1,236 sections | Bytes | Tokens | Share |
 |---|---|---|---|
-| 1. What a call is made of | 4 | about 250,000 | one general-purpose call and one lean (labeller) call on the same tiny task, to read both totals from the task notifications; two more lean calls, one with an almost empty task and one with a known content size, to separate the fixed part from the content and calibrate the token estimate of item 11 |
-| 2. Sections per call against reliability | 0 | 0 | the existing run data; if it cannot answer, the smallest measurement is proposed with its cost and waits for the go |
-| 3. Task and answer encoding | 0 | 0 | scripts over the task and answer files |
-| 4. The ladder's density | 0 | 0 | scripts over the round-1 and round-2 files and the figures of item 7 |
-| 5. CSS hints as evidence | 0 | 0 | scripts over blocks and maps |
-| 6. Alternatives in this harness | 2 | about 150,000 | one workflow of two lean agents on two tiny tasks, only if the authoring reference says a workflow agent can be the project agent; otherwise 0 calls and the reference is cited |
-| 7. Full-corpus estimate | 0 | 0 | the splitter over the raw store, read-only |
-| Cold read of this document | 1 | about 100,000 | a fresh agent reads the document and nothing else |
-| Total before the owner's go on the recommendation | 7 | about 500,000 | |
-| Code changes, after the go | up to 3 | about 450,000 | fresh-context reviews on Opus 5.5 (a different model from this session's); stop rule: a closing round with open majors filed, or majors not falling for two rounds, or the owner's ruling |
+| A. Current: indented JSON file, read with the Read tool | 12,967 | 4,135 | 100% |
+| B. Compact JSON, one line per block, keys i, h, t, inline in the prompt | 10,591 | 3,079 | 82% |
+| C. Tab-separated lines, index, hint, text, inline in the prompt | 9,936 | 2,888 | 77% |
 
-This session's own reading and writing (a Fable 5.1 session) is estimated at 1.5 to 2 million tokens over the study. Work past any line of this table waits for the owner's go.
+| Answer (output) per section | Bytes | Tokens | Share |
+|---|---|---|---|
+| A. Current: i, label, n, conf, note on every entry | 2,429 | 1,264 | 100% |
+| B. Compact: i and label always; n only on numbered labels; conf and note only on low confidence, drop and unknown | 1,230 | 698 | 51% |
 
-**Where state lives.** This worktree and its branch; the plan document and the measurement folder under `docs/plans/`; the run data and the raw store are read in the main checkout and never written.
+Nothing the checks read is lost: the block indices, the hints, the verbatim text, every label, every number where the label is numbered, every low-confidence mark with its note, and the reason on every drop and unknown. What encoding B of the answer leaves out is 5,149 notes on high-confidence entries, such as "opens with (1) on the same line", which no check reads. The bytes removed are keys, indentation and line numbers, which the tokenizer packs less densely than Bulgarian text, so the token share saved is at least the byte share.
 
-## 3. The proposed goal line
+What changes in the code. The driver writes tasks in form C and assembles the dispatch prompt with the instructions and the tasks inline. The collect step reads one answer file per call, splits it per task and accepts the short keys. The ladder's task builder uses the same form. The validator maps the short keys to the long ones before validating. The label vocabulary, the numbering grammar and every check stay as they are.
 
-```
-/goal Run-driver design study (docs/plans/2026-10-22-run-driver-design.md): done when the reader gate prints "items: N, judged: N" on the plan, a fresh agent's cold read names the decision, every figure in the plan's tables is printed by a script under docs/plans/2026-10-22-run-driver-design/, the full-corpus table gives tokens and calls for the current, the lean and the recommended driver, and a draft PR against plan/2026-10-21-reasoning-driven-corpus is open with its address printed. Budget: 7 model calls, about 500,000 tokens, before the owner's go on the recommendation, each step's calls approved by the owner first; after that go, code with tests and up to 3 review rounds on Opus 5.5 (about 450,000 tokens; stop at a closing round with open majors filed, majors not falling for two rounds, or the owner's ruling). Non-goals: D-069's roles, API keys, corpus writes, the owner's recorded decisions.
-```
+## 7. The ladder's calls
 
-## 4. The study's steps
+**Cost of this step:** no model call. **Evidence:** the step 4 files: the ladder tables and the round-1 targets (579 targets).
 
-To be written as each step runs, with its cost named first and its evidence printed. Steps 1 to 7 are listed in the goal contract's budget table.
+A round-1 task is one target block with its two neighbours, the headings before it, the exceptions raised on it and the labels its neighbours carry: 1,511 bytes median. Over 65 lean calls of rounds 1 and 2, tokens per call fit 19,392 plus 1,240 per task, so a re-labelled block costs 3,178 tokens at ten tasks per call, 2,210 at twenty and 1,886 at thirty, counted once; cost-weighted, 8,142 at ten. Position within a call of ten made no difference: 14 to 23 percent of targets were still excepted after round 1 at every position (19 percent over all 579). Twenty-five tasks per call, delivered inline in form C with compact answers, holds the prompt at about 13,500 tokens, inside the range round 0 has already proved at eight sections, and brings a re-label to about 800 tokens counted once and 1,100 cost-weighted.
+
+## 8. The lex.bg classes as evidence
+
+**Cost of this step:** no model call. **Evidence:** the step 5 files: the agreement note and the crosstab.
+
+Over the 44,101 blocks with a final label, the model's label lies in the family the lex.bg class names in 85.1 percent. By class: 99.2 percent for Title (the act's title and every heading), 99.5 percent for the class of the final provisions, and 79.5 percent for Article, whose misses are annex rows (6,110 blocks) and site chrome (304). Only one class names a single label, the in-force line, and there the class matched in 16 of 17 blocks. For the other 44,084 blocks the class alone never names the label. Title does not say which heading level. Article does not say whether a line opens an article, a paragraph, an item or a letter, continues one, or is quoted text, and that is the whole judgement. This is reported as a measurement; the owner rejected the lister route on 21 October, and nothing here reopens it.
+
+## 9. The alternatives in this harness, and the full-corpus estimate
+
+**Cost of this step:** no model call so far. The workflow measurement, two calls of about 60,000 tokens together, waits for the go. **Evidence:** the step 7 files: the estimate and the block count of 3,623 pages; the Claude Code documentation on subagents, workflows and caching, fetched on 21 October 2026.
+
+Four ways to drive a call exist here. Each is judged on tokens per section and on what it changes in stopping, resuming and reviewing.
+
+1. **One subagent per section.** The night's driver, at 72,318 tokens per section. Every answer is a file. Nothing else recommends it.
+2. **Several sections per subagent, each read and written as a file.** The lean run: 7,676 per section counted once, 20,600 weighted, because every read and write is a request that re-reads the context. Every answer a file; resumable by listing.
+3. **One subagent that loops over a task list it reads itself, resumed between batches.** A resumed subagent reads the cache it warmed. But its context grows with every task, and every request re-reads all of it, so the re-read cost grows with the square of the tasks. Worse than 2 beyond a handful of tasks, and one long transcript instead of one file per call.
+4. **The Workflow tool.** A script fans out agents deterministically and can name the labeller as the agent type. It holds the agents of a fan-out so that they read the first agent's warm prefix, runs under a concurrency cap, and resumes by run id with finished agents' results replayed from its journal. The script has no file access, so the answers are still written by the agent, and the run folder stays the record; the parent session receives one result per workflow instead of one per call. The cost per section is that of design 2 with the recommended encoding, less the fixed prefix write on all but the first call of a batch.
+
+The recommended call, under 2 or 4, is the labeller without the instruction files (about 4,800 tokens of fixed context), the instructions and eight sections inline in form C (24,300 tokens), one compact answer file (5,600 tokens of output), and two API requests. That is about 34,700 tokens counted once and 62,700 weighted: 4,300 and 7,800 per section on the test set. The evidence supports the call as designed under either dispatcher. The workflow is preferred for the audit's scale, subject to one measurement that the labeller inside a workflow carries the same fixed context, which is the two-call spend of decision 4.
+
+The corpus, counted with the splitter over the raw store, is 3,616 pages with an act (7 are site chrome only), 2,538,140 blocks, 47,156 sections and 400 million bytes of text. A section holds 8,475 bytes of text against 9,008 in the test set, so per-section figures are scaled by 0.94.
+
+| Driver, round 0 over the whole corpus | Calls | Tokens per section, counted once | Total, counted once | Tokens per section, weighted | Total, weighted |
+|---|---|---|---|---|---|
+| Current: general-purpose, 3 sections per call | 15,719 | 27,276 | 1,286 million | 40,286 | 1,900 million |
+| Lean as measured: labeller, 8 sections, a read and a write per task | 5,894 | 7,222 | 341 million | 19,342 | 912 million |
+| Recommended: labeller without instruction files, warm cache, 8 sections inline, one compact answer, 2 requests | 5,894 | 4,080 | 192 million | 7,368 | 347 million |
+
+The ladder adds 45,300 re-labels, assuming 1.5 percent of blocks excepted in round 0 (the lean run's 0.9 per 100 blocks, raised for safety) and 19 percent of those surviving to round 2. Under the lean driver at ten per call that is 144 million tokens counted once; under the recommended design at twenty-five per call, 36 million (369 and 50 million weighted). The whole-act reads of the residue are decided per batch and not estimated. The assumptions are listed in full in the estimate file.
+
+## 10. The owner's decisions
+
+1. **The driver.** Adopt the recommended design for plan step 6 and every later run. That is the labeller with `omitClaudeMd: true` and a one-hour cache lifetime, sections and tasks inline in form C, one compact answer file per call in form B, eight sections per round-0 call, and twenty-five tasks per ladder call. Options: adopt it; keep the lean driver as measured, at 2.4 times the tokens; adopt it with a different density. Recommendation: adopt. On the go, the code changes land with tests and a fresh-context review on Opus 5.5.
+2. **The first principles in labeller calls.** The hook adds about 2,000 tokens to every call, about 12 million over the audit's round 0. Options: keep (the owner's rule that the principles reach every subagent); exempt the labeller, which judges nothing the principles govern and reads only its task. Recommendation: exempt, recorded as the owner's exception for this agent; the rule stands for every other agent.
+3. **Where the reliable range ends.** Six lean calls of sixteen sections over acts already labelled, about 360,000 tokens, to learn whether sixteen per call holds as eight does; if it does, round 0 of the audit halves its calls. Options: run it after the driver lands; stay at eight. Recommendation: run it.
+4. **The workflow measurement.** Two labeller calls inside a workflow, about 60,000 tokens, to confirm the fixed context and the shared prefix before the audit's driver is built on the Workflow tool. Options: run it with the code changes; build on plain subagent dispatch and skip it. Recommendation: run it.
+5. **The cold read of this document.** One fresh agent, about 100,000 tokens, as the reader gate requires for a document that carries a decision. Recommendation: run it.
 
 ## Glossary
 
-To be completed with the measurements.
+- **Block**: one line of a lex.bg act page as the splitter cuts it; every character of the act lands in exactly one block.
+- **Section**: a run of up to 60 blocks that starts at a heading, the unit a labelling task covers; the corpus has 47,156.
+- **Structure map**: the model's answer, one label per block (title, heading, article head, paragraph, item, annex row, chrome and so on); the model writes no text.
+- **Labeller**: the project agent defined for labelling calls, with the Read and Write tools only, on Claude Opus 5.5; the owner's rule of 22 October 2026.
+- **Fixed context**: what a call carries before it reads its task: the agent's prompt, the tool schemas, the instruction files, the hook output, the git status.
+- **Counted once**: the harness's figure for a call, the context counted once plus the output, as the task notifications show it.
+- **Cost-weighted**: every API request's tokens weighted at the Claude Opus 5.5 list prices relative to an uncached input token: a cache write 1.25, a cache read 0.1, an output token 5.
+- **Exception**: a block whose label a check rejected or the model marked low confidence; the ladder re-labels it with its neighbours in up to two rounds; what remains is the residue.
+- **Ladder**: the two re-labelling rounds of decision D-069; a round-1 task is one target block with its two neighbours.
+- **Hint**: the lex.bg CSS class of a block's nearest classified ancestor (Title, Article, FinalEdictsArticle, PreHistory), given to the model as a hint and never as a verdict.
+- **Form B, form C**: the compact encodings of section 6; B is compact JSON with short keys, C is tab-separated lines.
+- **Workflow tool**: the harness's deterministic fan-out of subagents from a script, resumable by run id.
+- **D-069**: the decision of 21 October 2026 in the repository's decision log that adopted the reading architecture.
+- **Plan step 6**: the run driver step of the plan of record of 21 October 2026.
+
+## References
+
+- The plan of record: `docs/plans/2026-10-21-reasoning-driven-corpus.md`, 21 October 2026, section 5.
+- The failure record: `docs/followups/2026-10-22-labelling-run-without-token-design.md`.
+- The test set and its results: `docs/testing/2026-10-22-structure-map-test-set.md` and `docs/testing/2026-10-22-structure-map-results.md`.
+- Claude Code documentation, fetched 21 October 2026: Subagents (what loads at startup, frontmatter fields `omitClaudeMd` and `experimental.cacheTtl`, model resolution), Costs (plan usage), Prompt caching (subagents and the cache, workflow fan-outs). Online at code.claude.com/docs.
+- The Workflow authoring reference bundled with Claude Code (agent types, schema output, resume by run id, no file access from the script).
 
 ## Provenance
 
-To be completed with the measurements.
+Measurement folder `docs/plans/2026-10-22-run-driver-design/`: `step1/` (the three task files, the four answers, `fixed-context.md`, `requests.md` and `requests.csv`), `step2/` (`calls.csv`, `tasks.csv`, `density.md`), `step3/` (`calibration.csv`, `encoding.md`), `step4/` (`ladder.md`, `round1_targets.csv`), `step5/` (`hints.md`, `crosstab.json`), `step7/` (`corpus_blocks.csv`, `corpus_blocks.log`, `estimate.md`), and `scripts/` with one script per figure. The calls table comes from `survey_transcript.py` and `calls_from_transcripts.py` over the two sessions' exported transcripts, which live in the owner's Downloads folder and are not kept in the repository. The other figures come from `request_sums.py`, `calibrate_tokens.py`, `density.py`, `encoding.py`, `ladder_density.py`, `hint_agreement.py`, `corpus_blocks.py` and `estimate.py`. The run data is `data/runs/structure-map-2026-10-22/` in the main checkout (untracked, read-only for this study); the raw store is `data/raw/lexbg/`. The four measurement calls of section 4 ran in this session on 21 October 2026 between 11:30 and 11:35 Sofia time.

@@ -1,0 +1,10 @@
+500/3623 pages, 11s
+1000/3623 pages, 31s
+1500/3623 pages, 50s
+2000/3623 pages, 67s
+2500/3623 pages, 86s
+3000/3623 pages, 105s
+3500/3623 pages, 122s
+pages 3623, with an act 3616, without a spine 7, errors 0
+blocks 2,538,140, sections 47,156, text bytes 399,658,027
+written to docs/plans/2026-10-22-run-driver-design/step7/corpus_blocks.csv
