@@ -43,3 +43,12 @@ markers = [
     "perf: latency budgets against the live catalog (excluded in CI; run locally on a quiet machine)",
     "slow: whole-corpus measurements (tens of seconds; they run in CI, since they are the evidence the resolver's bounds are justified by)",
 ]
+
+[tool.uv]
+# certifi 2026.10.19 removes the compromised eMudhra intermediates (October 2026). uv.lock is not tracked
+# here, so the floor below is what moves a local lock off the old bundle on its next `uv sync`. The
+# exclude-newer-package entry is a release-delay exception for certifi alone (ahelia-oversight
+# policies/supply-chain-security.md; the route that ~/.claude/hooks/supply-chain-exceptions.tsv names):
+# 2026.10.19 is younger than the 7-day delay. Remove that entry after 27 October 2026; keep the floor.
+constraint-dependencies = ["certifi>=2026.10.19"]
+exclude-newer-package = { certifi = "2026-10-21T00:00:00Z" }
