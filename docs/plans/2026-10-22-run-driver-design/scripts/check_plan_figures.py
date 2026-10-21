@@ -3,7 +3,7 @@ in the plan must appear, as the same number, in one of the generated files of th
 
 Generated files read: step1/usage.md (step1_usage.py), step1/requests.md (request_sums.py), step2/density.md
 (density.py), step3/encoding.md (encoding.py), step4/ladder.md (ladder_density.py), step5/hints.md
-(hint_agreement.py), step7/estimate.md (estimate.py). Prints ``figures checked: N, matched: N`` and lists any
+(hint_agreement.py), step7/estimate.md (estimate.py), step8/cache_timing.md (cache_timing.py). Prints ``figures checked: N, matched: N`` and lists any
 unmatched cell. Exit 1 on an unmatched cell.
 
 Usage: python3 check_plan_figures.py PLAN.md MEASUREMENT_DIR
@@ -11,7 +11,7 @@ Usage: python3 check_plan_figures.py PLAN.md MEASUREMENT_DIR
 import re, sys
 from pathlib import Path
 
-GENERATED = ["step1/usage.md", "step1/requests.md", "step2/density.md", "step3/encoding.md", "step4/ladder.md", "step5/hints.md", "step7/estimate.md"]
+GENERATED = ["step1/usage.md", "step1/requests.md", "step2/density.md", "step3/encoding.md", "step4/ladder.md", "step5/hints.md", "step7/estimate.md", "step8/cache_timing.md"]
 NUM = re.compile(r"(?<![\w.])\d[\d,]*(?:\.\d+)?(?![\w])")
 
 
