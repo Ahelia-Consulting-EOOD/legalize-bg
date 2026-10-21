@@ -1,0 +1,360 @@
+<title>Page to Commit</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column of prose, figures break wider and scroll sideways on a phone. */
+:root {
+  --bg: #F2F4F7; --surface: #FFFFFF; --ink: #18212C; --muted: #586474; --line: #C3CBD6;
+  --accent: #1D5DA6; --accent-soft: #E3ECF7; --ok: #2B7A4B; --ok-soft: #E2F1E7;
+  --bad: #B0261E; --bad-soft: #F8E4E2; --model: #7A4FB0; --model-soft: #EFE7F8;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11151B; --surface: #19202A; --ink: #E5E9EF; --muted: #9AA6B5; --line: #384455;
+  --accent: #7FB2EE; --accent-soft: #1C2B3F; --ok: #6CCB93; --ok-soft: #17301F;
+  --bad: #F08A80; --bad-soft: #3A1D1B; --model: #C3A3EE; --model-soft: #2A2038; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11151B; --surface: #19202A; --ink: #E5E9EF; --muted: #9AA6B5; --line: #384455;
+  --accent: #7FB2EE; --accent-soft: #1C2B3F; --ok: #6CCB93; --ok-soft: #17301F;
+  --bad: #F08A80; --bad-soft: #3A1D1B; --model: #C3A3EE; --model-soft: #2A2038; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--body); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 40px; }
+.prose { max-width: 68ch; }
+h1, h2 { font-family: var(--display); font-weight: 650; text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 4vw, 40px); }
+h2 { font-size: 23px; margin-bottom: 8px; }
+p { margin: 8px 0; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+code, .mono { font-family: var(--mono); font-size: .88em; }
+.status { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; min-width: 0; }
+.stat b { display: block; font: 600 20px/1.2 var(--body); font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.stat.ok b { color: var(--ok); }
+
+figure { margin: 0; display: grid; gap: 10px; }
+.scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.scroll svg { display: block; width: 100%; height: auto; }
+#f1 svg { min-width: 980px; } #f2 svg { min-width: 760px; } #f3 svg { min-width: 760px; }
+figcaption { color: var(--muted); font-size: 14px; max-width: 80ch; }
+
+/* SVG roles, styled from the page tokens so both themes read */
+.n { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+.n.acc { fill: var(--accent-soft); stroke: var(--accent); }
+.n.model { fill: var(--model-soft); stroke: var(--model); stroke-dasharray: 5 3; }
+.n.okb { fill: var(--ok-soft); stroke: var(--ok); }
+.n.badb { fill: var(--bad-soft); stroke: var(--bad); }
+.n.art { fill: none; stroke: var(--line); stroke-dasharray: 3 3; }
+.lane { fill: var(--bg); stroke: none; }
+.t { fill: var(--ink); font: 600 13px var(--body); }
+.s { fill: var(--muted); font: 400 11.5px var(--body); }
+.m { fill: var(--ink); font: 400 11px var(--mono); }
+.lt { fill: var(--muted); font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.al { fill: var(--muted); font: 500 11px var(--body); }
+.al.bad { fill: var(--bad); } .al.ok { fill: var(--ok); } .al.acc { fill: var(--accent); }
+.ar { fill: none; stroke: var(--muted); stroke-width: 1.4; }
+.ar.bad { stroke: var(--bad); } .ar.ok { stroke: var(--ok); } .ar.acc { stroke: var(--accent); }
+.ar.thin { stroke-width: 1; stroke-dasharray: 2 3; }
+.ah { fill: var(--muted); } .ah.bad { fill: var(--bad); } .ah.ok { fill: var(--ok); } .ah.acc { fill: var(--accent); }
+
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+.tablewrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.pill { display: inline-block; font: 500 11px/1 var(--mono); padding: 4px 7px; border-radius: 99px; white-space: nowrap; }
+.pill.in { background: var(--ok-soft); color: var(--ok); }
+.pill.out { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.pill.now { background: var(--accent-soft); color: var(--accent); }
+.pill.next { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; min-width: 0; display: grid; gap: 6px; align-content: start; }
+.step h3 { margin: 0; font: 600 15px/1.35 var(--body); }
+.step p { margin: 0; font-size: 14px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 22px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; border: 1.2px solid var(--line); }
+.legend i.model { background: var(--model-soft); border: 1.2px dashed var(--model); }
+.legend i.acc { background: var(--accent-soft); border-color: var(--accent); }
+.legend i.bad { background: var(--bad-soft); border-color: var(--bad); }
+.legend i.ok { background: var(--ok-soft); border-color: var(--ok); }
+</style>
+
+<div class="wrap">
+
+<header class="prose">
+  <div class="eyebrow">legalize-bg · branch claude/run-design-ab4d70 · 22 October 2026</div>
+  <h1>From a lex.bg page to a committed act</h1>
+  <p>This page shows how an act gets from its lex.bg page to a commit in git. Scripts fetch, cut, copy and check the text. The <code>labeller</code> agent is the only model that reads it, and it judges formatting only: what each line is. The source's wording is copied character for character. Fifty acts have now come all the way through and are committed; the other 3,574 acts of the corpus have not been read yet.</p>
+  <div class="status">
+    <div class="stat ok"><b>50 of 50</b><span>read acts committed</span></div>
+    <div class="stat"><b>1</b><span>gate refusal, fixed</span></div>
+    <div class="stat"><b>80 → 61 acts</b><span>W-002 tag remnants (771 → 633)</span></div>
+    <div class="stat"><b>1 → 0 acts</b><span>W-003 chrome</span></div>
+    <div class="stat"><b>3,574</b><span>acts not yet read</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>1. The whole path</h2>
+  <figure id="f1">
+    <div class="scroll">
+<svg viewBox="0 0 1222 250" role="img" aria-label="Ten stages from the lex.bg page to a git commit: acquire, read, write and commit, with a re-labelling loop from the checks back to the labeller.">
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah acc" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+  <rect class="lane" x="8" y="16" width="230" height="26" rx="4"/><text class="lt" x="123" y="33" text-anchor="middle">Acquire</text>
+  <rect class="lane" x="252" y="16" width="596" height="26" rx="4"/><text class="lt" x="550" y="33" text-anchor="middle">Read · run folder</text>
+  <rect class="lane" x="862" y="16" width="230" height="26" rx="4"/><text class="lt" x="977" y="33" text-anchor="middle">Write · reading/write.py</text>
+  <rect class="lane" x="1106" y="16" width="108" height="26" rx="4"/><text class="lt" x="1160" y="33" text-anchor="middle">Git</text>
+
+  <path class="ar acc" d="M794,90 V64 H428 V86" marker-end="url(#a1a)"/>
+  <text class="al acc" x="611" y="58" text-anchor="middle">exceptions on blocks → re-label, rounds 1 and 2</text>
+
+  <g>
+    <rect class="n" x="8" y="90" width="108" height="56" rx="6"/><text class="t" x="62" y="113" text-anchor="middle">lex.bg page</text><text class="s" x="62" y="131" text-anchor="middle">ldoc/{id}</text>
+    <rect class="n" x="130" y="90" width="108" height="56" rx="6"/><text class="t" x="184" y="113" text-anchor="middle">raw store</text><text class="s" x="184" y="131" text-anchor="middle">page + SHA-256</text>
+    <rect class="n" x="252" y="90" width="108" height="56" rx="6"/><text class="t" x="306" y="113" text-anchor="middle">splitter</text><text class="s" x="306" y="131" text-anchor="middle">page → blocks</text>
+    <rect class="n model" x="374" y="90" width="108" height="56" rx="6"/><text class="t" x="428" y="113" text-anchor="middle">labeller</text><text class="s" x="428" y="131" text-anchor="middle">a label per block</text>
+    <rect class="n" x="496" y="90" width="108" height="56" rx="6"/><text class="t" x="550" y="113" text-anchor="middle">rules</text><text class="s" x="550" y="131" text-anchor="middle">D-072 rulings</text>
+    <rect class="n" x="618" y="90" width="108" height="56" rx="6"/><text class="t" x="672" y="113" text-anchor="middle">assembler</text><text class="s" x="672" y="131" text-anchor="middle">copies blocks</text>
+    <rect class="n" x="740" y="90" width="108" height="56" rx="6"/><text class="t" x="794" y="113" text-anchor="middle">checks</text><text class="s" x="794" y="131" text-anchor="middle">form, not meaning</text>
+    <rect class="n" x="862" y="90" width="108" height="56" rx="6"/><text class="t" x="916" y="113" text-anchor="middle">re-read</text><text class="s" x="916" y="131" text-anchor="middle">same page, body</text>
+    <rect class="n acc" x="984" y="90" width="108" height="56" rx="6"/><text class="t" x="1038" y="113" text-anchor="middle">write gate</text><text class="s" x="1038" y="131" text-anchor="middle">write_act</text>
+    <rect class="n" x="1106" y="90" width="108" height="56" rx="6"/><text class="t" x="1160" y="113" text-anchor="middle">commit</text><text class="s" x="1160" y="131" text-anchor="middle">4 trailers</text>
+  </g>
+  <g>
+    <line class="ar" x1="116" y1="118" x2="128" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="238" y1="118" x2="250" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="360" y1="118" x2="372" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="482" y1="118" x2="494" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="604" y1="118" x2="616" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="726" y1="118" x2="738" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="848" y1="118" x2="860" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="970" y1="118" x2="982" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="1092" y1="118" x2="1104" y2="118" marker-end="url(#a1)"/>
+  </g>
+  <g>
+    <line class="ar thin" x1="62" y1="146" x2="62" y2="166"/><rect class="n art" x="8" y="166" width="108" height="48" rx="4"/><text class="s" x="62" y="186" text-anchor="middle">windows-1251</text><text class="s" x="62" y="202" text-anchor="middle">1 request/s</text>
+    <line class="ar thin" x1="184" y1="146" x2="184" y2="166"/><rect class="n art" x="130" y="166" width="108" height="48" rx="4"/><text class="m" x="184" y="186" text-anchor="middle">data/raw/lexbg</text><text class="m" x="184" y="202" text-anchor="middle">manifest.jsonl</text>
+    <line class="ar thin" x1="306" y1="146" x2="306" y2="166"/><rect class="n art" x="252" y="166" width="108" height="48" rx="4"/><text class="m" x="306" y="186" text-anchor="middle">blocks.json</text><text class="s" x="306" y="202" text-anchor="middle">each char once</text>
+    <line class="ar thin" x1="428" y1="146" x2="428" y2="166"/><rect class="n art" x="374" y="166" width="108" height="48" rx="4"/><text class="m" x="428" y="186" text-anchor="middle">maps/round0–2</text><text class="s" x="428" y="202" text-anchor="middle">no text returned</text>
+    <line class="ar thin" x1="550" y1="146" x2="550" y2="166"/><rect class="n art" x="496" y="166" width="108" height="48" rx="4"/><text class="s" x="550" y="186" text-anchor="middle">ruled map</text><text class="s" x="550" y="202" text-anchor="middle">+ omissions list</text>
+    <line class="ar thin" x1="672" y1="146" x2="672" y2="166"/><rect class="n art" x="618" y="166" width="108" height="48" rx="4"/><text class="m" x="672" y="186" text-anchor="middle">staged.md</text><text class="s" x="672" y="202" text-anchor="middle">markers only</text>
+    <line class="ar thin" x1="794" y1="146" x2="794" y2="166"/><rect class="n art" x="740" y="166" width="108" height="48" rx="4"/><text class="s" x="794" y="186" text-anchor="middle">round reports</text><text class="s" x="794" y="202" text-anchor="middle">exceptions</text>
+    <line class="ar thin" x1="916" y1="146" x2="916" y2="166"/><rect class="n art" x="862" y="166" width="108" height="48" rx="4"/><text class="s" x="916" y="186" text-anchor="middle">frontmatter</text><text class="s" x="916" y="202" text-anchor="middle">+ provenance</text>
+    <line class="ar thin" x1="1038" y1="146" x2="1038" y2="166"/><rect class="n art" x="984" y="166" width="108" height="48" rx="4"/><text class="s" x="1038" y="186" text-anchor="middle">remnant, chrome</text><text class="s" x="1038" y="202" text-anchor="middle">vs waivers.yaml</text>
+    <line class="ar thin" x1="1160" y1="146" x2="1160" y2="166"/><rect class="n art" x="1106" y="166" width="108" height="48" rx="4"/><text class="s" x="1160" y="186" text-anchor="middle">act + run record</text><text class="s" x="1160" y="202" text-anchor="middle">+ waiver count</text>
+  </g>
+</svg>
+    </div>
+    <div class="legend"><span><i class="model"></i>model call (the lean <code>labeller</code> agent: Read and Write only)</span><span><i></i>script, no judgement</span><span><i class="acc"></i>the single corpus write gate</span></div>
+    <figcaption>The only model call in the whole path is the labeller. It answers with a label and a number per block, never with text. Everything to its right, including the rulings, is mechanical. Run as scripts: <code>reading/run.py</code> (prepare, dispatch, collect), the ladder in <code>reading/ladder.py</code>, then <code>reading/write.py</code>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>2. The ladder and the residue</h2>
+  <div class="prose"><p>The checks turn every failure into an exception on one block. The ladder gives each excepted block two more tries: its block goes back to the labeller, with the block before and the block after it. Whatever is still excepted after round 2 is the residue, and it is sorted by what another round could change.</p></div>
+  <figure id="f2">
+    <div class="scroll">
+<svg viewBox="0 0 1000 470" role="img" aria-label="The ladder: round 0 labels every section, rules and checks run, exceptions are re-labelled in rounds 1 and 2, and the residue splits into rule_needed, which becomes a ruling, and labeller_unsure, which goes to a whole-act read.">
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a2o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah ok" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah acc" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+  <rect class="n model" x="40" y="30" width="240" height="60" rx="6"/>
+  <text class="t" x="160" y="55" text-anchor="middle">Round 0: label every section</text>
+  <text class="s" x="160" y="74" text-anchor="middle">8 sections per labeller call</text>
+
+  <line class="ar" x1="160" y1="90" x2="160" y2="128" marker-end="url(#a2)"/>
+
+  <rect class="n" x="40" y="130" width="240" height="60" rx="6"/>
+  <text class="t" x="160" y="155" text-anchor="middle">Rules, then checks</text>
+  <text class="s" x="160" y="174" text-anchor="middle">rules.apply → checks.run_all</text>
+
+  <line class="ar" x1="160" y1="190" x2="160" y2="228" marker-end="url(#a2)"/>
+
+  <rect class="n" x="40" y="230" width="240" height="60" rx="6"/>
+  <text class="t" x="160" y="255" text-anchor="middle">Exceptions on blocks</text>
+  <text class="s" x="160" y="274" text-anchor="middle">coverage, text, numbering, nesting …</text>
+
+  <!-- exit to the write path -->
+  <line class="ar ok" x1="280" y1="152" x2="658" y2="152" marker-end="url(#a2o)"/>
+  <text class="al ok" x="470" y="145" text-anchor="middle">no blocking exception</text>
+  <rect class="n okb" x="660" y="130" width="280" height="60" rx="6"/>
+  <text class="t" x="800" y="155" text-anchor="middle">Read to no exception</text>
+  <text class="s" x="800" y="174" text-anchor="middle">staged.md → the write path</text>
+
+  <rect class="n" x="660" y="30" width="280" height="60" rx="6"/>
+  <text class="t" x="800" y="55" text-anchor="middle">Source findings, carried</text>
+  <text class="s" x="800" y="74" text-anchor="middle">malformed head, empty section, gaps</text>
+  <line class="ar thin" x1="800" y1="90" x2="800" y2="130"/>
+
+  <!-- re-label loop -->
+  <line class="ar acc" x1="280" y1="260" x2="358" y2="260" marker-end="url(#a2a)"/>
+  <text class="al acc" x="319" y="252" text-anchor="middle">round &lt; 2</text>
+  <rect class="n model" x="360" y="230" width="240" height="60" rx="6"/>
+  <text class="t" x="480" y="255" text-anchor="middle">Re-label block ± 1</text>
+  <text class="s" x="480" y="274" text-anchor="middle">25 re-labels per call</text>
+  <path class="ar acc" d="M480,230 V176 H282" marker-end="url(#a2a)"/>
+  <text class="al acc" x="488" y="212">answers merged</text>
+
+  <!-- residue -->
+  <line class="ar" x1="160" y1="290" x2="160" y2="328" marker-end="url(#a2)"/>
+  <text class="al" x="170" y="314">after round 2</text>
+  <rect class="n" x="40" y="330" width="240" height="60" rx="6"/>
+  <text class="t" x="160" y="355" text-anchor="middle">Residue</text>
+  <text class="s" x="160" y="374" text-anchor="middle">sorted by each round's own answers</text>
+
+  <line class="ar" x1="280" y1="345" x2="358" y2="345" marker-end="url(#a2)"/>
+  <path class="ar" d="M280,375 H320 V425 H358" marker-end="url(#a2)"/>
+
+  <rect class="n" x="360" y="320" width="240" height="50" rx="6"/>
+  <text class="t" x="480" y="341" text-anchor="middle">rule_needed</text>
+  <text class="s" x="480" y="359" text-anchor="middle">last two answers agree</text>
+  <rect class="n" x="360" y="400" width="240" height="50" rx="6"/>
+  <text class="t" x="480" y="421" text-anchor="middle">labeller_unsure</text>
+  <text class="s" x="480" y="439" text-anchor="middle">answers differ or are missing</text>
+
+  <line class="ar" x1="600" y1="345" x2="658" y2="345" marker-end="url(#a2)"/>
+  <line class="ar" x1="600" y1="425" x2="658" y2="425" marker-end="url(#a2)"/>
+
+  <rect class="n" x="660" y="320" width="280" height="50" rx="6"/>
+  <text class="t" x="800" y="341" text-anchor="middle">A ruling (D-072) and its test</text>
+  <text class="s" x="800" y="359" text-anchor="middle">written into rules.py or checks.py</text>
+  <rect class="n" x="660" y="400" width="280" height="50" rx="6"/>
+  <text class="t" x="800" y="421" text-anchor="middle">Whole-act read</text>
+  <text class="s" x="800" y="439" text-anchor="middle">a Fable model or the owner; judgement blocks</text>
+
+  <path class="ar acc" d="M940,345 H980 V110 H240 V128" marker-end="url(#a2a)"/>
+  <text class="al acc" x="610" y="104" text-anchor="middle">a rule, not another round: re-run rules and checks over the same answers</text>
+</svg>
+    </div>
+    <figcaption>If a block's last two answers agree, the labeller holds its reading and the checks refuse it, so a third round would change nothing. That calls for a rule. Before the rulings, the 50 acts left 148 residue blocks: 128 <code>rule_needed</code> and 20 <code>labeller_unsure</code>. All 148 were settled by the 13 rulings and the session's reading of the judgement blocks, and no block was labelled again. After that the 50 acts carry no exception. The exceptions that do not block a write are listed in <code>ladder.SOURCE_FINDINGS</code>: what the page itself carries, recorded and never repaired.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>3. The write path, one act at a time</h2>
+  <div class="prose"><p><code>write_staged(slug, run_dir)</code> trusts nothing it finds in the run folder. It reads the page again, splits it again, assembles the body again and checks it again, and only then builds the frontmatter and calls the gate. A failure at any step stops that act and touches nothing else.</p></div>
+  <figure id="f3">
+    <div class="scroll">
+<svg viewBox="0 0 1000 712" role="img" aria-label="Nine steps of the write path, with refusals before the gate, an unchanged exit, a refusal at the gate that restores the waiver, and the commit with four trailers.">
+  <defs>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a3b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah bad" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+
+  <!-- main column -->
+  <rect class="n" x="40" y="20" width="480" height="52" rx="6"/><text class="t" x="60" y="42">1 · The page against its hash</text><text class="s" x="60" y="60">raw/{id}.html, its SHA-256 equal to the manifest line</text>
+  <rect class="n" x="40" y="94" width="480" height="52" rx="6"/><text class="t" x="60" y="116">2 · Split again</text><text class="s" x="60" y="134">the blocks equal the run's blocks.json</text>
+  <rect class="n" x="40" y="168" width="480" height="52" rx="6"/><text class="t" x="60" y="190">3 · Rules and checks again</text><text class="s" x="60" y="208">ladder.evaluate over map.json; only source findings may remain</text>
+  <rect class="n" x="40" y="242" width="480" height="52" rx="6"/><text class="t" x="60" y="264">4 · The same body</text><text class="s" x="60" y="282">the assembled body equals the run's staged.md</text>
+  <rect class="n" x="40" y="316" width="480" height="52" rx="6"/><text class="t" x="60" y="338">5 · Frontmatter as the refresh path builds it</text><text class="s" x="60" y="356">MetadataParser over the page, merge_preserved; a repealed act stays repealed</text>
+  <rect class="n" x="40" y="390" width="480" height="52" rx="6"/><text class="t" x="60" y="412">6 · Classify the change</text><text class="s" x="60" y="430">[reforma] if the amendment list grew, [popravka] otherwise</text>
+  <rect class="n" x="40" y="464" width="480" height="52" rx="6"/><text class="t" x="60" y="486">7 · Lower the waivers</text><text class="s" x="60" y="504">each gated check's per-act count, down to what the new text carries</text>
+  <rect class="n acc" x="40" y="538" width="480" height="52" rx="6"/><text class="t" x="60" y="560">8 · corpus_gate.write_act</text><text class="s" x="60" y="578">render_act, then RemnantCheck and ChromeCheck against waivers.yaml</text>
+  <rect class="n okb" x="40" y="612" width="480" height="86" rx="6"/><text class="t" x="60" y="634">9 · One commit</text><text class="s" x="60" y="652">the act, map.json, report-round0…2.json, waivers.yaml if lowered</text><text class="s" x="60" y="670">author date = Source-Date (legislative); committer date real</text><text class="s" x="60" y="688">no session lines: pipeline act commits carry the trailers only</text>
+
+  <g>
+    <line class="ar" x1="280" y1="72" x2="280" y2="92" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="146" x2="280" y2="166" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="220" x2="280" y2="240" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="294" x2="280" y2="314" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="368" x2="280" y2="388" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="442" x2="280" y2="462" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="516" x2="280" y2="536" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="590" x2="280" y2="610" marker-end="url(#a3)"/>
+  </g>
+
+  <!-- refusals before the gate -->
+  <rect class="n badb" x="600" y="20" width="370" height="274" rx="6"/>
+  <text class="t" x="620" y="42" style="fill:var(--bad)">Refused before the gate</text>
+  <text class="s" x="620" y="60">WriteRefused: nothing written, nothing committed</text>
+  <line class="ar bad" x1="520" y1="120" x2="598" y2="120" marker-end="url(#a3b)"/>
+  <text class="s" x="620" y="124">the page splits into other blocks</text>
+  <line class="ar bad" x1="520" y1="194" x2="598" y2="194" marker-end="url(#a3b)"/>
+  <text class="s" x="620" y="198">exception(s) on the page (kind, first block)</text>
+  <line class="ar bad" x1="520" y1="268" x2="598" y2="268" marker-end="url(#a3b)"/>
+  <text class="s" x="620" y="272">the body differs from staged.md</text>
+  <path class="ar bad" d="M520,46 H560 V84 H598" marker-end="url(#a3b)"/>
+  <text class="s" x="620" y="88">the page differs from its manifest line</text>
+
+  <!-- provenance -->
+  <line class="ar thin" x1="520" y1="342" x2="600" y2="342"/>
+  <rect class="n" x="600" y="316" width="370" height="52" rx="6"/>
+  <text class="m" x="616" y="338">provenance: base · record · omissions</text>
+  <text class="s" x="616" y="356">page hash and fetch time; run, map and blocks hashes</text>
+
+  <!-- unchanged -->
+  <line class="ar" x1="520" y1="416" x2="598" y2="416" marker-end="url(#a3)"/>
+  <rect class="n" x="600" y="390" width="370" height="52" rx="6"/>
+  <text class="t" x="616" y="412">Unchanged: no write, no commit</text>
+  <text class="s" x="616" y="430">the final pass over all 50: 50 unchanged, 0 refused</text>
+
+  <!-- waivers -->
+  <line class="ar thin" x1="520" y1="490" x2="600" y2="490"/>
+  <rect class="n" x="600" y="464" width="370" height="52" rx="6"/>
+  <text class="t" x="616" y="486">W-002 80 → 61 acts · W-003 1 → 0</text>
+  <text class="s" x="616" y="504">only a waiver that expires per act is lowered</text>
+
+  <!-- gate refusal -->
+  <line class="ar bad" x1="520" y1="564" x2="598" y2="564" marker-end="url(#a3b)"/>
+  <rect class="n badb" x="600" y="538" width="370" height="52" rx="6"/>
+  <text class="t" x="616" y="560" style="fill:var(--bad)">Gate refuses: file and waiver unchanged</text>
+  <text class="s" x="616" y="578">seen once: naredba-5, a stale W-003 → lowering generalised</text>
+
+  <!-- commit message -->
+  <line class="ar thin" x1="520" y1="655" x2="600" y2="655"/>
+  <rect class="n" x="600" y="612" width="370" height="86" rx="6"/>
+  <text class="m" x="614" y="632">[popravka] ЗАКОН ЗА ОБЩИНСКАТА СОБСТВЕНОСТ</text>
+  <text class="m" x="614" y="649">Source-Id: lexbg-2133874691</text>
+  <text class="m" x="614" y="664">Source-Date: 2021-02-26</text>
+  <text class="m" x="614" y="679">Norm-Id: 2133874691</text>
+  <text class="m" x="614" y="694">Record-Id: structure-map-…/89929ef64224</text>
+</svg>
+    </div>
+    <figcaption>The gate is the only code that writes a corpus file; an AST scan in the tests fails any other module that tries. A refused act leaves the corpus file, the waiver file and git exactly as they were. The Record-Id is the run, the act's slug and the first 12 characters of the map's SHA-256, so the commit names the exact map it was built from. The full <code>Record-Id</code> here is <span class="mono">structure-map-2026-10-22/zakon-za-obshtinskata-sobstvenost/89929ef64224</span>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>4. What a written act leaves in git</h2>
+  <div class="prose"><p>The run record (D-073) goes into the same commit as the act, so anyone can rebuild the body from the page and check that the result matches. Files that can be rebuilt stay out of git.</p></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>File</th><th>In git</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><code>laws/…/{slug}.md</code></td><td><span class="pill in">committed</span></td><td>The act, with the 8 mandatory fields, <code>amendment_history</code> from the page and the <code>provenance</code> block.</td></tr>
+      <tr><td><code>data/runs/…/{slug}/map.json</code></td><td><span class="pill in">committed</span></td><td>The labeller's labels per block, the one input that a model produced. Its hash is in the Record-Id.</td></tr>
+      <tr><td><code>report-round0…2.json</code></td><td><span class="pill in">committed</span></td><td>What the checks found in each round, so the exceptions and their resolution can be re-checked.</td></tr>
+      <tr><td><code>docs/data/waivers.yaml</code></td><td><span class="pill in">when lowered</span></td><td>An act that leaves a waiver does so in its own commit; equality between the waiver and the act is the contract.</td></tr>
+      <tr><td><code>data/raw/lexbg/{id}.html</code></td><td><span class="pill out">raw store</span></td><td>The page is kept by its hash in the raw store, and <code>provenance.base.page_sha256</code> points to it.</td></tr>
+      <tr><td><code>blocks.json</code>, <code>tasks/</code>, <code>calls/</code>, <code>staged.md</code>, <code>diff.txt</code></td><td><span class="pill out">run folder</span></td><td>The splitter rebuilds the blocks from the page, and the write path rebuilds and compares the body. Its hash is in <code>provenance.record.blocks_sha256</code>.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>5. What remains</h2>
+  <div class="prose"><p>The 50 acts are as far as this stage goes: each one is read, parsed and committed. The remaining steps take the same path to the rest of the corpus, and then replace lex.bg with the State Gazette (Държавен вестник) as the source.</p></div>
+  <div class="steps">
+    <div class="step"><span class="pill now">now</span><h3>Owner's review of the draft pull request</h3><p>A Sonnet review of the write path, its tests and D-072/D-073 found four major and three minor defects in the rollback and the pass. All four majors are fixed and confirmed closed by the reviewer, and two of the minors are fixed with a test each. The work sits in draft pull request #48 onto the plan branch. Only the owner merges.</p></div>
+    <div class="step"><span class="pill next">plan step 7</span><h3>The audit of the remaining 3,574 acts</h3><p>The same ladder and write path, in batches the owner approves one at a time. Each new form a batch turns up becomes a ruling and its test, not another round.</p></div>
+    <div class="step"><span class="pill next">W-002</span><h3>61 acts still waived for tag remnants</h3><p>633 remnants remain. Each act leaves the waiver in its own commit once it has been read, as the 19 acts here did.</p></div>
+    <div class="step"><span class="pill next">plan step 5</span><h3>The Gazette path and the catch-up</h3><p>Split each Gazette material, attribute it to an act, turn its instructions into operations, then apply and check them. Divergences from lex.bg are recorded and settled as data.</p></div>
+    <div class="step"><span class="pill next">plan step 8</span><h3>The daily loop</h3><p>A declared scheduled loop: the new Gazette issues since the last ledger mark, one pull request per run. Supervised first, then active.</p></div>
+    <div class="step"><span class="pill next">plan step 9</span><h3>The backfill, 2003 to 2026</h3><p>The chain of HTML-era Gazette materials, attributed and applied through the run driver. This stage ends when lex.bg is no longer needed as a source.</p></div>
+  </div>
+</section>
+
+</div>
