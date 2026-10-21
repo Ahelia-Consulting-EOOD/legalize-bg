@@ -275,6 +275,40 @@ def test_a_non_integrity_error_at_the_gate_restores_the_waiver(tmp_path, monkeyp
     assert (root / "docs" / "data" / "waivers.yaml").read_bytes() == waivers_before
 
 
+def test_a_failed_rollback_of_the_act_still_restores_the_waiver(tmp_path, monkeypatch):
+    root, run_dir, raw_dir = _setup(tmp_path, waived=2)
+    waivers_before = (root / "docs" / "data" / "waivers.yaml").read_bytes()
+    import reading.write as w
+    real = w._git
+
+    def failing(r, *args, **kw):
+        if args[0] in ("commit", "checkout"):
+            raise subprocess.CalledProcessError(1, ["git", args[0]])
+        return real(r, *args, **kw)
+    monkeypatch.setattr(w, "_git", failing)
+    with pytest.raises(subprocess.CalledProcessError):
+        _write(root, run_dir, raw_dir)
+    assert (root / "docs" / "data" / "waivers.yaml").read_bytes() == waivers_before
+
+
+def test_a_failure_while_lowering_the_waiver_puts_it_back(tmp_path, monkeypatch):
+    root, run_dir, raw_dir = _setup(tmp_path, waived=2)
+    waivers_before = (root / "docs" / "data" / "waivers.yaml").read_bytes()
+    import reading.write as w
+    real = w.waiver_count.lower_count
+    calls = []
+
+    def second_fails(*a, **kw):
+        calls.append(a)
+        if len(calls) > 1:
+            raise OSError("disk full")
+        return real(*a, **kw)
+    monkeypatch.setattr(w.waiver_count, "lower_count", second_fails)
+    with pytest.raises(OSError):
+        _write(root, run_dir, raw_dir)
+    assert (root / "docs" / "data" / "waivers.yaml").read_bytes() == waivers_before
+
+
 def test_an_uncommitted_act_is_refused_before_anything_changes(tmp_path):
     root, run_dir, raw_dir = _setup(tmp_path)
     act = root / "laws" / f"{SLUG}.md"

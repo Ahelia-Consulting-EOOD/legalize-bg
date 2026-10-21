@@ -192,10 +192,10 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
 
     record = [run_dir / "map.json", *sorted(run_dir.glob("report-round*.json"))]
     files = [_rel(root, f) for f in [path, *record]]
-    before = _lower_waivers(waivers_path, slug, path, text)
-    lowered = before is not None
-    written = False
+    before = waivers_path.read_text(encoding="utf-8")  # read once, so any failure below can put it back
+    lowered = written = False
     try:
+        lowered = _lower_waivers(waivers_path, slug, path, text) is not None
         write_act(path, meta, body, source=SourceRef("lexbg", doc_id), waivers_path=waivers_path)
         written = True
         if not commit:
@@ -214,12 +214,14 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
             env["GIT_AUTHOR_DATE"] = author_date  # the legislative date; the committer date stays real (D-048)
         _git(root, "commit", "-m", message, "--", *files, env=env)
     except BaseException:
-        if commit:
-            subprocess.run(["git", "reset", "-q", "--", *files], cwd=root, capture_output=True)
-            if written:
-                _git(root, "checkout", "HEAD", "--", _rel(root, path))  # the committed act, as the check above found it
-        if lowered:
-            waiver_count.restore(waivers_path, before)
+        try:
+            if commit:
+                subprocess.run(["git", "reset", "-q", "--", *files], cwd=root, capture_output=True)
+                if written:
+                    _git(root, "checkout", "HEAD", "--", _rel(root, path))  # the committed act, as the check above found it
+        finally:
+            if waivers_path.read_text(encoding="utf-8") != before:  # also when a second check failed after a first lowered it
+                waiver_count.restore(waivers_path, before)
         raise
     return Written(slug, commit_type, record_id, _git(root, "rev-parse", "--short", "HEAD"))
 
