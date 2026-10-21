@@ -223,7 +223,8 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
         elif label not in _OPENERS and label not in _HEADINGS and label not in ("drop", "editorial_note", "repeal_note") and _PROVISION_LIKE.match(tn):
             ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"{label} on a line that opens like a provision: {t[:40]!r}"})
         if label != "quoted":
-            run_open = False
+            # an amending line may itself open the quotation ('… се заменят със "съотношение, както следва:') and leave it open
+            run_open = len(_QUOTE_MARKS.findall(t)) % 2 == 1
         if label == "annex_heading":
             in_annex = True
     prev_heading: int | None = None

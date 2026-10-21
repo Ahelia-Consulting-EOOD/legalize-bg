@@ -387,7 +387,8 @@ def test_fifth_review_sub_letters_superscripts_elisions_quoted_chapters_and_nest
                 "Преходни и Заключителни разпоредби", "§ 1. В Закона:", "1. Създава се глава трета \"а\":",
                 '"Глава трета "а"', "ПРОИЗВОДСТВО ЗА ВРЪЩАНЕ", "Чл. 22а. (1) Молбата.", "(2) Текст.", 'Чл. 22б. Съдът."',
                 "2. В чл. 25 се създава т. 5:", '"5. в случаите."',
-                "§ 2. В Кодекса:", ". . . . . . . . . . . . . . . . . .", "5. Навсякъде думите се заменят.", "6. В останалите текстове."])
+                "§ 2. В Кодекса:", ". . . . . . . . . . . . . . . . . .", "5. Навсякъде думите се заменят.", "6. В останалите текстове.",
+                '7. В чл. 20 думите "7:1" се заменят със "съотношение, както следва:', "а) за 2000 г. - 80:20;", 'б) за 2002 г. - 75:25."', "8. Член 109 се отменя."])
     smap = {0: {"label": "title"}, 1: {"label": "drop", "note": "lex.bg link to a correspondence table"},
             2: {"label": "article_head", "n": "1"}, 3: {"label": "item", "n": "1"}, 4: {"label": "letter", "n": "а"},
             5: {"label": "letter", "n": "аа"}, 6: {"label": "letter", "n": "бб"}, 7: {"label": "letter", "n": "ааа"}, 8: {"label": "letter", "n": "ббб"},
@@ -398,7 +399,8 @@ def test_fifth_review_sub_letters_superscripts_elisions_quoted_chapters_and_nest
             21: {"label": "provisions_heading"}, 22: {"label": "paragraph_sign", "n": "1"}, 23: {"label": "item", "n": "1"}}
     smap.update({i: {"label": "quoted"} for i in range(24, 29)})
     smap.update({29: {"label": "item", "n": "2"}, 30: {"label": "quoted"}, 31: {"label": "paragraph_sign", "n": "2"},
-                 32: {"label": "editorial_note"}, 33: {"label": "item", "n": "5"}, 34: {"label": "item", "n": "6"}})
+                 32: {"label": "editorial_note"}, 33: {"label": "item", "n": "5"}, 34: {"label": "item", "n": "6"},
+                 35: {"label": "item", "n": "7"}, 36: {"label": "quoted"}, 37: {"label": "quoted"}, 38: {"label": "item", "n": "8"}})
     _, ex = run_all(act.blocks, smap)
     kinds = {e["kind"] for e in ex}
     assert not kinds & {"letter_order", "item_order", "alinea_order", "label_text_mismatch", "drop_inside_act", "article_gap"}, ex
