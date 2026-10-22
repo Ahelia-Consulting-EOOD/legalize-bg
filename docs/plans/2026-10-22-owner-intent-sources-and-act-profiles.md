@@ -82,7 +82,18 @@
 - Decisions D-038 and D-039 (21 June 2026) record that lex.bg and APIS both claim a database right over their collections. The project fetches only the legislative texts, which are in the public domain, and builds its own structure from them, reusing none of a provider's database.
 - A paid subscription would cost money, and its terms of use would need reading against D-039. Both are the owner's to decide.
 
+## The owner's agreement of 22 October 2026, and the next set of work
+
+Later the same day the owner agreed with the record above and set the first two tasks of the next set of work, in this order. As above, these are readings.
+
+**A. A kept exceptions list comes first.** Some acts must be taken from a source other than lex.bg, so the project keeps a list of them, each with its source and the reason. Today two such acts exist with nothing to mark them: Указ № 883, taken from strategy.bg, and the Закон за обществения транспорт, whose lex.bg text lacks § 1.
+
+**B. Then the full fetch of the Закон за обществения транспорт from the State Gazette.** The owner uses this act in daily work, so its text must be right first. "Full" means the act as promulgated (ДВ бр. 32 от 1.4.2026 г., material 242220) and every later Gazette material that amends it. The Gazette index in `data/dv/materials.jsonl` reaches бр. 96/2026 and lists no amendment of it, so today the act as promulgated is the whole text; the fetch checks again for issues after бр. 96.
+
+The proposed steps to build both, and the later steps for the rest of the record, are in the diagram `docs/plans/2026-10-22-reading-write-path-diagram.html`, section 6. They are a proposal: the owner's agreement turns them into a plan.
+
 ## Still open for the owner
 
-- **Points 1 to 10 as a whole** are the agreed starting point; "what needs to be done" is the next step.
+- **The proposed steps** in the diagram's section 6, for agreement.
 - **Point 10's subscription** (service, length, cost) is a spending decision for the owner.
+- **The frontmatter of an act taken from the Gazette** (`fuente`, `identificador`, the provenance base) is a protected surface of the project, so it goes through the project's preflight before step S2 writes it.
