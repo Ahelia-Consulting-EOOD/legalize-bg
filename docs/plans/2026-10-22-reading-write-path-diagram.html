@@ -113,11 +113,14 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 <section>
   <h2>1. The planned way of work</h2>
   <div class="prose"><p>Two things change in the path. Before an act is read, its source is decided: every act not on the exceptions list is read from lex.bg as today. An act on the list is investigated first, to name its defect and the source that holds it right, and its source route then fetches that text. After the reading, a content check finds any act that has lost text and sends it to the list and into its route, instead of writing it. The witnesses show where the text differs from lex.bg and from the Ministry of Justice portal, and each difference is settled and recorded. Every branch ends in the same place: the correct act, committed through the gate. The register of act profiles and the inventory of lex.bg's defects bring more acts to the list and order the audit.</p>
+  <p>Every route is bounded. It runs only as far as it knows what to do, and stops at a fixed point: when its known steps are used up, when a step changes nothing, or when the next step is not defined. Where it stops without a correct act, it writes a case file for that act: the exception, what was tried, the lessons learnt and a proposal. The owner reads the case files of a run together, at the run's end, and the decision becomes a ruling, a rule or a new route; then the act goes through its route again. No loop runs on toward the goal past that point.</p>
   <p>The routes may become a project skill for updating this repository, so that any session can run them the same way. When the work is published, the same routes are developed into a harness.</p></div>
   <figure id="f0">
     <div class="scroll">
-<svg viewBox="0 0 1420 420" role="img" aria-label="The planned path: an act is looked up in the exceptions list. Not listed, it is read from lex.bg. Listed, an investigation names its defect and source, and its source route fetches the text. Both go through the same reading, a content check that puts an act with lost text on the list, a witness comparison, the write gate and the commit of a correct act. The defect inventory and the act profiles propose acts for the list, and the profiles order the audit batches.">
+<svg viewBox="0 0 1420 490" role="img" aria-label="The planned path: an act is looked up in the exceptions list. Not listed, it is read from lex.bg. Listed, an investigation names its defect and source, and its source route fetches the text. Both go through the same reading, a content check that puts an act with lost text on the list, a witness comparison, the write gate and the commit of a correct act. The defect inventory and the act profiles propose acts for the list, and the profiles order the audit batches. Where a step stops without a correct act, it writes a case file that the owner reads; the owner's decision updates the routes and the act re-enters its route.">
   <defs>
+    <marker id="a0b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah bad" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a0a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah acc" d="M0,0 L10,5 L0,10 z"/></marker>
     <marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
     <marker id="a0p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah plan" d="M0,0 L10,5 L0,10 z"/></marker>
   </defs>
@@ -165,10 +168,21 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
   <line class="ar plan" x1="326" y1="370" x2="724" y2="370" marker-end="url(#a0p)"/>
   <text class="al plan" x="526" y="362" text-anchor="middle">orders the batches</text>
   <line class="ar plan" x1="796" y1="340" x2="796" y2="192" marker-end="url(#a0p)"/>
+
+  <!-- the bounded stop: a case file, the owner, the act back into its route -->
+  <rect class="n badb" x="906" y="250" width="140" height="60" rx="6"/><text class="t" x="976" y="275" text-anchor="middle">Case file</text><text class="s" x="976" y="293" text-anchor="middle">lessons, proposal</text><text class="tag" x="1038" y="264" text-anchor="end">S0</text>
+  <line class="ar bad" x1="976" y1="190" x2="976" y2="248" marker-end="url(#a0b)"/>
+  <text class="al bad" x="984" y="226">bounded stop</text>
+  <path class="ar bad" d="M1156,190 V280 H1048" marker-end="url(#a0b)"/>
+  <rect class="n" x="906" y="416" width="140" height="60" rx="6"/><text class="t" x="976" y="441" text-anchor="middle">Owner</text><text class="s" x="976" y="459" text-anchor="middle">checks, decides</text>
+  <line class="ar" x1="976" y1="310" x2="976" y2="414" marker-end="url(#a0)"/>
+  <text class="al" x="984" y="364">one batch per run</text>
+  <path class="ar acc" d="M906,446 H436 V282" marker-end="url(#a0a)"/>
+  <text class="al acc" x="670" y="438" text-anchor="middle">routes updated; the act re-enters its route</text>
 </svg>
     </div>
     <div class="legend"><span><i></i>built, no judgement</span><span><i class="model"></i>built, model call (the <code>labeller</code>)</span><span><i class="acc"></i>the single corpus write gate</span><span><i class="plan"></i>planned, with its proposed step</span></div>
-    <figcaption>No branch ends at the list. An act on it with no route yet, or whose route has not yet committed it, is counted as distance left. The reading step stays the same for every source: one labeller, one ladder, one write gate. The exceptions list has a fixed form, so its checks are mechanical and block: an act on the list is refused on the lex.bg path, and an entry without a route fails. What a source's text says, and whether a difference from a witness is the source's error or lex.bg's, is a reading of free text: a model run decides it in the investigation and at the witnesses, and the decision is recorded as data. Scripts do the fetching.</figcaption>
+    <figcaption>No branch ends at the list: an act ends committed, or stopped with a case file that the owner reads. An act with no route yet, or whose route has not yet committed it, is counted as distance left. The stop is drawn from the content check and the witnesses; every step of a route stops the same way. The reading step stays the same for every source: one labeller, one ladder, one write gate. The exceptions list has a fixed form, so its checks are mechanical and block: an act on the list is refused on the lex.bg path, and an entry without a route fails. What a source's text says, and whether a difference from a witness is the source's error or lex.bg's, is a reading of free text: a model run decides it in the investigation and at the witnesses, and the decision is recorded as data. Scripts do the fetching.</figcaption>
   </figure>
 </section>
 
@@ -418,34 +432,43 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 
 <section>
   <h2>6. Proposed steps to build it</h2>
-  <div class="prose"><p>The owner set the first two: the exceptions list, then the full fetch of the Закон за обществения транспорт from the Gazette, because the owner uses that act every day. The other four carry the rest of the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>). Steps S3 and S4 can run side by side after S2; S5 needs S4's list of acts begun before the archive, and S6 needs S4's profiles. Each step ends with acts committed correct in git, or says why it commits none.</p></div>
+  <div class="prose"><p>The owner set the first two: the exceptions list, then the full fetch of the Закон за обществения транспорт from the Gazette, because the owner uses that act every day. The bounds (S0) come with the first route, since every route needs them. The other four carry the rest of the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>). Steps S3 and S4 can run side by side after S2; S5 needs S4's list of acts begun before the archive, and S6 needs S4's profiles. Each step ends with acts committed correct in git, or says why it commits none.</p></div>
   <div class="steps">
+    <div class="step"><span class="pill plan">S0 · with S1</span><h3>Bounds and case files, for every route</h3>
+      <ul>
+        <li>A route stops at its known end: the ladder after round 2, an investigation after one run (a second only on new evidence), a source route after one fetch per source.</li>
+        <li>It stops earlier when a step changes nothing (the same answer twice, as the ladder's <code>rule_needed</code> already does) or when the next step is not defined (no route yet for this defect or this era).</li>
+        <li>Never: a third round, the same step again on the same inputs, an edit made so that a check passes.</li>
+        <li>On a stop, a case file per act in git: the exception, what was tried with its evidence, the lessons learnt, the proposal. Its form is fixed, so a check refuses a stopped act without one.</li>
+        <li>The owner reads a run's case files together at its end, not one act at a time during the run; no run goes on past its bound.</li>
+      </ul>
+      <p class="done"><b>Done when</b> the bounds are in the route driver with tests, and the case-file form is checked. It commits no act itself.</p></div>
     <div class="step"><span class="pill plan">S1 · first</span><h3>The exceptions list and its routes</h3>
       <ul>
         <li>A data file, <code>docs/data/source-exceptions.yaml</code>: per act its slug, its defect, the source and the source's address, the route that commits it, the evidence (a decision or audit) and where it stands (listed, investigated, committed).</li>
         <li>Mechanical checks, because the form is fixed: the file loads against its schema; every entry names a route; the write path refuses a listed act on the lex.bg path; a report prints each entry's distance to its commit.</li>
         <li>The investigation: a lean project agent reads what the scripts fetched for a listed act and records its defect, its source and its route as data.</li>
         <li>The content check: an empty section or other lost text sends the act to the list and into its route, instead of writing it. This changes D-072 ruling 7 for that finding.</li>
-        <li>First entries: the transport law and the Закон за прозрачност при представителство на интереси (the same dropped § 1; route: the Gazette, S2), and Указ № 883 (today from strategy.bg; route: a source before the archive, S5).</li>
+        <li>First entries: the transport law (dropped § 1; route: the Gazette, S2); the Закон за прозрачност при представителство на интереси (the same dropped § 1, but amended in ДВ бр. 55/2026, so its route is the history of plan step 5, not built yet: a case file says so); Указ № 883 (today from strategy.bg; route: a source before the archive, S5).</li>
       </ul>
       <p class="done"><b>Done when</b> the list is committed with its tests, every entry names its route, and a write of the transport law from lex.bg is refused by name. S1 commits no act itself; S2 is its first route.</p></div>
     <div class="step"><span class="pill plan">S2 · second</span><h3>The transport law in full from the Gazette</h3>
       <ul>
-        <li>Fetch the act as promulgated, ДВ бр. 32 от 1.4.2026 г., material 242220, through <code>fetcher/dv</code>, and keep the page by its hash in a Gazette raw store.</li>
-        <li>Look for amendments: the Gazette index reaches бр. 96/2026 and lists none, so bring it up to the latest issue and fetch any amending material too.</li>
+        <li>Why this act can go first: the Gazette publishes an amendment as a list of changes, not a new text, so an amended act needs its history built (plan step 5, not built). This act has never been amended, so the text as promulgated, ДВ бр. 32 от 1.4.2026 г., material 242220, is the whole act.</li>
+        <li>Make sure of that: an amendment in another act's final provisions does not carry this act's title, so search the text of every Gazette material since бр. 32/2026 for its name, up to the latest issue. If one turns up, S2 stops with a case file: the act then needs plan step 5.</li>
+        <li>Fetch the material through <code>fetcher/dv</code> and keep the page by its hash in a Gazette raw store.</li>
         <li>A splitter for the Gazette's material page, then the same labeller, ladder and checks.</li>
         <li>Compare with lex.bg and with the Ministry of Justice portal if it carries the act. Every difference is settled and recorded: § 1 restored, lex.bg's notes and dashes, its „и“ for „й“.</li>
         <li>A preflight for the frontmatter, a protected surface: <code>fuente</code>, the identifier and the provenance base for a Gazette text.</li>
-        <li>Then the Закон за прозрачност при представителство на интереси through the same route.</li>
       </ul>
-      <p class="done"><b>Done when</b> both acts are committed correct: the transport law with § 1 and its twelve definitions, <code>Source-Id: dv-242220</code>, each with its list of settled differences, and both list entries say committed.</p></div>
+      <p class="done"><b>Done when</b> the act is committed correct with § 1 and its twelve definitions, <code>Source-Id: dv-242220</code>, its list of settled differences, and its list entry says committed; or, if the search finds an amendment, when its case file is committed.</p></div>
     <div class="step"><span class="pill next">S3</span><h3>What lex.bg gets wrong</h3>
       <ul>
         <li>Run the dropped-section detector (FR-042) over every raw page, and check its 103 candidates against the Gazette.</li>
         <li>For a sample of acts in each profile from S4, compare lex.bg with the Gazette and name each kind of content error found, as distinct from formatting.</li>
         <li>Each kind gets its evidence and its detector where the form allows one.</li>
       </ul>
-      <p class="done"><b>Done when</b> a register of lex.bg's error kinds is committed, and every act confirmed wrong is committed correct from its route; an act whose route is not built yet is counted as distance.</p></div>
+      <p class="done"><b>Done when</b> a register of lex.bg's error kinds is committed, and every act confirmed wrong is committed correct from its route or stopped with a case file. Most such acts have been amended, so most need plan step 5's history route.</p></div>
     <div class="step"><span class="pill next">S4</span><h3>A profile of every act</h3>
       <ul>
         <li>Per act: its kind, its Gazette era (HTML from 2003, PDF 1989–2002, before 1989), its grade, its layout features (tables, annexes, images, unnumbered paragraphs), its known defects and its source.</li>
@@ -465,14 +488,14 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
         <li>The remaining 3,574 acts, in batches of one profile each, each batch agreed with the owner.</li>
         <li>A new form becomes a ruling and its test; an act with lost text goes on the list and into its route.</li>
       </ul>
-      <p class="done"><b>Done when</b> every act is committed correct through the gate, from lex.bg or from its route.</p></div>
+      <p class="done"><b>Done when</b> every act is committed correct through the gate, from lex.bg or from its route, or stopped with a case file the owner has read.</p></div>
     <div class="step"><span class="pill out">parked</span><h3>Whether the Legalize format suits this corpus</h3><p>Recorded for later and kept out of these steps (<code>docs/followups/2026-10-22-legalize-format-suitability.md</code>).</p></div>
   </div>
 </section>
 
 <section>
-  <h2>7. After these steps</h2>
-  <div class="prose"><p>The write path is in draft pull request #48, onto the plan branch; only the owner merges it. After the six steps, the rest of the plan of 21 October continues: the transport law in S2 is the Gazette path's first act, with no amendment to apply.</p></div>
+  <h2>7. Beyond these steps</h2>
+  <div class="prose"><p>The write path is in draft pull request #48, onto the plan branch; only the owner merges it. The transport law in S2 is the Gazette path's first act, and the only kind it can do without history: a text never amended. Most acts on the list will have been amended, so plan step 5, below, is what brings them to git; it should follow S2 directly rather than wait for S3 to S6.</p></div>
   <div class="steps">
     <div class="step"><span class="pill next">plan step 5</span><h3>The Gazette path and the catch-up</h3><p>Split each Gazette material, attribute it to an act, turn its instructions into operations, then apply and check them. Differences from lex.bg are recorded and settled as data.</p></div>
     <div class="step"><span class="pill next">plan step 8</span><h3>The daily loop</h3><p>A declared scheduled loop: the new Gazette issues since the last ledger mark, one pull request per run. Supervised first, then active.</p></div>
