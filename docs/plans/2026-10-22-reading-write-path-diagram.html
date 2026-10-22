@@ -44,7 +44,7 @@ code, .mono { font-family: var(--mono); font-size: .88em; }
 figure { margin: 0; display: grid; gap: 10px; }
 .scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
 .scroll svg { display: block; width: 100%; height: auto; }
-#f0 svg { min-width: 1040px; } #f1 svg { min-width: 980px; } #f2 svg { min-width: 760px; } #f3 svg { min-width: 760px; }
+#f0 svg { min-width: 1180px; } #f1 svg { min-width: 980px; } #f2 svg { min-width: 760px; } #f3 svg { min-width: 760px; }
 figcaption { color: var(--muted); font-size: 14px; max-width: 80ch; }
 
 /* SVG roles, styled from the page tokens so both themes read */
@@ -100,7 +100,7 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
   <div class="eyebrow">legalize-bg · branch claude/run-design-ab4d70 · 22 October 2026</div>
   <h1>How an act reaches the corpus: as built, and as planned next</h1>
   <p>Fifty acts have come all the way from their lex.bg page to a commit in git, through the reading path and the single write gate. That path copies lex.bg's text character for character and judges only formatting, so an act that lex.bg holds wrong reaches git looking right. The Закон за обществения транспорт did exactly that: it was committed again with its additional provision, § 1 and its twelve definitions, missing.</p>
-  <p>Section 1 shows the way of work planned next, agreed with the owner on 22 October 2026: every act is first looked up in a kept list of exceptions, an act on that list is read from the source the list names, and lost text holds a write instead of passing. Sections 2 to 5 show the path as built. Section 6 proposes the steps to build the plan, starting with the exceptions list and then the full fetch of the transport law from the State Gazette (Държавен вестник).</p>
+  <p>Section 1 shows the way of work planned next, agreed with the owner on 22 October 2026. Every act is first looked up in a kept list of exceptions. An act on that list is investigated and read from the source the list names, and an act found with lost text goes on the list. Being on the list is not an outcome: every listed act has a route that ends with the act committed correct in git, and only such acts count as done. Sections 2 to 5 show the path as built. Section 6 proposes the steps to build the plan, starting with the exceptions list and then the full fetch of the transport law from the State Gazette (Държавен вестник).</p>
   <div class="status">
     <div class="stat ok"><b>50 of 50</b><span>read acts committed</span></div>
     <div class="stat"><b>3</b><span>acts known to need another source</span></div>
@@ -112,60 +112,63 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 
 <section>
   <h2>1. The planned way of work</h2>
-  <div class="prose"><p>Two things change in the path. Before an act is read, its source is decided: an act on the exceptions list is taken from the source the list names, every other act from lex.bg as today. After it is read, a content check holds any act that has lost text, and proposes it for the list. The witnesses then show where the text differs from lex.bg and from the Ministry of Justice portal; each difference is settled and recorded. The register of act profiles and the inventory of lex.bg's defects feed the list and order the audit.</p></div>
+  <div class="prose"><p>Two things change in the path. Before an act is read, its source is decided: every act not on the exceptions list is read from lex.bg as today. An act on the list is investigated first, to name its defect and the source that holds it right, and its source route then fetches that text. After the reading, a content check finds any act that has lost text and sends it to the list and into its route, instead of writing it. The witnesses show where the text differs from lex.bg and from the Ministry of Justice portal, and each difference is settled and recorded. Every branch ends in the same place: the correct act, committed through the gate. The register of act profiles and the inventory of lex.bg's defects bring more acts to the list and order the audit.</p>
+  <p>The routes may become a project skill for updating this repository, so that any session can run them the same way. When the work is published, the same routes are developed into a harness.</p></div>
   <figure id="f0">
     <div class="scroll">
-<svg viewBox="0 0 1240 420" role="img" aria-label="The planned path: an act is looked up in the exceptions list; if listed it is read from the named source, otherwise from lex.bg; both go through the same reading, a new content check that holds lost text and proposes the act for the list, a witness comparison, the write gate and the commit. The defect inventory and the act profiles propose candidates for the list, and the profiles order the audit batches.">
+<svg viewBox="0 0 1420 420" role="img" aria-label="The planned path: an act is looked up in the exceptions list. Not listed, it is read from lex.bg. Listed, an investigation names its defect and source, and its source route fetches the text. Both go through the same reading, a content check that puts an act with lost text on the list, a witness comparison, the write gate and the commit of a correct act. The defect inventory and the act profiles propose acts for the list, and the profiles order the audit batches.">
   <defs>
     <marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
     <marker id="a0p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah plan" d="M0,0 L10,5 L0,10 z"/></marker>
   </defs>
 
-  <!-- the hold loop: lost text proposes the act for the list -->
-  <path class="ar plan" d="M796,130 V28 H256 V128" marker-end="url(#a0p)"/>
-  <text class="al plan" x="526" y="20" text-anchor="middle">held: lost text proposes the act for the list</text>
+  <!-- lost text puts the act on the list, which routes it again -->
+  <path class="ar plan" d="M976,130 V28 H256 V128" marker-end="url(#a0p)"/>
+  <text class="al plan" x="616" y="20" text-anchor="middle">lost text: the act goes on the list and into its route</text>
 
   <!-- main row -->
   <rect class="n" x="16" y="130" width="140" height="60" rx="6"/><text class="t" x="86" y="155" text-anchor="middle">An act</text><text class="s" x="86" y="173" text-anchor="middle">catalog.db</text>
-  <rect class="n plan" x="186" y="130" width="140" height="60" rx="6"/><text class="t" x="256" y="155" text-anchor="middle">Exceptions list</text><text class="s" x="256" y="173" text-anchor="middle">a source per act</text><text class="tag" x="318" y="144" text-anchor="end">S1</text>
+  <rect class="n plan" x="186" y="130" width="140" height="60" rx="6"/><text class="t" x="256" y="155" text-anchor="middle">Exceptions list</text><text class="s" x="256" y="173" text-anchor="middle">source and route</text><text class="tag" x="318" y="144" text-anchor="end">S1</text>
 
   <rect class="n" x="366" y="40" width="140" height="60" rx="6"/><text class="t" x="436" y="65" text-anchor="middle">lex.bg page</text><text class="s" x="436" y="83" text-anchor="middle">if not listed</text>
-  <rect class="n plan" x="366" y="220" width="140" height="60" rx="6"/><text class="t" x="436" y="245" text-anchor="middle">Listed source</text><text class="s" x="436" y="263" text-anchor="middle">ДВ, MoJ, PDF</text><text class="tag" x="498" y="234" text-anchor="end">S2 S5</text>
+  <rect class="n plan" x="366" y="220" width="140" height="60" rx="6"/><text class="t" x="436" y="245" text-anchor="middle">Investigate</text><text class="s" x="436" y="263" text-anchor="middle">defect and source</text><text class="tag" x="498" y="234" text-anchor="end">S1</text>
+  <rect class="n plan" x="546" y="220" width="140" height="60" rx="6"/><text class="t" x="616" y="245" text-anchor="middle">Source route</text><text class="s" x="616" y="263" text-anchor="middle">ДВ, PDF, MoJ</text><text class="tag" x="678" y="234" text-anchor="end">S2 S5</text>
 
-  <rect class="n model" x="546" y="130" width="140" height="60" rx="6"/><text class="t" x="616" y="155" text-anchor="middle">Read</text><text class="s" x="616" y="173" text-anchor="middle">split, label, check</text>
-  <rect class="n plan" x="726" y="130" width="140" height="60" rx="6"/><text class="t" x="796" y="155" text-anchor="middle">Content check</text><text class="s" x="796" y="173" text-anchor="middle">lost text holds</text><text class="tag" x="858" y="144" text-anchor="end">S1</text>
-  <rect class="n plan" x="906" y="130" width="140" height="60" rx="6"/><text class="t" x="976" y="155" text-anchor="middle">Witnesses</text><text class="s" x="976" y="173" text-anchor="middle">differences settled</text><text class="tag" x="1038" y="144" text-anchor="end">S2</text>
-  <rect class="n acc" x="1086" y="130" width="140" height="60" rx="6"/><text class="t" x="1156" y="155" text-anchor="middle">Write gate</text><text class="s" x="1156" y="173" text-anchor="middle">write_act</text>
-  <rect class="n okb" x="1086" y="260" width="140" height="60" rx="6"/><text class="t" x="1156" y="285" text-anchor="middle">Commit</text><text class="s" x="1156" y="303" text-anchor="middle">Source-Id: the source</text>
+  <rect class="n model" x="726" y="130" width="140" height="60" rx="6"/><text class="t" x="796" y="155" text-anchor="middle">Read</text><text class="s" x="796" y="173" text-anchor="middle">split, label, check</text>
+  <rect class="n plan" x="906" y="130" width="140" height="60" rx="6"/><text class="t" x="976" y="155" text-anchor="middle">Content check</text><text class="s" x="976" y="173" text-anchor="middle">nothing lost</text><text class="tag" x="1038" y="144" text-anchor="end">S1</text>
+  <rect class="n plan" x="1086" y="130" width="140" height="60" rx="6"/><text class="t" x="1156" y="155" text-anchor="middle">Witnesses</text><text class="s" x="1156" y="173" text-anchor="middle">differences settled</text><text class="tag" x="1218" y="144" text-anchor="end">S2</text>
+  <rect class="n acc" x="1266" y="130" width="140" height="60" rx="6"/><text class="t" x="1336" y="155" text-anchor="middle">Write gate</text><text class="s" x="1336" y="173" text-anchor="middle">write_act</text>
+  <rect class="n okb" x="1266" y="260" width="140" height="60" rx="6"/><text class="t" x="1336" y="285" text-anchor="middle">Commit</text><text class="s" x="1336" y="303" text-anchor="middle">the correct act</text>
 
-  <rect class="n art" x="906" y="50" width="140" height="48" rx="4"/><text class="s" x="976" y="70" text-anchor="middle">lex.bg, MoJ portal</text><text class="s" x="976" y="86" text-anchor="middle">witnesses, never truth</text>
-  <line class="ar thin" x1="976" y1="98" x2="976" y2="130"/>
+  <rect class="n art" x="1086" y="50" width="140" height="48" rx="4"/><text class="s" x="1156" y="70" text-anchor="middle">lex.bg, MoJ portal</text><text class="s" x="1156" y="86" text-anchor="middle">witnesses, never truth</text>
+  <line class="ar thin" x1="1156" y1="98" x2="1156" y2="130"/>
 
   <line class="ar" x1="156" y1="160" x2="184" y2="160" marker-end="url(#a0)"/>
   <path class="ar" d="M326,150 H346 V70 H364" marker-end="url(#a0)"/>
   <path class="ar plan" d="M326,170 H346 V250 H364" marker-end="url(#a0p)"/>
-  <path class="ar" d="M506,70 H526 V150 H544" marker-end="url(#a0)"/>
-  <path class="ar plan" d="M506,250 H526 V170 H544" marker-end="url(#a0p)"/>
-  <line class="ar" x1="686" y1="160" x2="724" y2="160" marker-end="url(#a0)"/>
+  <line class="ar plan" x1="506" y1="250" x2="544" y2="250" marker-end="url(#a0p)"/>
+  <path class="ar" d="M506,70 H706 V150 H724" marker-end="url(#a0)"/>
+  <path class="ar plan" d="M686,250 H706 V170 H724" marker-end="url(#a0p)"/>
   <line class="ar" x1="866" y1="160" x2="904" y2="160" marker-end="url(#a0)"/>
   <line class="ar" x1="1046" y1="160" x2="1084" y2="160" marker-end="url(#a0)"/>
-  <line class="ar" x1="1156" y1="190" x2="1156" y2="258" marker-end="url(#a0)"/>
+  <line class="ar" x1="1226" y1="160" x2="1264" y2="160" marker-end="url(#a0)"/>
+  <line class="ar" x1="1336" y1="190" x2="1336" y2="258" marker-end="url(#a0)"/>
 
   <!-- what feeds the list and orders the audit -->
   <rect class="n plan" x="16" y="340" width="140" height="60" rx="6"/><text class="t" x="86" y="365" text-anchor="middle">lex.bg defects</text><text class="s" x="86" y="383" text-anchor="middle">classes, evidence</text><text class="tag" x="148" y="354" text-anchor="end">S3</text>
   <rect class="n plan" x="186" y="340" width="140" height="60" rx="6"/><text class="t" x="256" y="365" text-anchor="middle">Act profiles</text><text class="s" x="256" y="383" text-anchor="middle">kind, era, layout</text><text class="tag" x="318" y="354" text-anchor="end">S4</text>
-  <rect class="n plan" x="546" y="340" width="140" height="60" rx="6"/><text class="t" x="616" y="365" text-anchor="middle">Audit batches</text><text class="s" x="616" y="383" text-anchor="middle">by profile</text><text class="tag" x="678" y="354" text-anchor="end">S6</text>
+  <rect class="n plan" x="726" y="340" width="140" height="60" rx="6"/><text class="t" x="796" y="365" text-anchor="middle">Audit batches</text><text class="s" x="796" y="383" text-anchor="middle">by profile</text><text class="tag" x="858" y="354" text-anchor="end">S6</text>
 
   <path class="ar plan" d="M86,340 V312 H236 V192" marker-end="url(#a0p)"/>
   <line class="ar plan" x1="286" y1="340" x2="286" y2="192" marker-end="url(#a0p)"/>
-  <text class="al plan" x="160" y="304" text-anchor="middle">candidates</text>
-  <line class="ar plan" x1="326" y1="370" x2="544" y2="370" marker-end="url(#a0p)"/>
-  <text class="al plan" x="436" y="362" text-anchor="middle">orders the batches</text>
-  <line class="ar plan" x1="616" y1="340" x2="616" y2="192" marker-end="url(#a0p)"/>
+  <text class="al plan" x="160" y="304" text-anchor="middle">acts for the list</text>
+  <line class="ar plan" x1="326" y1="370" x2="724" y2="370" marker-end="url(#a0p)"/>
+  <text class="al plan" x="526" y="362" text-anchor="middle">orders the batches</text>
+  <line class="ar plan" x1="796" y1="340" x2="796" y2="192" marker-end="url(#a0p)"/>
 </svg>
     </div>
     <div class="legend"><span><i></i>built, no judgement</span><span><i class="model"></i>built, model call (the <code>labeller</code>)</span><span><i class="acc"></i>the single corpus write gate</span><span><i class="plan"></i>planned, with its proposed step</span></div>
-    <figcaption>Only the reading step calls a model today, and it stays the same for every source: one labeller, one ladder, one write gate. What is new sits before and after it. The exceptions list has a fixed form, so its checks are mechanical and block: an act on the list is refused on the lex.bg path. Whether a difference from a witness is the source's error or lex.bg's is a reading of free text, so a model run decides it and the decision is recorded as data.</figcaption>
+    <figcaption>No branch ends at the list. An act on it with no route yet, or whose route has not yet committed it, is counted as distance left. The reading step stays the same for every source: one labeller, one ladder, one write gate. The exceptions list has a fixed form, so its checks are mechanical and block: an act on the list is refused on the lex.bg path, and an entry without a route fails. What a source's text says, and whether a difference from a witness is the source's error or lex.bg's, is a reading of free text: a model run decides it in the investigation and at the witnesses, and the decision is recorded as data. Scripts do the fetching.</figcaption>
   </figure>
 </section>
 
@@ -415,16 +418,17 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 
 <section>
   <h2>6. Proposed steps to build it</h2>
-  <div class="prose"><p>The owner set the first two: the exceptions list, then the full fetch of the Закон за обществения транспорт from the Gazette, because the owner uses that act every day. The other four carry the rest of the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>). Steps S3 and S4 can run side by side after S2; S5 needs S4's list of acts begun before the archive, and S6 needs S4's profiles. Each step ends with a result in git that can be checked.</p></div>
+  <div class="prose"><p>The owner set the first two: the exceptions list, then the full fetch of the Закон за обществения транспорт from the Gazette, because the owner uses that act every day. The other four carry the rest of the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>). Steps S3 and S4 can run side by side after S2; S5 needs S4's list of acts begun before the archive, and S6 needs S4's profiles. Each step ends with acts committed correct in git, or says why it commits none.</p></div>
   <div class="steps">
-    <div class="step"><span class="pill plan">S1 · first</span><h3>The exceptions list</h3>
+    <div class="step"><span class="pill plan">S1 · first</span><h3>The exceptions list and its routes</h3>
       <ul>
-        <li>A data file, <code>docs/data/source-exceptions.yaml</code>: per act its slug, the source and the source's address, the reason, the evidence (a decision or audit) and the date.</li>
-        <li>Mechanical checks, because the form is fixed: the file loads against its schema; the write path refuses a listed act on the lex.bg path; once an act is written from its source, its <code>fuente</code> must match the list.</li>
-        <li>The content check: an empty section or other lost text holds the write and proposes the act for the list, instead of passing as a source finding. This changes D-072 ruling 7 for that finding alone.</li>
-        <li>First entries: Указ № 883 (strategy.bg, D-049-addendum), the transport law and the Закон за прозрачност при представителство на интереси (both the Gazette, the same dropped § 1).</li>
+        <li>A data file, <code>docs/data/source-exceptions.yaml</code>: per act its slug, its defect, the source and the source's address, the route that commits it, the evidence (a decision or audit) and where it stands (listed, investigated, committed).</li>
+        <li>Mechanical checks, because the form is fixed: the file loads against its schema; every entry names a route; the write path refuses a listed act on the lex.bg path; a report prints each entry's distance to its commit.</li>
+        <li>The investigation: a lean project agent reads what the scripts fetched for a listed act and records its defect, its source and its route as data.</li>
+        <li>The content check: an empty section or other lost text sends the act to the list and into its route, instead of writing it. This changes D-072 ruling 7 for that finding.</li>
+        <li>First entries: the transport law and the Закон за прозрачност при представителство на интереси (the same dropped § 1; route: the Gazette, S2), and Указ № 883 (today from strategy.bg; route: a source before the archive, S5).</li>
       </ul>
-      <p class="done"><b>Done when</b> the list is committed with its tests, and a write of the transport law from lex.bg is refused by name.</p></div>
+      <p class="done"><b>Done when</b> the list is committed with its tests, every entry names its route, and a write of the transport law from lex.bg is refused by name. S1 commits no act itself; S2 is its first route.</p></div>
     <div class="step"><span class="pill plan">S2 · second</span><h3>The transport law in full from the Gazette</h3>
       <ul>
         <li>Fetch the act as promulgated, ДВ бр. 32 от 1.4.2026 г., material 242220, through <code>fetcher/dv</code>, and keep the page by its hash in a Gazette raw store.</li>
@@ -432,15 +436,16 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
         <li>A splitter for the Gazette's material page, then the same labeller, ladder and checks.</li>
         <li>Compare with lex.bg and with the Ministry of Justice portal if it carries the act. Every difference is settled and recorded: § 1 restored, lex.bg's notes and dashes, its „и“ for „й“.</li>
         <li>A preflight for the frontmatter, a protected surface: <code>fuente</code>, the identifier and the provenance base for a Gazette text.</li>
+        <li>Then the Закон за прозрачност при представителство на интереси through the same route.</li>
       </ul>
-      <p class="done"><b>Done when</b> the act is committed with § 1 and its twelve definitions, <code>Source-Id: dv-242220</code>, and its list of settled differences.</p></div>
+      <p class="done"><b>Done when</b> both acts are committed correct: the transport law with § 1 and its twelve definitions, <code>Source-Id: dv-242220</code>, each with its list of settled differences, and both list entries say committed.</p></div>
     <div class="step"><span class="pill next">S3</span><h3>What lex.bg gets wrong</h3>
       <ul>
         <li>Run the dropped-section detector (FR-042) over every raw page, and check its 103 candidates against the Gazette.</li>
         <li>For a sample of acts in each profile from S4, compare lex.bg with the Gazette and name each kind of content error found, as distinct from formatting.</li>
         <li>Each kind gets its evidence and its detector where the form allows one.</li>
       </ul>
-      <p class="done"><b>Done when</b> a register of lex.bg's error kinds is committed, and every confirmed act is on the exceptions list.</p></div>
+      <p class="done"><b>Done when</b> a register of lex.bg's error kinds is committed, and every act confirmed wrong is committed correct from its route; an act whose route is not built yet is counted as distance.</p></div>
     <div class="step"><span class="pill next">S4</span><h3>A profile of every act</h3>
       <ul>
         <li>Per act: its kind, its Gazette era (HTML from 2003, PDF 1989–2002, before 1989), its grade, its layout features (tables, annexes, images, unnumbered paragraphs), its known defects and its source.</li>
@@ -454,13 +459,13 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
         <li>Trace where the full text of Указ № 883 was found, and look for ДВ бр. 39/1974.</li>
         <li>A short APIS subscription is a spending decision for the owner, with its terms read against D-039.</li>
       </ul>
-      <p class="done"><b>Done when</b> every act on the list has a named source, entered in the exceptions list where it is not lex.bg.</p></div>
+      <p class="done"><b>Done when</b> every act on S4's list is committed from its named source, or from lex.bg once checked against it.</p></div>
     <div class="step"><span class="pill next">S6</span><h3>The audit, by profile</h3>
       <ul>
         <li>The remaining 3,574 acts, in batches of one profile each, each batch agreed with the owner.</li>
-        <li>A new form becomes a ruling and its test; a lost text holds the act for the list.</li>
+        <li>A new form becomes a ruling and its test; an act with lost text goes on the list and into its route.</li>
       </ul>
-      <p class="done"><b>Done when</b> every act is committed through the gate or held on the list with a reason.</p></div>
+      <p class="done"><b>Done when</b> every act is committed correct through the gate, from lex.bg or from its route.</p></div>
     <div class="step"><span class="pill out">parked</span><h3>Whether the Legalize format suits this corpus</h3><p>Recorded for later and kept out of these steps (<code>docs/followups/2026-10-22-legalize-format-suitability.md</code>).</p></div>
   </div>
 </section>

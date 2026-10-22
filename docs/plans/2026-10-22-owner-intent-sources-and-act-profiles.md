@@ -88,6 +88,8 @@ Later the same day the owner agreed with the record above and set the first two 
 
 **A. A kept exceptions list comes first.** Some acts must be taken from a source other than lex.bg, so the project keeps a list of them, each with its source and the reason. Today two such acts exist with nothing to mark them: Указ № 883, taken from strategy.bg, and the Закон за обществения транспорт, whose lex.bg text lacks § 1.
 
+The owner then added that a listed act is not an outcome. Putting an act on the list, or stopping its write, only says what is left. Every act on the list goes into a pipeline that ends with the act committed correct in git: an agent run that investigates it, a script, or whatever the case needs. So each entry names its route, and an entry whose act is not yet committed from that route counts as distance left. If running these routes needs a project skill for updating this repository, one is built; when the owner publishes the work, the routes are developed into a harness.
+
 **B. Then the full fetch of the Закон за обществения транспорт from the State Gazette.** The owner uses this act in daily work, so its text must be right first. "Full" means the act as promulgated (ДВ бр. 32 от 1.4.2026 г., material 242220) and every later Gazette material that amends it. The Gazette index in `data/dv/materials.jsonl` reaches бр. 96/2026 and lists no amendment of it, so today the act as promulgated is the whole text; the fetch checks again for issues after бр. 96.
 
 The proposed steps to build both, and the later steps for the rest of the record, are in the diagram `docs/plans/2026-10-22-reading-write-path-diagram.html`, section 6. They are a proposal: the owner's agreement turns them into a plan.
