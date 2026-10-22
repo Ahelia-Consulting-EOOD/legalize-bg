@@ -189,7 +189,7 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
   <div class="prose">
   <h3>Task 2: rebuilt with each Gazette issue, and tested against lex.bg</h3>
   <p>From the starting state on, the corpus follows the Gazette. Each new issue is fetched; its materials are attributed to the acts they change, and their instructions are turned into changes to those acts and applied. The result goes through the same checks and the same write gate, and is committed as the act after that issue. Most of what the Gazette publishes is amendments, so this needs the engine of plan step 5; a new act is rare, and is simply read whole. From time to time the corpus is compared with lex.bg and with the Ministry of Justice portal. They are witnesses, not truth: each difference is settled against the Gazette, and the count of differences that were the engine's errors is the measure of the consolidation's quality.</p>
-  <p>The engine is bounded like every route. Where it cannot apply a material with certainty, it stops for that act with a case file, and the owner's ruling decides what follows, for example re-reading that act from lex.bg once lex.bg has caught up. The first issues after the starting state are the test of whether the engine can be built at all, on small, recent and real amendments, before it is trusted with more.</p></div>
+  <p>The engine is bounded like every route. Where it cannot apply a material with certainty, it stops for that act with a case file, and the owner's ruling decides what follows, for example re-reading that act from lex.bg once lex.bg has caught up. Whether the engine can be built at all is tested first on a few representative acts of each kind of act: their history is rebuilt from the Gazette and compared with the witnesses. Once it has passed that test, it rebuilds an act's complete history only case by case, where one is needed, such as a difference to settle or a gap in a lex.bg fetch; nobody rebuilds every act's history since 2003.</p></div>
   <figure id="f0b">
     <div class="scroll">
 <svg viewBox="0 0 1420 300" role="img" aria-label="The forward rebuild: the starting state in git takes each new Gazette issue; the engine attributes its materials and applies them; the checks and the write gate follow, and the act after that issue is committed, which is the corpus one issue further on. From time to time the corpus is compared with lex.bg and the Ministry of Justice portal, and the settled differences give the quality measure. Where the engine cannot apply a material, or a difference was the engine's error, a case file goes to the owner, whose ruling updates the engine or the act.">
@@ -484,7 +484,7 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 
 <section>
   <h2>6. Proposed steps to build it</h2>
-  <div class="prose"><p>The steps follow the two tasks. Task 1's steps come from the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>): the exceptions list first, with the bounds that every route needs. S2 and S3 can run side by side after S1; S4 needs S3's list of acts begun before the archive, and S5 needs S3's profiles. Task 2's steps are plan steps 5 and 8, narrowed to the issues after the starting state, and a periodic test that is my addition to give the owner's quality measure a fixed form. Each step ends with acts committed correct in git, or says why it commits none.</p></div>
+  <div class="prose"><p>The steps follow the two tasks. Task 1's steps come from the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>): the exceptions list first, with the bounds that every route needs. S2 and S3 can run side by side after S1; S4 needs S3's list of acts begun before the archive, and S5 needs S3's profiles. Task 2's steps are plan steps 5 and 8 as decision D-074 narrowed them, and a periodic test that is my addition to give the owner's quality measure a fixed form. Each step ends with acts committed correct in git, or says why it commits none.</p></div>
   <h3>Task 1: the starting state</h3>
   <div class="steps">
     <div class="step"><span class="pill plan">S0 · with S1</span><h3>Bounds and case files, for every route</h3>
@@ -536,13 +536,14 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
   </div>
   <h3>Task 2: the forward rebuild</h3>
   <div class="steps">
-    <div class="step"><span class="pill next">F1 · plan step 5</span><h3>The engine, on new issues only</h3>
+    <div class="step"><span class="pill next">F1 · plan step 5</span><h3>The engine: built, verified per kind of act, then used case by case</h3>
       <ul>
-        <li>Split each material of an issue, attribute it to the act it changes, turn its instructions into changes, apply them and check the result; a new act is read whole through task 1's path.</li>
-        <li>It starts on the issues after the starting state: small, recent, real amendments, each one compared with lex.bg once lex.bg has caught up. These are the evidence of whether the engine can be built.</li>
+        <li>Build: split each material, attribute it to the act it changes, turn its instructions into changes, apply them and check the result; a new act is read whole through task 1's path.</li>
+        <li>Verify: for a few representative acts of each kind, chosen from S3's profiles and agreed with the owner, rebuild the complete history from the Gazette and compare the result with lex.bg and the Ministry of Justice portal, settling every difference. This is the evidence of whether the engine can be built.</li>
+        <li>Use: on each new issue (F2), and for an act's complete history only case by case, where one is needed: a difference to settle, a gap in a lex.bg fetch to check.</li>
         <li>Bounded like every route: what it cannot apply with certainty stops with a case file.</li>
       </ul>
-      <p class="done"><b>Done when</b> the acts changed by a first run of issues are committed after those issues, each one either matching its witnesses or with every difference settled, and the case files of the rest are read by the owner.</p></div>
+      <p class="done"><b>Done when</b> the representative acts of every kind are committed with their history rebuilt from the Gazette, every difference from the witnesses settled and the engine's errors counted per kind; acts or kinds it cannot do stop with case files the owner reads.</p></div>
     <div class="step"><span class="pill next">F2 · plan step 8</span><h3>The daily loop</h3><p>A declared scheduled loop: the new Gazette issues since the last ledger mark, through the engine, one pull request per run. Supervised first, then active.</p>
       <p class="done"><b>Done when</b> the loop has kept the corpus current for a period the owner sets, with its case files read.</p></div>
     <div class="step"><span class="pill next">F3 · my addition</span><h3>The periodic test against lex.bg</h3>
@@ -555,7 +556,7 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
   </div>
   <h3>Set aside</h3>
   <div class="steps">
-    <div class="step"><span class="pill out">for the owner</span><h3>The backfill, 2003 to 2026 (plan step 9)</h3><p>Rebuilding every act's history from бр. 1/2003, the exit condition of decision D-068. The forward rebuild replaces it, unless the owner says otherwise. The Gazette's older text is still read where an act's starting state is in doubt.</p></div>
+    <div class="step"><span class="pill out">dropped</span><h3>The backfill, 2003 to 2026 (plan step 9)</h3><p>Rebuilding every act's history from бр. 1/2003 is more than the stage needs (decision D-074, amending D-068). The engine rebuilds a complete history only for the representative acts of F1 and, after that, case by case.</p></div>
     <div class="step"><span class="pill out">parked</span><h3>Whether the Legalize format suits this corpus</h3><p>Recorded for later and kept out of these steps (<code>docs/followups/2026-10-22-legalize-format-suitability.md</code>).</p></div>
     <div class="step"><span class="pill next">W-002</span><h3>61 acts still waived for tag remnants</h3><p>633 remnants remain. Each act leaves the waiver in its own commit once it has been read, as 19 acts already did.</p></div>
   </div>
@@ -563,7 +564,7 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 
 <section>
   <h2>7. Where the work stands</h2>
-  <div class="prose"><p>The write path is in draft pull request #48, onto the plan branch; only the owner merges it. Nothing in task 1 or task 2 is built yet beyond the path of sections 2 to 5. The quality bar of the starting state, the period of the test, and whether the backfill is set aside are the owner's decisions.</p></div>
+  <div class="prose"><p>The write path is in draft pull request #48, onto the plan branch; only the owner merges it. Nothing in task 1 or task 2 is built yet beyond the path of sections 2 to 5. The quality bar of the starting state, the representative acts of each kind and the period of the test are the owner's decisions; the backfill of every act is dropped (decision D-074).</p></div>
 </section>
 
 </div>

@@ -110,11 +110,11 @@ The owner then set the shape of the whole work, which replaces task B above as a
 
 The proposed steps are in the diagram's section 6.
 
-**A conflict for the owner to settle.** Decision D-068 of 21 October ends this stage only when every act's chain from бр. 1/2003 is established from the Gazette, and plan step 9 is the backfill of that chain. The direction above builds forward from a starting state instead. Unless the owner says otherwise, the backfill is parked and D-068's exit condition is to be rewritten as: the starting state is in git, and the forward rebuild keeps it current without lex.bg as a source, with lex.bg kept as the periodic test.
+**The backfill, settled by the owner the same day (decision D-074).** Decision D-068 of 21 October ended this stage only when every act's history since бр. 1/2003 was confirmed from the Gazette, through plan step 9's backfill. The owner judged that more than the stage needs. The instrument, the engine of plan step 5, is built, then tested and verified on a few representative acts of each kind of act, by rebuilding their history from the Gazette and settling every difference from the witnesses. After that it builds an act's complete history only case by case, where one is needed. The backfill of every act is dropped, and the stage ends when the starting state is in git and the forward rebuild keeps it current, with lex.bg kept as the periodic test.
 
 ## Still open for the owner
 
 - **The proposed steps** in the diagram's section 6, for agreement, with the quality bar of the starting state.
-- **D-068 and plan step 9**, as above.
+- **The representative acts of each kind** on which the engine is verified: proposed from the act profiles (S3), agreed with the owner.
 - **Point 10's subscription** (service, length, cost) is a spending decision for the owner.
 - **The frontmatter of an act taken from the Gazette** (`fuente`, `identificador`, the provenance base) is a protected surface of the project, so it goes through the project's preflight before the transport law is written from its Gazette text (S1).
