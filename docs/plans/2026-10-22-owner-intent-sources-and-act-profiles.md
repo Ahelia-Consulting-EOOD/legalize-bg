@@ -98,8 +98,23 @@ The second act with the same dropped § 1, the Закон за прозрачн�
 
 The proposed steps to build both, and the later steps for the rest of the record, are in the diagram `docs/plans/2026-10-22-reading-write-path-diagram.html`, section 6. They are a proposal: the owner's agreement turns them into a plan.
 
+## The owner's direction of 22 October 2026: a starting state, rebuilt forward
+
+The owner then set the shape of the whole work, which replaces task B above as a task of its own. As above, this is a reading.
+
+- An act that was never amended is a case that happens about once, and it gets no specification of its own. The transport law is fixed as an ordinary entry of the exceptions list.
+- The Gazette's text is needed in two cases: to find where an act differs from it, which is rare, and to check what was fetched from lex.bg for gaps. Both need the engine of plan step 5, which turns a Gazette material into changes to an act.
+- The owner is not sure that engine can be built for the full history, since nobody seems to consolidate in full by hand. So the work has a starting point and builds on it, in two tasks:
+  1. **Define a starting state of sufficient quality.** The acts as read from lex.bg, with the exceptions fixed and a quality bar met.
+  2. **Rebuild it with each Gazette issue,** from the starting state onward, and **test it against lex.bg periodically** to measure the consolidation's quality.
+
+The proposed steps are in the diagram's section 6.
+
+**A conflict for the owner to settle.** Decision D-068 of 21 October ends this stage only when every act's chain from бр. 1/2003 is established from the Gazette, and plan step 9 is the backfill of that chain. The direction above builds forward from a starting state instead. Unless the owner says otherwise, the backfill is parked and D-068's exit condition is to be rewritten as: the starting state is in git, and the forward rebuild keeps it current without lex.bg as a source, with lex.bg kept as the periodic test.
+
 ## Still open for the owner
 
-- **The proposed steps** in the diagram's section 6, for agreement.
+- **The proposed steps** in the diagram's section 6, for agreement, with the quality bar of the starting state.
+- **D-068 and plan step 9**, as above.
 - **Point 10's subscription** (service, length, cost) is a spending decision for the owner.
-- **The frontmatter of an act taken from the Gazette** (`fuente`, `identificador`, the provenance base) is a protected surface of the project, so it goes through the project's preflight before step S2 writes it.
+- **The frontmatter of an act taken from the Gazette** (`fuente`, `identificador`, the provenance base) is a protected surface of the project, so it goes through the project's preflight before the transport law is written from its Gazette text (S1).

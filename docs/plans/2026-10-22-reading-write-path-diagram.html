@@ -100,7 +100,7 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
   <div class="eyebrow">legalize-bg · branch claude/run-design-ab4d70 · 22 October 2026</div>
   <h1>How an act reaches the corpus: as built, and as planned next</h1>
   <p>Fifty acts have come all the way from their lex.bg page to a commit in git, through the reading path and the single write gate. That path copies lex.bg's text character for character and judges only formatting, so an act that lex.bg holds wrong reaches git looking right. The Закон за обществения транспорт did exactly that: it was committed again with its additional provision, § 1 and its twelve definitions, missing.</p>
-  <p>Section 1 shows the way of work planned next, agreed with the owner on 22 October 2026. Every act is first looked up in a kept list of exceptions. An act on that list is investigated and read from the source the list names, and an act found with lost text goes on the list. Being on the list is not an outcome: every listed act has a route that ends with the act committed correct in git, and only such acts count as done. Sections 2 to 5 show the path as built. Section 6 proposes the steps to build the plan, starting with the exceptions list and then the full fetch of the transport law from the State Gazette (Държавен вестник).</p>
+  <p>Section 1 shows the way of work planned next, agreed with the owner on 22 October 2026. It has two tasks. The first defines a starting state of sufficient quality: every act read from lex.bg, except the acts on a kept list of exceptions, which are investigated and fixed from the source the list names. Being on the list is not an outcome: every listed act has a route that ends with the act committed correct in git, and only such acts count as done. The second task rebuilds that starting state forward with each new issue of the State Gazette (Държавен вестник), and compares it with lex.bg from time to time to measure how good the consolidation is. Sections 2 to 5 show the path as built. Section 6 proposes the steps for both tasks.</p>
   <div class="status">
     <div class="stat ok"><b>50 of 50</b><span>read acts committed</span></div>
     <div class="stat"><b>3</b><span>acts known to need another source</span></div>
@@ -111,8 +111,10 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 </header>
 
 <section>
-  <h2>1. The planned way of work</h2>
-  <div class="prose"><p>Two things change in the path. Before an act is read, its source is decided: every act not on the exceptions list is read from lex.bg as today. An act on the list is investigated first, to name its defect and the source that holds it right, and its source route then fetches that text. After the reading, a content check finds any act that has lost text and sends it to the list and into its route, instead of writing it. The witnesses show where the text differs from lex.bg and from the Ministry of Justice portal, and each difference is settled and recorded. Every branch ends in the same place: the correct act, committed through the gate. The register of act profiles and the inventory of lex.bg's defects bring more acts to the list and order the audit.</p>
+  <h2>1. The planned way of work: a starting state, rebuilt forward</h2>
+  <div class="prose"><p>Nobody seems to consolidate the whole history of every act by hand, and it is not known yet whether a machine can either. So the work does not rebuild each act from its first Gazette issue. It starts from the acts as they stand and builds on them, in two tasks.</p>
+  <h3>Task 1: a starting state of sufficient quality</h3>
+  <p>Two things change in the path. Before an act is read, its source is decided: every act not on the exceptions list is read from lex.bg as today. An act on the list is investigated first, to name its defect and the source that holds it right, and its source route then fetches that text. After the reading, a content check finds any act that has lost text and sends it to the list and into its route, instead of writing it. The witnesses show where the text differs from lex.bg and from the Ministry of Justice portal, and each difference is settled and recorded. Every branch ends in the same place: the correct act, committed through the gate. The register of act profiles and the inventory of lex.bg's defects bring more acts to the list and order the audit.</p>
   <p>Every route is bounded. It runs only as far as it knows what to do, and stops at a fixed point: when its known steps are used up, when a step changes nothing, or when the next step is not defined. Where it stops without a correct act, it writes a case file for that act: the exception, what was tried, the lessons learnt and a proposal. The owner reads the case files of a run together, at the run's end, and the decision becomes a ruling, a rule or a new route; then the act goes through its route again. No loop runs on toward the goal past that point.</p>
   <p>The routes may become a project skill for updating this repository, so that any session can run them the same way. When the work is published, the same routes are developed into a harness.</p></div>
   <figure id="f0">
@@ -135,11 +137,11 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 
   <rect class="n" x="366" y="40" width="140" height="60" rx="6"/><text class="t" x="436" y="65" text-anchor="middle">lex.bg page</text><text class="s" x="436" y="83" text-anchor="middle">if not listed</text>
   <rect class="n plan" x="366" y="220" width="140" height="60" rx="6"/><text class="t" x="436" y="245" text-anchor="middle">Investigate</text><text class="s" x="436" y="263" text-anchor="middle">defect and source</text><text class="tag" x="498" y="234" text-anchor="end">S1</text>
-  <rect class="n plan" x="546" y="220" width="140" height="60" rx="6"/><text class="t" x="616" y="245" text-anchor="middle">Source route</text><text class="s" x="616" y="263" text-anchor="middle">ДВ, PDF, MoJ</text><text class="tag" x="678" y="234" text-anchor="end">S2 S5</text>
+  <rect class="n plan" x="546" y="220" width="140" height="60" rx="6"/><text class="t" x="616" y="245" text-anchor="middle">Source route</text><text class="s" x="616" y="263" text-anchor="middle">ДВ, PDF, MoJ</text><text class="tag" x="678" y="234" text-anchor="end">S1 S4</text>
 
   <rect class="n model" x="726" y="130" width="140" height="60" rx="6"/><text class="t" x="796" y="155" text-anchor="middle">Read</text><text class="s" x="796" y="173" text-anchor="middle">split, label, check</text>
   <rect class="n plan" x="906" y="130" width="140" height="60" rx="6"/><text class="t" x="976" y="155" text-anchor="middle">Content check</text><text class="s" x="976" y="173" text-anchor="middle">nothing lost</text><text class="tag" x="1038" y="144" text-anchor="end">S1</text>
-  <rect class="n plan" x="1086" y="130" width="140" height="60" rx="6"/><text class="t" x="1156" y="155" text-anchor="middle">Witnesses</text><text class="s" x="1156" y="173" text-anchor="middle">differences settled</text><text class="tag" x="1218" y="144" text-anchor="end">S2</text>
+  <rect class="n plan" x="1086" y="130" width="140" height="60" rx="6"/><text class="t" x="1156" y="155" text-anchor="middle">Witnesses</text><text class="s" x="1156" y="173" text-anchor="middle">differences settled</text><text class="tag" x="1218" y="144" text-anchor="end">S1</text>
   <rect class="n acc" x="1266" y="130" width="140" height="60" rx="6"/><text class="t" x="1336" y="155" text-anchor="middle">Write gate</text><text class="s" x="1336" y="173" text-anchor="middle">write_act</text>
   <rect class="n okb" x="1266" y="260" width="140" height="60" rx="6"/><text class="t" x="1336" y="285" text-anchor="middle">Commit</text><text class="s" x="1336" y="303" text-anchor="middle">the correct act</text>
 
@@ -158,9 +160,9 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
   <line class="ar" x1="1336" y1="190" x2="1336" y2="258" marker-end="url(#a0)"/>
 
   <!-- what feeds the list and orders the audit -->
-  <rect class="n plan" x="16" y="340" width="140" height="60" rx="6"/><text class="t" x="86" y="365" text-anchor="middle">lex.bg defects</text><text class="s" x="86" y="383" text-anchor="middle">classes, evidence</text><text class="tag" x="148" y="354" text-anchor="end">S3</text>
-  <rect class="n plan" x="186" y="340" width="140" height="60" rx="6"/><text class="t" x="256" y="365" text-anchor="middle">Act profiles</text><text class="s" x="256" y="383" text-anchor="middle">kind, era, layout</text><text class="tag" x="318" y="354" text-anchor="end">S4</text>
-  <rect class="n plan" x="726" y="340" width="140" height="60" rx="6"/><text class="t" x="796" y="365" text-anchor="middle">Audit batches</text><text class="s" x="796" y="383" text-anchor="middle">by profile</text><text class="tag" x="858" y="354" text-anchor="end">S6</text>
+  <rect class="n plan" x="16" y="340" width="140" height="60" rx="6"/><text class="t" x="86" y="365" text-anchor="middle">lex.bg defects</text><text class="s" x="86" y="383" text-anchor="middle">classes, evidence</text><text class="tag" x="148" y="354" text-anchor="end">S2</text>
+  <rect class="n plan" x="186" y="340" width="140" height="60" rx="6"/><text class="t" x="256" y="365" text-anchor="middle">Act profiles</text><text class="s" x="256" y="383" text-anchor="middle">kind, era, layout</text><text class="tag" x="318" y="354" text-anchor="end">S3</text>
+  <rect class="n plan" x="726" y="340" width="140" height="60" rx="6"/><text class="t" x="796" y="365" text-anchor="middle">Audit batches</text><text class="s" x="796" y="383" text-anchor="middle">by profile</text><text class="tag" x="858" y="354" text-anchor="end">S5</text>
 
   <path class="ar plan" d="M86,340 V312 H236 V192" marker-end="url(#a0p)"/>
   <line class="ar plan" x1="286" y1="340" x2="286" y2="192" marker-end="url(#a0p)"/>
@@ -183,6 +185,56 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
     </div>
     <div class="legend"><span><i></i>built, no judgement</span><span><i class="model"></i>built, model call (the <code>labeller</code>)</span><span><i class="acc"></i>the single corpus write gate</span><span><i class="plan"></i>planned, with its proposed step</span></div>
     <figcaption>No branch ends at the list: an act ends committed, or stopped with a case file that the owner reads. An act with no route yet, or whose route has not yet committed it, is counted as distance left. The stop is drawn from the content check and the witnesses; every step of a route stops the same way. The reading step stays the same for every source: one labeller, one ladder, one write gate. The exceptions list has a fixed form, so its checks are mechanical and block: an act on the list is refused on the lex.bg path, and an entry without a route fails. What a source's text says, and whether a difference from a witness is the source's error or lex.bg's, is a reading of free text: a model run decides it in the investigation and at the witnesses, and the decision is recorded as data. Scripts do the fetching.</figcaption>
+  </figure>
+  <div class="prose">
+  <h3>Task 2: rebuilt with each Gazette issue, and tested against lex.bg</h3>
+  <p>From the starting state on, the corpus follows the Gazette. Each new issue is fetched; its materials are attributed to the acts they change, and their instructions are turned into changes to those acts and applied. The result goes through the same checks and the same write gate, and is committed as the act after that issue. Most of what the Gazette publishes is amendments, so this needs the engine of plan step 5; a new act is rare, and is simply read whole. From time to time the corpus is compared with lex.bg and with the Ministry of Justice portal. They are witnesses, not truth: each difference is settled against the Gazette, and the count of differences that were the engine's errors is the measure of the consolidation's quality.</p>
+  <p>The engine is bounded like every route. Where it cannot apply a material with certainty, it stops for that act with a case file, and the owner's ruling decides what follows, for example re-reading that act from lex.bg once lex.bg has caught up. The first issues after the starting state are the test of whether the engine can be built at all, on small, recent and real amendments, before it is trusted with more.</p></div>
+  <figure id="f0b">
+    <div class="scroll">
+<svg viewBox="0 0 1420 300" role="img" aria-label="The forward rebuild: the starting state in git takes each new Gazette issue; the engine attributes its materials and applies them; the checks and the write gate follow, and the act after that issue is committed, which is the corpus one issue further on. From time to time the corpus is compared with lex.bg and the Ministry of Justice portal, and the settled differences give the quality measure. Where the engine cannot apply a material, or a difference was the engine's error, a case file goes to the owner, whose ruling updates the engine or the act.">
+  <defs>
+    <marker id="a4b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah bad" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah acc" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a4p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah plan" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+
+  <rect class="n okb" x="16" y="100" width="140" height="60" rx="6"/><text class="t" x="86" y="125" text-anchor="middle">Starting state</text><text class="s" x="86" y="143" text-anchor="middle">in git, task 1</text>
+  <rect class="n plan" x="196" y="100" width="140" height="60" rx="6"/><text class="t" x="266" y="125" text-anchor="middle">Gazette issue</text><text class="s" x="266" y="143" text-anchor="middle">each new one</text><text class="tag" x="328" y="114" text-anchor="end">F2</text>
+  <rect class="n plan" x="376" y="100" width="140" height="60" rx="6"/><text class="t" x="446" y="125" text-anchor="middle">Engine</text><text class="s" x="446" y="143" text-anchor="middle">attribute, apply</text><text class="tag" x="508" y="114" text-anchor="end">F1</text>
+  <rect class="n" x="556" y="100" width="140" height="60" rx="6"/><text class="t" x="626" y="125" text-anchor="middle">Checks</text><text class="s" x="626" y="143" text-anchor="middle">structure, content</text>
+  <rect class="n acc" x="736" y="100" width="140" height="60" rx="6"/><text class="t" x="806" y="125" text-anchor="middle">Write gate</text><text class="s" x="806" y="143" text-anchor="middle">write_act</text>
+  <rect class="n okb" x="916" y="100" width="140" height="60" rx="6"/><text class="t" x="986" y="125" text-anchor="middle">Commit</text><text class="s" x="986" y="143" text-anchor="middle">the act after the issue</text>
+  <rect class="n plan" x="1096" y="100" width="140" height="60" rx="6"/><text class="t" x="1166" y="125" text-anchor="middle">Periodic test</text><text class="s" x="1166" y="143" text-anchor="middle">against witnesses</text><text class="tag" x="1228" y="114" text-anchor="end">F3</text>
+  <rect class="n plan" x="1276" y="100" width="130" height="60" rx="6"/><text class="t" x="1341" y="125" text-anchor="middle">Quality</text><text class="s" x="1341" y="143" text-anchor="middle">engine errors, counted</text>
+
+  <rect class="n art" x="1096" y="16" width="140" height="48" rx="4"/><text class="s" x="1166" y="36" text-anchor="middle">lex.bg, MoJ portal</text><text class="s" x="1166" y="52" text-anchor="middle">witnesses, never truth</text>
+  <line class="ar thin" x1="1166" y1="64" x2="1166" y2="100"/>
+
+  <line class="ar" x1="156" y1="130" x2="194" y2="130" marker-end="url(#a4)"/>
+  <line class="ar plan" x1="336" y1="130" x2="374" y2="130" marker-end="url(#a4p)"/>
+  <line class="ar plan" x1="516" y1="130" x2="554" y2="130" marker-end="url(#a4p)"/>
+  <line class="ar" x1="696" y1="130" x2="734" y2="130" marker-end="url(#a4)"/>
+  <line class="ar" x1="876" y1="130" x2="914" y2="130" marker-end="url(#a4)"/>
+  <line class="ar plan" x1="1056" y1="130" x2="1094" y2="130" marker-end="url(#a4p)"/>
+  <line class="ar plan" x1="1236" y1="130" x2="1274" y2="130" marker-end="url(#a4p)"/>
+  <path class="ar" d="M986,100 V80 H86 V98" marker-end="url(#a4)"/>
+  <text class="al" x="536" y="72" text-anchor="middle">the corpus, one issue further on</text>
+
+  <rect class="n badb" x="376" y="210" width="140" height="60" rx="6"/><text class="t" x="446" y="235" text-anchor="middle">Case file</text><text class="s" x="446" y="253" text-anchor="middle">lessons, proposal</text><text class="tag" x="508" y="224" text-anchor="end">S0</text>
+  <line class="ar bad" x1="446" y1="160" x2="446" y2="208" marker-end="url(#a4b)"/>
+  <text class="al bad" x="454" y="190">cannot apply</text>
+  <path class="ar bad" d="M1341,160 V240 H518" marker-end="url(#a4b)"/>
+  <text class="al bad" x="930" y="232" text-anchor="middle">a difference that was the engine's error</text>
+  <rect class="n" x="16" y="210" width="140" height="60" rx="6"/><text class="t" x="86" y="235" text-anchor="middle">Owner</text><text class="s" x="86" y="253" text-anchor="middle">checks, decides</text>
+  <line class="ar" x1="376" y1="240" x2="158" y2="240" marker-end="url(#a4)"/>
+  <text class="al" x="266" y="232" text-anchor="middle">one batch per run</text>
+  <line class="ar acc" x1="86" y1="210" x2="86" y2="162" marker-end="url(#a4a)"/>
+  <text class="al acc" x="94" y="190">ruling: engine or act</text>
+</svg>
+    </div>
+    <figcaption>Task 2 reuses everything after the reading in task 1: the checks, the write gate, the case files and the owner's batch. What it adds is the engine (F1), which nobody has built yet, the daily loop that feeds it the new issues (F2), and the periodic test (F3). Whether a material's instruction was applied correctly is a reading of free text, so the engine is a reasoning run and its decisions are recorded as data; the scripts fetch, list and diff.</figcaption>
   </figure>
 </section>
 
@@ -432,7 +484,8 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
 
 <section>
   <h2>6. Proposed steps to build it</h2>
-  <div class="prose"><p>The owner set the first two: the exceptions list, then the full fetch of the Закон за обществения транспорт from the Gazette, because the owner uses that act every day. The bounds (S0) come with the first route, since every route needs them. The other four carry the rest of the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>). Steps S3 and S4 can run side by side after S2; S5 needs S4's list of acts begun before the archive, and S6 needs S4's profiles. Each step ends with acts committed correct in git, or says why it commits none.</p></div>
+  <div class="prose"><p>The steps follow the two tasks. Task 1's steps come from the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>): the exceptions list first, with the bounds that every route needs. S2 and S3 can run side by side after S1; S4 needs S3's list of acts begun before the archive, and S5 needs S3's profiles. Task 2's steps are plan steps 5 and 8, narrowed to the issues after the starting state, and a periodic test that is my addition to give the owner's quality measure a fixed form. Each step ends with acts committed correct in git, or says why it commits none.</p></div>
+  <h3>Task 1: the starting state</h3>
   <div class="steps">
     <div class="step"><span class="pill plan">S0 · with S1</span><h3>Bounds and case files, for every route</h3>
       <ul>
@@ -449,59 +502,68 @@ th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: upp
         <li>Mechanical checks, because the form is fixed: the file loads against its schema; every entry names a route; the write path refuses a listed act on the lex.bg path; a report prints each entry's distance to its commit.</li>
         <li>The investigation: a lean project agent reads what the scripts fetched for a listed act and records its defect, its source and its route as data.</li>
         <li>The content check: an empty section or other lost text sends the act to the list and into its route, instead of writing it. This changes D-072 ruling 7 for that finding.</li>
-        <li>First entries: the transport law (dropped § 1; route: the Gazette, S2); the Закон за прозрачност при представителство на интереси (the same dropped § 1, but amended in ДВ бр. 55/2026, so its route is the history of plan step 5, not built yet: a case file says so); Указ № 883 (today from strategy.bg; route: a source before the archive, S5).</li>
+        <li>The witnesses: the text read is compared with lex.bg and with the Ministry of Justice portal, and every difference is settled and recorded.</li>
+        <li>First entries, fixed as ordinary entries with no specification of their own. The transport law first, because the owner uses it daily: lex.bg drops its § 1, and the act was never amended, so its Gazette text, ДВ бр. 32/2026, is the whole act; a text search of the materials since then makes sure. The Закон за прозрачност при представителство на интереси: the same dropped § 1, but amended in ДВ бр. 55/2026, so the investigation reads whether that amendment touched § 1; if it did not, § 1 is filled from the promulgated text, and if it did, the act stops with a case file. Указ № 883: today from strategy.bg; its route is a source before the archive (S4).</li>
       </ul>
-      <p class="done"><b>Done when</b> the list is committed with its tests, every entry names its route, and a write of the transport law from lex.bg is refused by name. S1 commits no act itself; S2 is its first route.</p></div>
-    <div class="step"><span class="pill plan">S2 · second</span><h3>The transport law in full from the Gazette</h3>
-      <ul>
-        <li>Why this act can go first: the Gazette publishes an amendment as a list of changes, not a new text, so an amended act needs its history built (plan step 5, not built). This act has never been amended, so the text as promulgated, ДВ бр. 32 от 1.4.2026 г., material 242220, is the whole act.</li>
-        <li>Make sure of that: an amendment in another act's final provisions does not carry this act's title, so search the text of every Gazette material since бр. 32/2026 for its name, up to the latest issue. If one turns up, S2 stops with a case file: the act then needs plan step 5.</li>
-        <li>Fetch the material through <code>fetcher/dv</code> and keep the page by its hash in a Gazette raw store.</li>
-        <li>A splitter for the Gazette's material page, then the same labeller, ladder and checks.</li>
-        <li>Compare with lex.bg and with the Ministry of Justice portal if it carries the act. Every difference is settled and recorded: § 1 restored, lex.bg's notes and dashes, its „и“ for „й“.</li>
-        <li>A preflight for the frontmatter, a protected surface: <code>fuente</code>, the identifier and the provenance base for a Gazette text.</li>
-      </ul>
-      <p class="done"><b>Done when</b> the act is committed correct with § 1 and its twelve definitions, <code>Source-Id: dv-242220</code>, its list of settled differences, and its list entry says committed; or, if the search finds an amendment, when its case file is committed.</p></div>
-    <div class="step"><span class="pill next">S3</span><h3>What lex.bg gets wrong</h3>
+      <p class="done"><b>Done when</b> the list is committed with its tests, every entry names its route, and a write of the transport law from lex.bg is refused by name. and the transport law is committed with § 1 and its twelve definitions.</p></div>
+    <div class="step"><span class="pill next">S2</span><h3>What lex.bg gets wrong</h3>
       <ul>
         <li>Run the dropped-section detector (FR-042) over every raw page, and check its 103 candidates against the Gazette.</li>
-        <li>For a sample of acts in each profile from S4, compare lex.bg with the Gazette and name each kind of content error found, as distinct from formatting.</li>
+        <li>For a sample of acts in each profile from S3, compare lex.bg with the Gazette and name each kind of content error found, as distinct from formatting.</li>
         <li>Each kind gets its evidence and its detector where the form allows one.</li>
       </ul>
       <p class="done"><b>Done when</b> a register of lex.bg's error kinds is committed, and every act confirmed wrong is committed correct from its route or stopped with a case file. Most such acts have been amended, so most need plan step 5's history route.</p></div>
-    <div class="step"><span class="pill next">S4</span><h3>A profile of every act</h3>
+    <div class="step"><span class="pill next">S3</span><h3>A profile of every act</h3>
       <ul>
         <li>Per act: its kind, its Gazette era (HTML from 2003, PDF 1989–2002, before 1989), its grade, its layout features (tables, annexes, images, unnumbered paragraphs), its known defects and its source.</li>
         <li>Counted by script from the raw pages where the feature has a fixed form; judged by a model run where it does not.</li>
         <li>For the 107 acts begun before the archive, whether each is still in force, checked against the Gazette's 202 repeal titles not yet attributed to an act.</li>
       </ul>
       <p class="done"><b>Done when</b> the register covers all 3,624 acts, with the verified list of acts in force from before 1989.</p></div>
-    <div class="step"><span class="pill next">S5</span><h3>Sources for the acts before the archive</h3>
+    <div class="step"><span class="pill next">S4</span><h3>Sources for the acts before the archive</h3>
       <ul>
-        <li>For each act on S4's list, which source counts as authoritative: the Ministry of Justice portal, the Gazette's issue PDFs from 1989, strategy.bg or another state source.</li>
+        <li>For each act on S3's list, which source counts as authoritative: the Ministry of Justice portal, the Gazette's issue PDFs from 1989, strategy.bg or another state source.</li>
         <li>Trace where the full text of Указ № 883 was found, and look for ДВ бр. 39/1974.</li>
         <li>A short APIS subscription is a spending decision for the owner, with its terms read against D-039.</li>
       </ul>
-      <p class="done"><b>Done when</b> every act on S4's list is committed from its named source, or from lex.bg once checked against it.</p></div>
-    <div class="step"><span class="pill next">S6</span><h3>The audit, by profile</h3>
+      <p class="done"><b>Done when</b> every act on S3's list is committed from its named source, or from lex.bg once checked against it.</p></div>
+    <div class="step"><span class="pill next">S5</span><h3>The audit, by profile</h3>
       <ul>
         <li>The remaining 3,574 acts, in batches of one profile each, each batch agreed with the owner.</li>
         <li>A new form becomes a ruling and its test; an act with lost text goes on the list and into its route.</li>
       </ul>
-      <p class="done"><b>Done when</b> every act is committed correct through the gate, from lex.bg or from its route, or stopped with a case file the owner has read.</p></div>
+      <p class="done"><b>Done when</b> every act is committed correct through the gate, from lex.bg or from its route, or stopped with a case file the owner has read. That is the starting state; its quality bar is the owner’s to set.</p></div>
+  </div>
+  <h3>Task 2: the forward rebuild</h3>
+  <div class="steps">
+    <div class="step"><span class="pill next">F1 · plan step 5</span><h3>The engine, on new issues only</h3>
+      <ul>
+        <li>Split each material of an issue, attribute it to the act it changes, turn its instructions into changes, apply them and check the result; a new act is read whole through task 1's path.</li>
+        <li>It starts on the issues after the starting state: small, recent, real amendments, each one compared with lex.bg once lex.bg has caught up. These are the evidence of whether the engine can be built.</li>
+        <li>Bounded like every route: what it cannot apply with certainty stops with a case file.</li>
+      </ul>
+      <p class="done"><b>Done when</b> the acts changed by a first run of issues are committed after those issues, each one either matching its witnesses or with every difference settled, and the case files of the rest are read by the owner.</p></div>
+    <div class="step"><span class="pill next">F2 · plan step 8</span><h3>The daily loop</h3><p>A declared scheduled loop: the new Gazette issues since the last ledger mark, through the engine, one pull request per run. Supervised first, then active.</p>
+      <p class="done"><b>Done when</b> the loop has kept the corpus current for a period the owner sets, with its case files read.</p></div>
+    <div class="step"><span class="pill next">F3 · my addition</span><h3>The periodic test against lex.bg</h3>
+      <ul>
+        <li>On a schedule the owner sets, every act the engine changed is compared with lex.bg and with the Ministry of Justice portal.</li>
+        <li>Each difference is settled against the Gazette as the engine's error, the witness's error or a timing difference, and recorded as data.</li>
+        <li>The count of the engine's errors per period is the quality measure; an engine error is fixed in the engine and the act re-committed.</li>
+      </ul>
+      <p class="done"><b>Done when</b> the first test is committed with its settled differences and its measure.</p></div>
+  </div>
+  <h3>Set aside</h3>
+  <div class="steps">
+    <div class="step"><span class="pill out">for the owner</span><h3>The backfill, 2003 to 2026 (plan step 9)</h3><p>Rebuilding every act's history from бр. 1/2003, the exit condition of decision D-068. The forward rebuild replaces it, unless the owner says otherwise. The Gazette's older text is still read where an act's starting state is in doubt.</p></div>
     <div class="step"><span class="pill out">parked</span><h3>Whether the Legalize format suits this corpus</h3><p>Recorded for later and kept out of these steps (<code>docs/followups/2026-10-22-legalize-format-suitability.md</code>).</p></div>
+    <div class="step"><span class="pill next">W-002</span><h3>61 acts still waived for tag remnants</h3><p>633 remnants remain. Each act leaves the waiver in its own commit once it has been read, as 19 acts already did.</p></div>
   </div>
 </section>
 
 <section>
-  <h2>7. Beyond these steps</h2>
-  <div class="prose"><p>The write path is in draft pull request #48, onto the plan branch; only the owner merges it. The transport law in S2 is the Gazette path's first act, and the only kind it can do without history: a text never amended. Most acts on the list will have been amended, so plan step 5, below, is what brings them to git; it should follow S2 directly rather than wait for S3 to S6.</p></div>
-  <div class="steps">
-    <div class="step"><span class="pill next">plan step 5</span><h3>The Gazette path and the catch-up</h3><p>Split each Gazette material, attribute it to an act, turn its instructions into operations, then apply and check them. Differences from lex.bg are recorded and settled as data.</p></div>
-    <div class="step"><span class="pill next">plan step 8</span><h3>The daily loop</h3><p>A declared scheduled loop: the new Gazette issues since the last ledger mark, one pull request per run. Supervised first, then active.</p></div>
-    <div class="step"><span class="pill next">plan step 9</span><h3>The backfill, 2003 to 2026</h3><p>The chain of HTML-era Gazette materials, attributed and applied through the run driver. This stage ends when lex.bg is no longer needed as a source.</p></div>
-    <div class="step"><span class="pill next">W-002</span><h3>61 acts still waived for tag remnants</h3><p>633 remnants remain. Each act leaves the waiver in its own commit once it has been read, as 19 acts already did.</p></div>
-  </div>
+  <h2>7. Where the work stands</h2>
+  <div class="prose"><p>The write path is in draft pull request #48, onto the plan branch; only the owner merges it. Nothing in task 1 or task 2 is built yet beyond the path of sections 2 to 5. The quality bar of the starting state, the period of the test, and whether the backfill is set aside are the owner's decisions.</p></div>
 </section>
 
 </div>
