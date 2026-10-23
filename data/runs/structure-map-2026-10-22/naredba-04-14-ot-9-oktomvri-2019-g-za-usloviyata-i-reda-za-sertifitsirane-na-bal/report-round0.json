@@ -1,0 +1,182 @@
+{
+ "slug": "naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal",
+ "round": 0,
+ "blocks": 554,
+ "sections": 9,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 525,
+   "kind": "low_confidence",
+   "detail": "table header cell of a descriptive table, reads as annex content; table_row if not inside an annex (annex heading not in this task)"
+  },
+  {
+   "block": 526,
+   "kind": "low_confidence",
+   "detail": "column header 'Характеристики' of the same table; table_row if not inside an annex"
+  },
+  {
+   "block": 527,
+   "kind": "low_confidence",
+   "detail": "numbered row of the annex table; item if not inside an annex"
+  },
+  {
+   "block": 528,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 529,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 530,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 531,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 532,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 533,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 534,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 535,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 536,
+   "kind": "low_confidence",
+   "detail": "annex row opening sub-items 10.1-10.3; item if not inside an annex"
+  },
+  {
+   "block": 537,
+   "kind": "low_confidence",
+   "detail": "sub-item 10.1 of the annex row 10; item if not inside an annex"
+  },
+  {
+   "block": 538,
+   "kind": "low_confidence",
+   "detail": "sub-item 10.2; item if not inside an annex"
+  },
+  {
+   "block": 539,
+   "kind": "low_confidence",
+   "detail": "sub-item 10.3; item if not inside an annex"
+  },
+  {
+   "block": 540,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 541,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 542,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 543,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 544,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 545,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 546,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 547,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 548,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 549,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 550,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 551,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 552,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  },
+  {
+   "block": 553,
+   "kind": "low_confidence",
+   "detail": "annex row; item if not inside an annex"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 29
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 1,
+  "section_heading": 4,
+  "article_head": 7,
+  "item": 20,
+  "alinea": 9,
+  "provisions_heading": 2,
+  "paragraph_sign": 3,
+  "annex_heading": 9,
+  "annex_row": 497
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: lex.bg 'add to my acts' button"
+  }
+ ],
+ "note": "answers of an earlier round 1 task set moved to round1-stale-112814",
+ "next_round_tasks": 29,
+ "diff_lines": 20
+}

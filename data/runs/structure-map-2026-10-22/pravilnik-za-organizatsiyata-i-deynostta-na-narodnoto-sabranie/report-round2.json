@@ -1,0 +1,48 @@
+{
+ "slug": "pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie",
+ "round": 2,
+ "blocks": 767,
+ "sections": 19,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [],
+ "ruled": {
+  "D-072/8": [
+   695
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 2,
+  "repeal_note": 1,
+  "chapter_heading": 22,
+  "article_head": 162,
+  "alinea": 336,
+  "item": 139,
+  "continuation": 1,
+  "section_heading": 14,
+  "provisions_heading": 4,
+  "paragraph_sign": 16,
+  "adoption_formula": 2,
+  "editorial_note": 1,
+  "annex_heading": 4,
+  "annex_row": 61
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site button, not act text"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 1580
+}

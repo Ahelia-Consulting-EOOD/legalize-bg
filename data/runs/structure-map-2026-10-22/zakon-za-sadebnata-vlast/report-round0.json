@@ -1,0 +1,246 @@
+{
+ "slug": "zakon-za-sadebnata-vlast",
+ "round": 0,
+ "blocks": 3430,
+ "sections": 87,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 2143,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел I.'"
+  },
+  {
+   "block": 2144,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Дис'"
+  },
+  {
+   "block": 2268,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II.'"
+  },
+  {
+   "block": 2269,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Дисциплинарна'"
+  },
+  {
+   "block": 2467,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Глава осемнадесета \"а\".'"
+  },
+  {
+   "block": 2468,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'У'"
+  },
+  {
+   "block": 2538,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел III.'"
+  },
+  {
+   "block": 115,
+   "kind": "low_confidence",
+   "detail": "repeats block 113 after the section title; section_heading or drop as a duplicate"
+  },
+  {
+   "block": 1483,
+   "kind": "low_confidence",
+   "detail": "second copy of Раздел II heading with an older title wording; section_heading or editorial_note"
+  },
+  {
+   "block": 1484,
+   "kind": "low_confidence",
+   "detail": "older title wording of Раздел II printed again (Загл. изм. 2011); section_heading or editorial_note"
+  },
+  {
+   "block": 1756,
+   "kind": "label_text_mismatch",
+   "detail": "alinea n='2' on '(2 (Нова - ДВ, бр. 11 от 2020 '"
+  },
+  {
+   "block": 1863,
+   "kind": "low_confidence",
+   "detail": "second copy of Глава десета with the superseded 2009 title; may be editorial_note or drop"
+  },
+  {
+   "block": 1864,
+   "kind": "low_confidence",
+   "detail": "superseded 2009 version of the chapter title printed again; may be editorial_note or drop"
+  },
+  {
+   "block": 1867,
+   "kind": "low_confidence",
+   "detail": "second copy of Раздел I with the superseded 2009 title; may be editorial_note or drop"
+  },
+  {
+   "block": 1868,
+   "kind": "low_confidence",
+   "detail": "superseded 2009 version of the section title printed again; may be editorial_note or drop"
+  },
+  {
+   "block": 2837,
+   "kind": "low_confidence",
+   "detail": "dashed separator before the adoption formula; editorial_note or drop"
+  },
+  {
+   "block": 2949,
+   "kind": "low_confidence",
+   "detail": "repealed alinea (2); alinea or repeal_note"
+  },
+  {
+   "block": 3012,
+   "kind": "low_confidence",
+   "detail": "stray amending-act title line before the provisions heading; provisions_heading or editorial_note"
+  },
+  {
+   "block": 3286,
+   "kind": "low_confidence",
+   "detail": "repealed § line; paragraph_sign or repeal_note"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 114,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 115"
+  },
+  {
+   "block": 817,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 818"
+  },
+  {
+   "block": 866,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 867"
+  },
+  {
+   "block": 1482,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1483"
+  },
+  {
+   "block": 1866,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1867"
+  }
+ ],
+ "exception_kinds": {
+  "drop_inside_act": 7,
+  "low_confidence": 11,
+  "label_text_mismatch": 1
+ },
+ "source_finding_kinds": {
+  "empty_section": 5
+ },
+ "labels": {
+  "drop": 17,
+  "title": 1,
+  "preamble": 1,
+  "chapter_heading": 50,
+  "article_head": 561,
+  "alinea": 1208,
+  "section_heading": 101,
+  "item": 982,
+  "letter": 36,
+  "provisions_heading": 158,
+  "paragraph_sign": 211,
+  "quoted": 1,
+  "editorial_note": 102,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 2143,
+   "text": "Раздел I.",
+   "note": "duplicate of the Раздел I. heading just above, page rendering artifact; alt section_heading"
+  },
+  {
+   "block": 2144,
+   "text": "Дис",
+   "note": "truncated duplicate of the section title above, page rendering artifact; alt section_heading"
+  },
+  {
+   "block": 2268,
+   "text": "Раздел II.",
+   "note": "duplicate of the Раздел II. heading just above, page rendering artifact; alt section_heading"
+  },
+  {
+   "block": 2269,
+   "text": "Дисциплинарна",
+   "note": "truncated duplicate of the section title above, page rendering artifact; alt section_heading"
+  },
+  {
+   "block": 2467,
+   "text": "Глава осемнадесета \"а\".",
+   "note": "duplicate rendering of the chapter heading line just above; else chapter_heading"
+  },
+  {
+   "block": 2468,
+   "text": "У",
+   "note": "truncated duplicate fragment of the chapter title; else chapter_heading"
+  },
+  {
+   "block": 2538,
+   "text": "Раздел III.",
+   "note": "duplicate rendering of the Раздел III. line above; else section_heading"
+  },
+  {
+   "block": 3421,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU acts, not part of the act; editorial_note plausible"
+  },
+  {
+   "block": 3422,
+   "text": "Директиви:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3423,
+   "text": "ДИРЕКТИВА (ЕС) 2019/884 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 април 2019 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3424,
+   "text": "ДИРЕКТИВА (ЕС) 2016/680 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3425,
+   "text": "Регламенти:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3426,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3427,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3428,
+   "text": "Решения:",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  },
+  {
+   "block": 3429,
+   "text": "РАМКОВО РЕШЕНИЕ 2009/315/ПВР НА СЪВЕТА от 26 февруари 2009 година относно органи",
+   "note": "lex.bg EU-acts list, not the act; editorial_note plausible"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 19,
+ "diff_lines": 260
+}

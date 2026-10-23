@@ -1,0 +1,39 @@
+{
+ "slug": "naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal",
+ "round": 2,
+ "blocks": 554,
+ "sections": 9,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 1,
+  "section_heading": 4,
+  "article_head": 7,
+  "item": 20,
+  "alinea": 9,
+  "provisions_heading": 2,
+  "paragraph_sign": 3,
+  "annex_heading": 9,
+  "annex_row": 497
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: lex.bg 'add to my acts' button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 20
+}

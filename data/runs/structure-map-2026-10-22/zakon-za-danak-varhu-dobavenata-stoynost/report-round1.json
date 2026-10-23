@@ -1,0 +1,392 @@
+{
+ "slug": "zakon-za-danak-varhu-dobavenata-stoynost",
+ "round": 1,
+ "blocks": 4328,
+ "sections": 119,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 407,
+   "kind": "low_confidence",
+   "detail": "lex.bg reprints Глава трета with its title before the 2022 Загл. изм. right after the current heading 405-406; superseded duplicate, not a second chapter; drop also plausible"
+  },
+  {
+   "block": 408,
+   "kind": "low_confidence",
+   "detail": "superseded pre-2022 title of Глава трета, second line of the repeated heading 407; same treatment as 407; drop also plausible"
+  },
+  {
+   "block": 2029,
+   "kind": "low_confidence",
+   "detail": "lex.bg reprints Глава осемнадесета with its superseded 2014 title right after the current heading 2027-2028 (Загл. изм. 2020); not a second chapter; drop also plausible"
+  },
+  {
+   "block": 2030,
+   "kind": "low_confidence",
+   "detail": "superseded 2014 title of Глава осемнадесета, second line of the repeated heading 2029; same treatment as 2029; drop also plausible"
+  },
+  {
+   "block": 2286,
+   "kind": "low_confidence",
+   "detail": "lex.bg reprints Раздел IV. with its pre-2020 title (2287) right after the current heading whose title 2285 carries загл. изм. 2020; superseded duplicate, not a second section; drop also plausible"
+  },
+  {
+   "block": 2287,
+   "kind": "low_confidence",
+   "detail": "superseded 2014 title of Раздел IV, second line of the repeated heading 2286; same treatment as 2286; drop also plausible"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 6
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 64,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 20,
+  "article_title": 263,
+  "article_head": 293,
+  "item": 1226,
+  "alinea": 1187,
+  "letter": 318,
+  "chapter_heading": 66,
+  "editorial_note": 110,
+  "continuation": 103,
+  "unnumbered_item": 6,
+  "section_heading": 16,
+  "provisions_heading": 142,
+  "paragraph_sign": 190,
+  "quoted": 46,
+  "adoption_formula": 1,
+  "annex_heading": 6,
+  "annex_row": 268
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome button"
+  },
+  {
+   "block": 3380,
+   "text": "-------------------------",
+   "note": "separator line before the adoption formula, not act text"
+  },
+  {
+   "block": 4266,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU acts section, not part of the act"
+  },
+  {
+   "block": 4267,
+   "text": "КОНСОЛИДИРАН ТЕКСТ НА ДОГОВОРА ЗА ФУНКЦИОНИРАНЕТО НА ЕВРОПЕЙСКИЯ СЪЮЗ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4268,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4269,
+   "text": "ДИРЕКТИВА (ЕС) 2022/890 НА СЪВЕТА от 3 юни 2022 година за изменение на Директива",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4270,
+   "text": "ДИРЕКТИВА (ЕС) 2022/542 НА СЪВЕТА oт 5 април 2022 година за изменение на директи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4271,
+   "text": "ДИРЕКТИВА (ЕС) 2021/1159 НА СЪВЕТА от 13 юли 2021 г. за изменение на Директива 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4272,
+   "text": "ДИРЕКТИВА (ЕС) 2020/2020 НА СЪВЕТА от 7 декември 2020 г. за изменение на Директи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4273,
+   "text": "ДИРЕКТИВА (ЕС) 2020/1756 НА СЪВЕТА от 20 ноември 2020 г. за изменение на Директи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4274,
+   "text": "ДИРЕКТИВА (EС) 2020/285 НА СЪВЕТА от 18 февруари 2020 година за изменение на Дир",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4275,
+   "text": "ДИРЕКТИВА (ЕС) 2020/284 НА СЪВЕТА от 18 февруари 2020 година за изменение на Дир",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4276,
+   "text": "ДИРЕКТИВА (ЕС) 2019/2235 НА СЪВЕТА от 16 декември 2019 г. за изменение на Директ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4277,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1995 НА СЪВЕТА от 21 ноември 2019 г. за изменение на Директи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4278,
+   "text": "ДИРЕКТИВА (ЕС) 2019/475 НА СЪВЕТА от 18 февруари 2019 г. за изменение на директи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4279,
+   "text": "ДИРЕКТИВА (ЕС) 2018/1910 НА СЪВЕТА от 4 декември 2018 г. за изменение на Директи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4280,
+   "text": "ДИРЕКТИВА (ЕС) 2018/1713 НА СЪВЕТА от 6 ноември 2018 г. за изменение на Директив",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4281,
+   "text": "ДИРЕКТИВА (ЕС) 2018/1695 НА СЪВЕТА от 6 ноември 2018 г. за изменение на Директив",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4282,
+   "text": "ДИРЕКТИВА (EС) 2018/912 НА СЪВЕТА от 22 юни 2018 година за изменение на Директив",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4283,
+   "text": "ДИРЕКТИВА (ЕС) 2017/2455 НА СЪВЕТА от 5 декември 2017 година за изменение на Дир",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4284,
+   "text": "ДИРЕКТИВА (ЕС) 2016/1065 НА СЪВЕТА от 27 юни 2016 година за изменение на Директи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4285,
+   "text": "ДИРЕКТИВА (ЕС) 2016/856 НА СЪВЕТА от 25 май 2016 г. за изменение на Директива 20",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4286,
+   "text": "ДИРЕКТИВА (ЕС) 2015/2366 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2015",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4287,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4288,
+   "text": "ДИРЕКТИВА 2013/61/ЕС НА СЪВЕТА от 17 декември 2013 година за изменение на директ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4289,
+   "text": "ДИРЕКТИВА 2010/45/ЕС НА СЪВЕТА от 13 юли 2010 година за изменение на Директива 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4290,
+   "text": "ДИРЕКТИВА 2010/24/ЕС НА СЪВЕТА от 16 март 2010 година относно взаимната помощ пр",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4291,
+   "text": "ДИРЕКТИВА 2009/162/ЕС НА СЪВЕТА от 22 декември 2009 година за изменение на разли",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4292,
+   "text": "ДИРЕКТИВА 2009/132/ЕО НА СЪВЕТА от 19 октомври 2009 година за определяне приложн",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4293,
+   "text": "ДИРЕКТИВА 2009/69/ЕО НА СЪВЕТА от 25 юни 2009 година за изменение на Директива 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4294,
+   "text": "ДИРЕКТИВА 2009/55/ЕО НА СЪВЕТА от 25 май 2009 година за освобождаване от данъчно",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4295,
+   "text": "ДИРЕКТИВА 2008/117/ЕО НА СЪВЕТА от 16 декември 2008 година за изменение на Дирек",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4296,
+   "text": "ДИРЕКТИВА 2008/98/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4297,
+   "text": "ДИРЕКТИВА 2008/9/ЕО НА СЪВЕТА от 12 февруари 2008 година за определяне на подроб",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4298,
+   "text": "ДИРЕКТИВА 2008/8/ЕО НА СЪВЕТА от 12 февруари 2008 година за изменение на Директи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4299,
+   "text": "ДИРЕКТИВА 2007/74/ЕО НА СЪВЕТА от 20 декември 2007 година относно освобождаванет",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4300,
+   "text": "ДИРЕКТИВА 2006/138/ЕО НА СЪВЕТА от 19 декември 2006 година за изменение на Дирек",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4301,
+   "text": "ДИРЕКТИВА 2006/112/ЕО НА СЪВЕТА от 28 ноември 2006 година относно общата система",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4302,
+   "text": "ДИРЕКТИВА 2006/98/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4303,
+   "text": "ДИРЕКТИВА 2006/79/ЕО НА СЪВЕТА от 5 октомври 2006 година относно освобождаване о",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4304,
+   "text": "ДИРЕКТИВА 94/4/ЕО НА СЪВЕТА от 14 февруари 1994 година за изменение на Директиви",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4305,
+   "text": "ДИРЕКТИВА 91/680/ЕИО НА СЪВЕТА от 16 декември 1991 година относно допълнение на ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4306,
+   "text": "ДИРЕКТИВА 91/156/ЕИО НА СЪВЕТА от 18 март 1991 година за изменение на Директива ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4307,
+   "text": "ДИРЕКТИВА 88/664/ЕИО НА СЪВЕТА от 21 декември 1988 година за изменение за девети",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4308,
+   "text": "ТРИНАДЕСЕТА ДИРЕКТИВА 86/560/ЕИО НА СЪВЕТА от 17 ноември 1986 година относно хар",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4309,
+   "text": "ДИРЕКТИВА 85/348/ЕИО НА СЪВЕТА от 8 юли 1985 година за изменение на Директива 69",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4310,
+   "text": "ДИРЕКТИВА 83/182/ЕЕС НА СЪВЕТА от 28 март 1983 година за освобождаване от данъчн",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4311,
+   "text": "ДИРЕКТИВА 82/443/ЕИО НА СЪВЕТА от 29 юни 1982 година за изменение на Директиви 6",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4312,
+   "text": "ДИРЕКТИВА 78/1032/ЕИО НА СЪВЕТА от 19 декември 1978 година за хармонизиране на з",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4313,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4314,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1474 НА КОМИСИЯТА от 13 октомври 2020 година за изменение на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4315,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/972 НА КОМИСИЯТА от 2 юли 2020 година за изменение на Реглам",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4316,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2019/2026 НА СЪВЕТА от 21 ноември 2019 година за из",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4317,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (EС) 2018/1912 НА СЪВЕТА от 4 декември 2018 година за из",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4318,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4319,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1303/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 декември 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4320,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 1042/2013 НА СЪВЕТА от 7 октомври 2013 година за ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4321,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 79/2012 НА КОМИСИЯТА от 31 януари 2012 година за ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4322,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 282/2011 НА СЪВЕТА от 15 март 2011 година за уста",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4323,
+   "text": "РЕГЛАМЕНТ (ЕС) № 904/2010 НА СЪВЕТА от 7 октомври 2010 година относно администра",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4324,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1798/2003 на Съвета от 7 октомври 2003 година относно администр",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4325,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2658/87 НА СЪВЕТА от 23 юли 1987 година относно тарифната и ст",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4326,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4327,
+   "text": "РЕШЕНИЕ 2000/532/EО НА КОМИСИЯТА от 3 май 2000 година за замяна на Решение 94/3/",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 6,
+ "diff_lines": 1265
+}

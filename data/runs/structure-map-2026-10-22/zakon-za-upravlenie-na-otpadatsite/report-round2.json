@@ -1,0 +1,249 @@
+{
+ "slug": "zakon-za-upravlenie-na-otpadatsite",
+ "round": 2,
+ "blocks": 2269,
+ "sections": 45,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1755
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1808,
+    1809
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/8": [
+   1658
+  ],
+  "D-072/1": [
+   1755,
+   1808,
+   1809
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 37,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 12,
+  "article_head": 173,
+  "alinea": 553,
+  "item": 814,
+  "letter": 65,
+  "section_heading": 28,
+  "provisions_heading": 51,
+  "paragraph_sign": 71,
+  "continuation": 2,
+  "quoted": 11,
+  "adoption_formula": 1,
+  "editorial_note": 48,
+  "annex_heading": 9,
+  "annex_row": 391
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 1658,
+   "text": "-------------------------",
+   "note": "dashed separator rule before the adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 2234,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg appendix listing related EU acts, not part of the act"
+  },
+  {
+   "block": 2235,
+   "text": "Директиви:",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2236,
+   "text": "ДИРЕКТИВА (ЕС) 2019/904 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юни 2019 годин",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2237,
+   "text": "ДИРЕКТИВА (ЕС) 2018/851 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 30 май 2018 годи",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2238,
+   "text": "ДИРЕКТИВА (ЕС) 2018/850 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 30 май 2018 годи",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2239,
+   "text": "ДИРЕКТИВА (ЕС) 2017/2096 НА КОМИСИЯТА от 15 ноември 2017 година за изменение на ",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2240,
+   "text": "ДИРЕКТИВА (ЕС) 2016/774 НА КОМИСИЯТА от 18 май 2016 година за изменение на прило",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2241,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1127 НА КОМИСИЯТА от 10 юли 2015 година за изменение на прил",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2242,
+   "text": "ДИРЕКТИВА 2012/19/ЕC НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 юли 2012 година о",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2243,
+   "text": "ДИРЕКТИВА 2010/75/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 2010 год",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2244,
+   "text": "ДИРЕКТИВА 2008/98/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 год",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2245,
+   "text": "ДИРЕКТИВА 2006/66/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 септември 2006 го",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2246,
+   "text": "ДИРЕКТИВА 2000/53/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 септември 2000 г",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2247,
+   "text": "ДИРЕКТИВА 1999/31/ЕО НА СЪВЕТА от 26 април 1999 година относно депонирането на о",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2248,
+   "text": "ДИРЕКТИВА 96/59/ЕО НА СЪВЕТА от 16 септември 1996 година за обезвреждането на по",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2249,
+   "text": "ДИРЕКТИВА 94/62/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 декември 1994 годи",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2250,
+   "text": "ДИРЕКТИВА 86/278/ЕИО НА СЪВЕТА от 12 юни 1986 година за опазване на околната сре",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2251,
+   "text": "Регламенти:",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2252,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/1021 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2253,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/997 НА СЪВЕТА от 8 юни 2017 година за изменение на приложени",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2254,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/852 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2017 годи",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2255,
+   "text": "РЕГЛАМЕНТ (ЕС) № 660/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 го",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2256,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1257/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 ноември 20",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2257,
+   "text": "РЕГЛАМЕНТ (ЕС) № 333/2011 НА СЪВЕТА от 31 март 2011 година за установяване на кр",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2258,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1103/2010 НА КОМИСИЯТА от 29 ноември 2010 година относно устано",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2259,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1107/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2260,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1069/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2261,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1272/2008 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 2",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2262,
+   "text": "РЕГЛАМЕНТ (ЕО) № 440/2008 НА КОМИСИЯТА от 30 май 2008 година за определяне на ме",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2263,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1907/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 декември 2",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2264,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1013/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2006 г",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2265,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2658/87 НА СЪВЕТА от 23 юли 1987 година относно тарифната и ст",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2266,
+   "text": "Решения:",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2267,
+   "text": "РЕШЕНИЕ 2014/955/ЕС НА КОМИСИЯТА от 18 декември 2014 година за изменение на Реше",
+   "note": "lex.bg list of related EU acts"
+  },
+  {
+   "block": 2268,
+   "text": "РЕШЕНИЕ 2000/532/ЕО НА КОМИСИЯТА от 3 май 2000 година за замяна на Решение 94/3/",
+   "note": "lex.bg list of related EU acts"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 176
+}

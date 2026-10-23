@@ -1,0 +1,80 @@
+{
+ "slug": "zakon-za-kadastara-i-imotniya-registar",
+ "round": 1,
+ "blocks": 993,
+ "sections": 24,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 395,
+   "kind": "low_confidence",
+   "detail": "repeated Глава седма. carrying the pre-2025 title after the amended heading; stale duplicate, chapter_heading also plausible"
+  },
+  {
+   "block": 396,
+   "kind": "low_confidence",
+   "detail": "old chapter title superseded by ПРЕДОСТАВЯНЕ НА УСЛУГИ (Загл. изм. 2025); chapter_heading also plausible"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 744,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 747,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 749,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 750,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 2
+ },
+ "source_finding_kinds": {
+  "fragment": 4
+ },
+ "labels": {
+  "drop": 2,
+  "title": 1,
+  "prehistory": 1,
+  "part_heading": 10,
+  "article_head": 126,
+  "alinea": 278,
+  "item": 297,
+  "chapter_heading": 26,
+  "letter": 29,
+  "editorial_note": 39,
+  "provisions_heading": 53,
+  "paragraph_sign": 89,
+  "quoted": 40,
+  "adoption_formula": 1,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 784,
+   "text": "-------------------------",
+   "note": "dashed separator line before adoption formula; could be editorial_note"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 2,
+ "diff_lines": 73
+}

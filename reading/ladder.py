@@ -3,12 +3,16 @@
 Round 0 labels every section. The checks turn failures into exceptions on
 blocks. Round 1 re-labels each excepted block together with its previous and
 next block; round 2 once more. What is still excepted after round 2 is the
-residue for a whole-act read by a Fable model or the owner. The ladder only
+residue for a whole-act read by a Fable model or the owner. The residue is
+sorted by what another round could change: a block whose last two answers
+agree is a reading the labeller holds and the checks refuse, so it needs a
+rule, not a round; any other block is the labeller's doubt. The ladder only
 prepares tasks and merges answers; the calls themselves are made by the run
 driver (Claude Code subagents under the owner's plans).
 """
 from __future__ import annotations
 
+from . import rules
 from .checks import run_all
 from .labels import validate_entries
 from .splitter import Block, SplitAct
@@ -16,7 +20,7 @@ from .splitter import Block, SplitAct
 MAX_ROUNDS = 2
 NEIGHBOURS = 1
 # exceptions that describe the source, not a label: recorded as findings, never re-labelled
-SOURCE_FINDINGS = frozenset({"empty_section", "fragment", "article_gap", "sign_gap", "malformed_head"})
+SOURCE_FINDINGS = frozenset({"empty_section", "fragment", "article_gap", "sign_gap", "malformed_head", "alinea_gap", "item_gap"})
 
 
 def _context(act: SplitAct, first: int) -> list[str]:
@@ -74,6 +78,38 @@ def next_round_tasks(act: SplitAct, smap: dict[int, dict], exceptions: list[dict
     return tasks
 
 
-def evaluate(act: SplitAct, smap: dict[int, dict], problems: list[dict]) -> tuple[str, list[dict]]:
-    md, ex = run_all(act.blocks, smap)
-    return md, problems + ex
+def evaluate(act: SplitAct, smap: dict[int, dict], problems: list[dict],
+             slug: str | None = None) -> tuple[str, list[dict], list[dict], dict[int, dict]]:
+    """Apply the rulings of D-072 to the labeller's map, then run the checks: (markdown, exceptions, omissions, ruled map).
+
+    A validator problem on a block that a ruling has since labelled is settled by the ruling.
+    """
+    ruled, blocks, omissions = rules.apply(act.blocks, smap, slug)
+    md, ex = run_all(blocks, ruled)
+    return md, [p for p in problems if not ruled.get(p.get("block"), {}).get("rule")] + ex, omissions, ruled
+
+
+def classify_residue(residue: list[int], rounds: list[tuple[dict[int, dict], list[dict]]],
+                     exceptions: list[dict]) -> list[dict]:
+    """Sort the residue into ``rule_needed`` and ``labeller_unsure`` from each round's own answers.
+
+    ``rounds`` holds, per round, the map of that round's answers alone and the validator's problems.
+    A refused answer (a label or number the validator rejects) counts as an answer, so a number
+    the grammar cannot read, given twice, is also a rule the checks lack.
+    """
+    out = []
+    for i in residue:
+        seq: list[list | None] = []
+        for got, problems in rounds:
+            if i in got:
+                seq.append([got[i]["label"], got[i].get("n")])
+            else:
+                kinds = sorted({p["kind"] for p in problems if p.get("block") == i and p["kind"] in ("bad_label", "bad_number")})
+                seq.append(["refused", ",".join(kinds)] if kinds else None)
+        answered = [a for a in seq if a is not None]
+        last = next((got[i] for got, _ in reversed(rounds) if i in got), {})
+        out.append({"block": i,
+                    "class": "rule_needed" if len(answered) >= 2 and answered[-1] == answered[-2] else "labeller_unsure",
+                    "labels": seq, "kinds": sorted({e["kind"] for e in exceptions if e.get("block") == i}),
+                    "note": last.get("note", "")})
+    return out

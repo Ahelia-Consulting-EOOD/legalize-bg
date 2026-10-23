@@ -1,0 +1,617 @@
+{
+ "slug": "kodeks-na-truda",
+ "round": 0,
+ "blocks": 3209,
+ "sections": 107,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 1007,
+   "kind": "low_confidence",
+   "detail": "title of repealed Чл. 131 printed before the repeal note of Раздел II; section heading also plausible"
+  },
+  {
+   "block": 1526,
+   "kind": "low_confidence",
+   "detail": "states that ал. 2 of чл. 214 is repealed, written as a note without the (2) marker; alinea n=2 or editorial_note also plausible"
+  },
+  {
+   "block": 2115,
+   "kind": "low_confidence",
+   "detail": "duplicate Глава седемнадесета line carrying the superseded pre-2025 title; chapter_heading or drop as superseded text"
+  },
+  {
+   "block": 2116,
+   "kind": "low_confidence",
+   "detail": "superseded old title of Глава седемнадесета (replaced by 2114); chapter_heading or drop"
+  },
+  {
+   "block": 2117,
+   "kind": "low_confidence",
+   "detail": "duplicate Раздел I line carrying the superseded old title; section_heading or drop"
+  },
+  {
+   "block": 2118,
+   "kind": "low_confidence",
+   "detail": "superseded old title of Раздел I (replaced by 2120); section_heading or drop"
+  },
+  {
+   "block": 2542,
+   "kind": "low_confidence",
+   "detail": "title of § 1 printed before it; provisions_heading second line also plausible"
+  },
+  {
+   "block": 2558,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing text of item 9 after its letters; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 2684,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2688,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2699,
+   "kind": "low_confidence",
+   "detail": "row of dots marking provisions not reproduced (§ 260-265); drop also plausible"
+  },
+  {
+   "block": 2704,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2715,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2720,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2724,
+   "kind": "low_confidence",
+   "detail": "row of dots marking provisions not reproduced (§ 40-41); drop also plausible"
+  },
+  {
+   "block": 2728,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2732,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2737,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2741,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2748,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2751,
+   "kind": "low_confidence",
+   "detail": "row of dots marking provisions not reproduced (§ 44-47); drop also plausible"
+  },
+  {
+   "block": 2755,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2759,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2763,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2767,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2774,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2780,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2791,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2795,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2799,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2803,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2807,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2811,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2815,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2822,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2826,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2830,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2834,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2840,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2844,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2848,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2852,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2856,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2858,
+   "kind": "low_confidence",
+   "detail": "row of dots marking provisions not reproduced (§ 27-30); drop also plausible"
+  },
+  {
+   "block": 2862,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2866,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending law under the heading; editorial_note also plausible"
+  },
+  {
+   "block": 2953,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 2981,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 3005,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 3014,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 3070,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 3078,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 3083,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 3099,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 3101,
+   "kind": "low_confidence",
+   "detail": "bare title of an amending law printed before its provisions heading, not the act's title; editorial_note also plausible"
+  },
+  {
+   "block": 3105,
+   "kind": "low_confidence",
+   "detail": "dotted omission marker for provisions not reproduced; drop also plausible"
+  },
+  {
+   "block": 3123,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; or drop"
+  },
+  {
+   "block": 3130,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; or drop"
+  },
+  {
+   "block": 3135,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; or drop"
+  },
+  {
+   "block": 3138,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; or drop"
+  },
+  {
+   "block": 3143,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; or drop"
+  },
+  {
+   "block": 3148,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; or drop"
+  },
+  {
+   "block": 3150,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; or drop"
+  },
+  {
+   "block": 3153,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; or drop"
+  },
+  {
+   "block": 3161,
+   "kind": "low_confidence",
+   "detail": "heading with no § after it before lex.bg's EU acts list; possibly an empty heading of a later amending act"
+  },
+  {
+   "block": 3162,
+   "kind": "low_confidence",
+   "detail": "second line of the heading (КЪМ ЗАКОНА ...); same doubt as 3161"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 2673,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2118,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2119"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 66
+ },
+ "source_finding_kinds": {
+  "fragment": 1,
+  "empty_section": 1
+ },
+ "labels": {
+  "drop": 47,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 42,
+  "article_title": 513,
+  "article_head": 510,
+  "alinea": 828,
+  "item": 704,
+  "section_heading": 92,
+  "letter": 37,
+  "repeal_note": 8,
+  "unnumbered_item": 10,
+  "provisions_heading": 197,
+  "paragraph_sign": 144,
+  "continuation": 2,
+  "quoted": 10,
+  "editorial_note": 63
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site button"
+  },
+  {
+   "block": 3163,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's related EU legislation list heading, not part of the act"
+  },
+  {
+   "block": 3164,
+   "text": "Директиви:",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3165,
+   "text": "ДИРЕКТИВА (ЕС) 2023/970 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 10 май 2023 годи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3166,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2041 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 октомври 202",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3167,
+   "text": "ДИРЕКТИВА (ЕС) 2019/2034 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3168,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1158 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3169,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1152 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3170,
+   "text": "ДИРЕКТИВА (ЕС) 2018/957 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 28 юни 2018 годи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3171,
+   "text": "ДИРЕКТИВА (ЕС) 2017/164 НА КОМИСИЯТА от 31 януари 2017 година за установяване на",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3172,
+   "text": "ДИРЕКТИВА 2014/67/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3173,
+   "text": "ДИРЕКТИВА 2013/59/ЕВРАТОМ НА СЪВЕТА от 5 декември 2013 година за определяне на о",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3174,
+   "text": "ДИРЕКТИВА 2009/38/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 май 2009 година з",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3175,
+   "text": "ДИРЕКТИВА 2008/104/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 го",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3176,
+   "text": "ДИРЕКТИВА 2006/54/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юли 2006 година з",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3177,
+   "text": "ДИРЕКТИВА 2003/88/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 ноември 2003 годи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3178,
+   "text": "ДИРЕКТИВА 2003/72/ЕО НА СЪВЕТА от 22 юли 2003 година за допълване на Устава на Е",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3179,
+   "text": "ДИРЕКТИВА 2002/15/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 март 2002 година",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3180,
+   "text": "ДИРЕКТИВА 2002/14/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 март 2002 година",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3181,
+   "text": "ДИРЕКТИВА 2001/86/ЕО НА СЪВЕТА от 8 октомври 2001 година за допълнение на Устава",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3182,
+   "text": "ДИРЕКТИВА 2001/23/ЕО НА СЪВЕТА от 12 март 2001 година относно сближаването на за",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3183,
+   "text": "ДИРЕКТИВА 2000/79/ЕО НА СЪВЕТА от 27 ноември 2000 година относно Европейското сп",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3184,
+   "text": "ДИРЕКТИВА 2000/78/ЕО НА СЪВЕТА от 27 ноември 2000 година за създаване на основна",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3185,
+   "text": "ДИРЕКТИВА 1999/70/ЕО НА СЪВЕТА от 28 юни 1999 година относно Рамково споразумени",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3186,
+   "text": "ДИРЕКТИВА 1999/63/ЕО НА СЪВЕТА от 21 юни 1999 година относно Споразумението за о",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3187,
+   "text": "ДИРЕКТИВА 98/59/ЕО НА СЪВЕТА от 20 юли 1998 година за сближаване на законодателс",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3188,
+   "text": "ДИРЕКТИВА 97/81/ЕО НА СЪВЕТА от 15 декември 1997 година относно Рамково споразум",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3189,
+   "text": "ДИРЕКТИВА 97/74/ЕО НА СЪВЕТА от 15 декември 1997 година за включване на Обединен",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3190,
+   "text": "ДИРЕКТИВА 96/71/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 1996 годи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3191,
+   "text": "ДИРЕКТИВА 94/33/ЕО НА СЪВЕТА от 22 юни 1994 година за закрила на младите хора на",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3192,
+   "text": "ДИРЕКТИВА 92/104/ЕИО НА СЪВЕТА от 3 декември 1992 година относно минималните изи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3193,
+   "text": "ДИРЕКТИВА 92/91/ЕИО НА СЪВЕТА от 3 ноември 1992 година за минималните изисквания",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3194,
+   "text": "ДИРЕКТИВА 92/85/ЕИО НА СЪВЕТА от 19 октомври 1992 година за въвеждане на мерки з",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3195,
+   "text": "ДИРЕКТИВА 91/383/ЕИО НА СЪВЕТА от 25 юни 1991 година за допълнение на мерките за",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3196,
+   "text": "ДИРЕКТИВА 89/656/ЕИО НА СЪВЕТА от 30 ноември 1989 година относно минималните изи",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3197,
+   "text": "ДИРЕКТИВА 89/391/ЕИО НА СЪВЕТА от 12 юни 1989 година за въвеждане на мерки за на",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3198,
+   "text": "Регламенти:",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3199,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/2033 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3200,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/2402 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 201",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3201,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/1129 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2017 г. ",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3202,
+   "text": "РЕГЛАМЕНТ (ЕС) № 909/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3203,
+   "text": "РЕГЛАМЕНТ (ЕС) № 600/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 го",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3204,
+   "text": "РЕГЛАМЕНТ (ЕС) № 596/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 ",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3205,
+   "text": "РЕГЛАМЕНТ (ЕС) № 575/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 юни 2013 го",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3206,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1024/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 2",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3207,
+   "text": "РЕГЛАМЕНТ (ЕС) № 492/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 април 2011 г",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  },
+  {
+   "block": 3208,
+   "text": "РЕГЛАМЕНТ (ЕО) 1435/2003 НА СЪВЕТА от 22 юли 2003 година относно устава на Европ",
+   "note": "lex.bg's related EU legislation list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 66,
+ "diff_lines": 1884
+}

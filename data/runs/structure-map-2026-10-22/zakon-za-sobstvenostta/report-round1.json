@@ -1,0 +1,53 @@
+{
+ "slug": "zakon-za-sobstvenostta",
+ "round": 1,
+ "blocks": 312,
+ "sections": 10,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 2,
+   "kind": "low_confidence",
+   "detail": "lex.bg denomination remark under the title; could be prehistory"
+  },
+  {
+   "block": 177,
+   "kind": "label_text_mismatch",
+   "detail": "article_head on a line that does not open with Чл. N."
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 1,
+  "label_text_mismatch": 1
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "editorial_note": 14,
+  "article_head": 124,
+  "unnumbered_alinea": 57,
+  "chapter_heading": 11,
+  "repeal_note": 3,
+  "letter": 15,
+  "section_heading": 9,
+  "continuation": 3,
+  "provisions_heading": 27,
+  "paragraph_sign": 23,
+  "item": 22,
+  "quoted": 1,
+  "alinea": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 2,
+ "diff_lines": 68
+}

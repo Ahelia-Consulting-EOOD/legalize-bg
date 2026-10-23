@@ -1,0 +1,262 @@
+{
+ "slug": "nakazatelen-kodeks",
+ "round": 2,
+ "blocks": 2996,
+ "sections": 78,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    650,
+    651
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1144
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2849
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2892,
+    2893
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2924,
+    2925
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    1812
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/judgement": [
+   482,
+   1048,
+   1148,
+   1226,
+   2683
+  ],
+  "D-072/1": [
+   650,
+   651,
+   1144,
+   2849,
+   2892,
+   2893,
+   2924,
+   2925
+  ],
+  "D-072/8": [
+   2688,
+   2718,
+   2740,
+   2844,
+   2928,
+   2932,
+   2938,
+   2945,
+   2954,
+   2963,
+   2969
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 30,
+  "title": 1,
+  "prehistory": 1,
+  "part_heading": 2,
+  "chapter_heading": 56,
+  "section_heading": 161,
+  "article_head": 632,
+  "alinea": 993,
+  "letter": 122,
+  "item": 643,
+  "unnumbered_item": 2,
+  "provisions_heading": 134,
+  "continuation": 62,
+  "editorial_note": 65,
+  "repeal_note": 1,
+  "paragraph_sign": 81,
+  "quoted": 9,
+  "unnumbered_alinea": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: lex.bg button 'add to my acts'"
+  },
+  {
+   "block": 650,
+   "text": "Раздел II.",
+   "note": "lex.bg duplicate of the Раздел II. heading at 648, repeated immediately with no provision between; its subject line 651 writes Нова, which does not agree with Раздел, while 648-649 writes Нов as Раздел I. does"
+  },
+  {
+   "block": 651,
+   "text": "Несъщински терористични престъпления (Нова - ДВ, бр. 61 от 2025 г., в сила от 31",
+   "note": "subject line of the duplicate Раздел II. pair (650-651), repeating 649 immediately with no provision between; dropped with 650 so the 648-649 pair stands as the heading"
+  },
+  {
+   "block": 2682,
+   "text": "-------------------------",
+   "note": "dash separator line, not provision text; could be kept as a printed divider"
+  },
+  {
+   "block": 2970,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's appended list of related EU acts, not part of the act"
+  },
+  {
+   "block": 2971,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2972,
+   "text": "ДИРЕКТИВА (ЕС) 2024/1226 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 април 2024 г",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2973,
+   "text": "ДИРЕКТИВА (ЕС) 2018/1673 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 201",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2974,
+   "text": "ДИРЕКТИВА (ЕС) 2017/1371 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юли 2017 г. о",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2975,
+   "text": "ДИРЕКТИВА (ЕС) 2017/541 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 март 2017 год",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2976,
+   "text": "ДИРЕКТИВА (ЕС) 2015/2366 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2015",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2977,
+   "text": "ДИРЕКТИВА 2014/62/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 г. отно",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2978,
+   "text": "ДИРЕКТИВА 2014/57/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 г. от",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2979,
+   "text": "ДИРЕКТИВА 2014/42/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 3 април 2014 година",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2980,
+   "text": "ДИРЕКТИВА 2013/40/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 август 2013 г. о",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2981,
+   "text": "ДИРЕКТИВА 2011/99/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 2011 го",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2982,
+   "text": "ДИРЕКТИВА 2011/93/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 2011 г.",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2983,
+   "text": "ДИРЕКТИВА 2011/36/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 април 2011 година",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2984,
+   "text": "ДИРЕКТИВА 2009/123/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2009 г",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2985,
+   "text": "ДИРЕКТИВА 2009/52/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 юни 2009 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2986,
+   "text": "ДИРЕКТИВА 2008/99/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 год",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2987,
+   "text": "ДИРЕКТИВА 2006/43/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2006 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2988,
+   "text": "ДИРЕКТИВА 2005/35/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 7 септември 2005 го",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2989,
+   "text": "ДИРЕКТИВА 2003/87/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 октомври 2003 го",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2990,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2991,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2023/2830 НА КОМИСИЯТА от 17 октомври 2023 година за до",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2992,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/1939 НА СЪВЕТА от 12 октомври 2017 година за установяване на",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2993,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2994,
+   "text": "РАМКОВО РЕШЕНИЕ 2008/913/ПВР НА СЪВЕТА от 28 ноември 2008 г. относно борбата с о",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2995,
+   "text": "РАМКОВО РЕШЕНИЕ 2008/675/ПВР НА СЪВЕТА от 24 юли 2008 г. за вземане предвид прис",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 473
+}

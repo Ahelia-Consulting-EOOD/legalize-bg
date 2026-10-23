@@ -21,13 +21,14 @@ HEADING_PREFIX = {
     "provisions_heading": "## ",
     "annex_heading": "## ",
 }
-_ART = re.compile(r"^(Чл\.\s*\d+[а-яa-z]?\d?\.|Член\s+единствен\.)")
+_ART = re.compile(r"^(Чл\.\s*\d+[а-яa-z]?(?:\d|[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})?\.|Член\s+единствен\.)")  # ¹: a head repaired by ruling 13 of D-072
 _SIGN = re.compile(r"^(§\s*\d+[а-яa-z]?\.|Параграф\s+единствен\.)")
 
 
 JOIN_PREVIOUS = {"continuation"}
 # a heading line that is only a number, e.g. "Глава първа." or "Раздел I.", takes the name line that follows
-_NUMBERED_HEADING_ONLY = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+(\s*\"[а-я]\")?\.?$")
+# (the number may take several words: "Глава двадесет и първа.", "Глава петдесет и шеста "а".")
+NUMBER_LINE = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+(?:\s+[а-я]+){0,3}(\s*\"[а-я]\")?\.?$")
 # the second line of a provisions heading: "КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ …"
 _KAM = re.compile(r"^(КЪМ|Към|към)\s")
 _HEADING_WORD = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел|Допълнителн|Преходни|Заключителни|Приложение)")
@@ -64,7 +65,7 @@ def assemble_lines(blocks: list[Block], smap: dict[int, dict]) -> tuple[list[tup
             pending_title = None
             last_label = "article_title"
         if (label in HEADING_PREFIX and last_label == label and lines
-                and ((_NUMBERED_HEADING_ONLY.match(strip_line(lines[-1][0])) and not _HEADING_WORD.match(b.text))
+                and ((NUMBER_LINE.match(strip_line(lines[-1][0])) and not _HEADING_WORD.match(b.text))
                      or _KAM.match(b.text)
                      or (label == "annex_heading" and strip_line(lines[-1][0]).startswith("Приложение") and not b.text.startswith("Приложение")))):
             text, idxs = lines[-1]
@@ -103,7 +104,8 @@ def strip_line(line: str) -> str:
     line = re.sub(r"^#{1,5} ", "", line)
     if line.startswith("*") and line.endswith("*") and not line.startswith("**"):
         line = line[1:-1]
-    return line.replace("**", "")
+    # only the bold the assembler puts on an article or § head; a footnote mark "(**)" is the page's text
+    return re.sub(r"\*\*((?:Чл\.|Член|§|Параграф)[^*]*?)\*\*", r"\1", line, count=1)
 
 
 def strip_markers(markdown: str) -> str:

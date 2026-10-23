@@ -1,0 +1,429 @@
+{
+ "slug": "grazhdanski-protsesualen-kodeks",
+ "round": 0,
+ "blocks": 3818,
+ "sections": 131,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 3001,
+   "kind": "low_confidence",
+   "detail": "repeated Раздел I. heading with the earlier wording (Регламент 1393/2007); could be drop as a stale duplicate printed by lex.bg"
+  },
+  {
+   "block": 3002,
+   "kind": "low_confidence",
+   "detail": "earlier wording of the same section title; could be drop as a stale duplicate printed by lex.bg"
+  },
+  {
+   "block": 3025,
+   "kind": "low_confidence",
+   "detail": "repeated Раздел II. heading with the earlier wording (Регламент 1206/2001); could be drop as a stale duplicate printed by lex.bg"
+  },
+  {
+   "block": 3026,
+   "kind": "low_confidence",
+   "detail": "earlier wording of the same section title; could be drop as a stale duplicate printed by lex.bg"
+  },
+  {
+   "block": 3040,
+   "kind": "low_confidence",
+   "detail": "repeated Глава петдесет и шеста а line with no title line after it; could be drop as a stale duplicate printed by lex.bg"
+  },
+  {
+   "block": 3085,
+   "kind": "low_confidence",
+   "detail": "repeated Раздел II. heading with the earlier wording; could be drop as a stale duplicate printed by lex.bg"
+  },
+  {
+   "block": 3086,
+   "kind": "low_confidence",
+   "detail": "earlier wording of the same section title; could be drop as a stale duplicate printed by lex.bg"
+  },
+  {
+   "block": 3175,
+   "kind": "low_confidence",
+   "detail": "repeats the chapter number line of 3173 after the heading text; a duplicate in the source, drop is plausible"
+  },
+  {
+   "block": 3257,
+   "kind": "low_confidence",
+   "detail": "amendment note of the heading above (загл. изм.); could be read as part of the provisions_heading"
+  },
+  {
+   "block": 3258,
+   "kind": "low_confidence",
+   "detail": "repeats the heading of 3256 after its note; a duplicate in the source, drop is plausible"
+  },
+  {
+   "block": 3621,
+   "kind": "low_confidence",
+   "detail": "dotted omission line marking provisions left out of the extract; drop also plausible"
+  },
+  {
+   "block": 3631,
+   "kind": "low_confidence",
+   "detail": "dotted omission line marking provisions left out of the extract; drop also plausible"
+  },
+  {
+   "block": 3637,
+   "kind": "low_confidence",
+   "detail": "dotted omission line marking provisions left out of the extract; drop also plausible"
+  },
+  {
+   "block": 3680,
+   "kind": "low_confidence",
+   "detail": "dotted omission line marking provisions left out of the extract; drop also plausible"
+  },
+  {
+   "block": 3697,
+   "kind": "low_confidence",
+   "detail": "dotted omission line marking provisions left out of the extract; drop also plausible"
+  },
+  {
+   "block": 3718,
+   "kind": "low_confidence",
+   "detail": "dotted omission line marking provisions left out of the extract; drop also plausible"
+  },
+  {
+   "block": 3724,
+   "kind": "low_confidence",
+   "detail": "dotted omission line marking provisions left out of the extract; drop also plausible"
+  },
+  {
+   "block": 3731,
+   "kind": "low_confidence",
+   "detail": "omission marker of skipped provisions; drop also plausible"
+  },
+  {
+   "block": 3733,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3738,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3741,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3748,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3755,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3766,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3768,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3773,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3781,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3786,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3791,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3793,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  },
+  {
+   "block": 3798,
+   "kind": "low_confidence",
+   "detail": "omission marker; drop also plausible"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 14,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 349,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 931,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1473,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2606,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2770,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2864,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3387,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3393,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3394,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3396,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3398,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3399,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3400,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3405,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3412,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3417,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3420,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3423,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3424,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3569,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '8.Член 708 се изменя така:'"
+  },
+  {
+   "block": 3000,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3001"
+  },
+  {
+   "block": 3024,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3025"
+  },
+  {
+   "block": 3084,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3085"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 31
+ },
+ "source_finding_kinds": {
+  "fragment": 20,
+  "malformed_head": 1,
+  "empty_section": 3
+ },
+ "labels": {
+  "drop": 22,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 26,
+  "chapter_heading": 140,
+  "article_title": 727,
+  "article_head": 727,
+  "alinea": 1044,
+  "item": 642,
+  "section_heading": 96,
+  "continuation": 2,
+  "provisions_heading": 76,
+  "editorial_note": 58,
+  "paragraph_sign": 122,
+  "letter": 41,
+  "quoted": 91,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site button, not the act"
+  },
+  {
+   "block": 4,
+   "text": "Таблица за съответствие между разпоредбите на ГПК (нов) и ГПК (отм.)",
+   "note": "lex.bg link to a correspondence table, not act text; preamble plausible"
+  },
+  {
+   "block": 3585,
+   "text": "-------------------------",
+   "note": "separator rule line before the adoption formula, not act text"
+  },
+  {
+   "block": 3799,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg EU-legislation reference block, not part of the act"
+  },
+  {
+   "block": 3800,
+   "text": "Директиви:",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3801,
+   "text": "ДИРЕКТИВА (ЕС) 2024/1069 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 април 2024 г",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3802,
+   "text": "ДИРЕКТИВА (ЕС) 2020/1828 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3803,
+   "text": "ДИРЕКТИВА 2000/31/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2000 година з",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3804,
+   "text": "Регламенти:",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3805,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1784 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3806,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1783 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3807,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/1111 НА СЪВЕТА от 25 юни 2019 години относно компетентността",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3808,
+   "text": "РЕГЛАМЕНТ (ЕС) 2015/2421 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 201",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3809,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 1329/2014 НА КОМИСИЯТА от 9 декември 2014 година ",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3810,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3811,
+   "text": "РЕГЛАМЕНТ (ЕС) № 655/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3812,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1215/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3813,
+   "text": "РЕГЛАМЕНТ (ЕС) № 650/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 юли 2012 год",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3814,
+   "text": "РЕГЛАМЕНТ (ЕО) № 4/2009 НА СЪВЕТА от 18 декември 2008 година относно компетентно",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3815,
+   "text": "РЕГЛАМЕНТ (ЕО) № 861/2007 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 юли 2007 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3816,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1896/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3817,
+   "text": "РЕГЛАМЕНТ(ЕО) № 805/2004 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 април 2004 г",
+   "note": "lex.bg EU-legislation reference block"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 31,
+ "diff_lines": 2363
+}

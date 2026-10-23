@@ -6,7 +6,7 @@ import pytest
 from reading.assembler import assemble, strip_markers
 from reading.checks import run_all
 from reading.labels import validate_entries
-from reading.ladder import merge, next_round_tasks, round0_tasks
+from reading.ladder import classify_residue, merge, next_round_tasks, round0_tasks
 from reading.splitter import Block, SplitAct, split_lexbg
 
 FIX = Path(__file__).resolve().parents[1] / "fixtures" / "html"
@@ -412,3 +412,307 @@ def test_fifth_review_sub_letters_superscripts_elisions_quoted_chapters_and_nest
     _, ex = run_all(act.blocks, smap)
     assert any(e["kind"] == "letter_order" and e["block"] == 8 for e in ex)
     assert any(e["kind"] == "item_order" and e["block"] == 16 for e in ex)
+
+
+def test_call_file_round_trip_and_compact_answers():
+    """D-070: a call file holds several tasks as tab-separated lines; the answer file is one object with compact entries."""
+    import json
+    from reading.calls import decode_answer_file, decode_entries, encode_tasks, task_names
+    tasks = [{"round": 0, "task": 3, "target": None, "context": ["Глава първа.", "ОБЩИ ПОЛОЖЕНИЯ"],
+              "blocks": [{"i": 10, "hint": "Article", "text": "Чл. 1. (1) Текст\tс табулация"}, {"i": 11, "hint": "Article", "text": "(2) Друг текст"}]},
+             {"round": 0, "task": 4, "target": None, "context": [], "blocks": [{"i": 12, "hint": "Title", "text": "Глава втора."}]}]
+    text = encode_tasks(tasks)
+    assert task_names(text) == ["0003", "0004"]
+    assert "10\tArticle\tЧл. 1. (1) Текст с табулация" in text and "# context: Глава първа." in text
+    answer = json.dumps({"0003": [{"i": 10, "l": "article_head", "n": "1"}, {"i": 11, "l": "alinea", "n": 2, "c": "low", "note": "or continuation"}], "4": [{"i": 12, "l": "chapter_heading"}]})
+    got = decode_answer_file(answer, ["0003", "0004"])
+    assert [e["label"] for e in got["0003"]] == ["article_head", "alinea"] and got["0003"][0]["conf"] == "high" and got["0003"][1]["conf"] == "low"
+    assert got["0004"][0]["label"] == "chapter_heading"
+    # the validator reads the compact form directly too, and the long form still
+    m, problems = validate_entries([{"i": 10, "l": "article_head", "n": "1"}, {"i": 11, "label": "alinea", "n": "2", "conf": "low"}], [10, 11])
+    assert not problems and m[10]["label"] == "article_head" and m[10]["conf"] == "high" and m[11]["conf"] == "low"
+    # a bare array serves a one-task call; a missing task or an unparsable file is an error value, not a crash
+    assert decode_answer_file("[{\"i\": 12, \"l\": \"chapter_heading\"}]", ["0004"])["0004"][0]["label"] == "chapter_heading"
+    assert isinstance(decode_answer_file("{\"0003\": []}", ["0003", "0004"])["0004"], str)
+    assert isinstance(decode_answer_file("not json", ["0003"])["0003"], str)
+    assert decode_entries("x") == "x"
+
+
+def test_ladder_round1_tasks_encode_target_and_neighbours(zzd):
+    from reading.calls import encode_tasks
+    smap = {i: {"i": i, "label": "continuation", "n": None, "conf": "high", "note": ""} for i in range(len(zzd.blocks))}
+    tasks = next_round_tasks(zzd, smap, [{"block": 5, "kind": "low_confidence", "detail": "two labels"}], 1)
+    text = encode_tasks(tasks)
+    assert "# target: 5" in text and "# exception on the target: low_confidence: two labels" in text
+    lines = [l for l in text.splitlines() if l.startswith(("4\t", "5\t", "6\t"))]
+    assert len(lines) == 3 and lines[0].endswith("\tcontinuation") and lines[1].count("\t") == 2
+
+
+def test_agent_definition_carries_the_instructions_and_the_lean_fields():
+    """D-070: the labeller's system prompt holds the labelling instructions (shared through the cache), no CLAUDE.md, no principles hook."""
+    root = Path(__file__).resolve().parents[2]
+    agent = (root / ".claude" / "agents" / "labeller.md").read_text(encoding="utf-8")
+    prompt = (root / "reading" / "prompts" / "label_section.md").read_text(encoding="utf-8")
+    front = agent.split("\n---", 1)[0]
+    assert "omitClaudeMd: true" in front and "ahelia-principles: exempt" in front and "tools: Read, Write" in front
+    assert prompt.strip() in agent
+
+
+def test_dispatch_groups_tasks_into_call_files_and_collect_splits_call_answers(tmp_path):
+    import json
+    import subprocess
+    import sys
+    run = tmp_path / "runs"
+    slug = "zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato"
+    root = Path(__file__).resolve().parents[2]
+    import re as _re
+    corpus = root / "laws" / f"{slug}.md"
+    if not corpus.exists():
+        pytest.skip("corpus file not on disk")
+    doc_id = _re.search(r"^identificador:\s*'?(-?\d+)'?", corpus.read_text(encoding="utf-8"), _re.M).group(1)
+    if not (root / "data" / "raw" / "lexbg" / f"{doc_id}.html").exists():
+        pytest.skip("raw page not fetched")
+    py = sys.executable
+    assert subprocess.run([py, "reading/run.py", "prepare", "--slug", slug, "--out", str(run)], cwd=root, capture_output=True).returncode == 0
+    d = run / slug
+    task_files = sorted((d / "tasks" / "round0").glob("*.json"))
+    assert "\n" not in task_files[0].read_text(encoding="utf-8").strip(), "task files are compact JSON"
+    out = subprocess.run([py, "reading/run.py", "dispatch", slug, "--round", "0", "--out", str(run), "--prompts"], cwd=root, capture_output=True, text=True)
+    assert out.returncode == 0 and "1 tasks" in out.stdout and "Read " in out.stdout
+    line = out.stdout.splitlines()[0]
+    call_file, answer_file = line.split("\t")[1], line.split("\t")[2]
+    assert Path(call_file).exists() and "## task 0000" in Path(call_file).read_text(encoding="utf-8")
+    blocks = json.loads((d / "blocks.json").read_text(encoding="utf-8"))["blocks"]
+    Path(answer_file).write_text(json.dumps({"0000": [{"i": b["i"], "l": "title" if b["i"] == 0 else "continuation"} for b in blocks]}), encoding="utf-8")
+    # once answered, dispatch lists nothing more
+    out2 = subprocess.run([py, "reading/run.py", "dispatch", slug, "--round", "0", "--out", str(run)], cwd=root, capture_output=True, text=True)
+    assert "0 calls listed, 0 tasks unanswered" in out2.stderr
+    assert subprocess.run([py, "reading/run.py", "collect", "--slug", slug, "--round", "0", "--out", str(run)], cwd=root, capture_output=True).returncode == 0
+    assert (d / "maps" / "round0" / "0000.json").exists(), "the call answer was split into the task's own answer file"
+    m = json.loads((d / "map.json").read_text(encoding="utf-8"))
+    assert m["0"]["label"] == "title" and all(v["conf"] == "high" for v in m.values())
+
+
+def _synthetic_round(run_dir, rnd, n_tasks, blocks_per_task=3):
+    """A run folder with n_tasks task files of a round and nothing else (no corpus, no raw page needed)."""
+    import json
+    tdir = run_dir / "tasks" / f"round{rnd}"
+    tdir.mkdir(parents=True, exist_ok=True)
+    (run_dir / "maps" / f"round{rnd}").mkdir(parents=True, exist_ok=True)
+    for k in range(n_tasks):
+        blocks = [{"i": k * blocks_per_task + j, "hint": "Article", "text": f"Чл. {k * blocks_per_task + j}. Текст"} for j in range(blocks_per_task)]
+        t = {"round": rnd, "task": k, "target": None if rnd == 0 else blocks[1]["i"], "context": [], "blocks": blocks}
+        if rnd > 0:
+            t["exceptions"] = [{"block": blocks[1]["i"], "kind": "low_confidence", "detail": "x"}]; t["previous_label"] = "alinea"
+            for b in (blocks[0], blocks[2]):
+                b["current_label"] = "continuation"; b["current_n"] = None
+        (tdir / f"{k:04d}.json").write_text(json.dumps(t, ensure_ascii=False), encoding="utf-8")
+    return tdir
+
+
+def _dispatch(run_root, slug, rnd, **kw):
+    import io, contextlib, sys as _sys
+    from reading import run as runmod
+    ns = type("A", (), {})(); ns.out = str(run_root); ns.slugs = [slug]; ns.round = rnd
+    ns.per = kw.get("per", 0); ns.max = kw.get("max", 20); ns.prompts = False; ns.relist = kw.get("relist", False); ns.json = kw.get("json", False)
+    out, err = io.StringIO(), io.StringIO()
+    with contextlib.redirect_stdout(out), contextlib.redirect_stderr(err):
+        runmod.cmd_dispatch(ns)
+    return [l for l in out.getvalue().splitlines() if l and not l.startswith("#")], err.getvalue()
+
+
+def test_dispatch_groups_and_max_and_in_flight_tasks(tmp_path):
+    """Review rounds 1 and 2: calls still running are not dispatched again, even when the groups re-form."""
+    import json, os, time
+    from reading.calls import CALL_NAME
+    run_root = tmp_path / "runs"; slug = "synthetic-act"
+    _synthetic_round(run_root / slug, 0, 19)
+    lines, err = _dispatch(run_root, slug, 0, max=2)
+    assert len(lines) == 2 and "8 tasks" in lines[0] and "19 tasks unanswered" in err
+    name0 = lines[0].split()[2]; m = CALL_NAME.fullmatch(name0)
+    assert m and m.group(2) == "0000" and m.group(3) == "0007" and lines[1].split()[2].endswith("-0008-0015")
+    # the two calls are running: a second dispatch lists only the third group
+    lines2, err2 = _dispatch(run_root, slug, 0)
+    assert len(lines2) == 1 and lines2[0].split()[2].endswith("-0016-0018") and "16 tasks in calls written less than" in err2
+    # the first call answers every task but 0003: the regrouped dispatch lists 0003 alone, never the second call's tasks
+    mdir = run_root / slug / "maps" / "round0"
+    answer = {f"{k:04d}": [{"i": b, "l": "article_head", "n": str(b)} for b in range(k * 3, k * 3 + 3)] for k in range(8) if k != 3}
+    (mdir / f"{name0}.json").write_text(json.dumps(answer), encoding="utf-8")
+    lines3, _ = _dispatch(run_root, slug, 0)
+    assert len(lines3) == 1 and lines3[0].split()[2].endswith("-0003-0003") and "1 tasks" in lines3[0]
+    # --relist lists the running call's tasks again; an old call file (over 15 minutes) counts as finished
+    lines4, _ = _dispatch(run_root, slug, 0, relist=True)
+    assert sum(int(l.split()[3]) for l in lines4) == 1 + 8 + 3
+    old = time.time() - 3600
+    for cf in (run_root / slug / "calls" / "round0").glob("*.tsv"):
+        os.utime(cf, (old, old))
+    lines5, err5 = _dispatch(run_root, slug, 0)
+    assert sum(int(l.split()[3]) for l in lines5) == 12 and "taken as running" not in err5
+
+
+def test_split_refuses_bad_answers_honours_a_retry_and_reports_defects(tmp_path):
+    """Review rounds 1 and 2: a bad call answer leaves its tasks unanswered and is reported; a retry replaces what it answers well."""
+    import json, time
+    from reading.run import _answers, _call_defects, _split_call_answers
+    run_dir = tmp_path / "runs" / "synthetic-act"
+    _synthetic_round(run_dir, 0, 3)
+    lines, _ = _dispatch(tmp_path / "runs", "synthetic-act", 0)
+    name = lines[0].split()[2]
+    mdir = run_dir / "maps" / "round0"
+    answer = mdir / f"{name}.json"
+    answer.write_text("Here are the labels:\n{\"0000\": []}", encoding="utf-8")       # prose before the JSON
+    defects = _split_call_answers(run_dir, 0)
+    assert len(defects) == 3 and all(d["kind"] == "bad_call_answer" for d in defects)
+    assert not list(mdir.glob("000?.json")), "no per-task file for a bad answer"
+    # the collect path sees the defects through the sidecars, and the tasks are listed again
+    _answers(run_dir, 0)
+    assert len(_call_defects(run_dir, 0)) == 3
+    lines2, _ = _dispatch(tmp_path / "runs", "synthetic-act", 0, relist=True)
+    assert len(lines2) == 1
+    # a correct retry (a bare integer key and a 'task 0002' key) is split; the task missing from it stays unanswered and is reported
+    good = {"0": [{"i": 0, "l": "article_head", "n": "0"}, {"i": 1, "l": "article_head", "n": 1}, {"i": 2, "l": "article_head", "n": "2"}],
+            "task 0002": [{"i": 6, "l": "article_head", "n": "6"}, {"i": 7, "l": "article_head", "n": "7"}, {"i": 8, "l": "article_head", "n": "8"}]}
+    time.sleep(0.01); answer.write_text(json.dumps(good), encoding="utf-8")
+    defects = _split_call_answers(run_dir, 0)
+    assert [d["task"] for d in defects] == ["0001"] and (mdir / "0000.json").exists() and (mdir / "0002.json").exists() and not (mdir / "0001.json").exists()
+    assert [d["task"] for d in _call_defects(run_dir, 0)] == ["0001"]
+    # a re-dispatch of the missing task, answered by its own call, is kept when the first call's file is rewritten with that task too
+    (mdir / "0001.json").write_text(json.dumps([{"i": 3, "label": "alinea", "n": "3"}, {"i": 4, "label": "alinea", "n": "4"}, {"i": 5, "label": "alinea", "n": "5"}]), encoding="utf-8")
+    good["1"] = [{"i": 3, "l": "continuation"}, {"i": 4, "l": "continuation"}, {"i": 5, "l": "continuation"}]
+    time.sleep(0.01); answer.write_text(json.dumps(good, indent=1), encoding="utf-8")
+    assert _split_call_answers(run_dir, 0) == []
+    assert json.loads((mdir / "0001.json").read_text())[0]["label"] == "alinea", "another call's answer is kept"
+    # a retry that drops a task it had answered well keeps that earlier answer
+    del good["0"]
+    time.sleep(0.01); answer.write_text(json.dumps(good), encoding="utf-8")
+    assert [d["task"] for d in _split_call_answers(run_dir, 0)] == ["0000"] and (mdir / "0000.json").exists()
+    assert _split_call_answers(run_dir, 0) == [], "an unchanged answer file is not split twice"
+
+
+def test_late_answers_to_a_replaced_task_set_are_set_aside(tmp_path):
+    """Review round 2, blocking finding: after a real re-collect, a late answer of the old set is never filed under the new tasks."""
+    import json
+    from reading.calls import task_set_id
+    from reading.run import _set_aside_round, _split_call_answers
+    run_dir = tmp_path / "runs" / "synthetic-act"
+    _synthetic_round(run_dir, 1, 2)
+    lines, _ = _dispatch(tmp_path / "runs", "synthetic-act", 1)
+    old_name = lines[0].split()[2]
+    call = run_dir / "calls" / "round1" / f"{old_name}.tsv"
+    text = call.read_text(encoding="utf-8")
+    assert text.startswith("# task set: ") and "# target: 1" in text and "\tcontinuation" in text
+    # the round is re-collected exactly as cmd_collect does: tasks rewritten, maps and calls set aside
+    _set_aside_round(run_dir, 1, "test")
+    _synthetic_round(run_dir, 1, 3)
+    mdir = run_dir / "maps" / "round1"
+    late = {"0000": [{"i": 1, "l": "alinea", "n": "1"}], "0001": [{"i": 4, "l": "alinea", "n": "4"}]}
+    # case 1: no new dispatch yet; the old call's late answer arrives under its old name
+    (mdir / f"{old_name}.json").write_text(json.dumps(late), encoding="utf-8")
+    assert [d["kind"] for d in _split_call_answers(run_dir, 1)] == ["stale_task_set"]
+    assert not (mdir / "0000.json").exists() and list(mdir.glob(f"{old_name}.stale-*.json"))
+    # case 2: the round was re-dispatched first; the old call writes again under its old name; the new call's answer is split
+    lines2, _ = _dispatch(tmp_path / "runs", "synthetic-act", 1)
+    new_name = lines2[0].split()[2]
+    assert new_name != old_name and new_name.startswith(task_set_id(list((run_dir / "tasks" / "round1").glob("*.json"))))
+    (mdir / f"{old_name}.json").write_text(json.dumps(late), encoding="utf-8")
+    (mdir / f"{new_name}.json").write_text(json.dumps({"0": [{"i": 1, "l": "item", "n": "1"}], "1": [{"i": 4, "l": "item", "n": "4"}], "2": [{"i": 7, "l": "item", "n": "7"}]}), encoding="utf-8")
+    defects = _split_call_answers(run_dir, 1)
+    assert [d["kind"] for d in defects] == ["stale_task_set"]
+    assert json.loads((mdir / "0000.json").read_text())[0]["label"] == "item" and (mdir / "0002.json").exists()
+    # an answer file without a call file (written by hand with the right set) uses the name's range
+    sid = new_name.split("-")[0]
+    (mdir / f"{sid}-0002-0002.json").unlink(missing_ok=True)
+    (mdir / "0002.json").unlink()
+    (mdir / f"{sid}-0002-0002.json").write_text(json.dumps({"2": [{"i": 7, "l": "letter", "n": "а"}]}), encoding="utf-8")
+    assert _split_call_answers(run_dir, 1) == [] and json.loads((mdir / "0002.json").read_text())[0]["label"] == "letter"
+
+
+def test_call_file_breaks_and_digits():
+    from reading.calls import KEY, TASK_HEAD, _one_line, decode_answer_file
+    assert _one_line("a b\x0cc\td") == "a b c d"
+    assert TASK_HEAD.match("## task 12345")
+    assert KEY.fullmatch("³") is None and KEY.fullmatch(" task 0007 ").group(1) == "0007"
+    assert isinstance(decode_answer_file("{\"³\": []}", ["0000"])["0000"], str)
+    got = decode_answer_file("{\"9999\": [], \"10000\": []}", ["9999", "10000"])
+    assert got["9999"] == [] and got["10000"] == []
+
+
+def test_retry_of_a_whole_call_gets_a_fresh_answer_path_and_the_in_flight_guard(tmp_path):
+    """Review round 3: a call whose whole answer was bad is listed again under the same name with its old answer set aside."""
+    import json
+    from reading.run import _call_defects, _split_call_answers
+    run_root = tmp_path / "runs"; slug = "synthetic-act"
+    run_dir = run_root / slug
+    _synthetic_round(run_dir, 0, 4)
+    lines, _ = _dispatch(run_root, slug, 0)
+    name = lines[0].split()[2]
+    mdir = run_dir / "maps" / "round0"
+    (mdir / f"{name}.json").write_text("not json at all", encoding="utf-8")
+    assert len(_split_call_answers(run_dir, 0)) == 4
+    lines2, _ = _dispatch(run_root, slug, 0)                      # the retry: same name, old answer set aside
+    assert len(lines2) == 1 and lines2[0].split()[2] == name
+    assert not (mdir / f"{name}.json").exists() and list(mdir.glob(f"{name}.superseded-*.json"))
+    lines3, err3 = _dispatch(run_root, slug, 0)                   # straight after: the retry is in flight
+    assert lines3 == [] and "taken as running" in err3
+    (mdir / f"{name}.json").write_text(json.dumps({f"{k:04d}": [{"i": b, "l": "article_head", "n": str(b)} for b in range(k * 3, k * 3 + 3)] for k in range(4)}), encoding="utf-8")
+    assert _split_call_answers(run_dir, 0) == [] and all((mdir / f"{k:04d}.json").exists() for k in range(4))
+    assert _call_defects(run_dir, 0) == [], "the earlier defects are resolved once the tasks have answers"
+
+
+def test_reset_reaches_every_later_round_and_stale_set_asides_are_reported(tmp_path):
+    """Review round 3: a replaced task set or block list leaves no later round's tasks or answers behind."""
+    import json
+    from reading.run import _call_defects, _rounds_on_disk, _set_aside_from, _split_call_answers
+    run_dir = tmp_path / "runs" / "synthetic-act"
+    for r in (1, 2, 3):
+        _synthetic_round(run_dir, r, 2)
+        (run_dir / "maps" / f"round{r}" / "0000.json").write_text("[]", encoding="utf-8")
+        (run_dir / "calls" / f"round{r}").mkdir(parents=True, exist_ok=True)
+        (run_dir / "calls" / f"round{r}" / "x.tsv").write_text("", encoding="utf-8")
+    note = _set_aside_from(run_dir, 2, "test", drop_tasks=True)
+    assert "round 2" in note and "round 3" in note
+    assert (run_dir / "maps" / "round1" / "0000.json").exists() and list((run_dir / "tasks" / "round1").glob("*.json"))
+    for r in (2, 3):
+        assert not (run_dir / "maps" / f"round{r}").exists() and not list((run_dir / "tasks" / f"round{r}").glob("*.json"))
+        assert not (run_dir / "calls" / f"round{r}").exists() and list((run_dir / "maps").glob(f"round{r}-stale-*"))
+    assert _rounds_on_disk(run_dir) == [1, 2, 3]
+    # a stale set-aside shows in the collect report's call defects
+    lines, _ = _dispatch(tmp_path / "runs", "synthetic-act", 1)
+    old = lines[0].split()[2]
+    _set_aside_from(run_dir, 1, "test", drop_tasks=True); _synthetic_round(run_dir, 1, 3)
+    (run_dir / "maps" / "round1" / f"{old}.json").write_text(json.dumps({"0": []}), encoding="utf-8")
+    _split_call_answers(run_dir, 1)
+    assert [d["kind"] for d in _call_defects(run_dir, 1)] == ["stale_task_set"]
+
+
+def test_task_set_id_ignores_stray_files(tmp_path):
+    from reading.calls import task_set_id
+    run_dir = tmp_path / "runs" / "synthetic-act"
+    tdir = _synthetic_round(run_dir, 0, 2)
+    before = task_set_id(list(tdir.glob("*.json")))
+    (tdir / "notes.json").write_text("{}", encoding="utf-8")
+    (tdir / "0001 copy.json").write_text("{}", encoding="utf-8")
+    assert task_set_id(list(tdir.glob("*.json"))) == before
+
+
+def test_dispatch_json_lists_calls_for_a_workflow(tmp_path):
+    import json
+    run_root = tmp_path / "runs"; slug = "synthetic-act"
+    _synthetic_round(run_root / slug, 0, 9)
+    lines, _ = _dispatch(run_root, slug, 0, json=True)
+    calls = json.loads(lines[0])
+    assert len(calls) == 2 and calls[0]["tasks"] == 8 and calls[1]["tasks"] == 1
+    assert calls[0]["prompt"].startswith("Read ") and calls[0]["call_file"] in calls[0]["prompt"] and calls[0]["answer_file"] in calls[0]["prompt"]
+
+
+def test_residue_is_sorted_into_rule_needed_and_labeller_unsure():
+    """A reading the labeller held in its last two answers needs a rule; a changed or single answer is doubt."""
+    r0 = ({1: {"label": "section_heading", "n": None}, 2: {"label": "section_heading", "n": None}, 3: {"label": "item", "n": "1"}}, [])
+    r1 = ({1: {"label": "drop", "n": None, "note": "superseded repeat"}, 2: {"label": "drop", "n": None}}, [{"block": 3, "kind": "bad_number"}])
+    r2 = ({1: {"label": "drop", "n": None, "note": "superseded repeat"}, 2: {"label": "editorial_note", "n": None}}, [{"block": 3, "kind": "bad_number"}])
+    ex = [{"block": 1, "kind": "drop_inside_act"}, {"block": 2, "kind": "low_confidence"}, {"block": 3, "kind": "bad_number"}, {"block": 4, "kind": "unknown"}]
+    got = {d["block"]: d for d in classify_residue([1, 2, 3, 4], [r0, r1, r2], ex)}
+    assert got[1]["class"] == "rule_needed" and got[1]["note"] == "superseded repeat" and got[1]["kinds"] == ["drop_inside_act"]
+    assert got[2]["class"] == "labeller_unsure"
+    assert got[3]["class"] == "rule_needed" and got[3]["labels"][1] == ["refused", "bad_number"]
+    assert got[4]["class"] == "labeller_unsure" and got[4]["labels"] == [None, None, None]

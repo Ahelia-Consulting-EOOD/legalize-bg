@@ -1,0 +1,385 @@
+{
+ "slug": "zakon-za-avtomobilnite-prevozi",
+ "round": 0,
+ "blocks": 1673,
+ "sections": 38,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 830,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea or repeal_note"
+  },
+  {
+   "block": 831,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea or repeal_note"
+  },
+  {
+   "block": 839,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea or repeal_note"
+  },
+  {
+   "block": 908,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 973,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 974,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 975,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 976,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 978,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 979,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 980,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 981,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 982,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 1079,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 1209,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 1235,
+   "kind": "low_confidence",
+   "detail": "repealed item; item or repeal_note"
+  },
+  {
+   "block": 1239,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea or repeal_note"
+  },
+  {
+   "block": 1240,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea or repeal_note"
+  },
+  {
+   "block": 1327,
+   "kind": "low_confidence",
+   "detail": "separator line before the adoption formula; editorial_note or drop"
+  },
+  {
+   "block": 1591,
+   "kind": "low_confidence",
+   "detail": "truncated heading 'КЪМ ЗАКОНА' without act name; provisions_heading or unknown"
+  },
+  {
+   "block": 1603,
+   "kind": "low_confidence",
+   "detail": "truncated heading 'КЪМ' without act name; provisions_heading or unknown"
+  },
+  {
+   "block": 1625,
+   "kind": "low_confidence",
+   "detail": "annex added then repealed (отм.); repeal_note or editorial_note"
+  },
+  {
+   "block": 1627,
+   "kind": "low_confidence",
+   "detail": "annex added then repealed (отм.); repeal_note or editorial_note"
+  },
+  {
+   "block": 1629,
+   "kind": "low_confidence",
+   "detail": "annex added then repealed (отм.); repeal_note or editorial_note"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 412,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 24
+ },
+ "source_finding_kinds": {
+  "fragment": 1
+ },
+ "labels": {
+  "drop": 44,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 20,
+  "article_head": 167,
+  "item": 600,
+  "alinea": 452,
+  "letter": 129,
+  "section_heading": 22,
+  "provisions_heading": 94,
+  "paragraph_sign": 82,
+  "editorial_note": 54,
+  "adoption_formula": 1,
+  "annex_heading": 3,
+  "repeal_note": 3
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 1630,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1631,
+   "text": "Директиви:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1632,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2561 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 202",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1633,
+   "text": "ДИРЕКТИВА (ЕС) 2022/1999 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 октомври 202",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1634,
+   "text": "ДИРЕКТИВА (ЕС) 2022/738 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 април 2022 год",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1635,
+   "text": "ДИРЕКТИВА (ЕС) 2020/1057 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 юли 2020 год",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1636,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2309 НА КОМИСИЯТА от 16 декември 2016 година за адаптиране з",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1637,
+   "text": "ДИРЕКТИВА 2014/47/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 3 април 2014 година",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1638,
+   "text": "ДИРЕКТИВА 2010/40/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 7 юли 2010 година о",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1639,
+   "text": "ДИРЕКТИВА 2009/103/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1640,
+   "text": "ДИРЕКТИВА 2009/5/ЕО НА КОМИСИЯТА от 30 януари 2009 година за изменение на прилож",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1641,
+   "text": "ДИРЕКТИВА 2008/68/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 септември 2008 г",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1642,
+   "text": "ДИРЕКТИВА 2006/126/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 декември 2006 г",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1643,
+   "text": "ДИРЕКТИВА 2006/22/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 март 2006 година",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1644,
+   "text": "ДИРЕКТИВА 2006/1/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 януари 2006 годин",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1645,
+   "text": "ДИРЕКТИВА 2005/36/EО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 7 септември 2005 го",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1646,
+   "text": "ДИРЕКТИВА 2002/85/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 ноември 2002 годи",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1647,
+   "text": "ДИРЕКТИВА 2000/56/ЕО НА КОМИСИЯТА от 14 септември 2000 година относно изменение ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1648,
+   "text": "ДИРЕКТИВА 96/86/ЕО НА КОМИСИЯТА от 13 декември 1996 година относно адаптиране къ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1649,
+   "text": "ДИРЕКТИВА 92/6/ЕИО НА СЪВЕТА от 10 февруари 1992 година относно монтирането и из",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1650,
+   "text": "ДИРЕКТИВА 82/50/ЕИО НА СЪВЕТА от 19 януари 1982 година относно изменение на Първ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1651,
+   "text": "ДИРЕКТИВА 80/49/ЕИО НА СЪВЕТА от 20 декември 1979 година за изменение на Първата",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1652,
+   "text": "ДИРЕКТИВА 74/149/ЕИО НА СЪВЕТА от 4 март 1974 година за изменение на Първата дир",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1653,
+   "text": "ДИРЕКТИВА 72/430/ЕИО НА СЪВЕТА от 19 декември 1972 година за изменение на директ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1654,
+   "text": "Регламенти:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1655,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1055 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 юли 2020 год",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1656,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1054 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 юли 2020 год",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1657,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/2394 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 201",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1658,
+   "text": "РЕГЛАМЕНТ (ЕС) № 165/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 февруари 201",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1659,
+   "text": "РЕГЛАМЕНТ (ЕС) № 181/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 февруари 20",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1660,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1073/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1661,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1072/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1662,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1071/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1663,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1370/2007 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 2",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1664,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1013/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2006 г",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1665,
+   "text": "РЕГЛАМЕНТ (ЕО) № 561/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 март 2006 г",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1666,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2135/98 НА СЪВЕТА от 24 септември 1998 година за изменение на Р",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1667,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 3912/92 НА СЪВЕТА от 17 декември 1992 година относно контрола,",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1668,
+   "text": "Решения:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1669,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2017/1013 НА КОМИСИЯТА от 30 март 2017 година за изго",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1670,
+   "text": "РЕШЕНИЕ НА КОМИСИЯТА от 29 ноември 2005 година относно прилагането на Директива ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1671,
+   "text": "РЕШЕНИЕ НА КОМИСИЯТА от 2 април 2004 година относно прилагането на Директива 72/",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 1672,
+   "text": "РЕШЕНИЕ НА КОМИСИЯТА от 28 юли 2003 година за прилагането на Директива 72/166/ЕИ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 24,
+ "diff_lines": 240
+}

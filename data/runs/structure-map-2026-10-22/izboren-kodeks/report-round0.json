@@ -1,0 +1,240 @@
+{
+ "slug": "izboren-kodeks",
+ "round": 0,
+ "blocks": 3646,
+ "sections": 119,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 98,
+   "kind": "low_confidence",
+   "detail": "repealed alinea: alinea or repeal_note"
+  },
+  {
+   "block": 188,
+   "kind": "low_confidence",
+   "detail": "repeated Раздел III. printing the pre-amendment heading; section_heading or editorial_note"
+  },
+  {
+   "block": 189,
+   "kind": "low_confidence",
+   "detail": "old wording of the amended section heading; section_heading or editorial_note"
+  },
+  {
+   "block": 796,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea or repeal_note"
+  },
+  {
+   "block": 1468,
+   "kind": "low_confidence",
+   "detail": "repealed paragraph with only the amendment note; repeal_note plausible"
+  },
+  {
+   "block": 1686,
+   "kind": "low_confidence",
+   "detail": "repeated older version of the Раздел XI heading; section_heading or editorial_note"
+  },
+  {
+   "block": 1687,
+   "kind": "low_confidence",
+   "detail": "older title of Раздел XI printed again; section_heading or editorial_note"
+  },
+  {
+   "block": 1701,
+   "kind": "low_confidence",
+   "detail": "repeated version of the Раздел XII heading; section_heading or editorial_note"
+  },
+  {
+   "block": 1702,
+   "kind": "low_confidence",
+   "detail": "repeated version of the Раздел XII title; section_heading or editorial_note"
+  },
+  {
+   "block": 3404,
+   "kind": "low_confidence",
+   "detail": "repealed § line; paragraph_sign or repeal_note"
+  },
+  {
+   "block": 3428,
+   "kind": "low_confidence",
+   "detail": "repealed § line; paragraph_sign or repeal_note"
+  },
+  {
+   "block": 3476,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3477,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3556,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3557,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3570,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3571,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3599,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3600,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3612,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  },
+  {
+   "block": 3613,
+   "kind": "low_confidence",
+   "detail": "annex title line; annex_heading or annex_row"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 187,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 188"
+  },
+  {
+   "block": 1685,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1686"
+  },
+  {
+   "block": 1700,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1701"
+  },
+  {
+   "block": 3476,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3477"
+  },
+  {
+   "block": 3556,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3557"
+  },
+  {
+   "block": 3570,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3571"
+  },
+  {
+   "block": 3599,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3600"
+  },
+  {
+   "block": 3612,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3613"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 21
+ },
+ "source_finding_kinds": {
+  "empty_section": 8
+ },
+ "labels": {
+  "drop": 10,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 6,
+  "chapter_heading": 36,
+  "section_heading": 196,
+  "article_title": 510,
+  "article_head": 510,
+  "item": 835,
+  "alinea": 1094,
+  "letter": 138,
+  "provisions_heading": 39,
+  "paragraph_sign": 61,
+  "continuation": 7,
+  "quoted": 15,
+  "adoption_formula": 1,
+  "editorial_note": 26,
+  "annex_heading": 15,
+  "annex_row": 144
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 3378,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 3638,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU legislation block, not the act"
+  },
+  {
+   "block": 3639,
+   "text": "КОНСОЛИДИРАН ТЕКСТ НА ДОГОВОРА ЗА ЕВРОПЕЙСКИЯ СЪЮЗ",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3640,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3641,
+   "text": "ДИРЕКТИВА 2013/1/ЕС НА СЪВЕТА от 20 декември 2012 година за изменение на Директи",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3642,
+   "text": "ДИРЕКТИВА 94/80/ЕО НА СЪВЕТА от 19 декември 1994 година за определяне на условия",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3643,
+   "text": "ДИРЕКТИВА НА СЪВЕТА 93/109/ЕО от 6 декември 1993 година, с която се определят по",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3644,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3645,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg related EU legislation list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 21,
+ "diff_lines": 1621
+}

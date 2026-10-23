@@ -1,0 +1,180 @@
+{
+ "slug": "zakon-za-zashtita-na-lichnite-danni",
+ "round": 0,
+ "blocks": 743,
+ "sections": 19,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 126,
+   "kind": "low_confidence",
+   "detail": "repeated Глава трета: older version of the heading printed by lex.bg; chapter_heading or editorial_note"
+  },
+  {
+   "block": 127,
+   "kind": "low_confidence",
+   "detail": "older title of Глава трета printed after the current one; chapter_heading or editorial_note"
+  },
+  {
+   "block": 160,
+   "kind": "low_confidence",
+   "detail": "repeated Глава четвърта: older version of the heading printed by lex.bg; chapter_heading or editorial_note"
+  },
+  {
+   "block": 161,
+   "kind": "low_confidence",
+   "detail": "older title of Глава четвърта printed after the current one; chapter_heading or editorial_note"
+  },
+  {
+   "block": 211,
+   "kind": "low_confidence",
+   "detail": "repeated Глава пета: older version of the heading printed by lex.bg; chapter_heading or editorial_note"
+  },
+  {
+   "block": 212,
+   "kind": "low_confidence",
+   "detail": "older title of Глава пета printed after the current one; chapter_heading or editorial_note"
+  },
+  {
+   "block": 227,
+   "kind": "low_confidence",
+   "detail": "repeated Глава шеста: older version of the heading printed by lex.bg; chapter_heading or editorial_note"
+  },
+  {
+   "block": 228,
+   "kind": "low_confidence",
+   "detail": "older title of Глава шеста printed after the current one; chapter_heading or editorial_note"
+  },
+  {
+   "block": 243,
+   "kind": "low_confidence",
+   "detail": "repeated Глава седма: older version of the heading printed by lex.bg; chapter_heading or editorial_note"
+  },
+  {
+   "block": 244,
+   "kind": "low_confidence",
+   "detail": "older title of Глава седма printed after the current one; chapter_heading or editorial_note"
+  },
+  {
+   "block": 294,
+   "kind": "low_confidence",
+   "detail": "repeated Глава осма: older version of the heading printed by lex.bg; chapter_heading or editorial_note"
+  },
+  {
+   "block": 295,
+   "kind": "low_confidence",
+   "detail": "older title of Глава осма printed after the current one; chapter_heading or editorial_note"
+  },
+  {
+   "block": 396,
+   "kind": "low_confidence",
+   "detail": "repeated 'Раздел III.' after its title; heading line or drop as duplicate"
+  },
+  {
+   "block": 628,
+   "kind": "low_confidence",
+   "detail": "dashed separator line before the adoption formula; editorial_note or drop"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 395,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 396"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 14
+ },
+ "source_finding_kinds": {
+  "empty_section": 1
+ },
+ "labels": {
+  "drop": 13,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 32,
+  "article_head": 132,
+  "alinea": 221,
+  "item": 226,
+  "letter": 8,
+  "section_heading": 11,
+  "provisions_heading": 37,
+  "paragraph_sign": 33,
+  "quoted": 1,
+  "editorial_note": 25,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 731,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg appended list of related EU acts, not part of the act"
+  },
+  {
+   "block": 732,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 733,
+   "text": "ДИРЕКТИВА (ЕС) 2016/680 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 734,
+   "text": "ДИРЕКТИВА 2002/58/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 юли 2002 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 735,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 736,
+   "text": "РЕГЛАМЕНТ (ЕС) 2018/1725 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 737,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 738,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 739,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2380/74 НА СЪВЕТА от 17 септември 1974 година за приемане на р",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 740,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 741,
+   "text": "РЕШЕНИЕ 2001/497/ЕО НА КОМИСИЯТА от 15 юни 2001 година относно общите договорни ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 742,
+   "text": "РЕШЕНИЕ 2000/518/ЕО НА КОМИСИЯТА от 26 юли 2000 година съгласно Директива 95/46/",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 14,
+ "diff_lines": 92
+}

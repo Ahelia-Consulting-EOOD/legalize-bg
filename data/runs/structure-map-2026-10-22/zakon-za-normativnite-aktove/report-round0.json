@@ -1,0 +1,57 @@
+{
+ "slug": "zakon-za-normativnite-aktove",
+ "round": 0,
+ "blocks": 166,
+ "sections": 5,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 15,
+   "kind": "label_text_mismatch",
+   "detail": "item n='1' on '1) когато приема правилници, н'"
+  },
+  {
+   "block": 16,
+   "kind": "label_text_mismatch",
+   "detail": "item n='2' on '2) (изм. - ДВ, бр. 46 от 2007 '"
+  },
+  {
+   "block": 49,
+   "kind": "low_confidence",
+   "detail": "old repealed Глава втора heading kept by lex.bg; repeal_note plausible"
+  },
+  {
+   "block": 50,
+   "kind": "low_confidence",
+   "detail": "old repealed chapter title (ОТМ.); repeal_note plausible"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "label_text_mismatch": 2,
+  "low_confidence": 2
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "chapter_heading": 12,
+  "article_head": 56,
+  "alinea": 56,
+  "item": 20,
+  "provisions_heading": 6,
+  "paragraph_sign": 12,
+  "editorial_note": 2
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 4,
+ "diff_lines": 11
+}

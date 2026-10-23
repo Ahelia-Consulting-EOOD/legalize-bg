@@ -6,7 +6,7 @@ Technical reference for all structured data schemas in legalize-bg. Two schemas 
 
 ## Section 1: YAML Frontmatter Schema
 
-Every Markdown file in the repository begins with a YAML frontmatter block delimited by `---`. The frontmatter contains 13 fields (8 mandatory Legalize SPEC fields + 5 Bulgarian extensions) plus an `amendment_history` array. The provenance fields of the graded source model (D-059: a `provenance` block; per-event `source`, `id_mat`, `applied`, `uncertainty`) are added through a Surface 2 preflight and are documented here when it lands.
+Every Markdown file in the repository begins with a YAML frontmatter block delimited by `---`. The frontmatter contains 13 fields (8 mandatory Legalize SPEC fields + 5 Bulgarian extensions) plus an `amendment_history` array. The provenance fields of the graded source model (D-059: a `provenance` block; per-event `source`, `id_mat`, `applied`, `uncertainty`) are optional extension fields added without a preflight (D-071, 21 October 2026). The `provenance` block an act receives when it is re-read and written through the gate is documented below; the per-event fields are documented when the first Gazette-sourced act is committed.
 
 ### Example
 
@@ -44,7 +44,7 @@ amendment_history:
 | `fecha_publicacion` | date | Required. ISO 8601 format (YYYY-MM-DD). May be null in ~3.4% of bootstrapped acts — see `canonical-data-model.md` §7.2. | Date the act was first published in the State Gazette (Държавен вестник). |
 | `ultima_actualizacion` | date | Required. ISO 8601 format (YYYY-MM-DD). May be null when `fecha_publicacion` is null (same set of ~121 acts). | Date of the most recent amendment's publication in DV. Equals `fecha_publicacion` if the act has never been amended. |
 | `estado` | enum | Required. One of: `vigente`, `derogado`. | Current status. `vigente` = in force; `derogado` = repealed. |
-| `fuente` | literal | Required. `lex.bg` for every act today; `dv.parliament.bg` for Gazette-sourced acts under D-059 (Surface 2 preflight pending). | Base source of the act's text. |
+| `fuente` | literal | Required. `lex.bg` for every act today; `dv.parliament.bg` for Gazette-sourced acts under D-059 (no preflight: D-071). | Base source of the act's text. |
 
 ### Bulgarian Extension Fields (5)
 
@@ -63,6 +63,39 @@ amendment_history:
 | `amendment_history` | array | Optional. Empty array if no amendments. | Ordered list of all amendments applied to the act, from earliest to most recent. |
 | `amendment_history[].dv` | string | Required within element. Format: `{issue}/{year}`. | DV issue reference for the amendment (e.g., "63/2017"). |
 | `amendment_history[].date` | date | Required within element. ISO 8601. | Publication date of the amending DV issue. |
+
+
+### Provenance Block (optional, D-071, D-072)
+
+An act written through the gate from a reading run (`reading/write.py`) carries a `provenance` block. Acts not yet re-read have none; no backfill precedes their first re-read.
+
+```yaml
+provenance:
+  base:
+    source: lexbg              # the page the text was read from
+    state: snapshot            # lex.bg is a base snapshot, never truth (D-059)
+    page_sha256: 3f2a…         # SHA-256 of the page as stored in the raw store
+    fetched_at: 2026-10-21T14:03:11Z
+  record:
+    run: structure-map-2026-10-22   # the run folder under data/runs/
+    map_sha256: 9c1e…               # SHA-256 of the run's map.json, committed beside the act (D-073)
+    blocks_sha256: 7b40…            # SHA-256 of the blocks the splitter cut from the page
+  omissions:                   # what the pipeline dropped or changed on purpose, empty list if nothing
+    - {kind: superseded_heading, blocks: [537, 538]}
+    - {kind: duplicate_number, blocks: [431, 433]}
+    - {kind: remnant_repaired, blocks: [1812]}
+```
+
+| Field | Type | Constraints | Description |
+|-------|------|-------------|-------------|
+| `provenance.base.source` | literal | `lexbg` in this stage. | The source whose page the body was read from. |
+| `provenance.base.state` | literal | `snapshot` in this stage. | The page is a consolidated snapshot, a witness under D-061. |
+| `provenance.base.page_sha256` | string | 64 hex characters. | Ties the body to the exact page in the raw store. |
+| `provenance.base.fetched_at` | datetime | ISO 8601, UTC. | When the page was fetched. |
+| `provenance.record.run` | string | A folder name under `data/runs/`. | The reading run that produced the body. |
+| `provenance.record.map_sha256` | string | 64 hex characters. | The structure map the body was assembled from; its first 12 characters are in the commit's `Record-Id` trailer. |
+| `provenance.record.blocks_sha256` | string | 64 hex characters. | The blocks the map labels. |
+| `provenance.omissions[]` | array | Each element `{kind, blocks}`; `kind` one of `superseded_heading`, `duplicate_number`, `remnant_repaired`; `blocks` a non-empty list of block indices. | Every place where the body differs from the page on purpose (D-072, rulings 1, 6 and 13). Chrome dropped under ruling 9 is not listed. |
 
 ---
 

@@ -8,4 +8,4 @@
 
 **Fix in the work.** Owner fact of 22 October 2026 in `.claude/CLAUDE.md`: every model call of a run goes through a lean project agent, several tasks per call. The results document records tokens per section for the lean agent once measured. Step 6 of the plan (the run driver) inherits these figures as its baseline.
 
-**Status.** Open until the lean agent's per-section figure is measured and written into `docs/testing/2026-10-22-structure-map-results.md`.
+**Status.** Measured on 21 October 2026 (the run-driver design study, `docs/plans/2026-10-22-run-driver-design.md`): the lean agent at eight sections per call costs 7,676 tokens per section by the harness's count over 96 calls, against 28,990 for the general-purpose agent at three sections per call; the study's recommended driver is estimated at about 4,100. Closed when the plan of record for the driver is merged; the results document carries the figure.

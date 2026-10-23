@@ -1,0 +1,163 @@
+{
+ "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+ "round": 0,
+ "blocks": 1537,
+ "sections": 47,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 490,
+   "kind": "bad_number",
+   "detail": "letter with n='a'"
+  },
+  {
+   "block": 490,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 490,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 585,
+   "kind": "low_confidence",
+   "detail": "closing text of al. 1 after its list; continuation or unnumbered_alinea"
+  },
+  {
+   "block": 741,
+   "kind": "low_confidence",
+   "detail": "second Раздел I. repeating the section with its pre-amendment title; section_heading or editorial_note duplicate"
+  },
+  {
+   "block": 742,
+   "kind": "low_confidence",
+   "detail": "old wording of the Раздел I title just above; section_heading or editorial_note duplicate"
+  },
+  {
+   "block": 812,
+   "kind": "low_confidence",
+   "detail": "closing text of al. 6 after its list; continuation or unnumbered_alinea"
+  },
+  {
+   "block": 843,
+   "kind": "low_confidence",
+   "detail": "heading text carries the chapter's repeal (ОТМ.); repeal_note also plausible"
+  },
+  {
+   "block": 844,
+   "kind": "low_confidence",
+   "detail": "second rendering of the same Глава петнадесета heading; editorial_note also plausible"
+  },
+  {
+   "block": 845,
+   "kind": "low_confidence",
+   "detail": "second rendering of the same chapter title; editorial_note also plausible"
+  },
+  {
+   "block": 1011,
+   "kind": "low_confidence",
+   "detail": "dashed separator line of the page rendering before the adoption formula; drop also plausible"
+  },
+  {
+   "block": 491,
+   "kind": "letter_order",
+   "detail": "б) opens the lettering"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 740,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 741"
+  }
+ ],
+ "exception_kinds": {
+  "bad_number": 1,
+  "missing_entry": 1,
+  "unknown": 1,
+  "low_confidence": 8,
+  "letter_order": 1
+ },
+ "source_finding_kinds": {
+  "empty_section": 1
+ },
+ "labels": {
+  "drop": 10,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 12,
+  "chapter_heading": 34,
+  "article_title": 92,
+  "article_head": 102,
+  "item": 375,
+  "alinea": 312,
+  "letter": 92,
+  "section_heading": 32,
+  "continuation": 21,
+  "provisions_heading": 147,
+  "paragraph_sign": 156,
+  "editorial_note": 145,
+  "adoption_formula": 1,
+  "annex_heading": 1,
+  "repeal_note": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1528,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act; editorial_note also plausible"
+  },
+  {
+   "block": 1529,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1530,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1531,
+   "text": "ДИРЕКТИВА 2009/133/ЕО НА СЪВЕТА от 19 октомври 2009 година относно общата систем",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1532,
+   "text": "ДИРЕКТИВА 2009/55/ЕО НА СЪВЕТА от 25 май 2009 година за освобождаване от данъчно",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1533,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1534,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2472 НА КОМИСИЯТА от 14 декември 2022 година относно деклари",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1535,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/972 НА КОМИСИЯТА от 2 юли 2020 година за изменение на Реглам",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1536,
+   "text": "РЕГЛАМЕНТ (ЕС) № 702/2014 НА КОМИСИЯТА от 25 юни 2014 година относно деклариране",
+   "note": "lex.bg related EU legislation list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 10,
+ "diff_lines": 484
+}

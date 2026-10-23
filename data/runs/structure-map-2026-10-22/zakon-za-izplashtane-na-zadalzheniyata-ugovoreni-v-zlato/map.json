@@ -1,0 +1,23 @@
+{
+ "0": {
+  "i": 0,
+  "label": "drop",
+  "n": null,
+  "conf": "high",
+  "note": "lex.bg site chrome button ('add to my acts'), not part of the act"
+ },
+ "1": {
+  "i": 1,
+  "label": "title",
+  "n": null,
+  "conf": "high",
+  "note": "act title"
+ },
+ "2": {
+  "i": 2,
+  "label": "article_head",
+  "n": "единствен",
+  "conf": "high",
+  "note": "opens with Член единствен."
+ }
+}

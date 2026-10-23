@@ -1,0 +1,127 @@
+{
+ "slug": "administrativnoprotsesualen-kodeks",
+ "round": 2,
+ "blocks": 2158,
+ "sections": 68,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    75,
+    76
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2107,
+    2108
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    1858
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   75,
+   76,
+   2107,
+   2108
+  ],
+  "D-072/8": [
+   2014
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 11,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 12,
+  "chapter_heading": 36,
+  "article_title": 338,
+  "article_head": 338,
+  "item": 453,
+  "alinea": 549,
+  "editorial_note": 30,
+  "section_heading": 42,
+  "letter": 47,
+  "provisions_heading": 46,
+  "paragraph_sign": 179,
+  "quoted": 72,
+  "adoption_formula": 1,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 2014,
+   "text": "-------------------------",
+   "note": "dashed separator rule before the adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 2149,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 2150,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2151,
+   "text": "ДИРЕКТИВА (ЕС) 2015/2366 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2015",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2152,
+   "text": "ДИРЕКТИВА 2004/38/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 29 април 2004 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2153,
+   "text": "ДИРЕКТИВА 1999/95/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 1999 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2154,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2155,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2156,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2157,
+   "text": "РАМКОВО РЕШЕНИЕ 2009/948/ПВР НА СЪВЕТА от 30 ноември 2009 г. относно предотвратя",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 922
+}

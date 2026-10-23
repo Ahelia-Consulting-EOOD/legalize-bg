@@ -1,0 +1,101 @@
+{
+ "slug": "zakon-za-dostap-do-obshtestvena-informatsiya",
+ "round": 1,
+ "blocks": 551,
+ "sections": 19,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 288,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 291,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "fragment": 2
+ },
+ "labels": {
+  "drop": 11,
+  "title": 1,
+  "chapter_heading": 10,
+  "section_heading": 22,
+  "article_title": 63,
+  "article_head": 63,
+  "alinea": 122,
+  "item": 161,
+  "provisions_heading": 30,
+  "paragraph_sign": 31,
+  "letter": 14,
+  "continuation": 2,
+  "editorial_note": 20,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 541,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 542,
+   "text": "Директиви:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 543,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1024 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 544,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 545,
+   "text": "ДИРЕКТИВА 2007/2/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 март 2007 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 546,
+   "text": "ДИРЕКТИВА 2003/4/ЕO НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 28 януари 2003 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 547,
+   "text": "Регламенти:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 548,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 549,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 550,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2380/74 НА СЪВЕТА от 17 септември 1974 година относно приемане",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "diff_lines": 195
+}

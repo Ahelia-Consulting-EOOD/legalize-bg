@@ -1,0 +1,463 @@
+{
+ "slug": "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g",
+ "round": 0,
+ "blocks": 6343,
+ "sections": 192,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 3058,
+   "kind": "low_confidence",
+   "detail": "Глава шестнадесета. is printed four times with different titles (3058-3065); this pair carries the latest amendment (ДВ бр. 27 от 2026) and reads as the current heading; the other pairs look like earlier wordings lex.bg left on the page"
+  },
+  {
+   "block": 3059,
+   "kind": "low_confidence",
+   "detail": "second line of the current chapter heading; see 3058"
+  },
+  {
+   "block": 3060,
+   "kind": "low_confidence",
+   "detail": "repeated chapter number with an earlier title (ДВ бр. 92/2017, бр. 19/2021); chapter_heading or editorial_note for a superseded heading"
+  },
+  {
+   "block": 3061,
+   "kind": "low_confidence",
+   "detail": "earlier title of the same chapter; chapter_heading or editorial_note; see 3060"
+  },
+  {
+   "block": 3062,
+   "kind": "low_confidence",
+   "detail": "repeated chapter number with an earlier title (ДВ бр. 92/2017); chapter_heading or editorial_note"
+  },
+  {
+   "block": 3063,
+   "kind": "low_confidence",
+   "detail": "earlier title of the same chapter; chapter_heading or editorial_note"
+  },
+  {
+   "block": 3064,
+   "kind": "low_confidence",
+   "detail": "repeated chapter number with the original title; chapter_heading or editorial_note"
+  },
+  {
+   "block": 3065,
+   "kind": "low_confidence",
+   "detail": "original title of the same chapter; chapter_heading or editorial_note"
+  },
+  {
+   "block": 3619,
+   "kind": "low_confidence",
+   "detail": "repealed paragraph that keeps its number; repeal_note also plausible"
+  },
+  {
+   "block": 4819,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing text of item 3 after its letters; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 4820,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing text of item 3 after its letters; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 4821,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing text of item 3 after its letters; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 4822,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing text of item 3 after its letters; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 4833,
+   "kind": "low_confidence",
+   "detail": "unnumbered text of item 4 after its letters, with its own amendment note; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 4839,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing text of item 4; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 4840,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing text of item 4; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 4899,
+   "kind": "low_confidence",
+   "detail": "unnumbered closing text of item 38 after its letters; unnumbered_alinea also plausible"
+  },
+  {
+   "block": 5596,
+   "kind": "low_confidence",
+   "detail": "title of an amending law printed before its provisions heading; provisions_heading or editorial_note"
+  },
+  {
+   "block": 5815,
+   "kind": "low_confidence",
+   "detail": "repeated heading with no provisions between; may be a lex.bg rendering duplicate (provisions_heading or drop)"
+  },
+  {
+   "block": 5816,
+   "kind": "low_confidence",
+   "detail": "truncated heading line 'КЪМ' with no act name; provisions_heading or drop"
+  },
+  {
+   "block": 5871,
+   "kind": "low_confidence",
+   "detail": "truncated second line of the heading (act name missing on the page)"
+  },
+  {
+   "block": 5896,
+   "kind": "low_confidence",
+   "detail": "item 11 of the amending § 8 after the elision; quoted is less plausible since it is the instruction itself"
+  },
+  {
+   "block": 5977,
+   "kind": "low_confidence",
+   "detail": "item 22 of the amending § 3 after the elision; quoted is less plausible since it is the instruction itself"
+  },
+  {
+   "block": 6068,
+   "kind": "low_confidence",
+   "detail": "name of an act printed as part of a provisions heading block (… към Закона за …); no provisions follow it before the next heading; could be a stray title"
+  },
+  {
+   "block": 6143,
+   "kind": "low_confidence",
+   "detail": "repeated heading with an empty act name on the next line; may be a rendering duplicate"
+  },
+  {
+   "block": 6144,
+   "kind": "low_confidence",
+   "detail": "bare 'КЪМ' line with the act name missing; heading fragment or rendering artefact"
+  },
+  {
+   "block": 6150,
+   "kind": "low_confidence",
+   "detail": "repeated heading with an empty act name on the next line; may be a rendering duplicate"
+  },
+  {
+   "block": 6151,
+   "kind": "low_confidence",
+   "detail": "bare 'КЪМ' line with the act name missing; heading fragment or rendering artefact"
+  },
+  {
+   "block": 4900,
+   "kind": "item_order",
+   "detail": "38. after 38."
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 96,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1605,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1899,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1944,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1969,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2005,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2021,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2053,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2073,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2077,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2093,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3472,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3508,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3542,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3868,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 28,
+  "item_order": 1
+ },
+ "source_finding_kinds": {
+  "fragment": 15
+ },
+ "labels": {
+  "drop": 40,
+  "title": 1,
+  "prehistory": 1,
+  "article_title": 568,
+  "article_head": 569,
+  "item": 1880,
+  "letter": 321,
+  "part_heading": 18,
+  "chapter_heading": 96,
+  "alinea": 1841,
+  "section_heading": 44,
+  "table_row": 26,
+  "editorial_note": 201,
+  "provisions_heading": 292,
+  "paragraph_sign": 362,
+  "continuation": 8,
+  "quoted": 74,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 5264,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; not the dotted elision line; editorial_note plausible"
+  },
+  {
+   "block": 6305,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU acts appended after the act; not part of the act"
+  },
+  {
+   "block": 6306,
+   "text": "Директиви:",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6307,
+   "text": "ДИРЕКТИВА (ЕС) 2023/2864 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 202",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6308,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2556 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 202",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6309,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1158 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6310,
+   "text": "ДИРЕКТИВА (ЕС) 2017/828 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2017 г. з",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6311,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2341 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 201",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6312,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6313,
+   "text": "ДИРЕКТИВА 2014/65/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6314,
+   "text": "ДИРЕКТИВА 2014/50/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 годин",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6315,
+   "text": "ДИРЕКТИВА 2013/14/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 май 2013 година ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6316,
+   "text": "ДИРЕКТИВА 2011/61/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2011 година о",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6317,
+   "text": "ДИРЕКТИВА 2010/41/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 7 юли 2010 година з",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6318,
+   "text": "ДИРЕКТИВА 2006/54/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юли 2006 година з",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6319,
+   "text": "ДИРЕКТИВА 2004/113/ЕО НА СЪВЕТА от 13 декември 2004 година относно прилагане на ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6320,
+   "text": "ДИРЕКТИВА 2000/78/ЕО НА СЪВЕТА от 27 ноември 2000 година за създаване на основна",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6321,
+   "text": "ДИРЕКТИВА 98/49 ЕО НА СЪВЕТА от 29 юни 1998 година за запазване на правото на до",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6322,
+   "text": "ДИРЕКТИВА 96/71/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 1996 годи",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6323,
+   "text": "ДИРЕКТИВА 92/85/ЕИО НА СЪВЕТА от 19 октомври 1992 година за въвеждане на мерки з",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6324,
+   "text": "ДИРЕКТИВА 79/7/ЕИО НА СЪВЕТА от 19 декември 1978 година относно постепенното при",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6325,
+   "text": "Регламенти:",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6326,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2554 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 декември 202",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6327,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/852 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 юни 2020 годи",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6328,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/2088 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6329,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/1238 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6330,
+   "text": "РЕГЛАМЕНТ (ЕС) 2015/2365 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2015",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6331,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1286/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 ноември 20",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6332,
+   "text": "РЕГЛАМЕНТ (ЕС) № 648/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 юли 2012 год",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6333,
+   "text": "РЕГЛАМЕНТ (ЕС) № 492/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 април 2011 г",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6334,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1095/2010 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 20",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6335,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1060/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6336,
+   "text": "РЕГЛАМЕНТ (ЕО) № 987/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6337,
+   "text": "РЕГЛАМЕНТ (ЕО) № 883/2004 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 29 април 2004 ",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6338,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1223/98 НА СЪВЕТА от 4 юни 1998 година за изменение на Регламен",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6339,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 1247/92 НА СЪВЕТА от 30 април 1992 година за изменение на Регл",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6340,
+   "text": "РЕГЛАМЕНТ (ЕИО, Евратом, ЕОВС) № 259/68 НА СЪВЕТА от 29 февруари 1968 година отн",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6341,
+   "text": "Решения:",
+   "note": "lex.bg's related EU acts list"
+  },
+  {
+   "block": 6342,
+   "text": "РЕШЕНИЕ № 151 от 22 април 1993 г. относно приложението на член 10а от Регламент ",
+   "note": "lex.bg's related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 29,
+ "diff_lines": 1997
+}

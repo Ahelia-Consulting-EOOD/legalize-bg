@@ -1,0 +1,524 @@
+{
+ "slug": "zakon-za-korporativnoto-podohodno-oblagane",
+ "round": 2,
+ "blocks": 4042,
+ "sections": 117,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1071,
+    1072
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1179,
+    1180
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3508
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3551
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3832,
+    3833
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    1993
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2089
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2093
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2126
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2249
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2375
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2383
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2401
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2410
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2417
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2428
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2438
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2461
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2478
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2498
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2508
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2525
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2541
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2549
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2554
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2573
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2578
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2621
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2635
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2639
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2666
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2676
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2705
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2736
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2744
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2749
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2755
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2766
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2769
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2773
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2775
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2780
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2783
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2785
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2787
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   1071,
+   1072,
+   1179,
+   1180,
+   3508,
+   3551,
+   3832,
+   3833
+  ],
+  "D-072/5": [
+   2888,
+   2889,
+   2890,
+   2891
+  ],
+  "D-072/8": [
+   3223
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 37,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 14,
+  "chapter_heading": 98,
+  "article_title": 365,
+  "article_head": 392,
+  "item": 974,
+  "alinea": 852,
+  "letter": 360,
+  "continuation": 186,
+  "table_row": 62,
+  "section_heading": 48,
+  "editorial_note": 178,
+  "provisions_heading": 165,
+  "paragraph_sign": 186,
+  "quoted": 2,
+  "adoption_formula": 1,
+  "annex_heading": 10,
+  "repeal_note": 2,
+  "annex_row": 107
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 3223,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 4007,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU acts block, not the act"
+  },
+  {
+   "block": 4008,
+   "text": "КОНСОЛИДИРАН ТЕКСТ НА ДОГОВОРА ЗА ФУНКЦИОНИРАНЕТО НА ЕВРОПЕЙСКИЯ СЪЮЗ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4009,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4010,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2523 НА СЪВЕТА от 14 декември 2022 година за гарантиране на ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4011,
+   "text": "ДИРЕКТИВА (ЕС) 2017/952 НА СЪВЕТА от 29 май 2017 г. за изменение на Директива (Е",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4012,
+   "text": "ДИРЕКТИВА (ЕС) 2016/1164 НА СЪВЕТА от 12 юли 2016 година за установяване на прав",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4013,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4014,
+   "text": "ДИРЕКТИВА (ЕС) 2015/121 НА СЪВЕТА от 27 януари 2015 година за изменение на Дирек",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4015,
+   "text": "ДИРЕКТИВА 2014/86/ЕС НА СЪВЕТА от 8 юли 2014 година за изменение на Директива 20",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4016,
+   "text": "ДИРЕКТИВА 2014/65/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4017,
+   "text": "ДИРЕКТИВА 2013/13/ЕС НА СЪВЕТА от 13 май 2013 година за адаптиране на някои дире",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4018,
+   "text": "ДИРЕКТИВА 2011/96/ЕС НА СЪВЕТА от 30 ноември 2011 година относно общата система ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4019,
+   "text": "ДИРЕКТИВА 2011/16/ЕС НА СЪВЕТА от 15 февруари 2011 година относно административн",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4020,
+   "text": "ДИРЕКТИВА 2010/24/ЕС НА СЪВЕТА от 16 март 2010 година относно взаимната помощ пр",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4021,
+   "text": "ДИРЕКТИВА 2009/133/ЕО НА СЪВЕТА от 19 октомври 2009 година относно общата систем",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4022,
+   "text": "ДИРЕКТИВА 2006/98/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4023,
+   "text": "ДИРЕКТИВА 2003/72/ЕО НА СЪВЕТА от 22 юли 2003 година за допълване на Устава на Е",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4024,
+   "text": "ДИРЕКТИВА 2003/49/ЕО НА СЪВЕТА от 3 юни 2003 година относно общата система на да",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4025,
+   "text": "ДИРЕКТИВА 2001/86/ЕО НА СЪВЕТА от 8 октомври 2001 година за допълнение на Устава",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4026,
+   "text": "Регламент:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4027,
+   "text": "РЕГЛАМЕНТ (ЕС) 2023/2831 НА КОМИСИЯТА от 13 декември 2023 година относно прилага",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4028,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2472 НА КОМИСИЯТА от 14 декември 2022 година относно деклари",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4029,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/2008 НА КОМИСИЯТА от 8 декември 2020 година за изменение на ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4030,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1474 НА КОМИСИЯТА от 13 октомври 2020 година за изменение на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4031,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/972 НА КОМИСИЯТА от 2 юли 2020 година за изменение на Реглам",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4032,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/316 НА КОМИСИЯТА от 21 февруари 2019 година за изменение на ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4033,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1379/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4034,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1303/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 декември 2",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4035,
+   "text": "РЕГЛАМЕНТ (ЕС) № 575/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ и на Съвета от 26 юни 2013 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4036,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1435/2003 НА СЪВЕТА от 22 юли 2003 година относно устава на Евр",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4037,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1059/2003 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 май 2003 г",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4038,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2157/2001 НА СЪВЕТА от 8 октомври 2001 година относно Устава на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4039,
+   "text": "РЕГЛАМЕНТ (ЕИО, ЕВРАТОМ) № 1182/71 НА СЪВЕТА от 3 юни 1971 година за определяне ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4040,
+   "text": "Други:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 4041,
+   "text": "Съобщение на Комисията - Насоки за държавна помощ за оздравяване и преструктурир",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 1656
+}

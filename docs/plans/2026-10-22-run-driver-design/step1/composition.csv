@@ -1,0 +1,37 @@
+call,part,chars
+gp-tiny,"SubagentStart hook (first principles, work line)",4644
+gp-tiny,deferred tool names,21039
+gp-tiny,skills listing,28869
+gp-tiny,instruction file CLAUDE.md,22073
+gp-tiny,instruction file CLAUDE.md,7574
+gp-tiny,instruction file MEMORY.md,709
+gp-tiny,system prompt,2814
+gp-tiny,"tool schemas (Agent, Artifact, Bash, Edit, Read, SearchPlugins, Skill, Too)",100042
+gp-tiny,git status snapshot,1546
+gp-tiny,attribution reminder,581
+gp-tiny,hand-back reminder,419
+gp-tiny,agent listing,5242
+lean-tiny,"SubagentStart hook (first principles, work line)",4644
+lean-tiny,instruction file CLAUDE.md,22073
+lean-tiny,instruction file CLAUDE.md,7574
+lean-tiny,instruction file MEMORY.md,709
+lean-tiny,system prompt,1624
+lean-tiny,"tool schemas (Read, Write, SubagentHandback, advisor)",3718
+lean-tiny,git status snapshot,1547
+lean-tiny,hand-back reminder,341
+lean-empty,"SubagentStart hook (first principles, work line)",4644
+lean-empty,instruction file CLAUDE.md,22073
+lean-empty,instruction file CLAUDE.md,7574
+lean-empty,instruction file MEMORY.md,709
+lean-empty,system prompt,1624
+lean-empty,"tool schemas (Read, Write, SubagentHandback, advisor)",3718
+lean-empty,git status snapshot,1547
+lean-empty,hand-back reminder,341
+lean-known,"SubagentStart hook (first principles, work line)",4644
+lean-known,instruction file CLAUDE.md,22073
+lean-known,instruction file CLAUDE.md,7574
+lean-known,instruction file MEMORY.md,709
+lean-known,system prompt,1624
+lean-known,"tool schemas (Read, Write, SubagentHandback, advisor)",3718
+lean-known,git status snapshot,1547
+lean-known,hand-back reminder,341
