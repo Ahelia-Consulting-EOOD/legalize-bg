@@ -334,12 +334,11 @@ def test_a_repaired_chrome_line_leaves_the_chrome_waiver_in_the_same_commit(tmp_
 
 # --- the exceptions list and the Gazette as a source (step S1 of the plan of 31 October 2026) -----------------
 
-def _list_with(root, slug, route="whole_act_from_material", absent=()):
+def _list_with(root, slug, route="whole_act_from_material"):
     import source_exceptions as sx
     p = root / "docs" / "data" / "source-exceptions.yaml"
     sx.save(p, [sx.Entry(slug=slug, title="t", defect="dropped_section", source="dv_html", address="77", route=route,
-                         evidence=[{"kind": "plan", "ref": "the test"}], state="listed", added="2026-10-31",
-                         absent_witnesses=[{"witness": w, "reason": "no page in the test", "owner": "the test, 2026-10-31"} for w in absent])])
+                         evidence=[{"kind": "plan", "ref": "the test"}], state="listed", added="2026-10-31")])
     return p
 
 
@@ -400,7 +399,7 @@ DV_MAP = {0: {"label": "drop", "note": "decree"}, 1: {"label": "drop", "note": "
 def _setup_dv(tmp_path):
     from reading.splitter import split_dv
     root, run_dir, raw_dir = _setup(tmp_path, old_body="# ЗАКОН ЗА ПРОБАТА\n\n**Чл. 1.** Стар текст.\n\n## Допълнителна разпоредба\n\n## Заключителни разпоредби\n\n**§ 2.** Стар.\n")
-    _list_with(root, SLUG, absent=("lexbg", "moj"))   # the test has no witness pages: both absences on the owner's word
+    _list_with(root, SLUG)
     cache = tmp_path / "cache"
     cache.mkdir()
     html = DV_MATERIAL.encode("utf-8")
@@ -413,7 +412,7 @@ def _setup_dv(tmp_path):
     (run_dir / "material.json").write_text(json.dumps({"id_mat": 77, "sha256": hashlib.sha256(html).hexdigest(), "fetched_at": "2026-10-31T10:00:00+00:00",
                                                        "issue_number": 32, "issue_year": 2026, "issue_date": "2026-04-01", "section_path": "Официален раздел / НАРОДНО СЪБРАНИЕ"}), encoding="utf-8")
     from reading import witnesses as W
-    W.write_diff(run_dir, md, [{"name": "lexbg", "absent": "no page in the test"}, {"name": "moj", "absent": "no page in the test"}])
+    W.write_diff(run_dir, md, [{"name": "lexbg", "absent": "no page in the test (absent)"}, {"name": "moj", "absent": "the portal answers 500 (absent, t)"}])
     W.record(run_dir, {})   # the witness record for this body, nothing to settle
     return root, run_dir, raw_dir, cache
 
@@ -512,13 +511,16 @@ def test_a_gazette_write_needs_a_clean_witness_record_for_this_body(tmp_path):
         write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
 
 
-def test_a_gazette_write_needs_both_witnesses_unless_the_owner_accepted_an_absence(tmp_path):
-    import source_exceptions as sx
+def test_a_gazette_write_needs_every_witness_compared_or_absent_by_its_own_answer(tmp_path):
+    from reading import witnesses as W
     root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
-    lst = root / "docs" / "data" / "source-exceptions.yaml"
-    sx.update(lst, SLUG, absent_witnesses=[{"witness": "lexbg", "reason": "no page in the test", "owner": "the test"}])
-    with pytest.raises(WriteRefused, match="the witness moj was not compared \\(no page in the test\\).*owner's word"):
+    md = (run_dir / "staged.md").read_text(encoding="utf-8")
+    W.write_diff(run_dir, md, [{"name": "lexbg", "absent": "no page in the test (absent)"}])
+    W.record(run_dir, {})
+    with pytest.raises(WriteRefused, match="the witness moj is not in the record"):
         write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
-    with pytest.raises(sx.ListError, match="absent_witnesses\\[0\\]"):
-        sx.update(lst, SLUG, absent_witnesses=[{"witness": "moj"}])
+    W.write_diff(run_dir, md, [{"name": "lexbg", "absent": "no page in the test (absent)"}, {"name": "moj", "absent": "the portal answers None for u (error, t)"}])
+    W.record(run_dir, {})
+    with pytest.raises(WriteRefused, match="an error is not an absence"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
     assert _git(root, "rev-list", "--count", "HEAD") == "1\n"

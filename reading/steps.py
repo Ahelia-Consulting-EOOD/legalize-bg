@@ -359,7 +359,7 @@ class ContentCheck:
 
 class Witnesses:
     name = "witnesses"
-    version = "3"   # the record carries the hash of the body as written
+    version = "3"   # the record carries the hash of the body as written; a witness without a page is recorded absent
 
     def inputs(self, ctx: Context) -> list[Path]:
         paths = [ctx.act_dir / "staged.md", ctx.act_dir / "witness-answer.json"]

@@ -64,8 +64,6 @@ HEADER = """# docs/data/source-exceptions.yaml: the exceptions list (plan of 31 
 # route:  whole_act_from_material | history | source_before_archive | investigate
 # state:  listed | investigated | committed | stopped
 # evidence: a list of {kind: decision | audit | case_file | register | plan, ref: <where>}
-# absent_witnesses: a list of {witness: lexbg | moj, reason, owner}: a witness the act cannot be compared with, only on
-#   the owner's word (the plan compares both witnesses); without it the write refuses an act whose record lacks a witness
 """
 
 
@@ -87,10 +85,9 @@ class Entry:
     note: str = ""
     case_file: str = ""   # the case file of a stopped entry, relative to the repository root
     commit: str = ""      # the commit of a committed entry
-    absent_witnesses: list[dict] = field(default_factory=list)   # [{witness, reason, owner}]: a witness the act cannot be compared with, on the owner's word
 
     def to_dict(self) -> dict:
-        return {k: v for k, v in asdict(self).items() if v != "" and not (k == "absent_witnesses" and not v)}
+        return {k: v for k, v in asdict(self).items() if v != ""}
 
 
 def _problems(entry: dict, k: int) -> list[str]:
@@ -130,9 +127,6 @@ def _problems(entry: dict, k: int) -> list[str]:
         out.append(f"{where}: a stopped entry names its case file")
     if entry.get("state") == "committed" and not entry.get("commit"):
         out.append(f"{where}: a committed entry names its commit")
-    for j, w in enumerate(entry.get("absent_witnesses") or []):
-        if not isinstance(w, dict) or w.get("witness") not in ("lexbg", "moj") or not str(w.get("reason", "")).strip() or not str(w.get("owner", "")).strip():
-            out.append(f"{where}: absent_witnesses[{j}] is not {{witness: lexbg | moj, reason: text, owner: who said so and when}}")
     for key in entry:
         if key not in Entry.__dataclass_fields__:
             out.append(f"{where}: unknown field {key}")
@@ -158,7 +152,7 @@ def load(path: Path | str | None = None) -> list[Entry]:
             seen.setdefault(e["slug"], k)
     if problems:
         raise ListError(f"{path}: " + "; ".join(problems))
-    return [Entry(**{**{"note": "", "case_file": "", "commit": "", "absent_witnesses": []}, **e}) for e in doc["entries"]]
+    return [Entry(**{**{"note": "", "case_file": "", "commit": ""}, **e}) for e in doc["entries"]]
 
 
 def corpus_file(root: Path, slug: str) -> Path | None:

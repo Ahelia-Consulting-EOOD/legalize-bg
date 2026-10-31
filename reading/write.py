@@ -97,13 +97,12 @@ def _issue_key(dv: str | None) -> tuple[int, int] | None:
     return (int(m.group(2)), int(m.group(1))) if m else None
 
 
-REQUIRED_WITNESSES = ("lexbg", "moj")   # the plan compares a Gazette-read act with both (S1, item 4)
+WITNESSES = ("lexbg", "moj")   # the witnesses the plan names (S1, item 4): compared where they exist, the Gazette prevails (owner, 31 October 2026)
 
 
-def _check_witness_record(slug: str, run_dir: Path, body: str, entry) -> dict:
-    """A Gazette-read act is written only with its witness record, made for this body, with both witnesses compared and no
-    stopping verdict; a witness that could not be compared (the portal has no page) passes only on the owner's word, recorded
-    on the list entry as ``absent_witnesses``."""
+def _check_witness_record(slug: str, run_dir: Path, body: str) -> dict:
+    """A Gazette-read act is written only with its witness record, made for this body, with every witness either compared or
+    recorded absent by the witness's own answer (the portal has no page for the act), and with no stopping verdict."""
     from reading import witnesses
     p = run_dir / "witness-record.json"
     if not p.exists():
@@ -113,13 +112,13 @@ def _check_witness_record(slug: str, run_dir: Path, body: str, entry) -> dict:
         raise WriteRefused(f"{slug}: the witness record was made for another body than the one written; compare the witnesses again")
     if rec.get("stops"):
         raise WriteRefused(f"{slug}: the witness record carries a stopping verdict ({', '.join(rec['stops'])}); the reading is wrong somewhere")
-    present = {w["witness"] for w in rec.get("witnesses", []) if not w.get("absent")}
-    accepted = {w["witness"] for w in (entry.absent_witnesses if entry else [])}
-    for name in REQUIRED_WITNESSES:
-        if name not in present and name not in accepted:
-            why = next((w.get("absent") for w in rec.get("witnesses", []) if w["witness"] == name), "not compared")
-            raise WriteRefused(f"{slug}: the witness {name} was not compared ({why}); the plan compares both witnesses, and writing "
-                               f"without one needs the owner's word, recorded on the list entry as absent_witnesses")
+    recorded = {w["witness"]: w for w in rec.get("witnesses", [])}
+    for name in WITNESSES:
+        w = recorded.get(name)
+        if w is None:
+            raise WriteRefused(f"{slug}: the witness {name} is not in the record; every witness is compared, or recorded absent, before the write")
+        if w.get("absent") and "error" in str(w["absent"]).split("(")[-1]:
+            raise WriteRefused(f"{slug}: the witness {name} could not be fetched ({w['absent']}); an error is not an absence, fetch it again")
     return rec
 
 
@@ -330,7 +329,7 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
             raise WriteRefused(f"{slug}: the committed history holds {', '.join(map(str, later))} after the material's issue {issue[1]}/{issue[0]}; "
                                f"the act is not whole in that material (the history route is needed)")
         body, omissions, provenance, rec = reread_dv(slug, run_dir, cache_dir)
-        _check_witness_record(slug, run_dir, body, entry)
+        _check_witness_record(slug, run_dir, body)
         meta = build_frontmatter_dv(committed, rec)
         source_ref = SourceRef("dv", str(rec["id_mat"]))
     else:
