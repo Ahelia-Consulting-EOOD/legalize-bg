@@ -1,0 +1,21 @@
+{
+ "acts": 109,
+ "repeal_titles": 237,
+ "calls": [
+  "call-01",
+  "call-02",
+  "call-03",
+  "call-04",
+  "call-05",
+  "call-06",
+  "call-07",
+  "call-08",
+  "call-09",
+  "call-10",
+  "call-11"
+ ],
+ "per_call": 10,
+ "with_candidates": 41,
+ "candidates_total": 172,
+ "paired_at": "2026-10-31T20:51:12+00:00"
+}

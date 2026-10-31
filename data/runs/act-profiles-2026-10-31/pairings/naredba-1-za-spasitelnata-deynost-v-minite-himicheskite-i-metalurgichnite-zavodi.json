@@ -1,0 +1,44 @@
+{
+ "slug": "naredba-1-za-spasitelnata-deynost-v-minite-himicheskite-i-metalurgichnite-zavodi",
+ "category": "ordinances",
+ "title": "НАРЕДБА № 1 ЗА СПАСИТЕЛНАТА ДЕЙНОСТ В МИНИТЕ, ХИМИЧЕСКИТЕ И МЕТАЛУРГИЧНИТЕ ЗАВОДИ",
+ "kind": "наредба",
+ "fecha_publicacion": "1978-07-18",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "1978-07-21",
+ "amendments_recorded": 2,
+ "last_amendments": [
+  {
+   "dv": "56/1978",
+   "date": "1978-07-18"
+  },
+  {
+   "dv": "57/1978",
+   "date": "1978-07-21"
+  }
+ ],
+ "words": [
+  "дейност",
+  "заводи",
+  "металургичните",
+  "мините",
+  "спасителната",
+  "химическите"
+ ],
+ "key": {
+  "type": "наредба",
+  "number": "1",
+  "year": 1978
+ },
+ "candidates": [
+  {
+   "id_mat": 208701,
+   "issue": "20/2024",
+   "date": "2024-03-08",
+   "title": "Наредба за отменяне на Наредба № 1 за условията, при които министерствата, другите ведомства и организациите могат да експлоатират малък брой автобуси",
+   "shared_words": [],
+   "same_number": true,
+   "score": 1.0
+  }
+ ]
+}

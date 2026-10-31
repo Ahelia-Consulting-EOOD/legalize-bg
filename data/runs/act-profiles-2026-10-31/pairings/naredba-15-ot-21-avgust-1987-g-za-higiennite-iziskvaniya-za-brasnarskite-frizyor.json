@@ -1,0 +1,44 @@
+{
+ "slug": "naredba-15-ot-21-avgust-1987-g-za-higiennite-iziskvaniya-za-brasnarskite-frizyor",
+ "category": "ordinances",
+ "title": "НАРЕДБА № 15 ОТ 21 АВГУСТ 1987 Г. ЗА ХИГИЕННИТЕ ИЗИСКВАНИЯ ЗА БРЪСНАРСКИТЕ, ФРИЗЬОРСКИТЕ И КОЗМЕТИЧНИТЕ САЛОНИ",
+ "kind": "наредба",
+ "fecha_publicacion": "1987-10-06",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "1987-10-06",
+ "amendments_recorded": 1,
+ "last_amendments": [
+  {
+   "dv": "77/1987",
+   "date": "1987-10-06"
+  }
+ ],
+ "words": [
+  "август",
+  "бръснарските",
+  "изисквания",
+  "козметичните",
+  "салони",
+  "фризьорските",
+  "хигиенните"
+ ],
+ "key": {
+  "type": "наредба",
+  "number": "15",
+  "year": 1987
+ },
+ "candidates": [
+  {
+   "id_mat": 174747,
+   "issue": "56/2022",
+   "date": "2022-07-19",
+   "title": "Наредба за отменяне на Наредба № 45 от 1995 г. за хигиенните норми и изисквания за добавките в хранителните продукти",
+   "shared_words": [
+    "изисквания",
+    "хигиенните"
+   ],
+   "same_number": false,
+   "score": 0.286
+  }
+ ]
+}

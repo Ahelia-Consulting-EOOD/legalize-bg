@@ -1,0 +1,41 @@
+{
+ "slug": "pravilnik-za-prilozhenie-na-ukaza-za-urezhdane-na-tehnicheskata-pravosposobnost-",
+ "category": "implementing",
+ "title": "ПРАВИЛНИК ЗА ПРИЛОЖЕНИЕ НА УКАЗА ЗА УРЕЖДАНЕ НА ТЕХНИЧЕСКАТА ПРАВОСПОСОБНОСТ И ПРАВОТО НА ЧАСТНА ТЕХНИЧЕСКА ПРАКТИКА",
+ "kind": "правилник по прилагане",
+ "fecha_publicacion": "1961-08-25",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "1961-08-25",
+ "amendments_recorded": 1,
+ "last_amendments": [
+  {
+   "dv": "68/1961",
+   "date": "1961-08-25"
+  }
+ ],
+ "words": [
+  "правоспособност",
+  "правото",
+  "практика",
+  "приложение",
+  "техническа",
+  "техническата",
+  "уреждане",
+  "частна"
+ ],
+ "key": null,
+ "candidates": [
+  {
+   "id_mat": 104002,
+   "issue": "33/2003",
+   "date": "2003-04-11",
+   "title": "Наредба за отменяне на Наредба № 6 от 1987 г. за техническата правоспособност в проектирането и строителството",
+   "shared_words": [
+    "правоспособност",
+    "техническата"
+   ],
+   "same_number": false,
+   "score": 0.25
+  }
+ ]
+}

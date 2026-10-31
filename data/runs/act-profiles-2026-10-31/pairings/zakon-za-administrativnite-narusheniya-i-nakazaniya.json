@@ -1,0 +1,31 @@
+{
+ "slug": "zakon-za-administrativnite-narusheniya-i-nakazaniya",
+ "category": "laws",
+ "title": "ЗАКОН ЗА АДМИНИСТРАТИВНИТЕ НАРУШЕНИЯ И НАКАЗАНИЯ",
+ "kind": "закон",
+ "fecha_publicacion": "1969-11-28",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "2026-02-13",
+ "amendments_recorded": 74,
+ "last_amendments": [
+  {
+   "dv": "64/2025",
+   "date": "2025-08-05"
+  },
+  {
+   "dv": "115/2025",
+   "date": "2025-12-30"
+  },
+  {
+   "dv": "17/2026",
+   "date": "2026-02-13"
+  }
+ ],
+ "words": [
+  "административните",
+  "наказания",
+  "нарушения"
+ ],
+ "key": null,
+ "candidates": []
+}

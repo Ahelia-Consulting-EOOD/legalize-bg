@@ -1,0 +1,29 @@
+{
+ "slug": "zakon-za-sobstvenostta",
+ "category": "laws",
+ "title": "ЗАКОН ЗА СОБСТВЕНОСТТА",
+ "kind": "закон",
+ "fecha_publicacion": "1951-11-16",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "2022-03-04",
+ "amendments_recorded": 37,
+ "last_amendments": [
+  {
+   "dv": "7/2018",
+   "date": "2018-01-19"
+  },
+  {
+   "dv": "18/2020",
+   "date": "2020-02-28"
+  },
+  {
+   "dv": "18/2022",
+   "date": "2022-03-04"
+  }
+ ],
+ "words": [
+  "собствеността"
+ ],
+ "key": null,
+ "candidates": []
+}

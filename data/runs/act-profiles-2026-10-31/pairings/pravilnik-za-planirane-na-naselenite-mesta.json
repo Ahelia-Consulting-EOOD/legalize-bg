@@ -1,0 +1,43 @@
+{
+ "slug": "pravilnik-za-planirane-na-naselenite-mesta",
+ "category": "regulations",
+ "title": "ПРАВИЛНИК ЗА ПЛАНИРАНЕ НА НАСЕЛЕНИТЕ МЕСТА",
+ "kind": "правилник",
+ "fecha_publicacion": "1985-05-01",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "1985-05-01",
+ "amendments_recorded": 0,
+ "last_amendments": [],
+ "words": [
+  "места",
+  "населените",
+  "планиране"
+ ],
+ "key": null,
+ "candidates": [
+  {
+   "id_mat": 3143,
+   "issue": "5/2007",
+   "date": "2007-01-18",
+   "title": "Наредба за отменяне на Наредба № 4 от 1999 г. за защита от шум на територията на населените места",
+   "shared_words": [
+    "места",
+    "населените"
+   ],
+   "same_number": false,
+   "score": 0.667
+  },
+  {
+   "id_mat": 21286,
+   "issue": "30/2004",
+   "date": "2004-04-13",
+   "title": "Наредба за отменяне на Наредба № 3 от 1989 г. за запазване на сградните и благоустройствените фондове в населените места",
+   "shared_words": [
+    "места",
+    "населените"
+   ],
+   "same_number": false,
+   "score": 0.667
+  }
+ ]
+}

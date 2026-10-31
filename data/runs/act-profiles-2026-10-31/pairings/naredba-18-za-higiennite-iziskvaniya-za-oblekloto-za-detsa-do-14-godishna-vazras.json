@@ -1,0 +1,43 @@
+{
+ "slug": "naredba-18-za-higiennite-iziskvaniya-za-oblekloto-za-detsa-do-14-godishna-vazras",
+ "category": "ordinances",
+ "title": "НАРЕДБА № 18 ЗА ХИГИЕННИТЕ ИЗИСКВАНИЯ ЗА ОБЛЕКЛОТО ЗА ДЕЦА ДО 14-ГОДИШНА ВЪЗРАСТ",
+ "kind": "наредба",
+ "fecha_publicacion": "1979-08-14",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "1979-08-14",
+ "amendments_recorded": 1,
+ "last_amendments": [
+  {
+   "dv": "64/1979",
+   "date": "1979-08-14"
+  }
+ ],
+ "words": [
+  "14-годишна",
+  "възраст",
+  "деца",
+  "изисквания",
+  "облеклото",
+  "хигиенните"
+ ],
+ "key": {
+  "type": "наредба",
+  "number": "18",
+  "year": 1979
+ },
+ "candidates": [
+  {
+   "id_mat": 174747,
+   "issue": "56/2022",
+   "date": "2022-07-19",
+   "title": "Наредба за отменяне на Наредба № 45 от 1995 г. за хигиенните норми и изисквания за добавките в хранителните продукти",
+   "shared_words": [
+    "изисквания",
+    "хигиенните"
+   ],
+   "same_number": false,
+   "score": 0.333
+  }
+ ]
+}

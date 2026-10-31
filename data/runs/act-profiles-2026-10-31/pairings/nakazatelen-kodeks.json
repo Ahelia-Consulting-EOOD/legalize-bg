@@ -1,0 +1,29 @@
+{
+ "slug": "nakazatelen-kodeks",
+ "category": "codes",
+ "title": "НАКАЗАТЕЛЕН КОДЕКС",
+ "kind": "кодекс",
+ "fecha_publicacion": "1968-04-02",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "2026-06-16",
+ "amendments_recorded": 142,
+ "last_amendments": [
+  {
+   "dv": "27/2026",
+   "date": "2026-03-17"
+  },
+  {
+   "dv": "32/2026",
+   "date": "2026-04-01"
+  },
+  {
+   "dv": "55/2026",
+   "date": "2026-06-16"
+  }
+ ],
+ "words": [
+  "наказателен"
+ ],
+ "key": null,
+ "candidates": []
+}

@@ -1,0 +1,29 @@
+{
+ "slug": "zakon-za-nasledstvoto",
+ "category": "laws",
+ "title": "ЗАКОН ЗА НАСЛЕДСТВОТО",
+ "kind": "закон",
+ "fecha_publicacion": "1949-01-29",
+ "estado_lexbg": "vigente",
+ "ultima_actualizacion": "2009-06-23",
+ "amendments_recorded": 12,
+ "last_amendments": [
+  {
+   "dv": "34/2000",
+   "date": "2000-04-25"
+  },
+  {
+   "dv": "59/2007",
+   "date": "2007-07-20"
+  },
+  {
+   "dv": "47/2009",
+   "date": "2009-06-23"
+  }
+ ],
+ "words": [
+  "наследството"
+ ],
+ "key": null,
+ "candidates": []
+}
