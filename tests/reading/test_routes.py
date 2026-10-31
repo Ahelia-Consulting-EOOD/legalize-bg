@@ -435,3 +435,13 @@ def test_a_finished_stops_prose_is_archived_before_a_new_stop_with_the_same_word
     assert "RULING-1" not in prose and "resolved" not in fm and fm["previous"].startswith("docs/cases/archive/")
     assert "RULING-1" in (root / fm["previous"]).read_text(encoding="utf-8")
     assert [t["outcome"] for t in fm["tried"]].count("interrupted") == 0
+
+
+def test_a_walk_halts_before_a_named_step_without_a_stop(root):
+    steps = _steps(A, B, C)
+    out = run_route(_ctx(root), steps, routes=ROUTES, until=C)
+    assert out.state == "halted" and out.step == C and steps[C].calls == 0 and steps[B].calls == 1
+    assert not (root / "docs" / "cases" / f"{SLUG}.md").exists() and sx.listed(SLUG, _list(root)).state == "listed"
+    assert json.loads(_ctx(root).ledger_path.read_text(encoding="utf-8"))["state"] == "halted"
+    out = run_route(_ctx(root), steps, routes=ROUTES)
+    assert out.state == "stopped" and steps[C].calls == 1

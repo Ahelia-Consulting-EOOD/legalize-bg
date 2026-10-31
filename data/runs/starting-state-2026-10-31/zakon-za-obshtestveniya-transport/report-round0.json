@@ -1,0 +1,86 @@
+{
+ "slug": "zakon-za-obshtestveniya-transport",
+ "round": 0,
+ "blocks": 575,
+ "sections": 16,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 10,
+  "title": 2,
+  "chapter_heading": 21,
+  "section_heading": 56,
+  "article_head": 106,
+  "alinea": 144,
+  "item": 217,
+  "letter": 6,
+  "provisions_heading": 2,
+  "paragraph_sign": 10,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "УКАЗ № 139",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 1,
+   "text": "На основание чл. 98, т. 4 от Конституцията на Република България",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 2,
+   "text": "ПОСТАНОВЯВАМ:",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 3,
+   "text": "Да се обнародва в „Държавен вестник“ Законът за обществения транспорт, приет от ",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 4,
+   "text": "Издаден в София на 30 март 2026 г.",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 5,
+   "text": "Президент на Републиката: Илияна Йотова",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 6,
+   "text": "Подпечатан с държавния печат.",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 7,
+   "text": "Министър на правосъдието: Андрей Янкулов",
+   "note": "promulgation decree countersignature"
+  },
+  {
+   "block": 573,
+   "text": "Председател на Народното събрание: Рая Назарян",
+   "note": "signature of the Speaker after the adoption formula, not the act"
+  },
+  {
+   "block": 574,
+   "text": "1563",
+   "note": "material number after the adoption formula, not the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 661
+}

@@ -54,6 +54,92 @@
    "committed": null,
    "started": "2026-10-31T12:57:37+00:00",
    "ended": "2026-10-31T12:57:37+00:00"
+  },
+  {
+   "step": "label",
+   "run": "starting-state-2026-10-31",
+   "input_sha256": "54290f57250ee7a4a6c5b35a1d5083bdaf89d30a6ddcfee3c9944ff480133b23",
+   "outputs_sha256": "e6d3e592eec1ffeb8178eeb62e78be8d4957a13406b71115436a2b8e821c33da",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:03:49+00:00",
+   "ended": "2026-10-31T13:03:49+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "starting-state-2026-10-31",
+   "input_sha256": "932a4a729cddcf2fa6b940e11e5b328da0c86057c86ce7c0c76fb42a2bab8003",
+   "outputs_sha256": "f3127e18b8172de04148b99628e67e86cb040c1d14d47d3e31078c50528c29f2",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/ladder.json",
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:03:49+00:00",
+   "ended": "2026-10-31T13:03:49+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "starting-state-2026-10-31",
+   "input_sha256": "b868670bd26dfd9f2c9ae94927179605553872c8681799e10a83d0870bd264f7",
+   "outputs_sha256": "026e84faea93612d4074142ca5973258818c3cf5274a2eb79d73e930a3ec83ed",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:03:49+00:00",
+   "ended": "2026-10-31T13:03:49+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "starting-state-2026-10-31",
+   "input_sha256": "ace3fe5e0378f82ade793af1fc2a52aa8daed42d2a787f73f4cb29f0d3d329fc",
+   "outputs_sha256": "7b965c9f42f256982141b507526ac78eb1378ee4d30c28641ca10a6cad3ea7ab",
+   "outcome": "pending",
+   "detail": "differences to settle (lexbg 31, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-answer.json",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:03:49+00:00",
+   "ended": "2026-10-31T13:03:50+00:00"
+  },
+  {
+   "step": "label",
+   "run": "starting-state-2026-10-31",
+   "input_sha256": "da67273ab0e73ef311fc4ec7808efba58c1beef59e4f23be2304313a826bef92",
+   "outputs_sha256": "e6d3e592eec1ffeb8178eeb62e78be8d4957a13406b71115436a2b8e821c33da",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:06:03+00:00",
+   "ended": "2026-10-31T13:06:03+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "starting-state-2026-10-31",
+   "input_sha256": "27193d0c2c78691d578bc1bc595cc049a64be420f7c397b529a4891d8cdf542a",
+   "outputs_sha256": "e7eaacdedf2461c0ec6d8cb159e05113be59742e3d772cc61cade63eed9f54c7",
+   "outcome": "done",
+   "detail": "lexbg: 31 difference(s), settled same_text_other_form 19, source_error 5, witness_error 7; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2137259781 (absent, 2026-10-31T13:06:03+00:00))",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json",
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:06:03+00:00",
+   "ended": "2026-10-31T13:06:04+00:00"
   }
  ]
 }

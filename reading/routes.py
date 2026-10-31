@@ -263,8 +263,12 @@ def _route_of(ctx: Context, route: str | None) -> str:
 
 
 def run_route(ctx: Context, steps: dict[str, Step], route: str | None = None,
-              routes: dict[str, tuple[str, ...]] = ROUTE_STEPS) -> Outcome:
-    """Walk the act's route: skip the steps already done on the same inputs, run the next, stop at the bounds."""
+              routes: dict[str, tuple[str, ...]] = ROUTE_STEPS, until: str | None = None) -> Outcome:
+    """Walk the act's route: skip the steps already done on the same inputs, run the next, stop at the bounds.
+
+    ``until`` names a step the walk halts before, without running it and without a stop (no case file, no change to
+    the list): the way a route waits for something outside it, such as the owner's signature before the write step.
+    """
     route = _route_of(ctx, route)
     if route not in routes:
         raise RouteRefused(f"{ctx.slug}: unknown route {route!r}; one of {sorted(routes)}")
@@ -280,6 +284,11 @@ def run_route(ctx: Context, steps: dict[str, Step], route: str | None = None,
         return _committed(ctx, ledger, last)
     name = routes[route][-1] if routes[route] else ""
     for name in routes[route]:
+        if name == until:
+            ledger["state"] = "halted"
+            ledger["step"] = name
+            save_ledger(ctx, ledger)
+            return Outcome("halted", name, f"halted before {name} by request; the route goes on when walked without the halt")
         if name not in steps:
             return _stop(ctx, ledger, name, f"{STOP_UNDEFINED}: {name}")
         step = steps[name]
@@ -563,6 +572,7 @@ def main(argv: list[str] | None = None) -> int:
     r = sub.add_parser("run", help="walk a listed act's route (the real steps of reading/steps.py)")
     r.add_argument("slug"); r.add_argument("--run", required=True)
     r.add_argument("--param", action="append", default=[], help="key=value for the steps")
+    r.add_argument("--until", default=None, help="halt before this step without a stop (for example write, until the owner's signature)")
     a = sub.add_parser("add", help="put an act on the list from a YAML entry file (the investigator's answer form)")
     a.add_argument("entry_file")
     p = sub.add_parser("report"); p.add_argument("--run", required=True)
@@ -573,7 +583,7 @@ def main(argv: list[str] | None = None) -> int:
         params = dict(kv.split("=", 1) for kv in args.param)
         ctx = context(args.slug, args.run, params=params)
         try:
-            out = run_route(ctx, STEPS)
+            out = run_route(ctx, STEPS, until=args.until)
         except RouteRefused as exc:
             print(f"refused  {exc}")
             return 2

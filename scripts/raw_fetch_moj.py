@@ -16,6 +16,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import subprocess
 import sys
 import time
 from datetime import datetime, timezone
@@ -58,12 +59,24 @@ def fetch_one(doc_id: str, out: Path, *, session=None, sleep=time.sleep, force: 
     session = session or requests.Session()
     url = URL.format(id=doc_id)
     fetched_at = datetime.now(timezone.utc).isoformat(timespec="seconds")
+    via = "requests"
     try:
         resp = session.get(url, headers={"User-Agent": UA}, timeout=TIMEOUT)
         status, body = resp.status_code, resp.content
+    except requests.exceptions.SSLError:
+        # the portal's certificate chain does not verify against the Python bundle (31 October 2026) while the system's
+        # trust store accepts it: the same request goes through curl, which uses that store; nothing else changes
+        status, body = _curl(url)
+        via = "curl"
     except requests.RequestException as exc:
         row = {"doc_id": str(doc_id), "url": url, "fetched_at": fetched_at, "status": None, "bytes": 0, "sha256": None,
                "outcome": "error", "detail": f"{type(exc).__name__}: {exc}"}
+        _append(out, row)
+        sleep(RATE_LIMIT_SECONDS)
+        return row
+    if status is None:
+        row = {"doc_id": str(doc_id), "url": url, "fetched_at": fetched_at, "status": None, "bytes": 0, "sha256": None,
+               "outcome": "error", "detail": "curl could not fetch the page either", "via": via}
         _append(out, row)
         sleep(RATE_LIMIT_SECONDS)
         return row
@@ -76,10 +89,22 @@ def fetch_one(doc_id: str, out: Path, *, session=None, sleep=time.sleep, force: 
     name = f"{doc_id}.html" if outcome == "ok" else f"{doc_id}.{outcome}.html"
     (out / name).write_bytes(body)
     row = {"doc_id": str(doc_id), "url": url, "fetched_at": fetched_at, "status": status, "bytes": len(body),
-           "sha256": hashlib.sha256(body).hexdigest(), "outcome": outcome, "file": name}
+           "sha256": hashlib.sha256(body).hexdigest(), "outcome": outcome, "file": name, "via": via}
     _append(out, row)
     sleep(RATE_LIMIT_SECONDS)
     return row
+
+
+def _curl(url: str) -> tuple[int | None, bytes]:
+    """The page through the system's curl and trust store: (HTTP status, body), or (None, b"") when curl fails."""
+    try:
+        proc = subprocess.run(["curl", "-sS", "-m", str(TIMEOUT), "-A", UA, "-w", "\n%{http_code}", url], capture_output=True, timeout=TIMEOUT + 5)
+    except (OSError, subprocess.TimeoutExpired):
+        return None, b""
+    if proc.returncode != 0 or b"\n" not in proc.stdout:
+        return None, b""
+    body, _, code = proc.stdout.rpartition(b"\n")
+    return (int(code) if code.isdigit() else None), body
 
 
 def _append(out: Path, row: dict) -> None:

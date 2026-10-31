@@ -94,3 +94,17 @@ def test_the_portal_fetch_keeps_bodies_hashes_and_times_and_does_not_refetch(tmp
     assert again.get("cached") and session.calls == [raw_fetch_moj.URL.format(id="1"), raw_fetch_moj.URL.format(id="2")]
     raw_fetch_moj.fetch_one("2", out, session=session, sleep=sleeps.append)   # an absent page is asked again
     assert session.calls[-1].endswith("/2") and raw_fetch_moj.last_row(out, "2")["outcome"] == "absent"
+
+
+def test_a_certificate_error_falls_back_to_the_systems_curl(tmp_path, monkeypatch):
+    import requests
+
+    class Bad:
+        def get(self, url, headers=None, timeout=None):
+            raise requests.exceptions.SSLError("certificate verify failed")
+    monkeypatch.setattr(raw_fetch_moj, "_curl", lambda url: (500, b"Error 500"))
+    row = raw_fetch_moj.fetch_one("3", tmp_path / "moj", session=Bad(), sleep=lambda s: None)
+    assert row["outcome"] == "absent" and row["via"] == "curl" and row["status"] == 500
+    monkeypatch.setattr(raw_fetch_moj, "_curl", lambda url: (None, b""))
+    row = raw_fetch_moj.fetch_one("4", tmp_path / "moj", session=Bad(), sleep=lambda s: None)
+    assert row["outcome"] == "error" and "curl could not" in row["detail"]
