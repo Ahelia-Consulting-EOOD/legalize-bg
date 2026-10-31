@@ -1,137 +1,144 @@
 # Witness differences of zakon-za-obshtestveniya-transport
 
 Settle every difference below: for each, one verdict from the closed set, and a short evidence note naming what you relied on.
-The source is the text the act was read from (the Gazette material); the witness is lex.bg or the Ministry of Justice portal.
-Verdicts: `source_error`: the source's text is wrong here (a misprint in the Gazette, for example); our body keeps it, the record names it; `witness_error`: the witness's text is wrong here; lex.bg or the portal, not the source; `timing`: the witness carries an amendment, or lacks one, that the source text does not yet or no longer reflects; `same_text_other_form`: the same text in another form (a numbering style, a line break, a character the normalisation does not cover).
-Both sides were normalised before the comparison: whitespace runs become one space; leading and trailing whitespace is removed; quotation marks „ “ ” « » ' are all written as "; the dashes – and — are written as -; the dot that closes a heading number line (Глава първа., Раздел I.) is removed; nothing else: a Latin letter for a Cyrillic one, a missing word, a different number are differences.
-Write exactly one JSON object to `/Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-answer.json`: one key per witness name, its value an object keyed by the difference number as a string, each value `{"verdict": "<one of the four>", "note": "<short evidence note>"}`. Nothing else: no prose, no code fence.
+The source is the text the act was read from (the Gazette material); the witness is lex.bg or the Ministry of Justice portal. Our body is the source's text as we read it, so a difference can also be our own reading's error.
+Verdicts: `source_error`: the source's text is wrong here (a misprint in the Gazette, for example); our body keeps it, the record names it; `witness_error`: the witness's text is wrong here; lex.bg or the portal, not the source; `timing`: the witness carries an amendment, or lacks one, that the source text does not yet or no longer reflect; `same_text_other_form`: the same text in another form: a line the witness adds that is not the act's (an editorial note, a separator), a numbering style, a character the normalisation does not cover; `reading_error`: our body is wrong here: the split, a label or a join of ours lost or moved text; the write stops.
+Both sides were normalised before the comparison: whitespace runs become one space; leading and trailing whitespace is removed; quotation marks „ “ ” « » ' are all written as "; the dashes – and — are written as -; the dot that closes a heading number (Глава първа., Раздел I.) is removed, and a heading number line is joined to its title line; nothing else: a Latin letter for a Cyrillic one, a missing word, a different number, a line joined or split are differences.
+Write exactly one JSON object to `/Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-answer.json`: its first key `"diff_sha256"` with the value `"3e9ae290adce6229b64b52639c1ba2781e7d2a0837eb8a04b1244b77eaf37c5d"` (the hash of the diff you are answering), then one key per witness name, its value an object keyed by the difference number as a string, each value `{"verdict": "<one of the five>", "note": "<short evidence note>"}`. Nothing else: no prose, no code fence.
 
 ## witness lexbg
-31 difference(s); our body 526 lines, the witness 553 lines
+33 difference(s); our body 525 lines, the witness 515 lines
 ### 1 (replace, our line 0, witness line 0)
 - ours: `за обществения транспорт`
 - witness: `ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРТ В сила от 16.04.2026 г. Проект: 51-602-01-7/04.02.2026 г.`
-- around: `ЗАКОН [...] Глава първа ОБЩИ ПОЛОЖЕНИЯ Раздел I`
-### 2 (replace, our line 4, witness line 8)
+- around: `ЗАКОН [...] `
+### 2 (structure, our line 0, witness line 0)
+- ours: `ЗАКОН за обществения транспорт`
+- witness: `ЗАКОН ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРТ | В сила от 16.04.2026 г. | Проект: 51-602-01-7/04.02.2026 г.`
+- around: ` [...] 1 line(s) of ours against 3 of the witness, the same words`
+### 3 (replace, our line 4, witness line 6)
 - ours: `e`
 - witness: `е`
-- around: `транспорт. Чл. 2. (1) Обществен транспорт [...] превозът на пътници, който се предоставя`
-### 3 (replace, our line 134, witness line 145)
+- around: `Чл. 2. (1) Обществен транспорт [...] превозът на пътници, който се предоставя`
+### 4 (replace, our line 133, witness line 135)
 - ours: `й`
 - witness: `и`
-- around: `и съобщенията извършва проверка за съответствието [...] с общата транспортна схема. (4) Министърът`
-### 4 (replace, our line 138, witness line 149)
+- around: `и съобщенията извършва проверка за съответствието [...] с общата транспортна схема.`
+### 5 (replace, our line 137, witness line 139)
 - ours: `Адмистративнопроцесуалния`
 - witness: `Административнопроцесуалния`
-- around: `да се обжалва по реда на [...] кодекс. (6) В случаите по ал.`
-### 5 (replace, our line 144, witness line 156)
+- around: `да се обжалва по реда на [...] кодекс.`
+### 6 (replace, our line 143, witness line 145)
 - ours: `й`
 - witness: `и`
 - around: `се извън нейната територия, с административния [...] център, който се намира в друга`
-### 6 (replace, our line 151, witness line 163)
+### 7 (replace, our line 150, witness line 152)
 - ours: `й`
 - witness: `и`
-- around: `и съобщенията извършва проверка за съответствието [...] с изискванията по ал. 3. (6)`
-### 7 (replace, our line 155, witness line 167)
+- around: `и съобщенията извършва проверка за съответствието [...] с изискванията по ал. 3.`
+### 8 (replace, our line 154, witness line 156)
 - ours: `Адмистративнопроцесуалния`
 - witness: `Административнопроцесуалния`
-- around: `да се обжалва по реда на [...] кодекс. (8) В случаите по ал.`
-### 8 (replace, our line 166, witness line 181)
+- around: `да се обжалва по реда на [...] кодекс.`
+### 9 (replace, our line 165, witness line 167)
 - ours: `й`
 - witness: `и`
 - around: `се извън нейната територия, с административния [...] център, който се намира в друга`
-### 9 (replace, our line 210, witness line 232)
+### 10 (replace, our line 209, witness line 211)
 - ours: `й.`
 - witness: `и.`
-- around: `на спешната мярка и определя вида [...] (3) При възлагане на задължение за`
-### 10 (replace, our line 220, witness line 244)
+- around: `на спешната мярка и определя вида [...] `
+### 11 (replace, our line 219, witness line 221)
 - ours: `срокa`
 - witness: `срока`
 - around: `реда за нейното извършване и отчитане, [...] на действие на договора, правилата за`
-### 11 (insert, our line 257, witness line 284)
+### 12 (insert, our line 256, witness line 258)
 - ours: ``
 - witness: `(В сила от 18.04.2027 г.)`
-- around: `Изпълнителна агенция "Железопътна администрация". Чл. 51. [...] (1) Превоз на пътници с автомобилен`
-### 12 (insert, our line 383, witness line 422)
+- around: `Чл. 51. [...] (1) Превоз на пътници с автомобилен`
+### 13 (insert, our line 382, witness line 384)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
-- around: `от 1400 до 3500 евро; 6. [...] за непредоставяне на директни билети в`
-### 13 (insert, our line 384, witness line 423)
+- around: `6. [...] за непредоставяне на директни билети в`
+### 14 (insert, our line 383, witness line 385)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
 - around: `евро, когато извършва регионални превози; 7. [...] за неизплащане на авансово плащане на`
-### 14 (insert, our line 387, witness line 426)
+### 15 (insert, our line 386, witness line 388)
 - ours: ``
 - witness: `(В сила от 07.06.2028 г.)`
-- around: `евро, когато извършва вътрешни превози; 10. [...] за неизпълнение на задължението по чл.`
-### 15 (insert, our line 388, witness line 427)
+- around: `10. [...] за неизпълнение на задължението по чл.`
+### 16 (insert, our line 387, witness line 389)
 - ours: ``
 - witness: `(В сила от 07.06.2028 г.)`
 - around: `евро, когато извършва регионални превози; 11. [...] за отказ за възстановяване на направени`
-### 16 (insert, our line 389, witness line 428)
+### 17 (insert, our line 388, witness line 390)
 - ours: ``
 - witness: `(В сила от 07.06.2028 г.)`
 - around: `евро, когато извършва регионални превози; 12. [...] за неизпълнение на задължението на доставчиците`
-### 17 (insert, our line 390, witness line 429)
+### 18 (insert, our line 389, witness line 391)
 - ours: ``
 - witness: `(В сила от 07.06.2028 г.)`
 - around: `евро, когато извършва регионални превози; 13. [...] за невъзстановяване на пълната стойност на`
-### 18 (insert, our line 391, witness line 430)
+### 19 (insert, our line 390, witness line 392)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
 - around: `евро, когато извършва регионални превози; 14. [...] за неизплащане на обезщетение за закъснение`
-### 19 (insert, our line 392, witness line 431)
+### 20 (insert, our line 391, witness line 393)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
 - around: `евро, когато извършва вътрешни превози; 15. [...] за непредоставяне на информация за положението,`
-### 20 (insert, our line 393, witness line 432)
+### 21 (insert, our line 392, witness line 394)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
 - around: `евро, когато извършва вътрешни превози; 16. [...] за непредоставяне на пътниците на услугите`
-### 21 (insert, our line 394, witness line 433)
+### 22 (insert, our line 393, witness line 395)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
 - around: `евро, когато извършва вътрешни превози; 17. [...] за непредоставяне на алтернативни транспортни услуги`
-### 22 (insert, our line 395, witness line 434)
+### 23 (insert, our line 394, witness line 396)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
 - around: `евро, когато извършва вътрешни превози; 18. [...] за отказ да информира засегнатите пътници`
-### 23 (insert, our line 413, witness line 452)
+### 24 (insert, our line 412, witness line 414)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
-- around: `от 700 до 1400 евро; 36. [...] за некоординиране на действия с управителя`
-### 24 (insert, our line 420, witness line 459)
+- around: `36. [...] за некоординиране на действия с управителя`
+### 25 (insert, our line 419, witness line 421)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
-- around: `налагат имуществени санкции, както следва: 1. [...] за непредоставяне на информация за положението,`
-### 25 (replace, our line 421, witness line 460)
+- around: `1. [...] за непредоставяне на информация за положението,`
+### 26 (replace, our line 420, witness line 422)
 - ours: `й`
 - witness: `и`
 - around: `Регламент (ЕС) 2021/782, или за предоставянето [...] по неподходящ начин, когато началниците на`
-### 26 (insert, our line 431, witness line 470)
+### 27 (insert, our line 430, witness line 432)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
-- around: `от 700 до 1400 евро; 12. [...] за некоординиране на действия с железопътните`
-### 27 (insert, our line 443, witness line 482)
+- around: `12. [...] за некоординиране на действия с железопътните`
+### 28 (insert, our line 442, witness line 444)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
-- around: `от 700 до 2100 евро. (5) [...] На продавач на билети, който не`
-### 28 (insert, our line 444, witness line 483)
+- around: `(5) [...] На продавач на билети, който не`
+### 29 (insert, our line 443, witness line 445)
 - ours: ``
 - witness: `(В сила от 04.12.2029 г.)`
 - around: `от 350 до 700 евро. (6) [...] На туроператор, който не изпълни задължението`
-### 29 (replace, our line 489, witness line 528)
+### 30 (replace, our line 488, witness line 490)
 - ours: `ДОПЪЛНИТЕЛНА РАЗПОРЕДБА § 1. По смисъла на този закон: 1. "Възел за достъп" е предварително определено място, където пътниците могат да се качат на или да слязат от превозно средство, по време на превоз по редовни линии или по време на превоз по заявка. 2. "Доставчик на услуги за пътническа информация" е всеки публичен или частен доставчик на информация за пътувания или за трафика, който извършва дейности като електронно събиране на пътни такси, цифровизация и предоставяне на информация на борда на превозните средства, оператори за GPS проследяване за мониторинг в реално време и др. 3. "Достъпност до инфраструктура за обществен транспорт" е съвкупност от физическа достъпност, информационна достъпност, социална и териториална достъпност, които позволяват равен и удобен достъп на пътниците, включително за лицата с увреждания и лицата с намалена подвижност. 4. "Eдинен превозен документ" е билет или билети за пътуване, или друг, съответстващ на тях документ, които се комбинират, продават се заедно и се закупуват чрез еднократно плащане от пътника. 5. "Икономическо равновесие на договор за обществена услуга" е финансовото състояние на договора, при което приходите на оператора заедно с плащанията от компетентния орган покриват разходите за изпълнение на задълженията за обществена услуга и осигуряват разумна печалба. 6. "Интегрирани обществени услуги за превоз на пътници" са взаимосвързани превозни услуги в рамките на определен географски район, които ползват единно информационно обслужване, система за билети и разписание. 7. "Нормално поведение на пътник" е поведение, което се основава на взаимно уважение и спазване на обществения ред. 8. "Повторно нарушение" е нарушението, извършено в едногодишен срок от влизането в сила на наказателното постановление, с което на нарушителя е наложено наказание за същото по вид нарушение. 9. "Редовна линия" е постоянен маршрут за изпълнение на превози с железопътен транспорт, автомобилен транспорт, превоз по вътрешни водни пътища или морски каботаж, въздушен транспорт, трамваен транспорт или метро по утвърдено разписание, като пътниците се качват и слизат на предварително определени възли за достъп. 10. "Тарифното задължение" като елемент от задължението за извършване на обществени услуги е задължението на транспортното предприятие да прилага цени, които са в разрез с търговския му интерес, но са определени или установени от компетентните органи по съответния ред съгласно действащото законодателство. 11. "Транспортна бедност" е състояние, при което лица или домакинства имат ограничен или затруднен достъп до основни дейности и услуги поради липса или недостатъчност на обществен транспорт, висока цена на транспортните услуги спрямо доходите, недостатъчна честота или свързаност на транспортните услуги или недостъпност на транспортната инфраструктура. 12. "Зарядна станция" е съоръжение, състоящо се от една или повече зарядни точки на определено място. ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ`
 - witness: `Допълнителна разпоредба Заключителни разпоредби`
-- around: `размер от 500 до 1000 евро. [...] § 2. В срок до 12`
-### 30 (replace, our line 518, witness line 544)
+### 31 (structure, our line 488, witness line 490)
+- ours: `ДОПЪЛНИТЕЛНА РАЗПОРЕДБА | § 1. По смисъла на този закон: | 1. "Възел за достъп" е предварително определено място, където пътниците могат да се качат на или да слязат от превозно средство, по време на превоз по редовни линии или по време на превоз по заявка. | 2. "Доставчик на услуги за пътническа информация" е всеки публичен или частен доставчик на информация за пътувания или за трафика, който извършва дейности като електронно събиране на пътни такси, цифровизация и предоставяне на информация на борда на превозните средства, оператори за GPS проследяване за мониторинг в реално време и др. | 3. "Достъпност до инфраструктура за обществен транспорт" е съвкупност от физическа достъпност, информационна достъпност, социална и териториална достъпност, които позволяват равен и удобен достъп на пътниците, включително за лицата с увреждания и лицата с намалена подвижност. | 4. "Eдинен превозен документ" е билет или билети за пътуване, или друг, съответстващ на тях документ, които се комбинират, продават се заедно и се закупуват чрез еднократно плащане от пътника. | 5. "Икономическо равновесие на договор за обществена услуга" е финансовото състояние на договора, при което приходите на оператора заедно с плащанията от компетентния орган покриват разходите за изпълнение на задълженията за обществена услуга и осигуряват разумна печалба. | 6. "Интегрирани обществени услуги за превоз на пътници" са взаимосвързани превозни услуги в рамките на определен географски район, които ползват единно информационно обслужване, система за билети и разписание. | 7. "Нормално поведение на пътник" е поведение, което се основава на взаимно уважение и спазване на обществения ред. | 8. "Повторно нарушение" е нарушението, извършено в едногодишен срок от влизането в сила на наказателното постановление, с което на нарушителя е наложено наказание за същото по вид нарушение. | 9. "Редовна линия" е постоянен маршрут за изпълнение на превози с железопътен транспорт, автомобилен транспорт, превоз по вътрешни водни пътища или морски каботаж, въздушен транспорт, трамваен транспорт или метро по утвърдено разписание, като пътниците се качват и слизат на предварително определени възли за достъп. | 10. "Тарифното задължение" като елемент от задължението за извършване на обществени услуги е задължението на транспортното предприятие да прилага цени, които са в разрез с търговския му интерес, но са определени или установени от компетентните органи по съответния ред съгласно действащото законодателство. | 11. "Транспортна бедност" е състояние, при което лица или домакинства имат ограничен или затруднен достъп до основни дейности и услуги поради липса или недостатъчност на обществен транспорт, висока цена на транспортните услуги спрямо доходите, недостатъчна честота или свързаност на транспортните услуги или недостъпност на транспортната инфраструктура. | 12. "Зарядна станция" е съоръжение, състоящо се от една или повече зарядни точки на определено място. | ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ`
+- witness: `Допълнителна разпоредба | Заключителни разпоредби`
+- around: ` [...] 15 line(s) of ours against 2 of the witness, the same words`
+### 32 (replace, our line 517, witness line 506)
 - ours: `(oбн.,`
 - witness: `(обн.,`
 - around: `9. В Закона за гражданското въздухоплаване [...] ДВ, бр. 94 от 1972 г.;`
-### 31 (insert, our line 525, witness line 551)
+### 33 (witness_line, our line 524, witness line 513)
 - ours: ``
 - witness: `-------------------------`
-- around: `сила от 4 декември 2029 г. [...] Законът е приет от 51-вото Народно`
+- around: `3. член 91, т. 6, 7, 14 - 18 и 36, чл. 92, т. 1 и 12 и чл. 94, ал. 5 и 6, които влизат в сила от 4 декември 2029 г. [...] Законът е приет от 51-вото Народно събрание на 19 март 2026 г. и е подпечатан с официалния печат на Народното събрание.`
 
 ## witness moj
 (absent: the portal answers 500 for https://justice.government.bg/home/normdoc/2137259781 (absent, 2026-10-31T13:06:03+00:00); nothing to settle)
