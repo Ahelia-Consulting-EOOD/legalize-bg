@@ -1,0 +1,11 @@
+{
+ "slug": "naredba-8121z-1006-ot-24-avgust-2015-g-za-reda-za-osashtestvyavane-na-pozharogas",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Допълнителна разпоредба with § 1 (definitions, т. 1-9)",
+ "note": "lex.bg block 272 heading Допълнителна разпоредба followed directly by Заключителни разпоредби and § 2; Gazette blocks 266-276 carry § 1, т. 1-9 under that heading; §§ 2-5 match",
+ "stage": "tails",
+ "call": "call-tails-c78e88f9",
+ "material": 97020,
+ "answered_at": "2026-10-31T21:11:24+00:00"
+}

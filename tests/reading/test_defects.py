@@ -31,6 +31,11 @@ def test_additional_empty_fires_through_qualifiers_and_repeated_headings_and_onc
     assert defects.scan_blocks(_blocks(clean)) == []
     twice = ["Допълнителна разпоредба", "Заключителни разпоредби", "§ 1. Текст.", "Допълнителна разпоредба", "Заключителни разпоредби"]
     assert len([f for f in defects.scan_blocks(_blocks(twice)) if f["rule"] == "additional-empty"]) == 1
+    # an amending act's empty heading further down the page is recorded, outside the own tail, and makes no candidate
+    later = ["Чл. 1. Текст.", "Допълнителни разпоредби", "§ 1. По смисъла.", "Заключителни разпоредби", "§ 2. Влиза в сила.",
+             "Допълнителна разпоредба", "КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ НА ЗАКОНА ЗА ПРОБАТА", "Заключителни разпоредби", "КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ НА ЗАКОНА ЗА ПРОБАТА", "§ 9. Влиза в сила."]
+    out = defects.scan_blocks(_blocks(later))
+    assert [(f["rule"], f["block"], f.get("outside_own_tail")) for f in out] == [("additional-empty", 5, True)] and "outside the act's own provisions" in out[0]["detail"]
 
 
 def test_the_paragraph_rule_reads_the_acts_own_tail_not_the_amending_tails():
@@ -83,11 +88,17 @@ def test_scan_page_and_the_tails():
     assert "§ 1. По смисъла" in t["dv"]["text"] and t["dv"]["text"].splitlines()[:2] == ["за пробата", "Чл. 1. Този закон урежда пробата."]
     whole = defects.texts_for({}, MATERIAL, PAGE.encode("utf-8"), whole=True)
     assert "§ 9" in whole["lexbg"]["text"] and whole["dv"]["note"].startswith("the whole material")
-    decree = _blocks(["ПОСТАНОВЛЕНИЕ № 1", "Чл. 1. Приема Наредба.", "Заключителни разпоредби", "§ 1. Влиза в сила.", "НАРЕДБА", "Чл. 1. Текст.",
-                      "Чл. 2. Текст.", "Допълнителни разпоредби", "§ 1. По смисъла.", "Заключителни разпоредби", "§ 2. Влиза в сила.", "Приложение № 1", "таблица"])
-    assert defects.material_tail(decree) == (7, 11)                                   # after the last article, before the annex
+    decree = _blocks(["ПОСТАНОВЛЕНИЕ № 1", "Чл. 1. Приема Наредба.", "Заключителни разпоредби", "§ 1. Влиза в сила.", "НАРЕДБА № Н-4 от 30 март 2026 г.", "Чл. 1. Текст.",
+                      "Чл. 2. Текст.", "Допълнителни разпоредби", "§ 1. По смисъла.", "Заключителни разпоредби", "§ 2. В Наредба № 1:", "Чл. 16. (нов текст)",
+                      "Приложение № 1", "таблица"])
+    assert defects.material_tail(decree) == (7, 12)                                   # after the act's own title, before the annex; a quoted „Чл.“ inside a § does not end it
+    assert defects.material_tail(_blocks(["УКАЗ № 1", "ЗАКОН", "за пробата", "Чл. 1. x", "Заключителни разпоредби", "§ 1. x"])) == (4, 6)
+    no_title = _blocks(["Чл. 1. x", "Чл. 2. x", "Заключителни разпоредби", "§ 1. В Закона за пробата се създава чл. 2а:", "Чл. 2а. (нов текст)", "§ 2. Влиза в сила."])
+    assert defects.material_tail(no_title) == (2, 6)                                  # a „Чл.“ line quoted by a § is no article
     assert defects.material_tail(_blocks(["Заключителни разпоредби", "§ 1. x"])) == (0, 2)   # a material without articles
     assert defects.material_tail(_blocks(["Чл. 1. x", "Приложение № 1"])) is None
+    annex_rows = _blocks(["Чл. 1. x", "Заключителни разпоредби", "§ 1. x", "Приложение № 1", "Чл. 5. a row of the annex that opens like an article"])
+    assert defects.material_tail(annex_rows) == (1, 3)                                # an annex row is no article
     assert defects.own_tail(_blocks(["Чл. 1. x", "Заключителни разпоредби", "§ 1. x", "Приложение № 1 към чл. 1", "ред"])) == (1, 3)
     text, note = defects.tail_text(_blocks(["a", "b", "c"]), None)
     assert text == "a\nb\nc" and note.startswith("no provisions heading")
@@ -190,6 +201,27 @@ def test_scan_fetch_tasks_collect_count_and_entries(tmp_path, monkeypatch):
     # no tails call is written for a candidate with a verdict
     calls3, settled3 = defects.tasks(run_root, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache)
     assert calls3 == [] and settled3 == []
+    # a script verdict for a material not retrieved then is re-tasked once the material is there
+    (cache / "500.html").write_text(MATERIAL, encoding="utf-8")
+    summary.write_text("law_id,title,base_source,dv_identifier\nzakon-a,t,dv_html,dv-500\n", encoding="utf-8")
+    rec = defects.fetch(run_root, tmp_path, lambda i: MATERIAL, cache, summary, INDEX)
+    assert rec["zakon-a"]["outcome"] == "ok"
+    calls4, settled4 = defects.tasks(run_root, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache)
+    assert [c["slugs"] for c in calls4] == [["zakon-a"]] and settled4 == []
+    # a second call of the same stage over an answered slug is refused, never written over
+    Path(calls4[0]["answer_file"]).write_text(json.dumps({"zakon-a": {"verdict": "not_a_defect", "kind": None, "gazette": None, "note": "same"}}), encoding="utf-8")
+    assert defects.collect(run_root)[1] == []
+    other = defects.write_call(run_root, ["zakon-a", "zakon-b"], "tails", {s: defects.texts_for({}, MATERIAL, PAGE.encode("utf-8")) | {"id_mat": 1} for s in ("zakon-a", "zakon-b")},
+                               {c["slug"]: c for c in defects.load_candidates(run_root)})
+    Path(other["answer_file"]).write_text(json.dumps({s: {"verdict": "not_a_defect", "kind": None, "gazette": None, "note": "x"} for s in ("zakon-a", "zakon-b")}), encoding="utf-8")
+    written, problems = defects.collect(run_root)
+    assert written == [] and len(problems) == 1 and "already answered by" in problems[0] and "never written over" in problems[0]
+    assert json.loads(defects.verdict_path(run_root, "zakon-a").read_text(encoding="utf-8"))["note"] == "same"
+    # the raw page changed since the scan: refused
+    (tmp_path / "data" / "raw" / "lexbg" / "1000.html").write_bytes((PAGE + "<!-- -->").encode("utf-8"))
+    defects.verdict_path(run_root, "zakon-a").unlink()
+    with pytest.raises(defects.DefectsError, match="no longer hashes as candidates.json"):
+        defects.tasks(run_root, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache)
 
 
 def test_answers_are_held_to_the_form():
@@ -221,6 +253,13 @@ def test_the_whole_text_call_is_bounded_and_a_changed_cache_is_refused(tmp_path)
     finally:
         defects.MOST_WHOLE_TOKENS = keep
     assert calls == [] and settled[0]["verdict"] == "unverified" and "beyond one call's range" in settled[0]["note"]
+    # the whole stage with the material gone: the tails note is carried into the script verdict
+    defects._write_json(defects.verdict_path(run_root, "zakon-a"), {"slug": "zakon-a", "verdict": "needs_whole_text", "stage": "tails", "note": "why", "kind": None})
+    mats = defects._read_json(run_root / "materials.json")
+    mats["zakon-a"]["outcome"] = "error"
+    defects._write_json(run_root / "materials.json", mats)
+    _, settled = defects.tasks(run_root, tmp_path, stage="whole", raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache)
+    assert settled[0]["tails_note"] == "why" and settled[0]["verdict"] == "unverified"
     with pytest.raises(defects.DefectsError, match="not tails or whole"):
         defects.tasks(run_root, tmp_path, stage="x")
 
@@ -259,6 +298,8 @@ def test_the_register_is_held_to_its_form_and_synced_from_the_runs_verdicts(tmp_
     path = tmp_path / "docs" / "data" / "lexbg-defect-kinds.yaml"
     path.parent.mkdir(parents=True)
     doc["run"] = "r"
+    for e in doc["kinds"]:   # the repository's examples belong to its run; here the run is a fresh one
+        e["examples"], e["status"] = [], "named"
     defect_kinds.save(path, doc)
     assert defect_kinds.check(path, tmp_path) == []   # no run, no examples: nothing to compare
     bad = yaml.safe_load(path.read_text(encoding="utf-8"))
@@ -292,3 +333,59 @@ def test_the_register_is_held_to_its_form_and_synced_from_the_runs_verdicts(tmp_
 @pytest.mark.skipif(not (REPO / "data" / "runs" / defects.RUN_NAME / "candidates.json").exists(), reason="the S2 run is not on this machine")
 def test_the_repositorys_register_matches_the_runs_verdicts():
     assert defect_kinds.check() == []
+
+
+def test_confirmed_acts_enter_the_list_through_the_driver_and_the_history_route_stops_with_a_written_case_file(tmp_path):
+    run_root, summary = _repo(tmp_path, [("zakon-a", PAGE, 1), ("zakon-b", PAGE, 3)])
+    (tmp_path / "data" / "runs" / "route-ledger").mkdir(parents=True)
+    defects.scan(tmp_path, run_root)
+    for slug, mat in (("zakon-a", 500), ("zakon-b", 501)):
+        defects._write_json(defects.verdict_path(run_root, slug), {"slug": slug, "verdict": "confirmed", "kind": "dropped_section", "stage": "tails",
+                                                                   "gazette": "§ 1 with one definition", "note": "the heading is empty on lex.bg", "material": mat, "call": "c"})
+    out = defects.list_confirmed(run_root, tmp_path, run="r")
+    by = {r["slug"]: r for r in out}
+    assert by["zakon-b"]["route"] == "history" and by["zakon-b"]["state"] == "stopped" and by["zakon-b"]["step"] == "engine" and by["zakon-b"]["added"]
+    assert by["zakon-a"]["route"] == "whole_act_from_material" and by["zakon-a"]["state"] == "halted" and by["zakon-a"]["step"] == "amendment_search"
+    case = (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8")
+    assert "## Lessons learnt\n\nThe detector of FR-042 flagged the act" in case and "§ 1 with one definition" in case and "until the engine exists" in case
+    assert "(not yet written)" not in case and "## The owner's ruling\n\n(not yet given)" in case
+    entries = {e.slug: e for e in sx.load(tmp_path / "docs" / "data" / "source-exceptions.yaml")}
+    assert entries["zakon-b"].state == "stopped" and entries["zakon-b"].defect == "dropped_section" and entries["zakon-b"].address == "501"
+    assert entries["zakon-a"].state == "listed"
+    # listed once: a second pass adds nothing and the stop stands with its prose
+    again = {r["slug"]: r for r in defects.list_confirmed(run_root, tmp_path, run="r")}
+    assert not again["zakon-b"]["added"] and again["zakon-b"]["state"] == "stopped" and again["zakon-b"]["detail"] == "already listed"
+    assert (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8") == case
+    prose = defects.case_prose({"material": 1, "note": "n.", "gazette": "g", "kind": "wrong_text"}, entries["zakon-a"], "r")
+    assert "S5's batch" in prose["Proposal"] and "kind: wrong_text" in prose["Lessons learnt"]
+
+
+def test_the_token_report_sums_the_calls(tmp_path):
+    run_root = tmp_path / "data" / "runs" / "r"
+    run_root.mkdir(parents=True)
+    assert "0 calls, 0 tokens" in defects.token_report(run_root)
+    (run_root / "usage.jsonl").write_text('{"call": "a", "candidates": 2, "content_tokens": 1000, "tokens": 5000, "duration_ms": 2000}\n'
+                                          '{"call": "b", "kind": "review", "tokens": 7000, "duration_ms": 1000}\n', encoding="utf-8")
+    text = defects.token_report(run_root, budget=10_000)
+    assert "2 calls, 12,000 tokens counted once" in text and "budget of 10,000" in text
+    assert "investigator: 1 calls, 5,000 tokens, 1,000 of content, about 4,000 per call beyond the content" in text and "2 candidates, 2,500 per candidate, 2 s" in text
+    assert "review: 1 calls, 7,000 tokens" in text
+
+
+def test_the_amendment_call_reads_the_amending_material_whole(tmp_path):
+    run_root, summary = _repo(tmp_path, [("zakon-a", PAGE, 2)])
+    defects.scan(tmp_path, run_root)
+    cache = tmp_path / "cache"
+    cache.mkdir()
+
+    def fetch_one(i):
+        (cache / f"{i}.html").write_text(MATERIAL, encoding="utf-8")
+        return MATERIAL
+
+    rec = defects.amendment_call(run_root, "zakon-a", 900, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache, fetch_one=fetch_one)
+    assert rec["stage"] == "amendment" and rec["slugs"] == ["zakon-a"]
+    text = Path(rec["call_file"]).read_text(encoding="utf-8")
+    assert "the whole amending material 900" in text and "УКАЗ" not in text and "ЗАКОН" in text and "§ 9" not in text
+    Path(rec["answer_file"]).write_text(json.dumps({"zakon-a": {"verdict": "needs_whole_text", "kind": None, "gazette": None, "note": "n"}}), encoding="utf-8")
+    written, problems = defects.collect(run_root)
+    assert problems == [] and written[0]["verdict"] == "unverified" and written[0]["note"].startswith("the amendment texts did not settle it either")

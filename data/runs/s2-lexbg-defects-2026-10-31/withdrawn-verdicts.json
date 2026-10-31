@@ -1,0 +1,77 @@
+{
+ "count": 6,
+ "verdicts": [
+  {
+   "slug": "nakazatelno-protsesualen-kodeks",
+   "verdict": "unverified",
+   "kind": null,
+   "gazette": null,
+   "note": "The flagged heading at block 3464 lies after the code's adoption note (lex.bg lines 265-266, block range shown ends at 3200), so it sits in the provisions of a later amending act, not in the code's own provisions; in the code's own provisions lex.bg lines 191-200 print 'Допълнителни разпоредби' with § 1 and § 1а, not empty. The Gazette material 973 is the 2005 original; its tail (lines 270-327) starts inside § 5 and matches lex.bg §§ 5-18, and it cannot hold the amending act's provisions",
+   "stage": "tails",
+   "call": "call-tails-eddc1b2c",
+   "material": 973,
+   "answered_at": "2026-10-31T21:11:24+00:00",
+   "withdrawn": "the candidate fell out of the scan when the additional-empty rule was narrowed to the act's own provisions (review A, finding 1): its only finding was a later amending act's empty heading"
+  },
+  {
+   "slug": "naredba-8-ot-26-fevruari-2008-g-za-funktsiite-i-organizatsiyata-na-deynostta-na-",
+   "verdict": "unverified",
+   "kind": null,
+   "gazette": null,
+   "note": "in the tail shown (lex.bg blocks 405-425) lex.bg carries the act's own Допълнителни разпоредби § 1 and Заключителни разпоредби §§ 2-4 as Gazette material 4896 does (§§ 1а, 1б and the § 3 change are amendments lex.bg marks); the flagged empty heading at block 450 lies outside the tail, after the act's own provisions, presumably in an amending act's provisions, which the original promulgation material does not hold",
+   "stage": "tails",
+   "call": "call-tails-6f656a20",
+   "material": 4896,
+   "answered_at": "2026-10-31T21:11:24+00:00",
+   "withdrawn": "the candidate fell out of the scan when the additional-empty rule was narrowed to the act's own provisions (review A, finding 1): its only finding was a later amending act's empty heading"
+  },
+  {
+   "slug": "naredba-rd-02-20-2-ot-20-dekemvri-2017-g-za-planirane-i-proektirane-na-komunikat",
+   "verdict": "not_a_defect",
+   "kind": null,
+   "gazette": null,
+   "note": "The act's own provisions on lex.bg (lines 198-241: additional provisions §§ 1-4, transitional and final §§ 5-8) match the Gazette (lines 248-276); differences in § 2 items 4, 5, 8, 11, 17 and items 19-33 are amendments lex.bg marks (ДВ бр. 79/2022, бр. 17/2026). The flagged block 1037 lies after block 1010, outside the act's own provisions shown, so it is not in the act's own provisions",
+   "stage": "tails",
+   "call": "call-tails-084b7c4a",
+   "material": 121406,
+   "answered_at": "2026-10-31T21:11:24+00:00",
+   "withdrawn": "the candidate fell out of the scan when the additional-empty rule was narrowed to the act's own provisions (review A, finding 1): its only finding was a later amending act's empty heading"
+  },
+  {
+   "slug": "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p",
+   "verdict": "not_a_defect",
+   "kind": null,
+   "gazette": null,
+   "note": "the act's own provisions in lex.bg blocks 326-330 (§§ 1-3 under Преходни и заключителни разпоредби) match Gazette material 1076 §§ 1-3, with § 2 ал. 2 marked as added by ДВ бр. 82/2006; the flagged block 340 lies after the act's own provisions, in amending-act material",
+   "stage": "tails",
+   "call": "call-tails-e52f0399",
+   "material": 1076,
+   "answered_at": "2026-10-31T21:11:24+00:00",
+   "withdrawn": "the candidate fell out of the scan when the additional-empty rule was narrowed to the act's own provisions (review A, finding 1): its only finding was a later amending act's empty heading"
+  },
+  {
+   "slug": "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-2",
+   "verdict": "not_a_defect",
+   "kind": null,
+   "gazette": null,
+   "note": "act's own provisions (lex.bg blocks 547-549: heading, § 1, § 2) match Gazette material 1090 blocks 230-232; Чл. 20 difference is marked amendment ДВ бр. 32/2016; flagged empty heading at block 563 lies after the act's own § 2, in text appended later, which this material does not cover",
+   "stage": "tails",
+   "call": "call-tails-d47de18c",
+   "material": 1090,
+   "answered_at": "2026-10-31T21:09:30+00:00",
+   "withdrawn": "the candidate fell out of the scan when the additional-empty rule was narrowed to the act's own provisions (review A, finding 1): its only finding was a later amending act's empty heading"
+  },
+  {
+   "slug": "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-9",
+   "verdict": "not_a_defect",
+   "kind": null,
+   "gazette": null,
+   "note": "act's own provisions (lex.bg blocks 172-175: heading, § 1-§ 3) match Gazette material 15188 blocks 89-92; § 2 ал. 2 and Чл. 10-11 differences are marked amendments ДВ бр. 94/2005 and 82/2006; flagged empty heading at block 181 lies after the act's own § 3, in text appended later, which this material does not cover",
+   "stage": "tails",
+   "call": "call-tails-d47de18c",
+   "material": 15188,
+   "answered_at": "2026-10-31T21:09:30+00:00",
+   "withdrawn": "the candidate fell out of the scan when the additional-empty rule was narrowed to the act's own provisions (review A, finding 1): its only finding was a later amending act's empty heading"
+  }
+ ]
+}

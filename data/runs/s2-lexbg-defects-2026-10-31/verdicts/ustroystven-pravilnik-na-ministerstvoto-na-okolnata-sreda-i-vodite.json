@@ -1,0 +1,12 @@
+{
+ "slug": "ustroystven-pravilnik-na-ministerstvoto-na-okolnata-sreda-i-vodite",
+ "verdict": "not_a_defect",
+ "kind": null,
+ "gazette": null,
+ "note": "Gazette material 118279 (lines 850-1458): the правилник itself ends at чл. 50 followed by the Приложение към чл. 16, ал. 2, with no own additional, transitional or final provisions; the §§ 1-3 in the Gazette (lines 810-818) are the ПЗР of adopting ПМС № 208/2017. The §§ lex.bg prints after чл. 50 (lines 710-737: § 4 ПМС 45/2019, § 3 ПМС 234/2019, § 3 ПМС 123/2020, § 13 ПМС 60/2021, Параграф единствен ПМС 16/2024, §§ 15-16 ПМС 119/2025) belong to later amending decrees, so the lowest § being 3 reflects amending-act §§, not a dropped provision of the act; the doubled 'Заключителни разпоредби' heading at lines 715-716 is a repeated heading only.",
+ "stage": "whole",
+ "call": "call-whole-c372a0e4",
+ "material": 118279,
+ "answered_at": "2026-10-31T21:15:41+00:00",
+ "tails_note": "lex.bg blocks 674-676 are the final provisions of the amending decree ПМС 234/2019 (its § 3), so the flagged § 3 is the amending act's; the Gazette tail (material 118279) holds the act's own Преходни и заключителни разпоредби §§ 1-3, which the lex.bg tail shown does not reach; the whole lex.bg text would show whether they are carried"
+}

@@ -1,0 +1,11 @@
+{
+ "slug": "zakon-za-smetnata-palata",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Additional provision § 1 (definitions, items 1-13) under ДОПЪЛНИТЕЛНА РАЗПОРЕДБА",
+ "note": "lex.bg lines 138-144: the additional-provision heading printed three times with title-amendment notes (ДВ бр. 16 and 51 от 2026 г.), then the transitional heading and § 2, with no § 1 and no repeal mark; Gazette lines 172-192 carry § 1 with items 1-13; §§ 2-13 match (lines 144-163 vs 193-212)",
+ "stage": "tails",
+ "call": "call-tails-12ea3d18",
+ "material": 91797,
+ "answered_at": "2026-10-31T21:11:24+00:00"
+}

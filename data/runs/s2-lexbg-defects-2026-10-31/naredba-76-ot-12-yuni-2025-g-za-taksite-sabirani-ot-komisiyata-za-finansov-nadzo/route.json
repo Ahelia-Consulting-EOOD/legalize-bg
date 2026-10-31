@@ -1,0 +1,10 @@
+{
+ "slug": "naredba-76-ot-12-yuni-2025-g-za-taksite-sabirani-ot-komisiyata-za-finansov-nadzo",
+ "run": "s2-lexbg-defects-2026-10-31",
+ "route": "history",
+ "state": "stopped",
+ "entries": [],
+ "stopped_at": "engine",
+ "exception": "the next step is not defined: engine",
+ "case_file": "docs/cases/naredba-76-ot-12-yuni-2025-g-za-taksite-sabirani-ot-komisiyata-za-finansov-nadzo.md"
+}

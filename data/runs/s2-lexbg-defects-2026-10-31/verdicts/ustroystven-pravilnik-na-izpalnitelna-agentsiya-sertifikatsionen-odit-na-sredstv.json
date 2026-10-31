@@ -1,0 +1,11 @@
+{
+ "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-sertifikatsionen-odit-na-sredstv",
+ "verdict": "not_a_defect",
+ "kind": null,
+ "gazette": null,
+ "note": "lex.bg §§ 5, 5, 7, 5, 6 (lines 540-556) belong to the amending decrees named in their 'КЪМ ПОСТАНОВЛЕНИЕ' headings (№ 218/2016, № 288/2018, № 38/2020, № 180/2024); the Gazette text (material 102919, lines 609-618) goes from Чл. 25 to the appendix with no own provisions; the differences in Чл. 24, ал. 3 and Чл. 25 are amendments lex.bg marks (lines 535, 537)",
+ "stage": "tails",
+ "call": "call-tails-ff9f2f28",
+ "material": 102919,
+ "answered_at": "2026-10-31T21:09:30+00:00"
+}

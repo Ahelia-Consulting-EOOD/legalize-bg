@@ -1,0 +1,10 @@
+{
+ "slug": "naredba-9-ot-26-yuni-2023-g-za-usloviyata-i-reda-za-prilagane-na-interventsiite-",
+ "run": "s2-lexbg-defects-2026-10-31",
+ "route": "history",
+ "state": "stopped",
+ "entries": [],
+ "stopped_at": "engine",
+ "exception": "the next step is not defined: engine",
+ "case_file": "docs/cases/naredba-9-ot-26-yuni-2023-g-za-usloviyata-i-reda-za-prilagane-na-interventsiite-.md"
+}

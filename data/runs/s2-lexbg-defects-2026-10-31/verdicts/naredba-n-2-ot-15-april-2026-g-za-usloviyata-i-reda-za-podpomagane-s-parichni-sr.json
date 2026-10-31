@@ -1,0 +1,11 @@
+{
+ "slug": "naredba-n-2-ot-15-april-2026-g-za-usloviyata-i-reda-za-podpomagane-s-parichni-sr",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Допълнителна разпоредба with § 1 (definitions, т. 1-5, т. 2 with букви а-т)",
+ "note": "lex.bg block 106 heading Допълнителна разпоредба followed directly by Заключителни разпоредби and § 2; Gazette blocks 104-130 carry § 1, т. 1-5; §§ 2-4 match",
+ "stage": "tails",
+ "call": "call-tails-c78e88f9",
+ "material": 243359,
+ "answered_at": "2026-10-31T21:11:24+00:00"
+}

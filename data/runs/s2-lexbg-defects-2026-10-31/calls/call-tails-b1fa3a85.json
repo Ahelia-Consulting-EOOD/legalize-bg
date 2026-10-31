@@ -1,0 +1,12 @@
+{
+ "call": "call-tails-b1fa3a85",
+ "stage": "tails",
+ "slugs": [
+  "naredba-za-kachestvoto-na-sotsialnite-uslugi"
+ ],
+ "call_file": "/Users/ekimir/swprj/legalize-bg/.claude/worktrees/youthful-haibt-880b8b/data/runs/s2-lexbg-defects-2026-10-31/calls/call-tails-b1fa3a85.md",
+ "answer_file": "/Users/ekimir/swprj/legalize-bg/.claude/worktrees/youthful-haibt-880b8b/data/runs/s2-lexbg-defects-2026-10-31/calls/call-tails-b1fa3a85.answer.json",
+ "content_tokens": 22259,
+ "written_at": "2026-10-31T21:08:14+00:00",
+ "collected_at": "2026-10-31T21:11:24+00:00"
+}

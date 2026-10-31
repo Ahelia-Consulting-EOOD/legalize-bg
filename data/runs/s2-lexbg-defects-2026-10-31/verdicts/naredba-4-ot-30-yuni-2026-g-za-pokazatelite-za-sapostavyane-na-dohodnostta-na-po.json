@@ -1,0 +1,11 @@
+{
+ "slug": "naredba-4-ot-30-yuni-2026-g-za-pokazatelite-za-sapostavyane-na-dohodnostta-na-po",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "§ 1 (definitions, items 1-5) under the additional-provision heading",
+ "note": "lex.bg line 723 prints 'Допълнителна разпоредба' followed directly by 'Заключителни разпоредби' and § 2 (lines 724-725); the Gazette (material 244477) carries § 1 with points 1-5 under that heading (lines 770-776); §§ 2-7 match (lines 725-763 vs 778-816)",
+ "stage": "tails",
+ "call": "call-tails-ff9f2f28",
+ "material": 244477,
+ "answered_at": "2026-10-31T21:09:30+00:00"
+}

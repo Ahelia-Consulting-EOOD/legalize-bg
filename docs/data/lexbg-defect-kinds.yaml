@@ -12,7 +12,7 @@
 run: s2-lexbg-defects-2026-10-31
 kinds:
 - kind: dropped_section
-  status: named
+  status: confirmed
   description: lex.bg prints a section heading of the act's own provisions (an additional, transitional or final provisions heading) with no text under it, or omits the section, while the Gazette's promulgation text carries the section with its provisions.
   evidence:
   - kind: register
@@ -27,7 +27,40 @@ kinds:
     script: reading/defects.py
     rule: additional-empty
     form: a block that is an additional-provisions heading followed, after lex.bg's qualifier lines and repeated copies of the heading, by a transitional or final provisions heading; on the reading path the check empty_section (reading/checks.py) finds any heading with nothing under it and stops the write (D-076)
-  examples: []
+  examples:
+  - naredba-1-ot-10-yuni-2022-g-za-usloviyata-i-reda-za-finansirane-na-proekti-po-na
+  - naredba-10-ot-27-yuni-2023-g-za-usloviyata-i-reda-za-prilagane-na-interventsiite
+  - naredba-14-ot-15-april-2004-g-za-meditsinskite-kriterii-i-reda-na-ustanovyavane-
+  - naredba-2-ot-17-april-2026-g-za-usloviyata-i-reda-za-prilagane-i-nablyudenie-na-
+  - naredba-27-ot-13-mart-2014-g-za-statistikata-na-platezhniya-balans-mezhdunarodna
+  - naredba-29-ot-12072006-g-za-minimalnoto-nivo-na-kreditnite-reytingi-na-bankite-i
+  - naredba-3-ot-22-april-2026-g-za-usloviyata-i-reda-za-prilagane-na-interventsiyat
+  - naredba-3-ot-27-mart-2026-g-za-meteorologichnoto-osiguryavane-na-vazdushna-navig
+  - naredba-3-ot-5-may-2026-g-za-reda-za-vodene-na-registara-po-chl-14-al-4a-ot-zako
+  - naredba-33-ot-16-yuli-2026-g-za-individualnite-zayavleniya-za-uchastie-vav-fond-
+  - naredba-4-ot-30-yuni-2026-g-za-pokazatelite-za-sapostavyane-na-dohodnostta-na-po
+  - naredba-45-ot-17-april-2025-g-otnosno-ustanovyavane-i-reglamentirane-na-pravootn
+  - naredba-76-ot-12-yuni-2025-g-za-taksite-sabirani-ot-komisiyata-za-finansov-nadzo
+  - naredba-8-ot-20-yuni-2023-g-za-usloviyata-i-reda-za-prilagane-na-interventsiite-
+  - naredba-8-ot-26-noemvri-2007-g-za-usloviyata-i-reda-za-finansirane-na-diagnostik
+  - naredba-8121z-1006-ot-24-avgust-2015-g-za-reda-za-osashtestvyavane-na-pozharogas
+  - naredba-8121z-1243-ot-9-noemvri-2020-g-za-usloviyata-i-reda-za-vazlagane-i-otchi
+  - naredba-9-ot-26-may-2016-g-za-usloviyata-i-reda-za-izdavane-na-razresheniya-za-z
+  - naredba-9-ot-26-yuni-2023-g-za-usloviyata-i-reda-za-prilagane-na-interventsiite-
+  - naredba-n-10-ot-24-yuni-2026-g-za-usloviyata-i-reda-za-validirane-na-profesional
+  - naredba-n-11-ot-24-yuli-2026-g-za-usloviyata-i-reda-za-priemane-na-serzhanti-sta
+  - naredba-n-2-ot-15-april-2026-g-za-usloviyata-i-reda-za-podpomagane-s-parichni-sr
+  - naredba-n-4-ot-30-mart-2026-g-za-organizatsiyata-na-profilaktikata-i-kontrola-na
+  - naredba-za-kachestvoto-na-sotsialnite-uslugi
+  - naredba-za-kriteriite-usloviyata-i-reda-za-opredelyane-na-statut-na-domakinstvo-
+  - naredba-za-pravilata-i-normite-za-proektirane-izgrazhdane-i-premahvane-na-fizich
+  - naredba-za-usloviyata-i-reda-za-izplashtane-na-kompensatsionni-sumi-na-darzhavni-2
+  - pravilnik-za-ustroystvoto-i-deynostta-na-voenno-geografskata-sluzhba-2
+  - pravilnik-za-ustroystvoto-i-organizatsiyata-na-deynostta-na-komisiyata-za-zashti
+  - zakon-za-obshtestveniya-transport
+  - zakon-za-obshtite-iziskvaniya-za-bezopasnost-pri-predostavyane-na-atraktsionni-u
+  - zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi
+  - zakon-za-smetnata-palata
 - kind: dropped_provision
   status: named
   description: lex.bg omits one or more provisions (a § or an article) of a section it does print, while the Gazette's text carries them; the section's first § above 1 is the form the detector reads.

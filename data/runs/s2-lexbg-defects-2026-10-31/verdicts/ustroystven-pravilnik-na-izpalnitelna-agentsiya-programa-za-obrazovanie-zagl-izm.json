@@ -1,0 +1,11 @@
+{
+ "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-programa-za-obrazovanie-zagl-izm",
+ "verdict": "not_a_defect",
+ "kind": null,
+ "gazette": null,
+ "note": "lex.bg §§ 7, 18, 10, 13 (lines 131-146) each sit under a 'КЪМ ПОСТАНОВЛЕНИЕ' heading of an adopting or amending decree (№ 48/2019, № 70/2021, № 274/2021); the original Gazette text (material 119170, lines 208-217) goes from Чл. 20 straight to the appendix with no provisions of the regulation's own, so nothing is missing",
+ "stage": "tails",
+ "call": "call-tails-ff9f2f28",
+ "material": 119170,
+ "answered_at": "2026-10-31T21:09:30+00:00"
+}

@@ -1,0 +1,11 @@
+{
+ "slug": "naredba-76-ot-12-yuni-2025-g-za-taksite-sabirani-ot-komisiyata-za-finansov-nadzo",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "§ 1 (definitions, items 1-3) under the additional-provision heading",
+ "note": "lex.bg line 650 prints 'Допълнителна разпоредба' followed directly by the transitional and final heading and § 2 (lines 651-652); the Gazette (material 235512) carries § 1 with points 1-3 under 'ДОПЪЛНИТЕЛНА РАЗПОРЕДБА' (lines 681-685); §§ 2-8 match (lines 652-674 vs 687-709)",
+ "stage": "tails",
+ "call": "call-tails-ff9f2f28",
+ "material": 235512,
+ "answered_at": "2026-10-31T21:09:30+00:00"
+}
