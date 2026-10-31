@@ -83,7 +83,8 @@ SIGN = re.compile(r"^§\s*(\d+)\s*\.")
 ARTICLE = re.compile(r"^Чл\.\s*\d")
 ANNEX = re.compile(r"^Приложение\s*(№|към|\d)", re.I)
 # the title line of an act in a material: the kind in capitals, at most its number and date ("ЗАКОН", "НАРЕДБА № Н-4 от 30 март 2026 г.")
-KIND_TITLE = re.compile(r"^(ЗАКОН|КОДЕКС|НАРЕДБА|ПРАВИЛНИК|УСТРОЙСТВЕН ПРАВИЛНИК|ИНСТРУКЦИЯ|ПОСТАНОВЛЕНИЕ|УКАЗ|РЕШЕНИЕ)(\s+№\s*\S+)?(\s+от\s+\d{1,2}\s+\S+\s+\d{4}\s*г\.?)?\s*$")
+KIND_TITLE = re.compile(r"^(ЗАКОН|КОДЕКС|НАРЕДБА|ПРАВИЛНИК|УСТРОЙСТВЕН ПРАВИЛНИК|ИНСТРУКЦИЯ|ПОСТАНОВЛЕНИЕ|УКАЗ|РЕШЕНИЕ)(\s+№\s*\S+)?(\s+(?i:от)\s+\d{1,2}\s+\S+\s+\d{4}\s*(?i:г)\.?)?\s*$")
+CHAPTER = re.compile(r"^(Глава|Раздел|Част|Дял)\s", re.I)
 _WORD = re.compile(r"[^\w\s]+", re.U)
 _NUMBER_KEY = re.compile(r"^(наредба|правилник|постановление|инструкция|указ|закон|кодекс)\s+№?\s*([\w-]+)\s+от\s+.*?(\d{4})")
 WORD_SHARE = 0.7    # of the act's distinctive words, the share a row's title must carry to be the act's material
@@ -137,14 +138,14 @@ def material_tail(blocks: list[Block]) -> tuple[int, int] | None:
     title line (a decree that adopts a regulation prints its own final provisions before the regulation's title and
     articles), to the first annex or the end; without a title line, the first provisions heading after the last article.
     None without a heading."""
-    first_annex = next((b.i for b in blocks if ANNEX.match(b.text)), len(blocks))   # an annex's rows can open with „Чл.“ too
-    base = max((b.i for b in blocks[:first_annex] if KIND_TITLE.match(b.text)), default=-1)   # the act's own title line, after the decree's
-    start = next((b.i for b in blocks[:first_annex] if b.i > base and PROVISIONS.match(b.text)), None)
+    base = max((b.i for b in blocks if KIND_TITLE.match(b.text)), default=-1)   # the act's own title line: the last one, since a
+    first_annex = next((b.i for b in blocks if b.i > base and ANNEX.match(b.text)), len(blocks))   # decree prints its own text and annex first
+    start = next((b.i for b in blocks[:first_annex] if b.i > base and PROVISIONS.match(b.text)), None) if base >= 0 else None
     if start is None:   # no title line of its own: the first provisions heading after the last article; a „Чл.“ line that
         last_article = -1   # follows a § under a provisions heading is quoted by that § and is no article
         under_sign = False
         for b in blocks[:first_annex]:
-            if PROVISIONS.match(b.text):
+            if PROVISIONS.match(b.text) or CHAPTER.match(b.text):
                 under_sign = False
             elif SIGN.match(b.text) or b.text.startswith("Параграф единствен"):
                 under_sign = True
@@ -409,17 +410,19 @@ hold the act's provisions at all, the verdict is `unverified`, and where the who
 
 Write exactly one JSON object to `{answer}`: one key per candidate slug, exactly the {n} slugs below, each value an
 object `{{"verdict": "<one of the four>", "kind": "<one of the five, only with confirmed, else null>",
-"gazette": "<for confirmed: what the Gazette carries that lex.bg lacks or prints wrong, in a few words, with the § or article numbers>",
+"gazette": "<for confirmed: a noun phrase, not a sentence: what the Gazette carries that lex.bg lacks or prints wrong, with the § or article numbers>",
 "note": "<short evidence note naming the lines you relied on>"}}`. Nothing else: no prose, no code fence.
 """
 
 
-def _call_id(slugs: list[str], stage: str) -> str:
-    return "call-" + stage + "-" + _sha(("\n".join(sorted(slugs)) + stage).encode())[:8]
+def _call_id(slugs: list[str], stage: str, materials: dict[str, int] | None = None) -> str:
+    key = "\n".join(f"{s}:{(materials or {}).get(s, '')}" for s in sorted(slugs)) + stage
+    return "call-" + stage + "-" + _sha(key.encode())[:8]
 
 
 def write_call(run_root: Path, slugs: list[str], stage: str, texts: dict[str, dict], candidates: dict[str, dict]) -> dict:
-    cid = _call_id(slugs, stage)
+    materials = {s: texts[s]["id_mat"] for s in slugs}
+    cid = _call_id(slugs, stage, materials)
     calls = run_root / "calls"
     call_path, answer_path = calls / f"{cid}.md", calls / f"{cid}.answer.json"
     parts = [INSTRUCTIONS.format(n=len(slugs), answer=answer_path, verdicts="\n".join(f"- `{k}`: {v}" for k, v in VERDICTS.items()),
@@ -432,7 +435,8 @@ def write_call(run_root: Path, slugs: list[str], stage: str, texts: dict[str, di
     calls.mkdir(parents=True, exist_ok=True)
     call_path.write_text("\n".join(parts), encoding="utf-8")
     tokens = sum(texts[s]["lexbg"]["tokens"] + texts[s]["dv"]["tokens"] for s in slugs)
-    rec = {"call": cid, "stage": stage, "slugs": slugs, "call_file": str(call_path), "answer_file": str(answer_path), "content_tokens": tokens, "written_at": _now()}
+    rec = {"call": cid, "stage": stage, "slugs": slugs, "materials": materials, "call_file": str(call_path), "answer_file": str(answer_path),
+           "content_tokens": tokens, "written_at": _now()}
     _write_json(calls / f"{cid}.json", rec)
     return rec
 
@@ -520,7 +524,7 @@ def tasks(run_root: Path, root: Path = ROOT, stage: str = "tails", raw_dir: Path
             groups.append(cur)
     existing_calls = {p.stem for p in (run_root / "calls").glob("call-*.md")} if (run_root / "calls").exists() else set()
     for g in groups:
-        cid = _call_id(g, stage)
+        cid = _call_id(g, stage, {s: texts[s]["id_mat"] for s in g})
         if cid in existing_calls and (run_root / "calls" / f"{cid}.answer.json").exists():
             continue   # answered, not yet collected: collect first
         calls.append(write_call(run_root, g, stage, texts, cands))
@@ -533,15 +537,29 @@ def amendment_call(run_root: Path, slug: str, id_mat: int, root: Path = ROOT, ra
     tail against the whole text of that amending material, which the promulgation material cannot show. Bounded to one call."""
     raw_dir, cache_dir = Path(raw_dir or Path(root) / RAW_LEXBG), Path(cache_dir or Path(root) / DV_CACHE)
     cands = {c["slug"]: c for c in load_candidates(run_root)}
+    if slug not in cands:
+        raise DefectsError(f"{slug}: not a candidate of this run")
     c = cands[slug]
+    vp = verdict_path(run_root, slug)
+    v = _read_json(vp) if vp.exists() else None
+    if v is None or v.get("stage") != "tails" or v["verdict"] not in ("needs_whole_text", "unverified"):
+        raise DefectsError(f"{slug}: an amendment call follows a tails verdict of needs_whole_text or unverified, not {v and v['verdict']!r} at stage {v and v.get('stage')!r}")
+    later = [p.name for p in (run_root / "calls").glob("call-*.json") if not p.name.endswith(".answer.json")
+             and _read_json(p).get("stage") in ("whole", "amendment") and slug in _read_json(p).get("slugs", [])] if (run_root / "calls").exists() else []
+    if later:
+        raise DefectsError(f"{slug}: a whole-text or amendment call exists already ({', '.join(later)}); one such call, never a second")
     if fetch_one is None:
         from fetcher.dv.client import DvSession
-        from fetcher.dv.materials import fetch_material
+        from fetcher.dv.materials import fetch_material, is_dv_error_body
         session = DvSession()
-        fetch_one = lambda i: fetch_material(session, i, cache_dir=cache_dir)   # noqa: E731
-    fetch_one(id_mat)
+        fetch_one = lambda i: (lambda h: None if is_dv_error_body(h) else h)(fetch_material(session, i, cache_dir=cache_dir))   # noqa: E731
+    if fetch_one(id_mat) is None:
+        raise DefectsError(f"{slug}: the Gazette answers its error view for material {id_mat}")
     html = (cache_dir / f"{id_mat}.html").read_bytes()
-    lex = split_lexbg((raw_dir / f"{c['doc_id']}.html").read_bytes())
+    raw = (raw_dir / f"{c['doc_id']}.html").read_bytes()
+    if _sha(raw) != c["page_sha256"]:
+        raise DefectsError(f"{slug}: the raw page {c['doc_id']} no longer hashes as candidates.json recorded it; scan again")
+    lex = split_lexbg(raw)
     lt, ln = tail_text(lex.blocks, own_tail(lex.blocks))
     dv = split_dv(html.decode("utf-8"))
     t = {"lexbg": {"text": lt, "note": ln, "tokens": _tokens(lt)},
@@ -591,8 +609,10 @@ def collect(run_root: Path) -> tuple[list[dict], list[str]]:
             stage = rec["stage"]
             if stage in ("whole", "amendment") and verdict == "needs_whole_text":
                 verdict, note = "unverified", f"the {stage} texts did not settle it either: " + note   # one such call, never a second
+            promulgation = _material_of(run_root, slug)
+            decided_on = rec.get("materials", {}).get(slug, promulgation)   # the amendment stage decides on the amending material
             out = {"slug": slug, "verdict": verdict, "kind": a.get("kind") if verdict == "confirmed" else None, "gazette": a.get("gazette") if verdict == "confirmed" else None,
-                   "note": note, "stage": stage, "call": rec["call"], "material": _material_of(run_root, slug), "answered_at": _now()}
+                   "note": note, "stage": stage, "call": rec["call"], "material": decided_on, "promulgation_material": promulgation, "answered_at": _now()}
             if prior and prior.get("stage") == "tails" and stage in ("whole", "amendment"):
                 out["tails_note"] = prior["note"]
             _write_json(existing, out)
@@ -690,17 +710,30 @@ def entries_for(run_root: Path, root: Path = ROOT, added: str | None = None) -> 
         if v.get("material") is None:
             raise DefectsError(f"{slug}: a confirmed verdict without a material")
         rel = verdict_path(run_root, slug).resolve().relative_to(root.resolve())
-        out.append(sx.Entry(slug=slug, title=str(fm.get("titulo") or slug).strip(), defect=v["kind"], source="dv_html", address=str(v["material"]),
+        promulgation = v.get("promulgation_material") or v["material"]   # the address: the promulgation material, where every route starts
+        out.append(sx.Entry(slug=slug, title=str(fm.get("titulo") or slug).strip(), defect=v["kind"], source="dv_html", address=str(promulgation),
                             route=route_for(fm), state="listed", added=added or datetime.now(timezone.utc).date().isoformat(),
-                            evidence=[{"kind": "register", "ref": f"{REGISTER}: {v['kind']}"}, {"kind": "audit", "ref": f"{rel}: {v['note']}"}],
-                            note=f"S2 of the plan of 31 October 2026: the Gazette (material {v['material']}) carries {v['gazette']}"))
+                            evidence=[{"kind": "register", "ref": f"{REGISTER}: {v['kind']}"}, {"kind": "audit", "ref": f"{rel}: {_sentence(v['note'])}"}],
+                            note=f"S2 of the plan of 31 October 2026: {_material_words(v)} carries: {v['gazette']}"))
     return out
+
+
+def _sentence(text: str) -> str:
+    text = (text or "").strip()
+    return text if not text or text[-1] in ".!?" else text + "."
+
+
+def _material_words(v: dict) -> str:
+    """Which Gazette text the verdict was decided against: the promulgation material, or the amending material that added the section."""
+    if v.get("stage") == "amendment":
+        return f"the Gazette's amending material {v['material']} (the promulgation material is {v.get('promulgation_material')})"
+    return f"the Gazette's promulgation material {v['material']}"
 
 
 def case_prose(v: dict, entry: sx.Entry, run: str) -> dict[str, str]:
     """The lessons and the proposal of a confirmed act's case file, from its verdict: the session's words, the owner reads them."""
-    lessons = (f"The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material "
-               f"{v['material']} (S2 run {run}): {v['note']} The Gazette carries {v['gazette']}; lex.bg's text, which the corpus holds, lacks it "
+    lessons = (f"The detector of FR-042 flagged the act and the investigator confirmed it against {_material_words(v)} "
+               f"(S2 run {run}): {_sentence(v['note'])} The Gazette carries: {v['gazette']}. lex.bg's text, which the corpus holds, lacks it "
                f"(kind: {v['kind']}).")
     if entry.route == "history":
         proposal = ("The act was amended after its promulgation, so its promulgation material is not the whole act and the dropped text can be "
@@ -724,7 +757,11 @@ def list_confirmed(run_root: Path, root: Path = ROOT, run: str | None = None, un
     for entry in entries_for(run_root, root):
         list_path = root / "docs" / "data" / "source-exceptions.yaml"
         have = sx.listed(entry.slug, list_path)
-        if have is not None:   # listed by an earlier step (S1): its route and state stand; this run does not walk it again
+        if have is not None:   # listed already: its route and state stand; this run does not walk it again
+            if have.note.startswith("S2 of the plan") and have.note != entry.note:
+                sx.update(list_path, entry.slug, note=entry.note)   # this run's own wording follows the verdict
+            if have.state == "stopped" and have.case_file:
+                _fill_case(root / have.case_file, run_root, entry, run)
             out.append({"slug": entry.slug, "route": have.route, "added": False, "state": have.state, "step": "-", "detail": "already listed",
                         **({"case_file": have.case_file} if have.case_file else {})})
             continue
@@ -733,16 +770,33 @@ def list_confirmed(run_root: Path, root: Path = ROOT, run: str | None = None, un
         outcome = routes.run_route(ctx, STEPS, until=until)
         rec = {"slug": entry.slug, "route": ctx.entry.route, "added": True, "state": outcome.state, "step": outcome.step, "detail": outcome.detail}
         if outcome.state == "stopped" and outcome.case_file:
-            case = root / outcome.case_file
-            fm, prose = routes.split_case_file(case.read_text(encoding="utf-8"))
-            if fm is not None and prose is not None and not routes._written(prose):
-                v = _read_json(verdict_path(run_root, entry.slug))
-                for part, text in case_prose(v, entry, run).items():
-                    prose = prose.replace(f"## {part}\n\n{routes.CASE_PLACEHOLDER[part]}", f"## {part}\n\n{text}")
-                routes._write_case(case, fm, prose)
+            _fill_case(root / outcome.case_file, run_root, entry, run)
             rec["case_file"] = outcome.case_file
         out.append(rec)
     return out
+
+
+def _fill_case(case: Path, run_root: Path, entry: sx.Entry, run: str) -> None:
+    """The lessons and the proposal from the verdict, written while the owner has not ruled; the owner's ruling is never touched."""
+    from reading import routes
+    fm, prose = routes.split_case_file(case.read_text(encoding="utf-8"))
+    if fm is None or prose is None or fm.get("run") != run:
+        return   # another run's stop, or a file the driver cannot parse: not this run's to write
+    parts = re.split(r"^(## .+)$", prose, flags=re.M)   # ["", "## Lessons learnt", text, "## Proposal", text, "## The owner's ruling", text]
+    heads = parts[1::2]
+    texts = [t.strip() for t in parts[2::2]]
+    if heads != [f"## {p}" for p in routes.CASE_PARTS]:
+        raise DefectsError(f"{case}: the prose parts are {heads}, not the case file's three")
+    if texts[2] != routes.CASE_PLACEHOLDER["The owner's ruling"]:
+        return   # the owner has ruled: the file is the owner's now
+    v = _read_json(verdict_path(run_root, entry.slug))
+    new = case_prose(v, entry, run)
+    texts[0], texts[1] = new["Lessons learnt"], new["Proposal"]
+    out = "\n".join(f"{h}\n\n{t}\n" for h, t in zip(heads, texts))
+    if not routes._written(out):
+        raise DefectsError(f"{case}: the prose was not filled")
+    if out.strip() != prose.strip():
+        routes._write_case(case, fm, out)
 
 
 def token_report(run_root: Path, budget: int = 2_000_000) -> str:
@@ -759,12 +813,20 @@ def token_report(run_root: Path, budget: int = 2_000_000) -> str:
         k["ms"] += r.get("duration_ms", 0)
     total = sum(r["tokens"] for r in rows)
     lines = [f"token report of {run_root.name}: {len(rows)} calls, {total:,} tokens counted once (the harness's figure per call) against the budget of {budget:,}"]
+    short = [r for r in rows if r.get("content_tokens", 0) > r["tokens"]]
     for kind, k in by_kind.items():
-        fixed = (k["tokens"] - k["content"]) / k["calls"] if k["calls"] else 0
-        lines.append(f"  {kind}: {k['calls']} calls, {k['tokens']:,} tokens, {k['content']:,} of content" +
-                     (f", about {fixed:,.0f} per call beyond the content (fixed context and the answer)" if k["content"] else "") +
-                     (f", {k['candidates']} candidates, {k['tokens'] / k['candidates']:,.0f} per candidate" if k["candidates"] else "") +
-                     f", {k['ms'] / 1000:,.0f} s")
+        lines.append(f"  {kind}: {k['calls']} calls, {k['tokens']:,} tokens, {k['content']:,} of content estimated" +
+                     (f", {k['candidates']} candidates, {k['tokens'] / k['candidates']:,.0f} per candidate" if k["candidates"] else "") + f", {k['ms'] / 1000:,.0f} s")
+    by_stage: dict[str, list[dict]] = {}
+    for r in rows:
+        if r.get("content_tokens") and r not in short:
+            by_stage.setdefault(r["call"].split("-")[1] if r["call"].startswith("call-") else r.get("kind", "other"), []).append(r)
+    for stage, rs in by_stage.items():
+        fixed = sum(r["tokens"] - r["content_tokens"] for r in rs) / len(rs)
+        lines.append(f"  {stage} calls: {len(rs)}, about {fixed:,.0f} per call beyond the content (fixed context and the answer)")
+    if short:
+        lines.append("  rows whose estimated content exceeds the harness's figure, so that figure may not count everything the call read: "
+                     + ", ".join(f"{r['call']} ({r['content_tokens']:,} content, {r['tokens']:,} tokens)" for r in short))
     return "\n".join(lines)
 
 

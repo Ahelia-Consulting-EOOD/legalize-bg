@@ -6,7 +6,8 @@
  "note": "lex.bg lines 45-47: heading Допълнителна разпоредба marked Нова - ДВ, бр. 70 от 2026 г., в сила от 01.01.2028 г., followed directly by the Преходни и Заключителни разпоредби heading and § 1а, with no text under it; amending material lines 297-309: § 14 creates the subdivision after чл. 57 with § 1 and its full text; line 311 renumbers the old § 1 as § 1а, matching lex.bg line 48, so the lowest § 2 flag comes from the missing new § 1",
  "stage": "amendment",
  "call": "call-amendment-e91c2fb3",
- "material": 174310,
+ "material": 245068,
  "answered_at": "2026-10-31T21:13:34+00:00",
- "tails_note": "lex.bg lines 45-46 print an additional-provision heading marked as new by DV br. 70/2026 (in force 01.01.2028) with no text under it, and line 48 renumbers the original § 1 as § 1a (marked 'Предишен § 1', so the lowest § reads as 2); the Gazette material 174310 (lines 244-431) is the original promulgation, with § 1 to § 8 matching lex.bg apart from marked amendments (§ 1a, § 3, § 5, § 6, § 6a), and it cannot hold the 2026 additional provision; the empty heading points to a provision of the amending act DV br. 70/2026, which neither text given here carries, and the whole text of this material would not carry it either"
+ "tails_note": "lex.bg lines 45-46 print an additional-provision heading marked as new by DV br. 70/2026 (in force 01.01.2028) with no text under it, and line 48 renumbers the original § 1 as § 1a (marked 'Предишен § 1', so the lowest § reads as 2); the Gazette material 174310 (lines 244-431) is the original promulgation, with § 1 to § 8 matching lex.bg apart from marked amendments (§ 1a, § 3, § 5, § 6, § 6a), and it cannot hold the 2026 additional provision; the empty heading points to a provision of the amending act DV br. 70/2026, which neither text given here carries, and the whole text of this material would not carry it either",
+ "promulgation_material": 174310
 }

@@ -12,7 +12,7 @@ date: '2026-10-31'
 
 ## Lessons learnt
 
-The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 4513 (S2 run s2-lexbg-defects-2026-10-31): lex.bg block 109 Допълнителна разпоредба followed directly by block 110 Заключителна разпоредба; Gazette material 4513 carries § 1, т. 1-2 between them; ал. 4 difference is marked amendment ДВ бр. 38/2018 The Gazette carries § 1 with items 1 and 2 under Допълнителна разпоредба (definition of диагностика на професионалните болести); lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
+The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 4513 (S2 run s2-lexbg-defects-2026-10-31): lex.bg block 109 Допълнителна разпоредба followed directly by block 110 Заключителна разпоредба; Gazette material 4513 carries § 1, т. 1-2 between them; ал. 4 difference is marked amendment ДВ бр. 38/2018. The Gazette carries: § 1 with items 1 and 2 under Допълнителна разпоредба (definition of диагностика на професионалните болести). lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
 
 ## Proposal
 

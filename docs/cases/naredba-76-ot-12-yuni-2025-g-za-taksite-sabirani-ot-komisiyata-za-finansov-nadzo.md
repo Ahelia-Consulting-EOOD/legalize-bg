@@ -12,7 +12,7 @@ date: '2026-10-31'
 
 ## Lessons learnt
 
-The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 235512 (S2 run s2-lexbg-defects-2026-10-31): lex.bg line 650 prints 'Допълнителна разпоредба' followed directly by the transitional and final heading and § 2 (lines 651-652); the Gazette (material 235512) carries § 1 with points 1-3 under 'ДОПЪЛНИТЕЛНА РАЗПОРЕДБА' (lines 681-685); §§ 2-8 match (lines 652-674 vs 687-709) The Gazette carries § 1 (definitions, items 1-3) under the additional-provision heading; lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
+The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 235512 (S2 run s2-lexbg-defects-2026-10-31): lex.bg line 650 prints 'Допълнителна разпоредба' followed directly by the transitional and final heading and § 2 (lines 651-652); the Gazette (material 235512) carries § 1 with points 1-3 under 'ДОПЪЛНИТЕЛНА РАЗПОРЕДБА' (lines 681-685); §§ 2-8 match (lines 652-674 vs 687-709). The Gazette carries: § 1 (definitions, items 1-3) under the additional-provision heading. lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
 
 ## Proposal
 

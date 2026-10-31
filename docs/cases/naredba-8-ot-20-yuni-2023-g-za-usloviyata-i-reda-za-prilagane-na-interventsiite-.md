@@ -12,7 +12,7 @@ date: '2026-10-31'
 
 ## Lessons learnt
 
-The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 196568 (S2 run s2-lexbg-defects-2026-10-31): lex.bg block 588 heading empty, then Преходни и Заключителни разпоредби and § 2; Gazette material 196568 carries § 1 т. 1-16 under ДОПЪЛНИТЕЛНА РАЗПОРЕДБА; § 2 т. 3-4 and § 2а are amendments lex.bg marks; §§ 3-4 match The Gazette carries Допълнителна разпоредба with § 1 (definitions, т. 1-16); lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
+The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 196568 (S2 run s2-lexbg-defects-2026-10-31): lex.bg block 588 heading empty, then Преходни и Заключителни разпоредби and § 2; Gazette material 196568 carries § 1 т. 1-16 under ДОПЪЛНИТЕЛНА РАЗПОРЕДБА; § 2 т. 3-4 and § 2а are amendments lex.bg marks; §§ 3-4 match. The Gazette carries: Допълнителна разпоредба with § 1 (definitions, т. 1-16). lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
 
 ## Proposal
 

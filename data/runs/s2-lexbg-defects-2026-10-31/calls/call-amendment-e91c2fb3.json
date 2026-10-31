@@ -8,5 +8,8 @@
  "answer_file": "/Users/ekimir/swprj/legalize-bg/.claude/worktrees/youthful-haibt-880b8b/data/runs/s2-lexbg-defects-2026-10-31/calls/call-amendment-e91c2fb3.answer.json",
  "content_tokens": 86812,
  "written_at": "2026-10-31T21:12:35+00:00",
- "collected_at": "2026-10-31T21:13:34+00:00"
+ "collected_at": "2026-10-31T21:13:34+00:00",
+ "materials": {
+  "naredba-za-kachestvoto-na-sotsialnite-uslugi": 245068
+ }
 }

@@ -12,7 +12,7 @@ date: '2026-10-31'
 
 ## Lessons learnt
 
-The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 87949 (S2 run s2-lexbg-defects-2026-10-31): lex.bg block 36 heading Допълнителна разпоредба followed directly by block 37 Заключителна разпоредба; Gazette material 87949 carries § 1 between the same two headings The Gazette carries § 1 under Допълнителна разпоредба (definition of семейство); lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
+The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 87949 (S2 run s2-lexbg-defects-2026-10-31): lex.bg block 36 heading Допълнителна разпоредба followed directly by block 37 Заключителна разпоредба; Gazette material 87949 carries § 1 between the same two headings. The Gazette carries: § 1 under Допълнителна разпоредба (definition of семейство). lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
 
 ## Proposal
 

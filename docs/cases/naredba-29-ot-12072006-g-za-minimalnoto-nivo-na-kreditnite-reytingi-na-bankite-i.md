@@ -12,7 +12,7 @@ date: '2026-10-31'
 
 ## Lessons learnt
 
-The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 2308 (S2 run s2-lexbg-defects-2026-10-31): lex.bg lines 45-47: the additional-provision heading and its marker Нова - ДВ, бр. 61 от 2026 are followed directly by the final-provisions heading, with no § 1; Gazette line 323-324: § 10 creates that subdivision with new § 1 and gives its text; Gazette line 325: § 11 renumbers old § 1 as § 3, matching lex.bg line 49, so § 1 is the only provision missing The Gazette carries Additional provision section with new § 1 (definition of leverage by reference to § 1, item 29 of the additional provisions of the collective investment schemes act), created by § 10 of the amending ordinance in ДВ бр. 61 от 2026; lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
+The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's amending material 244328 (the promulgation material is 2308) (S2 run s2-lexbg-defects-2026-10-31): lex.bg lines 45-47: the additional-provision heading and its marker Нова - ДВ, бр. 61 от 2026 are followed directly by the final-provisions heading, with no § 1; Gazette line 323-324: § 10 creates that subdivision with new § 1 and gives its text; Gazette line 325: § 11 renumbers old § 1 as § 3, matching lex.bg line 49, so § 1 is the only provision missing. The Gazette carries: Additional provision section with new § 1 (definition of leverage by reference to § 1, item 29 of the additional provisions of the collective investment schemes act), created by § 10 of the amending ordinance in ДВ бр. 61 от 2026. lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
 
 ## Proposal
 

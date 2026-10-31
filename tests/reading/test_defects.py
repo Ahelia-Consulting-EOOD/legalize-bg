@@ -93,8 +93,15 @@ def test_scan_page_and_the_tails():
                       "Приложение № 1", "таблица"])
     assert defects.material_tail(decree) == (7, 12)                                   # after the act's own title, before the annex; a quoted „Чл.“ inside a § does not end it
     assert defects.material_tail(_blocks(["УКАЗ № 1", "ЗАКОН", "за пробата", "Чл. 1. x", "Заключителни разпоредби", "§ 1. x"])) == (4, 6)
+    # a decree in capitals with its own final provisions and its own annex before the regulation's title (material 118279's order)
+    pms = _blocks(["ПОСТАНОВЛЕНИЕ № 208 ОТ 27 СЕПТЕМВРИ 2017 Г.", "Чл. 1. Приема Устройствен правилник.", "Заключителни разпоредби", "§ 1. Отменя се.", "§ 3. Постановлението влиза в сила.",
+                   "Приложение към чл. 2, ал. 4", "численост", "УСТРОЙСТВЕН ПРАВИЛНИК", "на Министерството", "Глава първа", "Чл. 1. Текст.", "Чл. 2. Текст.",
+                   "Преходни и заключителни разпоредби", "§ 1. Правилникът влиза в сила.", "Приложение № 1 към чл. 5", "ред"])
+    assert defects.material_tail(pms) == (12, 14)
     no_title = _blocks(["Чл. 1. x", "Чл. 2. x", "Заключителни разпоредби", "§ 1. В Закона за пробата се създава чл. 2а:", "Чл. 2а. (нов текст)", "§ 2. Влиза в сила."])
     assert defects.material_tail(no_title) == (2, 6)                                  # a „Чл.“ line quoted by a § is no article
+    no_title_chapter = _blocks(["Чл. 1. x", "Заключителни разпоредби", "§ 1. x", "Глава втора", "Чл. 2. x", "Преходни разпоредби", "§ 2. x"])
+    assert defects.material_tail(no_title_chapter) == (5, 7)                          # a chapter heading ends the quoted stretch
     assert defects.material_tail(_blocks(["Заключителни разпоредби", "§ 1. x"])) == (0, 2)   # a material without articles
     assert defects.material_tail(_blocks(["Чл. 1. x", "Приложение № 1"])) is None
     annex_rows = _blocks(["Чл. 1. x", "Заключителни разпоредби", "§ 1. x", "Приложение № 1", "Чл. 5. a row of the annex that opens like an article"])
@@ -189,14 +196,16 @@ def test_scan_fetch_tasks_collect_count_and_entries(tmp_path, monkeypatch):
     Path(calls2[0]["answer_file"]).write_text(json.dumps({"zakon-b": {"verdict": "confirmed", "kind": "dropped_section", "gazette": "§ 1 with one definition",
                                                                        "note": "lex.bg prints the heading with nothing under it"}}), encoding="utf-8")
     written, problems = defects.collect(run_root)
-    assert problems == [] and written[0]["verdict"] == "confirmed" and written[0]["stage"] == "whole" and written[0]["tails_note"] == "the tails differ in form" and written[0]["material"] == 501
+    assert problems == [] and written[0]["verdict"] == "confirmed" and written[0]["stage"] == "whole" and written[0]["tails_note"] == "the tails differ in form"
+    assert written[0]["material"] == 501 and written[0]["promulgation_material"] == 501
     c = defects.count(run_root)
     assert c["final"] == 4 and c["confirmed"] == ["zakon-b"] and c["by_kind"] == {"dropped_section": 1}
     written, _ = defects.collect(run_root)
     assert written == []   # collected once
     entries = defects.entries_for(run_root, tmp_path, added="2026-10-31")
     assert len(entries) == 1 and entries[0].slug == "zakon-b" and entries[0].defect == "dropped_section" and entries[0].address == "501" and entries[0].route == "history"
-    assert entries[0].evidence[0]["kind"] == "register" and "§ 1 with one definition" in entries[0].note
+    assert entries[0].evidence[0]["kind"] == "register" and entries[0].note.endswith("promulgation material 501 carries: § 1 with one definition")
+    assert entries[0].evidence[1]["ref"].endswith("lex.bg prints the heading with nothing under it.")   # a note ends with a full stop
     assert defects.route_for({"amendment_history": [{"dv": "1/2026"}]}) == "whole_act_from_material" and defects.route_for({}) == "whole_act_from_material"
     # no tails call is written for a candidate with a verdict
     calls3, settled3 = defects.tasks(run_root, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache)
@@ -341,13 +350,15 @@ def test_confirmed_acts_enter_the_list_through_the_driver_and_the_history_route_
     defects.scan(tmp_path, run_root)
     for slug, mat in (("zakon-a", 500), ("zakon-b", 501)):
         defects._write_json(defects.verdict_path(run_root, slug), {"slug": slug, "verdict": "confirmed", "kind": "dropped_section", "stage": "tails",
-                                                                   "gazette": "§ 1 with one definition", "note": "the heading is empty on lex.bg", "material": mat, "call": "c"})
+                                                                   "gazette": "§ 1 with one definition", "note": "the heading is empty on lex.bg", "material": mat,
+                                                                   "promulgation_material": mat, "call": "c"})
     out = defects.list_confirmed(run_root, tmp_path, run="r")
     by = {r["slug"]: r for r in out}
     assert by["zakon-b"]["route"] == "history" and by["zakon-b"]["state"] == "stopped" and by["zakon-b"]["step"] == "engine" and by["zakon-b"]["added"]
     assert by["zakon-a"]["route"] == "whole_act_from_material" and by["zakon-a"]["state"] == "halted" and by["zakon-a"]["step"] == "amendment_search"
     case = (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8")
-    assert "## Lessons learnt\n\nThe detector of FR-042 flagged the act" in case and "§ 1 with one definition" in case and "until the engine exists" in case
+    assert "## Lessons learnt\n\nThe detector of FR-042 flagged the act" in case and "until the engine exists" in case
+    assert "the heading is empty on lex.bg. The Gazette carries: § 1 with one definition." in case   # the note ends with a full stop before the next sentence
     assert "(not yet written)" not in case and "## The owner's ruling\n\n(not yet given)" in case
     entries = {e.slug: e for e in sx.load(tmp_path / "docs" / "data" / "source-exceptions.yaml")}
     assert entries["zakon-b"].state == "stopped" and entries["zakon-b"].defect == "dropped_section" and entries["zakon-b"].address == "501"
@@ -356,8 +367,20 @@ def test_confirmed_acts_enter_the_list_through_the_driver_and_the_history_route_
     again = {r["slug"]: r for r in defects.list_confirmed(run_root, tmp_path, run="r")}
     assert not again["zakon-b"]["added"] and again["zakon-b"]["state"] == "stopped" and again["zakon-b"]["detail"] == "already listed"
     assert (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8") == case
-    prose = defects.case_prose({"material": 1, "note": "n.", "gazette": "g", "kind": "wrong_text"}, entries["zakon-a"], "r")
-    assert "S5's batch" in prose["Proposal"] and "kind: wrong_text" in prose["Lessons learnt"]
+    prose = defects.case_prose({"material": 1, "note": "n", "gazette": "g", "kind": "wrong_text", "stage": "amendment", "promulgation_material": 2}, entries["zakon-a"], "r")
+    assert "S5's batch" in prose["Proposal"] and "kind: wrong_text" in prose["Lessons learnt"] and "amending material 1 (the promulgation material is 2)" in prose["Lessons learnt"]
+    # a verdict that changed (the amendment stage recorded its material) refreshes the note and the prose while the owner has not ruled
+    v = json.loads(defects.verdict_path(run_root, "zakon-b").read_text(encoding="utf-8"))
+    defects._write_json(defects.verdict_path(run_root, "zakon-b"), {**v, "stage": "amendment", "material": 900})
+    defects.list_confirmed(run_root, tmp_path, run="r")
+    assert "amending material 900" in (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8")
+    assert sx.listed("zakon-b", tmp_path / "docs" / "data" / "source-exceptions.yaml").note.startswith("S2 of the plan of 31 October 2026: the Gazette's amending material 900")
+    # the owner's ruling makes the file the owner's: nothing is refreshed after it
+    case_path = tmp_path / by["zakon-b"]["case_file"]
+    case_path.write_text(case_path.read_text(encoding="utf-8").replace("(not yet given)", "Leave it."), encoding="utf-8")
+    defects._write_json(defects.verdict_path(run_root, "zakon-b"), {**v, "stage": "amendment", "material": 901})
+    defects.list_confirmed(run_root, tmp_path, run="r")
+    assert "amending material 900" in case_path.read_text(encoding="utf-8") and "Leave it." in case_path.read_text(encoding="utf-8")
 
 
 def test_the_token_report_sums_the_calls(tmp_path):
@@ -368,8 +391,13 @@ def test_the_token_report_sums_the_calls(tmp_path):
                                           '{"call": "b", "kind": "review", "tokens": 7000, "duration_ms": 1000}\n', encoding="utf-8")
     text = defects.token_report(run_root, budget=10_000)
     assert "2 calls, 12,000 tokens counted once" in text and "budget of 10,000" in text
-    assert "investigator: 1 calls, 5,000 tokens, 1,000 of content, about 4,000 per call beyond the content" in text and "2 candidates, 2,500 per candidate, 2 s" in text
-    assert "review: 1 calls, 7,000 tokens" in text
+    assert "investigator: 1 calls, 5,000 tokens, 1,000 of content estimated, 2 candidates, 2,500 per candidate, 2 s" in text
+    assert "review: 1 calls, 7,000 tokens" in text and "other calls: 1, about 4,000 per call beyond the content" in text
+    (run_root / "usage.jsonl").write_text('{"call": "call-tails-1", "candidates": 2, "content_tokens": 1000, "tokens": 5000, "duration_ms": 2000}\n'
+                                          '{"call": "call-whole-2", "candidates": 1, "content_tokens": 9000, "tokens": 3000, "duration_ms": 1000}\n', encoding="utf-8")
+    text = defects.token_report(run_root)
+    assert "tails calls: 1, about 4,000 per call beyond the content" in text and "whole calls" not in text
+    assert "may not count everything the call read: call-whole-2 (9,000 content, 3,000 tokens)" in text
 
 
 def test_the_amendment_call_reads_the_amending_material_whole(tmp_path):
@@ -382,10 +410,25 @@ def test_the_amendment_call_reads_the_amending_material_whole(tmp_path):
         (cache / f"{i}.html").write_text(MATERIAL, encoding="utf-8")
         return MATERIAL
 
+    with pytest.raises(defects.DefectsError, match="follows a tails verdict"):   # bounded: only after an unsettled tails verdict
+        defects.amendment_call(run_root, "zakon-a", 900, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache, fetch_one=fetch_one)
+    defects._write_json(defects.verdict_path(run_root, "zakon-a"), {"slug": "zakon-a", "verdict": "unverified", "stage": "tails", "note": "the promulgation cannot show it", "kind": None, "call": "c", "material": 500})
+    with pytest.raises(defects.DefectsError, match="error view"):
+        defects.amendment_call(run_root, "zakon-a", 900, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache, fetch_one=lambda i: None)
     rec = defects.amendment_call(run_root, "zakon-a", 900, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache, fetch_one=fetch_one)
-    assert rec["stage"] == "amendment" and rec["slugs"] == ["zakon-a"]
+    assert rec["stage"] == "amendment" and rec["slugs"] == ["zakon-a"] and rec["materials"] == {"zakon-a": 900}
     text = Path(rec["call_file"]).read_text(encoding="utf-8")
     assert "the whole amending material 900" in text and "УКАЗ" not in text and "ЗАКОН" in text and "§ 9" not in text
+    with pytest.raises(defects.DefectsError, match="never a second"):
+        defects.amendment_call(run_root, "zakon-a", 901, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache, fetch_one=fetch_one)
+    Path(rec["answer_file"]).write_text(json.dumps({"zakon-a": {"verdict": "confirmed", "kind": "dropped_section", "gazette": "§ 1", "note": "n"}}), encoding="utf-8")
+    written, problems = defects.collect(run_root)
+    assert problems == [] and written[0]["material"] == 900 and written[0]["promulgation_material"] is None   # no promulgation material recorded in this run
+    assert written[0]["tails_note"] == "the promulgation cannot show it"
     Path(rec["answer_file"]).write_text(json.dumps({"zakon-a": {"verdict": "needs_whole_text", "kind": None, "gazette": None, "note": "n"}}), encoding="utf-8")
+    rec2 = defects._read_json(run_root / "calls" / f"{rec['call']}.json")
+    rec2.pop("collected_at")
+    defects._write_json(run_root / "calls" / f"{rec['call']}.json", rec2)
+    defects.verdict_path(run_root, "zakon-a").unlink()
     written, problems = defects.collect(run_root)
     assert problems == [] and written[0]["verdict"] == "unverified" and written[0]["note"].startswith("the amendment texts did not settle it either")

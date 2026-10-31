@@ -12,7 +12,7 @@ date: '2026-10-31'
 
 ## Lessons learnt
 
-The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 21032 (S2 run s2-lexbg-defects-2026-10-31): Gazette material 21032 prints the act's own transitional and final provisions § 1 and § 2 after чл. 17 (blocks at file lines 310-312); lex.bg goes from чл. 18 straight to the provisions of the 2013 amending ordinance (§ 4, § 6) and the 2019 amending ordinance (§ 34) (file lines 115-125), with no § 1 or § 2 and no repeal marking, so the act's own section is omitted The Gazette carries the act's own Преходни и заключителни разпоредби with § 1 (commissions appointed within three months) and § 2 (legal basis, repeal of Наредба № 4 от 1999 г.); lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
+The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 21032 (S2 run s2-lexbg-defects-2026-10-31): Gazette material 21032 prints the act's own transitional and final provisions § 1 and § 2 after чл. 17 (blocks at file lines 310-312); lex.bg goes from чл. 18 straight to the provisions of the 2013 amending ordinance (§ 4, § 6) and the 2019 amending ordinance (§ 34) (file lines 115-125), with no § 1 or § 2 and no repeal marking, so the act's own section is omitted. The Gazette carries: the act's own Преходни и заключителни разпоредби with § 1 (commissions appointed within three months) and § 2 (legal basis, repeal of Наредба № 4 от 1999 г.). lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
 
 ## Proposal
 

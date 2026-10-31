@@ -12,7 +12,7 @@ date: '2026-10-31'
 
 ## Lessons learnt
 
-The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 196800 (S2 run s2-lexbg-defects-2026-10-31): lex.bg block 855 heading Допълнителна разпоредба followed directly by Преходни и Заключителни разпоредби and § 2; Gazette blocks 765-769 carry ДОПЪЛНИТЕЛНА РАЗПОРЕДБА with § 1, т. 1-3; §§ 2-6 match The Gazette carries Допълнителна разпоредба with § 1 (definitions, т. 1-3); lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
+The detector of FR-042 flagged the act and the investigator confirmed it against the Gazette's promulgation material 196800 (S2 run s2-lexbg-defects-2026-10-31): lex.bg block 855 heading Допълнителна разпоредба followed directly by Преходни и Заключителни разпоредби and § 2; Gazette blocks 765-769 carry ДОПЪЛНИТЕЛНА РАЗПОРЕДБА with § 1, т. 1-3; §§ 2-6 match. The Gazette carries: Допълнителна разпоредба with § 1 (definitions, т. 1-3). lex.bg's text, which the corpus holds, lacks it (kind: dropped_section).
 
 ## Proposal
 
