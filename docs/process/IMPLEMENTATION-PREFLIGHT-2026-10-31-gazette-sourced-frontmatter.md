@@ -34,8 +34,8 @@ The commit that writes the act ends with the same four lines that every reading 
 - Allowed scope confirmed: yes. The provenance base is part of an optional extension field under decision D-071. The source field's new value lies inside the closed set the schema documents, which the template does not count as a schema change; the owner asked for this preflight anyway (decision D-076, point 2).
 - Waiver required: no.
 - Migration: none. One act changes, through one write of the gate; the other 3,623 acts are untouched.
-- Owner confirmation: to be filled in by the owner, with the date.
-- Implementation may proceed: to be answered by the owner, yes or no.
+- Owner confirmation: the owner, 31 October 2026, in the S0+S1 session of the starting state ("Signed, write it").
+- Implementation may proceed: yes (31 October 2026).
 
 ## How this was checked
 
