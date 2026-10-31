@@ -20,7 +20,14 @@ from .splitter import Block, SplitAct
 MAX_ROUNDS = 2
 NEIGHBOURS = 1
 # exceptions that describe the source, not a label: recorded as findings, never re-labelled
-SOURCE_FINDINGS = frozenset({"empty_section", "fragment", "article_gap", "sign_gap", "malformed_head", "alinea_gap", "item_gap"})
+SOURCE_FINDINGS = frozenset({"empty_section", "fragment", "article_gap", "sign_gap", "sign_start", "malformed_head", "alinea_gap", "item_gap"})
+# the source findings that are lost text: under D-076 (3), amending ruling 7 of D-072, they stop the write and
+# send the act to the exceptions list with the route "investigate" instead of being carried with the act
+LOST_TEXT = frozenset({"empty_section", "sign_start"})
+DV_CONTEXT = ("source: a material of Държавен вестник, not a lex.bg page; the hints are the paragraph's alignment "
+              "(DvCenter, DvJustify, DvRight), not lex.bg classes; the promulgation decree before the title "
+              "(УКАЗ № …, up to the minister's countersignature) and the signature and number after the adoption "
+              "formula are not the act: label them drop")
 
 
 def _context(act: SplitAct, first: int) -> list[str]:
@@ -31,7 +38,7 @@ def _context(act: SplitAct, first: int) -> list[str]:
     # the last three headings or annex lines, plus the last article or § opened before the section
     heads = [t for t in out if not t.startswith(("Чл. ", "§ "))][-3:]
     opener = [t for t in out if t.startswith(("Чл. ", "§ "))][-1:]
-    return heads + [t[:120] for t in opener]
+    return ([DV_CONTEXT] if act.source == "dv" else []) + heads + [t[:120] for t in opener]
 
 
 def round0_tasks(act: SplitAct) -> list[dict]:
@@ -85,7 +92,7 @@ def evaluate(act: SplitAct, smap: dict[int, dict], problems: list[dict],
     A validator problem on a block that a ruling has since labelled is settled by the ruling.
     """
     ruled, blocks, omissions = rules.apply(act.blocks, smap, slug)
-    md, ex = run_all(blocks, ruled)
+    md, ex = run_all(blocks, ruled, source=act.source)
     return md, [p for p in problems if not ruled.get(p.get("block"), {}).get("rule")] + ex, omissions, ruled
 
 

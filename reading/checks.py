@@ -26,7 +26,9 @@ block "към ЗИД …".
 ``nesting``: an alinea only after an article head or §; an item only inside an
 article, alinea or §; a letter only inside an item, alinea, article or §.
 ``addresses``: one Чл. N per act; a gap in the article or § numbering, or a first
-number other than 1, is a source finding (``article_gap``, ``sign_gap``); the §§
+article other than 1, is a source finding (``article_gap``, ``sign_gap``); a first §
+above 1 in the act's own provisions is ``sign_start``, lost text that stops the write
+(D-076, amending ruling 7 of D-072), as ``empty_section`` is; the §§
 printed after a "КЪМ …" heading are a selection from another act and are not
 checked for gaps.
 ``fragments``: no literal markup fragment in placed text (a source finding).
@@ -75,11 +77,27 @@ _ELISION = re.compile(r"^(?:\.\s*){5,}$")  # ". . . . ." — lex.bg's mark that 
 _QUOTE_MARKS = re.compile(r"[\"„“”«»]")
 _QUOTE_CLOSE = re.compile(r"[\"“”»][.;,:)]?$")
 _SIGN_FORM = re.compile(r"^(?:§\s*\d+[а-я]?\.|Параграф\s+единствен\.)(?:\s|$)")
+_ADDITIONAL = re.compile(r"^Допълнителн", re.I)
+_TRANSITIONAL_FINAL = re.compile(r"^(Преходн|Заключителн)", re.I)
 # the page chrome lex.bg prints before the title and after the act: the only drops allowed outside the act
 START_CHROME = re.compile(r"^(ДОБАВИ В МОИТЕ АКТОВЕ|Lex\.bg)")
 TAIL_CHROME = "Релевантни актове от Европейското законодателство"
 # the first line of each tail lex.bg prints after an act: the EU-acts list, or the news-and-forum footer
 TAIL_STARTS = frozenset({TAIL_CHROME, "Новини"})
+# a Gazette material (split_dv): the promulgation decree before the act, from "УКАЗ № N" to the minister's
+# countersignature, and the signature after the adoption formula, then the material's number, are the chrome
+DV_DECREE_START = re.compile(r"^УКАЗ №")
+DV_DECREE_END = re.compile(r"^Министър на правосъдието")
+DV_TAIL = re.compile(r"^(Председател|Заместник-председател|Зам\.-председател|Министър|За министър|Главен секретар)\b")
+DV_NUMBER_LINE = re.compile(r"^\d{1,6}$")
+
+
+def dv_decree(blocks: list[Block]) -> range:
+    """The block indices of the promulgation decree a Gazette material opens with, or an empty range."""
+    if not blocks or not DV_DECREE_START.match(blocks[0].text):
+        return range(0)
+    end = next((k for k, b in enumerate(blocks) if DV_DECREE_END.match(b.text)), 0)
+    return range(0, end + 1)
 
 
 def _art_key(n: str) -> tuple[int, str, int]:
@@ -122,7 +140,11 @@ def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -
         return True
     if la == "provisions_heading":
         # lex.bg prints a provisions heading on two or three lines ("Преходни и Заключителни разпоредби" / "КЪМ ЗАКОНА …",
-        # sometimes without the "КЪМ", sometimes in the other order), and a sub-heading may follow ("Обяснение на някои думи")
+        # sometimes without the "КЪМ", sometimes in the other order), and a sub-heading may follow ("Обяснение на някои думи");
+        # but an additional-provisions heading followed at once by the transitional or final provisions heading is an
+        # additional section with nothing under it: lost text (FR-042's rule additional-empty, D-076)
+        if _ADDITIONAL.match(ta) and _TRANSITIONAL_FINAL.match(tb):
+            return False
         return True
     if la == "annex_heading" and lb == "annex_heading" and re.match(r"^Приложение", ta) and not re.match(r"^Приложение", tb):
         return True
@@ -133,7 +155,8 @@ def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -
     return False
 
 
-def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]]:
+def run_all(blocks: list[Block], smap: dict[int, dict], source: str = "lexbg") -> tuple[str, list[dict]]:
+    """The checks over a map; ``source`` names the chrome the page carries outside the act (lex.bg's or the Gazette's)."""
     lines, placed, dropped = assemble_lines(blocks, smap)
     md = "\n\n".join(line for line, _ in lines) + "\n"
     ex: list[dict] = []
@@ -142,7 +165,12 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     for i in sorted(idx - touched):
         ex.append({"block": i, "kind": "not_covered", "detail": "neither placed nor dropped"})
     first_placed, last_placed = (placed[0], placed[-1]) if placed else (-1, -1)
-    tail_from = next((i for i in dropped if blocks[i].text in TAIL_STARTS and i > last_placed), None)
+    is_dv = source == "dv"
+    decree = dv_decree(blocks) if is_dv else range(0)
+    if is_dv:
+        tail_from = next((i for i in dropped if i > last_placed and DV_TAIL.match(blocks[i].text)), None)
+    else:
+        tail_from = next((i for i in dropped if blocks[i].text in TAIL_STARTS and i > last_placed), None)
     for i in dropped:
         e = smap.get(i, {})
         t = blocks[i].text
@@ -152,6 +180,10 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             continue  # dropped by a ruling of D-072 and recorded in the omissions list (the labeller's answers never carry "rule")
         elif tail_from is not None and i >= tail_from:
             continue  # the page's tail chrome: forum post titles there may open like a provision
+        elif is_dv and i in decree and i < first_placed:
+            continue  # the promulgation decree the material opens with
+        elif is_dv and i > last_placed and DV_NUMBER_LINE.match(t):
+            continue  # the material's number printed after the signature
         elif _PROVISION_LIKE.match(t):
             ex.append({"block": i, "kind": "drop_of_provision", "detail": f"a line that opens like a provision was dropped: {t[:60]!r}"})
         elif _SEPARATOR.match(t) or _KNOWN_CHROME.match(t):
@@ -181,7 +213,7 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             continue
         if e.get("conf") == "low":
             ex.append({"block": i, "kind": "low_confidence", "detail": e.get("note", "")})
-        if e["label"] != "drop" and (START_CHROME.match(t) or t in TAIL_STARTS):
+        if e["label"] != "drop" and ((is_dv and (i in decree or DV_DECREE_START.match(t))) or (not is_dv and (START_CHROME.match(t) or t in TAIL_STARTS))):
             ex.append({"block": i, "kind": "chrome_placed", "detail": f"the page's chrome carries the label {e['label']}"})
         low = t.lower()
         if any(f in low for f in FRAGMENTS):
@@ -342,7 +374,8 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             elif amending:
                 pass
             elif last_sign is None and key[0] != 1:
-                ex.append({"block": i, "kind": "sign_gap", "detail": f"the first § of the provisions block is § {n}"})
+                # the act's own provisions open above § 1: lost text (FR-042), a stop under D-076 (3), not a carried finding
+                ex.append({"block": i, "kind": "sign_start", "detail": f"the first § of the provisions block is § {n}"})
             elif last_sign is not None and not key[1] and key[0] > last_sign[0] + 1:
                 ex.append({"block": i, "kind": "sign_gap", "detail": f"§ {n} after § {last_sign[0]}{last_sign[1]}"})
             seen_sign[n] = i

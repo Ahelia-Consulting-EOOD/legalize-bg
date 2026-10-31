@@ -34,9 +34,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from reading import calls, ladder  # noqa: E402
-from reading.splitter import Block, SplitAct, Section, split_lexbg  # noqa: E402
+from reading.splitter import SplitAct, split_dv, split_lexbg  # noqa: E402
 
 RAW = ROOT / "data" / "raw" / "lexbg"
+DV_CACHE = ROOT / "data" / "dv" / "cache"
 CATEGORIES = ("laws", "codes", "ordinances", "regulations", "implementing")
 
 
@@ -59,9 +60,7 @@ def _doc_id(slug: str) -> str:
 
 
 def _load_act(run_dir: Path) -> SplitAct:
-    d = json.loads((run_dir / "blocks.json").read_text(encoding="utf-8"))
-    return SplitAct(blocks=[Block(**b) for b in d["blocks"]], sections=[Section(**s) for s in d["sections"]],
-                    dropped_by_splitter=d["dropped_by_splitter"], has_spine=d["has_spine"])
+    return SplitAct.from_dict(json.loads((run_dir / "blocks.json").read_text(encoding="utf-8")))
 
 
 def _write_tasks(run_dir: Path, tasks: list[dict]) -> None:
@@ -89,11 +88,26 @@ def _slug(slug: str) -> str:
 def cmd_prepare(args) -> int:
     run_dir = _run_root(args.out) / _slug(args.slug)
     run_dir.mkdir(parents=True, exist_ok=True)
-    doc_id = _doc_id(args.slug)
-    raw = (RAW / f"{doc_id}.html").read_bytes()
-    act = split_lexbg(raw)
-    if not act.has_spine:
-        raise SystemExit(f"{args.slug}: the page {doc_id} has no act (no spine of Title/Article blocks); it is site chrome only, a source finding for the owner")
+    if args.source == "dv":
+        if not args.material:
+            raise SystemExit("--source dv needs --material <id_mat>")
+        doc_id = str(args.material)
+        html = (DV_CACHE / f"{doc_id}.html").read_text(encoding="utf-8")
+        act = split_dv(html)
+        if not act.has_spine:
+            raise SystemExit(f"{args.slug}: the material {doc_id} has no act (no article or § block)")
+    else:
+        doc_id = _doc_id(args.slug)
+        raw = (RAW / f"{doc_id}.html").read_bytes()
+        act = split_lexbg(raw)
+        if not act.has_spine:
+            raise SystemExit(f"{args.slug}: the page {doc_id} has no act (no spine of Title/Article blocks); it is site chrome only, a source finding for the owner")
+    return prepare_act(run_dir, args.slug, act, doc_id)
+
+
+def prepare_act(run_dir: Path, slug: str, act: SplitAct, doc_id: str) -> int:
+    """Write the blocks, the source text and the round-0 tasks of a split act; set aside an earlier task set it replaces."""
+    run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "blocks.json").write_text(json.dumps(act.to_dict(), ensure_ascii=False, indent=1), encoding="utf-8")
     (run_dir / "source.txt").write_text(act.source_text + "\n", encoding="utf-8")
     tasks = ladder.round0_tasks(act)
@@ -110,7 +124,7 @@ def cmd_prepare(args) -> int:
             if f.exists():
                 f.unlink()
         print("round-0 task set changed: every round's answers set aside, later rounds' tasks and the reports removed", file=sys.stderr)
-    print(f"{args.slug}: doc {doc_id}, {len(act.blocks)} blocks, {len(act.sections)} sections, "
+    print(f"{slug}: {act.source} {doc_id}, {len(act.blocks)} blocks, {len(act.sections)} sections, "
           f"dropped by splitter {act.dropped_by_splitter}, spine={act.has_spine}")
     return 0
 
@@ -133,8 +147,10 @@ def cmd_collect(args) -> int:
     (run_dir / "staged.md").write_text(md, encoding="utf-8")
     source_findings = [e for e in exceptions if e["kind"] in ladder.SOURCE_FINDINGS]
     label_exceptions = [e for e in exceptions if e["kind"] not in ladder.SOURCE_FINDINGS]
-    report = {"slug": args.slug, "round": rnd, "blocks": len(act.blocks), "sections": len(act.sections),
+    lost_text = [e for e in source_findings if e["kind"] in ladder.LOST_TEXT]
+    report = {"slug": args.slug, "round": rnd, "blocks": len(act.blocks), "sections": len(act.sections), "source": act.source,
               "answers_missing": missing, "call_defects": call_defects, "exceptions": label_exceptions, "source_findings": source_findings,
+              "lost_text": lost_text,
               "omissions": omissions, "ruled": _ruled_blocks(ruled), "exception_kinds": _count(label_exceptions), "source_finding_kinds": _count(source_findings),
               "labels": _count_labels(smap),
               "dropped": [{"block": i, "text": act.blocks[i].text[:80], "note": smap.get(i, {}).get("note", "")}
@@ -399,7 +415,9 @@ def _count_labels(smap: dict[int, dict]) -> dict[str, int]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
-    p = sub.add_parser("prepare"); p.add_argument("--slug", required=True); p.add_argument("--out", default="data/runs/structure-map-2026-10-22"); p.set_defaults(fn=cmd_prepare)
+    p = sub.add_parser("prepare"); p.add_argument("--slug", required=True); p.add_argument("--out", default="data/runs/structure-map-2026-10-22")
+    p.add_argument("--source", choices=("lexbg", "dv"), default="lexbg", help="lexbg: the act's page from the raw store; dv: a Gazette material from data/dv/cache")
+    p.add_argument("--material", type=int, default=0, help="the material's id_mat (with --source dv)"); p.set_defaults(fn=cmd_prepare)
     c = sub.add_parser("collect"); c.add_argument("--slug", required=True); c.add_argument("--round", type=int, default=0); c.add_argument("--out", default="data/runs/structure-map-2026-10-22"); c.set_defaults(fn=cmd_collect)
     d = sub.add_parser("dispatch"); d.add_argument("slugs", nargs="+"); d.add_argument("--round", type=int, default=0); d.add_argument("--per", type=int, default=0, help="tasks per call (default 8 in round 0, 25 above)")
     d.add_argument("--max", type=int, default=20, help="calls to list"); d.add_argument("--prompts", action="store_true", help="print the labeller prompt under each call")

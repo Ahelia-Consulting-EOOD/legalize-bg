@@ -67,6 +67,7 @@ def assemble_lines(blocks: list[Block], smap: dict[int, dict]) -> tuple[list[tup
         if (label in HEADING_PREFIX and last_label == label and lines
                 and ((NUMBER_LINE.match(strip_line(lines[-1][0])) and not _HEADING_WORD.match(b.text))
                      or _KAM.match(b.text)
+                     or label == "title"  # a title printed on two lines ("ЗАКОН" / "за обществения транспорт" in the Gazette)
                      or (label == "annex_heading" and strip_line(lines[-1][0]).startswith("Приложение") and not b.text.startswith("Приложение")))):
             text, idxs = lines[-1]
             lines[-1] = (f"{text} {b.text}", idxs + [b.i])
