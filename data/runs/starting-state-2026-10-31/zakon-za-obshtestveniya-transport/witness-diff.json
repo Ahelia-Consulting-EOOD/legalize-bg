@@ -7,7 +7,7 @@
   "nothing else: a Latin letter for a Cyrillic one, a missing word, a different number, a line joined or split are differences"
  ],
  "our_lines": 525,
- "body_sha256": "3ff30143d06ae10aea5abb0b4867f10e143820feb3a0372bacf70e95923dcc9e",
+ "body_sha256": "d417cf03ce33ef1ce3ebf2731800bdbfc642a7309e0af8ba8b2690c421fe799b",
  "witnesses": [
   {
    "witness": "lexbg",
