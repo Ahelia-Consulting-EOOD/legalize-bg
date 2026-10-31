@@ -1,0 +1,61 @@
+{
+ "source": "IMPLEMENTATION-PREFLIGHT-2026-10-31-gazette-sourced-frontmatter.md",
+ "note": "Write each item's verdict: \"change\", then change the source and run the gate again, or \"keep\" with a reason of a few words. Read the source at each position; the kinds are explained in self-contained-deliverable's references/index-kinds.md. A verdict stays while its line is unchanged.",
+ "items": [
+  {
+   "id": "r1",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 3,
+   "col": 169,
+   "fp": "0841f769ab",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "the act's Bulgarian title, as the owner names it"
+  },
+  {
+   "id": "r2",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 3,
+   "col": 178,
+   "fp": "0841f769ab",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "the act's Bulgarian title, as the owner names it"
+  },
+  {
+   "id": "r3",
+   "gate": "reader",
+   "kind": "language-mix",
+   "line": 3,
+   "col": 190,
+   "fp": "0841f769ab",
+   "repeat": 2,
+   "verdict": "keep",
+   "reason": "the act's Bulgarian title, as the owner names it"
+  },
+  {
+   "id": "r4",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 36,
+   "col": 0,
+   "fp": "335736e0e3",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a table of field values; each value is explained in its row"
+  },
+  {
+   "id": "r5",
+   "gate": "reader",
+   "kind": "semicolon-chain",
+   "line": 42,
+   "col": 0,
+   "fp": "c2e9f9c022",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read and kept"
+  }
+ ]
+}
