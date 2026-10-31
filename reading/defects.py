@@ -69,6 +69,7 @@ KINDS: dict[str, str] = {
 }
 STAGES = ("tails", "whole", "amendment", "script")
 STAGE_RANK = {"script": 0, "tails": 1, "whole": 2, "amendment": 2}   # a later stage's verdict is never written over by an earlier stage's answer
+SESSION_FIELDS = ("in_force_from", "next")   # set on a verdict by the session from a recorded reading (D-077 (7)), never by an answer
 PER_CALL = 8            # candidates per call at most
 CAP_TOKENS = 40_000     # estimated content tokens per call at most (the measured safe range of a lean call is 25,000 of task text)
 BYTES_PER_TOKEN = 3.44  # the Read rate fitted in the run-driver study of 21 October 2026
@@ -78,14 +79,15 @@ MOST_WHOLE_TOKENS = 60_000   # a whole-text or amendment call beyond this is not
 PROVISIONS = re.compile(r"^(допълнителн[аи](\s+и\s+заключителн[аи])?|преходн[аи](\s+и\s+заключителн[аи])?|заключителн[аи])\s+разпоредб[аи]\b", re.I)
 ADDITIONAL = re.compile(r"^допълнителн[аи]\s+разпоредб[аи]\.?$", re.I)
 FINAL = re.compile(r"^(преходн[аи](\s+и\s+заключителн[аи])?|заключителн[аи])\s+разпоредб[аи]\b", re.I)
-QUALIFIER = re.compile(r"^(КЪМ\s|\(\s*(?i:обн)|\(\s*(?i:загл))")
+QUALIFIER = re.compile(r"^(КЪМ\s|\(\s*(?i:обн)|\(\s*(?i:загл)|\(\s*(?i:нов)|\(\s*(?i:изм)|\(\s*(?i:отм))")   # lex.bg's lines under a heading: the amending act, its promulgation, a title or section note
+OBN = re.compile(r"^\(\s*(?i:обн)")
 KYM = re.compile(r"^КЪМ\s")
-SIGN = re.compile(r"^§\s*(\d+)\s*\.")
+SIGN = re.compile(r"^§\s*(\d+)[а-я]{0,2}\s*\.")   # „§ 1а.“ is a § 1 of its kind: the number is 1
 ARTICLE = re.compile(r"^Чл\.\s*\d")
 ANNEX = re.compile(r"^Приложение\s*(№|към|\d)", re.I)
 # the title line of an act in a material: the kind in capitals, at most its number and date ("ЗАКОН", "НАРЕДБА № Н-4 от 30 март 2026 г.")
 KIND_TITLE = re.compile(r"^(ЗАКОН|КОДЕКС|НАРЕДБА|ПРАВИЛНИК|УСТРОЙСТВЕН ПРАВИЛНИК|ИНСТРУКЦИЯ|ПОСТАНОВЛЕНИЕ|УКАЗ|РЕШЕНИЕ|ТАРИФА|ПРАВИЛА|ПОЛОЖЕНИЕ|МЕТОДИКА)"
-                        r"(\s+№\s*\S+)?(\s+(?i:от)\s+\d{1,2}\s+\S+\s+\d{4}\s*(?i:г)\.?)?(\s+(на|за|относно|по)\s.*)?\s*$")   # the name may follow on the line
+                        r"(\s+№\s*\S+)?(\s+(?i:от)\s+(\d{1,2}\s+\S+\s+|\d{1,2}\.\d{1,2}\.)?\d{4}\s*(?i:г)\.?)?(\s+(?i:на|за|относно|по)\s.*)?\s*$")   # the name may follow on the line
 CHAPTER = re.compile(r"^(Глава|Раздел|Част|Дял)\s", re.I)
 _WORD = re.compile(r"[^\w\s]+", re.U)
 _NUMBER_KEY = re.compile(r"^(наредба|правилник|постановление|инструкция|указ|закон|кодекс)\s+№?\s*([\w-]+)\s+от\s+.*?(\d{4})", re.I)
@@ -130,7 +132,7 @@ def own_tail(blocks: list[Block]) -> tuple[int, int] | None:
     start = next((i for i in heads if not _is_amending_tail(blocks, i)), None)
     if start is None:
         return None
-    end = next((i for i in heads if i > start and _is_amending_tail(blocks, i)), len(blocks))
+    end = next((b.i for b in blocks[start + 1:] if _amending_start(blocks, b.i)), len(blocks))
     annex = next((b.i for b in blocks[start:end] if ANNEX.match(b.text)), None)
     return start, (annex if annex is not None else end)
 
@@ -140,8 +142,19 @@ def material_tail(blocks: list[Block]) -> tuple[int, int] | None:
     title line (a decree that adopts a regulation prints its own final provisions before the regulation's title and
     articles), to the first annex or the end; without a title line, the first provisions heading after the last article.
     None without a heading."""
-    base = max((b.i for b in blocks if KIND_TITLE.match(b.text)), default=-1)   # the act's own title line: the last one, since a
-    first_annex = next((b.i for b in blocks if b.i > base and ANNEX.match(b.text)), len(blocks))   # decree prints its own text and annex first
+    # the act's own title line: the last title-like line that the act's provisions follow before the next annex (a decree prints
+    # its own text and annex first; an annex titled „МЕТОДИКА за …“ after the act's provisions is no title of the act)
+    base = -1
+    for b in reversed([b for b in blocks if KIND_TITLE.match(b.text)]):
+        annex_after = next((x.i for x in blocks[b.i + 1:] if ANNEX.match(x.text)), len(blocks))
+        between = blocks[b.i + 1:annex_after]
+        if any(PROVISIONS.match(x.text) for x in between):
+            base = b.i
+            break
+        if any(ARTICLE.match(x.text) for x in between):
+            return None   # the act's own title, with articles and no provisions after it: nothing to read
+        # neither: an annex's title line; the act's own is earlier
+    first_annex = next((b.i for b in blocks if b.i > base and ANNEX.match(b.text)), len(blocks))
     if base >= 0:   # the act's own title line: its provisions follow it, or there are none
         start = next((b.i for b in blocks[:first_annex] if b.i > base and PROVISIONS.match(b.text)), None)
     else:   # no title line of its own: the first provisions heading after the last article; a „Чл.“ line that
@@ -161,9 +174,24 @@ def material_tail(blocks: list[Block]) -> tuple[int, int] | None:
     return start, (annex if annex is not None else len(blocks))
 
 
+def _amending_title(blocks: list[Block], i: int) -> bool:
+    """lex.bg's second form of an amending tail: the amending act's title in capitals („ПОСТАНОВЛЕНИЕ № 21 … ЗА ИЗМЕНЕНИЕ …“),
+    then its „(ОБН. …)“ line through the qualifier lines, then its §§; no „КЪМ“ line."""
+    t = blocks[i].text
+    if not KIND_TITLE.match(t) or t != t.upper():
+        return False
+    j = i + 1
+    while j < len(blocks) and QUALIFIER.match(blocks[j].text):
+        if OBN.match(blocks[j].text):
+            return True
+        j += 1
+    return False
+
+
 def _is_amending_tail(blocks: list[Block], i: int) -> bool:
     """A provisions heading of a later amending act: a „КЪМ …“ line in it, or before or after it through lex.bg's qualifier
-    lines and the repeated copies of the heading (decision D-072, ruling 1)."""
+    lines and the repeated copies of the heading (decision D-072, ruling 1); or the amending act's capital title with its
+    „(ОБН. …)“ line right after the heading."""
     if re.search(r"\sКЪМ\s", blocks[i].text):
         return True
     for step in (1, -1):   # lex.bg prints: heading, „КЪМ …“, „(ОБН. …)“, the heading again; never another act's heading between
@@ -172,13 +200,18 @@ def _is_amending_tail(blocks: list[Block], i: int) -> bool:
             if KYM.match(blocks[j].text):
                 return True
             j += step
-    return False
+    return i + 1 < len(blocks) and _amending_title(blocks, i + 1)
+
+
+def _amending_start(blocks: list[Block], i: int) -> bool:
+    """Whether block i opens a later amending act's tail in either of lex.bg's forms."""
+    return KYM.match(blocks[i].text) is not None or (PROVISIONS.match(blocks[i].text) is not None and _is_amending_tail(blocks, i)) or _amending_title(blocks, i)
 
 
 def own_scope(blocks: list[Block]) -> tuple[int, int] | None:
     """What the rules read when the page has no own provisions tail: the blocks before the first amending act's tail (its
-    heading or its „КЪМ“ line); None when nothing of the act's own precedes it, so the page makes no candidate."""
-    first_amending = next((b.i for b in blocks if KYM.match(b.text) or (PROVISIONS.match(b.text) and _is_amending_tail(blocks, b.i))), len(blocks))
+    heading, its „КЪМ“ line or its capital title); None when nothing of the act's own precedes it, so the page makes no candidate."""
+    first_amending = next((b.i for b in blocks if _amending_start(blocks, b.i)), len(blocks))
     return (0, first_amending) if first_amending > 0 else None
 
 
@@ -446,6 +479,7 @@ def _call_id(slugs: list[str], stage: str, materials: dict[str, int] | None = No
 
 def write_call(run_root: Path, slugs: list[str], stage: str, texts: dict[str, dict], candidates: dict[str, dict]) -> dict:
     materials = {s: texts[s]["id_mat"] for s in slugs}
+    promulgation = {s: texts[s].get("promulgation_id_mat", texts[s]["id_mat"]) for s in slugs}   # the tails and whole stages decide on it
     cid = _call_id(slugs, stage, materials)
     calls = run_root / "calls"
     call_path, answer_path = calls / f"{cid}.md", calls / f"{cid}.answer.json"
@@ -459,8 +493,8 @@ def write_call(run_root: Path, slugs: list[str], stage: str, texts: dict[str, di
     calls.mkdir(parents=True, exist_ok=True)
     call_path.write_text("\n".join(parts), encoding="utf-8")
     tokens = sum(texts[s]["lexbg"]["tokens"] + texts[s]["dv"]["tokens"] for s in slugs)
-    rec = {"call": cid, "stage": stage, "slugs": slugs, "materials": materials, "call_file": str(call_path), "answer_file": str(answer_path),
-           "content_tokens": tokens, "written_at": _now()}
+    rec = {"call": cid, "stage": stage, "slugs": slugs, "materials": materials, "promulgation_materials": promulgation, "call_file": str(call_path),
+           "answer_file": str(answer_path), "content_tokens": tokens, "written_at": _now()}
     _write_json(calls / f"{cid}.json", rec)
     return rec
 
@@ -552,6 +586,10 @@ def tasks(run_root: Path, root: Path = ROOT, stage: str = "tails", raw_dir: Path
     for g in groups:
         cid = _call_id(g, stage, {s: texts[s]["id_mat"] for s in g})
         if cid in existing_calls and (run_root / "calls" / f"{cid}.answer.json").exists():
+            rec = _read_json(run_root / "calls" / f"{cid}.json")
+            if rec.get("refused_at"):
+                raise DefectsError(f"{cid}: its answer was refused ({'; '.join(rec.get('refused_for', []))}); a new answer to the same call file is read by collect, "
+                                   f"or the answer file is removed and the call made again")
             continue   # answered, not yet collected: collect first
         calls.append(write_call(run_root, g, stage, texts, cands))
     return calls, settled
@@ -603,7 +641,7 @@ def amendment_call(run_root: Path, slug: str, id_mat: int, root: Path = ROOT, ra
     dv = split_dv(html.decode("utf-8"))
     t = {"lexbg": {"text": lt, "note": ln, "tokens": _tokens(lt)},
          "dv": {"text": dv.source_text, "note": f"the whole amending material {id_mat}, {len(dv.blocks)} blocks, sha256 {_sha(html)[:12]}", "tokens": _tokens(dv.source_text)},
-         "id_mat": id_mat}
+         "id_mat": id_mat, "promulgation_id_mat": _material_of(run_root, slug)}
     if t["lexbg"]["tokens"] + t["dv"]["tokens"] > MOST_WHOLE_TOKENS:
         raise DefectsError(f"{slug}: the texts are {t['lexbg']['tokens'] + t['dv']['tokens']} estimated tokens, beyond one call's range ({MOST_WHOLE_TOKENS})")
     (run_root / "texts").mkdir(parents=True, exist_ok=True)
@@ -656,16 +694,25 @@ def collect(run_root: Path) -> tuple[list[dict], list[str]]:
             stage = rec["stage"]
             if stage in ("whole", "amendment") and verdict == "needs_whole_text":
                 verdict, note = "unverified", f"the {stage} texts did not settle it either: " + note   # one such call, never a second
-            promulgation = _material_of(run_root, slug)
+            promulgation = rec.get("promulgation_materials", {}).get(slug, _material_of(run_root, slug))   # as the call record holds it
             decided_on = rec.get("materials", {}).get(slug, promulgation)   # the amendment stage decides on the amending material
             out = {"slug": slug, "verdict": verdict, "kind": a.get("kind") if verdict == "confirmed" else None, "gazette": a.get("gazette") if verdict == "confirmed" else None,
                    "note": note, "stage": stage, "call": rec["call"], "material": decided_on, "promulgation_material": promulgation,
                    "call_content_tokens": rec.get("content_tokens"), "beyond_measured_range": bool(rec.get("content_tokens", 0) > CAP_TOKENS), "answered_at": _now()}
             if prior and prior.get("stage") == "tails" and stage in ("whole", "amendment"):
                 out["tails_note"] = prior["note"]
+            for key in SESSION_FIELDS:   # fields the session sets on a verdict from a recorded reading, kept across a re-collect
+                if prior and key in prior:
+                    out[key] = prior[key]
+            if out.get("in_force_from") is not None and not re.fullmatch(r"\d{4}-\d{2}-\d{2}", str(out["in_force_from"])):
+                errs = [f"{slug}: in_force_from {out['in_force_from']!r} is not a date YYYY-MM-DD"]
+                problems.append(f"{rec['call']}: " + "; ".join(errs))
+                continue
             _write_json(existing, out)
             written.append(out)
         rec["collected_at"] = _now()
+        for key in ("refused_at", "refused_sha256", "refused_for"):
+            rec.pop(key, None)   # the refusal is over: the answer that stands is this one
         _write_json(rec_path, rec)
     return written, problems
 
@@ -738,6 +785,23 @@ def count(run_root: Path) -> dict:
             "confirmed": sorted([s for s, v in final.items() if v["verdict"] == "confirmed"] + list(kept))}
 
 
+def withdraw(run_root: Path, reason: str) -> list[dict]:
+    """Move the verdict files of acts the current scan no longer lists (confirmed ones excepted) into ``withdrawn-verdicts.json`` with the reason."""
+    c = count(run_root)
+    path = run_root / "withdrawn-verdicts.json"
+    doc = _read_json(path) if path.exists() else {"count": 0, "verdicts": []}
+    moved = []
+    for slug in c["stray_verdicts"]:
+        p = verdict_path(run_root, slug)
+        v = _read_json(p)
+        doc["verdicts"].append({**v, "withdrawn": reason, "withdrawn_at": _now()})
+        moved.append(v)
+        p.unlink()
+    doc["count"] = len(doc["verdicts"])
+    _write_json(path, doc)
+    return moved
+
+
 def count_text(c: dict) -> str:
     lines = [f"verdicts: {c['final']} final of {c['candidates']} candidates; {len(c['pending_whole_text'])} waiting for a whole-text call; {len(c['missing'])} without a verdict file",
              "by verdict: " + (", ".join(f"{k} {v}" for k, v in sorted(c["by_verdict"].items())) or "none"),
@@ -774,7 +838,8 @@ def entries_for(run_root: Path, root: Path = ROOT, added: str | None = None) -> 
         out.append(sx.Entry(slug=slug, title=str(fm.get("titulo") or slug).strip(), defect=v["kind"], source="dv_html", address=str(promulgation),
                             route=route_for(fm), state="listed", added=added or datetime.now(timezone.utc).date().isoformat(),
                             evidence=[{"kind": "register", "ref": f"{REGISTER}: {v['kind']}"}, {"kind": "audit", "ref": f"{rel}: {_sentence(v['note'])}"}],
-                            note=f"S2 of the plan of 31 October 2026: {_material_words(v)} carries: {v['gazette']}"))
+                            note=f"S2 of the plan of 31 October 2026: {_material_words(v)} carries: {v['gazette']}"
+                                 + (" (decided on a call beyond the measured range; the case file says so)" if v.get("beyond_measured_range") else "")))
     return out
 
 
@@ -798,6 +863,9 @@ def case_prose(v: dict, entry: sx.Entry, run: str) -> dict[str, str]:
     if v.get("in_force_from"):
         lessons += (f" The section enters into force on {v['in_force_from']}; the starting state carries it as the Gazette's consolidated text does, "
                     f"since the Gazette prevails (D-059, D-074): no text is dropped for not yet applying.")
+    if v.get("beyond_measured_range"):
+        lessons += (f" The verdict was decided on a call of about {v.get('call_content_tokens'):,} estimated content tokens, beyond the measured safe range of "
+                    f"{CAP_TOKENS:,}; the investigator cites the lines it relied on, and the owner may have the comparison made again within the range.")
     if entry.route == "history":
         proposal = ("The act was amended after its promulgation, so its promulgation material is not the whole act and the dropped text can be "
                     "filled only by rebuilding the act's history through the engine of F1. Leave the act on the list with the route \"history\" "
@@ -917,6 +985,8 @@ def main(argv: list[str] | None = None) -> int:
     t.add_argument("--stage", default="tails", choices=("tails", "whole"))
     sub.add_parser("collect", help="the answers into one verdict file per candidate")
     sub.add_parser("count", help="the verdict files against the candidates")
+    wd = sub.add_parser("withdraw", help="the verdict files of acts the current scan no longer lists, confirmed ones excepted, into withdrawn-verdicts.json")
+    wd.add_argument("--reason", required=True)
     sub.add_parser("entries", help="print the list entries the confirmed verdicts give (the driver adds them: routes.py)")
     sub.add_parser("list", help="every confirmed act onto the exceptions list through the route driver and through its route")
     rp = sub.add_parser("report", help="the token report from usage.jsonl against the budget")
@@ -963,6 +1033,12 @@ def main(argv: list[str] | None = None) -> int:
         c = count(run_root)
         print(count_text(c))
         return 0 if c["final"] == c["candidates"] else 1
+    if args.cmd == "withdraw":
+        moved = withdraw(run_root, args.reason)
+        for v in moved:
+            print(f"withdrawn {v['slug']}: {v['verdict']}")
+        print(f"{len(moved)} verdict(s) withdrawn")
+        return 0
     if args.cmd == "list":
         for r in list_confirmed(run_root):
             print(f"{r['slug']}: route {r['route']}, {'added' if r['added'] else 'already listed'}, {r['state']} at {r['step']}" + (f", case file {r['case_file']}" if r.get("case_file") else ""))

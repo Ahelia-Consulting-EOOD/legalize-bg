@@ -8,5 +8,7 @@
  "call": "call-tails-12ea3d18",
  "material": 234460,
  "answered_at": "2026-10-31T21:11:24+00:00",
- "promulgation_material": 234460
+ "promulgation_material": 234460,
+ "call_content_tokens": 38267,
+ "beyond_measured_range": false
 }

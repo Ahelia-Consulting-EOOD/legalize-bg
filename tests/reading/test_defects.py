@@ -55,7 +55,7 @@ def test_the_paragraph_rule_reads_the_acts_own_tail_not_the_amending_tails():
     out = defects.scan_blocks(_blocks(no_heading))
     assert [f["rule"] for f in out] == ["paragraph-start-above-1"] and "no provisions heading of its own" in out[0]["detail"]
     assert defects.own_tail(_blocks(no_heading)) is None and defects.own_scope(_blocks(no_heading)) == (0, 2)
-    assert defects.scan_blocks(_blocks(["§ 1. Текст.", "§ 2. Текст."])) == []
+    assert defects.scan_blocks(_blocks(["§ 1. Текст.", "§ 2. Текст."])) == [] and defects.scan_blocks(_blocks(["§ 1а. Текст.", "§ 2. Текст."])) == []
     # a page whose only heading is an amending act's: nothing of the act's own provisions, no candidate (review A round 2, major 1)
     only_amending = ["Чл. 1. x", "Заключителни разпоредби", "КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ", "§ 52. x"]
     assert defects.own_tail(_blocks(only_amending)) is None and defects.own_scope(_blocks(only_amending)) == (0, 1) and defects.scan_blocks(_blocks(only_amending)) == []
@@ -65,6 +65,16 @@ def test_the_paragraph_rule_reads_the_acts_own_tail_not_the_amending_tails():
     assert defects.own_tail(_blocks(repeated)) is None and defects.scan_blocks(_blocks(repeated)) == []
     own_then_repeated = ["Чл. 1. x", "Преходни разпоредби", "§ 3. x", "Заключителни разпоредби", "КЪМ ПОСТАНОВЛЕНИЕ № 197", "(ОБН. - ДВ)", "Заключителни разпоредби", "§ 28. x"]
     assert defects.own_tail(_blocks(own_then_repeated)) == (1, 3)
+    # lex.bg's second form of an amending tail: the amending act's capital title, its (ОБН.) line, its §§; no КЪМ line (closing round, major 1)
+    second = ["Чл. 1. x", "Заключителни разпоредби", "Параграф единствен. Правилникът се приема.", "ПОСТАНОВЛЕНИЕ № 21 ОТ 12 ФЕВРУАРИ 2014 Г. ЗА ИЗМЕНЕНИЕ НА ПРАВИЛНИКА", "(ОБН. - ДВ, БР. 14 ОТ 2014 Г.)", "§ 9. x"]
+    assert defects.own_tail(_blocks(second)) == (1, 3) and defects.scan_blocks(_blocks(second)) == []
+    with_heading = ["Чл. 1. x", "Заключителни разпоредби", "ПОСТАНОВЛЕНИЕ № 20 ОТ 2020 Г. ЗА ИЗМЕНЕНИЕ", "(ОБН. - ДВ)", "§ 3. x"]
+    assert defects.own_tail(_blocks(with_heading)) is None and defects.own_scope(_blocks(with_heading)) == (0, 1) and defects.scan_blocks(_blocks(with_heading)) == []
+    dropped_then_amending = ["Чл. 1. x", "Заключителни разпоредби", "§ 3. x", "ПОСТАНОВЛЕНИЕ № 21 ОТ 2014 Г. ЗА ИЗМЕНЕНИЕ", "(ОБН. - ДВ)", "§ 1. x"]
+    assert [f["rule"] for f in defects.scan_blocks(_blocks(dropped_then_amending))] == ["paragraph-start-above-1"]   # the amending § 1 hides nothing
+    # a „(Нова …)“ marker under the empty heading is a qualifier line (major 2)
+    nova = ["Чл. 1. x", "Допълнителна разпоредба", "(Нова - ДВ, бр. 61 от 2026 г., в сила от 01.01.2027 г.)", "Заключителни разпоредби", "§ 1а. x", "§ 2. x"]
+    assert [(f["rule"], f["block"]) for f in defects.scan_blocks(_blocks(nova))] == [("additional-empty", 1)]
 
 
 PAGE = """<html><body><div class="box"><div class="boxi">
@@ -118,6 +128,11 @@ def test_scan_page_and_the_tails():
                     "Заключителни разпоредби", "Параграф единствен. Правилникът се приема.", "Приложение към чл. 7, ал. 3", "ред"])
     assert defects.material_tail(pms2) == (9, 11)
     assert defects.material_tail(_blocks(["ПОСТАНОВЛЕНИЕ № 1", "Заключителни разпоредби", "§ 1. x", "ТАРИФА за таксите", "Чл. 1. x", "Преходни разпоредби", "§ 1. x"])) == (5, 7)
+    # material 242745's order: an annex titled „МЕТОДИКА за …“ and a bare „МЕТОДИКА“ after the act's provisions are no title of the act
+    annexed = _blocks(["ПОСТАНОВЛЕНИЕ № 1", "Чл. 1. Приема.", "НАРЕДБА за критериите", "Чл. 1. x", "Чл. 43. x", "ДОПЪЛНИТЕЛНА РАЗПОРЕДБА", "§ 1. x", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 2. x",
+                      "Приложение № 1 към чл. 5", "МЕТОДИКА за оценка на разходите", "ред", "Приложение № 2", "МЕТОДИКА", "ред"])
+    assert defects.material_tail(annexed) == (5, 9)
+    assert defects.material_tail(_blocks(["ПОСТАНОВЛЕНИЕ № 1", "Заключителни разпоредби", "§ 1. x", "НАРЕДБА № 3 ОТ 22 АПРИЛ 2026 Г. ЗА УСЛОВИЯТА", "Чл. 1. x", "Заключителни разпоредби", "§ 1. x"])) == (5, 7)   # a name in capitals
     no_title = _blocks(["Чл. 1. x", "Чл. 2. x", "Заключителни разпоредби", "§ 1. В Закона за пробата се създава чл. 2а:", "Чл. 2а. (нов текст)", "§ 2. Влиза в сила."])
     assert defects.material_tail(no_title) == (2, 6)                                  # a „Чл.“ line quoted by a § is no article
     no_title_chapter = _blocks(["Чл. 1. x", "Заключителни разпоредби", "§ 1. x", "Глава втора", "Чл. 2. x", "Преходни разпоредби", "§ 2. x"])
@@ -228,6 +243,9 @@ def test_scan_fetch_tasks_collect_count_and_entries(tmp_path, monkeypatch):
     assert defects.collect(run_root) == ([], [])   # retired
     Path(late["answer_file"]).write_text(json.dumps({"zakon-b": {"verdict": "not_a_defect", "kind": None, "gazette": None, "note": "later"}}), encoding="utf-8")
     assert len(defects.collect(run_root)[1]) == 1   # a changed answer is read again, and refused again
+    Path(late["answer_file"]).unlink()
+    (run_root / "calls" / f"{late['call']}.json").unlink()
+    Path(late["call_file"]).unlink()
     assert json.loads(defects.verdict_path(run_root, "zakon-b").read_text(encoding="utf-8"))["stage"] == "whole"
     c = defects.count(run_root)
     assert c["final"] == 4 and c["confirmed"] == ["zakon-b"] and c["by_kind"] == {"dropped_section": 1}
@@ -237,8 +255,11 @@ def test_scan_fetch_tasks_collect_count_and_entries(tmp_path, monkeypatch):
     c = defects.count(run_root)
     assert c["confirmed"] == ["zakon-b", "zakon-x"] and c["confirmed_outside_candidates"] == ["zakon-x"] and c["stray_verdicts"] == ["zakon-y"] and c["by_kind"] == {"dropped_section": 2}
     assert "kept: ['zakon-x']" in defects.count_text(c) and "to withdraw: ['zakon-y']" in defects.count_text(c)
-    for s in ("zakon-x", "zakon-y"):
-        defects.verdict_path(run_root, s).unlink()
+    moved = defects.withdraw(run_root, "the rule was narrowed")
+    assert [m["slug"] for m in moved] == ["zakon-y"] and not defects.verdict_path(run_root, "zakon-y").exists() and defects.verdict_path(run_root, "zakon-x").exists()
+    doc = defects._read_json(run_root / "withdrawn-verdicts.json")
+    assert doc["count"] == 1 and doc["verdicts"][0]["withdrawn"] == "the rule was narrowed"
+    defects.verdict_path(run_root, "zakon-x").unlink()
     written, _ = defects.collect(run_root)
     assert written == []   # collected once
     entries = defects.entries_for(run_root, tmp_path, added="2026-10-31")
@@ -256,9 +277,14 @@ def test_scan_fetch_tasks_collect_count_and_entries(tmp_path, monkeypatch):
     assert rec["zakon-a"]["outcome"] == "ok"
     calls4, settled4 = defects.tasks(run_root, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache)
     assert [c["slugs"] for c in calls4] == [["zakon-a"]] and settled4 == []
+    # a refused answer: tasks names the refused call instead of skipping it in silence; a changed answer is read again
+    Path(calls4[0]["answer_file"]).write_text(json.dumps({"zakon-a": {"verdict": "nonsense", "note": "x"}}), encoding="utf-8")
+    assert len(defects.collect(run_root)[1]) == 1
+    with pytest.raises(defects.DefectsError, match="was refused"):
+        defects.tasks(run_root, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache)
     # a second call of the same stage over an answered slug is refused, never written over
     Path(calls4[0]["answer_file"]).write_text(json.dumps({"zakon-a": {"verdict": "not_a_defect", "kind": None, "gazette": None, "note": "same"}}), encoding="utf-8")
-    assert defects.collect(run_root)[1] == []
+    assert defects.collect(run_root)[1] == [] and "refused_at" not in defects._read_json(run_root / "calls" / f"{calls4[0]['call']}.json")
     other = defects.write_call(run_root, ["zakon-a", "zakon-b"], "tails", {s: defects.texts_for({}, MATERIAL, PAGE.encode("utf-8")) | {"id_mat": 1} for s in ("zakon-a", "zakon-b")},
                                {c["slug"]: c for c in defects.load_candidates(run_root)})
     Path(other["answer_file"]).write_text(json.dumps({s: {"verdict": "not_a_defect", "kind": None, "gazette": None, "note": "x"} for s in ("zakon-a", "zakon-b")}), encoding="utf-8")
@@ -417,7 +443,9 @@ def test_confirmed_acts_enter_the_list_through_the_driver_and_the_history_route_
     assert "S5's batch" in prose["Proposal"] and "kind: wrong_text" in prose["Lessons learnt"] and "amending material 1 (the promulgation material is 2)" in prose["Lessons learnt"]
     assert "enters into force" not in prose["Lessons learnt"]
     prose = defects.case_prose({"material": 1, "note": "n", "gazette": "g", "kind": "wrong_text", "in_force_from": "2028-01-01"}, entries["zakon-b"], "r")
-    assert "enters into force on 2028-01-01; the starting state carries it" in prose["Lessons learnt"]
+    assert "enters into force on 2028-01-01; the starting state carries it" in prose["Lessons learnt"] and "beyond the measured" not in prose["Lessons learnt"]
+    prose = defects.case_prose({"material": 1, "note": "n", "gazette": "g", "kind": "wrong_text", "beyond_measured_range": True, "call_content_tokens": 86812}, entries["zakon-b"], "r")
+    assert "decided on a call of about 86,812 estimated content tokens, beyond the measured safe range" in prose["Lessons learnt"]
     # a verdict that changed (the amendment stage recorded its material) refreshes the note and the prose while the owner has not ruled
     v = json.loads(defects.verdict_path(run_root, "zakon-b").read_text(encoding="utf-8"))
     defects._write_json(defects.verdict_path(run_root, "zakon-b"), {**v, "stage": "amendment", "material": 900})
@@ -486,10 +514,14 @@ def test_the_amendment_call_reads_the_amending_material_whole(tmp_path):
     assert "the whole amending material 900" in text and "УКАЗ" not in text and "ЗАКОН" in text and "§ 9" not in text
     with pytest.raises(defects.DefectsError, match="never a second"):
         defects.amendment_call(run_root, "zakon-a", 901, tmp_path, raw_dir=tmp_path / "data" / "raw" / "lexbg", cache_dir=cache, fetch_one=fetch_one)
+    v = defects._read_json(defects.verdict_path(run_root, "zakon-a"))
+    defects._write_json(defects.verdict_path(run_root, "zakon-a"), {**v, "in_force_from": "2027-01-01"})   # a session field survives the re-collect
     Path(rec["answer_file"]).write_text(json.dumps({"zakon-a": {"verdict": "confirmed", "kind": "dropped_section", "gazette": "§ 1", "note": "n"}}), encoding="utf-8")
     written, problems = defects.collect(run_root)
     assert problems == [] and written[0]["material"] == 900 and written[0]["promulgation_material"] is None   # no promulgation material recorded in this run
-    assert written[0]["tails_note"] == "the promulgation cannot show it"
+    assert written[0]["tails_note"] == "the promulgation cannot show it" and written[0]["in_force_from"] == "2027-01-01"
+    assert written[0]["call_content_tokens"] == rec["content_tokens"] and written[0]["beyond_measured_range"] is False
+    assert rec["promulgation_materials"] == {"zakon-a": None} and written[0]["promulgation_material"] is None
     with pytest.raises(defects.DefectsError, match="without a promulgation material"):   # the address is the promulgation material: refused without one
         defects.entries_for(run_root, tmp_path)
     Path(rec["answer_file"]).write_text(json.dumps({"zakon-a": {"verdict": "needs_whole_text", "kind": None, "gazette": None, "note": "n"}}), encoding="utf-8")

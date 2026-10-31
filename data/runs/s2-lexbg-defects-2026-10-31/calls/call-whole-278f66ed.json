@@ -8,5 +8,8 @@
  "answer_file": "/Users/ekimir/swprj/legalize-bg/.claude/worktrees/youthful-haibt-880b8b/data/runs/s2-lexbg-defects-2026-10-31/calls/call-whole-278f66ed.answer.json",
  "content_tokens": 18215,
  "written_at": "2026-10-31T21:13:56+00:00",
- "collected_at": "2026-10-31T21:15:41+00:00"
+ "collected_at": "2026-10-31T21:15:41+00:00",
+ "materials": {
+  "naredba-14-ot-15-april-2004-g-za-meditsinskite-kriterii-i-reda-na-ustanovyavane-": 21032
+ }
 }

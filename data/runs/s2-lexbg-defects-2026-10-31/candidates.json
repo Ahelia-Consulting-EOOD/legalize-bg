@@ -1,12 +1,12 @@
 {
  "run": "s2-lexbg-defects-2026-10-31",
- "scanned_at": "2026-10-31T21:38:26+00:00",
+ "scanned_at": "2026-10-31T21:52:51+00:00",
  "pages": 3623,
  "pages_without_act": 7,
- "candidates": 42,
+ "candidates": 35,
  "by_rule": {
-  "additional-empty": 30,
-  "paragraph-start-above-1": 39
+  "additional-empty": 32,
+  "paragraph-start-above-1": 31
  },
  "rules": [
   "additional-empty",
@@ -125,9 +125,15 @@
    "category": "ordinances",
    "page_sha256": "1fb879195de935220d1916aa6ffdeaa928f6896df3ae1ad0ffe5839ca9b5f522",
    "rules": [
+    "additional-empty",
     "paragraph-start-above-1"
    ],
    "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 298,
+     "detail": "block 298 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 300"
+    },
     {
      "rule": "paragraph-start-above-1",
      "block": 301,
@@ -639,19 +645,19 @@
    "category": "ordinances",
    "page_sha256": "3568a80b0e52e374aced2ac449b9e7d8464e8f461345f806bff93dedc45bb28d",
    "rules": [
-    "paragraph-start-above-1"
+    "additional-empty"
    ],
    "findings": [
     {
-     "rule": "paragraph-start-above-1",
-     "block": 434,
-     "detail": "lowest § is 2 (block 434) in the act's own provisions (blocks 256 to 448)"
+     "rule": "additional-empty",
+     "block": 256,
+     "detail": "block 256 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 258"
     }
    ],
    "own_tail": {
     "start": 256,
     "end": 449,
-    "lowest_sign": 2
+    "lowest_sign": 1
    },
    "blocks": 16733
   },
@@ -734,50 +740,6 @@
    "blocks": 144
   },
   {
-   "slug": "naredba-za-usloviyata-i-reda-za-izvarshvane-na-nadzor-na-pazara",
-   "doc_id": "2135467682",
-   "category": "ordinances",
-   "page_sha256": "34d7a25a93e63b4a578768da682c8ee0c48dc3f74cc1424ce8163a65f6bbc890",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 112,
-     "detail": "lowest § is 21 (block 112) in the act's own provisions (blocks 108 to 112)"
-    }
-   ],
-   "own_tail": {
-    "start": 108,
-    "end": 113,
-    "lowest_sign": 21
-   },
-   "blocks": 186
-  },
-  {
-   "slug": "naredba-za-usloviyata-i-reda-za-pridobivane-na-profesionalna-kvalifikatsiya-i-za",
-   "doc_id": "2135490228",
-   "category": "ordinances",
-   "page_sha256": "7a055448c1a2723f4ad74ef9a6bc8f312ffd9fe0920dfe28d6810492819fbd05",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 502,
-     "detail": "lowest § is 2 (block 502) in the act's own provisions (blocks 479 to 517)"
-    }
-   ],
-   "own_tail": {
-    "start": 479,
-    "end": 518,
-    "lowest_sign": 2
-   },
-   "blocks": 713
-  },
-  {
    "slug": "pravilnik-na-stolichen-obshtinski-savet-za-ustroystvoto-organizatsiyata-i-deynos-2",
    "doc_id": "2137228837",
    "category": "regulations",
@@ -820,72 +782,6 @@
     "lowest_sign": 2
    },
    "blocks": 248
-  },
-  {
-   "slug": "pravilnik-za-deynostta-i-strukturata-na-darzhavno-predpriyatie-transportno-stroi",
-   "doc_id": "-12051455",
-   "category": "regulations",
-   "page_sha256": "904de1d93fe843d188f496bef588b78aeb4cf98ba18f30eb1c57977653946281",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 558,
-     "detail": "lowest § is 26 (block 558) in the act's own provisions (blocks 548 to 562)"
-    }
-   ],
-   "own_tail": {
-    "start": 548,
-    "end": 563,
-    "lowest_sign": 26
-   },
-   "blocks": 563
-  },
-  {
-   "slug": "pravilnik-za-ustroystvoto-deynostta-i-organizatsiyata-na-rabota-na-tsentara-za-o",
-   "doc_id": "2135525134",
-   "category": "regulations",
-   "page_sha256": "692034af19c326dc363d67c5e7f02002acb2d0b8eb9a94a5ead0360e0f4fc2e8",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 129,
-     "detail": "lowest § is 3 (block 129) in the act's own provisions (blocks 120 to 129)"
-    }
-   ],
-   "own_tail": {
-    "start": 120,
-    "end": 130,
-    "lowest_sign": 3
-   },
-   "blocks": 140
-  },
-  {
-   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-mezhduvedomstvenata-komisiya-po-frankof",
-   "doc_id": "2135873517",
-   "category": "regulations",
-   "page_sha256": "427d8640596b25a6bb4857d4009ce962b690f9d07d405e9d24aa85d2658ea44f",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 40,
-     "detail": "lowest § is 2 (block 40) on the page before its first amending act's tail (blocks 0 to 42), which has no provisions heading of its own"
-    }
-   ],
-   "own_tail": {
-    "start": 0,
-    "end": 43,
-    "lowest_sign": 2
-   },
-   "blocks": 43
   },
   {
    "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-voenno-geografskata-sluzhba-2",
@@ -942,50 +838,6 @@
     "lowest_sign": 2
    },
    "blocks": 461
-  },
-  {
-   "slug": "ustroystven-pravilnik-na-agentsiyata-za-ustoychivo-energiyno-razvitie",
-   "doc_id": "2135809736",
-   "category": "regulations",
-   "page_sha256": "4f142c06cf8573603193ec6cbebbd68772028806487c885276f6823fac964a9a",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 266,
-     "detail": "lowest § is 9 (block 266) in the act's own provisions (blocks 262 to 268)"
-    }
-   ],
-   "own_tail": {
-    "start": 262,
-    "end": 269,
-    "lowest_sign": 9
-   },
-   "blocks": 304
-  },
-  {
-   "slug": "ustroystven-pravilnik-na-natsionalnata-sluzhba-za-rastitelna-zashtita",
-   "doc_id": "2135485542",
-   "category": "regulations",
-   "page_sha256": "62c6d5dd9a247ab5aa4e4bfde0caf030a60d9e5332f2645dedcbc3dbacee1016",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 211,
-     "detail": "lowest § is 16 (block 211) in the act's own provisions (blocks 207 to 213)"
-    }
-   ],
-   "own_tail": {
-    "start": 207,
-    "end": 214,
-    "lowest_sign": 16
-   },
-   "blocks": 250
   },
   {
    "slug": "zakon-za-obshtestveniya-transport",

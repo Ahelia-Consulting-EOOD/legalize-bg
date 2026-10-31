@@ -17,3 +17,5 @@
 {"call": "review-B-round-1", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 62452, "tool_uses": 61, "duration_ms": 430949}
 {"call": "review-A-round-2", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 92025, "tool_uses": 78, "duration_ms": 592674}
 {"call": "review-B-round-2", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 60923, "tool_uses": 53, "duration_ms": 443178}
+{"call": "review-B-round-3", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 33635, "tool_uses": 50, "duration_ms": 307096}
+{"call": "review-A-round-3", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 44280, "tool_uses": 52, "duration_ms": 400337}
