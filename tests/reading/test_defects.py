@@ -415,6 +415,9 @@ def test_confirmed_acts_enter_the_list_through_the_driver_and_the_history_route_
     assert (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8") == case
     prose = defects.case_prose({"material": 1, "note": "n", "gazette": "g", "kind": "wrong_text", "stage": "amendment", "promulgation_material": 2}, entries["zakon-a"], "r")
     assert "S5's batch" in prose["Proposal"] and "kind: wrong_text" in prose["Lessons learnt"] and "amending material 1 (the promulgation material is 2)" in prose["Lessons learnt"]
+    assert "enters into force" not in prose["Lessons learnt"]
+    prose = defects.case_prose({"material": 1, "note": "n", "gazette": "g", "kind": "wrong_text", "in_force_from": "2028-01-01"}, entries["zakon-b"], "r")
+    assert "enters into force on 2028-01-01; the starting state carries it" in prose["Lessons learnt"]
     # a verdict that changed (the amendment stage recorded its material) refreshes the note and the prose while the owner has not ruled
     v = json.loads(defects.verdict_path(run_root, "zakon-b").read_text(encoding="utf-8"))
     defects._write_json(defects.verdict_path(run_root, "zakon-b"), {**v, "stage": "amendment", "material": 900})

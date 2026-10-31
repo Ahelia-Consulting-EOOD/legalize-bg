@@ -9,5 +9,6 @@
  "material": 245068,
  "answered_at": "2026-10-31T21:13:34+00:00",
  "tails_note": "lex.bg lines 45-46 print an additional-provision heading marked as new by DV br. 70/2026 (in force 01.01.2028) with no text under it, and line 48 renumbers the original § 1 as § 1a (marked 'Предишен § 1', so the lowest § reads as 2); the Gazette material 174310 (lines 244-431) is the original promulgation, with § 1 to § 8 matching lex.bg apart from marked amendments (§ 1a, § 3, § 5, § 6, § 6a), and it cannot hold the 2026 additional provision; the empty heading points to a provision of the amending act DV br. 70/2026, which neither text given here carries, and the whole text of this material would not carry it either",
- "promulgation_material": 174310
+ "promulgation_material": 174310,
+ "in_force_from": "2028-01-01"
 }

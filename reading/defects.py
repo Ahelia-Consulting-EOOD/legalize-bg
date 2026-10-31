@@ -795,6 +795,9 @@ def case_prose(v: dict, entry: sx.Entry, run: str) -> dict[str, str]:
     lessons = (f"The detector of FR-042 flagged the act and the investigator confirmed it against {_material_words(v)} "
                f"(S2 run {run}): {_sentence(v['note'])} The Gazette carries: {v['gazette']}. lex.bg's text, which the corpus holds, lacks it "
                f"(kind: {v['kind']}).")
+    if v.get("in_force_from"):
+        lessons += (f" The section enters into force on {v['in_force_from']}; the starting state carries it as the Gazette's consolidated text does, "
+                    f"since the Gazette prevails (D-059, D-074): no text is dropped for not yet applying.")
     if entry.route == "history":
         proposal = ("The act was amended after its promulgation, so its promulgation material is not the whole act and the dropped text can be "
                     "filled only by rebuilding the act's history through the engine of F1. Leave the act on the list with the route \"history\" "
