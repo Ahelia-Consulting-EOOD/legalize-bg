@@ -229,8 +229,15 @@ def _rel(root: Path, f: Path) -> str:
 
 
 def run_source(run_dir: Path) -> str:
-    """The source the run's blocks were cut from: ``lexbg`` (the raw store) or ``dv`` (a Gazette material)."""
-    return json.loads((Path(run_dir) / "blocks.json").read_text(encoding="utf-8")).get("source", "lexbg")
+    """The source the run's blocks were cut from: ``lexbg`` (the raw store) or ``dv`` (a Gazette material).
+
+    A run folder without its blocks is taken as the lex.bg path, so a listed act is refused by name before anything
+    else is read; the reread then refuses the folder itself.
+    """
+    p = Path(run_dir) / "blocks.json"
+    if not p.exists():
+        return "lexbg"
+    return json.loads(p.read_text(encoding="utf-8")).get("source", "lexbg")
 
 
 def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw_dir: Path | str = RAW,
