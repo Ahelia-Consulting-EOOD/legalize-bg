@@ -10,8 +10,6 @@
 # route:  whole_act_from_material | history | source_before_archive | investigate
 # state:  listed | investigated | committed | stopped
 # evidence: a list of {kind: decision | audit | case_file | register | plan, ref: <where>}
-# absent_witnesses: a list of {witness: lexbg | moj, reason, owner}: a witness the act cannot be compared with, only on
-#   the owner's word (the plan compares both witnesses); without it the write refuses an act whose record lacks a witness
 entries:
 - slug: zakon-za-obshtestveniya-transport
   title: Закон за обществения транспорт
@@ -26,9 +24,10 @@ entries:
     ref: docs/audits/2026-09-05-source-dropped-additional-provisions.md
   - kind: decision
     ref: 'D-076 (docs/sync/DECISIONS.md): the first session commits the act from ДВ бр. 32/2026; the index through бр. 96/2026 lists no amendment'
-  state: listed
+  state: committed
   added: '2026-10-31'
   note: The owner uses this act daily, so it is the first entry (owner fact of 22 October 2026). Never amended, so its promulgation material is the whole act; the route searches the materials after бр. 32/2026 before writing.
+  commit: a504b8c72
 - slug: zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi
   title: Закон за прозрачност при представителство на интереси
   defect: dropped_section
