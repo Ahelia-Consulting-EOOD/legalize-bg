@@ -556,7 +556,8 @@ def pair(root: Path = ROOT, run_root: Path | None = None, materials: Path = MATE
     summary = {"acts": len(facts_all), "repeal_titles": len(titles), "general_repeal_decrees": len(general), "calls": call_slugs, "per_call": per_call,
                "with_candidates": sum(1 for f in facts_all if f["candidates"]),
                "candidates_total": sum(len(f["candidates"]) for f in facts_all),
-               "with_lexbg_marker": sum(1 for f in facts_all if f["lexbg_repeal_marker"]), "paired_at": _now()}
+               "with_lexbg_marker": sum(1 for f in facts_all if f["lexbg_repeal_marker"]),
+               "paired_at": datetime.now(timezone.utc).isoformat()}   # to the microsecond: the stamp tells two pairings apart, a verdict carries it
     (run_root / "pairing.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
     return summary
 
