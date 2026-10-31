@@ -82,6 +82,21 @@ class WriteRefused(Exception):
     """The reading does not hold up against the page; nothing was written."""
 
 
+class LostText(WriteRefused):
+    """The content check of D-076 (3): an empty section or a first § above 1; the act is listed for investigation."""
+
+
+def date_today() -> str:
+    from datetime import date
+    return date.today().isoformat()
+
+
+def _issue_key(dv: str | None) -> tuple[int, int]:
+    """(year, number) of an amendment row's "32/2026"; an unreadable row sorts first."""
+    m = re.fullmatch(r"\s*(\d+)\s*/\s*(\d{4})\s*", str(dv or ""))
+    return (int(m.group(2)), int(m.group(1))) if m else (0, 0)
+
+
 @dataclass
 class Written:
     slug: str
@@ -138,8 +153,8 @@ def _check_reading(slug: str, run_dir: Path, act: SplitAct, what: str) -> tuple[
     lost = [e for e in exceptions if e["kind"] in ladder.LOST_TEXT]
     if lost:
         kinds = sorted({e["kind"] for e in lost})
-        raise WriteRefused(f"{slug}: lost text on the {what} ({', '.join(kinds)}), first at block {lost[0]['block']}: "
-                           f"{lost[0]['detail']}; the act goes to the exceptions list with the route investigate (D-076)")
+        raise LostText(f"{slug}: lost text on the {what} ({', '.join(kinds)}), first at block {lost[0]['block']}: "
+                       f"{lost[0]['detail']}; the act goes to the exceptions list with the route investigate (D-076)")
     blocking = [e for e in exceptions if e["kind"] not in ladder.SOURCE_FINDINGS]
     if blocking:
         kinds = sorted({e["kind"] for e in blocking})
@@ -247,8 +262,9 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
     root, run_dir, raw_dir, cache_dir = Path(root), Path(run_dir), Path(raw_dir), Path(cache_dir)
     waivers_path = Path(waivers_path) if waivers_path else root / WAIVERS
     exceptions_path = Path(exceptions_path) if exceptions_path else root / EXCEPTIONS
-    if not exceptions_path.exists():
-        exceptions_path = sx.DEFAULT_PATH   # a root without a list (a test's) is held to the repository's list
+    own_list = exceptions_path.exists()   # only a list of this root is ever written to
+    if not own_list:
+        exceptions_path = sx.DEFAULT_PATH   # a root without a list (a test's) is still held to the repository's list, read only
     path = corpus_file(root, slug)
     source = run_source(run_dir)
     if source == "lexbg":
@@ -269,11 +285,33 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
         raise WriteRefused(f"{slug}: the committed frontmatter carries no lex.bg identificador")
 
     if source == "dv":
+        rec = material_record(run_dir)
+        entry = sx.listed(slug, exceptions_path)
+        # the Gazette path writes an act whole from its promulgation material only when the list says so for that material
+        if entry is None or entry.route != "whole_act_from_material":
+            raise WriteRefused(f"{slug}: a Gazette material is written whole only for an act listed with the route whole_act_from_material "
+                               f"(the list says {entry.route if entry else 'nothing'})")
+        if str(entry.address).strip() != str(rec["id_mat"]):
+            raise WriteRefused(f"{slug}: the run's material {rec['id_mat']} is not the entry's address {entry.address}")
+        issue = (int(rec["issue_year"]), int(rec["issue_number"]))
+        later = [r.get("dv") for r in (committed.get("amendment_history") or []) if isinstance(r, dict) and _issue_key(r.get("dv")) > issue]
+        if later:
+            raise WriteRefused(f"{slug}: the committed history holds {', '.join(map(str, later))} after the material's issue {issue[1]}/{issue[0]}; "
+                               f"the act is not whole in that material (the history route is needed)")
         body, omissions, provenance, rec = reread_dv(slug, run_dir, cache_dir)
         meta = build_frontmatter_dv(committed, rec)
         source_ref = SourceRef("dv", str(rec["id_mat"]))
     else:
-        body, omissions, provenance = reread(slug, run_dir, raw_dir, doc_id)
+        try:
+            body, omissions, provenance = reread(slug, run_dir, raw_dir, doc_id)
+        except LostText as exc:
+            # D-076 (3): the act goes to the exceptions list with the route investigate, through the list's own add
+            if own_list and sx.listed(slug, exceptions_path) is None:
+                sx.add(exceptions_path, sx.Entry(slug=slug, title=str(committed.get("titulo") or slug), defect="dropped_section", source="unknown",
+                                                 address="unknown", route="investigate", state="listed", added=date_today(),
+                                                 evidence=[{"kind": "audit", "ref": f"the content check on the lex.bg page {doc_id} in run {run_dir.parent.name}: {exc}"}],
+                                                 note="listed by the content check of the write path; the investigator records the defect, the source and the route"))
+            raise WriteRefused(str(exc)) from None
         raw = (raw_dir / f"{doc_id}.html").read_bytes()
         meta = build_frontmatter(raw, doc_id, path.parent.name, committed)
         source_ref = SourceRef("lexbg", doc_id)

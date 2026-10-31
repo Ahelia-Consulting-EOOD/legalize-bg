@@ -77,8 +77,7 @@ _ELISION = re.compile(r"^(?:\.\s*){5,}$")  # ". . . . ." — lex.bg's mark that 
 _QUOTE_MARKS = re.compile(r"[\"„“”«»]")
 _QUOTE_CLOSE = re.compile(r"[\"“”»][.;,:)]?$")
 _SIGN_FORM = re.compile(r"^(?:§\s*\d+[а-я]?\.|Параграф\s+единствен\.)(?:\s|$)")
-_ADDITIONAL = re.compile(r"^Допълнителн", re.I)
-_TRANSITIONAL_FINAL = re.compile(r"^(Преходн|Заключителн)", re.I)
+_PROVISIONS_WORD = re.compile(r"^(Допълнителн|Преходн|Заключителн)", re.I)
 # the page chrome lex.bg prints before the title and after the act: the only drops allowed outside the act
 START_CHROME = re.compile(r"^(ДОБАВИ В МОИТЕ АКТОВЕ|Lex\.bg)")
 TAIL_CHROME = "Релевантни актове от Европейското законодателство"
@@ -136,6 +135,8 @@ def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -
     ta, tb = blocks[a].text, blocks[b].text
     if NUMBER_LINE.match(ta):
         return True
+    if la == lb and la != "provisions_heading" and NUMBER_LINE.match(tb):
+        return False   # a titled heading followed by the next number line of the same rank: a section with nothing under it
     if re.match(r"^(КЪМ|Към|към)\s", tb) or re.search(r"\s(КЪМ|Към|към)$", ta):
         return True
     if la == "provisions_heading":
@@ -143,8 +144,8 @@ def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -
         # sometimes without the "КЪМ", sometimes in the other order), and a sub-heading may follow ("Обяснение на някои думи");
         # but an additional-provisions heading followed at once by the transitional or final provisions heading is an
         # additional section with nothing under it: lost text (FR-042's rule additional-empty, D-076)
-        if _ADDITIONAL.match(ta) and _TRANSITIONAL_FINAL.match(tb):
-            return False
+        if _PROVISIONS_WORD.match(ta) and _PROVISIONS_WORD.match(tb):
+            return False   # two provisions headings in a row ("Допълнителни …" then "Заключителни …"): the first has nothing under it
         return True
     if la == "annex_heading" and lb == "annex_heading" and re.match(r"^Приложение", ta) and not re.match(r"^Приложение", tb):
         return True
@@ -167,10 +168,16 @@ def run_all(blocks: list[Block], smap: dict[int, dict], source: str = "lexbg") -
     first_placed, last_placed = (placed[0], placed[-1]) if placed else (-1, -1)
     is_dv = source == "dv"
     decree = dv_decree(blocks) if is_dv else range(0)
-    if is_dv:
-        tail_from = next((i for i in dropped if i > last_placed and DV_TAIL.match(blocks[i].text)), None)
-    else:
-        tail_from = next((i for i in dropped if blocks[i].text in TAIL_STARTS and i > last_placed), None)
+    tail_from = None if is_dv else next((i for i in dropped if blocks[i].text in TAIL_STARTS and i > last_placed), None)
+    # a Gazette material's signature lines and the number printed after them are chrome wherever they stand (an annex
+    # may follow the signature); any other dropped line after the act is judged like one inside it
+    dv_sign = {i for i in dropped if is_dv and DV_TAIL.match(blocks[i].text)} if is_dv else set()
+    dv_chrome = set(dv_sign)
+    for i in sorted(dv_sign):
+        j = i + 1
+        while j < len(blocks) and j in dropped and DV_NUMBER_LINE.match(blocks[j].text):
+            dv_chrome.add(j)
+            j += 1
     for i in dropped:
         e = smap.get(i, {})
         t = blocks[i].text
@@ -182,8 +189,8 @@ def run_all(blocks: list[Block], smap: dict[int, dict], source: str = "lexbg") -
             continue  # the page's tail chrome: forum post titles there may open like a provision
         elif is_dv and i in decree and i < first_placed:
             continue  # the promulgation decree the material opens with
-        elif is_dv and i > last_placed and DV_NUMBER_LINE.match(t):
-            continue  # the material's number printed after the signature
+        elif is_dv and i in dv_chrome:
+            continue  # the signature, and the material's number after it
         elif _PROVISION_LIKE.match(t):
             ex.append({"block": i, "kind": "drop_of_provision", "detail": f"a line that opens like a provision was dropped: {t[:60]!r}"})
         elif _SEPARATOR.match(t) or _KNOWN_CHROME.match(t):
@@ -301,6 +308,8 @@ def run_all(blocks: list[Block], smap: dict[int, dict], source: str = "lexbg") -
             prev_heading = i
         else:
             prev_heading = None
+    if prev_heading is not None and smap[prev_heading]["label"] != "title":
+        ex.append({"block": prev_heading, "kind": "empty_section", "detail": "heading with no body at the end of the act"})
     last_art: tuple[int, str, int] | None = None
     seen_art: dict[str, int] = {}
     seen_sign: dict[str, int] = {}

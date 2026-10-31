@@ -53,6 +53,7 @@ def assemble_lines(blocks: list[Block], smap: dict[int, dict]) -> tuple[list[tup
     dropped: list[int] = []
     pending_title: tuple[str, int] | None = None
     last_label: str | None = None
+    numbered_run = False   # the current heading line began as a number line: a third line of the same heading joins it too
     for b in blocks:
         e = smap.get(b.i)
         label = e["label"] if e else "unknown"
@@ -65,7 +66,7 @@ def assemble_lines(blocks: list[Block], smap: dict[int, dict]) -> tuple[list[tup
             pending_title = None
             last_label = "article_title"
         if (label in HEADING_PREFIX and last_label == label and lines
-                and ((NUMBER_LINE.match(strip_line(lines[-1][0])) and not _HEADING_WORD.match(b.text))
+                and (((NUMBER_LINE.match(strip_line(lines[-1][0])) or numbered_run) and not _HEADING_WORD.match(b.text))
                      or _KAM.match(b.text)
                      or label == "title"  # a title printed on two lines ("ЗАКОН" / "за обществения транспорт" in the Gazette)
                      or (label == "annex_heading" and strip_line(lines[-1][0]).startswith("Приложение") and not b.text.startswith("Приложение")))):
@@ -76,6 +77,7 @@ def assemble_lines(blocks: list[Block], smap: dict[int, dict]) -> tuple[list[tup
             lines[-1] = (f"{text} {b.text}", idxs + [b.i])
         elif label in HEADING_PREFIX:
             lines.append((HEADING_PREFIX[label] + b.text, [b.i]))
+            numbered_run = bool(NUMBER_LINE.match(b.text))
         elif label == "prehistory":
             lines.append((f"*{b.text}*", [b.i]))
         elif label == "article_title":
@@ -94,6 +96,8 @@ def assemble_lines(blocks: list[Block], smap: dict[int, dict]) -> tuple[list[tup
             lines.append((f"**{m.group(1)}**{b.text[m.end():]}" if m else b.text, [b.i]))
         else:
             lines.append((b.text, [b.i]))
+        if label not in HEADING_PREFIX:
+            numbered_run = False
         last_label = label
     if pending_title is not None:
         lines.append((pending_title[0], [pending_title[1]]))

@@ -446,3 +446,42 @@ def test_a_gazette_reading_that_does_not_hold_is_refused(tmp_path):
     with pytest.raises(WriteRefused, match="no material.json"):
         write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
     assert (root / "laws" / f"{SLUG}.md").read_bytes() == before and _git(root, "rev-list", "--count", "HEAD") == "1\n"
+
+
+def test_a_gazette_write_is_held_to_the_entrys_route_address_and_history(tmp_path):
+    import source_exceptions as sx
+    root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
+    lst = root / "docs" / "data" / "source-exceptions.yaml"
+    before = (root / "laws" / f"{SLUG}.md").read_bytes()
+    sx.update(lst, SLUG, route="history")
+    with pytest.raises(WriteRefused, match="listed with the route whole_act_from_material \\(the list says history\\)"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    sx.update(lst, SLUG, route="whole_act_from_material", address="78")
+    with pytest.raises(WriteRefused, match="material 77 is not the entry's address 78"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    sx.update(lst, SLUG, address="77")
+    committed = {**COMMITTED, "amendment_history": [{"dv": "32/2026", "date": "2026-04-01"}, {"dv": "55/2026", "date": "2026-06-16"}], "ultima_actualizacion": "2026-06-16"}
+    (root / "laws" / f"{SLUG}.md").write_text(render_act(committed, "# x\n"), encoding="utf-8")
+    _git(root, "commit", "-qam", "amended")
+    with pytest.raises(WriteRefused, match="holds 55/2026 after the material's issue 32/2026"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    assert (root / "laws" / f"{SLUG}.md").read_bytes() != before and _git(root, "rev-list", "--count", "HEAD") == "2\n"
+    (root / "laws" / f"{SLUG}.md").write_bytes(before)
+    _git(root, "commit", "-qam", "back")
+    assert write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache).commit
+
+
+def test_lost_text_on_the_lexbg_path_lists_the_act_for_investigation(tmp_path):
+    import source_exceptions as sx
+    page = PAGE.replace('<div class="Article">Чл. 2. Законът влиза в сила от деня на обнародването му.</div>',
+                        '<div class="Article">Чл. 2. Текст.</div><div class="Section">Допълнителна разпоредба</div>'
+                        '<div class="Section">Заключителни разпоредби</div><div class="Article">§ 2. Законът влиза в сила.</div>')
+    smap = {**MAP, 7: {"label": "provisions_heading"}, 8: {"label": "provisions_heading"}, 9: {"label": "paragraph_sign", "n": "2"}, 10: {"label": "drop", "note": "chrome"}}
+    root, run_dir, raw_dir = _setup(tmp_path, page=page, smap=smap)
+    lst = _list_with(root, "drug-zakon")
+    with pytest.raises(WriteRefused, match="lost text"):
+        _write(root, run_dir, raw_dir)
+    e = sx.listed(SLUG, lst)
+    assert e is not None and e.route == "investigate" and e.source == "unknown" and e.address == "unknown" and e.evidence[0]["kind"] == "audit"
+    with pytest.raises(WriteRefused, match="on the exceptions list"):
+        _write(root, run_dir, raw_dir)   # listed now: refused by name before anything else

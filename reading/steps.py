@@ -60,8 +60,11 @@ DV_INDEX = ROOT / "data" / "dv" / "materials.jsonl"
 DV_ISSUES = ROOT / "data" / "dv" / "issues.jsonl"
 RAW_LEXBG = ROOT / "data" / "raw" / "lexbg"
 RAW_MOJ = ROOT / "data" / "raw" / "moj"
-LAW_TITLE = re.compile(r"^(Закон|Кодекс|Поправка)")
-NEW_ISSUE_PAGES = 1   # the newest ten issues: the index is kept within days of the Gazette
+LAW_TITLE = re.compile(r"^(Закон|Кодекс|Поправка|Решение|Указ)")
+SECTIONS = ("Народно събрание", "Конституционен съд", "Президент на Републиката")   # the bodies whose materials can change a law
+NEW_ISSUE_PAGES = 1   # the newest ten issues; the step stops when they do not reach the index's last issue
+# an amending or repealing instruction near the act's name: "В Закона за …", "Законът за … се отменя", "… от Закона за … се изменя"
+AMENDING_VERBS = r"(изменя|допълва|отменя|заменя|създава|заличава|правят следните изменения|обявява за противоконституцион)"
 
 
 def _now() -> str:
@@ -123,18 +126,22 @@ class AmendmentSearch:
         latest = max((r["issue_year"], r["issue_number"]) for r in rows)
         session = DvSession()
         later: list[dict] = []
-        for issue in enumerate_issues(session, max_pages=NEW_ISSUE_PAGES):
+        fetched_issues = list(enumerate_issues(session, max_pages=NEW_ISSUE_PAGES))
+        for issue in fetched_issues:
             if (issue.year, issue.number) > latest:
                 for m in fetch_materials(session, issue.id_obj):
                     later.append({"id_obj": issue.id_obj, "issue_year": issue.year, "issue_number": issue.number, "issue_date": issue.date,
                                   "status": "ok", "position": m.position, "id_mat": m.id_mat, "section": m.section, "title": m.title, "start_page": m.start_page})
         ctx.act_dir.mkdir(parents=True, exist_ok=True)
         (ctx.act_dir / "later-materials.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in later), encoding="utf-8")
+        newest = max(((i.year, i.number) for i in fetched_issues), default=latest)
+        oldest_new = min(((i.year, i.number) for i in fetched_issues), default=latest)
         name = _title_words(ctx)
         candidates = [r for r in rows + later if r.get("status") == "ok" and (r["issue_year"], r["issue_number"]) > since
-                      and r.get("section") == "Народно събрание" and LAW_TITLE.match(r.get("title") or "") and r["id_mat"] != id_mat]
+                      and r.get("section") in SECTIONS and LAW_TITLE.match(r.get("title") or "") and r["id_mat"] != id_mat]
         title_hits = [r for r in candidates if name in (r.get("title") or "").lower()]
-        amending = re.compile(r"в\s+закона\s+за\s+" + re.escape(name))
+        # the act's name (any case: "закона за …", "законът за …") within 200 characters of an amending or repealing verb
+        amending = re.compile(r"закон[аът]*\s+за\s+" + re.escape(name) + r".{0,200}?" + AMENDING_VERBS + "|" + AMENDING_VERBS + r".{0,200}?закон[аът]*\s+за\s+" + re.escape(name), re.S)
         amending_hits, mentions, fetched = [], [], 0
         for r in candidates:
             cached = (DV_CACHE / f"{r['id_mat']}.html").exists()
@@ -146,11 +153,15 @@ class AmendmentSearch:
             elif name in text:
                 mentions.append(r)
         out = {"act": ctx.slug, "material": id_mat, "promulgation_issue": f"{since[1]}/{since[0]}", "index_through": f"{latest[1]}/{latest[0]}",
-               "later_issues": sorted({f"{r['issue_number']}/{r['issue_year']}" for r in later}), "searched_for": name,
+               "newest_issue_seen": f"{newest[1]}/{newest[0]}", "oldest_issue_fetched": f"{oldest_new[1]}/{oldest_new[0]}",
+               "later_issues": sorted({f"{r['issue_number']}/{r['issue_year']}" for r in later}), "searched_for": name, "sections": list(SECTIONS),
                "candidates": len(candidates), "bodies_fetched": fetched, "title_hits": title_hits, "amending_hits": amending_hits,
                "mentions": [{k: r[k] for k in ("issue_year", "issue_number", "id_mat", "title")} for r in mentions], "searched_at": _now()}
         (ctx.act_dir / "amendments.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
         evidence = [_rel(ctx, ctx.act_dir / "amendments.json")]
+        if oldest_new > latest and oldest_new[0] == latest[0] and oldest_new[1] > latest[1] + 1:
+            return StepResult("stop", f"the issues fetched begin at бр. {oldest_new[1]}/{oldest_new[0]} and the index ends at бр. {latest[1]}/{latest[0]}: "
+                              f"a gap no search covered; extend the index first", evidence)
         if title_hits or amending_hits:
             hits = [f"{r['issue_number']}/{r['issue_year']} material {r['id_mat']}: {r['title'][:80]}" for r in title_hits + amending_hits]
             return StepResult("stop", "a later material amends the act, so its promulgation material is not the whole act "
@@ -164,7 +175,10 @@ class FetchMaterial:
     version = "1"
 
     def inputs(self, ctx: Context) -> list[Path]:
-        return []
+        try:
+            return [DV_CACHE / f"{_material_id(ctx)}.html"]   # the cached page, when there is one, is what the step records
+        except ValueError:
+            return []
 
     def outputs(self, ctx: Context) -> list[Path]:
         return [ctx.act_dir / "material.json"]
@@ -235,12 +249,18 @@ def _dispatch_or_collect(ctx: Context, rnd: int) -> tuple[str, str, dict | None]
     return "collected", f"round {rnd} collected: {len(report['exceptions'])} exception(s), {len(report['source_findings'])} source finding(s)", report
 
 
+def _call_answers(ctx: Context, rnd: int) -> list[Path]:
+    """The labeller's own answer files of a round (one per call), without the per-task files and sidecars the split writes."""
+    mdir = ctx.act_dir / "maps" / f"round{rnd}"
+    return sorted(p for p in mdir.glob("*.json") if run_driver.calls.CALL_NAME.fullmatch(p.stem)) if mdir.exists() else []
+
+
 class Label:
     name = "label"
-    version = "1"
+    version = "2"
 
     def inputs(self, ctx: Context) -> list[Path]:
-        return [ctx.act_dir / "tasks" / "round0", ctx.act_dir / "maps" / "round0"]
+        return [ctx.act_dir / "tasks" / "round0", *_call_answers(ctx, 0)]
 
     def outputs(self, ctx: Context) -> list[Path]:
         return [ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1"]
@@ -254,14 +274,16 @@ class Label:
 
 class Ladder:
     name = "ladder"
-    version = "1"
+    version = "2"
 
     def inputs(self, ctx: Context) -> list[Path]:
-        return [ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1", ctx.act_dir / "maps" / "round1",
-                ctx.act_dir / "tasks" / "round2", ctx.act_dir / "maps" / "round2"]
+        return [ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1", *_call_answers(ctx, 1),
+                ctx.act_dir / "tasks" / "round2", *_call_answers(ctx, 2)]
 
     def outputs(self, ctx: Context) -> list[Path]:
-        return [ctx.act_dir / "report-round1.json", ctx.act_dir / "report-round2.json", ctx.act_dir / "ladder.json"]
+        # the map, the staged body and the diff are written by every collect; the ladder is the last step that collects
+        return [ctx.act_dir / "report-round1.json", ctx.act_dir / "report-round2.json", ctx.act_dir / "ladder.json",
+                ctx.act_dir / "map.json", ctx.act_dir / "staged.md", ctx.act_dir / "diff.txt"]
 
     def run(self, ctx: Context) -> StepResult:
         report = json.loads((ctx.act_dir / "report-round0.json").read_text(encoding="utf-8"))
@@ -320,10 +342,10 @@ class Witnesses:
     version = "1"
 
     def inputs(self, ctx: Context) -> list[Path]:
-        paths = [ctx.act_dir / "staged.md", ctx.act_dir / "witness-answer.json", RAW_MOJ / "manifest.jsonl"]
+        paths = [ctx.act_dir / "staged.md", ctx.act_dir / "witness-answer.json"]
         try:
             doc_id = _doc_id(ctx)
-            paths.append(RAW_LEXBG / f"{doc_id}.html")
+            paths += [RAW_LEXBG / f"{doc_id}.html", RAW_MOJ / f"{doc_id}.html", RAW_MOJ / f"{doc_id}.absent.html"]
         except Exception:  # no corpus file: the step itself refuses
             pass
         return paths
@@ -357,14 +379,24 @@ class Witnesses:
             witnesses.record(ctx.act_dir, {})
             return StepResult("done", "no difference from any witness; " + witnesses.summary(ctx.act_dir), evidence + [_rel(ctx, ctx.act_dir / "witness-record.json")])
         task_path = ctx.act_dir / "witness-task.md"
-        task_path.write_text(witnesses.task_text(diff, ctx.slug, answer_path), encoding="utf-8")
+        sha = witnesses.diff_sha256(ctx.act_dir)
+        task_path.write_text(witnesses.task_text(diff, ctx.slug, answer_path, sha), encoding="utf-8")
+        counts = ", ".join(f"{w['witness']} {w['count']}" for w in diff["witnesses"])
         if not answer_path.exists():
-            counts = ", ".join(f"{w['witness']} {w['count']}" for w in diff["witnesses"])
             return StepResult("pending", f"differences to settle ({counts}); one settler call: read {task_path}, write {answer_path}", evidence)
         try:
-            witnesses.record(ctx.act_dir)
+            answer = json.loads(answer_path.read_text(encoding="utf-8"))
+            if isinstance(answer, dict) and answer.get("diff_sha256") != sha:
+                # the answer settles another diff (the body or a witness changed since): the settler reads the new task
+                return StepResult("pending", f"the settler's answer is for another diff; differences to settle again ({counts}); "
+                                  f"one settler call: read {task_path}, write {answer_path}", evidence)
+            witnesses.record(ctx.act_dir, answer)
         except (ValueError, json.JSONDecodeError) as exc:
             return StepResult("stop", f"the settler's answer does not settle the differences: {exc}", evidence)
+        rec = json.loads((ctx.act_dir / "witness-record.json").read_text(encoding="utf-8"))
+        if rec.get("stops"):
+            return StepResult("stop", f"the settler found our reading wrong ({', '.join(rec['stops'])}): " + witnesses.summary(ctx.act_dir),
+                              evidence + [_rel(ctx, ctx.act_dir / "witness-record.json")])
         return StepResult("done", witnesses.summary(ctx.act_dir), evidence + [_rel(ctx, ctx.act_dir / "witness-record.json")])
 
 
@@ -466,13 +498,22 @@ class Investigate:
             for key, allowed in (("defect", sx.DEFECTS), ("source", sx.SOURCES), ("route", sx.ROUTES)):
                 if got.get(key) not in allowed:
                     problems.append(f"{key} {got.get(key)!r} is not one of {sorted(allowed)}")
-            if not isinstance(got.get("address"), str) or not got["address"].strip():
+            address = got.get("address")
+            if not isinstance(address, str) or not address.strip():
                 problems.append("address missing")
-            if not isinstance(got.get("evidence"), dict) or not all(isinstance(got["evidence"].get(k), str) for k in ("defect", "source", "route")):
-                problems.append("evidence notes missing")
+            elif got.get("source") in ("dv_html", "dv_pdf") and not address.strip().isdigit():
+                problems.append(f"address {address!r} is not a material id, as the source {got.get('source')} needs")
+            elif got.get("source") in ("moj_portal", "strategy_bg", "paid_service") and not address.strip().startswith(("http://", "https://")):
+                problems.append(f"address {address!r} is not a URL, as the source {got.get('source')} needs")
+            ev = got.get("evidence")
+            if not isinstance(ev, dict) or not all(isinstance(ev.get(k), str) and ev[k].strip() for k in ("defect", "source", "route")):
+                problems.append("evidence notes missing or empty")
+            if set(got) - {"defect", "source", "address", "route", "evidence"}:
+                problems.append(f"keys outside the form: {sorted(set(got) - {'defect', 'source', 'address', 'route', 'evidence'})}")
         if problems:
             return StepResult("stop", "the investigator's answer is outside the form: " + "; ".join(problems), [_rel(ctx, answer)])
-        (ctx.act_dir / "investigate-result.json").write_text(json.dumps({**got, "answered_at": _now()}, ensure_ascii=False, indent=1), encoding="utf-8")
+        kept = {k: got[k] for k in ("defect", "source", "address", "route", "evidence")}
+        (ctx.act_dir / "investigate-result.json").write_text(json.dumps({**kept, "answered_at": _now()}, ensure_ascii=False, indent=1), encoding="utf-8")
         return StepResult("done", f"defect {got['defect']}, source {got['source']} at {got['address']}, route {got['route']}", [_rel(ctx, answer)])
 
 

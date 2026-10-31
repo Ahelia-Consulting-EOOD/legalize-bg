@@ -102,3 +102,46 @@ def test_lost_text_is_a_source_finding_that_the_write_refuses():
     _, ex = run_all(act.blocks, smap, source="dv")
     assert [(e["kind"], e["block"]) for e in ex] == [("sign_start", 14)]
     assert ladder.LOST_TEXT == {"empty_section", "sign_start"} and ladder.LOST_TEXT <= ladder.SOURCE_FINDINGS
+
+
+def test_an_annex_after_the_signature_is_not_excused_and_the_signature_is_chrome_wherever_it_stands():
+    html = SMALL.replace('<p style="text-align:justify">1563</p>',
+                         '<p style="text-align:justify">1563</p><p style="text-align:center">Приложение № 1 към чл. 2</p>'
+                         '<p style="text-align:justify">Чл. 1. Ред от приложението.</p><p style="text-align:justify">Данни.</p>')
+    act = split_dv(html)
+    dropped_all = {**MAP, 18: {"label": "drop", "note": "x"}, 19: {"label": "drop", "note": "x"}, 20: {"label": "drop", "note": "x"}}
+    _, ex = run_all(act.blocks, dropped_all, source="dv")
+    assert {e["kind"] for e in ex} >= {"drop_of_provision", "drop_outside_act"}   # the annex is not the signature's tail (S1 review, finding 1)
+    placed = {**MAP, 18: {"label": "annex_heading"}, 19: {"label": "annex_row"}, 20: {"label": "annex_row"}}
+    _, ex = run_all(act.blocks, placed, source="dv")
+    assert ex == [], ex   # the signature and the number dropped between the act and its annex are chrome
+
+
+def test_every_empty_section_is_found():
+    from reading.splitter import Block, SplitAct
+    def act(texts):
+        return [Block(i, t, "DvCenter") for i, t in enumerate(texts)]
+    # an empty transitional section before the final one; an empty chapter before the next chapter; an empty heading at the end
+    blocks = act(["Чл. 1. Едно.", "ПРЕХОДНИ РАЗПОРЕДБИ", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. Текст.", "Глава втора", "ПРАЗНА", "Глава трета", "ПЪЛНА", "Чл. 2. Две.", "Глава четвърта", "КРАЙ"])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "provisions_heading"}, 2: {"label": "provisions_heading"}, 3: {"label": "paragraph_sign", "n": "1"},
+            4: {"label": "chapter_heading"}, 5: {"label": "chapter_heading"}, 6: {"label": "chapter_heading"}, 7: {"label": "chapter_heading"},
+            8: {"label": "article_head", "n": "2"}, 9: {"label": "chapter_heading"}, 10: {"label": "chapter_heading"}}
+    _, ex = run_all(blocks, smap)
+    assert [(e["kind"], e["block"]) for e in ex if e["kind"] == "empty_section"] == [("empty_section", 1), ("empty_section", 5), ("empty_section", 10)]
+    # a provisions heading continued by its "КЪМ …" line, and a chapter with its two-line title, are not empty
+    blocks = act(["Чл. 1. Едно.", "Преходни и Заключителни разпоредби", "КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ", "Преходни и Заключителни разпоредби", "§ 3. Текст.", "Глава втора", "ЗАГЛАВИЕ", "Раздел I", "Чл. 2. Две."])
+    smap = {0: {"label": "article_head", "n": "1"}, 1: {"label": "provisions_heading"}, 2: {"label": "provisions_heading"}, 3: {"label": "provisions_heading"},
+            4: {"label": "paragraph_sign", "n": "3"}, 5: {"label": "chapter_heading"}, 6: {"label": "chapter_heading"}, 7: {"label": "section_heading"}, 8: {"label": "article_head", "n": "2"}}
+    _, ex = run_all(blocks, smap)
+    assert not [e for e in ex if e["kind"] == "empty_section"], ex
+
+
+def test_a_three_line_heading_is_one_heading():
+    from reading.assembler import assemble
+    from reading.splitter import Block
+    blocks = [Block(0, "Глава втора", "DvCenter"), Block(1, "ПЛАНИРАНЕ И УПРАВЛЕНИЕ", "DvCenter"), Block(2, "КЛИРИНГОВА СИСТЕМА", "DvCenter"), Block(3, "Чл. 1. Едно.", "DvJustify")]
+    smap = {0: {"label": "chapter_heading"}, 1: {"label": "chapter_heading"}, 2: {"label": "chapter_heading"}, 3: {"label": "article_head", "n": "1"}}
+    md, _, _ = assemble(blocks, smap)
+    assert md.startswith("### Глава втора ПЛАНИРАНЕ И УПРАВЛЕНИЕ КЛИРИНГОВА СИСТЕМА\n")
+    _, ex = run_all(blocks, smap, source="dv")
+    assert ex == []

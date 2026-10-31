@@ -95,3 +95,15 @@ def test_the_investigators_answer_is_held_to_the_form(tmp_path, monkeypatch):
     res = steps.STEPS["route_decision"].run(ctx)
     e = sx.listed(SLUG, ctx.list_path)
     assert res.outcome == "stop" and e.route == "history" and e.state == "investigated" and e.address == "242221" and e.evidence[-1]["kind"] == "case_file"
+
+
+def test_the_label_step_reads_only_the_labellers_answer_files(tmp_path):
+    ctx = _ctx(tmp_path)
+    mdir = ctx.act_dir / "maps" / "round0"
+    mdir.mkdir(parents=True)
+    (mdir / "abcdefabcdef-0000-0007.json").write_text("{}", encoding="utf-8")
+    (mdir / "abcdefabcdef-0000-0007.split.json").write_text("{}", encoding="utf-8")
+    (mdir / "0003.json").write_text("[]", encoding="utf-8")
+    ins = steps.STEPS["label"].inputs(ctx)
+    assert [p.name for p in ins if p.parent == mdir] == ["abcdefabcdef-0000-0007.json"]   # the split's files are not the step's inputs
+    assert ctx.act_dir / "map.json" in steps.STEPS["ladder"].outputs(ctx) and ctx.act_dir / "staged.md" in steps.STEPS["ladder"].outputs(ctx)

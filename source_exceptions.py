@@ -38,6 +38,7 @@ SOURCES: dict[str, str] = {
     "moj_portal": "the Ministry of Justice portal (justice.government.bg/home/normdoc/{id})",
     "strategy_bg": "the public-consultation portal strategy.bg",
     "paid_service": "a paid consolidated-law service (a spending decision of the owner)",
+    "unknown": "not yet decided: the act was listed by the content check and the investigator records the source",
 }
 ROUTES: dict[str, str] = {
     "whole_act_from_material": "the act read whole from its promulgation material (an act never amended)",
@@ -59,7 +60,7 @@ HEADER = """# docs/data/source-exceptions.yaml: the exceptions list (plan of 31 
 # correct from its route, and `python source_exceptions.py report` prints the distance left first.
 #
 # defect: dropped_section | wrong_text | page_without_act | server_error | source_before_archive
-# source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service; address: a material id or a URL
+# source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service | unknown; address: a material id or a URL, or unknown
 # route:  whole_act_from_material | history | source_before_archive | investigate
 # state:  listed | investigated | committed | stopped
 # evidence: a list of {kind: decision | audit | case_file | register | plan, ref: <where>}

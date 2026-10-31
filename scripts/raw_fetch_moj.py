@@ -8,7 +8,7 @@ a curated subset, not the whole corpus: for an act it does not hold it answers a
 fetches one page at a time with one request per second, keeps the body as ``<out>/<id>.html`` (an absent act's
 answer as ``<id>.absent.html``, kept as the evidence of the absence) and appends one line per fetch to
 ``<out>/manifest.jsonl``: the id, the URL, the time, the HTTP status, the bytes, the SHA-256 and the outcome
-(``ok``, ``absent`` or ``error``). A page already fetched with outcome ``ok`` is not fetched again unless ``--force``.
+(``ok``, ``absent`` or ``error``). A page already answered, ``ok`` or ``absent``, is not fetched again unless ``--force``; an error is asked again.
 The portal is a witness (decision D-061): nothing here reads the text, and nothing here writes a corpus file.
 """
 from __future__ import annotations
@@ -40,7 +40,8 @@ def manifest_rows(out: Path) -> list[dict]:
 
 
 def last_ok(out: Path, doc_id: str) -> dict | None:
-    rows = [r for r in manifest_rows(out) if str(r.get("doc_id")) == str(doc_id) and r.get("outcome") == "ok"]
+    """The last answered fetch of the page: ``ok`` or ``absent`` (the portal's settled answer), never an error."""
+    rows = [r for r in manifest_rows(out) if str(r.get("doc_id")) == str(doc_id) and r.get("outcome") in ("ok", "absent")]
     return rows[-1] if rows else None
 
 
@@ -54,7 +55,7 @@ def fetch_one(doc_id: str, out: Path, *, session=None, sleep=time.sleep, force: 
     out.mkdir(parents=True, exist_ok=True)
     if not force:
         row = last_ok(out, doc_id)
-        if row is not None and (out / f"{doc_id}.html").exists():
+        if row is not None and (out / row.get("file", f"{doc_id}.html")).exists():
             return {**row, "cached": True}
     session = session or requests.Session()
     url = URL.format(id=doc_id)

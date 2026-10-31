@@ -6,7 +6,7 @@
 # correct from its route, and `python source_exceptions.py report` prints the distance left first.
 #
 # defect: dropped_section | wrong_text | page_without_act | server_error | source_before_archive
-# source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service; address: a material id or a URL
+# source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service | unknown; address: a material id or a URL, or unknown
 # route:  whole_act_from_material | history | source_before_archive | investigate
 # state:  listed | investigated | committed | stopped
 # evidence: a list of {kind: decision | audit | case_file | register | plan, ref: <where>}
