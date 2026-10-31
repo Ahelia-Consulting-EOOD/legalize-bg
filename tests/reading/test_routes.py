@@ -87,21 +87,27 @@ def test_stop_when_the_steps_are_used_up_writes_a_case_file_and_moves_the_entry(
     assert check_run(root / "data" / "runs" / "r", root) == [] and check_list(_list(root), root) == []
 
 
-def test_stop_when_a_step_changes_nothing_on_its_second_run_but_never_on_its_first(root):
+def test_stop_when_a_step_says_it_changed_nothing_but_not_when_new_inputs_give_the_same_outputs(root):
     ctx = _ctx(root)
     ctx.act_dir.mkdir(parents=True)
     (ctx.act_dir / "in.txt").write_text("1", encoding="utf-8")
     (ctx.act_dir / f"{B}.txt").write_text("x", encoding="utf-8")  # the output exists before the first run: not a stop (review 1, finding 2)
     steps = _steps(A, B, C)
     steps[B] = FakeStep(B, _writes(f"{B}.txt"), inputs=["in.txt"], outputs=[f"{B}.txt"])
-    out = run_route(ctx, steps, routes={"whole_act_from_material": (A, B)})
-    assert out.detail == routes.STOP_STEPS_USED_UP and steps[B].calls == 1
-    (ctx.act_dir / "in.txt").write_text("2", encoding="utf-8")  # new inputs, the same answer: the step changed nothing
-    out = run_route(_ctx(root), steps, routes={"whole_act_from_material": (A, B)})
+    steps[C] = FakeStep(C, lambda c: StepResult("pending", "waiting"), inputs=["answer.json"], outputs=["c.txt"])
+    out = run_route(ctx, steps, routes=ROUTES)
+    assert out.state == "pending" and out.step == C and steps[B].calls == 1
+    (ctx.act_dir / "in.txt").write_text("2", encoding="utf-8")  # the index grew, the same answer: the route goes on (review 2, finding 1)
+    out = run_route(ctx, steps, routes=ROUTES)
+    assert out.state == "pending" and out.step == C and steps[A].calls == 1 and steps[B].calls == 2
+    rec = json.loads(ctx.record_path.read_text(encoding="utf-8"))
+    assert [(e["step"], e["outcome"]) for e in rec["steps"] if e["step"] == B] == [(B, "done"), (B, "done")]
+    (ctx.act_dir / "in.txt").write_text("3", encoding="utf-8")
+    steps[B] = FakeStep(B, lambda c: StepResult("unchanged", "the labeller holds its reading"), inputs=["in.txt"], outputs=[f"{B}.txt"])
+    out = run_route(ctx, steps, routes=ROUTES)   # the step itself says it changed nothing: the second fixed point
     assert out.state == "stopped" and out.step == B and out.detail == f"{routes.STOP_UNCHANGED}: {B}"
-    assert steps[A].calls == 1 and steps[B].calls == 2
-    rec = json.loads((root / "data" / "runs" / "route-ledger" / f"{SLUG}.json").read_text(encoding="utf-8"))
-    assert [(e["run"], e["step"], e["outcome"]) for e in rec["steps"]] == [("r", A, "done"), ("r", B, "done"), ("r", B, "unchanged")]
+    assert ctx.record_path == root / "data" / "runs" / "route-ledger" / f"{SLUG}.json"
+    assert routes.context(SLUG, "r9", root=root, run_root=root / "elsewhere").record_path == ctx.record_path   # one record per act (finding 6)
 
 
 def test_stop_when_the_next_step_is_not_defined(root):
@@ -233,10 +239,14 @@ def test_a_second_stop_keeps_the_prose_unless_the_owner_ruled_on_another_stop(ro
     run_route(_ctx(root, "r3"), _steps(A))   # the same stop: the ruling stays with it
     assert "Build the engine first." in case.read_text(encoding="utf-8")
     run_route(_ctx(root, "r4"), {"engine": FakeStep("engine", lambda c: StepResult("stop", "a witness differs"), outputs=["e.txt"])}, routes=HIST)
-    fm, prose = routes.split_case_file(case.read_text(encoding="utf-8"))   # another stop under a ruling: the old file is archived (finding 7)
-    assert fm["exception"] == "a witness differs" and "(not yet given)" in prose and fm["previous"].startswith("docs/cases/archive/")
+    fm, prose = routes.split_case_file(case.read_text(encoding="utf-8"))   # another stop under written prose: the old file is archived (finding 7)
+    assert fm["exception"] == "a witness differs" and "(not yet given)" in prose and "(not yet written)" in prose and fm["previous"].startswith("docs/cases/archive/")
     archived = (root / fm["previous"]).read_text(encoding="utf-8")
-    assert "Build the engine first." in archived and check_case_file(case, root) == []
+    assert "Build the engine first." in archived and "The engine is F1's." in archived and check_case_file(case, root) == []
+    case.write_text(case.read_text(encoding="utf-8").replace("(not yet written)", "Only a proposal.", 1), encoding="utf-8")
+    run_route(_ctx(root, "r5", attempt="2"), {"engine": FakeStep("engine", lambda c: StepResult("stop", "another witness differs"), outputs=["e.txt"])}, routes=HIST)
+    fm, prose = routes.split_case_file(case.read_text(encoding="utf-8"))   # a proposal alone is also written for its stop (review 2, finding 5)
+    assert "Only a proposal." not in prose and "Only a proposal." in (root / fm["previous"]).read_text(encoding="utf-8")
 
 
 def test_an_unparsable_case_file_is_never_written_over(root):
@@ -250,7 +260,7 @@ def test_an_unparsable_case_file_is_never_written_over(root):
     assert "OWNER RULING" in case.read_text(encoding="utf-8")
 
 
-def test_an_interrupted_step_leaves_its_trace_and_is_not_rerun_blindly(root):
+def test_an_interrupted_step_is_a_stop_with_a_case_file_and_is_not_rerun_blindly(root):
     ctx = _ctx(root)
 
     def dies(c):
@@ -261,7 +271,40 @@ def test_an_interrupted_step_leaves_its_trace_and_is_not_rerun_blindly(root):
     rec = json.loads(ctx.record_path.read_text(encoding="utf-8"))
     assert rec["steps"][-1]["outcome"] == "interrupted"
     with pytest.raises(RouteRefused, match="was interrupted"):
-        run_route(ctx, {A: step}, routes={"whole_act_from_material": (A,)})
+        run_step(ctx, step)
+    out = run_route(ctx, {A: step}, routes={"whole_act_from_material": (A,)})   # review 2, finding 3: a stop the owner reads
+    assert out.state == "stopped" and out.step == A and "interrupted in run r" in out.detail and step.calls == 1
+    assert sx.listed(SLUG, _list(root)).state == "stopped" and check_run(root / "data" / "runs" / "r", root) == []
+
+
+def test_a_stop_that_is_over_is_cleared_from_the_list_the_ledger_and_the_case_file(root):
+    ctx = _ctx(root)
+    run_route(ctx, {A: FakeStep(A, _writes("a.txt"), outputs=["a.txt"])}, routes=ROUTES)   # stops: B is not defined
+    case = root / "docs" / "cases" / f"{SLUG}.md"
+    assert sx.listed(SLUG, _list(root)).state == "stopped" and case.exists()
+    steps = {A: FakeStep(A, _writes("a.txt"), outputs=["a.txt"]), B: FakeStep(B, lambda c: StepResult("pending", "waiting"), inputs=["x"], outputs=["b.txt"])}
+    out = run_route(ctx, steps, routes=ROUTES)   # B now exists and waits: the act went on (review 2, finding 4)
+    assert out.state == "pending" and out.step == B
+    e = sx.listed(SLUG, _list(root))
+    assert e.state == "investigated" and e.case_file == ""
+    ledger = json.loads(ctx.ledger_path.read_text(encoding="utf-8"))
+    assert ledger["state"] == "pending" and ledger["stopped_at"] is None
+    fm, _ = routes.split_case_file(case.read_text(encoding="utf-8"))
+    assert fm["superseded"] == "the act went on in run r" and check_case_file(case, root) == []
+    assert f"{SLUG}: route whole_act_from_material, pending at {B}" in routes.report(root / "data" / "runs" / "r", root)
+
+
+def test_a_committed_ledger_walked_again_holds_its_commit(root):
+    steps = {A: FakeStep(A, lambda c: StepResult("done", "committed", committed="abc1234"), outputs=["a.txt"])}
+    run_route(_ctx(root), steps, routes={"whole_act_from_material": (A,)})
+    assert run_route(_ctx(root, "r2"), steps, routes={"whole_act_from_material": (A,)}).commit == "abc1234"   # through the skip
+    assert run_route(_ctx(root, "r2"), steps, routes={"whole_act_from_material": (A,)}).commit == "abc1234"   # review 2, finding 2
+    assert "committed at amendment_search, commit abc1234" in routes.report(root / "data" / "runs" / "r2", root)
+    rec = json.loads((root / "data" / "runs" / "route-ledger" / f"{SLUG}.json").read_text(encoding="utf-8"))
+    rec["steps"].append(dict(rec["steps"][0]))   # a record that breaks the bound is caught after the fact (finding 8)
+    (root / "data" / "runs" / "route-ledger" / f"{SLUG}.json").write_text(json.dumps(rec), encoding="utf-8")
+    assert any("ran twice on the same inputs" in p for p in check_run(root / "data" / "runs" / "r", root))
+    assert any("ran twice on the same inputs" in p for p in check_list(_list(root), root))
 
 
 def test_the_report_lists_a_runs_case_files_and_the_distance(root):

@@ -6,7 +6,9 @@ later steps and the write step when they exist). The driver runs a listed act th
 at a fixed point:
 
 - the steps are used up without a committed act;
-- a step changed nothing (its declared outputs hash the same as after its previous run);
+- a step changed nothing: it is reached again with inputs it has already run on (running it again would change
+  nothing, so it is not run: its earlier result, a stop included, stands), or it reports that it changed nothing
+  (the ladder, when the labeller holds a reading the checks refuse);
 - the next step is not defined (its name is not in the step registry).
 
 A step never runs again on inputs it has already run on: the hash of each step's declared inputs, the
@@ -68,7 +70,7 @@ STOP_UNDEFINED = "the next step is not defined"
 CASE_PARTS = ("Lessons learnt", "Proposal", "The owner's ruling")
 CASE_PLACEHOLDER = {"Lessons learnt": "(not yet written)", "Proposal": "(not yet written)", "The owner's ruling": "(not yet given)"}
 CASE_FIELDS = ("act", "title", "route", "stopped_at", "exception", "tried", "run", "record", "date")
-CASE_OPTIONAL = ("previous", "resolved")
+CASE_OPTIONAL = ("previous", "resolved", "superseded")
 _DATE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 _FRONT = re.compile(r"^---\n(.*?)\n---\n(.*)$", re.S)
 
@@ -117,7 +119,7 @@ class Context:
 
     @property
     def record_path(self) -> Path:
-        return self.run_root.parent / STEP_RECORDS / f"{self.slug}.json"
+        return self.root / "data" / "runs" / STEP_RECORDS / f"{self.slug}.json"
 
     def rel(self, p: Path) -> str:
         try:
@@ -163,9 +165,9 @@ def _hash_paths(paths: list[Path], extra: str = "") -> str:
 
 
 def input_hash(step: Step, ctx: Context) -> str:
-    """The step's declared inputs, the route's parameters and the list entry's fields: what the step runs on."""
+    """The step's declared inputs, its version, the route's parameters and the list entry's fields: what the step runs on."""
     entry = {k: v for k, v in ctx.entry.to_dict().items() if k in ("defect", "source", "address", "route")} if ctx.entry else {}
-    extra = json.dumps({"params": ctx.params, "entry": entry}, sort_keys=True, ensure_ascii=False)
+    extra = json.dumps({"params": ctx.params, "entry": entry, "version": str(getattr(step, "version", ""))}, sort_keys=True, ensure_ascii=False)
     return _hash_paths(step.inputs(ctx), extra)
 
 
@@ -215,10 +217,9 @@ def run_step(ctx: Context, step: Step, ledger: dict | None = None) -> dict:
         if e["outcome"] == "pending":
             raise RouteRefused(f"{ctx.slug}: step {step.name} is pending on these inputs ({h[:12]}) since run {e['run']}; "
                                f"it runs again when its inputs change")
-        if e["outcome"] == "running":
+        if e["outcome"] in ("running", "interrupted"):
             raise RouteRefused(f"{ctx.slug}: step {step.name} was interrupted on these inputs ({h[:12]}) in run {e['run']} "
                                f"(started {e['started']}); read the record before running it again")
-    previous = [e for e in record["steps"] if e["step"] == step.name and e["outcome"] in COMPLETED]
     entry = {"step": step.name, "run": ctx.run, "input_sha256": h, "outputs_sha256": None, "outcome": "running", "detail": "",
              "evidence": [], "committed": None, "started": _now(), "ended": None}
     record["steps"].append(entry)
@@ -233,9 +234,7 @@ def run_step(ctx: Context, step: Step, ledger: dict | None = None) -> dict:
         _write_json(ctx.record_path, record)
         raise
     after = outputs_hash(step, ctx)
-    outcome = res.outcome
-    if outcome == "done" and previous and after == previous[-1]["outputs_sha256"] and not res.committed:
-        outcome = "unchanged"   # the same answer twice: the step changed nothing since its last run
+    outcome = res.outcome   # "unchanged" is the step's own word: it changed nothing on new inputs (the same answer twice)
     entry.update({"outputs_sha256": after, "outcome": outcome, "detail": res.detail, "evidence": list(res.evidence),
                   "committed": res.committed, "ended": _now()})
     _write_json(ctx.record_path, record)
@@ -264,7 +263,9 @@ def run_route(ctx: Context, steps: dict[str, Step], route: str | None = None,
     ledger["route"] = route
     record = load_record(ctx)
     if ledger.get("state") == "committed":
-        last = next(e for e in reversed(ledger["entries"]) if e.get("committed"))
+        last = next((e for e in reversed(record["steps"]) if e.get("committed")), None)
+        if last is None:
+            raise RouteRefused(f"{ctx.slug}: the run's ledger says committed but the act's record holds no commit; read both before going on")
         return _committed(ctx, ledger, last)
     name = routes[route][-1] if routes[route] else ""
     for name in routes[route]:
@@ -286,18 +287,15 @@ def run_route(ctx: Context, steps: dict[str, Step], route: str | None = None,
                                        f"the run folder was altered, read the record before going on")
                 continue   # the result stands
             if e["outcome"] == "pending":
-                ledger["state"] = "pending"
-                save_ledger(ctx, ledger)
-                return Outcome("pending", name, e["detail"])
+                return _pending(ctx, ledger, name, e["detail"])
             if e["outcome"] in ("running", "interrupted"):
-                raise RouteRefused(f"{ctx.slug}: step {name} was interrupted in run {e['run']}; read the record before running it again")
+                # the step died on these inputs: a stop the owner reads, never a blind rerun
+                return _stop(ctx, ledger, name, f"the step was interrupted in run {e['run']} (started {e['started']}); the record names it")
             # the step changed nothing or stopped on these inputs: the stop stands
             return _stop(ctx, ledger, name, e["detail"] if e["outcome"] == "stop" else f"{STOP_UNCHANGED}: {name}")
         e = run_step(ctx, step, ledger)
         if e["outcome"] == "pending":
-            ledger["state"] = "pending"
-            save_ledger(ctx, ledger)
-            return Outcome("pending", name, e["detail"])
+            return _pending(ctx, ledger, name, e["detail"])
         if e["outcome"] == "unchanged":
             return _stop(ctx, ledger, name, f"{STOP_UNCHANGED}: {name}")
         if e["outcome"] == "stop":
@@ -307,9 +305,34 @@ def run_route(ctx: Context, steps: dict[str, Step], route: str | None = None,
     return _stop(ctx, ledger, name, STOP_STEPS_USED_UP)
 
 
+def _pending(ctx: Context, ledger: dict, name: str, detail: str) -> Outcome:
+    """The route waits on the model's answers; an earlier stop of this act is over, and the list and the case file say so."""
+    ledger["state"] = "pending"
+    ledger["step"] = name
+    ledger["stopped_at"] = None
+    ledger["exception"] = None
+    save_ledger(ctx, ledger)
+    if ctx.entry.state == "stopped":
+        _supersede_case(ctx)
+        ctx.entry = sx.update(ctx.list_path, ctx.slug, state="investigated" if ctx.entry.route != "investigate" else "listed", case_file="")
+    return Outcome("pending", name, detail)
+
+
+def _supersede_case(ctx: Context) -> None:
+    case = case_path(ctx.root, ctx.slug)
+    if case.exists():
+        fm, prose = split_case_file(case.read_text(encoding="utf-8"))
+        if fm is not None and prose is not None and not fm.get("resolved"):
+            fm["superseded"] = f"the act went on in run {ctx.run}"
+            _write_case(case, fm, prose)
+
+
 def _committed(ctx: Context, ledger: dict, e: dict) -> Outcome:
     ledger["state"] = "committed"
+    ledger["step"] = e["step"]
     ledger["stopped_at"] = None
+    ledger["exception"] = None
+    ledger["commit"] = e["committed"]
     save_ledger(ctx, ledger)
     if ctx.entry.state != "committed" or ctx.entry.commit != e["committed"]:
         ctx.entry = sx.update(ctx.list_path, ctx.slug, state="committed", commit=e["committed"], case_file="")
@@ -347,21 +370,22 @@ def case_path(root: Path, slug: str) -> Path:
 
 def _write_case(path: Path, fm: dict, prose: str) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text("---\n" + yaml.safe_dump(fm, allow_unicode=True, sort_keys=False, width=1000) + "---\n\n" + prose.strip("\n") + "\n", encoding="utf-8")
+    tmp = path.with_name(path.name + ".tmp")   # whole or not at all: a crash never truncates the owner's text
+    tmp.write_text("---\n" + yaml.safe_dump(fm, allow_unicode=True, sort_keys=False, width=1000) + "---\n\n" + prose.strip("\n") + "\n", encoding="utf-8")
+    tmp.replace(path)
 
 
-def _ruled(prose: str) -> bool:
-    """Whether the owner's ruling part holds more than its placeholder."""
-    m = re.search(r"^## The owner's ruling\n(.*)$", prose, re.S | re.M)
-    body = (m.group(1) if m else "").strip()
-    return bool(body) and body != CASE_PLACEHOLDER["The owner's ruling"]
+def _written(prose: str) -> bool:
+    """Whether any prose part holds more than its placeholder (the model's lessons or proposal, the owner's ruling)."""
+    parts = re.split(r"^## .+$", prose, flags=re.M)[1:]
+    return any(p.strip() and p.strip() not in CASE_PLACEHOLDER.values() for p in parts)
 
 
 def write_case_file(ctx: Context, ledger: dict, step: str, exception: str) -> Path:
     """Write the case file's frontmatter; the prose parts are kept, or placeholders when the file is new.
 
     A case file the driver cannot parse refuses the write (the owner's text is never replaced); a case file whose
-    owner's ruling answers another stop is archived first, and the new file names it under ``previous``.
+    prose was written for another stop is archived first, and the new file names it under ``previous``.
     """
     record = load_record(ctx)
     tried = [{"run": e["run"], "step": e["step"], "outcome": e["outcome"], "detail": e["detail"], "evidence": list(e["evidence"])}
@@ -374,7 +398,7 @@ def write_case_file(ctx: Context, ledger: dict, step: str, exception: str) -> Pa
         old_fm, prose = split_case_file(path.read_text(encoding="utf-8"))
         if old_fm is None or prose is None:
             raise RouteRefused(f"{ctx.slug}: the case file {ctx.rel(path)} cannot be parsed; it is not written over")
-        if _ruled(prose) and (old_fm.get("stopped_at") != step or old_fm.get("exception") != exception):
+        if _written(prose) and (old_fm.get("stopped_at") != step or old_fm.get("exception") != exception):
             archive = path.parent / "archive" / f"{ctx.slug}-{old_fm.get('date', 'undated')}-{old_fm.get('run', 'run')}.md"
             archive.parent.mkdir(parents=True, exist_ok=True)
             n = 1
@@ -444,9 +468,23 @@ def check_case_file(path: Path, root: Path | None = None) -> list[str]:
     return out
 
 
-def check_run(run_root: Path, root: Path = ROOT) -> list[str]:
-    """Every stopped act of a run has a case file that passes its schema; every problem, or none."""
+def check_records(root: Path = ROOT) -> list[str]:
+    """No act's record holds two completed runs of a step on the same inputs: the bound, checked after the fact."""
     out: list[str] = []
+    for rec_path in sorted((Path(root) / "data" / "runs" / STEP_RECORDS).glob("*.json")):
+        seen: set[tuple[str, str]] = set()
+        for e in json.loads(rec_path.read_text(encoding="utf-8")).get("steps", []):
+            key = (e["step"], e["input_sha256"])
+            if e["outcome"] in COMPLETED and key in seen:
+                out.append(f"{rec_path.stem}: step {e['step']} ran twice on the same inputs ({e['input_sha256'][:12]}) in run {e['run']}")
+            if e["outcome"] in COMPLETED:
+                seen.add(key)
+    return out
+
+
+def check_run(run_root: Path, root: Path = ROOT) -> list[str]:
+    """Every stopped act of a run has a case file that passes its schema, and no step ran twice; every problem, or none."""
+    out: list[str] = check_records(root)
     for ledger_path in sorted(Path(run_root).glob(f"*/{LEDGER}")):
         ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
         if ledger.get("state") != "stopped":
@@ -466,6 +504,7 @@ def check_list(list_path: Path | None = None, root: Path = ROOT) -> list[str]:
     out = sx.check(list_path, root)
     if out:
         return out
+    out.extend(check_records(root))
     for e in sx.load(list_path):
         if e.state == "stopped":
             out.extend(check_case_file(root / e.case_file, root))
@@ -480,14 +519,13 @@ def report(run_root: Path, root: Path = ROOT, list_path: Path | None = None) -> 
         ledger = json.loads(ledger_path.read_text(encoding="utf-8"))
         slug = ledger_path.parent.name
         state = ledger.get("state") or "not run"
-        where = ledger.get("stopped_at") or (ledger["entries"][-1]["step"] if ledger["entries"] else "-")
+        where = ledger.get("stopped_at") or ledger.get("step") or (ledger["entries"][-1]["step"] if ledger["entries"] else "-")
         line = f"  {slug}: route {ledger.get('route')}, {state} at {where}"
         if state == "stopped":
             line += f": {ledger.get('exception')}"
             cases.append(ledger.get("case_file") or str(case_path(root, slug)))
         elif state == "committed":
-            commit = next((e["committed"] for e in reversed(ledger["entries"]) if e.get("committed")), "?")
-            line += f", commit {commit}"
+            line += f", commit {ledger.get('commit') or '?'}"
         lines.append(line)
     lines.append(f"case files to read together ({len(cases)}):")
     lines.extend(f"  {c}" for c in cases)
