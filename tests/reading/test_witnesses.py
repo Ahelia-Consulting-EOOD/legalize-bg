@@ -79,11 +79,22 @@ def test_diff_task_record_and_the_refusal_of_an_incomplete_answer(tmp_path):
 
 
 @pytest.mark.skipif(not (REPO / "data" / "raw" / "lexbg" / "2137259781.html").exists(), reason="raw store not on this machine")
-def test_the_committed_transport_law_matches_its_own_lexbg_page():
+def test_the_committed_transport_law_differs_from_its_lexbg_page_only_where_the_settled_record_says():
+    """The law is committed from the Gazette (a504b8c72); its lex.bg page differs in the 33 places the settler settled
+    (run starting-state-2026-10-31, record d9a95ab00), the dropped § 1 among them, and none of them is our reading's error."""
     from refresh import _split_frontmatter
+    run = REPO / "data" / "runs" / "starting-state-2026-10-31" / "zakon-za-obshtestveniya-transport"
     _, body = _split_frontmatter((REPO / "laws" / "zakon-za-obshtestveniya-transport.md").read_text(encoding="utf-8"))
     theirs, _ = W.witness_lines((REPO / "data" / "raw" / "lexbg" / "2137259781.html").read_bytes())
-    assert W.compare(W.body_lines(body), theirs) == []
+    diffs = W.compare(W.body_lines(body), theirs)
+    record = json.loads((run / "witness-record.json").read_text(encoding="utf-8"))
+    lexbg = next(w for w in record["witnesses"] if w["witness"] == "lexbg")
+    assert len(diffs) == 33 == len(lexbg["verdicts"]) and record["stops"] == []
+    assert lexbg["counts"] == {"same_text_other_form": 20, "source_error": 5, "witness_error": 8}
+    settled = {(v["ours"], v["witness"]) for v in lexbg["verdicts"].values()}
+    assert {(d["ours"], d["witness"]) for d in diffs} == settled
+    dropped = lexbg["verdicts"]["30"]
+    assert dropped["verdict"] == "witness_error" and dropped["ours"].startswith("ДОПЪЛНИТЕЛНА РАЗПОРЕДБА § 1.") and "§ 1" not in dropped["witness"]
 
 
 class FakeResponse:

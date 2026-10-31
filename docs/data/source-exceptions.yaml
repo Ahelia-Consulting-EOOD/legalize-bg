@@ -5,7 +5,8 @@
 # their state), never by hand. An entry is not an outcome: its act counts only once it is committed
 # correct from its route, and `python source_exceptions.py report` prints the distance left first.
 #
-# defect: dropped_section | wrong_text | page_without_act | server_error | source_before_archive
+# defect: dropped_section | dropped_provision | wrong_number | wrong_text | missing_amendment | page_without_act | server_error | source_before_archive
+#         (the first five are the kinds of the S2 register docs/data/lexbg-defect-kinds.yaml)
 # source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service | unknown; address: a material id (dv_html, dv_pdf), a URL, or unknown
 # route:  whole_act_from_material | history | source_before_archive | investigate
 # state:  listed | investigated | committed | stopped

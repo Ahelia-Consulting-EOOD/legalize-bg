@@ -1,0 +1,74 @@
+# docs/data/lexbg-defect-kinds.yaml: the register of lex.bg's defect kinds (plan of 31 October 2026, step S2; D-075, D-076).
+#
+# One entry per kind of error lex.bg makes against the Държавен вестник. The kinds are the plan's closed set, held in
+# reading/defects.py (KINDS), and grow only by the owner's word. The file is written by reading/defect_kinds.py (sync fills
+# the examples from a run's verdicts); the prose fields are the session's, the rest is checked mechanically (check).
+#
+# status:   confirmed (at least one act's verdict confirmed the kind) | named (in the closed set, not yet seen)
+# evidence: a list of {kind: plan | register | audit | verdict | decision | case_file, ref: <where>}
+# detector: {script: <path>, rule: <name the script carries>, form: <what fixed form the rule reads>} or null, with
+#           no_detector: <why a script can only point at places to read> when null
+# examples: the slugs whose verdict in the run named by `run` confirmed the kind
+run: s2-lexbg-defects-2026-10-31
+kinds:
+- kind: dropped_section
+  status: named
+  description: lex.bg prints a section heading of the act's own provisions (an additional, transitional or final provisions heading) with no text under it, or omits the section, while the Gazette's promulgation text carries the section with its provisions.
+  evidence:
+  - kind: register
+    ref: 'FR-042 (docs/frs/INDEX.md): Закон за обществения транспорт, lex.bg renders Допълнителна разпоредба with no text and starts the final provisions at § 2; ДВ бр. 32/2026 (material 242220) carries § 1 with twelve definitions; verified live for Закон за прозрачност при представителство на интереси'
+  - kind: audit
+    ref: docs/audits/2026-09-05-source-dropped-additional-provisions.md
+  - kind: decision
+    ref: 'D-076 (3): an empty section stops the write and lists the act for investigation'
+  - kind: plan
+    ref: 'docs/plans/2026-10-31-starting-state-implementation-plan.md, S2: the closed set of kinds'
+  detector:
+    script: reading/defects.py
+    rule: additional-empty
+    form: a block that is an additional-provisions heading followed, after lex.bg's qualifier lines and repeated copies of the heading, by a transitional or final provisions heading; on the reading path the check empty_section (reading/checks.py) finds any heading with nothing under it and stops the write (D-076)
+  examples: []
+- kind: dropped_provision
+  status: named
+  description: lex.bg omits one or more provisions (a § or an article) of a section it does print, while the Gazette's text carries them; the section's first § above 1 is the form the detector reads.
+  evidence:
+  - kind: plan
+    ref: 'docs/plans/2026-10-31-starting-state-implementation-plan.md, S2: the closed set of kinds'
+  - kind: decision
+    ref: 'D-076 (3): a first § above 1 in the act''s own provisions stops the write and lists the act for investigation'
+  detector:
+    script: reading/defects.py
+    rule: paragraph-start-above-1
+    form: the lowest § number that opens a block of the act's own provisions tail is above 1 (where the act has no provisions heading, the lowest § of the page); on the reading path the checks sign_start and sign_gap (reading/checks.py) find a first § above 1 and a gap in the § sequence
+  examples: []
+- kind: wrong_number
+  status: named
+  description: lex.bg prints a provision the Gazette carries under another number (a §, an article, an alinea or an item renumbered), the text itself being the Gazette's.
+  evidence:
+  - kind: plan
+    ref: 'docs/plans/2026-10-31-starting-state-implementation-plan.md, S2: the closed set of kinds'
+  detector: null
+  no_detector: a renumbered provision is found only by comparing the two texts provision by provision, which is a reading of free text; the witness diff (reading/witnesses.py) lists the places where the numbers differ and the settler reads them
+  examples: []
+- kind: wrong_text
+  status: named
+  description: lex.bg's text of a provision differs in its words from the Gazette's, beyond an amendment lex.bg marks and beyond the forms the normalisation of the witness comparison covers (quotation marks, dashes, whitespace).
+  evidence:
+  - kind: plan
+    ref: 'docs/plans/2026-10-31-starting-state-implementation-plan.md, S2: the closed set of kinds'
+  - kind: register
+    ref: 'docs/data/source-exceptions.yaml: the defect wrong_text of the exceptions list (S1), the same kind'
+  - kind: audit
+    ref: 'the witness record of the transport law (run starting-state-2026-10-31): 7 differences settled as lex.bg''s errors, among them "и" for the Gazette''s "й" in чл. 29 and чл. 32'
+  detector: null
+  no_detector: whether a textual difference is lex.bg's error, the Gazette's misprint or an amendment is a reading of free text; the witness diff (reading/witnesses.py) lists every differing place and the settler records one verdict per place
+  examples: []
+- kind: missing_amendment
+  status: named
+  description: lex.bg's consolidated text lacks an amendment the Gazette published after the act's promulgation, or carries it wrong.
+  evidence:
+  - kind: plan
+    ref: 'docs/plans/2026-10-31-starting-state-implementation-plan.md, S2: the closed set of kinds'
+  detector: null
+  no_detector: an amendment missing from a consolidated text is found by applying the Gazette's amending materials to the act (the engine of F1) and comparing, or by the periodic test against lex.bg (F3); the promulgation material alone cannot show it, so S2's investigation records it only where the texts given show an amendment lex.bg marks but does not carry
+  examples: []

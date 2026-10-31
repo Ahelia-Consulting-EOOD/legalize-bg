@@ -1,0 +1,701 @@
+"""Step S2 of the plan of 31 October 2026 (D-075, D-076): what lex.bg gets wrong.
+
+The dropped-section detector of FR-042 (``scripts/structure_gaps.py``) reads the corpus Markdown; here its two rules
+run over every raw lex.bg page of the raw store, block by block through the splitter, with no model:
+
+- ``additional-empty``: a block that is the heading „Допълнителна разпоредба“ (or the plural) followed, after lex.bg's
+  own qualifier lines (a „КЪМ …“ line, an „(обн. …)“ line, a repeated copy of the heading, decision D-072 ruling 1),
+  by a transitional or final provisions heading: the section has no text under it;
+- ``paragraph-start-above-1``: the lowest § number that opens a block of the act's own provisions tail is above 1 (the
+  corpus detector took the lowest bold § of the file; on the page, the tails lex.bg appends for later amending acts carry
+  only the §§ that concern the act, so their numbers say nothing, and an act whose own tail is a „Параграф единствен“ is
+  no candidate); where the page has no provisions heading at all, the lowest § of the page.
+
+Each candidate the scan lists is checked against the Gazette: ``fetch`` takes the act's promulgation material from
+the coverage map's attribution (``docs/research/2026-09-05-dv-coverage-map/acts-summary.csv``), or, where the map
+attributed none, from a title search of the Gazette index in the issue the act cites, and fetches it into the Gazette
+cache at one request per second. ``tasks`` cuts both texts to the act's own provisions tail (from the first
+additional, transitional or final provisions heading to the point where lex.bg's tails of later amending acts begin,
+with three blocks before it) and packs several candidates into one call file for the ``investigator``, whose
+instructions are in the call file itself (the follow-up of 2026-10-31: the session's agents load from the main
+checkout). ``collect`` holds every answer to the closed sets and writes one verdict file per candidate; a candidate
+whose material cannot be retrieved gets its verdict ``unverified`` from the script, never from an aggregator.
+``count`` prints the verdict files against the candidates. ``list`` puts every confirmed act on the exceptions list
+through the route driver and walks its route, which stops with a case file where the engine of F1 is not built.
+
+The closed sets: ``VERDICTS`` per candidate and ``KINDS`` of lex.bg's errors (the plan's five; they grow only by the
+owner's word, and the register ``docs/data/lexbg-defect-kinds.yaml`` holds one entry per kind, see
+``reading/defect_kinds.py``). Nothing here writes a corpus file or calls a model.
+"""
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import json
+import re
+import sys
+from datetime import datetime, timezone
+from pathlib import Path
+
+import yaml
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT))
+
+import source_exceptions as sx  # noqa: E402
+from reading.splitter import Block, split_dv, split_lexbg  # noqa: E402
+
+RUN_NAME = "s2-lexbg-defects-2026-10-31"
+RAW_LEXBG = Path("data/raw/lexbg")                                            # every store path is relative to the root given
+DV_CACHE = Path("data/dv/cache")
+DV_INDEX = Path("data/dv/materials.jsonl")
+SUMMARY = Path("docs/research/2026-09-05-dv-coverage-map/acts-summary.csv")
+REGISTER = "docs/data/lexbg-defect-kinds.yaml"
+
+RULES = ("additional-empty", "paragraph-start-above-1")
+VERDICTS: dict[str, str] = {
+    "confirmed": "the Gazette carries, in the act's own provisions, what lex.bg lacks or prints wrong; `kind` names the error",
+    "not_a_defect": "lex.bg carries the act's provisions as the Gazette does (the § numbering starts above 1 because the §§ belong to the adopting act, or the heading lex.bg prints is the Gazette's own)",
+    "unverified": "the texts do not settle it (the material could not be retrieved, or its tail does not hold the act's provisions)",
+    "needs_whole_text": "the tails do not settle it and the whole texts may; one whole-text call follows, never a second",
+}
+KINDS: dict[str, str] = {
+    "dropped_section": "lex.bg prints a section heading with no text under it, or omits the section, whose text the Gazette carries",
+    "dropped_provision": "lex.bg omits one or more provisions (§ or article) of a section it does print, which the Gazette carries",
+    "wrong_number": "lex.bg prints a provision the Gazette carries under another number",
+    "wrong_text": "lex.bg's text of a provision differs in its words from the Gazette's, beyond an amendment lex.bg marks",
+    "missing_amendment": "lex.bg's text lacks an amendment the Gazette published after the promulgation",
+}
+STAGES = ("tails", "whole", "script")
+PER_CALL = 8            # candidates per call at most
+CAP_TOKENS = 40_000     # estimated content tokens per call at most (the measured safe range of a lean call is 25,000 of task text)
+BYTES_PER_TOKEN = 3.44  # the Read rate fitted in the run-driver study of 21 October 2026
+CONTEXT_BLOCKS = 3
+MOST_WHOLE_TOKENS = 110_000
+
+PROVISIONS = re.compile(r"^(допълнителн[аи](\s+и\s+заключителн[аи])?|преходн[аи](\s+и\s+заключителн[аи])?|заключителн[аи])\s+разпоредб[аи]\b", re.I)
+ADDITIONAL = re.compile(r"^допълнителн[аи]\s+разпоредб[аи]\.?$", re.I)
+FINAL = re.compile(r"^(преходн[аи](\s+и\s+заключителн[аи])?|заключителн[аи])\s+разпоредб[аи]\b", re.I)
+QUALIFIER = re.compile(r"^(КЪМ\s|\(\s*(?i:обн)|\(\s*(?i:загл))")
+KYM = re.compile(r"^КЪМ\s")
+SIGN = re.compile(r"^§\s*(\d+)\s*\.")
+ARTICLE = re.compile(r"^Чл\.\s*\d")
+ANNEX = re.compile(r"^Приложение\s*(№|към|\d)", re.I)
+_WORD = re.compile(r"[^\w\s]+", re.U)
+_NUMBER_KEY = re.compile(r"^(наредба|правилник|постановление|инструкция|указ|закон|кодекс)\s+№?\s*([\w-]+)\s+от\s+.*?(\d{4})")
+WORD_SHARE = 0.7    # of the act's distinctive words, the share a row's title must carry to be the act's material
+STOP_WORDS = frozenset("за на и в по от с към при или до под над г".split())
+
+
+class DefectsError(ValueError):
+    """A file outside its form or a request outside the bounds; the message names every problem."""
+
+
+def _now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _sha(b: bytes) -> str:
+    return hashlib.sha256(b).hexdigest()
+
+
+def _tokens(text: str) -> int:
+    return int(len(text.encode("utf-8")) / BYTES_PER_TOKEN)
+
+
+def _read_json(p: Path) -> dict | list:
+    return json.loads(Path(p).read_text(encoding="utf-8"))
+
+
+def _write_json(p: Path, d) -> None:
+    p.parent.mkdir(parents=True, exist_ok=True)
+    tmp = p.with_name(p.name + ".tmp")
+    tmp.write_text(json.dumps(d, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    tmp.replace(p)
+
+
+# --- the detector over blocks -----------------------------------------------------------------------------------
+
+def own_tail(blocks: list[Block]) -> tuple[int, int] | None:
+    """(start, end) of the act's own provisions tail on a lex.bg page: from its first provisions heading to the first
+    provisions heading of a later amending act (a „КЪМ …“ line in it or right after it), to the first annex, or to the
+    end. None without a heading."""
+    heads = [b.i for b in blocks if PROVISIONS.match(b.text)]
+    start = next((i for i in heads if not _is_amending_tail(blocks, i)), None)
+    if start is None:
+        return None
+    end = next((i for i in heads if i > start and _is_amending_tail(blocks, i)), len(blocks))
+    annex = next((b.i for b in blocks[start:end] if ANNEX.match(b.text)), None)
+    return start, (annex if annex is not None else end)
+
+
+def material_tail(blocks: list[Block]) -> tuple[int, int] | None:
+    """(start, end) of the act's own provisions tail in a Gazette material: the first provisions heading after the act's
+    last article (a decree that adopts a regulation prints its own final provisions before the regulation's articles), to
+    the first annex or the end; a material without articles takes its first provisions heading. None without a heading."""
+    last_article = max((b.i for b in blocks if ARTICLE.match(b.text)), default=-1)
+    start = next((b.i for b in blocks if b.i > last_article and PROVISIONS.match(b.text)), None)
+    if start is None and last_article < 0:
+        start = next((b.i for b in blocks if PROVISIONS.match(b.text)), None)
+    if start is None:
+        return None
+    annex = next((b.i for b in blocks[start:] if ANNEX.match(b.text)), None)
+    return start, (annex if annex is not None else len(blocks))
+
+
+def _is_amending_tail(blocks: list[Block], i: int) -> bool:
+    nxt = blocks[i + 1].text if i + 1 < len(blocks) else ""
+    return bool(re.search(r"\sКЪМ\s", blocks[i].text)) or bool(KYM.match(nxt))
+
+
+def scan_blocks(blocks: list[Block]) -> list[dict]:
+    """The two rules of FR-042 over a page's blocks: every finding, or none."""
+    out: list[dict] = []
+    for i, b in enumerate(blocks):
+        if not ADDITIONAL.match(b.text):
+            continue
+        j = i + 1
+        while j < len(blocks) and (QUALIFIER.match(blocks[j].text) or ADDITIONAL.match(blocks[j].text)):
+            j += 1
+        if j < len(blocks) and FINAL.match(blocks[j].text):
+            out.append({"rule": "additional-empty", "block": i, "detail": f"block {i} '{b.text[:60]}' is followed by '{blocks[j].text[:60]}' at block {j}"})
+            break   # one finding per page: the rule lists acts to adjudicate, not every empty section
+    tail = own_tail(blocks)
+    scope = blocks[tail[0]:tail[1]] if tail else blocks
+    numbers = [(int(m.group(1)), b.i) for b in scope if (m := SIGN.match(b.text))]
+    if numbers:
+        low, at = min(numbers)
+        if low > 1:
+            where = f"in the act's own provisions (blocks {tail[0]} to {tail[1] - 1})" if tail else "on the page, which has no provisions heading"
+            out.append({"rule": "paragraph-start-above-1", "block": at, "detail": f"lowest § is {low} (block {at}) {where}"})
+    return out
+
+
+def scan_page(raw: bytes) -> tuple[list[dict], dict]:
+    """The findings of one raw page and what the investigator needs of it: the own tail and its lowest §."""
+    act = split_lexbg(raw)
+    if not act.has_spine:
+        return [], {"has_spine": False}
+    findings = scan_blocks(act.blocks)
+    tail = own_tail(act.blocks)
+    facts = {"has_spine": True, "blocks": len(act.blocks), "own_tail": None}
+    if tail:
+        nums = [int(m.group(1)) for b in act.blocks[tail[0]:tail[1]] if (m := SIGN.match(b.text))]
+        facts["own_tail"] = {"start": tail[0], "end": tail[1], "lowest_sign": min(nums) if nums else None}
+    return findings, facts
+
+
+def scan(root: Path = ROOT, run_root: Path | None = None, manifest: Path | None = None, raw_dir: Path | None = None) -> list[dict]:
+    """Every raw page of the store through the two rules; ``candidates.json`` in the run folder; the candidates."""
+    raw_dir = Path(raw_dir or Path(root) / RAW_LEXBG)
+    manifest = Path(manifest or raw_dir / "manifest.jsonl")
+    run_root = Path(run_root or Path(root) / "data" / "runs" / RUN_NAME)
+    rows = [json.loads(l) for l in manifest.read_text(encoding="utf-8").splitlines() if l.strip()]
+    latest: dict[str, dict] = {}
+    for r in rows:
+        if r.get("status") == "ok":
+            latest[str(r["doc_id"])] = r
+    pages = no_act = 0
+    out: list[dict] = []
+    for doc_id, r in sorted(latest.items(), key=lambda kv: kv[1]["slug"]):
+        page = raw_dir / f"{doc_id}.html"
+        if not page.exists():
+            continue
+        raw = page.read_bytes()
+        pages += 1
+        findings, facts = scan_page(raw)
+        if not facts["has_spine"]:
+            no_act += 1
+            continue
+        if findings:
+            out.append({"slug": r["slug"], "doc_id": doc_id, "category": r["category"], "page_sha256": _sha(raw),
+                        "rules": [f["rule"] for f in findings], "findings": findings, "own_tail": facts["own_tail"], "blocks": facts["blocks"]})
+    by_rule = {rule: sum(1 for c in out if rule in c["rules"]) for rule in RULES}
+    doc = {"run": run_root.name, "scanned_at": _now(), "pages": pages, "pages_without_act": no_act, "candidates": len(out), "by_rule": by_rule,
+           "rules": list(RULES), "entries": out}
+    _write_json(run_root / "candidates.json", doc)
+    return out
+
+
+def load_candidates(run_root: Path) -> list[dict]:
+    doc = _read_json(run_root / "candidates.json")
+    return doc["entries"]
+
+
+# --- the promulgation material ------------------------------------------------------------------------------------
+
+def _norm_title(s: str) -> str:
+    return re.sub(r"\s+", " ", _WORD.sub(" ", s.lower().replace("ѝ", "и"))).strip()
+
+
+def _number_key(norm_title: str) -> tuple[str, str, str] | None:
+    """("наредба", "29", "2006") of a normalised title "наредба № 29 от 12 07 2006 г …", or None."""
+    m = _NUMBER_KEY.match(norm_title)
+    return (m.group(1), m.group(2).lower(), m.group(3)) if m else None
+
+
+def _words(norm_title: str) -> frozenset[str]:
+    return frozenset(w for w in norm_title.split() if len(w) >= 4 and w not in STOP_WORDS and not w.isdigit())
+
+
+def _frontmatter(root: Path, slug: str) -> dict:
+    p = sx.corpus_file(root, slug)
+    if p is None:
+        raise DefectsError(f"{slug}: no corpus file")
+    text = p.read_text(encoding="utf-8")
+    return yaml.safe_load(text.split("---\n", 2)[1]) or {}
+
+
+def attribute(slug: str, root: Path = ROOT, summary: Path | None = None, index_rows: list[dict] | None = None) -> dict:
+    """The act's promulgation material: the coverage map's attribution, else one title hit in the cited issue, else none."""
+    summary = Path(summary or Path(root) / SUMMARY)
+    row = next((r for r in csv.DictReader(summary.open(encoding="utf-8")) if r["law_id"] == slug), None)
+    base = (row or {}).get("base_source", "no-row")
+    dv_id = (row or {}).get("dv_identifier", "")
+    if dv_id.startswith("dv-") and dv_id[3:].isdigit():
+        return {"id_mat": int(dv_id[3:]), "how": "coverage_map", "base_source": base}
+    fm = _frontmatter(root, slug)
+    issue, year = str(fm.get("dv_issue") or "").strip(), fm.get("dv_year")
+    if not issue.isdigit() or not year:
+        return {"id_mat": None, "how": None, "base_source": base, "reason": "the act cites no promulgation issue"}
+    if index_rows is None:
+        index_rows = [json.loads(l) for l in (Path(root) / DV_INDEX).read_text(encoding="utf-8").splitlines() if l.strip()]
+    in_issue = [r for r in index_rows if r.get("status") == "ok" and r.get("issue_year") == int(year) and r.get("issue_number") == int(issue)]
+    title = _norm_title(str(fm.get("titulo") or ""))
+    hits = [r for r in in_issue if _norm_title(r.get("title") or "") == title]
+    if not hits:
+        hits = [r for r in in_issue if title and _norm_title(r.get("title") or "").startswith(title)]
+    if not hits:   # a regulation adopted by a decree is listed under the decree's title, "Постановление № … за приемане на Устройствен правилник …"
+        hits = [r for r in in_issue if title and title in _norm_title(r.get("title") or "")]
+    how = "index_title"
+    if not hits:   # the Gazette lists the act's original title, lex.bg its current one: the act's number and year, then its distinctive words
+        key = _number_key(title)
+        if key:
+            hits = [r for r in in_issue if _number_key(_norm_title(r.get("title") or "")) == key]
+            how = "index_number"
+    if not hits:
+        words = _words(title)
+        scored = [(len(words & _words(_norm_title(r.get("title") or ""))) / len(words), r) for r in in_issue if words]
+        hits = [r for score, r in scored if score >= WORD_SHARE]
+        how = "index_words"
+    if len(hits) == 1:
+        return {"id_mat": hits[0]["id_mat"], "how": how, "base_source": base, "issue": f"{issue}/{year}"}
+    if not in_issue:
+        return {"id_mat": None, "how": None, "base_source": base, "reason": f"the index holds no HTML material of бр. {issue}/{year}" +
+                (" (PDF era)" if int(year) < 2003 else "")}
+    return {"id_mat": None, "how": None, "base_source": base,
+            "reason": f"{len(hits)} title hits among {len(in_issue)} materials of бр. {issue}/{year}" + (": " + "; ".join(str(h["id_mat"]) for h in hits[:5]) if hits else "")}
+
+
+def fetch(run_root: Path, root: Path = ROOT, fetch_one=None, cache_dir: Path | None = None, summary: Path | None = None,
+          index_rows: list[dict] | None = None) -> dict:
+    """Each candidate's material into the Gazette cache and ``materials.json``; a material already recorded is not asked for again."""
+    cache_dir = Path(cache_dir or Path(root) / DV_CACHE)
+    path = run_root / "materials.json"
+    recorded = _read_json(path) if path.exists() else {}
+    if fetch_one is None:
+        from fetcher.dv.client import DvSession
+        from fetcher.dv.materials import fetch_material, is_dv_error_body
+        session = DvSession()
+
+        def fetch_one(id_mat: int) -> str | None:   # noqa: E306
+            html = fetch_material(session, id_mat, cache_dir=cache_dir)
+            return None if is_dv_error_body(html) else html
+    for c in load_candidates(run_root):
+        slug = c["slug"]
+        if slug in recorded and recorded[slug].get("outcome") == "ok":
+            continue
+        a = attribute(slug, root, summary, index_rows)
+        rec = {"slug": slug, **a, "fetched_at": _now()}
+        if a["id_mat"] is None:
+            rec["outcome"] = "not_retrieved"
+        else:
+            cached = (cache_dir / f"{a['id_mat']}.html").exists()
+            html = fetch_one(a["id_mat"])
+            if html is None:
+                rec["outcome"] = "error"
+                rec["reason"] = f"the Gazette answers its error view for material {a['id_mat']}"
+            else:
+                on_disk = (cache_dir / f"{a['id_mat']}.html").read_bytes()
+                rec["outcome"] = "ok"
+                rec["cached"] = cached
+                rec["sha256"] = _sha(on_disk)   # the file as the cache holds it, which is what tasks reads
+                rec["bytes"] = len(on_disk)
+                try:
+                    from fetcher.dv.materials import parse_material_header
+                    head = parse_material_header(html)
+                    rec["issue"] = f"{head.issue_number}/{head.issue_date[:4]}"
+                    rec["body_org"] = head.body_org
+                except Exception as exc:  # the header is a convenience; the hash is the record
+                    rec["header"] = f"unread: {exc}"
+        recorded[slug] = rec
+        _write_json(path, recorded)
+    return recorded
+
+
+# --- the tails and the calls ---------------------------------------------------------------------------------------
+
+def tail_text(blocks: list[Block], span: tuple[int, int] | None, context: int = CONTEXT_BLOCKS) -> tuple[str, str]:
+    """(text, note) of a provisions tail with its context before; the last blocks of the act when it has no heading."""
+    if span is None:
+        n = min(len(blocks), 60)
+        return "\n".join(b.text for b in blocks[-n:]), f"no provisions heading found: the last {n} of {len(blocks)} blocks"
+    start, end = span
+    lo = max(0, start - context)
+    return "\n".join(b.text for b in blocks[lo:end]), f"blocks {lo} to {end - 1} of {len(blocks)} (the act's own provisions from block {start})"
+
+
+def texts_for(c: dict, material_html: str | None, raw: bytes, whole: bool = False) -> dict:
+    """The two texts of a candidate (tails, or whole), with their notes and sizes."""
+    lex = split_lexbg(raw)
+    if whole:
+        lt, ln = lex.source_text, f"the whole lex.bg text, {len(lex.blocks)} blocks"
+    else:
+        lt, ln = tail_text(lex.blocks, own_tail(lex.blocks))
+    out = {"lexbg": {"text": lt, "note": ln, "tokens": _tokens(lt)}}
+    if material_html is not None:
+        dv = split_dv(material_html)
+        if whole:
+            dt, dn = dv.source_text, f"the whole material, {len(dv.blocks)} blocks"
+        else:
+            dt, dn = tail_text(dv.blocks, material_tail(dv.blocks))
+        out["dv"] = {"text": dt, "note": dn, "tokens": _tokens(dt)}
+    return out
+
+
+INSTRUCTIONS = """# Investigate what lex.bg gets wrong: {n} candidate act(s)
+
+You investigate acts of the legalize-bg corpus whose text lex.bg may hold wrong. The detector of FR-042 flagged each act
+below because lex.bg prints an additional-provisions heading with nothing under it, or because the lowest § number of
+its page is above 1. For each candidate you get two texts: the act's own provisions (additional, transitional and final)
+as lex.bg prints them today, with a few blocks before them, and the same part of the act as the Държавен вестник
+promulgated it (the promulgation material; where the acts were later amended, lex.bg's text is the consolidated one and
+the Gazette's is the original, so an amendment lex.bg marks, such as „(Изм. - ДВ, бр. …)“, is not an error).
+
+Decide from the texts alone, for each candidate, one verdict from this closed set:
+{verdicts}
+
+For a `confirmed` verdict also give the `kind` of lex.bg's error, from this closed set:
+{kinds}
+
+Rules: read only this file and write only the answer file. Never rewrite, correct or quote the act's text beyond the
+evidence note. A difference that is an amendment lex.bg marks is not an error. Where lex.bg prints the heading twice
+(an old and a new title), that alone is not an error. Where the §§ of an ordinance belong to the decree or order that
+adopted it and the Gazette shows the same, the verdict is `not_a_defect`. Where the Gazette's text given here does not
+hold the act's provisions at all, the verdict is `unverified`, and where the whole texts would settle it,
+`needs_whole_text`.
+
+Write exactly one JSON object to `{answer}`: one key per candidate slug, exactly the {n} slugs below, each value an
+object `{{"verdict": "<one of the four>", "kind": "<one of the five, only with confirmed, else null>",
+"gazette": "<for confirmed: what the Gazette carries that lex.bg lacks or prints wrong, in a few words, with the § or article numbers>",
+"note": "<short evidence note naming the lines you relied on>"}}`. Nothing else: no prose, no code fence.
+"""
+
+
+def _call_id(slugs: list[str], stage: str) -> str:
+    return "call-" + stage + "-" + _sha(("\n".join(sorted(slugs)) + stage).encode())[:8]
+
+
+def write_call(run_root: Path, slugs: list[str], stage: str, texts: dict[str, dict], candidates: dict[str, dict]) -> dict:
+    cid = _call_id(slugs, stage)
+    calls = run_root / "calls"
+    call_path, answer_path = calls / f"{cid}.md", calls / f"{cid}.answer.json"
+    parts = [INSTRUCTIONS.format(n=len(slugs), answer=answer_path, verdicts="\n".join(f"- `{k}`: {v}" for k, v in VERDICTS.items()),
+                                 kinds="\n".join(f"- `{k}`: {v}" for k, v in KINDS.items()))]
+    for k, slug in enumerate(slugs, 1):
+        c, t = candidates[slug], texts[slug]
+        parts.append(f"\n## Candidate {k}: `{slug}`\n\nFlagged by: {', '.join(c['rules'])} ({'; '.join(f['detail'] for f in c['findings'])}).\n")
+        parts.append(f"### lex.bg text of `{slug}` ({t['lexbg']['note']})\n\n{t['lexbg']['text']}\n")
+        parts.append(f"### Gazette text of `{slug}` (material {t['id_mat']}, {t['dv']['note']})\n\n{t['dv']['text']}\n")
+    calls.mkdir(parents=True, exist_ok=True)
+    call_path.write_text("\n".join(parts), encoding="utf-8")
+    tokens = sum(texts[s]["lexbg"]["tokens"] + texts[s]["dv"]["tokens"] for s in slugs)
+    rec = {"call": cid, "stage": stage, "slugs": slugs, "call_file": str(call_path), "answer_file": str(answer_path), "content_tokens": tokens, "written_at": _now()}
+    _write_json(calls / f"{cid}.json", rec)
+    return rec
+
+
+def verdict_path(run_root: Path, slug: str) -> Path:
+    return run_root / "verdicts" / f"{slug}.json"
+
+
+def final_verdict(run_root: Path, slug: str) -> dict | None:
+    """The candidate's verdict when it is final (not ``needs_whole_text`` at the tails stage)."""
+    p = verdict_path(run_root, slug)
+    if not p.exists():
+        return None
+    v = _read_json(p)
+    return None if v["verdict"] == "needs_whole_text" else v
+
+
+def tasks(run_root: Path, root: Path = ROOT, stage: str = "tails", raw_dir: Path | None = None, cache_dir: Path | None = None,
+          per: int = PER_CALL, cap: int = CAP_TOKENS) -> tuple[list[dict], list[dict]]:
+    """The calls to make for the candidates without a final verdict: (calls written, candidates settled by the script).
+
+    ``tails``: every candidate with a material and no verdict yet; ``whole``: every candidate whose tails verdict says
+    ``needs_whole_text``, one per call. A candidate without a material gets its ``unverified`` verdict here, by the script.
+    """
+    raw_dir, cache_dir = Path(raw_dir or Path(root) / RAW_LEXBG), Path(cache_dir or Path(root) / DV_CACHE)
+    if stage not in ("tails", "whole"):
+        raise DefectsError(f"stage {stage!r} is not tails or whole")
+    cands = {c["slug"]: c for c in load_candidates(run_root)}
+    mats = _read_json(run_root / "materials.json") if (run_root / "materials.json").exists() else {}
+    settled: list[dict] = []
+    todo: list[str] = []
+    texts: dict[str, dict] = {}
+    for slug, c in cands.items():
+        existing = verdict_path(run_root, slug)
+        v = _read_json(existing) if existing.exists() else None
+        if stage == "tails" and v is not None:
+            continue
+        if stage == "whole" and (v is None or v["verdict"] != "needs_whole_text" or v.get("stage") != "tails"):
+            continue
+        m = mats.get(slug)
+        if m is None or m.get("outcome") != "ok":
+            reason = (m or {}).get("reason") or "the material is not recorded: run fetch first"
+            rec = {"slug": slug, "verdict": "unverified", "kind": None, "gazette": None, "stage": "script",
+                   "note": f"the promulgation material was not retrieved: {reason}", "material": None, "call": None, "answered_at": _now()}
+            _write_json(existing, rec)
+            settled.append(rec)
+            continue
+        on_disk = (cache_dir / f"{m['id_mat']}.html").read_bytes()
+        if _sha(on_disk) != m["sha256"]:
+            raise DefectsError(f"{slug}: the cached material {m['id_mat']} no longer hashes as materials.json recorded it")
+        t = texts_for(c, on_disk.decode("utf-8"), (raw_dir / f"{c['doc_id']}.html").read_bytes(), whole=(stage == "whole"))
+        t["id_mat"] = m["id_mat"]
+        if stage == "whole" and t["lexbg"]["tokens"] + t["dv"]["tokens"] > MOST_WHOLE_TOKENS:
+            rec = {"slug": slug, "verdict": "unverified", "kind": None, "gazette": None, "stage": "script", "material": m["id_mat"], "call": None,
+                   "note": f"the whole texts are {t['lexbg']['tokens'] + t['dv']['tokens']} estimated tokens, beyond one call's range; "
+                           f"the tails did not settle it: {v['note']}", "answered_at": _now()}
+            _write_json(existing, rec)
+            settled.append(rec)
+            continue
+        texts[slug] = t
+        todo.append(slug)
+    tdir = run_root / "texts"
+    tdir.mkdir(parents=True, exist_ok=True)
+    for slug in todo:
+        for side in ("lexbg", "dv"):
+            (tdir / f"{slug}.{stage}.{side}.txt").write_text(texts[slug][side]["text"] + "\n", encoding="utf-8")
+    calls: list[dict] = []
+    if stage == "whole":
+        groups = [[s] for s in todo]
+    else:
+        groups, cur, size = [], [], 0
+        for slug in sorted(todo, key=lambda s: texts[s]["lexbg"]["tokens"] + texts[s]["dv"]["tokens"]):
+            n = texts[slug]["lexbg"]["tokens"] + texts[slug]["dv"]["tokens"]
+            if cur and (len(cur) >= per or size + n > cap):
+                groups.append(cur)
+                cur, size = [], 0
+            cur.append(slug)
+            size += n
+        if cur:
+            groups.append(cur)
+    existing_calls = {p.stem for p in (run_root / "calls").glob("call-*.md")} if (run_root / "calls").exists() else set()
+    for g in groups:
+        cid = _call_id(g, stage)
+        if cid in existing_calls and (run_root / "calls" / f"{cid}.answer.json").exists():
+            continue   # answered, not yet collected: collect first
+        calls.append(write_call(run_root, g, stage, texts, cands))
+    return calls, settled
+
+
+def collect(run_root: Path) -> tuple[list[dict], list[str]]:
+    """Every answer file against its call and the closed sets; one verdict file per candidate; (verdicts written, problems)."""
+    written: list[dict] = []
+    problems: list[str] = []
+    calls = run_root / "calls"
+    for rec_path in sorted(calls.glob("call-*.json")) if calls.exists() else []:
+        if rec_path.name.endswith(".answer.json"):
+            continue
+        rec = _read_json(rec_path)
+        answer_path = Path(rec["answer_file"])
+        if not answer_path.exists() or rec.get("collected_at"):
+            continue   # a call is collected once: a later stage's verdict is never written over by the earlier answer
+        try:
+            got = json.loads(answer_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            problems.append(f"{rec['call']}: the answer is not JSON: {exc}")
+            continue
+        errs = answer_problems(got, rec["slugs"])
+        if errs:
+            problems.append(f"{rec['call']}: " + "; ".join(errs))
+            continue
+        for slug in rec["slugs"]:
+            a = got[slug]
+            existing = verdict_path(run_root, slug)
+            prior = _read_json(existing) if existing.exists() else None
+            if prior and prior.get("call") == rec["call"]:
+                continue   # already collected
+            verdict, note = a["verdict"], a["note"]
+            stage = rec["stage"]
+            if stage == "whole" and verdict == "needs_whole_text":
+                verdict, note = "unverified", "the whole texts did not settle it either: " + note   # one whole-text call, never a second
+            out = {"slug": slug, "verdict": verdict, "kind": a.get("kind") if verdict == "confirmed" else None, "gazette": a.get("gazette") if verdict == "confirmed" else None,
+                   "note": note, "stage": stage, "call": rec["call"], "material": _material_of(run_root, slug), "answered_at": _now()}
+            if prior and prior.get("stage") == "tails" and stage == "whole":
+                out["tails_note"] = prior["note"]
+            _write_json(existing, out)
+            written.append(out)
+        rec["collected_at"] = _now()
+        _write_json(rec_path, rec)
+    return written, problems
+
+
+def _material_of(run_root: Path, slug: str) -> int | None:
+    mats = _read_json(run_root / "materials.json") if (run_root / "materials.json").exists() else {}
+    m = mats.get(slug) or {}
+    return m.get("id_mat") if m.get("outcome") == "ok" else None
+
+
+def answer_problems(got, slugs: list[str]) -> list[str]:
+    """Every way an answer is outside its form; nothing of it is kept when one is found."""
+    if not isinstance(got, dict):
+        return ["not a JSON object keyed by slug"]
+    errs: list[str] = []
+    extra = sorted(set(got) - set(slugs))
+    if extra:
+        errs.append(f"slugs not in the call: {extra}")
+    for slug in slugs:
+        a = got.get(slug)
+        if not isinstance(a, dict):
+            errs.append(f"{slug}: no answer object")
+            continue
+        if a.get("verdict") not in VERDICTS:
+            errs.append(f"{slug}: verdict {a.get('verdict')!r} is not one of {sorted(VERDICTS)}")
+        if a.get("verdict") == "confirmed":
+            if a.get("kind") not in KINDS:
+                errs.append(f"{slug}: kind {a.get('kind')!r} is not one of {sorted(KINDS)}")
+            if not isinstance(a.get("gazette"), str) or not a["gazette"].strip():
+                errs.append(f"{slug}: a confirmed verdict names what the Gazette carries")
+        elif a.get("kind") not in (None, ""):
+            errs.append(f"{slug}: a kind is given with the verdict {a.get('verdict')!r}")
+        if not isinstance(a.get("note"), str) or not a["note"].strip():
+            errs.append(f"{slug}: the evidence note is missing")
+        if set(a) - {"verdict", "kind", "gazette", "note"}:
+            errs.append(f"{slug}: keys outside the form: {sorted(set(a) - {'verdict', 'kind', 'gazette', 'note'})}")
+    return errs
+
+
+def count(run_root: Path) -> dict:
+    """The verdict files against the candidates: final verdicts, pending ones, missing ones, by verdict and by kind."""
+    cands = [c["slug"] for c in load_candidates(run_root)]
+    final, pending, missing = {}, [], []
+    for slug in cands:
+        p = verdict_path(run_root, slug)
+        if not p.exists():
+            missing.append(slug)
+            continue
+        v = _read_json(p)
+        if v["verdict"] == "needs_whole_text":
+            pending.append(slug)
+        else:
+            final[slug] = v
+    by_verdict: dict[str, int] = {}
+    by_kind: dict[str, int] = {}
+    for v in final.values():
+        by_verdict[v["verdict"]] = by_verdict.get(v["verdict"], 0) + 1
+        if v["verdict"] == "confirmed":
+            by_kind[v["kind"]] = by_kind.get(v["kind"], 0) + 1
+    stray = sorted(p.stem for p in (run_root / "verdicts").glob("*.json") if p.stem not in cands) if (run_root / "verdicts").exists() else []
+    return {"candidates": len(cands), "final": len(final), "pending_whole_text": pending, "missing": missing, "by_verdict": by_verdict, "by_kind": by_kind,
+            "stray_verdicts": stray, "confirmed": sorted(s for s, v in final.items() if v["verdict"] == "confirmed")}
+
+
+def count_text(c: dict) -> str:
+    lines = [f"verdicts: {c['final']} final of {c['candidates']} candidates; {len(c['pending_whole_text'])} waiting for a whole-text call; {len(c['missing'])} without a verdict file",
+             "by verdict: " + (", ".join(f"{k} {v}" for k, v in sorted(c["by_verdict"].items())) or "none"),
+             "by kind: " + (", ".join(f"{k} {v}" for k, v in sorted(c["by_kind"].items())) or "none")]
+    if c["stray_verdicts"]:
+        lines.append(f"verdict files for no candidate: {c['stray_verdicts']}")
+    return "\n".join(lines)
+
+
+# --- the exceptions list ------------------------------------------------------------------------------------------
+
+def route_for(fm: dict) -> str:
+    """The act's route: whole from its promulgation material when never amended, else the history route of F1."""
+    hist = fm.get("amendment_history") or []
+    return "whole_act_from_material" if len(hist) <= 1 else "history"
+
+
+def entries_for(run_root: Path, root: Path = ROOT, added: str | None = None) -> list[sx.Entry]:
+    """One list entry per confirmed candidate, from its verdict and material; the register and the verdict are its evidence."""
+    out: list[sx.Entry] = []
+    c = count(run_root)
+    for slug in c["confirmed"]:
+        v = _read_json(verdict_path(run_root, slug))
+        fm = _frontmatter(root, slug)
+        if v.get("material") is None:
+            raise DefectsError(f"{slug}: a confirmed verdict without a material")
+        rel = verdict_path(run_root, slug).resolve().relative_to(root.resolve())
+        out.append(sx.Entry(slug=slug, title=str(fm.get("titulo") or slug).strip(), defect=v["kind"], source="dv_html", address=str(v["material"]),
+                            route=route_for(fm), state="listed", added=added or datetime.now(timezone.utc).date().isoformat(),
+                            evidence=[{"kind": "register", "ref": f"{REGISTER}: {v['kind']}"}, {"kind": "audit", "ref": f"{rel}: {v['note']}"}],
+                            note=f"S2 of the plan of 31 October 2026: the Gazette (material {v['material']}) carries {v['gazette']}"))
+    return out
+
+
+# --- command line -------------------------------------------------------------------------------------------------
+
+def main(argv: list[str] | None = None) -> int:
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--run", default=RUN_NAME, help="the run folder under data/runs")
+    sub = ap.add_subparsers(dest="cmd", required=True)
+    sub.add_parser("scan", help="the two rules over every raw page; candidates.json")
+    sub.add_parser("fetch", help="each candidate's promulgation material into the Gazette cache; materials.json")
+    t = sub.add_parser("tasks", help="the call files for the investigator")
+    t.add_argument("--stage", default="tails", choices=("tails", "whole"))
+    sub.add_parser("collect", help="the answers into one verdict file per candidate")
+    sub.add_parser("count", help="the verdict files against the candidates")
+    sub.add_parser("entries", help="print the list entries the confirmed verdicts give (the driver adds them: routes.py)")
+    args = ap.parse_args(argv)
+    run_root = ROOT / "data" / "runs" / args.run
+    if args.cmd == "scan":
+        out = scan(ROOT, run_root)
+        doc = _read_json(run_root / "candidates.json")
+        print(f"{doc['pages']} pages scanned, {doc['pages_without_act']} without an act; {len(out)} candidates: " + ", ".join(f"{k} {v}" for k, v in doc["by_rule"].items()))
+        return 0
+    if args.cmd == "fetch":
+        rec = fetch(run_root)
+        by = {}
+        for r in rec.values():
+            by[r["outcome"]] = by.get(r["outcome"], 0) + 1
+        how = {}
+        for r in rec.values():
+            how[r.get("how")] = how.get(r.get("how"), 0) + 1
+        print(f"{len(rec)} candidates: " + ", ".join(f"{k} {v}" for k, v in sorted(by.items())) + "; attributed by " + ", ".join(f"{k} {v}" for k, v in how.items()))
+        for r in rec.values():
+            if r["outcome"] != "ok":
+                print(f"  {r['slug']}: {r['outcome']}: {r.get('reason')}")
+        return 0
+    if args.cmd == "tasks":
+        calls, settled = tasks(run_root, stage=args.stage)
+        for s in settled:
+            print(f"settled by the script: {s['slug']}: {s['verdict']}: {s['note']}")
+        for c in calls:
+            print(f"{c['call']} ({len(c['slugs'])} candidates, about {c['content_tokens']} content tokens): read {c['call_file']}, write {c['answer_file']}")
+        print(f"{len(calls)} call(s) to make, {sum(len(c['slugs']) for c in calls)} candidates, about {sum(c['content_tokens'] for c in calls)} content tokens")
+        return 0
+    if args.cmd == "collect":
+        written, problems = collect(run_root)
+        for w in written:
+            print(f"{w['slug']}: {w['verdict']}" + (f" ({w['kind']})" if w["kind"] else ""))
+        for p in problems:
+            print(f"refused  {p}")
+        print(f"{len(written)} verdict(s) written, {len(problems)} answer(s) refused")
+        return 1 if problems else 0
+    if args.cmd == "count":
+        c = count(run_root)
+        print(count_text(c))
+        return 0 if c["final"] == c["candidates"] else 1
+    if args.cmd == "entries":
+        for e in entries_for(run_root):
+            print(yaml.safe_dump(e.to_dict(), allow_unicode=True, sort_keys=False, width=1000))
+        return 0
+    return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
