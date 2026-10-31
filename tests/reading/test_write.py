@@ -334,11 +334,12 @@ def test_a_repaired_chrome_line_leaves_the_chrome_waiver_in_the_same_commit(tmp_
 
 # --- the exceptions list and the Gazette as a source (step S1 of the plan of 31 October 2026) -----------------
 
-def _list_with(root, slug, route="whole_act_from_material"):
+def _list_with(root, slug, route="whole_act_from_material", absent=()):
     import source_exceptions as sx
     p = root / "docs" / "data" / "source-exceptions.yaml"
     sx.save(p, [sx.Entry(slug=slug, title="t", defect="dropped_section", source="dv_html", address="77", route=route,
-                         evidence=[{"kind": "plan", "ref": "the test"}], state="listed", added="2026-10-31")])
+                         evidence=[{"kind": "plan", "ref": "the test"}], state="listed", added="2026-10-31",
+                         absent_witnesses=[{"witness": w, "reason": "no page in the test", "owner": "the test, 2026-10-31"} for w in absent])])
     return p
 
 
@@ -399,7 +400,7 @@ DV_MAP = {0: {"label": "drop", "note": "decree"}, 1: {"label": "drop", "note": "
 def _setup_dv(tmp_path):
     from reading.splitter import split_dv
     root, run_dir, raw_dir = _setup(tmp_path, old_body="# ЗАКОН ЗА ПРОБАТА\n\n**Чл. 1.** Стар текст.\n\n## Допълнителна разпоредба\n\n## Заключителни разпоредби\n\n**§ 2.** Стар.\n")
-    _list_with(root, SLUG)
+    _list_with(root, SLUG, absent=("lexbg", "moj"))   # the test has no witness pages: both absences on the owner's word
     cache = tmp_path / "cache"
     cache.mkdir()
     html = DV_MATERIAL.encode("utf-8")
@@ -509,3 +510,15 @@ def test_a_gazette_write_needs_a_clean_witness_record_for_this_body(tmp_path):
     _git(root, "commit", "-qam", "odd row")
     with pytest.raises(WriteRefused, match="do not read as issue/year"):
         write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+
+
+def test_a_gazette_write_needs_both_witnesses_unless_the_owner_accepted_an_absence(tmp_path):
+    import source_exceptions as sx
+    root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
+    lst = root / "docs" / "data" / "source-exceptions.yaml"
+    sx.update(lst, SLUG, absent_witnesses=[{"witness": "lexbg", "reason": "no page in the test", "owner": "the test"}])
+    with pytest.raises(WriteRefused, match="the witness moj was not compared \\(no page in the test\\).*owner's word"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    with pytest.raises(sx.ListError, match="absent_witnesses\\[0\\]"):
+        sx.update(lst, SLUG, absent_witnesses=[{"witness": "moj"}])
+    assert _git(root, "rev-list", "--count", "HEAD") == "1\n"

@@ -92,8 +92,14 @@ def _heading_word(text: str) -> str:
 
 
 def _group_word(blocks: list[Block], a: int) -> str:
-    """The heading word of the number line that the titled heading at ``a`` continues, when the line before it is one."""
-    return _heading_word(blocks[a - 1].text) if a > 0 and NUMBER_LINE.match(blocks[a - 1].text) else ""
+    """The heading word of the number line that the titled heading at ``a`` continues (a title may run over several lines)."""
+    k = a - 1
+    while k >= 0 and not NUMBER_LINE.match(blocks[k].text) and k > a - 4:
+        k -= 1
+    return _heading_word(blocks[k].text) if k >= 0 and NUMBER_LINE.match(blocks[k].text) else ""
+
+
+_RANK = {"title": 0, "part_heading": 1, "chapter_heading": 2, "section_heading": 3, "subsection_heading": 4}
 # the page chrome lex.bg prints before the title and after the act: the only drops allowed outside the act
 START_CHROME = re.compile(r"^(ДОБАВИ В МОИТЕ АКТОВЕ|Lex\.bg)")
 TAIL_CHROME = "Релевантни актове от Европейското законодателство"
@@ -149,10 +155,17 @@ def _follows(prev: tuple[int, str] | None, cur: tuple[int, str]) -> bool:
 def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -> bool:
     """Two consecutive heading blocks that form one heading (joined by the assembler), or a legal nesting."""
     ta, tb = blocks[a].text, blocks[b].text
-    if la == lb and la != "provisions_heading" and NUMBER_LINE.match(tb) and _heading_word(tb) == _heading_word(ta if NUMBER_LINE.match(ta) else _group_word(blocks, a)):
-        return False   # the next number line of the same rank and word ("Глава втора" after chapter one's title, or after its bare number): nothing under it
+    if la == lb and la != "provisions_heading" and NUMBER_LINE.match(tb):
+        word = _heading_word(ta if NUMBER_LINE.match(ta) else _group_word(blocks, a))
+        # the next number line of the same word ("Глава втора" after chapter one's title, or after its bare number): nothing under it;
+        # a number line of another word under the same label ("Дял първи." after "Част втора." and its title) opens the rank below
+        return _heading_word(tb) != word
     if NUMBER_LINE.match(ta):
-        return True   # a number line takes its title line, or the number line of the rank below it ("Част втора." then "Дял първи.")
+        # a number line takes its title line (the same label, not a number line), or a heading of the rank below it;
+        # anything else after a bare number line (the provisions, an annex, a higher rank) leaves it with nothing under it
+        return la == lb or (la in _RANK and lb in _RANK and _RANK[lb] > _RANK[la])
+    if la == lb and la not in ("provisions_heading", "annex_heading") and not NUMBER_LINE.match(tb):
+        return True   # a title that runs over several lines
     if re.match(r"^(КЪМ|Към|към)\s", tb) or re.search(r"\s(КЪМ|Към|към)$", ta):
         return True
     if la == "provisions_heading":
@@ -161,17 +174,17 @@ def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -
         # but an additional-provisions heading followed at once by the transitional or final provisions heading is an
         # additional section with nothing under it: lost text (FR-042's rule additional-empty, D-076)
         ka, kb = _provisions_kinds(ta), _provisions_kinds(tb)
-        if ka and kb and not (ka & kb):
+        if ka and kb and ka != kb:
             return False   # two provisions headings of different kinds in a row ("Допълнителни …" then "Заключителни …"): the first has nothing under it
         return True
     if la == "annex_heading" and lb == "annex_heading" and re.match(r"^Приложение", ta) and not re.match(r"^Приложение", tb):
         return True
-    if la == "annex_heading" and lb == "annex_heading" and ta == ta.upper() and tb != tb.upper():
+    if la == "annex_heading" and lb == "annex_heading" and ta == ta.upper() and tb != tb.upper() and not re.match(r"^Приложение", tb):
         return True   # an annex's own title on two lines: "МЕТОДИКА" then "за определяне …"
-    if la == "section_heading" and lb == "subsection_heading":
-        return True
-    if la in ("part_heading", "chapter_heading", "title"):
-        return True
+    if la == "title":
+        return True   # the title heads everything
+    if la in _RANK and lb in _RANK and _RANK[lb] > _RANK[la]:
+        return True   # a heading of the rank below opens the part, chapter or section
     return False
 
 

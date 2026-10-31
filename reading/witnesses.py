@@ -163,8 +163,8 @@ def diff_sha256(run_dir: Path) -> str:
 
 
 def body_sha256(body_markdown: str) -> str:
-    """The hash of our body as compared: the write path checks the record was made for the body it writes."""
-    return hashlib.sha256("\n".join(body_lines(body_markdown)).encode("utf-8")).hexdigest()
+    """The hash of the body as written, character for character: the write path checks the record was made for it."""
+    return hashlib.sha256(body_markdown.encode("utf-8")).hexdigest()
 
 
 def task_text(diff: dict, slug: str, answer_path: Path, sha256: str) -> str:

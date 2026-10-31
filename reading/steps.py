@@ -359,7 +359,7 @@ class ContentCheck:
 
 class Witnesses:
     name = "witnesses"
-    version = "2"   # the record carries the body's hash
+    version = "3"   # the record carries the hash of the body as written
 
     def inputs(self, ctx: Context) -> list[Path]:
         paths = [ctx.act_dir / "staged.md", ctx.act_dir / "witness-answer.json"]
@@ -523,7 +523,7 @@ class Investigate:
                 problems.append("address missing")
             elif got.get("source") in ("dv_html", "dv_pdf") and not address.strip().isdigit():
                 problems.append(f"address {address!r} is not a material id, as the source {got.get('source')} needs")
-            elif got.get("source") in ("moj_portal", "strategy_bg", "paid_service") and not address.strip().startswith(("http://", "https://")):
+            elif got.get("source") in ("moj_portal", "strategy_bg", "paid_service") and address.strip() != "unknown" and not address.strip().startswith(("http://", "https://")):
                 problems.append(f"address {address!r} is not a URL, as the source {got.get('source')} needs")
             ev = got.get("evidence")
             if not isinstance(ev, dict) or not all(isinstance(ev.get(k), str) and ev[k].strip() for k in ("defect", "source", "route")):

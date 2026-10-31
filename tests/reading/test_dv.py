@@ -162,6 +162,15 @@ def test_sound_headings_of_the_committed_acts_are_not_empty_sections():
     assert run(["Глава първа.", "Глава втора.", "ОБЩИ", "Чл. 1. Едно."], ["chapter_heading"] * 3 + [A]) == [0]   # an untitled empty chapter
     assert run(["Глава първа.", "ОБЩИ", "Глава втора.", "ДРУГИ", "Чл. 1. Едно."], ["chapter_heading"] * 4 + [A]) == [1]   # a titled empty chapter
     assert run(["Чл. 1. Едно.", "Приложение № 1", "МЕТОДИКА", "за определяне на нещо", "ред"], [A, "annex_heading", "annex_heading", "annex_heading", "annex_row"]) == []
+    # round 3: a chapter followed by the provisions or by a part, overlapping provisions kinds, an annex title before the next annex, a three-line title
+    P = {"label": "paragraph_sign", "n": "1"}
+    assert run(["Чл. 1. Едно.", "Глава седма.", "САНКЦИИ", "Допълнителни разпоредби", "§ 1. Текст."], [A, "chapter_heading", "chapter_heading", "provisions_heading", P]) == [2]
+    assert run(["Чл. 1. Едно.", "Глава седма.", "Допълнителни разпоредби", "§ 1. Текст."], [A, "chapter_heading", "provisions_heading", P]) == [1]
+    assert run(["Чл. 1. Едно.", "Глава седма.", "САНКЦИИ", "Част втора.", "ДРУГА", "Чл. 2. Две."], [A, "chapter_heading", "chapter_heading", "part_heading", "part_heading", {"label": "article_head", "n": "2"}]) == [2]
+    assert run(["Чл. 1. Едно.", "Заключителни разпоредби", "Преходни и заключителни разпоредби", "§ 1. Текст."], [A, "provisions_heading", "provisions_heading", P]) == [1]
+    assert run(["Чл. 1. Едно.", "Приложение № 1", "МЕТОДИКА", "Приложение № 2", "ред"], [A, "annex_heading", "annex_heading", "annex_heading", "annex_row"]) == [2]
+    assert run(["Глава първа.", "ЕДНО", "ДВЕ", "ТРИ", "Глава втора.", "ОБЩИ", "Чл. 1. Едно."], ["chapter_heading"] * 6 + [A]) == [3]
+    assert run(["Глава първа.", "ЕДНО", "ДВЕ", "ТРИ", "Чл. 1. Едно."], ["chapter_heading"] * 4 + [A]) == []
 
 
 def test_the_signature_rule_takes_only_the_colon_form():
