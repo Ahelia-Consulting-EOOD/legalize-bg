@@ -145,3 +145,26 @@ def test_a_three_line_heading_is_one_heading():
     assert md.startswith("### Глава втора ПЛАНИРАНЕ И УПРАВЛЕНИЕ КЛИРИНГОВА СИСТЕМА\n")
     _, ex = run_all(blocks, smap, source="dv")
     assert ex == []
+
+
+def test_sound_headings_of_the_committed_acts_are_not_empty_sections():
+    """S1 review round 2: Част then Дял, two provisions headings of one kind, an untitled chapter, an annex title on two lines."""
+    from reading.splitter import Block
+    def run(texts, labels):
+        blocks = [Block(i, t, "x") for i, t in enumerate(texts)]
+        smap = {i: ({"label": l} if isinstance(l, str) else l) for i, l in enumerate(labels)}
+        _, ex = run_all(blocks, smap)
+        return [e["block"] for e in ex if e["kind"] == "empty_section"]
+    A = {"label": "article_head", "n": "1"}
+    assert run(["Част втора.", "ОБЩ ИСКОВ ПРОЦЕС", "Дял първи.", "ПРОИЗВОДСТВО", "Чл. 1. Едно."], ["part_heading"] * 4 + [A]) == []
+    assert run(["Чл. 1. Едно.", "Преходни разпоредби", "ПРЕХОДНИ ПРАВИЛА", "§ 1. Текст."], [A, "provisions_heading", "provisions_heading", {"label": "paragraph_sign", "n": "1"}]) == []
+    assert run(["Чл. 1. Едно.", "Допълнителни разпоредби", "Заключителни разпоредби", "§ 1. Текст."], [A, "provisions_heading", "provisions_heading", {"label": "paragraph_sign", "n": "1"}]) == [1]
+    assert run(["Глава първа.", "Глава втора.", "ОБЩИ", "Чл. 1. Едно."], ["chapter_heading"] * 3 + [A]) == [0]   # an untitled empty chapter
+    assert run(["Глава първа.", "ОБЩИ", "Глава втора.", "ДРУГИ", "Чл. 1. Едно."], ["chapter_heading"] * 4 + [A]) == [1]   # a titled empty chapter
+    assert run(["Чл. 1. Едно.", "Приложение № 1", "МЕТОДИКА", "за определяне на нещо", "ред"], [A, "annex_heading", "annex_heading", "annex_heading", "annex_row"]) == []
+
+
+def test_the_signature_rule_takes_only_the_colon_form():
+    from reading.checks import DV_TAIL
+    assert DV_TAIL.match("Председател на Народното събрание: Рая Назарян") and DV_TAIL.match("Министър на правосъдието: Име")
+    assert not DV_TAIL.match("Председател на съвета е министърът на транспорта.")

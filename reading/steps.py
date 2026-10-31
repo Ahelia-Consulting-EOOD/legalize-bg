@@ -90,10 +90,30 @@ def _doc_id(ctx: Context) -> str:
     return str(fm.get("identificador", "")).strip()
 
 
-def _title_words(ctx: Context) -> str:
-    """The act's name as other acts cite it: the title without its leading 'Закон за'."""
+def _title_parts(ctx: Context) -> tuple[str, str, str]:
+    """(kind, preposition, name) of the act's title: ("закон", "за", "обществения транспорт"), ("кодекс", "на", "труда")."""
     title = (ctx.entry.title if ctx.entry else ctx.slug).strip()
-    return re.sub(r"^(Закон|Кодекс)\s+(за|на)\s+", "", title, flags=re.I).strip().lower()
+    m = re.match(r"^(Закон|Кодекс)\s+(за|на)\s+(.+)$", title, re.I)
+    if not m:
+        return "", "", title.lower()
+    return m.group(1).lower(), m.group(2).lower(), m.group(3).strip().lower()
+
+
+def _title_words(ctx: Context) -> str:
+    """The act's name as other acts cite it: the title without its leading 'Закон за' or 'Кодекс на'."""
+    return _title_parts(ctx)[2]
+
+
+def _amending_pattern(ctx: Context) -> re.Pattern:
+    """The act's name in any case ("закона за …", "законът за …", "кодекса на …") within 200 characters of an amending or repealing verb."""
+    kind, prep, name = _title_parts(ctx)
+    cited = (re.escape(kind) + r"[аът]*\s+" + re.escape(prep) + r"\s+" if kind else "") + re.escape(name)
+    return re.compile(cited + r".{0,200}?" + AMENDING_VERBS + "|" + AMENDING_VERBS + r".{0,200}?" + cited, re.S)
+
+
+def _next_issue(latest: tuple[int, int]) -> tuple[tuple[int, int], tuple[int, int]]:
+    """The two issues that can follow the latest known one: the next number of its year, or the first of the next year."""
+    return (latest[0], latest[1] + 1), (latest[0] + 1, 1)
 
 
 def _index_rows() -> list[dict]:
@@ -140,8 +160,7 @@ class AmendmentSearch:
         candidates = [r for r in rows + later if r.get("status") == "ok" and (r["issue_year"], r["issue_number"]) > since
                       and r.get("section") in SECTIONS and LAW_TITLE.match(r.get("title") or "") and r["id_mat"] != id_mat]
         title_hits = [r for r in candidates if name in (r.get("title") or "").lower()]
-        # the act's name (any case: "закона за …", "законът за …") within 200 characters of an amending or repealing verb
-        amending = re.compile(r"закон[аът]*\s+за\s+" + re.escape(name) + r".{0,200}?" + AMENDING_VERBS + "|" + AMENDING_VERBS + r".{0,200}?закон[аът]*\s+за\s+" + re.escape(name), re.S)
+        amending = _amending_pattern(ctx)
         amending_hits, mentions, fetched = [], [], 0
         for r in candidates:
             cached = (DV_CACHE / f"{r['id_mat']}.html").exists()
@@ -159,9 +178,10 @@ class AmendmentSearch:
                "mentions": [{k: r[k] for k in ("issue_year", "issue_number", "id_mat", "title")} for r in mentions], "searched_at": _now()}
         (ctx.act_dir / "amendments.json").write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
         evidence = [_rel(ctx, ctx.act_dir / "amendments.json")]
-        if oldest_new > latest and oldest_new[0] == latest[0] and oldest_new[1] > latest[1] + 1:
-            return StepResult("stop", f"the issues fetched begin at бр. {oldest_new[1]}/{oldest_new[0]} and the index ends at бр. {latest[1]}/{latest[0]}: "
-                              f"a gap no search covered; extend the index first", evidence)
+        fetched_keys = {(i.year, i.number) for i in fetched_issues}
+        if not fetched_keys or not any(k <= _next_issue(latest)[0] or k == _next_issue(latest)[1] for k in fetched_keys):
+            return StepResult("stop", f"the issues fetched ({'none' if not fetched_keys else f'from бр. {oldest_new[1]}/{oldest_new[0]}'}) do not reach the issue "
+                              f"after the index's last one (бр. {latest[1]}/{latest[0]}): a gap no search covered; extend the index first", evidence)
         if title_hits or amending_hits:
             hits = [f"{r['issue_number']}/{r['issue_year']} material {r['id_mat']}: {r['title'][:80]}" for r in title_hits + amending_hits]
             return StepResult("stop", "a later material amends the act, so its promulgation material is not the whole act "
@@ -339,7 +359,7 @@ class ContentCheck:
 
 class Witnesses:
     name = "witnesses"
-    version = "1"
+    version = "2"   # the record carries the body's hash
 
     def inputs(self, ctx: Context) -> list[Path]:
         paths = [ctx.act_dir / "staged.md", ctx.act_dir / "witness-answer.json"]

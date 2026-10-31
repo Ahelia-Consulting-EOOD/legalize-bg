@@ -411,6 +411,9 @@ def _setup_dv(tmp_path):
     (run_dir / "staged.md").write_text(md, encoding="utf-8")
     (run_dir / "material.json").write_text(json.dumps({"id_mat": 77, "sha256": hashlib.sha256(html).hexdigest(), "fetched_at": "2026-10-31T10:00:00+00:00",
                                                        "issue_number": 32, "issue_year": 2026, "issue_date": "2026-04-01", "section_path": "Официален раздел / НАРОДНО СЪБРАНИЕ"}), encoding="utf-8")
+    from reading import witnesses as W
+    W.write_diff(run_dir, md, [{"name": "lexbg", "absent": "no page in the test"}, {"name": "moj", "absent": "no page in the test"}])
+    W.record(run_dir, {})   # the witness record for this body, nothing to settle
     return root, run_dir, raw_dir, cache
 
 
@@ -485,3 +488,24 @@ def test_lost_text_on_the_lexbg_path_lists_the_act_for_investigation(tmp_path):
     assert e is not None and e.route == "investigate" and e.source == "unknown" and e.address == "unknown" and e.evidence[0]["kind"] == "audit"
     with pytest.raises(WriteRefused, match="on the exceptions list"):
         _write(root, run_dir, raw_dir)   # listed now: refused by name before anything else
+
+
+def test_a_gazette_write_needs_a_clean_witness_record_for_this_body(tmp_path):
+    root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
+    rec_path = run_dir / "witness-record.json"
+    rec = json.loads(rec_path.read_text(encoding="utf-8"))
+    rec_path.write_text(json.dumps({**rec, "stops": ["reading_error"]}), encoding="utf-8")
+    with pytest.raises(WriteRefused, match="stopping verdict \\(reading_error\\)"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    rec_path.write_text(json.dumps({**rec, "body_sha256": "0" * 64}), encoding="utf-8")
+    with pytest.raises(WriteRefused, match="made for another body"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    rec_path.unlink()
+    with pytest.raises(WriteRefused, match="no witness-record.json"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    assert _git(root, "rev-list", "--count", "HEAD") == "1\n"
+    committed = {**COMMITTED, "amendment_history": [{"dv": "32/2026", "date": "2026-04-01"}, {"dv": "55/2026 изм.", "date": "2026-06-16"}]}
+    (root / "laws" / f"{SLUG}.md").write_text(render_act(committed, "# x\n"), encoding="utf-8")
+    _git(root, "commit", "-qam", "odd row")
+    with pytest.raises(WriteRefused, match="do not read as issue/year"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)

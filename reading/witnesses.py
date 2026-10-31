@@ -121,7 +121,7 @@ def compare(ours: list[str], theirs: list[str]) -> list[dict]:
                 " ".join(a[max(0, p1 - CONTEXT):p1]), " ".join(a[p2:p2 + CONTEXT]))
         if not found or (i2 - i1) != (j2 - j1):
             add("structure", " | ".join(ours[i1:i2]), " | ".join(theirs[j1:j2]), i1, j1,
-                "", f"{i2 - i1} line(s) of ours against {j2 - j1} of the witness, the same words")
+                "", f"{i2 - i1} line(s) of ours against {j2 - j1} of the witness, " + ("the same words" if not found else "with the differences above inside"))
     return out
 
 
@@ -146,7 +146,7 @@ def diff_witness(name: str, ours: list[str], raw_page: bytes, page_sha256: str, 
 def write_diff(run_dir: Path, body_markdown: str, witnesses: list[dict]) -> Path:
     """``witnesses``: [{name, raw, page_sha256, fetched_at}] or [{name, absent: <why>}] per witness; writes witness-diff.json."""
     ours = body_lines(body_markdown)
-    out = {"normalisation": list(NORMALISATION), "our_lines": len(ours), "witnesses": []}
+    out = {"normalisation": list(NORMALISATION), "our_lines": len(ours), "body_sha256": body_sha256(body_markdown), "witnesses": []}
     for w in witnesses:
         if w.get("absent"):
             out["witnesses"].append({"witness": w["name"], "absent": w["absent"], "count": 0, "differences": []})
@@ -160,6 +160,11 @@ def write_diff(run_dir: Path, body_markdown: str, witnesses: list[dict]) -> Path
 
 def diff_sha256(run_dir: Path) -> str:
     return hashlib.sha256((run_dir / "witness-diff.json").read_bytes()).hexdigest()
+
+
+def body_sha256(body_markdown: str) -> str:
+    """The hash of our body as compared: the write path checks the record was made for the body it writes."""
+    return hashlib.sha256("\n".join(body_lines(body_markdown)).encode("utf-8")).hexdigest()
 
 
 def task_text(diff: dict, slug: str, answer_path: Path, sha256: str) -> str:
@@ -240,6 +245,7 @@ def record(run_dir: Path, answer: dict | None = None) -> Path:
     if problems:
         raise ValueError("the settler's answer does not settle every difference: " + "; ".join(problems))
     rec["diff_sha256"] = sha
+    rec["body_sha256"] = diff.get("body_sha256")
     rec["stops"] = sorted({v["verdict"] for w in rec["witnesses"] for v in w.get("verdicts", {}).values() if v["verdict"] in STOPPING})
     p = run_dir / "witness-record.json"
     p.write_text(json.dumps(rec, ensure_ascii=False, indent=1), encoding="utf-8")

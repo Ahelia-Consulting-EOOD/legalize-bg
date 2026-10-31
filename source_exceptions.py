@@ -60,7 +60,7 @@ HEADER = """# docs/data/source-exceptions.yaml: the exceptions list (plan of 31 
 # correct from its route, and `python source_exceptions.py report` prints the distance left first.
 #
 # defect: dropped_section | wrong_text | page_without_act | server_error | source_before_archive
-# source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service | unknown; address: a material id or a URL, or unknown
+# source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service | unknown; address: a material id (dv_html, dv_pdf), a URL, or unknown
 # route:  whole_act_from_material | history | source_before_archive | investigate
 # state:  listed | investigated | committed | stopped
 # evidence: a list of {kind: decision | audit | case_file | register | plan, ref: <where>}
@@ -106,8 +106,13 @@ def _problems(entry: dict, k: int) -> list[str]:
     for key, allowed in (("defect", DEFECTS), ("source", SOURCES), ("route", ROUTES), ("state", STATES)):
         if key in entry and entry[key] not in allowed:
             out.append(f"{where}: {key} {entry[key]!r} is not one of {sorted(allowed)}")
-    if isinstance(entry.get("address"), str) and not entry["address"].strip():
+    address = entry.get("address")
+    if isinstance(address, str) and not address.strip():
         out.append(f"{where}: address is empty")
+    elif isinstance(address, str) and entry.get("source") in ("dv_html", "dv_pdf") and not address.strip().isdigit():
+        out.append(f"{where}: address {address!r} is not a material id, as the source {entry['source']} needs")
+    elif isinstance(address, str) and entry.get("source") in ("moj_portal", "strategy_bg", "paid_service", "unknown") and address.strip() != "unknown" and not address.strip().startswith(("http://", "https://")):
+        out.append(f"{where}: address {address!r} is neither a URL nor unknown, as the source {entry['source']} needs")
     if "added" in entry and not _DATE.match(str(entry["added"])):
         out.append(f"{where}: added {entry['added']!r} is not a date YYYY-MM-DD")
     ev = entry.get("evidence")

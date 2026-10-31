@@ -35,16 +35,22 @@ def test_the_steps_are_the_routes_steps_with_disjoint_outputs(tmp_path):
     assert all(getattr(s, "version", "") for s in steps.STEPS.values())
 
 
-def test_title_words_and_the_amending_phrase():
-    ctx = _ctx.__wrapped__ if hasattr(_ctx, "__wrapped__") else None  # noqa: F841 (kept simple)
-    e = sx.Entry(slug="x", title="Закон за обществения транспорт", defect="dropped_section", source="dv_html", address="1", route="history",
+def _entry_ctx(title):
+    e = sx.Entry(slug="x", title=title, defect="dropped_section", source="dv_html", address="1", route="history",
                  evidence=[{"kind": "plan", "ref": "t"}], state="listed", added="2026-10-31")
-    c = routes.Context(slug="x", run="r", root=Path("."), run_root=Path("r"), list_path=Path("l"), entry=e)
-    assert steps._title_words(c) == "обществения транспорт"
-    import re
-    amending = re.compile(r"в\s+закона\s+за\s+" + re.escape("обществения транспорт"))
+    return routes.Context(slug="x", run="r", root=Path("."), run_root=Path("r"), list_path=Path("l"), entry=e)
+
+
+def test_title_words_and_the_amending_phrase_for_a_law_and_a_code():
+    c = _entry_ctx("Закон за обществения транспорт")
+    assert steps._title_words(c) == "обществения транспорт" and steps._title_parts(c) == ("закон", "за", "обществения транспорт")
+    amending = steps._amending_pattern(c)
     assert amending.search("§ 5. в закона за обществения транспорт (обн., дв, бр. 32 от 2026 г.) се правят следните изменения")
-    assert not amending.search("по реда на закона за обществения транспорт")
+    assert amending.search("законът за обществения транспорт се отменя.")
+    assert not amending.search("по реда на закона за обществения транспорт се издава")
+    code = steps._amending_pattern(_entry_ctx("Кодекс на труда"))
+    assert code.search("§ 7. в кодекса на труда (обн., дв, бр. 26 от 1986 г.) се правят следните изменения и допълнения:")
+    assert steps._next_issue((2025, 100)) == ((2025, 101), (2026, 1))
 
 
 def test_the_ladder_step_reads_the_last_report_and_names_the_residue(tmp_path):
@@ -82,7 +88,7 @@ def test_the_investigators_answer_is_held_to_the_form(tmp_path, monkeypatch):
     ctx = _ctx(tmp_path)
     monkeypatch.setattr(steps, "RAW_LEXBG", tmp_path / "nowhere")
     monkeypatch.setattr(steps.raw_fetch_moj, "fetch_one", lambda doc_id, out, **kw: {"outcome": "absent", "status": 500, "url": "u", "fetched_at": "t"})
-    sx.update(ctx.list_path, SLUG, source="moj_portal", address="999")   # no Gazette material: nothing to fetch
+    sx.update(ctx.list_path, SLUG, source="moj_portal", address="https://justice.government.bg/home/normdoc/999")   # no Gazette material: nothing to fetch
     ctx.entry = sx.listed(SLUG, ctx.list_path)
     step = steps.STEPS["investigate"]
     assert step.run(ctx).outcome == "pending" and (ctx.act_dir / "investigate-task.md").exists()

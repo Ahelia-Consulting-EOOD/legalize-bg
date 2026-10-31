@@ -46,7 +46,7 @@ entries:
   title: Указ № 883 от 24 април 1974 г. за прилагане на Закона за нормативните актове
   defect: source_before_archive
   source: strategy_bg
-  address: strategy.bg (the page is not recorded; traced in S4)
+  address: unknown
   route: source_before_archive
   evidence:
   - kind: decision
@@ -55,5 +55,5 @@ entries:
     ref: 'docs/plans/2026-10-31-starting-state-implementation-plan.md, S4: the provenance of Указ № 883 is traced in the owner''s legislation repositories and ДВ бр. 39/1974 is looked for'
   state: stopped
   added: '2026-10-31'
-  note: Promulgated in ДВ бр. 39/1974, before the Gazette's online archive (issue PDFs from 1989); the authoritative source is decided in S4.
+  note: Promulgated in ДВ бр. 39/1974, before the Gazette's online archive (issue PDFs from 1989); the text in the corpus came from strategy.bg, whose page was not recorded; the authoritative source and its address are decided in S4.
   case_file: docs/cases/ukaz-883-ot-24-april-1974-g-za-prilagane-na-zakona-za-normativnite-aktove.md

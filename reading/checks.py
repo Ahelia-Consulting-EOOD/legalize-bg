@@ -77,7 +77,23 @@ _ELISION = re.compile(r"^(?:\.\s*){5,}$")  # ". . . . ." — lex.bg's mark that 
 _QUOTE_MARKS = re.compile(r"[\"„“”«»]")
 _QUOTE_CLOSE = re.compile(r"[\"“”»][.;,:)]?$")
 _SIGN_FORM = re.compile(r"^(?:§\s*\d+[а-я]?\.|Параграф\s+единствен\.)(?:\s|$)")
-_PROVISIONS_WORD = re.compile(r"^(Допълнителн|Преходн|Заключителн)", re.I)
+_PROVISIONS_KIND = re.compile(r"(допълнителн|преходн|заключителн)", re.I)
+_HEADING_WORD_RE = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\b")
+
+
+def _provisions_kinds(text: str) -> frozenset[str]:
+    """The kinds a provisions heading names: additional, transitional, final (one heading may name two)."""
+    return frozenset(m.lower() for m in _PROVISIONS_KIND.findall(text))
+
+
+def _heading_word(text: str) -> str:
+    m = _HEADING_WORD_RE.match(text.strip())
+    return m.group(1) if m else ""
+
+
+def _group_word(blocks: list[Block], a: int) -> str:
+    """The heading word of the number line that the titled heading at ``a`` continues, when the line before it is one."""
+    return _heading_word(blocks[a - 1].text) if a > 0 and NUMBER_LINE.match(blocks[a - 1].text) else ""
 # the page chrome lex.bg prints before the title and after the act: the only drops allowed outside the act
 START_CHROME = re.compile(r"^(ДОБАВИ В МОИТЕ АКТОВЕ|Lex\.bg)")
 TAIL_CHROME = "Релевантни актове от Европейското законодателство"
@@ -87,7 +103,7 @@ TAIL_STARTS = frozenset({TAIL_CHROME, "Новини"})
 # countersignature, and the signature after the adoption formula, then the material's number, are the chrome
 DV_DECREE_START = re.compile(r"^УКАЗ №")
 DV_DECREE_END = re.compile(r"^Министър на правосъдието")
-DV_TAIL = re.compile(r"^(Председател|Заместник-председател|Зам\.-председател|Министър|За министър|Главен секретар)\b")
+DV_TAIL = re.compile(r"^(Председател|Заместник-председател|Зам\.-председател|Министър|За министър|Главен секретар)\b[^:]{0,80}:\s*\S")   # the colon form "…: Name"
 DV_NUMBER_LINE = re.compile(r"^\d{1,6}$")
 
 
@@ -133,10 +149,10 @@ def _follows(prev: tuple[int, str] | None, cur: tuple[int, str]) -> bool:
 def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -> bool:
     """Two consecutive heading blocks that form one heading (joined by the assembler), or a legal nesting."""
     ta, tb = blocks[a].text, blocks[b].text
+    if la == lb and la != "provisions_heading" and NUMBER_LINE.match(tb) and _heading_word(tb) == _heading_word(ta if NUMBER_LINE.match(ta) else _group_word(blocks, a)):
+        return False   # the next number line of the same rank and word ("Глава втора" after chapter one's title, or after its bare number): nothing under it
     if NUMBER_LINE.match(ta):
-        return True
-    if la == lb and la != "provisions_heading" and NUMBER_LINE.match(tb):
-        return False   # a titled heading followed by the next number line of the same rank: a section with nothing under it
+        return True   # a number line takes its title line, or the number line of the rank below it ("Част втора." then "Дял първи.")
     if re.match(r"^(КЪМ|Към|към)\s", tb) or re.search(r"\s(КЪМ|Към|към)$", ta):
         return True
     if la == "provisions_heading":
@@ -144,11 +160,14 @@ def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -
         # sometimes without the "КЪМ", sometimes in the other order), and a sub-heading may follow ("Обяснение на някои думи");
         # but an additional-provisions heading followed at once by the transitional or final provisions heading is an
         # additional section with nothing under it: lost text (FR-042's rule additional-empty, D-076)
-        if _PROVISIONS_WORD.match(ta) and _PROVISIONS_WORD.match(tb):
-            return False   # two provisions headings in a row ("Допълнителни …" then "Заключителни …"): the first has nothing under it
+        ka, kb = _provisions_kinds(ta), _provisions_kinds(tb)
+        if ka and kb and not (ka & kb):
+            return False   # two provisions headings of different kinds in a row ("Допълнителни …" then "Заключителни …"): the first has nothing under it
         return True
     if la == "annex_heading" and lb == "annex_heading" and re.match(r"^Приложение", ta) and not re.match(r"^Приложение", tb):
         return True
+    if la == "annex_heading" and lb == "annex_heading" and ta == ta.upper() and tb != tb.upper():
+        return True   # an annex's own title on two lines: "МЕТОДИКА" then "за определяне …"
     if la == "section_heading" and lb == "subsection_heading":
         return True
     if la in ("part_heading", "chapter_heading", "title"):

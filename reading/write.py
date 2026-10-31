@@ -91,10 +91,24 @@ def date_today() -> str:
     return date.today().isoformat()
 
 
-def _issue_key(dv: str | None) -> tuple[int, int]:
-    """(year, number) of an amendment row's "32/2026"; an unreadable row sorts first."""
+def _issue_key(dv: str | None) -> tuple[int, int] | None:
+    """(year, number) of an amendment row's "32/2026"; None for a row that does not read as one (the caller refuses it)."""
     m = re.fullmatch(r"\s*(\d+)\s*/\s*(\d{4})\s*", str(dv or ""))
-    return (int(m.group(2)), int(m.group(1))) if m else (0, 0)
+    return (int(m.group(2)), int(m.group(1))) if m else None
+
+
+def _check_witness_record(slug: str, run_dir: Path, body: str) -> dict:
+    """A Gazette-read act is written only with its witness record, made for this body, with no stopping verdict."""
+    from reading import witnesses
+    p = run_dir / "witness-record.json"
+    if not p.exists():
+        raise WriteRefused(f"{slug}: no witness-record.json in the run folder; the witnesses are compared and settled before the write")
+    rec = json.loads(p.read_text(encoding="utf-8"))
+    if rec.get("body_sha256") != witnesses.body_sha256(body):
+        raise WriteRefused(f"{slug}: the witness record was made for another body than the one written; compare the witnesses again")
+    if rec.get("stops"):
+        raise WriteRefused(f"{slug}: the witness record carries a stopping verdict ({', '.join(rec['stops'])}); the reading is wrong somewhere")
+    return rec
 
 
 @dataclass
@@ -294,11 +308,17 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
         if str(entry.address).strip() != str(rec["id_mat"]):
             raise WriteRefused(f"{slug}: the run's material {rec['id_mat']} is not the entry's address {entry.address}")
         issue = (int(rec["issue_year"]), int(rec["issue_number"]))
-        later = [r.get("dv") for r in (committed.get("amendment_history") or []) if isinstance(r, dict) and _issue_key(r.get("dv")) > issue]
+        rows = [r for r in (committed.get("amendment_history") or []) if isinstance(r, dict)]
+        unreadable = [r.get("dv") for r in rows if _issue_key(r.get("dv")) is None]
+        if unreadable:
+            raise WriteRefused(f"{slug}: the committed history holds rows that do not read as issue/year ({', '.join(map(str, unreadable))}); "
+                               f"they are settled before a Gazette write")
+        later = [r.get("dv") for r in rows if _issue_key(r.get("dv")) > issue]
         if later:
             raise WriteRefused(f"{slug}: the committed history holds {', '.join(map(str, later))} after the material's issue {issue[1]}/{issue[0]}; "
                                f"the act is not whole in that material (the history route is needed)")
         body, omissions, provenance, rec = reread_dv(slug, run_dir, cache_dir)
+        _check_witness_record(slug, run_dir, body)
         meta = build_frontmatter_dv(committed, rec)
         source_ref = SourceRef("dv", str(rec["id_mat"]))
     else:
