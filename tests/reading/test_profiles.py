@@ -291,7 +291,7 @@ def test_the_verdict_form_is_checked_and_the_list_carries_every_pairing(tmp_path
     doc["entries"].pop()
     doc["verdicts"] = {"in_force": 1}
     out.write_text(yaml.safe_dump(doc, allow_unicode=True), encoding="utf-8")
-    assert P.check_in_force_list(out, run) == ["the header's counts differ from the entries"]
+    assert P.check_in_force_list(out, run) == ["the header's counts differ from the entries", "1 act(s) unanswered"]   # zakon-za-b's verdict is gone
     # a verdict of an earlier pairing does not survive a re-pair
     P.pair(root, run, mats, per_call=2, raw_dir=tmp_path / "raw", fetch=lambda i: BODY)
     assert (run / "verdicts" / "zakon-za-a.json").exists()
