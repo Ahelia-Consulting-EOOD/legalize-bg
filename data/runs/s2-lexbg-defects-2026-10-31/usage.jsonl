@@ -15,3 +15,5 @@
 {"call": "call-whole-c372a0e4", "agent": "labeller (main checkout definition), model opus", "candidates": 1, "content_tokens": 98310, "tokens": 33050, "tool_uses": 7, "duration_ms": 22723}
 {"call": "review-A-round-1", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 42629, "tool_uses": 41, "duration_ms": 356001}
 {"call": "review-B-round-1", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 62452, "tool_uses": 61, "duration_ms": 430949}
+{"call": "review-A-round-2", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 92025, "tool_uses": 78, "duration_ms": 592674}
+{"call": "review-B-round-2", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 60923, "tool_uses": 53, "duration_ms": 443178}

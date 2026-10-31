@@ -13,7 +13,7 @@ run: s2-lexbg-defects-2026-10-31
 kinds:
 - kind: dropped_section
   status: confirmed
-  description: lex.bg prints a section heading of the act's own provisions (an additional, transitional or final provisions heading) with no text under it, or omits the section, while the Gazette's promulgation text carries the section with its provisions.
+  description: lex.bg prints a section heading of the act's own provisions (an additional, transitional or final provisions heading) with no text under it, or omits the section, while the Gazette carries the section with its provisions, in the promulgation material or, for a section a later amendment added (lex.bg marks its heading „Нова - ДВ, бр. …“), in that amending material; lex.bg's form is the same in both cases, so the kind is one (the session's reading of 31 October 2026, review A round 2).
   evidence:
   - kind: register
     ref: 'FR-042 (docs/frs/INDEX.md): Закон за обществения транспорт, lex.bg renders Допълнителна разпоредба with no text and starts the final provisions at § 2; ДВ бр. 32/2026 (material 242220) carries § 1 with twelve definitions; verified live for Закон за прозрачност при представителство на интереси'

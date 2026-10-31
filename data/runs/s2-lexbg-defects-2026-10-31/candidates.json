@@ -1,12 +1,12 @@
 {
  "run": "s2-lexbg-defects-2026-10-31",
- "scanned_at": "2026-10-31T21:19:41+00:00",
+ "scanned_at": "2026-10-31T21:38:26+00:00",
  "pages": 3623,
  "pages_without_act": 7,
- "candidates": 55,
+ "candidates": 42,
  "by_rule": {
   "additional-empty": 30,
-  "paragraph-start-above-1": 52
+  "paragraph-start-above-1": 39
  },
  "rules": [
   "additional-empty",
@@ -68,46 +68,6 @@
     "lowest_sign": 2
    },
    "blocks": 2068
-  },
-  {
-   "slug": "naredba-13a-10403-za-predelnite-razmeri-na-estestvenite-firi-braka-i-lipsite-na-",
-   "doc_id": "-560170495",
-   "category": "ordinances",
-   "page_sha256": "28aa8776014b4ce434952dd961cc948f61ee70a4247ceb874ccbce24b29b4fe6",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 54,
-     "detail": "lowest § is 8 (block 54) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 88
-  },
-  {
-   "slug": "naredba-14-ot-15-april-2004-g-za-meditsinskite-kriterii-i-reda-na-ustanovyavane-",
-   "doc_id": "2135484525",
-   "category": "ordinances",
-   "page_sha256": "7517ecefc9dc995d87e64b39b06e2f9c9d9db1ea3ebfd5f52014c6ea125d976d",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 83,
-     "detail": "lowest § is 34 (block 83) in the act's own provisions (blocks 81 to 83)"
-    }
-   ],
-   "own_tail": {
-    "start": 81,
-    "end": 84,
-    "lowest_sign": 34
-   },
-   "blocks": 197
   },
   {
    "slug": "naredba-2-ot-17-april-2026-g-za-usloviyata-i-reda-za-prilagane-i-nablyudenie-na-",
@@ -884,46 +844,6 @@
    "blocks": 563
   },
   {
-   "slug": "pravilnik-za-organizatsiya-na-deynostta-na-konsultativniya-savet-za-evropeyskata",
-   "doc_id": "2137223288",
-   "category": "regulations",
-   "page_sha256": "63e3ef7f98b23511a5bee21644164384903547a0337c4fd3c8d3111ac50edce4",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 124,
-     "detail": "lowest § is 3 (block 124) in the act's own provisions (blocks 122 to 124)"
-    }
-   ],
-   "own_tail": {
-    "start": 122,
-    "end": 125,
-    "lowest_sign": 3
-   },
-   "blocks": 132
-  },
-  {
-   "slug": "pravilnik-za-organizatsiyata-na-deynostta-na-saveta-za-koordinatsiya-v-borbata-s",
-   "doc_id": "2135809511",
-   "category": "regulations",
-   "page_sha256": "a13664857964aef121c222643eec7eb8a959f97daff1cd1216396d6e6a72cfd9",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 67,
-     "detail": "lowest § is 3 (block 67) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 68
-  },
-  {
    "slug": "pravilnik-za-ustroystvoto-deynostta-i-organizatsiyata-na-rabota-na-tsentara-za-o",
    "doc_id": "2135525134",
    "category": "regulations",
@@ -957,65 +877,15 @@
     {
      "rule": "paragraph-start-above-1",
      "block": 40,
-     "detail": "lowest § is 2 (block 40) on the page, which has no provisions heading"
+     "detail": "lowest § is 2 (block 40) on the page before its first amending act's tail (blocks 0 to 42), which has no provisions heading of its own"
     }
    ],
-   "own_tail": null,
+   "own_tail": {
+    "start": 0,
+    "end": 43,
+    "lowest_sign": 2
+   },
    "blocks": 43
-  },
-  {
-   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-natsionalniya-institut-po-meteorologiya",
-   "doc_id": "2137190326",
-   "category": "regulations",
-   "page_sha256": "8e84572d4191e7fa478b796e5c9b081ad4847a113f56e0d35dd8bfe42f4d031a",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 149,
-     "detail": "lowest § is 6 (block 149) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 167
-  },
-  {
-   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-natsionalniya-savet-po-vaprosite-na-sot",
-   "doc_id": "2135633011",
-   "category": "regulations",
-   "page_sha256": "39bc6fc063120f73175e09c98f517b825f9a71f6b067de4a35e3bf7a68c1a34e",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 72,
-     "detail": "lowest § is 2 (block 72) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 89
-  },
-  {
-   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-tsentara-za-razvitie-na-choveshkite-res",
-   "doc_id": "2135990161",
-   "category": "regulations",
-   "page_sha256": "9c047dbec2f02ced8d8fa0ca1c2dcffbcd62a416587ad37e3f74dde182977193",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 203,
-     "detail": "lowest § is 4 (block 203) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 234
   },
   {
    "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-voenno-geografskata-sluzhba-2",
@@ -1096,86 +966,6 @@
    "blocks": 304
   },
   {
-   "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-programa-za-obrazovanie-zagl-izm",
-   "doc_id": "2137177654",
-   "category": "regulations",
-   "page_sha256": "c345df3a49fa0b1776dfa34ca4a94031901b9292cc4dfb31dac0b26d43e30fac",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 170,
-     "detail": "lowest § is 7 (block 170) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 219
-  },
-  {
-   "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-sertifikatsionen-odit-na-sredstv",
-   "doc_id": "2136801447",
-   "category": "regulations",
-   "page_sha256": "7de088608218dcc06302b38689232446d852c63ee86c8b6dddab8dd87434e5f9",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 169,
-     "detail": "lowest § is 5 (block 169) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 202
-  },
-  {
-   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-okolnata-sreda-i-vodite",
-   "doc_id": "2137177049",
-   "category": "regulations",
-   "page_sha256": "31735ece3801018d36eee36682ad549c6ae5a27b8d527afbb98148c9672e128b",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 676,
-     "detail": "lowest § is 3 (block 676) in the act's own provisions (blocks 674 to 676)"
-    }
-   ],
-   "own_tail": {
-    "start": 674,
-    "end": 677,
-    "lowest_sign": 3
-   },
-   "blocks": 752
-  },
-  {
-   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-pravosadieto",
-   "doc_id": "2136458719",
-   "category": "regulations",
-   "page_sha256": "cb4cb70588d908bc29dcce62a07d6ec675186e74f9a5e65906b425464b841254",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 578,
-     "detail": "lowest § is 28 (block 578) in the act's own provisions (blocks 576 to 579)"
-    }
-   ],
-   "own_tail": {
-    "start": 576,
-    "end": 580,
-    "lowest_sign": 28
-   },
-   "blocks": 664
-  },
-  {
    "slug": "ustroystven-pravilnik-na-natsionalnata-sluzhba-za-rastitelna-zashtita",
    "doc_id": "2135485542",
    "category": "regulations",
@@ -1254,24 +1044,6 @@
    "blocks": 309
   },
   {
-   "slug": "zakon-za-priemane-na-deklaratsiya-za-priznavane-zadalzhitelnata-yurisdiktsiya-na",
-   "doc_id": "2132824577",
-   "category": "laws",
-   "page_sha256": "2d3837f3188c69b24044b2140d4bb4bbe2799f113c2f6f667c81e9c2d83890e8",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 23,
-     "detail": "lowest § is 2 (block 23) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 24
-  },
-  {
    "slug": "zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi",
    "doc_id": "2137259673",
    "category": "laws",
@@ -1326,24 +1098,6 @@
     "lowest_sign": 2
    },
    "blocks": 693
-  },
-  {
-   "slug": "zakon-za-tvorcheskite-fondove",
-   "doc_id": "2127836674",
-   "category": "laws",
-   "page_sha256": "d84a38d622423a1c5692790cd25bb361bc7300e3c540db9cde14b5ebe5c3464d",
-   "rules": [
-    "paragraph-start-above-1"
-   ],
-   "findings": [
-    {
-     "rule": "paragraph-start-above-1",
-     "block": 52,
-     "detail": "lowest § is 52 (block 52) on the page, which has no provisions heading"
-    }
-   ],
-   "own_tail": null,
-   "blocks": 54
   }
  ]
 }
