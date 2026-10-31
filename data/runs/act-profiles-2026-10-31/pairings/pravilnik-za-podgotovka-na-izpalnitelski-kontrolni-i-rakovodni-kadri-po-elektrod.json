@@ -4,7 +4,6 @@
  "title": "ПРАВИЛНИК ЗА ПОДГОТОВКА НА ИЗПЪЛНИТЕЛСКИ, КОНТРОЛНИ И РЪКОВОДНИ КАДРИ ПО ЕЛЕКТРОДЪГОВО ЗАВАРЯВАНЕ",
  "kind": "правилник",
  "fecha_publicacion": "1965-07-13",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1979-03-27",
  "amendments_recorded": 2,
  "last_amendments": [
@@ -17,6 +16,8 @@
    "date": "1979-03-27"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр.55 от 13 Юли 1965г. , изм. ДВ. бр. 25 от 27 Март 1979г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "електродъгово",
   "заваряване",

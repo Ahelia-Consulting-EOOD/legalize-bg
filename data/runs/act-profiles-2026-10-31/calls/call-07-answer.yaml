@@ -1,40 +1,40 @@
 naredba-4-za-poshtenskite-saobshteniya:
-  verdict: in_force
-  repealed_by: null
-  evidence: lex.bg records it vigente, last amended ДВ 64/2000; the only candidate (material 57295) repeals Инструкция № И-10 от 2009 г. on Military Police, a different act sharing only the word "съобщения".
+  verdict: repealed
+  repealed_by: 0
+  evidence: lex.bg's history line carries the repeal marker "отм. ДВ. бр. 64 от 4 Август 2000г." with no later amendment; candidate 57295 repeals a different act (a military police instruction) and is not relied on.
 naredba-49-za-izkustveno-osvetlenie-na-sgradite:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente, last amended ДВ 64/1976; no candidate repeal title shares words with its title.
+  evidence: The history line ends with the 1976 amendment (ДВ 64/1976), there is no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
 naredba-5-za-bolestite-pri-koito-rabotnitsite-boleduvashti-ot-tyah-imat-osobena-:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 33/1987); material 59709 repeals a different Наредба № 5 (on фонд „Жилищно строителство“), and materials 2377, 2378, 2379 and 28094 repeal labour-safety rules and Наредба № 3 от 1996 г., none of which is this act.
+  evidence: The history line holds only the 1987 promulgation and no repeal marker; candidate 59709 repeals a different Наредба № 5 (on the housing fund), and candidates 2377, 2378, 2379 and 28094 repeal other labour-safety acts, so none names this act.
 naredba-6-za-izpolzuvane-i-predstavyane-na-nedvizhimite-pametnitsi-na-kulturata:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 30/1979); no candidate repeal title shares words with its title.
+  evidence: The history line holds only the 1979 promulgation, with no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
 naredba-6-za-osiguryavane-na-normalna-akustichna-obstanovka-v-zhilishtni-i-obsht:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 16/1977); no candidate repeal title shares words with its title.
+  evidence: The history line holds only the 1977 promulgation, with no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
 naredba-6-za-ustroystvoto-i-deynostta-na-balgarskiya-koraben-registar:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente, last amended ДВ 60/1984; candidates 49001 (the Academy of the Ministry of Interior rules) and 132672 (the rules on regional development councils and directorates) are different acts that share only "устройството" and "дейността".
+  evidence: The history line ends with the 1984 corrigendum (ДВ 60/1984), with no repeal marker; candidates 49001 (the Ministry of Interior academy rules) and 132672 (the regional development council rules) repeal different acts.
 naredba-7-za-higiennite-iziskvaniya-za-ustroystvoto-i-eksploatatsiyata-na-gabarn:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 28/1984); candidates 174747 (Наредба № 45 от 1995 г. on food additives) and 178341 (Наредба № 11 от 1995 г. on agricultural pharmacies) are different acts.
+  evidence: The history line holds only the 1984 promulgation, with no repeal marker; candidates 174747 (Наредба № 45 of 1995 on food additives) and 178341 (Наредба № 11 of 1995 on agricultural pharmacies) repeal different acts.
 naredba-8-za-mikroklimata-v-podzemnite-rudnitsi:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 74/1985); no candidate repeal title shares words with its title.
+  evidence: The history line holds only the 1985 promulgation, with no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
 naredba-9-za-profesionalnata-kvalifikatsiya-na-stenografite-i-mashinopistsite:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 64/1985); no candidate repeal title shares words with its title.
+  evidence: The history line holds only the 1985 promulgation, with no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
 naredba-za-komandirovkite-v-stranata:
   verdict: in_force
   repealed_by: null
-  evidence: lex.bg records it vigente with 10 amendment rows, the last ДВ 115/2025 (2025-12-30); no candidate repeal title shares words with its title.
+  evidence: The history line and the amendment rows show amendments in the HTML era (ДВ 2/2008, ДВ 2/2011, ДВ 27/2023, ДВ 115/2025), with no repeal marker; candidate 18441 amends a decree that repealed a different наредба (on the property of foreign persons), so it does not name this act.

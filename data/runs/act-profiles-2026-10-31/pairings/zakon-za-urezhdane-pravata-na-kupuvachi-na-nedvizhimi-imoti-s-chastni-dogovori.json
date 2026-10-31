@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА УРЕЖДАНЕ ПРАВАТА НА КУПУВАЧИ НА НЕДВИЖИМИ ИМОТИ С ЧАСТНИ ДОГОВОРИ",
  "kind": "закон",
  "fecha_publicacion": "1947-07-26",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1947-07-26",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1947-07-26"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 171 от 26 Юли 1947г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "договори",
   "имоти",

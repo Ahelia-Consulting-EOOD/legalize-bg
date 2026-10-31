@@ -4,7 +4,6 @@
  "title": "ПРАВИЛНИК ЗА КАТЕГОРИЗИРАНЕ И ПРЕКАТЕГОРИЗИРАНЕ НА РЪКОВОДИТЕЛИТЕ НА ХУДОЖЕСТВЕНАТА САМОДЕЙНОСТ",
  "kind": "правилник",
  "fecha_publicacion": "1969-11-19",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1969-11-19",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1969-11-19"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 89 от 19 Ноември 1969г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "категоризиране",
   "прекатегоризиране",

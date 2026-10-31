@@ -4,7 +4,6 @@
  "title": "ПРАВИЛНИК ЗА ПРИЛОЖЕНИЕ НА ЗАКОНА ЗА ОПАЗВАНЕ НА ВЪЗДУХА, ВОДИТЕ И ПОЧВАТА ОТ ЗАМЪРСЯВАНЕ",
  "kind": "правилник по прилагане",
  "fecha_publicacion": "1964-10-09",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1978-01-31",
  "amendments_recorded": 2,
  "last_amendments": [
@@ -17,6 +16,8 @@
    "date": "1978-01-31"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр.80 от 9 Октомври 1964г. , изм. ДВ. бр. 9 от 31 Януари 1978г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "водите",
   "въздуха",

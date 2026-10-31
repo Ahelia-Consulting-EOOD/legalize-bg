@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА ОТМЕНЯВАНЕ НА ВСИЧКИ ЗАКОНИ, ИЗДАДЕНИ ПРЕДИ 9.09.1944 Г.",
  "kind": "закон",
  "fecha_publicacion": "1951-11-20",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1951-11-20",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1951-11-20"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 93 от 20 Ноември 1951г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "всички",
   "закони",

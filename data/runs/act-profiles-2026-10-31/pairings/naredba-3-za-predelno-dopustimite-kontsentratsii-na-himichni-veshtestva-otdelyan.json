@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 3 ЗА ПРЕДЕЛНО ДОПУСТИМИТЕ КОНЦЕНТРАЦИИ НА ХИМИЧНИ ВЕЩЕСТВА, ОТДЕЛЯНИ ОТ ПОЛИМЕРНИ СТРОИТЕЛНИ МАТЕРИАЛИ В ЖИЛИЩНИ И ОБЩЕСТВЕНИ СГРАДИ",
  "kind": "наредба",
  "fecha_publicacion": "1984-02-28",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1984-02-28",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1984-02-28"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 17 от 28 Февруари 1984г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "вещества",
   "допустимите",

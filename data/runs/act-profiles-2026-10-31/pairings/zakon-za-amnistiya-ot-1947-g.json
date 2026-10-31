@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1947 Г.",
  "kind": "закон",
  "fecha_publicacion": "1947-06-27",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1947-06-27",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1947-06-27"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 146 от 27 Юни 1947г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "амнистия"
  ],

@@ -1,40 +1,40 @@
 zakon-za-oproshtavane-na-zadalzheniya-kam-darzhavata:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: "No candidate repeal title shares words with this act; lex.bg records it vigente with a single row, the original ДВ 73/1964."
+  evidence: The history line holds only the 1964 promulgation (ДВ 73/1964), so it ends before 2003; no candidate and no repeal marker, so the only evidence is that nothing was found.
 zakon-za-otgovornostta-na-darzhavata-i-obshtinite-za-vredi-zagl-izm-dv-br-30-ot-:
   verdict: in_force
   repealed_by: null
-  evidence: "No candidate repeal title; lex.bg records it vigente with 21 amendment rows, the latest ДВ 59/2026 (2026-06-30), so it is still being amended."
+  evidence: The history line and the amendment rows carry amendments well into the HTML era, the last being ДВ 16/2026, 51/2026 and 59/2026; no candidate names it and there is no repeal marker.
 zakon-za-otmenyavane-na-vsichki-zakoni-izdadeni-predi-9091944-g:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: "No candidate repeal title shares words with this act; lex.bg records it vigente with only the original row, ДВ 93/1951."
+  evidence: The history line holds only the 1951 promulgation (ДВ 93/1951), so it ends before 2003; no candidate and no repeal marker.
 zakon-za-sobstvenostta:
   verdict: in_force
   repealed_by: null
-  evidence: "No candidate repeal title; lex.bg records it vigente with 37 amendment rows, the latest ДВ 18/2022 (2022-03-04)."
+  evidence: The history line and the amendment rows carry amendments in the HTML era, the last being ДВ 7/2018, 18/2020 and 18/2022; no candidate names it and there is no repeal marker.
 zakon-za-tvorcheskite-fondove:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: "All six candidates (21286, 21997, 27320, 57288, 70892, 116401) repeal other acts (ordinances, decrees, instructions) and share only the word for funds; lex.bg records the law vigente, last amended ДВ 153/1998."
+  evidence: The history line ends with the amendment in ДВ 153/1998, before 2003, and there is no repeal marker; each of the six candidates shares only the word "фондове" and repeals a different act (наредби, a постановление and an инструкция on other subjects), so none names this law.
 zakon-za-urezhdane-pravata-na-kupuvachi-na-nedvizhimi-imoti-s-chastni-dogovori:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: "No candidate repeal title shares words with this act; lex.bg records it vigente with only the original row, ДВ 171/1947."
+  evidence: The history line holds only the 1947 promulgation (ДВ 171/1947), so it ends before 2003; no candidate and no repeal marker.
 zakon-za-urezhdane-pravata-na-litsata-koito-sa-zaeli-ili-poluchili-darzhavni-dvo:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: "The only candidate, 240221 (ДВ 114/2025), repeals Ordinance Н-9 of 2020 on a virtual-currency register and shares only generic words; lex.bg records the law vigente with only the original row, ДВ 90/1956."
+  evidence: The history line holds only the 1956 promulgation (ДВ 90/1956), so it ends before 2003, and there is no repeal marker; the only candidate (material 240221) repeals Наредба № Н-9 от 2020 г. on the register of virtual-currency service providers, a different act that shares only the words "лицата" and "които".
 zakon-za-vanshnata-targoviya:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: "Candidates 21361 (a 2002 decree on the Estonia free-trade agreement) and 108524 (Ordinance No 44 of 2001 on compound feed trade) repeal other acts and share only the word for trade; lex.bg records the law vigente, last amended ДВ 4/1989."
+  evidence: The history line ends with the amendment in ДВ 4/1989, before 2003, and there is no repeal marker; both candidates (material 21361, a постановление on the free-trade agreement with Estonia, and material 108524, Наредба № 44 от 2001 г. on compound feed) repeal different acts that share only the word "търговия".
 zakon-za-zadalzheniyata-i-dogovorite:
   verdict: in_force
   repealed_by: null
-  evidence: "Candidates 21361 (a 2002 decree) and 121425 (Ordinance No 23 of 2006 on a grain-deposit contract register) repeal other acts; lex.bg records the law vigente with 27 amendment rows, the latest ДВ 35/2021, after both candidates."
+  evidence: The history line and the amendment rows carry amendments in the HTML era, the last being ДВ 42/2018, 102/2020 and 35/2021, and there is no repeal marker; the four candidates (materials 2758, 21361, 121425 and 217963) each repeal a different постановление or наредба that shares only the word "договорите" or "задълженията".
 zakon-za-zhilishtnostroitelnite-kooperatsii:
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: "No candidate repeal title shares words with this act; lex.bg records it vigente with 10 amendment rows, the latest ДВ 59/1998."
+  evidence: The history line ends with the amendment in ДВ 59/1998, before 2003; no candidate and no repeal marker.

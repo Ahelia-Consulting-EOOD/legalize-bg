@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 11 ОТ 2 МАРТ 1987 Г. ЗА СТАИТЕ ЗА ЛИЧНА ХИГИЕНА НА ЖЕНИТЕ И ЗА ПОЧИВКА НА БРЕМЕННИТЕ ЖЕНИ",
  "kind": "наредба",
  "fecha_publicacion": "1987-07-24",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1987-07-24",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1987-07-24"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 57 от 24 Юли 1987г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "бременните",
   "жени",

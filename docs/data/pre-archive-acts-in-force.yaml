@@ -1,771 +1,783 @@
-what: The acts of the corpus promulgated before the Gazette's online archive (1989), with the investigator's verdict on whether each is still in force, from the pairing of its title with the Gazette's unattributed repeal titles (S3, D-075). The evidence is lex.bg's witness record and the Gazette's titles; no Gazette text of these acts exists online.
+what: The acts of the corpus promulgated before the Gazette's online archive (1989), with the investigator's verdict on whether each is still in force, from the pairing of its title with the Gazette's unattributed repeal titles and the general repeal decrees, and from lex.bg's history line (S3, D-077). No Gazette text of these acts exists online.
+limits:
+- 'The Gazette''s PDF era (1989 to бр. 120/2002) was not searched: its issues expose no materials list, so a repeal published then is not seen.'
+- 'A repeal carried inside another act''s transitional and final provisions is not seen: only materials whose title repeals an act, and the bodies of the general repeal decrees, were paired.'
+- lex.bg's history line is a witness, never an authority (D-061); the corpus's estado field is the bootstrap's constant and was not used.
+- A verdict in_force rests on a fact that shows the act alive in the HTML era and on no candidate naming it; unknown says that nothing found is not evidence of force.
 run: act-profiles-2026-10-31
-written_at: '2026-10-31T20:52:59+00:00'
+written_at: '2026-10-31T21:14:31+00:00'
 acts: 109
 verdicts:
-  in_force: 109
+  in_force: 26
+  repealed: 1
+  unknown: 82
 unanswered: []
 entries:
 - slug: kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g
   title: КОДЕКС НА ТЪРГОВСКОТО КОРАБОПЛАВАНЕ (ЗАГЛ. ИЗМ. - ДВ, БР. 113 ОТ 2002 Г.)
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with 47 amendment rows, the last ДВ 55/2026 (2026-06-16).
+  evidence: The history line and the corpus's 47 amendment rows run to amendments of 2024, 2025 and 2026, the last ДВ 55/2026 (2026-06-16); there are no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g.json
 - slug: kodeks-na-truda
   title: КОДЕКС НА ТРУДА
   verdict: in_force
   repealed_by: null
-  evidence: All 12 candidates repeal distinct labour-safety rules (Правилник по безопасността на труда ...) that share only the word "труда", not the Labour Code; lex.bg records it vigente with 135 amendment rows, the last ДВ 89/2026 (2026-09-29).
+  evidence: The history line and the corpus's 135 amendment rows run to ДВ 89/2026 (2026-09-29). Every candidate (342, 343, 2377-2382, 2758, 2850, 14923, 18245) repeals a labour-safety rulebook or a Council of Ministers decree that shares only the word for labour, never the code itself.
   candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/kodeks-na-truda.json
 - slug: nakazatelen-kodeks
   title: НАКАЗАТЕЛЕН КОДЕКС
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with 142 amendment rows, the last ДВ 55/2026 (2026-06-16).
+  evidence: The history line and the corpus's 142 amendment rows run to ДВ 55/2026 (2026-06-16); there are no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/nakazatelen-kodeks.json
 - slug: naredba-0-31-za-rabota-s-radiatsionni-defektoskopi
   title: НАРЕДБА № 0-31 ЗА РАБОТА С РАДИАЦИОННИ ДЕФЕКТОСКОПИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, last amendment row ДВ 32/1978, with no sign of repeal.
+  evidence: The history ends with the amendment of ДВ 32/1978, so nothing shows the act alive after 2003; there are no candidates and no repeal marker. A repeal from 1989 to 2002 or inside another act cannot be seen.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-0-31-za-rabota-s-radiatsionni-defektoskopi.json
 - slug: naredba-1-za-neprikosnovenite-zapasi-na-morskite-korabi
   title: НАРЕДБА № 1 ЗА НЕПРИКОСНОВЕНИТЕ ЗАПАСИ НА МОРСКИТЕ КОРАБИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate (material 208701) repeals a different Наредба № 1, on ministries operating a small number of buses, sharing only the act number; lex.bg records this act vigente with no sign of repeal.
+  evidence: The history ends at promulgation in ДВ 26/1981. The only candidate, 208701, repeals a different Наредба № 1, on ministries running a small number of buses, and matches on the number alone.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-1-za-neprikosnovenite-zapasi-na-morskite-korabi.json
 - slug: naredba-1-za-patuvane-po-zhelezopatniya-i-vodniya-transport-na-opredeleni-katego
   title: НАРЕДБА № 1 ЗА ПЪТУВАНЕ ПО ЖЕЛЕЗОПЪТНИЯ И ВОДНИЯ ТРАНСПОРТ НА ОПРЕДЕЛЕНИ КАТЕГОРИИ ИНВАЛИДИ, АКТИВНИТЕ УЧАСТНИЦИ В МАКЕДОНО-ОДРИНСКОТО ОПЪЛЧЕНИЕ И ЖЕНИТЕ-ДОБРОВОЛКИ, УЧАСТНИЧКИ В ОТЕЧЕСТВЕНАТА ВОЙНА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: Material 208701 repeals a different Наредба № 1 (buses), and material 96071 repeals Наредби № 2/2006 and № 3/2005 on road-transport compensation and subsidies, neither of them this act; lex.bg records it vigente with no sign of repeal.
+  evidence: The history ends at promulgation in ДВ 47/1977. Candidate 208701 repeals a different Наредба № 1, on buses. Candidate 96071 repeals Наредби № 2/2006 and № 3/2005 on road-transport compensation and subsidies, so neither names this act.
   candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-1-za-patuvane-po-zhelezopatniya-i-vodniya-transport-na-opredeleni-katego.json
 - slug: naredba-1-za-spasitelnata-deynost-v-minite-himicheskite-i-metalurgichnite-zavodi
   title: НАРЕДБА № 1 ЗА СПАСИТЕЛНАТА ДЕЙНОСТ В МИНИТЕ, ХИМИЧЕСКИТЕ И МЕТАЛУРГИЧНИТЕ ЗАВОДИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate (material 208701) repeals a different Наредба № 1 (buses), sharing only the act number; lex.bg records this act vigente, last row ДВ 57/1978, with no sign of repeal.
+  evidence: The history ends at promulgation in ДВ 56 and 57/1978. The only candidate, 208701, repeals a different Наредба № 1, on buses, and matches on the number alone.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-1-za-spasitelnata-deynost-v-minite-himicheskite-i-metalurgichnite-zavodi.json
 - slug: naredba-1-za-tarsene-izkupuvane-obrabotka-i-realizatsiya-na-mineralni-obraztsi-f
   title: НАРЕДБА № 1 ЗА ТЪРСЕНЕ, ИЗКУПУВАНЕ, ОБРАБОТКА И РЕАЛИЗАЦИЯ НА МИНЕРАЛНИ ОБРАЗЦИ, ФОСИЛИ И ДРУГИ МИНЕРАЛНИ СУРОВИНИ ЗА ЮВЕЛИРНИ, СУВЕНИРНИ И МУЗЕЙНИ НУЖДИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate (material 208701) repeals a different Наредба № 1 (buses), sharing only the act number; lex.bg records this act vigente, last row ДВ 9/1986, with no sign of repeal.
+  evidence: The history ends at promulgation in ДВ 9/1986. The only candidate, 208701, repeals a different Наредба № 1, on buses, and matches on the number alone.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-1-za-tarsene-izkupuvane-obrabotka-i-realizatsiya-na-mineralni-obraztsi-f.json
 - slug: naredba-10-za-sadebnite-i-arbitrazhnite-ekspertizi
   title: НАРЕДБА № 10 ЗА СЪДЕБНИТЕ И АРБИТРАЖНИТЕ ЕКСПЕРТИЗИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, last row ДВ 93/1983, with no sign of repeal.
+  evidence: The history ends at promulgation in ДВ 93/1983; there are no candidates and no repeal marker, so the only evidence is that nothing was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-10-za-sadebnite-i-arbitrazhnite-ekspertizi.json
 - slug: naredba-11-ot-2-mart-1987-g-za-staite-za-lichna-higiena-na-zhenite-i-za-pochivka
   title: НАРЕДБА № 11 ОТ 2 МАРТ 1987 Г. ЗА СТАИТЕ ЗА ЛИЧНА ХИГИЕНА НА ЖЕНИТЕ И ЗА ПОЧИВКА НА БРЕМЕННИТЕ ЖЕНИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, last row ДВ 57/1987, with no sign of repeal.
+  evidence: The history ends at promulgation in ДВ 57/1987; there are no candidates and no repeal marker, so the only evidence is that nothing was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-11-ot-2-mart-1987-g-za-staite-za-lichna-higiena-na-zhenite-i-za-pochivka.json
 - slug: naredba-11-za-reda-za-priemane-na-izvarsheni-konservatsionni-i-restavratsionni-r
   title: НАРЕДБА № 11 ЗА РЕДА ЗА ПРИЕМАНЕ НА ИЗВЪРШЕНИ КОНСЕРВАЦИОННИ И РЕСТАВРАЦИОННИ РАБОТИ ПО НЕДВИЖИМИ ПАМЕТНИЦИ НА КУЛТУРАТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with only its 1983 promulgation row; all ten candidates repeal Ministry of Interior acts of 2002-2015 (sharing only the generic words "работи", "реда"), none names Наредба № 11 of 1983 on conservation and restoration works.
+  evidence: History line ends at promulgation in ДВ 25/1983 with no repeal marker; all candidates repeal Ministry of Interior acts that share only the words "работи" and "реда", none names this Наредба № 11.
   candidates: 10
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-11-za-reda-za-priemane-na-izvarsheni-konservatsionni-i-restavratsionni-r.json
 - slug: naredba-11-za-ustanovyavane-na-shteti-ot-avarii-pri-targovskoto-moreplavane
   title: НАРЕДБА № 11 ЗА УСТАНОВЯВАНЕ НА ЩЕТИ ОТ АВАРИИ ПРИ ТЪРГОВСКОТО МОРЕПЛАВАНЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with only its 1975 promulgation row, and no candidate repeal title shares words with its title.
+  evidence: History line ends at promulgation in ДВ 67/1975 with no repeal marker, and no candidate was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-11-za-ustanovyavane-na-shteti-ot-avarii-pri-targovskoto-moreplavane.json
 - slug: naredba-13a-10403-za-predelnite-razmeri-na-estestvenite-firi-braka-i-lipsite-na-
   title: НАРЕДБА № 13а-10403 ЗА ПРЕДЕЛНИТЕ РАЗМЕРИ НА ЕСТЕСТВЕНИТЕ ФИРИ, БРАКА И ЛИПСИТЕ НА СТОКОВО-МАТЕРИАЛНИ ЦЕННОСТИ ПРИ СЪХРАНЯВАНЕТО И ТРАНСПОРТИРАНЕТО ИМ (ЗАГЛ ДОП. - ДВ, БР. 28 ОТ 1980 Г.)
   verdict: in_force
   repealed_by: null
-  evidence: lex.bg records it vigente with 15 amendment rows, the last ДВ 41/2007, and no candidate repeal title shares words with its title.
+  evidence: History line and amendment rows record an amendment in ДВ 41 of 22 May 2007, showing the act alive in the HTML era; no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-13a-10403-za-predelnite-razmeri-na-estestvenite-firi-braka-i-lipsite-na-.json
 - slug: naredba-14-ot-3-avgust-1987-g-za-kurortnite-resursi-kurortnite-mestnosti-i-kuror
   title: НАРЕДБА № 14 ОТ 3 АВГУСТ 1987 Г. ЗА КУРОРТНИТЕ РЕСУРСИ, КУРОРТНИТЕ МЕСТНОСТИ И КУРОРТИТЕ
   verdict: in_force
   repealed_by: null
-  evidence: lex.bg records it vigente with 6 amendment rows, the last ДВ 70/2004, and no candidate repeal title shares words with its title.
+  evidence: History line and amendment rows record an amendment in ДВ 70 of 10 August 2004; no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-14-ot-3-avgust-1987-g-za-kurortnite-resursi-kurortnite-mestnosti-i-kuror.json
 - slug: naredba-1461-za-sadebno-schetovodnite-i-finansovo-ikonomicheskite-ekspertizi
   title: НАРЕДБА № 1461 ЗА СЪДЕБНО-СЧЕТОВОДНИТЕ И ФИНАНСОВО-ИКОНОМИЧЕСКИТЕ ЕКСПЕРТИЗИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with only its 1975 promulgation row, and no candidate repeal title shares words with its title.
+  evidence: History line ends at promulgation in ДВ 84/1975 with no repeal marker, and no candidate was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-1461-za-sadebno-schetovodnite-i-finansovo-ikonomicheskite-ekspertizi.json
 - slug: naredba-15-ot-21-avgust-1987-g-za-higiennite-iziskvaniya-za-brasnarskite-frizyor
   title: НАРЕДБА № 15 ОТ 21 АВГУСТ 1987 Г. ЗА ХИГИЕННИТЕ ИЗИСКВАНИЯ ЗА БРЪСНАРСКИТЕ, ФРИЗЬОРСКИТЕ И КОЗМЕТИЧНИТЕ САЛОНИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with only its 1987 promulgation row; the only candidate (material 174747) repeals Наредба № 45 of 1995 on food additives, a different act, not this one.
+  evidence: History line ends at promulgation in ДВ 77/1987 with no repeal marker; the only candidate (material 174747) repeals Наредба № 45 от 1995 г. on food additives, a different act.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-15-ot-21-avgust-1987-g-za-higiennite-iziskvaniya-za-brasnarskite-frizyor.json
 - slug: naredba-16-za-higiennite-i-veterinarno-sanitarnite-iziskvaniya-za-sahranyavane-i
   title: НАРЕДБА № 16 ЗА ХИГИЕННИТЕ И ВЕТЕРИНАРНО-САНИТАРНИТЕ ИЗИСКВАНИЯ ЗА СЪХРАНЯВАНЕ И ИЗПОЛЗУВАНЕ НА ОСОБЕНО БЪРЗОРАЗВАЛЯЩИТЕ СЕ ХРАНИТЕЛНИ ПРОДУКТИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with only its 1984 promulgation row; the only candidate (material 174747) repeals Наредба № 45 of 1995 on food additives, a different act, not this one.
-  candidates: 1
+  evidence: History line ends at promulgation in ДВ 83/1984 with no repeal marker; candidate 31928 repeals a 2002 ordinance on refrigerating appliances and candidate 174747 repeals Наредба № 45 от 1995 г., both different acts.
+  candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-16-za-higiennite-i-veterinarno-sanitarnite-iziskvaniya-za-sahranyavane-i.json
 - slug: naredba-16-za-opredelyane-na-uvelichenata-stoynost-i-vpisvane-na-zakonna-ipoteka
   title: НАРЕДБА № 16 ЗА ОПРЕДЕЛЯНЕ НА УВЕЛИЧЕНАТА СТОЙНОСТ И ВПИСВАНЕ НА ЗАКОННА ИПОТЕКА ВЪРХУ НЕДВИЖИМИ ИМОТИ - ПАМЕТНИЦИ НА КУЛТУРАТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with only its 1978 promulgation row, and no candidate repeal title shares words with its title.
+  evidence: History line ends at promulgation in ДВ 59/1978 with no repeal marker, and no candidate was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-16-za-opredelyane-na-uvelichenata-stoynost-i-vpisvane-na-zakonna-ipoteka.json
 - slug: naredba-165-za-otdavane-pod-naem-na-grazhdanski-vazduhoplavatelni-sredstva
   title: НАРЕДБА № 165 ЗА ОТДАВАНЕ ПОД НАЕМ НА ГРАЖДАНСКИ ВЪЗДУХОПЛАВАТЕЛНИ СРЕДСТВА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with only its 1976 promulgation row, and no candidate repeal title shares words with its title.
+  evidence: History line ends at promulgation in ДВ 4/1976 with no repeal marker, and no candidate was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-165-za-otdavane-pod-naem-na-grazhdanski-vazduhoplavatelni-sredstva.json
 - slug: naredba-18-za-higiennite-iziskvaniya-za-oblekloto-za-detsa-do-14-godishna-vazras
   title: НАРЕДБА № 18 ЗА ХИГИЕННИТЕ ИЗИСКВАНИЯ ЗА ОБЛЕКЛОТО ЗА ДЕЦА ДО 14-ГОДИШНА ВЪЗРАСТ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with only its 1979 promulgation row; the only candidate (material 174747) repeals Наредба № 45 of 1995 on food additives, a different act, not this one.
+  evidence: History line ends at promulgation in ДВ 64/1979 with no repeal marker; the only candidate (material 174747) repeals Наредба № 45 от 1995 г. on food additives, a different act.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-18-za-higiennite-iziskvaniya-za-oblekloto-za-detsa-do-14-godishna-vazras.json
 - slug: naredba-2-po-bezopasnostta-na-truda-pri-proizvodstvoto-i-rabotata-s-hlor
   title: НАРЕДБА № 2 ПО БЕЗОПАСНОСТТА НА ТРУДА ПРИ ПРОИЗВОДСТВОТО И РАБОТАТА С ХЛОР
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente, last row ДВ 9/1979. All twelve candidates (materials 342, 343, 2377-2382, 14923, 18245, 18246, 19591) repeal different safety-at-work правилници (electric trucks, vehicles, railways, electrical installations, water networks, compressors, construction), and none of them names this наредба on chlorine.
+  evidence: The history line ends with the 1979 promulgation (ДВ 9/1979) and has no repeal marker; every candidate repeals a different правилник по безопасността на труда (electric carts, motor vehicles, railway, electrical installations, water supply, compressors, construction), none about chlorine.
   candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-2-po-bezopasnostta-na-truda-pri-proizvodstvoto-i-rabotata-s-hlor.json
 - slug: naredba-2-za-opazvane-istoriko-arheologicheskiya-rezervat-v-tsentara-na-gr-sofiy
   title: НАРЕДБА № 2 ЗА ОПАЗВАНЕ ИСТОРИКО-АРХЕОЛОГИЧЕСКИЯ РЕЗЕРВАТ В ЦЕНТЪРА НА ГР. СОФИЯ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: There are no candidate repeal titles. lex.bg records it vigente, last amended by ДВ 85/1979, and shows no sign of repeal.
+  evidence: The history line ends with the 1979 amendment (ДВ 85/1979), carries no repeal marker, and no candidate was found; nothing shows the act alive from 2003 on.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-2-za-opazvane-istoriko-arheologicheskiya-rezervat-v-tsentara-na-gr-sofiy.json
 - slug: naredba-2-za-organizirane-planirane-i-finansirane-razvitieto-na-masovata-fiziche
   title: НАРЕДБА № 2 ЗА ОРГАНИЗИРАНЕ, ПЛАНИРАНЕ И ФИНАНСИРАНЕ РАЗВИТИЕТО НА МАСОВАТА ФИЗИЧЕСКА КУЛТУРА, СПОРТА И ТУРИЗМА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: There are no candidate repeal titles. lex.bg records it vigente, its only row is ДВ 87/1983, and it shows no sign of repeal.
+  evidence: The history line holds only the 1983 promulgation (ДВ 87/1983), carries no repeal marker, and no candidate was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-2-za-organizirane-planirane-i-finansirane-razvitieto-na-masovata-fiziche.json
 - slug: naredba-2-za-poddarzhaneto-i-kontrola-na-geodezichnite-instrumenti-i-fotogrametr
   title: НАРЕДБА № 2 ЗА ПОДДЪРЖАНЕТО И КОНТРОЛА НА ГЕОДЕЗИЧНИТЕ ИНСТРУМЕНТИ И ФОТОГРАМЕТРИЧНАТА АПАРАТУРА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: There are no candidate repeal titles. lex.bg records it vigente, its only row is ДВ 102/1978, and it shows no sign of repeal.
-  candidates: 0
+  evidence: The history line holds only the 1978 promulgation (ДВ 102/1978) with no repeal marker; the only candidate, line 34 of the decree in material 2758, repeals Постановление № 293 of 1994 on customs duties, which is a different act.
+  candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-2-za-poddarzhaneto-i-kontrola-na-geodezichnite-instrumenti-i-fotogrametr.json
 - slug: naredba-2-za-prodalzhavane-deystvieto-na-edinnite-pravilnitsi-po-bezopasnostta-n
   title: НАРЕДБА № 2 ЗА ПРОДЪЛЖАВАНЕ ДЕЙСТВИЕТО НА ЕДИННИТЕ ПРАВИЛНИЦИ ПО БЕЗОПАСНОСТТА НА ТРУДА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente, last row ДВ 37/1989. Each of the twelve candidates repeals one specific safety-at-work правилник with its own code, and none names this Наредба № 2 of 1987 that extends the unified rules.
+  evidence: The history line ends with the 1989 amendment (ДВ 37/1989) and has no repeal marker; every candidate repeals one particular правилник по безопасността на труда, and none names this наредба.
   candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-2-za-prodalzhavane-deystvieto-na-edinnite-pravilnitsi-po-bezopasnostta-n.json
 - slug: naredba-3-ot-24-noemvri-1987-g-za-osiguryavane-bezopasnostta-na-atomnite-tsentra
   title: НАРЕДБА № 3 ОТ 24 НОЕМВРИ 1987 Г. ЗА ОСИГУРЯВАНЕ БЕЗОПАСНОСТТА НА АТОМНИТЕ ЦЕНТРАЛИ ПРИ ПРОЕКТИРАНЕ, ИЗГРАЖДАНЕ И ЕКСПЛОАТАЦИЯ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente, last amended by ДВ 12/2001. The three candidates repeal different acts (material 242742 Наредба № 35 of 2012 on cable networks, 14923 the electrical installations правилник, 110455 Правилник № 0-33 on X-ray rooms), and none of them concerns nuclear power plants.
-  candidates: 3
+  evidence: The last amendment is ДВ 12/2001, before 2003, and there is no repeal marker; the candidates repeal other acts (Наредба № 35 of 2012 on cable networks, the electrical-installations правилник, the 2000 наредба on power plant operation, Правилник № 0-33 on X-ray rooms).
+  candidates: 4
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-3-ot-24-noemvri-1987-g-za-osiguryavane-bezopasnostta-na-atomnite-tsentra.json
 - slug: naredba-3-za-predelno-dopustimite-kontsentratsii-na-himichni-veshtestva-otdelyan
   title: НАРЕДБА № 3 ЗА ПРЕДЕЛНО ДОПУСТИМИТЕ КОНЦЕНТРАЦИИ НА ХИМИЧНИ ВЕЩЕСТВА, ОТДЕЛЯНИ ОТ ПОЛИМЕРНИ СТРОИТЕЛНИ МАТЕРИАЛИ В ЖИЛИЩНИ И ОБЩЕСТВЕНИ СГРАДИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: There are no candidate repeal titles. lex.bg records it vigente, its only row is ДВ 17/1984, and it shows no sign of repeal.
+  evidence: The history line holds only the 1984 promulgation (ДВ 17/1984), carries no repeal marker, and no candidate was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-3-za-predelno-dopustimite-kontsentratsii-na-himichni-veshtestva-otdelyan.json
 - slug: naredba-3-za-zadalzhitelnite-predvaritelni-i-periodichni-meditsinski-pregledi-na
   title: НАРЕДБА № 3 ЗА ЗАДЪЛЖИТЕЛНИТЕ ПРЕДВАРИТЕЛНИ И ПЕРИОДИЧНИ МЕДИЦИНСКИ ПРЕГЛЕДИ НА РАБОТНИЦИТЕ
   verdict: in_force
   repealed_by: null
-  evidence: lex.bg records it vigente, last amended by ДВ 78/2005. The only candidate (material 143219) repeals Наредба № 8 of 2005 on medical examinations of people in sport, which is a different act.
+  evidence: The history line and the amendment rows show an amendment in ДВ 78/2005, which puts the act in the HTML era, and there is no repeal marker; the only candidate (material 143219) repeals Наредба № 8 of 2005 on medical examinations of people in sport, a different act.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-3-za-zadalzhitelnite-predvaritelni-i-periodichni-meditsinski-pregledi-na.json
 - slug: naredba-4-za-bufernite-zoni-okolo-rezervatite
   title: НАРЕДБА № 4 ЗА БУФЕРНИТЕ ЗОНИ ОКОЛО РЕЗЕРВАТИТЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: There are no candidate repeal titles. lex.bg records it vigente, its only row is ДВ 77/1980, and it shows no sign of repeal.
+  evidence: The history line holds only the 1980 promulgation (ДВ 77/1980), carries no repeal marker, and no candidate was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-4-za-bufernite-zoni-okolo-rezervatite.json
 - slug: naredba-4-za-higiennite-iziskvaniya-pri-izpolzuvaneto-na-yazoviri-za-piteyno-bit
   title: НАРЕДБА № 4 ЗА ХИГИЕННИТЕ ИЗИСКВАНИЯ ПРИ ИЗПОЛЗУВАНЕТО НА ЯЗОВИРИ ЗА ПИТЕЙНО-БИТОВО ВОДОСНАБДЯВАНЕ
   verdict: in_force
   repealed_by: null
-  evidence: lex.bg records it vigente, last amended by ДВ 15/2003. The only candidate (material 174747) repeals Наредба № 45 of 1995 on food additives, which is a different act.
+  evidence: The history line and the amendment rows show an amendment in ДВ 15/2003 (14 February 2003), and there is no repeal marker; the only candidate (material 174747) repeals Наредба № 45 of 1995 on food additives, a different act.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-4-za-higiennite-iziskvaniya-pri-izpolzuvaneto-na-yazoviri-za-piteyno-bit.json
 - slug: naredba-4-za-poshtenskite-saobshteniya
   title: НАРЕДБА № 4 ЗА ПОЩЕНСКИТЕ СЪОБЩЕНИЯ
-  verdict: in_force
-  repealed_by: null
-  evidence: lex.bg records it vigente, last amended ДВ 64/2000; the only candidate (material 57295) repeals Инструкция № И-10 от 2009 г. on Military Police, a different act sharing only the word "съобщения".
-  candidates: 1
+  verdict: repealed
+  repealed_by:
+    kind: lexbg_marker
+    material: 0
+    issue: null
+    title: отм. ДВ. бр. 64 от 4 Август 2000г.
+    line: null
+  evidence: lex.bg's history line carries the repeal marker "отм. ДВ. бр. 64 от 4 Август 2000г." with no later amendment; candidate 57295 repeals a different act (a military police instruction) and is not relied on.
+  candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-4-za-poshtenskite-saobshteniya.json
 - slug: naredba-49-za-izkustveno-osvetlenie-na-sgradite
   title: НАРЕДБА № 49 ЗА ИЗКУСТВЕНО ОСВЕТЛЕНИЕ НА СГРАДИТЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente, last amended ДВ 64/1976; no candidate repeal title shares words with its title.
+  evidence: The history line ends with the 1976 amendment (ДВ 64/1976), there is no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-49-za-izkustveno-osvetlenie-na-sgradite.json
 - slug: naredba-5-za-bolestite-pri-koito-rabotnitsite-boleduvashti-ot-tyah-imat-osobena-
   title: НАРЕДБА № 5 ЗА БОЛЕСТИТЕ, ПРИ КОИТО РАБОТНИЦИТЕ, БОЛЕДУВАЩИ ОТ ТЯХ, ИМАТ ОСОБЕНА ЗАКРИЛА СЪГЛАСНО ЧЛ. 333, АЛ. 1 ОТ КОДЕКСА НА ТРУДА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 33/1987); material 59709 repeals a different Наредба № 5 (on фонд „Жилищно строителство“), and materials 2377, 2378, 2379 and 28094 repeal labour-safety rules and Наредба № 3 от 1996 г., none of which is this act.
+  evidence: The history line holds only the 1987 promulgation and no repeal marker; candidate 59709 repeals a different Наредба № 5 (on the housing fund), and candidates 2377, 2378, 2379 and 28094 repeal other labour-safety acts, so none names this act.
   candidates: 5
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-5-za-bolestite-pri-koito-rabotnitsite-boleduvashti-ot-tyah-imat-osobena-.json
 - slug: naredba-6-za-izpolzuvane-i-predstavyane-na-nedvizhimite-pametnitsi-na-kulturata
   title: НАРЕДБА № 6 ЗА ИЗПОЛЗУВАНЕ И ПРЕДСТАВЯНЕ НА НЕДВИЖИМИТЕ ПАМЕТНИЦИ НА КУЛТУРАТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 30/1979); no candidate repeal title shares words with its title.
+  evidence: The history line holds only the 1979 promulgation, with no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-6-za-izpolzuvane-i-predstavyane-na-nedvizhimite-pametnitsi-na-kulturata.json
 - slug: naredba-6-za-osiguryavane-na-normalna-akustichna-obstanovka-v-zhilishtni-i-obsht
   title: НАРЕДБА № 6 ЗА ОСИГУРЯВАНЕ НА НОРМАЛНА АКУСТИЧНА ОБСТАНОВКА В ЖИЛИЩНИ И ОБЩЕСТВЕНИ СГРАДИ И МЕСТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 16/1977); no candidate repeal title shares words with its title.
+  evidence: The history line holds only the 1977 promulgation, with no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-6-za-osiguryavane-na-normalna-akustichna-obstanovka-v-zhilishtni-i-obsht.json
 - slug: naredba-6-za-ustroystvoto-i-deynostta-na-balgarskiya-koraben-registar
   title: НАРЕДБА № 6 ЗА УСТРОЙСТВОТО И ДЕЙНОСТТА НА БЪЛГАРСКИЯ КОРАБЕН РЕГИСТЪР
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente, last amended ДВ 60/1984; candidates 49001 (the Academy of the Ministry of Interior rules) and 132672 (the rules on regional development councils and directorates) are different acts that share only "устройството" and "дейността".
+  evidence: The history line ends with the 1984 corrigendum (ДВ 60/1984), with no repeal marker; candidates 49001 (the Ministry of Interior academy rules) and 132672 (the regional development council rules) repeal different acts.
   candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-6-za-ustroystvoto-i-deynostta-na-balgarskiya-koraben-registar.json
 - slug: naredba-7-za-higiennite-iziskvaniya-za-ustroystvoto-i-eksploatatsiyata-na-gabarn
   title: НАРЕДБА № 7 ЗА ХИГИЕННИТЕ ИЗИСКВАНИЯ ЗА УСТРОЙСТВОТО И ЕКСПЛОАТАЦИЯТА НА ГЪБАРНИЦИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 28/1984); candidates 174747 (Наредба № 45 от 1995 г. on food additives) and 178341 (Наредба № 11 от 1995 г. on agricultural pharmacies) are different acts.
+  evidence: The history line holds only the 1984 promulgation, with no repeal marker; candidates 174747 (Наредба № 45 of 1995 on food additives) and 178341 (Наредба № 11 of 1995 on agricultural pharmacies) repeal different acts.
   candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-7-za-higiennite-iziskvaniya-za-ustroystvoto-i-eksploatatsiyata-na-gabarn.json
 - slug: naredba-8-za-mikroklimata-v-podzemnite-rudnitsi
   title: НАРЕДБА № 8 ЗА МИКРОКЛИМАТА В ПОДЗЕМНИТЕ РУДНИЦИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 74/1985); no candidate repeal title shares words with its title.
+  evidence: The history line holds only the 1985 promulgation, with no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-8-za-mikroklimata-v-podzemnite-rudnitsi.json
 - slug: naredba-9-za-profesionalnata-kvalifikatsiya-na-stenografite-i-mashinopistsite
   title: НАРЕДБА № 9 ЗА ПРОФЕСИОНАЛНАТА КВАЛИФИКАЦИЯ НА СТЕНОГРАФИТЕ И МАШИНОПИСЦИТЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente (ДВ 64/1985); no candidate repeal title shares words with its title.
+  evidence: The history line holds only the 1985 promulgation, with no repeal marker and no candidate; nothing shows the act alive in 2003 or later.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-9-za-profesionalnata-kvalifikatsiya-na-stenografite-i-mashinopistsite.json
 - slug: naredba-za-komandirovkite-v-stranata
   title: НАРЕДБА ЗА КОМАНДИРОВКИТЕ В СТРАНАТА
   verdict: in_force
   repealed_by: null
-  evidence: lex.bg records it vigente with 10 amendment rows, the last ДВ 115/2025 (2025-12-30); no candidate repeal title shares words with its title.
-  candidates: 0
+  evidence: The history line and the amendment rows show amendments in the HTML era (ДВ 2/2008, ДВ 2/2011, ДВ 27/2023, ДВ 115/2025), with no repeal marker; candidate 18441 amends a decree that repealed a different наредба (on the property of foreign persons), so it does not name this act.
+  candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-za-komandirovkite-v-stranata.json
 - slug: naredba-za-otchitane-sahranyavane-prevozvane-na-yadren-material-i-prilagane-na-g
   title: НАРЕДБА ЗА ОТЧИТАНЕ, СЪХРАНЯВАНЕ, ПРЕВОЗВАНЕ НА ЯДРЕН МАТЕРИАЛ И ПРИЛАГАНЕ НА ГАРАНЦИИТЕ ПО ДОГОВОРА ЗА НЕРАЗПРОСТРАНЕНИЕ НА ЯДРЕНОТО ОРЪЖИЕ (ЗАГЛ. ИЗМ. - ДВ, БР. 33 ОТ 2001 Г.)
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente, last amended by ДВ 33/2001.
+  evidence: The history line ends with an amendment in ДВ 33/2001, before 2003, carries no repeal marker, and no candidate was paired; nothing shows the act alive in the HTML era.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-za-otchitane-sahranyavane-prevozvane-na-yadren-material-i-prilagane-na-g.json
 - slug: naredba-za-rabotata-na-litsata-nenavarshili-15-godishna-vazrast
   title: НАРЕДБА ЗА РАБОТАТА НА ЛИЦАТА, НЕНАВЪРШИЛИ 15-ГОДИШНА ВЪЗРАСТ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente, last amended by ДВ 35/2001.
+  evidence: The history line ends with an amendment in ДВ 35/2001, before 2003, carries no repeal marker, and no candidate was paired.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-za-rabotata-na-litsata-nenavarshili-15-godishna-vazrast.json
 - slug: naredba-za-rabotnoto-vreme-pochivkite-i-otpuskite
   title: НАРЕДБА ЗА РАБОТНОТО ВРЕМЕ, ПОЧИВКИТЕ И ОТПУСКИТЕ
   verdict: in_force
   repealed_by: null
-  evidence: The only candidate (material 87379) repeals an MVR instruction of 2012 on civil servants' working time, a different act; lex.bg records this one vigente with amendments as late as ДВ 52/2025.
+  evidence: The history line and the amendment rows show amendments up to ДВ 52/2025 (2025-06-27) with no repeal marker; the only candidate (87379) repeals an Interior Ministry instruction on civil servants' working time, a different act.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-za-rabotnoto-vreme-pochivkite-i-otpuskite.json
 - slug: naredba-za-trudoustroyavane
   title: НАРЕДБА ЗА ТРУДОУСТРОЯВАНЕ
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente, last amended by ДВ 17/2014.
+  evidence: The history line shows amendments in ДВ 78/2005 and ДВ 17/2014 with no repeal marker, and no candidate was paired.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/naredba-za-trudoustroyavane.json
 - slug: pravilnik-18-za-zadachite-organizatsiyata-i-vatreshniya-red-v-stolovete-i-byufet
   title: ПРАВИЛНИК № 18 ЗА ЗАДАЧИТЕ, ОРГАНИЗАЦИЯТА И ВЪТРЕШНИЯ РЕД В СТОЛОВЕТЕ И БЮФЕТИТЕ ПРИ УЧИЛИЩАТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate (material 134515) repeals a 1998 decree and rules on the Security Council at the Council of Ministers, a different act; lex.bg records this one vigente with no sign of repeal.
+  evidence: The history line holds only the 1974 promulgation; the only candidate (134515) repeals the rules of the Security Council at the Council of Ministers, a different act.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-18-za-zadachite-organizatsiyata-i-vatreshniya-red-v-stolovete-i-byufet.json
 - slug: pravilnik-d-01-016-za-bezopasnostta-na-truda-pri-proizvodstvoto-transporta-sahra
   title: ПРАВИЛНИК № Д-01-016 ЗА БЕЗОПАСНОСТТА НА ТРУДА ПРИ ПРОИЗВОДСТВОТО, ТРАНСПОРТА, СЪХРАНЯВАНЕТО И УПОТРЕБАТА НА КИСЛОРОД
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: Every candidate repeals a different labour-safety rulebook (codes Д-05-002, Д-05-003, В-05-01-01 to -06, Д-01-008, Д-09-001, Д-01-014, Д-02-001), none Д-01-016 on oxygen; lex.bg records this one vigente.
+  evidence: lex.bg shows no history line and the corpus has no amendment rows; every candidate repeals a different labour-safety rule (other Д- or В- numbers), none names Д-01-016 or oxygen.
   candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-d-01-016-za-bezopasnostta-na-truda-pri-proizvodstvoto-transporta-sahra.json
 - slug: pravilnik-na-edinnata-natsionalna-sistema-ot-kolektsii-za-kulturi
   title: ПРАВИЛНИК НА ЕДИННАТА НАЦИОНАЛНА СИСТЕМА ОТ КОЛЕКЦИИ ЗА КУЛТУРИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente with no amendment after its 1975 publication.
+  evidence: The history line holds only the 1975 promulgation, carries no repeal marker, and no candidate was paired.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-na-edinnata-natsionalna-sistema-ot-kolektsii-za-kulturi.json
 - slug: pravilnik-za-deynostta-na-protivosvlachishtnite-stantsii-v-narodna-republika-bal
   title: ПРАВИЛНИК ЗА ДЕЙНОСТТА НА ПРОТИВОСВЛАЧИЩНИТЕ СТАНЦИИ В НАРОДНА РЕПУБЛИКА БЪЛГАРИЯ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The candidates share only the country name and repeal unrelated acts (asbestos, medical activities, sports licensing, passports and others); none names the landslide-station rulebook, and lex.bg records it vigente.
+  evidence: The history line holds only the 1973 promulgation; the candidates share only the words of the country's name and each repeals a different act.
   candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-deynostta-na-protivosvlachishtnite-stantsii-v-narodna-republika-bal.json
 - slug: pravilnik-za-deynostta-na-shtabovete-za-podobryavane-na-rabotata-v-zhelezopatniy
   title: ПРАВИЛНИК ЗА ДЕЙНОСТТА НА ЩАБОВЕТЕ ЗА ПОДОБРЯВАНЕ НА РАБОТАТА В ЖЕЛЕЗОПЪТНИЯ, ВОДНИЯ И АВТОМОБИЛНИЯ ТРАНСПОРТ, СЪЗДАДЕНИ С РЕШЕНИЕ № 31 НА МИНИСТЕРСКИЯ СЪВЕТ ОТ 20 ФЕВРУАРИ 1979 Г.
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The candidates share only the words for the Council of Ministers and repeal unrelated decrees and decisions (concessions, export ban, PHARE and others); none names this transport-staff rulebook, and lex.bg records it vigente.
+  evidence: The history line holds only the 1977 promulgation; the candidates share only the words for the Council of Ministers, and the general repeal decree lines shown are titles or signatures that do not name this act.
   candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-deynostta-na-shtabovete-za-podobryavane-na-rabotata-v-zhelezopatniy.json
 - slug: pravilnik-za-deynostta-na-vakuumnata-dezinsektsionna-kamera-v-gr-burgas
   title: ПРАВИЛНИК ЗА ДЕЙНОСТТА НА ВАКУУМНАТА ДЕЗИНСЕКЦИОННА КАМЕРА В ГР. БУРГАС
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente with no amendment after its 1963 publication.
+  evidence: The history line holds only the 1963 promulgation, carries no repeal marker, and no candidate was paired.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-deynostta-na-vakuumnata-dezinsektsionna-kamera-v-gr-burgas.json
 - slug: pravilnik-za-finansovata-i-schetovodnata-otchetnost-na-sadebnite-uchrezhdeniya
   title: ПРАВИЛНИК ЗА ФИНАНСОВАТА И СЧЕТОВОДНАТА ОТЧЕТНОСТ НА СЪДЕБНИТЕ УЧРЕЖДЕНИЯ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with its only amendment row being the 1958 promulgation (ДВ 91/1958).
+  evidence: History line ends with the 1958 promulgation (ДВ 91/1958); no amendment of 2003 or later, no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-finansovata-i-schetovodnata-otchetnost-na-sadebnite-uchrezhdeniya.json
 - slug: pravilnik-za-izpalnenie-na-konventsiyata-za-zashtita-na-kulturnite-tsennosti-v-s
   title: ПРАВИЛНИК ЗА ИЗПЪЛНЕНИЕ НА КОНВЕНЦИЯТА ЗА ЗАЩИТА НА КУЛТУРНИТЕ ЦЕННОСТИ В СЛУЧАЙ НА ВЪОРЪЖЕН КОНФЛИКТ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: Both candidates name other acts (material 39474 repeals Наредба № 14 от 2005 г. on military service; material 147536 repeals Инструкция № I-1298 от 2015 г. of the МВР and ДАНС), sharing only generic words; lex.bg records the act vigente.
+  evidence: History line ends with the 1959 promulgation (ДВ 24/1959). Both candidates (39474, 147536) repeal different acts (an ordinance No 14 of 2005 and instruction No I-1298 of 2015) and share only generic words.
   candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-izpalnenie-na-konventsiyata-za-zashtita-na-kulturnite-tsennosti-v-s.json
 - slug: pravilnik-za-kategorizirane-i-prekategorizirane-na-rakovoditelite-na-hudozhestve
   title: ПРАВИЛНИК ЗА КАТЕГОРИЗИРАНЕ И ПРЕКАТЕГОРИЗИРАНЕ НА РЪКОВОДИТЕЛИТЕ НА ХУДОЖЕСТВЕНАТА САМОДЕЙНОСТ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with its only row being the 1969 promulgation (ДВ 89/1969).
+  evidence: History line ends with the 1969 promulgation (ДВ 89/1969); no amendment of 2003 or later, no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-kategorizirane-i-prekategorizirane-na-rakovoditelite-na-hudozhestve.json
 - slug: pravilnik-za-legalizatsiite-zaverkite-i-prevodite-na-dokumenti-i-drugi-knizha-za
   title: ПРАВИЛНИК ЗА ЛЕГАЛИЗАЦИИТЕ, ЗАВЕРКИТЕ И ПРЕВОДИТЕ НА ДОКУМЕНТИ И ДРУГИ КНИЖА (ЗАГЛ. ИЗМ. - ДВ, БР. 96 ОТ 1982 Г., В СИЛА ОТ 01.01.1983 Г.)
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with 11 amendment rows, the latest ДВ 31/2023 (2023-04-07).
+  evidence: History line and amendment rows show amendments in ДВ 95/2017, 7/2019, 41/2019, 39/2020 and 31/2023; no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-legalizatsiite-zaverkite-i-prevodite-na-dokumenti-i-drugi-knizha-za.json
 - slug: pravilnik-za-mitnishkiya-nadzor-po-reka-dunav
   title: ПРАВИЛНИК ЗА МИТНИШКИЯ НАДЗОР ПО РЕКА ДУНАВ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with its only row being the 1954 promulgation (ДВ 23/1954).
+  evidence: History line ends with the 1954 promulgation (ДВ 23/1954); no amendment of 2003 or later, no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-mitnishkiya-nadzor-po-reka-dunav.json
 - slug: pravilnik-za-ohranata-na-truda-na-uchashtite-se-pri-provezhdane-na-proizvodstven
   title: ПРАВИЛНИК ЗА ОХРАНАТА НА ТРУДА НА УЧАЩИТЕ СЕ ПРИ ПРОВЕЖДАНЕ НА ПРОИЗВОДСТВЕНО ОБУЧЕНИЕ И ПРОИЗВОДСТВЕНА ПРАКТИКА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with its only row being the 1961 promulgation (ДВ 12/1961).
+  evidence: History line ends with the 1961 promulgation (ДВ 12/1961); no amendment of 2003 or later, no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-ohranata-na-truda-na-uchashtite-se-pri-provezhdane-na-proizvodstven.json
 - slug: pravilnik-za-organizatsiyata-na-kontrolnite-organi-po-radiatsionna-bezopasnost
   title: ПРАВИЛНИК ЗА ОРГАНИЗАЦИЯТА НА КОНТРОЛНИТЕ ОРГАНИ ПО РАДИАЦИОННА БЕЗОПАСНОСТ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate (material 87270) repeals Наредба № I-167 от 2002 г. on cooperation between МВР control bodies and insurers, a different act sharing only generic words; lex.bg records this act vigente.
+  evidence: History line ends with the 1975 promulgation (ДВ 36/1975). The only candidate (87270) repeals ordinance No I-167 of 2002 on Ministry of Interior control bodies and insurers, a different act.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-organizatsiyata-na-kontrolnite-organi-po-radiatsionna-bezopasnost.json
 - slug: pravilnik-za-planirane-na-naselenite-mesta
   title: ПРАВИЛНИК ЗА ПЛАНИРАНЕ НА НАСЕЛЕНИТЕ МЕСТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: Both candidates name other acts (material 3143 repeals Наредба № 4 от 1999 г. on noise; material 21286 repeals Наредба № 3 от 1989 г. on building funds), sharing only the words of the settlements phrase; lex.bg records this act vigente with no amendment rows.
+  evidence: No history line on the page and no amendment rows. Candidates 3143 and 21286 repeal ordinance No 4 of 1999 and ordinance No 3 of 1989, different acts that share only the words for populated places.
   candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-planirane-na-naselenite-mesta.json
 - slug: pravilnik-za-podgotovka-na-izpalnitelski-kontrolni-i-rakovodni-kadri-po-elektrod
   title: ПРАВИЛНИК ЗА ПОДГОТОВКА НА ИЗПЪЛНИТЕЛСКИ, КОНТРОЛНИ И РЪКОВОДНИ КАДРИ ПО ЕЛЕКТРОДЪГОВО ЗАВАРЯВАНЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with 2 rows, the latest ДВ 25/1979 (1979-03-27).
+  evidence: History line ends with an amendment in ДВ 25/1979; no amendment of 2003 or later, no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-podgotovka-na-izpalnitelski-kontrolni-i-rakovodni-kadri-po-elektrod.json
 - slug: pravilnik-za-podgotovka-na-izpalnitelski-kontrolni-i-rakovodni-kadri-po-gazokisl
   title: ПРАВИЛНИК ЗА ПОДГОТОВКА НА ИЗПЪЛНИТЕЛСКИ, КОНТРОЛНИ И РЪКОВОДНИ КАДРИ ПО ГАЗОКИСЛОРОДНО РЯЗАНЕ И ЗАВАРЯВАНЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with 2 rows, the latest ДВ 25/1979 (1979-03-27).
+  evidence: History line ends with an amendment in ДВ 25/1979; no amendment of 2003 or later, no candidates and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-podgotovka-na-izpalnitelski-kontrolni-i-rakovodni-kadri-po-gazokisl.json
 - slug: pravilnik-za-prilagane-na-ukaz-2242-za-svobodni-zoni-zagl-izm-dv-br-15-ot-1998-g
   title: ПРАВИЛНИК ЗА ПРИЛАГАНЕ НА УКАЗ № 2242 ЗА СВОБОДНИ ЗОНИ (ЗАГЛ. ИЗМ. - ДВ, БР. 15 ОТ 1998 Г., В СИЛА ОТ 01.01.1999 Г.)
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with 10 amendment rows, the last ДВ 60/2014, and gives no sign of repeal.
+  evidence: The history line records amendments in 2006, 2009, 2011 and ДВ 60/2014 (2014-07-22), so the act was alive in the HTML era; there is no repeal marker and there are no candidates.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-prilagane-na-ukaz-2242-za-svobodni-zoni-zagl-izm-dv-br-15-ot-1998-g.json
 - slug: pravilnik-za-prilagane-na-zakona-za-opazvane-na-selskostopanskoto-imushtestvo
   title: ПРАВИЛНИК ЗА ПРИЛАГАНЕ НА ЗАКОНА ЗА ОПАЗВАНЕ НА СЕЛСКОСТОПАНСКОТО ИМУЩЕСТВО
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with one amendment row (ДВ 90/1985) and no sign of repeal.
+  evidence: The history line holds only the 1985 promulgation (ДВ 90/1985), with no repeal marker and no candidates; nothing shows the act alive after 2003.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-prilagane-na-zakona-za-opazvane-na-selskostopanskoto-imushtestvo.json
 - slug: pravilnik-za-prilozhenie-na-ukaza-za-targovskoto-koraboplavane-na-narodna-republ
   title: ПРАВИЛНИК ЗА ПРИЛОЖЕНИЕ НА УКАЗА ЗА ТЪРГОВСКОТО КОРАБОПЛАВАНЕ НА НАРОДНА РЕПУБЛИКА БЪЛГАРИЯ ЗА МЕЖДУНАРОДНИТЕ ПРЕВОЗИ ПО Р. ДУНАВ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: All 12 candidates (materials 18034 through 154713) share only the words for "Republic of Bulgaria" and repeal unrelated acts (asbestos imports, medical activities, passports and others), so none names this rules act; lex.bg records it vigente (ДВ 73/1955) with no sign of repeal.
+  evidence: The history line holds only the 1955 promulgation (ДВ 73/1955), with no repeal marker. Every candidate shares only the words "Република България" and repeals a different act, so none names this rule.
   candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-prilozhenie-na-ukaza-za-targovskoto-koraboplavane-na-narodna-republ.json
 - slug: pravilnik-za-prilozhenie-na-ukaza-za-urezhdane-na-tehnicheskata-pravosposobnost-
   title: ПРАВИЛНИК ЗА ПРИЛОЖЕНИЕ НА УКАЗА ЗА УРЕЖДАНЕ НА ТЕХНИЧЕСКАТА ПРАВОСПОСОБНОСТ И ПРАВОТО НА ЧАСТНА ТЕХНИЧЕСКА ПРАКТИКА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate, material 104002 (ДВ 33/2003), repeals a different act, Наредба № 6 от 1987 г. on technical competence in design and construction, not these 1961 rules implementing the decree; lex.bg records the act vigente (ДВ 68/1961) with no sign of repeal.
+  evidence: The history line holds only the 1961 promulgation (ДВ 68/1961), with no repeal marker. The only candidate, material 104002, repeals a different act, Наредба № 6 от 1987 г. on technical competence in design and construction, not this rule.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-prilozhenie-na-ukaza-za-urezhdane-na-tehnicheskata-pravosposobnost-.json
 - slug: pravilnik-za-prilozhenie-na-zakona-za-opazvane-na-vazduha-vodite-i-pochvata-ot-z
   title: ПРАВИЛНИК ЗА ПРИЛОЖЕНИЕ НА ЗАКОНА ЗА ОПАЗВАНЕ НА ВЪЗДУХА, ВОДИТЕ И ПОЧВАТА ОТ ЗАМЪРСЯВАНЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente, the last amendment being ДВ 9/1978, and gives no sign of repeal.
+  evidence: The history line ends with the amendment in ДВ 9/1978, with no repeal marker and no candidates; nothing shows the act alive after 2003.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-prilozhenie-na-zakona-za-opazvane-na-vazduha-vodite-i-pochvata-ot-z.json
 - slug: pravilnik-za-prilozhenie-na-zakona-za-urezhdane-pravata-na-litsata-koito-sa-zael
   title: ПРАВИЛНИК ЗА ПРИЛОЖЕНИЕ НА ЗАКОНА ЗА УРЕЖДАНЕ ПРАВАТА НА ЛИЦАТА, КОИТО СА ЗАЕЛИ ИЛИ ПОЛУЧИЛИ ДЪРЖАВНИ ДВОРНИ МЕСТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate, material 240221 (ДВ 114/2025), repeals Наредба № Н-9 от 2020 г. on the register of virtual-currency service providers, an unrelated act that shares only common words; lex.bg records this act vigente (ДВ 61/1957) with no sign of repeal.
-  candidates: 1
+  evidence: The history line holds only the 1957 promulgation (ДВ 61/1957), with no repeal marker. Both candidates (materials 5791 and 240221) share only common words and concern unrelated acts, so neither names this rule.
+  candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-prilozhenie-na-zakona-za-urezhdane-pravata-na-litsata-koito-sa-zael.json
 - slug: pravilnik-za-rabotata-na-uveselitelnite-zabavi-i-igri-za-razvlechenie-patuvashti
   title: ПРАВИЛНИК ЗА РАБОТАТА НА УВЕСЕЛИТЕЛНИТЕ ЗАБАВИ И ИГРИ ЗА РАЗВЛЕЧЕНИЕ, ПЪТУВАЩИ ЕСТРАДНО-ЦИРКОВИ ТРУПИ, ИЛЮЗИОНИСТИ И ДР., ОРГАНИЗИРАНИ ОТ ДИРЕКЦИЯТА НА БЪЛГАРСКИТЕ ЦИРКОВЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, last amendment ДВ 62/1972.
+  evidence: History line ends with ДВ 62/1972, before 2003, with no repeal marker; no candidates were found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-rabotata-na-uveselitelnite-zabavi-i-igri-za-razvlechenie-patuvashti.json
 - slug: pravilnik-za-reda-v-koraboplavaneto-po-vatreshnite-vodi-v-narodna-republika-balg
   title: ПРАВИЛНИК ЗА РЕДА В КОРАБОПЛАВАНЕТО ПО ВЪТРЕШНИТЕ ВОДИ В НАРОДНА РЕПУБЛИКА БЪЛГАРИЯ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: All twelve candidates repeal other acts (asbestos import, foreign freelancers, sports licensing, river border guarding, MVR instructions, etc.) sharing only generic words; none names this 1967 navigation rulebook; lex.bg records it vigente.
+  evidence: History line holds only the 1967 promulgation (ДВ 38/1967), with no repeal marker; every candidate names a different act (asbestos, foreign workers, sports licensing, the river border guard and others) and shares only common words.
   candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-reda-v-koraboplavaneto-po-vatreshnite-vodi-v-narodna-republika-balg.json
 - slug: pravilnik-za-strukturata-deynostta-i-zadachite-na-okrazhnite-direktsii-bibliotek
   title: ПРАВИЛНИК ЗА СТРУКТУРАТА, ДЕЙНОСТТА И ЗАДАЧИТЕ НА ОКРЪЖНИТЕ ДИРЕКЦИИ "БИБЛИОТЕКИ"
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, single row ДВ 48/1979.
+  evidence: History line holds only the 1979 promulgation (ДВ 48/1979), with no repeal marker; no candidates were found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-strukturata-deynostta-i-zadachite-na-okrazhnite-direktsii-bibliotek.json
 - slug: pravilnik-za-tehnicheskiya-nadzor-varhu-saorazheniyata-s-povishena-opasnost
   title: ПРАВИЛНИК ЗА ТЕХНИЧЕСКИЯ НАДЗОР ВЪРХУ СЪОРЪЖЕНИЯТА С ПОВИШЕНА ОПАСНОСТ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, single row ДВ 72/1983.
+  evidence: History line holds only the 1983 promulgation (ДВ 72/1983), with no repeal marker; no candidates were found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-tehnicheskiya-nadzor-varhu-saorazheniyata-s-povishena-opasnost.json
 - slug: pravilnik-za-tvorcheskiya-fond-pri-ministerstvoto-na-kulturata-zagl-izm-dv-br-10
   title: ПРАВИЛНИК ЗА ТВОРЧЕСКИЯ ФОНД ПРИ МИНИСТЕРСТВОТО НА КУЛТУРАТА (ЗАГЛ. ИЗМ. - ДВ, БР. 101 ОТ 1977 Г, БР. 94 ОТ 1998 Г.)
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, last amendment ДВ 94/1998.
+  evidence: History line ends with ДВ 94/1998, before 2003, with no repeal marker; no candidates were found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-tvorcheskiya-fond-pri-ministerstvoto-na-kulturata-zagl-izm-dv-br-10.json
 - slug: pravilnik-za-upravlenieto-i-stopanisvaneto-na-svobodnata-bezmitna-zona-ruse
   title: ПРАВИЛНИК ЗА УПРАВЛЕНИЕТО И СТОПАНИСВАНЕТО НА СВОБОДНАТА БЕЗМИТНА ЗОНА - РУСЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, last amendment ДВ 4/2001.
+  evidence: History line ends with ДВ 4/2001, before 2003, with no repeal marker; no candidates were found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-upravlenieto-i-stopanisvaneto-na-svobodnata-bezmitna-zona-ruse.json
 - slug: pravilnik-za-ustroystvoto-i-deynostta-na-stopanskata-direktsiya-izgrazhdane-na-s
   title: ПРАВИЛНИК ЗА УСТРОЙСТВОТО И ДЕЙНОСТТА НА СТОПАНСКАТА ДИРЕКЦИЯ "ИЗГРАЖДАНЕ НА СЕЛИЩНИТЕ СИСТЕМИ" ПРИ ОКРЪЖНИТЕ НАРОДНИ СЪВЕТИ И НА ПОДЕЛЕНИЯТА Й
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The three candidates (materials 132672, 49001, 194720) repeal regional development council rules, the MVR Academy rules and a courier service instruction, none naming this directorate rulebook; lex.bg records it vigente.
+  evidence: History line holds only the 1980 promulgation (ДВ 7/1980), with no repeal marker; the candidates name different acts (regional development councils, the Ministry of Interior academy, the courier service instruction) and share only common words.
   candidates: 3
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-ustroystvoto-i-deynostta-na-stopanskata-direktsiya-izgrazhdane-na-s.json
 - slug: pravilnik-za-vatreshniya-red-v-turisticheskite-i-alpiyskite-hizhi-zasloni-spalni
   title: ПРАВИЛНИК ЗА ВЪТРЕШНИЯ РЕД В ТУРИСТИЧЕСКИТЕ И АЛПИЙСКИТЕ ХИЖИ, ЗАСЛОНИ, СПАЛНИ И ДОМОВЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente, single row ДВ 29/1958.
+  evidence: History line holds only the 1958 promulgation (ДВ 29/1958), with no repeal marker; no candidates were found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-vatreshniya-red-v-turisticheskite-i-alpiyskite-hizhi-zasloni-spalni.json
 - slug: pravilnik-za-vodnospasitelnata-deynost-i-obezopasyavaneto-na-vodnite-ploshti
   title: ПРАВИЛНИК ЗА ВОДНОСПАСИТЕЛНАТА ДЕЙНОСТ И ОБЕЗОПАСЯВАНЕТО НА ВОДНИТЕ ПЛОЩИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate, material 226960, repeals Instruction No. 1 of 1997 on water-rescue activity during children's and pupils' recreation, a different act from this 1983 правилник; lex.bg records it vigente, last amendment ДВ 45/1989.
+  evidence: History line ends with ДВ 45/1989, before 2003, with no repeal marker; candidate 226960 repeals Instruction No 1 of 1997 on water rescue during children's and pupils' recreation, a different act from this 1983 правилник.
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-vodnospasitelnata-deynost-i-obezopasyavaneto-na-vodnite-ploshti.json
 - slug: pravilnik-za-vpisvaniyata
   title: ПРАВИЛНИК ЗА ВПИСВАНИЯТА
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with amendments up to ДВ 112/2025.
+  evidence: History line and amendment rows show amendments of 2005, 2008, 2014, 2021 and ДВ 112/2025 (2025-12-19), with no repeal marker; no candidates were found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-vpisvaniyata.json
 - slug: pravilnik-za-zastroyavane-blagoustroyavane-i-opazvane-na-natsionalniya-arhitektu
   title: ПРАВИЛНИК ЗА ЗАСТРОЯВАНЕ, БЛАГОУСТРОЯВАНЕ И ОПАЗВАНЕ НА НАЦИОНАЛНИЯ АРХИТЕКТУРНО-ИСТОРИЧЕСКИ РЕЗЕРВАТ КОПРИВЩИЦА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente with one amendment row (ДВ 22/1975) and no sign of repeal.
+  evidence: The history line holds only the 1975 promulgation (ДВ 22/1975), with no repeal marker and no candidates; nothing shows the act alive after 2003.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/pravilnik-za-zastroyavane-blagoustroyavane-i-opazvane-na-natsionalniya-arhitektu.json
 - slug: primeren-pravilnik-za-vatreshniya-red-v-etazhnata-sobstvenost-zagl-izm-dv-br-15-
   title: ПРИМЕРЕН ПРАВИЛНИК ЗА ВЪТРЕШНИЯ РЕД В ЕТАЖНАТА СОБСТВЕНОСТ (ЗАГЛ. ИЗМ. - ДВ, БР. 15 ОТ 2003 Г.)
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente, the last amendment being ДВ 15/2003, and gives no sign of repeal.
+  evidence: The history line and amendment rows record an amendment in ДВ 15/2003 (2003-02-14), so the act was alive in the HTML era; there is no repeal marker and no candidate names it.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/primeren-pravilnik-za-vatreshniya-red-v-etazhnata-sobstvenost-zagl-izm-dv-br-15-.json
 - slug: ukaz-883-ot-24-april-1974-g-za-prilagane-na-zakona-za-normativnite-aktove
   title: УКАЗ № 883 ОТ 24.04.1974 Г. ЗА ПРИЛАГАНЕ НА ЗАКОНА ЗА НОРМАТИВНИТЕ АКТОВЕ
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act's title; lex.bg records it vigente, the last amendment being ДВ 46/2007, and gives no sign of repeal.
+  evidence: The corpus's amendment rows end with ДВ 46/2007 (2007-06-12), so the act was alive in the HTML era; lex.bg shows no history line or repeal marker, and there are no candidates.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/ukaz-883-ot-24-april-1974-g-za-prilagane-na-zakona-za-normativnite-aktove.json
 - slug: zakon-za-administrativnite-narusheniya-i-nakazaniya
   title: ЗАКОН ЗА АДМИНИСТРАТИВНИТЕ НАРУШЕНИЯ И НАКАЗАНИЯ
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with 74 amendment rows, the last ДВ 17/2026 (2026-02-13).
+  evidence: The history line and the amendment rows carry amendments through ДВ 115/2025 and ДВ 17/2026; there is no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-administrativnite-narusheniya-i-nakazaniya.json
 - slug: zakon-za-amnistiya-ot-1947-g
   title: ЗАКОН ЗА АМНИСТИЯ ОТ 1947 Г.
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with a single row, ДВ 146/1947, and gives no sign of repeal.
+  evidence: The history line holds only the promulgation in ДВ 146/1947 and ends before 2003; there is no repeal marker and no candidate, so the act's status cannot be shown from these facts.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-amnistiya-ot-1947-g.json
 - slug: zakon-za-amnistiya-ot-1950-g
   title: ЗАКОН ЗА АМНИСТИЯ ОТ 1950 Г.
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with a single row, ДВ 266/1950, and gives no sign of repeal.
+  evidence: The history line holds only the promulgation in ДВ 266/1950 and ends before 2003; there is no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-amnistiya-ot-1950-g.json
 - slug: zakon-za-amnistiya-ot-1964-g
   title: ЗАКОН ЗА АМНИСТИЯ ОТ 1964 Г.
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with a single row, ДВ 71/1964, and gives no sign of repeal.
+  evidence: The history line holds only the promulgation in ДВ 71/1964 and ends before 2003; there is no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-amnistiya-ot-1964-g.json
 - slug: zakon-za-amnistiya-ot-1974-g
   title: ЗАКОН ЗА АМНИСТИЯ ОТ 1974 Г.
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with a single row, ДВ 87/1974, and gives no sign of repeal.
+  evidence: The history line holds only the promulgation in ДВ 87/1974 and ends before 2003; there is no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-amnistiya-ot-1974-g.json
 - slug: zakon-za-amnistiya-ot-1981-g
   title: ЗАКОН ЗА АМНИСТИЯ ОТ 1981 Г.
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with a single row, ДВ 54/1981, and gives no sign of repeal.
+  evidence: The history line holds only the promulgation in ДВ 54/1981 and ends before 2003; there is no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-amnistiya-ot-1981-g.json
 - slug: zakon-za-amnistiya-ot-1984-g
   title: ЗАКОН ЗА АМНИСТИЯ ОТ 1984 Г.
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with a single row, ДВ 43/1984, and gives no sign of repeal.
+  evidence: The history line holds only the promulgation in ДВ 43/1984 and ends before 2003; there is no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-amnistiya-ot-1984-g.json
 - slug: zakon-za-arbitrazha-zagl-izm-dv-br-63-ot-2025-g-v-sila-ot-01082025-g
   title: ЗАКОН ЗА АРБИТРАЖА (ЗАГЛ. ИЗМ. - ДВ, БР. 63 ОТ 2025 Г., В СИЛА ОТ 01.08.2025 Г.)
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with 10 amendment rows, the last ДВ 87/2025 (2025-10-17), including the title change of ДВ 63/2025.
+  evidence: The history line and the amendment rows carry amendments in ДВ 59/2007, 8/2017, 63/2025 (which also changed the title) and 87/2025; there is no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-arbitrazha-zagl-izm-dv-br-63-ot-2025-g-v-sila-ot-01082025-g.json
 - slug: zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet
   title: ЗАКОН ЗА БОРБА СРЕЩУ ПРОТИВООБЩЕСТВЕНИТЕ ПРОЯВИ НА МАЛОЛЕТНИТЕ И НЕПЪЛНОЛЕТНИТЕ (ЗАГЛ. ИЗМ. - ИЗВ., БР. 11 ОТ 1961 Г.)
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title; lex.bg records it vigente with 28 amendment rows, the last ДВ 101/2019 (2019-12-27).
+  evidence: The history line and the amendment rows carry amendments from 2010 to 2019, the last in ДВ 101/2019; there is no repeal marker and no candidate.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet.json
 - slug: zakon-za-darzhavnite-taksi
   title: ЗАКОН ЗА ДЪРЖАВНИТЕ ТАКСИ
   verdict: in_force
   repealed_by: null
-  evidence: The four candidates (materials 87379, 89943, 99467, 244368) repeal MVR instructions, an MVR ordinance and the port fees tariff of ДП „Пристанищна инфраструктура“, sharing only the words "държавните" or "такси", so none names this law; lex.bg records it vigente with 42 amendment rows, the last ДВ 20/2021 (2021-03-09).
-  candidates: 4
+  evidence: The history line and the amendment rows carry amendments through ДВ 20/2021, and there is no repeal marker. All seven candidates repeal other acts (arbitration fee tariffs, port fee tariffs, Interior Ministry instructions and ordinances, a decree and an ordinance on state bonds) that share only the word „такси“ or „държавните“ with this title.
+  candidates: 7
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-darzhavnite-taksi.json
 - slug: zakon-za-grazhdanskoto-vazduhoplavane
   title: ЗАКОН ЗА ГРАЖДАНСКОТО ВЪЗДУХОПЛАВАНЕ
   verdict: in_force
   repealed_by: null
-  evidence: lex.bg records it vigente with 57 amendments, the last in ДВ 32/2026; candidate 93957 repeals Наредба № 2320 от 2006 г. on civil aviation security and candidate 20967 repeals the Наредба on civil status, so neither names this law.
+  evidence: The history line and the amendment rows show amendments up to ДВ 32/2026 (2026-04-01) and no repeal marker; both candidates repeal different acts (Наредба № 2320 от 2006 г. on aviation security, and the Наредба за гражданското състояние of 1975), not this law.
   candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-grazhdanskoto-vazduhoplavane.json
 - slug: zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato
   title: ЗАКОН ЗА ИЗПЛАЩАНЕ НА ЗАДЪЛЖЕНИЯТА, УГОВОРЕНИ В ЗЛАТО
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title, and lex.bg records it vigente with its single row (ДВ 184/1946) and no sign of repeal.
+  evidence: The history line holds only the 1946 promulgation (ДВ 184/1946), with no repeal marker and no candidates; nothing shows the act alive after 2003, and a repeal in 1989 to 2002 or in another act's final provisions cannot be seen.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato.json
 - slug: zakon-za-lihvite-varhu-danatsi-taksi-i-drugi-podobni-darzhavni-vzemaniya
   title: ЗАКОН ЗА ЛИХВИТЕ ВЪРХУ ДАНЪЦИ, ТАКСИ И ДРУГИ ПОДОБНИ ДЪРЖАВНИ ВЗЕМАНИЯ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title, and lex.bg records it vigente with 7 amendments, the last in ДВ 103/1999.
+  evidence: The history line ends with an amendment in ДВ 103/1999 and carries no repeal marker, and there are no candidates; with no fact from 2003 or later, the act's status cannot be decided.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-lihvite-varhu-danatsi-taksi-i-drugi-podobni-darzhavni-vzemaniya.json
 - slug: zakon-za-litsata-i-semeystvoto
   title: ЗАКОН ЗА ЛИЦАТА И СЕМЕЙСТВОТО
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: lex.bg records it vigente with 20 amendments, the last in ДВ 120/2002; candidates 1419 (a fishing-permits наредба) and 240221 (Наредба № Н-9 от 2020 г. on a virtual-currency register) share only one word and name other acts.
+  evidence: The last amendment in the history line and the amendment rows is ДВ 120/2002 (2002-12-29), before 2003, with no repeal marker; both candidates repeal unrelated ordinances that only share the word лицата.
   candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-litsata-i-semeystvoto.json
 - slug: zakon-za-nasledstvoto
   title: ЗАКОН ЗА НАСЛЕДСТВОТО
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title, and lex.bg records it vigente with 12 amendments, the last in ДВ 47/2009.
+  evidence: The history line and the amendment rows show amendments in ДВ 59/2007 and ДВ 47/2009, with no repeal marker, and no candidate shares words with the title.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-nasledstvoto.json
 - slug: zakon-za-normativnite-aktove
   title: ЗАКОН ЗА НОРМАТИВНИТЕ АКТОВЕ
   verdict: in_force
   repealed_by: null
-  evidence: lex.bg records it vigente with 6 amendments, the last in ДВ 30/2026; the only candidate, 96071, repeals Наредба № 2 от 2006 г. and Наредба № 3 от 2005 г. on transport subsidies, so it does not name this law.
-  candidates: 1
+  evidence: The history line and the amendment rows show amendments in 2003, 2007, 2016 and ДВ 30/2026 (2026-03-27), with no repeal marker; every candidate is a general repeal decree of Council of Ministers acts, or an ordinance on transport subsidies, that shares only the word актове and does not name this law.
+  candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-normativnite-aktove.json
 - slug: zakon-za-oblekchenie-rabotata-na-varhovniya-kasatsionen-sad-i-vav-vrazka-s-tova-
   title: 'ЗАКОН ЗА ОБЛЕКЧЕНИЕ РАБОТАТА НА ВЪРХОВНИЯ КАСАЦИОНЕН СЪД И ВЪВ ВРЪЗКА С ТОВА ЗА ИЗМЕНЕНИЕ НА ЗАКОНИТЕ: 1) ЗА ПЕНСИИТЕ ЗА ИЗСЛУЖЕНО ВРЕМЕ; 2) ЗА ПЕНСИИТЕ И ВЪЗНАГРАЖДЕНИЯТА НА ПОБОРНИЦИТЕ И ОПЪЛЧЕНЦИТЕ; 3) ЗА ПЕНСИИТЕ НА ПОСТРАДАЛИТЕ САНИТАРНИ СЛУЖИТЕЛИ В БОРБА ПРОТИВ ЕПИДЕМИИТЕ: ПЕТНИСТ ТИФ, ХОЛЕРА И ЧУМА; 4) ЗА ПЕНСИИТЕ НА СЛУЖИТЕЛИТЕ ПРИ ДЪРЖАВНИТЕ И ИЗБОРНИТЕ УЧРЕЖДЕНИЯ; 5) ЗА БЛАГОУСТРОЙСТВОТО НА НАСЕЛЕНИТЕ МЕСТА В БЪЛГАРИЯ И 6) ЗА УГЛАВНОТО СЪДОПРОИЗВОДСТВО'
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: None of the ten candidates (87379, 3143, 8162, 21286, 104005, 129046, 144352, 166232, 174679, 239806) names this 1928 law; each repeals a different, later наредба, инструкция or постановление and shares only common words. lex.bg records it vigente with its single row, ДВ 156/1928, and gives no sign of repeal.
-  candidates: 10
+  evidence: The history line holds only the 1928 promulgation (ДВ 156/1928), with no repeal marker; every candidate repeals an unrelated instruction, ordinance or decree that only shares common words, so none names this act.
+  candidates: 12
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-oblekchenie-rabotata-na-varhovniya-kasatsionen-sad-i-vav-vrazka-s-tova-.json
 - slug: zakon-za-obyavyavane-na-sela-i-selishta-za-gradove-i-selishta-ot-gradski-tip
   title: ЗАКОН ЗА ОБЯВЯВАНЕ НА СЕЛА И СЕЛИЩА ЗА ГРАДОВЕ И СЕЛИЩА ОТ ГРАДСКИ ТИП
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title, and lex.bg records it vigente with its single row (ДВ 73/1964) and no sign of repeal.
+  evidence: The history line holds only the 1964 promulgation (ДВ 73/1964), with no repeal marker and no candidates; nothing shows the act alive after 2003.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-obyavyavane-na-sela-i-selishta-za-gradove-i-selishta-ot-gradski-tip.json
 - slug: zakon-za-ofitserskite-sabraniya
   title: ЗАКОН ЗА ОФИЦЕРСКИТЕ СЪБРАНИЯ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title, and lex.bg records it vigente with its single row (ДВ 64/1948) and no sign of repeal.
+  evidence: The history line holds only the 1948 promulgation (ДВ 64/1948), with no repeal marker and no candidates; nothing shows the act alive after 2003.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-ofitserskite-sabraniya.json
 - slug: zakon-za-opazvane-na-selskostopanskoto-imushtestvo
   title: ЗАКОН ЗА ОПАЗВАНЕ НА СЕЛСКОСТОПАНСКОТО ИМУЩЕСТВО
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title shares words with this title, and lex.bg records it vigente with 20 amendments, the last in ДВ 102/2023.
+  evidence: The history line and the amendment rows show amendments from 2009 to ДВ 102/2023 (2023-12-08), with no repeal marker, and no candidate shares words with the title.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-opazvane-na-selskostopanskoto-imushtestvo.json
 - slug: zakon-za-oproshtavane-na-zadalzheniya-kam-darzhavata
   title: ЗАКОН ЗА ОПРОЩАВАНЕ НА ЗАДЪЛЖЕНИЯ КЪМ ДЪРЖАВАТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente with a single row, the original ДВ 73/1964.
+  evidence: The history line holds only the 1964 promulgation (ДВ 73/1964), so it ends before 2003; no candidate and no repeal marker, so the only evidence is that nothing was found.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-oproshtavane-na-zadalzheniya-kam-darzhavata.json
 - slug: zakon-za-otgovornostta-na-darzhavata-i-obshtinite-za-vredi-zagl-izm-dv-br-30-ot-
   title: ЗАКОН ЗА ОТГОВОРНОСТТА НА ДЪРЖАВАТА И ОБЩИНИТЕ ЗА ВРЕДИ (ЗАГЛ. ИЗМ. - ДВ, БР. 30 ОТ 11.04.2006 Г., В СИЛА ОТ 12.07.2006 Г.)
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title; lex.bg records it vigente with 21 amendment rows, the latest ДВ 59/2026 (2026-06-30), so it is still being amended.
+  evidence: The history line and the amendment rows carry amendments well into the HTML era, the last being ДВ 16/2026, 51/2026 and 59/2026; no candidate names it and there is no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-otgovornostta-na-darzhavata-i-obshtinite-za-vredi-zagl-izm-dv-br-30-ot-.json
 - slug: zakon-za-otmenyavane-na-vsichki-zakoni-izdadeni-predi-9091944-g
   title: ЗАКОН ЗА ОТМЕНЯВАНЕ НА ВСИЧКИ ЗАКОНИ, ИЗДАДЕНИ ПРЕДИ 9.09.1944 Г.
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente with only the original row, ДВ 93/1951.
+  evidence: The history line holds only the 1951 promulgation (ДВ 93/1951), so it ends before 2003; no candidate and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-otmenyavane-na-vsichki-zakoni-izdadeni-predi-9091944-g.json
 - slug: zakon-za-sobstvenostta
   title: ЗАКОН ЗА СОБСТВЕНОСТТА
   verdict: in_force
   repealed_by: null
-  evidence: No candidate repeal title; lex.bg records it vigente with 37 amendment rows, the latest ДВ 18/2022 (2022-03-04).
+  evidence: The history line and the amendment rows carry amendments in the HTML era, the last being ДВ 7/2018, 18/2020 and 18/2022; no candidate names it and there is no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-sobstvenostta.json
 - slug: zakon-za-tvorcheskite-fondove
   title: ЗАКОН ЗА ТВОРЧЕСКИТЕ ФОНДОВЕ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: All six candidates (21286, 21997, 27320, 57288, 70892, 116401) repeal other acts (ordinances, decrees, instructions) and share only the word for funds; lex.bg records the law vigente, last amended ДВ 153/1998.
+  evidence: The history line ends with the amendment in ДВ 153/1998, before 2003, and there is no repeal marker; each of the six candidates shares only the word "фондове" and repeals a different act (наредби, a постановление and an инструкция on other subjects), so none names this law.
   candidates: 6
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-tvorcheskite-fondove.json
 - slug: zakon-za-urezhdane-pravata-na-kupuvachi-na-nedvizhimi-imoti-s-chastni-dogovori
   title: ЗАКОН ЗА УРЕЖДАНЕ ПРАВАТА НА КУПУВАЧИ НА НЕДВИЖИМИ ИМОТИ С ЧАСТНИ ДОГОВОРИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente with only the original row, ДВ 171/1947.
+  evidence: The history line holds only the 1947 promulgation (ДВ 171/1947), so it ends before 2003; no candidate and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-urezhdane-pravata-na-kupuvachi-na-nedvizhimi-imoti-s-chastni-dogovori.json
 - slug: zakon-za-urezhdane-pravata-na-litsata-koito-sa-zaeli-ili-poluchili-darzhavni-dvo
   title: ЗАКОН ЗА УРЕЖДАНЕ ПРАВАТА НА ЛИЦАТА, КОИТО СА ЗАЕЛИ ИЛИ ПОЛУЧИЛИ ДЪРЖАВНИ ДВОРНИ МЕСТА
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: The only candidate, 240221 (ДВ 114/2025), repeals Ordinance Н-9 of 2020 on a virtual-currency register and shares only generic words; lex.bg records the law vigente with only the original row, ДВ 90/1956.
+  evidence: The history line holds only the 1956 promulgation (ДВ 90/1956), so it ends before 2003, and there is no repeal marker; the only candidate (material 240221) repeals Наредба № Н-9 от 2020 г. on the register of virtual-currency service providers, a different act that shares only the words "лицата" and "които".
   candidates: 1
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-urezhdane-pravata-na-litsata-koito-sa-zaeli-ili-poluchili-darzhavni-dvo.json
 - slug: zakon-za-vanshnata-targoviya
   title: ЗАКОН ЗА ВЪНШНАТА ТЪРГОВИЯ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: Candidates 21361 (a 2002 decree on the Estonia free-trade agreement) and 108524 (Ordinance No 44 of 2001 on compound feed trade) repeal other acts and share only the word for trade; lex.bg records the law vigente, last amended ДВ 4/1989.
+  evidence: The history line ends with the amendment in ДВ 4/1989, before 2003, and there is no repeal marker; both candidates (material 21361, a постановление on the free-trade agreement with Estonia, and material 108524, Наредба № 44 от 2001 г. on compound feed) repeal different acts that share only the word "търговия".
   candidates: 2
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-vanshnata-targoviya.json
 - slug: zakon-za-zadalzheniyata-i-dogovorite
   title: ЗАКОН ЗА ЗАДЪЛЖЕНИЯТА И ДОГОВОРИТЕ
   verdict: in_force
   repealed_by: null
-  evidence: Candidates 21361 (a 2002 decree) and 121425 (Ordinance No 23 of 2006 on a grain-deposit contract register) repeal other acts; lex.bg records the law vigente with 27 amendment rows, the latest ДВ 35/2021, after both candidates.
-  candidates: 2
+  evidence: The history line and the amendment rows carry amendments in the HTML era, the last being ДВ 42/2018, 102/2020 and 35/2021, and there is no repeal marker; the four candidates (materials 2758, 21361, 121425 and 217963) each repeal a different постановление or наредба that shares only the word "договорите" or "задълженията".
+  candidates: 4
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-zadalzheniyata-i-dogovorite.json
 - slug: zakon-za-zhilishtnostroitelnite-kooperatsii
   title: ЗАКОН ЗА ЖИЛИЩНОСТРОИТЕЛНИТЕ КООПЕРАЦИИ
-  verdict: in_force
+  verdict: unknown
   repealed_by: null
-  evidence: No candidate repeal title shares words with this act; lex.bg records it vigente with 10 amendment rows, the latest ДВ 59/1998.
+  evidence: The history line ends with the amendment in ДВ 59/1998, before 2003; no candidate and no repeal marker.
   candidates: 0
   verdict_file: data/runs/act-profiles-2026-10-31/verdicts/zakon-za-zhilishtnostroitelnite-kooperatsii.json

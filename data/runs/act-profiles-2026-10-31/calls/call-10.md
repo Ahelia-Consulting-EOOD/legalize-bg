@@ -2,16 +2,25 @@
 
 You investigate acts of the legalize-bg corpus that were promulgated before the Gazette's online archive begins
 (1989), so no Gazette material of theirs can be read. For each act below you are given the facts the corpus holds
-about it (lex.bg's witness: its title, kind, publication date, lex.bg's in-force status, its amendment history as
-lex.bg records it) and the candidate repeal titles: Gazette materials from 2003 on whose title repeals an act and
-that share words with this act's title. Decide from these facts alone, for each act, whether it is still in force:
-`repealed` only when a candidate title names this very act (the same act, not a same-titled predecessor or a
-different act whose title shares words), with that candidate's material id; `in_force` when no candidate names it
-and lex.bg's record gives no sign of repeal; `unknown` when the facts do not settle it (a candidate may name it but
-the title is ambiguous, or lex.bg's record contradicts the titles). A later amendment in lex.bg's history after a
-candidate repeal is evidence against that repeal. Read only this file. Write exactly one file, the answer file
-named below, in the form given, with every slug of this task and an evidence note for each; write nothing else, and
-reply with one line: the answer file's path.
+about it and the candidate repeals a script paired with it. The facts: the act's title and kind; its publication
+date; lex.bg's history line of the act, which names every publication lex.bg records with its verb („обн.“
+promulgated, „изм.“ amended, „доп.“ supplemented, „отм.“ repealed; the line is a witness, not an authority), and
+the repeal marker a script read from that line, if any; the last amendment rows of the corpus. The corpus's own
+in-force field is the bootstrap's constant „vigente“ for every act and is no evidence, so it is not shown. The
+candidates: Gazette materials from 2003 on whose title repeals an act and shares words or the act number with this
+act's title, and lines of the general repeal decrees (titles that name no act) whose body lines share words with
+this title. Decide from these facts alone, for each act:
+- `repealed`, only when a candidate names this very act (the same act, not a same-titled predecessor or a different
+  act whose title shares words, and with no later amendment in the history line that contradicts it), with that
+  candidate's material id; or when lex.bg's history line carries the repeal marker, with 0;
+- `in_force`, only when a fact shows the act alive in the HTML era (an amendment or publication of 2003 or later in
+  the history line or the amendment rows) and no candidate names it;
+- `unknown` otherwise: when the only evidence is that nothing was found, when the history ends before 2003, or when
+  a candidate may name it but the title is ambiguous.
+What the pairing cannot see, and you must not guess: repeals published in 1989 to 2002 (the Gazette's PDF era,
+not searched) and repeals carried inside another act's transitional and final provisions. Read only this file.
+Write exactly one file, the answer file named below, in the form given, with every slug of this task and an
+evidence note for each; write nothing else, and reply with one line: the answer file's path.
 
 The answer file: `/Users/ekimir/swprj/legalize-bg/.claude/worktrees/unruffled-feynman-cd9070/data/runs/act-profiles-2026-10-31/calls/call-10-answer.yaml`
 
@@ -19,19 +28,25 @@ The answer file: `/Users/ekimir/swprj/legalize-bg/.claude/worktrees/unruffled-fe
 # One YAML document: a mapping from each act's slug (every slug of the task, no other) to its verdict
 <slug>:
   verdict: <in_force | repealed | unknown>
-  repealed_by: <the material id of the candidate repeal title, only when the verdict is repealed; otherwise null>
+  repealed_by: <the material id of the candidate that repeals it, or 0 for lex.bg's own repeal marker, only when the verdict is repealed; otherwise null>
   evidence: <the facts and lines you relied on, in one or two sentences>
 ```
 
 ## pravilnik-za-rabotata-na-uveselitelnite-zabavi-i-igri-za-razvlechenie-patuvashti
 - title: ПРАВИЛНИК ЗА РАБОТАТА НА УВЕСЕЛИТЕЛНИТЕ ЗАБАВИ И ИГРИ ЗА РАЗВЛЕЧЕНИЕ, ПЪТУВАЩИ ЕСТРАДНО-ЦИРКОВИ ТРУПИ, ИЛЮЗИОНИСТИ И ДР., ОРГАНИЗИРАНИ ОТ ДИРЕКЦИЯТА НА БЪЛГАРСКИТЕ ЦИРКОВЕ
-- kind: правилник; published 1969-05-27; lex.bg records it vigente with 3 amendment rows, the last: ДВ 41/1969 (1969-05-27); ДВ 56/1971 (1971-07-16); ДВ 62/1972 (1972-08-08)
-- candidate repeal titles: none share words with this title
+- kind: правилник; published 1969-05-27
+- lex.bg's history line: Обн. ДВ. бр. 41 от 27 Май 1969г. , изм. и доп. ДВ. бр. 56 от 16 Юли 1971г. , доп. ДВ. бр. 62 от 8 Август 1972г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 3, the last: ДВ 41/1969 (1969-05-27); ДВ 56/1971 (1971-07-16); ДВ 62/1972 (1972-08-08)
+- candidates: none share words with this title, and lex.bg's history line carries no repeal marker
 
 ## pravilnik-za-reda-v-koraboplavaneto-po-vatreshnite-vodi-v-narodna-republika-balg
 - title: ПРАВИЛНИК ЗА РЕДА В КОРАБОПЛАВАНЕТО ПО ВЪТРЕШНИТЕ ВОДИ В НАРОДНА РЕПУБЛИКА БЪЛГАРИЯ
-- kind: правилник; published 1967-05-16; lex.bg records it vigente with 1 amendment rows, the last: ДВ 38/1967 (1967-05-16)
-- candidate repeal titles:
+- kind: правилник; published 1967-05-16
+- lex.bg's history line: Обн. ДВ. бр. 38 от 16 Май 1967г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 1, the last: ДВ 38/1967 (1967-05-16)
+- candidates:
   - material 18034, ДВ 113/2004 (2004-12-28): Наредба за отмяна на Наредба № 12 от 1993 г. за реда и начина за внос на азбест и азбестосъдържащи материали на територията на Република България [shared words: българия, реда, република]
   - material 111423, ДВ 9/2017 (2017-01-26): Наредба за отменяне на Наредба № 2 от 2002 г. за условията и реда за издаване на разрешения за извършване на дейност на свободна практика от чужденци в Република България [shared words: българия, реда, република]
   - material 127722, ДВ 53/2018 (2018-06-26): Постановление № 105 от 21 юни 2018 г. за отменяне на Наредбата за реда за лицензиране на спортните организации в Република България, приета с Постановление № 237 на Министерския съвет от 2008 г. [shared words: българия, реда, република]
@@ -40,51 +55,75 @@ The answer file: `/Users/ekimir/swprj/legalize-bg/.claude/worktrees/unruffled-fe
   - material 158913, ДВ 51/2021 (2021-06-18): Наредба за отменяне на Наредба № 1 от 2013 г. за реда и начина за идентификация и регистрация на участниците, съхраняването на данни за организираните онлайн залагания на територията на Република България и за подаване на информация за хазартните игри към сървър на Държавната комисия по хазарта и Националната агенция за приходите [shared words: българия, реда, република]
   - material 180849, ДВ 97/2022 (2022-12-06): Наредба за отменяне на Наредба № I-13 от 19 януари 2005 г. за охраната на речния участък от държавната граница и вътрешните водни пътища на Република България [shared words: българия, вътрешните, република]
   - material 190521, ДВ 36/2023 (2023-04-21): Инструкция за отменяне на Инструкция № Iз-1707 от 7 ноември 2007 г. за взаимодействие между Министерството на вътрешните работи и Държавната агенция по горите при опазването на горите, дивеча и рибата в обектите за любителски риболов на територията на Република България [shared words: българия, вътрешните, република]
+  - material 217963, ДВ 49/2024 (2024-06-11), a line of the general repeal decree „Постановление № 205 от 7 юни 2024 г. за отменяне на нормативни актове на Министерския съвет“: § 3. Наредбата за условията и реда за участие в приватизацията чрез държавни облигации по външния дълг на Република България, приета с Постановление № 502 на Министерския съвет от 1997 г. (ДВ, бр. 6 от 1998 г.), се отменя. [shared words: българия, реда, република]
+  - material 2755, ДВ 88/2006 (2006-10-31), a line of the general repeal decree „Постановление № 281 от 20 октомври 2006 г. за отменяне на нормативни актове на Министерския съвет“: § 2. Отменя се Постановление № 300 на Министерския съвет от 1996 г. за защитни мерки по вноса на стоки в Република България (обн., ДВ, бр. 109 от 1996 г.; изм., бр. 45 от 1997 г.). [shared words: българия, република]
+  - material 2758, ДВ 88/2006 (2006-10-31), a line of the general repeal decree „Постановление № 284 от 23 октомври 2006 г. за отменяне на нормативни актове на Министерския съвет“: 3. Постановление № 79 на Министерския съвет от 1994 г. за освобождаване от митни сборове на имуществата, внасяни в Република България в рамките на безвъзмездната финансова помощ за културата от правителството на Япония (ДВ, бр. 35 от 1994 г.). [shared words: българия, република]
   - material 8162, ДВ 75/2008 (2008-08-26): Наредба за отменяне на Наредба № Iз-441 от 2008 г. за определяне на категориите служители, осъществяващи правомощията си в униформено облекло, неговия вид и модел, реда за предоставянето му, както и другите принадлежности, свързани с изпълнението на служебните задължения на служителите, върху които са поставени символи и отличителни знаци на структурните звена на Министерството на вътрешните работи [shared words: вътрешните, реда]
-  - material 20903, ДВ 41/2009 (2009-06-02): Наредба за отмяна на Наредба № 26 от 2006 г. за временно упражняване на медицински дейности в Република България за граждани на държава - членка на Европейския съюз, и другите държави от Европейското икономическо пространство [shared words: българия, република]
-  - material 21361, ДВ 25/2004 (2004-03-26): Постановление № 60 от 16 март 2004 г. за отменяне на Постановление № 15 на Министерския съвет от 2002 г. за изпълнение от 1 януари 2002 г. на задълженията на Република България, произтичащи от Споразумението за свободна търговия между Република България и Република Естония [shared words: българия, република]
-  - material 70892, ДВ 98/2012 (2012-12-11): Наредба за отменяне на Наредба № Із-1215 от 2006 г. за реда за достъп до информационните фондове на Министерството на вътрешните работи [shared words: вътрешните, реда]
 
 ## pravilnik-za-strukturata-deynostta-i-zadachite-na-okrazhnite-direktsii-bibliotek
 - title: ПРАВИЛНИК ЗА СТРУКТУРАТА, ДЕЙНОСТТА И ЗАДАЧИТЕ НА ОКРЪЖНИТЕ ДИРЕКЦИИ "БИБЛИОТЕКИ"
-- kind: правилник; published 1979-06-19; lex.bg records it vigente with 1 amendment rows, the last: ДВ 48/1979 (1979-06-19)
-- candidate repeal titles: none share words with this title
+- kind: правилник; published 1979-06-19
+- lex.bg's history line: Обн. ДВ. бр. 48 от 19 Юни 1979г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 1, the last: ДВ 48/1979 (1979-06-19)
+- candidates: none share words with this title, and lex.bg's history line carries no repeal marker
 
 ## pravilnik-za-tehnicheskiya-nadzor-varhu-saorazheniyata-s-povishena-opasnost
 - title: ПРАВИЛНИК ЗА ТЕХНИЧЕСКИЯ НАДЗОР ВЪРХУ СЪОРЪЖЕНИЯТА С ПОВИШЕНА ОПАСНОСТ
-- kind: правилник; published 1983-09-16; lex.bg records it vigente with 1 amendment rows, the last: ДВ 72/1983 (1983-09-16)
-- candidate repeal titles: none share words with this title
+- kind: правилник; published 1983-09-16
+- lex.bg's history line: Обн. ДВ. бр. 72 от 16 Септември 1983г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 1, the last: ДВ 72/1983 (1983-09-16)
+- candidates: none share words with this title, and lex.bg's history line carries no repeal marker
 
 ## pravilnik-za-tvorcheskiya-fond-pri-ministerstvoto-na-kulturata-zagl-izm-dv-br-10
 - title: ПРАВИЛНИК ЗА ТВОРЧЕСКИЯ ФОНД ПРИ МИНИСТЕРСТВОТО НА КУЛТУРАТА (ЗАГЛ. ИЗМ. - ДВ, БР. 101 ОТ 1977 Г, БР. 94 ОТ 1998 Г.)
-- kind: правилник; published 1973-06-05; lex.bg records it vigente with 3 amendment rows, the last: ДВ 49/1973 (1973-06-05); ДВ 101/1977 (1977-12-27); ДВ 94/1998 (1998-08-12)
-- candidate repeal titles: none share words with this title
+- kind: правилник; published 1973-06-05
+- lex.bg's history line: Обн. ДВ. бр. 49 от 5 Юни 1973г. , изм. ДВ. бр.101 от 27 Декември 1977г. , изм. ДВ. бр. 94 от 12 Август 1998г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 3, the last: ДВ 49/1973 (1973-06-05); ДВ 101/1977 (1977-12-27); ДВ 94/1998 (1998-08-12)
+- candidates: none share words with this title, and lex.bg's history line carries no repeal marker
 
 ## pravilnik-za-upravlenieto-i-stopanisvaneto-na-svobodnata-bezmitna-zona-ruse
 - title: ПРАВИЛНИК ЗА УПРАВЛЕНИЕТО И СТОПАНИСВАНЕТО НА СВОБОДНАТА БЕЗМИТНА ЗОНА - РУСЕ
-- kind: правилник; published 1988-11-29; lex.bg records it vigente with 3 amendment rows, the last: ДВ 90/1988 (1988-11-29); ДВ 72/1991 (1991-09-03); ДВ 4/2001 (2001-01-12)
-- candidate repeal titles: none share words with this title
+- kind: правилник; published 1988-11-29
+- lex.bg's history line: Обн. ДВ. бр. 90 от 29 Ноември 1988г. , изм. ДВ. бр. 72 от 3 Септември 1991г. , изм. ДВ. бр. 4 от 12 Януари 2001г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 3, the last: ДВ 90/1988 (1988-11-29); ДВ 72/1991 (1991-09-03); ДВ 4/2001 (2001-01-12)
+- candidates: none share words with this title, and lex.bg's history line carries no repeal marker
 
 ## pravilnik-za-ustroystvoto-i-deynostta-na-stopanskata-direktsiya-izgrazhdane-na-s
 - title: ПРАВИЛНИК ЗА УСТРОЙСТВОТО И ДЕЙНОСТТА НА СТОПАНСКАТА ДИРЕКЦИЯ "ИЗГРАЖДАНЕ НА СЕЛИЩНИТЕ СИСТЕМИ" ПРИ ОКРЪЖНИТЕ НАРОДНИ СЪВЕТИ И НА ПОДЕЛЕНИЯТА Й
-- kind: правилник; published 1980-01-25; lex.bg records it vigente with 1 amendment rows, the last: ДВ 7/1980 (1980-01-25)
-- candidate repeal titles:
+- kind: правилник; published 1980-01-25
+- lex.bg's history line: Обн. ДВ. бр. 7 от 25 Януари 1980г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 1, the last: ДВ 7/1980 (1980-01-25)
+- candidates:
   - material 132672, ДВ 102/2018 (2018-12-11): Правилник за отменяне на Правилника за организацията и дейността на регионалните съвети за развитие, Правилника за устройството и дейността на дирекциите за техническо съдействие, координация и управление на регионални програми и планове и Правилника за организацията и дейността на областните съвети за развитие [shared words: дейността, съвети, устройството]
   - material 49001, ДВ 35/2011 (2011-05-03): Постановление № 110 от 26 април 2011 г. за отменяне на Правилника за устройството и дейността на университет с наименование Академия на Министерството на вътрешните работи, приет с Постановление № 344 на Министерския съвет от 2004 г. [shared words: дейността, устройството]
   - material 194720, ДВ 45/2023 (2023-05-23): Инструкция за отменяне на Инструкция № Із-547 от 11 март 2013 г. за условията и реда за дейността на дирекция „Специална куриерска служба“ на Министерството на вътрешните работи по осигуряване на военна пощенска свръзка при бедствия, при въвеждане на режим „военно положение“ или „положение на война“ [shared words: дейността, дирекция]
 
 ## pravilnik-za-vatreshniya-red-v-turisticheskite-i-alpiyskite-hizhi-zasloni-spalni
 - title: ПРАВИЛНИК ЗА ВЪТРЕШНИЯ РЕД В ТУРИСТИЧЕСКИТЕ И АЛПИЙСКИТЕ ХИЖИ, ЗАСЛОНИ, СПАЛНИ И ДОМОВЕ
-- kind: правилник; published 1958-04-11; lex.bg records it vigente with 1 amendment rows, the last: ДВ 29/1958 (1958-04-11)
-- candidate repeal titles: none share words with this title
+- kind: правилник; published 1958-04-11
+- lex.bg's history line: Обн. ДВ. бр. 29 от 11 Април 1958г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 1, the last: ДВ 29/1958 (1958-04-11)
+- candidates: none share words with this title, and lex.bg's history line carries no repeal marker
 
 ## pravilnik-za-vodnospasitelnata-deynost-i-obezopasyavaneto-na-vodnite-ploshti
 - title: ПРАВИЛНИК ЗА ВОДНОСПАСИТЕЛНАТА ДЕЙНОСТ И ОБЕЗОПАСЯВАНЕТО НА ВОДНИТЕ ПЛОЩИ
-- kind: правилник; published 1983-08-19; lex.bg records it vigente with 2 amendment rows, the last: ДВ 65/1983 (1983-08-19); ДВ 45/1989 (1989-06-13)
-- candidate repeal titles:
+- kind: правилник; published 1983-08-19
+- lex.bg's history line: Обн. ДВ. бр.65 от 19 Август 1983г. , изм. ДВ. бр. 45 от 13 Юни 1989г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 2, the last: ДВ 65/1983 (1983-08-19); ДВ 45/1989 (1989-06-13)
+- candidates:
   - material 226960, ДВ 77/2024 (2024-09-10): Инструкция за отменяне на Инструкция № 1 от 1997 г. за организацията на водноспасителната дейност и обезопасяването на водните площи при провеждане на детски и ученически отдих и туризъм [shared words: водните, водноспасителната, дейност, обезопасяването, площи]
 
 ## pravilnik-za-vpisvaniyata
 - title: ПРАВИЛНИК ЗА ВПИСВАНИЯТА
-- kind: правилник; published 1951-12-18; lex.bg records it vigente with 14 amendment rows, the last: ДВ 92/2014 (2014-11-07); ДВ 2/2021 (2021-01-08); ДВ 112/2025 (2025-12-19)
-- candidate repeal titles: none share words with this title
+- kind: правилник; published 1951-12-18
+- lex.bg's history line: Обн. ДВ. бр.101 от 18 Декември 1951г. , изм. ДВ. бр. 30 от 15 Април 1955г. , изм. ДВ. бр. 82 от 27 Септември 1996г. , изм. ДВ. бр. 86 от 30 Септември  […] вгуст 2004г. , изм. ДВ. бр. 67 от 16 Август 2005г. , изм. ДВ. бр. 22 от 28 Февруари 2008г. , изм. и доп. ДВ. бр. 63 от 1 Август 2014г. , изм. и доп. ДВ. бр. 92 от 7 Ноември 2014г. , изм. и доп. ДВ. бр. 2 от 8 Януари 2021г. , изм. и доп. ДВ. бр. 112 от 19 Декември 2025г.
+- repeal marker read from it: none
+- the corpus's amendment rows: 14, the last: ДВ 92/2014 (2014-11-07); ДВ 2/2021 (2021-01-08); ДВ 112/2025 (2025-12-19)
+- candidates: none share words with this title, and lex.bg's history line carries no repeal marker

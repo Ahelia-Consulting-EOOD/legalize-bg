@@ -1,10 +1,10 @@
 {
  "slug": "naredba-2-za-poddarzhaneto-i-kontrola-na-geodezichnite-instrumenti-i-fotogrametr",
  "title": "НАРЕДБА № 2 ЗА ПОДДЪРЖАНЕТО И КОНТРОЛА НА ГЕОДЕЗИЧНИТЕ ИНСТРУМЕНТИ И ФОТОГРАМЕТРИЧНАТА АПАРАТУРА",
- "verdict": "in_force",
+ "verdict": "unknown",
  "repealed_by": null,
- "evidence": "There are no candidate repeal titles. lex.bg records it vigente, its only row is ДВ 102/1978, and it shows no sign of repeal.",
- "candidates": 0,
+ "evidence": "The history line holds only the 1978 promulgation (ДВ 102/1978) with no repeal marker; the only candidate, line 34 of the decree in material 2758, repeals Постановление № 293 of 1994 on customs duties, which is a different act.",
+ "candidates": 1,
  "call": "call-06",
- "answered_at": "2026-10-31T20:52:58+00:00"
+ "answered_at": "2026-10-31T21:14:30+00:00"
 }

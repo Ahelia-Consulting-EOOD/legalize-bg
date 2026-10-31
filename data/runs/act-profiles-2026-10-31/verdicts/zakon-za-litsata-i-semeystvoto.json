@@ -1,10 +1,10 @@
 {
  "slug": "zakon-za-litsata-i-semeystvoto",
  "title": "ЗАКОН ЗА ЛИЦАТА И СЕМЕЙСТВОТО",
- "verdict": "in_force",
+ "verdict": "unknown",
  "repealed_by": null,
- "evidence": "lex.bg records it vigente with 20 amendments, the last in ДВ 120/2002; candidates 1419 (a fishing-permits наредба) and 240221 (Наредба № Н-9 от 2020 г. on a virtual-currency register) share only one word and name other acts.",
+ "evidence": "The last amendment in the history line and the amendment rows is ДВ 120/2002 (2002-12-29), before 2003, with no repeal marker; both candidates repeal unrelated ordinances that only share the word лицата.",
  "candidates": 2,
  "call": "call-02",
- "answered_at": "2026-10-31T20:52:57+00:00"
+ "answered_at": "2026-10-31T21:14:29+00:00"
 }

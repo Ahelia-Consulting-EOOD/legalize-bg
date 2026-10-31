@@ -4,7 +4,6 @@
  "title": "ПРАВИЛНИК ЗА ЗАСТРОЯВАНЕ, БЛАГОУСТРОЯВАНЕ И ОПАЗВАНЕ НА НАЦИОНАЛНИЯ АРХИТЕКТУРНО-ИСТОРИЧЕСКИ РЕЗЕРВАТ КОПРИВЩИЦА",
  "kind": "правилник",
  "fecha_publicacion": "1975-03-18",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1975-03-18",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1975-03-18"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 22 от 18 Март 1975г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "архитектурно-исторически",
   "благоустрояване",

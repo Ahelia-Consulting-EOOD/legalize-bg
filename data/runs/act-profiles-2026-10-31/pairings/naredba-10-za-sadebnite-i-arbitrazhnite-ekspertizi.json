@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 10 ЗА СЪДЕБНИТЕ И АРБИТРАЖНИТЕ ЕКСПЕРТИЗИ",
  "kind": "наредба",
  "fecha_publicacion": "1983-11-29",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1983-11-29",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1983-11-29"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 93 от 29 Ноември 1983г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "арбитражните",
   "експертизи",

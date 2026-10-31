@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 4 ЗА БУФЕРНИТЕ ЗОНИ ОКОЛО РЕЗЕРВАТИТЕ",
  "kind": "наредба",
  "fecha_publicacion": "1980-10-03",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1980-10-03",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1980-10-03"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 77 от 3 Октомври 1980г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "буферните",
   "зони",

@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 49 ЗА ИЗКУСТВЕНО ОСВЕТЛЕНИЕ НА СГРАДИТЕ",
  "kind": "наредба",
  "fecha_publicacion": "1976-01-23",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1976-08-10",
  "amendments_recorded": 2,
  "last_amendments": [
@@ -17,6 +16,8 @@
    "date": "1976-08-10"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 7 от 23 Януари 1976г. , изм. ДВ. бр. 64 от 10 Август 1976г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "изкуствено",
   "осветление",

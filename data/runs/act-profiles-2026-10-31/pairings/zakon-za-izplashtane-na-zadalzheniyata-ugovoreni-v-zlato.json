@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА ИЗПЛАЩАНЕ НА ЗАДЪЛЖЕНИЯТА, УГОВОРЕНИ В ЗЛАТО",
  "kind": "закон",
  "fecha_publicacion": "1946-08-14",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1946-08-14",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1946-08-14"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 184 от 14 Август 1946г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "задълженията",
   "злато",

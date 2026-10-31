@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 6 ЗА ИЗПОЛЗУВАНЕ И ПРЕДСТАВЯНЕ НА НЕДВИЖИМИТЕ ПАМЕТНИЦИ НА КУЛТУРАТА",
  "kind": "наредба",
  "fecha_publicacion": "1979-04-13",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1979-04-13",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1979-04-13"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 30 от 13 Април 1979г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "използуване",
   "културата",

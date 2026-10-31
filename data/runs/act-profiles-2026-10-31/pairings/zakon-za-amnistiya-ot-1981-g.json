@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1981 Г.",
  "kind": "закон",
  "fecha_publicacion": "1981-07-10",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1981-07-10",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1981-07-10"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 54 от 10 Юли 1981г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "амнистия"
  ],

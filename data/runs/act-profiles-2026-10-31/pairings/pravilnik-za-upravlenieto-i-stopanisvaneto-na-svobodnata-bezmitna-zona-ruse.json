@@ -4,7 +4,6 @@
  "title": "ПРАВИЛНИК ЗА УПРАВЛЕНИЕТО И СТОПАНИСВАНЕТО НА СВОБОДНАТА БЕЗМИТНА ЗОНА - РУСЕ",
  "kind": "правилник",
  "fecha_publicacion": "1988-11-29",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "2001-01-12",
  "amendments_recorded": 3,
  "last_amendments": [
@@ -21,6 +20,8 @@
    "date": "2001-01-12"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 90 от 29 Ноември 1988г. , изм. ДВ. бр. 72 от 3 Септември 1991г. , изм. ДВ. бр. 4 от 12 Януари 2001г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "безмитна",
   "зона",

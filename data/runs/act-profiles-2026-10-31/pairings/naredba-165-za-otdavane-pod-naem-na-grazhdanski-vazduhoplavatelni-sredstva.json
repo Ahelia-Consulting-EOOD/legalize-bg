@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 165 ЗА ОТДАВАНЕ ПОД НАЕМ НА ГРАЖДАНСКИ ВЪЗДУХОПЛАВАТЕЛНИ СРЕДСТВА",
  "kind": "наредба",
  "fecha_publicacion": "1976-01-13",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1976-01-13",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1976-01-13"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 4 от 13 Януари 1976г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "въздухоплавателни",
   "граждански",

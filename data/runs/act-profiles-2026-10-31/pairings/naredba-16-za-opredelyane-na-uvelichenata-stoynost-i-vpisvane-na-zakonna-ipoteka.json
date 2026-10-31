@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 16 ЗА ОПРЕДЕЛЯНЕ НА УВЕЛИЧЕНАТА СТОЙНОСТ И ВПИСВАНЕ НА ЗАКОННА ИПОТЕКА ВЪРХУ НЕДВИЖИМИ ИМОТИ - ПАМЕТНИЦИ НА КУЛТУРАТА",
  "kind": "наредба",
  "fecha_publicacion": "1978-07-28",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1978-07-28",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1978-07-28"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 59 от 28 Юли 1978г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "вписване",
   "законна",

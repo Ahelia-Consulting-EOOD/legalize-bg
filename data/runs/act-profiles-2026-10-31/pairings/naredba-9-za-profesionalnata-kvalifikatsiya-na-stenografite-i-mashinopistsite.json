@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 9 ЗА ПРОФЕСИОНАЛНАТА КВАЛИФИКАЦИЯ НА СТЕНОГРАФИТЕ И МАШИНОПИСЦИТЕ",
  "kind": "наредба",
  "fecha_publicacion": "1985-08-16",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1985-08-16",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1985-08-16"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 64 от 16 Август 1985г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "квалификация",
   "машинописците",

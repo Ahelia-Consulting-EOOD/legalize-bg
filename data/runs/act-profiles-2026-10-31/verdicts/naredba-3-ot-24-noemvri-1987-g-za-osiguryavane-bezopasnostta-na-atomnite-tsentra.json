@@ -1,10 +1,10 @@
 {
  "slug": "naredba-3-ot-24-noemvri-1987-g-za-osiguryavane-bezopasnostta-na-atomnite-tsentra",
  "title": "НАРЕДБА № 3 ОТ 24 НОЕМВРИ 1987 Г. ЗА ОСИГУРЯВАНЕ БЕЗОПАСНОСТТА НА АТОМНИТЕ ЦЕНТРАЛИ ПРИ ПРОЕКТИРАНЕ, ИЗГРАЖДАНЕ И ЕКСПЛОАТАЦИЯ",
- "verdict": "in_force",
+ "verdict": "unknown",
  "repealed_by": null,
- "evidence": "lex.bg records it vigente, last amended by ДВ 12/2001. The three candidates repeal different acts (material 242742 Наредба № 35 of 2012 on cable networks, 14923 the electrical installations правилник, 110455 Правилник № 0-33 on X-ray rooms), and none of them concerns nuclear power plants.",
- "candidates": 3,
+ "evidence": "The last amendment is ДВ 12/2001, before 2003, and there is no repeal marker; the candidates repeal other acts (Наредба № 35 of 2012 on cable networks, the electrical-installations правилник, the 2000 наредба on power plant operation, Правилник № 0-33 on X-ray rooms).",
+ "candidates": 4,
  "call": "call-06",
- "answered_at": "2026-10-31T20:52:58+00:00"
+ "answered_at": "2026-10-31T21:14:30+00:00"
 }

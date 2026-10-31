@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1950 Г.",
  "kind": "закон",
  "fecha_publicacion": "1950-11-11",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1950-11-11",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1950-11-11"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 266 от 11 Ноември 1950г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "амнистия"
  ],

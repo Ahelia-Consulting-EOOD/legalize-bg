@@ -1,10 +1,10 @@
 {
  "slug": "zakon-za-otmenyavane-na-vsichki-zakoni-izdadeni-predi-9091944-g",
  "title": "ЗАКОН ЗА ОТМЕНЯВАНЕ НА ВСИЧКИ ЗАКОНИ, ИЗДАДЕНИ ПРЕДИ 9.09.1944 Г.",
- "verdict": "in_force",
+ "verdict": "unknown",
  "repealed_by": null,
- "evidence": "No candidate repeal title shares words with this act; lex.bg records it vigente with only the original row, ДВ 93/1951.",
+ "evidence": "The history line holds only the 1951 promulgation (ДВ 93/1951), so it ends before 2003; no candidate and no repeal marker.",
  "candidates": 0,
  "call": "call-03",
- "answered_at": "2026-10-31T20:52:58+00:00"
+ "answered_at": "2026-10-31T21:14:30+00:00"
 }

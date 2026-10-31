@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 1461 ЗА СЪДЕБНО-СЧЕТОВОДНИТЕ И ФИНАНСОВО-ИКОНОМИЧЕСКИТЕ ЕКСПЕРТИЗИ",
  "kind": "наредба",
  "fecha_publicacion": "1975-10-31",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1975-10-31",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1975-10-31"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 84 от 31 Октомври 1975г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "експертизи",
   "съдебно-счетоводните",

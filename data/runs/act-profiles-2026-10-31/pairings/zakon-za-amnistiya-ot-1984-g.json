@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1984 Г.",
  "kind": "закон",
  "fecha_publicacion": "1984-06-01",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1984-06-01",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1984-06-01"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 43 от 1 Юни 1984г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "амнистия"
  ],

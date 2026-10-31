@@ -1,10 +1,10 @@
 {
  "slug": "zakon-za-tvorcheskite-fondove",
  "title": "ЗАКОН ЗА ТВОРЧЕСКИТЕ ФОНДОВЕ",
- "verdict": "in_force",
+ "verdict": "unknown",
  "repealed_by": null,
- "evidence": "All six candidates (21286, 21997, 27320, 57288, 70892, 116401) repeal other acts (ordinances, decrees, instructions) and share only the word for funds; lex.bg records the law vigente, last amended ДВ 153/1998.",
+ "evidence": "The history line ends with the amendment in ДВ 153/1998, before 2003, and there is no repeal marker; each of the six candidates shares only the word \"фондове\" and repeals a different act (наредби, a постановление and an инструкция on other subjects), so none names this law.",
  "candidates": 6,
  "call": "call-03",
- "answered_at": "2026-10-31T20:52:58+00:00"
+ "answered_at": "2026-10-31T21:14:30+00:00"
 }

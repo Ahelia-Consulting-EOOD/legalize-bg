@@ -4,7 +4,6 @@
  "title": "ПРАВИЛНИК ЗА ДЕЙНОСТТА НА ВАКУУМНАТА ДЕЗИНСЕКЦИОННА КАМЕРА В ГР. БУРГАС",
  "kind": "правилник",
  "fecha_publicacion": "1963-01-29",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1963-01-29",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1963-01-29"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 8 от 29 Януари 1963г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "бургас",
   "вакуумната",

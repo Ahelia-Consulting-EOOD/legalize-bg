@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 2 ЗА ОПАЗВАНЕ ИСТОРИКО-АРХЕОЛОГИЧЕСКИЯ РЕЗЕРВАТ В ЦЕНТЪРА НА ГР. СОФИЯ",
  "kind": "наредба",
  "fecha_publicacion": "1977-02-08",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1979-10-26",
  "amendments_recorded": 2,
  "last_amendments": [
@@ -17,6 +16,8 @@
    "date": "1979-10-26"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 11 от 8 Февруари 1977г. , изм. и доп. ДВ. бр. 85 от 26 Октомври 1979г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "историко-археологическия",
   "опазване",

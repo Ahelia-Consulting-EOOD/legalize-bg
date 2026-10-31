@@ -3,8 +3,8 @@
  "title": "ЗАКОН ЗА НОРМАТИВНИТЕ АКТОВЕ",
  "verdict": "in_force",
  "repealed_by": null,
- "evidence": "lex.bg records it vigente with 6 amendments, the last in ДВ 30/2026; the only candidate, 96071, repeals Наредба № 2 от 2006 г. and Наредба № 3 от 2005 г. on transport subsidies, so it does not name this law.",
- "candidates": 1,
+ "evidence": "The history line and the amendment rows show amendments in 2003, 2007, 2016 and ДВ 30/2026 (2026-03-27), with no repeal marker; every candidate is a general repeal decree of Council of Ministers acts, or an ordinance on transport subsidies, that shares only the word актове and does not name this law.",
+ "candidates": 12,
  "call": "call-02",
- "answered_at": "2026-10-31T20:52:57+00:00"
+ "answered_at": "2026-10-31T21:14:29+00:00"
 }

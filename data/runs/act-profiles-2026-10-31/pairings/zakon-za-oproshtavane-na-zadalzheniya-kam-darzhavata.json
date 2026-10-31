@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА ОПРОЩАВАНЕ НА ЗАДЪЛЖЕНИЯ КЪМ ДЪРЖАВАТА",
  "kind": "закон",
  "fecha_publicacion": "1964-09-15",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1964-09-15",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1964-09-15"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 73 от 15 Септември 1964г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "държавата",
   "задължения",

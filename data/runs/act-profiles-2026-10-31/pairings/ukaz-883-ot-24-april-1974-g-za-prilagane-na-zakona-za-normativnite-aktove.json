@@ -4,7 +4,6 @@
  "title": "УКАЗ № 883 ОТ 24.04.1974 Г. ЗА ПРИЛАГАНЕ НА ЗАКОНА ЗА НОРМАТИВНИТЕ АКТОВЕ",
  "kind": "правилник",
  "fecha_publicacion": "1974-05-21",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "2007-06-12",
  "amendments_recorded": 4,
  "last_amendments": [
@@ -21,6 +20,8 @@
    "date": "2007-06-12"
   }
  ],
+ "lexbg_history": "",
+ "lexbg_repeal_marker": null,
  "words": [
   "актове",
   "нормативните",

@@ -1,10 +1,10 @@
 {
  "slug": "naredba-2-po-bezopasnostta-na-truda-pri-proizvodstvoto-i-rabotata-s-hlor",
  "title": "НАРЕДБА № 2 ПО БЕЗОПАСНОСТТА НА ТРУДА ПРИ ПРОИЗВОДСТВОТО И РАБОТАТА С ХЛОР",
- "verdict": "in_force",
+ "verdict": "unknown",
  "repealed_by": null,
- "evidence": "lex.bg records it vigente, last row ДВ 9/1979. All twelve candidates (materials 342, 343, 2377-2382, 14923, 18245, 18246, 19591) repeal different safety-at-work правилници (electric trucks, vehicles, railways, electrical installations, water networks, compressors, construction), and none of them names this наредба on chlorine.",
+ "evidence": "The history line ends with the 1979 promulgation (ДВ 9/1979) and has no repeal marker; every candidate repeals a different правилник по безопасността на труда (electric carts, motor vehicles, railway, electrical installations, water supply, compressors, construction), none about chlorine.",
  "candidates": 12,
  "call": "call-06",
- "answered_at": "2026-10-31T20:52:58+00:00"
+ "answered_at": "2026-10-31T21:14:30+00:00"
 }

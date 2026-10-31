@@ -4,7 +4,6 @@
  "title": "НАРЕДБА ЗА РАБОТАТА НА ЛИЦАТА, НЕНАВЪРШИЛИ 15-ГОДИШНА ВЪЗРАСТ",
  "kind": "наредба",
  "fecha_publicacion": "1987-01-30",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "2001-04-10",
  "amendments_recorded": 3,
  "last_amendments": [
@@ -21,6 +20,8 @@
    "date": "2001-04-10"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 8 от 30 Януари 1987г. , изм. ДВ. бр. 59 от 9 Юли 1993г. , изм. ДВ. бр. 35 от 10 Април 2001г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "15-годишна",
   "възраст",

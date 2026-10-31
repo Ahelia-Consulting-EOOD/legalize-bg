@@ -4,7 +4,6 @@
  "title": "ЗАКОН ЗА АМНИСТИЯ ОТ 1964 Г.",
  "kind": "закон",
  "fecha_publicacion": "1964-09-08",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1964-09-08",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1964-09-08"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 71 от 8 Септември 1964г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "амнистия"
  ],

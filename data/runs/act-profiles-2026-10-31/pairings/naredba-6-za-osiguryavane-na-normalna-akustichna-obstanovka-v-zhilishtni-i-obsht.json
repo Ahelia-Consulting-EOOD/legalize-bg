@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 6 ЗА ОСИГУРЯВАНЕ НА НОРМАЛНА АКУСТИЧНА ОБСТАНОВКА В ЖИЛИЩНИ И ОБЩЕСТВЕНИ СГРАДИ И МЕСТА",
  "kind": "наредба",
  "fecha_publicacion": "1977-02-25",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1977-02-25",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1977-02-25"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 16 от 25 Февруари 1977г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "акустична",
   "жилищни",

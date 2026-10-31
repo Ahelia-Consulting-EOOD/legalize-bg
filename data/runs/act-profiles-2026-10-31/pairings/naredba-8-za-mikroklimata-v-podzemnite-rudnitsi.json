@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 8 ЗА МИКРОКЛИМАТА В ПОДЗЕМНИТЕ РУДНИЦИ",
  "kind": "наредба",
  "fecha_publicacion": "1985-09-24",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1985-09-24",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1985-09-24"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 74 от 24 Септември 1985г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "микроклимата",
   "подземните",

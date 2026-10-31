@@ -4,7 +4,6 @@
  "title": "НАРЕДБА № 11 ЗА УСТАНОВЯВАНЕ НА ЩЕТИ ОТ АВАРИИ ПРИ ТЪРГОВСКОТО МОРЕПЛАВАНЕ",
  "kind": "наредба",
  "fecha_publicacion": "1975-08-29",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1975-08-29",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1975-08-29"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 67 от 29 Август 1975г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "аварии",
   "мореплаване",

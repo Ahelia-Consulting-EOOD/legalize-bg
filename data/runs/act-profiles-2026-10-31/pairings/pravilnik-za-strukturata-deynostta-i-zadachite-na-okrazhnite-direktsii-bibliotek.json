@@ -4,7 +4,6 @@
  "title": "ПРАВИЛНИК ЗА СТРУКТУРАТА, ДЕЙНОСТТА И ЗАДАЧИТЕ НА ОКРЪЖНИТЕ ДИРЕКЦИИ \"БИБЛИОТЕКИ\"",
  "kind": "правилник",
  "fecha_publicacion": "1979-06-19",
- "estado_lexbg": "vigente",
  "ultima_actualizacion": "1979-06-19",
  "amendments_recorded": 1,
  "last_amendments": [
@@ -13,6 +12,8 @@
    "date": "1979-06-19"
   }
  ],
+ "lexbg_history": "Обн. ДВ. бр. 48 от 19 Юни 1979г.",
+ "lexbg_repeal_marker": null,
  "words": [
   "библиотеки",
   "дейността",
