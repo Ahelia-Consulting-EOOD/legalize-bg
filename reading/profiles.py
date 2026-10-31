@@ -591,6 +591,16 @@ def task_text(batch: list[dict], answer: Path) -> str:
     return "\n".join(lines)
 
 
+_YEAR = re.compile(r"(?<!\d)(?:19|20)\d{2}(?!\d)")   # „2007г.“: a year glued to its letter
+
+
+def alive_in_html_era(facts: dict) -> bool:
+    """A year of 2003 or later in lex.bg's history line or in the corpus's amendment rows: the fact an in_force verdict needs."""
+    years = [int(y) for y in _YEAR.findall(facts.get("lexbg_history") or "")]
+    years += [int(y) for h in facts.get("last_amendments") or [] for y in _YEAR.findall(str(h.get("date") or ""))]
+    return any(y >= 2003 for y in years)
+
+
 def check_answer(got: object, batch: list[dict]) -> list[str]:
     problems = []
     if not isinstance(got, dict):
@@ -615,6 +625,11 @@ def check_answer(got: object, batch: list[dict]) -> list[str]:
                 problems.append(f"{s}: repealed_by {by!r} is not a candidate of this act")
         elif by is not None:
             problems.append(f"{s}: repealed_by given with the verdict {v['verdict']}")
+        if v["verdict"] == "in_force":   # the fixed-form part of the rule: a script refuses what the facts cannot carry
+            if slugs[s].get("lexbg_repeal_marker"):
+                problems.append(f"{s}: in_force with lex.bg's repeal marker on the act")
+            if not alive_in_html_era(slugs[s]):
+                problems.append(f"{s}: in_force without a year of 2003 or later in the history line or the amendment rows")
         if not isinstance(v["evidence"], str) or not v["evidence"].strip():
             problems.append(f"{s}: evidence missing")
     return problems
@@ -638,12 +653,13 @@ def collect(run_root: Path, name: str) -> dict:
         raise ValueError(f"{name}: the answer is outside the form: " + "; ".join(problems))
     verdicts = run_root / "verdicts"
     verdicts.mkdir(exist_ok=True)
+    paired_at = json.loads((run_root / "pairing.json").read_text(encoding="utf-8"))["paired_at"]
     for f in batch:
         v = got[f["slug"]]
         by = next((c for c in f["candidates"] if c["id_mat"] == v["repealed_by"]), None) if v["verdict"] == "repealed" else None
         (verdicts / f"{f['slug']}.json").write_text(json.dumps({
             "slug": f["slug"], "title": f["title"], "verdict": v["verdict"], "repealed_by": by, "evidence": v["evidence"].strip(),
-            "candidates": len(f["candidates"]), "call": name, "answered_at": _now()}, ensure_ascii=False, indent=1), encoding="utf-8")
+            "candidates": len(f["candidates"]), "call": name, "paired_at": paired_at, "answered_at": _now()}, ensure_ascii=False, indent=1), encoding="utf-8")
     return {"call": name, "acts": len(batch), "verdicts": Counter(got[f["slug"]]["verdict"] for f in batch)}
 
 
@@ -665,14 +681,21 @@ def _entry(v: dict, verdict_file: str) -> dict:
 
 
 def _entries(run_root: Path) -> tuple[list[dict], list[str]]:
+    """The entries from the verdict files of the current pairing; a verdict of an earlier pairing (another ``paired_at``
+    stamp, or none) counts as missing, so a re-pair never carries an old verdict forward."""
     paired = sorted(p.stem for p in (run_root / "pairings").glob("*.json"))
+    paired_at = json.loads((run_root / "pairing.json").read_text(encoding="utf-8"))["paired_at"]
     rows, missing = [], []
     for s in paired:
         p = run_root / "verdicts" / f"{s}.json"
         if not p.exists():
             missing.append(s)
             continue
-        rows.append(_entry(json.loads(p.read_text(encoding="utf-8")), str(p.relative_to(run_root.parents[2]))))
+        v = json.loads(p.read_text(encoding="utf-8"))
+        if v.get("paired_at") != paired_at:
+            missing.append(s)
+            continue
+        rows.append(_entry(v, str(p.relative_to(run_root.parents[2]))))
     return rows, missing
 
 
@@ -698,11 +721,16 @@ def check_in_force_list(path: Path, run_root: Path) -> list[str]:
     problems = []
     rows, missing = _entries(run_root)
     want = {r["slug"]: r for r in rows}
-    got = {e.get("slug"): e for e in doc["entries"] if isinstance(e, dict)}
+    entries = doc["entries"]
+    if any(not isinstance(e, dict) for e in entries):
+        problems.append("an entry is not a mapping")
+    got = {e.get("slug"): e for e in entries if isinstance(e, dict)}
+    if len(got) != len(entries):
+        problems.append("an entry's slug is repeated")
     for s in sorted(set(want) - set(got)):
         problems.append(f"{s}: paired with a verdict, no entry")
     for s in sorted(set(got) - set(want)):
-        problems.append(f"{s}: entry without a verdict file")
+        problems.append(f"{s}: entry without a verdict file of this pairing")
     for s in sorted(set(want) & set(got)):
         if got[s] != want[s]:
             problems.append(f"{s}: the entry differs from its verdict file")
@@ -712,6 +740,10 @@ def check_in_force_list(path: Path, run_root: Path) -> list[str]:
             problems.append(f"{s}: repealed_by does not match the verdict")
         if not str(got[s].get("evidence") or "").strip():
             problems.append(f"{s}: no evidence")
+    if not problems and entries != rows:
+        problems.append("the entries are not the verdict files' entries in their order")
+    if doc.get("acts") != len(rows) + len(missing) or doc.get("verdicts") != dict(sorted(Counter(r["verdict"] for r in rows).items())):
+        problems.append("the header's counts differ from the entries")
     if doc.get("unanswered") != missing:
         problems.append(f"unanswered {doc.get('unanswered')} differs from the pairings without a verdict {missing}")
     if missing:

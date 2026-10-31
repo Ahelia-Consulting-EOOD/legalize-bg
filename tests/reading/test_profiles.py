@@ -21,7 +21,7 @@ PAGE = """<html><body><div id="chrome"><img src="https://lex.bg/assets/im/logo.p
 <div class="Article"><img src="https://lex.bg/assets/images/blaws1.gif"><img src="https://lex.bg/assets/images/blaws2.gif">Чл. 1. Първа разпоредба.</div>
 <div class="Article">Чл. 1<sup>а</sup>. Втора разпоредба.<br>Продължение без номер.</div>
 <div class="Article">(2) Алинея.<br>Още един ред без номер.</div>
-<div class="Article">Чл. 2.SUP>1. Трета.</div>
+<div class="Article">Чл. 2.SUP>1. Трета. Площ 10 м<sup>2</sup>.</div>
 <div class="Article">Вж. Приложение № 1 за формата.</div>
 <div class="Heading">Приложение № 1 към чл. 2</div>
 <table><tr><td>а<br>втори ред на клетката</td><td>б</td></tr><tr><td><p>в</p></td><td>г</td></tr></table>
@@ -46,9 +46,10 @@ def test_layout_counts_from_the_act_blocks_only():
     # the boxi subtree and the history line are left out (their row, image, sup and paragraph), the tail after the EU-acts
     # line is left out (its paragraph and image), the correspondence-table line is chrome, a cross-reference sentence is no
     # annex heading but an unnumbered paragraph, a cell's second line is a cell line, and the heading number printed twice
-    # (once bare, once with its title) is one repeat; the superscripts are one tag and one leaked remnant
+    # (once bare, once with its title) is one repeat; the superscripts are two tags (a letter and a digit, the digit reaching
+    # the block as plain text, so it is counted once) and one leaked remnant
     assert counts == {"annex_headings": 1, "table_rows": 2, "images": 1, "unnumbered_paragraphs": 4,
-                      "superscript_numbers": 2, "repeated_headings": 1}
+                      "superscript_numbers": 3, "repeated_headings": 1}
     counts, has_act = P.layout_features(NO_ACT.encode("cp1251"))
     assert not has_act
 
@@ -241,8 +242,18 @@ def test_the_verdict_form_is_checked_and_the_list_carries_every_pairing(tmp_path
     bad = {"zakon-za-a": {"verdict": "repealed", "repealed_by": 11, "evidence": "x"},
            "zakon-za-b": {"verdict": "in_force", "repealed_by": 10, "evidence": ""}, "zakon-za-z": {"verdict": "unknown", "repealed_by": None, "evidence": "y"}}
     assert P.check_answer(bad, batch) == ["zakon-za-z: not in the task", "zakon-za-a: repealed_by 11 is not a candidate of this act",
-                                          "zakon-za-b: repealed_by given with the verdict in_force", "zakon-za-b: evidence missing"]
+                                          "zakon-za-b: repealed_by given with the verdict in_force", "zakon-za-b: in_force with lex.bg's repeal marker on the act",
+                                          "zakon-za-b: evidence missing"]
     assert P.check_answer({"zakon-za-b": {"verdict": "repealed", "repealed_by": True, "evidence": "x"}}, batch[1:]) == ["zakon-za-b: repealed_by True is not a candidate of this act"]
+    # the fixed-form part of the verdict rule: in_force needs a year of 2003 or later and no repeal marker
+    assert P.check_answer({"zakon-za-b": {"verdict": "in_force", "repealed_by": None, "evidence": "x"}}, batch[1:]) == \
+        ["zakon-za-b: in_force with lex.bg's repeal marker on the act"]   # its page is dated 2004, so only the marker refuses it
+    assert P.check_answer({"zakon-za-a": {"verdict": "in_force", "repealed_by": None, "evidence": "x"}}, batch[:1]) == \
+        ["zakon-za-a: in_force without a year of 2003 or later in the history line or the amendment rows"]
+    alive = dict(batch[0], lexbg_history="Обн. ДВ. бр. 1 от 1951г., изм. ДВ. бр. 59 от 20 Юли 2007г.")
+    assert P.check_answer({"zakon-za-a": {"verdict": "in_force", "repealed_by": None, "evidence": "amended in 2007"}}, [alive]) == []
+    assert P.alive_in_html_era({"lexbg_history": "", "last_amendments": [{"dv": "5/2003", "date": "2003-01-17"}]})
+    assert not P.alive_in_html_era({"lexbg_history": "Обн. ДВ. бр. 1 от 2002г.", "last_amendments": []})
     assert P.check_answer([], []) == ["the answer is not a mapping"]
     assert P.check_answer({"zakon-za-a": {"verdict": "maybe"}}, [{"slug": "zakon-za-a", "candidates": []}]) == ["zakon-za-a: keys outside the form"]
     answer.write_text(yaml.safe_dump({"zakon-za-a": {"verdict": "unknown", "repealed_by": None, "evidence": "the title names a same-titled predecessor; the history ends in 1951"},
@@ -271,3 +282,18 @@ def test_the_verdict_form_is_checked_and_the_list_carries_every_pairing(tmp_path
     (run / "verdicts" / "zakon-za-b.json").unlink()
     assert P.in_force_list(run, out)["unanswered"] == ["zakon-za-b"]
     assert P.check_in_force_list(out, run) == ["1 act(s) unanswered"]
+    # a repeated entry, an edited header
+    P.in_force_list(run, out)
+    doc = yaml.safe_load(out.read_text(encoding="utf-8"))
+    doc["entries"].append(dict(doc["entries"][0]))
+    out.write_text(yaml.safe_dump(doc, allow_unicode=True), encoding="utf-8")
+    assert "an entry's slug is repeated" in P.check_in_force_list(out, run)
+    doc["entries"].pop()
+    doc["verdicts"] = {"in_force": 1}
+    out.write_text(yaml.safe_dump(doc, allow_unicode=True), encoding="utf-8")
+    assert P.check_in_force_list(out, run) == ["the header's counts differ from the entries"]
+    # a verdict of an earlier pairing does not survive a re-pair
+    P.pair(root, run, mats, per_call=2, raw_dir=tmp_path / "raw", fetch=lambda i: BODY)
+    assert (run / "verdicts" / "zakon-za-a.json").exists()
+    assert P.in_force_list(run, out) == {"acts": 2, "verdicts": {}, "unanswered": ["zakon-za-a", "zakon-za-b"]}
+    assert P.check_in_force_list(out, run) == ["2 act(s) unanswered"]
