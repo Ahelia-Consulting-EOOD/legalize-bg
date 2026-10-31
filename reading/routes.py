@@ -148,31 +148,40 @@ def context(slug: str, run: str, *, root: Path | str = ROOT, run_root: Path | st
 
 # --- hashes and the records ---------------------------------------------------------------------------
 
-def _hash_paths(paths: list[Path], extra: str = "") -> str:
+def _hash_paths(paths: list[Path], extra: str = "", skip: frozenset[Path] = frozenset()) -> str:
+    """``skip``: the driver's own files (the ledger, the record), which change with every walk and are never a step's input."""
     h = hashlib.sha256(extra.encode("utf-8"))
     for p in sorted(set(Path(x) for x in paths), key=str):
+        if p.resolve() in skip:
+            continue
         h.update(p.name.encode()); h.update(b"\0")
         if p.is_file():
             h.update(b"file\0"); h.update(p.read_bytes())
-        elif p.is_dir():
+        elif p.is_dir() and any(x.is_file() and x.resolve() not in skip for x in p.rglob("*")):
             h.update(b"dir\0")
-            for f in sorted(x for x in p.rglob("*") if x.is_file()):
+            for f in sorted(x for x in p.rglob("*") if x.is_file() and x.resolve() not in skip):
                 h.update(str(f.relative_to(p)).encode()); h.update(b"\0"); h.update(f.read_bytes()); h.update(b"\0")
         else:
-            h.update(b"\0absent\0")
+            h.update(b"\0absent\0")   # a folder holding only the driver's own files is as absent as none
         h.update(b"\0")
     return h.hexdigest()
 
 
+def _own_files(ctx: Context) -> frozenset[Path]:
+    return frozenset({ctx.ledger_path.resolve(), ctx.record_path.resolve()})
+
+
 def input_hash(step: Step, ctx: Context) -> str:
-    """The step's declared inputs, its version, the route's parameters and the list entry's fields: what the step runs on."""
+    """The step's declared inputs, its version, the parameters it declares it reads (``step.params``) and the list
+    entry's fields: what the step runs on. A parameter no step reads changes no hash, so none bypasses the bound."""
     entry = {k: v for k, v in ctx.entry.to_dict().items() if k in ("defect", "source", "address", "route")} if ctx.entry else {}
-    extra = json.dumps({"params": ctx.params, "entry": entry, "version": str(getattr(step, "version", ""))}, sort_keys=True, ensure_ascii=False)
-    return _hash_paths(step.inputs(ctx), extra)
+    params = {k: ctx.params[k] for k in getattr(step, "params", ()) if k in ctx.params}
+    extra = json.dumps({"params": params, "entry": entry, "version": str(getattr(step, "version", ""))}, sort_keys=True, ensure_ascii=False)
+    return _hash_paths(step.inputs(ctx), extra, _own_files(ctx))
 
 
 def outputs_hash(step: Step, ctx: Context) -> str:
-    return _hash_paths(step.outputs(ctx))
+    return _hash_paths(step.outputs(ctx), "", _own_files(ctx))
 
 
 def _read_json(p: Path, default: dict) -> dict:
@@ -181,7 +190,9 @@ def _read_json(p: Path, default: dict) -> dict:
 
 def _write_json(p: Path, d: dict) -> None:
     p.parent.mkdir(parents=True, exist_ok=True)
-    p.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+    tmp = p.with_name(p.name + ".tmp")   # whole or not at all: a cut record would erase the bound's memory
+    tmp.write_text(json.dumps(d, ensure_ascii=False, indent=1), encoding="utf-8")
+    tmp.replace(p)
 
 
 def load_ledger(ctx: Context) -> dict:
@@ -314,7 +325,9 @@ def _pending(ctx: Context, ledger: dict, name: str, detail: str) -> Outcome:
     save_ledger(ctx, ledger)
     if ctx.entry.state == "stopped":
         _supersede_case(ctx)
-        ctx.entry = sx.update(ctx.list_path, ctx.slug, state="investigated" if ctx.entry.route != "investigate" else "listed", case_file="")
+        record = load_record(ctx)
+        before = record.get("state_before_stop") or "listed"
+        ctx.entry = sx.update(ctx.list_path, ctx.slug, state=before, case_file="")
     return Outcome("pending", name, detail)
 
 
@@ -346,6 +359,10 @@ def _committed(ctx: Context, ledger: dict, e: dict) -> Outcome:
 
 
 def _stop(ctx: Context, ledger: dict, step: str, exception: str) -> Outcome:
+    record = load_record(ctx)
+    if ctx.entry.state != "stopped":
+        record["state_before_stop"] = ctx.entry.state   # restored when the stop is over
+    _write_json(ctx.record_path, record)   # a stop before any step ran still leaves the act's record
     ledger["state"] = "stopped"
     ledger["stopped_at"] = step
     ledger["exception"] = exception
@@ -389,7 +406,7 @@ def write_case_file(ctx: Context, ledger: dict, step: str, exception: str) -> Pa
     """
     record = load_record(ctx)
     tried = [{"run": e["run"], "step": e["step"], "outcome": e["outcome"], "detail": e["detail"], "evidence": list(e["evidence"])}
-             for e in record["steps"] if e["outcome"] in COMPLETED]
+             for e in record["steps"] if e["outcome"] in COMPLETED + ("interrupted",)]
     fm = {"act": ctx.slug, "title": ctx.entry.title if ctx.entry else ctx.slug, "route": ledger["route"], "stopped_at": step,
           "exception": exception, "tried": tried, "run": ctx.run, "record": ctx.rel(ctx.record_path), "date": date.today().isoformat()}
     path = case_path(ctx.root, ctx.slug)
@@ -398,7 +415,8 @@ def write_case_file(ctx: Context, ledger: dict, step: str, exception: str) -> Pa
         old_fm, prose = split_case_file(path.read_text(encoding="utf-8"))
         if old_fm is None or prose is None:
             raise RouteRefused(f"{ctx.slug}: the case file {ctx.rel(path)} cannot be parsed; it is not written over")
-        if _written(prose) and (old_fm.get("stopped_at") != step or old_fm.get("exception") != exception):
+        over = bool(old_fm.get("resolved") or old_fm.get("superseded"))   # the stop the file describes is finished: its prose is not this stop's
+        if _written(prose) and (over or old_fm.get("stopped_at") != step or old_fm.get("exception") != exception):
             archive = path.parent / "archive" / f"{ctx.slug}-{old_fm.get('date', 'undated')}-{old_fm.get('run', 'run')}.md"
             archive.parent.mkdir(parents=True, exist_ok=True)
             n = 1
@@ -408,6 +426,8 @@ def write_case_file(ctx: Context, ledger: dict, step: str, exception: str) -> Pa
             path.rename(archive)
             fm["previous"] = ctx.rel(archive)
             prose = None
+        elif over:
+            prose = None   # placeholders only, and the finished stop's marks are not carried into the new stop
         elif old_fm.get("previous"):
             fm["previous"] = old_fm["previous"]
     if prose is None:
@@ -457,7 +477,7 @@ def check_case_file(path: Path, root: Path | None = None) -> list[str]:
     if root is not None and isinstance(fm.get("record"), str) and not (Path(root) / fm["record"]).exists():
         out.append(f"{path}: the record {fm['record']} does not exist")
     for k, t in enumerate(fm.get("tried") or []):
-        if not isinstance(t, dict) or not isinstance(t.get("step"), str) or t.get("outcome") not in COMPLETED or not isinstance(t.get("evidence"), list):
+        if not isinstance(t, dict) or not isinstance(t.get("step"), str) or t.get("outcome") not in COMPLETED + ("interrupted",) or not isinstance(t.get("evidence"), list):
             out.append(f"{path}: tried[{k}] is not {{run, step, outcome, detail, evidence: [paths]}}")
     for key in fm:
         if key not in CASE_FIELDS + CASE_OPTIONAL:

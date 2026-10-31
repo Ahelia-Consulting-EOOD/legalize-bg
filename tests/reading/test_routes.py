@@ -133,7 +133,10 @@ def test_a_repeated_step_on_the_same_inputs_is_refused_across_runs_and_params_ar
         run_step(ctx, step)
     with pytest.raises(RouteRefused, match="in run r with outcome done"):
         run_step(_ctx(root, "r2"), step)   # another run, the same inputs: the bound holds across runs (review 1, finding 1)
-    run_step(_ctx(root, "r2", material="2"), step)   # a parameter is an input (finding 6)
+    with pytest.raises(RouteRefused):
+        run_step(_ctx(root, "r2", material="2"), step)   # a parameter the step does not declare changes nothing (round 3, finding 1)
+    step.params = ("material",)
+    run_step(_ctx(root, "r2", material="2"), step)   # a declared parameter is an input (finding 6)
     shared.write_text("2", encoding="utf-8")
     run_step(ctx, step)
     sx.update(_list(root), SLUG, address="9")   # the entry's fields are inputs too
@@ -238,13 +241,14 @@ def test_a_second_stop_keeps_the_prose_unless_the_owner_ruled_on_another_stop(ro
     case.write_text(case.read_text(encoding="utf-8").replace("(not yet given)", "Build the engine first."), encoding="utf-8")
     run_route(_ctx(root, "r3"), _steps(A))   # the same stop: the ruling stays with it
     assert "Build the engine first." in case.read_text(encoding="utf-8")
-    run_route(_ctx(root, "r4"), {"engine": FakeStep("engine", lambda c: StepResult("stop", "a witness differs"), outputs=["e.txt"])}, routes=HIST)
+    run_route(_ctx(root, "r4"), {"engine": FakeStep("engine", lambda c: StepResult("stop", "a witness differs"), inputs=[root / "evidence.txt"], outputs=["e.txt"])}, routes=HIST)
     fm, prose = routes.split_case_file(case.read_text(encoding="utf-8"))   # another stop under written prose: the old file is archived (finding 7)
     assert fm["exception"] == "a witness differs" and "(not yet given)" in prose and "(not yet written)" in prose and fm["previous"].startswith("docs/cases/archive/")
     archived = (root / fm["previous"]).read_text(encoding="utf-8")
     assert "Build the engine first." in archived and "The engine is F1's." in archived and check_case_file(case, root) == []
     case.write_text(case.read_text(encoding="utf-8").replace("(not yet written)", "Only a proposal.", 1), encoding="utf-8")
-    run_route(_ctx(root, "r5", attempt="2"), {"engine": FakeStep("engine", lambda c: StepResult("stop", "another witness differs"), outputs=["e.txt"])}, routes=HIST)
+    (root / "evidence.txt").write_text("new", encoding="utf-8")   # a new input: the step runs again (a parameter no step reads changes nothing, round 3 finding 1)
+    run_route(_ctx(root, "r5"), {"engine": FakeStep("engine", lambda c: StepResult("stop", "another witness differs"), inputs=[root / "evidence.txt"], outputs=["e.txt"])}, routes=HIST)
     fm, prose = routes.split_case_file(case.read_text(encoding="utf-8"))   # a proposal alone is also written for its stop (review 2, finding 5)
     assert "Only a proposal." not in prose and "Only a proposal." in (root / fm["previous"]).read_text(encoding="utf-8")
 
@@ -274,6 +278,8 @@ def test_an_interrupted_step_is_a_stop_with_a_case_file_and_is_not_rerun_blindly
         run_step(ctx, step)
     out = run_route(ctx, {A: step}, routes={"whole_act_from_material": (A,)})   # review 2, finding 3: a stop the owner reads
     assert out.state == "stopped" and out.step == A and "interrupted in run r" in out.detail and step.calls == 1
+    fm, _ = routes.split_case_file((root / "docs" / "cases" / f"{SLUG}.md").read_text(encoding="utf-8"))
+    assert [t["outcome"] for t in fm["tried"]] == ["interrupted"]   # round 3, finding 7
     assert sx.listed(SLUG, _list(root)).state == "stopped" and check_run(root / "data" / "runs" / "r", root) == []
 
 
@@ -286,7 +292,7 @@ def test_a_stop_that_is_over_is_cleared_from_the_list_the_ledger_and_the_case_fi
     out = run_route(ctx, steps, routes=ROUTES)   # B now exists and waits: the act went on (review 2, finding 4)
     assert out.state == "pending" and out.step == B
     e = sx.listed(SLUG, _list(root))
-    assert e.state == "investigated" and e.case_file == ""
+    assert e.state == "listed" and e.case_file == ""   # the state it had before the stop (round 3, finding 4)
     ledger = json.loads(ctx.ledger_path.read_text(encoding="utf-8"))
     assert ledger["state"] == "pending" and ledger["stopped_at"] is None
     fm, _ = routes.split_case_file(case.read_text(encoding="utf-8"))
@@ -381,3 +387,51 @@ def test_the_repositorys_list_runs_and_case_files_pass_their_checks():
             assert check_run(run_root, REPO) == [], run_root.name
     for case in sorted((REPO / "docs" / "cases").glob("*.md")):
         assert check_case_file(case, REPO) == [], case.name
+
+
+def test_a_stop_reached_again_on_the_same_inputs_stands_without_running_the_step(root):
+    step = FakeStep(A, lambda c: StepResult("stop", "an amendment found"), outputs=["a.txt"])
+    ctx = _ctx(root)
+    run_route(ctx, {A: step}, routes={"whole_act_from_material": (A, B)})
+    for k in range(3):
+        out = run_route(_ctx(root, f"r{k}", attempt=str(k)), {A: step}, routes={"whole_act_from_material": (A, B)})   # the plan's second fixed point
+        assert out.state == "stopped" and out.detail == "an amendment found"
+    assert step.calls == 1 and check_run(root / "data" / "runs" / "r", root) == []
+    held = FakeStep(B, lambda c: StepResult("unchanged", "the labeller holds its reading"), outputs=["b.txt"])
+    a2 = FakeStep(A, _writes("a.txt"), outputs=["a.txt"])
+    a2.version = "2"   # a changed step runs again on the same files
+    ctx2 = routes.context(SLUG, "s", root=root)
+    sx.update(_list(root), SLUG, state="listed", case_file="")
+    run_route(ctx2, {A: a2, B: held}, routes={"whole_act_from_material": (A, B)})
+    out = run_route(ctx2, {A: a2, B: held}, routes={"whole_act_from_material": (A, B)})
+    assert out.detail == f"{routes.STOP_UNCHANGED}: {B}" and held.calls == 1
+
+
+def test_the_drivers_own_files_are_never_a_steps_input(root):
+    step = FakeStep(A, lambda c: StepResult("stop", "x"), inputs=[Path(".")], outputs=["a.txt"])
+    step._in = []
+    step.inputs = lambda ctx: [ctx.act_dir]   # the whole run folder, the ledger included (round 3, finding 3)
+    ctx = _ctx(root)
+    for _ in range(3):
+        run_route(ctx, {A: step}, routes={"whole_act_from_material": (A,)})
+    assert step.calls == 1
+
+
+def test_a_finished_stops_prose_is_archived_before_a_new_stop_with_the_same_words(root):
+    held = FakeStep(A, lambda c: StepResult("unchanged", "held"), inputs=[root / "in.txt"], outputs=["a.txt"])
+    (root / "in.txt").write_text("1", encoding="utf-8")
+    ctx = _ctx(root)
+    run_route(ctx, {A: held}, routes={"whole_act_from_material": (A,)})
+    case = root / "docs" / "cases" / f"{SLUG}.md"
+    case.write_text(case.read_text(encoding="utf-8").replace("(not yet given)", "RULING-1"), encoding="utf-8")
+    (root / "in.txt").write_text("2", encoding="utf-8")
+    done = FakeStep(A, lambda c: StepResult("done", "committed", committed="c0ffee"), inputs=[root / "in.txt"], outputs=["a.txt"])
+    assert run_route(_ctx(root, "r2"), {A: done}, routes={"whole_act_from_material": (A,)}).state == "committed"
+    assert routes.split_case_file(case.read_text(encoding="utf-8"))[0]["resolved"] == "c0ffee"
+    (root / "in.txt").write_text("3", encoding="utf-8")
+    sx.update(_list(root), SLUG, state="listed", commit="")
+    run_route(_ctx(root, "r3"), {A: held}, routes={"whole_act_from_material": (A,)})   # the same stop words, after a finished stop (round 3, finding 2)
+    fm, prose = routes.split_case_file(case.read_text(encoding="utf-8"))
+    assert "RULING-1" not in prose and "resolved" not in fm and fm["previous"].startswith("docs/cases/archive/")
+    assert "RULING-1" in (root / fm["previous"]).read_text(encoding="utf-8")
+    assert [t["outcome"] for t in fm["tried"]].count("interrupted") == 0

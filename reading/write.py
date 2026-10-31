@@ -24,8 +24,8 @@ material's header (``build_frontmatter_dv``, the Surface 2 preflight); the prove
 base names the material with its hash; the commit's ``Source-Id`` is ``dv-<material>``.
 Before any of it, an act on the exceptions list is refused on the lex.bg path by name,
 and lost text (an empty section, a first § above 1: D-076 (3)) refuses the write.
-5. the act, its run record (``map.json`` and the round reports, D-073) and any
-   waiver count the repair lowers go into one commit, ``[reforma]`` when
+5. the act, its run record (``map.json``, the round reports, D-073, and the witness
+   record when the witnesses were compared) and any waiver count the repair lowers go into one commit, ``[reforma]`` when
    the amendment list grew and ``[popravka]`` otherwise (ruling 11), with the
    three trailers and ``Record-Id``.
 
@@ -281,7 +281,7 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
     if commit_type == "unchanged":
         return Written(slug, "unchanged", record_id, None)
 
-    record = [run_dir / "map.json", *sorted(run_dir.glob("report-round*.json"))]
+    record = [run_dir / "map.json", *sorted(run_dir.glob("report-round*.json")), *[p for p in [run_dir / "witness-record.json"] if p.exists()]]
     files = [_rel(root, f) for f in [path, *record]]
     before = waivers_path.read_text(encoding="utf-8")  # read once, so any failure below can put it back
     lowered = written = False
