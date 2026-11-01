@@ -1,0 +1,14 @@
+{
+ "slug": "zakon-za-obshtestveniya-transport",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Additional provision § 1 (definitions, items 1-12) under ДОПЪЛНИТЕЛНА РАЗПОРЕДБА",
+ "note": "lex.bg lines 311-313: additional-provision heading followed directly by the final-provisions heading and § 2; Gazette lines 360-374 carry § 1 with items 1-12; §§ 2-10 match (lines 313-333 vs 375-395)",
+ "stage": "tails",
+ "call": "call-tails-12ea3d18",
+ "material": 242220,
+ "answered_at": "2026-10-31T21:11:24+00:00",
+ "promulgation_material": 242220,
+ "call_content_tokens": 38267,
+ "beyond_measured_range": false
+}

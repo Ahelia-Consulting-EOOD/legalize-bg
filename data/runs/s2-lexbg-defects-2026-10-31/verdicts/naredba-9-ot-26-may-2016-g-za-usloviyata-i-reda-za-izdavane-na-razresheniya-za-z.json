@@ -1,0 +1,14 @@
+{
+ "slug": "naredba-9-ot-26-may-2016-g-za-usloviyata-i-reda-za-izdavane-na-razresheniya-za-z",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Under the additional-provision heading the Gazette carries § 1 (definitions, items 1 to 5); lex.bg prints the heading with nothing under it and starts at § 2",
+ "note": "lex.bg lines 45-47: heading 'Допълнителна разпоредба' followed directly by the transitional and final heading and § 2; Gazette lines 116-123: § 1 with items 1-5 between the two headings; §§ 2-10 match (lex.bg lines 47-107 vs Gazette lines 124-184); lex.bg §§ 11-12 are marked additions (ДВ бр. 101/2020)",
+ "stage": "tails",
+ "call": "call-tails-084b7c4a",
+ "material": 104150,
+ "answered_at": "2026-10-31T21:11:24+00:00",
+ "promulgation_material": 104150,
+ "call_content_tokens": 29194,
+ "beyond_measured_range": false
+}

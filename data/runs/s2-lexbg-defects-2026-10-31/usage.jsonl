@@ -1,0 +1,21 @@
+{"call": "call-tails-ff9f2f28", "agent": "labeller (main checkout definition), model opus", "candidates": 7, "content_tokens": 39336, "tokens": 56829, "tool_uses": 4, "duration_ms": 26442}
+{"call": "call-tails-d47de18c", "agent": "labeller (main checkout definition), model opus", "candidates": 8, "content_tokens": 7080, "tokens": 28528, "tool_uses": 3, "duration_ms": 34797}
+{"call": "call-tails-b1fa3a85", "agent": "labeller (main checkout definition), model opus", "candidates": 1, "content_tokens": 22259, "tokens": 35113, "tool_uses": 3, "duration_ms": 15069}
+{"call": "call-tails-eddc1b2c", "agent": "labeller (main checkout definition), model opus", "candidates": 3, "content_tokens": 38243, "tokens": 56740, "tool_uses": 4, "duration_ms": 24505}
+{"call": "call-tails-084b7c4a", "agent": "labeller (main checkout definition), model opus", "candidates": 3, "content_tokens": 29194, "tokens": 44921, "tool_uses": 4, "duration_ms": 26264}
+{"call": "call-tails-12ea3d18", "agent": "labeller (main checkout definition), model opus", "candidates": 5, "content_tokens": 38267, "tokens": 55795, "tool_uses": 4, "duration_ms": 26345}
+{"call": "call-tails-c78e88f9", "agent": "labeller (main checkout definition), model opus", "candidates": 8, "content_tokens": 19291, "tokens": 38621, "tool_uses": 3, "duration_ms": 27825}
+{"call": "call-tails-e52f0399", "agent": "labeller (main checkout definition), model opus", "candidates": 8, "content_tokens": 10474, "tokens": 31206, "tool_uses": 3, "duration_ms": 28083}
+{"call": "call-tails-6f656a20", "agent": "labeller (main checkout definition), model opus", "candidates": 8, "content_tokens": 27647, "tokens": 47523, "tool_uses": 4, "duration_ms": 38596}
+{"call": "call-amendment-bb567f0f", "agent": "labeller (main checkout definition), model opus", "candidates": 1, "content_tokens": 12176, "tokens": 30413, "tool_uses": 3, "duration_ms": 12099}
+{"call": "call-amendment-e91c2fb3", "agent": "labeller (main checkout definition), model opus", "candidates": 1, "content_tokens": 86812, "tokens": 32180, "tool_uses": 6, "duration_ms": 18874}
+{"call": "call-tails-0a853d7a", "agent": "labeller (main checkout definition), model opus", "candidates": 4, "content_tokens": 15317, "tokens": 33075, "tool_uses": 3, "duration_ms": 23684}
+{"call": "call-tails-5c6701cc", "agent": "labeller (main checkout definition), model opus", "candidates": 1, "content_tokens": 4921, "tokens": 21668, "tool_uses": 3, "duration_ms": 8443}
+{"call": "call-whole-278f66ed", "agent": "labeller (main checkout definition), model opus", "candidates": 1, "content_tokens": 18215, "tokens": 32710, "tool_uses": 3, "duration_ms": 12264}
+{"call": "call-whole-c372a0e4", "agent": "labeller (main checkout definition), model opus", "candidates": 1, "content_tokens": 98310, "tokens": 33050, "tool_uses": 7, "duration_ms": 22723}
+{"call": "review-A-round-1", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 42629, "tool_uses": 41, "duration_ms": 356001}
+{"call": "review-B-round-1", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 62452, "tool_uses": 61, "duration_ms": 430949}
+{"call": "review-A-round-2", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 92025, "tool_uses": 78, "duration_ms": 592674}
+{"call": "review-B-round-2", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 60923, "tool_uses": 53, "duration_ms": 443178}
+{"call": "review-B-round-3", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 33635, "tool_uses": 50, "duration_ms": 307096}
+{"call": "review-A-round-3", "kind": "review", "agent": "feature-dev:code-reviewer, model opus", "tokens": 44280, "tool_uses": 52, "duration_ms": 400337}

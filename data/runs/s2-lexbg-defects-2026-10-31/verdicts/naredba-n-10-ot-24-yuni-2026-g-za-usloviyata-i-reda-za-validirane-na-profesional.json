@@ -1,0 +1,14 @@
+{
+ "slug": "naredba-n-10-ot-24-yuni-2026-g-za-usloviyata-i-reda-za-validirane-na-profesional",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Допълнителна разпоредба with § 1 (definitions, т. 1-12)",
+ "note": "lex.bg block 131 heading Допълнителна разпоредба followed directly by Заключителни разпоредби and § 2; Gazette blocks 130-143 carry § 1, т. 1-12; §§ 2-3 match",
+ "stage": "tails",
+ "call": "call-tails-c78e88f9",
+ "material": 244452,
+ "answered_at": "2026-10-31T21:11:24+00:00",
+ "promulgation_material": 244452,
+ "call_content_tokens": 19291,
+ "beyond_measured_range": false
+}

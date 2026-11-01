@@ -1,0 +1,14 @@
+{
+ "slug": "naredba-8-ot-26-noemvri-2007-g-za-usloviyata-i-reda-za-finansirane-na-diagnostik",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "§ 1 with items 1 and 2 under Допълнителна разпоредба (definition of диагностика на професионалните болести)",
+ "note": "lex.bg block 109 Допълнителна разпоредба followed directly by block 110 Заключителна разпоредба; Gazette material 4513 carries § 1, т. 1-2 between them; ал. 4 difference is marked amendment ДВ бр. 38/2018",
+ "stage": "tails",
+ "call": "call-tails-d47de18c",
+ "material": 4513,
+ "answered_at": "2026-10-31T21:09:30+00:00",
+ "promulgation_material": 4513,
+ "call_content_tokens": 7080,
+ "beyond_measured_range": false
+}

@@ -1,0 +1,15 @@
+{
+ "call": "call-whole-c372a0e4",
+ "stage": "whole",
+ "slugs": [
+  "ustroystven-pravilnik-na-ministerstvoto-na-okolnata-sreda-i-vodite"
+ ],
+ "call_file": "/Users/ekimir/swprj/legalize-bg/.claude/worktrees/youthful-haibt-880b8b/data/runs/s2-lexbg-defects-2026-10-31/calls/call-whole-c372a0e4.md",
+ "answer_file": "/Users/ekimir/swprj/legalize-bg/.claude/worktrees/youthful-haibt-880b8b/data/runs/s2-lexbg-defects-2026-10-31/calls/call-whole-c372a0e4.answer.json",
+ "content_tokens": 98310,
+ "written_at": "2026-10-31T21:13:56+00:00",
+ "collected_at": "2026-10-31T21:15:41+00:00",
+ "materials": {
+  "ustroystven-pravilnik-na-ministerstvoto-na-okolnata-sreda-i-vodite": 118279
+ }
+}

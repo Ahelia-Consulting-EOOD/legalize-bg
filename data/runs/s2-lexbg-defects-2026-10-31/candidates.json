@@ -1,0 +1,955 @@
+{
+ "run": "s2-lexbg-defects-2026-10-31",
+ "scanned_at": "2026-10-31T21:52:51+00:00",
+ "pages": 3623,
+ "pages_without_act": 7,
+ "candidates": 35,
+ "by_rule": {
+  "additional-empty": 32,
+  "paragraph-start-above-1": 31
+ },
+ "rules": [
+  "additional-empty",
+  "paragraph-start-above-1"
+ ],
+ "entries": [
+  {
+   "slug": "naredba-1-ot-10-yuni-2022-g-za-usloviyata-i-reda-za-finansirane-na-proekti-po-na",
+   "doc_id": "2137223812",
+   "category": "ordinances",
+   "page_sha256": "10ec65455d8ce38fc6a66242f32a86fd7860c144df7a5f0369ebdae05a0087c5",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 166,
+     "detail": "block 166 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 167"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 168,
+     "detail": "lowest § is 2 (block 168) in the act's own provisions (blocks 166 to 176)"
+    }
+   ],
+   "own_tail": {
+    "start": 166,
+    "end": 177,
+    "lowest_sign": 2
+   },
+   "blocks": 190
+  },
+  {
+   "slug": "naredba-10-ot-27-yuni-2023-g-za-usloviyata-i-reda-za-prilagane-na-interventsiite",
+   "doc_id": "2137234391",
+   "category": "ordinances",
+   "page_sha256": "8d72427cb11e561f61b1d433512f52bc31789476593f93631607bffd7606c8d3",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 855,
+     "detail": "block 855 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 856"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 857,
+     "detail": "lowest § is 2 (block 857) in the act's own provisions (blocks 855 to 863)"
+    }
+   ],
+   "own_tail": {
+    "start": 855,
+    "end": 864,
+    "lowest_sign": 2
+   },
+   "blocks": 2068
+  },
+  {
+   "slug": "naredba-2-ot-17-april-2026-g-za-usloviyata-i-reda-za-prilagane-i-nablyudenie-na-",
+   "doc_id": "2137260204",
+   "category": "ordinances",
+   "page_sha256": "daae6f22051a6ce11973bd122b550e6ac7af66c516c7b53099e678827d3bf421",
+   "rules": [
+    "additional-empty"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 56,
+     "detail": "block 56 'Допълнителна разпоредба' is followed by 'Заключителна разпоредба' at block 57"
+    }
+   ],
+   "own_tail": {
+    "start": 56,
+    "end": 58,
+    "lowest_sign": null
+   },
+   "blocks": 58
+  },
+  {
+   "slug": "naredba-27-ot-13-mart-2014-g-za-statistikata-na-platezhniya-balans-mezhdunarodna",
+   "doc_id": "2136149379",
+   "category": "ordinances",
+   "page_sha256": "8b01aba4916fdfac4b11347a3161088b3de16214da8ca3802ba6aea2881fcc93",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 92,
+     "detail": "block 92 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 93"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 94,
+     "detail": "lowest § is 2 (block 94) in the act's own provisions (blocks 92 to 97)"
+    }
+   ],
+   "own_tail": {
+    "start": 92,
+    "end": 98,
+    "lowest_sign": 2
+   },
+   "blocks": 116
+  },
+  {
+   "slug": "naredba-29-ot-12072006-g-za-minimalnoto-nivo-na-kreditnite-reytingi-na-bankite-i",
+   "doc_id": "2135533162",
+   "category": "ordinances",
+   "page_sha256": "1fb879195de935220d1916aa6ffdeaa928f6896df3ae1ad0ffe5839ca9b5f522",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 298,
+     "detail": "block 298 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 300"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 301,
+     "detail": "lowest § is 2 (block 301) in the act's own provisions (blocks 298 to 302)"
+    }
+   ],
+   "own_tail": {
+    "start": 298,
+    "end": 303,
+    "lowest_sign": 2
+   },
+   "blocks": 329
+  },
+  {
+   "slug": "naredba-3-ot-22-april-2026-g-za-usloviyata-i-reda-za-prilagane-na-interventsiyat",
+   "doc_id": "2137260300",
+   "category": "ordinances",
+   "page_sha256": "1d7ed2c4c6c072c17b72c0b725bd750275f7d91bca7bc9d271d858d94e6872a9",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 368,
+     "detail": "block 368 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 369"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 370,
+     "detail": "lowest § is 2 (block 370) in the act's own provisions (blocks 368 to 375)"
+    }
+   ],
+   "own_tail": {
+    "start": 368,
+    "end": 376,
+    "lowest_sign": 2
+   },
+   "blocks": 376
+  },
+  {
+   "slug": "naredba-3-ot-27-mart-2026-g-za-meteorologichnoto-osiguryavane-na-vazdushna-navig",
+   "doc_id": "2137259974",
+   "category": "ordinances",
+   "page_sha256": "75771ae3a098b2d23b13b41bce528f745ab56d0a26037b0f9396e76068e366fc",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 153,
+     "detail": "block 153 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 154"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 155,
+     "detail": "lowest § is 2 (block 155) in the act's own provisions (blocks 153 to 156)"
+    }
+   ],
+   "own_tail": {
+    "start": 153,
+    "end": 157,
+    "lowest_sign": 2
+   },
+   "blocks": 446
+  },
+  {
+   "slug": "naredba-3-ot-5-may-2026-g-za-reda-za-vodene-na-registara-po-chl-14-al-4a-ot-zako",
+   "doc_id": "2137260618",
+   "category": "ordinances",
+   "page_sha256": "c3b621480865d7edbeede4a76185da46dd58c3a1d4d053caa124a76084d4c82f",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 83,
+     "detail": "block 83 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 84"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 85,
+     "detail": "lowest § is 2 (block 85) in the act's own provisions (blocks 83 to 86)"
+    }
+   ],
+   "own_tail": {
+    "start": 83,
+    "end": 87,
+    "lowest_sign": 2
+   },
+   "blocks": 199
+  },
+  {
+   "slug": "naredba-33-ot-16-yuli-2026-g-za-individualnite-zayavleniya-za-uchastie-vav-fond-",
+   "doc_id": "2137262748",
+   "category": "ordinances",
+   "page_sha256": "37237705d42dee1cce1519dfa9356f6c5a259226b03a7be972b39cf8aa264a8f",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 101,
+     "detail": "block 101 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 102"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 103,
+     "detail": "lowest § is 2 (block 103) in the act's own provisions (blocks 101 to 106)"
+    }
+   ],
+   "own_tail": {
+    "start": 101,
+    "end": 107,
+    "lowest_sign": 2
+   },
+   "blocks": 535
+  },
+  {
+   "slug": "naredba-4-ot-30-yuni-2026-g-za-pokazatelite-za-sapostavyane-na-dohodnostta-na-po",
+   "doc_id": "2137262402",
+   "category": "ordinances",
+   "page_sha256": "3d6b80921f7af2ba6a39882904433ad8397b57560f92205038cbef4a707deb86",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 59,
+     "detail": "block 59 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 60"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 61,
+     "detail": "lowest § is 2 (block 61) in the act's own provisions (blocks 59 to 99)"
+    }
+   ],
+   "own_tail": {
+    "start": 59,
+    "end": 100,
+    "lowest_sign": 2
+   },
+   "blocks": 195
+  },
+  {
+   "slug": "naredba-45-ot-17-april-2025-g-otnosno-ustanovyavane-i-reglamentirane-na-pravootn",
+   "doc_id": "2137250106",
+   "category": "ordinances",
+   "page_sha256": "999f017dfd68e83b9ae78b77e05d1ea45eb91c85450eda4952b9a0ad3d9b186b",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 121,
+     "detail": "block 121 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 122"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 123,
+     "detail": "lowest § is 2 (block 123) in the act's own provisions (blocks 121 to 130)"
+    }
+   ],
+   "own_tail": {
+    "start": 121,
+    "end": 131,
+    "lowest_sign": 2
+   },
+   "blocks": 205
+  },
+  {
+   "slug": "naredba-7-za-akreditatsiya-na-laboratorii-za-nuzhdite-na-stroitelstvoto",
+   "doc_id": "2135504612",
+   "category": "ordinances",
+   "page_sha256": "40b90d2d820d953067aa72b9ec010fc71b378d026185491ce2c876818313d3b8",
+   "rules": [
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 62,
+     "detail": "lowest § is 3 (block 62) in the act's own provisions (blocks 61 to 67)"
+    }
+   ],
+   "own_tail": {
+    "start": 61,
+    "end": 68,
+    "lowest_sign": 3
+   },
+   "blocks": 90
+  },
+  {
+   "slug": "naredba-76-ot-12-yuni-2025-g-za-taksite-sabirani-ot-komisiyata-za-finansov-nadzo",
+   "doc_id": "2137251205",
+   "category": "ordinances",
+   "page_sha256": "a1a92f86859b74535d58e34657201ae16bf2c8eac30aef7347439e754033c8bd",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 749,
+     "detail": "block 749 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 750"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 751,
+     "detail": "lowest § is 2 (block 751) in the act's own provisions (blocks 749 to 773)"
+    }
+   ],
+   "own_tail": {
+    "start": 749,
+    "end": 774,
+    "lowest_sign": 2
+   },
+   "blocks": 786
+  },
+  {
+   "slug": "naredba-8-ot-20-yuni-2023-g-za-usloviyata-i-reda-za-prilagane-na-interventsiite-",
+   "doc_id": "2137234201",
+   "category": "ordinances",
+   "page_sha256": "5b59df87baebbe1598aa5bd11d1ca301ca673ccae871834eb30dfe053a859445",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 588,
+     "detail": "block 588 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 589"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 590,
+     "detail": "lowest § is 2 (block 590) in the act's own provisions (blocks 588 to 599)"
+    }
+   ],
+   "own_tail": {
+    "start": 588,
+    "end": 600,
+    "lowest_sign": 2
+   },
+   "blocks": 1315
+  },
+  {
+   "slug": "naredba-8-ot-26-noemvri-2007-g-za-usloviyata-i-reda-za-finansirane-na-diagnostik",
+   "doc_id": "2135572866",
+   "category": "ordinances",
+   "page_sha256": "ac5f8700b850664b26195c4f8a96cf73b7b9e697e8b00d54519f5d88d029726a",
+   "rules": [
+    "additional-empty"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 109,
+     "detail": "block 109 'Допълнителна разпоредба' is followed by 'Заключителна разпоредба' at block 110"
+    }
+   ],
+   "own_tail": {
+    "start": 109,
+    "end": 111,
+    "lowest_sign": null
+   },
+   "blocks": 2538
+  },
+  {
+   "slug": "naredba-8121z-1006-ot-24-avgust-2015-g-za-reda-za-osashtestvyavane-na-pozharogas",
+   "doc_id": "2136601272",
+   "category": "ordinances",
+   "page_sha256": "5abe827114b7dc49f22a2cbaaacadad4f9e518526799ea3d332d1919858a755e",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 272,
+     "detail": "block 272 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 273"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 274,
+     "detail": "lowest § is 2 (block 274) in the act's own provisions (blocks 272 to 277)"
+    }
+   ],
+   "own_tail": {
+    "start": 272,
+    "end": 278,
+    "lowest_sign": 2
+   },
+   "blocks": 1008
+  },
+  {
+   "slug": "naredba-8121z-1243-ot-9-noemvri-2020-g-za-usloviyata-i-reda-za-vazlagane-i-otchi",
+   "doc_id": "2137207096",
+   "category": "ordinances",
+   "page_sha256": "1ca293d1cabba8a1bb40097f19a0cfc61f222c8831c1554fff9eefc4185cc59c",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 57,
+     "detail": "block 57 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 58"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 59,
+     "detail": "lowest § is 2 (block 59) in the act's own provisions (blocks 57 to 61)"
+    }
+   ],
+   "own_tail": {
+    "start": 57,
+    "end": 62,
+    "lowest_sign": 2
+   },
+   "blocks": 407
+  },
+  {
+   "slug": "naredba-9-ot-26-may-2016-g-za-usloviyata-i-reda-za-izdavane-na-razresheniya-za-z",
+   "doc_id": "2136833676",
+   "category": "ordinances",
+   "page_sha256": "c00a64eff2e3c928734ec1c906156649afbbd613fe8803bac4fa237419928f66",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 190,
+     "detail": "block 190 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 191"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 192,
+     "detail": "lowest § is 2 (block 192) in the act's own provisions (blocks 190 to 254)"
+    }
+   ],
+   "own_tail": {
+    "start": 190,
+    "end": 255,
+    "lowest_sign": 2
+   },
+   "blocks": 261
+  },
+  {
+   "slug": "naredba-9-ot-26-yuni-2023-g-za-usloviyata-i-reda-za-prilagane-na-interventsiite-",
+   "doc_id": "2137234388",
+   "category": "ordinances",
+   "page_sha256": "3ecb7c2ddd53504df645ffe426e9472fb58571fb3e92b2645502e7fd89aabd20",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 537,
+     "detail": "block 537 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 538"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 539,
+     "detail": "lowest § is 2 (block 539) in the act's own provisions (blocks 537 to 540)"
+    }
+   ],
+   "own_tail": {
+    "start": 537,
+    "end": 541,
+    "lowest_sign": 2
+   },
+   "blocks": 1952
+  },
+  {
+   "slug": "naredba-n-10-ot-24-yuni-2026-g-za-usloviyata-i-reda-za-validirane-na-profesional",
+   "doc_id": "2137262403",
+   "category": "ordinances",
+   "page_sha256": "b43bd357dc6a53b6b3b4467eb83728483d0814d7c5bd25030f35d380365b0792",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 131,
+     "detail": "block 131 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 132"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 133,
+     "detail": "lowest § is 2 (block 133) in the act's own provisions (blocks 131 to 134)"
+    }
+   ],
+   "own_tail": {
+    "start": 131,
+    "end": 135,
+    "lowest_sign": 2
+   },
+   "blocks": 135
+  },
+  {
+   "slug": "naredba-n-11-ot-24-yuli-2026-g-za-usloviyata-i-reda-za-priemane-na-serzhanti-sta",
+   "doc_id": "2137262834",
+   "category": "ordinances",
+   "page_sha256": "b316ddb786f19bad7df6d848b43810a4c613c93d4a8c69e9cee58764d1e3daa8",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 203,
+     "detail": "block 203 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 204"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 205,
+     "detail": "lowest § is 2 (block 205) in the act's own provisions (blocks 203 to 265)"
+    }
+   ],
+   "own_tail": {
+    "start": 203,
+    "end": 266,
+    "lowest_sign": 2
+   },
+   "blocks": 286
+  },
+  {
+   "slug": "naredba-n-2-ot-15-april-2026-g-za-usloviyata-i-reda-za-podpomagane-s-parichni-sr",
+   "doc_id": "2137260652",
+   "category": "ordinances",
+   "page_sha256": "cdfef4b49e74b9505d67dfb876e55828264a086fb626077b3b8dd95e5e8a7873",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 106,
+     "detail": "block 106 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 107"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 108,
+     "detail": "lowest § is 2 (block 108) in the act's own provisions (blocks 106 to 110)"
+    }
+   ],
+   "own_tail": {
+    "start": 106,
+    "end": 111,
+    "lowest_sign": 2
+   },
+   "blocks": 291
+  },
+  {
+   "slug": "naredba-n-4-ot-30-mart-2026-g-za-organizatsiyata-na-profilaktikata-i-kontrola-na",
+   "doc_id": "2137259975",
+   "category": "ordinances",
+   "page_sha256": "59336f096b4b655a81db09e9b84eef9a4aa165d3c16a3d844c34aeed4cce8bdc",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 134,
+     "detail": "block 134 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 135"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 136,
+     "detail": "lowest § is 2 (block 136) in the act's own provisions (blocks 134 to 152)"
+    }
+   ],
+   "own_tail": {
+    "start": 134,
+    "end": 153,
+    "lowest_sign": 2
+   },
+   "blocks": 852
+  },
+  {
+   "slug": "naredba-za-kachestvoto-na-sotsialnite-uslugi",
+   "doc_id": "2137223813",
+   "category": "ordinances",
+   "page_sha256": "3568a80b0e52e374aced2ac449b9e7d8464e8f461345f806bff93dedc45bb28d",
+   "rules": [
+    "additional-empty"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 256,
+     "detail": "block 256 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 258"
+    }
+   ],
+   "own_tail": {
+    "start": 256,
+    "end": 449,
+    "lowest_sign": 1
+   },
+   "blocks": 16733
+  },
+  {
+   "slug": "naredba-za-kriteriite-usloviyata-i-reda-za-opredelyane-na-statut-na-domakinstvo-",
+   "doc_id": "2137260141",
+   "category": "ordinances",
+   "page_sha256": "6838976c5d5a8342962678eccfd979e3ab46849bd29fb81272cea9bb9c5dfc43",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 371,
+     "detail": "block 371 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 372"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 373,
+     "detail": "lowest § is 2 (block 373) in the act's own provisions (blocks 371 to 377)"
+    }
+   ],
+   "own_tail": {
+    "start": 371,
+    "end": 378,
+    "lowest_sign": 2
+   },
+   "blocks": 450
+  },
+  {
+   "slug": "naredba-za-pravilata-i-normite-za-proektirane-izgrazhdane-i-premahvane-na-fizich",
+   "doc_id": "2137258424",
+   "category": "ordinances",
+   "page_sha256": "ca94f859f82c7fd1c3faac457f5fb1dc3fcd014b37e31f9755404cd77e8e56ef",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 210,
+     "detail": "block 210 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 211"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 212,
+     "detail": "lowest § is 2 (block 212) in the act's own provisions (blocks 210 to 215)"
+    }
+   ],
+   "own_tail": {
+    "start": 210,
+    "end": 216,
+    "lowest_sign": 2
+   },
+   "blocks": 216
+  },
+  {
+   "slug": "naredba-za-usloviyata-i-reda-za-izplashtane-na-kompensatsionni-sumi-na-darzhavni-2",
+   "doc_id": "2136325105",
+   "category": "ordinances",
+   "page_sha256": "0a6b09f6082617401a37a4823d24bcb150ca6a01f91897b933496a1a500db267",
+   "rules": [
+    "additional-empty"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 36,
+     "detail": "block 36 'Допълнителна разпоредба' is followed by 'Заключителна разпоредба' at block 37"
+    }
+   ],
+   "own_tail": {
+    "start": 36,
+    "end": 38,
+    "lowest_sign": null
+   },
+   "blocks": 144
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-ustroystvoto-organizatsiyata-i-deynos-2",
+   "doc_id": "2137228837",
+   "category": "regulations",
+   "page_sha256": "30a94d77f9e8f5e6bba74b309a3e2e735577cff8602a33e99b1f96b6051784a5",
+   "rules": [
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 125,
+     "detail": "lowest § is 2 (block 125) in the act's own provisions (blocks 124 to 126)"
+    }
+   ],
+   "own_tail": {
+    "start": 124,
+    "end": 127,
+    "lowest_sign": 2
+   },
+   "blocks": 135
+  },
+  {
+   "slug": "pravilnik-na-velikotarnovskiya-obshtinski-savet-za-organizatsiyata-reda-i-rabota",
+   "doc_id": "2137215485",
+   "category": "regulations",
+   "page_sha256": "1ba4bee339984d88aa2b1d1fc8bcaecb009f677976f4c48c4b31fde966fd8cfb",
+   "rules": [
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 110,
+     "detail": "lowest § is 2 (block 110) in the act's own provisions (blocks 105 to 115)"
+    }
+   ],
+   "own_tail": {
+    "start": 105,
+    "end": 116,
+    "lowest_sign": 2
+   },
+   "blocks": 248
+  },
+  {
+   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-voenno-geografskata-sluzhba-2",
+   "doc_id": "2137262351",
+   "category": "regulations",
+   "page_sha256": "0823772136d845f06a69fc37ac287a8e6906b1a0409924ab717812024df90130",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 306,
+     "detail": "block 306 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 307"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 308,
+     "detail": "lowest § is 2 (block 308) in the act's own provisions (blocks 306 to 310)"
+    }
+   ],
+   "own_tail": {
+    "start": 306,
+    "end": 311,
+    "lowest_sign": 2
+   },
+   "blocks": 311
+  },
+  {
+   "slug": "pravilnik-za-ustroystvoto-i-organizatsiyata-na-deynostta-na-komisiyata-za-zashti",
+   "doc_id": "2137260727",
+   "category": "regulations",
+   "page_sha256": "75931e39c809ee6901daac72b40a1b7789f448983700f6bd509029d9175de211",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 426,
+     "detail": "block 426 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 427"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 428,
+     "detail": "lowest § is 2 (block 428) in the act's own provisions (blocks 426 to 433)"
+    }
+   ],
+   "own_tail": {
+    "start": 426,
+    "end": 434,
+    "lowest_sign": 2
+   },
+   "blocks": 461
+  },
+  {
+   "slug": "zakon-za-obshtestveniya-transport",
+   "doc_id": "2137259781",
+   "category": "laws",
+   "page_sha256": "4f68efbc9f987518dd03d8e486443a68a8320c74a39aabd15784a631d4de2b27",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 529,
+     "detail": "block 529 'Допълнителна разпоредба' is followed by 'Заключителни разпоредби' at block 530"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 531,
+     "detail": "lowest § is 2 (block 531) in the act's own provisions (blocks 529 to 571)"
+    }
+   ],
+   "own_tail": {
+    "start": 529,
+    "end": 572,
+    "lowest_sign": 2
+   },
+   "blocks": 572
+  },
+  {
+   "slug": "zakon-za-obshtite-iziskvaniya-za-bezopasnost-pri-predostavyane-na-atraktsionni-u",
+   "doc_id": "2137258723",
+   "category": "laws",
+   "page_sha256": "5138befac12a0cce88fc59b324bb82a139d38321bbf0dba1dce7c0123920ab7d",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 203,
+     "detail": "block 203 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 204"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 205,
+     "detail": "lowest § is 2 (block 205) in the act's own provisions (blocks 203 to 302)"
+    }
+   ],
+   "own_tail": {
+    "start": 203,
+    "end": 303,
+    "lowest_sign": 2
+   },
+   "blocks": 309
+  },
+  {
+   "slug": "zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi",
+   "doc_id": "2137259673",
+   "category": "laws",
+   "page_sha256": "75fa64b5ada05cac4630bcf35f19801ab479340878e9766f8cdf5f9e61ce1d19",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 138,
+     "detail": "block 138 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 139"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 140,
+     "detail": "lowest § is 2 (block 140) in the act's own provisions (blocks 138 to 149)"
+    }
+   ],
+   "own_tail": {
+    "start": 138,
+    "end": 150,
+    "lowest_sign": 2
+   },
+   "blocks": 156
+  },
+  {
+   "slug": "zakon-za-smetnata-palata",
+   "doc_id": "2136436517",
+   "category": "laws",
+   "page_sha256": "a4972ed237a3eb8a8a25cc6b694a3479804be80cc01d6cf2d9473c729535c902",
+   "rules": [
+    "additional-empty",
+    "paragraph-start-above-1"
+   ],
+   "findings": [
+    {
+     "rule": "additional-empty",
+     "block": 572,
+     "detail": "block 572 'Допълнителна разпоредба' is followed by 'Преходни и Заключителни разпоредби' at block 577"
+    },
+    {
+     "rule": "paragraph-start-above-1",
+     "block": 578,
+     "detail": "lowest § is 2 (block 578) in the act's own provisions (blocks 572 to 599)"
+    }
+   ],
+   "own_tail": {
+    "start": 572,
+    "end": 600,
+    "lowest_sign": 2
+   },
+   "blocks": 693
+  }
+ ]
+}

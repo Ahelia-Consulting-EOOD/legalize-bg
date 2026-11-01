@@ -1,0 +1,16 @@
+{
+ "slug": "naredba-29-ot-12072006-g-za-minimalnoto-nivo-na-kreditnite-reytingi-na-bankite-i",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Additional provision section with new § 1 (definition of leverage by reference to § 1, item 29 of the additional provisions of the collective investment schemes act), created by § 10 of the amending ordinance in ДВ бр. 61 от 2026",
+ "note": "lex.bg lines 45-47: the additional-provision heading and its marker Нова - ДВ, бр. 61 от 2026 are followed directly by the final-provisions heading, with no § 1; Gazette line 323-324: § 10 creates that subdivision with new § 1 and gives its text; Gazette line 325: § 11 renumbers old § 1 as § 3, matching lex.bg line 49, so § 1 is the only provision missing",
+ "stage": "amendment",
+ "call": "call-amendment-bb567f0f",
+ "material": 244328,
+ "answered_at": "2026-10-31T21:13:34+00:00",
+ "tails_note": "lex.bg prints Допълнителна разпоредба marked Нова - ДВ бр. 61/2026 with no text, and § 3 marked предишен § 1, implying a new § 1 lex.bg lacks; Gazette material 2308 is the 2006 original (§ 1, § 2 under Заключителни разпоредби) and does not hold the 2026 amendment, so the texts given cannot settle it",
+ "promulgation_material": 2308,
+ "in_force_from": "2027-01-01",
+ "call_content_tokens": 12176,
+ "beyond_measured_range": false
+}

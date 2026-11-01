@@ -1,0 +1,10 @@
+{
+ "slug": "naredba-27-ot-13-mart-2014-g-za-statistikata-na-platezhniya-balans-mezhdunarodna",
+ "run": "s2-lexbg-defects-2026-10-31",
+ "route": "history",
+ "state": "stopped",
+ "entries": [],
+ "stopped_at": "engine",
+ "exception": "the next step is not defined: engine",
+ "case_file": "docs/cases/naredba-27-ot-13-mart-2014-g-za-statistikata-na-platezhniya-balans-mezhdunarodna.md"
+}

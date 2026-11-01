@@ -1,0 +1,14 @@
+{
+ "slug": "zakon-za-obshtite-iziskvaniya-za-bezopasnost-pri-predostavyane-na-atraktsionni-u",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Допълнителна разпоредба with § 1 (definitions, т. 1-8), which lex.bg omits under its empty heading",
+ "note": "lex.bg lines 341-343: heading 'Допълнителна разпоредба' followed directly by 'Преходни и Заключителни разпоредби' and § 2; Gazette lines 447-458: the same heading, then § 1 with т. 1-8, then the transitional heading and § 2; §§ 2-10 match",
+ "stage": "tails",
+ "call": "call-tails-eddc1b2c",
+ "material": 241045,
+ "answered_at": "2026-10-31T21:11:24+00:00",
+ "promulgation_material": 241045,
+ "call_content_tokens": 38243,
+ "beyond_measured_range": false
+}

@@ -1,0 +1,14 @@
+{
+ "slug": "naredba-3-ot-5-may-2026-g-za-reda-za-vodene-na-registara-po-chl-14-al-4a-ot-zako",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Допълнителна разпоредба with § 1 (definitions, items 1 and 2)",
+ "note": "lex.bg block 83 heading Допълнителна разпоредба followed directly by Заключителни разпоредби and § 2; Gazette material 243296 carries § 1 with items 1-2 under the heading, then §§ 2-3 matching lex.bg",
+ "stage": "tails",
+ "call": "call-tails-e52f0399",
+ "material": 243296,
+ "answered_at": "2026-10-31T21:11:24+00:00",
+ "promulgation_material": 243296,
+ "call_content_tokens": 10474,
+ "beyond_measured_range": false
+}

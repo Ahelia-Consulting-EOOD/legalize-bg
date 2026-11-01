@@ -27,7 +27,10 @@ DEFAULT_PATH = ROOT / "docs" / "data" / "source-exceptions.yaml"
 # the closed sets of the plan's S1, item 1; a value outside them is a schema error, not a free label
 DEFECTS: dict[str, str] = {
     "dropped_section": "lex.bg drops a promulgated section of the act (FR-042)",
+    "dropped_provision": "lex.bg omits one or more provisions of a section it prints (S2 register)",
+    "wrong_number": "lex.bg prints a provision under another number than the Gazette's (S2 register)",
     "wrong_text": "lex.bg's text of a provision differs from the Gazette's",
+    "missing_amendment": "lex.bg's text lacks an amendment the Gazette published (S2 register)",
     "page_without_act": "the lex.bg page holds no act, only site chrome",
     "server_error": "lex.bg answers an error for the act's page",
     "source_before_archive": "the act's text comes from before the Gazette's online archive, so lex.bg is not its base",
@@ -59,7 +62,8 @@ HEADER = """# docs/data/source-exceptions.yaml: the exceptions list (plan of 31 
 # their state), never by hand. An entry is not an outcome: its act counts only once it is committed
 # correct from its route, and `python source_exceptions.py report` prints the distance left first.
 #
-# defect: dropped_section | wrong_text | page_without_act | server_error | source_before_archive
+# defect: dropped_section | dropped_provision | wrong_number | wrong_text | missing_amendment | page_without_act | server_error | source_before_archive
+#         (the first five are the kinds of the S2 register docs/data/lexbg-defect-kinds.yaml)
 # source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service | unknown; address: a material id (dv_html, dv_pdf), a URL, or unknown
 # route:  whole_act_from_material | history | source_before_archive | investigate
 # state:  listed | investigated | committed | stopped

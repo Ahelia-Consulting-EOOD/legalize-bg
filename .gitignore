@@ -61,3 +61,7 @@ data/runs/*/*/maps/
 data/runs/*/*/texts/
 data/runs/*/*/later-materials.jsonl
 data/raw/moj/
+
+# S2 (reading/defects.py): the call files carry the acts' texts and the texts folder their tails; the call records, the answers and the verdicts stay
+data/runs/*/calls/*.md
+data/runs/*/texts/

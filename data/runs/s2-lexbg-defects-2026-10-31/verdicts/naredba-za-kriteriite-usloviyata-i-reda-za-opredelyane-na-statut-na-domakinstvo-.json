@@ -1,0 +1,14 @@
+{
+ "slug": "naredba-za-kriteriite-usloviyata-i-reda-za-opredelyane-na-statut-na-domakinstvo-",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "Допълнителна разпоредба with § 1 (definitions, items 1-12) between чл. 43 and the Заключителни разпоредби",
+ "note": "lex.bg block 371 prints the Допълнителна разпоредба heading followed directly by Заключителни разпоредби and § 2; the Gazette (material 242745) carries § 1 with items 1-12 under that heading; §§ 2-5 match",
+ "stage": "tails",
+ "call": "call-tails-0a853d7a",
+ "material": 242745,
+ "answered_at": "2026-10-31T21:13:34+00:00",
+ "promulgation_material": 242745,
+ "call_content_tokens": 15317,
+ "beyond_measured_range": false
+}

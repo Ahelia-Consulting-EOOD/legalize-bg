@@ -1,0 +1,15 @@
+{
+ "slug": "naredba-14-ot-15-april-2004-g-za-meditsinskite-kriterii-i-reda-na-ustanovyavane-",
+ "verdict": "confirmed",
+ "kind": "dropped_section",
+ "gazette": "the act's own Преходни и заключителни разпоредби with § 1 (commissions appointed within three months) and § 2 (legal basis, repeal of Наредба № 4 от 1999 г.)",
+ "note": "Gazette material 21032 prints the act's own transitional and final provisions § 1 and § 2 after чл. 17 (blocks at file lines 310-312); lex.bg goes from чл. 18 straight to the provisions of the 2013 amending ordinance (§ 4, § 6) and the 2019 amending ordinance (§ 34) (file lines 115-125), with no § 1 or § 2 and no repeal marking, so the act's own section is omitted",
+ "stage": "whole",
+ "call": "call-whole-278f66ed",
+ "material": 21032,
+ "answered_at": "2026-10-31T21:15:41+00:00",
+ "tails_note": "lex.bg blocks 81-83 are the final provisions of a later amending ordinance (§ 34, ДВ бр. 41 от 2019), so the flagged § 34 is the amending act's; the Gazette tail (material 21032) holds the act's own Преходни и заключителни разпоредби §§ 1-2, which the lex.bg tail shown does not reach; the whole lex.bg text would show whether they are carried",
+ "promulgation_material": 21032,
+ "call_content_tokens": 18215,
+ "beyond_measured_range": false
+}
