@@ -1,0 +1,46 @@
+{
+ "materials": 151,
+ "by_status": {
+  "amends_corpus_act": 33,
+  "not_amending": 102,
+  "amends_other_acts": 11,
+  "no_target": 3,
+  "parse_findings": 2
+ },
+ "by_kind": {
+  "law": 20,
+  "decision": 23,
+  "other": 20,
+  "decree": 74,
+  "ordinance": 10,
+  "regulation": 3,
+  "instruction": 1
+ },
+ "amending": 41,
+ "targets": 74,
+ "targets_by_status": {
+  "attributed": 59,
+  "not_in_corpus": 14,
+  "predecessor_or_other": 1
+ },
+ "targets_by_how": {
+  "title+promulgation": 55,
+  "resolver": 9,
+  "type_outside_corpus": 10
+ },
+ "cross_act_targets": 34,
+ "cross_act_attributed": 25,
+ "parse_finding_kinds": {
+  "decree_without_end": 2,
+  "unplaced": 1104,
+  "unquoted_provision": 153,
+  "quote_closed_by_sequence": 33,
+  "item_without_sign": 506,
+  "quoted_before_instruction": 35,
+  "sign_sequence": 1
+ },
+ "instructions_in_amending": 1187,
+ "tokens_instructions_in_amending": 37747,
+ "check_problems": [],
+ "measured_at": "2026-11-01T09:13:09+00:00"
+}

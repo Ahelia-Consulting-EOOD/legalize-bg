@@ -52,7 +52,7 @@ ARTICLE_HEAD = re.compile(r"^Чл\.\s*(\d+[а-я]?)\.")
 STRUCTURAL = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\s", re.I)
 HISTORY_LINE = re.compile(r"^\(\s*([oо]бн|ДВ|изм|попр)", re.I)   # a Latin o for the Cyrillic one occurs in the Gazette's own text
 HISTORY_IN_LINE = re.compile(r"\(\s*([oо]бн\.|ДВ\s*,)", re.I)        # older materials append the history to the title line itself
-PROVISIONS = re.compile(r"^(допълнителн|преходн|заключителн)", re.I)
+PROVISIONS = re.compile(r"^(допълнителн|преходн|заключителн)\S*(\s+и\s+\S+)?\s+разпоредб", re.I)   # „Допълнителна информация“ in an annex is no heading
 ADOPTION = re.compile(r"^(Законът|Кодексът|Законите)\s+(е|са)\s+приет")
 SIGNATURE = re.compile(r"^(Председател|Заместник-председател|Зам\.-председател|За председател|Министър|За министър|Министър-председател|"
                        r"Главен секретар|Изпълнителен директор|Директор|Управител|Секретар|Конституционни съдии|Президент|Подпечатан с държавния печат|"
@@ -284,7 +284,7 @@ def parse(act: SplitAct) -> Material:
     whole_act = kind not in ("decree", "decision", "ukaz", "corrigendum") and ik == "promulgation" and i < body_end and (ARTICLE.match(blocks[i].text) or STRUCTURAL.match(blocks[i].text))
     act_end = i
     if whole_act:
-        last_prov = max((k for k in range(i, body_end) if PROVISIONS.match(blocks[k].text) and blocks[k].hint in ("DvCenter", "DvText")), default=None)
+        last_prov = max((k for k in range(i, body_end) if PROVISIONS.match(blocks[k].text) and len(blocks[k].text) < 80), default=None)
         act_end = last_prov if last_prov is not None else body_end
         for k in range(i, act_end):
             roles[k] = "act"

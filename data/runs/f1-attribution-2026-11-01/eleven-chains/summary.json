@@ -1,0 +1,49 @@
+{
+ "materials": 598,
+ "by_status": {
+  "amends_corpus_act": 215,
+  "amends_other_acts": 79,
+  "not_amending": 288,
+  "parse_findings": 6,
+  "no_target": 10
+ },
+ "by_kind": {
+  "code": 2,
+  "law": 134,
+  "decree": 211,
+  "ordinance": 104,
+  "other": 60,
+  "regulation": 31,
+  "instruction": 5,
+  "decision": 46,
+  "corrigendum": 3,
+  "ukaz": 2
+ },
+ "amending": 276,
+ "targets": 1031,
+ "targets_by_status": {
+  "not_in_corpus": 148,
+  "predecessor_or_other": 56,
+  "attributed": 827
+ },
+ "targets_by_how": {
+  "resolver": 150,
+  "title+promulgation": 824,
+  "type_outside_corpus": 57
+ },
+ "cross_act_targets": 772,
+ "cross_act_attributed": 642,
+ "parse_finding_kinds": {
+  "quote_closed_by_sequence": 305,
+  "quote_open_at_end": 1,
+  "decree_without_end": 25,
+  "unplaced": 1500,
+  "quoted_before_instruction": 4,
+  "item_without_sign": 620,
+  "unquoted_provision": 711
+ },
+ "instructions_in_amending": 11921,
+ "tokens_instructions_in_amending": 395819,
+ "check_problems": [],
+ "measured_at": "2026-11-01T09:13:04+00:00"
+}
