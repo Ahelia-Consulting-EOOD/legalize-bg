@@ -215,3 +215,72 @@ def test_markers_merge_and_carry_and_sentences_and_the_whole_act():
     mat, blocks = _mat_with("§ 1. Навсякъде в закона думите „пробата“ се заменят с „опита“.")
     out5 = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "навсякъде", "old": "q1", "new": "q2"}]}, mat, blocks, BODY, "5/2026")
     assert "пробата" not in out5.markdown.split("\n\n", 1)[1] and "# ЗАКОН за пробата" in out5.markdown and "Този закон урежда опита." in out5.markdown
+
+
+def test_round_three_the_lead_in_the_annex_name_the_heading_repeal_and_the_marker_history():
+    lead_body = """# ЗАКОН за пробата
+
+### Глава първа ОБЩИ ПОЛОЖЕНИЯ (НОВА - ДВ, БР. 42 ОТ 2018 Г.)
+
+**Чл. 2.** (1) Определя се от министъра:
+
+1. министъра на реда;
+
+2. друго.
+
+**Чл. 3.** Трети член.
+
+### Глава двадесет и първа ПОСЛЕДНА
+
+**Чл. 4.** Четвърти.
+
+## Приложение № 3 към чл. 2
+
+ред
+"""
+    # blocking 1: „текста преди т. 1“ is the provision's own words, never т. 1
+    mat, blocks = _mat_with("§ 1. В чл. 2, ал. 1, текста преди т. 1 думата „министъра“ се заменя с „министъра на транспорта“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "чл. 2, ал. 1, текста преди т. 1", "old": "q1", "new": "q2"}]}, mat, blocks, lead_body, "96/2026")
+    assert "**Чл. 2.** (1) (Изм. - ДВ, бр. 96 от 2026 г.) Определя се от министъра на транспорта:\n\n1. министъра на реда;" in out.markdown
+    with pytest.raises(O.FormError, match="do not occur"):
+        O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "чл. 2, ал. 1, текста преди т. 1", "old": "q1", "new": "q2"}]}, mat, blocks,
+                lead_body.replace("Определя се от министъра:", "Определя се:"), "96/2026")
+    # blocking 2: an annex heading keeps its reference
+    mat, blocks = _mat_with("§ 1. В наименованието на приложение № 3 се добавя „към чл. 2 и чл. 3“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_heading", "address": "Приложение № 3", "new": "q1"}]}, mat, blocks, lead_body, "96/2026")
+    assert "## Приложение № 3 към чл. 2 към чл. 2 и чл. 3 (Загл. изм. - ДВ, бр. 96 от 2026 г.)" in out.markdown
+    # blocking 3: a repealed chapter keeps its articles as repealed heads
+    mat, blocks = _mat_with("§ 1. Глава първа се отменя.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "repeal", "address": "глава първа"}]}, mat, blocks, lead_body, "96/2026")
+    assert "### Глава първа ОБЩИ ПОЛОЖЕНИЯ (НОВА - ДВ, БР. 42 ОТ 2018 Г., отм. - ДВ, бр. 96 от 2026 г.)\n\n**Чл. 2.** (Отм. - ДВ, бр. 96 от 2026 г.)\n\n**Чл. 3.** (Отм. - ДВ, бр. 96 от 2026 г.)\n\n### Глава двадесет и първа" in out.markdown
+    # major 4 and 5: the marker history of a heading survives a rename; a compound chapter number is one number
+    mat, blocks = _mat_with("§ 1. В наименованието на глава първа думите „ОБЩИ ПОЛОЖЕНИЯ“ се заменят с „НАЧАЛО“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_heading", "address": "глава първа", "new": "q2"}]}, mat, blocks, lead_body, "96/2026")
+    assert "### Глава първа НАЧАЛО (НОВА - ДВ, БР. 42 ОТ 2018 Г., загл. изм. - ДВ, бр. 96 от 2026 г.)" in out.markdown
+    t = T.parse(lead_body)
+    assert t.lines[T.resolve(t, "глава двадесет и първа")].n == "двадесет и първа"
+    mat, blocks = _mat_with("§ 1. В наименованието на глава двадесет и първа думата „ПОСЛЕДНА“ се заменя с „КРАЙНА“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_heading", "address": "глава двадесет и първа", "new": "q2"}]}, mat, blocks, lead_body, "96/2026")
+    assert "### Глава двадесет и първа КРАЙНА (Загл. изм. - ДВ, бр. 96 от 2026 г.)" in out.markdown
+    # major 7: an act-wide replace marks every changed line
+    mat, blocks = _mat_with("§ 1. Навсякъде в закона думата „министъра“ се заменя с „министъра на реда“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "навсякъде", "old": "q1", "new": "q2"}]}, mat, blocks, lead_body, "96/2026")
+    assert "1. (изм. - ДВ, бр. 96 от 2026 г.) министъра на реда на реда;" in out.markdown
+    # major 8: words cannot land between a head and its inline alinea
+    mat, blocks = _mat_with("§ 1. В чл. 2 накрая се добавя „и още“.")
+    with pytest.raises(O.FormError, match="are in its alineas"):
+        O.apply({"operations": [{"id": "§1", "kind": "insert_words", "address": "чл. 2", "where": "end", "new": "q1"}]}, mat, blocks, lead_body, "96/2026")
+
+
+def test_a_child_scope_keeps_its_parents_quotes():
+    # major 6: „§ 5. В следните закони думите „X“ се заменят с „Y“: 1. в Закона за пробата – в чл. 1; 2. в Закона за друго – в чл. 9.“
+    from reading.steps import _scoped
+    lines = ["ЗАКОН", "за изменение на нормативни актове", "(обн., ДВ, бр. 1 от 2020 г.)",
+             "§ 5. В следните закони думите „урежда“ се заменят с „определя“:", "1. в Закона за пробата (обн., ДВ, бр. 1 от 2020 г.) – в чл. 1;", "2. в Закона за друго (обн., ДВ, бр. 2 от 2020 г.) – в чл. 9.",
+             "Законът е приет.", "Председател на Народното събрание: Х", "1"]
+    act = SplitAct(blocks=[Block(i, t, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 7: "DvRight"}.get(i, "DvJustify")) for i, t in enumerate(lines)], sections=[], source="dv")
+    mat = M.parse(act)
+    scoped = _scoped(mat, ["§5.1"])
+    assert [n.id for n in scoped.instructions()] == ["§5", "§5.1"] and scoped.nodes[0].inline_quotes == ["урежда", "определя"]
+    out = O.apply({"operations": [{"id": "§5.1", "kind": "replace_words", "address": "чл. 1", "old": "q1", "new": "q2"}]}, scoped, act.blocks, BODY, "96/2026")
+    assert "**Чл. 1.** (Изм. - ДВ, бр. 96 от 2026 г.) Този закон определя пробата." in out.markdown

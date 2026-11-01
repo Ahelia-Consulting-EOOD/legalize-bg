@@ -98,11 +98,19 @@ def _quoted_text(blocks: list[Block], first: int, last: int) -> list[str]:
     return [l for l in lines if l.strip()]
 
 
-def _segment(node: Node, ref: str) -> str:
+def _segment(node: Node, ref: str, nodes: dict[str, Node] | None = None) -> str:
+    """A quoted segment of the instruction (q1, q2, …), or of its parent when the instruction has none („§ 5. … думите „X“ се заменят с „Y“: 1. в чл. 2 …“)."""
     m = _Q.match(str(ref))
-    if not m or not (1 <= int(m.group(1)) <= len(node.inline_quotes)):
-        raise FormError(f"{node.id}: {ref!r} is not a quoted segment of the instruction (it has {len(node.inline_quotes)})")
-    return node.inline_quotes[int(m.group(1)) - 1]
+    if not m:
+        raise FormError(f"{node.id}: {ref!r} is not a quoted segment reference")
+    cur: Node | None = node
+    while cur is not None:
+        if 1 <= int(m.group(1)) <= len(cur.inline_quotes):
+            return cur.inline_quotes[int(m.group(1)) - 1]
+        if cur.inline_quotes or nodes is None or "." not in cur.id:
+            break
+        cur = nodes.get(cur.id.rsplit(".", 1)[0])
+    raise FormError(f"{node.id}: {ref!r} is not a quoted segment of the instruction (it has {len(node.inline_quotes)})")
 
 
 def check_form(answer: dict, mat: Material, blocks: list[Block]) -> list[dict]:
@@ -148,16 +156,16 @@ def check_form(answer: dict, mat: Material, blocks: list[Block]) -> list[dict]:
         if kind in ("insert_provision", "insert_heading", "insert_annex"):
             res["after"] = str(op.get("after", "")).strip()
         if kind in ("replace_words", "delete_words", "corrigendum"):
-            res["old"] = _segment(node, op.get("old")); res["old_ref"] = op.get("old")
+            res["old"] = _segment(node, op.get("old"), nodes); res["old_ref"] = op.get("old")
         if kind in ("replace_words", "insert_words", "corrigendum") or (kind == "replace_heading" and "blocks" not in op):
-            res["new"] = _segment(node, op.get("new")); res["new_ref"] = op.get("new")
+            res["new"] = _segment(node, op.get("new"), nodes); res["new_ref"] = op.get("new")
         if kind == "insert_words":
             where = op.get("where", "after")
             if where not in ("after", "before", "end", "start"):
                 raise FormError(f"{node.id}: where {where!r} is not after, before, end or start")
             res["where"] = where
             if where in ("after", "before"):
-                res["anchor"] = _segment(node, op.get("anchor")); res["anchor_ref"] = op.get("anchor")
+                res["anchor"] = _segment(node, op.get("anchor"), nodes); res["anchor_ref"] = op.get("anchor")
         if kind == "replace_words":
             res["everywhere"] = bool(op.get("everywhere", False))
         if kind == "renumber":
@@ -175,6 +183,7 @@ def check_form(answer: dict, mat: Material, blocks: list[Block]) -> list[dict]:
 _MARKER_ENTRY = re.compile(r"^(?P<words>[^-]+?)\s*-\s*ДВ,\s*бр\.\s*(?P<num>\d+)\s*от\s*(?P<year>\d{4})\s*г\.(?P<extra>.*)$")
 _HEAD_RX = (r"^(?:[^*\n]{1,160}?\s+)?\*\*(?:Чл\.\s*\S+\.|Член\s+единствен\.|§\s*\S+\.|Параграф\s+единствен\.)\*\*\s*", r"^\(\d{1,3}[а-я]?\)\s*",
             r"^\d{1,3}(?:[а-я]{1,2})?\.\s+", r"^[а-я]{1,3}\)\s+")
+_HEADING_MARKER = re.compile(r"\s*\(((?:Загл\. изм|Изм|Нова|Нов|Отм|Ново|Доп|Предишн)[^()]*)\)\s*$", re.I)
 _PAIRS = {frozenset({"изм", "доп"}): "Изм. и доп.", frozenset({"нова", "изм"}): "Нова", frozenset({"нов", "изм"}): "Нов"}
 
 
@@ -195,7 +204,7 @@ def _marker(line: T.Line, word: str, issue: str, extra: str = "") -> None:
     low = word[0].lower() + word[1:] if line.kind in ("item", "letter") else word
     piece = f"{low} - ДВ, бр. {num} от {year} г." + (f", {extra}" if extra else "")
     if line.kind in T.HEADING_PREFIX or line.kind == "title":
-        m = re.search(r"\s*\(((?:Загл\. изм|Изм|изм|Нова|Отм|отм|Ново|ново)[^()]*)\)\s*$", line.text)
+        m = _HEADING_MARKER.search(line.text)
         if m:
             inner = m.group(1)
             line.text = line.text[: m.start()].rstrip() + f" ({inner}, {piece[0].lower() + piece[1:]})"
@@ -218,7 +227,10 @@ def _marker(line: T.Line, word: str, issue: str, extra: str = "") -> None:
         entries = [e.strip() for e in re.split(r",\s*(?=(?:[Ии]зм|[Дд]оп|[Нн]ов|[Оо]тм|[Пп]опр|[Пп]редишн|[Зз]агл)[^,]*-\s*ДВ)", inner)]
         last = _MARKER_ENTRY.match(entries[-1]) if entries else None
         if last and (last.group("num"), last.group("year")) == (num, year) and not extra and not last.group("extra").strip(" ,") and word.lower().startswith(("изм", "доп")) and last.group("words").lower().startswith(("изм", "доп")):
-            entries[-1] = f"{_merge_words(last.group('words').strip(), low)} - ДВ, бр. {num} от {year} г."
+            merged = _merge_words(last.group('words').strip(), low)
+            if line.kind in ("item", "letter"):
+                merged = merged[0].lower() + merged[1:]
+            entries[-1] = f"{merged} - ДВ, бр. {num} от {year} г."
             new = "(" + ", ".join(entries) + ") "
         elif last and (last.group("num"), last.group("year")) == (num, year) and last.group("words").strip().lower() == low.lower():
             new = "(" + inner + ") "
@@ -256,9 +268,10 @@ def _set_body(line: T.Line, body: str) -> None:
     line.text = (line.head() + body).rstrip()
 
 
-def _replace_in(tree: T.Tree, idx: int, old: str, new: str, everywhere: bool, what: str, sentence: int | None = None) -> int:
-    """Replace old by new in the words of the addressed provision and what hangs under it (the whole act for ``ACT``); the count replaced."""
-    scope = tree.addressable_lines() if idx == T.ACT else tree.subtree(idx)
+def _replace_in(tree: T.Tree, idx: int, old: str, new: str, everywhere: bool, what: str, sentence: int | None = None, lead: bool = False) -> tuple[int, list[int]]:
+    """Replace old by new in the words of the addressed provision and what hangs under it (its own words only with ``lead``; the whole act
+    for ``ACT``); the count replaced and the lines changed."""
+    scope = tree.addressable_lines() if idx == T.ACT else ([idx] if lead else tree.subtree(idx))
     if idx == T.ACT:
         everywhere = True
     hits: list[tuple[int, int, int]] = []
@@ -271,7 +284,9 @@ def _replace_in(tree: T.Tree, idx: int, old: str, new: str, everywhere: bool, wh
         raise FormError(f"{what}: the words {old!r} do not occur in {'the act' if idx == T.ACT else tree.lines[idx].text[:50]!r}")
     if count > 1 and not everywhere:
         raise FormError(f"{what}: the words {old!r} occur {count} times at the address; the instruction does not say навсякъде")
+    changed: list[int] = []
     for k, a, b in hits:
+        changed.append(k)
         l = tree.lines[k]
         body = l.body()
         part = body[a:b]
@@ -282,7 +297,7 @@ def _replace_in(tree: T.Tree, idx: int, old: str, new: str, everywhere: bool, wh
         if new == "":
             nb = re.sub(r"  +", " ", nb).replace(" ,", ",").replace(" .", ".").replace(" ;", ";").strip()
         _set_body(l, nb)
-    return count
+    return count, changed
 
 
 def _lines_from(texts: list[str], context_kind: str | None) -> list[T.Line]:
@@ -366,15 +381,19 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
             continue
         idx = _resolve(tree, op["address"], what)
         line = tree.lines[idx] if idx != T.ACT else None
+        lead = T.lead_of(op["address"])
+        if line is not None and kind == "insert_words" and not line.body().strip() and any(
+                tree.lines[c].inline for c in line.children):
+            raise FormError(f"{what}: the words of {op['address']!r} are in its alineas; the address names the alinea")
         if kind in ("replace_words", "corrigendum"):
-            n = _replace_in(tree, idx, op["old"], op["new"], op.get("everywhere", False), what, sentence)
-            if line is not None:
-                _marker(line, MARKERS[kind], issue)
+            n, changed = _replace_in(tree, idx, op["old"], op["new"], op.get("everywhere", False), what, sentence, lead)
+            for k in ([idx] if line is not None else changed):
+                _marker(tree.lines[k], MARKERS[kind], issue)
             log.append(f"{what}: {n} replacement(s)")
         elif kind == "delete_words":
-            n = _replace_in(tree, idx, op["old"], "", idx == T.ACT, what, sentence)
-            if line is not None:
-                _marker(line, MARKERS[kind], issue)
+            n, changed = _replace_in(tree, idx, op["old"], "", idx == T.ACT, what, sentence, lead)
+            for k in ([idx] if line is not None else changed):
+                _marker(tree.lines[k], MARKERS[kind], issue)
             log.append(f"{what}: {n} deletion(s)")
         elif kind == "insert_words":
             if line is None:
@@ -427,13 +446,25 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
             span = tree.subtree(idx)
             first, last = min(span), max(span)
             if line.kind in T.HEADING_PREFIX:
-                keep = T.Line(line.kind, line.text, line.n)   # a heading keeps its words; what hung under it goes
+                # a heading keeps its words, and every article, § and sub-heading under it stays as a repealed head with its own
+                # marker (lex.bg's form); only their text and the alineas, items and rows go
+                kept: list[T.Line] = []
+                for k in span:
+                    l = tree.lines[k]
+                    if l.kind in T.HEADING_PREFIX:
+                        kept.append(T.Line(l.kind, l.text, l.n))
+                    elif l.kind in ("article", "sign"):
+                        kept.append(T.Line(l.kind, l.head().rstrip(), l.n, title=l.title))
+                for l in kept:
+                    if l.kind != "annex_heading" or True:
+                        _marker(l, MARKERS["repeal"], issue)
+                tree.lines[first:last + 1] = kept
             else:
                 keep = T.Line(line.kind, line.head().rstrip(), line.n, title=line.title, inline=line.inline)
-            tree.lines[first:last + 1] = [keep]
+                _marker(keep, MARKERS[kind], issue)
+                tree.lines[first:last + 1] = [keep]
             tree = _reparse(tree)
-            idx2 = _span_after_reparse(tree, op["address"], first, first, what)
-            _marker(tree.lines[idx2], MARKERS[kind], issue)
+            _span_after_reparse(tree, op["address"], first, first, what)
             log.append(f"{what}: {last - first + 1} line(s) repealed")
         elif kind == "renumber":
             if line is None:
@@ -467,14 +498,21 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
             if line.kind == "title":
                 line.text = T.render_heading("title", words)
             elif line.kind in T.HEADING_PREFIX:
-                # the number part („Глава първа“, „Раздел V“, „Приложение № 3 към чл. 6“) stays; the title words change
-                current = re.sub(r"\s*\((?:Загл\. изм|Изм|изм)[^()]*\)\s*$", "", T.strip_line(line.text))
-                m = T.NUMBER_LINE.match(current.split(" ")[0] + " " + current.split(" ")[1]) if len(current.split(" ")) > 1 else None
-                number = " ".join(current.split(" ")[:2]) if m else (current.split(" ")[0] if line.kind == "annex_heading" else "")
-                if words.lower().startswith(number.lower()) and number:
-                    line.text = T.render_heading(line.kind, words)
+                # the number part („Глава двадесет и първа“, „Раздел V“, „Приложение № 3 към чл. 6“) stays; the title words change;
+                # the heading's marker history stays and the new marker joins it
+                hm = _HEADING_MARKER.search(line.text)
+                old_marker = hm.group(1) if hm else None
+                current = T.strip_line(line.text[: hm.start()] if hm else line.text).strip()
+                if line.kind == "annex_heading":
+                    number = current if not words.lower().startswith("приложение") else ""
                 else:
-                    line.text = T.render_heading(line.kind, (number + " " + words).strip())
+                    m = T._HEADING_WORD.match(current)
+                    number = m.group(0).rstrip(".") if m else ""
+                if words.lower().startswith(number.lower()) and number:
+                    text = words
+                else:
+                    text = (number + " " + words).strip()
+                line.text = T.render_heading(line.kind, text) + (f" ({old_marker})" if old_marker else "")
                 _marker(line, "Загл. изм.", issue)
             else:
                 raise FormError(f"{what}: {op['address']!r} is not a heading")

@@ -120,3 +120,26 @@ def test_heading_hierarchy_and_the_amending_tails_are_not_addresses():
     with pytest.raises(T.AddressError, match="names 0 place"):
         T.resolve(t, "§ 5")
     assert t.to_markdown() == body
+
+
+def test_a_tail_opened_by_another_acts_title_in_capitals_is_not_addressable():
+    body = """# ЗАКОН за пробата
+
+**Чл. 1.** Едно.
+
+## Преходни и Заключителни разпоредби
+
+**§ 1.** Собствен.
+
+## ЗАКОНА ЗА ДЪРЖАВНИЯ БЮДЖЕТ НА РЕПУБЛИКА БЪЛГАРИЯ ЗА 2015 Г.
+
+(ОБН. - ДВ, БР. 107 ОТ 2014 Г.)
+
+**§ 21.** Чужд.
+"""
+    t = T.parse(body)
+    assert not t.lines[-1].addressable and t.lines[T.resolve(t, "§ 1")].text == "**§ 1.** Собствен."
+    with pytest.raises(T.AddressError):
+        T.resolve(t, "§ 21")
+    assert T.parse_address("чл. 2, ал. 1, текста преди т. 1") == [("article", "2"), ("alinea", "1"), ("lead", "")] and T.lead_of("чл. 2, основния текст")
+    assert t.to_markdown() == body

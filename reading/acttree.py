@@ -37,7 +37,11 @@ _MARKER = re.compile(r"^\((?:Изм|изм|Нова|Нов|нова|нов|До�
 _INLINE_ALINEA = re.compile(r"^((?:\([^()]*(?:\([^()]*\)[^()]*)*\)\s*)*)(\(\d{1,3}\)\s*.*)$", re.S)   # after an editorial note in parentheses
 _ANNEX = re.compile(r"^Приложение(?:\s*№\s*(\S+))?", re.I)
 _PROVISIONS = re.compile(r"^(допълнителн|преходн|заключителн)\S*(\s+и\s+\S+)?\s+разпоредб", re.I)
-_PART = re.compile(r"^(Част|Дял)\s+(\S+)", re.I)
+HEADING_NUMBER = r"((?:[\wIVXLC]+)(?:\s+и\s+[\w]+)?(?:\s*[„\"][а-я][“\"])?)"   # първа, двадесет и първа, единадесета „а“, I, IIIа
+_PART = re.compile(r"^(Част|Дял)\s+" + HEADING_NUMBER, re.I)
+_HEADING_WORD = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+" + HEADING_NUMBER, re.I)
+_TAIL_HEADING = re.compile(r"^(ЗАКОН|ЗАКОНА|КОДЕКС|КОДЕКСА|УКАЗ|ПОСТАНОВЛЕНИЕ)\b")   # lex.bg opens an amending act's tail with its title in capitals
+_OBN = re.compile(r"^\(\s*ОБН\.", re.I)
 _WORD_LEVEL = {"част": "part_heading", "дял": "part_heading", "глава": "chapter_heading", "раздел": "section_heading", "подраздел": "subsection_heading"}
 _RANK = {"part_heading": 1, "chapter_heading": 2, "section_heading": 3, "subsection_heading": 4}
 _HEADINGS = ("title", "part_heading", "chapter_heading", "section_heading", "subsection_heading", "provisions_heading", "annex_heading")
@@ -127,7 +131,8 @@ class Tree:
 
 
 def _same_n(a: str | None, b: str) -> bool:
-    return a is not None and a.lower().rstrip(".") == b.lower().rstrip(".")
+    norm = lambda x: re.sub(r"\s+", " ", x.lower().rstrip(".").replace("„", "\"").replace("“", "\""))
+    return a is not None and norm(a) == norm(b)
 
 
 def _kind_of(text: str) -> tuple[str, str | None]:
@@ -144,7 +149,7 @@ def _kind_of(text: str) -> tuple[str, str | None]:
                 return "part_heading", (m.group(2).rstrip(".") if m else None)
             if kind == "title":
                 return "title", None
-            m = re.match(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+(\S+)", body, re.I)
+            m = _HEADING_WORD.match(body)
             if m:
                 return _WORD_LEVEL.get(m.group(1).lower(), kind), m.group(2).rstrip(".")
             return kind, None
@@ -221,6 +226,13 @@ def parse(markdown: str) -> Tree:
             lines[in_annex].children.append(k)
             continue
         in_annex = None if l.kind == "provisions_heading" else in_annex
+        if l.kind == "part_heading" and l.n is None and _TAIL_HEADING.match(strip_line(l.text)):
+            tail = True   # another act's title printed as a heading: lex.bg's tail of an amending act
+            l.addressable = False
+            last = {"article": None, "sign": None, "alinea": None, "item": None, "heading": k}
+            continue
+        if l.kind == "note" and _OBN.match(l.text):
+            tail = True
         if l.kind in _HEADINGS:
             if l.kind == "provisions_heading":
                 tail = bool(_KAM.search(l.text))
@@ -263,14 +275,16 @@ def parse(markdown: str) -> Tree:
     return tree
 
 
-_ADDR_PART = re.compile(r"(чл\.|член|ал\.|алинея|т\.|точка|б\.|буква|§|параграф|глава|раздел|част|дял|подраздел|приложение|изречение|изр\.)\s*(№\s*)?([\w„“\"]+)", re.I)
+_ADDR_PART = re.compile(r"(чл\.|член|ал\.|алинея|т\.|точка|б\.|буква|§|параграф|глава|раздел|част|дял|подраздел|приложение|изречение|изр\.)\s*(№\s*)?"
+                        r"((?:[\w„“\"]+(?:\s+и\s+[\w]+)?(?:\s*[„\"][а-я][“\"])?))", re.I)
+_LEAD = re.compile(r"\b(?:в\s+)?(?:текста\s+преди\s+т\.\s*\d+[а-я]?|основния\s+текст|основният\s+текст|уводното\s+изречение)", re.I)
 _PART_KIND = {"чл.": "article", "член": "article", "ал.": "alinea", "алинея": "alinea", "т.": "item", "точка": "item", "б.": "letter", "буква": "letter",
               "§": "sign", "параграф": "sign", "глава": "chapter_heading", "раздел": "section_heading", "част": "part_heading", "дял": "part_heading",
               "подраздел": "subsection_heading", "приложение": "annex_heading", "изречение": "sentence", "изр.": "sentence"}
 _ORDINALS = {"първо": 1, "второ": 2, "трето": 3, "четвърто": 4, "пето": 5, "шесто": 6, "последно": -1}
 # what may stand in an address besides its parts: separators and the phrases that name the scope the parts lie in
-_FILLER = re.compile(r"^(?:[\s,;:()„“\"]|\b(?:и|от|на|в|във|към|по|за|от|преходните|заключителните|допълнителните|допълнителната|преходната|заключителната|"
-                     r"разпоредби|разпоредба|закона|кодекса|наредбата|правилника|този|тази|текста|основния|основният|преди)\b)*$", re.I)
+_FILLER = re.compile(r"^(?:[\s,;:()„“\"]|\b(?:и|от|на|в|във|към|по|за|преходните|заключителните|допълнителните|допълнителната|преходната|заключителната|"
+                     r"разпоредби|разпоредба|закона|кодекса|наредбата|правилника|този|тази)\b)*$", re.I)
 
 
 def parse_address(text: str) -> list[tuple[str, str]]:
@@ -283,6 +297,10 @@ def parse_address(text: str) -> list[tuple[str, str]]:
         return [("act", "")]
     out: list[tuple[str, str]] = []
     rest = t
+    lead = _LEAD.search(t)
+    if lead:
+        rest = rest.replace(lead.group(0), " ", 1)
+        t = re.sub(r"\bпреди\s+т\.\s*\d+[а-я]?", " ", t)   # the item the lead-in stands before is not an address part
     for m in _ADDR_PART.finditer(t):
         kind = _PART_KIND[m.group(1).lower()]
         n = m.group(3).strip("„“\"").rstrip(".,;:")
@@ -296,21 +314,28 @@ def parse_address(text: str) -> list[tuple[str, str]]:
         raise AddressError(f"no address in {text!r}")
     if not _FILLER.match(rest):
         raise AddressError(f"the address {text!r} carries a part the grammar does not read: {rest.strip()!r}")
+    if lead:
+        out.append(("lead", ""))   # the provision's own words before its items
     sentences = [p for p in out if p[0] == "sentence"]
-    if len(sentences) > 1 or (sentences and out[-1][0] != "sentence"):
+    if len(sentences) > 1 or (sentences and out[-1][0] not in ("sentence", "lead")):
         raise AddressError(f"a sentence part stands last and once in {text!r}")
     return out
 
 
 def sentence_of(address: str) -> int | None:
-    """The sentence number an address ends with, or None (-1: the last sentence)."""
-    parts = parse_address(address)
-    return int(parts[-1][1]) if parts[-1][0] == "sentence" else None
+    """The sentence number an address names, or None (-1: the last sentence)."""
+    parts = [p for p in parse_address(address) if p[0] == "sentence"]
+    return int(parts[0][1]) if parts else None
+
+
+def lead_of(address: str) -> bool:
+    """Whether the address names the provision's own words before its items („текста преди т. 1“, „основния текст“)."""
+    return any(p[0] == "lead" for p in parse_address(address))
 
 
 def resolve(tree: Tree, address: str) -> int:
     """The one line an address names (``ACT`` for the whole act); AddressError when none or several."""
-    parts = [p for p in parse_address(address) if p[0] != "sentence"]
+    parts = [p for p in parse_address(address) if p[0] not in ("sentence", "lead")]
     kind, n = parts[0]
     if kind == "act":
         return ACT
@@ -366,7 +391,7 @@ def line_from_text(text: str, context_kind: str | None = None) -> Line:
     m = re.match(r"^(§\s*\d+[а-я]?\.|Параграф\s+единствен\.)(.*)$", t, re.S)
     if m:
         return Line("sign", f"**{m.group(1)}**{m.group(2)}", re.match(r"§\s*(\S+)\.", m.group(1)).group(1) if m.group(1).startswith("§") else "единствен")
-    m = re.match(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+(\S+)\.?(?:\s+(.*))?$", t, re.S | re.I)
+    m = _HEADING_WORD.match(t)
     if m:
         kind = _WORD_LEVEL[m.group(1).lower()]
         return Line(kind, HEADING_PREFIX[kind] + t, m.group(2).rstrip("."))

@@ -675,9 +675,9 @@ class Apply:
             before = _sha(body.encode("utf-8"))
             after_p, ops_p, answer_p, task_p = d / "body-after.md", d / "ops.json", d / "answer.json", d / "task.md"
             rec_p = d / "material.json"
-            if after_p.exists() and ops_p.exists() and rec_p.exists():
+            if after_p.exists() and ops_p.exists() and rec_p.exists() and answer_p.exists():
                 rec = json.loads(rec_p.read_text(encoding="utf-8"))
-                if rec.get("material_sha256") == sha and rec.get("body_before_sha256") == before:
+                if rec.get("material_sha256") == sha and rec.get("body_before_sha256") == before and rec.get("answer_sha256") == _sha(answer_p.read_bytes()):
                     body = after_p.read_text(encoding="utf-8")
                     ops = json.loads(ops_p.read_text(encoding="utf-8"))
                     for op in ops["operations"]:
@@ -690,7 +690,7 @@ class Apply:
             scoped = _scoped(mat, m["scopes"])
             if not scoped.instructions():
                 return StepResult("stop", f"material {m['material']} (бр. {m['issue']}): attributed through {m['scopes']}, yet no instruction of the material carries those ids")
-            task_text = _operations.task_text(scoped, act.blocks, tree, ctx.slug, m["issue"], answer_p, [f for f in mat.findings if f["kind"] in PARSE_STOP_KINDS])
+            task_text = _operations.task_text(scoped, act.blocks, tree, ctx.slug, m["issue"], _rel(ctx, answer_p), [f for f in mat.findings if f["kind"] in PARSE_STOP_KINDS])
             task_sha = _sha(task_text.encode("utf-8"))
             old_rec = json.loads(rec_p.read_text(encoding="utf-8")) if rec_p.exists() else {}
             if answer_p.exists() and old_rec.get("task_sha256") != task_sha:
@@ -719,6 +719,9 @@ class Apply:
                 return StepResult("stop", f"material {m['material']} (бр. {m['issue']}): {len(blocking)} check exception(s) after the operations, first "
                                   f"{blocking[0]['kind']} at line {blocking[0]['block']}: {blocking[0]['detail']}", [_rel(ctx, d / "checks.json")])
             ops_p.write_text(json.dumps({"material": m["material"], "issue": m["issue"], "operations": applied.operations, "log": applied.log}, ensure_ascii=False, indent=1), encoding="utf-8")
+            rec = json.loads(rec_p.read_text(encoding="utf-8"))
+            rec["answer_sha256"] = _sha(answer_p.read_bytes())
+            rec_p.write_text(json.dumps(rec, ensure_ascii=False, indent=1), encoding="utf-8")
             after_p.write_text(applied.markdown, encoding="utf-8")
             body = applied.markdown
             for op in applied.operations:
@@ -736,7 +739,28 @@ def _scoped(mat: "_material.Material", scopes: list[str]) -> "_material.Material
     stand in the tree (attribution names child instructions too, „§1.1“); the whole material when the title names the act."""
     if "title" in scopes:
         return mat
-    keep = [n for n in mat.instructions() if n.id in scopes]
+    by_id = {n.id: n for n in mat.instructions()}
+    wanted = [n for n in mat.instructions() if n.id in scopes]
+    # a child scope keeps its ancestors, each with only the children on the path, so the task shows the lead-in and the parent's quotes
+    roots: dict[str, "_material.Node"] = {}
+    for n in wanted:
+        path = [n.id]
+        while "." in path[-1]:
+            path.append(path[-1].rsplit(".", 1)[0])
+        path.reverse()
+        top = by_id[path[0]]
+        cur = roots.setdefault(top.id, _material.Node(id=top.id, level=top.level, block=top.block, text=top.text, section=top.section, children=[],
+                                                      quoted=list(top.quoted) if top.id in scopes else [], continuation=list(top.continuation) if top.id in scopes else [],
+                                                      inline_quotes=list(top.inline_quotes), target=top.target))
+        for pid in path[1:]:
+            orig = by_id[pid]
+            nxt = next((c for c in cur.children if c.id == pid), None)
+            if nxt is None:
+                nxt = orig if pid == n.id else _material.Node(id=orig.id, level=orig.level, block=orig.block, text=orig.text, section=orig.section, children=[],
+                                                               quoted=[], continuation=[], inline_quotes=list(orig.inline_quotes), target=orig.target)
+                cur.children.append(nxt)
+            cur = nxt
+    keep = list(roots.values())
     return _material.Material(kind=mat.kind, amending=mat.amending, own_title=mat.own_title, target_title=mat.target_title, cited_history=mat.cited_history,
                               body_org=mat.body_org, header=mat.header, nodes=keep, headings=mat.headings, tail=mat.tail, roles=mat.roles, findings=mat.findings,
                               blocks=mat.blocks, embedded=mat.embedded, instruction_kind=mat.instruction_kind, whole_act=mat.whole_act)
