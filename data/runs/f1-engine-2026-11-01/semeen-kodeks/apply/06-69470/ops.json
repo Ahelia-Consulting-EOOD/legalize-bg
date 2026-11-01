@@ -1,0 +1,56 @@
+{
+ "material": 69470,
+ "issue": "82/2012",
+ "operations": [
+  {
+   "id": "§15",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§15.1",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 94, ал. 7",
+   "old": "председателят и",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§15.1",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 94, ал. 7",
+   "punctuation": "before",
+   "new": "освен ако в закон е предвидено друго",
+   "new_ref": "q2",
+   "where": "end"
+  },
+  {
+   "id": "§15.2",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 114, ал. 6",
+   "old": "председателят и",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§15.2",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 114, ал. 6",
+   "punctuation": "before",
+   "new": "освен ако в закон е предвидено друго",
+   "new_ref": "q2",
+   "where": "end"
+  }
+ ],
+ "log": [
+  "§15 no_text_change: nothing",
+  "§15.1 delete_words: 1 deletion(s)",
+  "§15.1 insert_words: inserted",
+  "§15.2 delete_words: 1 deletion(s)",
+  "§15.2 insert_words: inserted"
+ ]
+}

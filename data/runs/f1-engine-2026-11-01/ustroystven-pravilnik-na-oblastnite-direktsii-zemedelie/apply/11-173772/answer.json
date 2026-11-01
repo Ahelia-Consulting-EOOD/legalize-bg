@@ -1,0 +1,11 @@
+{"material": 173772, "operations": [
+{"id": "§1", "kind": "no_text_change"},
+{"id": "§1.1", "kind": "replace_words", "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Видин“", "old": "q2", "new": "q3"},
+{"id": "§1.2", "kind": "replace_words", "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Ловеч“", "old": "q2", "new": "q3"},
+{"id": "§1.3", "kind": "replace_words", "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Русе“", "old": "q2", "new": "q3"},
+{"id": "§1.4", "kind": "replace_words", "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Силистра“", "old": "q2", "new": "q3"},
+{"id": "§2", "kind": "replace_words", "address": "навсякъде в правилника", "old": "q1", "new": "q4", "everywhere": true},
+{"id": "§2", "kind": "replace_words", "address": "навсякъде в правилника", "old": "q2", "new": "q5", "everywhere": true},
+{"id": "§2", "kind": "replace_words", "address": "навсякъде в правилника", "old": "q3", "new": "q6", "everywhere": true},
+{"id": "§3", "kind": "no_text_change"}
+]}

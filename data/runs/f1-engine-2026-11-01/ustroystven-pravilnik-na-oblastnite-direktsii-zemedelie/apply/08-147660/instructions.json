@@ -1,0 +1,576 @@
+{
+ "kind": "regulation",
+ "amending": true,
+ "own_title": "Правилник за изменение и допълнение на Устройствения правилник на областните дирекции „Земеделие“",
+ "target_title": "Устройствения правилник на областните дирекции „Земеделие“",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2010
+  ],
+  "issues": [
+   [
+    7,
+    2010
+   ],
+   [
+    9,
+    2010
+   ],
+   [
+    60,
+    2010
+   ],
+   [
+    73,
+    2010
+   ],
+   [
+    32,
+    2011
+   ],
+   [
+    21,
+    2012
+   ],
+   [
+    12,
+    2016
+   ],
+   [
+    75,
+    2016
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2010 г.; изм., бр. 9, 60 и 73 от 2010 г., бр. 32 от 2011 г., бр. 21 от 2012 г. и бр. 12 и 75 от 2016 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА ЗЕМЕДЕЛИЕТО, ХРАНИТЕ И ГОРИТЕ",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [
+  44
+ ],
+ "tail": [
+  46,
+  47
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "46": "tail",
+  "47": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "instruction",
+  "5": "instruction",
+  "6": "instruction",
+  "7": "instruction",
+  "8": "quoted",
+  "9": "instruction",
+  "10": "quoted",
+  "11": "instruction",
+  "12": "quoted",
+  "13": "quoted",
+  "14": "instruction",
+  "15": "instruction",
+  "16": "quoted",
+  "17": "instruction",
+  "18": "instruction",
+  "19": "instruction",
+  "20": "instruction",
+  "21": "instruction",
+  "22": "instruction",
+  "23": "instruction",
+  "24": "instruction",
+  "25": "instruction",
+  "26": "instruction",
+  "27": "quoted",
+  "28": "instruction",
+  "29": "quoted",
+  "30": "quoted",
+  "31": "quoted",
+  "32": "quoted",
+  "33": "instruction",
+  "34": "quoted",
+  "35": "instruction",
+  "36": "instruction",
+  "37": "instruction",
+  "38": "instruction",
+  "39": "instruction",
+  "40": "instruction",
+  "41": "instruction",
+  "42": "instruction",
+  "43": "instruction",
+  "44": "heading",
+  "45": "instruction"
+ },
+ "findings": [],
+ "blocks": 48,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 3 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 3,
+     "text": "1. В ал. 2 думите „министъра на земеделието и храните“ се заменят с „министъра на земеделието, храните и горите“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "министъра на земеделието и храните",
+      "министъра на земеделието, храните и горите"
+     ],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 4,
+     "text": "2. В ал. 3:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§1.2.а",
+       "level": 2,
+       "block": 5,
+       "text": "а) в т. 5 и 6 думите „министъра на земеделието и храните“ се заменят с „министъра на земеделието, храните и горите“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "министъра на земеделието и храните",
+        "министъра на земеделието, храните и горите"
+       ],
+       "target": null
+      },
+      {
+       "id": "§1.2.б",
+       "level": 2,
+       "block": 6,
+       "text": "б) точки 10, 11, 12 и 13 се отменят;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§1.2.в",
+       "level": 2,
+       "block": 7,
+       "text": "в) точка 23 се изменя така:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        8
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§1.2.г",
+       "level": 2,
+       "block": 9,
+       "text": "г) създава се нова т. 24:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        10
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§1.2.д",
+       "level": 2,
+       "block": 11,
+       "text": "д) създават се т. 25 и 26:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        12,
+        13
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§1.2.е",
+       "level": 2,
+       "block": 14,
+       "text": "е) досегашната т. 24 става т. 27.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 15,
+   "text": "§ 2. В чл. 13 т. 17 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    16
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 17,
+   "text": "§ 3. В чл. 14 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§3.1",
+     "level": 1,
+     "block": 18,
+     "text": "1. В т. 4 думите „Министерството на земеделието и храните“ се заменят с „Министерството на земеделието, храните и горите“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Министерството на земеделието и храните",
+      "Министерството на земеделието, храните и горите"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.2",
+     "level": 1,
+     "block": 19,
+     "text": "2. В т. 16 думите „министъра на земеделието и храните“ се заменят с „министъра на земеделието, храните и горите“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "министъра на земеделието и храните",
+      "министъра на земеделието, храните и горите"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.3",
+     "level": 1,
+     "block": 20,
+     "text": "3. В т. 40 думите „информационната база данни на МЗХ“ се заменят с „националния публичен електронен регистър“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "информационната база данни на МЗХ",
+      "националния публичен електронен регистър"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.4",
+     "level": 1,
+     "block": 21,
+     "text": "4. В т. 41 и 42 абревиатурата „МЗХ“ се заменя с „МЗХГ“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "МЗХ",
+      "МЗХГ"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.5",
+     "level": 1,
+     "block": 22,
+     "text": "5. В т. 45 абревиатурата „МЗХ“ се заменя с „МЗХГ“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "МЗХ",
+      "МЗХГ"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.6",
+     "level": 1,
+     "block": 23,
+     "text": "6. Точки 48 и 49 се отменят.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§3.7",
+     "level": 1,
+     "block": 24,
+     "text": "7. В т. 50 думите „министъра на земеделието и храните“ се заменят с „министъра на земеделието, храните и горите“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "министъра на земеделието и храните",
+      "министъра на земеделието, храните и горите"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.8",
+     "level": 1,
+     "block": 25,
+     "text": "8. В т. 58, 59, 60, 61 и 62 думите „министъра на земеделието и храните“ се заменят с „министъра на земеделието, храните и горите“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "министъра на земеделието и храните",
+      "министъра на земеделието, храните и горите"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.9",
+     "level": 1,
+     "block": 26,
+     "text": "9. Точка 68 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      27
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§3.10",
+     "level": 1,
+     "block": 28,
+     "text": "10. Създават се нови т. 69, 70, 71 и 72:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      29,
+      30,
+      31,
+      32
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§3.11",
+     "level": 1,
+     "block": 33,
+     "text": "11. Създава се т. 73:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      34
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§3.12",
+     "level": 1,
+     "block": 35,
+     "text": "12. Досегашната т. 69 става т. 74 и в нея абревиатурата „МЗХ“ се заменя с „МЗХГ“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "МЗХ",
+      "МЗХГ"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.13",
+     "level": 1,
+     "block": 36,
+     "text": "13. Досегашната т. 70 става т. 75.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§3.14",
+     "level": 1,
+     "block": 37,
+     "text": "14. Досегашната т. 71 става т. 76 и в нея абревиатурата „МЗХ“ се заменя с „МЗХГ“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "МЗХ",
+      "МЗХГ"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.15",
+     "level": 1,
+     "block": 38,
+     "text": "15. Досегашните т. 72 и 73 стават съответно т. 77 и 78.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 39,
+   "text": "§ 4. В приложението към чл. 6, ал. 2 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§4.1",
+     "level": 1,
+     "block": 40,
+     "text": "1. На ред „Областна дирекция „Земеделие“ – Кърджали“ числото „57“ се заменя с „59“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "57",
+      "59"
+     ],
+     "target": null
+    },
+    {
+     "id": "§4.2",
+     "level": 1,
+     "block": 41,
+     "text": "2. На ред „Областна дирекция „Земеделие“ – Добрич“ числото „76“ се заменя със „75“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "76",
+      "75"
+     ],
+     "target": null
+    },
+    {
+     "id": "§4.3",
+     "level": 1,
+     "block": 42,
+     "text": "3. На ред „Областна дирекция „Земеделие“ – София-град“ числото „44“ се заменя с „43“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "44",
+      "43"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 43,
+   "text": "§ 5. Навсякъде в правилника думите „министъра на земеделието и храните“, „Министерството на земеделието и храните“ и абревиатурата „МЗХ“ се заменят съответно с „министъра на земеделието, храните и горите“, „Министерството на земеделието, храните и горите“ и „МЗХГ“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "министъра на земеделието и храните",
+    "Министерството на земеделието и храните",
+    "МЗХ",
+    "министъра на земеделието, храните и горите",
+    "Министерството на земеделието, храните и горите",
+    "МЗХГ"
+   ],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 45,
+   "text": "§ 6. Правилникът влиза в сила от деня на обнародването му в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

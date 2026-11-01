@@ -1,0 +1,63 @@
+{
+ "material": 156044,
+ "title": "Наредба за изменение на Наредба № 61 от 2006 г. за условията и реда за официална идентификация на животните, за които не са предвидени изисквания в регламент на Европейския съюз",
+ "issue": "16/2021",
+ "section": "Министерство на земеделието, храните и горите",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 61 от 2006 г. за условията и реда за официална идентификация на животните, за които не са предвидени изисквания в регламент на Европейския съюз",
+   "cited_promulgation": [
+    47,
+    2006
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-61-ot-9-may-2006-g-za-usloviyata-i-reda-za-ofitsialna-identifikatsiya-na",
+   "candidates": [
+    "naredba-61-ot-9-may-2006-g-za-usloviyata-i-reda-za-ofitsialna-identifikatsiya-na"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    47,
+    2006
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Наредба № 6 от 2013 г. за изискванията към средствата за официална идентификация на животните и използването им, условията, реда и контрола по събиране, въвеждане, поддържане и използване на информацията в Интегрираната информационна система на Българската агенция по безопасност на храните",
+   "cited_promulgation": [
+    90,
+    2013
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-6-ot-8-oktomvri-2013-g-za-iziskvaniyata-kam-sredstvata-za-ofitsialna-ide",
+   "candidates": [
+    "naredba-6-ot-8-oktomvri-2013-g-za-iziskvaniyata-kam-sredstvata-za-ofitsialna-ide"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    90,
+    2013
+   ]
+  }
+ ],
+ "instructions": 18,
+ "signs": 4,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 614,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

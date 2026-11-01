@@ -1,0 +1,29 @@
+{
+ "material": 144160,
+ "title": "Постановление № 366 от 19 декември 2019 г. за одобряване на допълнителни разходи по бюджета на Министерството на здравеопазването за 2019 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата по чл. 1, ал. 1 да се увеличат разходи"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. (1) Министърът на здравеопазването да извърши налагащ"
+  }
+ ],
+ "tokens_instructions": 273,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

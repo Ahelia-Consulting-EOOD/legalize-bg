@@ -1,0 +1,229 @@
+{
+ "material": 134075,
+ "title": "Закон за изменение и допълнение на Наказателния кодекс",
+ "issue": "7/2019",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наказателния кодекс",
+   "cited_promulgation": [
+    26,
+    1968
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "nakazatelen-kodeks",
+   "candidates": [
+    "nakazatelen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    1968
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Наказателно-процесуалния кодекс",
+   "cited_promulgation": [
+    86,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "nakazatelno-protsesualen-kodeks",
+   "candidates": [
+    "nakazatelno-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    86,
+    2005
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Закона за акцизите и данъчните складове",
+   "cited_promulgation": [
+    91,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-aktsizite-i-danachnite-skladove",
+   "candidates": [
+    "zakon-za-aktsizite-i-danachnite-skladove"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2005
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Закона за военната полиция",
+   "cited_promulgation": [
+    48,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-voennata-politsiya",
+   "candidates": [
+    "zakon-za-voennata-politsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2011
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Закона за Държавна агенция „Национална сигурност“",
+   "cited_promulgation": [
+    109,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-darzhavna-agentsiya-natsionalna-sigurnost",
+   "candidates": [
+    "zakon-za-darzhavna-agentsiya-natsionalna-sigurnost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    109,
+    2007
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за екстрадицията и Европейската заповед за арест",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest",
+   "candidates": [
+    "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2005
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за изпълнение на наказанията и задържането под стража",
+   "cited_promulgation": [
+    25,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha",
+   "candidates": [
+    "zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    25,
+    2009
+   ]
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за Министерството на вътрешните работи",
+   "cited_promulgation": [
+    53,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ministerstvoto-na-vatreshnite-raboti",
+   "candidates": [
+    "zakon-za-ministerstvoto-na-vatreshnite-raboti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    53,
+    2014
+   ]
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за митниците",
+   "cited_promulgation": [
+    15,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mitnitsite",
+   "candidates": [
+    "zakon-za-mitnitsite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    15,
+    1998
+   ]
+  },
+  {
+   "scope": "§15",
+   "cited_title": "Закона за тютюна, тютюневите и свързаните с тях изделия",
+   "cited_promulgation": [
+    101,
+    1993
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-tyutyuna-tyutyunevite-i-svarzanite-s-tyah-izdeliya-zagl-izm-dv-br-28-ot",
+   "candidates": [
+    "zakon-za-tyutyuna-tyutyunevite-i-svarzanite-s-tyah-izdeliya-zagl-izm-dv-br-28-ot"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    101,
+    1993
+   ]
+  }
+ ],
+ "instructions": 90,
+ "signs": 18,
+ "quoted_blocks": 73,
+ "findings": [],
+ "tokens_instructions": 8392,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

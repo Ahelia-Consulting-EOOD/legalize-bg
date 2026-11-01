@@ -1,0 +1,9 @@
+{
+ "lost_text": [],
+ "exceptions": 0,
+ "source_findings": {
+  "malformed_head": 1
+ },
+ "report": "report-round0.json",
+ "checked_at": "2026-11-01T13:09:53+00:00"
+}

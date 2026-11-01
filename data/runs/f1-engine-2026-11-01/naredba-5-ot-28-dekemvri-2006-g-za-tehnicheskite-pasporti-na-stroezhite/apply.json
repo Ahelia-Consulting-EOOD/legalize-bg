@@ -1,0 +1,70 @@
+{
+ "act": "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite",
+ "materials": [
+  {
+   "material": 5085,
+   "issue": "38/2008",
+   "operations": 29,
+   "body_after_sha256": "ec799dba65f5d8bff2c1e709d524635ab6df4bbc4e4d49a734cd17ccefa647dd"
+  },
+  {
+   "material": 30903,
+   "issue": "22/2010",
+   "operations": 23,
+   "body_after_sha256": "61bb82616418a06599ea8ec420f12de6e8384bb6d94fb78d6c5a5fbdd9a09202"
+  },
+  {
+   "material": 59312,
+   "issue": "98/2011",
+   "operations": 5,
+   "body_after_sha256": "b79a49590122aa5926690d06ec939675cf557d2d4ec46dd7a129fd02e0867cf0"
+  },
+  {
+   "material": 71595,
+   "issue": "2/2013",
+   "operations": 26,
+   "body_after_sha256": "e42030ff439f9290a1047608bbee004783018c8bd1085f5c35e41842dcd9de42"
+  },
+  {
+   "material": 78691,
+   "issue": "80/2013",
+   "operations": 11,
+   "body_after_sha256": "8b6d0c132f4f0410ac83703d12816c512367acde89d098561c1a1f675f60eb70"
+  },
+  {
+   "material": 90452,
+   "issue": "102/2014",
+   "operations": 4,
+   "body_after_sha256": "4488805495ad4f78fc56a57fbae00130946dc3153dbd03102a9c82947a15c9ed"
+  },
+  {
+   "material": 97935,
+   "issue": "79/2015",
+   "operations": 5,
+   "body_after_sha256": "4c838cbb8dfb7ce95970154193584d7f3ca8918fd1851267590c0f42ca652013"
+  },
+  {
+   "material": 160759,
+   "issue": "68/2021",
+   "operations": 9,
+   "body_after_sha256": "0fb54900029d8ac114705e7038f46cc1af5511d334165463f0ace598aa757a78"
+  }
+ ],
+ "operations_by_kind": {
+  "no_text_change": 20,
+  "insert_provision": 13,
+  "renumber": 7,
+  "replace_provision": 15,
+  "replace_words": 25,
+  "delete_words": 7,
+  "insert_heading": 1,
+  "repeal": 13,
+  "insert_annex": 1,
+  "insert_words": 8,
+  "replace_annex": 1,
+  "repeal_annex": 1
+ },
+ "unexplained_lexbg_issues": [],
+ "applied_sha256": "0fb54900029d8ac114705e7038f46cc1af5511d334165463f0ace598aa757a78",
+ "applied_at": "2026-11-01T13:22:13+00:00"
+}

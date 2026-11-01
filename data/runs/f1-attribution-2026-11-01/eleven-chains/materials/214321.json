@@ -1,0 +1,56 @@
+{
+ "material": 214321,
+ "title": "Закон за изменение и допълнение на Закона за енергетиката",
+ "issue": "39/2024",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за енергетиката",
+   "cited_promulgation": [
+    107,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-energetikata",
+   "candidates": [
+    "zakon-za-energetikata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    107,
+    2003
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Закона за изменение и допълнение на Закона за енергетиката",
+   "cited_promulgation": [
+    96,
+    2023
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 22,
+ "signs": 11,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 885,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

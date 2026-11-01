@@ -1,0 +1,38 @@
+{
+ "material": 214107,
+ "title": "Закон за насърчаване на научните изследвания и иновациите",
+ "issue": "39/2024",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Този закон отменя Закона за насърчаване на научните изследвания",
+   "cited_promulgation": [
+    92,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 7,
+ "signs": 7,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 1015,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

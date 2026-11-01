@@ -1,0 +1,100 @@
+{
+ "material": 3951,
+ "issue": "59/2007",
+ "operations": [
+  {
+   "id": "§7",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§7.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 12, ал. 1",
+   "old": "чл. 83",
+   "old_ref": "q1",
+   "new": "чл. 109",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§7.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14",
+   "old": "чл. 84",
+   "old_ref": "q1",
+   "new": "чл. 110",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§7.3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 19, ал. 1",
+   "old": "чл. 80, ал. 1, буква “г”",
+   "old_ref": {
+    "text": "чл. 80, ал. 1, буква “г”"
+   },
+   "new": "чл. 104, т. 5",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§7.4",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 21, ал. 2",
+   "old": "чл. 104",
+   "old_ref": "q1",
+   "new": "чл. 211",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§7.5",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 23, ал. 1, изречение второ",
+   "old": "най-късно до приключване на първото заседание по делото",
+   "old_ref": "q1",
+   "new": "в срока за отговор на исковата молба",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§7.6",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 24",
+   "old": "до приключване на първото заседание по делото",
+   "old_ref": "q1",
+   "new": "в срока за отговор на исковата молба",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§7.7",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 30, ал. 2",
+   "old": "чл. 133",
+   "old_ref": "q1",
+   "new": "чл. 164",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§7 no_text_change: nothing",
+  "§7.1 replace_words: 1 replacement(s)",
+  "§7.2 replace_words: 1 replacement(s)",
+  "§7.3 replace_words: 1 replacement(s)",
+  "§7.4 replace_words: 1 replacement(s)",
+  "§7.5 replace_words: 1 replacement(s)",
+  "§7.6 replace_words: 1 replacement(s)",
+  "§7.7 replace_words: 1 replacement(s)"
+ ]
+}

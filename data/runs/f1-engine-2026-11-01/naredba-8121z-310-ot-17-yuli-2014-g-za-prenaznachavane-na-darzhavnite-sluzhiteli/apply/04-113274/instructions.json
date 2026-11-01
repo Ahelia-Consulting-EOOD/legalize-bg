@@ -1,0 +1,296 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение и допълнение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "target_title": "Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "cited_history": {
+  "promulgation": [
+   60,
+   2014
+  ],
+  "issues": [
+   [
+    60,
+    2014
+   ],
+   [
+    87,
+    2014
+   ],
+   [
+    104,
+    2014
+   ],
+   [
+    29,
+    2015
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 60 от 2014 г.; изм. и доп., бр. 87 и 104 от 2014 г. и бр. 29 от 2015 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА ВЪТРЕШНИТЕ РАБОТИ",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [
+  31
+ ],
+ "tail": [
+  33,
+  34
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "33": "tail",
+  "34": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "quoted",
+  "5": "instruction",
+  "6": "quoted",
+  "7": "quoted",
+  "8": "quoted",
+  "9": "quoted",
+  "10": "quoted",
+  "11": "quoted",
+  "12": "quoted",
+  "13": "quoted",
+  "14": "quoted",
+  "15": "quoted",
+  "16": "quoted",
+  "17": "quoted",
+  "18": "quoted",
+  "19": "quoted",
+  "20": "instruction",
+  "21": "instruction",
+  "22": "instruction",
+  "23": "instruction",
+  "24": "instruction",
+  "25": "instruction",
+  "26": "instruction",
+  "27": "instruction",
+  "28": "instruction",
+  "29": "quoted",
+  "30": "instruction",
+  "31": "heading",
+  "32": "instruction"
+ },
+ "findings": [],
+ "blocks": 35,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 1 след думите „ал. 1, т. 1“ се добавя „и ал. 3“, а думите „и по § 86 от преходните и заключителните разпоредби на Закона за изменение и допълнение на Закона за Министерството на вътрешните работи (ДВ, бр. 14 от 2015 г.)“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "ал. 1, т. 1",
+    "и ал. 3",
+    "и по § 86 от преходните и заключителните разпоредби на Закона за изменение и допълнение на Закона за Министерството на вътрешните работи (ДВ, бр. 14 от 2015 г.)"
+   ],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 3,
+   "text": "§ 2. Член 3 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    4
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 5,
+   "text": "§ 3. Член 4а се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 20,
+   "text": "§ 4. В чл. 5 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§4.1",
+     "level": 1,
+     "block": 21,
+     "text": "1. В ал. 1, т. 1 цифрата „4“ се заменя с „3“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "4",
+      "3"
+     ],
+     "target": null
+    },
+    {
+     "id": "§4.2",
+     "level": 1,
+     "block": 22,
+     "text": "2. В ал. 2 думите „както и за ръководителите на звена по чл. 33, т. 7 ЗМВР“ и запетаята пред тях се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "както и за ръководителите на звена по чл. 33, т. 7 ЗМВР"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 23,
+   "text": "§ 5. В чл. 11, ал. 1 накрая се добавя „и ако е изтекъл съответният тригодишен срок по чл. 173, ал. 3 и 4 ЗМВР“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "и ако е изтекъл съответният тригодишен срок по чл. 173, ал. 3 и 4 ЗМВР"
+   ],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 24,
+   "text": "§ 6. В чл. 12, ал. 2 накрая се поставя запетая и се добавя „а когато е предвидено за съответната длъжност – и на изискването да е хабилитирано лице съгласно Закона за вис­шето образование и Закона за развитието на академичния състав в Република България“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "а когато е предвидено за съответната длъжност – и на изискването да е хабилитирано лице съгласно Закона за вис­шето образование и Закона за развитието на академичния състав в Република България"
+   ],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 25,
+   "text": "§ 7. В чл. 13, ал. 3 думите „както и за ръководителите на звена по чл. 33, т. 7 ЗМВР“ и запетаята пред тях се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "както и за ръководителите на звена по чл. 33, т. 7 ЗМВР"
+   ],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 26,
+   "text": "§ 8. В чл. 15 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§8.1",
+     "level": 1,
+     "block": 27,
+     "text": "1. Досегашният текст става ал. 1.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§8.2",
+     "level": 1,
+     "block": 28,
+     "text": "2. Създава се ал. 2:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      29
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 30,
+   "text": "§ 9. В § 1 от допълнителните разпоредби след думите „ал. 1, т.“ се добавя „7 и“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "ал. 1, т.",
+    "7 и"
+   ],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 32,
+   "text": "§ 10. Наредбата влиза в сила от деня на обнародването й в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

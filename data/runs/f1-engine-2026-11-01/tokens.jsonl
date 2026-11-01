@@ -1,0 +1,166 @@
+{"agent":"labeller","act":"naredba-8121z-310","step":"label round0","call":"dfbcba9c8491-0000-0001","tasks":2,"sections":2,"tokens":30156,"duration_ms":22758}
+{"agent":"labeller","act":"naredba-8121z-310","step":"ladder round1","call":"bba72e15a0d6-0000-0000","tasks":1,"tokens":21631,"duration_ms":9581}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 88705","tokens":23075,"duration_ms":8615}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 88705 (set aside: the task changed under it when the session fixed the shown addresses)","tokens":0,"note":"the 23075 tokens of the first call count in the previous line"}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 88705 (second call)","tokens":22190,"duration_ms":10264}
+{"agent":"labeller","act":"zakon-za-zashtita","step":"label round0","call":"8636f76079a2-0000-0002","tasks":3,"sections":3,"tokens":32625,"duration_ms":29608}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 88705 (third call; the second answer was set aside by the stale rule after the session changed the task text mid-run)","tokens":0}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 88705 (third call)","tokens":22435,"duration_ms":7995}
+{"agent":"labeller","act":"zakon-za-zashtita","step":"ladder round1","call":"3437813c382e-0000-0002","tasks":3,"tokens":22436,"duration_ms":9145}
+{"agent":"labeller","act":"zakon-za-ekstraditsiyata","step":"label round0","call":"5116de3e0bd1-0016-0016","tasks":1,"tokens":24203,"duration_ms":14838}
+{"agent":"labeller","act":"kodeks-na-mezhdunarodnoto-chastno-pravo","step":"label round0","call":"1a718d7f288a-0016-0019","tasks":4,"tokens":33089,"duration_ms":25904}
+{"agent":"labeller","act":"semeen-kodeks","step":"label round0","call":"aa140e45335b-0024-0028","tasks":5,"tokens":38801,"duration_ms":32029}
+{"agent":"labeller","act":"semeen-kodeks","step":"label round0","call":"aa140e45335b-0016-0023","tasks":8,"tokens":40937,"duration_ms":38667}
+{"agent":"labeller","act":"zakon-za-ekstraditsiyata","step":"label round0","call":"5116de3e0bd1-0000-0007","tasks":8,"tokens":41353,"duration_ms":42086}
+{"agent":"labeller","act":"semeen-kodeks","step":"label round0","call":"aa140e45335b-0008-0015","tasks":8,"tokens":41844,"duration_ms":45057}
+{"agent":"labeller","act":"semeen-kodeks","step":"label round0","call":"aa140e45335b-0000-0007","tasks":8,"tokens":40361,"duration_ms":46526}
+{"agent":"labeller","act":"kodeks-na-mezhdunarodnoto-chastno-pravo","step":"label round0","call":"1a718d7f288a-0000-0007","tasks":8,"tokens":41420,"duration_ms":47199}
+{"agent":"labeller","act":"kodeks-na-mezhdunarodnoto-chastno-pravo","step":"label round0","call":"1a718d7f288a-0008-0015","tasks":8,"tokens":42356,"duration_ms":50115}
+{"agent":"labeller","act":"zakon-za-ekstraditsiyata","step":"label round0","call":"5116de3e0bd1-0008-0015","tasks":8,"tokens":44250,"duration_ms":50215}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 90677","tokens":21649,"duration_ms":7478}
+{"agent":"labeller","act":"zakon-za-ekstraditsiyata","step":"ladder round1","call":"f327835133d3-0000-0001","tasks":2,"tokens":22859,"duration_ms":9349}
+{"agent":"applier (labeller type)","act":"zakon-za-zashtita","step":"apply 2662 (answered outside_set: the task lacked the §'s items, a scoping defect fixed after)","tokens":21739,"duration_ms":10407}
+{"agent":"applier (labeller type)","act":"kodeks-na-mezhdunarodnoto-chastno-pravo","step":"apply 3951 (same defect)","tokens":21300,"duration_ms":10423}
+{"agent":"labeller","act":"pravilnik-za-prilagane-zashtita","step":"label round0","call":"5fea9f5fb364-0008-0008","tasks":1,"tokens":23443,"duration_ms":10551}
+{"agent":"applier (labeller type)","act":"semeen-kodeks","step":"apply 25033 (same defect)","tokens":21292,"duration_ms":12092}
+{"agent":"labeller","act":"naredba-5-2006","step":"label round0","call":"b896f5198274-0008-0010","tasks":3,"tokens":25876,"duration_ms":16993}
+{"agent":"labeller","act":"naredba-1-2015","step":"label round0","call":"565b10cc3852-0016-0023","tasks":8,"tokens":31578,"duration_ms":33365}
+{"agent":"labeller","act":"naredba-1-2015","step":"label round0","call":"565b10cc3852-0008-0015","tasks":8,"tokens":30661,"duration_ms":35632}
+{"agent":"labeller","act":"naredba-1-2015","step":"label round0","call":"565b10cc3852-0024-0027","tasks":4,"tokens":32525,"duration_ms":40092}
+{"agent":"labeller","act":"pravilnik-filmova","step":"label round0","call":"2f0aef1410ac-0008-0013","tasks":6,"tokens":42209,"duration_ms":45913}
+{"agent":"labeller","act":"naredba-5-2006","step":"label round0","call":"b896f5198274-0000-0007","tasks":8,"tokens":43468,"duration_ms":54642}
+{"agent":"labeller","act":"pravilnik-za-prilagane-zashtita","step":"label round0","call":"5fea9f5fb364-0000-0007","tasks":8,"tokens":48650,"duration_ms":55566}
+{"agent":"labeller","act":"naredba-1-2015","step":"label round0","call":"565b10cc3852-0000-0007","tasks":8,"tokens":52540,"duration_ms":62848}
+{"agent":"labeller","act":"pravilnik-pristanishtna","step":"label round0","call":"df712e478404-0008-0013","tasks":6,"tokens":47685,"duration_ms":62861}
+{"agent":"labeller","act":"pravilnik-pristanishtna","step":"label round0","call":"df712e478404-0000-0007","tasks":8,"tokens":47917,"duration_ms":64000}
+{"agent":"labeller","act":"pravilnik-filmova","step":"label round0","call":"2f0aef1410ac-0000-0007","tasks":8,"tokens":53428,"duration_ms":66701}
+{"agent":"applier (labeller type)","act":"semeen-kodeks","step":"apply 25033 (second call)","tokens":21403,"duration_ms":8121}
+{"agent":"applier (labeller type)","act":"zakon-za-zashtita","step":"apply 2662 (second call)","tokens":22047,"duration_ms":9118}
+{"agent":"labeller","act":"zakon-za-ekstraditsiyata","step":"ladder round2","call":"6bd580b84a0d-0000-0000","tasks":1,"tokens":22360,"duration_ms":10194}
+{"agent":"labeller","act":"pravilnik-filmova","step":"ladder round1","call":"927c20218be8-0025-0026","tasks":2,"tokens":22729,"duration_ms":10744}
+{"agent":"labeller","act":"naredba-5-2006","step":"ladder round1","call":"5619c7ecc934-0000-0002","tasks":3,"tokens":23639,"duration_ms":12288}
+{"agent":"labeller","act":"naredba-1-2015","step":"ladder round1","call":"526690834235-0000-0000","tasks":1,"tokens":22448,"duration_ms":12326}
+{"agent":"applier (labeller type)","act":"kodeks-na-mezhdunarodnoto-chastno-pravo","step":"apply 3951 (second call)","tokens":24935,"duration_ms":13762}
+{"agent":"labeller","act":"pravilnik-za-prilagane-zashtita","step":"ladder round1","call":"93f68e41eb76-0000-0006","tasks":7,"tokens":25529,"duration_ms":15365}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 93839","tokens":27714,"duration_ms":15527}
+{"agent":"labeller","act":"pravilnik-pristanishtna","step":"ladder round1","call":"c1fb7d0414af-0025-0038","tasks":14,"tokens":31024,"duration_ms":23325}
+{"agent":"labeller","act":"pravilnik-pristanishtna","step":"ladder round1","call":"c1fb7d0414af-0000-0024","tasks":25,"tokens":36810,"duration_ms":26999}
+{"agent":"labeller","act":"pravilnik-filmova","step":"ladder round1","call":"927c20218be8-0000-0024","tasks":25,"tokens":36524,"duration_ms":30836}
+{"agent":"labeller","act":"ustroystven-pravilnik-odz","step":"label round0","call":"939c498496d8-0000-0006","tasks":7,"tokens":42821,"duration_ms":50560}
+{"agent":"applier (labeller type)","act":"semeen-kodeks","step":"apply 25652","tokens":21011,"duration_ms":5947}
+{"agent":"labeller","act":"ustroystven-pravilnik-odz","step":"ladder round1","call":"87412caccb8c-0000-0000","tasks":1,"tokens":22426,"duration_ms":9876}
+{"agent":"applier (labeller type)","act":"zakon-za-zashtita","step":"apply 5005","tokens":21733,"duration_ms":10027}
+{"agent":"labeller","act":"pravilnik-filmova","step":"ladder round2","call":"9bfad092581a-0000-0000","tasks":1,"tokens":22366,"duration_ms":10253}
+{"agent":"labeller","act":"pravilnik-pristanishtna","step":"ladder round2","call":"b05f1541347a-0025-0029","tasks":5,"tokens":24779,"duration_ms":10947}
+{"agent":"applier (labeller type)","act":"zakon-za-ekstraditsiyata","step":"apply 973","tokens":25044,"duration_ms":11832}
+{"agent":"applier (labeller type)","act":"kodeks-na-mezhdunarodnoto-chastno-pravo","step":"apply 3951 (third call)","tokens":25176,"duration_ms":14063}
+{"agent":"applier (labeller type)","act":"pravilnik-za-prilagane-zashtita","step":"apply 147261","tokens":25428,"duration_ms":14776}
+{"agent":"labeller","act":"pravilnik-pristanishtna","step":"ladder round2","call":"b05f1541347a-0000-0024","tasks":25,"tokens":36677,"duration_ms":20718}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 113274","tokens":28781,"duration_ms":39311}
+{"agent":"applier (labeller type)","act":"naredba-5-2006","step":"apply 5085","tokens":34510,"duration_ms":48800}
+{"agent":"applier (labeller type)","act":"naredba-1-2015","step":"apply 98158","tokens":39752,"duration_ms":75287}
+{"note":"set aside by the session's own task-text change of the text-reference paragraph: the answers of zakon-za-zashtita 5005, semeen-kodeks 25652, pravilnik-za-prilagane-zashtita 147261 and naredba-8121z-310 113274 (about 97,000 tokens), and the round-2 labelling of pravilnik-pristanishtna and pravilnik-filmova set aside by the re-collect after the chrome rule (about 84,000); code is frozen for the rest of the run"}
+{"agent":"applier (labeller type)","act":"semeen-kodeks","step":"apply 25652 (second call)","tokens":21333,"duration_ms":5800}
+{"agent":"applier (labeller type)","act":"ustroystven-pravilnik-odz","step":"apply 29283","tokens":23197,"duration_ms":8117}
+{"agent":"labeller","act":"pravilnik-pristanishtna","step":"ladder round2 (second call)","call":"b05f1541347a-0025-0029","tasks":5,"tokens":24854,"duration_ms":10145}
+{"agent":"labeller","act":"pravilnik-filmova","step":"ladder round2 (second call)","call":"9bfad092581a-0000-0000","tasks":1,"tokens":22521,"duration_ms":10760}
+{"agent":"applier (labeller type)","act":"zakon-za-zashtita","step":"apply 5005 (second call)","tokens":22111,"duration_ms":11459}
+{"agent":"applier (labeller type)","act":"pravilnik-za-prilagane-zashtita","step":"apply 147261 (second call)","tokens":25531,"duration_ms":14026}
+{"agent":"applier (labeller type)","act":"kodeks-na-mezhdunarodnoto-chastno-pravo","step":"apply 22498 (outside_set: a sentence replaced)","tokens":23137,"duration_ms":14882}
+{"agent":"applier (labeller type)","act":"naredba-8121z-310","step":"apply 113274 (second call)","tokens":27221,"duration_ms":17779}
+{"agent":"labeller","act":"pravilnik-pristanishtna","step":"ladder round2 (second call)","call":"b05f1541347a-0000-0024","tasks":25,"tokens":36624,"duration_ms":19438}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 03-41376","tokens":21521}
+{"ts":"2026-11-01","call":"apply kodeks-na-mezhdunarodnoto-chastno-pravo 02-22498 (2nd)","tokens":22910}
+{"ts":"2026-11-01","call":"apply zakon-za-zashtita-na-litsa 03-6481","tokens":32678}
+{"ts":"2026-11-01","call":"apply naredba-1-2015 01-98158 (2nd)","tokens":38894}
+{"ts":"2026-11-01","call":"apply kodeks-na-mezhdunarodnoto-chastno-pravo 03-41709","tokens":21896}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 04-41671","tokens":21780}
+{"ts":"2026-11-01","call":"apply kodeks-na-mezhdunarodnoto-chastno-pravo 04-201987","tokens":21956}
+{"ts":"2026-11-01","call":"apply naredba-8121z 04-113274 (2nd)","tokens":28074}
+{"ts":"2026-11-01","call":"apply pravilnik-za-prilagane-zzlznp 02-165363","tokens":65978}
+{"ts":"2026-11-01","call":"apply kodeks-na-mezhdunarodnoto-chastno-pravo 05-214105","tokens":22359}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 01-973","tokens":25466}
+{"ts":"2026-11-01","call":"apply naredba-8121z 05-148171","tokens":25590}
+{"ts":"2026-11-01","call":"apply zakon-za-zashtita-na-litsa 04-25652","tokens":22463}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 02-35396","tokens":29660}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 02-5288","tokens":30433}
+{"ts":"2026-11-01","call":"apply naredba-5-2006 02-30903","tokens":32842}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 05-41709","tokens":42811}
+{"ts":"2026-11-01","call":"apply naredba-8121z 05-148171 (2nd)","tokens":25197}
+{"ts":"2026-11-01","call":"apply pravilnik-pristanishtna 01-68862","tokens":46741}
+{"ts":"2026-11-01","call":"label zakon-za-ekstraditsiyata round1 6694cdc57b33","tokens":22616}
+{"ts":"2026-11-01","call":"label pravilnik-filmova round1 be45a052c864","tokens":22546}
+{"ts":"2026-11-01","call":"label naredba-5-2006 round1 ef00a61fcf87","tokens":23368}
+{"ts":"2026-11-01","call":"apply naredba-8121z 06-153040","tokens":22323}
+{"ts":"2026-11-01","call":"label naredba-5-2006 round2 cb59ce157a44","tokens":22764}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 03-34181","tokens":32214}
+{"ts":"2026-11-01","call":"apply zakon-za-zashtita-na-litsa 05-83184","tokens":37915}
+{"ts":"2026-11-01","call":"settle pravilnik-za-prilagane-zzlznp witnesses","tokens":26333}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 05-41709 (2nd)","tokens":44401}
+{"ts":"2026-11-01","call":"apply kodeks-na-mezhdunarodnoto-chastno-pravo 06-246208","tokens":23220}
+{"ts":"2026-11-01","call":"apply naredba-1-2015 02-108826","tokens":24039}
+{"ts":"2026-11-01","call":"apply naredba-8121z 07-183866","tokens":25215}
+{"ts":"2026-11-01","call":"apply naredba-1-2015 03-139711","tokens":77383}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 01-25033 (re-answer after task change)","tokens":22473}
+{"ts":"2026-11-01","call":"apply zakon-za-zashtita-na-litsa 01-2662 (re-answer after task change)","tokens":22945}
+{"ts":"2026-11-01","call":"apply naredba-8121z 01-88705 (re-answer after task change)","tokens":24060}
+{"ts":"2026-11-01","call":"settle pravilnik-za-prilagane-zzlznp witnesses (2nd)","tokens":25742}
+{"ts":"2026-11-01","call":"settle kodeks-na-mezhdunarodnoto-chastno-pravo witnesses","tokens":65623}
+{"ts":"2026-11-01","call":"apply pravilnik-filmova 01-160733","tokens":65485}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 03-36798","tokens":22311}
+{"ts":"2026-11-01","call":"apply naredba-5-2006 03-59312","tokens":24054}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 06-69470","tokens":22672}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 04-48515","tokens":29115}
+{"ts":"2026-11-01","call":"settle naredba-8121z witnesses","tokens":27394}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 04-54416","tokens":31069}
+{"ts":"2026-11-01","call":"apply pravilnik-pristanishtna 02-79704","tokens":59821}
+{"ts":"2026-11-01","call":"settle kodeks-na-mezhdunarodnoto-chastno-pravo witnesses (2nd)","tokens":65774}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 05-62371","tokens":22819}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 07-77659","tokens":22801}
+{"ts":"2026-11-01","call":"apply naredba-5-2006 04-71595","tokens":33386}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 08-107550","tokens":22688}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 05-86030","tokens":56132}
+{"ts":"2026-11-01","call":"apply pravilnik-pristanishtna 02-79704 (2nd, parser fix)","tokens":54186}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 06-100860","tokens":39748}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 06-134075","tokens":24651}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 07-107723","tokens":23733}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 07-138116","tokens":23562}
+{"ts":"2026-11-01","call":"apply pravilnik-pristanishtna 03-82388","tokens":45877}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 08-195264","tokens":22915}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 08-147660","tokens":36386}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 09-121172","tokens":22686}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 09-197941","tokens":24995}
+{"ts":"2026-11-01","call":"apply naredba-5-2006 05-78691","tokens":28749}
+{"ts":"2026-11-01","call":"apply pravilnik-pristanishtna 03-82388 (2nd)","tokens":46898}
+{"ts":"2026-11-01","call":"apply pravilnik-filmova 01-160733 (2nd)","tokens":81128}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 09-153474","tokens":22982}
+{"ts":"2026-11-01","call":"apply naredba-5-2006 06-90452","tokens":24827}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 10-201467","tokens":33266}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 10-135546","tokens":29349}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 10-155516","tokens":23043}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 11-208127","tokens":24519}
+{"ts":"2026-11-01","call":"apply naredba-5-2006 07-97935","tokens":25025}
+{"ts":"2026-11-01","call":"apply pravilnik-pristanishtna 04-94043","tokens":33780}
+{"ts":"2026-11-01","call":"apply zakon-za-ekstraditsiyata 12-244229","tokens":24253}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 11-173772","tokens":23915}
+{"ts":"2026-11-01","call":"apply naredba-5-2006 08-160759","tokens":26053}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 11-154109","tokens":26526}
+{"ts":"2026-11-01","call":"apply ustroystven-pravilnik-odz 12-202430","tokens":39058}
+{"ts":"2026-11-01","call":"apply naredba-5-2006 08-160759 (2nd)","tokens":25580}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 12-197941","tokens":23611}
+{"ts":"2026-11-01","call":"settle zakon-za-ekstraditsiyata witnesses","tokens":83106}
+{"ts":"2026-11-01","call":"settle naredba-5-2006 witnesses","tokens":43466}
+{"ts":"2026-11-01","call":"settle ustroystven-pravilnik-odz witnesses","tokens":50691}
+{"ts":"2026-11-01","call":"label pravilnik-filmova round1 bd65694389c7 (after joins)","tokens":23171}
+{"ts":"2026-11-01","call":"label naredba-5-2006 round1 3cb3ea8dfc82 (after joins)","tokens":25943}
+{"ts":"2026-11-01","call":"settle ustroystven-pravilnik-odz witnesses (2nd, superseded by version 30)","tokens":46458}
+{"ts":"2026-11-01","call":"label pravilnik-filmova round2 35c132125dcf","tokens":23194}
+{"ts":"2026-11-01","call":"label naredba-5-2006 round2 211afd2fe661","tokens":25851}
+{"ts":"2026-11-01","call":"settle zakon-za-ekstraditsiyata witnesses (2nd)","tokens":82557}
+{"ts":"2026-11-01","call":"label naredba-5-2006 round2 5526abbd624c","tokens":23271}
+{"ts":"2026-11-01","call":"label pravilnik-filmova round2 c69678c304f2","tokens":22541}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 13-201987","tokens":63201}
+{"ts":"2026-11-01","call":"settle ustroystven-pravilnik-odz witnesses (3rd)","tokens":44816}
+{"ts":"2026-11-01","call":"settle naredba-5-2006 witnesses (2nd)","tokens":43819}
+{"ts":"2026-11-01","call":"settle ustroystven-pravilnik-odz witnesses (4th)","tokens":41826}
+{"ts":"2026-11-01","call":"settle naredba-5-2006 witnesses (3rd)","tokens":42190}

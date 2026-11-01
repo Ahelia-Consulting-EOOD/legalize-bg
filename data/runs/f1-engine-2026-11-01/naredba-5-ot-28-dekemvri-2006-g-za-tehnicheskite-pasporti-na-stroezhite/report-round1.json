@@ -1,0 +1,101 @@
+{
+ "slug": "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite",
+ "round": 1,
+ "blocks": 310,
+ "sections": 11,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 62,
+   "kind": "low_confidence",
+   "detail": "unnumbered group heading over several articles (чл. 11-13) inside Раздел II; subsection_heading rather than article_title"
+  },
+  {
+   "block": 68,
+   "kind": "low_confidence",
+   "detail": "unnumbered group heading parallel to the one over чл. 11-13 inside Раздел II; subsection_heading rather than article_title"
+  }
+ ],
+ "source_findings": [],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {
+  "D-072/8": [
+   145,
+   148,
+   167,
+   195,
+   203,
+   204,
+   234,
+   235,
+   243,
+   245,
+   246,
+   250,
+   253,
+   256,
+   258,
+   261,
+   263,
+   266,
+   268,
+   271,
+   273,
+   277,
+   279,
+   281,
+   283,
+   285,
+   289,
+   290,
+   292,
+   293,
+   295,
+   297,
+   299,
+   301
+  ]
+ },
+ "exception_kinds": {
+  "low_confidence": 2
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 3,
+  "title": 2,
+  "chapter_heading": 6,
+  "article_head": 26,
+  "item": 54,
+  "alinea": 27,
+  "section_heading": 6,
+  "letter": 7,
+  "subsection_heading": 2,
+  "provisions_heading": 2,
+  "paragraph_sign": 7,
+  "annex_heading": 1,
+  "annex_row": 167
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "МИНИСТЕРСТВО НА РЕГИОНАЛНОТО РАЗВИТИЕ И БЛАГОУСТРОЙСТВОТО",
+   "note": "issuing body line before the title, not the act"
+  },
+  {
+   "block": 140,
+   "text": "Министър: А. Гагаузов",
+   "note": "minister's signature after the act"
+  },
+  {
+   "block": 309,
+   "text": "79865",
+   "note": "Gazette material number after the act, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 2,
+ "diff_lines": 552
+}

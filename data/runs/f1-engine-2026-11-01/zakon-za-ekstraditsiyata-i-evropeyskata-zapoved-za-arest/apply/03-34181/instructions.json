@@ -1,0 +1,361 @@
+{
+ "kind": "law",
+ "amending": true,
+ "own_title": "ЗАКОН за изменение и допълнение на Закона за екстрадицията и Европейската заповед за арест",
+ "target_title": "Закона за екстрадицията и Европейската заповед за арест",
+ "cited_history": {
+  "promulgation": [
+   46,
+   2005
+  ],
+  "issues": [
+   [
+    46,
+    2005
+   ],
+   [
+    86,
+    2005
+   ],
+   [
+    52,
+    2008
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 46 от 2005 г.; изм., бр. 86 от 2005 г. и бр. 52 от 2008 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "headings": [],
+ "tail": [
+  38,
+  39,
+  40
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "2": "header",
+  "3": "header",
+  "4": "header",
+  "5": "header",
+  "6": "header",
+  "7": "header",
+  "8": "header",
+  "9": "header",
+  "38": "tail",
+  "39": "tail",
+  "40": "tail",
+  "10": "instruction",
+  "11": "instruction",
+  "12": "quoted",
+  "13": "instruction",
+  "14": "instruction",
+  "15": "quoted",
+  "16": "instruction",
+  "17": "instruction",
+  "18": "instruction",
+  "19": "quoted",
+  "20": "quoted",
+  "21": "instruction",
+  "22": "quoted",
+  "23": "quoted",
+  "24": "instruction",
+  "25": "quoted",
+  "26": "instruction",
+  "27": "instruction",
+  "28": "instruction",
+  "29": "instruction",
+  "30": "instruction",
+  "31": "instruction",
+  "32": "quoted",
+  "33": "instruction",
+  "34": "quoted",
+  "35": "instruction",
+  "36": "instruction",
+  "37": "instruction"
+ },
+ "findings": [],
+ "blocks": 41,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 10,
+   "text": "§ 1. В чл. 4, ал. 3 след думата „(Интерпол)“ се добавя „или при получаване на сигнал чрез Шенгенската информационна система“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "(Интерпол)",
+    "или при получаване на сигнал чрез Шенгенската информационна система"
+   ],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 11,
+   "text": "§ 2. В чл. 19 се създава ал. 5:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    12
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 13,
+   "text": "§ 3. В чл. 36 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§3.1",
+     "level": 1,
+     "block": 14,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      15
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§3.2",
+     "level": 1,
+     "block": 16,
+     "text": "2. В ал. 3 текстът преди т. 1 се изменя така: „Двойна наказуемост не се изисква за следните престъпления, ако в издаващата държава те са наказуеми с лишаване от свобода за максимален срок не по-малко от три години или с друго по-тежко наказание, или за тях се предвижда мярка, изискваща задържане за максимален срок не по-малко от три години:“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Двойна наказуемост не се изисква за следните престъпления, ако в издаващата държава те са наказуеми с лишаване от свобода за максимален срок не по-малко от три години или с друго по-тежко наказание, или за тях се предвижда мярка, изискваща задържане за максимален срок не по-малко от три години:"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 17,
+   "text": "§ 4. В чл. 37, ал. 1, т. 3 думите „доказателства за“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "доказателства за"
+   ],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 18,
+   "text": "§ 5. В глава пета, раздел І се създава чл. 37а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    19,
+    20
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 21,
+   "text": "§ 6. Създава се чл. 38б:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    22,
+    23
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 24,
+   "text": "§ 7. В чл. 41 ал. 3 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    25
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 26,
+   "text": "§ 8. В чл. 42, ал. 2 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§8.1",
+     "level": 1,
+     "block": 27,
+     "text": "1. Създава се ново изречение второ: „В тези случаи прокурорът извършва проверка дали Европейската заповед за арест отговаря на изискванията на чл. 36 и 37.“",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "В тези случаи прокурорът извършва проверка дали Европейската заповед за арест отговаря на изискванията на чл. 36 и 37."
+     ],
+     "target": null
+    },
+    {
+     "id": "§8.2",
+     "level": 1,
+     "block": 28,
+     "text": "2. Досегашното изречение второ става изречение трето.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 29,
+   "text": "§ 9. В чл. 44 се правят следните допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§9.1",
+     "level": 1,
+     "block": 30,
+     "text": "1. В ал. 7 се създава изречение трето: „В случай на прилагане на чл. 52, ал. 1 тази мярка за неотклонение се счита за взета от момента на приключване на наказателното производство или от момента на изтърпяване на наложеното наказание.“",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "В случай на прилагане на чл. 52, ал. 1 тази мярка за неотклонение се счита за взета от момента на приключване на наказателното производство или от момента на изтърпяване на наложеното наказание."
+     ],
+     "target": null
+    },
+    {
+     "id": "§9.2",
+     "level": 1,
+     "block": 31,
+     "text": "2. Създава се ал. 13:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      32
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 33,
+   "text": "§ 10. В чл. 45 ал. 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    34
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§11",
+   "level": 0,
+   "block": 35,
+   "text": "§ 11. В чл. 48, ал. 2 се създава изречение второ: „Съдът обявява решението си в открито съдебно заседание с участие на страните.“",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Съдът обявява решението си в открито съдебно заседание с участие на страните."
+   ],
+   "target": null
+  },
+  {
+   "id": "§12",
+   "level": 0,
+   "block": 36,
+   "text": "§ 12. В чл. 52, ал. 2 думите „В случаите по ал. 1“ се заменят с „В срока по ал. 1“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "В случаите по ал. 1",
+    "В срока по ал. 1"
+   ],
+   "target": null
+  },
+  {
+   "id": "§13",
+   "level": 0,
+   "block": 37,
+   "text": "§ 13. В чл. 56, ал. 2 накрая се добавя „и 37а“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "и 37а"
+   ],
+   "target": null
+  }
+ ]
+}

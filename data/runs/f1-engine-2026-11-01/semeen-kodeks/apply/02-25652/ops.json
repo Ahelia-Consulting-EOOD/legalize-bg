@@ -1,0 +1,20 @@
+{
+ "material": 25652,
+ "issue": "82/2009",
+ "operations": [
+  {
+   "id": "§73",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 137, ал. 4",
+   "old": "Закона за българските документи за самоличност",
+   "old_ref": "q1",
+   "new": "Закона за българските лични документи",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§73 replace_words: 1 replacement(s)"
+ ]
+}

@@ -1,0 +1,273 @@
+{
+ "material": 91152,
+ "title": "Наредба за изменение и допълнение на Наредба № 5 от 2004 г. за корабните документи",
+ "issue": "7/2015",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 5 от 2004 г. за корабните документи",
+   "cited_promulgation": [
+    88,
+    2004
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-5-ot-1-septemvri-2004-g-za-korabnite-dokumenti",
+   "candidates": [
+    "naredba-5-ot-1-septemvri-2004-g-za-korabnite-dokumenti"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    88,
+    2004
+   ]
+  }
+ ],
+ "instructions": 137,
+ "signs": 96,
+ "quoted_blocks": 918,
+ "findings": [
+  {
+   "block": 461,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 43. Приложения № 2 и № 2б към чл. 13, ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 981,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 51. Приложение № 13 към чл. 25, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 984,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 52. Приложения № 14 към чл. 26, ал. 1,' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 989,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 53. Приложение № 15 към чл. 27, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 992,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 54. Приложения № 16 към чл. 28, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 996,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 55. Приложения № 17 към чл. 29, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1000,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 56. Приложения № 18 към чл. 30, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1004,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 57. Приложение № 19 към чл. 31, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1007,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 58. Приложения № 20 към чл. 32, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1011,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 59. Приложения № 21 към чл. 33, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1014,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 60. Приложения № 22 към чл. 34, ал. 1,' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1018,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 61. Приложение № 23 към чл. 35, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1021,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 62. Приложения № 24 към чл. 36, ал. 1,' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1026,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 63. Приложения № 25 и № 25а към чл. 37' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1030,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 64. Приложение № 28 към чл. 40, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1032,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 65. Приложения № 30 и № 30а към чл. 42' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1035,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 66. Приложение № 31 към чл. 43, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1037,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 67. Приложение № 32 към чл. 44, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1039,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 68. Приложение № 33 към чл. 45, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1041,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 69. Приложение № 34 към чл. 46, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1043,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 70. Приложения № 35 към чл. 47, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1046,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 71. Приложение № 36 към чл. 48, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1048,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 72. Приложения № 37 към чл. 49, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1051,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 73. Приложение № 38 към чл. 50, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1053,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 74. Приложение № 39 към чл. 51, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1055,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 75. Приложение № 40 към чл. 52, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1057,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 76. Приложение № 41 към чл. 53, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1059,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 77. Приложение № 42 към чл. 54, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1061,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 78. Приложение № 43 към чл. 55, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1063,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 79. Приложение № 44 към чл. 56, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1065,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 80. Приложения № 45 и 45а към чл. 57, ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1068,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 81. Приложение № 46 към чл. 58, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1070,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 82. Приложение № 47 към чл. 59, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1072,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 83. Приложение № 47а към чл. 59а се из' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1074,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 84. Приложение № 47б към чл. 59б се из' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1076,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 85. Приложение № 47в към чл. 59б, ал. ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1078,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 86. Приложения № 49 към чл. 61, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1081,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 87. Приложения № 51, 51а и 51б към чл.' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1085,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 88. Приложения № 62 и 63 към чл. 36б, ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1087,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 89. Приложение № 64 към чл. 58а, ал. 1' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1089,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 90. Приложение № 65 към чл. 58б се изм' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1091,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 91. Приложение № 66 към чл. 58в се изм' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1093,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 92. Приложение № 67 към чл. 58г се изм' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1095,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 93. Приложение № 68 към чл. 26а, ал. 1' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1097,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 94. Приложение № 69 към чл. 26б, ал. 1' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1100,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 95. Навсякъде в наредбата думите „чл. ' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 14569,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

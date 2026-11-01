@@ -1,0 +1,42 @@
+{
+ "material": 154172,
+ "title": "Наредба за изменение и допълнение на Наредба № 1 от 2006 г. за условията и реда за издаване и пускане в употреба на пощенски марки, на пощенски продукти и на специални пощенски печати и за изваждане от употреба на пощенски марки",
+ "issue": "103/2020",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 1 от 2006 г. за условията и реда за издаване и пускане в употреба на пощенски марки, на пощенски продукти и на специални пощенски печати и за изваждане от употреба на пощенски марки",
+   "cited_promulgation": [
+    93,
+    2006
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-1-ot-7-noemvri-2006-g-za-usloviyata-i-reda-za-izdavane-i-puskane-v-upotr",
+   "candidates": [
+    "naredba-1-ot-7-noemvri-2006-g-za-usloviyata-i-reda-za-izdavane-i-puskane-v-upotr"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    93,
+    2006
+   ]
+  }
+ ],
+ "instructions": 20,
+ "signs": 6,
+ "quoted_blocks": 14,
+ "findings": [],
+ "tokens_instructions": 1498,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

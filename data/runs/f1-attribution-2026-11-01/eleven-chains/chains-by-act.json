@@ -1,0 +1,878 @@
+{
+ "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo": {
+  "materials": [
+   {
+    "material": 2662,
+    "issue": "82/2006",
+    "scope": [
+     "§11"
+    ]
+   },
+   {
+    "material": 5005,
+    "issue": "33/2008",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 6481,
+    "issue": "66/2008",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 25652,
+    "issue": "82/2009",
+    "scope": [
+     "§81"
+    ]
+   },
+   {
+    "material": 83184,
+    "issue": "21/2014",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 86030,
+    "issue": "53/2014",
+    "scope": [
+     "§52"
+    ]
+   },
+   {
+    "material": 126752,
+    "issue": "44/2018",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 135056,
+    "issue": "17/2019",
+    "scope": [
+     "§78"
+    ]
+   },
+   {
+    "material": 145456,
+    "issue": "11/2020",
+    "scope": [
+     "§75"
+    ]
+   },
+   {
+    "material": 156081,
+    "issue": "16/2021",
+    "scope": [
+     "§10"
+    ]
+   },
+   {
+    "material": 162229,
+    "issue": "80/2021",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 244673,
+    "issue": "66/2026",
+    "scope": [
+     "§35"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "103/2004",
+   "82/2006",
+   "33/2008",
+   "66/2008",
+   "82/2009",
+   "21/2014",
+   "53/2014",
+   "44/2018",
+   "17/2019",
+   "11/2020",
+   "16/2021",
+   "80/2021",
+   "66/2026"
+  ],
+  "missing": [],
+  "extra": [],
+  "tokens": 24336,
+  "instructions": 344
+ },
+ "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest": {
+  "materials": [
+   {
+    "material": 5288,
+    "issue": "52/2008",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 34181,
+    "issue": "49/2010",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 54416,
+    "issue": "55/2011",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 86030,
+    "issue": "53/2014",
+    "scope": [
+     "§48"
+    ]
+   },
+   {
+    "material": 134075,
+    "issue": "7/2019",
+    "scope": [
+     "§11"
+    ]
+   },
+   {
+    "material": 138116,
+    "issue": "45/2019",
+    "scope": [
+     "§5"
+    ]
+   },
+   {
+    "material": 195264,
+    "issue": "48/2023",
+    "scope": [
+     "§34"
+    ]
+   },
+   {
+    "material": 197941,
+    "issue": "67/2023",
+    "scope": [
+     "§18"
+    ]
+   },
+   {
+    "material": 201467,
+    "issue": "100/2023",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 208127,
+    "issue": "18/2024",
+    "scope": [
+     "§11"
+    ]
+   },
+   {
+    "material": 244229,
+    "issue": "59/2026",
+    "scope": [
+     "§23"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "46/2005",
+   "86/2005",
+   "52/2008",
+   "49/2010",
+   "55/2011",
+   "53/2014",
+   "7/2019",
+   "45/2019",
+   "48/2023",
+   "67/2023",
+   "100/2023",
+   "18/2024",
+   "59/2026"
+  ],
+  "missing": [
+   "86/2005"
+  ],
+  "extra": [],
+  "tokens": 17983,
+  "instructions": 144
+ },
+ "kodeks-na-mezhdunarodnoto-chastno-pravo": {
+  "materials": [
+   {
+    "material": 22498,
+    "issue": "47/2009",
+    "scope": [
+     "§9"
+    ]
+   },
+   {
+    "material": 41709,
+    "issue": "100/2010",
+    "scope": [
+     "§23"
+    ]
+   },
+   {
+    "material": 201987,
+    "issue": "106/2023",
+    "scope": [
+     "§43"
+    ]
+   },
+   {
+    "material": 214105,
+    "issue": "39/2024",
+    "scope": [
+     "§21"
+    ]
+   },
+   {
+    "material": 246208,
+    "issue": "92/2026",
+    "scope": [
+     "§9"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "42/2005",
+   "59/2007",
+   "47/2009",
+   "100/2010",
+   "106/2023",
+   "39/2024",
+   "92/2026"
+  ],
+  "missing": [
+   "59/2007"
+  ],
+  "extra": [],
+  "tokens": 6321,
+  "instructions": 59
+ },
+ "semeen-kodeks": {
+  "materials": [
+   {
+    "material": 25033,
+    "issue": "74/2009",
+    "scope": [
+     "§47"
+    ]
+   },
+   {
+    "material": 25652,
+    "issue": "82/2009",
+    "scope": [
+     "§73"
+    ]
+   },
+   {
+    "material": 41376,
+    "issue": "98/2010",
+    "scope": [
+     "§94"
+    ]
+   },
+   {
+    "material": 41671,
+    "issue": "100/2010",
+    "scope": [
+     "§23"
+    ]
+   },
+   {
+    "material": 41709,
+    "issue": "100/2010",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 69470,
+    "issue": "82/2012",
+    "scope": [
+     "§15"
+    ]
+   },
+   {
+    "material": 77659,
+    "issue": "68/2013",
+    "scope": [
+     "§54"
+    ]
+   },
+   {
+    "material": 107550,
+    "issue": "74/2016",
+    "scope": [
+     "§29"
+    ]
+   },
+   {
+    "material": 121172,
+    "issue": "103/2017",
+    "scope": [
+     "§6"
+    ]
+   },
+   {
+    "material": 135546,
+    "issue": "24/2019",
+    "scope": [
+     "§2"
+    ]
+   },
+   {
+    "material": 154109,
+    "issue": "103/2020",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 197941,
+    "issue": "67/2023",
+    "scope": [
+     "§20"
+    ]
+   },
+   {
+    "material": 201987,
+    "issue": "106/2023",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 233694,
+    "issue": "26/2025",
+    "scope": [
+     "§34"
+    ]
+   },
+   {
+    "material": 235575,
+    "issue": "52/2025",
+    "scope": [
+     "§45"
+    ]
+   },
+   {
+    "material": 240237,
+    "issue": "115/2025",
+    "scope": [
+     "title"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "47/2009",
+   "74/2009",
+   "82/2009",
+   "98/2010",
+   "100/2010",
+   "82/2012",
+   "68/2013",
+   "74/2016",
+   "103/2017",
+   "24/2019",
+   "101/2019",
+   "103/2020",
+   "67/2023",
+   "106/2023",
+   "26/2025",
+   "52/2025",
+   "115/2025"
+  ],
+  "missing": [
+   "101/2019"
+  ],
+  "extra": [],
+  "tokens": 26369,
+  "instructions": 284
+ },
+ "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli": {
+  "materials": [
+   {
+    "material": 88705,
+    "issue": "87/2014",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 90677,
+    "issue": "104/2014",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 93839,
+    "issue": "29/2015",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 113274,
+    "issue": "29/2017",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 148171,
+    "issue": "47/2020",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 153040,
+    "issue": "93/2020",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 183866,
+    "issue": "6/2023",
+    "scope": [
+     "title"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "60/2014",
+   "87/2014",
+   "104/2014",
+   "29/2015",
+   "29/2017",
+   "47/2020",
+   "93/2020",
+   "6/2023"
+  ],
+  "missing": [],
+  "extra": [],
+  "tokens": 3614,
+  "instructions": 57
+ },
+ "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite": {
+  "materials": [
+   {
+    "material": 5085,
+    "issue": "38/2008",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 30903,
+    "issue": "22/2010",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 59312,
+    "issue": "98/2011",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 71595,
+    "issue": "2/2013",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 78691,
+    "issue": "80/2013",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 90452,
+    "issue": "102/2014",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 97935,
+    "issue": "79/2015",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 160759,
+    "issue": "68/2021",
+    "scope": [
+     "title"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "7/2007",
+   "38/2008",
+   "22/2010",
+   "98/2011",
+   "2/2013",
+   "80/2013",
+   "102/2014",
+   "79/2015",
+   "68/2021"
+  ],
+  "missing": [],
+  "extra": [],
+  "tokens": 6563,
+  "instructions": 94
+ },
+ "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr": {
+  "materials": [
+   {
+    "material": 98158,
+    "issue": "83/2015",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 108826,
+    "issue": "88/2016",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 139711,
+    "issue": "58/2019",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 148957,
+    "issue": "54/2020",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 162218,
+    "issue": "79/2021",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 164970,
+    "issue": "96/2021",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 195920,
+    "issue": "51/2023",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 223420,
+    "issue": "65/2024",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 232879,
+    "issue": "13/2025",
+    "scope": [
+     "title"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "7/2015",
+   "83/2015",
+   "88/2016",
+   "58/2019",
+   "54/2020",
+   "79/2021",
+   "81/2021",
+   "96/2021",
+   "51/2023",
+   "65/2024",
+   "13/2025"
+  ],
+  "missing": [
+   "81/2021"
+  ],
+  "extra": [],
+  "tokens": 50152,
+  "instructions": 363
+ },
+ "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist": {
+  "materials": [
+   {
+    "material": 68862,
+    "issue": "77/2012",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 79704,
+    "issue": "93/2013",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 82388,
+    "issue": "12/2014",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 94043,
+    "issue": "31/2015",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 94506,
+    "issue": "37/2015",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 132104,
+    "issue": "97/2018",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 138463,
+    "issue": "47/2019",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 195426,
+    "issue": "50/2023",
+    "scope": [
+     "title"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "36/2011",
+   "77/2012",
+   "93/2013",
+   "12/2014",
+   "31/2015",
+   "37/2015",
+   "97/2018",
+   "47/2019",
+   "50/2023"
+  ],
+  "missing": [],
+  "extra": [],
+  "tokens": 51050,
+  "instructions": 595
+ },
+ "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie": {
+  "materials": [
+   {
+    "material": 29283,
+    "issue": "9/2010",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 35396,
+    "issue": "60/2010",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 36798,
+    "issue": "73/2010",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 48515,
+    "issue": "32/2011",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 62371,
+    "issue": "21/2012",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 100860,
+    "issue": "12/2016",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 107723,
+    "issue": "75/2016",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 147660,
+    "issue": "40/2020",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 153474,
+    "issue": "97/2020",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 155516,
+    "issue": "9/2021",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 173772,
+    "issue": "41/2022",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 202430,
+    "issue": "3/2024",
+    "scope": [
+     "title"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "7/2010",
+   "9/2010",
+   "60/2010",
+   "73/2010",
+   "32/2011",
+   "21/2012",
+   "12/2016",
+   "75/2016",
+   "40/2020",
+   "97/2020",
+   "9/2021",
+   "41/2022",
+   "3/2024"
+  ],
+  "missing": [],
+  "extra": [],
+  "tokens": 9117,
+  "instructions": 167
+ },
+ "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n": {
+  "materials": [
+   {
+    "material": 147261,
+    "issue": "31/2020",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 165363,
+    "issue": "100/2021",
+    "scope": [
+     "title"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "94/2018",
+   "31/2020",
+   "100/2021"
+  ],
+  "missing": [],
+  "extra": [],
+  "tokens": 7092,
+  "instructions": 128
+ },
+ "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya": {
+  "materials": [
+   {
+    "material": 160733,
+    "issue": "67/2021",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 202220,
+    "issue": "2/2024",
+    "scope": [
+     "title"
+    ]
+   },
+   {
+    "material": 241452,
+    "issue": "20/2026",
+    "scope": [
+     "title"
+    ]
+   }
+  ],
+  "lexbg_issues": [
+   "102/2018",
+   "67/2021",
+   "2/2024",
+   "20/2026"
+  ],
+  "missing": [],
+  "extra": [],
+  "tokens": 147986,
+  "instructions": 409
+ }
+}

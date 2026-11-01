@@ -1,0 +1,62 @@
+{
+ "slug": "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli",
+ "round": 0,
+ "blocks": 96,
+ "sections": 2,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 67,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '1.главния секретар на МВР – за'"
+  },
+  {
+   "block": 69,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '3.прекия ръководител – за държ'"
+  }
+ ],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "malformed_head": 2
+ },
+ "labels": {
+  "drop": 3,
+  "title": 2,
+  "section_heading": 6,
+  "article_head": 15,
+  "item": 31,
+  "letter": 7,
+  "alinea": 24,
+  "provisions_heading": 2,
+  "paragraph_sign": 6
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "МИНИСТЕРСТВО НА ВЪТРЕШНИТЕ РАБОТИ",
+   "note": "Gazette's issuing-body header before the title, not part of the act"
+  },
+  {
+   "block": 94,
+   "text": "Министър: Цветлин Йовчев",
+   "note": "minister's signature after the act, not part of the act"
+  },
+  {
+   "block": 95,
+   "text": "4901",
+   "note": "Gazette material number after the signature, not part of the act"
+  }
+ ],
+ "note": "an earlier task set was replaced: answers of round 1 moved to round1-stale-133802653876",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 220
+}

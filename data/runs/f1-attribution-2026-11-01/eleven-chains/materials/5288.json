@@ -1,0 +1,40 @@
+{
+ "material": 5288,
+ "title": "Закон за изменение и допълнение на Закона за екстрадицията и Европейската заповед за арест",
+ "issue": "52/2008",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за екстрадицията и Европейската заповед за арест",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest",
+   "candidates": [
+    "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2005
+   ]
+  }
+ ],
+ "instructions": 24,
+ "signs": 8,
+ "quoted_blocks": 24,
+ "findings": [],
+ "tokens_instructions": 1471,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

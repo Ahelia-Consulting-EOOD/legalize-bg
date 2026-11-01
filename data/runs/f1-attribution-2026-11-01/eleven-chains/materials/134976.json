@@ -1,0 +1,42 @@
+{
+ "material": 134976,
+ "title": "Наредба за изменение на Наредба № Н-23 от 2016 г. за условията, размерите и реда за изплащане на допълнителни възнаграждения на военнослужещите и цивилните служители от служба „Военна информация“",
+ "issue": "17/2019",
+ "section": "Министерство на отбраната",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № Н-23 от 2016 г. за условията, размерите и реда за изплащане на допълнителни възнаграждения на военнослужещите и цивилните служители от служба „Военна информация“",
+   "cited_promulgation": [
+    87,
+    2016
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-n-23-ot-21-oktomvri-2016-g-za-usloviyata-razmerite-i-reda-za-izplashtane",
+   "candidates": [
+    "naredba-n-23-ot-21-oktomvri-2016-g-za-usloviyata-razmerite-i-reda-za-izplashtane"
+   ],
+   "flags": [
+    "content_mismatch"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (content_mismatch)",
+   "act_promulgation": [
+    87,
+    2016
+   ]
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 139,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

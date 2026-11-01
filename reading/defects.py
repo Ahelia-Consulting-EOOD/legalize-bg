@@ -899,7 +899,10 @@ def list_confirmed(run_root: Path, root: Path = ROOT, run: str | None = None, un
             continue
         routes.add_entry(list_path, entry)
         ctx = routes.context(entry.slug, run, root=root)
-        outcome = routes.run_route(ctx, STEPS, until=until)
+        # every route halts before its first step: the labeller batch of the whole-act route is S5's, the engine run of the
+        # history route is F1's, each under its own budget (since 1 November 2026 the history route has steps)
+        halt = routes.ROUTE_STEPS[ctx.entry.route][0] if until == "amendment_search" and ctx.entry.route in routes.ROUTE_STEPS else until
+        outcome = routes.run_route(ctx, STEPS, until=halt)
         rec = {"slug": entry.slug, "route": ctx.entry.route, "added": True, "state": outcome.state, "step": outcome.step, "detail": outcome.detail}
         if outcome.state == "stopped" and outcome.case_file:
             _fill_case(root / outcome.case_file, run_root, entry, run)

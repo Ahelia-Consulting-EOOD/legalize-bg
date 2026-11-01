@@ -1,0 +1,80 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "target_title": "Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "cited_history": {
+  "promulgation": [
+   60,
+   2014
+  ],
+  "issues": [
+   [
+    60,
+    2014
+   ],
+   [
+    87,
+    2014
+   ]
+  ],
+  "text": "(ДВ, бр. 60 от 2014 г.; изм. и доп., бр. 87 от 2014 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА ВЪТРЕШНИТЕ РАБОТИ",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [
+  4
+ ],
+ "tail": [
+  6,
+  7
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "6": "tail",
+  "7": "tail",
+  "2": "instruction",
+  "3": "quoted",
+  "4": "heading",
+  "5": "instruction"
+ },
+ "findings": [],
+ "blocks": 8,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 12 ал. 2 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    3
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 5,
+   "text": "§ 2. Наредбата влиза в сила от деня на обнародването й в „Държавен вестник“.",
+   "section": "transitional",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

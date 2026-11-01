@@ -1,0 +1,225 @@
+{
+ "material": 22498,
+ "title": "Семеен кодекс",
+ "issue": "47/2009",
+ "section": "Народно събрание",
+ "kind": "code",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§3",
+   "cited_title": "Семейният кодекс",
+   "cited_promulgation": [
+    41,
+    1985
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": true,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Кодекса на международното частно право",
+   "cited_promulgation": [
+    42,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+   "candidates": [
+    "kodeks-na-mezhdunarodnoto-chastno-pravo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    42,
+    2005
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Гражданския процесуален кодекс",
+   "cited_promulgation": [
+    59,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "grazhdanski-protsesualen-kodeks",
+   "candidates": [
+    "grazhdanski-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    59,
+    2007
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Наказателния кодекс",
+   "cited_promulgation": [
+    26,
+    1968
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "nakazatelen-kodeks",
+   "candidates": [
+    "nakazatelen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    1968
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за гражданската регистрация",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-grazhdanskata-registratsiya",
+   "candidates": [
+    "zakon-za-grazhdanskata-registratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за българските документи за самоличност",
+   "cited_promulgation": [
+    93,
+    1998
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§15",
+   "cited_title": "Закона за нотариусите и нотариалната дейност",
+   "cited_promulgation": [
+    104,
+    1996
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-notariusite-i-notarialnata-deynost-zagl-izm-dv-br-123-ot-1997-g",
+   "candidates": [
+    "zakon-za-notariusite-i-notarialnata-deynost-zagl-izm-dv-br-123-ot-1997-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    104,
+    1996
+   ]
+  },
+  {
+   "scope": "§16",
+   "cited_title": "Закона за борба срещу противообществените прояви на малолетните и непълнолетните",
+   "cited_promulgation": [
+    13,
+    1958
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet",
+   "candidates": [
+    "zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    1958
+   ]
+  },
+  {
+   "scope": "§17",
+   "cited_title": "Закона за наследството",
+   "cited_promulgation": [
+    22,
+    1949
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasledstvoto",
+   "candidates": [
+    "zakon-za-nasledstvoto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    22,
+    1949
+   ]
+  }
+ ],
+ "instructions": 33,
+ "signs": 16,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 2745,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

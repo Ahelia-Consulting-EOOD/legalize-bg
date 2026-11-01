@@ -1,0 +1,20 @@
+{
+ "material": 30903,
+ "issue": "22/2010",
+ "material_sha256": "5192c48a03d44aa64a7a64cea474202a7e54c4b1cf50d9a8f701e2d8ac13956c",
+ "body_before_sha256": "ec799dba65f5d8bff2c1e709d524635ab6df4bbc4e4d49a734cd17ccefa647dd",
+ "task_sha256": "d3a16512c6d4d636a65c089ad07b1c665c4aa508996689b2395cbafc0d96153c",
+ "scopes": [
+  "title"
+ ],
+ "findings": [
+  {
+   "block": 43,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходна и заключителна разпоредба' is closed by the sequence, not by a mark"
+  }
+ ],
+ "engine": "35",
+ "task_core": true,
+ "answer_sha256": "3d5e6688c984e5b3934551cee0f7ba543c321385789a31d62bd26f694af577fd"
+}

@@ -1,0 +1,7 @@
+{"material": "06-246208", "operations": [
+{"id": "§9", "kind": "no_text_change"},
+{"id": "§9.1", "kind": "insert_provision", "address": "чл. 18а", "blocks": [79, 80], "after": "чл. 18"},
+{"id": "§9.2", "kind": "no_text_change"},
+{"id": "§9.2.а", "kind": "insert_provision", "address": "чл. 121, ал. 2", "blocks": [83, 83], "after": "чл. 121, ал. 1"},
+{"id": "§9.2.б", "kind": "renumber", "address": "чл. 121, ал. 2 и 3", "to": "ал. 3 и 4"}
+]}

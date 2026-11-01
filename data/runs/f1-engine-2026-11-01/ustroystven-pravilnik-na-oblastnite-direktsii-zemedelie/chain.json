@@ -1,0 +1,187 @@
+{
+ "act": "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie",
+ "promulgation": {
+  "material": 28798,
+  "issue": "7/2010",
+  "date": "2010-01-26"
+ },
+ "materials": [
+  {
+   "material": 29283,
+   "issue": "9/2010",
+   "date": "2010-02-02",
+   "position": 3,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 35396,
+   "issue": "60/2010",
+   "date": "2010-08-03",
+   "position": 4,
+   "title": "Правилник за изменение и допълнение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 36798,
+   "issue": "73/2010",
+   "date": "2010-09-17",
+   "position": 12,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 48515,
+   "issue": "32/2011",
+   "date": "2011-04-19",
+   "position": 12,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 62371,
+   "issue": "21/2012",
+   "date": "2012-03-13",
+   "position": 16,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 100860,
+   "issue": "12/2016",
+   "date": "2016-02-12",
+   "position": 6,
+   "title": "Правилник за изменение и допълнение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 107723,
+   "issue": "75/2016",
+   "date": "2016-09-27",
+   "position": 10,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 147660,
+   "issue": "40/2020",
+   "date": "2020-05-05",
+   "position": 10,
+   "title": "Правилник за изменение и допълнение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 153474,
+   "issue": "97/2020",
+   "date": "2020-11-13",
+   "position": 6,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 155516,
+   "issue": "9/2021",
+   "date": "2021-02-02",
+   "position": 20,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 173772,
+   "issue": "41/2022",
+   "date": "2022-06-03",
+   "position": 20,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 202430,
+   "issue": "3/2024",
+   "date": "2024-01-09",
+   "position": 3,
+   "title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  }
+ ],
+ "lexbg_issues": [
+  "7/2010",
+  "9/2010",
+  "60/2010",
+  "73/2010",
+  "32/2011",
+  "21/2012",
+  "12/2016",
+  "75/2016",
+  "40/2020",
+  "97/2020",
+  "9/2021",
+  "41/2022",
+  "3/2024"
+ ],
+ "unexplained_lexbg_issues": [],
+ "extra_issues": [],
+ "decisions_naming_the_act": [],
+ "candidates": 165,
+ "bodies_fetched": 152,
+ "built_at": "2026-11-01T11:01:10+00:00"
+}

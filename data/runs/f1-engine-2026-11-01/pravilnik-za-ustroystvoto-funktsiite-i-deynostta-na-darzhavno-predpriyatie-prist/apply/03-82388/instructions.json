@@ -1,0 +1,740 @@
+{
+ "kind": "regulation",
+ "amending": true,
+ "own_title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+ "target_title": "Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+ "cited_history": {
+  "promulgation": [
+   36,
+   2011
+  ],
+  "issues": [
+   [
+    36,
+    2011
+   ],
+   [
+    77,
+    2012
+   ],
+   [
+    93,
+    2013
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 36 от 2011 г.; изм., бр. 77 от 2012 г. и бр. 93 от 2013 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА ТРАНСПОРТА, ИНФОРМАЦИОННИТЕ ТЕХНОЛОГИИ И СЪОБЩЕНИЯТА",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [],
+ "tail": [
+  122,
+  123
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "122": "tail",
+  "123": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "instruction",
+  "5": "instruction",
+  "6": "instruction",
+  "7": "quoted",
+  "8": "quoted",
+  "9": "quoted",
+  "10": "quoted",
+  "11": "quoted",
+  "12": "quoted",
+  "13": "quoted",
+  "14": "quoted",
+  "15": "quoted",
+  "16": "quoted",
+  "17": "quoted",
+  "18": "quoted",
+  "19": "quoted",
+  "20": "quoted",
+  "21": "quoted",
+  "22": "quoted",
+  "23": "quoted",
+  "24": "quoted",
+  "25": "quoted",
+  "26": "quoted",
+  "27": "quoted",
+  "28": "instruction",
+  "29": "quoted",
+  "30": "quoted",
+  "31": "quoted",
+  "32": "quoted",
+  "33": "quoted",
+  "34": "quoted",
+  "35": "quoted",
+  "36": "quoted",
+  "37": "instruction",
+  "38": "instruction",
+  "39": "quoted",
+  "40": "instruction",
+  "41": "quoted",
+  "42": "instruction",
+  "43": "quoted",
+  "44": "instruction",
+  "45": "quoted",
+  "46": "instruction",
+  "47": "instruction",
+  "48": "instruction",
+  "49": "instruction",
+  "50": "instruction",
+  "51": "instruction",
+  "52": "instruction",
+  "53": "instruction",
+  "54": "instruction",
+  "55": "instruction",
+  "56": "instruction",
+  "57": "instruction",
+  "58": "instruction",
+  "59": "instruction",
+  "60": "instruction",
+  "61": "instruction",
+  "62": "instruction",
+  "63": "instruction",
+  "64": "instruction",
+  "65": "quoted",
+  "66": "quoted",
+  "67": "quoted",
+  "68": "quoted",
+  "69": "quoted",
+  "70": "quoted",
+  "71": "quoted",
+  "72": "quoted",
+  "73": "quoted",
+  "74": "quoted",
+  "75": "quoted",
+  "76": "quoted",
+  "77": "quoted",
+  "78": "quoted",
+  "79": "quoted",
+  "80": "quoted",
+  "81": "quoted",
+  "82": "quoted",
+  "83": "quoted",
+  "84": "quoted",
+  "85": "quoted",
+  "86": "quoted",
+  "87": "quoted",
+  "88": "quoted",
+  "89": "quoted",
+  "90": "quoted",
+  "91": "quoted",
+  "92": "quoted",
+  "93": "quoted",
+  "94": "quoted",
+  "95": "quoted",
+  "96": "quoted",
+  "97": "quoted",
+  "98": "quoted",
+  "99": "quoted",
+  "100": "quoted",
+  "101": "quoted",
+  "102": "quoted",
+  "103": "quoted",
+  "104": "quoted",
+  "105": "quoted",
+  "106": "quoted",
+  "107": "quoted",
+  "108": "quoted",
+  "109": "instruction",
+  "110": "instruction",
+  "111": "instruction",
+  "112": "instruction",
+  "113": "instruction",
+  "114": "quoted",
+  "115": "instruction",
+  "116": "quoted",
+  "117": "quoted",
+  "118": "quoted",
+  "119": "quoted",
+  "120": "quoted",
+  "121": "quoted"
+ },
+ "findings": [],
+ "blocks": 124,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 14 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 3,
+     "text": "1. В т. 4 след думата „приема“ се добавя „след обсъждане със стопанския съвет“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "приема",
+      "след обсъждане със стопанския съвет"
+     ],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 4,
+     "text": "2. В т. 5 след думата „проекта“ се заменя с „подготвения от стопанския съвет проект“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "проекта",
+      "подготвения от стопанския съвет проект"
+     ],
+     "target": null
+    },
+    {
+     "id": "§1.3",
+     "level": 1,
+     "block": 5,
+     "text": "3. В т. 7 след думите „пристанищните такси“ се добавя „обосновани от директорите на клоновете – териториални поделения на предприятието, и приети от стопанския съвет“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "пристанищните такси",
+      "обосновани от директорите на клоновете – териториални поделения на предприятието, и приети от стопанския съвет"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 6,
+   "text": "§ 2. Създава се чл. 16а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 28,
+   "text": "§ 3. Създава се чл. 16б:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 37,
+   "text": "§ 4. В чл. 20 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§4.1",
+     "level": 1,
+     "block": 38,
+     "text": "1. В ал. 1 т. 2 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      39
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§4.2",
+     "level": 1,
+     "block": 40,
+     "text": "2. Създава се ал. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      41
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 42,
+   "text": "§ 5. В чл. 22 ал. 2 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    43
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 44,
+   "text": "§ 6. В чл. 25 т. 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    45
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 46,
+   "text": "§ 7. В чл. 30 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§7.1",
+     "level": 1,
+     "block": 47,
+     "text": "1. В ал. 1:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§7.1.а",
+       "level": 2,
+       "block": 48,
+       "text": "а) в текста на ал. 1 след думите „като изпълнява функции по“ се добавя „методическо ръководство на клоновете – териториални поделения при:“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "като изпълнява функции по",
+        "методическо ръководство на клоновете – териториални поделения при:"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.1.б",
+       "level": 2,
+       "block": 49,
+       "text": "б) в т. 7 думите „участие в“ се заличават;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "участие в"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.1.в",
+       "level": 2,
+       "block": 50,
+       "text": "в) в т. 8 думите „участие в“ се заличават;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "участие в"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.1.г",
+       "level": 2,
+       "block": 51,
+       "text": "г) в т. 9 думите „участие в“ се заличават;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "участие в"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.1.д",
+       "level": 2,
+       "block": 52,
+       "text": "д) в т. 16 думите „участие в“ се заличават;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "участие в"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.1.е",
+       "level": 2,
+       "block": 53,
+       "text": "е) в т. 17 думите „участие в“ се заличават;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "участие в"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.1.ж",
+       "level": 2,
+       "block": 54,
+       "text": "ж) точка 20 се отменя.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§7.2",
+     "level": 1,
+     "block": 55,
+     "text": "2. В ал. 2:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§7.2.а",
+       "level": 2,
+       "block": 56,
+       "text": "а) в т. 1 думата „подготвя“ се заменя с „оказва съдействие на клоновете – териториални поделения, при подготовката на“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "подготвя",
+        "оказва съдействие на клоновете – териториални поделения, при подготовката на"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.2.б",
+       "level": 2,
+       "block": 57,
+       "text": "б) в т. 3 думата „създава“ се заменя с „подпомага изработването на“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "създава",
+        "подпомага изработването на"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.2.в",
+       "level": 2,
+       "block": 58,
+       "text": "в) в т. 8 думите „подготвя и организира“ се заменят с „подпомага клоновете – териториални поделения на предприятието, при подготовката и организацията на“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "подготвя и организира",
+        "подпомага клоновете – териториални поделения на предприятието, при подготовката и организацията на"
+       ],
+       "target": null
+      },
+      {
+       "id": "§7.2.г",
+       "level": 2,
+       "block": 59,
+       "text": "г) точка 9 се отменя.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 60,
+   "text": "§ 8. В чл. 32 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§8.1",
+     "level": 1,
+     "block": 61,
+     "text": "1. Наименованието на чл. 32 „Дирекция „Пристанищни услуги, статистика и екология“ се заменя със „Стратегическо развитие, пристанищни услуги и екология“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Пристанищни услуги, статистика и екология",
+      "Стратегическо развитие, пристанищни услуги и екология"
+     ],
+     "target": null
+    },
+    {
+     "id": "§8.2",
+     "level": 1,
+     "block": 62,
+     "text": "2. В ал. 1 думите „Пристанищни услуги, статистика и екология“ се заменят със „Стратегическо развитие, пристанищни услуги и екология“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Пристанищни услуги, статистика и екология",
+      "Стратегическо развитие, пристанищни услуги и екология"
+     ],
+     "target": null
+    },
+    {
+     "id": "§8.3",
+     "level": 1,
+     "block": 63,
+     "text": "3. Алинея 3 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 64,
+   "text": "§ 9. В чл. 34 ал. 2 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 109,
+   "text": "§ 10. В чл. 35 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§10.1",
+     "level": 1,
+     "block": 110,
+     "text": "1. В ал. 2:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§10.1.а",
+       "level": 2,
+       "block": 111,
+       "text": "а) точка 3 се отменя;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§10.1.б",
+       "level": 2,
+       "block": 112,
+       "text": "б) точка 6 се отменя;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§10.1.в",
+       "level": 2,
+       "block": 113,
+       "text": "в) създава се т. 8:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        114
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§10.2",
+     "level": 1,
+     "block": 115,
+     "text": "2. Създават се ал. 4 и 5:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      116,
+      117,
+      118,
+      119,
+      120,
+      121
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  }
+ ]
+}

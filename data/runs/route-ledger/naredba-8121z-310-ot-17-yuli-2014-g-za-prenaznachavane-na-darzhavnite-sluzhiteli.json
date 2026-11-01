@@ -1,0 +1,523 @@
+{
+ "slug": "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli",
+ "steps": [
+  {
+   "step": "chain",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "068d6571c729d55ce95314a00adadf926463bc087c571f05b10603f0ee5168c9",
+   "outputs_sha256": "05324c1cace6f56dad42f03f9a8f7b38ed041731d8b8c8fad069076d1066b0cb",
+   "outcome": "done",
+   "detail": "7 material(s) change the act after бр. 60/2014; lex.bg names 7 issue(s), 0 unexplained (none), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:46:22+00:00",
+   "ended": "2026-11-01T10:48:03+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8f2f5c1e715e6dc7d3d982d17eb40be73c25d233c162eee159a488d06ece62af",
+   "outputs_sha256": "f3717323ea42f31f0c574d6b594d73c76adf976f0e3f155c1f325bade690871f",
+   "outcome": "done",
+   "detail": "material 86641 of бр. 60/2014 (cached), sha256 ec1e83a6af5b",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:48:03+00:00",
+   "ended": "2026-11-01T10:48:03+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "2b04d0dc2475629bba57de1abdf914b03eb3227c774f638a10061dbe7bcdbcf5",
+   "outputs_sha256": "3b3317ae78011ca3018b8d574be01351f162bb7f0edd128b1c55d96eb753dd96",
+   "outcome": "done",
+   "detail": "96 blocks, 2 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:48:03+00:00",
+   "ended": "2026-11-01T10:48:03+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "f93608ea1032e72ef9bc8a966c20e876989a25ea148f21e3fbbfe3c46f635b42",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 2 of 2 tasks unanswered; 1 labeller call(s) to make: dfbcba9c8491-0000-0001 (2 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/calls/round0/dfbcba9c8491-0000-0001.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/maps/round0/dfbcba9c8491-0000-0001.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:48:03+00:00",
+   "ended": "2026-11-01T10:48:03+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "566672e3153ef76316d5f502f197c0cee9619deb81413f838396cb692fd390de",
+   "outputs_sha256": "39a7bc774cb5555de0e9474bbe5447858fd9417244f59eaa9bbdf359cac10414",
+   "outcome": "done",
+   "detail": "round 0 collected: 1 exception(s), 2 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:48:56+00:00",
+   "ended": "2026-11-01T10:48:56+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "29d473cea944f3e3a61db165b87ee05f01ac6328ce346574ad4e26ebf2d4dd6b",
+   "outputs_sha256": "0ba67c3f25c685f0d452123bcb577b1028ac20539dbbff323d76c19003e6fd4d",
+   "outcome": "pending",
+   "detail": "round 1: 1 of 1 tasks unanswered; 1 labeller call(s) to make: bba72e15a0d6-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/calls/round1/bba72e15a0d6-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/maps/round1/bba72e15a0d6-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:48:56+00:00",
+   "ended": "2026-11-01T10:48:56+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "70d4b5dcd772cb276c7f6b2b606d62432cedd151797445aac25fe21290ee2179",
+   "outputs_sha256": "b7ad24bca6479b2aba7efa61618d6a18dd186891a3656c784afa3d355607cf85",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:49:54+00:00",
+   "ended": "2026-11-01T10:49:54+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b4468f8709acfcb029c21fd9116f3f6bcb9cf151f50c5e754f5175962026fe76",
+   "outputs_sha256": "e8ba6e0796fea8de39263857773319283e8c7095ed6a12733d64d6ae2d51a1cc",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:49:54+00:00",
+   "ended": "2026-11-01T10:49:54+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "d12c1418dda43430d7c093b67de0de390f82bf1d676e1dcad028d840c927b2d9",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 7 (бр. 87/2014, 88705): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:49:54+00:00",
+   "ended": "2026-11-01T10:49:54+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "c193414b85c60682689686e4fa99c71fe5c117712a8469eded6bbaeeb04bb7d5",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 7 (бр. 87/2014, 88705): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:50:34+00:00",
+   "ended": "2026-11-01T10:50:34+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "c9eae6e98fe962020d0fbab43d89d7da3196b2f19844ca06255f756fb4911797",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 88705 (бр. 87/2014): 1 check exception(s) after the operations, first item_order at line 73: 2. opens the list",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/checks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:55:00+00:00",
+   "ended": "2026-11-01T10:55:00+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1343787f302acc3ce062ca1db8b6f680e9f92546241ba5c9be9f190581886368",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 7 (бр. 104/2014, 90677): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:19+00:00",
+   "ended": "2026-11-01T10:56:19+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e153539397c0c3e80cdfdcd68776e27bbeff1938aa2faeb928e3a48672b8f876",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 7 (бр. 29/2015, 93839): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/03-93839/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/03-93839/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/03-93839/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:12+00:00",
+   "ended": "2026-11-01T11:02:12+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "44bfad36ef55ba97996138d10027a0b055c0ff80741f00d513d7ddffb717593b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 7 (бр. 29/2015, 93839): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/03-93839/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/03-93839/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/03-93839/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:46+00:00",
+   "ended": "2026-11-01T11:02:46+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1a1273918b1e06c3b441d21e1ee3cb0596591cf53362bd81b53210185a8c7a59",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 7 (бр. 29/2017, 113274): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:34+00:00",
+   "ended": "2026-11-01T11:05:34+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "831628ac71f64f88ff54fa3358476fd94de9491a403a6c595a68c26e3abff511",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 7 (бр. 29/2017, 113274): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:56+00:00",
+   "ended": "2026-11-01T11:08:56+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "2837e1563d74834bdfdab7fb7287490e217976124702231ce35fb56490119148",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 7 (бр. 29/2017, 113274): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:10:19+00:00",
+   "ended": "2026-11-01T11:10:19+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "c6e92bf6e574ca93d8c72a80c0ca5a6ec6e6da796564c019b1a2930502693684",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 113274 (бр. 29/2017): the answer is refused: §4.2 delete_words: the words ',' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:13:40+00:00",
+   "ended": "2026-11-01T11:13:40+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "f9c4be45887c70424b796ed8e62bdca5e9a733402428c3bba647d2d35508b0be",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 7 (бр. 29/2017, 113274): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/04-113274/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:25:59+00:00",
+   "ended": "2026-11-01T11:25:59+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "a9047c6141a1e3f486c53de4835ab836041a060ed5def458c537370763fd8101",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 5 of 7 (бр. 47/2020, 148171): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/05-148171/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/05-148171/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/05-148171/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:31:57+00:00",
+   "ended": "2026-11-01T11:31:57+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "bec22ceb70f0067f115b21a0350b6f0fa9c276ad386cad8fb1a163a09ecb7480",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 148171 (бр. 47/2020): the answer is refused: §2.1.б outside_set: outside the closed set of operations: After the words q1 (ал. 3) in т. 6 a comma is placed and then q2 (т. 2) is added, so the text reads 'по чл. 164, ал. 3, т. 2 ЗМВР'; insert_words cannot carry the comma, which is not a quoted segment and does not stand as a character on the instruction line.",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/05-148171/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:34:06+00:00",
+   "ended": "2026-11-01T11:34:06+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "22ca555a1db1c99ad014795174066394989316c48e2257ae253c80e16c5c85ab",
+   "outputs_sha256": "3114debeb787065925482a5cca908de5f3aaedf423b3d2d019023c1a8e64551e",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 2 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:02+00:00",
+   "ended": "2026-11-01T11:38:02+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "950990bc5d6c26b82ee03cdd1188f56d6257ba5acaa8d22bdd10d1a887a7089c",
+   "outputs_sha256": "e275c5c426f5a0177e74605fd2d9f71d49b2e09607d9cac77a860dfe2adb1853",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:02+00:00",
+   "ended": "2026-11-01T11:38:02+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "62ddbae513cd507988b91e6b4d4bfe2cf992d0cfa64cf70fbb81c45b6528a110",
+   "outputs_sha256": "27c6bfbd719fb7507b0eabeb7f1e910d7edb41919a7aca21dd8cd6fd8419ac6f",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:02+00:00",
+   "ended": "2026-11-01T11:38:02+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "d6f7a4d135b21214c8d2980bddb1b46ad4fa483aa9d47f83b38c73c42be17274",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 5 of 7 (бр. 47/2020, 148171): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/05-148171/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/05-148171/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/05-148171/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:02+00:00",
+   "ended": "2026-11-01T11:38:02+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "edb44b157850cc4de560973b7107075438fed55a38af7b5acd6b85793abc3b8b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 6 of 7 (бр. 93/2020, 153040): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/06-153040/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/06-153040/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/06-153040/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:33+00:00",
+   "ended": "2026-11-01T11:42:33+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e152205ce4d2affc0abd80594a07fa13d6597d5678966cbd1fd89383f5d65419",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 7 of 7 (бр. 6/2023, 183866): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/07-183866/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/07-183866/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/07-183866/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:17+00:00",
+   "ended": "2026-11-01T11:51:17+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "5ce9ff24035aa6140db78c8e2e7b67e6df5be7ecf2de3e8a5997a84c17d40d4f",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 7 (бр. 87/2014, 88705): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:58:41+00:00",
+   "ended": "2026-11-01T11:58:41+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1fa6fa787dee1d3e8aa4ae1e9628fe56c5611baa9037574097b44375a3549dd9",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 7 (бр. 87/2014, 88705): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:59:58+00:00",
+   "ended": "2026-11-01T11:59:58+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "103c167213bde91fc23707658f1ef71722815cbf8e1cdf9c07ca3ef4ebaf7c9e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 7 (бр. 104/2014, 90677): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:18+00:00",
+   "ended": "2026-11-01T12:04:18+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ae72c4549963bff3910b6a569aff6c201f7d2a6c15d1a6365f636bcf06e3e480",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 7 (бр. 87/2014, 88705): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/01-88705/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:07+00:00",
+   "ended": "2026-11-01T12:10:07+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "889e32e407657d05aa6086e23659bffddf98d45626783d64b278a22b40f3f733",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 7 (бр. 104/2014, 90677): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply/02-90677/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:11:12+00:00",
+   "ended": "2026-11-01T12:11:12+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "889e32e407657d05aa6086e23659bffddf98d45626783d64b278a22b40f3f733",
+   "outputs_sha256": "c3567b5880f36518bfc53ef0353b96f84d0e30a8d192c29278a095899060296c",
+   "outcome": "done",
+   "detail": "7 material(s) applied, operations {'insert_provision': 9, 'replace_words': 7, 'no_text_change': 16, 'replace_provision': 8, 'repeal': 3, 'insert_words': 10, 'delete_words': 4, 'renumber': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:00+00:00",
+   "ended": "2026-11-01T12:15:00+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "4a3977323d9aaca264b6f701a351c0bb69699973b28a23b0d951ed010318d00e",
+   "outputs_sha256": "8a86b8776a35e86b48cca3b833e32fd8b8c911ed06ec8087a7aceec1d1e19326",
+   "outcome": "pending",
+   "detail": "differences to settle (lexbg 10, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:00+00:00",
+   "ended": "2026-11-01T12:15:01+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "5499cb1d53032ca035e6643715b55cbb8deceef46da5b2c826f2fa9922552ab1",
+   "outputs_sha256": "235d7c3df68dd678d7f8a998ac891617bbc9aca66de858bf848657536a3b5f96",
+   "outcome": "done",
+   "detail": "7 material(s) applied, operations {'insert_provision': 9, 'replace_words': 7, 'no_text_change': 16, 'replace_provision': 8, 'repeal': 3, 'insert_words': 10, 'delete_words': 4, 'renumber': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:17+00:00",
+   "ended": "2026-11-01T12:19:17+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b9472577d33b27a5c4f1bc28f4bd3ca4ae546b145af9736d495938147ba8f1f3",
+   "outputs_sha256": "589ebaed2ff8b1f866587766dcffb73ce51d2eca405791c8564430028e9f129b",
+   "outcome": "done",
+   "detail": "lexbg: 10 difference(s), settled same_text_other_form 9, witness_error 1; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2136265357 (absent, 2026-11-01T12:15:00+00:00))",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/witness-diff.json",
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:17+00:00",
+   "ended": "2026-11-01T12:19:17+00:00"
+  },
+  {
+   "step": "write",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "add9fa1e317e2a303949fef0a2eb329cca109c97dbf3accb8eb1e685f2ef2045",
+   "outputs_sha256": "d11b95e006eba9cca34dd93775a1dbb56d3e60f6cb4112f3ba00148f33183b6c",
+   "outcome": "done",
+   "detail": "[popravka] d63ed62d2 Record-Id f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/48075c0d5444",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli/written.json"
+   ],
+   "committed": "d63ed62d2",
+   "started": "2026-11-01T12:19:17+00:00",
+   "ended": "2026-11-01T12:19:17+00:00"
+  }
+ ],
+ "state_before_stop": "listed"
+}

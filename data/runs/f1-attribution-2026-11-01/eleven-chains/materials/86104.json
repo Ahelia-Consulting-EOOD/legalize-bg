@@ -1,0 +1,46 @@
+{
+ "material": 86104,
+ "title": "Наредба за изменение и допълнение на Наредба № РД-07-5 от 2008 г. за условията и реда за отпускане на целева помощ за отопление",
+ "issue": "53/2014",
+ "section": "Министерство на труда и социалната политика",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № РД-07-5 от 2008 г. за условията и реда за отпускане на целева помощ за отопление",
+   "cited_promulgation": [
+    49,
+    2008
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-rd-07-5-ot-16-may-2008-g-za-usloviyata-i-reda-za-otpuskane-na-tseleva-po",
+   "candidates": [
+    "naredba-rd-07-5-ot-16-may-2008-g-za-usloviyata-i-reda-za-otpuskane-na-tseleva-po"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    49,
+    2008
+   ]
+  }
+ ],
+ "instructions": 8,
+ "signs": 4,
+ "quoted_blocks": 4,
+ "findings": [
+  {
+   "block": 13,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходна и заключителна разпоредба' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 252,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

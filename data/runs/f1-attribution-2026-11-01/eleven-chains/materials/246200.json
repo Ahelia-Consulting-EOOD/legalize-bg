@@ -1,0 +1,35 @@
+{
+ "material": 246200,
+ "title": "Решение № 299 от 24 септември 2026 г. за изменение и допълнение на Правила за използване на радиочестотния спектър за наземни мрежи, позволяващи предоставяне на електронни съобщителни услуги след издаване на разрешение",
+ "issue": "92/2026",
+ "section": "Комисия за регулиране на съобщенията",
+ "kind": "decision",
+ "instruction_kind": "amending",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правила за използване на радиочестотния спектър за наземни мрежи, позволяващи предоставяне на електронни съобщителни услуги след издаване на разрешение На основание чл. 30, ал. 1, т. 8, чл. 32, ал. 1, т. 2, чл. 36, ал. 3, ал. 4 във връзка с чл. 66а, ал. 3 от Закона за електронните съобщения Комисията за регулиране на съобщенията реши:",
+   "cited_promulgation": [
+    95,
+    2021
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a правила, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 16,
+ "signs": 14,
+ "quoted_blocks": 215,
+ "findings": [],
+ "tokens_instructions": 3825,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

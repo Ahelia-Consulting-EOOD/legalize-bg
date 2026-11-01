@@ -1,0 +1,61 @@
+{
+ "material": 245803,
+ "title": "Закон за изменение и допълнение на Закона за висшето образование",
+ "issue": "85/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за висшето образование",
+   "cited_promulgation": [
+    112,
+    1995
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vissheto-obrazovanie",
+   "candidates": [
+    "zakon-za-vissheto-obrazovanie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    112,
+    1995
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Закона за предучилищното и училищното образование",
+   "cited_promulgation": [
+    79,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-preduchilishtnoto-i-uchilishtnoto-obrazovanie",
+   "candidates": [
+    "zakon-za-preduchilishtnoto-i-uchilishtnoto-obrazovanie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    79,
+    2015
+   ]
+  }
+ ],
+ "instructions": 17,
+ "signs": 9,
+ "quoted_blocks": 8,
+ "findings": [],
+ "tokens_instructions": 1968,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

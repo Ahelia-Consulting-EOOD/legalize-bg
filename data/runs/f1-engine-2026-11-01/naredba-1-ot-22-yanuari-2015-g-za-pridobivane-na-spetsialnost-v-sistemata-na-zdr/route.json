@@ -1,0 +1,583 @@
+{
+ "slug": "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr",
+ "run": "f1-engine-2026-11-01",
+ "route": "history",
+ "state": "stopped",
+ "entries": [
+  {
+   "step": "chain",
+   "input_sha256": "c4a2d9d435b3f714a066afc8dca264cc0acc814244780446408a8866a3e231a9",
+   "outputs_sha256": "8182676e42dffa25e4c2d358295588f6d537d1079baca4611ab3f684f216a7c1",
+   "outcome": "done",
+   "detail": "9 material(s) change the act after бр. 7/2015; lex.bg names 10 issue(s), 1 unexplained (81/2021), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:55:17+00:00",
+   "ended": "2026-11-01T10:57:45+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "input_sha256": "0cdf2ac9c751a08b14534816471e5726169b00cd8053ba19f45ca137a502dd9f",
+   "outputs_sha256": "c86978bbfd30d69d9e4a49b26ff3f32485c0ee475503242db93d7f22bbd7de4f",
+   "outcome": "done",
+   "detail": "material 91505 of бр. 7/2015 (cached), sha256 3e21d572bf7e",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:57:45+00:00",
+   "ended": "2026-11-01T10:57:45+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "7b71f5448021d96116bf257713bd9f6f7bf752a8c31e71bf09672d1629e1bfa0",
+   "outputs_sha256": "7002d6ab2726f114a5eefbc6197aaae28943507a79ada0c57a0af241b0efe960",
+   "outcome": "done",
+   "detail": "971 blocks, 28 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:57:45+00:00",
+   "ended": "2026-11-01T10:57:45+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "94f152cf4bd38aebe460c4af3e6d36a9470e6146e0f6796dbbcf384b2d79bed3",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 28 of 28 tasks unanswered; 4 labeller call(s) to make: 565b10cc3852-0000-0007 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/calls/round0/565b10cc3852-0000-0007.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/maps/round0/565b10cc3852-0000-0007.json; 565b10cc3852-0008-0015 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/calls/round0/565b10cc3852-0008-0015.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/maps/round0/565b10cc3852-0008-0015.json; 565b10cc3852-0016-0023 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/calls/round0/565b10cc3852-0016-0023.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/maps/round0/565b10cc3852-0016-0023.json; 565b10cc3852-0024-0027 (4 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/calls/round0/565b10cc3852-0024-0027.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/maps/round0/565b10cc3852-0024-0027.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:57:45+00:00",
+   "ended": "2026-11-01T10:57:45+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "9a2e8bbe6b4e0ed4e2948c8822b6ea886eb8993ef7c9210c3f923cf087b6ec3e",
+   "outputs_sha256": "e4cc26993e1194d2c7f058bea4d0961baf0b503a0eeaf59c9dbc0e070dc19274",
+   "outcome": "done",
+   "detail": "round 0 collected: 1 exception(s), 1 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:47+00:00",
+   "ended": "2026-11-01T11:02:47+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "10f8bf28a0eab470e3ba750ccfb23b73b787ff589f5f48833bdb122fe5cdf0ce",
+   "outputs_sha256": "d4db119eb621cfca608f2f0bbd6d5062ed1526c6f234c7b67f4c799789142947",
+   "outcome": "pending",
+   "detail": "round 1: 1 of 1 tasks unanswered; 1 labeller call(s) to make: 526690834235-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/calls/round1/526690834235-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/maps/round1/526690834235-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:02:47+00:00",
+   "ended": "2026-11-01T11:02:47+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "ff9b9f8a3e3220fc453c3f68986b7594fd8f827a0b45acc46ba2db28520c5fc5",
+   "outputs_sha256": "1374b0c44afb878fd8e7e3d566277fbb81c2c0a8c828421bf60451e46ae52602",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "fabcf3d712f5b00115f5706a2816b9fc9b302b7d28b451d760f708504bcc4617",
+   "outputs_sha256": "88bfb5c0d0bca51b68560ba268aee64a885f21f27277bd255593564a59bcb50e",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "8fb624a9eeb7eeeb0e72333e94707f67984e3a29d207ec520018a46d8bf6d607",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 9 (бр. 83/2015, 98158): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "988dc278e53ffececfb3676af94eb6b95bb9652188f2a0e34001dd523df657d2",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 9 (бр. 83/2015, 98158): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:58+00:00",
+   "ended": "2026-11-01T11:08:58+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "f1c9b513700074f3d122c7cf267d2e4b6c05d1ddcf797d4ae976d8057aab6362",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 98158 (бр. 83/2015): the answer is refused: §2.2: the text ', обучението за придобиване на специалност „Обща медицина“ и' does not stand in the instruction",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:10:20+00:00",
+   "ended": "2026-11-01T11:10:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "7822b351261a874a8c04b6028025eb85a605cc9aee4ef4740694c877e2c985e9",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 9 (бр. 83/2015, 98158): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:12:29+00:00",
+   "ended": "2026-11-01T11:12:29+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "395be584e085dfb614ee1c6248ce8a01c9ed2df82e541224e3a9293d74d6a661",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 9 (бр. 83/2015, 98158): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:13:42+00:00",
+   "ended": "2026-11-01T11:13:42+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "2e8af5139bdf9ff2993e9771a600d786bb13956ec90f5140fca77090e1f0201c",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 98158 (бр. 83/2015): the answer is refused: §1 insert_words: the anchor '1' occurs 6 times",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:17:34+00:00",
+   "ended": "2026-11-01T11:17:34+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "de4505d0112660c76085514206111cd005fc6564180f88147e1167340de94742",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 98158 (бр. 83/2015): the answer is refused: §6.1 delete_words: the words 'лекар по дентална медицина, специализант по…' do not occur in '(1) Базите за обучение обявяват целогодишно, включ'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:26:00+00:00",
+   "ended": "2026-11-01T11:26:01+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "d74a8faa61985b8d52726b7c0108f8d8535cdde0f3bbd735e37b4dbacb12ee66",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 98158 (бр. 83/2015): the answer is refused: §8 insert_provision: a sentence address fits only an operation on words",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:34:08+00:00",
+   "ended": "2026-11-01T11:34:08+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "c003ded817d345d3543a0f99328d277c208ffa545fd494487d0b83c2e38a1aaf",
+   "outputs_sha256": "fe253738601e91a7c90c59561ff94f9415ca09269a0e85003f7289be35c0c127",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 1 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "1444cfc8d51833cae5869dc2b8ac7a2455ed98cc8334aaa1b69910a4a307186c",
+   "outputs_sha256": "535eb642775d2a4919bd2c14425edcb9c535f8aa359b67f5a765c5f958f18099",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "5ca3213e813acb1adab316679957dca9bc5089e884183bc040ab6d035676a758",
+   "outputs_sha256": "1bac9c5e86d70a07f857d826085a1b73227777c7d8f73712a50a6f6dfd061d70",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "f2cf40d9d96e167e3d5cd45158862ab6452216e172884fe632b206f5cb75e420",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 98158 (бр. 83/2015): the answer is refused: §15 replace_provision: 'приложение № 1, раздел II' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:35+00:00",
+   "ended": "2026-11-01T11:42:35+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "0092ccdcab222cda562dbba60ed6e2bb88ac4dfc13a31d89652669219870c14e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 9 (бр. 88/2016, 108826): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/02-108826/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/02-108826/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/02-108826/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:18+00:00",
+   "ended": "2026-11-01T11:51:18+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "dd4ca56c1f8d1e7494166fac4af7998573dd9520906b4e98761e8f789d5f1be6",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 9 (бр. 58/2019, 139711): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:58:43+00:00",
+   "ended": "2026-11-01T11:58:43+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "e661749c73e4d802e0e3250632d27b12d932a6f976f4431bf4039ef08f08bbfa",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 9 (бр. 58/2019, 139711): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:00:01+00:00",
+   "ended": "2026-11-01T12:00:01+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ed371c50a3da3e50d705efff5fc5f41032dbc9c75cb47a7a6d8107f3971e1774",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:20+00:00",
+   "ended": "2026-11-01T12:04:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "fcb5cbd42a0a9e8173bbd8a4f476bd9a94b4ca07afb3eafa5d3a165faccf3f9b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 9 (бр. 83/2015, 98158): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/01-98158/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:08+00:00",
+   "ended": "2026-11-01T12:10:08+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "fcb5cbd42a0a9e8173bbd8a4f476bd9a94b4ca07afb3eafa5d3a165faccf3f9b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:03+00:00",
+   "ended": "2026-11-01T12:15:03+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "dd4cef3cf5b0e30bd34ddf8202baff39977595fbd654b0de16e83fe4ac0539ba",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:20+00:00",
+   "ended": "2026-11-01T12:19:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "e05ed7bb228a0e587c046796baf4c6d97e4c042cf32e191cee34608285217fd7",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:23:20+00:00",
+   "ended": "2026-11-01T12:23:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "0f990827749a131228ec0d7dca42eafff940c7e14e3faa94517cd0f210aabd38",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:25:43+00:00",
+   "ended": "2026-11-01T12:25:44+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "8b38b6976d1b35990bf118776dbc051791f7148291887839fc330ce2ea4d7284",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:28:10+00:00",
+   "ended": "2026-11-01T12:28:10+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "b2f0cc8d3fc1ca5f0c287ef147e161067b5acedf6e659ea1fad90d2818d379ea",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:30:23+00:00",
+   "ended": "2026-11-01T12:30:23+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "941b379201cdc7f6137dfb18c717a2ae6b25c2dbf30502344598c315b275d2f2",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:32:38+00:00",
+   "ended": "2026-11-01T12:32:38+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "81cd3c6cafbe450ad2a49b8f9477f9644ae0b624b5df85d4c5c1f5cdfde260f9",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:35:14+00:00",
+   "ended": "2026-11-01T12:35:14+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c4406f667f154bc09f53762fee75d413528bdfa80b68a7d9f60c4f92c75491ed",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:38:07+00:00",
+   "ended": "2026-11-01T12:38:08+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5b56774b191abbffcebb33a448193c976cc609d0bd25a0bcdbc64377ead64be0",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:41:46+00:00",
+   "ended": "2026-11-01T12:41:46+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "40a500f2644c411ac31b773c69da6196f10b68460b31e4b728fccb6f82f9a970",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:45:06+00:00",
+   "ended": "2026-11-01T12:45:06+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "492a7a7d0ccd28a37573f17a99e42c9d4eebe43d2fd351424888cef917c3eb38",
+   "outputs_sha256": "6707509346b192c0f2bc2799acee04d0c3433a628ad462cea389f90309ffb723",
+   "outcome": "done",
+   "detail": "971 blocks, 28 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "932099086ed69c70bbf3577552fd721dff006742739557c9c2c69f34f00007c4",
+   "outputs_sha256": "19091362348e9a71ae0b33160aacb64467b463b2ee3b836738e2b451f7471834",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 1 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "ff0c28fa0c4f634cccdad568a55dea0c6b56d702b2259b979a7fb957e6277f98",
+   "outputs_sha256": "535eb642775d2a4919bd2c14425edcb9c535f8aa359b67f5a765c5f958f18099",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "222f87b731c07237375ac22f5f44d13a6bc8728726bed58231f4921c26d0e8ad",
+   "outputs_sha256": "06220a4c438c25fa5a78b9246e1e827b666ec2a4ca57072eb2e42b372877baed",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "83e07424b36668a0dad3b99e0c04fb229185b954e9ad02981c41de6991dd51d6",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "7567bd61996d54b790b4b4cc57d07f3690715f51d55b020f20f73f4335ddacb9",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:03+00:00",
+   "ended": "2026-11-01T13:12:03+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "6189b148cd2085fb995a6070b566f2e39e065527b061947e22c6323c1e2d2a81",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:09+00:00",
+   "ended": "2026-11-01T13:15:09+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "e8b281e655a624d9eac725dcbb26f89462f7b925c4f85fdcc22f5beeae6fdd5a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:24:14+00:00",
+   "ended": "2026-11-01T13:24:14+00:00"
+  }
+ ],
+ "step": "apply",
+ "stopped_at": "apply",
+ "exception": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+ "case_file": "docs/cases/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr.md"
+}

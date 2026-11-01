@@ -1,0 +1,18 @@
+{"material": 113274, "operations": [
+{"id": "§1", "kind": "insert_words", "address": "чл. 1", "anchor": "q1", "where": "after", "new": "q2"},
+{"id": "§1", "kind": "delete_words", "address": "чл. 1", "old": "q3"},
+{"id": "§2", "kind": "replace_provision", "address": "чл. 3", "blocks": [4, 4]},
+{"id": "§3", "kind": "replace_provision", "address": "чл. 4а", "blocks": [6, 19]},
+{"id": "§4", "kind": "no_text_change"},
+{"id": "§4.1", "kind": "replace_words", "address": "чл. 5, ал. 1, т. 1", "old": "q1", "new": "q2"},
+{"id": "§4.2", "kind": "delete_words", "address": "чл. 5, ал. 2", "old": "q1", "punctuation": "before"},
+{"id": "§5", "kind": "insert_words", "address": "чл. 11, ал. 1", "where": "end", "new": "q1"},
+{"id": "§6", "kind": "insert_words", "address": "чл. 12, ал. 2", "where": "end", "new": {"text": ","}},
+{"id": "§6", "kind": "insert_words", "address": "чл. 12, ал. 2", "where": "end", "new": "q1"},
+{"id": "§7", "kind": "delete_words", "address": "чл. 13, ал. 3", "old": "q1", "punctuation": "before"},
+{"id": "§8", "kind": "no_text_change"},
+{"id": "§8.1", "kind": "renumber", "address": "чл. 15", "to": "ал. 1"},
+{"id": "§8.2", "kind": "insert_provision", "address": "чл. 15, ал. 2", "after": "чл. 15, ал. 1", "blocks": [29, 29]},
+{"id": "§9", "kind": "insert_words", "address": "§ 1 от допълнителните разпоредби", "anchor": "q1", "where": "after", "new": "q2"},
+{"id": "§10", "kind": "no_text_change"}
+]}

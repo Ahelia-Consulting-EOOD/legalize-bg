@@ -1,0 +1,67 @@
+{
+ "material": 144192,
+ "title": "Постановление № 371 от 20 декември 2019 г. за изменение и допълнение на Постановление № 382 на Министерския съвет от 2015 г. за приемане на План за развитие на въоръжените сили до 2020 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Постановление № 382 на Министерския съвет от 2015 г. за приемане на План за развитие на въоръжените сили до 2020 г.",
+   "cited_promulgation": [
+    3,
+    2016
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 382 на Министерския съвет от 2015 г. за приемане на План за развитие на въоръжените сили до 2020 г.')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Постановление № 54 на Министерския съвет от 2010 г. за приемане на Устройствен правилник на Министерството на отбраната и за определяне на структури на пряко подчинение на министъра на отбраната",
+   "cited_promulgation": [
+    27,
+    2010
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Министерството на отбраната и за определяне на структури на пряко подчинение на министъра на отбраната')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Постановление № 175 на Министерския съвет от 2009 г. за определяне на първостепенния и второстепенните разпоредители с бюджет в Министерството на отбраната",
+   "cited_promulgation": [
+    57,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 175 на Министерския съвет от 2009 г. за определяне на първостепенния и второстепенните разпоредители с бюджет в Министерството на отбраната')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 8,
+ "signs": 5,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 730,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

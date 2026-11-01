@@ -1,0 +1,49 @@
+{
+ "material": 235632,
+ "title": "Постановление № 100 от 23 юни 2025 г. за одобряване на допълнителни разходи за 2025 г. по бюджетите на Министерството на образованието и науката, на Министерството на младежта и спорта и на Министерството на културата",
+ "issue": "52/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 7,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Допълнителните разходи по чл. 1 да се осигурят за сме"
+  },
+  {
+   "block": 10,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. (1) Със сумата по чл. 1, ал. 2, т. 1 да се увеличат р"
+  },
+  {
+   "block": 12,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. (1) Със сумата по чл. 1, ал. 2, т. 2 да се увеличат р"
+  },
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. (1) Със сумата по чл. 1, ал. 2, т. 3 да се увеличат р"
+  },
+  {
+   "block": 16,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Първостепенните разпоредители с бюджетите по чл. 1, а"
+  },
+  {
+   "block": 17,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 7. Министърът на финансите да извърши произтичащите пром"
+  }
+ ],
+ "tokens_instructions": 421,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

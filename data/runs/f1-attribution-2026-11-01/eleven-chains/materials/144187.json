@@ -1,0 +1,29 @@
+{
+ "material": 144187,
+ "title": "Постановление № 346 от 18 декември 2019 г. за одобряване на допълнителни разходи по бюджета на Министерството на транспорта, информационните технологии и съобщенията за 2019 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 3,
+ "findings": [
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата по чл. 1, ал. 1 да се увеличат разходи"
+  },
+  {
+   "block": 12,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Заключителни разпоредби' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 599,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

@@ -1,0 +1,20 @@
+{
+ "material": 41376,
+ "issue": "98/2010",
+ "operations": [
+  {
+   "id": "§94",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 94, ал. 2",
+   "old": "регионалния център по здравеопазване",
+   "old_ref": "q1",
+   "new": "регионалната здравна инспекция",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§94 replace_words: 1 replacement(s)"
+ ]
+}

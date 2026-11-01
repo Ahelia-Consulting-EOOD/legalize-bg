@@ -1,0 +1,38 @@
+{
+ "material": 69731,
+ "title": "Постановление № 259 от 19 октомври 2012 г. за приемане на Тарифа за таксите, събирани за регистрация за извършване на посредническа дейност по наемане на работа по Закона за насърчаване на заетостта",
+ "issue": "82/2012",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 11,
+  "title": "ТАРИФА"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Тарифата за таксите, събирани за регистрация за извършване на посредническа дейност по наемане на работа по Закона за насърчаване на заетостта, одобрена с Постановление № 101 на Министерския съвет от 2003 г.",
+   "cited_promulgation": [
+    46,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": true,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 185,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

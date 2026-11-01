@@ -1,0 +1,111 @@
+{
+ "material": 138244,
+ "title": "Наредба за изменение и допълнение на Наредба № 4 от 2011 г. за реда и условията за провеждане на конкурси за полски инспектори",
+ "issue": "45/2019",
+ "section": "Министерство на земеделието, храните и горите",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 4 от 2011 г. за реда и условията за провеждане на конкурси за полски инспектори",
+   "cited_promulgation": [
+    22,
+    2011
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-4-ot-11-mart-2011-g-za-reda-i-usloviyata-za-provezhdane-na-konkursi-za-p",
+   "candidates": [
+    "naredba-4-ot-11-mart-2011-g-za-reda-i-usloviyata-za-provezhdane-na-konkursi-za-p"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    22,
+    2011
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Наредба № 7 от 2013 г. за условията и реда за сортоизпитване, признаване, вписване и отписване на сортовете растения във и от Официалната сортова листа на Република България",
+   "cited_promulgation": [
+    97,
+    2013
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-7-ot-28-oktomvri-2013-g-za-usloviyata-i-reda-za-sortoizpitvane-priznavan",
+   "candidates": [
+    "naredba-7-ot-28-oktomvri-2013-g-za-usloviyata-i-reda-za-sortoizpitvane-priznavan"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    97,
+    2013
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Наредба № 8 от 2013 г. за условията и реда за одобряване и издаване на разрешения за вземане на проби от семена от физически лица (пробовземачи) и за условията и реда за одобряване на лаборатории за извършване на лабораторни анализи за посевни качества на семената и на лаборатории за определяне здравното състояние на семената и посадъчния материал",
+   "cited_promulgation": [
+    98,
+    2013
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-8-ot-31-oktomvri-2013-g-za-usloviyata-i-reda-za-odobryavane-i-izdavane-n",
+   "candidates": [
+    "naredba-8-ot-31-oktomvri-2013-g-za-usloviyata-i-reda-za-odobryavane-i-izdavane-n"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    98,
+    2013
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Наредба № 13 от 2004 г. за реда за регистрация на търговци на посевен и посадъчен материал",
+   "cited_promulgation": [
+    40,
+    2004
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-13-ot-31-mart-2004-g-za-reda-za-registratsiya-na-targovtsi-na-poseven-i-",
+   "candidates": [
+    "naredba-13-ot-31-mart-2004-g-za-reda-za-registratsiya-na-targovtsi-na-poseven-i-"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    40,
+    2004
+   ]
+  }
+ ],
+ "instructions": 60,
+ "signs": 11,
+ "quoted_blocks": 5,
+ "findings": [],
+ "tokens_instructions": 2321,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

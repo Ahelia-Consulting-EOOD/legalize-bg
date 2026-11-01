@@ -1,0 +1,40 @@
+{
+ "material": 245957,
+ "title": "Наредба за изменение и допълнение на Наредба № 3 от 22 май 2013 г. за изискванията към инсталации, произвеждащи титанов диоксид",
+ "issue": "89/2026",
+ "section": "Министерство на околната среда и водите",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 3 от 22 май 2013 г. за изискванията към инсталации, произвеждащи титанов диоксид",
+   "cited_promulgation": [
+    49,
+    2013
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-3-ot-22-may-2013-g-za-iziskvaniyata-kam-instalatsii-proizvezhdashti-tita",
+   "candidates": [
+    "naredba-3-ot-22-may-2013-g-za-iziskvaniyata-kam-instalatsii-proizvezhdashti-tita"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    49,
+    2013
+   ]
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 290,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

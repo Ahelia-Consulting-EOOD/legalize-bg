@@ -1,0 +1,53 @@
+{
+ "material": 244742,
+ "title": "Наредба за изменение на Наредба № 8 от 2016 г. за профилактичните прегледи и диспансеризацията",
+ "issue": "66/2026",
+ "section": "Министерство на здравеопазването",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 8 от 2016 г. за профилактичните прегледи и диспансеризацията",
+   "cited_promulgation": [
+    92,
+    2016
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-8-ot-3-noemvri-2016-g-za-profilaktichnite-pregledi-i-dispanserizatsiyata",
+   "candidates": [
+    "naredba-8-ot-3-noemvri-2016-g-za-profilaktichnite-pregledi-i-dispanserizatsiyata"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    92,
+    2016
+   ]
+  }
+ ],
+ "instructions": 4,
+ "signs": 3,
+ "quoted_blocks": 183,
+ "findings": [
+  {
+   "block": 29,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 2. В приложение № 13 към чл. 22, ал. 1' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 192,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Заключителна разпоредба' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 1764,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

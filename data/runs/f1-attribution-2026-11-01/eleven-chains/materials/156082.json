@@ -1,0 +1,171 @@
+{
+ "material": 156082,
+ "title": "Закон за изменение и допълнение на Закона за устройство на територията",
+ "issue": "16/2021",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за устройство на територията",
+   "cited_promulgation": [
+    1,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvo-na-teritoriyata",
+   "candidates": [
+    "zakon-za-ustroystvo-na-teritoriyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    1,
+    2001
+   ]
+  },
+  {
+   "scope": "§76",
+   "cited_title": "Закона за изменение и допълнение на Закона за устройство на територията",
+   "cited_promulgation": [
+    25,
+    2019
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§88",
+   "cited_title": "Закона за кадастъра и имотния регистър",
+   "cited_promulgation": [
+    34,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kadastara-i-imotniya-registar",
+   "candidates": [
+    "zakon-za-kadastara-i-imotniya-registar"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    34,
+    2000
+   ]
+  },
+  {
+   "scope": "§89",
+   "cited_title": "Закона за общинската собственост",
+   "cited_promulgation": [
+    44,
+    1996
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-obshtinskata-sobstvenost",
+   "candidates": [
+    "zakon-za-obshtinskata-sobstvenost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    44,
+    1996
+   ]
+  },
+  {
+   "scope": "§91",
+   "cited_title": "Закона за местните данъци и такси",
+   "cited_promulgation": [
+    117,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mestnite-danatsi-i-taksi",
+   "candidates": [
+    "zakon-za-mestnite-danatsi-i-taksi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    117,
+    1997
+   ]
+  },
+  {
+   "scope": "§92",
+   "cited_title": "Закона за устройството на Черноморското крайбрежие",
+   "cited_promulgation": [
+    48,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie",
+   "candidates": [
+    "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2007
+   ]
+  }
+ ],
+ "instructions": 209,
+ "signs": 92,
+ "quoted_blocks": 179,
+ "findings": [
+  {
+   "block": 162,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '2. В ал. 7 се създава изречение второ: „' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 214,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '2. В ал. 13 след думата „адаптация“ се д' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 241,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 53. В чл. 158, ал. 2, изречение трето ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 242,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 54. В чл. 159, ал. 5 след думите „пред' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 243,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 55. В чл. 162 ал. 4 се изменя така:' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 287,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 61. В чл. 178 се правят следните измен' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 20977,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

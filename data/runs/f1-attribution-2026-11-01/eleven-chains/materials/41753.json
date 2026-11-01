@@ -1,0 +1,40 @@
+{
+ "material": 41753,
+ "title": "Правилник за изменение и допълнение на Правилника за устройството и дейността на Държавно предприятие „Национална компания „Железопътна инфраструктура“",
+ "issue": "100/2010",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "regulation",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за устройството и дейността на Държавно предприятие „Национална компания „Железопътна инфраструктура“",
+   "cited_promulgation": [
+    39,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-darzhavno-predpriyatie-natsionalna-komp",
+   "candidates": [
+    "pravilnik-za-ustroystvoto-i-deynostta-na-darzhavno-predpriyatie-natsionalna-komp"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    39,
+    2009
+   ]
+  }
+ ],
+ "instructions": 10,
+ "signs": 8,
+ "quoted_blocks": 35,
+ "findings": [],
+ "tokens_instructions": 1560,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "material": 121172,
+ "issue": "103/2017",
+ "operations": [
+  {
+   "id": "§6",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§6.1",
+   "kind": "renumber",
+   "note": "",
+   "address": "чл. 158",
+   "to": "ал. 1"
+  },
+  {
+   "id": "§6.2",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 158, ал. 2",
+   "lines": [
+    "(2) Установяването на обстоятелствата относно съдимостта на лицата се извършва служебно от органа по настойничеството и по попечителството."
+   ],
+   "blocks": [
+    34,
+    34
+   ],
+   "hints": [
+    "DvJustify"
+   ],
+   "after": "чл. 158, ал. 1"
+  }
+ ],
+ "log": [
+  "§6 no_text_change: nothing",
+  "§6.1 renumber: the text of чл. 158 became ал. 1",
+  "§6.2 insert_provision: 1 line(s) at чл. 158, ал. 2"
+ ]
+}

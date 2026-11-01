@@ -1,0 +1,7849 @@
+{
+ "kind": "law",
+ "amending": true,
+ "own_title": "ЗАКОН за изменение и допълнение на Закона за здравето",
+ "target_title": "Закона за здравето",
+ "cited_history": {
+  "promulgation": [
+   70,
+   2004
+  ],
+  "issues": [
+   [
+    70,
+    2004
+   ],
+   [
+    46,
+    2005
+   ],
+   [
+    76,
+    2005
+   ],
+   [
+    85,
+    2005
+   ],
+   [
+    88,
+    2005
+   ],
+   [
+    94,
+    2005
+   ],
+   [
+    103,
+    2005
+   ],
+   [
+    18,
+    2006
+   ],
+   [
+    30,
+    2006
+   ],
+   [
+    34,
+    2006
+   ],
+   [
+    59,
+    2006
+   ],
+   [
+    71,
+    2006
+   ],
+   [
+    75,
+    2006
+   ],
+   [
+    80,
+    2006
+   ],
+   [
+    81,
+    2006
+   ],
+   [
+    95,
+    2006
+   ],
+   [
+    102,
+    2006
+   ],
+   [
+    31,
+    2007
+   ],
+   [
+    41,
+    2007
+   ],
+   [
+    46,
+    2007
+   ],
+   [
+    53,
+    2007
+   ],
+   [
+    59,
+    2007
+   ],
+   [
+    82,
+    2007
+   ],
+   [
+    95,
+    2007
+   ],
+   [
+    13,
+    2008
+   ],
+   [
+    102,
+    2008
+   ],
+   [
+    110,
+    2008
+   ],
+   [
+    36,
+    2009
+   ],
+   [
+    41,
+    2009
+   ],
+   [
+    74,
+    2009
+   ],
+   [
+    82,
+    2009
+   ],
+   [
+    93,
+    2009
+   ],
+   [
+    99,
+    2009
+   ],
+   [
+    101,
+    2009
+   ],
+   [
+    41,
+    2010
+   ],
+   [
+    42,
+    2010
+   ],
+   [
+    50,
+    2010
+   ],
+   [
+    59,
+    2010
+   ],
+   [
+    62,
+    2010
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 70 от 2004 г.; изм., бр. 46, 76, 85, 88, 94 и 103 от 2005 г., бр. 18, 30, 34, 59, 71, 75, 80, 81, 95 и 102 от 2006 г., бр. 31, 41, 46, 53, 59, 82 и 95 от 2007 г., бр. 13, 102 и 110 от 2008 г., бр. 36, 41, 74, 82, 93, 99 и 101 от 2009 г. и бр. 41, 42, 50, 59 и 62 от 2010 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "headings": [
+  328
+ ],
+ "tail": [
+  559,
+  560,
+  561
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "2": "header",
+  "3": "header",
+  "4": "header",
+  "5": "header",
+  "6": "header",
+  "7": "header",
+  "8": "header",
+  "9": "header",
+  "559": "tail",
+  "560": "tail",
+  "561": "tail",
+  "10": "instruction",
+  "11": "instruction",
+  "12": "instruction",
+  "13": "quoted",
+  "14": "instruction",
+  "15": "instruction",
+  "16": "instruction",
+  "17": "quoted",
+  "18": "quoted",
+  "19": "quoted",
+  "20": "quoted",
+  "21": "quoted",
+  "22": "quoted",
+  "23": "quoted",
+  "24": "instruction",
+  "25": "quoted",
+  "26": "quoted",
+  "27": "quoted",
+  "28": "quoted",
+  "29": "quoted",
+  "30": "quoted",
+  "31": "quoted",
+  "32": "quoted",
+  "33": "quoted",
+  "34": "quoted",
+  "35": "quoted",
+  "36": "quoted",
+  "37": "quoted",
+  "38": "quoted",
+  "39": "quoted",
+  "40": "quoted",
+  "41": "quoted",
+  "42": "quoted",
+  "43": "quoted",
+  "44": "instruction",
+  "45": "quoted",
+  "46": "quoted",
+  "47": "quoted",
+  "48": "quoted",
+  "49": "quoted",
+  "50": "quoted",
+  "51": "quoted",
+  "52": "quoted",
+  "53": "quoted",
+  "54": "quoted",
+  "55": "quoted",
+  "56": "quoted",
+  "57": "quoted",
+  "58": "quoted",
+  "59": "quoted",
+  "60": "quoted",
+  "61": "quoted",
+  "62": "instruction",
+  "63": "quoted",
+  "64": "instruction",
+  "65": "instruction",
+  "66": "instruction",
+  "67": "instruction",
+  "68": "instruction",
+  "69": "instruction",
+  "70": "instruction",
+  "71": "instruction",
+  "72": "instruction",
+  "73": "quoted",
+  "74": "quoted",
+  "75": "quoted",
+  "76": "quoted",
+  "77": "quoted",
+  "78": "quoted",
+  "79": "quoted",
+  "80": "quoted",
+  "81": "quoted",
+  "82": "instruction",
+  "83": "instruction",
+  "84": "instruction",
+  "85": "instruction",
+  "86": "quoted",
+  "87": "quoted",
+  "88": "instruction",
+  "89": "instruction",
+  "90": "instruction",
+  "91": "instruction",
+  "92": "instruction",
+  "93": "instruction",
+  "94": "instruction",
+  "95": "quoted",
+  "96": "instruction",
+  "97": "quoted",
+  "98": "instruction",
+  "99": "instruction",
+  "100": "instruction",
+  "101": "quoted",
+  "102": "instruction",
+  "103": "quoted",
+  "104": "quoted",
+  "105": "instruction",
+  "106": "instruction",
+  "107": "instruction",
+  "108": "quoted",
+  "109": "instruction",
+  "110": "instruction",
+  "111": "quoted",
+  "112": "instruction",
+  "113": "instruction",
+  "114": "instruction",
+  "115": "instruction",
+  "116": "quoted",
+  "117": "instruction",
+  "118": "instruction",
+  "119": "instruction",
+  "120": "instruction",
+  "121": "instruction",
+  "122": "instruction",
+  "123": "instruction",
+  "124": "instruction",
+  "125": "instruction",
+  "126": "instruction",
+  "127": "instruction",
+  "128": "instruction",
+  "129": "quoted",
+  "130": "instruction",
+  "131": "instruction",
+  "132": "instruction",
+  "133": "instruction",
+  "134": "instruction",
+  "135": "instruction",
+  "136": "quoted",
+  "137": "instruction",
+  "138": "instruction",
+  "139": "instruction",
+  "140": "quoted",
+  "141": "instruction",
+  "142": "instruction",
+  "143": "instruction",
+  "144": "quoted",
+  "145": "instruction",
+  "146": "quoted",
+  "147": "instruction",
+  "148": "instruction",
+  "149": "instruction",
+  "150": "quoted",
+  "151": "instruction",
+  "152": "quoted",
+  "153": "instruction",
+  "154": "instruction",
+  "155": "quoted",
+  "156": "instruction",
+  "157": "instruction",
+  "158": "instruction",
+  "159": "instruction",
+  "160": "instruction",
+  "161": "instruction",
+  "162": "instruction",
+  "163": "instruction",
+  "164": "quoted",
+  "165": "instruction",
+  "166": "instruction",
+  "167": "instruction",
+  "168": "instruction",
+  "169": "instruction",
+  "170": "instruction",
+  "171": "quoted",
+  "172": "instruction",
+  "173": "instruction",
+  "174": "instruction",
+  "175": "quoted",
+  "176": "instruction",
+  "177": "instruction",
+  "178": "instruction",
+  "179": "quoted",
+  "180": "quoted",
+  "181": "quoted",
+  "182": "instruction",
+  "183": "instruction",
+  "184": "instruction",
+  "185": "instruction",
+  "186": "instruction",
+  "187": "instruction",
+  "188": "quoted",
+  "189": "instruction",
+  "190": "instruction",
+  "191": "instruction",
+  "192": "quoted",
+  "193": "instruction",
+  "194": "instruction",
+  "195": "instruction",
+  "196": "instruction",
+  "197": "instruction",
+  "198": "instruction",
+  "199": "quoted",
+  "200": "instruction",
+  "201": "instruction",
+  "202": "instruction",
+  "203": "instruction",
+  "204": "instruction",
+  "205": "instruction",
+  "206": "instruction",
+  "207": "instruction",
+  "208": "instruction",
+  "209": "instruction",
+  "210": "instruction",
+  "211": "quoted",
+  "212": "instruction",
+  "213": "instruction",
+  "214": "instruction",
+  "215": "instruction",
+  "216": "instruction",
+  "217": "instruction",
+  "218": "quoted",
+  "219": "instruction",
+  "220": "instruction",
+  "221": "quoted",
+  "222": "quoted",
+  "223": "quoted",
+  "224": "instruction",
+  "225": "quoted",
+  "226": "quoted",
+  "227": "quoted",
+  "228": "instruction",
+  "229": "instruction",
+  "230": "quoted",
+  "231": "quoted",
+  "232": "quoted",
+  "233": "quoted",
+  "234": "quoted",
+  "235": "quoted",
+  "236": "instruction",
+  "237": "quoted",
+  "238": "instruction",
+  "239": "quoted",
+  "240": "quoted",
+  "241": "instruction",
+  "242": "quoted",
+  "243": "instruction",
+  "244": "quoted",
+  "245": "instruction",
+  "246": "quoted",
+  "247": "quoted",
+  "248": "quoted",
+  "249": "instruction",
+  "250": "instruction",
+  "251": "quoted",
+  "252": "quoted",
+  "253": "quoted",
+  "254": "quoted",
+  "255": "quoted",
+  "256": "quoted",
+  "257": "quoted",
+  "258": "quoted",
+  "259": "quoted",
+  "260": "quoted",
+  "261": "quoted",
+  "262": "quoted",
+  "263": "quoted",
+  "264": "instruction",
+  "265": "instruction",
+  "266": "instruction",
+  "267": "instruction",
+  "268": "instruction",
+  "269": "instruction",
+  "270": "instruction",
+  "271": "instruction",
+  "272": "instruction",
+  "273": "quoted",
+  "274": "quoted",
+  "275": "quoted",
+  "276": "instruction",
+  "277": "quoted",
+  "278": "quoted",
+  "279": "quoted",
+  "280": "instruction",
+  "281": "instruction",
+  "282": "instruction",
+  "283": "instruction",
+  "284": "instruction",
+  "285": "instruction",
+  "286": "quoted",
+  "287": "quoted",
+  "288": "instruction",
+  "289": "instruction",
+  "290": "instruction",
+  "291": "instruction",
+  "292": "quoted",
+  "293": "instruction",
+  "294": "quoted",
+  "295": "instruction",
+  "296": "instruction",
+  "297": "quoted",
+  "298": "instruction",
+  "299": "quoted",
+  "300": "instruction",
+  "301": "quoted",
+  "302": "instruction",
+  "303": "quoted",
+  "304": "quoted",
+  "305": "instruction",
+  "306": "quoted",
+  "307": "instruction",
+  "308": "instruction",
+  "309": "instruction",
+  "310": "instruction",
+  "311": "instruction",
+  "312": "instruction",
+  "313": "quoted",
+  "314": "instruction",
+  "315": "instruction",
+  "316": "quoted",
+  "317": "instruction",
+  "318": "quoted",
+  "319": "instruction",
+  "320": "quoted",
+  "321": "instruction",
+  "322": "instruction",
+  "323": "instruction",
+  "324": "instruction",
+  "325": "quoted",
+  "326": "quoted",
+  "327": "instruction",
+  "328": "heading",
+  "329": "instruction",
+  "330": "continuation",
+  "331": "continuation",
+  "332": "continuation",
+  "333": "continuation",
+  "334": "continuation",
+  "335": "continuation",
+  "336": "continuation",
+  "337": "instruction",
+  "338": "instruction",
+  "339": "instruction",
+  "340": "instruction",
+  "341": "instruction",
+  "342": "instruction",
+  "343": "instruction",
+  "344": "instruction",
+  "345": "instruction",
+  "346": "instruction",
+  "347": "instruction",
+  "348": "instruction",
+  "349": "instruction",
+  "350": "instruction",
+  "351": "instruction",
+  "352": "instruction",
+  "353": "instruction",
+  "354": "instruction",
+  "355": "instruction",
+  "356": "instruction",
+  "357": "instruction",
+  "358": "instruction",
+  "359": "instruction",
+  "360": "instruction",
+  "361": "instruction",
+  "362": "quoted",
+  "363": "quoted",
+  "364": "instruction",
+  "365": "quoted",
+  "366": "instruction",
+  "367": "quoted",
+  "368": "quoted",
+  "369": "quoted",
+  "370": "quoted",
+  "371": "quoted",
+  "372": "quoted",
+  "373": "instruction",
+  "374": "instruction",
+  "375": "instruction",
+  "376": "instruction",
+  "377": "instruction",
+  "378": "instruction",
+  "379": "quoted",
+  "380": "quoted",
+  "381": "quoted",
+  "382": "quoted",
+  "383": "quoted",
+  "384": "quoted",
+  "385": "quoted",
+  "386": "quoted",
+  "387": "quoted",
+  "388": "quoted",
+  "389": "quoted",
+  "390": "quoted",
+  "391": "quoted",
+  "392": "quoted",
+  "393": "quoted",
+  "394": "quoted",
+  "395": "quoted",
+  "396": "instruction",
+  "397": "instruction",
+  "398": "quoted",
+  "399": "quoted",
+  "400": "quoted",
+  "401": "instruction",
+  "402": "instruction",
+  "403": "instruction",
+  "404": "instruction",
+  "405": "instruction",
+  "406": "instruction",
+  "407": "instruction",
+  "408": "instruction",
+  "409": "instruction",
+  "410": "instruction",
+  "411": "instruction",
+  "412": "instruction",
+  "413": "instruction",
+  "414": "instruction",
+  "415": "instruction",
+  "416": "instruction",
+  "417": "instruction",
+  "418": "instruction",
+  "419": "instruction",
+  "420": "instruction",
+  "421": "quoted",
+  "422": "instruction",
+  "423": "quoted",
+  "424": "instruction",
+  "425": "instruction",
+  "426": "instruction",
+  "427": "instruction",
+  "428": "instruction",
+  "429": "instruction",
+  "430": "instruction",
+  "431": "instruction",
+  "432": "instruction",
+  "433": "quoted",
+  "434": "instruction",
+  "435": "instruction",
+  "436": "instruction",
+  "437": "instruction",
+  "438": "quoted",
+  "439": "instruction",
+  "440": "instruction",
+  "441": "instruction",
+  "442": "instruction",
+  "443": "quoted",
+  "444": "instruction",
+  "445": "instruction",
+  "446": "instruction",
+  "447": "instruction",
+  "448": "quoted",
+  "449": "instruction",
+  "450": "instruction",
+  "451": "instruction",
+  "452": "instruction",
+  "453": "instruction",
+  "454": "instruction",
+  "455": "instruction",
+  "456": "instruction",
+  "457": "instruction",
+  "458": "quoted",
+  "459": "instruction",
+  "460": "quoted",
+  "461": "instruction",
+  "462": "quoted",
+  "463": "instruction",
+  "464": "instruction",
+  "465": "instruction",
+  "466": "instruction",
+  "467": "instruction",
+  "468": "instruction",
+  "469": "instruction",
+  "470": "instruction",
+  "471": "instruction",
+  "472": "instruction",
+  "473": "instruction",
+  "474": "instruction",
+  "475": "instruction",
+  "476": "instruction",
+  "477": "instruction",
+  "478": "instruction",
+  "479": "quoted",
+  "480": "instruction",
+  "481": "instruction",
+  "482": "instruction",
+  "483": "instruction",
+  "484": "instruction",
+  "485": "quoted",
+  "486": "instruction",
+  "487": "instruction",
+  "488": "instruction",
+  "489": "instruction",
+  "490": "instruction",
+  "491": "instruction",
+  "492": "quoted",
+  "493": "instruction",
+  "494": "instruction",
+  "495": "instruction",
+  "496": "quoted",
+  "497": "instruction",
+  "498": "instruction",
+  "499": "instruction",
+  "500": "instruction",
+  "501": "instruction",
+  "502": "quoted",
+  "503": "instruction",
+  "504": "quoted",
+  "505": "instruction",
+  "506": "instruction",
+  "507": "instruction",
+  "508": "instruction",
+  "509": "instruction",
+  "510": "quoted",
+  "511": "instruction",
+  "512": "quoted",
+  "513": "instruction",
+  "514": "instruction",
+  "515": "quoted",
+  "516": "quoted",
+  "517": "quoted",
+  "518": "quoted",
+  "519": "instruction",
+  "520": "instruction",
+  "521": "instruction",
+  "522": "instruction",
+  "523": "quoted",
+  "524": "instruction",
+  "525": "instruction",
+  "526": "instruction",
+  "527": "instruction",
+  "528": "instruction",
+  "529": "instruction",
+  "530": "quoted",
+  "531": "instruction",
+  "532": "instruction",
+  "533": "instruction",
+  "534": "quoted",
+  "535": "instruction",
+  "536": "instruction",
+  "537": "instruction",
+  "538": "instruction",
+  "539": "quoted",
+  "540": "instruction",
+  "541": "quoted",
+  "542": "instruction",
+  "543": "instruction",
+  "544": "instruction",
+  "545": "instruction",
+  "546": "instruction",
+  "547": "instruction",
+  "548": "instruction",
+  "549": "instruction",
+  "550": "instruction",
+  "551": "instruction",
+  "552": "instruction",
+  "553": "instruction",
+  "554": "instruction",
+  "555": "instruction",
+  "556": "instruction",
+  "557": "instruction",
+  "558": "instruction"
+ },
+ "findings": [],
+ "blocks": 562,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 10,
+   "text": "§ 1. В чл. 6а, ал. 3 думите „и диспансерите“ се заменят с „центровете за психично здраве, комплексните онкологични центрове и центровете за кожно-венерически заболявания“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "и диспансерите",
+    "центровете за психично здраве, комплексните онкологични центрове и центровете за кожно-венерически заболявания"
+   ],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 11,
+   "text": "§ 2. В чл. 7 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 12,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      13
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 14,
+     "text": "2. В ал. 2, изречение второ думите „регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалния център по здравеопазване",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 15,
+   "text": "§ 3. В чл. 8, ал. 1 и 2 думите „Регионалните центрове по здравеопазване“ се заменят с „Регионалните здравни инспекции“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Регионалните центрове по здравеопазване",
+    "Регионалните здравни инспекции"
+   ],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 16,
+   "text": "§ 4. Член 9 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 24,
+   "text": "§ 5. Член 10 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 44,
+   "text": "§ 6. Член 10а се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 62,
+   "text": "§ 7. Член 11 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    63
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 64,
+   "text": "§ 8. В чл. 12 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§8.1",
+     "level": 1,
+     "block": 65,
+     "text": "1. В ал. 1 думите „регионалните инспекции за опазване и контрол на общественото здраве (РИОКОЗ)“ се заменят с „регионалните здравни инспекции“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните инспекции за опазване и контрол на общественото здраве (РИОКОЗ)",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§8.2",
+     "level": 1,
+     "block": 66,
+     "text": "2. В ал. 2, изречения първо и второ абревиатурата „РИОКОЗ“ се заменя с „регионалните здравни инспекции“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 67,
+   "text": "§ 9. В чл. 14 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§9.1",
+     "level": 1,
+     "block": 68,
+     "text": "1. В ал. 1:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§9.1.а",
+       "level": 2,
+       "block": 69,
+       "text": "а) в т. 1 след думата „контрол“ се добавя „по чл. 15“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "контрол",
+        "по чл. 15"
+       ],
+       "target": null
+      },
+      {
+       "id": "§9.1.б",
+       "level": 2,
+       "block": 70,
+       "text": "б) точки 3 и 4 се отменят.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§9.2",
+     "level": 1,
+     "block": 71,
+     "text": "2. В ал. 2 след думите „контрол към“ се добавя „Министерството на правосъдието, Министерството на транспорта, информационните технологии и съобщенията“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "контрол към",
+      "Министерството на правосъдието, Министерството на транспорта, информационните технологии и съобщенията"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 72,
+   "text": "§ 10. Член 15 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§11",
+   "level": 0,
+   "block": 82,
+   "text": "§ 11. Членове 16, 17, 18 и 18а се отменят.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§12",
+   "level": 0,
+   "block": 83,
+   "text": "§ 12. В чл. 19 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§12.1",
+     "level": 1,
+     "block": 84,
+     "text": "1. В ал. 2:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§12.1.а",
+       "level": 2,
+       "block": 85,
+       "text": "а) създават се нови т. 7 и 8:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        86,
+        87
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§12.1.б",
+       "level": 2,
+       "block": 88,
+       "text": "б) досегашните т. 7, 8, 9, 10 и 11 стават съответно т. 9, 10, 11, 12 и 13.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§12.2",
+     "level": 1,
+     "block": 89,
+     "text": "2. В ал. 3 абревиатурата „РИОКОЗ“ се заменя с „регионалните здравни инспекции“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§13",
+   "level": 0,
+   "block": 90,
+   "text": "§ 13. В чл. 20 абревиатурата „РИОКОЗ“ се заменя с „регионална здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РИОКОЗ",
+    "регионална здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§14",
+   "level": 0,
+   "block": 91,
+   "text": "§ 14. В чл. 23, ал. 1 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§14.1",
+     "level": 1,
+     "block": 92,
+     "text": "1. В т. 6 след думата „йонизиращите“ се добавя „и нейонизиращите“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "йонизиращите",
+      "и нейонизиращите"
+     ],
+     "target": null
+    },
+    {
+     "id": "§14.2",
+     "level": 1,
+     "block": 93,
+     "text": "2. В т. 8 абревиатурата „РИОКОЗ“ се заменя с „регионалните здравни инспекции“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§14.3",
+     "level": 1,
+     "block": 94,
+     "text": "3. Създава се т. 13:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      95
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§15",
+   "level": 0,
+   "block": 96,
+   "text": "§ 15. В чл. 24, ал. 1, т. 3 буква „а“ се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    97
+   ],
+   "continuation": [],
+   "inline_quotes": [
+    "а"
+   ],
+   "target": null
+  },
+  {
+   "id": "§16",
+   "level": 0,
+   "block": 98,
+   "text": "§ 16. В чл. 26а се правят следните допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§16.1",
+     "level": 1,
+     "block": 99,
+     "text": "1. В ал. 1, т. 1 след думата „зрението“ се добавя „осъществявана от лекар с призната специалност по очни болести или от лекар с професионална квалификация, определена в утвърдения по реда на чл. 6, ал. 1 от Закона за лечебните заведения съответен медицински стандарт“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "зрението",
+      "осъществявана от лекар с призната специалност по очни болести или от лекар с професионална квалификация, определена в утвърдения по реда на чл. 6, ал. 1 от Закона за лечебните заведения съответен медицински стандарт"
+     ],
+     "target": null
+    },
+    {
+     "id": "§16.2",
+     "level": 1,
+     "block": 100,
+     "text": "2. Създава се ал. 4:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      101
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§17",
+   "level": 0,
+   "block": 102,
+   "text": "§ 17. Член 26б се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    103,
+    104
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§18",
+   "level": 0,
+   "block": 105,
+   "text": "§ 18. В чл. 27, ал. 2 абревиатурите „РЦЗ, РИОКОЗ“ се заменят с „регионалните здравни инспекции“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ, РИОКОЗ",
+    "регионалните здравни инспекции"
+   ],
+   "target": null
+  },
+  {
+   "id": "§19",
+   "level": 0,
+   "block": 106,
+   "text": "§ 19. В чл. 28, ал. 1, т. 7 абревиатурите „РЦЗ, РИОКОЗ“ се заменят с „регионалните здравни инспекции“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ, РИОКОЗ",
+    "регионалните здравни инспекции"
+   ],
+   "target": null
+  },
+  {
+   "id": "§20",
+   "level": 0,
+   "block": 107,
+   "text": "§ 20. Член 28а се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    108
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§21",
+   "level": 0,
+   "block": 109,
+   "text": "§ 21. В чл. 32 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§21.1",
+     "level": 1,
+     "block": 110,
+     "text": "1. Създава се нова ал. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      111
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§21.2",
+     "level": 1,
+     "block": 112,
+     "text": "2. Досегашната ал. 3 става ал. 4 и в нея думите „Регионалните инспекции за опазване и контрол на общественото здраве“ се заменят с „Регионалните здравни инспекции“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Регионалните инспекции за опазване и контрол на общественото здраве",
+      "Регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§21.3",
+     "level": 1,
+     "block": 113,
+     "text": "3. Досегашната ал. 4 става ал. 5.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§22",
+   "level": 0,
+   "block": 114,
+   "text": "§ 22. В чл. 36 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§22.1",
+     "level": 1,
+     "block": 115,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      116
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§22.2",
+     "level": 1,
+     "block": 117,
+     "text": "2. В ал. 2 думите „три месеца“ се заменят с „един месец“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "три месеца",
+      "един месец"
+     ],
+     "target": null
+    },
+    {
+     "id": "§22.3",
+     "level": 1,
+     "block": 118,
+     "text": "3. В ал. 3 думите „Регионалните инспекции за опазване и контрол на общественото здраве“ се заменят с „Регионалните здравни инспекции“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Регионалните инспекции за опазване и контрол на общественото здраве",
+      "Регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§22.4",
+     "level": 1,
+     "block": 119,
+     "text": "4. В ал. 4 думите „и оптики“ се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "и оптики"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§23",
+   "level": 0,
+   "block": 120,
+   "text": "§ 23. В чл. 38, в ал. 2, 3 и 4 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РИОКОЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§24",
+   "level": 0,
+   "block": 121,
+   "text": "§ 24. В чл. 39 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§24.1",
+     "level": 1,
+     "block": 122,
+     "text": "1. В ал. 1, т. 2 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§24.2",
+     "level": 1,
+     "block": 123,
+     "text": "2. В ал. 3 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§24.3",
+     "level": 1,
+     "block": 124,
+     "text": "3. В ал. 4 абревиатурата „РИОКОЗ“ се заменя с „регионална здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионална здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§25",
+   "level": 0,
+   "block": 125,
+   "text": "§ 25. В чл. 42, ал. 1 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РИОКОЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§26",
+   "level": 0,
+   "block": 126,
+   "text": "§ 26. В чл. 43, ал. 2 абревиатурата „РИОКОЗ“ се заменя с „регионалните здравни инспекции“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РИОКОЗ",
+    "регионалните здравни инспекции"
+   ],
+   "target": null
+  },
+  {
+   "id": "§27",
+   "level": 0,
+   "block": 127,
+   "text": "§ 27. В чл. 45, ал. 2, т. 1 и 2 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РИОКОЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§28",
+   "level": 0,
+   "block": 128,
+   "text": "§ 28. Член 46 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    129
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§29",
+   "level": 0,
+   "block": 130,
+   "text": "§ 29. В чл. 48 думите „и организациите“ се заменят с „организациите, физическите и юридическите лица“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "и организациите",
+    "организациите, физическите и юридическите лица"
+   ],
+   "target": null
+  },
+  {
+   "id": "§30",
+   "level": 0,
+   "block": 131,
+   "text": "§ 30. В чл. 51, ал. 3 думата „възражение“ се заменя с „разрешение“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "възражение",
+    "разрешение"
+   ],
+   "target": null
+  },
+  {
+   "id": "§31",
+   "level": 0,
+   "block": 132,
+   "text": "§ 31. В глава втора „Дейности по опазване на здравето“ наименованието на раздел V се изменя така: „Надзор на заразните болести“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Дейности по опазване на здравето",
+    "Надзор на заразните болести"
+   ],
+   "target": null
+  },
+  {
+   "id": "§32",
+   "level": 0,
+   "block": 133,
+   "text": "§ 32. В чл. 59 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§32.1",
+     "level": 1,
+     "block": 134,
+     "text": "1. Досегашният текст става ал. 1.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§32.2",
+     "level": 1,
+     "block": 135,
+     "text": "2. Създава се ал. 2:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      136
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§33",
+   "level": 0,
+   "block": 137,
+   "text": "§ 33. В чл. 60 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§33.1",
+     "level": 1,
+     "block": 138,
+     "text": "1. В ал. 4 думите „вътреболничните инфекции“ се заменят с „инфекциите, свързани с медицинското обслужване“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "вътреболничните инфекции",
+      "инфекциите, свързани с медицинското обслужване"
+     ],
+     "target": null
+    },
+    {
+     "id": "§33.2",
+     "level": 1,
+     "block": 139,
+     "text": "2. Създава се ал. 7:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      140
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§34",
+   "level": 0,
+   "block": 141,
+   "text": "§ 34. В чл. 61 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§34.1",
+     "level": 1,
+     "block": 142,
+     "text": "1. В ал. 3 в изречение първо след думите „лекуващия лекар“ се добавя „или на лекаря, насочил пациента за хоспитализация“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "лекуващия лекар",
+      "или на лекаря, насочил пациента за хоспитализация"
+     ],
+     "target": null
+    },
+    {
+     "id": "§34.2",
+     "level": 1,
+     "block": 143,
+     "text": "2. Алинея 4 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      144
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§34.3",
+     "level": 1,
+     "block": 145,
+     "text": "3. Създава се ал. 6:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      146
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§35",
+   "level": 0,
+   "block": 147,
+   "text": "§ 35. В чл. 62, ал. 1 думите „в 14-дневен срок от“ се заменят с „не по-късно от деня на“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "в 14-дневен срок от",
+    "не по-късно от деня на"
+   ],
+   "target": null
+  },
+  {
+   "id": "§36",
+   "level": 0,
+   "block": 148,
+   "text": "§ 36. В чл. 63 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§36.1",
+     "level": 1,
+     "block": 149,
+     "text": "1. Алинея 2 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      150
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§36.2",
+     "level": 1,
+     "block": 151,
+     "text": "2. Създава се нова ал. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      152
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§36.3",
+     "level": 1,
+     "block": 153,
+     "text": "3. Досегашните ал. 3 и 4 стават съответно ал. 4 и 5.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§37",
+   "level": 0,
+   "block": 154,
+   "text": "§ 37. В чл. 72 се създава ал. 4:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    155
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§38",
+   "level": 0,
+   "block": 156,
+   "text": "§ 38. В чл. 73, ал. 1 и 2 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РИОКОЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§39",
+   "level": 0,
+   "block": 157,
+   "text": "§ 39. В чл. 74 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§39.1",
+     "level": 1,
+     "block": 158,
+     "text": "1. В ал. 1 думите „10-дневен“ се заменят с „тридневен“ и абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "10-дневен",
+      "тридневен",
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§39.2",
+     "level": 1,
+     "block": 159,
+     "text": "2. В ал. 2, изречение второ абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§39.3",
+     "level": 1,
+     "block": 160,
+     "text": "3. В ал. 3 навсякъде абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§39.4",
+     "level": 1,
+     "block": 161,
+     "text": "4. В ал. 4 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§39.5",
+     "level": 1,
+     "block": 162,
+     "text": "5. В ал. 5 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§40",
+   "level": 0,
+   "block": 163,
+   "text": "§ 40. Създава се чл. 82а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    164
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§41",
+   "level": 0,
+   "block": 165,
+   "text": "§ 41. В чл. 93 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§41.1",
+     "level": 1,
+     "block": 166,
+     "text": "1. В ал. 1 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РЦЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§41.2",
+     "level": 1,
+     "block": 167,
+     "text": "2. В ал. 2 думите „Регионалният център по здравеопазване“ се заменят с „Регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Регионалният център по здравеопазване",
+      "Регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§41.3",
+     "level": 1,
+     "block": 168,
+     "text": "3. В ал. 3 навсякъде и в ал. 4 и 5 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РЦЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§42",
+   "level": 0,
+   "block": 169,
+   "text": "§ 42. В чл. 98 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§42.1",
+     "level": 1,
+     "block": 170,
+     "text": "1. Създава се нова ал. 2:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      171
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§42.2",
+     "level": 1,
+     "block": 172,
+     "text": "2. Досегашната ал. 2 става ал. 3.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§42.3",
+     "level": 1,
+     "block": 173,
+     "text": "3. Досегашната ал. 3 става ал. 4 и в нея след думата „починалия“ се добавя „в случаите по ал. 1“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "починалия",
+      "в случаите по ал. 1"
+     ],
+     "target": null
+    },
+    {
+     "id": "§42.4",
+     "level": 1,
+     "block": 174,
+     "text": "4. Създава се ал. 5:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      175
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§42.5",
+     "level": 1,
+     "block": 176,
+     "text": "5. Досегашната ал. 4 става ал. 6.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§43",
+   "level": 0,
+   "block": 177,
+   "text": "§ 43. В чл. 101, ал. 2 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§44",
+   "level": 0,
+   "block": 178,
+   "text": "§ 44. Създава се чл. 101а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    179,
+    180,
+    181
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§45",
+   "level": 0,
+   "block": 182,
+   "text": "§ 45. В чл. 104, ал. 1 абревиатурата „РЦЗ“ се заменя с „регионалните здравни инспекции“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалните здравни инспекции"
+   ],
+   "target": null
+  },
+  {
+   "id": "§46",
+   "level": 0,
+   "block": 183,
+   "text": "§ 46. В чл. 104а, ал. 1 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§47",
+   "level": 0,
+   "block": 184,
+   "text": "§ 47. В чл. 105, ал. 1 абревиатурата „РЦЗ“ се заменя с „регионалните здравни инспекции“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалните здравни инспекции"
+   ],
+   "target": null
+  },
+  {
+   "id": "§48",
+   "level": 0,
+   "block": 185,
+   "text": "§ 48. В чл. 108 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§48.1",
+     "level": 1,
+     "block": 186,
+     "text": "1. В ал. 2 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РЦЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§48.2",
+     "level": 1,
+     "block": 187,
+     "text": "2. Алинея 4 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      188
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§49",
+   "level": 0,
+   "block": 189,
+   "text": "§ 49. В чл. 110 абревиатурата „РЦЗ“ се заменя с „регионалните здравни инспекции“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалните здравни инспекции"
+   ],
+   "target": null
+  },
+  {
+   "id": "§50",
+   "level": 0,
+   "block": 190,
+   "text": "§ 50. В чл. 111, ал. 1, изречение първо думите „съответния РЦЗ“ се заменят със „съответната регионална здравна инспекция“и думите „на РЦЗ“ се заменят с „на регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "съответния РЦЗ",
+    "съответната регионална здравна инспекция",
+    "на РЦЗ",
+    "на регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§51",
+   "level": 0,
+   "block": 191,
+   "text": "§ 51. Създава се чл. 112а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    192
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§52",
+   "level": 0,
+   "block": 193,
+   "text": "§ 52. В чл. 114, ал. 1 думите „директорите на РЦЗ, органите за държавен здравен контрол“ се заменят с „главния държавен здравен инспектор, директора на НЦРРЗ, директорите на регионалните здравни инспекции“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директорите на РЦЗ, органите за държавен здравен контрол",
+    "главния държавен здравен инспектор, директора на НЦРРЗ, директорите на регионалните здравни инспекции"
+   ],
+   "target": null
+  },
+  {
+   "id": "§53",
+   "level": 0,
+   "block": 194,
+   "text": "§ 53. В чл. 116 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§53.1",
+     "level": 1,
+     "block": 195,
+     "text": "1. В ал. 1:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§53.1.а",
+       "level": 2,
+       "block": 196,
+       "text": "а) абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "РЦЗ",
+        "регионалната здравна инспекция"
+       ],
+       "target": null
+      },
+      {
+       "id": "§53.1.б",
+       "level": 2,
+       "block": 197,
+       "text": "б) създава се изречение второ: „Директорът на регионалната здравна инспекция е председател на съвета.“",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "Директорът на регионалната здравна инспекция е председател на съвета."
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§53.2",
+     "level": 1,
+     "block": 198,
+     "text": "2. Алинея 2 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      199
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§54",
+   "level": 0,
+   "block": 200,
+   "text": "§ 54. В чл. 116б, ал. 1, т. 9 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§55",
+   "level": 0,
+   "block": 201,
+   "text": "§ 55. В чл. 119, ал. 2 думите „министъра на здравеопазването“ се заменят с „директора на съответната регионална здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "министъра на здравеопазването",
+    "директора на съответната регионална здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§56",
+   "level": 0,
+   "block": 202,
+   "text": "§ 56. В чл. 120 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§56.1",
+     "level": 1,
+     "block": 203,
+     "text": "1. В ал. 2 думите „лекар“ и от“ се заменят с „лекар“ и/или от“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "лекар",
+      "лекар"
+     ],
+     "target": null
+    },
+    {
+     "id": "§56.2",
+     "level": 1,
+     "block": 204,
+     "text": "2. В ал. 3 думата „Лекарите“ се заменя с „Лекарите, съответно медицинските специалисти“ и се поставя запетая.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Лекарите",
+      "Лекарите, съответно медицинските специалисти"
+     ],
+     "target": null
+    },
+    {
+     "id": "§56.3",
+     "level": 1,
+     "block": 205,
+     "text": "3. В ал. 6 абревиатурата „РИОКОЗ“ се заменя с „регионална здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионална здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§57",
+   "level": 0,
+   "block": 206,
+   "text": "§ 57. В чл. 170, ал. 1, 3, 4 и 5 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§58",
+   "level": 0,
+   "block": 207,
+   "text": "§ 58. В чл. 171 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§58.1",
+     "level": 1,
+     "block": 208,
+     "text": "1. В ал. 1 думите „Регионалният център по здравеопазване“ се заменят с „Регионалната здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Регионалният център по здравеопазване",
+      "Регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§58.2",
+     "level": 1,
+     "block": 209,
+     "text": "2. В ал. 2 думите „съответния РЦЗ“ се заменят със „съответната регионална здравна инспекция“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "съответния РЦЗ",
+      "съответната регионална здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§59",
+   "level": 0,
+   "block": 210,
+   "text": "§ 59. Създава се чл. 171а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    211
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§60",
+   "level": 0,
+   "block": 212,
+   "text": "§ 60. В чл. 172, ал. 2 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§61",
+   "level": 0,
+   "block": 213,
+   "text": "§ 61. В чл. 173, ал. 2 думите „РЦЗ, издал“ се заменят с „регионалната здравна инспекция, извършила“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ, издал",
+    "регионалната здравна инспекция, извършила"
+   ],
+   "target": null
+  },
+  {
+   "id": "§62",
+   "level": 0,
+   "block": 214,
+   "text": "§ 62. В чл. 175, ал. 2 думите „и акушерка“ се заменят с израза „акушерка“ и „лекарски асистент“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "и акушерка",
+    "акушерка",
+    "лекарски асистент"
+   ],
+   "target": null
+  },
+  {
+   "id": "§63",
+   "level": 0,
+   "block": 215,
+   "text": "§ 63. В чл. 179 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§63.1",
+     "level": 1,
+     "block": 216,
+     "text": "1. Досегашният текст става ал. 1 и в нея думите „и координира“ се заменят с „координира и контролира“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "и координира",
+      "координира и контролира"
+     ],
+     "target": null
+    },
+    {
+     "id": "§63.2",
+     "level": 1,
+     "block": 217,
+     "text": "2. Създава се ал. 2:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      218
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§64",
+   "level": 0,
+   "block": 219,
+   "text": "§ 64. В чл. 185 се правят следните допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§64.1",
+     "level": 1,
+     "block": 220,
+     "text": "1. Създава се нова ал. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      221,
+      222,
+      223
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§64.2",
+     "level": 1,
+     "block": 224,
+     "text": "2. Създават се ал. 4, 5 и 6:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      225,
+      226,
+      227
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§65",
+   "level": 0,
+   "block": 228,
+   "text": "§ 65. В чл. 186 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§65.1",
+     "level": 1,
+     "block": 229,
+     "text": "1. Алинея 3 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      230,
+      231,
+      232,
+      233,
+      234,
+      235
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§65.2",
+     "level": 1,
+     "block": 236,
+     "text": "2. Създава се нова ал. 5:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      237
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§65.3",
+     "level": 1,
+     "block": 238,
+     "text": "3. Създават се ал. 6 и 7:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      239,
+      240
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§66",
+   "level": 0,
+   "block": 241,
+   "text": "§ 66. В чл. 192 се създава ал. 5:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    242
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§67",
+   "level": 0,
+   "block": 243,
+   "text": "§ 67. В чл. 193 се създава ал. 3:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    244
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§68",
+   "level": 0,
+   "block": 245,
+   "text": "§ 68. Член 201 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    246,
+    247,
+    248
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§69",
+   "level": 0,
+   "block": 249,
+   "text": "§ 69. В чл. 205, ал. 3 абревиатурата „РЦЗ“ се заменя с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РЦЗ",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§70",
+   "level": 0,
+   "block": 250,
+   "text": "§ 70. В глава седма, раздел IV се създават чл. 208а, 208б и 208в:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§71",
+   "level": 0,
+   "block": 264,
+   "text": "§ 71. В чл. 210 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§71.1",
+     "level": 1,
+     "block": 265,
+     "text": "1. В ал. 1 думите „от 200 до 5000 лв.“ се заменят с „от 100 до 1500 лв.“, а думите „от 3000 до 10 000 лв.“ се заменят с „от 500 до 5000 лв.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "от 200 до 5000 лв.",
+      "от 100 до 1500 лв.",
+      "от 3000 до 10 000 лв.",
+      "от 500 до 5000 лв."
+     ],
+     "target": null
+    },
+    {
+     "id": "§71.2",
+     "level": 1,
+     "block": 266,
+     "text": "2. В ал. 2 думите „от 100 до 1500 лв.“ се заменят с „от 200 до 3000 лв.“, а думите „от 3000 до 9000 лв.“ се заменят с „от 1000 до 8000 лв.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "от 100 до 1500 лв.",
+      "от 200 до 3000 лв.",
+      "от 3000 до 9000 лв.",
+      "от 1000 до 8000 лв."
+     ],
+     "target": null
+    },
+    {
+     "id": "§71.3",
+     "level": 1,
+     "block": 267,
+     "text": "3. В ал. 3 думите „от 2000 до 5000 лв.“ се заменят с „от 1000 до 5000 лв.“ и думите „от 6000 до 12 000 лв.“ се заменят с „от 3000 до 12 000 лв.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "от 2000 до 5000 лв.",
+      "от 1000 до 5000 лв.",
+      "от 6000 до 12 000 лв.",
+      "от 3000 до 12 000 лв."
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§72",
+   "level": 0,
+   "block": 268,
+   "text": "§ 72. В чл. 211 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§72.1",
+     "level": 1,
+     "block": 269,
+     "text": "1. В ал. 1 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“ и думите „от 1000 до 3000 лв.“ се заменят с „от 200 до 3000 лв.“ и думите „от 3000 до 10 000 лв.“ се заменят с „от 1000 до 10 000 лв.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция",
+      "от 1000 до 3000 лв.",
+      "от 200 до 3000 лв.",
+      "от 3000 до 10 000 лв.",
+      "от 1000 до 10 000 лв."
+     ],
+     "target": null
+    },
+    {
+     "id": "§72.2",
+     "level": 1,
+     "block": 270,
+     "text": "2. В ал. 2 думите „от 3000 до 9000 лв.“ се заменят с „от 500 до 9000 лв.“ и думите „от 9000 до 15 000 лв.“ се заменят с „от 2000 до 15 000 лв.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "от 3000 до 9000 лв.",
+      "от 500 до 9000 лв.",
+      "от 9000 до 15 000 лв.",
+      "от 2000 до 15 000 лв."
+     ],
+     "target": null
+    },
+    {
+     "id": "§72.3",
+     "level": 1,
+     "block": 271,
+     "text": "3. В ал. 3 думите „от 5000 до 15 000 лв.“ се заменят с „от 2000 до 15 000 лв.“ и думите „от 10 000 до 20 000 лв.“ се заменят с „от 5000 до 20 000 лв.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "от 5000 до 15 000 лв.",
+      "от 2000 до 15 000 лв.",
+      "от 10 000 до 20 000 лв.",
+      "от 5000 до 20 000 лв."
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§73",
+   "level": 0,
+   "block": 272,
+   "text": "§ 73. Член 212 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    273,
+    274,
+    275
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§74",
+   "level": 0,
+   "block": 276,
+   "text": "§ 74. Създава се чл. 212а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    277,
+    278,
+    279
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§75",
+   "level": 0,
+   "block": 280,
+   "text": "§ 75. В чл. 213 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§75.1",
+     "level": 1,
+     "block": 281,
+     "text": "1. В ал. 1 думите „от 3000 до 9000 лв.“ се заменят с „от 2000 до 6000 лв.“ и думите „от 10 000 до 30 000 лв.“ се заменят с „от 6000 до 12 000 лв.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "от 3000 до 9000 лв.",
+      "от 2000 до 6000 лв.",
+      "от 10 000 до 30 000 лв.",
+      "от 6000 до 12 000 лв."
+     ],
+     "target": null
+    },
+    {
+     "id": "§75.2",
+     "level": 1,
+     "block": 282,
+     "text": "2. В ал. 2 думите „от 2000 до 6000 лв.“ се заменят с „от 3000 до 9000 лв.“ и думите „от 6000 до 12 000 лв.“ се заменят с „от 10 000 до 30 000 лв.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "от 2000 до 6000 лв.",
+      "от 3000 до 9000 лв.",
+      "от 6000 до 12 000 лв.",
+      "от 10 000 до 30 000 лв."
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§76",
+   "level": 0,
+   "block": 283,
+   "text": "§ 76. В чл. 215, в изречение второ накрая се добавя „или на лекаря, насочил лицето за хоспитализация“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "или на лекаря, насочил лицето за хоспитализация"
+   ],
+   "target": null
+  },
+  {
+   "id": "§77",
+   "level": 0,
+   "block": 284,
+   "text": "§ 77. В чл. 225, ал. 2 думите „регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "регионалния център по здравеопазване",
+    "регионалната здравна инспекция"
+   ],
+   "target": null
+  },
+  {
+   "id": "§78",
+   "level": 0,
+   "block": 285,
+   "text": "§ 78. Създава се чл. 228в:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    286,
+    287
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§79",
+   "level": 0,
+   "block": 288,
+   "text": "§ 79. В чл. 229 думите „чл. 228б“ се заменят с „чл. 228в“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "чл. 228б",
+    "чл. 228в"
+   ],
+   "target": null
+  },
+  {
+   "id": "§80",
+   "level": 0,
+   "block": 289,
+   "text": "§ 80. В чл. 229а думите „чл. 130, 131, 132, 132a, 132б, 133, 135 и 136“ се заменят с „чл. 223, ал. 1 и 2“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "чл. 130, 131, 132, 132a, 132б, 133, 135 и 136",
+    "чл. 223, ал. 1 и 2"
+   ],
+   "target": null
+  },
+  {
+   "id": "§81",
+   "level": 0,
+   "block": 290,
+   "text": "§ 81. В чл. 229б думите „чл. 134“ се заменят с „чл. 223, ал. 3“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "чл. 134",
+    "чл. 223, ал. 3"
+   ],
+   "target": null
+  },
+  {
+   "id": "§82",
+   "level": 0,
+   "block": 291,
+   "text": "§ 82. В чл. 230 ал. 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    292
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§83",
+   "level": 0,
+   "block": 293,
+   "text": "§ 83. В чл. 231 ал. 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    294
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§84",
+   "level": 0,
+   "block": 295,
+   "text": "§ 84. Член 232 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§85",
+   "level": 0,
+   "block": 296,
+   "text": "§ 85. Член 233 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    297
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§86",
+   "level": 0,
+   "block": 298,
+   "text": "§ 86. Създава се чл. 233а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    299
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§87",
+   "level": 0,
+   "block": 300,
+   "text": "§ 87. Член 234 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    301
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§88",
+   "level": 0,
+   "block": 302,
+   "text": "§ 88. Създават се чл. 234а и 234б:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    303,
+    304
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§89",
+   "level": 0,
+   "block": 305,
+   "text": "§ 89. Член 235 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    306
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§90",
+   "level": 0,
+   "block": 307,
+   "text": "§ 90. В § 1 от допълнителните разпоредби се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§90.1",
+     "level": 1,
+     "block": 308,
+     "text": "1. В т. 9:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§90.1.а",
+       "level": 2,
+       "block": 309,
+       "text": "а) в буква „з“ думата „предприятия“ се заменя с „обекти“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "з",
+        "предприятия",
+        "обекти"
+       ],
+       "target": null
+      },
+      {
+       "id": "§90.1.б",
+       "level": 2,
+       "block": 310,
+       "text": "б) в буква „и“ думата „предприятия“ се заменя с „обекти“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "и",
+        "предприятия",
+        "обекти"
+       ],
+       "target": null
+      },
+      {
+       "id": "§90.1.в",
+       "level": 2,
+       "block": 311,
+       "text": "в) в буква „н“ думата „предприятия“ се заменя с „обекти“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "н",
+        "предприятия",
+        "обекти"
+       ],
+       "target": null
+      },
+      {
+       "id": "§90.1.г",
+       "level": 2,
+       "block": 312,
+       "text": "г) създава се буква „ф“:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        313
+       ],
+       "continuation": [],
+       "inline_quotes": [
+        "ф"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§90.2",
+     "level": 1,
+     "block": 314,
+     "text": "2. В т. 10:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§90.2.а",
+       "level": 2,
+       "block": 315,
+       "text": "а) буква „б“ се изменя така:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        316
+       ],
+       "continuation": [],
+       "inline_quotes": [
+        "б"
+       ],
+       "target": null
+      },
+      {
+       "id": "§90.2.б",
+       "level": 2,
+       "block": 317,
+       "text": "б) създава се буква „ж“:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        318
+       ],
+       "continuation": [],
+       "inline_quotes": [
+        "ж"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§90.3",
+     "level": 1,
+     "block": 319,
+     "text": "3. В т. 11 се създава буква „м“:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      320
+     ],
+     "continuation": [],
+     "inline_quotes": [
+      "м"
+     ],
+     "target": null
+    },
+    {
+     "id": "§90.4",
+     "level": 1,
+     "block": 321,
+     "text": "4. В т. 20 думите „използва име или фабрична марка“ се заменят с „използва наименование или марка“, а думите „и име или фабрична марка“ се заменят с „и фирма или марка“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "използва име или фабрична марка",
+      "използва наименование или марка",
+      "и име или фабрична марка",
+      "и фирма или марка"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§91",
+   "level": 0,
+   "block": 322,
+   "text": "§ 91. В преходните и заключителните разпоредби се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§91.1",
+     "level": 1,
+     "block": 323,
+     "text": "1. В § 2 ал. 2 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§91.2",
+     "level": 1,
+     "block": 324,
+     "text": "2. Създава се § 2в:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      325,
+      326
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§92",
+   "level": 0,
+   "block": 327,
+   "text": "§ 92. В § 80, ал. 2 от преходните и заключителните разпоредби на Закона за изменение и допълнение на Закона за здравето (ДВ, бр. 41 от 2009 г.) думите „без прекъсване“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "без прекъсване"
+   ],
+   "target": {
+    "title": "Закона за изменение и допълнение на Закона за здравето",
+    "cite": "ДВ, бр. 41 от 2009 г.",
+    "promulgation": [
+     41,
+     2009
+    ],
+    "issues": [
+     [
+      41,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§93",
+   "level": 0,
+   "block": 329,
+   "text": "§ 93. (1) Министерският съвет с постановление преобразува заварените към влизането в сила на този закон регионални центрове по здравеопазване и регионални инспекции за опазване и контрол на общественото здраве в регионални здравни инспекции в срок до един месец от влизането в сила на закона.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [
+    330,
+    331,
+    332,
+    333,
+    334,
+    335,
+    336
+   ],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§94",
+   "level": 0,
+   "block": 337,
+   "text": "§ 94. В Семейния кодекс (обн., ДВ, бр. 47 от 2009 г.; изм., бр. 74 и 82 от 2009 г.) в чл. 94, ал. 2 думите „регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "регионалния център по здравеопазване",
+    "регионалната здравна инспекция"
+   ],
+   "target": {
+    "title": "Семейния кодекс",
+    "cite": "обн., ДВ, бр. 47 от 2009 г.; изм., бр. 74 и 82 от 2009 г.",
+    "promulgation": [
+     47,
+     2009
+    ],
+    "issues": [
+     [
+      47,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      82,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§95",
+   "level": 0,
+   "block": 338,
+   "text": "§ 95. В Закона за водите (обн., ДВ, бр. 67 от 1999 г.; изм., бр. 81 от 2000 г., бр. 34, 41 и 108 от 2001 г., бр. 47, 74 и 91 от 2002 г., бр. 42, 69, 84 и 107 от 2003 г., бр. 6 и 70 от 2004 г., бр. 18, 77 и 94 от 2005 г., бр. 29, 30, 36, 65, 66, 105 и 108 от 2006 г., бр. 22 и 59 от 2007 г., бр. 36, 52 и 70 от 2008 г., бр. 12, 32, 35, 47, 82, 93, 95 и 103 от 2009 г. и бр. 61 от 2010 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§95.1",
+     "level": 1,
+     "block": 339,
+     "text": "1. В чл. 155, ал. 1, т. 8 думите „регионалните инспекции по опазване и контрол на общественото здраве“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните инспекции по опазване и контрол на общественото здраве",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§95.2",
+     "level": 1,
+     "block": 340,
+     "text": "2. В чл. 155а:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§95.2.а",
+       "level": 2,
+       "block": 341,
+       "text": "а) в ал. 2 думите „регионални инспекции по опазване и контрол на общественото здраве“ се заменят с „регионални здравни инспекции“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионални инспекции по опазване и контрол на общественото здраве",
+        "регионални здравни инспекции"
+       ],
+       "target": null
+      },
+      {
+       "id": "§95.2.б",
+       "level": 2,
+       "block": 342,
+       "text": "б) в ал. 3 в текста преди т. 1 думите „регионалните инспекции по опазване и контрол на общественото здраве“ се заменят с „регионалните здравни инспекции“.",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалните инспекции по опазване и контрол на общественото здраве",
+        "регионалните здравни инспекции"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§95.3",
+     "level": 1,
+     "block": 343,
+     "text": "3. В чл. 201, ал. 8 думите „регионалната инспекция по опазване и контрол на общественото здраве“ се заменят с „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалната инспекция по опазване и контрол на общественото здраве",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за водите",
+    "cite": "обн., ДВ, бр. 67 от 1999 г.; изм., бр. 81 от 2000 г., бр. 34, 41 и 108 от 2001 г., бр. 47, 74 и 91 от 2002 г., бр. 42, 69, 84 и 107 от 2003 г., бр. 6 и 70 от 2004 г., бр. 18, 77 и 94 от 2005 г., бр. 29, 30, 36, 65, 66, 105 и 108 от 2006 г., бр. 22 и 59 от 2007 г., бр. 36, 52 и 70 от 2008 г., бр. 12, 32, 35, 47, 82, 93, 95 и 103 от 2009 г. и бр. 61 от 2010 г.",
+    "promulgation": [
+     67,
+     1999
+    ],
+    "issues": [
+     [
+      67,
+      1999
+     ],
+     [
+      81,
+      2000
+     ],
+     [
+      34,
+      2001
+     ],
+     [
+      41,
+      2001
+     ],
+     [
+      108,
+      2001
+     ],
+     [
+      47,
+      2002
+     ],
+     [
+      74,
+      2002
+     ],
+     [
+      91,
+      2002
+     ],
+     [
+      42,
+      2003
+     ],
+     [
+      69,
+      2003
+     ],
+     [
+      84,
+      2003
+     ],
+     [
+      107,
+      2003
+     ],
+     [
+      6,
+      2004
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      18,
+      2005
+     ],
+     [
+      77,
+      2005
+     ],
+     [
+      94,
+      2005
+     ],
+     [
+      29,
+      2006
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      36,
+      2006
+     ],
+     [
+      65,
+      2006
+     ],
+     [
+      66,
+      2006
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      108,
+      2006
+     ],
+     [
+      22,
+      2007
+     ],
+     [
+      59,
+      2007
+     ],
+     [
+      36,
+      2008
+     ],
+     [
+      52,
+      2008
+     ],
+     [
+      70,
+      2008
+     ],
+     [
+      12,
+      2009
+     ],
+     [
+      32,
+      2009
+     ],
+     [
+      35,
+      2009
+     ],
+     [
+      47,
+      2009
+     ],
+     [
+      82,
+      2009
+     ],
+     [
+      93,
+      2009
+     ],
+     [
+      95,
+      2009
+     ],
+     [
+      103,
+      2009
+     ],
+     [
+      61,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§96",
+   "level": 0,
+   "block": 344,
+   "text": "§ 96. В Закона за движението по пътищата (обн., ДВ, бр. 20 от 1999 г.; изм., бр. 1 от 2000 г., бр. 43 и 76 от 2002 г., бр. 16 и 22 от 2003 г., бр. 6, 70, 85 и 115 от 2004 г.,бр. 79, 92, 99, 102, 103 и 105 от 2005 г., бр. 30, 34, 61, 64, 80, 82, 85 и 102 от 2006 г., бр. 22, 51, 53, 97 и 109 от 2007 г., бр. 36, 43, 69, 88 и 102 от 2008 г., бр. 74, 75, 82 и 93 от 2009 г. и бр. 54 от2010 г.) в чл. 153б, ал. 1, т. 1, буква „в“ думите „диспансери за психични заболявания“ се заменят с „центрове за психично здраве“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "в",
+    "диспансери за психични заболявания",
+    "центрове за психично здраве"
+   ],
+   "target": {
+    "title": "Закона за движението по пътищата",
+    "cite": "обн., ДВ, бр. 20 от 1999 г.; изм., бр. 1 от 2000 г., бр. 43 и 76 от 2002 г., бр. 16 и 22 от 2003 г., бр. 6, 70, 85 и 115 от 2004 г.,бр. 79, 92, 99, 102, 103 и 105 от 2005 г., бр. 30, 34, 61, 64, 80, 82, 85 и 102 от 2006 г., бр. 22, 51, 53, 97 и 109 от 2007 г., бр. 36, 43, 69, 88 и 102 от 2008 г., бр. 74, 75, 82 и 93 от 2009 г. и бр. 54 от2010 г.",
+    "promulgation": [
+     20,
+     1999
+    ],
+    "issues": [
+     [
+      20,
+      1999
+     ],
+     [
+      1,
+      2000
+     ],
+     [
+      43,
+      2002
+     ],
+     [
+      76,
+      2002
+     ],
+     [
+      16,
+      2003
+     ],
+     [
+      22,
+      2003
+     ],
+     [
+      6,
+      2004
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      85,
+      2004
+     ],
+     [
+      115,
+      2004
+     ],
+     [
+      79,
+      2005
+     ],
+     [
+      92,
+      2005
+     ],
+     [
+      99,
+      2005
+     ],
+     [
+      102,
+      2005
+     ],
+     [
+      103,
+      2005
+     ],
+     [
+      105,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      34,
+      2006
+     ],
+     [
+      61,
+      2006
+     ],
+     [
+      64,
+      2006
+     ],
+     [
+      80,
+      2006
+     ],
+     [
+      82,
+      2006
+     ],
+     [
+      85,
+      2006
+     ],
+     [
+      102,
+      2006
+     ],
+     [
+      22,
+      2007
+     ],
+     [
+      51,
+      2007
+     ],
+     [
+      53,
+      2007
+     ],
+     [
+      97,
+      2007
+     ],
+     [
+      109,
+      2007
+     ],
+     [
+      36,
+      2008
+     ],
+     [
+      43,
+      2008
+     ],
+     [
+      69,
+      2008
+     ],
+     [
+      88,
+      2008
+     ],
+     [
+      102,
+      2008
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      75,
+      2009
+     ],
+     [
+      82,
+      2009
+     ],
+     [
+      93,
+      2009
+     ],
+     [
+      54,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§97",
+   "level": 0,
+   "block": 345,
+   "text": "§ 97. В Закона за закрила на детето (обн., ДВ, бр. 48 от 2000 г.; изм., бр. 75 и 120 от 2002 г., бр. 36 и 63 от 2003 г., бр. 70 и 115 от 2004 г., бр. 28, 94 и 103 от 2005 г., бр. 30, 38 и 82 от 2006 г., бр. 59 от 2007 г., бр. 69 от 2008 г., бр. 14, 47 и 74 от 2009 г. и бр. 42, 50 и 59 от 2010 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§97.1",
+     "level": 1,
+     "block": 346,
+     "text": "1. В чл. 5б, ал. 1 думите „регионалните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§97.2",
+     "level": 1,
+     "block": 347,
+     "text": "2. В чл. 20а, ал. 1 думите „регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалния център по здравеопазване",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за закрила на детето",
+    "cite": "обн., ДВ, бр. 48 от 2000 г.; изм., бр. 75 и 120 от 2002 г., бр. 36 и 63 от 2003 г., бр. 70 и 115 от 2004 г., бр. 28, 94 и 103 от 2005 г., бр. 30, 38 и 82 от 2006 г., бр. 59 от 2007 г., бр. 69 от 2008 г., бр. 14, 47 и 74 от 2009 г. и бр. 42, 50 и 59 от 2010 г.",
+    "promulgation": [
+     48,
+     2000
+    ],
+    "issues": [
+     [
+      48,
+      2000
+     ],
+     [
+      75,
+      2002
+     ],
+     [
+      120,
+      2002
+     ],
+     [
+      36,
+      2003
+     ],
+     [
+      63,
+      2003
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      115,
+      2004
+     ],
+     [
+      28,
+      2005
+     ],
+     [
+      94,
+      2005
+     ],
+     [
+      103,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      38,
+      2006
+     ],
+     [
+      82,
+      2006
+     ],
+     [
+      59,
+      2007
+     ],
+     [
+      69,
+      2008
+     ],
+     [
+      14,
+      2009
+     ],
+     [
+      47,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      42,
+      2010
+     ],
+     [
+      50,
+      2010
+     ],
+     [
+      59,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§98",
+   "level": 0,
+   "block": 348,
+   "text": "§ 98. В Закона за защита от вредното въздействие на химичните вещества и смеси (обн., ДВ, бр. 10 от 2000 г.; изм.,бр. 91 от 2002 г., бр. 86 и 114 от 2003 г., бр. 100 и 101 от 2005 г., бр. 30, 34, 80 и 95 от 2006 г., бр. 53 и 82 от 2007 г., бр. 110 от 2008 г. и бр. 63 от 2010 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§98.1",
+     "level": 1,
+     "block": 349,
+     "text": "1. В чл. 7е, ал. 7 думите „регионалните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§98.2",
+     "level": 1,
+     "block": 350,
+     "text": "2. В чл. 14е, ал. 5 думите „регионалните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§98.3",
+     "level": 1,
+     "block": 351,
+     "text": "3. В чл. 21в, ал. 5 думите „регионалните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за защита от вредното въздействие на химичните вещества и смеси",
+    "cite": "обн., ДВ, бр. 10 от 2000 г.; изм.,бр. 91 от 2002 г., бр. 86 и 114 от 2003 г., бр. 100 и 101 от 2005 г., бр. 30, 34, 80 и 95 от 2006 г., бр. 53 и 82 от 2007 г., бр. 110 от 2008 г. и бр. 63 от 2010 г.",
+    "promulgation": [
+     10,
+     2000
+    ],
+    "issues": [
+     [
+      10,
+      2000
+     ],
+     [
+      91,
+      2002
+     ],
+     [
+      86,
+      2003
+     ],
+     [
+      114,
+      2003
+     ],
+     [
+      100,
+      2005
+     ],
+     [
+      101,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      34,
+      2006
+     ],
+     [
+      80,
+      2006
+     ],
+     [
+      95,
+      2006
+     ],
+     [
+      53,
+      2007
+     ],
+     [
+      82,
+      2007
+     ],
+     [
+      110,
+      2008
+     ],
+     [
+      63,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§99",
+   "level": 0,
+   "block": 352,
+   "text": "§ 99. В Закона за защита от шума в околната среда (обн., ДВ, бр. 74 от 2005 г.; изм., бр. 30 от 2006 г. и бр. 41 от 2009 г.) в чл. 17 абревиатурата „РИОКОЗ“ се заменя с „регионалните здравни инспекции“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "РИОКОЗ",
+    "регионалните здравни инспекции"
+   ],
+   "target": {
+    "title": "Закона за защита от шума в околната среда",
+    "cite": "обн., ДВ, бр. 74 от 2005 г.; изм., бр. 30 от 2006 г. и бр. 41 от 2009 г.",
+    "promulgation": [
+     74,
+     2005
+    ],
+    "issues": [
+     [
+      74,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      41,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§100",
+   "level": 0,
+   "block": 353,
+   "text": "§ 100. В Закона за защита при бедствия (обн., ДВ, бр. 102 от 2006 г.;изм., бр. 41 и 113 от 2007 г., бр. 69 и 102 от 2008 г., бр. 35, 74 и 93 от 2009 г. и бр. 61 и 88 от 2010 г.) в чл. 31, ал. 3 думите „регионалната инспекция за опазване и контрол на общественото здраве“ се заменят с„регионалната здравна инспекция“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "регионалната инспекция за опазване и контрол на общественото здраве",
+    "регионалната здравна инспекция"
+   ],
+   "target": {
+    "title": "Закона за защита при бедствия",
+    "cite": "обн., ДВ, бр. 102 от 2006 г.;изм., бр. 41 и 113 от 2007 г., бр. 69 и 102 от 2008 г., бр. 35, 74 и 93 от 2009 г. и бр. 61 и 88 от 2010 г.",
+    "promulgation": [
+     102,
+     2006
+    ],
+    "issues": [
+     [
+      102,
+      2006
+     ],
+     [
+      41,
+      2007
+     ],
+     [
+      113,
+      2007
+     ],
+     [
+      69,
+      2008
+     ],
+     [
+      102,
+      2008
+     ],
+     [
+      35,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      93,
+      2009
+     ],
+     [
+      61,
+      2010
+     ],
+     [
+      88,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§101",
+   "level": 0,
+   "block": 354,
+   "text": "§ 101. В Закона за здравословни и безопасни условия на труд (обн., ДВ, бр. 124 от 1997 г.; изм., бр. 86 от 1999 г., бр. 64 и 92 от 2000 г., бр. 25 и 111 от 2001 г., бр. 18 и 114 от 2003 г., бр. 70 от 2004 г., бр. 76 от 2005 г., бр. 33, 48, 102 и 105 от 2006 г., бр. 40 от 2007 г., бр. 102 и 108 от 2008 г., бр. 93 от 2009 г. и бр. 12, 58 и 88 от 2010 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§101.1",
+     "level": 1,
+     "block": 355,
+     "text": "1. В чл. 25б, ал. 3, т. 3 думите „регионалните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§101.2",
+     "level": 1,
+     "block": 356,
+     "text": "2. В чл. 54в:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§101.2.а",
+       "level": 2,
+       "block": 357,
+       "text": "а) в ал. 1 думите „регионалните инспекции за опазване и контрол на общественото здраве“ се заменят с „регионалните здравни инспекции“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалните инспекции за опазване и контрол на общественото здраве",
+        "регионалните здравни инспекции"
+       ],
+       "target": null
+      },
+      {
+       "id": "§101.2.б",
+       "level": 2,
+       "block": 358,
+       "text": "б) в ал. 2 думите „регионалната инспекция за опазване и контрол на общественото здраве“ се заменят с „регионалната здравна инспекция“.",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалната инспекция за опазване и контрол на общественото здраве",
+        "регионалната здравна инспекция"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за здравословни и безопасни условия на труд",
+    "cite": "обн., ДВ, бр. 124 от 1997 г.; изм., бр. 86 от 1999 г., бр. 64 и 92 от 2000 г., бр. 25 и 111 от 2001 г., бр. 18 и 114 от 2003 г., бр. 70 от 2004 г., бр. 76 от 2005 г., бр. 33, 48, 102 и 105 от 2006 г., бр. 40 от 2007 г., бр. 102 и 108 от 2008 г., бр. 93 от 2009 г. и бр. 12, 58 и 88 от 2010 г.",
+    "promulgation": [
+     124,
+     1997
+    ],
+    "issues": [
+     [
+      124,
+      1997
+     ],
+     [
+      86,
+      1999
+     ],
+     [
+      64,
+      2000
+     ],
+     [
+      92,
+      2000
+     ],
+     [
+      25,
+      2001
+     ],
+     [
+      111,
+      2001
+     ],
+     [
+      18,
+      2003
+     ],
+     [
+      114,
+      2003
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      76,
+      2005
+     ],
+     [
+      33,
+      2006
+     ],
+     [
+      48,
+      2006
+     ],
+     [
+      102,
+      2006
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      40,
+      2007
+     ],
+     [
+      102,
+      2008
+     ],
+     [
+      108,
+      2008
+     ],
+     [
+      93,
+      2009
+     ],
+     [
+      12,
+      2010
+     ],
+     [
+      58,
+      2010
+     ],
+     [
+      88,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§102",
+   "level": 0,
+   "block": 359,
+   "text": "§ 102. В Закона за здравното осигуряване (обн., ДВ, бр. 70 от 1998 г.; изм., бр. 93 и 153 от 1998 г., бр. 62, 65, 67, 69, 110 и 113 от 1999 г., бр. 1, 31 и 64 от 2000 г., бр. 41 от 2001 г.,бр. 1, 54, 74, 107, 112, 119 и 120 от 2002 г., бр. 8, 50, 107 и 114 от 2003 г., бр. 28, 38, 49, 70, 85 и 111 от2004 г., бр. 39, 45, 76, 99, 102, 103 и 105 от 2005 г., бр. 17, 18, 30, 33, 34, 59, 80, 95 и 105 от 2006 г., бр. 11 от 2007 г.; Решение № 3 на Конституционния съд от 2007 г. – бр. 26 от 2007 г.; изм., бр. 31, 46, 53, 59, 97, 100 и 113 от 2007 г., бр. 37, 71 и 110 от 2008 г., бр. 35, 41, 42, 93 и 101 от 2009 г. и бр. 19, 26, 43, 49, 58, 59 и 62 от 2010 г.) се правят следните изменения и допълнения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§102.1",
+     "level": 1,
+     "block": 360,
+     "text": "1. В чл. 15:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§102.1.а",
+       "level": 2,
+       "block": 361,
+       "text": "а) в ал. 1 се създават т. 12 и 13:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        362,
+        363
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§102.1.б",
+       "level": 2,
+       "block": 364,
+       "text": "б) създава се ал. 3:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        365
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§102.2",
+     "level": 1,
+     "block": 366,
+     "text": "2. В чл. 19, ал. 7 се създават т. 12, 13, 14, 15, 16 и 17:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      367,
+      368,
+      369,
+      370,
+      371,
+      372
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§102.3",
+     "level": 1,
+     "block": 373,
+     "text": "3. В чл. 53, ал. 2 думите „5 години“ се заменят с „една година“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "5 години",
+      "една година"
+     ],
+     "target": null
+    },
+    {
+     "id": "§102.4",
+     "level": 1,
+     "block": 374,
+     "text": "4. В чл. 55а:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§102.4.а",
+       "level": 2,
+       "block": 375,
+       "text": "а) в ал. 1 думите „Агенцията за икономически анализи и прогнози към министъра на финансите“ се заменят с „Министерството на финансите“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "Агенцията за икономически анализи и прогнози към министъра на финансите",
+        "Министерството на финансите"
+       ],
+       "target": null
+      },
+      {
+       "id": "§102.4.б",
+       "level": 2,
+       "block": 376,
+       "text": "б) в ал. 2 думите „Агенцията за икономически анализи и прогнози“ се заменят с „Министерството на финансите“.",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "Агенцията за икономически анализи и прогнози",
+        "Министерството на финансите"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§102.5",
+     "level": 1,
+     "block": 377,
+     "text": "5. В чл. 55б, ал. 2 думите „Агенцията за икономически анализи и прогнози“ се заменят с „Министерството на финансите“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Агенцията за икономически анализи и прогнози",
+      "Министерството на финансите"
+     ],
+     "target": null
+    },
+    {
+     "id": "§102.6",
+     "level": 1,
+     "block": 378,
+     "text": "6. Създават се чл. 55г, 55д и 55е:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      379,
+      380,
+      381,
+      382,
+      383,
+      384,
+      385,
+      386,
+      387,
+      388,
+      389,
+      390,
+      391,
+      392,
+      393,
+      394,
+      395
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§102.7",
+     "level": 1,
+     "block": 396,
+     "text": "7. В чл. 59, ал. 3 думите „със срок на действие не по-малко от една година и не по-дълъг от срока на действие на НРД“ се заменят със „за срока на действие на НРД и са в сила до приемането на нов или при промяна на действащия НРД“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "със срок на действие не по-малко от една година и не по-дълъг от срока на действие на НРД",
+      "за срока на действие на НРД и са в сила до приемането на нов или при промяна на действащия НРД"
+     ],
+     "target": null
+    },
+    {
+     "id": "§102.8",
+     "level": 1,
+     "block": 397,
+     "text": "8. В преходните и заключителните разпоредби се създават § 19м, 19н и19о:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      398,
+      399,
+      400
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за здравното осигуряване",
+    "cite": "обн., ДВ, бр. 70 от 1998 г.; изм., бр. 93 и 153 от 1998 г., бр. 62, 65, 67, 69, 110 и 113 от 1999 г., бр. 1, 31 и 64 от 2000 г., бр. 41 от 2001 г.,бр. 1, 54, 74, 107, 112, 119 и 120 от 2002 г., бр. 8, 50, 107 и 114 от 2003 г., бр. 28, 38, 49, 70, 85 и 111 от2004 г., бр. 39, 45, 76, 99, 102, 103 и 105 от 2005 г., бр. 17, 18, 30, 33, 34, 59, 80, 95 и 105 от 2006 г., бр. 11 от 2007 г.; Решение № 3 на Конституционния съд от 2007 г. – бр. 26 от 2007 г.; изм., бр. 31, 46, 53, 59, 97, 100 и 113 от 2007 г., бр. 37, 71 и 110 от 2008 г., бр. 35, 41, 42, 93 и 101 от 2009 г. и бр. 19, 26, 43, 49, 58, 59 и 62 от 2010 г.",
+    "promulgation": [
+     70,
+     1998
+    ],
+    "issues": [
+     [
+      70,
+      1998
+     ],
+     [
+      93,
+      1998
+     ],
+     [
+      153,
+      1998
+     ],
+     [
+      62,
+      1999
+     ],
+     [
+      65,
+      1999
+     ],
+     [
+      67,
+      1999
+     ],
+     [
+      69,
+      1999
+     ],
+     [
+      110,
+      1999
+     ],
+     [
+      113,
+      1999
+     ],
+     [
+      1,
+      2000
+     ],
+     [
+      31,
+      2000
+     ],
+     [
+      64,
+      2000
+     ],
+     [
+      41,
+      2001
+     ],
+     [
+      1,
+      2002
+     ],
+     [
+      54,
+      2002
+     ],
+     [
+      74,
+      2002
+     ],
+     [
+      107,
+      2002
+     ],
+     [
+      112,
+      2002
+     ],
+     [
+      119,
+      2002
+     ],
+     [
+      120,
+      2002
+     ],
+     [
+      8,
+      2003
+     ],
+     [
+      50,
+      2003
+     ],
+     [
+      107,
+      2003
+     ],
+     [
+      114,
+      2003
+     ],
+     [
+      28,
+      2004
+     ],
+     [
+      38,
+      2004
+     ],
+     [
+      49,
+      2004
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      85,
+      2004
+     ],
+     [
+      111,
+      2004
+     ],
+     [
+      39,
+      2005
+     ],
+     [
+      45,
+      2005
+     ],
+     [
+      76,
+      2005
+     ],
+     [
+      99,
+      2005
+     ],
+     [
+      102,
+      2005
+     ],
+     [
+      103,
+      2005
+     ],
+     [
+      105,
+      2005
+     ],
+     [
+      17,
+      2006
+     ],
+     [
+      18,
+      2006
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      33,
+      2006
+     ],
+     [
+      34,
+      2006
+     ],
+     [
+      59,
+      2006
+     ],
+     [
+      80,
+      2006
+     ],
+     [
+      95,
+      2006
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      11,
+      2007
+     ],
+     [
+      26,
+      2007
+     ],
+     [
+      31,
+      2007
+     ],
+     [
+      46,
+      2007
+     ],
+     [
+      53,
+      2007
+     ],
+     [
+      59,
+      2007
+     ],
+     [
+      97,
+      2007
+     ],
+     [
+      100,
+      2007
+     ],
+     [
+      113,
+      2007
+     ],
+     [
+      37,
+      2008
+     ],
+     [
+      71,
+      2008
+     ],
+     [
+      110,
+      2008
+     ],
+     [
+      35,
+      2009
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      42,
+      2009
+     ],
+     [
+      93,
+      2009
+     ],
+     [
+      101,
+      2009
+     ],
+     [
+      19,
+      2010
+     ],
+     [
+      26,
+      2010
+     ],
+     [
+      43,
+      2010
+     ],
+     [
+      49,
+      2010
+     ],
+     [
+      58,
+      2010
+     ],
+     [
+      59,
+      2010
+     ],
+     [
+      62,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§103",
+   "level": 0,
+   "block": 401,
+   "text": "§ 103. В Закона за интеграция на хората с увреждания (обн., ДВ, бр. 81 от 2004 г.; изм.,бр. 28, 88, 94, 103 и 105 от 2005 г., бр. 18, 30, 33, 37, 63, 95, 97 и 108 от 2006 г., бр. 31, 46 и 108 от 2007 г., бр. 41 и 74 от 2009 г. и бр. 24 и 62 от 2010 г.) в чл. 13, ал. 3, т. 2 думите „регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "регионалния център по здравеопазване",
+    "регионалната здравна инспекция"
+   ],
+   "target": {
+    "title": "Закона за интеграция на хората с увреждания",
+    "cite": "обн., ДВ, бр. 81 от 2004 г.; изм.,бр. 28, 88, 94, 103 и 105 от 2005 г., бр. 18, 30, 33, 37, 63, 95, 97 и 108 от 2006 г., бр. 31, 46 и 108 от 2007 г., бр. 41 и 74 от 2009 г. и бр. 24 и 62 от 2010 г.",
+    "promulgation": [
+     81,
+     2004
+    ],
+    "issues": [
+     [
+      81,
+      2004
+     ],
+     [
+      28,
+      2005
+     ],
+     [
+      88,
+      2005
+     ],
+     [
+      94,
+      2005
+     ],
+     [
+      103,
+      2005
+     ],
+     [
+      105,
+      2005
+     ],
+     [
+      18,
+      2006
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      33,
+      2006
+     ],
+     [
+      37,
+      2006
+     ],
+     [
+      63,
+      2006
+     ],
+     [
+      95,
+      2006
+     ],
+     [
+      97,
+      2006
+     ],
+     [
+      108,
+      2006
+     ],
+     [
+      31,
+      2007
+     ],
+     [
+      46,
+      2007
+     ],
+     [
+      108,
+      2007
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      24,
+      2010
+     ],
+     [
+      62,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§104",
+   "level": 0,
+   "block": 402,
+   "text": "§ 104. В Закона за контрол върху наркотичните вещества и прекурсорите (обн., ДВ, бр. 30 от 1999 г.; изм., бр. 63 от 2000 г., бр. 74, 75 и 120 от 2002 г., бр. 56 от 2003 г., бр. 76, 79 и 103 от 2005 г., бр. 30, 75 и 82 от 2006 г., бр. 31 и 55 от 2007 г., бр. 36, 43 и 69 от 2008 г.,бр. 41, 74, 82 и 93 от 2009 г.и бр. 22, 23, 29 и 59 от 2010 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§104.1",
+     "level": 1,
+     "block": 403,
+     "text": "1. В чл. 17, ал. 1 и 3 думите „регионалните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§104.2",
+     "level": 1,
+     "block": 404,
+     "text": "2. В чл. 32а, ал. 3 и 4 думите „съответния регионален център по здравеопазване“ се заменят със „съответната регионална здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "съответния регионален център по здравеопазване",
+      "съответната регионална здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§104.3",
+     "level": 1,
+     "block": 405,
+     "text": "3. В чл. 33а, ал. 2 и 3 думите „регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалния център по здравеопазване",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§104.4",
+     "level": 1,
+     "block": 406,
+     "text": "4. В чл. 39 думите „съответния регионален център по здравеопазване“ се заменят със „съответната регионална здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "съответния регионален център по здравеопазване",
+      "съответната регионална здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§104.5",
+     "level": 1,
+     "block": 407,
+     "text": "5. В чл. 65б, ал. 1 думите „съответния регионален център по здравеопазване“ се заменят със „съответната регионална здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "съответния регионален център по здравеопазване",
+      "съответната регионална здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§104.6",
+     "level": 1,
+     "block": 408,
+     "text": "6. В чл. 86, ал. 2 думите „регионалните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за контрол върху наркотичните вещества и прекурсорите",
+    "cite": "обн., ДВ, бр. 30 от 1999 г.; изм., бр. 63 от 2000 г., бр. 74, 75 и 120 от 2002 г., бр. 56 от 2003 г., бр. 76, 79 и 103 от 2005 г., бр. 30, 75 и 82 от 2006 г., бр. 31 и 55 от 2007 г., бр. 36, 43 и 69 от 2008 г.,бр. 41, 74, 82 и 93 от 2009 г.и бр. 22, 23, 29 и 59 от 2010 г.",
+    "promulgation": [
+     30,
+     1999
+    ],
+    "issues": [
+     [
+      30,
+      1999
+     ],
+     [
+      63,
+      2000
+     ],
+     [
+      74,
+      2002
+     ],
+     [
+      75,
+      2002
+     ],
+     [
+      120,
+      2002
+     ],
+     [
+      56,
+      2003
+     ],
+     [
+      76,
+      2005
+     ],
+     [
+      79,
+      2005
+     ],
+     [
+      103,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      75,
+      2006
+     ],
+     [
+      82,
+      2006
+     ],
+     [
+      31,
+      2007
+     ],
+     [
+      55,
+      2007
+     ],
+     [
+      36,
+      2008
+     ],
+     [
+      43,
+      2008
+     ],
+     [
+      69,
+      2008
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      82,
+      2009
+     ],
+     [
+      93,
+      2009
+     ],
+     [
+      22,
+      2010
+     ],
+     [
+      23,
+      2010
+     ],
+     [
+      29,
+      2010
+     ],
+     [
+      59,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§105",
+   "level": 0,
+   "block": 409,
+   "text": "§ 105. В Закона за кръвта, кръводаряването и кръвопреливането (обн., ДВ, бр. 102 от 2003 г.; изм., бр. 70 от 2004 г., бр. 30 и 65 от 2006 г., бр. 31 от 2007 г., бр. 41 и 74 от2009 г. и бр. 59 от 2010 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§105.1",
+     "level": 1,
+     "block": 410,
+     "text": "1. В чл. 5, ал. 2 и 3 думите „диспансерите с легла“ се заменят с „комплексните онкологични центрове“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "диспансерите с легла",
+      "комплексните онкологични центрове"
+     ],
+     "target": null
+    },
+    {
+     "id": "§105.2",
+     "level": 1,
+     "block": 411,
+     "text": "2. В чл. 25 думите „районните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "районните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§105.3",
+     "level": 1,
+     "block": 412,
+     "text": "3. В чл. 27, ал. 1, 2 и 3 думите „диспансерите с легла“ се заменят с „комплексните онкологични центрове“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "диспансерите с легла",
+      "комплексните онкологични центрове"
+     ],
+     "target": null
+    },
+    {
+     "id": "§105.4",
+     "level": 1,
+     "block": 413,
+     "text": "4. В чл. 39, ал. 5 думите „регионалните центрове по здравеопазване“ се заменят с „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалните центрове по здравеопазване",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    },
+    {
+     "id": "§105.5",
+     "level": 1,
+     "block": 414,
+     "text": "5. В чл. 41, ал. 1 думите „диспансерите с легла“ се заменят с „комплексните онкологични центрове“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "диспансерите с легла",
+      "комплексните онкологични центрове"
+     ],
+     "target": null
+    },
+    {
+     "id": "§105.6",
+     "level": 1,
+     "block": 415,
+     "text": "6. В чл. 57, ал. 1 и 2 думите „районния център по здравеопазване“ се заменят с „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "районния център по здравеопазване",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за кръвта, кръводаряването и кръвопреливането",
+    "cite": "обн., ДВ, бр. 102 от 2003 г.; изм., бр. 70 от 2004 г., бр. 30 и 65 от 2006 г., бр. 31 от 2007 г., бр. 41 и 74 от2009 г. и бр. 59 от 2010 г.",
+    "promulgation": [
+     102,
+     2003
+    ],
+    "issues": [
+     [
+      102,
+      2003
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      65,
+      2006
+     ],
+     [
+      31,
+      2007
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      59,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§106",
+   "level": 0,
+   "block": 416,
+   "text": "§ 106. В Закона за лекарствените продукти в хуманната медицина (обн., ДВ, бр. 31 от 2007 г.;изм., бр. 19 от 2008 г.; Решение № 5 на Конституционния съд от 2008 г. – бр. 65 от 2008 г.; изм., бр. 71 от 2008 г., бр. 10, 23, 41, 88 и 102 от 2009 г. и бр. 59 от 2010 г.) навсякъде думите „регионалните инспекции за/по опазване и контрол на общественото здраве“, „регионалната инспекция по опазване и контрол на общественото здраве“ и „РИОКОЗ“ се заменят съответно с „регионалните здравни инспекции“, „регионалната здравна инспекция“ и „РЗИ“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "регионалните инспекции за/по опазване и контрол на общественото здраве",
+    "регионалната инспекция по опазване и контрол на общественото здраве",
+    "РИОКОЗ",
+    "регионалните здравни инспекции",
+    "регионалната здравна инспекция",
+    "РЗИ"
+   ],
+   "target": {
+    "title": "Закона за лекарствените продукти в хуманната медицина",
+    "cite": "обн., ДВ, бр. 31 от 2007 г.;изм., бр. 19 от 2008 г.; Решение № 5 на Конституционния съд от 2008 г. – бр. 65 от 2008 г.; изм., бр. 71 от 2008 г., бр. 10, 23, 41, 88 и 102 от 2009 г. и бр. 59 от 2010 г.",
+    "promulgation": [
+     31,
+     2007
+    ],
+    "issues": [
+     [
+      31,
+      2007
+     ],
+     [
+      19,
+      2008
+     ],
+     [
+      65,
+      2008
+     ],
+     [
+      71,
+      2008
+     ],
+     [
+      10,
+      2009
+     ],
+     [
+      23,
+      2009
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      88,
+      2009
+     ],
+     [
+      102,
+      2009
+     ],
+     [
+      59,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§107",
+   "level": 0,
+   "block": 417,
+   "text": "§ 107. В Закона за лечебните заведения (обн., ДВ, бр. 62 от 1999 г.; изм., бр. 88, 113 и 114 от 1999 г., бр. 36, 65 и 108 от 2000 г.; Решение № 11 на Конституционния съд от 2001 г. – бр. 51 от 2001 г.; изм., бр. 28 и 62 от 2002 г., бр. 8, 102 и 114 от 2003 г., бр. 70 от 2004 г., бр. 46, 76, 85, 88 и 105 от 2005 г., бр. 30, 34, 59 и 105 от 2006 г., бр. 31, 53 и 59 от 2007 г., бр. 110 от 2008 г., бр. 36, 41, 99 и 101 от 2009 г. и бр. 38 и 59 от 2010 г.) се правят следните изменения и допълнения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§107.1",
+     "level": 1,
+     "block": 418,
+     "text": "1. В чл. 5:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§107.1.а",
+       "level": 2,
+       "block": 419,
+       "text": "а) в ал. 1 след думата „транспорта“ се поставя запетая и се добавя „информационните технологии и съобщенията“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "транспорта",
+        "информационните технологии и съобщенията"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.1.б",
+       "level": 2,
+       "block": 420,
+       "text": "б) създава се ал. 5:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        421
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.2",
+     "level": 1,
+     "block": 422,
+     "text": "2. В чл. 9 се създава ал. 6:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      423
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.3",
+     "level": 1,
+     "block": 424,
+     "text": "3. В чл. 26, ал. 3 след думата „звена“ се добавя „и отделения“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "звена",
+      "и отделения"
+     ],
+     "target": null
+    },
+    {
+     "id": "§107.4",
+     "level": 1,
+     "block": 425,
+     "text": "4. В чл. 28а, ал. 2 думата „основна“ се заличава.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "основна"
+     ],
+     "target": null
+    },
+    {
+     "id": "§107.5",
+     "level": 1,
+     "block": 426,
+     "text": "5. В чл. 29, ал. 3 думите „един представител на регионалния център по здравеопазване, един представител на регионалната инспекция за опазване и контрол на общественото здраве“ се заменят с „двама представители на регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "един представител на регионалния център по здравеопазване, един представител на регионалната инспекция за опазване и контрол на общественото здраве",
+      "двама представители на регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§107.6",
+     "level": 1,
+     "block": 427,
+     "text": "6. В чл. 35:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§107.6.а",
+       "level": 2,
+       "block": 428,
+       "text": "а) в ал. 3:",
+       "section": "transitional_final",
+       "children": [
+        {
+         "id": "§107.6.а.аа",
+         "level": 3,
+         "block": 429,
+         "text": "аа) в текста преди т. 1 думите „Устройството и дейността“ се заменят с „Устройството, дейността и структурата“;",
+         "section": "transitional_final",
+         "children": [],
+         "quoted": [],
+         "continuation": [],
+         "inline_quotes": [
+          "Устройството и дейността",
+          "Устройството, дейността и структурата"
+         ],
+         "target": null
+        },
+        {
+         "id": "§107.6.а.бб",
+         "level": 3,
+         "block": 430,
+         "text": "бб) в т. 2 след думата „транспорта“ се пос­тавя запетая и се добавя „информационните технологии и съобщенията“;",
+         "section": "transitional_final",
+         "children": [],
+         "quoted": [],
+         "continuation": [],
+         "inline_quotes": [
+          "транспорта",
+          "информационните технологии и съобщенията"
+         ],
+         "target": null
+        }
+       ],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§107.6.б",
+       "level": 2,
+       "block": 431,
+       "text": "б) в ал. 4 думите „регионалния център по здравеопазване и регионалната инспекция за опазване и контрол на общественото здраве“ се заменят с „регионалната здравна инспекция“.",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалния център по здравеопазване и регионалната инспекция за опазване и контрол на общественото здраве",
+        "регионалната здравна инспекция"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.7",
+     "level": 1,
+     "block": 432,
+     "text": "7. В чл. 39 се създава ал. 4:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      433
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.8",
+     "level": 1,
+     "block": 434,
+     "text": "8. В чл. 40:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§107.8.а",
+       "level": 2,
+       "block": 435,
+       "text": "а) в ал. 1 в текста преди т. 1 думите „съответния регионален център по здравеопазване“ се заменят със „съответната регионална здравна инспекция“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "съответния регионален център по здравеопазване",
+        "съответната регионална здравна инспекция"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.8.б",
+       "level": 2,
+       "block": 436,
+       "text": "б) алинея 3 се отменя;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§107.8.в",
+       "level": 2,
+       "block": 437,
+       "text": "в) алинея 4 се изменя така:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        438
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§107.8.г",
+       "level": 2,
+       "block": 439,
+       "text": "г) в ал. 5 думите „регионалният център по здравеопазване“ се заменят с „регионалната здравна инспекция“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалният център по здравеопазване",
+        "регионалната здравна инспекция"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.8.д",
+       "level": 2,
+       "block": 440,
+       "text": "д) в ал. 7 в текста преди т. 1 думите „съответния регионален център по здравеопазване“ се заменят със „съответната регионална здравна инспекция“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "съответния регионален център по здравеопазване",
+        "съответната регионална здравна инспекция"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.8.е",
+       "level": 2,
+       "block": 441,
+       "text": "е) в ал. 8 думите „регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалния център по здравеопазване",
+        "регионалната здравна инспекция"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.8.ж",
+       "level": 2,
+       "block": 442,
+       "text": "ж) алинея 9 се изменя така:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        443
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.9",
+     "level": 1,
+     "block": 444,
+     "text": "9. В чл. 47:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§107.9.а",
+       "level": 2,
+       "block": 445,
+       "text": "а) в ал. 2 думите „регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалния център по здравеопазване",
+        "регионалната здравна инспекция"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.9.б",
+       "level": 2,
+       "block": 446,
+       "text": "б) алинея 3 се отменя;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§107.9.в",
+       "level": 2,
+       "block": 447,
+       "text": "в) алинея 4 се изменя така:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        448
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§107.9.г",
+       "level": 2,
+       "block": 449,
+       "text": "г) в ал. 5 думите „Министерството на здравеопазването“ се заличават и думите „от регионалния център по здравеопазване“ се заменят с „регионалната здравна инспекция“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "Министерството на здравеопазването",
+        "от регионалния център по здравеопазване",
+        "регионалната здравна инспекция"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.9.д",
+       "level": 2,
+       "block": 450,
+       "text": "д) в ал. 7 думите „регионалният център по здравеопазване“ се заменят с „регионалната здравна инспекция“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалният център по здравеопазване",
+        "регионалната здравна инспекция"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.9.е",
+       "level": 2,
+       "block": 451,
+       "text": "е) в ал. 10 думите „ал. 3“ се заменят с „ал. 4“.",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "ал. 3",
+        "ал. 4"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.10",
+     "level": 1,
+     "block": 452,
+     "text": "10. В чл. 48, ал. 1, т. 3 числата „24, 25“ се заличават.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "24, 25"
+     ],
+     "target": null
+    },
+    {
+     "id": "§107.11",
+     "level": 1,
+     "block": 453,
+     "text": "11. В чл. 65:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§107.11.а",
+       "level": 2,
+       "block": 454,
+       "text": "а) в ал. 1:",
+       "section": "transitional_final",
+       "children": [
+        {
+         "id": "§107.11.а.аа",
+         "level": 3,
+         "block": 455,
+         "text": "аа) думите „и Министерството на отбраната“ се заменят с „Министерството на правосъдието, Министерството на транспорта, информационните технологии и съобщенията и Министерството на отбраната“;",
+         "section": "transitional_final",
+         "children": [],
+         "quoted": [],
+         "continuation": [],
+         "inline_quotes": [
+          "и Министерството на отбраната",
+          "Министерството на правосъдието, Министерството на транспорта, информационните технологии и съобщенията и Министерството на отбраната"
+         ],
+         "target": null
+        },
+        {
+         "id": "§107.11.а.бб",
+         "level": 3,
+         "block": 456,
+         "text": "бб) създава се изречение второ: „Лечебното заведение предоставя на допуснатите до конкурс кандидати информация относно бюджета и длъжностното разписание на персонала в срок, определен в обявлението за конкурса.“;",
+         "section": "transitional_final",
+         "children": [],
+         "quoted": [],
+         "continuation": [],
+         "inline_quotes": [
+          "Лечебното заведение предоставя на допуснатите до конкурс кандидати информация относно бюджета и длъжностното разписание на персонала в срок, определен в обявлението за конкурса."
+         ],
+         "target": null
+        }
+       ],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§107.11.б",
+       "level": 2,
+       "block": 457,
+       "text": "б) създава се ал. 4:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        458
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.12",
+     "level": 1,
+     "block": 459,
+     "text": "12. Член 117 се изменя така:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      460
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.13",
+     "level": 1,
+     "block": 461,
+     "text": "13. В преходните и заключителните разпоредби се създава § 15:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      462
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§107.14",
+     "level": 1,
+     "block": 463,
+     "text": "14. В останалите текстове на закона думите „регионален център по здравеопазване“, „регионалния център по здравеопазване“, „регионалните центрове по здравеопазване“ и „регионалната инспекция за опазване и контрол на общественото здраве“ се заменят съответно с „регионална здравна инспекция“, „регионалната здравна инспекция“, „регионалните здравни инспекции“ и „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионален център по здравеопазване",
+      "регионалния център по здравеопазване",
+      "регионалните центрове по здравеопазване",
+      "регионалната инспекция за опазване и контрол на общественото здраве",
+      "регионална здравна инспекция",
+      "регионалната здравна инспекция",
+      "регионалните здравни инспекции",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§107.15",
+     "level": 1,
+     "block": 464,
+     "text": "15. В преходните и заключителните разпоредби на Закона за изменение и допълнение на Закона за лечебните заведения (ДВ, бр. 59 от 2010 г.) се правят следните изменения:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§107.15.а",
+       "level": 2,
+       "block": 465,
+       "text": "а) в § 72, ал. 1 думите „разрешения за лечебна дейност до министъра на здравеопазването“ се заменят с „удостоверения за регистрация до съответния регионален център по здравеопазване“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "разрешения за лечебна дейност до министъра на здравеопазването",
+        "удостоверения за регистрация до съответния регионален център по здравеопазване"
+       ],
+       "target": null
+      },
+      {
+       "id": "§107.15.б",
+       "level": 2,
+       "block": 466,
+       "text": "б) в § 75, ал. 1 думите „регионалните центрове по здравеопазване, регионалните инспекции по опазване и контрол на общественото здраве“ се заменят с „регионалните здравни инспекции“.",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регионалните центрове по здравеопазване, регионалните инспекции по опазване и контрол на общественото здраве",
+        "регионалните здравни инспекции"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": {
+      "title": "Закона за изменение и допълнение на Закона за лечебните заведения",
+      "cite": "ДВ, бр. 59 от 2010 г.",
+      "promulgation": [
+       59,
+       2010
+      ],
+      "issues": [
+       [
+        59,
+        2010
+       ]
+      ],
+      "repeal": false
+     }
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за лечебните заведения",
+    "cite": "обн., ДВ, бр. 62 от 1999 г.; изм., бр. 88, 113 и 114 от 1999 г., бр. 36, 65 и 108 от 2000 г.; Решение № 11 на Конституционния съд от 2001 г. – бр. 51 от 2001 г.; изм., бр. 28 и 62 от 2002 г., бр. 8, 102 и 114 от 2003 г., бр. 70 от 2004 г., бр. 46, 76, 85, 88 и 105 от 2005 г., бр. 30, 34, 59 и 105 от 2006 г., бр. 31, 53 и 59 от 2007 г., бр. 110 от 2008 г., бр. 36, 41, 99 и 101 от 2009 г. и бр. 38 и 59 от 2010 г.",
+    "promulgation": [
+     62,
+     1999
+    ],
+    "issues": [
+     [
+      62,
+      1999
+     ],
+     [
+      88,
+      1999
+     ],
+     [
+      113,
+      1999
+     ],
+     [
+      114,
+      1999
+     ],
+     [
+      36,
+      2000
+     ],
+     [
+      65,
+      2000
+     ],
+     [
+      108,
+      2000
+     ],
+     [
+      51,
+      2001
+     ],
+     [
+      28,
+      2002
+     ],
+     [
+      62,
+      2002
+     ],
+     [
+      8,
+      2003
+     ],
+     [
+      102,
+      2003
+     ],
+     [
+      114,
+      2003
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      46,
+      2005
+     ],
+     [
+      76,
+      2005
+     ],
+     [
+      85,
+      2005
+     ],
+     [
+      88,
+      2005
+     ],
+     [
+      105,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      34,
+      2006
+     ],
+     [
+      59,
+      2006
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      31,
+      2007
+     ],
+     [
+      53,
+      2007
+     ],
+     [
+      59,
+      2007
+     ],
+     [
+      110,
+      2008
+     ],
+     [
+      36,
+      2009
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      99,
+      2009
+     ],
+     [
+      101,
+      2009
+     ],
+     [
+      38,
+      2010
+     ],
+     [
+      59,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§108",
+   "level": 0,
+   "block": 467,
+   "text": "§ 108. В Закона за медицинските изделия (обн., ДВ, бр. 46 от 2007 г.;изм., бр. 110 от 2008 г. и бр. 41 и 82 от 2009 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§108.1",
+     "level": 1,
+     "block": 468,
+     "text": "1. В чл. 12, ал. 1 думите „регионалната инспекция за опазване и контрол на общественото здраве (РИОКОЗ)“ се заменят с „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалната инспекция за опазване и контрол на общественото здраве (РИОКОЗ)",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§108.2",
+     "level": 1,
+     "block": 469,
+     "text": "2. В чл. 100, ал. 2 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за медицинските изделия",
+    "cite": "обн., ДВ, бр. 46 от 2007 г.;изм., бр. 110 от 2008 г. и бр. 41 и 82 от 2009 г.",
+    "promulgation": [
+     46,
+     2007
+    ],
+    "issues": [
+     [
+      46,
+      2007
+     ],
+     [
+      110,
+      2008
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      82,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§109",
+   "level": 0,
+   "block": 470,
+   "text": "§ 109. В Закона за Националната агенция за приходите (обн., ДВ, бр. 112 от 2002 г.; изм., бр. 114 от 2003 г., бр. 105 от 2005 г., бр. 105 от 2006 г., бр. 109 от 2007 г., бр. 12, 32, 42 и 95 от 2009 г. и бр. 15, 51 и 54 от 2010 г.) в чл. 5, ал. 1 думата „директора“ се заменя с „управителя“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директора",
+    "управителя"
+   ],
+   "target": {
+    "title": "Закона за Националната агенция за приходите",
+    "cite": "обн., ДВ, бр. 112 от 2002 г.; изм., бр. 114 от 2003 г., бр. 105 от 2005 г., бр. 105 от 2006 г., бр. 109 от 2007 г., бр. 12, 32, 42 и 95 от 2009 г. и бр. 15, 51 и 54 от 2010 г.",
+    "promulgation": [
+     112,
+     2002
+    ],
+    "issues": [
+     [
+      112,
+      2002
+     ],
+     [
+      114,
+      2003
+     ],
+     [
+      105,
+      2005
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      109,
+      2007
+     ],
+     [
+      12,
+      2009
+     ],
+     [
+      32,
+      2009
+     ],
+     [
+      42,
+      2009
+     ],
+     [
+      95,
+      2009
+     ],
+     [
+      15,
+      2010
+     ],
+     [
+      51,
+      2010
+     ],
+     [
+      54,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§110",
+   "level": 0,
+   "block": 471,
+   "text": "§ 110. В Закона за отбраната и въоръжените сили на Република България (обн., ДВ, бр. 35 от 2009 г.; изм., бр. 74, 82, 93 и 99 от 2009 г. и бр. 16 и 88 от 2010 г.) в чл. 97, ал. 1 се създава изречение второ: „Заместник-началникът по лечебно-диагностичната дейност на Военномедицинската академия се назначава по предложение на началника на Военномедицинската академия съгласувано с министъра на здравеопазването.“",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Заместник-началникът по лечебно-диагностичната дейност на Военномедицинската академия се назначава по предложение на началника на Военномедицинската академия съгласувано с министъра на здравеопазването."
+   ],
+   "target": {
+    "title": "Закона за отбраната и въоръжените сили на Република България",
+    "cite": "обн., ДВ, бр. 35 от 2009 г.; изм., бр. 74, 82, 93 и 99 от 2009 г. и бр. 16 и 88 от 2010 г.",
+    "promulgation": [
+     35,
+     2009
+    ],
+    "issues": [
+     [
+      35,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      82,
+      2009
+     ],
+     [
+      93,
+      2009
+     ],
+     [
+      99,
+      2009
+     ],
+     [
+      16,
+      2010
+     ],
+     [
+      88,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§111",
+   "level": 0,
+   "block": 472,
+   "text": "§ 111. В Закона за отговорността за предотвратяване и отстраняване на екологични щети (обн., ДВ, бр. 43 от 2008 г.; изм., бр. 12, 32 и 35 от 2009 г. и бр. 77 от 2010 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§111.1",
+     "level": 1,
+     "block": 473,
+     "text": "1. В чл. 8, ал. 1, т. 7 думите „регионална инспекция за опазване и контрол на общественото здраве (РИОКОЗ)“ се заменят с „регионална здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионална инспекция за опазване и контрол на общественото здраве (РИОКОЗ)",
+      "регионална здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§111.2",
+     "level": 1,
+     "block": 474,
+     "text": "2. В чл. 25 в текста преди т. 1 абревиатурата „РИОКОЗ“ се заменя с „регионална здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионална здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за отговорността за предотвратяване и отстраняване на екологични щети",
+    "cite": "обн., ДВ, бр. 43 от 2008 г.; изм., бр. 12, 32 и 35 от 2009 г. и бр. 77 от 2010 г.",
+    "promulgation": [
+     43,
+     2008
+    ],
+    "issues": [
+     [
+      43,
+      2008
+     ],
+     [
+      12,
+      2009
+     ],
+     [
+      32,
+      2009
+     ],
+     [
+      35,
+      2009
+     ],
+     [
+      77,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§112",
+   "level": 0,
+   "block": 475,
+   "text": "§ 112. В Закона за признаване на професионални квалификации (обн., ДВ, бр. 13 от 2008 г.; изм., бр. 41 и 74 от 2009 г.) се правят следните изменения и допълнения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§112.1",
+     "level": 1,
+     "block": 476,
+     "text": "1. В чл. 2:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§112.1.а",
+       "level": 2,
+       "block": 477,
+       "text": "а) досегашният текст става ал. 1;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§112.1.б",
+       "level": 2,
+       "block": 478,
+       "text": "б) създава се ал. 2:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        479
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§112.2",
+     "level": 1,
+     "block": 480,
+     "text": "2. В чл. 41:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§112.2.а",
+       "level": 2,
+       "block": 481,
+       "text": "а) в ал. 1 думите „бившия Съветски съюз или от“ се заменят с „една от държавите от бившия Съветски съюз – “;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "бившия Съветски съюз или от",
+        "една от държавите от бившия Съветски съюз – "
+       ],
+       "target": null
+      },
+      {
+       "id": "§112.2.б",
+       "level": 2,
+       "block": 482,
+       "text": "б) в ал. 2 думите „от бившия Съветски съюз или“ се заличават;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "от бившия Съветски съюз или"
+       ],
+       "target": null
+      },
+      {
+       "id": "§112.2.в",
+       "level": 2,
+       "block": 483,
+       "text": "в) в ал. 3 думите „от бившата Югославия или“ се заличават.",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "от бившата Югославия или"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§112.3",
+     "level": 1,
+     "block": 484,
+     "text": "3. В чл. 86 се създава ал. 3:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      485
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за признаване на професионални квалификации",
+    "cite": "обн., ДВ, бр. 13 от 2008 г.; изм., бр. 41 и 74 от 2009 г.",
+    "promulgation": [
+     13,
+     2008
+    ],
+    "issues": [
+     [
+      13,
+      2008
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      74,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§113",
+   "level": 0,
+   "block": 486,
+   "text": "§ 113. Заварените до влизането в сила на този закон процедури по признаване на професионални квалификации на граждани на трети държави, които са придобили професионални квалификации по регулирани медицински професии в трети държави, се приключват по реда на Закона за признаване на професионални квалификации.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§114",
+   "level": 0,
+   "block": 487,
+   "text": "§ 114. В Закона за почвите (обн., ДВ, бр. 89 от 2007 г.; изм., бр. 80 от 2009 г.) в чл. 8, т. 3 в текста преди буква „а“ думите „регионалните инспекции по опазване и контрол на общественото здраве“ се заменят с „регионалните здравни инспекции“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "а",
+    "регионалните инспекции по опазване и контрол на общественото здраве",
+    "регионалните здравни инспекции"
+   ],
+   "target": {
+    "title": "Закона за почвите",
+    "cite": "обн., ДВ, бр. 89 от 2007 г.; изм., бр. 80 от 2009 г.",
+    "promulgation": [
+     89,
+     2007
+    ],
+    "issues": [
+     [
+      89,
+      2007
+     ],
+     [
+      80,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§115",
+   "level": 0,
+   "block": 488,
+   "text": "§ 115. В Закона за съсловните организации на лекарите и на лекарите по дентална медицина (обн., ДВ, бр. 83 от 1998 г.; изм., бр. 70 от 2004 г., бр. 76 и 85 от 2005 г., бр. 30, 59, 75 и 105 от 2006 г., бр. 31 от 2007 г., бр. 13 и 102 от 2008 г. и бр. 101 от 2009 г.) се правят следните изменения и допълнения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§115.1",
+     "level": 1,
+     "block": 489,
+     "text": "1. В чл. 5:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§115.1.а",
+       "level": 2,
+       "block": 490,
+       "text": "а) в т. 6 след думата „национален“ се добавя „електронен регистър“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "национален",
+        "електронен регистър"
+       ],
+       "target": null
+      },
+      {
+       "id": "§115.1.б",
+       "level": 2,
+       "block": 491,
+       "text": "б) създава се т. 13:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        492
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§115.2",
+     "level": 1,
+     "block": 493,
+     "text": "2. В чл. 13:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§115.2.а",
+       "level": 2,
+       "block": 494,
+       "text": "а) в т. 3 след думата „създава“ се добавя „и води“ и думата „национален“ се заменя с „националния“ и след думите „членовете си“ се добавя „по чл. 5, т. 6.“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "създава",
+        "и води",
+        "национален",
+        "националния",
+        "членовете си",
+        "по чл. 5, т. 6."
+       ],
+       "target": null
+      },
+      {
+       "id": "§115.2.б",
+       "level": 2,
+       "block": 495,
+       "text": "б) създава се т. 6:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        496
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§115.3",
+     "level": 1,
+     "block": 497,
+     "text": "3. В чл. 24, т. 2 накрая се добавя „по чл. 5, т. 6.“",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "по чл. 5, т. 6."
+     ],
+     "target": null
+    },
+    {
+     "id": "§115.4",
+     "level": 1,
+     "block": 498,
+     "text": "4. В чл. 34:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§115.4.а",
+       "level": 2,
+       "block": 499,
+       "text": "а) в ал.1, в текста преди т. 1 думата „регистъра“ се заменя с „регистрите по чл. 5, т. 6“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регистъра",
+        "регистрите по чл. 5, т. 6"
+       ],
+       "target": null
+      },
+      {
+       "id": "§115.4.б",
+       "level": 2,
+       "block": 500,
+       "text": "б) в ал. 2 накрая се добавя „в 10-дневен срок от настъпване на съответната промяна.“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "в 10-дневен срок от настъпване на съответната промяна."
+       ],
+       "target": null
+      },
+      {
+       "id": "§115.4.в",
+       "level": 2,
+       "block": 501,
+       "text": "в) алинея 3 се изменя така:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        502
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§115.4.г",
+       "level": 2,
+       "block": 503,
+       "text": "г) създава се ал. 4:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        504
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§115.5",
+     "level": 1,
+     "block": 505,
+     "text": "5. В чл. 36а думите „чл. 186, ал. 5 от Закона за здравето“ се заменят с „част втора от Закона за признаване на професионални квалификации“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "чл. 186, ал. 5 от Закона за здравето",
+      "част втора от Закона за признаване на професионални квалификации"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за съсловните организации на лекарите и на лекарите по дентална медицина",
+    "cite": "обн., ДВ, бр. 83 от 1998 г.; изм., бр. 70 от 2004 г., бр. 76 и 85 от 2005 г., бр. 30, 59, 75 и 105 от 2006 г., бр. 31 от 2007 г., бр. 13 и 102 от 2008 г. и бр. 101 от 2009 г.",
+    "promulgation": [
+     83,
+     1998
+    ],
+    "issues": [
+     [
+      83,
+      1998
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      76,
+      2005
+     ],
+     [
+      85,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      59,
+      2006
+     ],
+     [
+      75,
+      2006
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      31,
+      2007
+     ],
+     [
+      13,
+      2008
+     ],
+     [
+      102,
+      2008
+     ],
+     [
+      101,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§116",
+   "level": 0,
+   "block": 506,
+   "text": "§ 116. В Закона за съсловната организация на магистър-фармацевтите (обн., ДВ, бр. 75 от 2006 г.; изм., бр. 105 от 2006 г., бр. 31 от 2007 г., бр. 13 и 71 от 2008 г. и бр. 41 от 2009 г.) се правят следните изменения и допълнения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§116.1",
+     "level": 1,
+     "block": 507,
+     "text": "1. В чл. 5:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§116.1.а",
+       "level": 2,
+       "block": 508,
+       "text": "а) в т. 4 след думата „национален“ се добавя „електронен регистър“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "национален",
+        "електронен регистър"
+       ],
+       "target": null
+      },
+      {
+       "id": "§116.1.б",
+       "level": 2,
+       "block": 509,
+       "text": "б) създава се нова т. 9:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        510
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§116.2",
+     "level": 1,
+     "block": 511,
+     "text": "2. В чл. 12 се създава т. 8:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      512
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§116.3",
+     "level": 1,
+     "block": 513,
+     "text": "3. В чл. 25, т. 2 накрая се добавя „по чл. 5, т. 4.“",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "по чл. 5, т. 4."
+     ],
+     "target": null
+    },
+    {
+     "id": "§116.4",
+     "level": 1,
+     "block": 514,
+     "text": "4. В чл. 31 ал. 6 се изменя така:",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [
+      515,
+      516,
+      517,
+      518
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§116.5",
+     "level": 1,
+     "block": 519,
+     "text": "5. В чл. 33:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§116.5.а",
+       "level": 2,
+       "block": 520,
+       "text": "а) в ал. 2 накрая се добавя „в 10-дневен срок от настъпване на съответната промяна.“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "в 10-дневен срок от настъпване на съответната промяна."
+       ],
+       "target": null
+      },
+      {
+       "id": "§116.5.б",
+       "level": 2,
+       "block": 521,
+       "text": "б) в ал. 3 думата „едномесечен“ се заменя с „10-дневен“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "едномесечен",
+        "10-дневен"
+       ],
+       "target": null
+      },
+      {
+       "id": "§116.5.в",
+       "level": 2,
+       "block": 522,
+       "text": "в) създава се ал. 4:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        523
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§116.6",
+     "level": 1,
+     "block": 524,
+     "text": "6. В чл. 36 думите „чл. 186, ал. 5 от Закона за здравето“ се заменят с „част втора от Закона за признаване на професионални квалификации“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "чл. 186, ал. 5 от Закона за здравето",
+      "част втора от Закона за признаване на професионални квалификации"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за съсловната организация на магистър-фармацевтите",
+    "cite": "обн., ДВ, бр. 75 от 2006 г.; изм., бр. 105 от 2006 г., бр. 31 от 2007 г., бр. 13 и 71 от 2008 г. и бр. 41 от 2009 г.",
+    "promulgation": [
+     75,
+     2006
+    ],
+    "issues": [
+     [
+      75,
+      2006
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      31,
+      2007
+     ],
+     [
+      13,
+      2008
+     ],
+     [
+      71,
+      2008
+     ],
+     [
+      41,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§117",
+   "level": 0,
+   "block": 525,
+   "text": "§ 117. В Закона за съсловната организация на медицинските сестри, акушерките и асоциираните медицински специалисти (обн., ДВ, бр. 46 от 2005 г.; изм., бр. 85 от 2005 г., бр. 30, 59 и 75 от 2006 г., бр. 41 от 2007 г., бр. 13 от 2008 г. и бр. 41 от 2009 г.) се правят следните изменения и допълнения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§117.1",
+     "level": 1,
+     "block": 526,
+     "text": "1. В чл. 7, ал. 2 след думата „асистенти“ се добавя „и лекарските асистенти“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "асистенти",
+      "и лекарските асистенти"
+     ],
+     "target": null
+    },
+    {
+     "id": "§117.2",
+     "level": 1,
+     "block": 527,
+     "text": "2. В чл. 8:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§117.2.а",
+       "level": 2,
+       "block": 528,
+       "text": "а) в т. 2 след думата „национален“ се добавя „електронен професионален регистър“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "национален",
+        "електронен професионален регистър"
+       ],
+       "target": null
+      },
+      {
+       "id": "§117.2.б",
+       "level": 2,
+       "block": 529,
+       "text": "б) създава се т. 13:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        530
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§117.3",
+     "level": 1,
+     "block": 531,
+     "text": "3. В чл. 16:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§117.3.а",
+       "level": 2,
+       "block": 532,
+       "text": "а) в т. 3 след думата „националния“ се добавя „електронен“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "националния",
+        "електронен"
+       ],
+       "target": null
+      },
+      {
+       "id": "§117.3.б",
+       "level": 2,
+       "block": 533,
+       "text": "б) създава се т. 7:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        534
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§117.4",
+     "level": 1,
+     "block": 535,
+     "text": "4. В чл. 37:",
+     "section": "transitional_final",
+     "children": [
+      {
+       "id": "§117.4.а",
+       "level": 2,
+       "block": 536,
+       "text": "а) в ал. 1, в текста преди т. 1 думата „регистъра“ се заменя с „регистрите по чл. 8, т. 2“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "регистъра",
+        "регистрите по чл. 8, т. 2"
+       ],
+       "target": null
+      },
+      {
+       "id": "§117.4.б",
+       "level": 2,
+       "block": 537,
+       "text": "б) в ал. 2 накрая се добавя „в 10-дневен срок от настъпване на съответната промяна.“;",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "в 10-дневен срок от настъпване на съответната промяна."
+       ],
+       "target": null
+      },
+      {
+       "id": "§117.4.в",
+       "level": 2,
+       "block": 538,
+       "text": "в) алинея 3 се изменя така:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        539
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§117.4.г",
+       "level": 2,
+       "block": 540,
+       "text": "г) създава се нова ал. 4:",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [
+        541
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§117.4.д",
+       "level": 2,
+       "block": 542,
+       "text": "д) досегашната ал. 4 става ал. 5.",
+       "section": "transitional_final",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§117.5",
+     "level": 1,
+     "block": 543,
+     "text": "5. В чл. 39а думите „чл. 186, ал. 5 от Закона за здравето“ се заменят с „част втора от Закона за признаване на професионални квалификации“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "чл. 186, ал. 5 от Закона за здравето",
+      "част втора от Закона за признаване на професионални квалификации"
+     ],
+     "target": null
+    },
+    {
+     "id": "§117.6",
+     "level": 1,
+     "block": 544,
+     "text": "6. В § 1, т. 1 от допълнителната разпоредба след думите „рентгеновите лаборанти“ се добавя „лекарските асистенти“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "рентгеновите лаборанти",
+      "лекарските асистенти"
+     ],
+     "target": null
+    },
+    {
+     "id": "§117.7",
+     "level": 1,
+     "block": 545,
+     "text": "7. В § 3 от преходните и заключителните разпоредби думите „чл. 8“ се заменят с „чл. 6“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "чл. 8",
+      "чл. 6"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за съсловната организация на медицинските сестри, акушерките и асоциираните медицински специалисти",
+    "cite": "обн., ДВ, бр. 46 от 2005 г.; изм., бр. 85 от 2005 г., бр. 30, 59 и 75 от 2006 г., бр. 41 от 2007 г., бр. 13 от 2008 г. и бр. 41 от 2009 г.",
+    "promulgation": [
+     46,
+     2005
+    ],
+    "issues": [
+     [
+      46,
+      2005
+     ],
+     [
+      85,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      59,
+      2006
+     ],
+     [
+      75,
+      2006
+     ],
+     [
+      41,
+      2007
+     ],
+     [
+      13,
+      2008
+     ],
+     [
+      41,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§118",
+   "level": 0,
+   "block": 546,
+   "text": "§ 118. В Закона за трансплантация на органи, тъкани и клетки (обн., ДВ, бр. 83 от 2003 г.; изм., бр. 88 от 2005 г., бр. 71 от 2006 г. и бр. 36 и 41 от 2009 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§118.1",
+     "level": 1,
+     "block": 547,
+     "text": "1. В чл. 13, ал. 2 думите „ал. 3“ се заменят с „ал. 9“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "ал. 3",
+      "ал. 9"
+     ],
+     "target": null
+    },
+    {
+     "id": "§118.2",
+     "level": 1,
+     "block": 548,
+     "text": "2. Навсякъде думите „съответния регионален център по здравеопазване“ и „регионалните центрове по здравеопазване“ се заменят съответно със „съответната регионална здравна инспекция“ и „регионалните здравни инспекции“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "съответния регионален център по здравеопазване",
+      "регионалните центрове по здравеопазване",
+      "съответната регионална здравна инспекция",
+      "регионалните здравни инспекции"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за трансплантация на органи, тъкани и клетки",
+    "cite": "обн., ДВ, бр. 83 от 2003 г.; изм., бр. 88 от 2005 г., бр. 71 от 2006 г. и бр. 36 и 41 от 2009 г.",
+    "promulgation": [
+     83,
+     2003
+    ],
+    "issues": [
+     [
+      83,
+      2003
+     ],
+     [
+      88,
+      2005
+     ],
+     [
+      71,
+      2006
+     ],
+     [
+      36,
+      2009
+     ],
+     [
+      41,
+      2009
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§119",
+   "level": 0,
+   "block": 549,
+   "text": "§ 119. В Закона за управление на отпадъците (обн., ДВ, бр. 86 от 2003 г.; изм., бр. 70 от 2004 г., бр. 77, 87, 88, 95 и 105 от 2005 г., бр. 30, 34 и 63 от 2006 г., бр. 36, 70 и 105 от 2008 г., бр. 82 и 95 от 2009 г. и бр. 41 и 63 от 2010 г.) се правят следните изменения:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§119.1",
+     "level": 1,
+     "block": 550,
+     "text": "1. В чл. 39, ал. 1, т. 8 думите „регионалната инспекция за опазване и контрол на общественото здраве (РИОКОЗ)“ се заменят с „регионалната здравна инспекция (РЗИ)“ и след думата „една“ абревиатурата „РИОКОЗ“ се заменя с „РЗИ“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалната инспекция за опазване и контрол на общественото здраве (РИОКОЗ)",
+      "регионалната здравна инспекция (РЗИ)",
+      "една",
+      "РИОКОЗ",
+      "РЗИ"
+     ],
+     "target": null
+    },
+    {
+     "id": "§119.2",
+     "level": 1,
+     "block": 551,
+     "text": "2. В чл. 95, ал. 1 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    },
+    {
+     "id": "§119.3",
+     "level": 1,
+     "block": 552,
+     "text": "3. В чл. 118б, ал. 1 абревиатурата „РИОКОЗ“ се заменя с „регионалната здравна инспекция“.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "РИОКОЗ",
+      "регионалната здравна инспекция"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за управление на отпадъците",
+    "cite": "обн., ДВ, бр. 86 от 2003 г.; изм., бр. 70 от 2004 г., бр. 77, 87, 88, 95 и 105 от 2005 г., бр. 30, 34 и 63 от 2006 г., бр. 36, 70 и 105 от 2008 г., бр. 82 и 95 от 2009 г. и бр. 41 и 63 от 2010 г.",
+    "promulgation": [
+     86,
+     2003
+    ],
+    "issues": [
+     [
+      86,
+      2003
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      77,
+      2005
+     ],
+     [
+      87,
+      2005
+     ],
+     [
+      88,
+      2005
+     ],
+     [
+      95,
+      2005
+     ],
+     [
+      105,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      34,
+      2006
+     ],
+     [
+      63,
+      2006
+     ],
+     [
+      36,
+      2008
+     ],
+     [
+      70,
+      2008
+     ],
+     [
+      105,
+      2008
+     ],
+     [
+      82,
+      2009
+     ],
+     [
+      95,
+      2009
+     ],
+     [
+      41,
+      2010
+     ],
+     [
+      63,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§120",
+   "level": 0,
+   "block": 553,
+   "text": "§ 120. В Закона за храните (обн., ДВ, бр. 90 от 1999 г.; изм., бр. 102 от 2003 г., бр. 70 от2004 г., бр. 87, 99 и 105 от 2005 г., бр. 30, 31, 34, 51, 55 и 96 от 2006 г., бр. 31, 51 и 53 от 2007 г., бр. 36 и 69 от 2008 г., бр. 23, 41, 74, 82 и 93 от 2009 г. и бр. 23, 25, 59 и 80 от 2010 г.) навсякъде думите „регионалната инспекция за опазване и контрол на общественото здраве“, „регионалните инспекции за опазване и контрол на общественото здраве“ и „РИОКОЗ“ се заменят съответно с „регионалната здравна инспекция“, „регионалните здравни инспекции“ и „РЗИ“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "регионалната инспекция за опазване и контрол на общественото здраве",
+    "регионалните инспекции за опазване и контрол на общественото здраве",
+    "РИОКОЗ",
+    "регионалната здравна инспекция",
+    "регионалните здравни инспекции",
+    "РЗИ"
+   ],
+   "target": {
+    "title": "Закона за храните",
+    "cite": "обн., ДВ, бр. 90 от 1999 г.; изм., бр. 102 от 2003 г., бр. 70 от2004 г., бр. 87, 99 и 105 от 2005 г., бр. 30, 31, 34, 51, 55 и 96 от 2006 г., бр. 31, 51 и 53 от 2007 г., бр. 36 и 69 от 2008 г., бр. 23, 41, 74, 82 и 93 от 2009 г. и бр. 23, 25, 59 и 80 от 2010 г.",
+    "promulgation": [
+     90,
+     1999
+    ],
+    "issues": [
+     [
+      90,
+      1999
+     ],
+     [
+      102,
+      2003
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      87,
+      2005
+     ],
+     [
+      99,
+      2005
+     ],
+     [
+      105,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      31,
+      2006
+     ],
+     [
+      34,
+      2006
+     ],
+     [
+      51,
+      2006
+     ],
+     [
+      55,
+      2006
+     ],
+     [
+      96,
+      2006
+     ],
+     [
+      31,
+      2007
+     ],
+     [
+      51,
+      2007
+     ],
+     [
+      53,
+      2007
+     ],
+     [
+      36,
+      2008
+     ],
+     [
+      69,
+      2008
+     ],
+     [
+      23,
+      2009
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      82,
+      2009
+     ],
+     [
+      93,
+      2009
+     ],
+     [
+      23,
+      2010
+     ],
+     [
+      25,
+      2010
+     ],
+     [
+      59,
+      2010
+     ],
+     [
+      80,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§121",
+   "level": 0,
+   "block": 554,
+   "text": "§ 121. Законът влиза в сила от 1 януари 2011 г. с изключение на:",
+   "section": "transitional_final",
+   "children": [
+    {
+     "id": "§121.1",
+     "level": 1,
+     "block": 555,
+     "text": "1. параграфи 1, 16, 20, 29, 30, 32, 33, 34, 35, 42, 44, § 56, т. 1 и 2, § 65, 68, 70, 76, 80, 81, 90, 92, 96, § 102, т. 3, 4, 5, 7 и 8, § 105, т. 1, 3 и 5, § 107, т. 1, 2, 3, 4, 6, буква „а“, т. 7, 10, 11, 13 и 15, буква „а“, § 109, 110, 112, 113, § 115, т. 5, § 116, т. 4 и 6, § 117, т. 5 и 7 и § 118, т. 1, които влизат в сила от деня на обнародването на закона в „Държавен вестник“;",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "а",
+      "а",
+      "Държавен вестник"
+     ],
+     "target": null
+    },
+    {
+     "id": "§121.2",
+     "level": 1,
+     "block": 556,
+     "text": "2. параграф 102, т. 1, 2 и 6, които влизат в сила от 1 март 2011 г.;",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§121.3",
+     "level": 1,
+     "block": 557,
+     "text": "3. параграфи 22, т. 1 (относно чл. 36, ал. 1, изречение второ), § 37, § 48, т. 2, § 51 и 59, които влизат в сила от 1 юли 2011 г.;",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§121.4",
+     "level": 1,
+     "block": 558,
+     "text": "4. параграф 107, т. 15, буква „б“, който влиза в сила от 30 септември 2011 г.",
+     "section": "transitional_final",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "б"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  }
+ ]
+}

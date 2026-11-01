@@ -1,0 +1,61 @@
+{
+ "material": 246271,
+ "title": "Закон за допълнение на Закона за търговския регистър и регистъра на юридическите лица с нестопанска цел",
+ "issue": "92/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за търговския регистър и регистъра на юридическите лица с нестопанска цел",
+   "cited_promulgation": [
+    34,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-targovskiya-registar-i-registara-na-yuridicheskite-litsa-s-nestopanska-",
+   "candidates": [
+    "zakon-za-targovskiya-registar-i-registara-na-yuridicheskite-litsa-s-nestopanska-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    34,
+    2006
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Закона за въвеждане на еврото в Република България",
+   "cited_promulgation": [
+    70,
+    2024
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vavezhdane-na-evroto-v-republika-balgariya",
+   "candidates": [
+    "zakon-za-vavezhdane-na-evroto-v-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2024
+   ]
+  }
+ ],
+ "instructions": 8,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 658,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

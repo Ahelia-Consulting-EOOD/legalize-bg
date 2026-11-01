@@ -1,0 +1,39 @@
+{
+ "material": 202079,
+ "title": "Постановление № 314 от 20 декември 2023 г. за одобряване на допълнителни разходи по бюджета на Министерството на образованието и науката за 2023 г.",
+ "issue": "106/2023",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Средствата по чл. 1 да се осигурят за сметка на предв"
+  },
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. (1) Със сумата по чл. 1 да се увеличат разходите по „"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на образованието и науката да извърши съот"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Министърът на финансите да извърши произтичащите пром"
+  }
+ ],
+ "tokens_instructions": 221,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "material": 837,
+ "title": "Постановление № 196 от 8 септември 2005 г. за приемане на Правилник за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство",
+ "issue": "75/2005",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 12,
+  "title": "ПРАВИЛНИК"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§единствен",
+   "cited_title": "Устройствения правилник на Министерството на правосъдието, приет с Постановление № 192 на Министерския съвет от 2002 г.",
+   "cited_promulgation": [
+    83,
+    2002
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerstvoto-na-pravosadieto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds ustroystven-pravilnik-na-ministerstvoto-na-pravosadieto (promulgated 16/2015); the material cites бр. 83/2002",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 4,
+ "signs": 2,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 250,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

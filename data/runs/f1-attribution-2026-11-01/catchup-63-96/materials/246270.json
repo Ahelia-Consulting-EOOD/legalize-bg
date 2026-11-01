@@ -1,0 +1,40 @@
+{
+ "material": 246270,
+ "title": "Закон за изменение и допълнение на Закона за електронната идентификация",
+ "issue": "95/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за електронната идентификация",
+   "cited_promulgation": [
+    38,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnata-identifikatsiya",
+   "candidates": [
+    "zakon-za-elektronnata-identifikatsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    38,
+    2016
+   ]
+  }
+ ],
+ "instructions": 8,
+ "signs": 5,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 249,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

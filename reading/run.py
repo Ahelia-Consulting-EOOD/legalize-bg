@@ -161,12 +161,18 @@ def collect(run_dir: Path, slug: str, rnd: int) -> dict:
               "dropped": [{"block": i, "text": act.blocks[i].text[:80], "note": smap.get(i, {}).get("note", "")}
                           for i in range(len(act.blocks)) if smap.get(i, {}).get("label") == "drop"]}
     tasks = ladder.next_round_tasks(act, smap, label_exceptions, rnd + 1) if rnd < ladder.MAX_ROUNDS else []
-    # resumable: the next round's tasks are rewritten from scratch, and answers to an earlier task set are set aside
-    report_note = _set_aside_from(run_dir, rnd + 1, "an earlier task set was replaced", drop_tasks=True)
-    for old_report in run_dir.glob("report-round*.json"):
-        m = re.fullmatch(r"report-round(\d+)", old_report.stem)
-        if m and int(m.group(1)) > rnd:
-            old_report.unlink()
+    # resumable: the next round's tasks are rewritten from scratch; the answers and later rounds are set aside only when the
+    # task set they answered has changed (a collect of round R that rewrites the same round-R+1 tasks keeps their answers)
+    next_dir = run_dir / "tasks" / f"round{rnd + 1}"
+    before = calls.task_set_id(list(next_dir.glob("*.json"))) if next_dir.exists() and any(next_dir.glob("*.json")) else None
+    after = calls.task_set_id_of(tasks) if tasks else None
+    report_note = ""
+    if before != after:
+        report_note = _set_aside_from(run_dir, rnd + 1, "an earlier task set was replaced", drop_tasks=True)
+        for old_report in run_dir.glob("report-round*.json"):
+            m = re.fullmatch(r"report-round(\d+)", old_report.stem)
+            if m and int(m.group(1)) > rnd:
+                old_report.unlink()
     report["note"] = report_note
     if tasks:
         _write_tasks(run_dir, tasks)

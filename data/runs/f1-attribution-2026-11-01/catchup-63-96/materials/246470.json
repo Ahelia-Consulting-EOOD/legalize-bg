@@ -1,0 +1,40 @@
+{
+ "material": 246470,
+ "title": "Закон за изменение и допълнение на Закона за частната охранителна дейност",
+ "issue": "96/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за частната охранителна дейност",
+   "cited_promulgation": [
+    10,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-chastnata-ohranitelna-deynost",
+   "candidates": [
+    "zakon-za-chastnata-ohranitelna-deynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    10,
+    2018
+   ]
+  }
+ ],
+ "instructions": 97,
+ "signs": 39,
+ "quoted_blocks": 20,
+ "findings": [],
+ "tokens_instructions": 4347,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "material": 25670,
+ "title": "Закон за изменение на Търговския закон",
+ "issue": "82/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Търговския закон",
+   "cited_promulgation": [
+    48,
+    1991
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "targovski-zakon",
+   "candidates": [
+    "targovski-zakon"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    1991
+   ]
+  }
+ ],
+ "instructions": 7,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 118,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

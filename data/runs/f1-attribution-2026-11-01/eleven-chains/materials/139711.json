@@ -1,0 +1,63 @@
+{
+ "material": 139711,
+ "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+ "issue": "58/2019",
+ "section": "Министерство на здравеопазването",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "cited_promulgation": [
+    7,
+    2015
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr",
+   "candidates": [
+    "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    7,
+    2015
+   ]
+  }
+ ],
+ "instructions": 58,
+ "signs": 27,
+ "quoted_blocks": 872,
+ "findings": [
+  {
+   "block": 182,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '2. В ал. 2 думата „Таксата“ се заменя с ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 907,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '3. В раздел II „Специалности за лица с п' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 911,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '4. В раздел IV „Специалности за лица с в' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 925,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходни и заключителни разпоредби' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 19509,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

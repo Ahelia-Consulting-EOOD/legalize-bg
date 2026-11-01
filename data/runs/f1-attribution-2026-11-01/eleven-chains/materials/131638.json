@@ -1,0 +1,124 @@
+{
+ "material": 131638,
+ "title": "Закон за киберсигурност",
+ "issue": "94/2018",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§6",
+   "cited_title": "Закона за електронните съобщения",
+   "cited_promulgation": [
+    41,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnite-saobshteniya",
+   "candidates": [
+    "zakon-za-elektronnite-saobshteniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    41,
+    2007
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Закона за електронната търговия",
+   "cited_promulgation": [
+    51,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnata-targoviya",
+   "candidates": [
+    "zakon-za-elektronnata-targoviya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    51,
+    2006
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Закона за електронното управление",
+   "cited_promulgation": [
+    46,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnoto-upravlenie",
+   "candidates": [
+    "zakon-za-elektronnoto-upravlenie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2007
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Закона за управление и функциониране на системата за защита на националната сигурност",
+   "cited_promulgation": [
+    61,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-upravlenie-i-funktsionirane-na-sistemata-za-zashtita-na-natsionalnata-s",
+   "candidates": [
+    "zakon-za-upravlenie-i-funktsionirane-na-sistemata-za-zashtita-na-natsionalnata-s"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    61,
+    2015
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за мерките срещу изпирането на пари",
+   "cited_promulgation": [
+    27,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-merkite-sreshtu-izpiraneto-na-pari",
+   "candidates": [
+    "zakon-za-merkite-sreshtu-izpiraneto-na-pari"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    27,
+    2018
+   ]
+  }
+ ],
+ "instructions": 30,
+ "signs": 11,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 1397,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

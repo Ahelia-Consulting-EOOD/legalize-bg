@@ -1,0 +1,38 @@
+{
+ "material": 135624,
+ "title": "Наредба № 12 от 8 февруари 2019 г. за придобиване на квалификация по професията „Сервитьор-барман“",
+ "issue": "24/2019",
+ "section": "Министерство на образованието и науката",
+ "kind": "ordinance",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Тази наредба се издава основание чл. 22, ал. 6 във връзка с ал. 2, т. 6 от Закона за предучилищното и училищното образование и отменя Наредба № 7 от 2006 г. за придобиване на квалификация по професията „Сервитьор-барман“",
+   "cited_promulgation": [
+    11,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 330,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

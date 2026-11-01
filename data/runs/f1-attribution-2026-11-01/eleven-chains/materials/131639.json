@@ -1,0 +1,40 @@
+{
+ "material": 131639,
+ "title": "Закон за изменение и допълнение на Закона за авторското право и сродните му права",
+ "issue": "94/2018",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за авторското право и сродните му права",
+   "cited_promulgation": [
+    56,
+    1993
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-avtorskoto-pravo-i-srodnite-mu-prava",
+   "candidates": [
+    "zakon-za-avtorskoto-pravo-i-srodnite-mu-prava"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    56,
+    1993
+   ]
+  }
+ ],
+ "instructions": 18,
+ "signs": 11,
+ "quoted_blocks": 56,
+ "findings": [],
+ "tokens_instructions": 3079,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

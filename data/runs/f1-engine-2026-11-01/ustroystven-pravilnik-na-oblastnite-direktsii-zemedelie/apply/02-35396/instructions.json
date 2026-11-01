@@ -1,0 +1,380 @@
+{
+ "kind": "regulation",
+ "amending": true,
+ "own_title": "Правилник за изменение и допълнение на Устройствения правилник на областните дирекции „Земеделие“",
+ "target_title": "Устройствения правилник на областните дирекции „Земеделие“",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2010
+  ],
+  "issues": [
+   [
+    7,
+    2010
+   ],
+   [
+    9,
+    2010
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2010 г.; изм., ДВ, бр. 9 от 2010 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА ЗЕМЕДЕЛИЕТО И ХРАНИТЕ",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [
+  25
+ ],
+ "tail": [
+  28,
+  29
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "28": "tail",
+  "29": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "quoted",
+  "5": "instruction",
+  "6": "quoted",
+  "7": "instruction",
+  "8": "instruction",
+  "9": "instruction",
+  "10": "quoted",
+  "11": "instruction",
+  "12": "quoted",
+  "13": "instruction",
+  "14": "instruction",
+  "15": "instruction",
+  "16": "instruction",
+  "17": "instruction",
+  "18": "instruction",
+  "19": "instruction",
+  "20": "instruction",
+  "21": "instruction",
+  "22": "instruction",
+  "23": "instruction",
+  "24": "instruction",
+  "25": "heading",
+  "26": "instruction",
+  "27": "instruction"
+ },
+ "findings": [],
+ "blocks": 30,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 3, ал. 3 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 3,
+     "text": "1. Точка 10 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      4
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 5,
+     "text": "2. Създава се нова т. 14:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      6
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.3",
+     "level": 1,
+     "block": 7,
+     "text": "3. Досегашните т. 14 – 17 стават съответно 15 – 18.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 8,
+   "text": "§ 2. В чл. 14 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 9,
+     "text": "1. Точка 32 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      10
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 11,
+     "text": "2. Създава се нова т. 51:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      12
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.3",
+     "level": 1,
+     "block": 13,
+     "text": "3. Досегашните т. 51 – 55 стават съответно 52 – 56.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 14,
+   "text": "§ 3. В приложението към чл. 6, ал. 2 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§3.1",
+     "level": 1,
+     "block": 15,
+     "text": "1. В наименованието числото „1742“ се заменя с „1751“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "1742",
+      "1751"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.2",
+     "level": 1,
+     "block": 16,
+     "text": "2. На ред „Областна дирекция „Земеделие“ – Благоевград“ числото „77“ се заменя със „78“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "77",
+      "78"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.3",
+     "level": 1,
+     "block": 17,
+     "text": "3. На ред „Областна дирекция „Земеделие“ – Варна“ числото „74“ се заменя със „75“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "74",
+      "75"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.4",
+     "level": 1,
+     "block": 18,
+     "text": "4. На ред „Областна дирекция „Земеделие“ – Видин“ числото „60“ се заменя с „61“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "60",
+      "61"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.5",
+     "level": 1,
+     "block": 19,
+     "text": "5. На ред „Областна дирекция „Земеделие“ – Плевен“ числото „70“ се заменя със „71“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "70",
+      "71"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.6",
+     "level": 1,
+     "block": 20,
+     "text": "6. На ред „Областна дирекция „Земеделие“ – Пловдив“ числото „113“ се заменя със „114“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "113",
+      "114"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.7",
+     "level": 1,
+     "block": 21,
+     "text": "7. На ред „Областна дирекция „Земеделие“ – Русе“ числото „49“ се заменя с „50“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "49",
+      "50"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.8",
+     "level": 1,
+     "block": 22,
+     "text": "8. На ред „Областна дирекция „Земеделие“ – Сливен“ числото „42“ се заменя с „43“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "42",
+      "43"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.9",
+     "level": 1,
+     "block": 23,
+     "text": "9. На ред „Областна дирекция „Земеделие“ – София-град“ числото „53“ се заменя с „54“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "53",
+      "54"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.10",
+     "level": 1,
+     "block": 24,
+     "text": "10. На ред „Областна дирекция „Земеделие“ – Стара Загора“ числото „65“ се заменя с „66“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "65",
+      "66"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 26,
+   "text": "§ 4. Директорите на областните дирекции „Земеделие“ в Благоевград, Варна, Видин, Плевен, Пловдив, Русе, Сливен, София-град и Стара Загораутвърждават длъжностно разписание на съответната дирекция съгласувано с министъра на земеделието и храните в 3-дневен срок от влизането в сила на правилника.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Земеделие"
+   ],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 27,
+   "text": "§ 5. Правилникът влиза в сила от деня на обнародването му в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

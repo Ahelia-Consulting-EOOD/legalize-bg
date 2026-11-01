@@ -1,0 +1,199 @@
+{
+ "per_act": {
+  "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli": {
+   "state": "committed",
+   "step": "write",
+   "materials": "7/7",
+   "refusals": 2,
+   "refusal_kinds": {
+    "delete_words": 1,
+    "outside_set": 1
+   },
+   "settled": {
+    "same_text_other_form": 9,
+    "witness_error": 1
+   },
+   "last": "[popravka] d63ed62d2 Record-Id f1-engine-2026-11-01/naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-"
+  },
+  "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo": {
+   "state": "stopped",
+   "step": "apply",
+   "materials": "4/12",
+   "refusals": 15,
+   "refusal_kinds": {
+    "insert_provision": 2,
+    "replace_provision": 12,
+    "delete_words": 1
+   },
+   "settled": null,
+   "last": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) "
+  },
+  "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest": {
+   "state": "stopped",
+   "step": "witnesses",
+   "materials": "12/12",
+   "refusals": 4,
+   "refusal_kinds": {
+    "other": 1,
+    "insert_provision": 2,
+    "replace_provision": 1
+   },
+   "settled": {
+    "same_text_other_form": 196,
+    "source_error": 2,
+    "witness_error": 2,
+    "reading_error": 5
+   },
+   "last": "the settler found our reading wrong (reading_error): lexbg: 205 difference(s), settled reading_error 5, same_t"
+  },
+  "kodeks-na-mezhdunarodnoto-chastno-pravo": {
+   "state": "committed",
+   "step": "write",
+   "materials": "6/6",
+   "refusals": 2,
+   "refusal_kinds": {
+    "outside_set": 1,
+    "renumber": 1
+   },
+   "settled": {
+    "same_text_other_form": 126,
+    "witness_error": 4,
+    "source_error": 1
+   },
+   "last": "[popravka] 3ff8323b6 Record-Id f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/a4d82265c9a1"
+  },
+  "semeen-kodeks": {
+   "state": "stopped",
+   "step": "apply",
+   "materials": "11/16",
+   "refusals": 7,
+   "refusal_kinds": {
+    "insert_provision": 2,
+    "outside_set": 1,
+    "insert_words": 1,
+    "delete_words": 1,
+    "replace_words": 2
+   },
+   "settled": null,
+   "last": "material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: the new text opens as text None, t"
+  },
+  "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite": {
+   "state": "stopped",
+   "step": "witnesses",
+   "materials": "8/8",
+   "refusals": 12,
+   "refusal_kinds": {
+    "block": 2,
+    "insert_provision": 1,
+    "insert_annex": 1,
+    "repeal": 2,
+    "replace_annex": 1,
+    "delete_words": 1,
+    "insert_words": 1,
+    "replace_provision": 1,
+    "replace_words": 1,
+    "outside_set": 1
+   },
+   "settled": {
+    "same_text_other_form": 104,
+    "witness_error": 2,
+    "reading_error": 10,
+    "source_error": 1
+   },
+   "last": "the settler found our reading wrong (reading_error): lexbg: 117 difference(s), settled reading_error 10, same_"
+  },
+  "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr": {
+   "state": "stopped",
+   "step": "apply",
+   "materials": "2/9",
+   "refusals": 17,
+   "refusal_kinds": {
+    "other": 1,
+    "insert_words": 1,
+    "delete_words": 1,
+    "insert_provision": 1,
+    "replace_provision": 1,
+    "replace_words": 12
+   },
+   "settled": null,
+   "last": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times"
+  },
+  "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist": {
+   "state": "stopped",
+   "step": "apply",
+   "materials": "3/8",
+   "refusals": 10,
+   "refusal_kinds": {
+    "delete_words": 5,
+    "replace_heading": 2,
+    "other": 1,
+    "insert_words": 2
+   },
+   "settled": null,
+   "last": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33"
+  },
+  "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie": {
+   "state": "pending",
+   "step": "witnesses",
+   "materials": "12/12",
+   "refusals": 8,
+   "refusal_kinds": {
+    "block": 1,
+    "replace_annex": 1,
+    "insert_provision": 1,
+    "replace_words": 5
+   },
+   "settled": null,
+   "last": "differences to settle (lexbg 73, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktr"
+  },
+  "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n": {
+   "state": "committed",
+   "step": "write",
+   "materials": "2/2",
+   "refusals": 3,
+   "refusal_kinds": {
+    "insert_provision": 1,
+    "other": 1,
+    "replace_words": 1
+   },
+   "settled": {
+    "same_text_other_form": 15,
+    "witness_error": 2
+   },
+   "last": "[popravka] 62d2f4a0d Record-Id f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zast"
+  },
+  "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya": {
+   "state": "stopped",
+   "step": "apply",
+   "materials": "0/3",
+   "refusals": 9,
+   "refusal_kinds": {
+    "insert_words": 3,
+    "insert_provision": 1,
+    "replace_provision": 1,
+    "replace_heading": 1,
+    "insert_heading": 1,
+    "delete_words": 2
+   },
+   "settled": null,
+   "last": "material 160733 (бр. 67/2021): the answer is refused: §34 insert_words: the anchor 'филма' occurs 2 times"
+  }
+ },
+ "refusal_kinds": {
+  "delete_words": 12,
+  "outside_set": 4,
+  "insert_provision": 11,
+  "replace_provision": 16,
+  "other": 4,
+  "renumber": 1,
+  "insert_words": 8,
+  "replace_words": 21,
+  "block": 3,
+  "insert_annex": 1,
+  "repeal": 2,
+  "replace_annex": 2,
+  "replace_heading": 3,
+  "insert_heading": 1
+ },
+ "tokens": 4723999
+}

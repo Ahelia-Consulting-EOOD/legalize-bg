@@ -1,0 +1,131 @@
+{
+ "slug": "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest",
+ "round": 0,
+ "blocks": 546,
+ "sections": 17,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 411,
+   "kind": "low_confidence",
+   "detail": "title of the form printed as the annex, second line of the annex heading; annex_row also plausible"
+  }
+ ],
+ "source_findings": [],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {
+  "D-072/8": [
+   417,
+   419,
+   425,
+   427,
+   429,
+   434,
+   437,
+   440,
+   442,
+   444,
+   445,
+   452,
+   453,
+   454,
+   458,
+   459,
+   460,
+   462,
+   463,
+   464,
+   465,
+   500,
+   501,
+   504,
+   505,
+   509,
+   510,
+   518,
+   520,
+   523,
+   528,
+   531,
+   533,
+   539
+  ]
+ },
+ "exception_kinds": {
+  "low_confidence": 1
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 10,
+  "title": 2,
+  "chapter_heading": 10,
+  "article_title": 68,
+  "article_head": 66,
+  "item": 110,
+  "alinea": 122,
+  "section_heading": 18,
+  "provisions_heading": 1,
+  "paragraph_sign": 3,
+  "adoption_formula": 1,
+  "annex_heading": 2,
+  "annex_row": 133
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "УКАЗ № 213",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 1,
+   "text": "На основание чл. 98, т. 4 от Конституцията на Република България",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 2,
+   "text": "ПОСТАНОВЯВАМ:",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 3,
+   "text": "Да се обнародва в “Държавен вестник” Законът за екстрадицията и Европейската зап",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 4,
+   "text": "Издаден в София на 30 май 2005 г.",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 5,
+   "text": "Президент на републиката: Георги Първанов",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 6,
+   "text": "Подпечатан с държавния печат.",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 7,
+   "text": "Министър на правосъдието: Антон Станков",
+   "note": "promulgation decree countersignature"
+  },
+  {
+   "block": 409,
+   "text": "Председател на Народното събрание: Борислав Великов",
+   "note": "signature of the Chairman of the National Assembly after the adoption formula"
+  },
+  {
+   "block": 545,
+   "text": "27810",
+   "note": "Gazette material number printed after the act, not the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 1,
+ "diff_lines": 1365
+}

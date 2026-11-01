@@ -1,0 +1,29 @@
+{
+ "material": 144149,
+ "title": "Постановление № 355 от 19 декември 2019 г. за одобряване на допълнителни трансфери по бюджета на Министерството на земеделието, храните и горите за 2019 г. за доставка на ваксина срещу болестта заразен нодуларен дерматит по едрите преживни животни",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на земеделието, храните и горите да извърш"
+  },
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на финансите да извърши съответните промен"
+  }
+ ],
+ "tokens_instructions": 211,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

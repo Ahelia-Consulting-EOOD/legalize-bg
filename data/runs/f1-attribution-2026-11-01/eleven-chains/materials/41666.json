@@ -1,0 +1,117 @@
+{
+ "material": 41666,
+ "title": "Закон за Сметната палата",
+ "issue": "98/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Този закон отменя Закона за Сметната палата",
+   "cited_promulgation": [
+    109,
+    2001
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за обществените поръчки",
+   "cited_promulgation": [
+    28,
+    2004
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-obshtestvenite-porachki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-obshtestvenite-porachki (promulgated 13/2016); the material cites бр. 28/2004",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Кодекса за социално осигуряване",
+   "cited_promulgation": [
+    110,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g",
+   "candidates": [
+    "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    110,
+    1999
+   ]
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за здравното осигуряване",
+   "cited_promulgation": [
+    70,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravnoto-osiguryavane",
+   "candidates": [
+    "zakon-za-zdravnoto-osiguryavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    1998
+   ]
+  },
+  {
+   "scope": "§15",
+   "cited_title": "Закона за общинските бюджети",
+   "cited_promulgation": [
+    33,
+    1998
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 14,
+ "signs": 14,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 1804,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

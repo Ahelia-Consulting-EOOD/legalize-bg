@@ -1,0 +1,47 @@
+{
+ "material": 235702,
+ "title": "Постановление № 106 от 25 юни 2025 г. за одобряване на допълнителни разходи/трансфери за 2025 г.",
+ "issue": "52/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 21,
+  "title": "Приложение към чл. 1, ал. 1, т. 3"
+ },
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 7,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Средствата по чл. 1, ал. 1, т. 3 се предоставят на об"
+  },
+  {
+   "block": 10,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Допълнителните разходи/трансфери по чл. 1 да се осигу"
+  },
+  {
+   "block": 11,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. (1) Със сумата по чл. 1, ал. 1, т. 1 да се увеличат р"
+  },
+  {
+   "block": 13,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Министърът на младежта и спорта да извърши съответнит"
+  },
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Министърът на финансите да извърши налагащите се пром"
+  }
+ ],
+ "tokens_instructions": 475,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

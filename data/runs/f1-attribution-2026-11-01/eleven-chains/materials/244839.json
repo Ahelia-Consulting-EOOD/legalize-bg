@@ -1,0 +1,199 @@
+{
+ "material": 244839,
+ "title": "Постановление № 81 от 15 юли 2026 г. за изменение и допълнение на нормативни актове на Министерския съвет",
+ "issue": "66/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Правилника за устройството и дейността на Междуведомствения съвет по въпросите на граничния контрол, приет с Постановление № 70 на Министерския съвет от 1998 г.",
+   "cited_promulgation": [
+    39,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-mezhduvedomstveniya-savet-po-vaprosite-",
+   "candidates": [
+    "pravilnik-za-ustroystvoto-i-deynostta-na-mezhduvedomstveniya-savet-po-vaprosite-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    39,
+    1998
+   ]
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Правилника за устройството и дейността на Националния съвет за сътрудничество по етническите и интеграционните въпроси към Министерския съвет, приет с Постановление № 351 на Министерския съвет от 2006 г.",
+   "cited_promulgation": [
+    2,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-natsionalniya-savet-za-satrudnichestvo-",
+   "candidates": [
+    "pravilnik-za-ustroystvoto-i-deynostta-na-natsionalniya-savet-za-satrudnichestvo-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    2,
+    2007
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Устройствения правилник на Министерския съвет и на неговата администрация, приет с Постановление № 229 на Министерския съвет от 2009 г.",
+   "cited_promulgation": [
+    78,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-ministerskiya-savet-i-na-negovata-administratsiya",
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerskiya-savet-i-na-negovata-administratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    78,
+    2009
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Постановление № 120 на Министерския съвет от 2012 г. за създаване на Междуведомствен съвет по отбранителна индустрия и сигурност на доставките към Министерския съвет",
+   "cited_promulgation": [
+    49,
+    2012
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 120 на Министерския съвет от 2012 г. за създаване на Междуведомствен съвет по отбранителна индустрия и сигурност на доставките към Министерския съвет')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§5",
+   "cited_title": "Постановление № 136 на Министерския съвет от 2015 г. за създаване на Национален съвет по антикорупционни политики",
+   "cited_promulgation": [
+    41,
+    2015
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 136 на Министерския съвет от 2015 г. за създаване на Национален съвет по антикорупционни политики')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Правилника за дейността и организацията на работа на Националния съвет за хората с увреждания, реда за признаване на национална представителност на организациите на и за хората с увреждания и контрола за спазването на критериите за национална представителност, приет с Постановление № 151 на Министерския съвет от 2019 г.",
+   "cited_promulgation": [
+    49,
+    2019
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-deynostta-i-organizatsiyata-na-rabota-na-natsionalniya-savet-za-hor",
+   "candidates": [
+    "pravilnik-za-deynostta-i-organizatsiyata-na-rabota-na-natsionalniya-savet-za-hor"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    49,
+    2019
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Постановление № 86 на Министерския съвет от 2020 г. за създаване на Консултативен съвет за Европейската зелена сделка",
+   "cited_promulgation": [
+    40,
+    2020
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 86 на Министерския съвет от 2020 г. за създаване на Консултативен съвет за Европейската зелена сделка')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Постановление № 101 на Министерския съвет от 2023 г. за създаване на Национален механизъм за определяне на политиките и за координация в сферата на мерките за борба с изпирането на пари и финансирането на тероризма – Съвет за координация и сътрудничество",
+   "cited_promulgation": [
+    62,
+    2023
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 101 на Министерския съвет от 2023 г. за създаване на Национален механизъм за определяне на политиките и за координация в сферата на мерките за борба с изпирането на пари и финансирането на тероризма – Съвет за координация и сътрудничество')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Постановление № 95 на Министерския съвет от 2024 г. за създаване на Съвет за кръгова икономика",
+   "cited_promulgation": [
+    31,
+    2024
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 95 на Министерския съвет от 2024 г. за създаване на Съвет за кръгова икономика')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Постановление № 170 на Министерския съвет от 2015 г. за създаване на Съвет по енергийна сигурност",
+   "cited_promulgation": [
+    52,
+    2015
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": true,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 170 на Министерския съвет от 2015 г. за създаване на Съвет по енергийна сигурност')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 30,
+ "signs": 11,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 2636,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

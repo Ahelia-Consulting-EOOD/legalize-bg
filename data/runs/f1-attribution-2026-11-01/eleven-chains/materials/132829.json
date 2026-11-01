@@ -1,0 +1,56 @@
+{
+ "material": 132829,
+ "title": "Постановление № 274 от 6 декември 2018 г. за приемане на Правилник за прилагане на Закона за филмовата индустрия",
+ "issue": "102/2018",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 28,
+  "title": "ПРАВИЛНИК"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Устройствения правилник на Изпълнителна агенция „Национален филмов център“, приет с Постановление № 97 на Министерския съвет от 2004 г.",
+   "cited_promulgation": [
+    42,
+    2004
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "ustroystven-pravilnik-na-izpalnitelna-agentsiya-natsionalen-filmov-tsentar"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds ustroystven-pravilnik-na-izpalnitelna-agentsiya-natsionalen-filmov-tsentar (promulgated 30/2025); the material cites бр. 42/2004",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Тарифата за таксите, които се събират от Изпълнителна агенция „Национален филмов център“ по Закона за филмовата индустрия, приета с Постановление № 104 на Министерския съвет от 2004 г.",
+   "cited_promulgation": [
+    48,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 16,
+ "signs": 4,
+ "quoted_blocks": 5,
+ "findings": [],
+ "tokens_instructions": 727,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

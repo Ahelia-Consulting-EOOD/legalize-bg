@@ -1,0 +1,40 @@
+{
+ "material": 235701,
+ "title": "Постановление № 105 от 25 юни 2025 г. за изменение и допълнение на Наредбата за работното време, почивките и отпуските, приета с Постановление № 72 на Министерския съвет от 1986 г.",
+ "issue": "52/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за работното време, почивките и отпуските",
+   "cited_promulgation": [
+    6,
+    1987
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-rabotnoto-vreme-pochivkite-i-otpuskite",
+   "candidates": [
+    "naredba-za-rabotnoto-vreme-pochivkite-i-otpuskite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    6,
+    1987
+   ]
+  }
+ ],
+ "instructions": 6,
+ "signs": 3,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 602,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

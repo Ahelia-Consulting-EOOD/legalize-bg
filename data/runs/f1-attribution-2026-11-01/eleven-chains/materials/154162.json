@@ -1,0 +1,56 @@
+{
+ "material": 154162,
+ "title": "Постановление № 331 от 26 ноември 2020 г. за определяне размера на минималната работна заплата за страната",
+ "issue": "103/2020",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Постановление № 66 на Министерския съвет от 1996 г. за кадрово осигуряване на някои дейности в бюджетните организации",
+   "cited_promulgation": [
+    29,
+    1996
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 66 на Министерския съвет от 1996 г. за кадрово осигуряване на някои дейности в бюджетните организации')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Наредбата за заплатите на служителите в държавната администрация, приета с Постановление № 129 на Министерския съвет от 2012 г.",
+   "cited_promulgation": [
+    49,
+    2012
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-zaplatite-na-sluzhitelite-v-darzhavnata-administratsiya",
+   "candidates": [
+    "naredba-za-zaplatite-na-sluzhitelite-v-darzhavnata-administratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    49,
+    2012
+   ]
+  }
+ ],
+ "instructions": 7,
+ "signs": 7,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 716,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

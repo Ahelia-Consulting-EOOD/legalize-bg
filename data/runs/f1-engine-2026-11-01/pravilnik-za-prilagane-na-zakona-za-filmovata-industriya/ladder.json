@@ -1,0 +1,11 @@
+{
+ "rounds": 2,
+ "residue": [],
+ "residue_classes": {},
+ "exceptions": 0,
+ "source_finding_kinds": {
+  "malformed_head": 1,
+  "annex_in_pdf": 16
+ },
+ "last_report": "report-round2.json"
+}

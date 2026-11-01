@@ -1,0 +1,47 @@
+{
+ "act": "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n",
+ "promulgation": {
+  "material": 131916,
+  "issue": "94/2018",
+  "date": "2018-11-13"
+ },
+ "materials": [
+  {
+   "material": 147261,
+   "issue": "31/2020",
+   "date": "2020-04-01",
+   "position": 5,
+   "title": "Постановление № 56 от 31 март 2020 г. за изменение и допълнение на Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство, приет с Постановление № 242 на Министерския съвет от 2018 г.",
+   "kind": "decree",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 165363,
+   "issue": "100/2021",
+   "date": "2021-11-30",
+   "position": 9,
+   "title": "Постановление № 401 от 25 ноември 2021 г. за изменение и допълнение на Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство, приет с Постановление № 242 на Министерския съвет от 2018 г.",
+   "kind": "decree",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  }
+ ],
+ "lexbg_issues": [
+  "94/2018",
+  "31/2020",
+  "100/2021"
+ ],
+ "unexplained_lexbg_issues": [],
+ "extra_issues": [],
+ "decisions_naming_the_act": [],
+ "candidates": 24,
+ "bodies_fetched": 22,
+ "built_at": "2026-11-01T10:59:35+00:00"
+}

@@ -1,0 +1,401 @@
+{
+ "slug": "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n",
+ "run": "f1-engine-2026-11-01",
+ "route": "history",
+ "state": "committed",
+ "entries": [
+  {
+   "step": "chain",
+   "input_sha256": "0f1b4bc39ecb2bf924fb64599a4fe73b6168a4da0bc1e497f4b31fe20bb6f509",
+   "outputs_sha256": "073a95653db2be4f1a489e8925ad26bd96c73be1afeb4f64f45e88c8e08ca772",
+   "outcome": "done",
+   "detail": "2 material(s) change the act after бр. 94/2018; lex.bg names 2 issue(s), 0 unexplained (none), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:59:03+00:00",
+   "ended": "2026-11-01T10:59:35+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "input_sha256": "56e627ae3862bf2ee8219e84c54ea21c235397fdc5e8e067b73f0225e4548657",
+   "outputs_sha256": "1a84e6460e8efa9c0ffe542a62f1e7da125b9e621652624bd311370aea88ec89",
+   "outcome": "done",
+   "detail": "material 131916 of бр. 94/2018 (cached), sha256 cbd101b1b67a",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:59:35+00:00",
+   "ended": "2026-11-01T10:59:35+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "41822f8e9daa9df50fe36a406bbefb5bf3a794226b7431fa212b91c7f87a675a",
+   "outputs_sha256": "d4376fc0bdbaa631a756cecaa2260ed49b4e880ad715927f9f3ab3e4a94a660d",
+   "outcome": "done",
+   "detail": "277 blocks, 9 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:59:35+00:00",
+   "ended": "2026-11-01T10:59:35+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "613690be98a8d994735c9593878faff5a4a69e60f4954008191dd2473d1c0043",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 9 of 9 tasks unanswered; 2 labeller call(s) to make: 5fea9f5fb364-0000-0007 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/calls/round0/5fea9f5fb364-0000-0007.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/maps/round0/5fea9f5fb364-0000-0007.json; 5fea9f5fb364-0008-0008 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/calls/round0/5fea9f5fb364-0008-0008.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/maps/round0/5fea9f5fb364-0008-0008.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:59:35+00:00",
+   "ended": "2026-11-01T10:59:35+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "d6deb38d98c20ae75bea793e44dcd08d4fbd683ceaaaef7af002e99deba3fb0f",
+   "outputs_sha256": "6a2cfd89d914d6f387e8568d99e5818863cfa6b1a69e56c2f742e4b68f0f89ce",
+   "outcome": "done",
+   "detail": "round 0 collected: 7 exception(s), 1 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:48+00:00",
+   "ended": "2026-11-01T11:02:48+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "d3d757ef1f0fcdc34adde3883950744fa0e29ccd9a6127f9bf77934c1769be15",
+   "outputs_sha256": "f316a2a34dc009890ae3eba64b6998d83eabce475be65a6daa800b8c3f42c57e",
+   "outcome": "pending",
+   "detail": "round 1: 7 of 7 tasks unanswered; 1 labeller call(s) to make: 93f68e41eb76-0000-0006 (7 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/calls/round1/93f68e41eb76-0000-0006.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/maps/round1/93f68e41eb76-0000-0006.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:02:48+00:00",
+   "ended": "2026-11-01T11:02:48+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "e1bf50b6a9e5aef1d78f7f1d9697592554b4ddf3535bb5299d2fede33838ccc9",
+   "outputs_sha256": "80e19835c581991094e4cfe537cb8ab11243976be0f3d2db31bff40dba850cb1",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/ladder.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:36+00:00",
+   "ended": "2026-11-01T11:05:36+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "abc807bdee8a5918e3dd64953ed9fae4cd8fd1058fe6bb272bc7de8b54bb951f",
+   "outputs_sha256": "82636dd5d5459f18eede49b2fd9c3558a858818e85215b4f8cde2e6d906b16e6",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:36+00:00",
+   "ended": "2026-11-01T11:05:36+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "8b8ca293f59cb205b571b4c0ad01d06f59b2bb5df8cc716799f72a92b076af7f",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 2 (бр. 31/2020, 147261): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:36+00:00",
+   "ended": "2026-11-01T11:05:36+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5a3aaf8f0322c3e6812dc6d6a30b3282738e000ee65be41309a15e9b28227f38",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 2 (бр. 31/2020, 147261): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:58+00:00",
+   "ended": "2026-11-01T11:08:58+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "fd91bb772cd313de2bcad279540076c3ccb16a9ca8098d010f4cddbd7b2b5342",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 2 (бр. 31/2020, 147261): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:10:21+00:00",
+   "ended": "2026-11-01T11:10:21+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5bb6452c2b411b544dac63834404c84cca6d116859c47c3f3bf37973b2bc832b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 147261 (бр. 31/2020): the answer is refused: §1.1.а insert_provision: 'чл. 29, ал. 2, т. 17' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:13:42+00:00",
+   "ended": "2026-11-01T11:13:42+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c3f47818dcf4f0a5b129c9f9ebacaa5047af2e04c2b6340e34dec7d9ef940047",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 2 (бр. 100/2021, 165363): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/02-165363/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/02-165363/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/02-165363/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:26:01+00:00",
+   "ended": "2026-11-01T11:26:01+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "540d7dfd8889f73cc4d30f2439c3b2883830e2db14cb176001afbdab7491ce7b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 165363 (бр. 100/2021): the answer is refused: §25.1: punctuation is before or after, for delete_words only",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/02-165363/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:32:00+00:00",
+   "ended": "2026-11-01T11:32:00+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "e27ad1d7d56aeb8104b76ef6f61354ad8020b33a98fb57550c452b1630b7b555",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 165363 (бр. 100/2021): the answer is refused: §18.3 replace_words: 'чл. 25, ал. 3, т. 4' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/02-165363/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:34:08+00:00",
+   "ended": "2026-11-01T11:34:08+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "0fabbc00259f6b83ae6c0d8d490f70dee1832ec10ff701a28cca5573326031d6",
+   "outputs_sha256": "64da54164f1cd690861ad3cf51a17f4d75cf9a2b748f789f74f86bd4d091cbc7",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 1 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "03828ec636a374425060568dde350e7edb76e5941c431c3361ad32a7bc72f3b0",
+   "outputs_sha256": "b3a8db82ca5131b621025985f90bc99aea4294f7d0d9affb79269c867e24e7f1",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/ladder.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "d42018d5fde7c6b420261d97130134f44455828ea8c1dfcc2048f1aaabdd1c79",
+   "outputs_sha256": "1bac9c5e86d70a07f857d826085a1b73227777c7d8f73712a50a6f6dfd061d70",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "02db1c9ae25819f3f945540cda9ee97df7cb8884bb70bb756ac1599484ee9f69",
+   "outputs_sha256": "e503bab3563cdf7c8f2ec90b5a779a8d120993095407b17c1c64e047fef3e4fa",
+   "outcome": "done",
+   "detail": "2 material(s) applied, operations {'no_text_change': 27, 'insert_provision': 18, 'renumber': 4, 'replace_provision': 17, 'insert_words': 4, 'replace_words': 76, 'delete_words': 6, 'replace_heading': 2, 'repeal': 4}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:36+00:00",
+   "ended": "2026-11-01T11:42:36+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "baf6eecf49338ad525a188a2ae97cfa4bd6a92982b306155bf83d36b2166221f",
+   "outputs_sha256": "095c38f910011151174762a952a35b25c1eacd73a053026cab92a5e945eaa28f",
+   "outcome": "pending",
+   "detail": "differences to settle (lexbg 19, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:36+00:00",
+   "ended": "2026-11-01T11:42:37+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ae649fe4588e9c1bc4fe31befe3771f553fa5254e6be729bf2c8f59c49791aac",
+   "outputs_sha256": "a48773fcdd9e3c465f41270a883e664d77ebfd6efc735ba5d772961129cdeb06",
+   "outcome": "done",
+   "detail": "2 material(s) applied, operations {'no_text_change': 27, 'insert_provision': 18, 'renumber': 4, 'replace_provision': 17, 'insert_words': 4, 'replace_words': 76, 'delete_words': 6, 'replace_heading': 2, 'repeal': 4}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:19+00:00",
+   "ended": "2026-11-01T11:51:19+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "8f99d6dc2a64997a98687ef67af50cf76301bd44e326dc386c70e327d445fd6e",
+   "outputs_sha256": "abe10bbc9a6b752a4e2063e953afd0b6aa0e94888d7e3d49d21e9bf83da4fc17",
+   "outcome": "stop",
+   "detail": "the settler found our reading wrong (reading_error): lexbg: 19 difference(s), settled reading_error 2, same_text_other_form 15, witness_error 2; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2137188264 (absent, 2026-11-01T11:42:36+00:00))",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-diff.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:19+00:00",
+   "ended": "2026-11-01T11:51:19+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "53a1eda9b148fd46b245e3620e371bd344ab47fc8c647d5c27672686958c2a8a",
+   "outputs_sha256": "a4db6a349be9a1264103f7690c7d9cbeeeba3bca9f9d089b49726e0ff033953a",
+   "outcome": "done",
+   "detail": "2 material(s) applied, operations {'no_text_change': 27, 'insert_provision': 18, 'renumber': 4, 'replace_provision': 17, 'insert_words': 4, 'replace_words': 76, 'delete_words': 6, 'replace_heading': 2, 'repeal': 4}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:00:02+00:00",
+   "ended": "2026-11-01T12:00:02+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "fe59e087a81115dce1e14ef945bc3081c0a7105d6c1a10fc73c2ed98dd2ebaad",
+   "outputs_sha256": "17d74b60cbfda2cbb22fa377fde1b337e73effb9a7be1a0fa8d3ba0b1cbf433d",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 17, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:00:02+00:00",
+   "ended": "2026-11-01T12:00:02+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "031da00155f20cede16811e709938238e5ec2651c9afcd866b94b3d3028581cd",
+   "outputs_sha256": "8b680bcc0d9223aab00504dbb60fd4005d03e8d482b7f73f9164a0c1147fd85e",
+   "outcome": "done",
+   "detail": "2 material(s) applied, operations {'no_text_change': 27, 'insert_provision': 18, 'renumber': 4, 'replace_provision': 17, 'insert_words': 4, 'replace_words': 76, 'delete_words': 6, 'replace_heading': 2, 'repeal': 4}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:21+00:00",
+   "ended": "2026-11-01T12:04:21+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "b7cb9349de3ca40c1ef5fb654bafc9093472307bb6fea6e8a33a8e9a2b60151d",
+   "outputs_sha256": "a4833a3dceaa8a8ff08662b7d682a101d3ff97bf427513b9e5642a70219ee9fa",
+   "outcome": "done",
+   "detail": "lexbg: 17 difference(s), settled same_text_other_form 15, witness_error 2; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2137188264 (absent, 2026-11-01T11:42:36+00:00))",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-diff.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:21+00:00",
+   "ended": "2026-11-01T12:04:21+00:00"
+  },
+  {
+   "step": "write",
+   "input_sha256": "bc6d16ee00928c957b4df488743efe82ca57b853249ac742204b4a240ea95d58",
+   "outputs_sha256": "bd92d0598a4b6aa572a2dd59b191d8fb3ce5ff20879c904ebb7d2cbe15bf3d61",
+   "outcome": "stop",
+   "detail": "the write path refused the act: pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n: the body rebuilt from the chain's operations differs from the run's applied.md",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T12:04:21+00:00",
+   "ended": "2026-11-01T12:04:22+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "35de2edf83d5d962dec0c7d75bb56d1c8f00c3e7dc361e3056f49590caadb5dc",
+   "outputs_sha256": "8b680bcc0d9223aab00504dbb60fd4005d03e8d482b7f73f9164a0c1147fd85e",
+   "outcome": "pending",
+   "detail": "material 1 of 2 (бр. 31/2020, 147261): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply/01-147261/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:09+00:00",
+   "ended": "2026-11-01T12:10:09+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "35de2edf83d5d962dec0c7d75bb56d1c8f00c3e7dc361e3056f49590caadb5dc",
+   "outputs_sha256": "a5dbfe55ae4c6ba2c38412fa1b3a8c19d765eef89999d3a092a68948581d27cf",
+   "outcome": "done",
+   "detail": "2 material(s) applied, operations {'no_text_change': 27, 'insert_provision': 18, 'renumber': 4, 'replace_provision': 17, 'insert_words': 4, 'replace_words': 76, 'delete_words': 6, 'replace_heading': 2, 'repeal': 4}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:04+00:00",
+   "ended": "2026-11-01T12:15:04+00:00"
+  },
+  {
+   "step": "write",
+   "input_sha256": "ca4854e8f72d2b13fdf71f11aa8e477caad55d96cd726d5437d0da8544c496c3",
+   "outputs_sha256": "083c7c4da66f6192449a2e5ea30379da5d60d5e860e27d6a4cfb2bca994e5c53",
+   "outcome": "done",
+   "detail": "[popravka] 62d2f4a0d Record-Id f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/70efa5d72096",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n/written.json"
+   ],
+   "committed": "62d2f4a0d",
+   "started": "2026-11-01T12:15:04+00:00",
+   "ended": "2026-11-01T12:15:05+00:00"
+  }
+ ],
+ "step": "write",
+ "stopped_at": null,
+ "exception": null,
+ "case_file": "docs/cases/pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n.md",
+ "commit": "62d2f4a0d"
+}

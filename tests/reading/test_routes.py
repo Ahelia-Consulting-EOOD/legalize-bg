@@ -116,9 +116,10 @@ def test_stop_when_the_next_step_is_not_defined(root):
     assert (root / "docs" / "cases" / f"{SLUG}.md").exists()
 
 
-def test_the_real_routes_stop_where_the_engine_and_s4_do_not_exist(root):
+def test_the_real_routes_stop_where_s4_does_not_exist_and_the_history_route_opens_with_the_chain(root):
     sx.update(_list(root), SLUG, route="history")
-    assert run_route(_ctx(root), {}).detail == f"{routes.STOP_UNDEFINED}: engine"
+    assert run_route(_ctx(root), {}).detail == f"{routes.STOP_UNDEFINED}: chain"   # F1's first step, when no step registry is given
+    assert routes.ROUTE_STEPS["history"][-1] == "write" and "apply" in routes.ROUTE_STEPS["history"]
     sx.update(_list(root), SLUG, route="source_before_archive")
     assert run_route(_ctx(root, "r2"), {}).detail == f"{routes.STOP_UNDEFINED}: source_decision"
 
@@ -178,13 +179,16 @@ def test_a_stopped_act_without_a_case_file_is_refused_by_the_checks(root):
     problems = check_case_file(case, root)
     for needle in ("missing stopped_at", "route 'nowhere'", "not named after the act", "prose parts", "exception is empty"):
         assert any(needle in p for p in problems), needle
-    case.write_text("---\nact: zakon-za-probata\ntitle: t\nroute: history\nstopped_at: write\nexception: x\ntried: []\nrun: r\nrecord: nowhere.json\ndate: 2026-10-31\n---\n\n"
+    case.write_text("---\nact: zakon-za-probata\ntitle: t\nroute: history\nstopped_at: elsewhere\nexception: x\ntried: []\nrun: r\nrecord: nowhere.json\ndate: 2026-10-31\n---\n\n"
                     "## Lessons learnt\n\n### a deeper heading is the writer's\n\n## Proposal\n\n## The owner's ruling\n", encoding="utf-8")
     problems = check_case_file(case, root)
-    assert problems == [f"{case}: stopped_at 'write' is not a step of the route history", f"{case}: the record nowhere.json does not exist"]
+    assert problems == [f"{case}: stopped_at 'elsewhere' is not a step of the route history", f"{case}: the record nowhere.json does not exist"]
+    # the S2 case files stopped at the placeholder step "engine" before F1 built the route: they stay valid
+    case.write_text(case.read_text(encoding="utf-8").replace("stopped_at: elsewhere", "stopped_at: engine"), encoding="utf-8")
+    assert check_case_file(case, root) == [f"{case}: the record nowhere.json does not exist"]
 
 
-def test_a_pending_step_halts_without_a_case_file_and_is_not_run_again_until_its_inputs_change(root):
+def test_a_pending_step_halts_without_a_case_file_and_runs_again_while_pending(root):
     ctx = _ctx(root)
     answered = {"yes": False}
 
@@ -197,15 +201,15 @@ def test_a_pending_step_halts_without_a_case_file_and_is_not_run_again_until_its
     out = run_route(ctx, steps, routes=ROUTES)
     assert out.state == "pending" and out.step == B
     assert not (root / "docs" / "cases" / f"{SLUG}.md").exists()
-    assert run_route(_ctx(root), steps, routes=ROUTES).state == "pending" and steps[B].calls == 1   # finding 5
-    with pytest.raises(RouteRefused, match="is pending on these inputs"):
-        run_step(ctx, steps[B])
+    # a pending step runs again on the same inputs (resumable and cheap; its own records may have moved), the done step before it not
+    assert run_route(_ctx(root), steps, routes=ROUTES).state == "pending" and steps[B].calls == 2 and steps[A].calls == 1
+    assert run_step(ctx, steps[B])["outcome"] == "pending" and steps[B].calls == 3
     ledger = json.loads(ctx.ledger_path.read_text(encoding="utf-8"))
     assert ledger["state"] == "pending" and ledger["entries"][-1]["outcome"] == "pending"
     answered["yes"] = True
     (ctx.act_dir / "answer.json").write_text("{}", encoding="utf-8")
     out = run_route(ctx, steps, routes=ROUTES)
-    assert out.state == "committed" and out.commit == "abc1234" and steps[A].calls == 1 and steps[B].calls == 2
+    assert out.state == "committed" and out.commit == "abc1234" and steps[A].calls == 1 and steps[B].calls == 4
     e = sx.listed(SLUG, _list(root))
     assert e.state == "committed" and e.commit == "abc1234"
     assert run_route(ctx, steps, routes=ROUTES).state == "committed" and steps[C].calls == 1   # nothing runs again
@@ -317,7 +321,7 @@ def test_the_report_lists_a_runs_case_files_and_the_distance(root):
     sx.update(_list(root), SLUG, route="history")
     run_route(_ctx(root), _steps(A))
     text = routes.report(root / "data" / "runs" / "r", root)
-    assert f"{SLUG}: route history, stopped at engine: {routes.STOP_UNDEFINED}: engine" in text
+    assert f"{SLUG}: route history, stopped at chain: {routes.STOP_UNDEFINED}: chain" in text
     assert f"case files to read together (1):\n  docs/cases/{SLUG}.md" in text
     assert "distance left: 1 of 1 entries not yet committed" in text
 

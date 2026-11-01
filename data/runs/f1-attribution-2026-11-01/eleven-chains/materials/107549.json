@@ -1,0 +1,59 @@
+{
+ "material": 107549,
+ "title": "Закон за изменение и допълнение на Административнопроцесуалния кодекс",
+ "issue": "74/2016",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Административнопроцесуалния кодекс",
+   "cited_promulgation": [
+    30,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "administrativnoprotsesualen-kodeks",
+   "candidates": [
+    "administrativnoprotsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    2006
+   ]
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Закона за управление на средствата от Европейските структурни и инвестиционни фондове",
+   "cited_promulgation": [
+    101,
+    2015
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 14,
+ "signs": 7,
+ "quoted_blocks": 32,
+ "findings": [],
+ "tokens_instructions": 1814,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

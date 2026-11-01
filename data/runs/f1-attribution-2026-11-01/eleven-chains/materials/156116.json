@@ -1,0 +1,34 @@
+{
+ "material": 156116,
+ "title": "Постановление № 53 от 18 февруари 2021 г. за одобряване на допълнителни разходи по бюджета на Министерството на образованието и науката за 2021 г.",
+ "issue": "16/2021",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата по чл. 1, ал. 1 да се увеличат разходи"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на образованието и науката да извърши съот"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 228,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

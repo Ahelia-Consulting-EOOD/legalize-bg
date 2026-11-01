@@ -1,0 +1,77 @@
+{
+ "material": 144158,
+ "title": "Постановление № 364 от 19 декември 2019 г. за изменение на нормативни актове на Министерския съвет",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Наредбата за командировъчните средства при задграничен мандат, приета с Постановление № 188 на Министерския съвет от 2008 г.",
+   "cited_promulgation": [
+    70,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-komandirovachnite-sredstva-pri-zadgranichen-mandat",
+   "candidates": [
+    "naredba-za-komandirovachnite-sredstva-pri-zadgranichen-mandat"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2008
+   ]
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Устройствения правилник на Министерството на външните работи, приет с Постановление № 202 на Министерския съвет от 2013 г.",
+   "cited_promulgation": [
+    80,
+    2013
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-vanshnite-raboti",
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerstvoto-na-vanshnite-raboti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    80,
+    2013
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Постановление № 221 на Министерския съвет от 1999 г. за приемане на Устройствен правилник на Министерството на външните работи и за преобразуване и закриване на административни структури към министъра на външните работи",
+   "cited_promulgation": [
+    105,
+    1999
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Министерството на външните работи и за преобразуване и закриване на административни структури към министъра на външните работи')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 10,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 827,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

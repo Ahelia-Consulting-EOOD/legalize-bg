@@ -1,0 +1,292 @@
+{
+ "act": "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist",
+ "promulgation": {
+  "material": 49017,
+  "issue": "36/2011",
+  "date": "2011-05-10"
+ },
+ "materials": [
+  {
+   "material": 68862,
+   "issue": "77/2012",
+   "date": "2012-10-09",
+   "position": 8,
+   "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 79704,
+   "issue": "93/2013",
+   "date": "2013-10-25",
+   "position": 6,
+   "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "parse_findings",
+   "findings": [
+    {
+     "block": 72,
+     "kind": "unquoted_provision",
+     "detail": "Раздел II"
+    },
+    {
+     "block": 74,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 24. (1) Финансовият контрольор е пряко подчинен на генер"
+    },
+    {
+     "block": 83,
+     "kind": "unquoted_provision",
+     "detail": "Раздел III"
+    },
+    {
+     "block": 85,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 25. Отдел „Охрана и сигурност“ организира, осигурява и к"
+    },
+    {
+     "block": 92,
+     "kind": "unquoted_provision",
+     "detail": "Раздел IV"
+    },
+    {
+     "block": 94,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 26. Отдел „Човешки ресурси“:"
+    },
+    {
+     "block": 121,
+     "kind": "unquoted_provision",
+     "detail": "Раздел V"
+    },
+    {
+     "block": 123,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 27. Отдел „Връзки с обществеността и протокол“ изпълнява"
+    },
+    {
+     "block": 129,
+     "kind": "unquoted_provision",
+     "detail": "Раздел VI"
+    },
+    {
+     "block": 132,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 28. Дирекция „Правна“:"
+    },
+    {
+     "block": 145,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 29. Дирекция „Административно-финансово и информационно "
+    },
+    {
+     "block": 176,
+     "kind": "unquoted_provision",
+     "detail": "Раздел VII"
+    },
+    {
+     "block": 179,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 30. (1) Дирекция „Инфраструктура, акватория и собственос"
+    },
+    {
+     "block": 214,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 31. (1) Дирекция „Управление на проекти“ осъществява дей"
+    },
+    {
+     "block": 246,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 32. (1) Дирекция „Пристанищни услуги, статистика и еколо"
+    },
+    {
+     "block": 271,
+     "kind": "unquoted_provision",
+     "detail": "Раздел VIII"
+    },
+    {
+     "block": 275,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 33. (1) В предприятието са обособени като специализирани"
+    },
+    {
+     "block": 332,
+     "kind": "unquoted_provision",
+     "detail": "Раздел IХ"
+    },
+    {
+     "block": 334,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 34. (1) Клоновете – териториални поделения на предприяти"
+    },
+    {
+     "block": 354,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 35. (1) Клоновете – териториални поделения, се ръководят"
+    },
+    {
+     "block": 364,
+     "kind": "unquoted_provision",
+     "detail": "Раздел Х"
+    },
+    {
+     "block": 366,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 36. (1) Продължителността на работното време на служител"
+    },
+    {
+     "block": 369,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 37. (1) Документите, изпратени до предприятието от държа"
+    },
+    {
+     "block": 371,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 38. (1) Служебните преписки подлежат на насочване според"
+    },
+    {
+     "block": 373,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 39. (1) Генералният директор разпределя служебните препи"
+    },
+    {
+     "block": 377,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 40. Изходящите от предприятието документи се съставят в "
+    },
+    {
+     "block": 378,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 41. Служителите в предприятието изпълняват възложените и"
+    },
+    {
+     "block": 379,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 42. (1) В изпълнение на функциите и поставените задачи а"
+    },
+    {
+     "block": 381,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 43. Ръководителите на структурните звена в предприятието"
+    },
+    {
+     "block": 382,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 44. Пропускателният режим, документооборотът, противопож"
+    },
+    {
+     "block": 383,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 45. (1) За изпълнение на задачи, свързани с основните де"
+    },
+    {
+     "block": 385,
+     "kind": "unquoted_provision",
+     "detail": "Чл. 46. (1) За образцово изпълнение на трудовите си задължен"
+    }
+   ]
+  },
+  {
+   "material": 82388,
+   "issue": "12/2014",
+   "date": "2014-02-11",
+   "position": 6,
+   "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 94043,
+   "issue": "31/2015",
+   "date": "2015-04-28",
+   "position": 7,
+   "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 94506,
+   "issue": "37/2015",
+   "date": "2015-05-22",
+   "position": 9,
+   "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "parse_findings",
+   "findings": []
+  },
+  {
+   "material": 132104,
+   "issue": "97/2018",
+   "date": "2018-11-23",
+   "position": 12,
+   "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 138463,
+   "issue": "47/2019",
+   "date": "2019-06-14",
+   "position": 10,
+   "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 195426,
+   "issue": "50/2023",
+   "date": "2023-06-09",
+   "position": 18,
+   "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "kind": "regulation",
+   "scopes": [
+    "title"
+   ],
+   "status": "parse_findings",
+   "findings": []
+  }
+ ],
+ "lexbg_issues": [
+  "36/2011",
+  "77/2012",
+  "93/2013",
+  "12/2014",
+  "31/2015",
+  "37/2015",
+  "97/2018",
+  "47/2019",
+  "50/2023"
+ ],
+ "unexplained_lexbg_issues": [],
+ "extra_issues": [],
+ "decisions_naming_the_act": [],
+ "candidates": 108,
+ "bodies_fetched": 100,
+ "built_at": "2026-11-01T10:59:03+00:00"
+}

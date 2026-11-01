@@ -1,0 +1,18 @@
+{
+ "material": 107550,
+ "issue": "74/2016",
+ "operations": [
+  {
+   "id": "§29",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 116, ал. 1",
+   "old": "вписано в Централния регистър по чл. 45, ал. 1 от Закона за юридическите лица с нестопанска цел",
+   "old_ref": "q1",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§29 delete_words: 1 deletion(s)"
+ ]
+}

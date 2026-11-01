@@ -1,0 +1,35 @@
+{
+ "material": 246448,
+ "title": "Постановление № 179 от 8 октомври 2026 г. за допълнение на Постановление № 181 на Министерския съвет от 2009 г. за определяне на стратегическите обекти и дейности, които са от значение за националната сигурност",
+ "issue": "94/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Постановление № 181 на Министерския съвет от 2009 г. за определяне на стратегическите обекти и дейности, които са от значение за националната сигурност",
+   "cited_promulgation": [
+    59,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 181 на Министерския съвет от 2009 г. за определяне на стратегическите обекти и дейности, които са от значение за националната сигурност')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 83,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

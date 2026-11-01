@@ -1,0 +1,40 @@
+{
+ "material": 69472,
+ "title": "Закон за изменение и допълнение на Данъчно-осигурителния процесуален кодекс",
+ "issue": "82/2012",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Данъчно-осигурителния процесуален кодекс",
+   "cited_promulgation": [
+    105,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "danachno-osiguritelen-protsesualen-kodeks",
+   "candidates": [
+    "danachno-osiguritelen-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2005
+   ]
+  }
+ ],
+ "instructions": 55,
+ "signs": 36,
+ "quoted_blocks": 141,
+ "findings": [],
+ "tokens_instructions": 9672,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

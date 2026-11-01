@@ -1,0 +1,138 @@
+{
+ "kind": "regulation",
+ "amending": true,
+ "own_title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+ "target_title": "Устройствения правилник на областните дирекции „Земеделие“",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2010
+  ],
+  "issues": [
+   [
+    7,
+    2010
+   ],
+   [
+    9,
+    2010
+   ],
+   [
+    60,
+    2010
+   ],
+   [
+    73,
+    2010
+   ],
+   [
+    32,
+    2011
+   ],
+   [
+    21,
+    2012
+   ],
+   [
+    12,
+    2016
+   ],
+   [
+    75,
+    2016
+   ],
+   [
+    40,
+    2020
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2010 г.; изм., бр. 9, 60 и 73 от 2010 г., бр. 32 от 2011 г., бр. 21 от 2012 г., бр. 12 и 75 от 2016 г. и бр. 40 от 2020 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0
+ ],
+ "headings": [
+  4
+ ],
+ "tail": [
+  6,
+  7
+ ],
+ "roles": {
+  "0": "header",
+  "6": "tail",
+  "7": "tail",
+  "1": "instruction",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "heading",
+  "5": "instruction"
+ },
+ "findings": [],
+ "blocks": 8,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 1,
+   "text": "§ 1. В приложението към чл. 6, ал. 2 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 2,
+     "text": "1. На ред „Областна дирекция „Земеделие“ – Сливен“ числото „48“ се заменя с „49“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "48",
+      "49"
+     ],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 3,
+     "text": "2. На ред „Областна дирекция „Земеделие“ – София област“ числото „101“ се заменя със „100“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Земеделие",
+      "101",
+      "100"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 5,
+   "text": "§ 2. Правилникът влиза в сила от деня на обнародването му в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

@@ -1,0 +1,31 @@
+{
+ "material": 36798,
+ "issue": "73/2010",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 3, ал. 3, т. 6",
+   "old": "и поименното разписание на длъжностите",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§2",
+   "kind": "repeal",
+   "note": "",
+   "address": "§ 1"
+  },
+  {
+   "id": "§3",
+   "kind": "no_text_change",
+   "note": ""
+  }
+ ],
+ "log": [
+  "§1 delete_words: 1 deletion(s)",
+  "§2 repeal: 1 line(s) repealed",
+  "§3 no_text_change: nothing"
+ ]
+}

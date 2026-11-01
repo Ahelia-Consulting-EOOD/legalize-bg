@@ -1,0 +1,298 @@
+{
+ "material": 71595,
+ "issue": "2/2013",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 1, ал. 4",
+   "old": "съществуващи",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 1, ал. 4",
+   "old": "паметници на културата",
+   "old_ref": "q2",
+   "new": "недвижими културни ценности",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 1, ал. 4",
+   "old": "Националния институт за паметниците на културата",
+   "old_ref": "q4",
+   "new": "Министерството на културата",
+   "new_ref": "q5",
+   "everywhere": false
+  },
+  {
+   "id": "§2",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§2.1",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 5, ал. 1",
+   "old": "(1)",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§2.2",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 5, т. 3",
+   "punctuation": "before",
+   "new": "изисквания за опазване на защитени зони, на защитени територии и на недвижими културни ценности, изисквания за защита при бедствия и аварии и за физическа защита на строежите",
+   "new_ref": "q2",
+   "where": "after",
+   "anchor": "достъпна среда",
+   "anchor_ref": "q1"
+  },
+  {
+   "id": "§3",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 9, ал. 2",
+   "lines": [
+    "(2) При съсобственост на строежа възлагането по ал. 1 може да се извърши от някои от съсобствениците за сметка на всички съсобственици."
+   ],
+   "blocks": [
+    7,
+    7
+   ],
+   "hints": [
+    "DvText"
+   ]
+  },
+  {
+   "id": "§4",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 17, ал. 2",
+   "old": "Националния институт за недвижимото културно наследство – в случаите, когато сградите са обявени за паметници на културата",
+   "old_ref": "q1",
+   "new": "Министерството на културата – за недвижимите културни ценности",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§5",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§5.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 21, т. 3",
+   "old": "в т. 1",
+   "old_ref": "q1",
+   "new": "с нормативните актове, действащи към момента на въвеждането на строежите в експлоатация",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§5.2",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 21, т. 5",
+   "punctuation": "before",
+   "new": "който включва оценка на техническите характеристики на строежа за съответствие с изискванията на нормативните актове, действащи към момента на въвеждането на строежите в експлоатация, както и възможностите за изпълнение на съществените изисквания по чл. 169, ал. 1 ЗУТ, в т.ч. оценка за сеизмичната осигуреност на строежа в съответствие с действащите към момента на обследването нормативни актове",
+   "new_ref": "q1",
+   "where": "end"
+  },
+  {
+   "id": "§6",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§6.1",
+   "kind": "repeal",
+   "note": "",
+   "address": "§ 2, ал. 1"
+  },
+  {
+   "id": "§6.2",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§6.2.а",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "§ 2, ал. 2, текстът преди т. 1",
+   "lines": [
+    "(2) Техническите паспорти на съществуващи строежи – държавна, общинска или частна собственост, в т.ч. строежите – смесена държавна и частна собственост, или смесена общинска и частна собственост, се съставят в следните срокове в зависимост от категорията им:"
+   ],
+   "blocks": [
+    16,
+    16
+   ],
+   "hints": [
+    "DvText"
+   ]
+  },
+  {
+   "id": "§6.2.б",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "§ 2, ал. 2, т. 1",
+   "lines": [
+    "1. от първа, втора и трета категория – до 31 декември 2014 г.;"
+   ],
+   "blocks": [
+    18,
+    18
+   ],
+   "hints": [
+    "DvText"
+   ]
+  },
+  {
+   "id": "§6.2.в",
+   "kind": "repeal",
+   "note": "",
+   "address": "§ 2, ал. 2, т. 2"
+  },
+  {
+   "id": "§6.2.в",
+   "kind": "repeal",
+   "note": "",
+   "address": "§ 2, ал. 2, т. 3"
+  },
+  {
+   "id": "§6.3",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "§ 2, ал. 3",
+   "lines": [
+    "(3) Техническите паспорти на сгради и съоръжения от първа и втора категория с основно производствено или технологично предназначение, когато то е определено с нормативен акт, се съставят в срока, определен по ал. 2, т. 1, а техническите паспорти на сгради и съоръжения със спомагателно, второстепенно или обслужващо предназначение се съставят в сроковете за съответните категории строежи."
+   ],
+   "blocks": [
+    21,
+    21
+   ],
+   "hints": [
+    "DvText"
+   ]
+  },
+  {
+   "id": "§6.4",
+   "kind": "replace_words",
+   "note": "",
+   "address": "§ 2, ал. 4",
+   "old": "по ал. 1 и 2",
+   "old_ref": "q1",
+   "new": "по ал. 2",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§6.5",
+   "kind": "repeal",
+   "note": "",
+   "address": "§ 2, ал. 5"
+  },
+  {
+   "id": "§6.6",
+   "kind": "replace_words",
+   "note": "",
+   "address": "§ 2, ал. 6",
+   "old": "съгласно § 2, ал. 1 ЗУТ",
+   "old_ref": "q1",
+   "new": "чл. 417, т. 1 от Гражданския процесуален кодекс (ГПК)",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§6.7",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "§ 2, ал. 8",
+   "lines": [
+    "(8) За съществуващи строежи моментът на въвеждане в експлоатация (времето на изграждане) се удостоверява с разрешение за ползване или удостоверение за въвеждане в експлоатация, а когато няма такива – с акт за държавна или общинска собственост, с разрешение за строеж или акт за собственост, както и с всички доказателствени средства, допустими по ГПК, включително и с декларации."
+   ],
+   "blocks": [
+    26,
+    26
+   ],
+   "hints": [
+    "DvText"
+   ],
+   "after": "§ 2, ал. 7"
+  },
+  {
+   "id": "§7",
+   "kind": "replace_words",
+   "note": "",
+   "address": "наредбата и приложенията към нея",
+   "old": "лиценза",
+   "old_ref": "q2",
+   "new": "удостоверението",
+   "new_ref": "q4",
+   "everywhere": true
+  },
+  {
+   "id": "§7",
+   "kind": "replace_words",
+   "note": "",
+   "address": "наредбата и приложенията към нея",
+   "old": "лиценз",
+   "old_ref": "q1",
+   "new": "удостоверение",
+   "new_ref": "q3",
+   "everywhere": true
+  },
+  {
+   "id": "§8",
+   "kind": "replace_words",
+   "note": "",
+   "address": "наредбата",
+   "old": "чл. 169, ал. 1 и 2 ЗУТ",
+   "old_ref": "q1",
+   "new": "чл. 169, ал. 1 – 3 ЗУТ",
+   "new_ref": "q2",
+   "everywhere": true
+  }
+ ],
+ "log": [
+  "§1 delete_words: 1 deletion(s)",
+  "§1 replace_words: 1 replacement(s)",
+  "§1 replace_words: 1 replacement(s)",
+  "§2 no_text_change: nothing",
+  "§2.1 delete_words: the alinea's designation removed; its words are the article's",
+  "§2.2 insert_words: inserted",
+  "§3 replace_provision: 1 line(s) replaced by 1",
+  "§4 replace_words: 1 replacement(s)",
+  "§5 no_text_change: nothing",
+  "§5.1 replace_words: 1 replacement(s)",
+  "§5.2 insert_words: inserted",
+  "§6 no_text_change: nothing",
+  "§6.1 repeal: 1 line(s) repealed",
+  "§6.2 no_text_change: nothing",
+  "§6.2.а replace_provision: the words before the items replaced",
+  "§6.2.б replace_provision: 1 line(s) replaced by 1",
+  "§6.2.в repeal: 1 line(s) repealed",
+  "§6.2.в repeal: 1 line(s) repealed",
+  "§6.3 replace_provision: 1 line(s) replaced by 1",
+  "§6.4 replace_words: 1 replacement(s)",
+  "§6.5 repeal: 1 line(s) repealed",
+  "§6.6 replace_words: 1 replacement(s)",
+  "§6.7 insert_provision: 1 line(s) at § 2, ал. 8",
+  "§7 replace_words: 2 replacement(s)",
+  "§7 replace_words: 2 replacement(s)",
+  "§8 replace_words: 4 replacement(s)"
+ ]
+}

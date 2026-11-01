@@ -1,0 +1,104 @@
+{
+ "material": 173772,
+ "issue": "41/2022",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§1.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Видин“",
+   "old": "62",
+   "old_ref": "q2",
+   "new": "59",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§1.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Ловеч“",
+   "old": "56",
+   "old_ref": "q2",
+   "new": "57",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§1.3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Русе“",
+   "old": "53",
+   "old_ref": "q2",
+   "new": "52",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§1.4",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Силистра“",
+   "old": "54",
+   "old_ref": "q2",
+   "new": "57",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "навсякъде в правилника",
+   "old": "министъра на земеделието, храните и горите",
+   "old_ref": "q1",
+   "new": "министъра на земеделието",
+   "new_ref": "q4",
+   "everywhere": true
+  },
+  {
+   "id": "§2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "навсякъде в правилника",
+   "old": "Министерството на земеделието, храните и горите",
+   "old_ref": "q2",
+   "new": "Министерството на земеделието",
+   "new_ref": "q5",
+   "everywhere": true
+  },
+  {
+   "id": "§2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "навсякъде в правилника",
+   "old": "МЗХГ",
+   "old_ref": "q3",
+   "new": "МЗм",
+   "new_ref": "q6",
+   "everywhere": true
+  },
+  {
+   "id": "§3",
+   "kind": "no_text_change",
+   "note": ""
+  }
+ ],
+ "log": [
+  "§1 no_text_change: nothing",
+  "§1.1 replace_words: 1 replacement(s)",
+  "§1.2 replace_words: 1 replacement(s)",
+  "§1.3 replace_words: 1 replacement(s)",
+  "§1.4 replace_words: 1 replacement(s)",
+  "§2 replace_words: 17 replacement(s)",
+  "§2 replace_words: 3 replacement(s)",
+  "§2 replace_words: 12 replacement(s)",
+  "§3 no_text_change: nothing"
+ ]
+}

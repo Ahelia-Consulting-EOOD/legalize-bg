@@ -1,0 +1,38 @@
+{
+ "material": 3637,
+ "title": "Постановление № 97 от 3 май 2007 г. за одобряване на Тарифа за пристанищните такси, събирани от Държавно предприятие “Пристанищна инфраструктура”",
+ "issue": "38/2007",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 13,
+  "title": "ТАРИФА"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§единствен",
+   "cited_title": "Тарифа № 5 за таксите, които се събират в системата на Министерството на транспорта, одобрена с Постановление № 81 на Министерския съвет от 2000 г.",
+   "cited_promulgation": [
+    41,
+    2000
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 5,
+ "signs": 2,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 271,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

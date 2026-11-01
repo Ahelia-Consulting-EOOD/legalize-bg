@@ -1,0 +1,40 @@
+{
+ "material": 207978,
+ "title": "Наредба за изменение и допълнение на Наредба № 8121з-882 от 25 ноември 2014 г. за реда за осъществяване на държавен противопожарен контрол",
+ "issue": "18/2024",
+ "section": "Министерство на вътрешните работи",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 8121з-882 от 25 ноември 2014 г. за реда за осъществяване на държавен противопожарен контрол",
+   "cited_promulgation": [
+    100,
+    2014
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-8121z-882-ot-25-noemvri-2014-g-za-reda-i-usloviyata-za-osashtestvyavane-",
+   "candidates": [
+    "naredba-8121z-882-ot-25-noemvri-2014-g-za-reda-i-usloviyata-za-osashtestvyavane-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    100,
+    2014
+   ]
+  }
+ ],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 255,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

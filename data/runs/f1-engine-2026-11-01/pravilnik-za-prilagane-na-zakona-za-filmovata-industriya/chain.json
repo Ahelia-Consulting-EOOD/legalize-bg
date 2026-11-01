@@ -1,0 +1,61 @@
+{
+ "act": "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya",
+ "promulgation": {
+  "material": 132829,
+  "issue": "102/2018",
+  "date": "2018-12-11"
+ },
+ "materials": [
+  {
+   "material": 160733,
+   "issue": "67/2021",
+   "date": "2021-08-13",
+   "position": 6,
+   "title": "Постановление № 271 от 6 август 2021 г. за изменение и допълнение на Правилника за прилагане на Закона за филмовата индустрия, приет с Постановление № 274 на Министерския съвет от 2018 г.",
+   "kind": "decree",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 202220,
+   "issue": "2/2024",
+   "date": "2024-01-05",
+   "position": 3,
+   "title": "Постановление № 352 от 28 декември 2023 г. за изменение и допълнение на Правилника за прилагане на Закона за филмовата индустрия, приет с Постановление № 274 на Министерския съвет от 2018 г.",
+   "kind": "decree",
+   "scopes": [
+    "title"
+   ],
+   "status": "parse_findings",
+   "findings": []
+  },
+  {
+   "material": 241452,
+   "issue": "20/2026",
+   "date": "2026-02-20",
+   "position": 1,
+   "title": "Постановление № 34 от 16 февруари 2026 г. за изменение и допълнение на Правилника за прилагане на Закона за филмовата индустрия, приет с Постановление № 274 на Министерския съвет от 2018 г.",
+   "kind": "decree",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  }
+ ],
+ "lexbg_issues": [
+  "102/2018",
+  "67/2021",
+  "2/2024",
+  "20/2026"
+ ],
+ "unexplained_lexbg_issues": [],
+ "extra_issues": [],
+ "decisions_naming_the_act": [],
+ "candidates": 22,
+ "bodies_fetched": 19,
+ "built_at": "2026-11-01T11:00:02+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "material": 134074,
+ "title": "Постановление № 8 от 17 януари 2019 г. за изменение и допълнение на Наредбата за административното обслужване, приета с Постановление № 246 на Министерския съвет от 2006 г.",
+ "issue": "7/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за административното обслужване",
+   "cited_promulgation": [
+    78,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-administrativnoto-obsluzhvane-zagl-izm-dv-br-47-ot-2008-g-v-sila-ot-0",
+   "candidates": [
+    "naredba-za-administrativnoto-obsluzhvane-zagl-izm-dv-br-47-ot-2008-g-v-sila-ot-0"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    78,
+    2006
+   ]
+  }
+ ],
+ "instructions": 3,
+ "signs": 1,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 223,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

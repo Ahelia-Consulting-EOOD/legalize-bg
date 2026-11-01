@@ -1,0 +1,34 @@
+{
+ "material": 202085,
+ "title": "Постановление № 320 от 20 декември 2023 г. за одобряване на допълнителни разходи по бюджета на Министерския съвет за 2023 г.",
+ "issue": "106/2023",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 23,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 26,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата по чл. 1, ал. 1 да се увеличат разходи"
+  },
+  {
+   "block": 28,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Главният секретар на Министерския съвет да извърши съ"
+  },
+  {
+   "block": 29,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 700,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

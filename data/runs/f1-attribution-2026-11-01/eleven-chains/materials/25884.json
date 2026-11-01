@@ -1,0 +1,944 @@
+{
+ "material": 25884,
+ "title": "Закон за изменение на Закона за туризма",
+ "issue": "82/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за туризма",
+   "cited_promulgation": [
+    56,
+    2002
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-turizma"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-turizma (promulgated 30/2013); the material cites бр. 56/2002",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за хазарта",
+   "cited_promulgation": [
+    51,
+    1999
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-hazarta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-hazarta (promulgated 26/2012); the material cites бр. 51/1999",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§15",
+   "cited_title": "Закона за устройството на Черноморското крайбрежие",
+   "cited_promulgation": [
+    48,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie",
+   "candidates": [
+    "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2007
+   ]
+  },
+  {
+   "scope": "§16",
+   "cited_title": "Закона за здравето",
+   "cited_promulgation": [
+    70,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdraveto",
+   "candidates": [
+    "zakon-za-zdraveto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2004
+   ]
+  },
+  {
+   "scope": "§17",
+   "cited_title": "Закона за вътрешния одит в публичния сектор",
+   "cited_promulgation": [
+    27,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vatreshniya-odit-v-publichniya-sektor",
+   "candidates": [
+    "zakon-za-vatreshniya-odit-v-publichniya-sektor"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    27,
+    2006
+   ]
+  },
+  {
+   "scope": "§18",
+   "cited_title": "Закона за административното регулиране на производството и търговията с оптични дискове, матрици и други носители, съдържащи обекти на авторското право и сродните му права",
+   "cited_promulgation": [
+    74,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§19",
+   "cited_title": "Закона за акредитацията, извършвана от Българската служба за акредитация",
+   "cited_promulgation": [
+    100,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§20",
+   "cited_title": "Закона за Българската банка за развитие",
+   "cited_promulgation": [
+    43,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskata-banka-za-razvitie",
+   "candidates": [
+    "zakon-za-balgarskata-banka-za-razvitie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    43,
+    2008
+   ]
+  },
+  {
+   "scope": "§21",
+   "cited_title": "Закона за виното и спиртните напитки",
+   "cited_promulgation": [
+    86,
+    1999
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-vinoto-i-spirtnite-napitki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-vinoto-i-spirtnite-napitki (promulgated 45/2012); the material cites бр. 86/1999",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§22",
+   "cited_title": "Закона за водите",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vodite",
+   "candidates": [
+    "zakon-za-vodite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§23",
+   "cited_title": "Закона за възобновяемите и алтернативните енергийни източници и биогоривата",
+   "cited_promulgation": [
+    49,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§24",
+   "cited_title": "Закона за експортния контрол на оръжия и изделия и технологии с двойна употреба",
+   "cited_promulgation": [
+    11,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§25",
+   "cited_title": "Закона за електронните съобщения",
+   "cited_promulgation": [
+    41,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnite-saobshteniya",
+   "candidates": [
+    "zakon-za-elektronnite-saobshteniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    41,
+    2007
+   ]
+  },
+  {
+   "scope": "§26",
+   "cited_title": "Закона за енергетиката",
+   "cited_promulgation": [
+    107,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-energetikata",
+   "candidates": [
+    "zakon-za-energetikata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    107,
+    2003
+   ]
+  },
+  {
+   "scope": "§27",
+   "cited_title": "Закона за енергийната ефективност",
+   "cited_promulgation": [
+    98,
+    2008
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-energiynata-efektivnost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-energiynata-efektivnost (promulgated 35/2015); the material cites бр. 98/2008",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§28",
+   "cited_title": "Закона за забрана на химическото оръжие и за контрол на токсичните химически вещества и техните прекурсори",
+   "cited_promulgation": [
+    8,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zabrana-na-himicheskoto-orazhie-i-za-kontrol-na-toksichnite-himicheski-",
+   "candidates": [
+    "zakon-za-zabrana-na-himicheskoto-orazhie-i-za-kontrol-na-toksichnite-himicheski-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    8,
+    2000
+   ]
+  },
+  {
+   "scope": "§29",
+   "cited_title": "Закона за задължителните запаси от нефт и нефтопродукти",
+   "cited_promulgation": [
+    9,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§30",
+   "cited_title": "Закона за защита на потребителите",
+   "cited_promulgation": [
+    99,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-potrebitelite",
+   "candidates": [
+    "zakon-za-zashtita-na-potrebitelite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    99,
+    2005
+   ]
+  },
+  {
+   "scope": "§31",
+   "cited_title": "Закона за измерванията",
+   "cited_promulgation": [
+    46,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-izmervaniyata",
+   "candidates": [
+    "zakon-za-izmervaniyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2002
+   ]
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Закона за изпълнение на Регламент на Съвета (ЕО) № 1236/2005 относно търговията с някои стоки, които биха могли да бъдат използвани с цел прилагане на смъртно наказание, изтезания или други форми на жестоко, нечовешко или унизително отнасяне или наказание",
+   "cited_promulgation": [
+    23,
+    2008
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§33",
+   "cited_title": "Закона за инспектиране на труда",
+   "cited_promulgation": [
+    102,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-inspektirane-na-truda",
+   "candidates": [
+    "zakon-za-inspektirane-na-truda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2008
+   ]
+  },
+  {
+   "scope": "§34",
+   "cited_title": "Закона за контрол върху наркотичните вещества и прекурсорите",
+   "cited_promulgation": [
+    30,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite",
+   "candidates": [
+    "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    1999
+   ]
+  },
+  {
+   "scope": "§35",
+   "cited_title": "Закона за малките и средните предприятия",
+   "cited_promulgation": [
+    84,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-malkite-i-srednite-predpriyatiya",
+   "candidates": [
+    "zakon-za-malkite-i-srednite-predpriyatiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    84,
+    1999
+   ]
+  },
+  {
+   "scope": "§36",
+   "cited_title": "Закона за медицинските изделия",
+   "cited_promulgation": [
+    46,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-meditsinskite-izdeliya",
+   "candidates": [
+    "zakon-za-meditsinskite-izdeliya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2007
+   ]
+  },
+  {
+   "scope": "§37",
+   "cited_title": "Закона за насърчаване на инвестициите",
+   "cited_promulgation": [
+    97,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060",
+   "candidates": [
+    "zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    97,
+    1997
+   ]
+  },
+  {
+   "scope": "§38",
+   "cited_title": "Закона за обществените поръчки",
+   "cited_promulgation": [
+    28,
+    2004
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-obshtestvenite-porachki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-obshtestvenite-porachki (promulgated 13/2016); the material cites бр. 28/2004",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§39",
+   "cited_title": "Закона за подземните богатства",
+   "cited_promulgation": [
+    23,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-podzemnite-bogatstva",
+   "candidates": [
+    "zakon-za-podzemnite-bogatstva"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    23,
+    1999
+   ]
+  },
+  {
+   "scope": "§40",
+   "cited_title": "Закона за подпомагане на земеделските производители",
+   "cited_promulgation": [
+    58,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-podpomagane-na-zemedelskite-proizvoditeli",
+   "candidates": [
+    "zakon-za-podpomagane-na-zemedelskite-proizvoditeli"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    58,
+    1998
+   ]
+  },
+  {
+   "scope": "§41",
+   "cited_title": "Закона за потребителския кредит",
+   "cited_promulgation": [
+    53,
+    2006
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-potrebitelskiya-kredit"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-potrebitelskiya-kredit (promulgated 18/2010); the material cites бр. 53/2006",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§42",
+   "cited_title": "Закона за предоставяне на финансови услуги от разстояние",
+   "cited_promulgation": [
+    105,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-predostavyane-na-finansovi-uslugi-ot-razstoyanie",
+   "candidates": [
+    "zakon-za-predostavyane-na-finansovi-uslugi-ot-razstoyanie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2006
+   ]
+  },
+  {
+   "scope": "§43",
+   "cited_title": "Закона за приватизация и следприватизационен контрол",
+   "cited_promulgation": [
+    28,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-privatizatsiya-i-sledprivatizatsionen-kontrol",
+   "candidates": [
+    "zakon-za-privatizatsiya-i-sledprivatizatsionen-kontrol"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    28,
+    2002
+   ]
+  },
+  {
+   "scope": "§44",
+   "cited_title": "Закона за прилагане на Общите организации на пазарите на земеделски продукти на Европейския съюз",
+   "cited_promulgation": [
+    96,
+    2006
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "zakon-za-prilagane-na-obshtata-organizatsiya-na-pazarite-na-zemedelski-produkti-",
+   "candidates": [
+    "zakon-za-prilagane-na-obshtata-organizatsiya-na-pazarite-na-zemedelski-produkti-"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (fuzzy); the cited promulgation names the act",
+   "act_promulgation": [
+    96,
+    2006
+   ]
+  },
+  {
+   "scope": "§45",
+   "cited_title": "Закона за рибарството и аквакултурите",
+   "cited_promulgation": [
+    41,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ribarstvoto-i-akvakulturite",
+   "candidates": [
+    "zakon-za-ribarstvoto-i-akvakulturite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    41,
+    2001
+   ]
+  },
+  {
+   "scope": "§46",
+   "cited_title": "Закона за свръхзапасите от земеделски и захарни продукти",
+   "cited_promulgation": [
+    88,
+    2006
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§47",
+   "cited_title": "Закона за стоковите борси и тържищата",
+   "cited_promulgation": [
+    93,
+    1996
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-stokovite-borsi-i-tarzhishtata",
+   "candidates": [
+    "zakon-za-stokovite-borsi-i-tarzhishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    93,
+    1996
+   ]
+  },
+  {
+   "scope": "§48",
+   "cited_title": "Закона за тютюна и тютюневите изделия",
+   "cited_promulgation": [
+    101,
+    1993
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§49",
+   "cited_title": "Закона за храните",
+   "cited_promulgation": [
+    90,
+    1999
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-hranite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-hranite (promulgated 52/2020); the material cites бр. 90/1999",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§50",
+   "cited_title": "Закона за чистотата на атмосферния въздух",
+   "cited_promulgation": [
+    45,
+    1996
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-chistotata-na-atmosferniya-vazduh",
+   "candidates": [
+    "zakon-za-chistotata-na-atmosferniya-vazduh"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    45,
+    1996
+   ]
+  },
+  {
+   "scope": "§51",
+   "cited_title": "Закона за опазване на околната среда",
+   "cited_promulgation": [
+    91,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-opazvane-na-okolnata-sreda",
+   "candidates": [
+    "zakon-za-opazvane-na-okolnata-sreda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2002
+   ]
+  },
+  {
+   "scope": "§52",
+   "cited_title": "Закона за генетично модифицирани организми",
+   "cited_promulgation": [
+    27,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-genetichno-modifitsirani-organizmi",
+   "candidates": [
+    "zakon-za-genetichno-modifitsirani-organizmi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    27,
+    2005
+   ]
+  },
+  {
+   "scope": "§53",
+   "cited_title": "Закона за експортното застраховане",
+   "cited_promulgation": [
+    61,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-eksportnoto-zastrahovane",
+   "candidates": [
+    "zakon-za-eksportnoto-zastrahovane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    61,
+    1998
+   ]
+  },
+  {
+   "scope": "§54",
+   "cited_title": "Закона за занаятите",
+   "cited_promulgation": [
+    42,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zanayatite",
+   "candidates": [
+    "zakon-za-zanayatite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    42,
+    2001
+   ]
+  },
+  {
+   "scope": "§55",
+   "cited_title": "Закона за защита на растенията",
+   "cited_promulgation": [
+    91,
+    1997
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-zashtita-na-rasteniyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-zashtita-na-rasteniyata (promulgated 61/2014); the material cites бр. 91/1997",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§56",
+   "cited_title": "Закона за Икономически и социален съвет",
+   "cited_promulgation": [
+    41,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ikonomicheski-i-sotsialen-savet",
+   "candidates": [
+    "zakon-za-ikonomicheski-i-sotsialen-savet"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    41,
+    2001
+   ]
+  },
+  {
+   "scope": "§57",
+   "cited_title": "Закона за насърчаване на научните изследвания",
+   "cited_promulgation": [
+    92,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§58",
+   "cited_title": "Закона за управление на отпадъците",
+   "cited_promulgation": [
+    86,
+    2003
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-upravlenie-na-otpadatsite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-upravlenie-na-otpadatsite (promulgated 53/2012); the material cites бр. 86/2003",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 136,
+ "signs": 59,
+ "quoted_blocks": 25,
+ "findings": [],
+ "tokens_instructions": 10279,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

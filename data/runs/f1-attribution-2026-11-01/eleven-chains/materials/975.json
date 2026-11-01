@@ -1,0 +1,44 @@
+{
+ "material": 975,
+ "title": "Постановление № 224 от 24 октомври 2005 г. за изменение и допълнение на Устройствения правилник на Държавна агенция “Гражданска защита”, приет с Постановление № 101 на Министерския съвет от 2005 г.",
+ "issue": "86/2005",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Държавна агенция “Гражданска защита”",
+   "cited_promulgation": [
+    48,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 10,
+ "signs": 4,
+ "quoted_blocks": 7,
+ "findings": [
+  {
+   "block": 16,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '4. На ред “Специализирана администрация”' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 390,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

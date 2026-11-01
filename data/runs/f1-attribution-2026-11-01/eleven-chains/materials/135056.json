@@ -1,0 +1,1610 @@
+{
+ "material": 135056,
+ "title": "Закон за изменение и допълнение на Закона за защита на личните данни",
+ "issue": "17/2019",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за защита на личните данни",
+   "cited_promulgation": [
+    1,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-lichnite-danni",
+   "candidates": [
+    "zakon-za-zashtita-na-lichnite-danni"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    1,
+    2002
+   ]
+  },
+  {
+   "scope": "§46",
+   "cited_title": "Закона за Министерството на вътрешните работи",
+   "cited_promulgation": [
+    53,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ministerstvoto-na-vatreshnite-raboti",
+   "candidates": [
+    "zakon-za-ministerstvoto-na-vatreshnite-raboti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    53,
+    2014
+   ]
+  },
+  {
+   "scope": "§47",
+   "cited_title": "Закона за митниците",
+   "cited_promulgation": [
+    15,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mitnitsite",
+   "candidates": [
+    "zakon-za-mitnitsite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    15,
+    1998
+   ]
+  },
+  {
+   "scope": "§48",
+   "cited_title": "Закона за електронните съобщения",
+   "cited_promulgation": [
+    41,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnite-saobshteniya",
+   "candidates": [
+    "zakon-za-elektronnite-saobshteniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    41,
+    2007
+   ]
+  },
+  {
+   "scope": "§49",
+   "cited_title": "Закона за обществените поръчки",
+   "cited_promulgation": [
+    13,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-obshtestvenite-porachki",
+   "candidates": [
+    "zakon-za-obshtestvenite-porachki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    2016
+   ]
+  },
+  {
+   "scope": "§50",
+   "cited_title": "Закона за съдебната власт",
+   "cited_promulgation": [
+    64,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sadebnata-vlast",
+   "candidates": [
+    "zakon-za-sadebnata-vlast"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    64,
+    2007
+   ]
+  },
+  {
+   "scope": "§51",
+   "cited_title": "Закона за Националния архивен фонд",
+   "cited_promulgation": [
+    57,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-natsionalniya-arhiven-fond",
+   "candidates": [
+    "zakon-za-natsionalniya-arhiven-fond"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    57,
+    2007
+   ]
+  },
+  {
+   "scope": "§52",
+   "cited_title": "Изборния кодекс",
+   "cited_promulgation": [
+    19,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "izboren-kodeks",
+   "candidates": [
+    "izboren-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2014
+   ]
+  },
+  {
+   "scope": "§52.16",
+   "cited_title": "Закона за изменение и допълнение на Изборния кодекс",
+   "cited_promulgation": [
+    39,
+    2016
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§53",
+   "cited_title": "Закона за Държавна агенция „Национална сигурност“",
+   "cited_promulgation": [
+    109,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-darzhavna-agentsiya-natsionalna-sigurnost",
+   "candidates": [
+    "zakon-za-darzhavna-agentsiya-natsionalna-sigurnost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    109,
+    2007
+   ]
+  },
+  {
+   "scope": "§54",
+   "cited_title": "Закона за мерките срещу изпирането на пари",
+   "cited_promulgation": [
+    27,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-merkite-sreshtu-izpiraneto-na-pari",
+   "candidates": [
+    "zakon-za-merkite-sreshtu-izpiraneto-na-pari"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    27,
+    2018
+   ]
+  },
+  {
+   "scope": "§55",
+   "cited_title": "Закона за защита на класифицираната информация",
+   "cited_promulgation": [
+    45,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-klasifitsiranata-informatsiya",
+   "candidates": [
+    "zakon-za-zashtita-na-klasifitsiranata-informatsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    45,
+    2002
+   ]
+  },
+  {
+   "scope": "§56",
+   "cited_title": "Закона за Националната служба за охрана",
+   "cited_promulgation": [
+    61,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-natsionalnata-sluzhba-za-ohrana",
+   "candidates": [
+    "zakon-za-natsionalnata-sluzhba-za-ohrana"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    61,
+    2015
+   ]
+  },
+  {
+   "scope": "§57",
+   "cited_title": "Закона за военното разузнаване",
+   "cited_promulgation": [
+    88,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-voennoto-razuznavane",
+   "candidates": [
+    "zakon-za-voennoto-razuznavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    88,
+    2015
+   ]
+  },
+  {
+   "scope": "§58",
+   "cited_title": "Кодекса за застраховането",
+   "cited_promulgation": [
+    102,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-za-zastrahovaneto",
+   "candidates": [
+    "kodeks-za-zastrahovaneto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2015
+   ]
+  },
+  {
+   "scope": "§59",
+   "cited_title": "Закона за енергетиката",
+   "cited_promulgation": [
+    107,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-energetikata",
+   "candidates": [
+    "zakon-za-energetikata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    107,
+    2003
+   ]
+  },
+  {
+   "scope": "§60",
+   "cited_title": "Данъчно-осигурителния процесуален кодекс",
+   "cited_promulgation": [
+    105,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "danachno-osiguritelen-protsesualen-kodeks",
+   "candidates": [
+    "danachno-osiguritelen-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2005
+   ]
+  },
+  {
+   "scope": "§61",
+   "cited_title": "Валутния закон",
+   "cited_promulgation": [
+    83,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "valuten-zakon",
+   "candidates": [
+    "valuten-zakon"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    83,
+    1999
+   ]
+  },
+  {
+   "scope": "§62",
+   "cited_title": "Закона за акцизите и данъчните складове",
+   "cited_promulgation": [
+    91,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-aktsizite-i-danachnite-skladove",
+   "candidates": [
+    "zakon-za-aktsizite-i-danachnite-skladove"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2005
+   ]
+  },
+  {
+   "scope": "§63",
+   "cited_title": "Закона за авторското право и сродните му права",
+   "cited_promulgation": [
+    56,
+    1993
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-avtorskoto-pravo-i-srodnite-mu-prava",
+   "candidates": [
+    "zakon-za-avtorskoto-pravo-i-srodnite-mu-prava"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    56,
+    1993
+   ]
+  },
+  {
+   "scope": "§64",
+   "cited_title": "Закона за българските лични документи",
+   "cited_promulgation": [
+    93,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g",
+   "candidates": [
+    "zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    93,
+    1998
+   ]
+  },
+  {
+   "scope": "§65",
+   "cited_title": "Закона за гарантиране на влоговете в банките",
+   "cited_promulgation": [
+    62,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-garantirane-na-vlogovete-v-bankite",
+   "candidates": [
+    "zakon-za-garantirane-na-vlogovete-v-bankite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    62,
+    2015
+   ]
+  },
+  {
+   "scope": "§66",
+   "cited_title": "Закона за горите",
+   "cited_promulgation": [
+    19,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-gorite",
+   "candidates": [
+    "zakon-za-gorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2011
+   ]
+  },
+  {
+   "scope": "§67",
+   "cited_title": "Закона за гражданската регистрация",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-grazhdanskata-registratsiya",
+   "candidates": [
+    "zakon-za-grazhdanskata-registratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§68",
+   "cited_title": "Закона за дейностите по предоставяне на услуги",
+   "cited_promulgation": [
+    15,
+    2010
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-deynostite-po-predostavyane-na-uslugi",
+   "candidates": [
+    "zakon-za-deynostite-po-predostavyane-na-uslugi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    15,
+    2010
+   ]
+  },
+  {
+   "scope": "§69",
+   "cited_title": "Закона за достъп до обществена информация",
+   "cited_promulgation": [
+    55,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dostap-do-obshtestvena-informatsiya",
+   "candidates": [
+    "zakon-za-dostap-do-obshtestvena-informatsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    55,
+    2000
+   ]
+  },
+  {
+   "scope": "§70",
+   "cited_title": "Закона за достъп до пространствени данни",
+   "cited_promulgation": [
+    19,
+    2010
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dostap-do-prostranstveni-danni",
+   "candidates": [
+    "zakon-za-dostap-do-prostranstveni-danni"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2010
+   ]
+  },
+  {
+   "scope": "§71",
+   "cited_title": "Закона за достъп и разкриване на документите и за обявяване на принадлежност на български граждани към Държавна сигурност и разузнавателните служби на Българската народна армия",
+   "cited_promulgation": [
+    102,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dostap-i-razkrivane-na-dokumentite-i-za-obyavyavane-na-prinadlezhnost-n",
+   "candidates": [
+    "zakon-za-dostap-i-razkrivane-na-dokumentite-i-za-obyavyavane-na-prinadlezhnost-n"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2006
+   ]
+  },
+  {
+   "scope": "§72",
+   "cited_title": "Закона за Държавна агенция „Разузнаване“",
+   "cited_promulgation": [
+    79,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-darzhavna-agentsiya-razuznavane",
+   "candidates": [
+    "zakon-za-darzhavna-agentsiya-razuznavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    79,
+    2015
+   ]
+  },
+  {
+   "scope": "§73",
+   "cited_title": "Закона за електронната търговия",
+   "cited_promulgation": [
+    51,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnata-targoviya",
+   "candidates": [
+    "zakon-za-elektronnata-targoviya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    51,
+    2006
+   ]
+  },
+  {
+   "scope": "§74",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  },
+  {
+   "scope": "§75",
+   "cited_title": "Закона за занаятите",
+   "cited_promulgation": [
+    42,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zanayatite",
+   "candidates": [
+    "zakon-za-zanayatite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    42,
+    2001
+   ]
+  },
+  {
+   "scope": "§76",
+   "cited_title": "Закона за запасите от нефт и нефтопродукти",
+   "cited_promulgation": [
+    15,
+    2013
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zapasite-ot-neft-i-neftoprodukti",
+   "candidates": [
+    "zakon-za-zapasite-ot-neft-i-neftoprodukti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    15,
+    2013
+   ]
+  },
+  {
+   "scope": "§77",
+   "cited_title": "Закона за защита на конкуренцията",
+   "cited_promulgation": [
+    102,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-konkurentsiyata",
+   "candidates": [
+    "zakon-za-zashtita-na-konkurentsiyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2008
+   ]
+  },
+  {
+   "scope": "§78",
+   "cited_title": "Закона за защита на лица, застрашени във връзка с наказателно производство",
+   "cited_promulgation": [
+    103,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo",
+   "candidates": [
+    "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    103,
+    2004
+   ]
+  },
+  {
+   "scope": "§79",
+   "cited_title": "Закона за защита на потребителите",
+   "cited_promulgation": [
+    99,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-potrebitelite",
+   "candidates": [
+    "zakon-za-zashtita-na-potrebitelite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    99,
+    2005
+   ]
+  },
+  {
+   "scope": "§80",
+   "cited_title": "Закона за защита на растенията",
+   "cited_promulgation": [
+    61,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-rasteniyata",
+   "candidates": [
+    "zakon-za-zashtita-na-rasteniyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    61,
+    2014
+   ]
+  },
+  {
+   "scope": "§81",
+   "cited_title": "Закона за защита от вредното въздействие на химичните вещества и смеси",
+   "cited_promulgation": [
+    10,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-",
+   "candidates": [
+    "zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    10,
+    2000
+   ]
+  },
+  {
+   "scope": "§82",
+   "cited_title": "Закона за Комисията за финансов надзор",
+   "cited_promulgation": [
+    8,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-komisiyata-za-finansov-nadzor",
+   "candidates": [
+    "zakon-za-komisiyata-za-finansov-nadzor"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    8,
+    2003
+   ]
+  },
+  {
+   "scope": "§83",
+   "cited_title": "Закона за кредитите за недвижими имоти на потребители",
+   "cited_promulgation": [
+    59,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kreditite-za-nedvizhimi-imoti-na-potrebiteli",
+   "candidates": [
+    "zakon-za-kreditite-za-nedvizhimi-imoti-na-potrebiteli"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    59,
+    2016
+   ]
+  },
+  {
+   "scope": "§84",
+   "cited_title": "Закона за лекарствените продукти в хуманната медицина",
+   "cited_promulgation": [
+    31,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lekarstvenite-produkti-v-humannata-meditsina",
+   "candidates": [
+    "zakon-za-lekarstvenite-produkti-v-humannata-meditsina"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    31,
+    2007
+   ]
+  },
+  {
+   "scope": "§85",
+   "cited_title": "Закона за медиацията",
+   "cited_promulgation": [
+    110,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mediatsiyata",
+   "candidates": [
+    "zakon-za-mediatsiyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    110,
+    2004
+   ]
+  },
+  {
+   "scope": "§86",
+   "cited_title": "Закона за медицинските изделия",
+   "cited_promulgation": [
+    46,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-meditsinskite-izdeliya",
+   "candidates": [
+    "zakon-za-meditsinskite-izdeliya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2007
+   ]
+  },
+  {
+   "scope": "§87",
+   "cited_title": "Закона за движението по пътищата",
+   "cited_promulgation": [
+    20,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dvizhenieto-po-patishtata",
+   "candidates": [
+    "zakon-za-dvizhenieto-po-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    1999
+   ]
+  },
+  {
+   "scope": "§88",
+   "cited_title": "Закона за независимия финансов одит",
+   "cited_promulgation": [
+    95,
+    2016
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§89",
+   "cited_title": "Закона за ограничаване на административното регулиране и административния контрол върху стопанската дейност",
+   "cited_promulgation": [
+    55,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ogranichavane-na-administrativnoto-regulirane-i-administrativniya-kontr",
+   "candidates": [
+    "zakon-za-ogranichavane-na-administrativnoto-regulirane-i-administrativniya-kontr"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    55,
+    2003
+   ]
+  },
+  {
+   "scope": "§90",
+   "cited_title": "Закона за опазване на обществения ред при провеждането на спортни мероприятия",
+   "cited_promulgation": [
+    96,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-opazvane-na-obshtestveniya-red-pri-provezhdaneto-na-sportni-meropriyati",
+   "candidates": [
+    "zakon-za-opazvane-na-obshtestveniya-red-pri-provezhdaneto-na-sportni-meropriyati"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    96,
+    2004
+   ]
+  },
+  {
+   "scope": "§91",
+   "cited_title": "Закона за опазване на околната среда",
+   "cited_promulgation": [
+    91,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-opazvane-na-okolnata-sreda",
+   "candidates": [
+    "zakon-za-opazvane-na-okolnata-sreda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2002
+   ]
+  },
+  {
+   "scope": "§92",
+   "cited_title": "Закона за пазарите на финансови инструменти",
+   "cited_promulgation": [
+    15,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-pazarite-na-finansovi-instrumenti",
+   "candidates": [
+    "zakon-za-pazarite-na-finansovi-instrumenti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    15,
+    2018
+   ]
+  },
+  {
+   "scope": "§93",
+   "cited_title": "Закона за платежните услуги и платежните системи",
+   "cited_promulgation": [
+    20,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-platezhnite-uslugi-i-platezhnite-sistemi",
+   "candidates": [
+    "zakon-za-platezhnite-uslugi-i-platezhnite-sistemi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    2018
+   ]
+  },
+  {
+   "scope": "§94",
+   "cited_title": "Закона за политическите партии",
+   "cited_promulgation": [
+    28,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-politicheskite-partii",
+   "candidates": [
+    "zakon-za-politicheskite-partii"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    28,
+    2005
+   ]
+  },
+  {
+   "scope": "§95",
+   "cited_title": "Закона за потребителския кредит",
+   "cited_promulgation": [
+    18,
+    2010
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-potrebitelskiya-kredit",
+   "candidates": [
+    "zakon-za-potrebitelskiya-kredit"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    18,
+    2010
+   ]
+  },
+  {
+   "scope": "§96",
+   "cited_title": "Закона за признаване на професионални квалификации",
+   "cited_promulgation": [
+    13,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-priznavane-na-profesionalni-kvalifikatsii",
+   "candidates": [
+    "zakon-za-priznavane-na-profesionalni-kvalifikatsii"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    2008
+   ]
+  },
+  {
+   "scope": "§97",
+   "cited_title": "Закона за прилагане на мерките срещу пазарните злоупотреби с финансови инструменти",
+   "cited_promulgation": [
+    76,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-prilagane-na-merkite-sreshtu-pazarnite-zloupotrebi-s-finansovi-instrume",
+   "candidates": [
+    "zakon-za-prilagane-na-merkite-sreshtu-pazarnite-zloupotrebi-s-finansovi-instrume"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    76,
+    2016
+   ]
+  },
+  {
+   "scope": "§98",
+   "cited_title": "Закона за противодействие на корупцията и за отнемане на незаконно придобитото имущество",
+   "cited_promulgation": [
+    7,
+    2018
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§99",
+   "cited_title": "Закона за пряко участие на гражданите в държавната власт и местното самоуправление",
+   "cited_promulgation": [
+    44,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-pryako-uchastie-na-grazhdanite-v-darzhavnata-vlast-i-mestnoto-samouprav",
+   "candidates": [
+    "zakon-za-pryako-uchastie-na-grazhdanite-v-darzhavnata-vlast-i-mestnoto-samouprav"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    44,
+    2009
+   ]
+  },
+  {
+   "scope": "§100",
+   "cited_title": "Закона за публичното предлагане на ценни книжа",
+   "cited_promulgation": [
+    114,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-publichnoto-predlagane-na-tsenni-knizha",
+   "candidates": [
+    "zakon-za-publichnoto-predlagane-na-tsenni-knizha"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    114,
+    1999
+   ]
+  },
+  {
+   "scope": "§101",
+   "cited_title": "Закона за развитието на академичния състав в Република България",
+   "cited_promulgation": [
+    38,
+    2010
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-razvitieto-na-akademichniya-sastav-v-republika-balgariya",
+   "candidates": [
+    "zakon-za-razvitieto-na-akademichniya-sastav-v-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    38,
+    2010
+   ]
+  },
+  {
+   "scope": "§102",
+   "cited_title": "Закона за резерва на въоръжените сили на Република България",
+   "cited_promulgation": [
+    20,
+    2012
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-rezerva-na-vaorazhenite-sili-na-republika-balgariya",
+   "candidates": [
+    "zakon-za-rezerva-na-vaorazhenite-sili-na-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    2012
+   ]
+  },
+  {
+   "scope": "§103",
+   "cited_title": "Закона за съсловните организации на медицинските сестри, акушерките и асоциираните медицински специалисти, на зъботехниците и на помощник-фармацевтите",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "zakon-za-saslovnite-organizatsii-na-meditsinskite-sestri-akusherkite-i-asotsiira",
+   "candidates": [
+    "zakon-za-saslovnite-organizatsii-na-meditsinskite-sestri-akusherkite-i-asotsiira"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (fuzzy); the cited promulgation names the act",
+   "act_promulgation": [
+    46,
+    2005
+   ]
+  },
+  {
+   "scope": "§104",
+   "cited_title": "Закона за трансплантация на органи, тъкани и клетки",
+   "cited_promulgation": [
+    83,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-transplantatsiya-na-organi-takani-i-kletki",
+   "candidates": [
+    "zakon-za-transplantatsiya-na-organi-takani-i-kletki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    83,
+    2003
+   ]
+  },
+  {
+   "scope": "§105",
+   "cited_title": "Закона за туризма",
+   "cited_promulgation": [
+    30,
+    2013
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-turizma",
+   "candidates": [
+    "zakon-za-turizma"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    2013
+   ]
+  },
+  {
+   "scope": "§106",
+   "cited_title": "Закона за търговския регистър и регистъра на юридическите лица с нестопанска цел",
+   "cited_promulgation": [
+    34,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-targovskiya-registar-i-registara-na-yuridicheskite-litsa-s-nestopanska-",
+   "candidates": [
+    "zakon-za-targovskiya-registar-i-registara-na-yuridicheskite-litsa-s-nestopanska-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    34,
+    2006
+   ]
+  },
+  {
+   "scope": "§107",
+   "cited_title": "Закона за тютюна, тютюневите и свързаните с тях изделия",
+   "cited_promulgation": [
+    101,
+    1993
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-tyutyuna-tyutyunevite-i-svarzanite-s-tyah-izdeliya-zagl-izm-dv-br-28-ot",
+   "candidates": [
+    "zakon-za-tyutyuna-tyutyunevite-i-svarzanite-s-tyah-izdeliya-zagl-izm-dv-br-28-ot"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    101,
+    1993
+   ]
+  },
+  {
+   "scope": "§108",
+   "cited_title": "Закона за убежището и бежанците",
+   "cited_promulgation": [
+    54,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ubezhishteto-i-bezhantsite",
+   "candidates": [
+    "zakon-za-ubezhishteto-i-bezhantsite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    54,
+    2002
+   ]
+  },
+  {
+   "scope": "§109",
+   "cited_title": "Закона за управление на етажната собственост",
+   "cited_promulgation": [
+    6,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-upravlenie-na-etazhnata-sobstvenost",
+   "candidates": [
+    "zakon-za-upravlenie-na-etazhnata-sobstvenost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    6,
+    2009
+   ]
+  },
+  {
+   "scope": "§110",
+   "cited_title": "Закона за частната охранителна дейност",
+   "cited_promulgation": [
+    10,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-chastnata-ohranitelna-deynost",
+   "candidates": [
+    "zakon-za-chastnata-ohranitelna-deynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    10,
+    2018
+   ]
+  },
+  {
+   "scope": "§111",
+   "cited_title": "Закона за отбраната и въоръжените сили на Република България",
+   "cited_promulgation": [
+    35,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya",
+   "candidates": [
+    "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    35,
+    2009
+   ]
+  },
+  {
+   "scope": "§112",
+   "cited_title": "Закона за насърчаване на заетостта",
+   "cited_promulgation": [
+    112,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasarchavane-na-zaetostta",
+   "candidates": [
+    "zakon-za-nasarchavane-na-zaetostta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    112,
+    2001
+   ]
+  },
+  {
+   "scope": "§113",
+   "cited_title": "Закона за административното регулиране на икономическите дейности, свързани с нефт и продукти от нефтен произход",
+   "cited_promulgation": [
+    62,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-administrativnoto-regulirane-na-ikonomicheskite-deynosti-svarzani-s-nef",
+   "candidates": [
+    "zakon-za-administrativnoto-regulirane-na-ikonomicheskite-deynosti-svarzani-s-nef"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    62,
+    2018
+   ]
+  },
+  {
+   "scope": "§114",
+   "cited_title": "Закона за изпълнение на наказанията и задържането под стража",
+   "cited_promulgation": [
+    25,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha",
+   "candidates": [
+    "zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    25,
+    2009
+   ]
+  },
+  {
+   "scope": "§115",
+   "cited_title": "Закона за регистрация и контрол на земеделската и горската техника",
+   "cited_promulgation": [
+    79,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-registratsiya-i-kontrol-na-zemedelskata-i-gorskata-tehnika",
+   "candidates": [
+    "zakon-za-registratsiya-i-kontrol-na-zemedelskata-i-gorskata-tehnika"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    79,
+    1998
+   ]
+  },
+  {
+   "scope": "§116",
+   "cited_title": "Закона за специалните разузнавателни средства",
+   "cited_promulgation": [
+    95,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-spetsialnite-razuznavatelni-sredstva",
+   "candidates": [
+    "zakon-za-spetsialnite-razuznavatelni-sredstva"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    1997
+   ]
+  },
+  {
+   "scope": "§117",
+   "cited_title": "Закона за физическото възпитание и спорта",
+   "cited_promulgation": [
+    86,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-fizicheskoto-vazpitanie-i-sporta",
+   "candidates": [
+    "zakon-za-fizicheskoto-vazpitanie-i-sporta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    86,
+    2018
+   ]
+  },
+  {
+   "scope": "§118",
+   "cited_title": "Закона за предприятията на социалната и солидарна икономика",
+   "cited_promulgation": [
+    91,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-predpriyatiyata-na-sotsialnata-i-solidarna-ikonomika",
+   "candidates": [
+    "zakon-za-predpriyatiyata-na-sotsialnata-i-solidarna-ikonomika"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2018
+   ]
+  },
+  {
+   "scope": "§119",
+   "cited_title": "Закона за задължителното депозиране на печатни и други произведения и за обявяване на разпространителите и доставчиците на медийни услуги",
+   "cited_promulgation": [
+    108,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zadalzhitelnoto-depozirane-na-pechatni-i-drugi-proizvedeniya-i-za-obyav",
+   "candidates": [
+    "zakon-za-zadalzhitelnoto-depozirane-na-pechatni-i-drugi-proizvedeniya-i-za-obyav"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    108,
+    2000
+   ]
+  }
+ ],
+ "instructions": 330,
+ "signs": 122,
+ "quoted_blocks": 602,
+ "findings": [],
+ "tokens_instructions": 51205,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

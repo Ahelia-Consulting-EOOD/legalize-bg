@@ -1,0 +1,47 @@
+{
+ "slug": "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist",
+ "round": 2,
+ "blocks": 556,
+ "sections": 14,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "title": 2,
+  "chapter_heading": 8,
+  "article_head": 54,
+  "alinea": 57,
+  "item": 371,
+  "section_heading": 20,
+  "article_title": 9,
+  "subsection_heading": 3,
+  "provisions_heading": 1,
+  "paragraph_sign": 2,
+  "drop": 2,
+  "continuation": 27
+ },
+ "dropped": [
+  {
+   "block": 554,
+   "text": "Министър: Ал. Цветков",
+   "note": "minister's signature after the act"
+  },
+  {
+   "block": 555,
+   "text": "5380",
+   "note": "Gazette material number after the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 1882
+}

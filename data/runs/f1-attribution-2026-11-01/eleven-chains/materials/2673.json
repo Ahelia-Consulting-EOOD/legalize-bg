@@ -1,0 +1,42 @@
+{
+ "material": 2673,
+ "title": "Наредба за изменение и допълнение на Наредба № 15 от 2005 г. за имунизациите в Република България",
+ "issue": "82/2006",
+ "section": "Министерство на здравеопазването",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 15 от 2005 г. за имунизациите в Република България",
+   "cited_promulgation": [
+    45,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-15-ot-12-may-2005-g-za-imunizatsiite-v-republika-balgariya",
+   "candidates": [
+    "naredba-15-ot-12-may-2005-g-za-imunizatsiite-v-republika-balgariya"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    45,
+    2005
+   ]
+  }
+ ],
+ "instructions": 16,
+ "signs": 11,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 561,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

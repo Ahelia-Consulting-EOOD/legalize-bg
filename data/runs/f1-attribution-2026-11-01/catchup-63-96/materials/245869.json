@@ -1,0 +1,54 @@
+{
+ "material": 245869,
+ "title": "Постановление № 134 от 9 септември 2026 г. за приемане на Тарифа, по която партиите, коалициите и инициативните комитети заплащат предизборните предавания по Българската национална телевизия и Българското национално радио и техните регионални центрове при произвеждането на изборите за президент и вицепрезидент на републиката на 25 октомври 2026 г.",
+ "issue": "84/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 19,
+ "signs": 3,
+ "quoted_blocks": 4,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 68: item 1 after 1 under Чл.единствен"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 83: item 2 after 4 under Чл.единствен"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 134: item 1 after 2 under Чл.единствен"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 142: item 3 after 5 under Чл.единствен"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 181: item 1 after 3 under Чл.единствен"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 184: item 1 after 2 under Чл.единствен"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 1408,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

@@ -1,0 +1,82 @@
+{
+ "material": 25812,
+ "title": "Закон за изменение на Закона за регионалното развитие",
+ "issue": "82/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за регионалното развитие",
+   "cited_promulgation": [
+    50,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-regionalnoto-razvitie",
+   "candidates": [
+    "zakon-za-regionalnoto-razvitie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    50,
+    2008
+   ]
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Закона за пътищата",
+   "cited_promulgation": [
+    26,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-patishtata",
+   "candidates": [
+    "zakon-za-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    2000
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Закона за движението по пътищата",
+   "cited_promulgation": [
+    20,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dvizhenieto-po-patishtata",
+   "candidates": [
+    "zakon-za-dvizhenieto-po-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    1999
+   ]
+  }
+ ],
+ "instructions": 6,
+ "signs": 4,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 509,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

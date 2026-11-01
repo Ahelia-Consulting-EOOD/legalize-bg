@@ -1,0 +1,1 @@
+{"material": 88705, "operations": [{"id": "§1", "kind": "insert_provision", "address": "чл. 12, ал. 2, изречение второ", "after": "чл. 12, ал. 2, изречение първо", "new": "q1"}, {"id": "§2", "kind": "replace_words", "address": "§ 3, ал. 1", "old": "q1", "new": "q2"}, {"id": "§3", "kind": "no_text_change"}]}

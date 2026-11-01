@@ -1,0 +1,639 @@
+{
+ "material": 135546,
+ "title": "Закон за социалните услуги",
+ "issue": "24/2019",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Закона за социално подпомагане",
+   "cited_promulgation": [
+    56,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sotsialno-podpomagane",
+   "candidates": [
+    "zakon-za-sotsialno-podpomagane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    56,
+    1998
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  },
+  {
+   "scope": "§5",
+   "cited_title": "Закона за защита от домашното насилие",
+   "cited_promulgation": [
+    27,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-ot-domashnoto-nasilie-zagl-izm-dv-br-102-ot-2009-g-v-sila-ot-2",
+   "candidates": [
+    "zakon-za-zashtita-ot-domashnoto-nasilie-zagl-izm-dv-br-102-ot-2009-g-v-sila-ot-2"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    27,
+    2005
+   ]
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Закона за здравето",
+   "cited_promulgation": [
+    70,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdraveto",
+   "candidates": [
+    "zakon-za-zdraveto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2004
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Закона за лечебните заведения",
+   "cited_promulgation": [
+    62,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lechebnite-zavedeniya",
+   "candidates": [
+    "zakon-za-lechebnite-zavedeniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    62,
+    1999
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Закона за здравното осигуряване",
+   "cited_promulgation": [
+    70,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravnoto-osiguryavane",
+   "candidates": [
+    "zakon-za-zdravnoto-osiguryavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    1998
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Закона за предучилищното и училищното образование",
+   "cited_promulgation": [
+    79,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-preduchilishtnoto-i-uchilishtnoto-obrazovanie",
+   "candidates": [
+    "zakon-za-preduchilishtnoto-i-uchilishtnoto-obrazovanie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    79,
+    2015
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Закона за семейни помощи за деца",
+   "cited_promulgation": [
+    32,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-semeyni-pomoshti-za-detsa",
+   "candidates": [
+    "zakon-za-semeyni-pomoshti-za-detsa"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    32,
+    2002
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за борба срещу противообществените прояви на малолетните и непълнолетните",
+   "cited_promulgation": [
+    13,
+    1958
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet",
+   "candidates": [
+    "zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    1958
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за насърчаване на заетостта",
+   "cited_promulgation": [
+    112,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasarchavane-na-zaetostta",
+   "candidates": [
+    "zakon-za-nasarchavane-na-zaetostta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    112,
+    2001
+   ]
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за чужденците в Република България",
+   "cited_promulgation": [
+    153,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-chuzhdentsite-v-republika-balgariya",
+   "candidates": [
+    "zakon-za-chuzhdentsite-v-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    153,
+    1998
+   ]
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за убежището и бежанците",
+   "cited_promulgation": [
+    54,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ubezhishteto-i-bezhantsite",
+   "candidates": [
+    "zakon-za-ubezhishteto-i-bezhantsite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    54,
+    2002
+   ]
+  },
+  {
+   "scope": "§15",
+   "cited_title": "Закона за правната помощ",
+   "cited_promulgation": [
+    79,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-pravnata-pomosht",
+   "candidates": [
+    "zakon-za-pravnata-pomosht"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    79,
+    2005
+   ]
+  },
+  {
+   "scope": "§16",
+   "cited_title": "Закона за българските лични документи",
+   "cited_promulgation": [
+    93,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g",
+   "candidates": [
+    "zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    93,
+    1998
+   ]
+  },
+  {
+   "scope": "§17",
+   "cited_title": "Закона за данъците върху доходите на физическите лица",
+   "cited_promulgation": [
+    95,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+   "candidates": [
+    "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    2006
+   ]
+  },
+  {
+   "scope": "§18",
+   "cited_title": "Закона за корпоративното подоходно облагане",
+   "cited_promulgation": [
+    105,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-korporativnoto-podohodno-oblagane",
+   "candidates": [
+    "zakon-za-korporativnoto-podohodno-oblagane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2006
+   ]
+  },
+  {
+   "scope": "§19",
+   "cited_title": "Закона за данък върху добавената стойност",
+   "cited_promulgation": [
+    63,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danak-varhu-dobavenata-stoynost",
+   "candidates": [
+    "zakon-za-danak-varhu-dobavenata-stoynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    63,
+    2006
+   ]
+  },
+  {
+   "scope": "§20",
+   "cited_title": "Закона за местните данъци и такси",
+   "cited_promulgation": [
+    117,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mestnite-danatsi-i-taksi",
+   "candidates": [
+    "zakon-za-mestnite-danatsi-i-taksi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    117,
+    1997
+   ]
+  },
+  {
+   "scope": "§21",
+   "cited_title": "Закона за военноинвалидите и военнопострадалите",
+   "cited_promulgation": [
+    27,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-voennoinvalidite-i-voennopostradalite",
+   "candidates": [
+    "zakon-za-voennoinvalidite-i-voennopostradalite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    27,
+    2005
+   ]
+  },
+  {
+   "scope": "§22",
+   "cited_title": "Закона за дейностите по предоставяне на услуги",
+   "cited_promulgation": [
+    15,
+    2010
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-deynostite-po-predostavyane-na-uslugi",
+   "candidates": [
+    "zakon-za-deynostite-po-predostavyane-na-uslugi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    15,
+    2010
+   ]
+  },
+  {
+   "scope": "§23",
+   "cited_title": "Закона за контрол върху наркотичните вещества и прекурсорите",
+   "cited_promulgation": [
+    30,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite",
+   "candidates": [
+    "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    1999
+   ]
+  },
+  {
+   "scope": "§24",
+   "cited_title": "Закона за устройство на територията",
+   "cited_promulgation": [
+    1,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvo-na-teritoriyata",
+   "candidates": [
+    "zakon-za-ustroystvo-na-teritoriyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    1,
+    2001
+   ]
+  },
+  {
+   "scope": "§25",
+   "cited_title": "Закона за опазване на околната среда",
+   "cited_promulgation": [
+    91,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-opazvane-na-okolnata-sreda",
+   "candidates": [
+    "zakon-za-opazvane-na-okolnata-sreda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2002
+   ]
+  },
+  {
+   "scope": "§26",
+   "cited_title": "Закона за ветеринарномедицинската дейност",
+   "cited_promulgation": [
+    87,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-veterinarnomeditsinskata-deynost",
+   "candidates": [
+    "zakon-za-veterinarnomeditsinskata-deynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    87,
+    2005
+   ]
+  },
+  {
+   "scope": "§27",
+   "cited_title": "Закона за ограничаване на административното регулиране и административния контрол върху стопанската дейност",
+   "cited_promulgation": [
+    55,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ogranichavane-na-administrativnoto-regulirane-i-administrativniya-kontr",
+   "candidates": [
+    "zakon-za-ogranichavane-na-administrativnoto-regulirane-i-administrativniya-kontr"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    55,
+    2003
+   ]
+  },
+  {
+   "scope": "§28",
+   "cited_title": "Закона за хората с увреждания",
+   "cited_promulgation": [
+    105,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-horata-s-uvrezhdaniya",
+   "candidates": [
+    "zakon-za-horata-s-uvrezhdaniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2018
+   ]
+  },
+  {
+   "scope": "§29",
+   "cited_title": "Закона за гражданската регистрация",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-grazhdanskata-registratsiya",
+   "candidates": [
+    "zakon-za-grazhdanskata-registratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§30",
+   "cited_title": "Закона за предприятията на социалната и солидарна икономика",
+   "cited_promulgation": [
+    91,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-predpriyatiyata-na-sotsialnata-i-solidarna-ikonomika",
+   "candidates": [
+    "zakon-za-predpriyatiyata-na-sotsialnata-i-solidarna-ikonomika"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2018
+   ]
+  }
+ ],
+ "instructions": 281,
+ "signs": 44,
+ "quoted_blocks": 59,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 1489: item 1 after 7 under §43"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 19977,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

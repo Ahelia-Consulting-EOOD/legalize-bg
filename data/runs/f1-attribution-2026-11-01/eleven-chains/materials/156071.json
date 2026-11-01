@@ -1,0 +1,42 @@
+{
+ "material": 156071,
+ "title": "Наредба за изменение и допълнение на Наредба № 6 от 2018 г. за условията и реда за предоставяне на финансова помощ по Национална програма за подпомагане на лозаро-винарския сектор за периода 2019 – 2023 г.",
+ "issue": "16/2021",
+ "section": "Министерство на земеделието, храните и горите",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 6 от 2018 г. за условията и реда за предоставяне на финансова помощ по Национална програма за подпомагане на лозаро-винарския сектор за периода 2019 – 2023 г.",
+   "cited_promulgation": [
+    93,
+    2018
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-6-ot-26-oktomvri-2018-g-za-usloviyata-i-reda-za-predostavyane-na-finanso",
+   "candidates": [
+    "naredba-6-ot-26-oktomvri-2018-g-za-usloviyata-i-reda-za-predostavyane-na-finanso"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    93,
+    2018
+   ]
+  }
+ ],
+ "instructions": 56,
+ "signs": 12,
+ "quoted_blocks": 26,
+ "findings": [],
+ "tokens_instructions": 3915,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

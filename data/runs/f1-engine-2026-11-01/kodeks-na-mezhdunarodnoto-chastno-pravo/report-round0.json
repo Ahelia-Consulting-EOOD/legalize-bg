@@ -1,0 +1,89 @@
+{
+ "slug": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+ "round": 0,
+ "blocks": 574,
+ "sections": 20,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 10,
+  "title": 2,
+  "part_heading": 8,
+  "chapter_heading": 24,
+  "article_title": 124,
+  "article_head": 124,
+  "item": 97,
+  "alinea": 154,
+  "section_heading": 16,
+  "provisions_heading": 1,
+  "paragraph_sign": 7,
+  "letter": 5,
+  "quoted": 1,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "УКАЗ № 171",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 1,
+   "text": "На основание чл. 98, т. 4 от Конституцията на Република България",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 2,
+   "text": "ПОСТАНОВЯВАМ:",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 3,
+   "text": "Да се обнародва в “Държавен вестник” Кодексът на международното частно право, пр",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 4,
+   "text": "Издаден в София на 13 май 2005 г.",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 5,
+   "text": "Президент на републиката: Георги Първанов",
+   "note": "promulgation decree signature"
+  },
+  {
+   "block": 6,
+   "text": "Подпечатан с държавния печат.",
+   "note": "promulgation decree"
+  },
+  {
+   "block": 7,
+   "text": "Министър на правосъдието: Антон Станков",
+   "note": "minister's countersignature of the decree"
+  },
+  {
+   "block": 572,
+   "text": "Председател на Народното събрание: Борислав Великов",
+   "note": "signature of the Speaker after the adoption formula, not the act"
+  },
+  {
+   "block": 573,
+   "text": "21696",
+   "note": "Gazette material number after the signature, not the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 177
+}

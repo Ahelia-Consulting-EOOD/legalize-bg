@@ -1,0 +1,40 @@
+{
+ "material": 25798,
+ "title": "Закон за изменение и допълнение на Закона за електронното управление",
+ "issue": "82/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за електронното управление",
+   "cited_promulgation": [
+    46,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnoto-upravlenie",
+   "candidates": [
+    "zakon-za-elektronnoto-upravlenie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2007
+   ]
+  }
+ ],
+ "instructions": 13,
+ "signs": 7,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 710,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

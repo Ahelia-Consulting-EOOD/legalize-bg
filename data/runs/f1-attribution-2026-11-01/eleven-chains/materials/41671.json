@@ -1,0 +1,103 @@
+{
+ "material": 41671,
+ "title": "Закон за изменение и допълнение на Гражданския процесуален кодекс",
+ "issue": "100/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Гражданския процесуален кодекс",
+   "cited_promulgation": [
+    59,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "grazhdanski-protsesualen-kodeks",
+   "candidates": [
+    "grazhdanski-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    59,
+    2007
+   ]
+  },
+  {
+   "scope": "§22",
+   "cited_title": "Закона за собствеността",
+   "cited_promulgation": [
+    92,
+    1951
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sobstvenostta",
+   "candidates": [
+    "zakon-za-sobstvenostta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    92,
+    1951
+   ]
+  },
+  {
+   "scope": "§23",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  },
+  {
+   "scope": "§24",
+   "cited_title": "Закона за българските лични документи",
+   "cited_promulgation": [
+    93,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g",
+   "candidates": [
+    "zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    93,
+    1998
+   ]
+  }
+ ],
+ "instructions": 36,
+ "signs": 26,
+ "quoted_blocks": 29,
+ "findings": [],
+ "tokens_instructions": 2840,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

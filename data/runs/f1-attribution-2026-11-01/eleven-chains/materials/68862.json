@@ -1,0 +1,40 @@
+{
+ "material": 68862,
+ "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+ "issue": "77/2012",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "regulation",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "cited_promulgation": [
+    36,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist",
+   "candidates": [
+    "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    36,
+    2011
+   ]
+  }
+ ],
+ "instructions": 18,
+ "signs": 16,
+ "quoted_blocks": 84,
+ "findings": [],
+ "tokens_instructions": 4169,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

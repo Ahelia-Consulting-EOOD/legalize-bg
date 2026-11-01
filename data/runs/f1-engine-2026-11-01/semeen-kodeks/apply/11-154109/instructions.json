@@ -1,0 +1,307 @@
+{
+ "kind": "law",
+ "amending": true,
+ "own_title": "ЗАКОН за изменение и допълнение на Семейния кодекс",
+ "target_title": "Семейния кодекс",
+ "cited_history": {
+  "promulgation": [
+   47,
+   2009
+  ],
+  "issues": [
+   [
+    47,
+    2009
+   ],
+   [
+    74,
+    2009
+   ],
+   [
+    82,
+    2009
+   ],
+   [
+    98,
+    2010
+   ],
+   [
+    100,
+    2010
+   ],
+   [
+    82,
+    2012
+   ],
+   [
+    68,
+    2013
+   ],
+   [
+    74,
+    2016
+   ],
+   [
+    103,
+    2017
+   ],
+   [
+    24,
+    2019
+   ],
+   [
+    101,
+    2019
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 47 от 2009 г.; изм., бр. 74 и 82 от 2009 г., бр. 98 и 100 от 2010 г., бр. 82 от 2012 г., бр. 68 от 2013 г., бр. 74 от 2016 г., бр. 103 от 2017 г. и бр. 24 и 101 от 2019 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "headings": [
+  27
+ ],
+ "tail": [
+  30,
+  31,
+  32
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "2": "header",
+  "3": "header",
+  "4": "header",
+  "5": "header",
+  "6": "header",
+  "7": "header",
+  "8": "header",
+  "9": "header",
+  "30": "tail",
+  "31": "tail",
+  "32": "tail",
+  "10": "instruction",
+  "11": "instruction",
+  "12": "instruction",
+  "13": "quoted",
+  "14": "instruction",
+  "15": "quoted",
+  "16": "instruction",
+  "17": "instruction",
+  "18": "instruction",
+  "19": "instruction",
+  "20": "quoted",
+  "21": "instruction",
+  "22": "instruction",
+  "23": "instruction",
+  "24": "quoted",
+  "25": "instruction",
+  "26": "quoted",
+  "27": "heading",
+  "28": "instruction",
+  "29": "instruction"
+ },
+ "findings": [],
+ "blocks": 33,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 10,
+   "text": "§ 1. В чл. 62 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 11,
+     "text": "1. В ал. 1 се създават изречения трето и четвърто: „Ако обстоятелствата, опровергаващи бащинството, са узнати по-късно по независещи от ищеца причини, искът може да бъде предявен до изтичане на една година от узнаване на тези обстоятелства, но не по-късно от навършване на пълнолетие на детето. Съдът решава спора, като взема предвид интереса на детето.“",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Ако обстоятелствата, опровергаващи бащинството, са узнати по-късно по независещи от ищеца причини, искът може да бъде предявен до изтичане на една година от узнаване на тези обстоятелства, но не по-късно от навършване на пълнолетие на детето. Съдът решава спора, като взема предвид интереса на детето."
+     ],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 12,
+     "text": "2. Алинея 4 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      13
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.3",
+     "level": 1,
+     "block": 14,
+     "text": "3. Създава се нова ал. 5:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      15
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.4",
+     "level": 1,
+     "block": 16,
+     "text": "4. Досегашната ал. 5 става ал. 6.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 17,
+   "text": "§ 2. В чл. 63 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 18,
+     "text": "1. Досегашният текст става ал. 1.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 19,
+     "text": "2. Създава се ал. 2:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      20
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 21,
+   "text": "§ 3. В чл. 66 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§3.1",
+     "level": 1,
+     "block": 22,
+     "text": "1. В ал. 1 се създава ново изречение второ: „Дирекция „Социално подпомагане“ по настоящия адрес на детето може да оспори припознаването чрез възражение по същия ред, ако е в интерес на детето.“, а досегашното изречение второ става изречение трето.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Социално подпомагане"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.2",
+     "level": 1,
+     "block": 23,
+     "text": "2. Алинея 5 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      24
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§3.3",
+     "level": 1,
+     "block": 25,
+     "text": "3. Създава се ал. 6:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      26
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 28,
+   "text": "§ 4. За припознавания, извършени след 1 октомври 2009 г. до влизането в сила на този закон, срокът по чл. 66, ал. 5 тече от влизането в сила на закона.",
+   "section": "transitional",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 29,
+   "text": "§ 5. За лицата, за които обстоятелствата, обуславящи правото на иск по чл. 62, ал. 1, изрeчение трето и ал. 5, изречение първо, са били налице преди влизането в сила на този закон, сроковете за предявяване на съответните искове текат от влизането в сила на закона.",
+   "section": "transitional",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  }
+ ]
+}

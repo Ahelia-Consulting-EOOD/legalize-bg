@@ -1,0 +1,71 @@
+{
+ "material": 214501,
+ "title": "Постановление № 123 от 29 април 2024 г. за одобряване на допълнителни разходи по бюджета на Министерския съвет за 2024 г.",
+ "issue": "39/2024",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§3",
+   "cited_title": "Наредбата за заплатите на служителите в държавната администрация, приета с Постановление № 129 на Министерския съвет от 2012 г.",
+   "cited_promulgation": [
+    49,
+    2012
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-zaplatite-na-sluzhitelite-v-darzhavnata-administratsiya",
+   "candidates": [
+    "naredba-za-zaplatite-na-sluzhitelite-v-darzhavnata-administratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    49,
+    2012
+   ]
+  }
+ ],
+ "instructions": 21,
+ "signs": 6,
+ "quoted_blocks": 7,
+ "findings": [
+  {
+   "block": 10,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 1 да се увеличат разходите з"
+  },
+  {
+   "block": 21,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Главният секретар на Министерския съвет да извърши съ"
+  },
+  {
+   "block": 22,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  },
+  {
+   "block": 27,
+   "kind": "citation_without_target",
+   "detail": "§ 2. (1) Eднократно, след определяне на нов размер на индивидуална основна месеч"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 11: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 2555,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

@@ -1,0 +1,76 @@
+{
+ "material": 241452,
+ "title": "Постановление № 34 от 16 февруари 2026 г. за изменение и допълнение на Правилника за прилагане на Закона за филмовата индустрия, приет с Постановление № 274 на Министерския съвет от 2018 г.",
+ "issue": "20/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за филмовата индустрия",
+   "cited_promulgation": [
+    102,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2018
+   ]
+  }
+ ],
+ "instructions": 47,
+ "signs": 24,
+ "quoted_blocks": 19,
+ "findings": [
+  {
+   "block": 50,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 15. Приложение № 5б към чл. 42, ал. 1,' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 53,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 16. Приложение № 7 към чл. 42, ал. 2, ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 56,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 17. Приложение № 7а към чл. 42, ал. 2,' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 59,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 18. Приложение № 16 към чл. 55, ал. 6 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 62,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 19. Приложение № 16б към чл. 57в, ал. ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 65,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 20. Приложение № 17 към чл. 64, ал. 2,' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 68,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 21. Навсякъде в текста на приложенията' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 2801,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

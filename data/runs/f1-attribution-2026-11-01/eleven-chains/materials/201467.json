@@ -1,0 +1,40 @@
+{
+ "material": 201467,
+ "title": "Закон за изменение и допълнение на Закона за екстрадицията и Европейската заповед за арест",
+ "issue": "100/2023",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за екстрадицията и Европейската заповед за арест",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest",
+   "candidates": [
+    "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2005
+   ]
+  }
+ ],
+ "instructions": 18,
+ "signs": 9,
+ "quoted_blocks": 15,
+ "findings": [],
+ "tokens_instructions": 1827,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

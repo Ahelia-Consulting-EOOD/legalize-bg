@@ -1,0 +1,78 @@
+{
+ "material": 100860,
+ "title": "Правилник за изменение и допълнение на Устройствения правилник на областните дирекции „Земеделие“",
+ "issue": "12/2016",
+ "section": "Министерство на земеделието и храните",
+ "kind": "regulation",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на областните дирекции „Земеделие“",
+   "cited_promulgation": [
+    7,
+    2010
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie",
+   "candidates": [
+    "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    7,
+    2010
+   ]
+  },
+  {
+   "scope": "§7.1",
+   "cited_title": "Устройствения правилник на Националната служба по зърното към министъра на земеделието и храните",
+   "cited_promulgation": [
+    12,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§7.2",
+   "cited_title": "Устройствения правилник на Контролно-техническата инспекция към министъра на земеделието и храните",
+   "cited_promulgation": [
+    20,
+    2001
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 38,
+ "signs": 8,
+ "quoted_blocks": 108,
+ "findings": [],
+ "tokens_instructions": 3429,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

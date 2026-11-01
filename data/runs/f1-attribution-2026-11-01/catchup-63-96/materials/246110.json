@@ -1,0 +1,54 @@
+{
+ "material": 246110,
+ "title": "Постановление № 163 от 25 септември 2026 г. за приемане на Тарифа за таксите, които се събират от Изпълнителната агенция по сортоизпитване, апробация и семеконтрол по Закона за посевния и посадъчния материал и по Закона за закрила на новите сортове растения и породи животни",
+ "issue": "89/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 11,
+  "title": "ТАРИФА"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Тарифата за таксите, които се събират от Изпълнителната агенция по сортоизпитване, апробация и семеконтрол по Закона за посевния и посадъчния материал и по Закона за закрила на новите сортове растения и породи животни, приета с Постановление № 96 на Министерския съвет от 2015 г.",
+   "cited_promulgation": [
+    30,
+    2015
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": true,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Тарифа за таксите, които се събират от Министерството на земеделието и храните по Закона за генетично модифицирани организми, приета с Постановление № 266 на Министерския съвет от 2007 г.",
+   "cited_promulgation": [
+    95,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 311,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

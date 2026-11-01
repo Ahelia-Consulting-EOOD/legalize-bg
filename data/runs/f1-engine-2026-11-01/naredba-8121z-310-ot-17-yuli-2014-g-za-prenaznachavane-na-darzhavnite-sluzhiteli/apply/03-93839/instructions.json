@@ -1,0 +1,337 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение и допълнение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "target_title": "Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "cited_history": {
+  "promulgation": [
+   60,
+   2014
+  ],
+  "issues": [
+   [
+    60,
+    2014
+   ],
+   [
+    87,
+    2014
+   ],
+   [
+    104,
+    2014
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 60 от 2014 г.; изм. и доп., бр. 87 и 104 от 2014 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0
+ ],
+ "headings": [
+  39
+ ],
+ "tail": [
+  41,
+  42
+ ],
+ "roles": {
+  "0": "header",
+  "41": "tail",
+  "42": "tail",
+  "1": "instruction",
+  "2": "quoted",
+  "3": "instruction",
+  "4": "quoted",
+  "5": "instruction",
+  "6": "quoted",
+  "7": "instruction",
+  "8": "quoted",
+  "9": "quoted",
+  "10": "quoted",
+  "11": "instruction",
+  "12": "quoted",
+  "13": "quoted",
+  "14": "quoted",
+  "15": "quoted",
+  "16": "quoted",
+  "17": "quoted",
+  "18": "quoted",
+  "19": "quoted",
+  "20": "instruction",
+  "21": "quoted",
+  "22": "instruction",
+  "23": "quoted",
+  "24": "quoted",
+  "25": "quoted",
+  "26": "quoted",
+  "27": "quoted",
+  "28": "quoted",
+  "29": "instruction",
+  "30": "instruction",
+  "31": "instruction",
+  "32": "instruction",
+  "33": "instruction",
+  "34": "instruction",
+  "35": "quoted",
+  "36": "instruction",
+  "37": "instruction",
+  "38": "instruction",
+  "39": "heading",
+  "40": "instruction"
+ },
+ "findings": [],
+ "blocks": 43,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 1,
+   "text": "§ 1. Член 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    2
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 3,
+   "text": "§ 2. Член 3 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    4
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 5,
+   "text": "§ 3. Създава се чл. 3а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    6
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 7,
+   "text": "§ 4. В чл. 4 ал. 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    8,
+    9,
+    10
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 11,
+   "text": "§ 5. Създава се чл. 4а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 20,
+   "text": "§ 6. Създава се чл. 4б:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    21
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 22,
+   "text": "§ 7. Член 5 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    23,
+    24,
+    25,
+    26,
+    27,
+    28
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 29,
+   "text": "§ 8. Член 6 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 30,
+   "text": "§ 9. В чл. 7, ал. 1, т. 6 думите „чл. 6, ал. 1“ се заменят с „чл. 164, ал. 3 ЗМВР“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "чл. 6, ал. 1",
+    "чл. 164, ал. 3 ЗМВР"
+   ],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 31,
+   "text": "§ 10. В чл. 13 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§10.1",
+     "level": 1,
+     "block": 32,
+     "text": "1. В ал. 1 след думите „мотивирано предложение“ се добавя „по реда на чл. 5, ал. 1“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "мотивирано предложение",
+      "по реда на чл. 5, ал. 1"
+     ],
+     "target": null
+    },
+    {
+     "id": "§10.2",
+     "level": 1,
+     "block": 33,
+     "text": "2. Алинея 2 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§10.3",
+     "level": 1,
+     "block": 34,
+     "text": "3. Алинея 3 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      35
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§11",
+   "level": 0,
+   "block": 36,
+   "text": "§ 11. В преходните и заключителните разпоредби се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§11.1",
+     "level": 1,
+     "block": 37,
+     "text": "1. Параграф 3 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§11.2",
+     "level": 1,
+     "block": 38,
+     "text": "2. В § 4 думите „ал. 5“ се заменят с „ал. 6“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "ал. 5",
+      "ал. 6"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§12",
+   "level": 0,
+   "block": 40,
+   "text": "§ 12. Наредбата влиза в сила от деня на обнародването й в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

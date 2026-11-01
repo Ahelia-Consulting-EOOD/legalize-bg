@@ -1,0 +1,82 @@
+{
+ "material": 214105,
+ "title": "Закон за изменение и допълнение на Гражданския процесуален кодекс",
+ "issue": "39/2024",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Гражданския процесуален кодекс",
+   "cited_promulgation": [
+    59,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "grazhdanski-protsesualen-kodeks",
+   "candidates": [
+    "grazhdanski-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    59,
+    2007
+   ]
+  },
+  {
+   "scope": "§21",
+   "cited_title": "Кодекса на международното частно право",
+   "cited_promulgation": [
+    42,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+   "candidates": [
+    "kodeks-na-mezhdunarodnoto-chastno-pravo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    42,
+    2005
+   ]
+  },
+  {
+   "scope": "§22",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  }
+ ],
+ "instructions": 44,
+ "signs": 22,
+ "quoted_blocks": 80,
+ "findings": [],
+ "tokens_instructions": 6382,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

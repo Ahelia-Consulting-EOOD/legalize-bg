@@ -1,0 +1,40 @@
+{
+ "material": 240235,
+ "title": "Закон за изменение на Закона за защита на растенията",
+ "issue": "115/2025",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за защита на растенията",
+   "cited_promulgation": [
+    61,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-rasteniyata",
+   "candidates": [
+    "zakon-za-zashtita-na-rasteniyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    61,
+    2014
+   ]
+  }
+ ],
+ "instructions": 1,
+ "signs": 1,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 20,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

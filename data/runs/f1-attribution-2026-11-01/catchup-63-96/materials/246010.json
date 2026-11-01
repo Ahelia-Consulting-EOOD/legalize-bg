@@ -1,0 +1,52 @@
+{
+ "material": 246010,
+ "title": "Постановление № 146 от 17 септември 2026 г. за одобряване на допълнителни разходи/трансфери по бюджета на Министерството на културата и по бюджетите на общините за 2026 г.",
+ "issue": "87/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 29,
+  "title": "Приложение към чл. 1, ал. 2, т. 3"
+ },
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 16,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 17,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата 2 653 385 евро да се увеличат разходит"
+  },
+  {
+   "block": 19,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '2. по „Политика в областта на опазване н' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 21,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на културата да извърши съответните промен"
+  },
+  {
+   "block": 22,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 18: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 890,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

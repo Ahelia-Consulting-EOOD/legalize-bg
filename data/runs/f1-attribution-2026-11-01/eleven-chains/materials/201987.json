@@ -1,0 +1,103 @@
+{
+ "material": 201987,
+ "title": "Закон за изменение и допълнение на Семейния кодекс",
+ "issue": "106/2023",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  },
+  {
+   "scope": "§41",
+   "cited_title": "Закона за социално подпомагане",
+   "cited_promulgation": [
+    56,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sotsialno-podpomagane",
+   "candidates": [
+    "zakon-za-sotsialno-podpomagane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    56,
+    1998
+   ]
+  },
+  {
+   "scope": "§42",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  },
+  {
+   "scope": "§43",
+   "cited_title": "Кодекса за международното частно право",
+   "cited_promulgation": [
+    42,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+   "candidates": [
+    "kodeks-na-mezhdunarodnoto-chastno-pravo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's fuzzy key",
+   "act_promulgation": [
+    42,
+    2005
+   ]
+  }
+ ],
+ "instructions": 92,
+ "signs": 44,
+ "quoted_blocks": 64,
+ "findings": [],
+ "tokens_instructions": 8399,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

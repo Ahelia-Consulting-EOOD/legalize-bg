@@ -1,0 +1,51 @@
+{
+ "material": 91422,
+ "title": "Постановление № 9 от 19 януари 2015 г. за приемане на Методика за определяне на минималния размер на концесионното плащане за морските плажове – обекти на концесия, по реда на чл. 8, ал. 2 и 3 от Закона за устройството на Черноморското крайбрежие и на Методика за определяне на минималния размер на наемната цена за морските плажове по реда на чл. 8, ал. 2 и 3 от Закона за устройството на Черноморското крайбрежие",
+ "issue": "7/2015",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 13,
+  "title": "МЕТОДИКА"
+ },
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Закона за устройството на Черноморското крайбрежие, приета с Постановление № 67 на Министерския съвет от 2009 г.",
+   "cited_promulgation": [
+    25,
+    2009
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie"
+   ],
+   "flags": [],
+   "repeal": true,
+   "note": "the corpus holds zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie (promulgated 48/2007); the material cites бр. 25/2009",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 5,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Приема Методика за определяне на минималния размер на"
+  },
+  {
+   "block": 7,
+   "kind": "citation_without_target",
+   "detail": "§ 1. Отменя се Методиката за определяне размера на концесионното плащане при пре"
+  }
+ ],
+ "tokens_instructions": 347,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

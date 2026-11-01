@@ -1,0 +1,49 @@
+{
+ "material": 235633,
+ "title": "Постановление № 101 от 23 юни 2025 г. за одобряване на допълнителни разходи по бюджетите на Министерството на културата, на Министерството на външните работи, на Министерството на околната среда и водите и на Министерството на туризма за 2025 г.",
+ "issue": "52/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 8,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 11,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата 824 146 лв. да се увеличат разходите п"
+  },
+  {
+   "block": 13,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. (1) Със сумата 126 000 лв. да се увеличат разходите п"
+  },
+  {
+   "block": 15,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. (1) Със сумата 105 000 лв. да се увеличат разходите п"
+  },
+  {
+   "block": 17,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. (1) Със сумата 47 900 лв. да се увеличат разходите по"
+  },
+  {
+   "block": 19,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Министърът на културата, министърът на външните работ"
+  },
+  {
+   "block": 20,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 7. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 542,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

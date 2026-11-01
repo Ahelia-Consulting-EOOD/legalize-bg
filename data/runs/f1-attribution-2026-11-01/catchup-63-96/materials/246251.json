@@ -1,0 +1,56 @@
+{
+ "material": 246251,
+ "title": "Постановление № 165 от 29 септември 2026 г. за изменение и допълнение на Устройствения правилник на Изпълнителна агенция „Одит на средствата от Европейския съюз“ към министъра на финансите, приет с Постановление № 346 на Министерския съвет от 2008 г.",
+ "issue": "91/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Изпълнителна агенция „Одит на средствата от Европейския съюз“ към министъра на финансите",
+   "cited_promulgation": [
+    5,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-odit-na-sredstvata-ot-evropeyski",
+   "candidates": [
+    "ustroystven-pravilnik-na-izpalnitelna-agentsiya-odit-na-sredstvata-ot-evropeyski"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    5,
+    2009
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Постановление № 215 на Министерския съвет от 1999 г. за приемане на Устройствен правилник на Министерството на финансите и за преобразуване и закриване на административни структури към министъра на финансите",
+   "cited_promulgation": [
+    104,
+    1999
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Министерството на финансите и за преобразуване и закриване на административни структури към министъра на финансите')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 23,
+ "signs": 11,
+ "quoted_blocks": 42,
+ "findings": [],
+ "tokens_instructions": 4127,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

@@ -1,0 +1,528 @@
+{
+ "slug": "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist",
+ "steps": [
+  {
+   "step": "chain",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9292e0791a7e5c20da993a4ada1f12e090686c829130f6b2d98db7c2547670cd",
+   "outputs_sha256": "93314a895cd440cd1acfb497181e055c78e068ca3b948a7310eb5821aff76e9b",
+   "outcome": "done",
+   "detail": "8 material(s) change the act after бр. 36/2011; lex.bg names 8 issue(s), 0 unexplained (none), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:55+00:00",
+   "ended": "2026-11-01T10:59:03+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b72504a8aca365f0b85bc25edd957b8f48e432ae1402379c6310513008db471d",
+   "outputs_sha256": "c4a96dcbdecac25b9bb31908c781379c47264fe7b51d1b010dd1de3fa51f8df4",
+   "outcome": "done",
+   "detail": "material 49017 of бр. 36/2011 (cached), sha256 3a7fb6d005a2",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:59:03+00:00",
+   "ended": "2026-11-01T10:59:03+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9b797051b30298ce55115f5ac1f4184b7175aa2a84480f1a9250db2a3bb92acb",
+   "outputs_sha256": "7858eff334d9aebdcb9db19b7f769780ef1556e36456d075953d4d714e3cc2b3",
+   "outcome": "done",
+   "detail": "556 blocks, 14 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:59:03+00:00",
+   "ended": "2026-11-01T10:59:03+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ff0cf246fdab89fb143caa1ce4c8b484021f2151258a6319861a0107cdb8659d",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 14 of 14 tasks unanswered; 2 labeller call(s) to make: df712e478404-0000-0007 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round0/df712e478404-0000-0007.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round0/df712e478404-0000-0007.json; df712e478404-0008-0013 (6 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round0/df712e478404-0008-0013.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round0/df712e478404-0008-0013.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:59:03+00:00",
+   "ended": "2026-11-01T10:59:03+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "c1267e4a8fd04a02bd71be6f62b56e713421f294f611997e364c389551563f0c",
+   "outputs_sha256": "cd9b7f17272980e1547c284fea74d862762c2cba6f5b615f4fe107bda804e92c",
+   "outcome": "done",
+   "detail": "round 0 collected: 93 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:47+00:00",
+   "ended": "2026-11-01T11:02:47+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "65612a033f0f6883c85d7ec86090b74f87cfda2f886e7ea73f10dd4dc19e8bad",
+   "outputs_sha256": "2754b395d3df531cdee76f4ca61ec0ee3135f6a57f7a67f1ef63848c2759070a",
+   "outcome": "pending",
+   "detail": "round 1: 39 of 39 tasks unanswered; 2 labeller call(s) to make: c1fb7d0414af-0000-0024 (25 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round1/c1fb7d0414af-0000-0024.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round1/c1fb7d0414af-0000-0024.json; c1fb7d0414af-0025-0038 (14 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round1/c1fb7d0414af-0025-0038.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round1/c1fb7d0414af-0025-0038.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:02:47+00:00",
+   "ended": "2026-11-01T11:02:47+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1e5e52c8408d5efc6d7e6ebfe4c620d8bce9084fd56a13fb96bb9cf3b01a69da",
+   "outputs_sha256": "5f7525e46df53c5b618c320d3f16adca34cd086e2ad001a01db4b13f45407049",
+   "outcome": "pending",
+   "detail": "round 2: 30 of 30 tasks unanswered; 2 labeller call(s) to make: b05f1541347a-0000-0024 (25 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round2/b05f1541347a-0000-0024.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round2/b05f1541347a-0000-0024.json; b05f1541347a-0025-0029 (5 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round2/b05f1541347a-0025-0029.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round2/b05f1541347a-0025-0029.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8d49147f8248c75ff83830d2149ae8dc3b3a28bff2a889ea5921a1f1f8403ce8",
+   "outputs_sha256": "d1e0693129742a269bc3d1d798528f1578e28608d8d6b94d905f5bca68d36bd1",
+   "outcome": "pending",
+   "detail": "round 2: 30 of 30 tasks unanswered; 2 labeller call(s) to make: b05f1541347a-0000-0024 (25 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round2/b05f1541347a-0000-0024.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round2/b05f1541347a-0000-0024.json; b05f1541347a-0025-0029 (5 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round2/b05f1541347a-0025-0029.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round2/b05f1541347a-0025-0029.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:08:58+00:00",
+   "ended": "2026-11-01T11:08:58+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "a4d719a203efa28c448bb12652d8ae17901436d718e02a3e2c212986364872ae",
+   "outputs_sha256": "5f7525e46df53c5b618c320d3f16adca34cd086e2ad001a01db4b13f45407049",
+   "outcome": "pending",
+   "detail": "round 2: 30 of 30 tasks unanswered; 2 labeller call(s) to make: b05f1541347a-0000-0024 (25 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round2/b05f1541347a-0000-0024.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round2/b05f1541347a-0000-0024.json; b05f1541347a-0025-0029 (5 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round2/b05f1541347a-0025-0029.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round2/b05f1541347a-0025-0029.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:10:21+00:00",
+   "ended": "2026-11-01T11:10:21+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "4c5f9baea9f88e7997253fb022fbc62fc1ee369e035c5196dd63d8c2669e4be1",
+   "outputs_sha256": "4a5b442f9508a59de74ee3943377f87aa3f02647040c4ef4aff4309023ced56a",
+   "outcome": "pending",
+   "detail": "round 2: 30 of 30 tasks unanswered; 2 labeller call(s) to make: b05f1541347a-0000-0024 (25 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round2/b05f1541347a-0000-0024.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round2/b05f1541347a-0000-0024.json; b05f1541347a-0025-0029 (5 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/calls/round2/b05f1541347a-0025-0029.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/maps/round2/b05f1541347a-0025-0029.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:13:42+00:00",
+   "ended": "2026-11-01T11:13:42+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e78960119126f60d830dbd81bf203191e84e1180db3e37e67ba02a7db8c76462",
+   "outputs_sha256": "cd9b7f17272980e1547c284fea74d862762c2cba6f5b615f4fe107bda804e92c",
+   "outcome": "done",
+   "detail": "round 0 collected: 93 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9b4751234e599ff6437bd4ec381264a13590cd255f9a5f3d45becf3650bb54cf",
+   "outputs_sha256": "655774faa8ee7e5f64d5f155c5425d75b20294490eec03a944bc2e69d3a2626e",
+   "outcome": "done",
+   "detail": "no residue after round 2",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/ladder.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round2.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ff09b122c4c2dde1939c92cbf2fbc657aa4ac792280f933a73a871c3b7ffd842",
+   "outputs_sha256": "7fa66ad4c88b3dc140d2a6cb42b557e57355ab8f688c83eef7bfb40200d75c56",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "3f25df48933993d29079be0a137122a3bec40e34c86e53b376df818636070422",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 8 (бр. 77/2012, 68862): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "6b1bc33589dbe3f4f26f9ac7c8da3e93e120cd1106e7e248369a4e1440f7afc2",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 68862 (бр. 77/2012): the answer is refused: §2 delete_words: the words 'Канцелария' do not occur in '# ПРАВИЛНИК за устройството, функциите и дейността'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:35+00:00",
+   "ended": "2026-11-01T11:42:35+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "487437d870123f650d53b2e9e979eafda19ca3f1feb2f9cb00b9736cfa45c2bf",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 68862 (бр. 77/2012): the answer is refused: §5 delete_words: the address 'чл. 29, т. 5.15' carries a part the grammar does not read: ',  .15'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:19+00:00",
+   "ended": "2026-11-01T11:51:19+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ff58dc6edfa3a3f25466908ec78a8aded56b3cebf2572b02655872c41fa0392b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 68862 (бр. 77/2012): the answer is refused: §6 replace_heading: 'чл. 30' is not a heading",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:00:01+00:00",
+   "ended": "2026-11-01T12:00:01+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ef66fafa945fcf635f48f2a6752082985aea74daf41fc2a6897376527f4393c3",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 68862 (бр. 77/2012): the answer is refused: §14 replace_heading: 'чл. 36' is not a heading",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:21+00:00",
+   "ended": "2026-11-01T12:04:21+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "6201d39f926334b69521a9335d61885c913ff9917d194b5bd2bbd4ed3d2542f5",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 8 (бр. 77/2012, 68862): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/01-68862/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:09+00:00",
+   "ended": "2026-11-01T12:10:09+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "6201d39f926334b69521a9335d61885c913ff9917d194b5bd2bbd4ed3d2542f5",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 8 (бр. 93/2013, 79704): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/02-79704/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/02-79704/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/02-79704/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:04+00:00",
+   "ended": "2026-11-01T12:15:04+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "799de5e372bc68fcba89eaf508e57d7dccffb936393b6487b144dcb439714f2a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 79704 (бр. 93/2013): the answer is refused: §8: blocks [61, 386] lie outside the instruction's quoted text [61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 73, 75, 76]",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/02-79704/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:20+00:00",
+   "ended": "2026-11-01T12:19:20+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b41670835781e425c8868dbb67779d9d1a87ccbc07e6b7501a9a1dcff196a24e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 8 (бр. 93/2013, 79704): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/02-79704/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/02-79704/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/02-79704/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:23:21+00:00",
+   "ended": "2026-11-01T12:23:21+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "6e76081a0fe5a16a23243131fed06c332a2cbdcf38e6df48f052fa907b88b3bd",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 79704 (бр. 93/2013): 2 check exception(s) after the operations, first label_text_mismatch at line 322: continuation on a line that opens like a provision: 'a) извършване на анализ на нуждите на пр'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/02-79704/checks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:25:44+00:00",
+   "ended": "2026-11-01T12:25:44+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "64304242dd5ec2d77a789c749c516683e132e9b504cfae57c8d4e17249b1edc4",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 8 (бр. 12/2014, 82388): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:28:10+00:00",
+   "ended": "2026-11-01T12:28:10+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "bfb7df2eb255a0d40fd5b9fcd23462eb2054c9bf5ae77ad39b308c0778bd6afa",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 82388 (бр. 12/2014): the answer is refused: §7.1.е delete_words: the words 'участие в' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:30:24+00:00",
+   "ended": "2026-11-01T12:30:24+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "70f40c1fcc78e37edb61b22e237a7976833393003e77f639972a9e7c719440f7",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 82388 (бр. 12/2014): the answer is refused: §7.1.е delete_words: the words 'участие в' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:32:38+00:00",
+   "ended": "2026-11-01T12:32:38+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "33c119bf9739b2738edc48525eae73681305aeb6fac9bc073d3f89f909491d37",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 8 (бр. 12/2014, 82388): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:35:14+00:00",
+   "ended": "2026-11-01T12:35:14+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e73137d487a8ed90917fa96512944adc15c0cf29a30f4318f4c1ef107d2e2b61",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 82388 (бр. 12/2014): the answer is refused: §7.1.е delete_words: the words 'участие в' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/03-82388/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:36:40+00:00",
+   "ended": "2026-11-01T12:36:40+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "91140c65c5b6615875f799400007ce2e4d99aec01a566de846930c13bae7555e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 8 (бр. 31/2015, 94043): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:38:08+00:00",
+   "ended": "2026-11-01T12:38:08+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "7503fd3873e26f3a455a687d7dceb0c406397a04c22ea596dd7a2deb17e117d7",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:41:46+00:00",
+   "ended": "2026-11-01T12:41:46+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "7872d41a13ebf5f663f1bcde981cb4b72068f56e7c84148b6659476dc4137848",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:45:06+00:00",
+   "ended": "2026-11-01T12:45:07+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8046e77d7cd8bc8deff80c6366c39f866484482189289e54475cf8ae274ee14d",
+   "outputs_sha256": "52a5cb3c85389a662f1041473dcf14e7a67e2a91c8d1f84cb2180ba3884ed6d8",
+   "outcome": "done",
+   "detail": "556 blocks, 14 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ad60ed84ebbb40fd7bc34a8d65c77ace9baea947b746ca09ed8781d7dbe166fe",
+   "outputs_sha256": "cd9b7f17272980e1547c284fea74d862762c2cba6f5b615f4fe107bda804e92c",
+   "outcome": "done",
+   "detail": "round 0 collected: 93 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e70f886653072d0259b50cdab1ebb71d68ef86be1aef906049c299c1a0d6aa5d",
+   "outputs_sha256": "655774faa8ee7e5f64d5f155c5425d75b20294490eec03a944bc2e69d3a2626e",
+   "outcome": "done",
+   "detail": "no residue after round 2",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/ladder.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round2.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b94818d76e19fd33c4d9daec2b24cf31842e58fefc073541873977e5483f757e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:54+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "bb52416d2e5b79806dc0f4d1dd62ac9dc11f48a37c316f17030f6e0d84580f03",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:03+00:00",
+   "ended": "2026-11-01T13:12:03+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "38249f46ee5e37e23d0e2760433b60e101eb125609e9ef4688e1718c4c450464",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:09+00:00",
+   "ended": "2026-11-01T13:15:10+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "98e8e8cebe80ff981a6b954806d59b385e1de95908176438f85c985e8c5a0171",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:24:14+00:00",
+   "ended": "2026-11-01T13:24:14+00:00"
+  }
+ ],
+ "state_before_stop": "listed"
+}

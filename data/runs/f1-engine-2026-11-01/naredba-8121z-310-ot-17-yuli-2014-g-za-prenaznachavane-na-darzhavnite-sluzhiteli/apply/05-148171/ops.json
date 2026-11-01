@@ -1,0 +1,114 @@
+{
+ "material": 148171,
+ "issue": "47/2020",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 2",
+   "old": "Закона за Министерството на вътрешните работи (ЗМВР)",
+   "old_ref": "q1",
+   "new": "ЗМВР",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§2.1",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§2.1.а",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 7, ал. 1, т. 5",
+   "new": "или е съкратена",
+   "new_ref": "q2",
+   "where": "after",
+   "anchor": "вакантна",
+   "anchor_ref": "q1"
+  },
+  {
+   "id": "§2.1.б",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 7, ал. 1, т. 6",
+   "punctuation": "before",
+   "new": "т. 2",
+   "new_ref": "q2",
+   "where": "after",
+   "anchor": "ал. 3",
+   "anchor_ref": "q1"
+  },
+  {
+   "id": "§2.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 7, ал. 6",
+   "old": "равностойна длъжност",
+   "old_ref": "q1",
+   "new": "длъжност в рамките на съответния вид по чл. 143, ал. 1 ЗМВР",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2.3",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 7, ал. 7, изречение второ",
+   "new": "В случаите по ал. 1, т. 6, когато за другата длъжност се изисква професионална квалификация, която служителят не притежава, преназначаването се извършва в тридесетдневен срок от успешното завършване на съответния курс.",
+   "new_ref": "q1",
+   "after": ""
+  },
+  {
+   "id": "§3",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 7а",
+   "lines": [
+    "Чл. 7а. (1) В случаите по чл. 164, ал. 3, т. 1 ЗМВР заповедта за преназначаване на друга длъжност се издава в тридесетдневен срок от установяване на незадоволителните резултати в служебната дейност. Когато за другата длъжност се изисква професионална квалификация, която служителят не притежава, заповедта се издава в тридесетдневен срок от успешното завършване на съответния курс.",
+    "(2) Отказът на служителя да заеме длъжността, на която е преназначен, се удостоверява писмено със съставянето на протокол с подписите, трите имена и длъжностите на двама служители."
+   ],
+   "blocks": [
+    9,
+    10
+   ],
+   "hints": [
+    "DvJustify",
+    "DvJustify"
+   ],
+   "after": "чл. 7"
+  },
+  {
+   "id": "§4",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 11, ал. 1",
+   "old": "и 4",
+   "old_ref": "q1"
+  },
+  {
+   "id": "§5",
+   "kind": "no_text_change",
+   "note": ""
+  }
+ ],
+ "log": [
+  "§1 replace_words: 1 replacement(s)",
+  "§2 no_text_change: nothing",
+  "§2.1 no_text_change: nothing",
+  "§2.1.а insert_words: inserted",
+  "§2.1.б insert_words: inserted",
+  "§2.2 replace_words: 1 replacement(s)",
+  "§2.3 insert_provision: sentence 2 added",
+  "§3 insert_provision: 2 line(s) at чл. 7а",
+  "§4 delete_words: 1 deletion(s)",
+  "§5 no_text_change: nothing"
+ ]
+}

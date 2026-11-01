@@ -1,0 +1,144 @@
+{
+ "material": 121189,
+ "title": "Постановление № 328 от 21 декември 2017 г. за условията и реда за получаване на стипендии от учениците след завършено основно образование",
+ "issue": "103/2017",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 117,
+  "title": "Приложение към § 3 от допълнителните разпоредби"
+ },
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§9",
+   "cited_title": "Постановление № 33 на Министерския съвет от 2013 г. за условията за получаване на стипендии от учениците след завършено основно образование",
+   "cited_promulgation": [
+    17,
+    2013
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": true,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 33 на Министерския съвет от 2013 г. за условията за получаване на стипендии от учениците след завършено основно образование')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 49,
+ "signs": 13,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 15,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Стипендиите на учениците се финансират за сметка "
+  },
+  {
+   "block": 31,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Училището предоставя получените средства по чл. 2 за "
+  },
+  {
+   "block": 32,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. (1) Месечните стипендии са за:"
+  },
+  {
+   "block": 42,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. (1) Еднократните стипендии са за:"
+  },
+  {
+   "block": 48,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. (1) Училището може да определи част от средствата за "
+  },
+  {
+   "block": 52,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 7. (1) Ученикът може да кандидатства за повече от един в"
+  },
+  {
+   "block": 56,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 8. (1) Директорът на училището определя комисия за стипе"
+  },
+  {
+   "block": 68,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 9. (1) Директорът на училището със заповед утвърждава пр"
+  },
+  {
+   "block": 70,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 10. (1) Като основен критерий за класиране на учениците "
+  },
+  {
+   "block": 79,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 11. (1) Размерът на месечните стипендии се определя в гр"
+  },
+  {
+   "block": 81,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 12. (1) Комисията предлага на директора учениците, които"
+  },
+  {
+   "block": 85,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 13. (1) Еднократните стипендии по чл. 5 се отпускат със "
+  },
+  {
+   "block": 87,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 14. (1) Учениците в държавните, общинските и частните уч"
+  },
+  {
+   "block": 91,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 15. (1) На учениците, настанени във възпитателните учили"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 13: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 21: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 33: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 43: item 1 after 4 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 58: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 73: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 4836,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

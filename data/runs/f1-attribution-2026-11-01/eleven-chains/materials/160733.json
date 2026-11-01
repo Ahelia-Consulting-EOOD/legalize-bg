@@ -1,0 +1,92 @@
+{
+ "material": 160733,
+ "title": "Постановление № 271 от 6 август 2021 г. за изменение и допълнение на Правилника за прилагане на Закона за филмовата индустрия, приет с Постановление № 274 на Министерския съвет от 2018 г.",
+ "issue": "67/2021",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за филмовата индустрия",
+   "cited_promulgation": [
+    102,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2018
+   ]
+  },
+  {
+   "scope": "§109",
+   "cited_title": "Тарифата за таксите, които се събират от Изпълнителна агенция „Национален филмов център“ по Закона за филмовата индустрия, приета с Постановление № 104 на Министерския съвет от 2004 г.",
+   "cited_promulgation": [
+    48,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 208,
+ "signs": 118,
+ "quoted_blocks": 1748,
+ "findings": [
+  {
+   "block": 730,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 66. В чл. 58, ал. 1 думите „чл. 26, ал' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1248,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 85. Досегашното приложение № 6 към чл.' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1552,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 95. Досегашното приложение № 11 към чл' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1584,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 102. Създава се приложение № 15а към ч' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1587,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 103. Създава се приложение № 15б, към ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1590,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 104. Приложение № 16 към чл. 54, ал. 2' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1593,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 105. Създава се приложение № 16а към ч' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 68646,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

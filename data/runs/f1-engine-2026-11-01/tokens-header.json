@@ -1,0 +1,1 @@
+{"note": "one line per model call made by the session for the F1 run: agent type, act, step, tokens as the harness reports them (a single total; the split by token type and cache type is not visible from inside the session, as the S0/S1 session also found), duration ms"}

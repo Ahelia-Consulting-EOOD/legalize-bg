@@ -1,0 +1,608 @@
+{
+ "material": 41376,
+ "title": "Закон за изменение и допълнение на Закона за здравето",
+ "issue": "98/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за здравето",
+   "cited_promulgation": [
+    70,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdraveto",
+   "candidates": [
+    "zakon-za-zdraveto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2004
+   ]
+  },
+  {
+   "scope": "§92",
+   "cited_title": "Закона за изменение и допълнение на Закона за здравето",
+   "cited_promulgation": [
+    41,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§94",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  },
+  {
+   "scope": "§95",
+   "cited_title": "Закона за водите",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vodite",
+   "candidates": [
+    "zakon-za-vodite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§96",
+   "cited_title": "Закона за движението по пътищата",
+   "cited_promulgation": [
+    20,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dvizhenieto-po-patishtata",
+   "candidates": [
+    "zakon-za-dvizhenieto-po-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    1999
+   ]
+  },
+  {
+   "scope": "§97",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  },
+  {
+   "scope": "§98",
+   "cited_title": "Закона за защита от вредното въздействие на химичните вещества и смеси",
+   "cited_promulgation": [
+    10,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-",
+   "candidates": [
+    "zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    10,
+    2000
+   ]
+  },
+  {
+   "scope": "§99",
+   "cited_title": "Закона за защита от шума в околната среда",
+   "cited_promulgation": [
+    74,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-ot-shuma-v-okolnata-sreda",
+   "candidates": [
+    "zakon-za-zashtita-ot-shuma-v-okolnata-sreda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    74,
+    2005
+   ]
+  },
+  {
+   "scope": "§100",
+   "cited_title": "Закона за защита при бедствия",
+   "cited_promulgation": [
+    102,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-pri-bedstviya",
+   "candidates": [
+    "zakon-za-zashtita-pri-bedstviya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2006
+   ]
+  },
+  {
+   "scope": "§101",
+   "cited_title": "Закона за здравословни и безопасни условия на труд",
+   "cited_promulgation": [
+    124,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravoslovni-i-bezopasni-usloviya-na-trud",
+   "candidates": [
+    "zakon-za-zdravoslovni-i-bezopasni-usloviya-na-trud"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    124,
+    1997
+   ]
+  },
+  {
+   "scope": "§102",
+   "cited_title": "Закона за здравното осигуряване",
+   "cited_promulgation": [
+    70,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravnoto-osiguryavane",
+   "candidates": [
+    "zakon-za-zdravnoto-osiguryavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    1998
+   ]
+  },
+  {
+   "scope": "§103",
+   "cited_title": "Закона за интеграция на хората с увреждания",
+   "cited_promulgation": [
+    81,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§104",
+   "cited_title": "Закона за контрол върху наркотичните вещества и прекурсорите",
+   "cited_promulgation": [
+    30,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite",
+   "candidates": [
+    "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    1999
+   ]
+  },
+  {
+   "scope": "§105",
+   "cited_title": "Закона за кръвта, кръводаряването и кръвопреливането",
+   "cited_promulgation": [
+    102,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kravta-kravodaryavaneto-i-kravoprelivaneto",
+   "candidates": [
+    "zakon-za-kravta-kravodaryavaneto-i-kravoprelivaneto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2003
+   ]
+  },
+  {
+   "scope": "§106",
+   "cited_title": "Закона за лекарствените продукти в хуманната медицина",
+   "cited_promulgation": [
+    31,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lekarstvenite-produkti-v-humannata-meditsina",
+   "candidates": [
+    "zakon-za-lekarstvenite-produkti-v-humannata-meditsina"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    31,
+    2007
+   ]
+  },
+  {
+   "scope": "§107",
+   "cited_title": "Закона за лечебните заведения",
+   "cited_promulgation": [
+    62,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lechebnite-zavedeniya",
+   "candidates": [
+    "zakon-za-lechebnite-zavedeniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    62,
+    1999
+   ]
+  },
+  {
+   "scope": "§107.15",
+   "cited_title": "Закона за изменение и допълнение на Закона за лечебните заведения",
+   "cited_promulgation": [
+    59,
+    2010
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§108",
+   "cited_title": "Закона за медицинските изделия",
+   "cited_promulgation": [
+    46,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-meditsinskite-izdeliya",
+   "candidates": [
+    "zakon-za-meditsinskite-izdeliya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2007
+   ]
+  },
+  {
+   "scope": "§109",
+   "cited_title": "Закона за Националната агенция за приходите",
+   "cited_promulgation": [
+    112,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-natsionalnata-agentsiya-za-prihodite",
+   "candidates": [
+    "zakon-za-natsionalnata-agentsiya-za-prihodite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    112,
+    2002
+   ]
+  },
+  {
+   "scope": "§110",
+   "cited_title": "Закона за отбраната и въоръжените сили на Република България",
+   "cited_promulgation": [
+    35,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya",
+   "candidates": [
+    "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    35,
+    2009
+   ]
+  },
+  {
+   "scope": "§111",
+   "cited_title": "Закона за отговорността за предотвратяване и отстраняване на екологични щети",
+   "cited_promulgation": [
+    43,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-otgovornostta-za-predotvratyavane-i-otstranyavane-na-ekologichni-shteti",
+   "candidates": [
+    "zakon-za-otgovornostta-za-predotvratyavane-i-otstranyavane-na-ekologichni-shteti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    43,
+    2008
+   ]
+  },
+  {
+   "scope": "§112",
+   "cited_title": "Закона за признаване на професионални квалификации",
+   "cited_promulgation": [
+    13,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-priznavane-na-profesionalni-kvalifikatsii",
+   "candidates": [
+    "zakon-za-priznavane-na-profesionalni-kvalifikatsii"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    2008
+   ]
+  },
+  {
+   "scope": "§114",
+   "cited_title": "Закона за почвите",
+   "cited_promulgation": [
+    89,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-pochvite",
+   "candidates": [
+    "zakon-za-pochvite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    89,
+    2007
+   ]
+  },
+  {
+   "scope": "§115",
+   "cited_title": "Закона за съсловните организации на лекарите и на лекарите по дентална медицина",
+   "cited_promulgation": [
+    83,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-saslovnite-organizatsii-na-lekarite-i-na-lekarite-po-dentalna-meditsina",
+   "candidates": [
+    "zakon-za-saslovnite-organizatsii-na-lekarite-i-na-lekarite-po-dentalna-meditsina"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    83,
+    1998
+   ]
+  },
+  {
+   "scope": "§116",
+   "cited_title": "Закона за съсловната организация на магистър-фармацевтите",
+   "cited_promulgation": [
+    75,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-saslovnata-organizatsiya-na-magistar-farmatsevtite",
+   "candidates": [
+    "zakon-za-saslovnata-organizatsiya-na-magistar-farmatsevtite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    75,
+    2006
+   ]
+  },
+  {
+   "scope": "§117",
+   "cited_title": "Закона за съсловната организация на медицинските сестри, акушерките и асоциираните медицински специалисти",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§118",
+   "cited_title": "Закона за трансплантация на органи, тъкани и клетки",
+   "cited_promulgation": [
+    83,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-transplantatsiya-na-organi-takani-i-kletki",
+   "candidates": [
+    "zakon-za-transplantatsiya-na-organi-takani-i-kletki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    83,
+    2003
+   ]
+  },
+  {
+   "scope": "§119",
+   "cited_title": "Закона за управление на отпадъците",
+   "cited_promulgation": [
+    86,
+    2003
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-upravlenie-na-otpadatsite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-upravlenie-na-otpadatsite (promulgated 53/2012); the material cites бр. 86/2003",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§120",
+   "cited_title": "Закона за храните",
+   "cited_promulgation": [
+    90,
+    1999
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-hranite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-hranite (promulgated 52/2020); the material cites бр. 90/1999",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 348,
+ "signs": 121,
+ "quoted_blocks": 193,
+ "findings": [],
+ "tokens_instructions": 21593,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

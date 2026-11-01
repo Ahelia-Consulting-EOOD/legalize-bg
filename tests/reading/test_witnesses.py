@@ -142,3 +142,10 @@ def test_a_certificate_error_falls_back_to_the_systems_curl(tmp_path, monkeypatc
     monkeypatch.setattr(raw_fetch_moj, "_curl", lambda url: (None, b""))
     row = raw_fetch_moj.fetch_one("4", tmp_path / "moj", session=Bad(), sleep=lambda s: None)
     assert row["outcome"] == "error" and "curl could not" in row["detail"]
+
+
+def test_the_entry_into_force_clause_is_removed_only_inside_a_marker():
+    from reading.witnesses import normalise_line
+    assert normalise_line("(2) (Отм. - ДВ, бр. 106 от 2023 г., в сила от 22.12.2023 г.)") == "(2) (Отм. - ДВ, бр. 106 от 2023 г.)"
+    assert normalise_line("(Изм. - ДВ, бр. 24 от 2019 г., в сила от 22.03.2019 г., изм. - ДВ, бр. 106 от 2023 г., в сила от 22.12.2023 г.) т") == "(Изм. - ДВ, бр. 24 от 2019 г., изм. - ДВ, бр. 106 от 2023 г.) т"
+    assert normalise_line("Законът влиза в сила от 01.01.2027 г., в сила от 01.01.2027 г.") == "Законът влиза в сила от 01.01.2027 г., в сила от 01.01.2027 г."

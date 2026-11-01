@@ -1,0 +1,40 @@
+{
+ "material": 131916,
+ "title": "Постановление № 242 от 9 ноември 2018 г. за приемане на Правилник за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство",
+ "issue": "94/2018",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 9,
+  "title": "ПРАВИЛНИК"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§единствен",
+   "cited_title": "Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство, приет с Постановление № 361 на Министерския съвет от 2015 г.",
+   "cited_promulgation": [
+    100,
+    2015
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n"
+   ],
+   "flags": [],
+   "repeal": true,
+   "note": "the corpus holds pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n (promulgated 94/2018); the material cites бр. 100/2015",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 107,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

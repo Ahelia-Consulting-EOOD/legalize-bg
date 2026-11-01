@@ -1,0 +1,40 @@
+{
+ "material": 246456,
+ "title": "Постановление № 186 от 8 октомври 2026 г. за изменение и допълнение на Наредбата за държавните изисквания за приемане на студенти във висшите училища на Република България, приета с Постановление № 79 на Министерския съвет от 2000 г.",
+ "issue": "94/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за държавните изисквания за приемане на студенти във висшите училища на Република България",
+   "cited_promulgation": [
+    40,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-darzhavnite-iziskvaniya-za-priemane-na-studenti-vav-visshite-uchilish",
+   "candidates": [
+    "naredba-za-darzhavnite-iziskvaniya-za-priemane-na-studenti-vav-visshite-uchilish"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    40,
+    2000
+   ]
+  }
+ ],
+ "instructions": 8,
+ "signs": 3,
+ "quoted_blocks": 4,
+ "findings": [],
+ "tokens_instructions": 479,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

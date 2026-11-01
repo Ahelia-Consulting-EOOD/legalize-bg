@@ -1,0 +1,148 @@
+{
+ "act": "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr",
+ "promulgation": {
+  "material": 91505,
+  "issue": "7/2015",
+  "date": "2015-01-27"
+ },
+ "materials": [
+  {
+   "material": 98158,
+   "issue": "83/2015",
+   "date": "2015-10-27",
+   "position": 2,
+   "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 108826,
+   "issue": "88/2016",
+   "date": "2016-11-08",
+   "position": 21,
+   "title": "Наредба за допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 139711,
+   "issue": "58/2019",
+   "date": "2019-07-23",
+   "position": 17,
+   "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 148957,
+   "issue": "54/2020",
+   "date": "2020-06-16",
+   "position": 21,
+   "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 162218,
+   "issue": "79/2021",
+   "date": "2021-09-21",
+   "position": 17,
+   "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 164970,
+   "issue": "96/2021",
+   "date": "2021-11-19",
+   "position": 9,
+   "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 195920,
+   "issue": "51/2023",
+   "date": "2023-06-13",
+   "position": 5,
+   "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 223420,
+   "issue": "65/2024",
+   "date": "2024-08-02",
+   "position": 7,
+   "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 232879,
+   "issue": "13/2025",
+   "date": "2025-02-14",
+   "position": 6,
+   "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "parse_findings",
+   "findings": []
+  }
+ ],
+ "lexbg_issues": [
+  "7/2015",
+  "83/2015",
+  "88/2016",
+  "58/2019",
+  "54/2020",
+  "79/2021",
+  "81/2021",
+  "96/2021",
+  "51/2023",
+  "65/2024",
+  "13/2025"
+ ],
+ "unexplained_lexbg_issues": [
+  "81/2021"
+ ],
+ "extra_issues": [],
+ "decisions_naming_the_act": [],
+ "candidates": 130,
+ "bodies_fetched": 119,
+ "built_at": "2026-11-01T10:57:45+00:00"
+}

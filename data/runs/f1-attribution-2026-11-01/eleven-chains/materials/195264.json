@@ -1,0 +1,151 @@
+{
+ "material": 195264,
+ "title": "Закон за изменение и допълнение на Наказателно-процесуалния кодекс",
+ "issue": "48/2023",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наказателно-процесуалния кодекс",
+   "cited_promulgation": [
+    86,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "nakazatelno-protsesualen-kodeks",
+   "candidates": [
+    "nakazatelno-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    86,
+    2005
+   ]
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Закона за съдебната власт",
+   "cited_promulgation": [
+    64,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sadebnata-vlast",
+   "candidates": [
+    "zakon-za-sadebnata-vlast"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    64,
+    2007
+   ]
+  },
+  {
+   "scope": "§33",
+   "cited_title": "Закона за отговорността на държавата и общините за вреди",
+   "cited_promulgation": [
+    60,
+    1988
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-otgovornostta-na-darzhavata-i-obshtinite-za-vredi-zagl-izm-dv-br-30-ot-",
+   "candidates": [
+    "zakon-za-otgovornostta-na-darzhavata-i-obshtinite-za-vredi-zagl-izm-dv-br-30-ot-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    60,
+    1988
+   ]
+  },
+  {
+   "scope": "§34",
+   "cited_title": "Закона за екстрадицията и Европейската заповед за арест",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest",
+   "candidates": [
+    "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2005
+   ]
+  },
+  {
+   "scope": "§35",
+   "cited_title": "Закона за подпомагане и финансова компенсация на пострадали от престъпления",
+   "cited_promulgation": [
+    105,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-podpomagane-i-finansova-kompensatsiya-na-postradali-ot-prestapleniya",
+   "candidates": [
+    "zakon-za-podpomagane-i-finansova-kompensatsiya-na-postradali-ot-prestapleniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2006
+   ]
+  },
+  {
+   "scope": "§36",
+   "cited_title": "Закона за Министерството на вътрешните работи",
+   "cited_promulgation": [
+    53,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ministerstvoto-na-vatreshnite-raboti",
+   "candidates": [
+    "zakon-za-ministerstvoto-na-vatreshnite-raboti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    53,
+    2014
+   ]
+  }
+ ],
+ "instructions": 118,
+ "signs": 42,
+ "quoted_blocks": 197,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 189: letter б) after none) under §32.1"
+  }
+ ],
+ "tokens_instructions": 17123,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

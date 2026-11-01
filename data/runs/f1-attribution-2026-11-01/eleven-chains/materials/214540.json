@@ -1,0 +1,39 @@
+{
+ "material": 214540,
+ "title": "Постановление № 134 от 29 април 2024 г. за одобряване на допълнителни разходи по бюджета на Министерството на финансите за 2024 г.",
+ "issue": "39/2024",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 15,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 12,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 1 да се увеличат утвърдените"
+  },
+  {
+   "block": 18,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на финансите да извърши съответните промен"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 13: item 1 after 6 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 724,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

@@ -1,0 +1,41 @@
+{
+ "material": 131729,
+ "title": "Наредба № Н-9 от 7 ноември 2018 г. за регистрите, водени от Агенция „Митници“",
+ "issue": "94/2018",
+ "section": "Министерство на финансите",
+ "kind": "ordinance",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§3",
+   "cited_title": "Наредба № Н-4 от 2009 г. за условията и реда за създаване и функциониране на Национална система за регистрация и идентификация (EORI-BG регистър) за митнически цели",
+   "cited_promulgation": [
+    45,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [
+    "naredba-n-4-ot-11-dekemvri-2009-g-za-reda-za-vodene-na-registara-na-eksperti-po-"
+   ],
+   "flags": [
+    "numbered_digit_mismatch",
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 5,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 420,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

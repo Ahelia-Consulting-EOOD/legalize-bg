@@ -1,0 +1,57 @@
+{
+ "slug": "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie",
+ "round": 0,
+ "blocks": 236,
+ "sections": 7,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 178,
+   "kind": "low_confidence",
+   "detail": "caption line of the annex table; annex_heading also plausible"
+  }
+ ],
+ "source_findings": [],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {
+  "low_confidence": 1
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 3,
+  "title": 2,
+  "chapter_heading": 8,
+  "article_head": 27,
+  "alinea": 23,
+  "item": 101,
+  "section_heading": 8,
+  "provisions_heading": 2,
+  "paragraph_sign": 4,
+  "annex_heading": 1,
+  "annex_row": 57
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "МИНИСТЕРСТВО НА ЗЕМЕДЕЛИЕТО И ХРАНИТЕ",
+   "note": "issuing body before the title, not the act"
+  },
+  {
+   "block": 176,
+   "text": "За министър: П. Борисов",
+   "note": "signature after the act, not the act"
+  },
+  {
+   "block": 235,
+   "text": "423",
+   "note": "likely the Gazette material number after the act; the 28 district figures already sum to the stated 1742, so not a table row; annex_row also plausible"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 1,
+ "diff_lines": 772
+}

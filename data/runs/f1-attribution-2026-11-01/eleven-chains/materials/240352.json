@@ -1,0 +1,51 @@
+{
+ "material": 240352,
+ "title": "Постановление № 343 от 29 декември 2025 г. за изменение на нормативни актове на Министерския съвет",
+ "issue": "115/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Постановление № 17 на Министерския съвет от 2012 г. за създаване на Почивна база „Слънчев бряг“",
+   "cited_promulgation": [
+    12,
+    2012
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 17 на Министерския съвет от 2012 г. за създаване на Почивна база „Слънчев бряг“')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Постановление № 22 на Министерския съвет от 2012 г. за създаване на Почивна база „Орлица“ – Пампорово",
+   "cited_promulgation": [
+    14,
+    2012
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 22 на Министерския съвет от 2012 г. за създаване на Почивна база „Орлица“ – Пампорово')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 7,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 277,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

@@ -1,0 +1,50 @@
+{
+ "material": 208127,
+ "issue": "18/2024",
+ "operations": [
+  {
+   "id": "§11",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§11.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 13, ал. 7, изречение първо",
+   "old": "чл. 64, ал. 3 и 5",
+   "old_ref": "q1",
+   "new": "чл. 64, ал. 4 и 6",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§11.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 15, ал. 1",
+   "old": "чл. 64, ал. 3 и 5",
+   "old_ref": "q1",
+   "new": "чл. 64, ал. 4 и 6",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§11.3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 56а, ал. 4",
+   "old": "чл. 64, ал. 6 – 8",
+   "old_ref": "q1",
+   "new": "чл. 64, ал. 7 – 9",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§11 no_text_change: nothing",
+  "§11.1 replace_words: 1 replacement(s)",
+  "§11.2 replace_words: 1 replacement(s)",
+  "§11.3 replace_words: 1 replacement(s)"
+ ]
+}

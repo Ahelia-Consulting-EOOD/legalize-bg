@@ -1,0 +1,81 @@
+{
+ "material": 135818,
+ "title": "Постановление № 47 от 15 март 2019 г. за изменение на Устройствения правилник на Държавната комисия по хазарта и на нейната администрация, приет с Постановление № 278 на Министерския съвет от 2012 г.",
+ "issue": "24/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Държавната комисия по хазарта и на нейната администрация",
+   "cited_promulgation": [
+    90,
+    2012
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Постановление № 215 на Министерския съвет от 1999 г. за приемане на Устройствен правилник на Министерството на финансите и за преобразуване и закриване на административни структури към министъра на финансите",
+   "cited_promulgation": [
+    104,
+    1999
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Министерството на финансите и за преобразуване и закриване на административни структури към министъра на финансите')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Устройствения правилник на Министерството на финансите, приет с Постановление № 353 на Министерския съвет от 2016 г.",
+   "cited_promulgation": [
+    100,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-finansite",
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerstvoto-na-finansite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    100,
+    2016
+   ]
+  }
+ ],
+ "instructions": 12,
+ "signs": 4,
+ "quoted_blocks": 5,
+ "findings": [
+  {
+   "block": 8,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Председател' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 644,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

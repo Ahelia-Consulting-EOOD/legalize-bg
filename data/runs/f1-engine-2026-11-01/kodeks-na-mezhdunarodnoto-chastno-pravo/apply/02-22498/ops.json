@@ -1,0 +1,47 @@
+{
+ "material": 22498,
+ "issue": "47/2009",
+ "operations": [
+  {
+   "id": "§9",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§9.1",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§9.1.а",
+   "kind": "replace_sentence",
+   "note": "",
+   "address": "чл. 84, ал. 3, изречение първо",
+   "new": "Когато осиновяваният е лице с обичайно местопребиваване в Република България, се иска съгласието на министъра на правосъдието, освен ако осиновяващият има обичайно местопребиваване в Република България.",
+   "new_ref": "q1"
+  },
+  {
+   "id": "§9.1.б",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 84, ал. 3, изречение второ",
+   "old": "от чужд гражданин на лице - български гражданин",
+   "old_ref": "q1"
+  },
+  {
+   "id": "§9.2",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 84, ал. 4",
+   "old": "български или чужд гражданин",
+   "old_ref": "q1"
+  }
+ ],
+ "log": [
+  "§9 no_text_change: nothing",
+  "§9.1 no_text_change: nothing",
+  "§9.1.а replace_sentence: sentence 1 replaced",
+  "§9.1.б delete_words: 1 deletion(s)",
+  "§9.2 delete_words: 1 deletion(s)"
+ ]
+}

@@ -1,0 +1,46 @@
+{
+ "material": 244881,
+ "title": "Постановление № 86 от 16 юли 2026 г. за изменение и допълнение на Наредбата за организацията за осъществяване на граничен паспортен, митнически, здравен, ветеринарномедицински и фитосанитарен контрол, както и контрол на транспортните средства в пристанищата на Република България, обслужващи кораби от международно плаване, приета с Постановление № 186 на Министерския съвет от 2012 г.",
+ "issue": "66/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за организацията за осъществяване на граничен паспортен, митнически, здравен, ветеринарномедицински и фитосанитарен контрол, както и контрол на транспортните средства в пристанищата на Република България, обслужващи кораби от международно плаване",
+   "cited_promulgation": [
+    67,
+    2012
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-organizatsiyata-za-osashtestvyavane-na-granichen-pasporten-mitnichesk",
+   "candidates": [
+    "naredba-za-organizatsiyata-za-osashtestvyavane-na-granichen-pasporten-mitnichesk"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    2012
+   ]
+  }
+ ],
+ "instructions": 47,
+ "signs": 25,
+ "quoted_blocks": 163,
+ "findings": [
+  {
+   "block": 17,
+   "kind": "citation_without_target",
+   "detail": "§ 4. В чл. 22, ал. 2, т. 2 думите „съгласно Тарифата за пристанищните такси, съб"
+  }
+ ],
+ "tokens_instructions": 8515,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

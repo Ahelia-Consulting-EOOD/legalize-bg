@@ -1,0 +1,122 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "target_title": "Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2007
+  ],
+  "issues": [
+   [
+    7,
+    2007
+   ],
+   [
+    38,
+    2008
+   ],
+   [
+    22,
+    2010
+   ],
+   [
+    98,
+    2011
+   ],
+   [
+    2,
+    2013
+   ],
+   [
+    80,
+    2013
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2007 г.; изм. и доп., бр. 38 от 2008 г. и бр. 22 от 2010 г.; изм., бр. 98 от 2011 г.; изм. и доп., бр. 2 и 80 от 2013 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0
+ ],
+ "headings": [],
+ "tail": [
+  5,
+  6
+ ],
+ "roles": {
+  "0": "header",
+  "5": "tail",
+  "6": "tail",
+  "1": "instruction",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "instruction"
+ },
+ "findings": [],
+ "blocks": 7,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§единствен",
+   "level": 0,
+   "block": 1,
+   "text": "Параграф единствен. В § 2, ал. 2 от преходните и заключителните разпоредби се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§единствен.1",
+     "level": 1,
+     "block": 2,
+     "text": "1. В т. 1 думите „31 декември 2014 г.“ се заменят с „31 декември 2015 г.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "31 декември 2014 г.",
+      "31 декември 2015 г."
+     ],
+     "target": null
+    },
+    {
+     "id": "§единствен.2",
+     "level": 1,
+     "block": 3,
+     "text": "2. В т. 4 думите „31 декември 2016 г.“ се заменят с „31 декември 2017 г.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "31 декември 2016 г.",
+      "31 декември 2017 г."
+     ],
+     "target": null
+    },
+    {
+     "id": "§единствен.3",
+     "level": 1,
+     "block": 4,
+     "text": "3. В т. 5 думите „31 декември 2018 г.“ се заменят с „31 декември 2019 г.“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "31 декември 2018 г.",
+      "31 декември 2019 г."
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  }
+ ]
+}

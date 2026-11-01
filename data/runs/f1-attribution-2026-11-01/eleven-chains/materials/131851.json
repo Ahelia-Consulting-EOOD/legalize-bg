@@ -1,0 +1,44 @@
+{
+ "material": 131851,
+ "title": "Постановление № 240 от 8 ноември 2018 г. за одобряване на допълнителни разходи/трансфери за 2018 г.",
+ "issue": "94/2018",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата по чл. 1, ал. 1 да се увеличат разходи"
+  },
+  {
+   "block": 11,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Със сумата 320 000 лв. да се увеличат показателите по"
+  },
+  {
+   "block": 12,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. (1) Със сумата по чл. 1, ал. 3 да се увеличат разходи"
+  },
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Главният секретар на Министерския съвет, председателя"
+  },
+  {
+   "block": 15,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 585,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

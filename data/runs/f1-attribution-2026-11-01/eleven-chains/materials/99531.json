@@ -1,0 +1,40 @@
+{
+ "material": 99531,
+ "title": "Постановление № 361 от 15 декември 2015 г. за приемане на Правилник за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство",
+ "issue": "100/2015",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 10,
+  "title": "ПРАВИЛНИК"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство, приет с Постановление № 196 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    75,
+    2005
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n"
+   ],
+   "flags": [],
+   "repeal": true,
+   "note": "the corpus holds pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n (promulgated 94/2018); the material cites бр. 75/2005",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 144,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

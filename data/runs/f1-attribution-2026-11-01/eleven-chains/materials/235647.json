@@ -1,0 +1,78 @@
+{
+ "material": 235647,
+ "title": "Наредба за изменение и допълнение на Наредба № 1 от 14.03.2017 г. за регулиране на цените на електрическата енергия",
+ "issue": "52/2025",
+ "section": "Комисия за енергийно и водно регулиране",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 1 от 14.03.2017 г. за регулиране на цените на електрическата енергия",
+   "cited_promulgation": [
+    25,
+    2017
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§23",
+   "cited_title": "Наредба № 3 от 21 март 2013 г. за лицензиране на дейностите в енергетиката",
+   "cited_promulgation": [
+    33,
+    2013
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-3-ot-21-mart-2013-g-za-litsenzirane-na-deynostite-v-energetikata",
+   "candidates": [
+    "naredba-3-ot-21-mart-2013-g-za-litsenzirane-na-deynostite-v-energetikata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    33,
+    2013
+   ]
+  },
+  {
+   "scope": "§24",
+   "cited_title": "Наредба № 1 от 14.03.2017 г. за регулиране на цените на електрическата енергия",
+   "cited_promulgation": [
+    41,
+    2024
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": true,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 52,
+ "signs": 28,
+ "quoted_blocks": 54,
+ "findings": [],
+ "tokens_instructions": 4552,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

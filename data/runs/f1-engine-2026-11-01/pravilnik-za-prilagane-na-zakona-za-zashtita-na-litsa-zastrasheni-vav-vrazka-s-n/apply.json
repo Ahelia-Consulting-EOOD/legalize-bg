@@ -1,0 +1,31 @@
+{
+ "act": "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n",
+ "materials": [
+  {
+   "material": 147261,
+   "issue": "31/2020",
+   "operations": 10,
+   "body_after_sha256": "87fcef87d4272c04855f5ba805d2ef2d57caedaf5b35dc8871a649827afa990e"
+  },
+  {
+   "material": 165363,
+   "issue": "100/2021",
+   "operations": 148,
+   "body_after_sha256": "24a6924eab0f1a82bc256f2301a332414000423111dfbb2dcdd5bd10ad6770da"
+  }
+ ],
+ "operations_by_kind": {
+  "no_text_change": 27,
+  "insert_provision": 18,
+  "renumber": 4,
+  "replace_provision": 17,
+  "insert_words": 4,
+  "replace_words": 76,
+  "delete_words": 6,
+  "replace_heading": 2,
+  "repeal": 4
+ },
+ "unexplained_lexbg_issues": [],
+ "applied_sha256": "24a6924eab0f1a82bc256f2301a332414000423111dfbb2dcdd5bd10ad6770da",
+ "applied_at": "2026-11-01T12:15:04+00:00"
+}

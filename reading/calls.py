@@ -84,6 +84,16 @@ def task_set_id(task_files: list) -> str:
     return h.hexdigest()[:12]
 
 
+def task_set_id_of(tasks: list[dict]) -> str:
+    """The task-set id the files of ``tasks`` would have once written by the run driver (same bytes, same names)."""
+    import hashlib
+    h = hashlib.sha256()
+    for t in sorted(tasks, key=lambda t: f"{t['task']:04d}.json"):
+        h.update(f"{t['task']:04d}.json".encode()); h.update(b"\0")
+        h.update(json.dumps(t, ensure_ascii=False, separators=(",", ":")).encode("utf-8")); h.update(b"\0")
+    return h.hexdigest()[:12]
+
+
 def decode_entries(entries) -> list:
     """Compact or long entries to the long form the validator reads; a non-list is returned as is."""
     if not isinstance(entries, list):

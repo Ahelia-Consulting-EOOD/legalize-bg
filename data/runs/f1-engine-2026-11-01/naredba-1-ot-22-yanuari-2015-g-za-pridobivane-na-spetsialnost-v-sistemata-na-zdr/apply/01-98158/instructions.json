@@ -1,0 +1,696 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+ "target_title": "Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2015
+  ],
+  "issues": [
+   [
+    7,
+    2015
+   ]
+  ],
+  "text": "(ДВ, бр. 7 от 2015 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА ЗДРАВЕОПАЗВАНЕТО",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [
+  83
+ ],
+ "tail": [
+  86,
+  87
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "86": "tail",
+  "87": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "instruction",
+  "5": "quoted",
+  "6": "instruction",
+  "7": "instruction",
+  "8": "instruction",
+  "9": "instruction",
+  "10": "instruction",
+  "11": "instruction",
+  "12": "instruction",
+  "13": "instruction",
+  "14": "instruction",
+  "15": "instruction",
+  "16": "quoted",
+  "17": "instruction",
+  "18": "instruction",
+  "19": "instruction",
+  "20": "instruction",
+  "21": "instruction",
+  "22": "instruction",
+  "23": "instruction",
+  "24": "instruction",
+  "25": "instruction",
+  "26": "quoted",
+  "27": "instruction",
+  "28": "instruction",
+  "29": "quoted",
+  "30": "instruction",
+  "31": "instruction",
+  "32": "instruction",
+  "33": "quoted",
+  "34": "instruction",
+  "35": "instruction",
+  "36": "instruction",
+  "37": "instruction",
+  "38": "quoted",
+  "39": "quoted",
+  "40": "quoted",
+  "41": "instruction",
+  "42": "instruction",
+  "43": "instruction",
+  "44": "quoted",
+  "45": "instruction",
+  "46": "quoted",
+  "47": "continuation",
+  "48": "continuation",
+  "49": "continuation",
+  "50": "continuation",
+  "51": "continuation",
+  "52": "continuation",
+  "53": "continuation",
+  "54": "continuation",
+  "55": "continuation",
+  "56": "continuation",
+  "57": "continuation",
+  "58": "continuation",
+  "59": "continuation",
+  "60": "continuation",
+  "61": "continuation",
+  "62": "continuation",
+  "63": "continuation",
+  "64": "continuation",
+  "65": "continuation",
+  "66": "continuation",
+  "67": "continuation",
+  "68": "continuation",
+  "69": "continuation",
+  "70": "continuation",
+  "71": "continuation",
+  "72": "continuation",
+  "73": "continuation",
+  "74": "continuation",
+  "75": "continuation",
+  "76": "continuation",
+  "77": "continuation",
+  "78": "continuation",
+  "79": "continuation",
+  "80": "continuation",
+  "81": "continuation",
+  "82": "quoted",
+  "83": "heading",
+  "84": "instruction",
+  "85": "instruction"
+ },
+ "findings": [],
+ "blocks": 88,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 8, ал. 2, т. 5 след цифрата „1“ се добавя „или ал. 4“, а цифрите „4“ и „5“ се заменят съответно с „5“ и „6“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "1",
+    "или ал. 4",
+    "4",
+    "5",
+    "5",
+    "6"
+   ],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 3,
+   "text": "§ 2. В чл. 11 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 4,
+     "text": "1. Създава се ал. 4:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      5
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 6,
+     "text": "2. Досегашната ал. 4 става ал. 5 и в нея след думите „неклинична специалност“ се поставя запетая и се добавя „обучението за придобиване на специалност „Обща медицина“ и на специалност за лица с професионална квалификация „лекар по дентална медицина“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "неклинична специалност",
+      "Обща медицина",
+      "лекар по дентална медицина"
+     ],
+     "target": null
+    },
+    {
+     "id": "§2.3",
+     "level": 1,
+     "block": 7,
+     "text": "3. Досегашната ал. 5 става ал. 6.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 8,
+   "text": "§ 3. В чл. 12, ал. 1 след цифрата „1“ се добавя „или ал. 4“, а след думите „неклинична специалност“ се поставя запетая и се добавя „на специалност „Обща медицина“ и на специалност за лица с професионална квалификация „лекар по дентална медицина“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "1",
+    "или ал. 4",
+    "неклинична специалност",
+    "Обща медицина",
+    "лекар по дентална медицина"
+   ],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 9,
+   "text": "§ 4. В чл. 14 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§4.1",
+     "level": 1,
+     "block": 10,
+     "text": "1. В ал. 1:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§4.1.а",
+       "level": 2,
+       "block": 11,
+       "text": "а) в основния текст след цифрата „1“ се добавя „или ал. 4“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "1",
+        "или ал. 4"
+       ],
+       "target": null
+      },
+      {
+       "id": "§4.1.б",
+       "level": 2,
+       "block": 12,
+       "text": "б) в т. 3 след думите „договори по“ се добавя „чл. 11, ал. 4 или“.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "договори по",
+        "чл. 11, ал. 4 или"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§4.2",
+     "level": 1,
+     "block": 13,
+     "text": "2. В ал. 7 след думата „специалност“ се поставя запетая и се добавя „по специалност „Обща медицина“ или по специалност за лица с професионална квалификация „лекар по дентална медицина“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "специалност",
+      "Обща медицина",
+      "лекар по дентална медицина"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 14,
+   "text": "§ 5. В чл. 15 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§5.1",
+     "level": 1,
+     "block": 15,
+     "text": "1. Създава се нова ал. 5:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      16
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§5.2",
+     "level": 1,
+     "block": 17,
+     "text": "2. Досегашната ал. 5 става ал. 6.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 18,
+   "text": "§ 6. В чл. 17 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§6.1",
+     "level": 1,
+     "block": 19,
+     "text": "1. В ал. 1 думите „лекар по дентална медицина, специализант по…“ се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "лекар по дентална медицина, специализант по…"
+     ],
+     "target": null
+    },
+    {
+     "id": "§6.2",
+     "level": 1,
+     "block": 20,
+     "text": "2. В ал. 4 думите „лекарите по дентална медицина“ се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "лекарите по дентална медицина"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 21,
+   "text": "§ 7. В чл. 18 се правят следните допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§7.1",
+     "level": 1,
+     "block": 22,
+     "text": "1. В ал. 1 след думата „специалности“ се поставя запетая и се добавя „по специалност „Обща медицина“ и по специалности за лица с професионална квалификация „лекар по дентална медицина“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "специалности",
+      "Обща медицина",
+      "лекар по дентална медицина"
+     ],
+     "target": null
+    },
+    {
+     "id": "§7.2",
+     "level": 1,
+     "block": 23,
+     "text": "2. В ал. 3 след думата „подават“ се добавя „лечебните заведения по чл. 5, ал. 2, т. 2, получили положителна акредитационна оценка за обучение по специалност „Обща медицина“ и по специалности за лица с професионална квалификация „лекар по дентална медицина“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "подават",
+      "Обща медицина",
+      "лекар по дентална медицина"
+     ],
+     "target": null
+    },
+    {
+     "id": "§7.3",
+     "level": 1,
+     "block": 24,
+     "text": "3. В ал. 5 след думата „специалности“ се поставя запетая и се добавя „по специалност „Обща медицина“ и по специалности за лица с професионална квалификация „лекар по дентална медицина“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "специалности",
+      "Обща медицина",
+      "лекар по дентална медицина"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 25,
+   "text": "§ 8. В чл. 20, ал. 1 се създава изречение второ:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    26
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 27,
+   "text": "§ 9. В чл. 21 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§9.1",
+     "level": 1,
+     "block": 28,
+     "text": "1. Създава се нова ал. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      29
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§9.2",
+     "level": 1,
+     "block": 30,
+     "text": "2. Досегашните ал. 3 и 4 стават съответно ал. 4 и 5.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 31,
+   "text": "§ 10. В чл. 28 думите „по чл. 14, ал. 2“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "по чл. 14, ал. 2"
+   ],
+   "target": null
+  },
+  {
+   "id": "§11",
+   "level": 0,
+   "block": 32,
+   "text": "§ 11. В чл. 41 ал. 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    33
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§12",
+   "level": 0,
+   "block": 34,
+   "text": "§ 12. В чл. 42 след думата „разрешено“ се добавя „дългосрочно или“, а думата „бежанците“ се заменя с „лицата с предоставен статут на бежанец, хуманитарен статут или с предоставено право на убежище“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "разрешено",
+    "дългосрочно или",
+    "бежанците",
+    "лицата с предоставен статут на бежанец, хуманитарен статут или с предоставено право на убежище"
+   ],
+   "target": null
+  },
+  {
+   "id": "§13",
+   "level": 0,
+   "block": 35,
+   "text": "§ 13. В чл. 46, ал. 1 след думата „разрешено“ се добавя „дългосрочно или“, а думата „бежанците“ се заменя с „лицата с предоставен статут на бежанец, хуманитарен статут или с предоставено право на убежище“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "разрешено",
+    "дългосрочно или",
+    "бежанците",
+    "лицата с предоставен статут на бежанец, хуманитарен статут или с предоставено право на убежище"
+   ],
+   "target": null
+  },
+  {
+   "id": "§14",
+   "level": 0,
+   "block": 36,
+   "text": "§ 14. В преходните и заключителните разпоредби се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§14.1",
+     "level": 1,
+     "block": 37,
+     "text": "1. Създава се § 1а:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      38,
+      39,
+      40
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§14.2",
+     "level": 1,
+     "block": 41,
+     "text": "2. В § 7:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§14.2.а",
+       "level": 2,
+       "block": 42,
+       "text": "а) досегашният текст става ал. 1;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§14.2.б",
+       "level": 2,
+       "block": 43,
+       "text": "б) създава се ал. 2:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        44
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§15",
+   "level": 0,
+   "block": 45,
+   "text": "§ 15. В приложение № 1 към чл. 1, ал. 2 раздел II „Специалности за лица с професионална квалификация „лекар по дентална медицина“ се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    46,
+    82
+   ],
+   "continuation": [
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    55,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81
+   ],
+   "inline_quotes": [
+    "лекар по дентална медицина"
+   ],
+   "target": null
+  },
+  {
+   "id": "§16",
+   "level": 0,
+   "block": 84,
+   "text": "§ 16. Специализантите, които към момента на влизане в сила на тази наредба се обучават за придобиване на специалност „Обща медицина“ или за придобиване на специалности за лица с професионална квалификация „лекар по дентална медицина“, довършват обучението си по реда и при условията, при които са приети.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Обща медицина",
+    "лекар по дентална медицина"
+   ],
+   "target": null
+  },
+  {
+   "id": "§17",
+   "level": 0,
+   "block": 85,
+   "text": "§ 17. Наредбата е съгласувана с министъра на образованието и науката и с министъра на финансите.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  }
+ ]
+}

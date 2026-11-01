@@ -1,0 +1,29 @@
+{
+ "material": 144148,
+ "title": "Постановление № 354 от 19 декември 2019 г. за одобряване на вътрешнокомпенсирани промени на утвърдените разходи по области на политики/бюджетни програми по бюджета на Министерството на външните работи за 2019 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 7,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 16,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Заместник министър-председателят по правосъдната рефо"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 13: item 2 after 0 under Чл.1"
+  }
+ ],
+ "tokens_instructions": 475,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

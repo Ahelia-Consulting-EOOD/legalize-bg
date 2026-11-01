@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import re
 
-from .splitter import Block
+from .splitter import Block, text_with_joins
 
 HEADING_PREFIX = {
     "title": "# ",
@@ -28,7 +28,7 @@ _SIGN = re.compile(r"^(§\s*\d+[а-яa-z]?\.|Параграф\s+единстве
 JOIN_PREVIOUS = {"continuation"}
 # a heading line that is only a number, e.g. "Глава първа." or "Раздел I.", takes the name line that follows
 # (the number may take several words: "Глава двадесет и първа.", "Глава петдесет и шеста "а".")
-NUMBER_LINE = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+(?:\s+[а-я]+){0,3}(\s*\"[а-я]\")?\.?$")
+NUMBER_LINE = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+(?:\s+[а-я]+){0,3}(\s*[\"„][а-я][\"“])?\.?$")   # „Глава втора „а““ too
 # the second line of a provisions heading: "КЪМ ЗАКОНА ЗА ИЗМЕНЕНИЕ …"
 _KAM = re.compile(r"^(КЪМ|Към|към)\s")
 _HEADING_WORD = re.compile(r"^(Част|Дял|Глава|Раздел|Подраздел|Допълнителн|Преходни|Заключителни|Приложение)")
@@ -54,7 +54,8 @@ def assemble_lines(blocks: list[Block], smap: dict[int, dict]) -> tuple[list[tup
     pending_title: tuple[str, int] | None = None
     last_label: str | None = None
     numbered_run = False   # the current heading line began as a number line: a third line of the same heading joins it too
-    for b in blocks:
+    for b0 in blocks:
+        b = Block(b0.i, text_with_joins(b0), b0.hint) if getattr(b0, "joins", None) else b0   # the run-together words spaced
         e = smap.get(b.i)
         label = e["label"] if e else "unknown"
         if label == "drop":

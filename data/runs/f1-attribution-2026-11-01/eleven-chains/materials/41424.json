@@ -1,0 +1,79 @@
+{
+ "material": 41424,
+ "title": "Закон за изменение и допълнение на Закона за местните данъци и такси",
+ "issue": "98/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за местните данъци и такси",
+   "cited_promulgation": [
+    117,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mestnite-danatsi-i-taksi",
+   "candidates": [
+    "zakon-za-mestnite-danatsi-i-taksi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    117,
+    1997
+   ]
+  },
+  {
+   "scope": "§28",
+   "cited_title": "Данъчно-осигурителния процесуален кодекс",
+   "cited_promulgation": [
+    105,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "danachno-osiguritelen-protsesualen-kodeks",
+   "candidates": [
+    "danachno-osiguritelen-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2005
+   ]
+  },
+  {
+   "scope": "§29",
+   "cited_title": "Закона за туризма",
+   "cited_promulgation": [
+    56,
+    2002
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-turizma"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-turizma (promulgated 30/2013); the material cites бр. 56/2002",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 64,
+ "signs": 30,
+ "quoted_blocks": 40,
+ "findings": [],
+ "tokens_instructions": 3702,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

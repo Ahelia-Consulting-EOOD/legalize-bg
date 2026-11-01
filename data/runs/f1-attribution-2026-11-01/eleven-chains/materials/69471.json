@@ -1,0 +1,455 @@
+{
+ "material": 69471,
+ "title": "Закон за изменение и допълнение на Закона за устройство на територията",
+ "issue": "82/2012",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за устройство на територията",
+   "cited_promulgation": [
+    1,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvo-na-teritoriyata",
+   "candidates": [
+    "zakon-za-ustroystvo-na-teritoriyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    1,
+    2001
+   ]
+  },
+  {
+   "scope": "§130",
+   "cited_title": "Закона за безопасно използване на ядрената енергия",
+   "cited_promulgation": [
+    63,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-bezopasno-izpolzvane-na-yadrenata-energiya",
+   "candidates": [
+    "zakon-za-bezopasno-izpolzvane-na-yadrenata-energiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    63,
+    2002
+   ]
+  },
+  {
+   "scope": "§131",
+   "cited_title": "Закона за водите",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vodite",
+   "candidates": [
+    "zakon-za-vodite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§132",
+   "cited_title": "Закона за горите",
+   "cited_promulgation": [
+    19,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-gorite",
+   "candidates": [
+    "zakon-za-gorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2011
+   ]
+  },
+  {
+   "scope": "§133",
+   "cited_title": "Закона за гражданското въздухоплаване",
+   "cited_promulgation": [
+    94,
+    1972
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-grazhdanskoto-vazduhoplavane",
+   "candidates": [
+    "zakon-za-grazhdanskoto-vazduhoplavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    94,
+    1972
+   ]
+  },
+  {
+   "scope": "§134",
+   "cited_title": "Закона за държавната собственост",
+   "cited_promulgation": [
+    44,
+    1996
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-darzhavnata-sobstvenost",
+   "candidates": [
+    "zakon-za-darzhavnata-sobstvenost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    44,
+    1996
+   ]
+  },
+  {
+   "scope": "§135",
+   "cited_title": "Закона за електронните съобщения",
+   "cited_promulgation": [
+    41,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnite-saobshteniya",
+   "candidates": [
+    "zakon-za-elektronnite-saobshteniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    41,
+    2007
+   ]
+  },
+  {
+   "scope": "§136",
+   "cited_title": "Закона за енергетиката",
+   "cited_promulgation": [
+    107,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-energetikata",
+   "candidates": [
+    "zakon-za-energetikata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    107,
+    2003
+   ]
+  },
+  {
+   "scope": "§137",
+   "cited_title": "Закона за здравето",
+   "cited_promulgation": [
+    70,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdraveto",
+   "candidates": [
+    "zakon-za-zdraveto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2004
+   ]
+  },
+  {
+   "scope": "§138",
+   "cited_title": "Закона за Камарата на строителите",
+   "cited_promulgation": [
+    108,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kamarata-na-stroitelite",
+   "candidates": [
+    "zakon-za-kamarata-na-stroitelite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    108,
+    2006
+   ]
+  },
+  {
+   "scope": "§139",
+   "cited_title": "Закона за камарите на архитектите и инженерите в инвестиционното проектиране",
+   "cited_promulgation": [
+    20,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kamarite-na-arhitektite-i-inzhenerite-v-investitsionnoto-proektirane",
+   "candidates": [
+    "zakon-za-kamarite-na-arhitektite-i-inzhenerite-v-investitsionnoto-proektirane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    2003
+   ]
+  },
+  {
+   "scope": "§140",
+   "cited_title": "Закона за културното наследство",
+   "cited_promulgation": [
+    19,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kulturnoto-nasledstvo",
+   "candidates": [
+    "zakon-za-kulturnoto-nasledstvo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2009
+   ]
+  },
+  {
+   "scope": "§141",
+   "cited_title": "Закона за лечебните растения",
+   "cited_promulgation": [
+    29,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lechebnite-rasteniya",
+   "candidates": [
+    "zakon-za-lechebnite-rasteniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    29,
+    2000
+   ]
+  },
+  {
+   "scope": "§142",
+   "cited_title": "Закона за насърчаване на инвестициите",
+   "cited_promulgation": [
+    97,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060",
+   "candidates": [
+    "zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    97,
+    1997
+   ]
+  },
+  {
+   "scope": "§143",
+   "cited_title": "Закона за ограничаване на административното регулиране и административния контрол върху стопанската дейност",
+   "cited_promulgation": [
+    55,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ogranichavane-na-administrativnoto-regulirane-i-administrativniya-kontr",
+   "candidates": [
+    "zakon-za-ogranichavane-na-administrativnoto-regulirane-i-administrativniya-kontr"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    55,
+    2003
+   ]
+  },
+  {
+   "scope": "§144",
+   "cited_title": "Закона за опазване на околната среда",
+   "cited_promulgation": [
+    91,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-opazvane-na-okolnata-sreda",
+   "candidates": [
+    "zakon-za-opazvane-na-okolnata-sreda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2002
+   ]
+  },
+  {
+   "scope": "§145",
+   "cited_title": "Закона за регионалното развитие",
+   "cited_promulgation": [
+    50,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-regionalnoto-razvitie",
+   "candidates": [
+    "zakon-za-regionalnoto-razvitie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    50,
+    2008
+   ]
+  },
+  {
+   "scope": "§146",
+   "cited_title": "Закона за управление на етажната собственост",
+   "cited_promulgation": [
+    6,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-upravlenie-na-etazhnata-sobstvenost",
+   "candidates": [
+    "zakon-za-upravlenie-na-etazhnata-sobstvenost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    6,
+    2009
+   ]
+  },
+  {
+   "scope": "§147",
+   "cited_title": "Закона за устройството и застрояването на Столичната община",
+   "cited_promulgation": [
+    106,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvoto-i-zastroyavaneto-na-stolichnata-obshtina",
+   "candidates": [
+    "zakon-za-ustroystvoto-i-zastroyavaneto-na-stolichnata-obshtina"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    106,
+    2006
+   ]
+  },
+  {
+   "scope": "§148",
+   "cited_title": "Закона за устройството на Черноморското крайбрежие",
+   "cited_promulgation": [
+    48,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie",
+   "candidates": [
+    "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2007
+   ]
+  }
+ ],
+ "instructions": 476,
+ "signs": 149,
+ "quoted_blocks": 364,
+ "findings": [
+  {
+   "block": 395,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 89. В чл. 177 се правят следните измен' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 866,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '5. териториите и акваториите с ограничит' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 868: letter б) after none) under §148.6"
+  }
+ ],
+ "tokens_instructions": 39086,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

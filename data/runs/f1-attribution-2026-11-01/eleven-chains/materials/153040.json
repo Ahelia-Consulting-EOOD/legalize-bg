@@ -1,0 +1,40 @@
+{
+ "material": 153040,
+ "title": "Наредба за изменение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "issue": "93/2020",
+ "section": "Министерство на вътрешните работи",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+   "cited_promulgation": [
+    60,
+    2014
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli",
+   "candidates": [
+    "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    60,
+    2014
+   ]
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 49,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

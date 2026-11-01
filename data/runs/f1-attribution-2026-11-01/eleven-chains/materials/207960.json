@@ -1,0 +1,40 @@
+{
+ "material": 207960,
+ "title": "Наредба за изменение и допълнение на Наредба № 69 от 2006 г. за изискванията за Добрата производствена практика при производство на ветеринарномедицински продукти и активни субстанции",
+ "issue": "18/2024",
+ "section": "Министерство на земеделието и храните",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 69 от 2006 г. за изискванията за Добрата производствена практика при производство на ветеринарномедицински продукти и активни субстанции",
+   "cited_promulgation": [
+    49,
+    2006
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-69-ot-16-may-2006-g-za-iziskvaniyata-za-dobrata-proizvodstvena-praktika-",
+   "candidates": [
+    "naredba-69-ot-16-may-2006-g-za-iziskvaniyata-za-dobrata-proizvodstvena-praktika-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    49,
+    2006
+   ]
+  }
+ ],
+ "instructions": 5,
+ "signs": 3,
+ "quoted_blocks": 826,
+ "findings": [],
+ "tokens_instructions": 68683,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

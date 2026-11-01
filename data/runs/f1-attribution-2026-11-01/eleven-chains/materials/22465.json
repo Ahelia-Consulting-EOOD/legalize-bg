@@ -1,0 +1,40 @@
+{
+ "material": 22465,
+ "title": "Закон за допълнение на Закона за морските пространства, вътрешните водни пътища и пристанищата на Република България",
+ "issue": "47/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за морските пространства, вътрешните водни пътища и пристанищата на Република България",
+   "cited_promulgation": [
+    12,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-morskite-prostranstva-vatreshnite-vodni-patishta-i-pristanishtata-na-re",
+   "candidates": [
+    "zakon-za-morskite-prostranstva-vatreshnite-vodni-patishta-i-pristanishtata-na-re"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    12,
+    2000
+   ]
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 86,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

@@ -1,0 +1,56 @@
+{
+ "material": 246446,
+ "title": "Постановление № 177 от 8 октомври 2026 г. за изменение и допълнение на Устройствения правилник на Агенцията по обществени поръчки, приет с Постановление № 53 на Министерския съвет от 2017 г.",
+ "issue": "94/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Агенцията по обществени поръчки",
+   "cited_promulgation": [
+    25,
+    2017
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki",
+   "candidates": [
+    "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    25,
+    2017
+   ]
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Постановление № 215 на Министерския съвет от 1999 г. за приемане на Устройствен правилник на Министерството на финансите и за преобразуване и закриване на административни структури към министъра на финансите",
+   "cited_promulgation": [
+    104,
+    1999
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Министерството на финансите и за преобразуване и закриване на административни структури към министъра на финансите')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 16,
+ "signs": 7,
+ "quoted_blocks": 8,
+ "findings": [],
+ "tokens_instructions": 1119,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

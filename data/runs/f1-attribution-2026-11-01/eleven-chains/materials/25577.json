@@ -1,0 +1,40 @@
+{
+ "material": 25577,
+ "title": "Закон за изменение на Закона за отбраната и въоръжените сили на Република България",
+ "issue": "82/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за отбраната и въоръжените сили на Република България",
+   "cited_promulgation": [
+    35,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya",
+   "candidates": [
+    "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    35,
+    2009
+   ]
+  }
+ ],
+ "instructions": 7,
+ "signs": 7,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 463,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

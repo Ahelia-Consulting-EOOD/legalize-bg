@@ -1,0 +1,572 @@
+{
+ "slug": "semeen-kodeks",
+ "run": "f1-engine-2026-11-01",
+ "route": "history",
+ "state": "stopped",
+ "entries": [
+  {
+   "step": "chain",
+   "input_sha256": "fd684db2152aad875c47917ab4e7ff246ff68f8baf9ede0d101a25b377f0d4e9",
+   "outputs_sha256": "707ac287be6df3b9d225697d77298f109c5b3f8548144bac03746caedbd55db9",
+   "outcome": "done",
+   "detail": "16 material(s) change the act after бр. 47/2009; lex.bg names 16 issue(s), 1 unexplained (101/2019), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:52:21+00:00",
+   "ended": "2026-11-01T10:53:02+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "input_sha256": "484ed56130caaf05219b39e0e538c1df01ef0c1057188c5c481202bc097281bf",
+   "outputs_sha256": "ca7ac626476bf8992177c05086de0b98e189121ef560afb6551aec63179e4e7d",
+   "outcome": "done",
+   "detail": "material 22498 of бр. 47/2009 (cached), sha256 a11059eab8cd",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:53:02+00:00",
+   "ended": "2026-11-01T10:53:02+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "85ce54abe99c4c661acaf188bc7ca4dc8bb61d0be26687fffc9697f5d81c1c3f",
+   "outputs_sha256": "0065e95ca11ea1250b2cd3b88f1e1288f1bb0e690e319bfade7ec66ced81e531",
+   "outcome": "done",
+   "detail": "822 blocks, 29 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:53:02+00:00",
+   "ended": "2026-11-01T10:53:02+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "fdba547ecd5ac971fe8c5e513525d1484005de969bbe3b20fb5bc19fa3d8334a",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 29 of 29 tasks unanswered; 4 labeller call(s) to make: aa140e45335b-0000-0007 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/calls/round0/aa140e45335b-0000-0007.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/maps/round0/aa140e45335b-0000-0007.json; aa140e45335b-0008-0015 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/calls/round0/aa140e45335b-0008-0015.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/maps/round0/aa140e45335b-0008-0015.json; aa140e45335b-0016-0023 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/calls/round0/aa140e45335b-0016-0023.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/maps/round0/aa140e45335b-0016-0023.json; aa140e45335b-0024-0028 (5 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/calls/round0/aa140e45335b-0024-0028.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/maps/round0/aa140e45335b-0024-0028.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:53:02+00:00",
+   "ended": "2026-11-01T10:53:02+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "1ac594f5804ea7d15f729def6d8ad679815033f42a5935b276fca16c2e65ed93",
+   "outputs_sha256": "210ce239e1e94b4d029da4c887fb042ff58c2e4f9928ba5ef7755fc0e1dcbaba",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:54+00:00",
+   "ended": "2026-11-01T10:56:54+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "435bb5b3142c0faede3cd33f54db50e92c494ed8b0291aaf097c05c2f2aee91c",
+   "outputs_sha256": "3d3ba5a80ac6ba61b4e7b962732bd38a437399b5b8e8242ac84045f41876029c",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/ladder.json",
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:54+00:00",
+   "ended": "2026-11-01T10:56:54+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "244bb96459cf61f672569406f1afb4d0026611012a9059d1f26856432b64770c",
+   "outputs_sha256": "04c10dd8e55117c960f5746147ef6f6b2c1c8de93d038570ee2fa6aba0f8e287",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:54+00:00",
+   "ended": "2026-11-01T10:56:54+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "91f3f684cc2f41f17d0cff88de60e129dd63157323e4af7f2f7e328bfd38b58b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 16 (бр. 74/2009, 25033): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:54+00:00",
+   "ended": "2026-11-01T10:56:54+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "052860d8d0fecf6633ac6d6e0c2388e2dd4f0bc0f1ad2fd7327c747e602ec767",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 16 (бр. 74/2009, 25033): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:47+00:00",
+   "ended": "2026-11-01T11:02:47+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5675d507ab4aae764023aa543209311e0fbfb7069813f2309169a33275dd77ab",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 16 (бр. 82/2009, 25652): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:04:53+00:00",
+   "ended": "2026-11-01T11:04:53+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "fb8cdc1e8189bd9dac4872d4aa26d04aaa318ba0c1f805325734c3868cee880f",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 16 (бр. 82/2009, 25652): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:57+00:00",
+   "ended": "2026-11-01T11:08:57+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "63318da30671192ad3fae1d74221803aacb08e7e519c8c03450e80c7fbb5d269",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 16 (бр. 82/2009, 25652): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/02-25652/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:10:20+00:00",
+   "ended": "2026-11-01T11:10:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "9fdb323c0f198858012bd964e331e37af3269831e7cea227b9d890611937718a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 16 (бр. 98/2010, 41376): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/03-41376/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/03-41376/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/03-41376/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:13:41+00:00",
+   "ended": "2026-11-01T11:13:41+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c0c4801525477ca13ed638be73418453c136577d209cbe458e3ed23539f951ae",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 16 (бр. 100/2010, 41671): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/04-41671/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/04-41671/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/04-41671/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:17:34+00:00",
+   "ended": "2026-11-01T11:17:34+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "eb1d96e2bbe0b9b5e2f4562c183c5b9d8023628fecc9f171e77dcfff0680cf60",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 41671 (бр. 100/2010): the answer is refused: §23 insert_provision: the new text opens as text None, the address names article '127а'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/04-41671/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:26:00+00:00",
+   "ended": "2026-11-01T11:26:00+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "854f5d868941ea275944289f3a2d6ae1612b543be57aa7670ea5e06a0b99317c",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 5 of 16 (бр. 100/2010, 41709): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:34:07+00:00",
+   "ended": "2026-11-01T11:34:07+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "f8b962cdada899c88fc154bb67cd098f714635d2c342b4ef2f3daecb2b4fde66",
+   "outputs_sha256": "210ce239e1e94b4d029da4c887fb042ff58c2e4f9928ba5ef7755fc0e1dcbaba",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:03+00:00",
+   "ended": "2026-11-01T11:38:03+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "92bf1e36bee86062ce51a80004272f2adef0d3fec72b67f567836a597e7e3dad",
+   "outputs_sha256": "3d3ba5a80ac6ba61b4e7b962732bd38a437399b5b8e8242ac84045f41876029c",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/ladder.json",
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:03+00:00",
+   "ended": "2026-11-01T11:38:03+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "d32a80b1c8ec061e67a636d26bed3fc54b8ab84e0bedd42dd6a7840a38d53af4",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 41709 (бр. 100/2010): the answer is refused: §2 outside_set: outside the closed set of operations: After the words q1 („изцяло с лично имущество“) a full stop is placed and the rest of the alinea's text to its end is deleted; the deleted tail is not quoted in the instruction, so no delete_words reference can name it.",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:03+00:00",
+   "ended": "2026-11-01T11:38:03+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "2ad50515733cfdfc274e4ee2661a9f00c703353f4537b8bfb8b38092b2fd474e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 5 of 16 (бр. 100/2010, 41709): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:34+00:00",
+   "ended": "2026-11-01T11:42:34+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "bdebf32312cdcc59e5624b218d1bf7fbc7ba0e79bafc95b2ef7045434f502747",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 41709 (бр. 100/2010): the answer is refused: §4.2 insert_words: the anchor 'Социално подпомагане“' occurs 0 times",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:18+00:00",
+   "ended": "2026-11-01T11:51:18+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "d947af8180fd8677ecace7c27006c5b2677c81235977c97f9399d3c67739e5e8",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 16 (бр. 74/2009, 25033): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:00:00+00:00",
+   "ended": "2026-11-01T12:00:00+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "77cdea117072da71430ebb221c89a794a5d0a7e72b7bd76e1cc29ab67f556ae5",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 41709 (бр. 100/2010): the answer is refused: §5 delete_words: the words 'и' occur 13 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/05-41709/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:19+00:00",
+   "ended": "2026-11-01T12:04:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "610e19e424186a29e06b04c66537ace94ae3a5d4cdd107132da548ae96fcf051",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 16 (бр. 74/2009, 25033): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/01-25033/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:08+00:00",
+   "ended": "2026-11-01T12:10:08+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "610e19e424186a29e06b04c66537ace94ae3a5d4cdd107132da548ae96fcf051",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 6 of 16 (бр. 82/2012, 69470): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/06-69470/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/06-69470/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/06-69470/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:03+00:00",
+   "ended": "2026-11-01T12:15:03+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "3903b4d3087dfbf9ec4b9526498cc00621387a0fe7eb4238aed866570d641118",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 7 of 16 (бр. 68/2013, 77659): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/07-77659/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/07-77659/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/07-77659/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:19+00:00",
+   "ended": "2026-11-01T12:19:19+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "704fb22bfb8dcaf5554012519acbf45650f6ddd0815132e86aa13b905db89694",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 8 of 16 (бр. 74/2016, 107550): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/08-107550/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/08-107550/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/08-107550/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:23:19+00:00",
+   "ended": "2026-11-01T12:23:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "a2f4cac8ef099cfbacfb81fdb01d3f202313d11f6eea30a17217b61d9b4f75a7",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 9 of 16 (бр. 103/2017, 121172): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/09-121172/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/09-121172/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/09-121172/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:32:37+00:00",
+   "ended": "2026-11-01T12:32:37+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "75d277109a2730456da9c78f4f7ee9f7f162965ac1ffc1a4245028c9a8f16c53",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 10 of 16 (бр. 24/2019, 135546): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/10-135546/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/10-135546/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/10-135546/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:35:13+00:00",
+   "ended": "2026-11-01T12:35:13+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "4244896d14cc4dbf627b5a56086841cd710380a10431319818c41d2f23fe2e06",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 135546 (бр. 24/2019): the answer is refused: §2.1 replace_words: the words 'приемно семейство, в специализирана институция, посочени от дирекция „Социално подпомагане“ или му се предоставя социална услуга – резидентен тип' do not occur in '(7) (Изм. и доп. - ДВ, бр. 100 от 2010 г.) По изкл'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/10-135546/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:38:06+00:00",
+   "ended": "2026-11-01T12:38:07+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "1116a884c903376041abf84b87f14842da40ab058a66650f8d859b9135688db7",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 135546 (бр. 24/2019): the answer is refused: §2.4 replace_words: the words 'ръководителят на специализираната институция, в която е настанено детето, както и на институцията, предоставяща социалната услуга – резидентен тип' do not occur in '(2) (Изм. - ДВ, бр. 98 от 2010 г., Изм. и доп. - Д'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/10-135546/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:41:44+00:00",
+   "ended": "2026-11-01T12:41:45+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "dc19dd90ac6c7257f2941a0e4f43ff8e7fddd3de6b474b4e8df3c7a69fa001cc",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 11 of 16 (бр. 103/2020, 154109): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/11-154109/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/11-154109/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/11-154109/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:45:05+00:00",
+   "ended": "2026-11-01T12:45:05+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "650c381d824cdd4d4e997d6a2b4765e6b201528249cf61c35d98b2a89b899c1d",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 12 of 16 (бр. 67/2023, 197941): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:47:11+00:00",
+   "ended": "2026-11-01T12:47:12+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "a570a8ea8b4d024cfc56e9e2132dec04f93e99a651fd2c23644c10ba395bae9e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: the new text opens as text None, the address names article '127б'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:49:17+00:00",
+   "ended": "2026-11-01T12:49:18+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "ee59e0722b8ccaa315fb397da015f0fc780d31aa95aeb1142e52a7b3b626a0f9",
+   "outputs_sha256": "ce7569af0360377bf008cafdd6123368df5b922bc952415d0116f391062a6522",
+   "outcome": "done",
+   "detail": "822 blocks, 29 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:51+00:00",
+   "ended": "2026-11-01T13:09:51+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "fe9748afc9d6fb2de1eee03a9c5e2b0dc80b3bc63747cd8f92b1e4f73cbcc888",
+   "outputs_sha256": "210ce239e1e94b4d029da4c887fb042ff58c2e4f9928ba5ef7755fc0e1dcbaba",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:51+00:00",
+   "ended": "2026-11-01T13:09:52+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "59e1782a98de78b8d0e4b11cc7f545dd15b19a0d02f0eaf24d733c1dc3fbf79e",
+   "outputs_sha256": "3d3ba5a80ac6ba61b4e7b962732bd38a437399b5b8e8242ac84045f41876029c",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/ladder.json",
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:52+00:00",
+   "ended": "2026-11-01T13:09:52+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "4b2c8da615aafdeb17ab924985c8992b34d0edd32c880a5852bec2400de3512a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: the new text opens as text None, the address names article '127б'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:52+00:00",
+   "ended": "2026-11-01T13:09:52+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "629e956efe5df4c0d064c896b231a3304b49f1f445e124a0631f505dbef4d0f0",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: 'чл. 127б' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:01+00:00",
+   "ended": "2026-11-01T13:12:02+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "3cb41f902875510f58819b1d43e9aac8a9ad7ad982e044b71ab3d24b04308dab",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 13 of 16 (бр. 106/2023, 201987): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:07+00:00",
+   "ended": "2026-11-01T13:15:08+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "919ddfc8dc71665a8ac9729640df95041789a5bceb0346f438f04faeb27c17b6",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: 'чл. 84, ал. 6' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:19:16+00:00",
+   "ended": "2026-11-01T13:19:17+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ac4961ae6724a67d61637e478b01fcd294ac5a77b0a98fbf0a0b7d88cbd64c04",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: 'чл. 84, ал. 6' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:20:41+00:00",
+   "ended": "2026-11-01T13:20:42+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "26d28cc6e8e335ee829484badf9499b195daa8bd4639924be6944a145c29283e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: 'чл. 84, ал. 6' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:24:12+00:00",
+   "ended": "2026-11-01T13:24:13+00:00"
+  }
+ ],
+ "step": "apply",
+ "stopped_at": "apply",
+ "exception": "material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: 'чл. 84, ал. 6' names 2 place(s) in the act",
+ "case_file": "docs/cases/semeen-kodeks.md"
+}

@@ -1,0 +1,95 @@
+{
+ "material": 132672,
+ "title": "Правилник за отменяне на Правилника за организацията и дейността на регионалните съвети за развитие, Правилника за устройството и дейността на дирекциите за техническо съдействие, координация и управление на регионални програми и планове и Правилника за организацията и дейността на областните съвети за развитие",
+ "issue": "102/2018",
+ "section": "Министерство на регионалното развитие и благоустройството",
+ "kind": "regulation",
+ "instruction_kind": "repeal",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за организацията и дейността на регионалните съвети за развитие",
+   "cited_promulgation": [
+    79,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": true,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§1.1",
+   "cited_title": "Правилника за организацията и дейността на регионалните съвети за развитие",
+   "cited_promulgation": [
+    79,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§1.2",
+   "cited_title": "Правилника за устройството и дейността на дирекциите за техническо съдействие, координация и управление на регионални програми и планове",
+   "cited_promulgation": [
+    29,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§1.3",
+   "cited_title": "Правилника за организацията и дейността на областните съвети за развитие",
+   "cited_promulgation": [
+    95,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 5,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 154,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

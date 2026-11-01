@@ -1,0 +1,41 @@
+{
+ "material": 41995,
+ "title": "Решение № 879 от 16 декември 2010 г. за допълнение на Решение № 56 на Министерския съвет от 1991 г. за определяне 16 април за Ден на Конституцията",
+ "issue": "100/2010",
+ "section": "Министерски съвет",
+ "kind": "decision",
+ "instruction_kind": "amending",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Решение № 56 на Министерския съвет от 1991 г. за определяне 16 април за Ден на Конституцията На основание чл. 154, ал. 2 от Кодекса на труда Създава се т. 3:",
+   "cited_promulgation": [
+    21,
+    1991
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a решение, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 0,
+ "signs": 0,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "quoted_before_instruction",
+   "detail": "„3. Обявява Деня на Конституцията за професионален празник н"
+  }
+ ],
+ "tokens_instructions": 0,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

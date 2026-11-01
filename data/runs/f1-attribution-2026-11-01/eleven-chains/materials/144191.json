@@ -1,0 +1,38 @@
+{
+ "material": 144191,
+ "title": "Постановление № 370 от 20 декември 2019 г. за приемане на Тарифа за таксите, които се събират за преминаване и ползване на републиканската пътна мрежа",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 9,
+  "title": "ТАРИФА"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§единствен",
+   "cited_title": "Тарифата за таксите, които се събират от Агенция „Пътна инфраструктура“, приета с Постановление № 219 на Министерския съвет от 2008 г.",
+   "cited_promulgation": [
+    79,
+    2008
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 180,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

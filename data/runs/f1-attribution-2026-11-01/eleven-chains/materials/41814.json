@@ -1,0 +1,38 @@
+{
+ "material": 41814,
+ "title": "Поправка в Наредбата за изменение и допълнение на Наредба № 54 от 2006 г. за водене на регистрите по чл. 16 от Закона за рибарството и аквакултурите (ДВ, бр. 82 от 2010 г.)",
+ "issue": "98/2010",
+ "section": "Министерство на земеделието и храните",
+ "kind": "corrigendum",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 54 от 2006 г. за водене на регистрите по чл. 16 от Закона за рибарството и аквакултурите 10527",
+   "cited_promulgation": [
+    82,
+    2010
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 0,
+ "signs": 0,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 0,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

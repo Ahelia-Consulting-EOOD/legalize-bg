@@ -1,0 +1,12 @@
+{"material": 148171, "operations": [
+{"id": "§1", "kind": "replace_words", "address": "чл. 2", "old": "q1", "new": "q2"},
+{"id": "§2", "kind": "no_text_change"},
+{"id": "§2.1", "kind": "no_text_change"},
+{"id": "§2.1.а", "kind": "insert_words", "address": "чл. 7, ал. 1, т. 5", "anchor": "q1", "where": "after", "new": "q2"},
+{"id": "§2.1.б", "kind": "outside_set", "address": "чл. 7, ал. 1, т. 6", "note": "After the words q1 (ал. 3) in т. 6 a comma is placed and then q2 (т. 2) is added, so the text reads 'по чл. 164, ал. 3, т. 2 ЗМВР'; insert_words cannot carry the comma, which is not a quoted segment and does not stand as a character on the instruction line."},
+{"id": "§2.2", "kind": "replace_words", "address": "чл. 7, ал. 6", "old": "q1", "new": "q2"},
+{"id": "§2.3", "kind": "insert_words", "address": "чл. 7, ал. 7", "where": "end", "new": "q1"},
+{"id": "§3", "kind": "insert_provision", "address": "чл. 7а", "blocks": [9, 10], "after": "чл. 7"},
+{"id": "§4", "kind": "delete_words", "address": "чл. 11, ал. 1", "old": "q1"},
+{"id": "§5", "kind": "no_text_change"}
+]}

@@ -1,0 +1,40 @@
+{
+ "material": 25883,
+ "title": "Закон за изменение на Закона за електронната търговия",
+ "issue": "82/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за електронната търговия",
+   "cited_promulgation": [
+    51,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-elektronnata-targoviya",
+   "candidates": [
+    "zakon-za-elektronnata-targoviya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    51,
+    2006
+   ]
+  }
+ ],
+ "instructions": 4,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 144,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

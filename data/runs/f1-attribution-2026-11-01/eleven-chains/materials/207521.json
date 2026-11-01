@@ -1,0 +1,35 @@
+{
+ "material": 207521,
+ "title": "Правилник за устройството и дейността на Информационния център на Министерството на отбраната",
+ "issue": "18/2024",
+ "section": "Министерство на отбраната",
+ "kind": "regulation",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Закона за изменение и допълнение на Закона за държавния служител",
+   "cited_promulgation": [
+    24,
+    2006
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 6,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 562,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

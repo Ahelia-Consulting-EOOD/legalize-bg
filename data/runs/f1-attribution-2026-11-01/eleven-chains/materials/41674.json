@@ -1,0 +1,40 @@
+{
+ "material": 41674,
+ "title": "Закон за изменение и допълнение на Закона за пряко участие на гражданите в държавната власт и местното самоуправление",
+ "issue": "100/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за пряко участие на гражданите в държавната власт и местното самоуправление",
+   "cited_promulgation": [
+    44,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-pryako-uchastie-na-grazhdanite-v-darzhavnata-vlast-i-mestnoto-samouprav",
+   "candidates": [
+    "zakon-za-pryako-uchastie-na-grazhdanite-v-darzhavnata-vlast-i-mestnoto-samouprav"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    44,
+    2009
+   ]
+  }
+ ],
+ "instructions": 12,
+ "signs": 6,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 1007,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

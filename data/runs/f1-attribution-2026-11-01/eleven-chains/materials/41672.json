@@ -1,0 +1,56 @@
+{
+ "material": 41672,
+ "title": "Закон за изменение и допълнение на Закона за подземните богатства",
+ "issue": "100/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за подземните богатства",
+   "cited_promulgation": [
+    23,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-podzemnite-bogatstva",
+   "candidates": [
+    "zakon-za-podzemnite-bogatstva"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    23,
+    1999
+   ]
+  },
+  {
+   "scope": "§108",
+   "cited_title": "Закона за изменение и допълнение на Закона за подземните богатства",
+   "cited_promulgation": [
+    70,
+    2008
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 275,
+ "signs": 109,
+ "quoted_blocks": 126,
+ "findings": [],
+ "tokens_instructions": 17390,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

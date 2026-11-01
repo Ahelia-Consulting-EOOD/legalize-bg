@@ -1,0 +1,40 @@
+{
+ "material": 77658,
+ "title": "Закон за изменение и допълнение на Закона за корпоративното подоходно облагане",
+ "issue": "68/2013",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за корпоративното подоходно облагане",
+   "cited_promulgation": [
+    105,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-korporativnoto-podohodno-oblagane",
+   "candidates": [
+    "zakon-za-korporativnoto-podohodno-oblagane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2006
+   ]
+  }
+ ],
+ "instructions": 5,
+ "signs": 5,
+ "quoted_blocks": 12,
+ "findings": [],
+ "tokens_instructions": 866,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

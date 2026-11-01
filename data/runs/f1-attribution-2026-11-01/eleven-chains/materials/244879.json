@@ -1,0 +1,120 @@
+{
+ "material": 244879,
+ "title": "Постановление № 84 от 16 юли 2026 г. за изменение и допълнение на нормативни актове на Министерския съвет",
+ "issue": "66/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Постановление № 70 на Министерския съвет от 2010 г. за координация при управлението на средствата от Европейския съюз и за създаване на Съвет за координация при управлението на средствата от Европейския съюз",
+   "cited_promulgation": [
+    31,
+    2010
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 70 на Министерския съвет от 2010 г. за координация при управлението на средствата от Европейския съюз и за създаване на Съвет за координация при управлението на средствата от Европейския съюз')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Постановление № 302 на Министерския съвет от 2022 г. за създаване на комитети за наблюдение на Споразумението за партньорство на Република България и на програмите, съфинансирани от ЕФСУ, за програмен период 2021 – 2027 г.",
+   "cited_promulgation": [
+    79,
+    2022
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 302 на Министерския съвет от 2022 г. за създаване на комитети за наблюдение на Споразумението за партньорство на Република България и на програмите, съфинансирани от ЕФСУ, за програмен период 2021 – 2027 г.')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Постановление № 23 на Министерския съвет от 2023 г. за определяне на детайлни правила за предоставяне на безвъзмездна финансова помощ по програмите, финансирани от Европейските фондове при споделено управление, за програмен период 2021 – 2027 г.",
+   "cited_promulgation": [
+    16,
+    2023
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 23 на Министерския съвет от 2023 г. за определяне на детайлни правила за предоставяне на безвъзмездна финансова помощ по програмите, финансирани от Европейските фондове при споделено управление, за програмен период 2021 – 2027 г.')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Постановление № 86 на Министерския съвет от 2023 г. за определяне на национални правила за допустимост на разходите по програмите, финансирани от Европейските фондове при споделено управление, за програмен период 2021 – 2027 г.",
+   "cited_promulgation": [
+    49,
+    2023
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 86 на Министерския съвет от 2023 г. за определяне на национални правила за допустимост на разходите по програмите, финансирани от Европейските фондове при споделено управление, за програмен период 2021 – 2027 г.')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§5",
+   "cited_title": "Постановление № 22 на Министерския съвет от 2026 г. за възлагане на дейности на „Българска банка за развитие“ ЕАД",
+   "cited_promulgation": [
+    14,
+    2026
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 22 на Министерския съвет от 2026 г. за възлагане на дейности на „Българска банка за развитие“ ЕАД')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Наредбата за посочване на нередности, представляващи основания за извършване на финансови корекции, и процентните показатели за определяне размера на финансовите корекции по реда на Закона за управление на средствата от Европейските фондове при споделено управление, приета с Постановление № 57 на Министерския съвет от 2017 г.",
+   "cited_promulgation": [
+    27,
+    2017
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-posochvane-na-nerednosti-predstavlyavashti-osnovaniya-za-izvarshvane-",
+   "candidates": [
+    "naredba-za-posochvane-na-nerednosti-predstavlyavashti-osnovaniya-za-izvarshvane-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    27,
+    2017
+   ]
+  }
+ ],
+ "instructions": 52,
+ "signs": 7,
+ "quoted_blocks": 18,
+ "findings": [],
+ "tokens_instructions": 3410,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

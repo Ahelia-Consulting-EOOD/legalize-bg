@@ -1,0 +1,44 @@
+{
+ "material": 246252,
+ "title": "Постановление № 166 от 29 септември 2026 г. за одобряване на допълнителни разходи по бюджета на Министерството на правосъдието за 2026 г.",
+ "issue": "91/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 13,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата 1 806 868 евро да се увеличат разходит"
+  },
+  {
+   "block": 19,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на правосъдието да извърши съответните про"
+  },
+  {
+   "block": 20,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 15: item 1 after 7 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 882,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

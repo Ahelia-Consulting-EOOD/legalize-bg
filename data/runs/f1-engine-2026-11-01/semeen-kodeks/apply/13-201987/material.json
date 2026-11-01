@@ -1,0 +1,13 @@
+{
+ "material": 201987,
+ "issue": "106/2023",
+ "material_sha256": "6d218aaf41dfa49746cb3cf38ef6af5d439d125760ed2cf8fb554bb72c51e5e8",
+ "body_before_sha256": "4d5c0ac9b8a8a48aaec85e6eeab5f100a53dec2f273865a177ac50c5c483fcc9",
+ "task_sha256": "c857f12346c9cce9c3bac0e6011435ced3191408ed0b97ef855f132008b943eb",
+ "scopes": [
+  "title"
+ ],
+ "findings": [],
+ "engine": "35",
+ "task_core": true
+}

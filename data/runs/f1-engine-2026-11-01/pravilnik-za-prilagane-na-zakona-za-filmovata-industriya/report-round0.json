@@ -1,0 +1,284 @@
+{
+ "slug": "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya",
+ "round": 0,
+ "blocks": 521,
+ "sections": 14,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 117,
+   "kind": "reassembly",
+   "detail": "the assembled line differs from its blocks"
+  },
+  {
+   "block": 519,
+   "kind": "low_confidence",
+   "detail": "Gazette's pointer that the annexes are printed elsewhere (issue PDF); editorial_note or annex_row"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 132,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '2.проектът засяга негов пряк и'"
+  },
+  {
+   "block": 502,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 503,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 504,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 505,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 506,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 507,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 508,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 509,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 510,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 511,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 512,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 513,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 514,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 515,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 516,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  },
+  {
+   "block": 517,
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
+  }
+ ],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {
+  "reassembly": 1,
+  "low_confidence": 1
+ },
+ "source_finding_kinds": {
+  "malformed_head": 1,
+  "annex_in_pdf": 16
+ },
+ "labels": {
+  "drop": 29,
+  "title": 3,
+  "part_heading": 10,
+  "article_head": 69,
+  "item": 168,
+  "alinea": 130,
+  "chapter_heading": 26,
+  "section_heading": 16,
+  "letter": 43,
+  "provisions_heading": 2,
+  "paragraph_sign": 7,
+  "annex_heading": 17,
+  "editorial_note": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ПОСТАНОВЛЕНИЕ № 274 ОТ 6 ДЕКЕМВРИ 2018 Г.",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 1,
+   "text": "за приемане на Правилник за прилагане на Закона за филмовата индустрия",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 2,
+   "text": "МИНИСТЕРСКИЯТ СЪВЕТ",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 3,
+   "text": "ПОСТАНОВИ:",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 4,
+   "text": "Член единствен. Приема Правилник за прилагане на Закона за филмовата индустрия.",
+   "note": "adopting decree of the Council of Ministers, not the act"
+  },
+  {
+   "block": 5,
+   "text": "Заключителни разпоредби",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 6,
+   "text": "§ 1. В Устройствения правилник на Изпълнителна агенция „Национален филмов център",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 7,
+   "text": "1. В чл. 3, т. 4 след думата „разпространението“ се поставя запетая и се добавя ",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 8,
+   "text": "2. В чл. 4, ал. 1 думите „бюджетни кредити“ се заменят с „бюджет“.",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 9,
+   "text": "3. В чл. 5, ал. 5, т. 15 след думата „разпространението“ се поставя запетая и се",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 10,
+   "text": "4. Глава трета с чл. 14 – 19 се отменя.",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 11,
+   "text": "§ 2. В Тарифата за таксите, които се събират от Изпълнителна агенция „Национален",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 12,
+   "text": "1. В чл. 3:",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 13,
+   "text": "а) се създава нова т. 3:",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 14,
+   "text": "„3. за разпространение на български филм и за филм, създаден при условията на ко",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 15,
+   "text": "б) досегашната т. 3 става т. 4 и се изменя така:",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 16,
+   "text": "„4. за показ на български филм и на филм, създаден при условията на копродукция ",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 17,
+   "text": "в) досегашната т. 4 става т. 5;",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 18,
+   "text": "г) създава се т. 6:",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 19,
+   "text": "„6. за извършване на оценка на филми от техническа комисия – 400 лв.“",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 20,
+   "text": "2. В чл. 6, т. 3:",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 21,
+   "text": "а) буква „а“ се изменя така:",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 22,
+   "text": "„а) за разглеждане на проекта от художествена комисия или от комисия за разпрост",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 23,
+   "text": "б) създава се буква „в“:",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 24,
+   "text": "„в) за оценяване на филм от техническа комисия – при подаване на заявка.“",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 25,
+   "text": "§ 3. Постановлението влиза в сила от 5 декември 2018 г.",
+   "note": "adopting decree's final provisions, not the act"
+  },
+  {
+   "block": 26,
+   "text": "Министър-председател: Бойко Борисов",
+   "note": "signature of the adopting decree"
+  },
+  {
+   "block": 27,
+   "text": "Главен секретар на Министерския съвет: Веселин Даков",
+   "note": "signature of the adopting decree"
+  },
+  {
+   "block": 520,
+   "text": "10876",
+   "note": "Gazette material number after the act, not part of the act"
+  }
+ ],
+ "note": "an earlier task set was replaced: answers of round 1 moved to round1-stale-150955136019",
+ "next_round_tasks": 2,
+ "diff_lines": 12590
+}

@@ -1,0 +1,40 @@
+{
+ "material": 244909,
+ "title": "Постановление № 88 от 17 юли 2026 г. за изменение и допълнение на Правилника за прилагане на Закона за експортния контрол на продукти, свързани с отбраната, и на изделия и технологии с двойна употреба, приет с Постановление № 205 на Министерския съвет от 2011 г.",
+ "issue": "66/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за експортния контрол на продукти, свързани с отбраната, и на изделия и технологии с двойна употреба",
+   "cited_promulgation": [
+    57,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-eksportniya-kontrol-na-produkti-svarzani-s-o",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-eksportniya-kontrol-na-produkti-svarzani-s-o"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    57,
+    2011
+   ]
+  }
+ ],
+ "instructions": 72,
+ "signs": 32,
+ "quoted_blocks": 69,
+ "findings": [],
+ "tokens_instructions": 6575,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

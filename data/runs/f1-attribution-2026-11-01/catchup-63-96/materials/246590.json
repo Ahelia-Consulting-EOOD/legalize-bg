@@ -1,0 +1,29 @@
+{
+ "material": 246590,
+ "title": "Постановление № 199 от 14 октомври 2026 г. за одобряване на допълнителен трансфер по бюджета на Община Бургас за 2026 г.",
+ "issue": "96/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Средствата по чл. 1 да се осигурят за сметка на предв"
+  },
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 149,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

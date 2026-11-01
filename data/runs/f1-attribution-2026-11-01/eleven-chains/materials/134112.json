@@ -1,0 +1,60 @@
+{
+ "material": 134112,
+ "title": "Постановление № 9 от 18 януари 2019 г. за изменение и допълнение на нормативни актове на Министерския съвет",
+ "issue": "7/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Правилникa за легализациите, заверките и преводите на документи и други книжа",
+   "cited_promulgation": [
+    73,
+    1958
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "pravilnik-za-legalizatsiite-zaverkite-i-prevodite-na-dokumenti-i-drugi-knizha-za",
+   "candidates": [
+    "pravilnik-za-legalizatsiite-zaverkite-i-prevodite-na-dokumenti-i-drugi-knizha-za"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (fuzzy); the cited promulgation names the act",
+   "act_promulgation": [
+    73,
+    1958
+   ]
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Тарифа № 3 за таксите, които се събират за консулско обслужване в системата на Министерството на външните работи по Закона за държавните такси",
+   "cited_promulgation": [
+    3,
+    2008
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 414,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

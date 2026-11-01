@@ -1,0 +1,80 @@
+{
+ "material": 41709,
+ "title": "Закон за изменение и допълнение на Семейния кодекс",
+ "issue": "100/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  },
+  {
+   "scope": "§19",
+   "cited_title": "Българските граждани с обичайно местопребиваване в чужбина, които са вписани в регистъра по чл. 57б, ал. 1 от отменения Семеен кодекс",
+   "cited_promulgation": [
+    41,
+    1985
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§23",
+   "cited_title": "Кодекса на международното частно право",
+   "cited_promulgation": [
+    42,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+   "candidates": [
+    "kodeks-na-mezhdunarodnoto-chastno-pravo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    42,
+    2005
+   ]
+  }
+ ],
+ "instructions": 45,
+ "signs": 24,
+ "quoted_blocks": 14,
+ "findings": [],
+ "tokens_instructions": 2483,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

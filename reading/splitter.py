@@ -51,6 +51,7 @@ class Block:
     i: int
     text: str
     hint: str
+    joins: list[int] = field(default_factory=list)   # offsets where the HTML ran two words together across inline elements („паспорт“|„на“)
 
 
 @dataclass
@@ -148,20 +149,48 @@ def split_lexbg(raw: bytes) -> SplitAct:
     return SplitAct(blocks=blocks, sections=_sections(blocks), dropped_by_splitter=dropped, has_spine=has_spine)
 
 
+_SEP = "\u2063"   # marks a span boundary where two letters meet with no whitespace between; never part of a block's text
+
+
+def _split_joins(raw: str) -> tuple[str, list[int]]:
+    text, joins = [], []
+    for ch in raw:
+        if ch == _SEP:
+            joins.append(len(text))
+        else:
+            text.append(ch)
+    return "".join(text), joins
+
+
+def text_with_joins(b: "Block") -> str:
+    """The block's text with a space at every recorded run-together boundary: what the act's lines carry."""
+    if not b.joins:
+        return b.text
+    out, last = [], 0
+    for j in b.joins:
+        out.append(b.text[last:j]); out.append(" "); last = j
+    out.append(b.text[last:])
+    return " ".join("".join(out).split())
+
+
 def split_dv(html: str | bytes) -> SplitAct:
-    """Blocks of a Gazette material's content region: every character of it in exactly one block, nothing dropped."""
+    """Blocks of a Gazette material's content region: every character of it in exactly one block, nothing dropped. Where
+    the HTML runs two words together across inline elements („паспорт</span><span>на строежа“), the block's text keeps the
+    characters as served and ``joins`` records the boundary; ``text_with_joins`` inserts the space."""
     if isinstance(html, bytes):
         html = html.decode("utf-8")
     soup = BeautifulSoup(html, "lxml")
     region = dv_content_region(soup)
-    lines: list[tuple[str, str]] = []
+    lines: list[tuple[str, str, list[int]]] = []
     buf: list[str] = []
     cur_hint = ["DvText"]
 
     def flush() -> None:
-        text = _WS.sub(" ", "".join(buf)).strip()
+        raw = _WS.sub(" ", "".join(buf)).strip(" " + _SEP) if _SEP not in "".join(buf) else _WS.sub(" ", "".join(buf)).strip()
+        text, joins = _split_joins(raw)
+        text = text.strip()
         if text:
-            lines.append((text, cur_hint[0]))
+            lines.append((text, cur_hint[0], joins))
         buf.clear()
 
     def walk(node: Tag, hint: str) -> None:
@@ -179,13 +208,17 @@ def split_dv(html: str | bytes) -> SplitAct:
                     flush()
                     cur_hint[0] = prev
                 else:
+                    first = child.get_text()[:1]
+                    tail = "".join(buf)[-1:]
+                    if first.isalpha() and tail.isalpha():
+                        buf.append(_SEP)
                     walk(child, hint)
             elif type(child) is NavigableString:
                 buf.append(str(child))
 
     walk(region, "DvText")
     flush()
-    blocks = [Block(i, t, h) for i, (t, h) in enumerate(lines)]
+    blocks = [Block(i, t, h, j) for i, (t, h, j) in enumerate(lines)]
     has_spine = any(_ARTICLE_START.match(b.text) for b in blocks)
     return SplitAct(blocks=blocks, sections=_sections(blocks), dropped_by_splitter={}, has_spine=has_spine, source="dv")
 

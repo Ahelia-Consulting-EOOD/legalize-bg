@@ -1,0 +1,155 @@
+{
+ "material": 292,
+ "title": "Кодекс на международното частно право",
+ "issue": "42/2005",
+ "section": "Народно събрание",
+ "kind": "code",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Закона за защита на потребителите и за правилата за търговия",
+   "cited_promulgation": [
+    30,
+    1999
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Закона за задълженията и договорите",
+   "cited_promulgation": [
+    275,
+    1950
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-zadalzheniyata-i-dogovorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-zadalzheniyata-i-dogovorite (promulgated 2/1950); the material cites бр. 275/1950",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Търговския закон",
+   "cited_promulgation": [
+    48,
+    1991
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "targovski-zakon",
+   "candidates": [
+    "targovski-zakon"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    1991
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Гражданския процесуален кодекс",
+   "cited_promulgation": [
+    12,
+    1952
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "grazhdanski-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds grazhdanski-protsesualen-kodeks (promulgated 59/2007); the material cites бр. 12/1952",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§5",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    41,
+    1985
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds semeen-kodeks (promulgated 47/2009); the material cites бр. 41/1985",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Закона за юридическите лица с нестопанска цел",
+   "cited_promulgation": [
+    81,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-yuridicheskite-litsa-s-nestopanska-tsel",
+   "candidates": [
+    "zakon-za-yuridicheskite-litsa-s-nestopanska-tsel"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    81,
+    2000
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Кодекса на търговското корабоплаване",
+   "cited_promulgation": [
+    55,
+    1970
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g",
+   "candidates": [
+    "kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    55,
+    1970
+   ]
+  }
+ ],
+ "instructions": 17,
+ "signs": 7,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 986,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

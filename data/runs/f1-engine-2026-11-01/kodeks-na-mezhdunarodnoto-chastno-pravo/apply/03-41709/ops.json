@@ -1,0 +1,20 @@
+{
+ "material": 41709,
+ "issue": "100/2010",
+ "operations": [
+  {
+   "id": "§23",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 76, ал. 1",
+   "old": "по чл. 12, ал. 2 от Семейния кодекс",
+   "old_ref": "q1",
+   "new": "по чл. 6, ал. 2 от Семейния кодекс",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§23 replace_words: 1 replacement(s)"
+ ]
+}

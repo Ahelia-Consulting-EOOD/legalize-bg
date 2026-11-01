@@ -1,0 +1,71 @@
+{
+ "material": 154170,
+ "title": "Наредба за изменение и допълнение на Наредба № Н-28 от 2010 г. за критериите, условията и реда за атестиране на военнослужещите от Министерството на отбраната, структурите на пряко подчинение на министъра на отбраната и Българската армия",
+ "issue": "103/2020",
+ "section": "Министерство на отбраната",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № Н-28 от 2010 г. за критериите, условията и реда за атестиране на военнослужещите от Министерството на отбраната, структурите на пряко подчинение на министъра на отбраната и Българската армия",
+   "cited_promulgation": [
+    92,
+    2010
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-n-28-ot-5-noemvri-2010-g-za-kriteriite-usloviyata-i-reda-za-atestirane-n",
+   "candidates": [
+    "naredba-n-28-ot-5-noemvri-2010-g-za-kriteriite-usloviyata-i-reda-za-atestirane-n"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    92,
+    2010
+   ]
+  }
+ ],
+ "instructions": 31,
+ "signs": 21,
+ "quoted_blocks": 517,
+ "findings": [
+  {
+   "block": 45,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 13. Приложение № 2 към чл. 9, ал. 1, т' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 48,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 14. Приложение № 3 към чл. 9, ал. 1, т' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 51,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 15. Приложение № 4 към чл. 9, ал. 1, т' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 54,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 16. Приложение № 5 към чл. 9, ал. 1, т' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 57,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 17. Приложение № 6 към чл. 9, ал. 1, т' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 60,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 18. Създава се приложение № 7 към чл. ' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 12588,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

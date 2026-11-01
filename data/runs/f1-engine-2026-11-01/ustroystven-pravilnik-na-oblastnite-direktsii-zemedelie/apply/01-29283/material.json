@@ -1,0 +1,20 @@
+{
+ "material": 29283,
+ "issue": "9/2010",
+ "material_sha256": "246e703e4aaed741f8e7e4892080db2df9d9e025abd493442670aba8b7f9813e",
+ "body_before_sha256": "f1f07631552b67fb549df64e3ebf83d450954dff129af816cf233f589e04b2dd",
+ "task_sha256": "e7872713c8f130599f7e5d9c7d26abed787fd0f467c4d72fcc978531ddf4fe32",
+ "scopes": [
+  "title"
+ ],
+ "findings": [
+  {
+   "block": 86,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Заключителна разпоредба' is closed by the sequence, not by a mark"
+  }
+ ],
+ "engine": "35",
+ "task_core": true,
+ "answer_sha256": "ea451ad430251785a9751bda446537574b6dd9bfa319bdf5453d0e42ff1b9aba"
+}

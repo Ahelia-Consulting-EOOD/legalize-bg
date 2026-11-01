@@ -246,10 +246,21 @@ def test_collect_rebuilds_the_map_from_earlier_rounds(tmp_path, monkeypatch):
     assert subprocess.run([py, "reading/run.py", "collect", "--slug", slug, "--round", "1", "--out", str(run)], cwd=root, capture_output=True).returncode == 0
     m1 = json.loads((d / "map.json").read_text(encoding="utf-8"))
     assert all(v["label"] in ("title", "editorial_note") for v in m1.values())
-    # re-collect round 0: the round-1 labels are gone from the map, its answers set aside, its report removed
+    # re-collect round 0 on the same answers: the map holds round 0 alone, and round 1 keeps its answers and report, since
+    # the round-1 task set it answered is unchanged
     assert subprocess.run([py, "reading/run.py", "collect", "--slug", slug, "--round", "0", "--out", str(run)], cwd=root, capture_output=True).returncode == 0
     m0 = json.loads((d / "map.json").read_text(encoding="utf-8"))
     assert all(v["label"] in ("title", "unknown") for v in m0.values())
+    assert (d / "report-round1.json").exists() and list((d / "maps" / "round1").glob("*.json"))
+    # a changed round-0 answer changes the round-1 task set: its answers are set aside and its report removed
+    first = sorted((d / "maps" / "round0").glob("*.json"))[0]
+    changed = json.loads(first.read_text(encoding="utf-8"))
+    for e in changed:
+        if e["label"] == "unknown":
+            e["label"] = "continuation"
+            break
+    first.write_text(json.dumps(changed), encoding="utf-8")
+    assert subprocess.run([py, "reading/run.py", "collect", "--slug", slug, "--round", "0", "--out", str(run)], cwd=root, capture_output=True).returncode == 0
     assert not (d / "report-round1.json").exists()
     assert not list((d / "maps" / "round1").glob("*.json"))
 
@@ -719,3 +730,12 @@ def test_residue_is_sorted_into_rule_needed_and_labeller_unsure():
     assert got[2]["class"] == "labeller_unsure"
     assert got[3]["class"] == "rule_needed" and got[3]["labels"][1] == ["refused", "bad_number"]
     assert got[4]["class"] == "labeller_unsure" and got[4]["labels"] == [None, None, None]
+
+
+def test_the_task_set_id_of_unwritten_tasks_equals_the_id_of_their_files(tmp_path):
+    from reading import run as R
+    from reading.calls import task_set_id, task_set_id_of
+    tasks = [{"round": 1, "task": 3, "blocks": [1, 2], "text": "б"}, {"round": 1, "task": 1, "blocks": [0], "text": "а"}]
+    R._write_tasks(tmp_path, tasks)
+    assert task_set_id_of(tasks) == task_set_id(list((tmp_path / "tasks" / "round1").glob("*.json")))
+    assert task_set_id_of(tasks[:1]) != task_set_id_of(tasks)

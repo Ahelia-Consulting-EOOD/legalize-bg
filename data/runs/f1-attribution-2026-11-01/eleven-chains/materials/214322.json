@@ -1,0 +1,61 @@
+{
+ "material": 214322,
+ "title": "Закон за изменение и допълнение на Закона за устройството на Черноморското крайбрежие",
+ "issue": "39/2024",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за устройството на Черноморското крайбрежие",
+   "cited_promulgation": [
+    48,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie",
+   "candidates": [
+    "zakon-za-ustroystvoto-na-chernomorskoto-kraybrezhie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2007
+   ]
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за хората с увреждания",
+   "cited_promulgation": [
+    105,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-horata-s-uvrezhdaniya",
+   "candidates": [
+    "zakon-za-horata-s-uvrezhdaniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2018
+   ]
+  }
+ ],
+ "instructions": 26,
+ "signs": 13,
+ "quoted_blocks": 10,
+ "findings": [],
+ "tokens_instructions": 1465,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

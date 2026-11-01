@@ -1,0 +1,29 @@
+{
+ "material": 202096,
+ "title": "Постановление № 331 от 20 декември 2023 г. за одобряване на вътрешнокомпенсирани промени на утвърдените разходи по области на политики/бюджетни програми по бюджета на Министерството на здравеопазването за 2023 г.",
+ "issue": "106/2023",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 24,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 25,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Увеличава утвърдените с чл. 15, ал. 3 от Закона за дъ"
+  },
+  {
+   "block": 26,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на здравеопазването да извърши съответните"
+  }
+ ],
+ "tokens_instructions": 837,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

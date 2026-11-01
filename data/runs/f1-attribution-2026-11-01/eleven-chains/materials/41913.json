@@ -1,0 +1,24 @@
+{
+ "material": 41913,
+ "title": "Постановление № 302 от 14 декември 2010 г. за одобряване на допълнителни бюджетни кредити по бюджета на Министерството на вътрешните работи за 2010 г.",
+ "issue": "100/2010",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на финансите да извърши налагащите се от ч"
+  }
+ ],
+ "tokens_instructions": 310,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

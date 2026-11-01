@@ -1,0 +1,140 @@
+{
+ "material": 240167,
+ "title": "Закон за изменение и допълнение на Закона за данък върху добавената стойност",
+ "issue": "115/2025",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за данък върху добавената стойност",
+   "cited_promulgation": [
+    63,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danak-varhu-dobavenata-stoynost",
+   "candidates": [
+    "zakon-za-danak-varhu-dobavenata-stoynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    63,
+    2006
+   ]
+  },
+  {
+   "scope": "§64",
+   "cited_title": "Закона за въвеждане на еврото в Република България",
+   "cited_promulgation": [
+    70,
+    2024
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vavezhdane-na-evroto-v-republika-balgariya",
+   "candidates": [
+    "zakon-za-vavezhdane-na-evroto-v-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2024
+   ]
+  },
+  {
+   "scope": "§65",
+   "cited_title": "Закона за счетоводството",
+   "cited_promulgation": [
+    95,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-schetovodstvoto",
+   "candidates": [
+    "zakon-za-schetovodstvoto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    2015
+   ]
+  },
+  {
+   "scope": "§65.4",
+   "cited_title": "Закона за изменение и допълнение на Закона за счетоводството",
+   "cited_promulgation": [
+    72,
+    2024
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§67",
+   "cited_title": "Закона за независимия финансов одит и изразяването на сигурност по устойчивостта",
+   "cited_promulgation": [
+    95,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nezavisimiya-finansov-odit-i-izrazyavaneto-na-sigurnost-po-ustoychivost",
+   "candidates": [
+    "zakon-za-nezavisimiya-finansov-odit-i-izrazyavaneto-na-sigurnost-po-ustoychivost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    2016
+   ]
+  }
+ ],
+ "instructions": 166,
+ "signs": 69,
+ "quoted_blocks": 262,
+ "findings": [
+  {
+   "block": 446,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 68. Допълнителното обучение в признати' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 34: letter б) after none) under §9.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 99: item 5 after 0 under §22"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 111: letter б) after none) under §26.1"
+  }
+ ],
+ "tokens_instructions": 25019,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

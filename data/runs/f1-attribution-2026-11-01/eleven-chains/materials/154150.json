@@ -1,0 +1,40 @@
+{
+ "material": 154150,
+ "title": "Наредба за изменение и допълнение на Наредба № Н-2 от 2020 г. за утвърждаване на образци на заповед за изпълнение, заявление за издаване на заповед за изпълнение и други книжа във връзка със заповедното производство",
+ "issue": "103/2020",
+ "section": "Министерство на правосъдието",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № Н-2 от 2020 г. за утвърждаване на образци на заповед за изпълнение, заявление за издаване на заповед за изпълнение и други книжа във връзка със заповедното производство",
+   "cited_promulgation": [
+    15,
+    2020
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-n-2-ot-18-fevruari-2020-g-za-utvarzhdavane-na-obraztsi-na-zapoved-za-izp",
+   "candidates": [
+    "naredba-n-2-ot-18-fevruari-2020-g-za-utvarzhdavane-na-obraztsi-na-zapoved-za-izp"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    15,
+    2020
+   ]
+  }
+ ],
+ "instructions": 4,
+ "signs": 2,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 200,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

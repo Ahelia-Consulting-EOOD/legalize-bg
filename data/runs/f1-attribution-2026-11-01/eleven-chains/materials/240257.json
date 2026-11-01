@@ -1,0 +1,46 @@
+{
+ "material": 240257,
+ "title": "Наредба за изменение и допълнение на Наредба № Н-32 от 2011 г. за периодичните прегледи за проверка на техническата изправност на пътните превозни средства",
+ "issue": "115/2025",
+ "section": "Министерство на транспорта и съобщенията",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № Н-32 от 2011 г. за периодичните прегледи за проверка на техническата изправност на пътните превозни средства",
+   "cited_promulgation": [
+    104,
+    2011
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-n-32-ot-16-dekemvri-2011-g-za-periodichnite-pregledi-za-proverka-na-tehn",
+   "candidates": [
+    "naredba-n-32-ot-16-dekemvri-2011-g-za-periodichnite-pregledi-za-proverka-na-tehn"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    104,
+    2011
+   ]
+  }
+ ],
+ "instructions": 247,
+ "signs": 44,
+ "quoted_blocks": 63,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 128: letter ж) after д) under §22.1"
+  }
+ ],
+ "tokens_instructions": 8531,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

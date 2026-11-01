@@ -1,0 +1,56 @@
+{
+ "material": 107622,
+ "title": "Постановление № 239 от 13 септември 2016 г. за структурни промени в системата на здравеопазването",
+ "issue": "74/2016",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§3",
+   "cited_title": "Постановление № 256 на Министерския съвет от 2009 г. за приемане на Устройствен правилник на Министерството на здравеопазването",
+   "cited_promulgation": [
+    88,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Министерството на здравеопазването')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 7,
+ "signs": 5,
+ "quoted_blocks": 1,
+ "findings": [
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Центърът по чл. 1 се ръководи от директор, който заем"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Устройството и дейността на центъра по чл. 1 се урежд"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Общата численост на персонала на центъра по чл. 1 е 5"
+  },
+  {
+   "block": 10,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Разходите за създаването и осъществяването на дейност"
+  }
+ ],
+ "tokens_instructions": 630,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

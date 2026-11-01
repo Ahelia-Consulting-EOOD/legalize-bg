@@ -1,0 +1,21 @@
+{
+ "material": 245899,
+ "title": "Постановление № 141 от 10 септември 2026 г. за приемане на Наредба за Регистъра и издаване на решения по Механизма за корекция на въглеродните емисии на границите",
+ "issue": "85/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 7,
+  "title": "НАРЕДБА"
+ },
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 1,
+ "signs": 1,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 39,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

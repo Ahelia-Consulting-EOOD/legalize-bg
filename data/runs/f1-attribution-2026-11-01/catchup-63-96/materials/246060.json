@@ -1,0 +1,51 @@
+{
+ "material": 246060,
+ "title": "Постановление № 149 от 18 септември 2026 г. за изменение и допълнение на Наредбата за условията и реда за задължително застраховане в проектирането и строителството, приета с Постановление № 38 на Министерския съвет от 2004 г.",
+ "issue": "88/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за условията и реда за задължително застраховане в проектирането и строителството",
+   "cited_promulgation": [
+    17,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-usloviyata-i-reda-za-zadalzhitelno-zastrahovane-v-proektiraneto-i-str",
+   "candidates": [
+    "naredba-za-usloviyata-i-reda-za-zadalzhitelno-zastrahovane-v-proektiraneto-i-str"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    17,
+    2004
+   ]
+  }
+ ],
+ "instructions": 34,
+ "signs": 4,
+ "quoted_blocks": 3,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 38: item 4 after 6 under §2"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 714,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

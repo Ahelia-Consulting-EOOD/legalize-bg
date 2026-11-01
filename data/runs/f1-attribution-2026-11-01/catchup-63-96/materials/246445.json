@@ -1,0 +1,40 @@
+{
+ "material": 246445,
+ "title": "Наредба за изменение и допълнение на Наредба № 8121з-347 от 2014 г. за условията и реда за награждаване на служителите на Министерството на вътрешните работи",
+ "issue": "96/2026",
+ "section": "Министерство на вътрешните работи",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 8121з-347 от 2014 г. за условията и реда за награждаване на служителите на Министерството на вътрешните работи",
+   "cited_promulgation": [
+    67,
+    2014
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-8121z-347-ot-25-yuli-2014-g-za-usloviyata-i-reda-za-nagrazhdavane-na-slu",
+   "candidates": [
+    "naredba-8121z-347-ot-25-yuli-2014-g-za-usloviyata-i-reda-za-nagrazhdavane-na-slu"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    67,
+    2014
+   ]
+  }
+ ],
+ "instructions": 6,
+ "signs": 4,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 180,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

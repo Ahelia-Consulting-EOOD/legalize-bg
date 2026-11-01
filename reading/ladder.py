@@ -20,7 +20,7 @@ from .splitter import Block, SplitAct
 MAX_ROUNDS = 2
 NEIGHBOURS = 1
 # exceptions that describe the source, not a label: recorded as findings, never re-labelled
-SOURCE_FINDINGS = frozenset({"empty_section", "fragment", "article_gap", "sign_gap", "sign_start", "malformed_head", "alinea_gap", "item_gap"})
+SOURCE_FINDINGS = frozenset({"empty_section", "annex_in_pdf", "fragment", "article_gap", "sign_gap", "sign_start", "malformed_head", "alinea_gap", "item_gap"})
 # the source findings that are lost text: under D-076 (3), amending ruling 7 of D-072, they stop the write and
 # send the act to the exceptions list with the route "investigate" instead of being carried with the act
 LOST_TEXT = frozenset({"empty_section", "sign_start"})

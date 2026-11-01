@@ -58,10 +58,12 @@ STEP_RECORDS = "route-ledger"   # under the runs folder: one file per act, every
 # the known steps of each route, in order
 ROUTE_STEPS: dict[str, tuple[str, ...]] = {
     "whole_act_from_material": ("amendment_search", "fetch_material", "prepare", "label", "ladder", "content_check", "witnesses", "write"),
-    "history": ("engine",),                      # F1: not built; the route then continues through the checks and the write step
+    "history": ("chain", "fetch_material", "prepare", "label", "ladder", "content_check", "apply", "witnesses", "write"),   # F1: the engine
     "source_before_archive": ("source_decision",),  # S4: not built; the route then continues through the reading and the write step
     "investigate": ("investigate", "route_decision"),
 }
+# the placeholder step names routes carried before their steps were built: the case files that stopped at them stay valid
+HISTORIC_STEPS: dict[str, tuple[str, ...]] = {"history": ("engine",)}
 OUTCOMES = ("done", "unchanged", "pending", "stop")
 COMPLETED = ("done", "unchanged", "stop")
 STOP_STEPS_USED_UP = "the route's steps are used up without a committed act"
@@ -226,8 +228,7 @@ def run_step(ctx: Context, step: Step, ledger: dict | None = None) -> dict:
             raise RouteRefused(f"{ctx.slug}: step {step.name} already ran on these inputs ({h[:12]}) in run {e['run']} with outcome "
                                f"{e['outcome']}; a step never runs again on inputs it has already run on")
         if e["outcome"] == "pending":
-            raise RouteRefused(f"{ctx.slug}: step {step.name} is pending on these inputs ({h[:12]}) since run {e['run']}; "
-                               f"it runs again when its inputs change")
+            continue   # a pending step may run again on the same inputs: resumable, cheap, and its own records may have moved
         if e["outcome"] in ("running", "interrupted"):
             raise RouteRefused(f"{ctx.slug}: step {step.name} was interrupted on these inputs ({h[:12]}) in run {e['run']} "
                                f"(started {e['started']}); read the record before running it again")
@@ -307,7 +308,18 @@ def run_route(ctx: Context, steps: dict[str, Step], route: str | None = None,
                                        f"the run folder was altered, read the record before going on")
                 continue   # the result stands
             if e["outcome"] == "pending":
-                return _pending(ctx, ledger, name, e["detail"])
+                # a pending step runs again on the same inputs: it is resumable and cheap, and its own records (a material's
+                # record, a set-aside answer) may have moved since, which the inputs do not see (1 November 2026)
+                e = run_step(ctx, step, ledger)
+                if e["outcome"] == "pending":
+                    return _pending(ctx, ledger, name, e["detail"])
+                if e["outcome"] == "unchanged":
+                    return _stop(ctx, ledger, name, f"{STOP_UNCHANGED}: {name}")
+                if e["outcome"] == "stop":
+                    return _stop(ctx, ledger, name, e["detail"])
+                if e.get("committed"):
+                    return _committed(ctx, ledger, e)
+                continue
             if e["outcome"] in ("running", "interrupted"):
                 # the step died on these inputs: a stop the owner reads, never a blind rerun
                 return _stop(ctx, ledger, name, f"the step was interrupted in run {e['run']} (started {e['started']}); the record names it")
@@ -475,7 +487,7 @@ def check_case_file(path: Path, root: Path | None = None) -> list[str]:
     route = fm.get("route")
     if isinstance(route, str) and route not in sx.ROUTES:
         out.append(f"{path}: route {route!r} is not one of {sorted(sx.ROUTES)}")
-    elif isinstance(route, str) and isinstance(fm.get("stopped_at"), str) and fm["stopped_at"] not in ROUTE_STEPS[route]:
+    elif isinstance(route, str) and isinstance(fm.get("stopped_at"), str) and fm["stopped_at"] not in ROUTE_STEPS[route] and fm["stopped_at"] not in HISTORIC_STEPS.get(route, ()):
         out.append(f"{path}: stopped_at {fm['stopped_at']!r} is not a step of the route {route}")
     if isinstance(fm.get("exception"), str) and not fm["exception"].strip():
         out.append(f"{path}: the exception is empty")

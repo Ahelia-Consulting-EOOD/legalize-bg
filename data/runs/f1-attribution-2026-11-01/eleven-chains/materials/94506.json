@@ -1,0 +1,71 @@
+{
+ "material": 94506,
+ "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+ "issue": "37/2015",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "regulation",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "cited_promulgation": [
+    36,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist",
+   "candidates": [
+    "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    36,
+    2011
+   ]
+  }
+ ],
+ "instructions": 73,
+ "signs": 17,
+ "quoted_blocks": 43,
+ "findings": [
+  {
+   "block": 58,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '3. Алинея 5 се изменя така:' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 60: item 1 after 3 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 69: item 4 after 9 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 72: item 1 after 5 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 76: item 6 after 2 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 5770,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

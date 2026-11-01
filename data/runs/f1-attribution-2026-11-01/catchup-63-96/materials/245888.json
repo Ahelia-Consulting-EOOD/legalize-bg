@@ -1,0 +1,193 @@
+{
+ "material": 245888,
+ "title": "Закон за изменение и допълнение на Закона за защита на потребителите",
+ "issue": "87/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за защита на потребителите",
+   "cited_promulgation": [
+    99,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-potrebitelite",
+   "candidates": [
+    "zakon-za-zashtita-na-potrebitelite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    99,
+    2005
+   ]
+  },
+  {
+   "scope": "§75",
+   "cited_title": "Закона за предоставяне на финансови услуги от разстояние",
+   "cited_promulgation": [
+    105,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-predostavyane-na-finansovi-uslugi-ot-razstoyanie",
+   "candidates": [
+    "zakon-za-predostavyane-na-finansovi-uslugi-ot-razstoyanie"
+   ],
+   "flags": [],
+   "repeal": true,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2006
+   ]
+  },
+  {
+   "scope": "§77",
+   "cited_title": "Кодекса за застраховането",
+   "cited_promulgation": [
+    102,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-za-zastrahovaneto",
+   "candidates": [
+    "kodeks-za-zastrahovaneto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2015
+   ]
+  },
+  {
+   "scope": "§78",
+   "cited_title": "Закона за платежните услуги и платежните системи",
+   "cited_promulgation": [
+    20,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-platezhnite-uslugi-i-platezhnite-sistemi",
+   "candidates": [
+    "zakon-za-platezhnite-uslugi-i-platezhnite-sistemi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    2018
+   ]
+  },
+  {
+   "scope": "§79",
+   "cited_title": "Закона за предоставяне на цифрово съдържание и цифрови услуги и за продажба на стоки",
+   "cited_promulgation": [
+    23,
+    2021
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-predostavyane-na-tsifrovo-sadarzhanie-i-tsifrovi-uslugi-i-za-prodazhba-",
+   "candidates": [
+    "zakon-za-predostavyane-na-tsifrovo-sadarzhanie-i-tsifrovi-uslugi-i-za-prodazhba-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    23,
+    2021
+   ]
+  },
+  {
+   "scope": "§80",
+   "cited_title": "Закона за кредитите за недвижими имоти на потребители",
+   "cited_promulgation": [
+    59,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kreditite-za-nedvizhimi-imoti-na-potrebiteli",
+   "candidates": [
+    "zakon-za-kreditite-za-nedvizhimi-imoti-na-potrebiteli"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    59,
+    2016
+   ]
+  },
+  {
+   "scope": "§81",
+   "cited_title": "Закона за потребителския кредит",
+   "cited_promulgation": [
+    18,
+    2010
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-potrebitelskiya-kredit",
+   "candidates": [
+    "zakon-za-potrebitelskiya-kredit"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    18,
+    2010
+   ]
+  },
+  {
+   "scope": "§82",
+   "cited_title": "Закона за туризма",
+   "cited_promulgation": [
+    30,
+    2013
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-turizma",
+   "candidates": [
+    "zakon-za-turizma"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    2013
+   ]
+  }
+ ],
+ "instructions": 136,
+ "signs": 83,
+ "quoted_blocks": 160,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 259: letter б) after none) under §73.3"
+  }
+ ],
+ "tokens_instructions": 17594,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

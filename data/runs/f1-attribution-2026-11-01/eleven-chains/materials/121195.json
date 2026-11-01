@@ -1,0 +1,51 @@
+{
+ "material": 121195,
+ "title": "Постановление № 331 от 22 декември 2017 г. за одобряване на допълнителни разходи/трансфери за 2017 г.",
+ "issue": "103/2017",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Постановление № 297 на Министерския съвет от 2017 г. за одобряване на допълнителни разходи по бюджета на Министерството на отбраната за 2017 г.",
+   "cited_promulgation": [
+    101,
+    2017
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 297 на Министерския съвет от 2017 г. за одобряване на допълнителни разходи по бюджета на Министерството на отбраната за 2017 г.')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 13,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата 22 000,0 хил. лв. да се увеличат разхо"
+  },
+  {
+   "block": 17,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на отбраната да извърши съответните промен"
+  },
+  {
+   "block": 18,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 808,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

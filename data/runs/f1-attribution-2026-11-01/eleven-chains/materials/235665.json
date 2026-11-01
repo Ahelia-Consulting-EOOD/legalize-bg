@@ -1,0 +1,62 @@
+{
+ "material": 235665,
+ "title": "Постановление № 102 от 23 юни 2025 г. за изменение и допълнение на Устройствения правилник на Изпълнителна агенция „Военни клубове и военно-почивно дело“, приет с Постановление № 132 на Министерския съвет от 2016 г. Министерския съвет",
+ "issue": "52/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Изпълнителна агенция „Военни клубове и военно-почивно дело“",
+   "cited_promulgation": [
+    42,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-voenni-klubove-i-voenno-pochivno",
+   "candidates": [
+    "ustroystven-pravilnik-na-izpalnitelna-agentsiya-voenni-klubove-i-voenno-pochivno"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    42,
+    2016
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Закона за изменение и допълнение на Закона за държавния служител",
+   "cited_promulgation": [
+    24,
+    2006
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 15,
+ "signs": 10,
+ "quoted_blocks": 58,
+ "findings": [
+  {
+   "block": 70,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Изпълнителен директор' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 3363,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

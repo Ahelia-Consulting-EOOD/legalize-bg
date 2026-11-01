@@ -1,0 +1,40 @@
+{
+ "material": 201968,
+ "title": "Закон за изменение и допълнение на Закона за местните данъци и такси",
+ "issue": "106/2023",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за местните данъци и такси",
+   "cited_promulgation": [
+    117,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mestnite-danatsi-i-taksi",
+   "candidates": [
+    "zakon-za-mestnite-danatsi-i-taksi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    117,
+    1997
+   ]
+  }
+ ],
+ "instructions": 48,
+ "signs": 23,
+ "quoted_blocks": 16,
+ "findings": [],
+ "tokens_instructions": 3003,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

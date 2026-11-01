@@ -1,0 +1,38 @@
+{
+ "material": 2662,
+ "issue": "82/2006",
+ "operations": [
+  {
+   "id": "§11",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§11.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 7, ал. 2",
+   "old": "чл. 79",
+   "old_ref": "q1",
+   "new": "чл. 73",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§11.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 7, ал. 3",
+   "old": "чл. 80, ал. 1, т. 1, 3 - 5 и ал. 2",
+   "old_ref": "q1",
+   "new": "чл. 74, ал. 1, т. 1, 3 и 4 и ал. 2",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§11 no_text_change: nothing",
+  "§11.1 replace_words: 1 replacement(s)",
+  "§11.2 replace_words: 1 replacement(s)"
+ ]
+}

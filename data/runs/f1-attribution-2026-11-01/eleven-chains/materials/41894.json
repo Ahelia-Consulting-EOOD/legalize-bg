@@ -1,0 +1,44 @@
+{
+ "material": 41894,
+ "title": "Закон за изменение и допълнение на Закона за преброяване на населението и жилищния фонд в Република България през 2011 г.",
+ "issue": "100/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за преброяване на населението и жилищния фонд в Република България през 2011 г.",
+   "cited_promulgation": [
+    39,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 21,
+ "signs": 10,
+ "quoted_blocks": 6,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 35: item 2 after 0 under §8"
+  }
+ ],
+ "tokens_instructions": 685,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

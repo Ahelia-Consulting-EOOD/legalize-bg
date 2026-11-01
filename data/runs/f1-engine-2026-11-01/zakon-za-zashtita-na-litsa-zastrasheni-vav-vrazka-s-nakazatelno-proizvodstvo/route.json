@@ -1,0 +1,583 @@
+{
+ "slug": "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo",
+ "run": "f1-engine-2026-11-01",
+ "route": "history",
+ "state": "stopped",
+ "entries": [
+  {
+   "step": "chain",
+   "input_sha256": "5e169fd57c7e215114c6d94e02506d7a3a2defd1470aaffc39d0ecf5900d4162",
+   "outputs_sha256": "aadc92f011d26a2e65a73cebb433e9ef8166f7f1de2296977bfe65978d88f496",
+   "outcome": "done",
+   "detail": "12 material(s) change the act after бр. 103/2004; lex.bg names 12 issue(s), 0 unexplained (none), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:48:47+00:00",
+   "ended": "2026-11-01T10:50:22+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "input_sha256": "21a72c326e26b147ffb3ac00c0ae8b7ff9ea92e5cee2628d8342d5acd5cef391",
+   "outputs_sha256": "77300956e3c62c0c45e4ff287e4082a355a7975b871ae071996d4e27db3880ba",
+   "outcome": "done",
+   "detail": "material 18357 of бр. 103/2004 (cached), sha256 416172435e32",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:50:22+00:00",
+   "ended": "2026-11-01T10:50:22+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "a2a46efcf96f7a97c04f466a8099dcea9db5cd3cd3861f051d623061e3f3c406",
+   "outputs_sha256": "cec316c2ab98d930570f31a728a5d2034a4b035f2290fbed3eebd46805bdd5ea",
+   "outcome": "done",
+   "detail": "149 blocks, 3 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:50:22+00:00",
+   "ended": "2026-11-01T10:50:22+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "48d64cca2750995a53cc1f745953b5332eb8ff734c05998f017347d1aee128e4",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 3 of 3 tasks unanswered; 1 labeller call(s) to make: 8636f76079a2-0000-0002 (3 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/calls/round0/8636f76079a2-0000-0002.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/maps/round0/8636f76079a2-0000-0002.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:50:22+00:00",
+   "ended": "2026-11-01T10:50:22+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "6e345460ab94ad3d0c8e9c2450e8922841c79aab8a885df7798e97c249e3d2de",
+   "outputs_sha256": "8208a8e093710350c5b8a95fbacddd18669352e2fcdf1c971fdbea43cc2f66e4",
+   "outcome": "done",
+   "detail": "round 0 collected: 3 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:53:39+00:00",
+   "ended": "2026-11-01T10:53:39+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "499c854f9bb7ae4368ddd0f7eeb55ee058322d987a1added808ae1760a1311fb",
+   "outputs_sha256": "2eda76eff633f3911943f63931269d8f7edb5ac5fe195fbeec1c83dd64082514",
+   "outcome": "pending",
+   "detail": "round 1: 3 of 3 tasks unanswered; 1 labeller call(s) to make: 3437813c382e-0000-0002 (3 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/calls/round1/3437813c382e-0000-0002.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/maps/round1/3437813c382e-0000-0002.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:53:39+00:00",
+   "ended": "2026-11-01T10:53:39+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "8c228b269ea17c5a098a20a449a3d3af09e535bf10d6046d1ab74f5e12b489c0",
+   "outputs_sha256": "5a860186b9954d92eb524ddd22b017edabefb1fdbbc2a59561a94d9e6c646ab2",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/ladder.json",
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:19+00:00",
+   "ended": "2026-11-01T10:56:19+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "da5cf891555db1db954728fc74be3f8bf8533d9fe282ff64623ea79b46ae76c8",
+   "outputs_sha256": "de9cc1eefb4ac772e72a9b53d07ba93cbccb923a6a575a5ab79249adb0dd9046",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:19+00:00",
+   "ended": "2026-11-01T10:56:19+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "35df7dac2b65399c4b1de452069ed59796a0ac664fe5b527c61cb71ff0b2a90c",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 12 (бр. 82/2006, 2662): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:19+00:00",
+   "ended": "2026-11-01T10:56:19+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ac7e6f843ea7dcba1c7381278930a7cac25ce7aaa228cb6bfd44700ae159fb10",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 12 (бр. 82/2006, 2662): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:46+00:00",
+   "ended": "2026-11-01T11:02:46+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "da76901ec5887cc3533d02716ce2d17a6bb4a0ba3d7ec04194b3ce1f1ae6cd61",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 12 (бр. 33/2008, 5005): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:04:53+00:00",
+   "ended": "2026-11-01T11:04:53+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "4f9157f87a939fdf3564baef027e40cda62f63828aee4964bc663150e1c14f01",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 12 (бр. 33/2008, 5005): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:57+00:00",
+   "ended": "2026-11-01T11:08:57+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "380ae88fe0cd83dc396181bf0f6fe642b971ec7297dc0ab6eed0a3e0cd073da3",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 12 (бр. 33/2008, 5005): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/02-5005/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:10:19+00:00",
+   "ended": "2026-11-01T11:10:19+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "e0cd24be06dffcb704b1fe703b77b6128d51a65582b932a638fb7fd5fc55f3e6",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 12 (бр. 66/2008, 6481): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/03-6481/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/03-6481/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/03-6481/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:13:41+00:00",
+   "ended": "2026-11-01T11:13:41+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5cd2b3600792f9e78ace4f9b5972c21e4ce341262ff0b6a8f1d24f345a9ff237",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 6481 (бр. 66/2008): the answer is refused: §2.3 insert_provision: 'чл. 6, ал. 5' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/03-6481/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:17:33+00:00",
+   "ended": "2026-11-01T11:17:33+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "1189e6090370dd17b51a3a6767ec6e8555ef69c1c88735f48b9316ce7b949a74",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 6481 (бр. 66/2008): the answer is refused: §12.1 replace_provision: 'чл. 27, ал. 1, т. 1' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/03-6481/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:25:59+00:00",
+   "ended": "2026-11-01T11:25:59+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "01ef969473d83db1dcbf8905eee5be7f8cb7ece0d75858fa9de2e84441fa3bca",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 12 (бр. 82/2009, 25652): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/04-25652/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/04-25652/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/04-25652/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:34:06+00:00",
+   "ended": "2026-11-01T11:34:06+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "2b8239f9683560c077e13fa53ed16a972c12abc00775e75de0eb6cdcae8f190a",
+   "outputs_sha256": "2a00a5ba4f2b3dc0d4b397f09fddd3c24d0ddf51c34e7dabe29f40d1df22d164",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:02+00:00",
+   "ended": "2026-11-01T11:38:02+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "66671ccac98162c05d1901b8fb78aced8d509a7c6b21b270736378709a221c19",
+   "outputs_sha256": "0483c79c026fb7e680398d9afb1d009b86bcebb286f01965e42d55019d6b21fe",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/ladder.json",
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:02+00:00",
+   "ended": "2026-11-01T11:38:02+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "53315abb03622885e096e06e200c3ff36ce83014572b173160a2eaae2a26168f",
+   "outputs_sha256": "84e7b34a366fa7a9d40f0acedd24e45b016fef500a9751c0466e49db13a312cc",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:02+00:00",
+   "ended": "2026-11-01T11:38:02+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "409e6ad8a82e5c42b3732ae46da98db8366b1807efd2003d380c939a48042b31",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 5 of 12 (бр. 21/2014, 83184): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:34+00:00",
+   "ended": "2026-11-01T11:42:34+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5ed497163c7a4f8a47040aed627f63255744443ca80eeb99660005d2dc92b1da",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §1 delete_words: the words 'по глава първа, глава втора, глава шеста – чл. 242, ал. 2, 3 и 4, глава осма – раздел IV, глава единадесета – чл. 330, 333, 354а – 354в, и глава четиринадесета от Наказателния кодекс' do not occur in '**Чл. 4.** Застрашените лица могат да получат спец'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:17+00:00",
+   "ended": "2026-11-01T11:51:17+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5d36c02b721f4ab4d6d592c210327fb3437eb034c13a55a4395ad8dbea8234a3",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 12 (бр. 82/2006, 2662): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:59:58+00:00",
+   "ended": "2026-11-01T11:59:58+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c2bb25b7af91068534b678ede8aa19707aa96149810d7565c86e447465e070cb",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §3.2 insert_provision: the address 'чл. 13, ал. 2' is already carried by a provision, and no renumber of the material moves it",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:18+00:00",
+   "ended": "2026-11-01T12:04:18+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "3984a6dda5bdeff15edb25c41b289d6b05d2787a0d0bc70da7a45a0524b6155c",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 12 (бр. 82/2006, 2662): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/01-2662/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:07+00:00",
+   "ended": "2026-11-01T12:10:07+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "3984a6dda5bdeff15edb25c41b289d6b05d2787a0d0bc70da7a45a0524b6155c",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:01+00:00",
+   "ended": "2026-11-01T12:15:01+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "8315d40c9b7c3a4c7aa6d9f2d2b5c7a441fafe69521af7057614a032a26e67da",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:17+00:00",
+   "ended": "2026-11-01T12:19:17+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c95b94c12cd1784625c34963e97814ded6583da81b72f3b21b3da18f4aae8414",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:23:18+00:00",
+   "ended": "2026-11-01T12:23:18+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "47c78daa4dd36d28474e7eff7e0683f454f9ed9a030778416d9ee8f7ed3842cd",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:25:42+00:00",
+   "ended": "2026-11-01T12:25:42+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "919254d90ba51ed1d4ccde609e265beea47e98115405a967785179e51d0a793b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:28:08+00:00",
+   "ended": "2026-11-01T12:28:08+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "b6f732d2f1106aa75f94a67b3a429a8811e7614a8852597b53f04be3deb0eb83",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:30:21+00:00",
+   "ended": "2026-11-01T12:30:21+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "825cd0e1b6dfa23945413d53c143750b632b221653eff87a8d62efec29b513d4",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:32:36+00:00",
+   "ended": "2026-11-01T12:32:36+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "35e08e0b842156353484552e8799a78093377b376a8f7afe3070b71a63c4ff72",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:35:12+00:00",
+   "ended": "2026-11-01T12:35:12+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ac25ca786fc5b34d5dc2f8a5373c56a519f8646d20fb96f23e1c35399d8dbc82",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:38:05+00:00",
+   "ended": "2026-11-01T12:38:05+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "80ed1fd673be956ff6452ab4ec404fd08e1a14879aafa85ecf06a4d724ac1df5",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:41:43+00:00",
+   "ended": "2026-11-01T12:41:43+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c803a7579386869897a95c770a92399fa3072e14f5ddb49a857a28f6aebca2f1",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:45:01+00:00",
+   "ended": "2026-11-01T12:45:01+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "236ecccf145297ac88639d8f6f677de95baf74d74be14499875751a0e2ea660d",
+   "outputs_sha256": "c5792741c0bde2c714f13838565bd03c2b65a0b48b4d2cfe17727d4ff731d862",
+   "outcome": "done",
+   "detail": "149 blocks, 3 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "a0a9371be63898b4192341b1b2129f100fff4986bc55299641574d3eb8f39e98",
+   "outputs_sha256": "ddb0ccbc4882c3d960526acb5e4daef0a90dc5f4c0662eeb66896f097665bac7",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "280880696a7c7851510956a2e49c2b5709572522a7cb7ca8f0b9b01cbc7e1bab",
+   "outputs_sha256": "0483c79c026fb7e680398d9afb1d009b86bcebb286f01965e42d55019d6b21fe",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/ladder.json",
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "e349896822e580ac9ee76b3336c977cc1f62729342f7c27a33b12088f305dc7d",
+   "outputs_sha256": "c8111745806817a56a0979cb26d1a5659178ccf574b045f5beaae5fa7b6b1fc9",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "0551802f94c595a14b13e57474ce461f8ba86700418e9b50a83f2569c6fad83e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "4fd6547a74fd9b084e8f965d65430b8f786caaf2db4fd5e2ee3384d4c118ec32",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:00+00:00",
+   "ended": "2026-11-01T13:12:00+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "0e41aad43b82ae9dee8ffdb311a791ce16c66f990d03e600a00b4b76911301e7",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:06+00:00",
+   "ended": "2026-11-01T13:15:06+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ec8bcb3a2f890aca96fa39ff831b81aa8814d54561184213e40b6052c0e227e0",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:24:11+00:00",
+   "ended": "2026-11-01T13:24:12+00:00"
+  }
+ ],
+ "step": "apply",
+ "stopped_at": "apply",
+ "exception": "material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: 'чл. 14, ал. 7' names 2 place(s) in the act",
+ "case_file": "docs/cases/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo.md"
+}

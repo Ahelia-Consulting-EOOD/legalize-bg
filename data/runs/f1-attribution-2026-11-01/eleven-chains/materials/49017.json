@@ -1,0 +1,38 @@
+{
+ "material": 49017,
+ "title": "Правилник за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+ "issue": "36/2011",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "regulation",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Този правилник отменя Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "cited_promulgation": [
+    38,
+    2010
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 71,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "material": 244841,
+ "title": "Постановление № 83 от 15 юли 2026 г. за изменение и допълнение на Устройствения правилник на Министерството на транспорта и съобщенията, приет с Постановление № 232 на Министерския съвет от 2009 г.",
+ "issue": "66/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Министерството на транспорта и съобщенията",
+   "cited_promulgation": [
+    78,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-transporta-i-saobshteniyata-zagl-izm-",
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerstvoto-na-transporta-i-saobshteniyata-zagl-izm-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    78,
+    2009
+   ]
+  }
+ ],
+ "instructions": 8,
+ "signs": 6,
+ "quoted_blocks": 7,
+ "findings": [],
+ "tokens_instructions": 525,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

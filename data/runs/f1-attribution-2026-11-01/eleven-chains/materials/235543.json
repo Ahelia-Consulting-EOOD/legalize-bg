@@ -1,0 +1,45 @@
+{
+ "material": 235543,
+ "title": "Наредба за изменение на Наредба № Н-17 от 22.12.2015 г. за условията и реда за приемане на сержанти (старшини) и войници (матроси) за обучение в професионалните сержантски (старшински) колежи",
+ "issue": "52/2025",
+ "section": "Министерство на отбраната",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № Н-17 от 22.12.2015 г. за условията и реда за приемане на сержанти (старшини) и войници (матроси) за обучение в професионалните сержантски (старшински) колежи",
+   "cited_promulgation": [
+    8,
+    2016
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-n-17-ot-22-dekemvri-2015-g-za-usloviyata-i-reda-za-priemane-na-serzhanti",
+   "candidates": [
+    "naredba-n-17-ot-22-dekemvri-2015-g-za-usloviyata-i-reda-za-priemane-na-serzhanti"
+   ],
+   "flags": [
+    "numbered_date_mismatch",
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (numbered); the cited promulgation names the act",
+   "act_promulgation": [
+    8,
+    2016
+   ]
+  }
+ ],
+ "instructions": 10,
+ "signs": 5,
+ "quoted_blocks": 4,
+ "findings": [],
+ "tokens_instructions": 678,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

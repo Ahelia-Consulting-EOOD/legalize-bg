@@ -1,0 +1,21 @@
+{"material": 34181, "operations": [
+{"id": "§1", "kind": "insert_words", "address": "чл. 4, ал. 3", "anchor": "q1", "where": "after", "new": "q2"},
+{"id": "§2", "kind": "insert_provision", "address": "чл. 19, ал. 5", "after": "чл. 19, ал. 4", "blocks": [12, 12]},
+{"id": "§3", "kind": "no_text_change"},
+{"id": "§3.1", "kind": "replace_provision", "address": "чл. 36, ал. 1", "blocks": [15, 15]},
+{"id": "§3.2", "kind": "replace_provision", "address": "чл. 36, ал. 3, текстът преди т. 1", "new": "q1"},
+{"id": "§4", "kind": "delete_words", "address": "чл. 37, ал. 1, т. 3", "old": "q1"},
+{"id": "§5", "kind": "insert_provision", "address": "чл. 37а", "after": "чл. 37", "blocks": [19, 20]},
+{"id": "§6", "kind": "insert_provision", "address": "чл. 38б", "after": "чл. 38а", "blocks": [22, 23]},
+{"id": "§7", "kind": "replace_provision", "address": "чл. 41, ал. 3", "blocks": [25, 25]},
+{"id": "§8", "kind": "no_text_change"},
+{"id": "§8.1", "kind": "insert_provision", "address": "чл. 42, ал. 2, изречение второ", "new": "q1"},
+{"id": "§8.2", "kind": "renumber", "address": "чл. 42, ал. 2, изречение второ", "to": "изречение трето"},
+{"id": "§9", "kind": "no_text_change"},
+{"id": "§9.1", "kind": "insert_provision", "address": "чл. 44, ал. 7, изречение трето", "new": "q1"},
+{"id": "§9.2", "kind": "insert_provision", "address": "чл. 44, ал. 13", "after": "чл. 44, ал. 12", "blocks": [32, 32]},
+{"id": "§10", "kind": "replace_provision", "address": "чл. 45, ал. 1", "blocks": [34, 34]},
+{"id": "§11", "kind": "insert_provision", "address": "чл. 48, ал. 2, изречение второ", "new": "q1"},
+{"id": "§12", "kind": "replace_words", "address": "чл. 52, ал. 2", "old": "q1", "new": "q2"},
+{"id": "§13", "kind": "insert_words", "address": "чл. 56, ал. 2", "where": "end", "new": "q1"}
+]}

@@ -1,0 +1,100 @@
+{
+ "material": 154160,
+ "title": "Постановление № 329 от 26 ноември 2020 г. за изменение на нормативни актове на Министерския съвет",
+ "issue": "103/2020",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Постановление № 165 на Министерския съвет от 2004 г. за организацията и координацията на обмена на информация за технически регламенти и правила за услуги на информационното общество и за установяване на процедурите, свързани с прилагането на някои национални технически правила за продукти, законно предлагани на пазара на друга държава членка",
+   "cited_promulgation": [
+    64,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 165 на Министерския съвет от 2004 г. за организацията и координацията на обмена на информация за технически регламенти и правила за услуги на информационното общество и за установяване на процедурите, свързани с прилагането на някои национални технически правила за продукти, законно предлагани на пазара на друга държава членка')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Устройствения правилник на Министерството на икономиката, приет с Постановление № 447 на Министерския съвет от 2014 г.",
+   "cited_promulgation": [
+    108,
+    2014
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Устройствения правилник на Държавната агенция за метрологичен и технически надзор, приет с Постановление № 47 на Министерския съвет от 2003 г.",
+   "cited_promulgation": [
+    20,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-darzhavnata-agentsiya-za-metrologichen-i-tehnicheski-na",
+   "candidates": [
+    "ustroystven-pravilnik-na-darzhavnata-agentsiya-za-metrologichen-i-tehnicheski-na"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    2003
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Устройствения правилник на Министерството на земеделието, храните и горите, приет с Постановление № 260 на Министерския съвет от 2019 г.",
+   "cited_promulgation": [
+    82,
+    2019
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-zemedelieto-i-hranite-zagl-izm-dv-br-",
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerstvoto-na-zemedelieto-i-hranite-zagl-izm-dv-br-"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (fuzzy); the cited promulgation names the act",
+   "act_promulgation": [
+    82,
+    2019
+   ]
+  }
+ ],
+ "instructions": 18,
+ "signs": 6,
+ "quoted_blocks": 17,
+ "findings": [],
+ "tokens_instructions": 1928,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

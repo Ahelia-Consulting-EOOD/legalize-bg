@@ -1,0 +1,44 @@
+{
+ "material": 246133,
+ "title": "Решение № 285-ПВР от 25 септември 2026 г. относно изменение на Решение № 271-ПВР от 22 септември 2026 г. на Централната избирателна комисия за обнародване на кандидатските листи в изборите за президент и вицепрезидент на републиката на 25 октомври 2026 г.",
+ "issue": "89/2026",
+ "section": "Централна избирателна комисия",
+ "kind": "decision",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 0,
+ "signs": 0,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "quoted_before_instruction",
+   "detail": "„№ 12 Александър Трифонов Томов, роден на 27.04.1954 г."
+  },
+  {
+   "block": 7,
+   "kind": "unplaced",
+   "detail": "кандидат за президент"
+  },
+  {
+   "block": 8,
+   "kind": "unplaced",
+   "detail": "Александър Цветанов Гарибов, роден на 26.03.1970 г."
+  },
+  {
+   "block": 9,
+   "kind": "unplaced",
+   "detail": "кандидат за вицепрезидент"
+  },
+  {
+   "block": 11,
+   "kind": "unplaced",
+   "detail": "Настоящото решение да се обнародва в „Държавен вестник“ на о"
+  }
+ ],
+ "tokens_instructions": 0,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

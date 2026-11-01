@@ -1,0 +1,37 @@
+{
+ "material": 246256,
+ "title": "Постановление № 170 от 29 септември 2026 г. за одобряване на допълнителни трансфери за общини за 2026 г. за субсидиране на превоза на пътници по нерентабилни автобусни линии във вътрешноградския транспорт",
+ "issue": "91/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 15,
+  "title": "Приложение към чл. 1"
+ },
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Кметовете на общини предоставят средствата по чл."
+  },
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Средствата по чл. 1 да се осигурят за сметка преструк"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите пром"
+  }
+ ],
+ "tokens_instructions": 277,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

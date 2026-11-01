@@ -1,0 +1,11 @@
+{"material": 48515, "operations": [
+{"id": "§1", "kind": "replace_words", "address": "чл. 3, ал. 3, т. 17", "old": "q1", "new": "q2"},
+{"id": "§2", "kind": "no_text_change"},
+{"id": "§2.1", "kind": "replace_words", "address": "чл. 13, т. 17", "old": "q1", "new": "q2"},
+{"id": "§2.2", "kind": "replace_words", "address": "чл. 13, т. 18", "old": "q1", "new": "q2"},
+{"id": "§3", "kind": "repeal", "address": "чл. 14, т. 13"},
+{"id": "§3", "kind": "repeal", "address": "чл. 14, т. 14"},
+{"id": "§4", "kind": "replace_annex", "address": "Приложение към чл. 6, ал. 2", "blocks": [8, 93]},
+{"id": "§5", "kind": "no_text_change"},
+{"id": "§6", "kind": "no_text_change"}
+]}

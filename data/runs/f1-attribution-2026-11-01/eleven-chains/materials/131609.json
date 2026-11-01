@@ -1,0 +1,84 @@
+{
+ "material": 131609,
+ "title": "Наредба № 62 от 30 октомври 2018 г. за реда за съхраняване, използване и унищожаване от пенсионноосигурителните дружества на документите и дан­ните, свързани с дейността по допълнително пенсионно осигуряване",
+ "issue": "94/2018",
+ "section": "Комисия за финансов надзор",
+ "kind": "ordinance",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Наредба № 3 от 2003 г. за реда и начина за промяна на участие и за прехвърляне на натрупаните средства на осигурено лице от един фонд за допълнително пенсионно осигуряване в друг съответен фонд, управляван от друго пенсионноосигурително дружество",
+   "cited_promulgation": [
+    90,
+    2003
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-3-ot-24-septemvri-2003-g-za-reda-i-nachina-za-promyana-na-uchastie-i-za-",
+   "candidates": [
+    "naredba-3-ot-24-septemvri-2003-g-za-reda-i-nachina-za-promyana-na-uchastie-i-za-"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    90,
+    2003
+   ]
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Наредба № 33 от 2006 г. за индивидуалните заявления за участие във фонд за допълнително задължително пенсионно осигуряване и за възобновяване на осигуряването в универсален пенсионен фонд (загл. изм., ДВ, бр. 62 от 2016 г.)",
+   "cited_promulgation": [
+    83,
+    2006
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-33-ot-19-septemvri-2006-g-za-individualnite-zayavleniya-za-uchastie-vav-",
+   "candidates": [
+    "naredba-33-ot-19-septemvri-2006-g-za-individualnite-zayavleniya-za-uchastie-vav-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    83,
+    2006
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Наредба № 47 от 2012 г. за изискванията към информационните системи на пенсионноосигурителните дружества",
+   "cited_promulgation": [
+    57,
+    2012
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-47-ot-11-yuli-2012-g-za-iziskvaniyata-kam-informatsionnite-sistemi-na-pe",
+   "candidates": [
+    "naredba-47-ot-11-yuli-2012-g-za-iziskvaniyata-kam-informatsionnite-sistemi-na-pe"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    57,
+    2012
+   ]
+  }
+ ],
+ "instructions": 5,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 432,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

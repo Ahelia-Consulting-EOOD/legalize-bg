@@ -1,0 +1,10 @@
+{
+ "exceptions": [
+  {
+   "block": 35,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '2.сесията и годината на полага'"
+  }
+ ],
+ "blocking": 0
+}

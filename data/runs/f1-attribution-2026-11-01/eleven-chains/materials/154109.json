@@ -1,0 +1,40 @@
+{
+ "material": 154109,
+ "title": "Закон за изменение и допълнение на Семейния кодекс",
+ "issue": "103/2020",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  }
+ ],
+ "instructions": 14,
+ "signs": 5,
+ "quoted_blocks": 5,
+ "findings": [],
+ "tokens_instructions": 760,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

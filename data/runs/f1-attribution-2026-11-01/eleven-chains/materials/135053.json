@@ -1,0 +1,83 @@
+{
+ "material": 135053,
+ "title": "Постановление № 30 от 20 февруари 2019 г. за приемане на Наредба за външните експерти при предварителен контрол на обществени поръчки",
+ "issue": "17/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 593,
+  "title": "НАРЕДБА"
+ },
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Наредбата за условията и реда за определяне на външни експерти за проверка на технически спецификации при възлагане на обществени поръчки, приета с Постановление № 251 на Министерския съвет от 2017г.",
+   "cited_promulgation": [
+    91,
+    2017
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": true,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Правилника за прилагане на Закона за обществените поръчки, приет с Постановление на Министерския съвет № 73 от 2016г.",
+   "cited_promulgation": [
+    28,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-obshtestvenite-porachki",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-obshtestvenite-porachki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    28,
+    2016
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Устройствения правилник на Агенцията по обществени поръчки, приет с Постановление № 53 на Министерския съвет от 2017 г.",
+   "cited_promulgation": [
+    25,
+    2017
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki",
+   "candidates": [
+    "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    25,
+    2017
+   ]
+  }
+ ],
+ "instructions": 289,
+ "signs": 5,
+ "quoted_blocks": 292,
+ "findings": [],
+ "tokens_instructions": 19860,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

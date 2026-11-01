@@ -1,0 +1,40 @@
+{
+ "material": 214556,
+ "title": "Постановление № 150 от 29 април 2024 г. за изменение и допълнение на Правилника за прилагане на Закона за мерките срещу изпирането на пари, приет с Постановление № 357 на Министерския съвет от 2018 г.",
+ "issue": "39/2024",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за мерките срещу изпирането на пари",
+   "cited_promulgation": [
+    3,
+    2019
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-merkite-sreshtu-izpiraneto-na-pari",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-merkite-sreshtu-izpiraneto-na-pari"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    3,
+    2019
+   ]
+  }
+ ],
+ "instructions": 85,
+ "signs": 35,
+ "quoted_blocks": 77,
+ "findings": [],
+ "tokens_instructions": 8822,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

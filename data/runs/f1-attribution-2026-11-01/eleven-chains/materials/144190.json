@@ -1,0 +1,40 @@
+{
+ "material": 144190,
+ "title": "Постановление № 369 от 20 декември 2019 г. за изменение и допълнение на Устройствения правилник на Държавна агенция „Държавен резерв и военновременни запаси“, приет с Постановление № 13 на Министерския съвет от 2004 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Държавна агенция „Държавен резерв и военновременни запаси“",
+   "cited_promulgation": [
+    8,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-darzhavna-agentsiya-darzhaven-rezerv-i-voennovremenni-z",
+   "candidates": [
+    "ustroystven-pravilnik-na-darzhavna-agentsiya-darzhaven-rezerv-i-voennovremenni-z"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    8,
+    2004
+   ]
+  }
+ ],
+ "instructions": 27,
+ "signs": 13,
+ "quoted_blocks": 11,
+ "findings": [],
+ "tokens_instructions": 1244,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

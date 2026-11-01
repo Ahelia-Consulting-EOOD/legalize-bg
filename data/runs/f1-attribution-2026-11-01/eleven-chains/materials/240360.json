@@ -1,0 +1,99 @@
+{
+ "material": 240360,
+ "title": "Постановление № 352 от 29 декември 2025 г. за изменение и допълнение на нормативни актове на Министерския съвет",
+ "issue": "115/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Тарифата за държавните такси, събирани от Агенцията по вписванията, приета с Постановление № 243 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    94,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Тарифа № 1 към Закона за държавните такси за таксите, събирани от съдилищата, прокуратурата, следствените служби и Министерството на правосъдието, одобрена с Постановление № 167 на Министерския съвет от 1992 г.",
+   "cited_promulgation": [
+    71,
+    1992
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3.1",
+   "cited_title": "Тарифата за държавни такси, събирани от Агенцията по вписванията, приета с Постановление № 243 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    94,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3.2",
+   "cited_title": "Тарифата за държавни такси, събирани от Агенцията по вписванията, приета с Постановление № 243 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    94,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3.3",
+   "cited_title": "Тарифата за държавни такси, събирани от Агенцията по вписванията, приета с Постановление № 243 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    94,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 9,
+ "signs": 4,
+ "quoted_blocks": 7,
+ "findings": [],
+ "tokens_instructions": 1221,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

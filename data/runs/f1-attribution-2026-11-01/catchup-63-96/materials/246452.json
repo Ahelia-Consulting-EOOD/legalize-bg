@@ -1,0 +1,46 @@
+{
+ "material": 246452,
+ "title": "Постановление № 183 от 8 октомври 2026 г. за одобряване на допълнителни разходи по бюджета на Министерството на здравеопазването за 2026 г.",
+ "issue": "94/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Постановление № 269 на Министерския съвет от 2024 г. за създаване на районен център за трансфузионна хематология",
+   "cited_promulgation": [
+    66,
+    2024
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 269 на Министерския съвет от 2024 г. за създаване на районен център за трансфузионна хематология')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 8,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата по чл. 1 да се увеличат разходите по „"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. (1) Министърът на здравеопазването да извърши съответ"
+  }
+ ],
+ "tokens_instructions": 416,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

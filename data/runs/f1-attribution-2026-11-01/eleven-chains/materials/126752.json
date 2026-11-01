@@ -1,0 +1,82 @@
+{
+ "material": 126752,
+ "title": "Закон за изменение и допълнение на Закона за защита на лица, застрашени във връзка с наказателно производство",
+ "issue": "44/2018",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за защита на лица, застрашени във връзка с наказателно производство",
+   "cited_promulgation": [
+    103,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo",
+   "candidates": [
+    "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    103,
+    2004
+   ]
+  },
+  {
+   "scope": "§35",
+   "cited_title": "Наказателно-процесуалния кодекс",
+   "cited_promulgation": [
+    86,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "nakazatelno-protsesualen-kodeks",
+   "candidates": [
+    "nakazatelno-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    86,
+    2005
+   ]
+  },
+  {
+   "scope": "§36",
+   "cited_title": "Закона за защита на класифицираната информация",
+   "cited_promulgation": [
+    45,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-klasifitsiranata-informatsiya",
+   "candidates": [
+    "zakon-za-zashtita-na-klasifitsiranata-informatsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    45,
+    2002
+   ]
+  }
+ ],
+ "instructions": 103,
+ "signs": 36,
+ "quoted_blocks": 74,
+ "findings": [],
+ "tokens_instructions": 6392,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

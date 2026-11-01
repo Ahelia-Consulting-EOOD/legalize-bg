@@ -1,0 +1,978 @@
+{
+ "material": 25033,
+ "title": "Закон за изменение и допълнение на Закона за професионалното образование и обучение",
+ "issue": "74/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за професионалното образование и обучение",
+   "cited_promulgation": [
+    68,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-profesionalnoto-obrazovanie-i-obuchenie",
+   "candidates": [
+    "zakon-za-profesionalnoto-obrazovanie-i-obuchenie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    68,
+    1999
+   ]
+  },
+  {
+   "scope": "§1",
+   "cited_title": "Закона за изменение и допълнение на Закона за професионалното образование и обучение",
+   "cited_promulgation": [
+    36,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Закона за народната просвета",
+   "cited_promulgation": [
+    86,
+    1991
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Закона за степента на образование, общообразователния минимум и учебния план",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§5",
+   "cited_title": "Закона за висшето образование",
+   "cited_promulgation": [
+    112,
+    1995
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vissheto-obrazovanie",
+   "candidates": [
+    "zakon-za-vissheto-obrazovanie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    112,
+    1995
+   ]
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Закона за кредитиране на студенти и докторанти",
+   "cited_promulgation": [
+    69,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kreditirane-na-studenti-i-doktoranti",
+   "candidates": [
+    "zakon-za-kreditirane-na-studenti-i-doktoranti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    69,
+    2008
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Закона за насърчаване на научните изследвания",
+   "cited_promulgation": [
+    92,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Закона за Селскостопанската академия",
+   "cited_promulgation": [
+    113,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-selskostopanskata-akademiya-zagl-izm-dv-br-43-ot-2008-g",
+   "candidates": [
+    "zakon-za-selskostopanskata-akademiya-zagl-izm-dv-br-43-ot-2008-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    113,
+    1999
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Закона за признаване на професионални квалификации",
+   "cited_promulgation": [
+    13,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-priznavane-na-profesionalni-kvalifikatsii",
+   "candidates": [
+    "zakon-za-priznavane-na-profesionalni-kvalifikatsii"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    2008
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Закона за безопасно използване на ядрената енергия",
+   "cited_promulgation": [
+    63,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-bezopasno-izpolzvane-na-yadrenata-energiya",
+   "candidates": [
+    "zakon-za-bezopasno-izpolzvane-na-yadrenata-energiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    63,
+    2002
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за борба с трафика на хора",
+   "cited_promulgation": [
+    46,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-borba-s-trafika-na-hora",
+   "candidates": [
+    "zakon-za-borba-s-trafika-na-hora"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2003
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за борба срещу противообществените прояви на малолетните и непълнолетните",
+   "cited_promulgation": [
+    13,
+    1958
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet",
+   "candidates": [
+    "zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    1958
+   ]
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за българското гражданство",
+   "cited_promulgation": [
+    136,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskoto-grazhdanstvo",
+   "candidates": [
+    "zakon-za-balgarskoto-grazhdanstvo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    136,
+    1998
+   ]
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за вероизповеданията",
+   "cited_promulgation": [
+    120,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-veroizpovedaniyata",
+   "candidates": [
+    "zakon-za-veroizpovedaniyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    120,
+    2002
+   ]
+  },
+  {
+   "scope": "§15",
+   "cited_title": "Закона за ветеринарномедицинската дейност",
+   "cited_promulgation": [
+    87,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-veterinarnomeditsinskata-deynost",
+   "candidates": [
+    "zakon-za-veterinarnomeditsinskata-deynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    87,
+    2005
+   ]
+  },
+  {
+   "scope": "§16",
+   "cited_title": "Закона за генетично модифицирани организми",
+   "cited_promulgation": [
+    27,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-genetichno-modifitsirani-organizmi",
+   "candidates": [
+    "zakon-za-genetichno-modifitsirani-organizmi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    27,
+    2005
+   ]
+  },
+  {
+   "scope": "§17",
+   "cited_title": "Закона за геодезията и картографията",
+   "cited_promulgation": [
+    29,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-geodeziyata-i-kartografiyata",
+   "candidates": [
+    "zakon-za-geodeziyata-i-kartografiyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    29,
+    2006
+   ]
+  },
+  {
+   "scope": "§18",
+   "cited_title": "Закона за горите",
+   "cited_promulgation": [
+    125,
+    1997
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-gorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-gorite (promulgated 19/2011); the material cites бр. 125/1997",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§19",
+   "cited_title": "Закона за гражданската регистрация",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-grazhdanskata-registratsiya",
+   "candidates": [
+    "zakon-za-grazhdanskata-registratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§20",
+   "cited_title": "Закона за данък върху добавената стойност",
+   "cited_promulgation": [
+    63,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danak-varhu-dobavenata-stoynost",
+   "candidates": [
+    "zakon-za-danak-varhu-dobavenata-stoynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    63,
+    2006
+   ]
+  },
+  {
+   "scope": "§21",
+   "cited_title": "Закона за движението по пътищата",
+   "cited_promulgation": [
+    20,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dvizhenieto-po-patishtata",
+   "candidates": [
+    "zakon-za-dvizhenieto-po-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    1999
+   ]
+  },
+  {
+   "scope": "§22",
+   "cited_title": "Закона за държавните такси",
+   "cited_promulgation": [
+    104,
+    1951
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-darzhavnite-taksi",
+   "candidates": [
+    "zakon-za-darzhavnite-taksi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    104,
+    1951
+   ]
+  },
+  {
+   "scope": "§23",
+   "cited_title": "Закона за държавния служител",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-darzhavniya-sluzhitel",
+   "candidates": [
+    "zakon-za-darzhavniya-sluzhitel"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§24",
+   "cited_title": "Закона за железопътния транспорт",
+   "cited_promulgation": [
+    97,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zhelezopatniya-transport",
+   "candidates": [
+    "zakon-za-zhelezopatniya-transport"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    97,
+    2000
+   ]
+  },
+  {
+   "scope": "§25",
+   "cited_title": "Закона за закрила и развитие на културата",
+   "cited_promulgation": [
+    50,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-i-razvitie-na-kulturata",
+   "candidates": [
+    "zakon-za-zakrila-i-razvitie-na-kulturata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    50,
+    1999
+   ]
+  },
+  {
+   "scope": "§26",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  },
+  {
+   "scope": "§27",
+   "cited_title": "Закона за защита от дискриминация",
+   "cited_promulgation": [
+    86,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-ot-diskriminatsiya-zagl-izm-dv-br-68-ot-2006-g",
+   "candidates": [
+    "zakon-za-zashtita-ot-diskriminatsiya-zagl-izm-dv-br-68-ot-2006-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    86,
+    2003
+   ]
+  },
+  {
+   "scope": "§28",
+   "cited_title": "Закона за защита при бедствия",
+   "cited_promulgation": [
+    102,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-pri-bedstviya",
+   "candidates": [
+    "zakon-za-zashtita-pri-bedstviya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2006
+   ]
+  },
+  {
+   "scope": "§29",
+   "cited_title": "Закона за здравето",
+   "cited_promulgation": [
+    70,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdraveto",
+   "candidates": [
+    "zakon-za-zdraveto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2004
+   ]
+  },
+  {
+   "scope": "§30",
+   "cited_title": "Закона за изпълнение на наказанията и задържането под стража",
+   "cited_promulgation": [
+    25,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha",
+   "candidates": [
+    "zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    25,
+    2009
+   ]
+  },
+  {
+   "scope": "§31",
+   "cited_title": "Закона за интеграция на хората с увреждания",
+   "cited_promulgation": [
+    81,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Закона за контрол върху наркотичните вещества и прекурсорите",
+   "cited_promulgation": [
+    30,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite",
+   "candidates": [
+    "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    1999
+   ]
+  },
+  {
+   "scope": "§33",
+   "cited_title": "Закона за кръвта, кръводаряването и кръвопреливането",
+   "cited_promulgation": [
+    102,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kravta-kravodaryavaneto-i-kravoprelivaneto",
+   "candidates": [
+    "zakon-za-kravta-kravodaryavaneto-i-kravoprelivaneto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2003
+   ]
+  },
+  {
+   "scope": "§34",
+   "cited_title": "Закона за Министерството на вътрешните работи",
+   "cited_promulgation": [
+    17,
+    2006
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-ministerstvoto-na-vatreshnite-raboti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-ministerstvoto-na-vatreshnite-raboti (promulgated 53/2014); the material cites бр. 17/2006",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§35",
+   "cited_title": "Закона за народните читалища",
+   "cited_promulgation": [
+    89,
+    1996
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-narodnite-chitalishta",
+   "candidates": [
+    "zakon-za-narodnite-chitalishta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    89,
+    1996
+   ]
+  },
+  {
+   "scope": "§36",
+   "cited_title": "Закона за насърчаване на заетостта",
+   "cited_promulgation": [
+    112,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasarchavane-na-zaetostta",
+   "candidates": [
+    "zakon-za-nasarchavane-na-zaetostta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    112,
+    2001
+   ]
+  },
+  {
+   "scope": "§37",
+   "cited_title": "Закона за Националния дарителски фонд „13 века България“",
+   "cited_promulgation": [
+    12,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-natsionalniya-daritelski-fond-13-veka-balgariya",
+   "candidates": [
+    "zakon-za-natsionalniya-daritelski-fond-13-veka-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    12,
+    2001
+   ]
+  },
+  {
+   "scope": "§38",
+   "cited_title": "Закона за обществените библиотеки",
+   "cited_promulgation": [
+    42,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-obshtestvenite-biblioteki",
+   "candidates": [
+    "zakon-za-obshtestvenite-biblioteki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    42,
+    2009
+   ]
+  },
+  {
+   "scope": "§39",
+   "cited_title": "Закона за отбраната и въоръжените сили на Република България",
+   "cited_promulgation": [
+    35,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya",
+   "candidates": [
+    "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    35,
+    2009
+   ]
+  },
+  {
+   "scope": "§40",
+   "cited_title": "Закона за социално подпомагане",
+   "cited_promulgation": [
+    56,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sotsialno-podpomagane",
+   "candidates": [
+    "zakon-za-sotsialno-podpomagane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    56,
+    1998
+   ]
+  },
+  {
+   "scope": "§41",
+   "cited_title": "Закона за техническите изисквания към продуктите",
+   "cited_promulgation": [
+    86,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-tehnicheskite-iziskvaniya-kam-produktite",
+   "candidates": [
+    "zakon-za-tehnicheskite-iziskvaniya-kam-produktite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    86,
+    1999
+   ]
+  },
+  {
+   "scope": "§42",
+   "cited_title": "Закона за физическото възпитание и спорта",
+   "cited_promulgation": [
+    58,
+    1996
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-fizicheskoto-vazpitanie-i-sporta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-fizicheskoto-vazpitanie-i-sporta (promulgated 86/2018); the material cites бр. 58/1996",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§43",
+   "cited_title": "Закона за филмовата индустрия",
+   "cited_promulgation": [
+    105,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-filmovata-industriya",
+   "candidates": [
+    "zakon-za-filmovata-industriya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2003
+   ]
+  },
+  {
+   "scope": "§44",
+   "cited_title": "Закона за хазарта",
+   "cited_promulgation": [
+    51,
+    1999
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-hazarta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-hazarta (promulgated 26/2012); the material cites бр. 51/1999",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§45",
+   "cited_title": "Закона за храните",
+   "cited_promulgation": [
+    90,
+    1999
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-hranite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-hranite (promulgated 52/2020); the material cites бр. 90/1999",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§46",
+   "cited_title": "Закона за чужденците в Република България",
+   "cited_promulgation": [
+    153,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-chuzhdentsite-v-republika-balgariya",
+   "candidates": [
+    "zakon-za-chuzhdentsite-v-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    153,
+    1998
+   ]
+  },
+  {
+   "scope": "§47",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  }
+ ],
+ "instructions": 58,
+ "signs": 48,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 6292,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

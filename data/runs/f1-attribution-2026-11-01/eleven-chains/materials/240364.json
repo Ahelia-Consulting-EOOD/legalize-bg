@@ -1,0 +1,40 @@
+{
+ "material": 240364,
+ "title": "Постановление № 356 от 29 декември 2025 г. за изменение на Правилника за прилагане на Закона за собствеността и ползването на земеделските земи, приет с Постановление № 74 на Министерския съвет от 1991 г.",
+ "issue": "115/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за собствеността и ползването на земеделските земи",
+   "cited_promulgation": [
+    34,
+    1991
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-sobstvenostta-i-polzvaneto-na-zemedelskite-z",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-sobstvenostta-i-polzvaneto-na-zemedelskite-z"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    34,
+    1991
+   ]
+  }
+ ],
+ "instructions": 15,
+ "signs": 15,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 372,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

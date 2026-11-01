@@ -1,0 +1,91 @@
+{
+ "act": "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie",
+ "materials": [
+  {
+   "material": 29283,
+   "issue": "9/2010",
+   "operations": 2,
+   "body_after_sha256": "29b4a4a6b9a7668e09166070bdcd1beaeeb02835c65debbc75affe87d738e2e2"
+  },
+  {
+   "material": 35396,
+   "issue": "60/2010",
+   "operations": 28,
+   "body_after_sha256": "ff62ad9e016c2b1823eb538f6120fae8326d9c71c90cf65d734d7a65009230f5"
+  },
+  {
+   "material": 36798,
+   "issue": "73/2010",
+   "operations": 3,
+   "body_after_sha256": "2bb620016bf687ad8dc72bfbac4cec85400d1a3841fa17ec2c1476ad26e11829"
+  },
+  {
+   "material": 48515,
+   "issue": "32/2011",
+   "operations": 9,
+   "body_after_sha256": "42d4929747601a489566c4222f2504eae9ddf5dc045d6d115d0e80f32c09cba8"
+  },
+  {
+   "material": 62371,
+   "issue": "21/2012",
+   "operations": 3,
+   "body_after_sha256": "58a3b17ef4a3cd52a430a7e3e430d91fc62df1bc11eca666a4e45d02fe30d9cf"
+  },
+  {
+   "material": 100860,
+   "issue": "12/2016",
+   "operations": 75,
+   "body_after_sha256": "0e9d12a0ece8291c209fbd5a1ced0742bc42ddc2a863517f1b0d575d2b0e22d2"
+  },
+  {
+   "material": 107723,
+   "issue": "75/2016",
+   "operations": 2,
+   "body_after_sha256": "e5f6035637d75542dfc81fb8e42cd25530acbec303fd3e6bf0a1a2491f9fcb71"
+  },
+  {
+   "material": 147660,
+   "issue": "40/2020",
+   "operations": 51,
+   "body_after_sha256": "c40a3de68f76299975c43d8a4ffacc5a1b5edaee402966b553793d5656fcd6fa"
+  },
+  {
+   "material": 153474,
+   "issue": "97/2020",
+   "operations": 4,
+   "body_after_sha256": "a6b56d915976ff180c5c3b018ada159902473f95a824190007ba06757bad5725"
+  },
+  {
+   "material": 155516,
+   "issue": "9/2021",
+   "operations": 4,
+   "body_after_sha256": "c9614b36301e2c37e46d9042b4c9d92b986e281e5f8c1e56a1aaf87c095d0541"
+  },
+  {
+   "material": 173772,
+   "issue": "41/2022",
+   "operations": 9,
+   "body_after_sha256": "fab787309bdb139386cff3ad40f4779ec1915e590935950ff7ea3f88c7ceeb1c"
+  },
+  {
+   "material": 202430,
+   "issue": "3/2024",
+   "operations": 51,
+   "body_after_sha256": "51091e282ce5c1d2e919194125073d910a71cc0da88b596eec01fdbbf51c7146"
+  }
+ ],
+ "operations_by_kind": {
+  "replace_annex": 4,
+  "no_text_change": 38,
+  "replace_provision": 15,
+  "insert_provision": 13,
+  "renumber": 53,
+  "replace_words": 92,
+  "delete_words": 2,
+  "repeal": 16,
+  "insert_words": 8
+ },
+ "unexplained_lexbg_issues": [],
+ "applied_sha256": "51091e282ce5c1d2e919194125073d910a71cc0da88b596eec01fdbbf51c7146",
+ "applied_at": "2026-11-01T13:22:39+00:00"
+}
