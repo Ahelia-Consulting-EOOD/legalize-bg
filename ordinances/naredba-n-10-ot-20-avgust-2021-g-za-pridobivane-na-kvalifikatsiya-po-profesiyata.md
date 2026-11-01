@@ -6,7 +6,7 @@ pais: bg
 rango: наредба
 fecha_publicacion: '2021-09-03'
 ultima_actualizacion: '2026-06-30'
-estado: vigente
+estado: derogado
 fuente: lex.bg
 dv_issue: '73'
 dv_year: 2021

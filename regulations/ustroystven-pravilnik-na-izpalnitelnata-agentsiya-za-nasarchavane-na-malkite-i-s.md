@@ -6,8 +6,8 @@ identificador: '2136492309'
 pais: bg
 rango: правилник
 fecha_publicacion: '2015-05-05'
-ultima_actualizacion: '2025-07-25'
-estado: vigente
+ultima_actualizacion: '2026-10-16'
+estado: derogado
 fuente: lex.bg
 dv_issue: '32'
 dv_year: 2015
@@ -29,6 +29,8 @@ amendment_history:
   date: '2021-08-03'
 - dv: 60/2025
   date: '2025-07-25'
+- dv: 95/2026
+  date: '2026-10-16'
 ---
 
 # УСТРОЙСТВЕН ПРАВИЛНИК НА ИЗПЪЛНИТЕЛНАТА АГЕНЦИЯ ЗА НАСЪРЧАВАНЕ НА МАЛКИТЕ И СРЕДНИТЕ ПРЕДПРИЯТИЯ КЪМ МИНИСТЪРА НА ИНОВАЦИИТЕ И РАСТЕЖА (ЗАГЛ. ИЗМ. - ДВ, БР. 60 ОТ 2025 Г., В СИЛА ОТ 25.07.2025 Г.)

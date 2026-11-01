@@ -5,8 +5,8 @@ identificador: '2137191104'
 pais: bg
 rango: наредба
 fecha_publicacion: '2019-02-19'
-ultima_actualizacion: '2019-02-19'
-estado: vigente
+ultima_actualizacion: '2026-07-07'
+estado: derogado
 fuente: lex.bg
 dv_issue: '15'
 dv_year: 2019
@@ -16,6 +16,8 @@ eli: /eli/bg/наредба/2019/2/19/naredba-11-ot-8-fevruari-2019-g-za-pridobi
 amendment_history:
 - dv: 15/2019
   date: '2019-02-19'
+- dv: 62/2026
+  date: '2026-07-07'
 ---
 
 # НАРЕДБА № 11 ОТ 8 ФЕВРУАРИ 2019 Г. ЗА ПРИДОБИВАНЕ НА КВАЛИФИКАЦИЯ ПО ПРОФЕСИЯТА "ВОЕННОСЛУЖЕЩ - САНИТАРЕН ИНСТРУКТОР"

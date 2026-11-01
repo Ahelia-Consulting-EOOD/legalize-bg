@@ -4,8 +4,8 @@ identificador: '2137227611'
 pais: bg
 rango: правилник
 fecha_publicacion: '2022-11-11'
-ultima_actualizacion: '2022-11-11'
-estado: vigente
+ultima_actualizacion: '2026-07-07'
+estado: derogado
 fuente: lex.bg
 dv_issue: '90'
 dv_year: 2022
@@ -15,6 +15,8 @@ eli: /eli/bg/правилник/2022/11/11/pravilnik-za-ustroystvoto-i-deynostta
 amendment_history:
 - dv: 90/2022
   date: '2022-11-11'
+- dv: 62/2026
+  date: '2026-07-07'
 ---
 
 # ПРАВИЛНИК ЗА УСТРОЙСТВОТО И ДЕЙНОСТТА НА ВОЕННО-ГЕОГРАФСКАТА СЛУЖБА

@@ -5,8 +5,8 @@ identificador: '2137217798'
 pais: bg
 rango: наредба
 fecha_publicacion: '2022-01-14'
-ultima_actualizacion: '2022-01-14'
-estado: vigente
+ultima_actualizacion: '2026-07-03'
+estado: derogado
 fuente: lex.bg
 dv_issue: '4'
 dv_year: 2022
@@ -16,6 +16,8 @@ eli: /eli/bg/наредба/2022/1/14/naredba-n-22-ot-30-dekemvri-2021-g-za-prid
 amendment_history:
 - dv: 4/2022
   date: '2022-01-14'
+- dv: 61/2026
+  date: '2026-07-03'
 ---
 
 # НАРЕДБА № Н-22 ОТ 30 ДЕКЕМВРИ 2021 Г. ЗА ПРИДОБИВАНЕ НА КВАЛИФИКАЦИЯ ПО ПРОФЕСИЯТА "СЕРЖАНТ (СТАРШИНА ЗА ВОЕННОМОРСКИТЕ СИЛИ) - КОМАНДИР"
