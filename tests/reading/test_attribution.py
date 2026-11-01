@@ -86,3 +86,30 @@ def test_measure_writes_one_record_per_material_and_a_summary(tmp_path):
     assert rec["status"] == "amends_corpus_act" and rec["targets"][0]["slug"] == "zakon-za-gorite" and rec["instructions"] == 1
     assert summary["materials"] == 1 and summary["by_status"] == {"amends_corpus_act": 1} and summary["check_problems"] == []
     assert json.loads((tmp_path / "out" / "summary.json").read_text(encoding="utf-8"))["targets_by_how"] == {"title+promulgation": 1}
+
+
+def test_a_decree_cited_for_the_act_it_adopts_and_an_amending_act_are_outside_the_corpus():
+    # the review of 1 November 2026, B2 (material 246585 § 4)
+    t = ATTR.resolve("§4", "Постановление № 266 на Министерския съвет от 2009 г. за приемане на Устройствен правилник на Министерството на финансите", [100, 2016])
+    assert (t.status, t.how) == ("not_in_corpus", "type_outside_corpus") and "Устройствен правилник" in t.note
+    a = ATTR.resolve("§25", "Закона за изменение и допълнение на Закона за горите", [94, 2015])
+    assert (a.status, a.how) == ("not_in_corpus", "amending_act")
+
+
+def test_the_full_definite_form_of_a_repealed_act_is_found():
+    # B3 (material 245888 § 75): „Законът за … (обн., …) се отменя“
+    t = ATTR.resolve("§75", "Законът за горите", [19, 2011], repeal=True)
+    assert (t.status, t.slug, t.repeal) == ("attributed", "zakon-za-gorite", True)
+    assert ATTR.resolve("§1", "Кодексът на пробата", None).status == "not_in_corpus"
+
+
+def test_the_check_fails_on_a_promulgation_that_disagrees_and_on_a_missed_candidate():
+    rec = {"material": 1, "status": "amends_corpus_act", "targets": [{"scope": "title", "status": "attributed", "how": "title+promulgation", "slug": "zakon-za-gorite",
+                                                                      "cited_promulgation": [19, 2011], "act_promulgation": [19, 2011], "candidates": []}]}
+    assert A.check(rec, ATTR.by_id) == []
+    rec["targets"][0]["act_promulgation"] = [125, 1997]
+    assert "is not the cited" in A.check(rec, ATTR.by_id)[0]
+    missed = {"material": 2, "status": "amends_other_acts", "targets": [{"scope": "§8", "status": "not_in_corpus", "how": "resolver", "slug": None,
+                                                                         "cited_promulgation": [19, 2011], "act_promulgation": None, "candidates": ["zakon-za-gorite"]}]}
+    assert "was promulgated in the cited" in A.check(missed, ATTR.by_id)[0]
+    assert A.check(missed) == [], "without the corpus the candidate check cannot run"

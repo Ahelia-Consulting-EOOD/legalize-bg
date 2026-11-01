@@ -1,10 +1,10 @@
 {
  "materials": 598,
  "by_status": {
-  "amends_corpus_act": 215,
-  "amends_other_acts": 79,
-  "not_amending": 288,
-  "parse_findings": 6,
+  "amends_corpus_act": 203,
+  "amends_other_acts": 75,
+  "not_amending": 266,
+  "parse_findings": 44,
   "no_target": 10
  },
  "by_kind": {
@@ -20,30 +20,35 @@
   "ukaz": 2
  },
  "amending": 276,
- "targets": 1031,
+ "targets": 1123,
  "targets_by_status": {
-  "not_in_corpus": 148,
-  "predecessor_or_other": 56,
-  "attributed": 827
+  "not_in_corpus": 213,
+  "predecessor_or_other": 55,
+  "attributed": 855
  },
  "targets_by_how": {
-  "resolver": 150,
-  "title+promulgation": 824,
-  "type_outside_corpus": 57
+  "resolver": 187,
+  "title+promulgation": 827,
+  "type_outside_corpus": 86,
+  "amending_act": 23
  },
- "cross_act_targets": 772,
- "cross_act_attributed": 642,
+ "cross_act_targets": 864,
+ "cross_act_attributed": 663,
  "parse_finding_kinds": {
-  "quote_closed_by_sequence": 305,
+  "quote_closed_by_sequence": 133,
   "quote_open_at_end": 1,
+  "sequence": 88,
+  "duplicate_id": 16,
   "decree_without_end": 25,
-  "unplaced": 1500,
+  "unplaced": 1488,
   "quoted_before_instruction": 4,
   "item_without_sign": 620,
-  "unquoted_provision": 711
+  "unquoted_provision": 697,
+  "citation_without_target": 9,
+  "cited_issue_unread": 1
  },
- "instructions_in_amending": 11921,
- "tokens_instructions_in_amending": 395819,
+ "instructions_in_amending": 11188,
+ "tokens_instructions_in_amending": 1294501,
  "check_problems": [],
- "measured_at": "2026-11-01T09:13:04+00:00"
+ "measured_at": "2026-11-01T09:40:27+00:00"
 }

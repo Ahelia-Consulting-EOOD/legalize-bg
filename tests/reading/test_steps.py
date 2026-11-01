@@ -23,8 +23,8 @@ def _ctx(tmp_path, **params):
 def test_the_steps_are_the_routes_steps_with_disjoint_outputs(tmp_path):
     ctx = _ctx(tmp_path)
     for route, names in routes.ROUTE_STEPS.items():
-        if route in ("history", "source_before_archive"):
-            assert names[0] not in steps.STEPS   # not built: the route stops at once
+        if route == "source_before_archive":
+            assert names[0] not in steps.STEPS   # not built (S4): the route stops at once
         else:
             assert all(n in steps.STEPS for n in names), route
     outs = {}

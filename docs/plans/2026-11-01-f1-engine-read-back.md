@@ -36,22 +36,22 @@ Each item is the plan's text for F1 (section 4) or the task given to this sessio
 | Measure | Count |
 |---|---|
 | materials on disk | 151 |
-| amending materials | 41 |
+| amending materials | 42 |
 | of them amending a corpus act | 33 |
-| cited targets | 74 |
-| attributed to a corpus act | 59 |
-| not in the corpus (10 by type: tariffs, decrees, rules; 4 acts the corpus does not hold) | 14 |
-| a same-named predecessor or other act | 1 |
+| cited targets | 83 |
+| attributed to a corpus act | 62 |
+| not in the corpus (18 by type: tariffs, decrees, rules, an amending act's own provisions; 3 acts the corpus does not hold) | 21 |
+| a same-named predecessor or other act | 0 |
 | ambiguous | 0 |
-| cross-act targets inside other acts' provisions, and attributed | 34, 25 |
-| materials with a parse finding | 2 |
-| instructions in the amending materials | 1,187 |
-| tokens of instruction text in them | 37,747 |
+| cross-act targets inside other acts' provisions, and attributed | 43, 28 |
+| materials with a parse finding (a quoted list the grammar cannot place, a text printed without quotation marks) | 7 |
+| instructions in the amending materials | 1,168 |
+| tokens of instruction and quoted text in them | 122,330 |
 | model calls | 0 |
 
-Of the 55 materials the session of 21 October triaged as in scope by title, 33 amend a corpus act, 4 amend acts outside the corpus (tariffs and decrees), 2 carry a parse finding, 14 are whole new acts or court decisions (read by the labeller route or recorded as a kind the engine does not do), and 2 name no target.
+Of the 55 materials the session of 21 October triaged as in scope by title, 33 amend a corpus act, 4 amend acts outside the corpus (tariffs and decrees), 4 carry a parse finding, 13 are whole new acts or court decisions (read by the labeller route or recorded as a kind the engine does not do), and 1 names no target. The figures are those after the review of parts 1 and 2 (3 blocking, 5 major, all fixed with tests); the summary's form check now fails on a wrong promulgation and found and fixed 18 missed attributions in the chains.
 
-**The eleven acts' chains** (`…/eleven-chains/`): 598 candidate materials (the title hits and every law, decree, ordinance and regulation of the 100 issues lex.bg's histories name), 215 of them amending a corpus act; 93 attributed to one of the eleven acts, in 88 distinct materials (five amend two of the eleven at once), with 6,243 instructions and 10,590 quoted blocks; about 87,700 tokens of instruction text fall to the eleven acts. Of lex.bg's 100 amendment events, 96 are located in the Gazette; the four not located are: two that ride in the promulgation materials of new codes (the Penal Procedure Code of бр. 86/2005 for the extradition law, the Civil Procedure Code of бр. 59/2007 for the private international law code), which the fetch filter of this measurement skipped and the chain step will fetch; one amendment of an amending act's entry-into-force clause (Семеен кодекс, бр. 101/2019), a kind the engine stops on; one corrigendum (Наредба № 1 от 2015 г., бр. 81/2021), whose target the attribution will resolve through the act it corrects. Four of the 88 materials carry a parse finding (a new text printed without quotation marks, or a quotation the grammar lost), which the instruction step resolves by the model's block ranges or stops on. The promulgation materials of the eleven acts hold 5,058 blocks in 154 labelling sections.
+**The eleven acts' chains** (`…/eleven-chains/`): 598 candidate materials (the title hits and every law, decree, ordinance and regulation of the 100 issues lex.bg's histories name), 203 of them amending a corpus act; 93 attributed to one of the eleven acts, in 88 distinct materials (five amend two of the eleven at once), with 5,849 instructions; about 350,000 tokens of instruction and quoted text fall to the eleven acts, 677,000 for the 88 materials whole. Of lex.bg's 100 amendment events, 96 are located in the Gazette; the four not located are: two that ride in the promulgation materials of new codes (the Penal Procedure Code of бр. 86/2005 for the extradition law, the Civil Procedure Code of бр. 59/2007 for the private international law code), which the fetch filter of this measurement skipped and the chain step will fetch; one amendment of an amending act's entry-into-force clause (Семеен кодекс, бр. 101/2019), a kind the engine stops on; one corrigendum (Наредба № 1 от 2015 г., бр. 81/2021), whose target the attribution will resolve through the act it corrects. Eleven of the 88 materials carry a parse finding (a new text printed without quotation marks, a quoted list the grammar cannot tell from the instructions, a quotation the Gazette closes item by item), which the instruction step resolves by the model's block ranges or stops on. The promulgation materials of the eleven acts hold 5,058 blocks in 154 labelling sections.
 
 ## 4. The budget
 
@@ -61,7 +61,7 @@ Counted once, from the measured figures of D-070 (7,700 tokens of plan usage per
 |---|---|---|---|
 | promulgation reading, round 0 (labeller) | 7,700 per section | 154 sections | 1.19 M |
 | ladder rounds 1 and 2 | 40 % of round 0 | | 0.45 M |
-| instruction step (one lean call per material: instructions, quoted text, the addressed provisions' current text, the answer, the agent's fixed context) | 10,000 per material | 93 | 0.93 M |
+| instruction step (one lean call per material: the instructions and quoted text, about 3,800 tokens measured; the addressed provisions' current text; the answer; the agent's fixed context) | 10,000 per material | 93 | 0.93 M |
 | witness settlement (settler) | 40,000 per act | 11 | 0.44 M |
 | three fresh Opus review rounds, scoped to the diff and the tests | under 0.5 M each | 3 | 1.0 M |
 | **total, eleven acts** | | | **4.0 M** |

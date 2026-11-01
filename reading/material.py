@@ -30,7 +30,7 @@ from dataclasses import dataclass, field, asdict
 from .splitter import Block, SplitAct
 
 KINDS = ("law", "code", "decree", "ordinance", "regulation", "instruction", "tariff", "corrigendum", "decision", "ukaz", "other")
-ROLES = ("header", "instruction", "quoted", "continuation", "heading", "tail", "embedded", "act", "unplaced")
+ROLES = ("header", "instruction", "quoted", "continuation", "heading", "tail", "embedded", "act", "annex", "unplaced")
 SECTIONS = ("body", "additional", "transitional", "final", "transitional_final")
 
 _KIND_WORDS = (
@@ -64,11 +64,16 @@ QUOTE_CLOSE = "“”\"»"
 QUOTES = "„“”\"«»"
 INLINE_QUOTE = re.compile(r"[„“\"«]([^„“”\"«»]*)[“”\"»]")
 # the act another act's provision amends: „В Закона за данъците … (обн., ДВ, бр. 95 от 2006 г.; изм., …) се правят …“, or „Законът за … се отменя“
-CROSS_ACT = re.compile(r"^(?:В|Във)\s+(?P<title>[А-ЯA-Z][^()]{3,220}?)\s*"
-                       r"\((?P<cite>(?:[oо]бн|ДВ)[^()]*(?:\([^()]*\)[^()]*)*)\)", re.S)
-CROSS_ACT_REPEAL = re.compile(r"^(?P<title>[А-ЯA-Z][^()]{3,220}?)\s*"
-                              r"\((?P<cite>(?:[oо]бн|ДВ)[^()]*(?:\([^()]*\)[^()]*)*)\)\s*се\s+отменя", re.S)
-CITED_ISSUE = re.compile(r"бр\.\s*((?:\d+(?:\s*,\s*|\s+и\s+)?)+)\s*от\s*(\d{4})")
+# the act another act's provision cites, read from the citation backwards: „В Закона за … (обн., ДВ, …) се правят …“,
+# „В чл. 30, т. 9 от Устройствения правилник на … (обн., …)“, „В § 21 от преходните … разпоредби на Закона за … (обн., …)“,
+# „Законът за … (обн., …) се отменя“, „Отменя се Наредба № … (ДВ, бр. …)“, „Навсякъде в Наредбата … (обн., …)“
+CITATION = re.compile(r"\((?:[oо]бн\.|ДВ\s*,)[^()]*(?:\([^()]*\)[^()]*)*\)")
+TITLE_STARTS = re.compile(r"(?:^|(?<=\s))(?:В|Във|от|на|в|Отменя се|Отменят се|Навсякъде в|и в|и)\s+(?=[А-ЯA-Z„])")
+ACT_WORD = re.compile(r"^(?:[А-Я][\w„“\"-]*\s+){0,4}?(закон|кодекс|наредб|правилник|постановлени|тарифа|инструкци|правила|указ|устройствен)", re.I)
+ENDS_IN_CODE = re.compile(r"кодекс$", re.I)
+REPEAL_WORDS = re.compile(r"^\s*се\s+отменя|^(?:Отменя|Отменят)\s+се\s", re.I)
+CITED_ISSUE = re.compile(r"бр\.\s*((?:\d+(?:\s*,\s*|\s+и\s+)?)+)\s*(?:от\s*(?:\d{1,2}\.\d{1,2}\.)?|/)\s*(\d{4})")
+_BR = re.compile(r"бр\.\s*\d")
 BULGARIAN_LETTERS = "абвгдежзиклмнопрстуфхцчшщюя"
 TOKEN_CHARS = 3.2   # characters per token for Bulgarian in this model's tokeniser, measured on the structure-map runs (D-070's design study)
 
@@ -141,7 +146,10 @@ def parse_cited_history(text: str) -> dict:
     for nums, year in CITED_ISSUE.findall(text):
         for n in re.findall(r"\d+", nums):
             issues.append([int(n), int(year)])
-    return {"promulgation": issues[0] if issues else None, "issues": issues, "text": text.strip()}
+    out = {"promulgation": issues[0] if issues else None, "issues": issues, "text": text.strip()}
+    if len(_BR.findall(text)) > len(CITED_ISSUE.findall(text)):
+        out["unread"] = True   # a „бр.“ the grammar could not read: the caller records a finding
+    return out
 
 
 def _without_history(text: str) -> str:
@@ -166,16 +174,38 @@ def _quote_delta(text: str) -> int:
 
 
 def _target(text: str) -> dict | None:
-    m = CROSS_ACT.match(text)
-    repeal = False
-    if not m:
-        m = CROSS_ACT_REPEAL.match(text)
-        repeal = bool(m)
+    """The act an instruction cites with its history: the title is the longest phrase before the citation that opens at a title
+    start, begins with a capital and names an act type in its first words (or ends in „кодекс“); None when there is no citation."""
+    m = None
+    for cm in CITATION.finditer(text):
+        # a citation inside quoted words („… думите „Наредба № 1 от 2010 г. … (ДВ, бр. …)“ се заменят …“) is the act's own text, not a target
+        if any(q.start() < cm.start() < q.end() for q in INLINE_QUOTE.finditer(text)):
+            continue
+        m = cm
+        break
     if not m:
         return None
-    cite = parse_cited_history(m.group("cite"))
-    return {"title": re.sub(r"\s+", " ", m.group("title")).strip(" ,"), "cite": cite["text"], "promulgation": cite["promulgation"],
-            "issues": cite["issues"], "repeal": repeal}
+    before = text[:m.start()]
+    if re.search(r"на основание\s", before):
+        return None   # the legal basis of the act („се приема на основание чл. 5 от Закона за …“), not an act it changes
+    best = None
+    starts = [ts.end() for ts in TITLE_STARTS.finditer(before)]
+    if not TITLE_STARTS.match(before):
+        starts.insert(0, 0)   # the title opens the text itself („Законът за … (обн., …) се отменя“)
+    for st in starts:
+        cand = before[st:].strip(" ,;:")
+        if not cand or not cand[0].isupper() and cand[0] not in "„“\"":
+            continue
+        core = cand.strip("„“\"")
+        if ACT_WORD.match(core) or ENDS_IN_CODE.search(core):
+            if best is None or len(cand) > len(best):
+                best = cand
+    if best is None:
+        return {"title": None, "cite": m.group(0)[1:-1], "promulgation": parse_cited_history(m.group(0))["promulgation"], "issues": [], "repeal": False, "unread_title": True}
+    cite = parse_cited_history(m.group(0)[1:-1])
+    after = text[m.end():]
+    repeal = bool(REPEAL_WORDS.match(after)) or bool(re.match(r"^\s*(Отменя|Отменят)\s+се\s", before.strip()))
+    return {"title": re.sub(r"\s+", " ", best).strip(" ,"), "cite": cite["text"], "promulgation": cite["promulgation"], "issues": cite["issues"], "repeal": repeal}
 
 
 def _head_stripped(text: str) -> str:
@@ -243,8 +273,13 @@ def parse(act: SplitAct) -> Material:
     title_lines: list[int] = []
     kind = None
     cited_history = None
+    FORMULA = re.compile(r"^(МИНИСТЕРСКИЯТ СЪВЕТ|ПОСТАНОВИ:|ПОСТАНОВЯВА:|РЕШИ:|НАРЕЖДАМ:|ЗАПОВЯДВАМ:)$")
     while i < n and not _opens_body(blocks[i].text) and blocks[i].text[:1] not in QUOTE_OPEN and len(title_lines) <= 12:
         t = blocks[i].text
+        if FORMULA.match(t.strip()):
+            header.append(i)
+            i += 1
+            continue
         if kind is None:
             k = _kind_of(t)
             if k is None and not title_lines and t == t.upper() and not HISTORY_LINE.match(t):
@@ -265,7 +300,7 @@ def parse(act: SplitAct) -> Material:
     j = n - 1
     while j >= i and NUMBER_LINE.match(blocks[j].text):
         tail.append(j); j -= 1
-    while j >= i and blocks[j].text.strip() not in QUOTES and (SIGNATURE.match(blocks[j].text) or blocks[j].hint == "DvRight"
+    while j >= i and blocks[j].text.strip() not in QUOTES and not blocks[j].text.startswith("Приложение") and (SIGNATURE.match(blocks[j].text) or blocks[j].hint == "DvRight"
                       or (j - 1 >= i and blocks[j - 1].text.rstrip().endswith(":") and SIGNATURE.match(blocks[j - 1].text) and len(blocks[j].text) < 60)):
         tail.append(j); j -= 1
     if j >= i and ADOPTION.match(blocks[j].text):
@@ -281,10 +316,21 @@ def parse(act: SplitAct) -> Material:
     target_title = strip_amending_prefix(own_title) or None if ik in ("amending", "repeal", "corrigendum") else None
     # a whole act (a promulgation): its text is not instructions; only the §§ of its own final provisions are read, for the
     # acts they amend („§ 17. В Закона за наследството (обн., …)“), and the labeller route reads the act itself
-    whole_act = kind not in ("decree", "decision", "ukaz", "corrigendum") and ik == "promulgation" and i < body_end and (ARTICLE.match(blocks[i].text) or STRUCTURAL.match(blocks[i].text))
+    whole_act = bool(kind not in ("decree", "decision", "ukaz", "corrigendum") and ik == "promulgation" and i < body_end and (ARTICLE.match(blocks[i].text) or STRUCTURAL.match(blocks[i].text)))
+    if cited_history and cited_history.get("unread"):
+        findings.append({"block": title_lines[-1] if title_lines else 0, "kind": "cited_issue_unread", "detail": cited_history["text"][:80]})
     act_end = i
     if whole_act:
-        last_prov = max((k for k in range(i, body_end) if PROVISIONS.match(blocks[k].text) and len(blocks[k].text) < 80), default=None)
+        last_prov = None
+        depth = 0
+        for k in range(i, body_end):
+            t = blocks[k].text
+            if depth == 0 and PROVISIONS.match(t) and len(t) < 80:
+                last_prov = k
+            if t[:1] in QUOTE_OPEN and _opens(t):
+                depth += 1
+            elif depth and (_closes(t) or t.strip() in QUOTES):
+                depth -= 1
         act_end = last_prov if last_prov is not None else body_end
         for k in range(i, act_end):
             roles[k] = "act"
@@ -297,6 +343,7 @@ def parse(act: SplitAct) -> Material:
     section = "body"
     quote_open = False
     depth = 0
+    inner_list = False
     last: Node | None = None
     expected_sign = 1
     signed = False   # a signature line inside the body: the decree is over, an embedded act may follow
@@ -308,8 +355,12 @@ def parse(act: SplitAct) -> Material:
             roles[k] = "embedded"
             k += 1
             continue
+        if signed and roles.get(k - 1) in ("annex", "act") and kind != "decree":
+            roles[k] = roles[k - 1]
+            k += 1
+            continue
         m_sign = SIGN.match(t)
-        if quote_open and _resumes(t, m_sign, stack, expected_sign, section):
+        if quote_open and not _closes(t) and _resumes(t, m_sign, stack, expected_sign, section) and not (inner_list and (ITEM.match(t) or LETTER.match(t))):
             # the Gazette closes a nested quotation with one mark, so the marks' parity lies; the amending act's own sequence does
             # not: a § or an item carrying the number the sequence expects next resumes the instructions, whatever the marks said
             findings.append({"block": k, "kind": "quote_closed_by_sequence", "detail": f"the run before {t[:40]!r} is closed by the sequence, not by a mark"})
@@ -318,6 +369,9 @@ def parse(act: SplitAct) -> Material:
         if quote_open:
             roles[k] = "quoted"
             last.quoted.append(k)
+            mi, ml = ITEM.match(t), LETTER.match(t)
+            if (mi and mi.group(1) == "1") or (ml and ml.group(1) == "а"):
+                inner_list = True   # the quoted text carries a list of its own: its numbers never resume the instructions
             if t.strip() in QUOTES:
                 depth -= 1
             elif _opens(t):
@@ -325,6 +379,8 @@ def parse(act: SplitAct) -> Material:
             elif _closes(t):
                 depth -= 1
             quote_open = depth > 0
+            if not quote_open:
+                inner_list = False
             k += 1
             continue
         if t[:1] in QUOTE_OPEN:
@@ -335,17 +391,34 @@ def parse(act: SplitAct) -> Material:
                 roles[k] = "quoted"
                 last.quoted.append(k)
                 quote_open = _opens(t)
+                if quote_open and _ends_with_closer(t) and k + 1 < body_end:
+                    # the block ends with a mark its parity does not pair: a nested quotation closed with one mark (the run is over) or an
+                    # inner quotation ending the first sentence of a longer text (the run goes on); the next block decides, by the sequence
+                    nxt = blocks[k + 1].text
+                    if _resumes(nxt, SIGN.match(nxt), stack, expected_sign, section):
+                        quote_open = False
                 depth = 1 if quote_open else 0
+                inner_list = False
+            k += 1
+            continue
+        if ADOPTION.match(t) and not quote_open:
+            roles[k] = "tail"; tail.append(k); signed = True
             k += 1
             continue
         if signed or (nodes and SIGNATURE.match(t) and (b.hint == "DvRight" or ":" in t)):
-            if SIGNATURE.match(t) or b.hint == "DvRight":
+            if (SIGNATURE.match(t) or b.hint == "DvRight") and not t.startswith("Приложение"):
                 roles[k] = "tail"; tail.append(k); signed = True
                 k += 1
                 continue
-            # the first block after the decree's signatures opens the act the decree adopts
-            embedded = {"start": k, "title": t}
-            roles[k] = "embedded"
+            if kind == "decree":
+                # the first block after the decree's signatures opens the act the decree adopts
+                embedded = {"start": k, "title": t}
+                roles[k] = "embedded"
+            else:
+                # an annex printed after the signatures: the act's own when the material is a whole act, else recorded
+                roles[k] = "act" if whole_act else "annex"
+                if not whole_act and not any(f["kind"] == "annex_after_signature" for f in findings):
+                    findings.append({"block": k, "kind": "annex_after_signature", "detail": t[:60]})
             k += 1
             continue
         if m_sign:
@@ -419,6 +492,11 @@ def parse(act: SplitAct) -> Material:
         roles[k] = "instruction"
         node.inline_quotes = [q for q in INLINE_QUOTE.findall(t)]
         node.target = _target(_head_stripped(t))
+        if node.target and node.target.get("unread_title"):
+            findings.append({"block": k, "kind": "citation_without_target", "detail": t[:80]})
+            node.target = None
+        elif node.target and node.target.get("unread"):
+            findings.append({"block": k, "kind": "cited_issue_unread", "detail": node.target["cite"][:80]})
         quote_open = bool(_quote_delta(t)) and not _closes(t)
         depth = 1 if quote_open else 0
         last = node
@@ -437,24 +515,63 @@ def parse(act: SplitAct) -> Material:
 
 
 def check(m: Material) -> list[str]:
-    """The skeleton's mechanical checks: every block in one role, no unplaced block, the sequences hold, quotations closed."""
+    """The skeleton's mechanical checks, each able to fail: every block in one known role; every unplaced block carries its own
+    finding; no instruction id twice; items and letters follow in sequence under their parent; quotations closed; the findings."""
     out = [f"block {f['block']}: {f['kind']}: {f['detail']}" for f in m.findings]
     if sorted(m.roles) != list(range(m.blocks)):
         out.append("the roles do not cover every block exactly once")
-    unplaced = [k for k, r in m.roles.items() if r == "unplaced"]
-    if unplaced and not any(f["kind"] in ("unplaced", "quoted_before_instruction", "item_without_sign") for f in m.findings):
-        out.append(f"{len(unplaced)} unplaced block(s) without a finding")
-    for v in m.roles.values():
-        if v not in ROLES:
-            out.append(f"unknown role {v}")
+    found = {f["block"] for f in m.findings}
+    for k, r in sorted(m.roles.items()):
+        if r not in ROLES:
+            out.append(f"block {k}: unknown role {r}")
+        if r == "unplaced" and k not in found:
+            out.append(f"block {k}: unplaced without a finding")
+    seen: dict[str, int] = {}
+    for node in m.instructions():
+        if node.id in seen:
+            out.append(f"block {node.block}: instruction id {node.id} already at block {seen[node.id]}")
+        seen.setdefault(node.id, node.block)
+    out.extend(sequence_problems(m))
     return out
 
 
-def instruction_text_tokens(m: Material) -> int:
-    """An estimate of the tokens the instruction step reads from this material: every instruction, quoted and continuation block."""
+def sequence_problems(m: Material) -> list[str]:
+    """Items under a § start at 1 and increase by one (a lettered item follows its number); letters follow the lettering order."""
+    out: list[str] = []
+    letters = "абвгдежзиклмнопрстуфхцчшщюя"
+    for node in m.instructions():
+        if node.level == 0:
+            prev = 0
+            for c in node.children:
+                num = c.id.rsplit(".", 1)[-1]
+                mm = re.match(r"(\d+)([а-я]*)$", num)
+                if not mm:
+                    continue
+                n = int(mm.group(1))
+                if not ((n == prev + 1 and not mm.group(2)) or (n == prev and mm.group(2))):
+                    out.append(f"block {c.block}: item {num} after {prev} under {node.id}")
+                prev = n
+        elif node.level == 1:
+            prev = -1
+            for c in node.children:
+                let = c.id.rsplit(".", 1)[-1]
+                pos = letters.find(let) if len(let) == 1 else -2
+                if pos == -2:
+                    continue
+                if pos != prev + 1:
+                    out.append(f"block {c.block}: letter {let}) after {letters[prev] if prev >= 0 else 'none'}) under {node.id}")
+                prev = pos
+    return out
+
+
+def instruction_text_tokens(m: Material, blocks: list[Block] | None = None) -> int:
+    """An estimate of the tokens the instruction step reads from this material: every instruction, and with ``blocks`` its quoted
+    and continuation blocks too."""
     chars = 0
     for node in m.instructions():
         chars += len(node.text)
+        if blocks is not None:
+            chars += sum(len(blocks[k].text) for k in node.quoted + node.continuation)
     return int(chars / TOKEN_CHARS)
 
 

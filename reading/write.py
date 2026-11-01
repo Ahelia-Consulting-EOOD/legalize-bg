@@ -231,6 +231,65 @@ def reread_dv(slug: str, run_dir: Path, cache_dir: Path) -> tuple[str, list[dict
     return body, omissions, provenance, rec
 
 
+def rebuild_engine(slug: str, run_dir: Path, cache_dir: Path, body0: str) -> tuple[str, dict]:
+    """Apply the chain's recorded operations again to the promulgation reading: the body must equal ``applied.md``.
+
+    Every material is read again from the cache and checked against the hash the apply step recorded; the operations are the
+    checked ``ops.json`` of each material, applied in the chain's order by ``reading/operations.py`` with no model call.
+    """
+    from reading import material as _material, operations as _operations
+    from reading.steps import _scoped
+    chain = json.loads((run_dir / "chain.json").read_text(encoding="utf-8"))
+    summary = json.loads((run_dir / "apply.json").read_text(encoding="utf-8"))
+    body = body0
+    applied: list[dict] = []
+    for k, m in enumerate(chain["materials"], 1):
+        d = run_dir / "apply" / f"{k:02d}-{m['material']}"
+        rec = json.loads((d / "material.json").read_text(encoding="utf-8"))
+        html = (cache_dir / f"{m['material']}.html").read_bytes()
+        if _sha256(html) != rec["material_sha256"]:
+            raise WriteRefused(f"{slug}: the material {m['material']} in the cache differs from the apply step's record")
+        ops = json.loads((d / "ops.json").read_text(encoding="utf-8"))
+        act = split_dv(html)
+        mat = _scoped(_material.parse(act), m["scopes"])
+        try:
+            out = _operations.apply({"material": m["material"], "operations": _ops_as_answer(ops["operations"])}, mat, act.blocks, body, m["issue"])
+        except _operations.FormError as exc:
+            raise WriteRefused(f"{slug}: the operations of material {m['material']} no longer apply: {exc}") from None
+        body = out.markdown
+        applied.append({"material": int(m["material"]), "issue": m["issue"], "date": m.get("date"), "material_sha256": rec["material_sha256"], "operations": len(ops["operations"])})
+    if body != (run_dir / "applied.md").read_text(encoding="utf-8"):
+        raise WriteRefused(f"{slug}: the body rebuilt from the chain's operations differs from the run's applied.md")
+    if _sha256(body.encode("utf-8")) != summary.get("applied_sha256"):
+        raise WriteRefused(f"{slug}: applied.md no longer hashes as apply.json recorded it")
+    return body, {"chain": applied, "apply_sha256": _sha256((run_dir / "apply.json").read_bytes()), "chain_sha256": _sha256((run_dir / "chain.json").read_bytes())}
+
+
+def _ops_as_answer(ops: list[dict]) -> list[dict]:
+    """The checked operations back in the answer form the form check reads (the references, not the resolved texts)."""
+    out = []
+    for op in ops:
+        a = {k: v for k, v in op.items() if k in ("id", "kind", "address", "after", "blocks", "where", "to", "everywhere", "note")}
+        for key in ("old", "new", "anchor"):
+            if key in op and f"{key}_ref" in op:
+                a[key] = op[f"{key}_ref"]
+        out.append(a)
+    return out
+
+
+def build_frontmatter_dv_chain(committed: dict, rec: dict, chain: list[dict]) -> dict:
+    """The frontmatter of an act rebuilt from its promulgation material and the chain of amending materials (the preflight of
+    31 October 2026 read as the parent session confirmed on 1 November: the same fields, more rows). ``amendment_history`` is
+    the Gazette's chain; the last applied material's date is the date of the last change."""
+    meta = build_frontmatter_dv(committed, rec)
+    rows = [meta["amendment_history"][0]]
+    for c in chain:
+        rows.append({"dv": c["issue"], "date": c.get("date") or rec["issue_date"]})
+    meta["amendment_history"] = rows
+    meta["ultima_actualizacion"] = rows[-1]["date"]
+    return meta
+
+
 def build_frontmatter_dv(committed: dict, rec: dict) -> dict:
     """The frontmatter of an act read whole from its promulgation material (the Surface 2 preflight of 31 October 2026).
 
@@ -313,9 +372,10 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
         rec = material_record(run_dir)
         entry = sx.listed(slug, exceptions_path)
         # the Gazette path writes an act whole from its promulgation material only when the list says so for that material
-        if entry is None or entry.route != "whole_act_from_material":
-            raise WriteRefused(f"{slug}: a Gazette material is written whole only for an act listed with the route whole_act_from_material "
-                               f"(the list says {entry.route if entry else 'nothing'})")
+        engine = (run_dir / "apply.json").exists()
+        if entry is None or entry.route not in (("history",) if engine else ("whole_act_from_material",)):
+            raise WriteRefused(f"{slug}: a Gazette material is written whole only for an act listed with the route whole_act_from_material, "
+                               f"and a rebuilt history only for the route history (the list says {entry.route if entry else 'nothing'})")
         if str(entry.address).strip() != str(rec["id_mat"]):
             raise WriteRefused(f"{slug}: the run's material {rec['id_mat']} is not the entry's address {entry.address}")
         issue = (int(rec["issue_year"]), int(rec["issue_number"]))
@@ -324,14 +384,19 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
         if unreadable:
             raise WriteRefused(f"{slug}: the committed history holds rows that do not read as issue/year ({', '.join(map(str, unreadable))}); "
                                f"they are settled before a Gazette write")
-        later = [r.get("dv") for r in rows if _issue_key(r.get("dv")) > issue]
+        later = [r.get("dv") for r in rows if _issue_key(r.get("dv")) > issue] if not engine else []
         if later:
             raise WriteRefused(f"{slug}: the committed history holds {', '.join(map(str, later))} after the material's issue {issue[1]}/{issue[0]}; "
                                f"the act is not whole in that material (the history route is needed)")
         body, omissions, provenance, rec = reread_dv(slug, run_dir, cache_dir)
+        engine = (run_dir / "apply.json").exists()
+        if engine:
+            body, chain_rec = rebuild_engine(slug, run_dir, cache_dir, body)
+            provenance["base"].update({"state": "consolidated", "chain": chain_rec["chain"]})
+            provenance["record"].update({"apply_sha256": chain_rec["apply_sha256"], "chain_sha256": chain_rec["chain_sha256"]})
         _check_witness_record(slug, run_dir, body)
-        meta = build_frontmatter_dv(committed, rec)
-        source_ref = SourceRef("dv", str(rec["id_mat"]))
+        meta = build_frontmatter_dv_chain(committed, rec, chain_rec["chain"]) if engine else build_frontmatter_dv(committed, rec)
+        source_ref = SourceRef("dv", str(chain_rec["chain"][-1]["material"] if engine and chain_rec["chain"] else rec["id_mat"]))
     else:
         try:
             body, omissions, provenance = reread(slug, run_dir, raw_dir, doc_id)
@@ -357,7 +422,8 @@ def write_staged(slug: str, run_dir: Path | str, *, root: Path | str = ROOT, raw
     if commit_type == "unchanged":
         return Written(slug, "unchanged", record_id, None)
 
-    record = [run_dir / "map.json", *sorted(run_dir.glob("report-round*.json")), *[p for p in [run_dir / "witness-record.json"] if p.exists()]]
+    record = [run_dir / "map.json", *sorted(run_dir.glob("report-round*.json")), *[p for p in [run_dir / "witness-record.json", run_dir / "chain.json", run_dir / "apply.json"] if p.exists()],
+              *sorted(run_dir.glob("apply/*/ops.json"))]
     files = [_rel(root, f) for f in [path, *record]]
     before = waivers_path.read_text(encoding="utf-8")  # read once, so any failure below can put it back
     lowered = written = False

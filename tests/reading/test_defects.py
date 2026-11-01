@@ -6,7 +6,7 @@ import pytest
 import yaml
 
 import source_exceptions as sx
-from reading import defect_kinds, defects
+from reading import routes, defect_kinds, defects
 from reading.splitter import Block, split_lexbg
 
 REPO = Path(__file__).resolve().parents[2]
@@ -426,19 +426,20 @@ def test_confirmed_acts_enter_the_list_through_the_driver_and_the_history_route_
     out = defects.list_confirmed(run_root, str(tmp_path), run="r")   # a string root is accepted (round 2, minor 5)
     assert [e.slug for e in defects.entries_for(run_root, str(tmp_path))] == ["zakon-a", "zakon-b"]
     by = {r["slug"]: r for r in out}
-    assert by["zakon-b"]["route"] == "history" and by["zakon-b"]["state"] == "stopped" and by["zakon-b"]["step"] == "engine" and by["zakon-b"]["added"]
+    # since F1 built the history route, a confirmed amended act halts before the engine's first step, as the whole-act route halts
+    # before the labeller batch: neither run is this step's to spend
+    assert by["zakon-b"]["route"] == "history" and by["zakon-b"]["state"] == "halted" and by["zakon-b"]["step"] == "chain" and by["zakon-b"]["added"]
     assert by["zakon-a"]["route"] == "whole_act_from_material" and by["zakon-a"]["state"] == "halted" and by["zakon-a"]["step"] == "amendment_search"
-    case = (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8")
-    assert "## Lessons learnt\n\nThe detector of FR-042 flagged the act" in case and "until the engine exists" in case
-    assert "the heading is empty on lex.bg. The Gazette carries: § 1 with one definition." in case   # the note ends with a full stop before the next sentence
-    assert "(not yet written)" not in case and "## The owner's ruling\n\n(not yet given)" in case
+    assert "case_file" not in by["zakon-b"]
     entries = {e.slug: e for e in sx.load(tmp_path / "docs" / "data" / "source-exceptions.yaml")}
-    assert entries["zakon-b"].state == "stopped" and entries["zakon-b"].defect == "dropped_section" and entries["zakon-b"].address == "501"
+    assert entries["zakon-b"].state == "listed" and entries["zakon-b"].defect == "dropped_section" and entries["zakon-b"].address == "501"
     assert entries["zakon-a"].state == "listed"
-    # listed once: a second pass adds nothing and the stop stands with its prose
+    # listed once: a second pass adds nothing
     again = {r["slug"]: r for r in defects.list_confirmed(run_root, tmp_path, run="r")}
-    assert not again["zakon-b"]["added"] and again["zakon-b"]["state"] == "stopped" and again["zakon-b"]["detail"] == "already listed"
-    assert (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8") == case
+    assert not again["zakon-b"]["added"] and again["zakon-b"]["state"] == "listed" and again["zakon-b"]["detail"] == "already listed"
+    # the case prose of a stop names the engine's route
+    case = defects.case_prose({"material": 501, "note": "the heading is empty on lex.bg", "gazette": "§ 1 with one definition", "kind": "dropped_section", "stage": "tails", "promulgation_material": 501}, entries["zakon-b"], "r")
+    assert case["Lessons learnt"].startswith("The detector of FR-042 flagged the act") and "the heading is empty on lex.bg. The Gazette carries: § 1 with one definition." in case["Lessons learnt"]
     prose = defects.case_prose({"material": 1, "note": "n", "gazette": "g", "kind": "wrong_text", "stage": "amendment", "promulgation_material": 2}, entries["zakon-a"], "r")
     assert "S5's batch" in prose["Proposal"] and "kind: wrong_text" in prose["Lessons learnt"] and "amending material 1 (the promulgation material is 2)" in prose["Lessons learnt"]
     assert "enters into force" not in prose["Lessons learnt"]
@@ -446,14 +447,20 @@ def test_confirmed_acts_enter_the_list_through_the_driver_and_the_history_route_
     assert "enters into force on 2028-01-01; the starting state carries it" in prose["Lessons learnt"] and "beyond the measured" not in prose["Lessons learnt"]
     prose = defects.case_prose({"material": 1, "note": "n", "gazette": "g", "kind": "wrong_text", "beyond_measured_range": True, "call_content_tokens": 86812}, entries["zakon-b"], "r")
     assert "decided on a call of about 86,812 estimated content tokens, beyond the measured safe range" in prose["Lessons learnt"]
+    # a stop of the history route (here: walked without a step registry) writes the case file, which the list step fills from the verdict
+    routes.run_route(routes.context("zakon-b", "r", root=tmp_path), {})
+    defects.list_confirmed(run_root, tmp_path, run="r")
+    cf = sx.listed("zakon-b", tmp_path / "docs" / "data" / "source-exceptions.yaml").case_file
+    case = (tmp_path / cf).read_text(encoding="utf-8")
+    assert "## Lessons learnt\n\nThe detector of FR-042 flagged the act" in case and "## The owner's ruling\n\n(not yet given)" in case
     # a verdict that changed (the amendment stage recorded its material) refreshes the note and the prose while the owner has not ruled
     v = json.loads(defects.verdict_path(run_root, "zakon-b").read_text(encoding="utf-8"))
     defects._write_json(defects.verdict_path(run_root, "zakon-b"), {**v, "stage": "amendment", "material": 900})
     defects.list_confirmed(run_root, tmp_path, run="r")
-    assert "amending material 900" in (tmp_path / by["zakon-b"]["case_file"]).read_text(encoding="utf-8")
+    assert "amending material 900" in (tmp_path / cf).read_text(encoding="utf-8")
     assert sx.listed("zakon-b", tmp_path / "docs" / "data" / "source-exceptions.yaml").note.startswith("S2 of the plan of 31 October 2026: the Gazette's amending material 900")
     # the owner's ruling makes the file the owner's: nothing is refreshed after it
-    case_path = tmp_path / by["zakon-b"]["case_file"]
+    case_path = tmp_path / cf
     case_path.write_text(case_path.read_text(encoding="utf-8").replace("(not yet given)", "Leave it."), encoding="utf-8")
     defects._write_json(defects.verdict_path(run_root, "zakon-b"), {**v, "stage": "amendment", "material": 901})
     defects.list_confirmed(run_root, tmp_path, run="r")

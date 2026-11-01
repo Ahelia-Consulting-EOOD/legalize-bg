@@ -103,8 +103,8 @@
   ],
   "missing": [],
   "extra": [],
-  "tokens": 11078,
-  "instructions": 350
+  "tokens": 24336,
+  "instructions": 344
  },
  "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest": {
   "materials": [
@@ -205,8 +205,8 @@
    "86/2005"
   ],
   "extra": [],
-  "tokens": 6615,
-  "instructions": 171
+  "tokens": 17983,
+  "instructions": 144
  },
  "kodeks-na-mezhdunarodnoto-chastno-pravo": {
   "materials": [
@@ -259,8 +259,8 @@
    "59/2007"
   ],
   "extra": [],
-  "tokens": 2642,
-  "instructions": 66
+  "tokens": 6321,
+  "instructions": 59
  },
  "semeen-kodeks": {
   "materials": [
@@ -400,8 +400,8 @@
    "101/2019"
   ],
   "extra": [],
-  "tokens": 11033,
-  "instructions": 289
+  "tokens": 26369,
+  "instructions": 284
  },
  "naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli": {
   "materials": [
@@ -467,7 +467,7 @@
   ],
   "missing": [],
   "extra": [],
-  "tokens": 1433,
+  "tokens": 3614,
   "instructions": 57
  },
  "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite": {
@@ -542,7 +542,7 @@
   ],
   "missing": [],
   "extra": [],
-  "tokens": 2294,
+  "tokens": 6563,
   "instructions": 94
  },
  "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr": {
@@ -628,8 +628,8 @@
    "81/2021"
   ],
   "extra": [],
-  "tokens": 11391,
-  "instructions": 370
+  "tokens": 50152,
+  "instructions": 363
  },
  "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist": {
   "materials": [
@@ -703,8 +703,8 @@
   ],
   "missing": [],
   "extra": [],
-  "tokens": 22768,
-  "instructions": 625
+  "tokens": 51050,
+  "instructions": 595
  },
  "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie": {
   "materials": [
@@ -810,7 +810,7 @@
   ],
   "missing": [],
   "extra": [],
-  "tokens": 4172,
+  "tokens": 9117,
   "instructions": 167
  },
  "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n": {
@@ -837,8 +837,8 @@
   ],
   "missing": [],
   "extra": [],
-  "tokens": 3163,
-  "instructions": 136
+  "tokens": 7092,
+  "instructions": 128
  },
  "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya": {
   "materials": [
@@ -872,7 +872,7 @@
   ],
   "missing": [],
   "extra": [],
-  "tokens": 11125,
-  "instructions": 436
+  "tokens": 147986,
+  "instructions": 409
  }
 }

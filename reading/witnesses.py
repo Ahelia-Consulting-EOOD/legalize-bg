@@ -48,6 +48,7 @@ NORMALISATION = (
     "quotation marks „ “ ” « » ' are all written as \"",
     "the dashes – and — are written as -",
     "the dot that closes a heading number (Глава първа., Раздел I.) is removed, and a heading number line is joined to its title line",
+    "inside an amendment marker the entry-into-force clause (\", в сила от 22.12.2023 г.\") is removed, since the engine of F1 writes the marker without it (1 November 2026)",
     "nothing else: a Latin letter for a Cyrillic one, a missing word, a different number, a line joined or split are differences",
 )
 _QUOTES = str.maketrans({"„": '"', "“": '"', "”": '"', "«": '"', "»": '"', "'": '"', "–": "-", "—": "-", " ": " "})
@@ -57,8 +58,12 @@ _HEADING_DOT = re.compile(r"^((?:Част|Дял|Глава|Раздел|Под�
 CONTEXT = 6
 
 
+_IN_FORCE = re.compile(r",\s*в сила от \d{1,2}\.\d{1,2}\.\d{4}\s*г\.(?=[,)])")
+
+
 def normalise_line(line: str) -> str:
     t = _WS.sub(" ", line.translate(_QUOTES)).strip()
+    t = _IN_FORCE.sub("", t)
     return _HEADING_DOT.sub(r"\1", t)
 
 

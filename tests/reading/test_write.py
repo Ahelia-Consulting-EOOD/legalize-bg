@@ -457,7 +457,7 @@ def test_a_gazette_write_is_held_to_the_entrys_route_address_and_history(tmp_pat
     lst = root / "docs" / "data" / "source-exceptions.yaml"
     before = (root / "laws" / f"{SLUG}.md").read_bytes()
     sx.update(lst, SLUG, route="history")
-    with pytest.raises(WriteRefused, match="listed with the route whole_act_from_material \\(the list says history\\)"):
+    with pytest.raises(WriteRefused, match="listed with the route whole_act_from_material, and a rebuilt history only for the route history \\(the list says history\\)"):
         write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
     sx.update(lst, SLUG, route="whole_act_from_material", address="78")
     with pytest.raises(WriteRefused, match="material 77 is not the entry's address 78"):

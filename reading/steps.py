@@ -362,7 +362,7 @@ class Witnesses:
     version = "3"   # the record carries the hash of the body as written; a witness without a page is recorded absent
 
     def inputs(self, ctx: Context) -> list[Path]:
-        paths = [ctx.act_dir / "staged.md", ctx.act_dir / "witness-answer.json"]
+        paths = [ctx.act_dir / "staged.md", ctx.act_dir / "applied.md", ctx.act_dir / "witness-answer.json"]
         try:
             doc_id = _doc_id(ctx)
             paths += [RAW_LEXBG / f"{doc_id}.html", RAW_MOJ / f"{doc_id}.html", RAW_MOJ / f"{doc_id}.absent.html"]
@@ -375,7 +375,8 @@ class Witnesses:
 
     def run(self, ctx: Context) -> StepResult:
         doc_id = _doc_id(ctx)
-        body = (ctx.act_dir / "staged.md").read_text(encoding="utf-8")
+        body_path = ctx.act_dir / "applied.md" if (ctx.act_dir / "applied.md").exists() else ctx.act_dir / "staged.md"   # the engine's body when the history route built one
+        body = body_path.read_text(encoding="utf-8")
         page = RAW_LEXBG / f"{doc_id}.html"
         if not page.exists():
             return StepResult("stop", f"the raw store holds no lex.bg page {doc_id}")
@@ -425,7 +426,8 @@ class Write:
     version = "1"
 
     def inputs(self, ctx: Context) -> list[Path]:
-        paths = [ctx.act_dir / "staged.md", ctx.act_dir / "map.json", ctx.act_dir / "material.json", ctx.act_dir / "witness-record.json"]
+        paths = [ctx.act_dir / "staged.md", ctx.act_dir / "map.json", ctx.act_dir / "material.json", ctx.act_dir / "witness-record.json",
+                 ctx.act_dir / "applied.md", ctx.act_dir / "apply.json", ctx.act_dir / "chain.json"]
         try:
             paths.append(corpus_file(ctx.root, ctx.slug))
         except WriteRefused:
@@ -556,3 +558,174 @@ class RouteDecision:
 
 
 STEPS = {s.name: s for s in (AmendmentSearch(), FetchMaterial(), Prepare(), Label(), Ladder(), ContentCheck(), Witnesses(), Write(), Investigate(), RouteDecision())}
+
+
+# --- the engine of F1: the chain and the apply steps of the history route --------------------------------------------
+
+from reading import acttree as _acttree, attribution as _attribution, material as _material, operations as _operations  # noqa: E402
+from reading.checks import run_all as _run_all  # noqa: E402
+
+SKIP_SECTIONS = ("Президент на републиката", "Президент на Републиката")   # decrees of appointment and award, never an amendment
+PARSE_STOP_KINDS = frozenset({"unplaced", "unquoted_provision", "quoted_before_instruction", "item_without_sign", "quote_open_at_end", "sign_sequence", "decree_without_end"})
+
+
+def _issue_key(dv: str) -> tuple[int, int] | None:
+    m = re.fullmatch(r"\s*(\d+)\s*/\s*(\d{4})\s*", str(dv or ""))
+    return (int(m.group(2)), int(m.group(1))) if m else None
+
+
+class Chain:
+    """The materials that change the act, in the Gazette's order: the index's title hits and every material of the issues
+    lex.bg's history names (lex.bg points at where to look; the Gazette's own words attribute, D-061), fetched at one request
+    per second, parsed and attributed with no model call. An issue lex.bg names where no material names the act is recorded
+    as unexplained, not asked about: the witness step shows what it means for the text."""
+    name = "chain"
+    version = "1"
+
+    def inputs(self, ctx: Context) -> list[Path]:
+        try:
+            return [DV_INDEX, corpus_file(ctx.root, ctx.slug)]
+        except WriteRefused:
+            return [DV_INDEX]
+
+    def outputs(self, ctx: Context) -> list[Path]:
+        return [ctx.act_dir / "chain.json", ctx.act_dir / "chain-candidates.jsonl"]
+
+    def run(self, ctx: Context) -> StepResult:
+        id_mat = _material_id(ctx)
+        rows = [r for r in _index_rows() if r.get("status") == "ok" and r.get("id_mat")]
+        own = next((r for r in rows if r["id_mat"] == id_mat), None)
+        if own is None:
+            return StepResult("stop", f"the index has no material {id_mat}")
+        fm, _ = _split_frontmatter(corpus_file(ctx.root, ctx.slug).read_text(encoding="utf-8"))
+        lexbg_issues = [str(r.get("dv")) for r in (fm.get("amendment_history") or []) if isinstance(r, dict)]
+        named = {_issue_key(d) for d in lexbg_issues} - {None}
+        since = (own["issue_year"], own["issue_number"])
+        name = _title_words(ctx)
+        cands = {r["id_mat"]: r for r in rows if (r["issue_year"], r["issue_number"]) > since and r.get("section") not in SKIP_SECTIONS
+                 and ((r["issue_year"], r["issue_number"]) in named or name in (r.get("title") or "").lower().replace('"', "„"))}
+        session = DvSession()
+        attr = _attribution.Attributor.from_root(ctx.root)
+        ctx.act_dir.mkdir(parents=True, exist_ok=True)
+        found: list[dict] = []
+        fetched = 0
+        decisions: list[dict] = []
+        with (ctx.act_dir / "chain-candidates.jsonl").open("w", encoding="utf-8") as out:
+            for r in sorted(cands.values(), key=lambda r: (r["issue_year"], r["issue_number"], r.get("position", 0))):
+                cached = (DV_CACHE / f"{r['id_mat']}.html").exists()
+                html = fetch_material(session, r["id_mat"], cache_dir=DV_CACHE)
+                fetched += 0 if cached else 1
+                mat = _material.parse(split_dv(html))
+                rec = attr.attribute(r["id_mat"], mat, r)
+                mine = [t for t in rec["targets"] if t.get("slug") == ctx.slug]
+                out.write(json.dumps({"material": r["id_mat"], "issue": rec["issue"], "status": rec["status"], "kind": rec["kind"], "targets_for_act": [t["scope"] for t in mine]}, ensure_ascii=False) + "\n")
+                if mat.kind == "decision" and name in " ".join(b.text for b in split_dv(html).blocks).lower():
+                    decisions.append({"material": r["id_mat"], "issue": rec["issue"], "title": r.get("title")})
+                if mine:
+                    found.append({"material": r["id_mat"], "issue": rec["issue"], "date": r.get("issue_date"), "position": r.get("position"), "title": r.get("title"),
+                                  "kind": mat.kind, "scopes": [t["scope"] for t in mine], "status": rec["status"],
+                                  "findings": [f for f in mat.findings if f["kind"] in PARSE_STOP_KINDS]})
+        located = {f["issue"] for f in found}
+        unexplained = [d for d in lexbg_issues[1:] if d not in located]
+        extra = sorted({f["issue"] for f in found if f["issue"] not in lexbg_issues}, key=lambda d: _issue_key(d))
+        chain = {"act": ctx.slug, "promulgation": {"material": id_mat, "issue": f"{since[1]}/{since[0]}", "date": own.get("issue_date")},
+                 "materials": found, "lexbg_issues": lexbg_issues, "unexplained_lexbg_issues": unexplained, "extra_issues": extra,
+                 "decisions_naming_the_act": decisions, "candidates": len(cands), "bodies_fetched": fetched, "built_at": _now()}
+        (ctx.act_dir / "chain.json").write_text(json.dumps(chain, ensure_ascii=False, indent=1), encoding="utf-8")
+        evidence = [_rel(ctx, ctx.act_dir / "chain.json")]
+        return StepResult("done", f"{len(found)} material(s) change the act after бр. {since[1]}/{since[0]}; lex.bg names {len(lexbg_issues) - 1} issue(s), "
+                          f"{len(unexplained)} unexplained ({', '.join(unexplained) or 'none'}), {len(extra)} the Gazette adds ({', '.join(extra) or 'none'}); "
+                          f"{len(decisions)} court decision(s) name the act", evidence)
+
+
+class Apply:
+    """Each material of the chain applied in order to the promulgation reading: the parsed instructions and the current text go
+    to the applier in one call per material; the answer's operations are checked for form and applied by script; the body
+    after each material goes through the mechanical checks; a refused form, a failed check or an instruction outside the
+    closed set stops the act. Resumable per material: a material already applied on the same inputs is not applied again."""
+    name = "apply"
+    version = "1"
+
+    def inputs(self, ctx: Context) -> list[Path]:
+        paths = [ctx.act_dir / "staged.md", ctx.act_dir / "chain.json"]
+        chain = ctx.act_dir / "chain.json"
+        if chain.exists():
+            for m in json.loads(chain.read_text(encoding="utf-8"))["materials"]:
+                paths.append(DV_CACHE / f"{m['material']}.html")
+        paths.extend(sorted((ctx.act_dir / "apply").glob("*/answer.json")) if (ctx.act_dir / "apply").exists() else [])
+        return paths
+
+    def outputs(self, ctx: Context) -> list[Path]:
+        return [ctx.act_dir / "applied.md", ctx.act_dir / "apply.json"]
+
+    def run(self, ctx: Context) -> StepResult:
+        chain = json.loads((ctx.act_dir / "chain.json").read_text(encoding="utf-8"))
+        body = (ctx.act_dir / "staged.md").read_text(encoding="utf-8")
+        root = ctx.act_dir / "apply"
+        root.mkdir(exist_ok=True)
+        done: list[dict] = []
+        kinds: dict[str, int] = {}
+        for k, m in enumerate(chain["materials"], 1):
+            d = root / f"{k:02d}-{m['material']}"
+            d.mkdir(exist_ok=True)
+            html = (DV_CACHE / f"{m['material']}.html").read_bytes()
+            sha = _sha(html)
+            before = _sha(body.encode("utf-8"))
+            after_p, ops_p, answer_p, task_p = d / "body-after.md", d / "ops.json", d / "answer.json", d / "task.md"
+            rec_p = d / "material.json"
+            if after_p.exists() and ops_p.exists() and rec_p.exists():
+                rec = json.loads(rec_p.read_text(encoding="utf-8"))
+                if rec.get("material_sha256") == sha and rec.get("body_before_sha256") == before:
+                    body = after_p.read_text(encoding="utf-8")
+                    ops = json.loads(ops_p.read_text(encoding="utf-8"))
+                    for op in ops["operations"]:
+                        kinds[op["kind"]] = kinds.get(op["kind"], 0) + 1
+                    done.append({"material": m["material"], "issue": m["issue"], "operations": len(ops["operations"]), "body_after_sha256": _sha(body.encode("utf-8"))})
+                    continue
+            act = split_dv(html)
+            mat = _material.parse(act)
+            tree = _acttree.parse(body)
+            rec_p.write_text(json.dumps({"material": m["material"], "issue": m["issue"], "material_sha256": sha, "body_before_sha256": before,
+                                         "scopes": m["scopes"], "findings": mat.findings}, ensure_ascii=False, indent=1), encoding="utf-8")
+            (d / "instructions.json").write_text(json.dumps(mat.to_dict(), ensure_ascii=False, indent=1), encoding="utf-8")
+            scoped = _scoped(mat, m["scopes"])
+            task_p.write_text(_operations.task_text(scoped, act.blocks, tree, ctx.slug, m["issue"], answer_p, [f for f in mat.findings if f["kind"] in PARSE_STOP_KINDS]), encoding="utf-8")
+            if not answer_p.exists():
+                return StepResult("pending", f"material {k} of {len(chain['materials'])} (бр. {m['issue']}, {m['material']}): one applier call: read {task_p}, write {answer_p}",
+                                  [_rel(ctx, task_p)])
+            try:
+                answer = json.loads(answer_p.read_text(encoding="utf-8"))
+                applied = _operations.apply(answer, scoped, act.blocks, body, m["issue"])
+            except (json.JSONDecodeError, _operations.FormError) as exc:
+                return StepResult("stop", f"material {m['material']} (бр. {m['issue']}): the answer is refused: {exc}", [_rel(ctx, answer_p)])
+            blocks, smap = _acttree.to_blocks_and_map(_acttree.parse(applied.markdown))
+            _, ex = _run_all(blocks, smap, source="dv")
+            blocking = [e for e in ex if e["kind"] not in ladder.SOURCE_FINDINGS]
+            (d / "checks.json").write_text(json.dumps({"exceptions": ex, "blocking": len(blocking)}, ensure_ascii=False, indent=1), encoding="utf-8")
+            if blocking:
+                return StepResult("stop", f"material {m['material']} (бр. {m['issue']}): {len(blocking)} check exception(s) after the operations, first "
+                                  f"{blocking[0]['kind']} at line {blocking[0]['block']}: {blocking[0]['detail']}", [_rel(ctx, d / "checks.json")])
+            ops_p.write_text(json.dumps({"material": m["material"], "issue": m["issue"], "operations": applied.operations, "log": applied.log}, ensure_ascii=False, indent=1), encoding="utf-8")
+            after_p.write_text(applied.markdown, encoding="utf-8")
+            body = applied.markdown
+            for op in applied.operations:
+                kinds[op["kind"]] = kinds.get(op["kind"], 0) + 1
+            done.append({"material": m["material"], "issue": m["issue"], "operations": len(applied.operations), "body_after_sha256": _sha(body.encode("utf-8"))})
+        (ctx.act_dir / "applied.md").write_text(body, encoding="utf-8")
+        summary = {"act": ctx.slug, "materials": done, "operations_by_kind": kinds, "unexplained_lexbg_issues": chain["unexplained_lexbg_issues"],
+                   "applied_sha256": _sha(body.encode("utf-8")), "applied_at": _now()}
+        (ctx.act_dir / "apply.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
+        return StepResult("done", f"{len(done)} material(s) applied, operations {kinds or 'none'}", [_rel(ctx, ctx.act_dir / "apply.json")])
+
+
+def _scoped(mat: "_material.Material", scopes: list[str]) -> "_material.Material":
+    """For a material attributed to the act through a § of its provisions only, the instructions under that § (and its subtree)."""
+    if "title" in scopes:
+        return mat
+    keep = [n for n in mat.nodes if n.id in scopes]
+    return _material.Material(kind=mat.kind, amending=mat.amending, own_title=mat.own_title, target_title=mat.target_title, cited_history=mat.cited_history,
+                              body_org=mat.body_org, header=mat.header, nodes=keep, headings=mat.headings, tail=mat.tail, roles=mat.roles, findings=mat.findings,
+                              blocks=mat.blocks, embedded=mat.embedded, instruction_kind=mat.instruction_kind, whole_act=mat.whole_act)
+
+
+STEPS.update({s.name: s for s in (Chain(), Apply())})

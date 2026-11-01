@@ -34,6 +34,7 @@ DEFECTS: dict[str, str] = {
     "page_without_act": "the lex.bg page holds no act, only site chrome",
     "server_error": "lex.bg answers an error for the act's page",
     "source_before_archive": "the act's text comes from before the Gazette's online archive, so lex.bg is not its base",
+    "representative": "no lex.bg defect known; the act is rebuilt from the Gazette as a representative of its kind for the engine's verification (D-074 (3), F1)",
 }
 SOURCES: dict[str, str] = {
     "dv_html": "the Gazette's HTML material (dv.parliament.bg, from бр. 1/2003)",
@@ -62,8 +63,8 @@ HEADER = """# docs/data/source-exceptions.yaml: the exceptions list (plan of 31 
 # their state), never by hand. An entry is not an outcome: its act counts only once it is committed
 # correct from its route, and `python source_exceptions.py report` prints the distance left first.
 #
-# defect: dropped_section | dropped_provision | wrong_number | wrong_text | missing_amendment | page_without_act | server_error | source_before_archive
-#         (the first five are the kinds of the S2 register docs/data/lexbg-defect-kinds.yaml)
+# defect: dropped_section | dropped_provision | wrong_number | wrong_text | missing_amendment | page_without_act | server_error | source_before_archive | representative
+#         (the first five are the kinds of the S2 register docs/data/lexbg-defect-kinds.yaml; representative: no defect, an F1 representative act rebuilt from the Gazette)
 # source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service | unknown; address: a material id (dv_html, dv_pdf), a URL, or unknown
 # route:  whole_act_from_material | history | source_before_archive | investigate
 # state:  listed | investigated | committed | stopped

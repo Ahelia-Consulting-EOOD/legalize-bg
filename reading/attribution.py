@@ -23,6 +23,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 from collections import Counter
 from dataclasses import dataclass, field, asdict
@@ -33,14 +34,24 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from fetcher.dv.resolver import (CORPUS_ACT_TYPES, CorpusAct, Resolver, act_type_of, clean_title, load_corpus_acts,  # noqa: E402
-                                 normalise_title, title_variants)
+                                 normalise_title, strip_amending_prefix, title_variants)
 from reading import material as M  # noqa: E402
 from reading.splitter import split_dv  # noqa: E402
 
 DV_CACHE = ROOT / "data" / "dv" / "cache"
 DV_INDEX = ROOT / "data" / "dv" / "materials.jsonl"
 STATUSES = ("attributed", "ambiguous", "not_in_corpus", "predecessor_or_other")
-HOWS = ("title+promulgation", "title", "resolver", "type_outside_corpus", "none")
+HOWS = ("title+promulgation", "title", "resolver", "type_outside_corpus", "amending_act", "none")
+# the act-type word a citation opens with, before the resolver's normalisation strips a „за приемане на“ prefix (B2 of the review of 1 November 2026)
+_HEAD_TYPES = {"закон": "закон", "закона": "закон", "законът": "закон", "кодекс": "кодекс", "кодекса": "кодекс", "кодексът": "кодекс",
+               "наредба": "наредба", "наредбата": "наредба", "правилник": "правилник", "правилника": "правилник", "правилникът": "правилник",
+               "устройствен": "правилник", "устройственият": "правилник", "устройствения": "правилник",
+               "постановление": "постановление", "постановлението": "постановление", "тарифа": "тарифа", "тарифата": "тарифа",
+               "инструкция": "инструкция", "инструкцията": "инструкция", "правила": "правила", "правилата": "правила", "указ": "указ", "указът": "указ", "указа": "указ",
+               "решение": "решение", "решението": "решение", "методика": "методика", "методиката": "методика"}
+# the full definite forms the resolver does not fold (B3): „Законът за …“, „Кодексът …“
+_FULL_DEFINITE = {"законът": "закона", "кодексът": "кодекса", "правилникът": "правилника", "указът": "указа", "устройственият": "устройствения"}
+_AMENDING_TITLE = re.compile(r"^(?:закон|кодекс|наредб|правилник|постановление)\S*\s+за\s+(?:изменение(?:\s+и\s+допълнение)?|допълнение)\s+на\s", re.I)
 MATERIAL_STATUSES = ("amends_corpus_act", "amends_other_acts", "no_target", "not_amending", "parse_findings")
 
 
@@ -56,6 +67,7 @@ class Target:
     flags: list[str] = field(default_factory=list)
     repeal: bool = False
     note: str = ""
+    act_promulgation: list[int] | None = None   # the corpus act's own promulgation [number, year], for the check
 
 
 class Attributor:
@@ -84,19 +96,32 @@ class Attributor:
 
     def resolve(self, scope: str, title: str, promulgation: list[int] | None, repeal: bool = False) -> Target:
         title = clean_title(title)
+        words = title.split()
+        if words and words[0].lower() in _FULL_DEFINITE:
+            title = _FULL_DEFINITE[words[0].lower()].capitalize() + title[len(words[0]):]
         prom = tuple(promulgation) if promulgation else None   # (number, year) as the Gazette writes it
         t = Target(scope=scope, cited_title=title, cited_promulgation=list(prom) if prom else None, status="not_in_corpus", how="none", repeal=repeal)
-        kind = act_type_of(title)
-        if kind is not None and kind not in CORPUS_ACT_TYPES:
-            t.how = "type_outside_corpus"; t.note = f"the cited act is a {kind}, a type the corpus does not hold"
+        head = _HEAD_TYPES.get(words[0].lower()) if words else None
+        if head is None:
+            head = act_type_of(title)
+        if head is not None and head not in CORPUS_ACT_TYPES:
+            t.how = "type_outside_corpus"; t.note = f"the cited act is a {head}, a type the corpus does not hold" + (f" (it names {strip_amending_prefix(title)!r})" if head == "постановление" else "")
+            return t
+        if _AMENDING_TITLE.match(title):
+            t.how = "amending_act"; t.note = "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text"
             return t
         cands = self._exact(title)
         t.candidates = [a.law_id for a in cands]
         if cands:
             if prom is not None:
                 same = [a for a in cands if a.promulgation == (prom[1], prom[0])]
+                blank = [a for a in cands if a.promulgation is None]
                 if len(same) == 1:
                     t.status, t.how, t.slug = "attributed", "title+promulgation", same[0].law_id
+                    t.act_promulgation = [same[0].promulgation[1], same[0].promulgation[0]]
+                elif not same and len(blank) == 1 and len(cands) == 1:
+                    t.status, t.how, t.slug = "attributed", "title", blank[0].law_id
+                    t.flags = ["promulgation_unverified"]; t.note = "the corpus act cites no promulgation issue, so the cited one could not be checked"
                 elif len(same) > 1:
                     t.status, t.how = "ambiguous", "title+promulgation"; t.note = "several corpus acts carry this title and this promulgation"
                 else:
@@ -105,6 +130,7 @@ class Attributor:
                               + f"; the material cites бр. {prom[0]}/{prom[1]}")
             elif len(cands) == 1:
                 t.status, t.how, t.slug = "attributed", "title", cands[0].law_id
+                t.act_promulgation = [cands[0].promulgation[1], cands[0].promulgation[0]] if cands[0].promulgation else None
             else:
                 t.status, t.how = "ambiguous", "title"; t.note = "several corpus acts carry this title and the material cites no promulgation"
             return t
@@ -119,19 +145,37 @@ class Attributor:
                 t.note = f"the resolver names {res.law_id} by {res.method}, promulgated {act.promulgation[1]}/{act.promulgation[0]}; the material cites бр. {prom[0]}/{prom[1]}"
             else:
                 t.status, t.slug = "attributed", res.law_id
-                t.note = f"by the resolver's {res.method} key" + (f" ({', '.join(res.flags)})" if res.flags else "")
+                t.act_promulgation = [act.promulgation[1], act.promulgation[0]] if act is not None and act.promulgation else None
+                if prom is not None and t.act_promulgation is None:
+                    t.flags.append("promulgation_unverified")
+                t.note = f"by the resolver's {res.method} key" + (f" ({', '.join(t.flags)})" if t.flags else "")
+        elif prom is not None:
+            # the title scored under the resolver's floor, but one of the acts it considered was promulgated in the cited issue:
+            # the issue identifies it (the check of the measurement found these misses, 1 November 2026)
+            same = [self.by_id[c] for c in res.candidates if c in self.by_id and self.by_id[c].promulgation == (prom[1], prom[0])]
+            if len(same) == 1:
+                t.status, t.slug = "attributed", same[0].law_id
+                t.act_promulgation = [prom[0], prom[1]]
+                t.flags.append("candidate_by_promulgation")
+                t.note = f"the title scored under the resolver's floor ({res.method}); the cited promulgation names the act"
+            elif len(same) > 1 or "ambiguous_candidates" in res.flags:
+                t.status = "ambiguous"
         elif "ambiguous_candidates" in res.flags:
             t.status = "ambiguous"
         return t
 
-    def attribute(self, id_mat: int, mat: M.Material, index_row: dict | None = None) -> dict:
+    def attribute(self, id_mat: int, mat: M.Material, index_row: dict | None = None, blocks=None) -> dict:
         targets: list[Target] = []
         if mat.target_title:
             targets.append(self.resolve("title", mat.target_title, mat.cited_history["promulgation"] if mat.cited_history else None,
                                         repeal=mat.instruction_kind == "repeal"))
         for node in mat.targets():
             targets.append(self.resolve(node.id, node.target["title"], node.target["promulgation"], repeal=node.target["repeal"]))
-        if mat.findings and any(f["kind"] != "quote_closed_by_sequence" for f in mat.findings) and mat.amending:
+        hard = [f for f in mat.findings if f["kind"] != "quote_closed_by_sequence"] + M.sequence_problems(mat)
+        ids = [n.id for n in mat.instructions()]
+        if len(set(ids)) != len(ids):
+            hard.append("duplicate instruction ids")
+        if hard and (mat.amending or targets):
             status = "parse_findings"
         elif not mat.amending and not targets:
             status = "not_amending"
@@ -145,16 +189,25 @@ class Attributor:
                 "section": (index_row or {}).get("section"), "kind": mat.kind, "instruction_kind": mat.instruction_kind, "amending": mat.amending,
                 "embedded": mat.embedded, "status": status, "targets": [asdict(t) for t in targets],
                 "instructions": len(mat.instructions()), "signs": len(mat.nodes), "quoted_blocks": sum(len(n.quoted) for n in mat.instructions()),
-                "findings": mat.findings, "tokens_instructions": M.instruction_text_tokens(mat), "attributed_at": _now()}
+                "findings": mat.findings + [{"block": -1, "kind": "sequence", "detail": p} for p in M.sequence_problems(mat)]
+                + ([{"block": -1, "kind": "duplicate_id", "detail": "an instruction id occurs twice"}] if len(set(ids)) != len(ids) else []),
+                "tokens_instructions": M.instruction_text_tokens(mat, blocks), "attributed_at": _now()}
 
 
 def _now() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def check(rec: dict) -> list[str]:
-    """The fixed form: every status and how from its set, an attributed target names an act, a cited promulgation agrees."""
+def check(rec: dict, acts_by_id: dict | None = None) -> list[str]:
+    """The fixed form: every status and how from its set, an attributed target names an act, a cited promulgation agrees with the act's,
+    and a target not in the corpus has no candidate promulgated in the cited issue (``acts_by_id``, when given)."""
     out: list[str] = []
+    for t in rec.get("targets", []):
+        if acts_by_id and t.get("status") == "not_in_corpus" and t.get("cited_promulgation"):
+            n, y = t["cited_promulgation"]
+            hit = [c for c in t.get("candidates", []) if acts_by_id.get(c) is not None and acts_by_id[c].promulgation == (y, n)]
+            if hit:
+                out.append(f"material {rec['material']} {t.get('scope')}: not_in_corpus, yet {hit[0]} was promulgated in the cited бр. {n}/{y}")
     if rec.get("status") not in MATERIAL_STATUSES:
         out.append(f"material {rec.get('material')}: status {rec.get('status')!r} is not one of {MATERIAL_STATUSES}")
     for t in rec.get("targets", []):
@@ -166,6 +219,8 @@ def check(rec: dict) -> list[str]:
             out.append(f"material {rec['material']} {t.get('scope')}: attributed without a slug")
         if t.get("status") != "attributed" and t.get("slug"):
             out.append(f"material {rec['material']} {t.get('scope')}: a slug on a target that is not attributed")
+        if t.get("how") == "title+promulgation" and t.get("status") == "attributed" and t.get("act_promulgation") != t.get("cited_promulgation"):
+            out.append(f"material {rec['material']} {t.get('scope')}: attributed by promulgation, but the act's {t.get('act_promulgation')} is not the cited {t.get('cited_promulgation')}")
     if rec.get("status") == "amends_corpus_act" and not any(t.get("status") == "attributed" for t in rec.get("targets", [])):
         out.append(f"material {rec['material']}: amends_corpus_act without an attributed target")
     return out
@@ -184,8 +239,9 @@ def index_rows(path: Path = DV_INDEX) -> dict[int, dict]:
 
 def attribute_cached(attr: Attributor, id_mat: int, cache_dir: Path = DV_CACHE, rows: dict[int, dict] | None = None) -> tuple[dict, M.Material]:
     html = (Path(cache_dir) / f"{id_mat}.html").read_text(encoding="utf-8")
-    mat = M.parse(split_dv(html))
-    return attr.attribute(id_mat, mat, (rows or {}).get(id_mat)), mat
+    act = split_dv(html)
+    mat = M.parse(act)
+    return attr.attribute(id_mat, mat, (rows or {}).get(id_mat), act.blocks), mat
 
 
 def measure(ids: list[int], out_dir: Path, attr: Attributor | None = None, cache_dir: Path = DV_CACHE) -> dict:
@@ -199,7 +255,7 @@ def measure(ids: list[int], out_dir: Path, attr: Attributor | None = None, cache
     for id_mat in ids:
         rec, _ = attribute_cached(attr, id_mat, cache_dir, rows)
         (out_dir / "materials" / f"{id_mat}.json").write_text(json.dumps(rec, ensure_ascii=False, indent=1), encoding="utf-8")
-        problems += check(rec)
+        problems += check(rec, attr.by_id)
         recs.append(rec)
     by_status = Counter(r["status"] for r in recs)
     targets = [t for r in recs for t in r["targets"]]

@@ -79,7 +79,7 @@ def test_a_ministry_ordinance_with_the_history_on_the_title_line_and_the_old_quo
     assert M.check(m) == []
 
 
-def test_the_amending_acts_own_sequence_closes_a_quotation_the_marks_left_open():
+def test_a_nested_quotation_closed_with_one_mark_ends_the_run_when_the_sequence_resumes():
     lines = ["ЗАКОН", "за изменение на Закона за пробата", "(обн., ДВ, бр. 1 от 2020 г.)",
              "§ 1. В приложение № 7 т. 3 се изменя така:",
              "„3. Ако сте длъжни да осигурите функция, добавете следното: „Можете също да се откажете.“",   # the Gazette closes two quotations with one mark
@@ -88,7 +88,7 @@ def test_the_amending_acts_own_sequence_closes_a_quotation_the_marks_left_open()
              "Законът е приет от 52-рото Народно събрание.", "Председател на Народното събрание: Михаела Доцова", "4984"]
     m = M.parse(_act(lines, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 5: "DvCenter", 8: "DvRight"}))
     assert [n.id for n in m.nodes] == ["§1", "§2"] and m.nodes[0].quoted == [4] and m.roles[5] == "heading"
-    assert [f["kind"] for f in m.findings] == ["quote_closed_by_sequence"] and M.check(m) == [f"block 5: quote_closed_by_sequence: {m.findings[0]['detail']}"]
+    assert m.findings == [] and M.check(m) == []
 
 
 def test_quoted_new_signs_continue_a_run_their_numbers_do_not_resume():
@@ -102,7 +102,7 @@ def test_quoted_new_signs_continue_a_run_their_numbers_do_not_resume():
     assert [n.id for n in m.nodes] == ["§1", "§2"] and m.nodes[0].quoted == [4, 5] and m.findings == []
 
 
-def test_a_whole_act_and_a_court_decision_are_not_amending_and_their_blocks_are_findings_not_instructions():
+def test_a_whole_act_and_a_court_decision_are_not_amending_and_a_whole_acts_blocks_carry_the_role_act():
     act = M.parse(_act(["НАРЕДБА № 33 от 6 октомври 2026 г.", "за извършване на услуги", "Глава първа", "ОБЩИ ПОЛОЖЕНИЯ", "Чл. 1. Тази наредба урежда.", "Министър: Иван Иванов", "5001"],
                        {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 3: "DvCenter", 5: "DvRight"}))
     assert act.kind == "ordinance" and not act.amending and act.nodes == [] and act.instruction_kind == "promulgation" and act.whole_act
@@ -123,3 +123,93 @@ def test_parse_cited_history_reads_lists_of_issues():
     h = M.parse_cited_history("(обн., ДВ, бр. 105 от 2005 г.; изм., бр. 30, 33 и 34 от 2006 г., бр. 46 от 2007 г.)")
     assert h["promulgation"] == [105, 2005] and h["issues"] == [[105, 2005], [30, 2006], [33, 2006], [34, 2006], [46, 2007]]
     assert M.parse_cited_history("(ДВ, бр. 79 от 2021 г.)")["promulgation"] == [79, 2021]
+
+
+def _simple(lines, hints=None):
+    return M.parse(_act(lines, hints or {0: "DvCenter", 1: "DvCenter", 2: "DvCenter"}))
+
+
+def test_a_quoted_numbered_list_is_not_read_as_instructions():
+    # the review of 1 November 2026, B1 (material 246111): the quoted new alineas carry their own numbered list
+    lines = ["ЗАКОН", "за изменение на Кодекса на труда", "(обн., ДВ, бр. 26 от 1986 г.)",
+             "§ 1. В чл. 244 се правят следните изменения и допълнения:",
+             "1. Алинея 3 се изменя така:",
+             "„(3) Размерът се определя при отчитане на:",
+             "1. покупателната способност;",
+             "2. общото равнище на работните заплати;",
+             "3. темпа на растеж.“",
+             "2. Създават се ал. 4, 5 и 6:",
+             "„(4) Четвърта.", "(5) Пета.", "(6) Шеста.“",
+             "§ 2. Законът влиза в сила от 1 януари 2027 г.",
+             "Законът е приет от 52-рото Народно събрание.", "Председател на Народното събрание: Х", "4984"]
+    m = _simple(lines, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 15: "DvRight"})
+    ids = [n.id for n in m.instructions()]
+    assert ids == ["§1", "§1.1", "§1.2", "§2"] and m.nodes[0].children[0].quoted == [5, 6, 7, 8] and m.nodes[0].children[1].quoted == [10, 11, 12]
+    assert M.check(m) == [] and M.sequence_problems(m) == []
+    # a block that itself closes the run never resumes the instructions (246592: „2. оценка …;“.)
+    lines2 = ["ЗАКОН", "за изменение на Закона за пробата", "(обн., ДВ, бр. 1 от 2020 г.)",
+              "§ 1. В чл. 3 се правят следните изменения:", "1. Точка 1 се изменя така:", "„1. анализ;", "2. оценка.“", "2. Точка 4 се отменя.",
+              "Законът е приет.", "Председател на Народното събрание: Х", "1"]
+    m2 = _simple(lines2, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 9: "DvRight"})
+    assert [n.id for n in m2.instructions()] == ["§1", "§1.1", "§1.2"] and m2.nodes[0].children[0].quoted == [5, 6]
+
+
+def test_duplicate_ids_and_sequence_breaks_are_findings_of_the_check():
+    lines = ["ЗАКОН", "за изменение на Закона за пробата", "(обн., ДВ, бр. 1 от 2020 г.)",
+             "§ 1. В чл. 3 се правят следните изменения:", "1. Точка 1 се отменя.", "3. Точка 4 се отменя.", "§ 1. Повторен параграф.",
+             "Законът е приет.", "Председател на Народното събрание: Х", "1"]
+    m = _simple(lines, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 8: "DvRight"})
+    problems = M.check(m)
+    assert any("item 3 after 1 under §1" in p for p in problems) and any("instruction id §1 already" in p for p in problems)
+
+
+def test_cross_act_citations_in_every_form_the_materials_use():
+    cases = {
+        "В чл. 30, т. 9 от Устройствения правилник на Министерството на финансите (обн., ДВ, бр. 100 от 2016 г.) думите „а“ се заменят с „б“.": "Устройствения правилник на Министерството на финансите",
+        "В § 21 от преходните и заключителните разпоредби на Закона за горите (обн., ДВ, бр. 19 от 2011 г.) думите „а“ се заличават.": "Закона за горите",
+        "Законът за предоставяне на финансови услуги от разстояние (обн., ДВ, бр. 105 от 2006 г.) се отменя.": "Законът за предоставяне на финансови услуги от разстояние",
+        "Отменя се Наредба № 3 от 2005 г. за реда за водене (ДВ, бр. 45 от 30.04.2005 г.).": "Наредба № 3 от 2005 г. за реда за водене",
+        "Навсякъде в Наредбата за пробата (обн., ДВ, бр. 1 от 2020 г.) думите „а“ се заменят с „б“.": "Наредбата за пробата",
+        "В Семейния кодекс (обн., ДВ, бр. 47 от 2009 г.) в чл. 5 думите „а“ се заменят с „б“.": "Семейния кодекс",
+        "В Закона за защита (ЕС) на данните (обн., ДВ, бр. 1 от 2019 г.) чл. 2 се отменя.": "Закона за защита (ЕС) на данните",
+        "В Постановление № 266 на Министерския съвет от 2009 г. за приемане на Устройствен правилник на Министерството на труда (обн., ДВ, бр. 91 от 2009 г.) в приложението числото „650“ се заменя с „600“.":
+            "Постановление № 266 на Министерския съвет от 2009 г. за приемане на Устройствен правилник на Министерството на труда",
+    }
+    for text, title in cases.items():
+        t = M._target(text)
+        assert t and t["title"] == title, (text, t)
+    assert M._target("Законът за предоставяне на финансови услуги от разстояние (обн., ДВ, бр. 105 от 2006 г.) се отменя.")["repeal"]
+    assert M._target("Отменя се Наредба № 3 от 2005 г. за реда (ДВ, бр. 45 от 30.04.2005 г.).")["promulgation"] == [45, 2005]
+    assert M._target("Постановлението се приема на основание чл. 5 от Закона за пробата (обн., ДВ, бр. 1 от 2019 г.).") is None
+    assert M._target("В чл. 62г думите „Наредба № 1 от 2010 г. за правилата (ДВ, бр. 7 от 2010 г.)“ се заменят с „б“.") is None
+    assert M._target("В нещо неясно (обн., ДВ, бр. 1 от 2019 г.) се заличава.")["unread_title"]
+
+
+def test_an_annex_after_the_signatures_and_the_decrees_formula():
+    law = ["ЗАКОН", "за изменение на Закона за пробата", "(обн., ДВ, бр. 1 от 2020 г.)", "§ 1. Създава се приложение към § 2.",
+           "Законът е приет от 52-рото Народно събрание.", "Председател на Народното събрание: Х", "Приложение към § 2", "ред първи", "ред втори", "4984"]
+    m = _simple(law, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 5: "DvRight", 6: "DvRight"})
+    assert [m.roles[k] for k in range(4, 10)] == ["tail", "tail", "annex", "annex", "annex", "tail"] and m.embedded is None
+    assert [f["kind"] for f in m.findings] == ["annex_after_signature"]
+    whole = ["ЗАКОН", "за пробата", "Глава първа", "Чл. 1. Текст.", "Преходни и заключителни разпоредби", "§ 1. Законът влиза в сила от 1 януари 2027 г.",
+             "Законът е приет от 52-рото Народно събрание.", "Председател на Народното събрание: Х", "Приложение № 1 към чл. 1", "ред", "4984"]
+    w = _simple(whole, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 4: "DvCenter", 7: "DvRight", 8: "DvRight"})
+    assert w.whole_act and [w.roles[k] for k in range(6, 11)] == ["tail", "tail", "act", "act", "tail"] and w.findings == []
+    decree = ["ПОСТАНОВЛЕНИЕ № 179 ОТ 8 ОКТОМВРИ 2026 Г.", "за допълнение на Постановление № 181 на Министерския съвет от 2009 г.", "МИНИСТЕРСКИЯТ СЪВЕТ", "ПОСТАНОВИ:",
+              "§ 1. В чл. 1 се създава ал. 3:", "„(3) Текст.“", "Министър-председател: Румен Радев", "5000"]
+    d = _simple(decree, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 3: "DvCenter", 6: "DvRight"})
+    assert "ПОСТАНОВИ" not in d.own_title and d.target_title == "Постановление № 181 на Министерския съвет от 2009 г."
+
+
+def test_a_heading_inside_a_quotation_does_not_end_a_whole_acts_provisions():
+    code = ["КОДЕКС", "на пробата", "Глава първа", "Чл. 1. Текст.", "Преходни и заключителни разпоредби",
+            "§ 1. В Закона за горите (обн., ДВ, бр. 19 от 2011 г.) се създава глава осма:", "„Глава осма", "Допълнителна разпоредба", "§ 1. Нов параграф.“",
+            "§ 2. Кодексът влиза в сила от 1 януари 2027 г.", "Законът е приет.", "Председател на Народното събрание: Х", "1"]
+    m = _simple(code, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 4: "DvCenter", 6: "DvCenter", 7: "DvCenter", 11: "DvRight"})
+    assert m.whole_act and [n.id for n in m.nodes] == ["§1", "§2"] and m.nodes[0].quoted == [6, 7, 8] and m.nodes[0].target["title"] == "Закона за горите"
+
+
+def test_cited_issues_in_the_dated_and_slashed_forms():
+    assert M.parse_cited_history("(обн., ДВ, бр. 45 от 30.04.2002 г.; изм., бр. 10 от 2005 г.)")["promulgation"] == [45, 2002]
+    assert M.parse_cited_history("(ДВ, бр. 45/2002)")["issues"] == [[45, 2002]]
+    assert M.parse_cited_history("(обн., ДВ, бр. 45 от незнайна дата)").get("unread") is True
