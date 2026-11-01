@@ -1,12 +1,25 @@
 # .github/workflows/ci.yml
 name: ci
 on:
-  push:
   pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  # A push to main runs only for a commit that is not a GitHub pull-request merge: the pull
+  # request's own run already tested its merge (the owner's decision B2 of 13 October 2026),
+  # but main is not protected and takes direct commits (corpus updates among them), so those
+  # still get CI. Pushes to other branches run nothing; their pull requests do.
+  push:  # actions-rules: push kept: direct commits to main get no other CI
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   test:
     runs-on: ubuntu-latest
+    # Drafts skip; so does the push of a GitHub pull-request merge, already tested by its pull request.
+    if: "${{ (github.event_name != 'pull_request' || !github.event.pull_request.draft) && (github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'Merge pull request #')) }}"
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -21,6 +34,9 @@ jobs:
       - run: python -m api.export_openapi --check docs/api/openapi-rest.json
   corpus-integrity:
     runs-on: ubuntu-latest
+    # Drafts skip; so does the push of a GitHub pull-request merge, already tested by its pull request.
+    if: "${{ (github.event_name != 'pull_request' || !github.event.pull_request.draft) && (github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'Merge pull request #')) }}"
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -37,6 +53,9 @@ jobs:
         run: python -m corpus_integrity --root . --waivers docs/data/waivers.yaml
   install-smoke:
     runs-on: ubuntu-latest
+    # Drafts skip; so does the push of a GitHub pull-request merge, already tested by its pull request.
+    if: "${{ (github.event_name != 'pull_request' || !github.event.pull_request.draft) && (github.event_name != 'push' || !startsWith(github.event.head_commit.message, 'Merge pull request #')) }}"
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

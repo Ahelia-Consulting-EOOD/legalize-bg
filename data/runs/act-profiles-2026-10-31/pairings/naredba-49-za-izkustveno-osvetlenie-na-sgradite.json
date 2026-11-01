@@ -1,0 +1,32 @@
+{
+ "slug": "naredba-49-za-izkustveno-osvetlenie-na-sgradite",
+ "category": "ordinances",
+ "title": "НАРЕДБА № 49 ЗА ИЗКУСТВЕНО ОСВЕТЛЕНИЕ НА СГРАДИТЕ",
+ "kind": "наредба",
+ "fecha_publicacion": "1976-01-23",
+ "ultima_actualizacion": "1976-08-10",
+ "amendments_recorded": 2,
+ "last_amendments": [
+  {
+   "dv": "7/1976",
+   "date": "1976-01-23"
+  },
+  {
+   "dv": "64/1976",
+   "date": "1976-08-10"
+  }
+ ],
+ "lexbg_history": "Обн. ДВ. бр. 7 от 23 Януари 1976г. , изм. ДВ. бр. 64 от 10 Август 1976г.",
+ "lexbg_repeal_marker": null,
+ "words": [
+  "изкуствено",
+  "осветление",
+  "сградите"
+ ],
+ "key": {
+  "type": "наредба",
+  "number": "49",
+  "year": 1976
+ },
+ "candidates": []
+}

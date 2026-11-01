@@ -1,0 +1,9 @@
+{
+ "map_rows": 202,
+ "map_rows_in_our_set": 202,
+ "map_rows_missing": [],
+ "ours": 242,
+ "ours_by_head_verb": 237,
+ "ours_by_verb_anywhere": 5,
+ "note": "the index of 21 October 2026 holds materials the map's run of 5 September did not see, and the verb-anywhere rule adds titles the resolver reads as amending"
+}

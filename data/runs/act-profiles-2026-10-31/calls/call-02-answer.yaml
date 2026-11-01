@@ -1,0 +1,40 @@
+zakon-za-grazhdanskoto-vazduhoplavane:
+  verdict: in_force
+  repealed_by: null
+  evidence: The history line and the amendment rows show amendments up to ДВ 32/2026 (2026-04-01) and no repeal marker; both candidates repeal different acts (Наредба № 2320 от 2006 г. on aviation security, and the Наредба за гражданското състояние of 1975), not this law.
+zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line holds only the 1946 promulgation (ДВ 184/1946), with no repeal marker and no candidates; nothing shows the act alive after 2003, and a repeal in 1989 to 2002 or in another act's final provisions cannot be seen.
+zakon-za-lihvite-varhu-danatsi-taksi-i-drugi-podobni-darzhavni-vzemaniya:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line ends with an amendment in ДВ 103/1999 and carries no repeal marker, and there are no candidates; with no fact from 2003 or later, the act's status cannot be decided.
+zakon-za-litsata-i-semeystvoto:
+  verdict: unknown
+  repealed_by: null
+  evidence: The last amendment in the history line and the amendment rows is ДВ 120/2002 (2002-12-29), before 2003, with no repeal marker; both candidates repeal unrelated ordinances that only share the word лицата.
+zakon-za-nasledstvoto:
+  verdict: in_force
+  repealed_by: null
+  evidence: The history line and the amendment rows show amendments in ДВ 59/2007 and ДВ 47/2009, with no repeal marker, and no candidate shares words with the title.
+zakon-za-normativnite-aktove:
+  verdict: in_force
+  repealed_by: null
+  evidence: The history line and the amendment rows show amendments in 2003, 2007, 2016 and ДВ 30/2026 (2026-03-27), with no repeal marker; every candidate is a general repeal decree of Council of Ministers acts, or an ordinance on transport subsidies, that shares only the word актове and does not name this law.
+zakon-za-oblekchenie-rabotata-na-varhovniya-kasatsionen-sad-i-vav-vrazka-s-tova-:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line holds only the 1928 promulgation (ДВ 156/1928), with no repeal marker; every candidate repeals an unrelated instruction, ordinance or decree that only shares common words, so none names this act.
+zakon-za-obyavyavane-na-sela-i-selishta-za-gradove-i-selishta-ot-gradski-tip:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line holds only the 1964 promulgation (ДВ 73/1964), with no repeal marker and no candidates; nothing shows the act alive after 2003.
+zakon-za-ofitserskite-sabraniya:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line holds only the 1948 promulgation (ДВ 64/1948), with no repeal marker and no candidates; nothing shows the act alive after 2003.
+zakon-za-opazvane-na-selskostopanskoto-imushtestvo:
+  verdict: in_force
+  repealed_by: null
+  evidence: The history line and the amendment rows show amendments from 2009 to ДВ 102/2023 (2023-12-08), with no repeal marker, and no candidate shares words with the title.
