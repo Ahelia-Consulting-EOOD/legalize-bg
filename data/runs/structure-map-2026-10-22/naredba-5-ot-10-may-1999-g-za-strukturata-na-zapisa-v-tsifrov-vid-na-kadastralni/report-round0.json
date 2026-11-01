@@ -1,0 +1,150 @@
+{
+ "slug": "naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni",
+ "round": 0,
+ "blocks": 6030,
+ "sections": 79,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 2,
+   "kind": "low_confidence",
+   "detail": "issuing-authority line under the title; prehistory or preamble"
+  },
+  {
+   "block": 186,
+   "kind": "low_confidence",
+   "detail": "parenthesised English layer name printed under the chapter title; third heading line, or preamble-like continuation"
+  },
+  {
+   "block": 5982,
+   "kind": "low_confidence",
+   "detail": "title line of Приложение № 2 printed under its heading; annex_row also plausible"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 3
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 20,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 19,
+  "article_head": 43,
+  "alinea": 42,
+  "item": 89,
+  "table_row": 788,
+  "letter": 26,
+  "continuation": 16,
+  "provisions_heading": 2,
+  "paragraph_sign": 6,
+  "annex_heading": 3,
+  "annex_row": 4974
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: 'add to my acts' button"
+  },
+  {
+   "block": 6011,
+   "text": "Новини",
+   "note": "lex.bg site chrome: news section header"
+  },
+  {
+   "block": 6012,
+   "text": "Нарушен е балансът между властите: Конституционният съд „отмени“ новата формула ",
+   "note": "lex.bg news headline"
+  },
+  {
+   "block": 6013,
+   "text": "20.10.2026 17:05",
+   "note": "lex.bg news timestamp"
+  },
+  {
+   "block": 6014,
+   "text": "Почина съдия Габриела Христова-Декова",
+   "note": "lex.bg news headline"
+  },
+  {
+   "block": 6015,
+   "text": "20.10.2026 15:54",
+   "note": "lex.bg news timestamp"
+  },
+  {
+   "block": 6016,
+   "text": "За втори път Съдийската колегия не допусна съдийка от Бургас до изборите за ВСС",
+   "note": "lex.bg news headline"
+  },
+  {
+   "block": 6017,
+   "text": "20.10.2026 15:11",
+   "note": "lex.bg news timestamp"
+  },
+  {
+   "block": 6018,
+   "text": "Спектър",
+   "note": "lex.bg site chrome: Спектър section header"
+  },
+  {
+   "block": 6019,
+   "text": "ОББ удължи до края на 2026 г. срока за безплатно внасяне на левове по сметки в е",
+   "note": "lex.bg news headline"
+  },
+  {
+   "block": 6020,
+   "text": "2026-10-20",
+   "note": "lex.bg news date"
+  },
+  {
+   "block": 6021,
+   "text": "Форум",
+   "note": "lex.bg site chrome: forum section header"
+  },
+  {
+   "block": 6022,
+   "text": "Чл.159 Ал. 1 от ЗДП",
+   "note": "lex.bg forum thread title, not the act"
+  },
+  {
+   "block": 6023,
+   "text": "от renito80 на 20.10 12:31 1 мнения",
+   "note": "lex.bg forum thread metadata"
+  },
+  {
+   "block": 6024,
+   "text": "Чл. 33 ЗС - действително уговорени условия",
+   "note": "lex.bg forum thread title, not the act"
+  },
+  {
+   "block": 6025,
+   "text": "от bvoykov на 19.10 16:26 13 мнения",
+   "note": "lex.bg forum thread metadata"
+  },
+  {
+   "block": 6026,
+   "text": "Незаконна фотография",
+   "note": "lex.bg forum thread title"
+  },
+  {
+   "block": 6027,
+   "text": "от kpts_ на 19.10 13:06 2 мнения",
+   "note": "lex.bg forum thread metadata"
+  },
+  {
+   "block": 6028,
+   "text": "Посети форума",
+   "note": "lex.bg forum link"
+  },
+  {
+   "block": 6029,
+   "text": "© Lex.bg | общи условия | политика за поверителност | за нас | реклама",
+   "note": "lex.bg footer"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 3,
+ "diff_lines": 158
+}

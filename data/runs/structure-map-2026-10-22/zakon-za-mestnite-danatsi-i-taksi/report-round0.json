@@ -1,0 +1,177 @@
+{
+ "slug": "zakon-za-mestnite-danatsi-i-taksi",
+ "round": 0,
+ "blocks": 2415,
+ "sections": 50,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 250,
+   "kind": "low_confidence",
+   "detail": "repealed letter а remark; repeal_note or editorial_note"
+  },
+  {
+   "block": 816,
+   "kind": "low_confidence",
+   "detail": "earlier version of the Раздел III heading shown by lex.bg after the current one (ДВ 17/2022); section_heading also plausible"
+  },
+  {
+   "block": 817,
+   "kind": "low_confidence",
+   "detail": "earlier version of the Раздел III heading title; section_heading also plausible"
+  },
+  {
+   "block": 818,
+   "kind": "low_confidence",
+   "detail": "earlier version of the Раздел III heading; section_heading also plausible"
+  },
+  {
+   "block": 819,
+   "kind": "low_confidence",
+   "detail": "earlier version of the Раздел III heading title; section_heading also plausible"
+  },
+  {
+   "block": 820,
+   "kind": "low_confidence",
+   "detail": "earlier version of the Раздел III heading; section_heading also plausible"
+  },
+  {
+   "block": 821,
+   "kind": "low_confidence",
+   "detail": "earlier version of the Раздел III heading title; section_heading also plausible"
+  },
+  {
+   "block": 1291,
+   "kind": "low_confidence",
+   "detail": "repealed alinea (2); alinea or repeal_note"
+  },
+  {
+   "block": 1292,
+   "kind": "low_confidence",
+   "detail": "repealed § 13а; paragraph_sign or repeal_note"
+  },
+  {
+   "block": 1331,
+   "kind": "low_confidence",
+   "detail": "heading with no provisions, duplicated by 1333-1334; provisions_heading or drop"
+  },
+  {
+   "block": 1332,
+   "kind": "low_confidence",
+   "detail": "heading with no provisions, duplicated by 1333-1334; provisions_heading or drop"
+  },
+  {
+   "block": 1794,
+   "kind": "low_confidence",
+   "detail": "lex.bg amendment note on table 4 inside annex 2; could be annex_row"
+  },
+  {
+   "block": 2120,
+   "kind": "low_confidence",
+   "detail": "lex.bg amendment note on table 11 inside annex 2; could be annex_row"
+  },
+  {
+   "block": 2260,
+   "kind": "low_confidence",
+   "detail": "title of annex 4 printed after its note; could be annex_row"
+  },
+  {
+   "block": 1424,
+   "kind": "alinea_order",
+   "detail": "(2) opens the article"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 14,
+  "alinea_order": 1
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 12,
+  "title": 1,
+  "prehistory": 2,
+  "chapter_heading": 8,
+  "section_heading": 40,
+  "article_head": 165,
+  "item": 349,
+  "alinea": 316,
+  "letter": 58,
+  "repeal_note": 3,
+  "continuation": 33,
+  "table_row": 199,
+  "editorial_note": 107,
+  "provisions_heading": 150,
+  "paragraph_sign": 148,
+  "quoted": 2,
+  "adoption_formula": 1,
+  "annex_heading": 6,
+  "annex_row": 815
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site button 'add to my acts'"
+  },
+  {
+   "block": 1060,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 2405,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg section listing related EU acts, not part of the act"
+  },
+  {
+   "block": 2406,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2407,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2408,
+   "text": "ДИРЕКТИВА 2009/103/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2409,
+   "text": "ДИРЕКТИВА 2006/98/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2410,
+   "text": "ДИРЕКТИВА 2006/38/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2006 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2411,
+   "text": "ДИРЕКТИВА 1999/62/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 юни 1999 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2412,
+   "text": "ДИРЕКТИВА 96/53/ЕО НА СЪВЕТА от 25 юли 1996 година относно максимално допустимит",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2413,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 2414,
+   "text": "РЕГЛАМЕНТ (ЕС) № 168/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 януари 2013",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 15,
+ "diff_lines": 7207
+}

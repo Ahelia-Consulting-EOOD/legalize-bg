@@ -1,0 +1,99 @@
+{
+ "slug": "zakon-za-zadalzheniyata-i-dogovorite",
+ "round": 2,
+ "blocks": 932,
+ "sections": 26,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    917
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    876
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    879
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/judgement": [
+   861,
+   863,
+   865,
+   866
+  ],
+  "D-072/1": [
+   917
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 6,
+  "title": 1,
+  "editorial_note": 9,
+  "article_head": 452,
+  "part_heading": 4,
+  "chapter_heading": 17,
+  "section_heading": 47,
+  "subsection_heading": 8,
+  "unnumbered_alinea": 260,
+  "repeal_note": 14,
+  "letter": 29,
+  "item": 33,
+  "provisions_heading": 18,
+  "paragraph_sign": 17,
+  "quoted": 14,
+  "continuation": 1,
+  "unnumbered_item": 2
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site chrome (add to my acts button)"
+  },
+  {
+   "block": 927,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg section listing related EU acts, not part of the act"
+  },
+  {
+   "block": 928,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 929,
+   "text": "ДИРЕКТИВА 2011/7/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 февруари 2011 год",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 930,
+   "text": "ДИРЕКТИВА 2000/31/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2000 година з",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 931,
+   "text": "ДИРЕКТИВА 98/26/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 май 1998 година от",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 180
+}

@@ -1,0 +1,72 @@
+{
+ "slug": "naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z",
+ "round": 1,
+ "blocks": 663,
+ "sections": 14,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [],
+ "ruled": {
+  "D-072/8": [
+   373,
+   374,
+   379,
+   380,
+   393,
+   394,
+   397,
+   398,
+   401,
+   402,
+   405,
+   406,
+   413,
+   414,
+   422,
+   460,
+   461,
+   467,
+   468,
+   485,
+   492,
+   511,
+   568,
+   628,
+   651,
+   660
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 1,
+  "repeal_note": 1,
+  "chapter_heading": 6,
+  "article_head": 42,
+  "section_heading": 6,
+  "item": 160,
+  "alinea": 85,
+  "letter": 3,
+  "provisions_heading": 3,
+  "paragraph_sign": 6,
+  "editorial_note": 1,
+  "annex_heading": 5,
+  "annex_row": 342
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: lex.bg 'add to my acts' button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 1696
+}

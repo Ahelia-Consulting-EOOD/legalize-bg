@@ -1,0 +1,54 @@
+{
+ "slug": "konstitutsiya-na-republika-balgariya",
+ "round": 0,
+ "blocks": 615,
+ "sections": 15,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 3,
+   "kind": "low_confidence",
+   "detail": "heading 'Преамбюл' of the preamble; hint says Title but it is not the act's title; no dedicated preamble-heading label, preamble vs title plausible"
+  },
+  {
+   "block": 419,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea (keeps the address) or repeal_note"
+  },
+  {
+   "block": 420,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea (keeps the address) or repeal_note"
+  },
+  {
+   "block": 421,
+   "kind": "low_confidence",
+   "detail": "repealed alinea; alinea (keeps the address) or repeal_note"
+  },
+  {
+   "block": 586,
+   "kind": "low_confidence",
+   "detail": "publication reference of the amending law under its provisions heading; provisions_heading also plausible"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 5
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 2,
+  "prehistory": 1,
+  "preamble": 7,
+  "chapter_heading": 20,
+  "article_head": 175,
+  "alinea": 251,
+  "item": 121,
+  "provisions_heading": 11,
+  "paragraph_sign": 21,
+  "editorial_note": 5
+ },
+ "next_round_tasks": 5,
+ "diff_lines": 12
+}

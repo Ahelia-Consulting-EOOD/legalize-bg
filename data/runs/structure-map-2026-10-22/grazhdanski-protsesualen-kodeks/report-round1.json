@@ -1,0 +1,348 @@
+{
+ "slug": "grazhdanski-protsesualen-kodeks",
+ "round": 1,
+ "blocks": 3818,
+ "sections": 131,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 3001,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел I.'"
+  },
+  {
+   "block": 3002,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Връчване по Регламент (ЕО) № 1393/2007 на Европейския парлам'"
+  },
+  {
+   "block": 3025,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II.'"
+  },
+  {
+   "block": 3026,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Събиране на доказателства по Регламент (ЕО) № 1206/2001 на С'"
+  },
+  {
+   "block": 3040,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Глава петдесет и шеста \"а\".'"
+  },
+  {
+   "block": 3085,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II.'"
+  },
+  {
+   "block": 3086,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Производство по признаване и допускане на изпълнението на ре'"
+  },
+  {
+   "block": 3175,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Глава петдесет и осма \"б\".'"
+  },
+  {
+   "block": 3258,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Допълнителни разпоредби'"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 14,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 349,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 931,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1473,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2606,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2770,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2864,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3387,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3393,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3394,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3396,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3398,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3399,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3400,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3405,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3412,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3417,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3420,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3423,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3424,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 3569,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '8.Член 708 се изменя така:'"
+  }
+ ],
+ "exception_kinds": {
+  "drop_inside_act": 9
+ },
+ "source_finding_kinds": {
+  "fragment": 20,
+  "malformed_head": 1
+ },
+ "labels": {
+  "drop": 31,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 26,
+  "chapter_heading": 138,
+  "article_title": 727,
+  "article_head": 727,
+  "alinea": 1044,
+  "item": 642,
+  "section_heading": 90,
+  "continuation": 2,
+  "provisions_heading": 75,
+  "editorial_note": 58,
+  "paragraph_sign": 122,
+  "letter": 41,
+  "quoted": 91,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site button, not the act"
+  },
+  {
+   "block": 4,
+   "text": "Таблица за съответствие между разпоредбите на ГПК (нов) и ГПК (отм.)",
+   "note": "lex.bg link to a correspondence table, not act text; preamble plausible"
+  },
+  {
+   "block": 3001,
+   "text": "Раздел I.",
+   "note": "second Раздел I. opening lex.bg's stale earlier wording of the section title (Регламент 1393/2007, amendment up to бр. 42/2009); the current heading at 3000 already carries the бр. 39/2024 amendment"
+  },
+  {
+   "block": 3002,
+   "text": "Връчване по Регламент (ЕО) № 1393/2007 на Европейския парламент и на Съвета от 1",
+   "note": "stale earlier wording of the Раздел I. title printed by lex.bg after the current wording (block 3000, amended бр. 39/2024); not part of the act in force"
+  },
+  {
+   "block": 3025,
+   "text": "Раздел II.",
+   "note": "second Раздел II. opening lex.bg's stale earlier wording of the section title (Регламент 1206/2001); the current heading at 3024 carries the бр. 39/2024 amendment"
+  },
+  {
+   "block": 3026,
+   "text": "Събиране на доказателства по Регламент (ЕО) № 1206/2001 на Съвета относно сътруд",
+   "note": "stale earlier wording of the Раздел II. title printed by lex.bg after the current wording (block 3024, amended бр. 39/2024); not part of the act in force"
+  },
+  {
+   "block": 3040,
+   "text": "Глава петдесет и шеста \"а\".",
+   "note": "duplicate Глава петдесет и шеста \"а\". number line printed by lex.bg right after the chapter's own heading and title (3039), with no title of its own; the next line is an article title of the same chapter"
+  },
+  {
+   "block": 3085,
+   "text": "Раздел II.",
+   "note": "second Раздел II. opening lex.bg's stale earlier wording of the section title (amendments up to бр. 100/2010); the current heading at 3084 carries the бр. 50/2015 amendment"
+  },
+  {
+   "block": 3086,
+   "text": "Производство по признаване и допускане на изпълнението на решения и актове, пост",
+   "note": "stale earlier wording of the Раздел II. title printed by lex.bg after the current wording (block 3084, amended бр. 50/2015); not part of the act in force"
+  },
+  {
+   "block": 3175,
+   "text": "Глава петдесет и осма \"б\".",
+   "note": "duplicate Глава петдесет и осма \"б\". number line printed by lex.bg right after the chapter's own heading and title (3173-3174), with no title of its own; the next line is an article title of the same chapter"
+  },
+  {
+   "block": 3258,
+   "text": "Допълнителни разпоредби",
+   "note": "duplicate of the Допълнителни разпоредби heading at 3256, printed again by lex.bg after that heading's amendment note (3257); the same pattern as the stale repeated headings earlier in this act, and its text is identical so nothing is lost"
+  },
+  {
+   "block": 3585,
+   "text": "-------------------------",
+   "note": "separator rule line before the adoption formula, not act text"
+  },
+  {
+   "block": 3799,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg EU-legislation reference block, not part of the act"
+  },
+  {
+   "block": 3800,
+   "text": "Директиви:",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3801,
+   "text": "ДИРЕКТИВА (ЕС) 2024/1069 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 април 2024 г",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3802,
+   "text": "ДИРЕКТИВА (ЕС) 2020/1828 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3803,
+   "text": "ДИРЕКТИВА 2000/31/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2000 година з",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3804,
+   "text": "Регламенти:",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3805,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1784 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3806,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1783 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3807,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/1111 НА СЪВЕТА от 25 юни 2019 години относно компетентността",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3808,
+   "text": "РЕГЛАМЕНТ (ЕС) 2015/2421 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 201",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3809,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 1329/2014 НА КОМИСИЯТА от 9 декември 2014 година ",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3810,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3811,
+   "text": "РЕГЛАМЕНТ (ЕС) № 655/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3812,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1215/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3813,
+   "text": "РЕГЛАМЕНТ (ЕС) № 650/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 юли 2012 год",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3814,
+   "text": "РЕГЛАМЕНТ (ЕО) № 4/2009 НА СЪВЕТА от 18 декември 2008 година относно компетентно",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3815,
+   "text": "РЕГЛАМЕНТ (ЕО) № 861/2007 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 юли 2007 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3816,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1896/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3817,
+   "text": "РЕГЛАМЕНТ(ЕО) № 805/2004 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 април 2004 г",
+   "note": "lex.bg EU-legislation reference block"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 9,
+ "diff_lines": 2351
+}

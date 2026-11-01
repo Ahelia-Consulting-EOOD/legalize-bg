@@ -1,0 +1,320 @@
+{
+ "slug": "zakon-za-energetikata",
+ "round": 1,
+ "blocks": 3782,
+ "sections": 86,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 2820,
+   "kind": "bad_number",
+   "detail": "item with n='27аа'"
+  },
+  {
+   "block": 2820,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 2860,
+   "kind": "bad_number",
+   "detail": "item with n='34дд'"
+  },
+  {
+   "block": 2860,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 2937,
+   "kind": "bad_number",
+   "detail": "item with n='66аа'"
+  },
+  {
+   "block": 2937,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 133,
+   "kind": "low_confidence",
+   "detail": "second Раздел I. introducing the superseded title; lex.bg rendering of earlier wording; section_heading plausible"
+  },
+  {
+   "block": 134,
+   "kind": "low_confidence",
+   "detail": "superseded 2005 title of Раздел I. printed again; section_heading plausible"
+  },
+  {
+   "block": 1018,
+   "kind": "low_confidence",
+   "detail": "repeated Раздел I. introducing the earlier title; section_heading plausible"
+  },
+  {
+   "block": 1019,
+   "kind": "low_confidence",
+   "detail": "earlier wording of Раздел I title before the 2018 addition; section_heading plausible"
+  },
+  {
+   "block": 1149,
+   "kind": "low_confidence",
+   "detail": "Глава седма а. repeated after its title, duplicate rendering; chapter_heading plausible"
+  },
+  {
+   "block": 1577,
+   "kind": "low_confidence",
+   "detail": "source genuinely has two ал. 3 from different amendments; alinea as written"
+  },
+  {
+   "block": 2820,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 2860,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 2937,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 3073,
+   "kind": "low_confidence",
+   "detail": "lex.bg separator line before the adoption formula; drop plausible"
+  },
+  {
+   "block": 3233,
+   "kind": "low_confidence",
+   "detail": "amending act's title heading its provisions block; editorial_note plausible"
+  },
+  {
+   "block": 3292,
+   "kind": "low_confidence",
+   "detail": "amending act's title heading its provisions block; editorial_note plausible"
+  },
+  {
+   "block": 3428,
+   "kind": "low_confidence",
+   "detail": "repealed alinea keeps its number; repeal_note plausible"
+  },
+  {
+   "block": 3429,
+   "kind": "low_confidence",
+   "detail": "repealed alinea keeps its number; repeal_note plausible"
+  },
+  {
+   "block": 3485,
+   "kind": "low_confidence",
+   "detail": "repealed alinea keeps its number; repeal_note plausible"
+  },
+  {
+   "block": 3486,
+   "kind": "low_confidence",
+   "detail": "repealed alinea keeps its number; repeal_note plausible"
+  },
+  {
+   "block": 3579,
+   "kind": "low_confidence",
+   "detail": "repealed alinea keeps its number; repeal_note plausible"
+  },
+  {
+   "block": 3580,
+   "kind": "low_confidence",
+   "detail": "repealed alinea keeps its number; repeal_note plausible"
+  },
+  {
+   "block": 1577,
+   "kind": "alinea_order",
+   "detail": "(3) after (3)"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 3066,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 720,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 721"
+  },
+  {
+   "block": 1761,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1762"
+  },
+  {
+   "block": 2259,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2260"
+  }
+ ],
+ "exception_kinds": {
+  "bad_number": 3,
+  "missing_entry": 3,
+  "low_confidence": 15,
+  "unknown": 3,
+  "alinea_order": 1
+ },
+ "source_finding_kinds": {
+  "fragment": 1,
+  "empty_section": 3
+ },
+ "labels": {
+  "drop": 26,
+  "title": 1,
+  "preamble": 1,
+  "chapter_heading": 32,
+  "article_head": 370,
+  "item": 1373,
+  "alinea": 1237,
+  "section_heading": 100,
+  "letter": 98,
+  "editorial_note": 147,
+  "provisions_heading": 143,
+  "paragraph_sign": 239,
+  "quoted": 10,
+  "adoption_formula": 1,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 3757,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3758,
+   "text": "Директиви:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3759,
+   "text": "ДИРЕКТИВА (ЕС) 2019/944 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юни 2019 годин",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3760,
+   "text": "ДИРЕКТИВА (ЕС) 2019/692 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 април 2019 го",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3761,
+   "text": "ДИРЕКТИВА (ЕС) 2018/2001 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 201",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3762,
+   "text": "ДИРЕКТИВА 2014/94/EC НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 22 октомври 2014 го",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3763,
+   "text": "ДИРЕКТИВА 2012/27/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 2012 го",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3764,
+   "text": "ДИРЕКТИВА 2009/73/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юли 2009 година ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3765,
+   "text": "ДИРЕКТИВА 2009/29/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3766,
+   "text": "ДИРЕКТИВА 2004/67/ЕО НА СЪВЕТА от 26 април 2004 година относно мерките за гарант",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3767,
+   "text": "Регламенти:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3768,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/1854 НА СЪВЕТА от 6 октомври 2022 година относно спешна наме",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3769,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/943 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юни 2019 годин",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3770,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/941 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юни 2019 годин",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3771,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/2195 НА КОМИСИЯТА от 23 ноември 2017 година за установяване ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3772,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/1938 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 201",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3773,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/1485 НА КОМИСИЯТА от 2 август 2017 година за установяване на",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3774,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 1113/2014 НА КОМИСИЯТА от 16 октомври 2014 година",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3775,
+   "text": "РЕГЛАМЕНТ (ЕС) № 312/2014 НА КОМИСИЯТА от 26 март 2014 година за установяване на",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3776,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1227/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 2",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3777,
+   "text": "РЕГЛАМЕНТ (ЕС) № 994/2010 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 октомври 20",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3778,
+   "text": "РЕГЛАМЕНТ (ЕС, ЕВРАТОМ) № 617/2010 НА СЪВЕТА от 24 юни 2010 година относно съобщ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3779,
+   "text": "РЕГЛАМЕНТ (ЕО) № 715/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юли 2009 го",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3780,
+   "text": "Решения:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 3781,
+   "text": "РЕШЕНИЕ (EС) 2017/684 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 април 2017 годин",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 18,
+ "diff_lines": 262
+}

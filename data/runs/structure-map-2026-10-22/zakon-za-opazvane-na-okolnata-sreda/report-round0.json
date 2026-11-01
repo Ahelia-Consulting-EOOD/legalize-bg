@@ -1,0 +1,338 @@
+{
+ "slug": "zakon-za-opazvane-na-okolnata-sreda",
+ "round": 0,
+ "blocks": 2982,
+ "sections": 61,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 743,
+   "kind": "low_confidence",
+   "detail": "first of two Раздел I. headings in a row; old section title kept by lex.bg, could be editorial_note"
+  },
+  {
+   "block": 2000,
+   "kind": "low_confidence",
+   "detail": "truncated heading 'КЪМ ЗАКОНА ЗА' without the act's name; provisions_heading or editorial_note/unknown"
+  },
+  {
+   "block": 2166,
+   "kind": "low_confidence",
+   "detail": "annex subtitle; could be annex_row"
+  },
+  {
+   "block": 2229,
+   "kind": "low_confidence",
+   "detail": "annex subtitle; could be annex_row"
+  },
+  {
+   "block": 2339,
+   "kind": "low_confidence",
+   "detail": "annex subtitle; could be annex_row"
+  },
+  {
+   "block": 2901,
+   "kind": "low_confidence",
+   "detail": "history note ending in отм. of the annex; repeal_note or editorial_note"
+  },
+  {
+   "block": 2903,
+   "kind": "low_confidence",
+   "detail": "history note ending in отм. of the annex; repeal_note or editorial_note"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 2163,
+   "kind": "malformed_head",
+   "detail": "§ head not written as '§ N.': '§ 93.Този закон влиза в сила о'"
+  },
+  {
+   "block": 743,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 744"
+  },
+  {
+   "block": 1253,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1254"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 7
+ },
+ "source_finding_kinds": {
+  "malformed_head": 1,
+  "empty_section": 2
+ },
+ "labels": {
+  "drop": 49,
+  "title": 1,
+  "preamble": 1,
+  "chapter_heading": 22,
+  "section_heading": 44,
+  "article_head": 252,
+  "item": 809,
+  "alinea": 495,
+  "letter": 154,
+  "provisions_heading": 126,
+  "paragraph_sign": 133,
+  "quoted": 3,
+  "adoption_formula": 1,
+  "editorial_note": 127,
+  "annex_heading": 14,
+  "annex_row": 749,
+  "repeal_note": 2
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome button"
+  },
+  {
+   "block": 1715,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 2935,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2936,
+   "text": "Директиви:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2937,
+   "text": "ДИРЕКТИВА (ЕС) 2015/2193 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2015",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2938,
+   "text": "ДИРЕКТИВА 2014/52/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 г. за",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2939,
+   "text": "ДИРЕКТИВА 2012/18/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 юли 2012 година о",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2940,
+   "text": "ДИРЕКТИВА 2011/92/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 декември 2011 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2941,
+   "text": "ДИРЕКТИВА 2010/75/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 2010 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2942,
+   "text": "ДИРЕКТИВА 2009/31/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2943,
+   "text": "ДИРЕКТИВА 2009/30/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2944,
+   "text": "ДИРЕКТИВА 2009/29/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2945,
+   "text": "ДИРЕКТИВА 2008/101/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2946,
+   "text": "ДИРЕКТИВА 2008/98/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2947,
+   "text": "ДИРЕКТИВА 2008/68/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 септември 2008 г",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2948,
+   "text": "ДИРЕКТИВА 2007/2/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 март 2007 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2949,
+   "text": "ДИРЕКТИВА 2006/21/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 март 2006 година",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2950,
+   "text": "ДИРЕКТИВА 2004/101/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 октомври 2004 г",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2951,
+   "text": "ДИРЕКТИВА 2004/35/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 април 2004 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2952,
+   "text": "ДИРЕКТИВА 2003/87/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 октомври 2003 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2953,
+   "text": "ДИРЕКТИВА 2003/35/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 май 2003 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2954,
+   "text": "ДИРЕКТИВА 2003/4/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 28 януари 2003 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2955,
+   "text": "ДИРЕКТИВА 2001/42/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 юни 2001 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2956,
+   "text": "ДИРЕКТИВА 2001/41/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 юни 2001 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2957,
+   "text": "ДИРЕКТИВА 1999/32/ЕО НА СЪВЕТА от 26 април 1999 година относно намаляването на с",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2958,
+   "text": "ДИРЕКТИВА 98/70/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 октомври 1998 годи",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2959,
+   "text": "Регламенти:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2960,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2023/2830 НА КОМИСИЯТА от 17 октомври 2023 година за до",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2961,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/1009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юни 2019 годи",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2962,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/852 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2017 годи",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2963,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1303/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 декември 2",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2964,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1300/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 декември 2",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2965,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1293/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2966,
+   "text": "РЕГЛАМЕНТ (ЕС) № 389/2013 НА КОМИСИЯТА от 2 май 2013 година за създаване на Реги",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2967,
+   "text": "РЕГЛАМЕНТ (ЕС) № 10/2011 НА КОМИСИЯТА от 14 януари 2011 година относно материали",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2968,
+   "text": "РЕГЛАМЕНТ (ЕО) № 66/2010 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2009",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2969,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1221/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 20",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2970,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1069/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2971,
+   "text": "РЕГЛАМЕНТ (ЕО) № 748/2009 НА КОМИСИЯТА от 5 август 2009 година относно списъка н",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2972,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1272/2008 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 2",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2973,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1008/2008 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 септември ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2974,
+   "text": "РЕГЛАМЕНТ (ЕО) № 765/2008 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 юли 2008 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2975,
+   "text": "РЕГЛАМЕНТ (ЕО) № 440/2008 НА КОМИСИЯТА от 30 май 2008 година за определяне на ме",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2976,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1907/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 декември 2",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2977,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1737/2006 НА КОМИСИЯТА от 7 ноември 2006 година за определяне н",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2978,
+   "text": "РЕГЛАМЕНТ (EО) № 1013/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2006 г",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2979,
+   "text": "РЕГЛАМЕНТ (ЕО) № 166/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 януари 2006",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2980,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1390/97 НА КОМИСИЯТА от 18 юли 1997 година за изменение на Регл",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 2981,
+   "text": "РЕГЛАМЕНТ (ЕО) № 690/95 НА КОМИСИЯТА от 30 март 1995 година за изменение на Регл",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 7,
+ "diff_lines": 299
+}

@@ -1,0 +1,13 @@
+call,model,cache_read,cache_write,input,output
+gp-tiny,claude-fable-5-1,0,65771,2,213
+gp-tiny,claude-fable-5-1,65771,4599,32,276
+gp-tiny,claude-fable-5-1,70370,402,32,24
+lean-tiny,claude-opus-5-5,0,16684,2,213
+lean-tiny,claude-opus-5-5,16684,2253,2,273
+lean-tiny,claude-opus-5-5,18937,399,2,24
+lean-empty,claude-opus-5-5,0,16848,2,212
+lean-empty,claude-opus-5-5,16848,2011,2,352
+lean-empty,claude-opus-5-5,18859,477,2,24
+lean-known,claude-opus-5-5,0,16680,2,211
+lean-known,claude-opus-5-5,16680,5755,2,1526
+lean-known,claude-opus-5-5,22435,1650,2,24

@@ -594,7 +594,8 @@ def test_the_committed_waiver_file_loads_under_the_strict_schema():
     from corpus_integrity.waivers import load_waivers
 
     waivers = load_waivers(REPO / "docs" / "data" / "waivers.yaml")
-    assert waivers["tag_remnants"]["kodeks-na-truda"] == 1
+    # an act outside the read acts; КТ, pinned here before, left W-002 when the write path repaired it
+    assert waivers["tag_remnants"]["naredba-7-ot-22-fevruari-2008-g-za-utvarzhdavane-na-obraztsite-na-knizha-svarzan"] == 249
     assert all(isinstance(v, int) for v in waivers["tag_remnants"].values())
     assert waivers["frontmatter_dates"] == {}
 

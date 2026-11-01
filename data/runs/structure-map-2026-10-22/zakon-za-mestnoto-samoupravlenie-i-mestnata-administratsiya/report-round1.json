@@ -1,0 +1,38 @@
+{
+ "slug": "zakon-za-mestnoto-samoupravlenie-i-mestnata-administratsiya",
+ "round": 1,
+ "blocks": 680,
+ "sections": 18,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 2,
+  "chapter_heading": 22,
+  "article_head": 92,
+  "alinea": 182,
+  "item": 202,
+  "repeal_note": 1,
+  "continuation": 1,
+  "letter": 11,
+  "paragraph_sign": 54,
+  "quoted": 11,
+  "provisions_heading": 60,
+  "editorial_note": 40
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "diff_lines": 66
+}

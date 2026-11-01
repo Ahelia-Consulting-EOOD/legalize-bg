@@ -1,0 +1,85 @@
+{
+ "slug": "zakon-za-kadastara-i-imotniya-registar",
+ "round": 0,
+ "blocks": 993,
+ "sections": 24,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 395,
+   "kind": "low_confidence",
+   "detail": "second Глава седма. repeating the chapter's old title before amendment; chapter_heading or editorial_note"
+  },
+  {
+   "block": 396,
+   "kind": "low_confidence",
+   "detail": "old chapter title before the 2025 amendment; chapter_heading or editorial_note"
+  },
+  {
+   "block": 953,
+   "kind": "low_confidence",
+   "detail": "§ 26 repealed; paragraph_sign or repeal_note"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 744,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 747,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 749,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 750,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 3
+ },
+ "source_finding_kinds": {
+  "fragment": 4
+ },
+ "labels": {
+  "drop": 2,
+  "title": 1,
+  "prehistory": 1,
+  "part_heading": 10,
+  "article_head": 126,
+  "alinea": 278,
+  "item": 297,
+  "chapter_heading": 28,
+  "letter": 29,
+  "provisions_heading": 53,
+  "paragraph_sign": 89,
+  "quoted": 40,
+  "adoption_formula": 1,
+  "editorial_note": 37,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 784,
+   "text": "-------------------------",
+   "note": "dashed separator line before adoption formula; could be editorial_note"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 3,
+ "diff_lines": 71
+}

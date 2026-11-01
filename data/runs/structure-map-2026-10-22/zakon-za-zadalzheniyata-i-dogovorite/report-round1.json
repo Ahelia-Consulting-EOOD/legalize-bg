@@ -1,0 +1,192 @@
+{
+ "slug": "zakon-za-zadalzheniyata-i-dogovorite",
+ "round": 1,
+ "blocks": 932,
+ "sections": 26,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 19,
+   "kind": "low_confidence",
+   "detail": "line stating that ал. 2 of Чл. 9 is repealed, standing in that paragraph's place; unnumbered_alinea plausible if the placeholder must keep the paragraph count"
+  },
+  {
+   "block": 632,
+   "kind": "low_confidence",
+   "detail": "Roman-numeral contract-type division of the special part, with numbered sub-headings below such divisions (e.g. XVIII > 1.) carrying section_heading; section_heading also plausible"
+  },
+  {
+   "block": 653,
+   "kind": "low_confidence",
+   "detail": "same level as X. ДОГОВОР ЗА ПОРЪЧКА; Roman-numeral divisions hold numbered section-level sub-headings (XVIII > 1.); section_heading also plausible"
+  },
+  {
+   "block": 665,
+   "kind": "low_confidence",
+   "detail": "same level as the other Roman-numeral contract-type divisions; numbered section-level sub-headings sit below them (XVIII > 1.); section_heading also plausible"
+  },
+  {
+   "block": 671,
+   "kind": "low_confidence",
+   "detail": "same level as the other Roman-numeral contract-type divisions; numbered section-level sub-headings sit below them (XVIII > 1.); section_heading also plausible"
+  },
+  {
+   "block": 686,
+   "kind": "low_confidence",
+   "detail": "same level as the other Roman-numeral contract-type divisions; numbered section-level sub-headings sit below them (XVIII > 1.); section_heading also plausible"
+  },
+  {
+   "block": 721,
+   "kind": "low_confidence",
+   "detail": "same level as the other Roman-numeral contract-type divisions; numbered section-level sub-headings sit below them (XVIII > 1.); section_heading also plausible"
+  },
+  {
+   "block": 723,
+   "kind": "low_confidence",
+   "detail": "line stands where ал. 2 of чл. 357 was and states it repealed; editorial_note also plausible"
+  },
+  {
+   "block": 742,
+   "kind": "low_confidence",
+   "detail": "same level as the other Roman-numeral contract-type divisions; numbered section-level sub-headings sit below them (XVIII > 1.); section_heading also plausible"
+  },
+  {
+   "block": 747,
+   "kind": "low_confidence",
+   "detail": "same level as the other Roman-numeral contract-type divisions; numbered section-level sub-headings sit below them (XVIII > 1.); section_heading also plausible"
+  },
+  {
+   "block": 755,
+   "kind": "low_confidence",
+   "detail": "the next block 1. ЗАПИС НА ЗАПОВЕД carries section_heading under it, so this Roman-numeral division sits a level above; section_heading also plausible"
+  },
+  {
+   "block": 829,
+   "kind": "low_confidence",
+   "detail": "Arabic-numbered subdivision, the form this act uses for sections under a chapter; here it sits directly under ЧАСТ ТРЕТА with no Roman-numbered chapter, so chapter_heading is also plausible"
+  },
+  {
+   "block": 831,
+   "kind": "low_confidence",
+   "detail": "sibling of 1. ИЗБОР НА ПРИЛОЖИМО ПРАВО; Arabic numbering is this act's section form, but it sits directly under ЧАСТ ТРЕТА with no chapter, so chapter_heading is also plausible"
+  },
+  {
+   "block": 833,
+   "kind": "low_confidence",
+   "detail": "sibling of 1. and 2. under ЧАСТ ТРЕТА; Arabic numbering is this act's section form, but with no chapter above it chapter_heading is also plausible"
+  },
+  {
+   "block": 835,
+   "kind": "low_confidence",
+   "detail": "sibling of 1. to 3. under ЧАСТ ТРЕТА; Arabic numbering is this act's section form, but with no chapter above it chapter_heading is also plausible"
+  },
+  {
+   "block": 838,
+   "kind": "low_confidence",
+   "detail": "sibling of 1. to 4. under ЧАСТ ТРЕТА; Arabic numbering is this act's section form, but with no chapter above it chapter_heading is also plausible"
+  },
+  {
+   "block": 840,
+   "kind": "low_confidence",
+   "detail": "sibling of 1. to 5. under ЧАСТ ТРЕТА; Arabic numbering is this act's section form, but with no chapter above it chapter_heading is also plausible"
+  },
+  {
+   "block": 861,
+   "kind": "label_text_mismatch",
+   "detail": "quoted on a line that opens like a provision, outside an open quotation: 'Чл. 1001а. Който въпреки волята си е лиш'"
+  },
+  {
+   "block": 863,
+   "kind": "label_text_mismatch",
+   "detail": "quoted on a line that opens like a provision, outside an open quotation: 'Чл. 1001б. След като получи молбата, нар'"
+  },
+  {
+   "block": 865,
+   "kind": "label_text_mismatch",
+   "detail": "quoted on a line that opens like a provision, outside an open quotation: 'Чл. 1001в. Ако в тоя срок никой не предя'"
+  },
+  {
+   "block": 866,
+   "kind": "label_text_mismatch",
+   "detail": "quoted on a line that opens like a provision, outside an open quotation: 'Чл. 1001г. След обезсилване на ценната к'"
+  },
+  {
+   "block": 917,
+   "kind": "low_confidence",
+   "detail": "second line of the heading of the transitional and final provisions to the Закон за концесиите (two-line heading with 916); the same words also appear just before 916, so drop as a duplicate is the other plausible reading, but the line is printed text of the act, not site chrome"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 876,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 879,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 18,
+  "label_text_mismatch": 4
+ },
+ "source_finding_kinds": {
+  "fragment": 2
+ },
+ "labels": {
+  "drop": 6,
+  "title": 1,
+  "editorial_note": 9,
+  "article_head": 452,
+  "part_heading": 4,
+  "chapter_heading": 17,
+  "section_heading": 47,
+  "subsection_heading": 8,
+  "unnumbered_alinea": 260,
+  "repeal_note": 14,
+  "letter": 29,
+  "item": 33,
+  "provisions_heading": 18,
+  "paragraph_sign": 17,
+  "quoted": 14,
+  "continuation": 1,
+  "unnumbered_item": 2
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site chrome (add to my acts button)"
+  },
+  {
+   "block": 927,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg section listing related EU acts, not part of the act"
+  },
+  {
+   "block": 928,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 929,
+   "text": "ДИРЕКТИВА 2011/7/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 февруари 2011 год",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 930,
+   "text": "ДИРЕКТИВА 2000/31/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2000 година з",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 931,
+   "text": "ДИРЕКТИВА 98/26/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 май 1998 година от",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 22,
+ "diff_lines": 178
+}

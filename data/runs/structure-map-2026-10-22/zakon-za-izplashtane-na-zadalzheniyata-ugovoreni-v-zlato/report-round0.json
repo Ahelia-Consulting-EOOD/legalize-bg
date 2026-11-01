@@ -1,0 +1,37 @@
+{
+ "slug": "zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato",
+ "round": 0,
+ "blocks": 3,
+ "sections": 1,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 2,
+   "kind": "bad_number",
+   "detail": "article_head with n=None"
+  },
+  {
+   "block": 2,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 2,
+   "kind": "unknown",
+   "detail": "no label"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "bad_number": 1,
+  "missing_entry": 1,
+  "unknown": 1
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1
+ },
+ "next_round_tasks": 1,
+ "diff_lines": 0
+}

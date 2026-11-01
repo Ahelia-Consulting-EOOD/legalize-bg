@@ -1,0 +1,941 @@
+{
+ "slug": "danachno-osiguritelen-protsesualen-kodeks",
+ "round": 0,
+ "blocks": 5559,
+ "sections": 158,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 358,
+   "kind": "low_confidence",
+   "detail": "Раздел II printed a second time with its older title; duplicate of 356, possibly editorial_note or drop"
+  },
+  {
+   "block": 359,
+   "kind": "low_confidence",
+   "detail": "older title of Раздел II printed after the amended one; duplicate heading, possibly editorial_note or drop"
+  },
+  {
+   "block": 591,
+   "kind": "low_confidence",
+   "detail": "amendment remark printed as third line of the chapter heading; editorial_note also plausible"
+  },
+  {
+   "block": 1390,
+   "kind": "low_confidence",
+   "detail": "repeats the Раздел III \"а\" number printed two lines above; same section, a lex.bg duplicate; drop also plausible"
+  },
+  {
+   "block": 1393,
+   "kind": "low_confidence",
+   "detail": "repeats the Подраздел I number printed two lines above; same subsection, a lex.bg duplicate; drop also plausible"
+  },
+  {
+   "block": 2040,
+   "kind": "low_confidence",
+   "detail": "duplicate Раздел VI. printed again by lex.bg with the superseded pre-2017 title; could be editorial_note or drop rather than a second section"
+  },
+  {
+   "block": 2041,
+   "kind": "low_confidence",
+   "detail": "superseded title of Раздел VI (renamed 2017, see 2039); could be editorial_note or drop"
+  },
+  {
+   "block": 2645,
+   "kind": "low_confidence",
+   "detail": "amendment note printed under the chapter heading; chapter_heading also plausible"
+  },
+  {
+   "block": 3980,
+   "kind": "low_confidence",
+   "detail": "nested numbered sub-item inside т. 41 of § 1а, not a new item of the §; item or continuation"
+  },
+  {
+   "block": 3987,
+   "kind": "low_confidence",
+   "detail": "nested numbered sub-item inside т. 41 of § 1а (after sub-item 1), not a new item of the §; item or continuation"
+  },
+  {
+   "block": 4870,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4872,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4874,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4882,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4887,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4892,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4897,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4902,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4907,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4914,
+   "kind": "low_confidence",
+   "detail": "annex to § 19 of the amending act inside the provisions; continuation of § 19 also plausible"
+  },
+  {
+   "block": 4915,
+   "kind": "low_confidence",
+   "detail": "amendment and repeal note of the annex; repeal_note also plausible"
+  },
+  {
+   "block": 4917,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4922,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4927,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4934,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4940,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4945,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4957,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4962,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4967,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4972,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4977,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4987,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 4992,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5000,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5005,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5010,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5015,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5020,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5025,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5027,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5044,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5049,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5054,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5074,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5079,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5085,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5090,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5095,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5100,
+   "kind": "low_confidence",
+   "detail": "omission marker of the excerpt; drop also plausible"
+  },
+  {
+   "block": 5108,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5113,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5118,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5127,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5149,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5154,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5171,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5173,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5177,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5185,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5194,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5199,
+   "kind": "low_confidence",
+   "detail": "truncated heading line 'КЪМ' with the act name missing; continuation of 5198 heading plausible"
+  },
+  {
+   "block": 5201,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5223,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5235,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5245,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5250,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5259,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5261,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5269,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5271,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5290,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5295,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5303,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5315,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5320,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5327,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5332,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5335,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5339,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop plausible"
+  },
+  {
+   "block": 5348,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5357,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5370,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5376,
+   "kind": "low_confidence",
+   "detail": "repeated provisions heading line after the КЪМ line, same heading group; possibly a duplicate printed by lex.bg"
+  },
+  {
+   "block": 5378,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5383,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5392,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5407,
+   "kind": "low_confidence",
+   "detail": "repeated provisions heading line after the КЪМ line, same heading group; possibly a duplicate printed by lex.bg"
+  },
+  {
+   "block": 5409,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5412,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5417,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5422,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5435,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5439,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5446,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5448,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5452,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5466,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5477,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5484,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5486,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5490,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5495,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5500,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5504,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  },
+  {
+   "block": 5524,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted provisions; drop also plausible"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 1698,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1711,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1735,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1747,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1750,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1761,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1780,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1798,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1801,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1803,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1867,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1938,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1966,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2007,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2037,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2151,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2179,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2213,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2235,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2242,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2249,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2264,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2276,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2301,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2316,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2353,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2363,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 2383,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4253,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4262,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4267,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4270,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4277,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 4392,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '2.В чл. 20:'"
+  },
+  {
+   "block": 357,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 358"
+  },
+  {
+   "block": 1389,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1390"
+  },
+  {
+   "block": 1392,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1393"
+  },
+  {
+   "block": 2039,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2040"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 106
+ },
+ "source_finding_kinds": {
+  "fragment": 33,
+  "malformed_head": 1,
+  "empty_section": 4
+ },
+ "labels": {
+  "drop": 35,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 10,
+  "chapter_heading": 71,
+  "article_title": 460,
+  "article_head": 460,
+  "alinea": 1467,
+  "item": 1486,
+  "letter": 685,
+  "section_heading": 75,
+  "subsection_heading": 17,
+  "continuation": 19,
+  "editorial_note": 173,
+  "provisions_heading": 167,
+  "paragraph_sign": 248,
+  "quoted": 181,
+  "adoption_formula": 1,
+  "annex_heading": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 4865,
+   "text": "-------------------------",
+   "note": "separator rule line before the adoption formula, not act text"
+  },
+  {
+   "block": 5526,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU legislation, not part of the act"
+  },
+  {
+   "block": 5527,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5528,
+   "text": "ДИРЕКТИВА (ЕС) 2025/872 НА СЪВЕТА от 14 април 2025 година за изменение на Директ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5529,
+   "text": "ДИРЕКТИВА (ЕС) 2023/2226 НА СЪВЕТА от 17 октомври 2023 година за изменение на Ди",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5530,
+   "text": "ДИРЕКТИВА (ЕС) 2022/2523 НА СЪВЕТА от 14 декември 2022 година за гарантиране на ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5531,
+   "text": "ДИРЕКТИВА (ЕС) 2021/514 НА СЪВЕТА от 22 март 2021 година за изменение на Директи",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5532,
+   "text": "ДИРЕКТИВА (ЕС) 2020/876 НА СЪВЕТА от 24 юни 2020 година за изменение на Директив",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5533,
+   "text": "ДИРЕКТИВА (ЕС) 2018/822 НА СЪВЕТА от 25 май 2018 година за изменение на Директив",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5534,
+   "text": "ДИРЕКТИВА (ЕС) 2017/1852 НА СЪВЕТА от 10 октомври 2017 година относно механизми ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5535,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2258 НА СЪВЕТА от 6 декември 2016 година за изменение на Дир",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5536,
+   "text": "ДИРЕКТИВА (ЕС) 2016/881 НА СЪВЕТА от 25 май 2016 г. за изменение на Директива 20",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5537,
+   "text": "ДИРЕКТИВА (ЕС) 2015/2376 НА СЪВЕТА от 8 декември 2015 г. за изменение на Директи",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5538,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5539,
+   "text": "ДИРЕКТИВА 2014/107/ЕС НА СЪВЕТА от 9 декември 2014 година за изменение на Директ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5540,
+   "text": "ДИРЕКТИВА 2014/67/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5541,
+   "text": "ДИРЕКТИВА 2011/16/ЕС НА СЪВЕТА от 15 февруари 2011 година относно административн",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5542,
+   "text": "ДИРЕКТИВА 2010/24/ЕС НА СЪВЕТА от 16 март 2010 година относно взаимната помощ пр",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5543,
+   "text": "ДИРЕКТИВА 2006/112/ЕО НА СЪВЕТА от 28 ноември 2006 година относно общата система",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5544,
+   "text": "ДИРЕКТИВА 2006/98/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5545,
+   "text": "ДИРЕКТИВА 2004/106/ЕО НА СЪВЕТА от 16 ноември 2004 година за изменение на Директ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5546,
+   "text": "ДИРЕКТИВА 2004/56/ЕО НА СЪВЕТА от 21 април 2004 година за изменение на Директива",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5547,
+   "text": "ДИРЕКТИВА 2003/93/ЕО НА СЪВЕТА от 7 октомври 2003 година за изменение на Директи",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5548,
+   "text": "ДИРЕКТИВА 96/71/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 1996 годи",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5549,
+   "text": "ДИРЕКТИВА 79/1070/ЕИО НА СЪВЕТА от 6 декември 1979 година за изменение на Директ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5550,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5551,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2018/99 НА КОМИСИЯТА от 22 януари 2018 година за из",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5552,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2016/1963 НА КОМИСИЯТА от 9 ноември 2016 година за ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5553,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5554,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2015/2378 НА КОМИСИЯТА от 15 декември 2015 година з",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5555,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1024/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 октомври 2",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5556,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 1189/2011 НА КОМИСИЯТА от 18 ноември 2011 година ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5557,
+   "text": "РЕГЛАМЕНТ (ЕО) № 987/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 5558,
+   "text": "РЕГЛАМЕНТ (ЕО) № 883/2004 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 29 април 2004 ",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 106,
+ "diff_lines": 2063
+}

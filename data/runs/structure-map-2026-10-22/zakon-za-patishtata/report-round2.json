@@ -1,0 +1,164 @@
+{
+ "slug": "zakon-za-patishtata",
+ "round": 2,
+ "blocks": 1324,
+ "sections": 32,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    419,
+    420
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1003
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1078
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1153,
+    1154
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    469
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    506
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    782
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   419,
+   420,
+   1003,
+   1078,
+   1153,
+   1154
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 14,
+  "title": 1,
+  "chapter_heading": 20,
+  "article_head": 113,
+  "alinea": 306,
+  "item": 374,
+  "letter": 44,
+  "provisions_heading": 101,
+  "paragraph_sign": 125,
+  "quoted": 23,
+  "editorial_note": 66,
+  "adoption_formula": 1,
+  "continuation": 1,
+  "table_row": 18,
+  "annex_heading": 3,
+  "repeal_note": 1,
+  "annex_row": 113
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 1311,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's added list of relevant EU acts, not part of the act; drop or editorial_note"
+  },
+  {
+   "block": 1312,
+   "text": "Директиви:",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1313,
+   "text": "ДИРЕКТИВА (ЕС) 2022/362 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 февруари 2022",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1314,
+   "text": "ДИРЕКТИВА (ЕС) 2019/520 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 март 2019 год",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1315,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1936 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 201",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1316,
+   "text": "ДИРЕКТИВА 2011/76/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 септември 2011 г",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1317,
+   "text": "ДИРЕКТИВА 2008/96/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 ноември 2008 год",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1318,
+   "text": "ДИРЕКТИВА 2006/38/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2006 година ",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1319,
+   "text": "ДИРЕКТИВА 1999/62/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 юни 1999 година ",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1320,
+   "text": "Регламенти:",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1321,
+   "text": "РЕГЛАМЕНТ (ЕС) 2024/1679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юни 2024 г. ",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1322,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2020/204 НА КОМИСИЯТА от 28 ноември 2019 година отн",
+   "note": "lex.bg's EU-legislation list, not the act"
+  },
+  {
+   "block": 1323,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2020/203 НА КОМИСИЯТА от 28 ноември 2019 година за клас",
+   "note": "lex.bg's EU-legislation list, not the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 150
+}

@@ -1,0 +1,61 @@
+{
+ "slug": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+ "round": 0,
+ "blocks": 599,
+ "sections": 21,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 5,
+  "title": 1,
+  "preamble": 1,
+  "part_heading": 8,
+  "chapter_heading": 24,
+  "article_title": 125,
+  "article_head": 125,
+  "item": 103,
+  "alinea": 158,
+  "section_heading": 16,
+  "provisions_heading": 9,
+  "paragraph_sign": 11,
+  "letter": 5,
+  "quoted": 1,
+  "adoption_formula": 1,
+  "editorial_note": 5,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 570,
+   "text": "-------------------------",
+   "note": "dashed separator rule before the adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 596,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU legislation panel, not part of the act"
+  },
+  {
+   "block": 597,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation panel, not part of the act"
+  },
+  {
+   "block": 598,
+   "text": "ДИРЕКТИВА 2009/22/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg related EU legislation panel, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "diff_lines": 341
+}

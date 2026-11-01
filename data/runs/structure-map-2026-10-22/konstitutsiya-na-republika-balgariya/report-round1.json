@@ -1,0 +1,39 @@
+{
+ "slug": "konstitutsiya-na-republika-balgariya",
+ "round": 1,
+ "blocks": 615,
+ "sections": 15,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 2,
+  "prehistory": 1,
+  "preamble": 7,
+  "chapter_heading": 20,
+  "article_head": 175,
+  "alinea": 251,
+  "item": 121,
+  "provisions_heading": 11,
+  "paragraph_sign": 21,
+  "editorial_note": 5
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: lex.bg 'add to my acts' button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 12
+}

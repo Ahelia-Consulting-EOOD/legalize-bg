@@ -1,0 +1,276 @@
+{
+ "slug": "zakon-za-elektronnite-saobshteniya",
+ "round": 1,
+ "blocks": 3587,
+ "sections": 85,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 2054,
+   "kind": "low_confidence",
+   "detail": "number line of the section's earlier wording, repeated by lex.bg after the current heading; editorial_note or section_heading"
+  },
+  {
+   "block": 2055,
+   "kind": "low_confidence",
+   "detail": "former title of the same section (only the 2011 amendment), repeated by lex.bg; editorial_note or section_heading"
+  },
+  {
+   "block": 2077,
+   "kind": "low_confidence",
+   "detail": "number line of the former Раздел III heading, repeated after the current one; editorial_note or section_heading"
+  },
+  {
+   "block": 2078,
+   "kind": "low_confidence",
+   "detail": "former title before the 2021 amendment, repeated by lex.bg; editorial_note or section_heading"
+  },
+  {
+   "block": 2405,
+   "kind": "low_confidence",
+   "detail": "number line of the former Глава шестнадесета heading, repeated after the current one; editorial_note or chapter_heading"
+  },
+  {
+   "block": 2406,
+   "kind": "low_confidence",
+   "detail": "former chapter title before the 2021 amendment; editorial_note or chapter_heading"
+  },
+  {
+   "block": 2409,
+   "kind": "low_confidence",
+   "detail": "number line of the former Раздел I heading, repeated after the current one; editorial_note or section_heading"
+  },
+  {
+   "block": 2410,
+   "kind": "low_confidence",
+   "detail": "former section title before the 2021 amendment; editorial_note or section_heading"
+  },
+  {
+   "block": 2715,
+   "kind": "low_confidence",
+   "detail": "chapter number repeated after the current heading, from the chapter's earlier version; editorial_note or chapter_heading"
+  },
+  {
+   "block": 144,
+   "kind": "alinea_order",
+   "detail": "(6) after (6)"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 2219,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1169,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1170"
+  },
+  {
+   "block": 2473,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2474"
+  },
+  {
+   "block": 2491,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2492"
+  },
+  {
+   "block": 2496,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2497"
+  },
+  {
+   "block": 2509,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2510"
+  },
+  {
+   "block": 2521,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2522"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 9,
+  "alinea_order": 1
+ },
+ "source_finding_kinds": {
+  "fragment": 1,
+  "empty_section": 6
+ },
+ "labels": {
+  "drop": 30,
+  "title": 1,
+  "preamble": 1,
+  "chapter_heading": 54,
+  "article_head": 528,
+  "alinea": 1153,
+  "item": 1159,
+  "letter": 150,
+  "section_heading": 116,
+  "editorial_note": 114,
+  "provisions_heading": 129,
+  "paragraph_sign": 134,
+  "quoted": 17,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 3189,
+   "text": "-------------------------",
+   "note": "dash separator line before adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 3559,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3560,
+   "text": "Директиви:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3561,
+   "text": "ДИРЕКТИВА (ЕС) 2018/1972 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3562,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3563,
+   "text": "ДИРЕКТИВА 2014/53/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 г. за",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3564,
+   "text": "ДИРЕКТИВА 2009/140/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2009 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3565,
+   "text": "ДИРЕКТИВА 2009/136/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2009 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3566,
+   "text": "ДИРЕКТИВА 2009/114/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3567,
+   "text": "ДИРЕКТИВА 2008/63/ЕО НА КОМИСИЯТА от 20 юни 2008 година относно конкуренцията на",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3568,
+   "text": "ДИРЕКТИВА 2002/77/ЕО НА КОМИСИЯТА от 16 септември 2002 година относно конкуренци",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3569,
+   "text": "ДИРЕКТИВА 2002/58/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 юли 2002 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3570,
+   "text": "ДИРЕКТИВА 98/84/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 ноември 1998 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3571,
+   "text": "ДИРЕКТИВА 87/372/EИО НА СЪВЕТА от 25 юни 1987 година за честотните ленти, които ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3572,
+   "text": "Регламенти:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3573,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/612 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 април 2022 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3574,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2021/654 НА КОМИСИЯТА от 18 декември 2020 година за доп",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3575,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2019/2243 НА КОМИСИЯТА от 17 декември 2019 г. за оп",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3576,
+   "text": "РЕГЛАМЕНТ (ЕС) 2018/1971 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3577,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/2394 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3578,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2016/2286 НА КОМИСИЯТА от 15 декември 2016 година з",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3579,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3580,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3581,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1315/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3582,
+   "text": "РЕГЛАМЕНТ (ЕО) № 544/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 юни 2009 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3583,
+   "text": "Решения:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3584,
+   "text": "РЕШЕНИЕ (EС) 2017/899 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2017 година",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3585,
+   "text": "РЕШЕНИЕ 2003/548/ЕО НА КОМИСИЯТА от 24 юли 2003 година относно минималния пакет ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3586,
+   "text": "РЕШЕНИЕ № 676/2002/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 7 март 2002 година",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 10,
+ "diff_lines": 359
+}

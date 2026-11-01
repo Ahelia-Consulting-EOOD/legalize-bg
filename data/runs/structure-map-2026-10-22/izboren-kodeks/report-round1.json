@@ -1,0 +1,150 @@
+{
+ "slug": "izboren-kodeks",
+ "round": 1,
+ "blocks": 3646,
+ "sections": 119,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 188,
+   "kind": "low_confidence",
+   "detail": "repeat of Раздел III printed with its pre-2016 title; section_heading plausible but would duplicate the section"
+  },
+  {
+   "block": 189,
+   "kind": "low_confidence",
+   "detail": "pre-2016 wording of the Раздел III title repeated; section_heading plausible but would duplicate the section"
+  },
+  {
+   "block": 1686,
+   "kind": "low_confidence",
+   "detail": "repeat of Раздел XI printed with its pre-2021 title; section_heading plausible but would duplicate the section"
+  },
+  {
+   "block": 1687,
+   "kind": "low_confidence",
+   "detail": "pre-2021 wording of the Раздел XI title repeated; section_heading plausible but would duplicate the section"
+  },
+  {
+   "block": 1701,
+   "kind": "low_confidence",
+   "detail": "repeat of Раздел XII printed in its version before the RKS note; section_heading plausible but would duplicate the section"
+  },
+  {
+   "block": 1702,
+   "kind": "low_confidence",
+   "detail": "older version of the Раздел XII title repeated; section_heading plausible but would duplicate the section"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 3476,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3477"
+  },
+  {
+   "block": 3556,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3557"
+  },
+  {
+   "block": 3570,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3571"
+  },
+  {
+   "block": 3599,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3600"
+  },
+  {
+   "block": 3612,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3613"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 6
+ },
+ "source_finding_kinds": {
+  "empty_section": 5
+ },
+ "labels": {
+  "drop": 10,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 6,
+  "chapter_heading": 36,
+  "section_heading": 190,
+  "article_title": 510,
+  "article_head": 510,
+  "item": 835,
+  "alinea": 1094,
+  "editorial_note": 32,
+  "letter": 138,
+  "provisions_heading": 39,
+  "paragraph_sign": 61,
+  "continuation": 7,
+  "quoted": 15,
+  "adoption_formula": 1,
+  "annex_heading": 15,
+  "annex_row": 144
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 3378,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 3638,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU legislation block, not the act"
+  },
+  {
+   "block": 3639,
+   "text": "КОНСОЛИДИРАН ТЕКСТ НА ДОГОВОРА ЗА ЕВРОПЕЙСКИЯ СЪЮЗ",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3640,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3641,
+   "text": "ДИРЕКТИВА 2013/1/ЕС НА СЪВЕТА от 20 декември 2012 година за изменение на Директи",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3642,
+   "text": "ДИРЕКТИВА 94/80/ЕО НА СЪВЕТА от 19 декември 1994 година за определяне на условия",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3643,
+   "text": "ДИРЕКТИВА НА СЪВЕТА 93/109/ЕО от 6 декември 1993 година, с която се определят по",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3644,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 3645,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg related EU legislation list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 6,
+ "diff_lines": 1627
+}

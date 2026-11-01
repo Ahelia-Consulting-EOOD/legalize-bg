@@ -47,4 +47,4 @@ data/dv/cache/
 data/dv/materials.jsonl
 
 # raw store of fetched pages (plan step 2); whether it enters git is the owner's open decision
-data/raw/
+data/raw

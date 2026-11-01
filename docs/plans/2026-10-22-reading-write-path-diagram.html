@@ -1,0 +1,570 @@
+<title>Corpus Way of Work</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,500;7..72,650&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one reading column of prose, figures break wider and scroll sideways on a phone. */
+:root {
+  --bg: #F2F4F7; --surface: #FFFFFF; --ink: #18212C; --muted: #586474; --line: #C3CBD6;
+  --accent: #1D5DA6; --accent-soft: #E3ECF7; --ok: #2B7A4B; --ok-soft: #E2F1E7;
+  --bad: #B0261E; --bad-soft: #F8E4E2; --model: #7A4FB0; --model-soft: #EFE7F8;
+  --plan: #9A5800; --plan-soft: #FBF0DF;
+  --display: "Literata", Georgia, "Times New Roman", serif;
+  --body: "IBM Plex Sans", -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #11151B; --surface: #19202A; --ink: #E5E9EF; --muted: #9AA6B5; --line: #384455;
+  --accent: #7FB2EE; --accent-soft: #1C2B3F; --ok: #6CCB93; --ok-soft: #17301F;
+  --bad: #F08A80; --bad-soft: #3A1D1B; --model: #C3A3EE; --model-soft: #2A2038;
+  --plan: #F0B464; --plan-soft: #33260F; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #11151B; --surface: #19202A; --ink: #E5E9EF; --muted: #9AA6B5; --line: #384455;
+  --accent: #7FB2EE; --accent-soft: #1C2B3F; --ok: #6CCB93; --ok-soft: #17301F;
+  --bad: #F08A80; --bad-soft: #3A1D1B; --model: #C3A3EE; --model-soft: #2A2038;
+  --plan: #F0B464; --plan-soft: #33260F; color-scheme: dark }
+
+body { background: var(--bg); color: var(--ink); font: 15px/1.6 var(--body); }
+.wrap { max-width: 1240px; margin: 0 auto; padding-block: 40px 64px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: grid; gap: 40px; }
+.prose { max-width: 68ch; }
+h1, h2 { font-family: var(--display); font-weight: 650; text-wrap: balance; margin: 0; line-height: 1.2; }
+h1 { font-size: clamp(28px, 4vw, 40px); }
+h2 { font-size: 23px; margin-bottom: 8px; }
+p { margin: 8px 0; }
+.eyebrow { font: 500 12px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+code, .mono { font-family: var(--mono); font-size: .88em; }
+.status { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
+.stat { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 10px 14px; min-width: 0; }
+.stat b { display: block; font: 600 20px/1.2 var(--body); font-variant-numeric: tabular-nums; }
+.stat span { color: var(--muted); font-size: 13px; }
+.stat.ok b { color: var(--ok); }
+
+figure { margin: 0; display: grid; gap: 10px; }
+.scroll { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+.scroll svg { display: block; width: 100%; height: auto; }
+#f0 svg { min-width: 1180px; } #f1 svg { min-width: 980px; } #f2 svg { min-width: 760px; } #f3 svg { min-width: 760px; }
+figcaption { color: var(--muted); font-size: 14px; max-width: 80ch; }
+
+/* SVG roles, styled from the page tokens so both themes read */
+.n { fill: var(--surface); stroke: var(--line); stroke-width: 1.2; }
+.n.acc { fill: var(--accent-soft); stroke: var(--accent); }
+.n.model { fill: var(--model-soft); stroke: var(--model); stroke-dasharray: 5 3; }
+.n.okb { fill: var(--ok-soft); stroke: var(--ok); }
+.n.badb { fill: var(--bad-soft); stroke: var(--bad); }
+.n.plan { fill: var(--plan-soft); stroke: var(--plan); stroke-dasharray: 6 4; }
+.n.art { fill: none; stroke: var(--line); stroke-dasharray: 3 3; }
+.lane { fill: var(--bg); stroke: none; }
+.t { fill: var(--ink); font: 600 13px var(--body); }
+.s { fill: var(--muted); font: 400 11.5px var(--body); }
+.m { fill: var(--ink); font: 400 11px var(--mono); }
+.lt { fill: var(--muted); font: 500 11px var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.al { fill: var(--muted); font: 500 11px var(--body); }
+.al.bad { fill: var(--bad); } .al.plan { fill: var(--plan); } .tag { fill: var(--plan); font: 600 11px var(--mono); } .al.ok { fill: var(--ok); } .al.acc { fill: var(--accent); }
+.ar { fill: none; stroke: var(--muted); stroke-width: 1.4; }
+.ar.bad { stroke: var(--bad); } .ar.plan { stroke: var(--plan); } .ar.ok { stroke: var(--ok); } .ar.acc { stroke: var(--accent); }
+.ar.thin { stroke-width: 1; stroke-dasharray: 2 3; }
+.ah { fill: var(--muted); } .ah.bad { fill: var(--bad); } .ah.ok { fill: var(--ok); } .ah.acc { fill: var(--accent); } .ah.plan { fill: var(--plan); }
+
+table { border-collapse: collapse; width: 100%; font-size: 14px; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-weight: 600; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; }
+.tablewrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; }
+.pill { display: inline-block; font: 500 11px/1 var(--mono); padding: 4px 7px; border-radius: 99px; white-space: nowrap; }
+.pill.in { background: var(--ok-soft); color: var(--ok); }
+.pill.out { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.pill.now { background: var(--accent-soft); color: var(--accent); }
+.pill.next { background: var(--bg); color: var(--muted); border: 1px solid var(--line); }
+.pill.plan { background: var(--plan-soft); color: var(--plan); }
+.step .done { color: var(--ink); }
+.step ul { margin: 0; padding-left: 18px; font-size: 14px; color: var(--muted); }
+.step li { margin: 2px 0; }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; min-width: 0; display: grid; gap: 6px; align-content: start; }
+.step h3 { margin: 0; font: 600 15px/1.35 var(--body); }
+.step p { margin: 0; font-size: 14px; color: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; font-size: 13px; color: var(--muted); }
+.legend i { display: inline-block; width: 22px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; border: 1.2px solid var(--line); }
+.legend i.model { background: var(--model-soft); border: 1.2px dashed var(--model); }
+.legend i.acc { background: var(--accent-soft); border-color: var(--accent); }
+.legend i.bad { background: var(--bad-soft); border-color: var(--bad); }
+.legend i.ok { background: var(--ok-soft); border-color: var(--ok); }
+.legend i.plan { background: var(--plan-soft); border: 1.2px dashed var(--plan); }
+</style>
+
+<div class="wrap">
+
+<header class="prose">
+  <div class="eyebrow">legalize-bg · branch claude/run-design-ab4d70 · 22 October 2026</div>
+  <h1>How an act reaches the corpus: as built, and as planned next</h1>
+  <p>Fifty acts have come all the way from their lex.bg page to a commit in git, through the reading path and the single write gate. That path copies lex.bg's text character for character and judges only formatting, so an act that lex.bg holds wrong reaches git looking right. The Закон за обществения транспорт did exactly that: it was committed again with its additional provision, § 1 and its twelve definitions, missing.</p>
+  <p>Section 1 shows the way of work planned next, agreed with the owner on 22 October 2026. It has two tasks. The first defines a starting state of sufficient quality: every act read from lex.bg, except the acts on a kept list of exceptions, which are investigated and fixed from the source the list names. Being on the list is not an outcome: every listed act has a route that ends with the act committed correct in git, and only such acts count as done. The second task rebuilds that starting state forward with each new issue of the State Gazette (Държавен вестник), and compares it with lex.bg from time to time to measure how good the consolidation is. Sections 2 to 5 show the path as built. Section 6 proposes the steps for both tasks.</p>
+  <div class="status">
+    <div class="stat ok"><b>50 of 50</b><span>read acts committed</span></div>
+    <div class="stat"><b>3</b><span>acts known to need another source</span></div>
+    <div class="stat"><b>103</b><span>acts with an empty section, to check</span></div>
+    <div class="stat"><b>107</b><span>acts begun before the online Gazette</span></div>
+    <div class="stat"><b>3,574</b><span>acts not yet read</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>1. The planned way of work: a starting state, rebuilt forward</h2>
+  <div class="prose"><p>Nobody seems to consolidate the whole history of every act by hand, and it is not known yet whether a machine can either. So the work does not rebuild each act from its first Gazette issue. It starts from the acts as they stand and builds on them, in two tasks.</p>
+  <h3>Task 1: a starting state of sufficient quality</h3>
+  <p>Two things change in the path. Before an act is read, its source is decided: every act not on the exceptions list is read from lex.bg as today. An act on the list is investigated first, to name its defect and the source that holds it right, and its source route then fetches that text. After the reading, a content check finds any act that has lost text and sends it to the list and into its route, instead of writing it. The witnesses show where the text differs from lex.bg and from the Ministry of Justice portal, and each difference is settled and recorded. Every branch ends in the same place: the correct act, committed through the gate. The register of act profiles and the inventory of lex.bg's defects bring more acts to the list and order the audit.</p>
+  <p>Every route is bounded. It runs only as far as it knows what to do, and stops at a fixed point: when its known steps are used up, when a step changes nothing, or when the next step is not defined. Where it stops without a correct act, it writes a case file for that act: the exception, what was tried, the lessons learnt and a proposal. The owner reads the case files of a run together, at the run's end, and the decision becomes a ruling, a rule or a new route; then the act goes through its route again. No loop runs on toward the goal past that point.</p>
+  <p>The routes may become a project skill for updating this repository, so that any session can run them the same way. When the work is published, the same routes are developed into a harness.</p></div>
+  <figure id="f0">
+    <div class="scroll">
+<svg viewBox="0 0 1420 490" role="img" aria-label="The planned path: an act is looked up in the exceptions list. Not listed, it is read from lex.bg. Listed, an investigation names its defect and source, and its source route fetches the text. Both go through the same reading, a content check that puts an act with lost text on the list, a witness comparison, the write gate and the commit of a correct act. The defect inventory and the act profiles propose acts for the list, and the profiles order the audit batches. Where a step stops without a correct act, it writes a case file that the owner reads; the owner's decision updates the routes and the act re-enters its route.">
+  <defs>
+    <marker id="a0b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah bad" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a0a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah acc" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a0p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah plan" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+
+  <!-- lost text puts the act on the list, which routes it again -->
+  <path class="ar plan" d="M976,130 V28 H256 V128" marker-end="url(#a0p)"/>
+  <text class="al plan" x="616" y="20" text-anchor="middle">lost text: the act goes on the list and into its route</text>
+
+  <!-- main row -->
+  <rect class="n" x="16" y="130" width="140" height="60" rx="6"/><text class="t" x="86" y="155" text-anchor="middle">An act</text><text class="s" x="86" y="173" text-anchor="middle">catalog.db</text>
+  <rect class="n plan" x="186" y="130" width="140" height="60" rx="6"/><text class="t" x="256" y="155" text-anchor="middle">Exceptions list</text><text class="s" x="256" y="173" text-anchor="middle">source and route</text><text class="tag" x="318" y="144" text-anchor="end">S1</text>
+
+  <rect class="n" x="366" y="40" width="140" height="60" rx="6"/><text class="t" x="436" y="65" text-anchor="middle">lex.bg page</text><text class="s" x="436" y="83" text-anchor="middle">if not listed</text>
+  <rect class="n plan" x="366" y="220" width="140" height="60" rx="6"/><text class="t" x="436" y="245" text-anchor="middle">Investigate</text><text class="s" x="436" y="263" text-anchor="middle">defect and source</text><text class="tag" x="498" y="234" text-anchor="end">S1</text>
+  <rect class="n plan" x="546" y="220" width="140" height="60" rx="6"/><text class="t" x="616" y="245" text-anchor="middle">Source route</text><text class="s" x="616" y="263" text-anchor="middle">ДВ, PDF, MoJ</text><text class="tag" x="678" y="234" text-anchor="end">S1 S4</text>
+
+  <rect class="n model" x="726" y="130" width="140" height="60" rx="6"/><text class="t" x="796" y="155" text-anchor="middle">Read</text><text class="s" x="796" y="173" text-anchor="middle">split, label, check</text>
+  <rect class="n plan" x="906" y="130" width="140" height="60" rx="6"/><text class="t" x="976" y="155" text-anchor="middle">Content check</text><text class="s" x="976" y="173" text-anchor="middle">nothing lost</text><text class="tag" x="1038" y="144" text-anchor="end">S1</text>
+  <rect class="n plan" x="1086" y="130" width="140" height="60" rx="6"/><text class="t" x="1156" y="155" text-anchor="middle">Witnesses</text><text class="s" x="1156" y="173" text-anchor="middle">differences settled</text><text class="tag" x="1218" y="144" text-anchor="end">S1</text>
+  <rect class="n acc" x="1266" y="130" width="140" height="60" rx="6"/><text class="t" x="1336" y="155" text-anchor="middle">Write gate</text><text class="s" x="1336" y="173" text-anchor="middle">write_act</text>
+  <rect class="n okb" x="1266" y="260" width="140" height="60" rx="6"/><text class="t" x="1336" y="285" text-anchor="middle">Commit</text><text class="s" x="1336" y="303" text-anchor="middle">the correct act</text>
+
+  <rect class="n art" x="1086" y="50" width="140" height="48" rx="4"/><text class="s" x="1156" y="70" text-anchor="middle">lex.bg, MoJ portal</text><text class="s" x="1156" y="86" text-anchor="middle">witnesses, never truth</text>
+  <line class="ar thin" x1="1156" y1="98" x2="1156" y2="130"/>
+
+  <line class="ar" x1="156" y1="160" x2="184" y2="160" marker-end="url(#a0)"/>
+  <path class="ar" d="M326,150 H346 V70 H364" marker-end="url(#a0)"/>
+  <path class="ar plan" d="M326,170 H346 V250 H364" marker-end="url(#a0p)"/>
+  <line class="ar plan" x1="506" y1="250" x2="544" y2="250" marker-end="url(#a0p)"/>
+  <path class="ar" d="M506,70 H706 V150 H724" marker-end="url(#a0)"/>
+  <path class="ar plan" d="M686,250 H706 V170 H724" marker-end="url(#a0p)"/>
+  <line class="ar" x1="866" y1="160" x2="904" y2="160" marker-end="url(#a0)"/>
+  <line class="ar" x1="1046" y1="160" x2="1084" y2="160" marker-end="url(#a0)"/>
+  <line class="ar" x1="1226" y1="160" x2="1264" y2="160" marker-end="url(#a0)"/>
+  <line class="ar" x1="1336" y1="190" x2="1336" y2="258" marker-end="url(#a0)"/>
+
+  <!-- what feeds the list and orders the audit -->
+  <rect class="n plan" x="16" y="340" width="140" height="60" rx="6"/><text class="t" x="86" y="365" text-anchor="middle">lex.bg defects</text><text class="s" x="86" y="383" text-anchor="middle">classes, evidence</text><text class="tag" x="148" y="354" text-anchor="end">S2</text>
+  <rect class="n plan" x="186" y="340" width="140" height="60" rx="6"/><text class="t" x="256" y="365" text-anchor="middle">Act profiles</text><text class="s" x="256" y="383" text-anchor="middle">kind, era, layout</text><text class="tag" x="318" y="354" text-anchor="end">S3</text>
+  <rect class="n plan" x="726" y="340" width="140" height="60" rx="6"/><text class="t" x="796" y="365" text-anchor="middle">Audit batches</text><text class="s" x="796" y="383" text-anchor="middle">by profile</text><text class="tag" x="858" y="354" text-anchor="end">S5</text>
+
+  <path class="ar plan" d="M86,340 V312 H236 V192" marker-end="url(#a0p)"/>
+  <line class="ar plan" x1="286" y1="340" x2="286" y2="192" marker-end="url(#a0p)"/>
+  <text class="al plan" x="160" y="304" text-anchor="middle">acts for the list</text>
+  <line class="ar plan" x1="326" y1="370" x2="724" y2="370" marker-end="url(#a0p)"/>
+  <text class="al plan" x="526" y="362" text-anchor="middle">orders the batches</text>
+  <line class="ar plan" x1="796" y1="340" x2="796" y2="192" marker-end="url(#a0p)"/>
+
+  <!-- the bounded stop: a case file, the owner, the act back into its route -->
+  <rect class="n badb" x="906" y="250" width="140" height="60" rx="6"/><text class="t" x="976" y="275" text-anchor="middle">Case file</text><text class="s" x="976" y="293" text-anchor="middle">lessons, proposal</text><text class="tag" x="1038" y="264" text-anchor="end">S0</text>
+  <line class="ar bad" x1="976" y1="190" x2="976" y2="248" marker-end="url(#a0b)"/>
+  <text class="al bad" x="984" y="226">bounded stop</text>
+  <path class="ar bad" d="M1156,190 V280 H1048" marker-end="url(#a0b)"/>
+  <rect class="n" x="906" y="416" width="140" height="60" rx="6"/><text class="t" x="976" y="441" text-anchor="middle">Owner</text><text class="s" x="976" y="459" text-anchor="middle">checks, decides</text>
+  <line class="ar" x1="976" y1="310" x2="976" y2="414" marker-end="url(#a0)"/>
+  <text class="al" x="984" y="364">one batch per run</text>
+  <path class="ar acc" d="M906,446 H436 V282" marker-end="url(#a0a)"/>
+  <text class="al acc" x="670" y="438" text-anchor="middle">routes updated; the act re-enters its route</text>
+</svg>
+    </div>
+    <div class="legend"><span><i></i>built, no judgement</span><span><i class="model"></i>built, model call (the <code>labeller</code>)</span><span><i class="acc"></i>the single corpus write gate</span><span><i class="plan"></i>planned, with its proposed step</span></div>
+    <figcaption>No branch ends at the list: an act ends committed, or stopped with a case file that the owner reads. An act with no route yet, or whose route has not yet committed it, is counted as distance left. The stop is drawn from the content check and the witnesses; every step of a route stops the same way. The reading step stays the same for every source: one labeller, one ladder, one write gate. The exceptions list has a fixed form, so its checks are mechanical and block: an act on the list is refused on the lex.bg path, and an entry without a route fails. What a source's text says, and whether a difference from a witness is the source's error or lex.bg's, is a reading of free text: a model run decides it in the investigation and at the witnesses, and the decision is recorded as data. Scripts do the fetching.</figcaption>
+  </figure>
+  <div class="prose">
+  <h3>Task 2: rebuilt with each Gazette issue, and tested against lex.bg</h3>
+  <p>From the starting state on, the corpus follows the Gazette. Each new issue is fetched; its materials are attributed to the acts they change, and their instructions are turned into changes to those acts and applied. The result goes through the same checks and the same write gate, and is committed as the act after that issue. Most of what the Gazette publishes is amendments, so this needs the engine of plan step 5; a new act is rare, and is simply read whole. From time to time the corpus is compared with lex.bg and with the Ministry of Justice portal. They are witnesses, not truth: each difference is settled against the Gazette, and the count of differences that were the engine's errors is the measure of the consolidation's quality.</p>
+  <p>The engine is bounded like every route. Where it cannot apply a material with certainty, it stops for that act with a case file, and the owner's ruling decides what follows, for example re-reading that act from lex.bg once lex.bg has caught up. Whether the engine can be built at all is tested first on a few representative acts of each kind of act: their history is rebuilt from the Gazette and compared with the witnesses. Once it has passed that test, it rebuilds an act's complete history only case by case, where one is needed, such as a difference to settle or a gap in a lex.bg fetch; nobody rebuilds every act's history since 2003.</p></div>
+  <figure id="f0b">
+    <div class="scroll">
+<svg viewBox="0 0 1420 300" role="img" aria-label="The forward rebuild: the starting state in git takes each new Gazette issue; the engine attributes its materials and applies them; the checks and the write gate follow, and the act after that issue is committed, which is the corpus one issue further on. From time to time the corpus is compared with lex.bg and the Ministry of Justice portal, and the settled differences give the quality measure. Where the engine cannot apply a material, or a difference was the engine's error, a case file goes to the owner, whose ruling updates the engine or the act.">
+  <defs>
+    <marker id="a4b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah bad" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a4a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah acc" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a4p" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah plan" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+
+  <rect class="n okb" x="16" y="100" width="140" height="60" rx="6"/><text class="t" x="86" y="125" text-anchor="middle">Starting state</text><text class="s" x="86" y="143" text-anchor="middle">in git, task 1</text>
+  <rect class="n plan" x="196" y="100" width="140" height="60" rx="6"/><text class="t" x="266" y="125" text-anchor="middle">Gazette issue</text><text class="s" x="266" y="143" text-anchor="middle">each new one</text><text class="tag" x="328" y="114" text-anchor="end">F2</text>
+  <rect class="n plan" x="376" y="100" width="140" height="60" rx="6"/><text class="t" x="446" y="125" text-anchor="middle">Engine</text><text class="s" x="446" y="143" text-anchor="middle">attribute, apply</text><text class="tag" x="508" y="114" text-anchor="end">F1</text>
+  <rect class="n" x="556" y="100" width="140" height="60" rx="6"/><text class="t" x="626" y="125" text-anchor="middle">Checks</text><text class="s" x="626" y="143" text-anchor="middle">structure, content</text>
+  <rect class="n acc" x="736" y="100" width="140" height="60" rx="6"/><text class="t" x="806" y="125" text-anchor="middle">Write gate</text><text class="s" x="806" y="143" text-anchor="middle">write_act</text>
+  <rect class="n okb" x="916" y="100" width="140" height="60" rx="6"/><text class="t" x="986" y="125" text-anchor="middle">Commit</text><text class="s" x="986" y="143" text-anchor="middle">the act after the issue</text>
+  <rect class="n plan" x="1096" y="100" width="140" height="60" rx="6"/><text class="t" x="1166" y="125" text-anchor="middle">Periodic test</text><text class="s" x="1166" y="143" text-anchor="middle">against witnesses</text><text class="tag" x="1228" y="114" text-anchor="end">F3</text>
+  <rect class="n plan" x="1276" y="100" width="130" height="60" rx="6"/><text class="t" x="1341" y="125" text-anchor="middle">Quality</text><text class="s" x="1341" y="143" text-anchor="middle">engine errors, counted</text>
+
+  <rect class="n art" x="1096" y="16" width="140" height="48" rx="4"/><text class="s" x="1166" y="36" text-anchor="middle">lex.bg, MoJ portal</text><text class="s" x="1166" y="52" text-anchor="middle">witnesses, never truth</text>
+  <line class="ar thin" x1="1166" y1="64" x2="1166" y2="100"/>
+
+  <line class="ar" x1="156" y1="130" x2="194" y2="130" marker-end="url(#a4)"/>
+  <line class="ar plan" x1="336" y1="130" x2="374" y2="130" marker-end="url(#a4p)"/>
+  <line class="ar plan" x1="516" y1="130" x2="554" y2="130" marker-end="url(#a4p)"/>
+  <line class="ar" x1="696" y1="130" x2="734" y2="130" marker-end="url(#a4)"/>
+  <line class="ar" x1="876" y1="130" x2="914" y2="130" marker-end="url(#a4)"/>
+  <line class="ar plan" x1="1056" y1="130" x2="1094" y2="130" marker-end="url(#a4p)"/>
+  <line class="ar plan" x1="1236" y1="130" x2="1274" y2="130" marker-end="url(#a4p)"/>
+  <path class="ar" d="M986,100 V80 H86 V98" marker-end="url(#a4)"/>
+  <text class="al" x="536" y="72" text-anchor="middle">the corpus, one issue further on</text>
+
+  <rect class="n badb" x="376" y="210" width="140" height="60" rx="6"/><text class="t" x="446" y="235" text-anchor="middle">Case file</text><text class="s" x="446" y="253" text-anchor="middle">lessons, proposal</text><text class="tag" x="508" y="224" text-anchor="end">S0</text>
+  <line class="ar bad" x1="446" y1="160" x2="446" y2="208" marker-end="url(#a4b)"/>
+  <text class="al bad" x="454" y="190">cannot apply</text>
+  <path class="ar bad" d="M1341,160 V240 H518" marker-end="url(#a4b)"/>
+  <text class="al bad" x="930" y="232" text-anchor="middle">a difference that was the engine's error</text>
+  <rect class="n" x="16" y="210" width="140" height="60" rx="6"/><text class="t" x="86" y="235" text-anchor="middle">Owner</text><text class="s" x="86" y="253" text-anchor="middle">checks, decides</text>
+  <line class="ar" x1="376" y1="240" x2="158" y2="240" marker-end="url(#a4)"/>
+  <text class="al" x="266" y="232" text-anchor="middle">one batch per run</text>
+  <line class="ar acc" x1="86" y1="210" x2="86" y2="162" marker-end="url(#a4a)"/>
+  <text class="al acc" x="94" y="190">ruling: engine or act</text>
+</svg>
+    </div>
+    <figcaption>Task 2 reuses everything after the reading in task 1: the checks, the write gate, the case files and the owner's batch. What it adds is the engine (F1), which nobody has built yet, the daily loop that feeds it the new issues (F2), and the periodic test (F3). Whether a material's instruction was applied correctly is a reading of free text, so the engine is a reasoning run and its decisions are recorded as data; the scripts fetch, list and diff.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>2. The path as built</h2>
+  <figure id="f1">
+    <div class="scroll">
+<svg viewBox="0 0 1222 250" role="img" aria-label="Ten stages from the lex.bg page to a git commit: acquire, read, write and commit, with a re-labelling loop from the checks back to the labeller.">
+  <defs>
+    <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a1a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah acc" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+  <rect class="lane" x="8" y="16" width="230" height="26" rx="4"/><text class="lt" x="123" y="33" text-anchor="middle">Acquire</text>
+  <rect class="lane" x="252" y="16" width="596" height="26" rx="4"/><text class="lt" x="550" y="33" text-anchor="middle">Read · run folder</text>
+  <rect class="lane" x="862" y="16" width="230" height="26" rx="4"/><text class="lt" x="977" y="33" text-anchor="middle">Write · reading/write.py</text>
+  <rect class="lane" x="1106" y="16" width="108" height="26" rx="4"/><text class="lt" x="1160" y="33" text-anchor="middle">Git</text>
+
+  <path class="ar acc" d="M794,90 V64 H428 V86" marker-end="url(#a1a)"/>
+  <text class="al acc" x="611" y="58" text-anchor="middle">exceptions on blocks → re-label, rounds 1 and 2</text>
+
+  <g>
+    <rect class="n" x="8" y="90" width="108" height="56" rx="6"/><text class="t" x="62" y="113" text-anchor="middle">lex.bg page</text><text class="s" x="62" y="131" text-anchor="middle">ldoc/{id}</text>
+    <rect class="n" x="130" y="90" width="108" height="56" rx="6"/><text class="t" x="184" y="113" text-anchor="middle">raw store</text><text class="s" x="184" y="131" text-anchor="middle">page + SHA-256</text>
+    <rect class="n" x="252" y="90" width="108" height="56" rx="6"/><text class="t" x="306" y="113" text-anchor="middle">splitter</text><text class="s" x="306" y="131" text-anchor="middle">page → blocks</text>
+    <rect class="n model" x="374" y="90" width="108" height="56" rx="6"/><text class="t" x="428" y="113" text-anchor="middle">labeller</text><text class="s" x="428" y="131" text-anchor="middle">a label per block</text>
+    <rect class="n" x="496" y="90" width="108" height="56" rx="6"/><text class="t" x="550" y="113" text-anchor="middle">rules</text><text class="s" x="550" y="131" text-anchor="middle">D-072 rulings</text>
+    <rect class="n" x="618" y="90" width="108" height="56" rx="6"/><text class="t" x="672" y="113" text-anchor="middle">assembler</text><text class="s" x="672" y="131" text-anchor="middle">copies blocks</text>
+    <rect class="n" x="740" y="90" width="108" height="56" rx="6"/><text class="t" x="794" y="113" text-anchor="middle">checks</text><text class="s" x="794" y="131" text-anchor="middle">form, not meaning</text>
+    <rect class="n" x="862" y="90" width="108" height="56" rx="6"/><text class="t" x="916" y="113" text-anchor="middle">re-read</text><text class="s" x="916" y="131" text-anchor="middle">same page, body</text>
+    <rect class="n acc" x="984" y="90" width="108" height="56" rx="6"/><text class="t" x="1038" y="113" text-anchor="middle">write gate</text><text class="s" x="1038" y="131" text-anchor="middle">write_act</text>
+    <rect class="n" x="1106" y="90" width="108" height="56" rx="6"/><text class="t" x="1160" y="113" text-anchor="middle">commit</text><text class="s" x="1160" y="131" text-anchor="middle">4 trailers</text>
+  </g>
+  <g>
+    <line class="ar" x1="116" y1="118" x2="128" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="238" y1="118" x2="250" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="360" y1="118" x2="372" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="482" y1="118" x2="494" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="604" y1="118" x2="616" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="726" y1="118" x2="738" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="848" y1="118" x2="860" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="970" y1="118" x2="982" y2="118" marker-end="url(#a1)"/>
+    <line class="ar" x1="1092" y1="118" x2="1104" y2="118" marker-end="url(#a1)"/>
+  </g>
+  <g>
+    <line class="ar thin" x1="62" y1="146" x2="62" y2="166"/><rect class="n art" x="8" y="166" width="108" height="48" rx="4"/><text class="s" x="62" y="186" text-anchor="middle">windows-1251</text><text class="s" x="62" y="202" text-anchor="middle">1 request/s</text>
+    <line class="ar thin" x1="184" y1="146" x2="184" y2="166"/><rect class="n art" x="130" y="166" width="108" height="48" rx="4"/><text class="m" x="184" y="186" text-anchor="middle">data/raw/lexbg</text><text class="m" x="184" y="202" text-anchor="middle">manifest.jsonl</text>
+    <line class="ar thin" x1="306" y1="146" x2="306" y2="166"/><rect class="n art" x="252" y="166" width="108" height="48" rx="4"/><text class="m" x="306" y="186" text-anchor="middle">blocks.json</text><text class="s" x="306" y="202" text-anchor="middle">each char once</text>
+    <line class="ar thin" x1="428" y1="146" x2="428" y2="166"/><rect class="n art" x="374" y="166" width="108" height="48" rx="4"/><text class="m" x="428" y="186" text-anchor="middle">maps/round0–2</text><text class="s" x="428" y="202" text-anchor="middle">no text returned</text>
+    <line class="ar thin" x1="550" y1="146" x2="550" y2="166"/><rect class="n art" x="496" y="166" width="108" height="48" rx="4"/><text class="s" x="550" y="186" text-anchor="middle">ruled map</text><text class="s" x="550" y="202" text-anchor="middle">+ omissions list</text>
+    <line class="ar thin" x1="672" y1="146" x2="672" y2="166"/><rect class="n art" x="618" y="166" width="108" height="48" rx="4"/><text class="m" x="672" y="186" text-anchor="middle">staged.md</text><text class="s" x="672" y="202" text-anchor="middle">markers only</text>
+    <line class="ar thin" x1="794" y1="146" x2="794" y2="166"/><rect class="n art" x="740" y="166" width="108" height="48" rx="4"/><text class="s" x="794" y="186" text-anchor="middle">round reports</text><text class="s" x="794" y="202" text-anchor="middle">exceptions</text>
+    <line class="ar thin" x1="916" y1="146" x2="916" y2="166"/><rect class="n art" x="862" y="166" width="108" height="48" rx="4"/><text class="s" x="916" y="186" text-anchor="middle">frontmatter</text><text class="s" x="916" y="202" text-anchor="middle">+ provenance</text>
+    <line class="ar thin" x1="1038" y1="146" x2="1038" y2="166"/><rect class="n art" x="984" y="166" width="108" height="48" rx="4"/><text class="s" x="1038" y="186" text-anchor="middle">remnant, chrome</text><text class="s" x="1038" y="202" text-anchor="middle">vs waivers.yaml</text>
+    <line class="ar thin" x1="1160" y1="146" x2="1160" y2="166"/><rect class="n art" x="1106" y="166" width="108" height="48" rx="4"/><text class="s" x="1160" y="186" text-anchor="middle">act + run record</text><text class="s" x="1160" y="202" text-anchor="middle">+ waiver count</text>
+  </g>
+</svg>
+    </div>
+    <div class="legend"><span><i class="model"></i>model call (the lean <code>labeller</code> agent: Read and Write only)</span><span><i></i>script, no judgement</span><span><i class="acc"></i>the single corpus write gate</span></div>
+    <figcaption>The only model call in the whole path is the labeller. It answers with a label and a number per block, never with text. Everything to its right, including the rulings, is mechanical. Run as scripts: <code>reading/run.py</code> (prepare, dispatch, collect), the ladder in <code>reading/ladder.py</code>, then <code>reading/write.py</code>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>3. The ladder and the residue</h2>
+  <div class="prose"><p>The checks turn every failure into an exception on one block. The ladder gives each excepted block two more tries: its block goes back to the labeller, with the block before and the block after it. Whatever is still excepted after round 2 is the residue, and it is sorted by what another round could change.</p></div>
+  <figure id="f2">
+    <div class="scroll">
+<svg viewBox="0 0 1000 470" role="img" aria-label="The ladder: round 0 labels every section, rules and checks run, exceptions are re-labelled in rounds 1 and 2, and the residue splits into rule_needed, which becomes a ruling, and labeller_unsure, which goes to a whole-act read.">
+  <defs>
+    <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a2o" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah ok" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a2a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah acc" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+  <rect class="n model" x="40" y="30" width="240" height="60" rx="6"/>
+  <text class="t" x="160" y="55" text-anchor="middle">Round 0: label every section</text>
+  <text class="s" x="160" y="74" text-anchor="middle">8 sections per labeller call</text>
+
+  <line class="ar" x1="160" y1="90" x2="160" y2="128" marker-end="url(#a2)"/>
+
+  <rect class="n" x="40" y="130" width="240" height="60" rx="6"/>
+  <text class="t" x="160" y="155" text-anchor="middle">Rules, then checks</text>
+  <text class="s" x="160" y="174" text-anchor="middle">rules.apply → checks.run_all</text>
+
+  <line class="ar" x1="160" y1="190" x2="160" y2="228" marker-end="url(#a2)"/>
+
+  <rect class="n" x="40" y="230" width="240" height="60" rx="6"/>
+  <text class="t" x="160" y="255" text-anchor="middle">Exceptions on blocks</text>
+  <text class="s" x="160" y="274" text-anchor="middle">coverage, text, numbering, nesting …</text>
+
+  <!-- exit to the write path -->
+  <line class="ar ok" x1="280" y1="152" x2="658" y2="152" marker-end="url(#a2o)"/>
+  <text class="al ok" x="470" y="145" text-anchor="middle">no blocking exception</text>
+  <rect class="n okb" x="660" y="130" width="280" height="60" rx="6"/>
+  <text class="t" x="800" y="155" text-anchor="middle">Read to no exception</text>
+  <text class="s" x="800" y="174" text-anchor="middle">staged.md → the write path</text>
+
+  <rect class="n" x="660" y="30" width="280" height="60" rx="6"/>
+  <text class="t" x="800" y="55" text-anchor="middle">Source findings, carried</text>
+  <text class="s" x="800" y="74" text-anchor="middle">malformed head, empty section, gaps</text>
+  <line class="ar thin" x1="800" y1="90" x2="800" y2="130"/>
+
+  <!-- re-label loop -->
+  <line class="ar acc" x1="280" y1="260" x2="358" y2="260" marker-end="url(#a2a)"/>
+  <text class="al acc" x="319" y="252" text-anchor="middle">round &lt; 2</text>
+  <rect class="n model" x="360" y="230" width="240" height="60" rx="6"/>
+  <text class="t" x="480" y="255" text-anchor="middle">Re-label block ± 1</text>
+  <text class="s" x="480" y="274" text-anchor="middle">25 re-labels per call</text>
+  <path class="ar acc" d="M480,230 V176 H282" marker-end="url(#a2a)"/>
+  <text class="al acc" x="488" y="212">answers merged</text>
+
+  <!-- residue -->
+  <line class="ar" x1="160" y1="290" x2="160" y2="328" marker-end="url(#a2)"/>
+  <text class="al" x="170" y="314">after round 2</text>
+  <rect class="n" x="40" y="330" width="240" height="60" rx="6"/>
+  <text class="t" x="160" y="355" text-anchor="middle">Residue</text>
+  <text class="s" x="160" y="374" text-anchor="middle">sorted by each round's own answers</text>
+
+  <line class="ar" x1="280" y1="345" x2="358" y2="345" marker-end="url(#a2)"/>
+  <path class="ar" d="M280,375 H320 V425 H358" marker-end="url(#a2)"/>
+
+  <rect class="n" x="360" y="320" width="240" height="50" rx="6"/>
+  <text class="t" x="480" y="341" text-anchor="middle">rule_needed</text>
+  <text class="s" x="480" y="359" text-anchor="middle">last two answers agree</text>
+  <rect class="n" x="360" y="400" width="240" height="50" rx="6"/>
+  <text class="t" x="480" y="421" text-anchor="middle">labeller_unsure</text>
+  <text class="s" x="480" y="439" text-anchor="middle">answers differ or are missing</text>
+
+  <line class="ar" x1="600" y1="345" x2="658" y2="345" marker-end="url(#a2)"/>
+  <line class="ar" x1="600" y1="425" x2="658" y2="425" marker-end="url(#a2)"/>
+
+  <rect class="n" x="660" y="320" width="280" height="50" rx="6"/>
+  <text class="t" x="800" y="341" text-anchor="middle">A ruling (D-072) and its test</text>
+  <text class="s" x="800" y="359" text-anchor="middle">written into rules.py or checks.py</text>
+  <rect class="n" x="660" y="400" width="280" height="50" rx="6"/>
+  <text class="t" x="800" y="421" text-anchor="middle">Whole-act read</text>
+  <text class="s" x="800" y="439" text-anchor="middle">a Fable model or the owner; judgement blocks</text>
+
+  <path class="ar acc" d="M940,345 H980 V110 H240 V128" marker-end="url(#a2a)"/>
+  <text class="al acc" x="610" y="104" text-anchor="middle">a rule, not another round: re-run rules and checks over the same answers</text>
+</svg>
+    </div>
+    <figcaption>If a block's last two answers agree, the labeller holds its reading and the checks refuse it, so a third round would change nothing. That calls for a rule. Before the rulings, the 50 acts left 148 residue blocks: 128 <code>rule_needed</code> and 20 <code>labeller_unsure</code>. All 148 were settled by the 13 rulings and the session's reading of the judgement blocks, and no block was labelled again. After that the 50 acts carry no exception. The exceptions that do not block a write are listed in <code>ladder.SOURCE_FINDINGS</code>: what the page itself carries, recorded and never repaired.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>4. The write path, one act at a time</h2>
+  <div class="prose"><p><code>write_staged(slug, run_dir)</code> trusts nothing it finds in the run folder. It reads the page again, splits it again, assembles the body again and checks it again, and only then builds the frontmatter and calls the gate. A failure at any step stops that act and touches nothing else.</p></div>
+  <figure id="f3">
+    <div class="scroll">
+<svg viewBox="0 0 1000 712" role="img" aria-label="Nine steps of the write path, with refusals before the gate, an unchanged exit, a refusal at the gate that restores the waiver, and the commit with four trailers.">
+  <defs>
+    <marker id="a3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker>
+    <marker id="a3b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah bad" d="M0,0 L10,5 L0,10 z"/></marker>
+  </defs>
+
+  <!-- main column -->
+  <rect class="n" x="40" y="20" width="480" height="52" rx="6"/><text class="t" x="60" y="42">1 · The page against its hash</text><text class="s" x="60" y="60">raw/{id}.html, its SHA-256 equal to the manifest line</text>
+  <rect class="n" x="40" y="94" width="480" height="52" rx="6"/><text class="t" x="60" y="116">2 · Split again</text><text class="s" x="60" y="134">the blocks equal the run's blocks.json</text>
+  <rect class="n" x="40" y="168" width="480" height="52" rx="6"/><text class="t" x="60" y="190">3 · Rules and checks again</text><text class="s" x="60" y="208">ladder.evaluate over map.json; only source findings may remain</text>
+  <rect class="n" x="40" y="242" width="480" height="52" rx="6"/><text class="t" x="60" y="264">4 · The same body</text><text class="s" x="60" y="282">the assembled body equals the run's staged.md</text>
+  <rect class="n" x="40" y="316" width="480" height="52" rx="6"/><text class="t" x="60" y="338">5 · Frontmatter as the refresh path builds it</text><text class="s" x="60" y="356">MetadataParser over the page, merge_preserved; a repealed act stays repealed</text>
+  <rect class="n" x="40" y="390" width="480" height="52" rx="6"/><text class="t" x="60" y="412">6 · Classify the change</text><text class="s" x="60" y="430">[reforma] if the amendment list grew, [popravka] otherwise</text>
+  <rect class="n" x="40" y="464" width="480" height="52" rx="6"/><text class="t" x="60" y="486">7 · Lower the waivers</text><text class="s" x="60" y="504">each gated check's per-act count, down to what the new text carries</text>
+  <rect class="n acc" x="40" y="538" width="480" height="52" rx="6"/><text class="t" x="60" y="560">8 · corpus_gate.write_act</text><text class="s" x="60" y="578">render_act, then RemnantCheck and ChromeCheck against waivers.yaml</text>
+  <rect class="n okb" x="40" y="612" width="480" height="86" rx="6"/><text class="t" x="60" y="634">9 · One commit</text><text class="s" x="60" y="652">the act, map.json, report-round0…2.json, waivers.yaml if lowered</text><text class="s" x="60" y="670">author date = Source-Date (legislative); committer date real</text><text class="s" x="60" y="688">no session lines: pipeline act commits carry the trailers only</text>
+
+  <g>
+    <line class="ar" x1="280" y1="72" x2="280" y2="92" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="146" x2="280" y2="166" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="220" x2="280" y2="240" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="294" x2="280" y2="314" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="368" x2="280" y2="388" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="442" x2="280" y2="462" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="516" x2="280" y2="536" marker-end="url(#a3)"/>
+    <line class="ar" x1="280" y1="590" x2="280" y2="610" marker-end="url(#a3)"/>
+  </g>
+
+  <!-- refusals before the gate -->
+  <rect class="n badb" x="600" y="20" width="370" height="274" rx="6"/>
+  <text class="t" x="620" y="42" style="fill:var(--bad)">Refused before the gate</text>
+  <text class="s" x="620" y="60">WriteRefused: nothing written, nothing committed</text>
+  <line class="ar bad" x1="520" y1="120" x2="598" y2="120" marker-end="url(#a3b)"/>
+  <text class="s" x="620" y="124">the page splits into other blocks</text>
+  <line class="ar bad" x1="520" y1="194" x2="598" y2="194" marker-end="url(#a3b)"/>
+  <text class="s" x="620" y="198">exception(s) on the page (kind, first block)</text>
+  <line class="ar bad" x1="520" y1="268" x2="598" y2="268" marker-end="url(#a3b)"/>
+  <text class="s" x="620" y="272">the body differs from staged.md</text>
+  <path class="ar bad" d="M520,46 H560 V84 H598" marker-end="url(#a3b)"/>
+  <text class="s" x="620" y="88">the page differs from its manifest line</text>
+
+  <!-- provenance -->
+  <line class="ar thin" x1="520" y1="342" x2="600" y2="342"/>
+  <rect class="n" x="600" y="316" width="370" height="52" rx="6"/>
+  <text class="m" x="616" y="338">provenance: base · record · omissions</text>
+  <text class="s" x="616" y="356">page hash and fetch time; run, map and blocks hashes</text>
+
+  <!-- unchanged -->
+  <line class="ar" x1="520" y1="416" x2="598" y2="416" marker-end="url(#a3)"/>
+  <rect class="n" x="600" y="390" width="370" height="52" rx="6"/>
+  <text class="t" x="616" y="412">Unchanged: no write, no commit</text>
+  <text class="s" x="616" y="430">the final pass over all 50: 50 unchanged, 0 refused</text>
+
+  <!-- waivers -->
+  <line class="ar thin" x1="520" y1="490" x2="600" y2="490"/>
+  <rect class="n" x="600" y="464" width="370" height="52" rx="6"/>
+  <text class="t" x="616" y="486">W-002 80 → 61 acts · W-003 1 → 0</text>
+  <text class="s" x="616" y="504">only a waiver that expires per act is lowered</text>
+
+  <!-- gate refusal -->
+  <line class="ar bad" x1="520" y1="564" x2="598" y2="564" marker-end="url(#a3b)"/>
+  <rect class="n badb" x="600" y="538" width="370" height="52" rx="6"/>
+  <text class="t" x="616" y="560" style="fill:var(--bad)">Gate refuses: file and waiver unchanged</text>
+  <text class="s" x="616" y="578">seen once: naredba-5, a stale W-003 → lowering generalised</text>
+
+  <!-- commit message -->
+  <line class="ar thin" x1="520" y1="655" x2="600" y2="655"/>
+  <rect class="n" x="600" y="612" width="370" height="86" rx="6"/>
+  <text class="m" x="614" y="632">[popravka] ЗАКОН ЗА ОБЩИНСКАТА СОБСТВЕНОСТ</text>
+  <text class="m" x="614" y="649">Source-Id: lexbg-2133874691</text>
+  <text class="m" x="614" y="664">Source-Date: 2021-02-26</text>
+  <text class="m" x="614" y="679">Norm-Id: 2133874691</text>
+  <text class="m" x="614" y="694">Record-Id: structure-map-…/89929ef64224</text>
+</svg>
+    </div>
+    <figcaption>The gate is the only code that writes a corpus file; an AST scan in the tests fails any other module that tries. A refused act leaves the corpus file, the waiver file and git exactly as they were. The Record-Id is the run, the act's slug and the first 12 characters of the map's SHA-256, so the commit names the exact map it was built from. The full <code>Record-Id</code> here is <span class="mono">structure-map-2026-10-22/zakon-za-obshtinskata-sobstvenost/89929ef64224</span>.</figcaption>
+  </figure>
+</section>
+
+<section>
+  <h2>5. What a written act leaves in git</h2>
+  <div class="prose"><p>The run record (D-073) goes into the same commit as the act, so anyone can rebuild the body from the page and check that the result matches. Files that can be rebuilt stay out of git.</p></div>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>File</th><th>In git</th><th>Why</th></tr></thead>
+    <tbody>
+      <tr><td><code>laws/…/{slug}.md</code></td><td><span class="pill in">committed</span></td><td>The act, with the 8 mandatory fields, <code>amendment_history</code> from the page and the <code>provenance</code> block.</td></tr>
+      <tr><td><code>data/runs/…/{slug}/map.json</code></td><td><span class="pill in">committed</span></td><td>The labeller's labels per block, the one input that a model produced. Its hash is in the Record-Id.</td></tr>
+      <tr><td><code>report-round0…2.json</code></td><td><span class="pill in">committed</span></td><td>What the checks found in each round, so the exceptions and their resolution can be re-checked.</td></tr>
+      <tr><td><code>docs/data/waivers.yaml</code></td><td><span class="pill in">when lowered</span></td><td>An act that leaves a waiver does so in its own commit; equality between the waiver and the act is the contract.</td></tr>
+      <tr><td><code>data/raw/lexbg/{id}.html</code></td><td><span class="pill out">raw store</span></td><td>The page is kept by its hash in the raw store, and <code>provenance.base.page_sha256</code> points to it.</td></tr>
+      <tr><td><code>blocks.json</code>, <code>tasks/</code>, <code>calls/</code>, <code>staged.md</code>, <code>diff.txt</code></td><td><span class="pill out">run folder</span></td><td>The splitter rebuilds the blocks from the page, and the write path rebuilds and compares the body. Its hash is in <code>provenance.record.blocks_sha256</code>.</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>6. Proposed steps to build it</h2>
+  <div class="prose"><p>The steps follow the two tasks. Task 1's steps come from the agreed record of 22 October (<code>docs/plans/2026-10-22-owner-intent-sources-and-act-profiles.md</code>): the exceptions list first, with the bounds that every route needs. S2 and S3 can run side by side after S1; S4 needs S3's list of acts begun before the archive, and S5 needs S3's profiles. Task 2's steps are plan steps 5 and 8 as decision D-074 narrowed them, and a periodic test that is my addition to give the owner's quality measure a fixed form. Each step ends with acts committed correct in git, or says why it commits none.</p></div>
+  <h3>Task 1: the starting state</h3>
+  <div class="steps">
+    <div class="step"><span class="pill plan">S0 · with S1</span><h3>Bounds and case files, for every route</h3>
+      <ul>
+        <li>A route stops at its known end: the ladder after round 2, an investigation after one run (a second only on new evidence), a source route after one fetch per source.</li>
+        <li>It stops earlier when a step changes nothing (the same answer twice, as the ladder's <code>rule_needed</code> already does) or when the next step is not defined (no route yet for this defect or this era).</li>
+        <li>Never: a third round, the same step again on the same inputs, an edit made so that a check passes.</li>
+        <li>On a stop, a case file per act in git: the exception, what was tried with its evidence, the lessons learnt, the proposal. Its form is fixed, so a check refuses a stopped act without one.</li>
+        <li>The owner reads a run's case files together at its end, not one act at a time during the run; no run goes on past its bound.</li>
+      </ul>
+      <p class="done"><b>Done when</b> the bounds are in the route driver with tests, and the case-file form is checked. It commits no act itself.</p></div>
+    <div class="step"><span class="pill plan">S1 · first</span><h3>The exceptions list and its routes</h3>
+      <ul>
+        <li>A data file, <code>docs/data/source-exceptions.yaml</code>: per act its slug, its defect, the source and the source's address, the route that commits it, the evidence (a decision or audit) and where it stands (listed, investigated, committed).</li>
+        <li>Mechanical checks, because the form is fixed: the file loads against its schema; every entry names a route; the write path refuses a listed act on the lex.bg path; a report prints each entry's distance to its commit.</li>
+        <li>The investigation: a lean project agent reads what the scripts fetched for a listed act and records its defect, its source and its route as data.</li>
+        <li>The content check: an empty section or other lost text sends the act to the list and into its route, instead of writing it. This changes D-072 ruling 7 for that finding.</li>
+        <li>The witnesses: the text read is compared with lex.bg and with the Ministry of Justice portal, and every difference is settled and recorded.</li>
+        <li>First entries, fixed as ordinary entries with no specification of their own. The transport law first, because the owner uses it daily: lex.bg drops its § 1, and the act was never amended, so its Gazette text, ДВ бр. 32/2026, is the whole act; a text search of the materials since then makes sure. The Закон за прозрачност при представителство на интереси: the same dropped § 1, but amended in ДВ бр. 55/2026, so the investigation reads whether that amendment touched § 1; if it did not, § 1 is filled from the promulgated text, and if it did, the act stops with a case file. Указ № 883: today from strategy.bg; its route is a source before the archive (S4).</li>
+      </ul>
+      <p class="done"><b>Done when</b> the list is committed with its tests, every entry names its route, and a write of the transport law from lex.bg is refused by name. and the transport law is committed with § 1 and its twelve definitions.</p></div>
+    <div class="step"><span class="pill next">S2</span><h3>What lex.bg gets wrong</h3>
+      <ul>
+        <li>Run the dropped-section detector (FR-042) over every raw page, and check its 103 candidates against the Gazette.</li>
+        <li>For a sample of acts in each profile from S3, compare lex.bg with the Gazette and name each kind of content error found, as distinct from formatting.</li>
+        <li>Each kind gets its evidence and its detector where the form allows one.</li>
+      </ul>
+      <p class="done"><b>Done when</b> a register of lex.bg's error kinds is committed, and every act confirmed wrong is committed correct from its route or stopped with a case file. Most such acts have been amended, so most need plan step 5's history route.</p></div>
+    <div class="step"><span class="pill next">S3</span><h3>A profile of every act</h3>
+      <ul>
+        <li>Per act: its kind, its Gazette era (HTML from 2003, PDF 1989–2002, before 1989), its grade, its layout features (tables, annexes, images, unnumbered paragraphs), its known defects and its source.</li>
+        <li>Counted by script from the raw pages where the feature has a fixed form; judged by a model run where it does not.</li>
+        <li>For the 107 acts begun before the archive, whether each is still in force, checked against the Gazette's 202 repeal titles not yet attributed to an act.</li>
+      </ul>
+      <p class="done"><b>Done when</b> the register covers all 3,624 acts, with the verified list of acts in force from before 1989.</p></div>
+    <div class="step"><span class="pill next">S4</span><h3>Sources for the acts before the archive</h3>
+      <ul>
+        <li>For each act on S3's list, which source counts as authoritative: the Ministry of Justice portal, the Gazette's issue PDFs from 1989, strategy.bg or another state source.</li>
+        <li>Trace where the full text of Указ № 883 was found, and look for ДВ бр. 39/1974.</li>
+        <li>A short APIS subscription is a spending decision for the owner, with its terms read against D-039.</li>
+      </ul>
+      <p class="done"><b>Done when</b> every act on S3's list is committed from its named source, or from lex.bg once checked against it.</p></div>
+    <div class="step"><span class="pill next">S5</span><h3>The audit, by profile</h3>
+      <ul>
+        <li>The remaining 3,574 acts, in batches of one profile each, each batch agreed with the owner.</li>
+        <li>A new form becomes a ruling and its test; an act with lost text goes on the list and into its route.</li>
+      </ul>
+      <p class="done"><b>Done when</b> every act is committed correct through the gate, from lex.bg or from its route, or stopped with a case file the owner has read. That is the starting state; its quality bar is the owner’s to set.</p></div>
+  </div>
+  <h3>Task 2: the forward rebuild</h3>
+  <div class="steps">
+    <div class="step"><span class="pill next">F1 · plan step 5</span><h3>The engine: built, verified per kind of act, then used case by case</h3>
+      <ul>
+        <li>Build: split each material, attribute it to the act it changes, turn its instructions into changes, apply them and check the result; a new act is read whole through task 1's path.</li>
+        <li>Verify: for a few representative acts of each kind, chosen from S3's profiles and agreed with the owner, rebuild the complete history from the Gazette and compare the result with lex.bg and the Ministry of Justice portal, settling every difference. This is the evidence of whether the engine can be built.</li>
+        <li>Use: on each new issue (F2), and for an act's complete history only case by case, where one is needed: a difference to settle, a gap in a lex.bg fetch to check.</li>
+        <li>Bounded like every route: what it cannot apply with certainty stops with a case file.</li>
+      </ul>
+      <p class="done"><b>Done when</b> the representative acts of every kind are committed with their history rebuilt from the Gazette, every difference from the witnesses settled and the engine's errors counted per kind; acts or kinds it cannot do stop with case files the owner reads.</p></div>
+    <div class="step"><span class="pill next">F2 · plan step 8</span><h3>The daily loop</h3><p>A declared scheduled loop: the new Gazette issues since the last ledger mark, through the engine, one pull request per run. Supervised first, then active.</p>
+      <p class="done"><b>Done when</b> the loop has kept the corpus current for a period the owner sets, with its case files read.</p></div>
+    <div class="step"><span class="pill next">F3 · my addition</span><h3>The periodic test against lex.bg</h3>
+      <ul>
+        <li>On a schedule the owner sets, every act the engine changed is compared with lex.bg and with the Ministry of Justice portal.</li>
+        <li>Each difference is settled against the Gazette as the engine's error, the witness's error or a timing difference, and recorded as data.</li>
+        <li>The count of the engine's errors per period is the quality measure; an engine error is fixed in the engine and the act re-committed.</li>
+      </ul>
+      <p class="done"><b>Done when</b> the first test is committed with its settled differences and its measure.</p></div>
+  </div>
+  <h3>Set aside</h3>
+  <div class="steps">
+    <div class="step"><span class="pill out">dropped</span><h3>The backfill, 2003 to 2026 (plan step 9)</h3><p>Rebuilding every act's history from бр. 1/2003 is more than the stage needs (decision D-074, amending D-068). The engine rebuilds a complete history only for the representative acts of F1 and, after that, case by case.</p></div>
+    <div class="step"><span class="pill out">parked</span><h3>Whether the Legalize format suits this corpus</h3><p>Recorded for later and kept out of these steps (<code>docs/followups/2026-10-22-legalize-format-suitability.md</code>).</p></div>
+    <div class="step"><span class="pill next">W-002</span><h3>61 acts still waived for tag remnants</h3><p>633 remnants remain. Each act leaves the waiver in its own commit once it has been read, as 19 acts already did.</p></div>
+  </div>
+</section>
+
+<section>
+  <h2>7. Where the work stands</h2>
+  <div class="prose"><p>The write path is in draft pull request #48, onto the plan branch; only the owner merges it. Nothing in task 1 or task 2 is built yet beyond the path of sections 2 to 5. The quality bar of the starting state, the representative acts of each kind and the period of the test are the owner's decisions; the backfill of every act is dropped (decision D-074).</p></div>
+</section>
+
+</div>

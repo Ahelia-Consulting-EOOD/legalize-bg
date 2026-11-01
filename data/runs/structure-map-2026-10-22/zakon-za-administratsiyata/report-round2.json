@@ -1,0 +1,67 @@
+{
+ "slug": "zakon-za-administratsiyata",
+ "round": 2,
+ "blocks": 542,
+ "sections": 14,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "duplicate_number",
+   "blocks": [
+    432,
+    433
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    460
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    510
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/6": [
+   433
+  ],
+  "D-072/1": [
+   460,
+   510
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "chapter_heading": 10,
+  "article_head": 72,
+  "alinea": 174,
+  "item": 120,
+  "letter": 14,
+  "provisions_heading": 62,
+  "paragraph_sign": 49,
+  "editorial_note": 38,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 64
+}

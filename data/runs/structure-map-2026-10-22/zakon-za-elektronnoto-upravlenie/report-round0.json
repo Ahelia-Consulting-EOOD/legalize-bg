@@ -1,0 +1,221 @@
+{
+ "slug": "zakon-za-elektronnoto-upravlenie",
+ "round": 0,
+ "blocks": 835,
+ "sections": 28,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 68,
+   "kind": "low_confidence",
+   "detail": "second Раздел I. heading, likely superseded earlier title; section_heading or editorial_note"
+  },
+  {
+   "block": 69,
+   "kind": "low_confidence",
+   "detail": "superseded former section title duplicated by lex.bg; section_heading or editorial_note"
+  },
+  {
+   "block": 161,
+   "kind": "low_confidence",
+   "detail": "second Раздел II. heading, superseded version of the repealed section; section_heading or editorial_note"
+  },
+  {
+   "block": 162,
+   "kind": "low_confidence",
+   "detail": "former section title duplicated by lex.bg; section_heading or editorial_note"
+  },
+  {
+   "block": 189,
+   "kind": "low_confidence",
+   "detail": "stray duplicate Раздел V. line without title; section_heading or editorial_note"
+  },
+  {
+   "block": 364,
+   "kind": "low_confidence",
+   "detail": "Глава четвърта printed twice (amended and earlier title); chapter_heading or editorial_note for one of the copies"
+  },
+  {
+   "block": 365,
+   "kind": "low_confidence",
+   "detail": "amended title of the duplicated Глава четвърта; chapter_heading or editorial_note"
+  },
+  {
+   "block": 366,
+   "kind": "low_confidence",
+   "detail": "second printing of Глава четвърта (earlier title); chapter_heading or editorial_note"
+  },
+  {
+   "block": 367,
+   "kind": "low_confidence",
+   "detail": "earlier title of the duplicated Глава четвърта; chapter_heading or editorial_note"
+  },
+  {
+   "block": 446,
+   "kind": "low_confidence",
+   "detail": "Раздел III. printed three times (repealed/earlier/current titles); section_heading or editorial_note for this copy"
+  },
+  {
+   "block": 447,
+   "kind": "low_confidence",
+   "detail": "title marked отм. 2018; section_heading or repeal_note"
+  },
+  {
+   "block": 448,
+   "kind": "low_confidence",
+   "detail": "second printing of Раздел III.; section_heading or editorial_note"
+  },
+  {
+   "block": 449,
+   "kind": "low_confidence",
+   "detail": "earlier title of duplicated Раздел III.; section_heading or editorial_note"
+  },
+  {
+   "block": 458,
+   "kind": "low_confidence",
+   "detail": "Раздел IV. printed twice (amended and earlier title); section_heading or editorial_note for one copy"
+  },
+  {
+   "block": 459,
+   "kind": "low_confidence",
+   "detail": "title of duplicated Раздел IV.; section_heading or editorial_note"
+  },
+  {
+   "block": 460,
+   "kind": "low_confidence",
+   "detail": "second printing of Раздел IV.; section_heading or editorial_note"
+  },
+  {
+   "block": 461,
+   "kind": "low_confidence",
+   "detail": "title of duplicated Раздел IV.; section_heading or editorial_note"
+  },
+  {
+   "block": 650,
+   "kind": "low_confidence",
+   "detail": "dashed separator line printed by lex.bg before the adoption formula; editorial_note or drop"
+  },
+  {
+   "block": 698,
+   "kind": "low_confidence",
+   "detail": "name of the amending act printed above its provisions heading; provisions_heading or editorial_note"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 67,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 68"
+  },
+  {
+   "block": 160,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 161"
+  },
+  {
+   "block": 188,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 189"
+  },
+  {
+   "block": 447,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 448"
+  },
+  {
+   "block": 449,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 450"
+  },
+  {
+   "block": 459,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 460"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 19
+ },
+ "source_finding_kinds": {
+  "empty_section": 6
+ },
+ "labels": {
+  "drop": 11,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 16,
+  "article_title": 96,
+  "article_head": 102,
+  "item": 231,
+  "alinea": 183,
+  "letter": 33,
+  "section_heading": 41,
+  "provisions_heading": 45,
+  "paragraph_sign": 43,
+  "quoted": 1,
+  "editorial_note": 29,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 825,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 826,
+   "text": "Директиви:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 827,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2102 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 26 октомври 201",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 828,
+   "text": "ДИРЕКТИВА (EС) 2016/1148 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 юли 2016 годи",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 829,
+   "text": "Регламенти:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 830,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 831,
+   "text": "Решения:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 832,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2018/1524 НА КОМИСИЯТА от 11 октомври 2018 година за ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 833,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2018/1523 НА КОМИСИЯТА от 11 октомври 2018 година за ",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 834,
+   "text": "РЕШЕНИЕ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2017/863 НА КОМИСИЯТА от 18 май 2017 година за актуал",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 19,
+ "diff_lines": 358
+}

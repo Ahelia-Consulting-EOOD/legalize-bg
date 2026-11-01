@@ -1,0 +1,79 @@
+{
+ "slug": "zakon-za-yuridicheskite-litsa-s-nestopanska-tsel",
+ "round": 1,
+ "blocks": 433,
+ "sections": 14,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 320,
+   "kind": "low_confidence",
+   "detail": "second rendering of Раздел II heading followed by Централен регистър and an article title; section_heading or drop as duplicate of the repealed heading"
+  },
+  {
+   "block": 321,
+   "kind": "low_confidence",
+   "detail": "second line of the Раздел II heading, followed by an article title; section_heading or drop as duplicate of the repealed heading"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 319,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 320"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 2
+ },
+ "source_finding_kinds": {
+  "empty_section": 1
+ },
+ "labels": {
+  "drop": 5,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 8,
+  "article_title": 56,
+  "article_head": 56,
+  "alinea": 126,
+  "item": 121,
+  "letter": 4,
+  "section_heading": 10,
+  "provisions_heading": 17,
+  "paragraph_sign": 18,
+  "adoption_formula": 1,
+  "editorial_note": 9
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 357,
+   "text": "-------------------------",
+   "note": "dashed separator rule before the adoption formula; could be editorial_note"
+  },
+  {
+   "block": 430,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg block of related EU acts, not part of the act"
+  },
+  {
+   "block": 431,
+   "text": "Директиви:",
+   "note": "lex.bg block of related EU acts, not part of the act"
+  },
+  {
+   "block": 432,
+   "text": "ДИРЕКТИВА (ЕС) 2015/849 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 май 2015 годи",
+   "note": "lex.bg block of related EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 2,
+ "diff_lines": 171
+}

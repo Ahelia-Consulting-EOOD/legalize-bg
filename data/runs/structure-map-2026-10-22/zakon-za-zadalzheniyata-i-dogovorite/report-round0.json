@@ -1,0 +1,589 @@
+{
+ "slug": "zakon-za-zadalzheniyata-i-dogovorite",
+ "round": 0,
+ "blocks": 932,
+ "sections": 26,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 608,
+   "kind": "bad_number",
+   "detail": "item with n=None"
+  },
+  {
+   "block": 609,
+   "kind": "bad_number",
+   "detail": "item with n=None"
+  },
+  {
+   "block": 608,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 609,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 2,
+   "kind": "low_confidence",
+   "detail": "denomination note under the title; editorial_note also plausible"
+  },
+  {
+   "block": 4,
+   "kind": "low_confidence",
+   "detail": "ОБЩА ЧАСТ, part without Част/Дял word; top division of the act"
+  },
+  {
+   "block": 5,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered division under ОБЩА ЧАСТ, no Глава word; section_heading also plausible"
+  },
+  {
+   "block": 9,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered division, no Глава word; section_heading also plausible"
+  },
+  {
+   "block": 10,
+   "kind": "low_confidence",
+   "detail": "Arabic-numbered division under II, no Раздел word; not an item (heading in caps)"
+  },
+  {
+   "block": 14,
+   "kind": "low_confidence",
+   "detail": "Arabic-numbered division under II, no Раздел word"
+  },
+  {
+   "block": 15,
+   "kind": "low_confidence",
+   "detail": "lettered division under 2, no Подраздел word; not a letter item (heading in caps)"
+  },
+  {
+   "block": 19,
+   "kind": "low_confidence",
+   "detail": "placeholder for repealed second paragraph of Чл. 9; repeal_note also plausible"
+  },
+  {
+   "block": 45,
+   "kind": "low_confidence",
+   "detail": "lettered heading Б) inside a section of the act; subsection_heading or section_heading plausible"
+  },
+  {
+   "block": 58,
+   "kind": "low_confidence",
+   "detail": "lettered heading В) inside a section of the act; subsection_heading or section_heading plausible"
+  },
+  {
+   "block": 61,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 3 of Чл. 26 stands in place of the paragraph; repeal_note or unnumbered_alinea plausible"
+  },
+  {
+   "block": 79,
+   "kind": "low_confidence",
+   "detail": "ал. 2-5 of Чл. 34 deleted (зал.); repeal_note or editorial_note plausible"
+  },
+  {
+   "block": 83,
+   "kind": "low_confidence",
+   "detail": "lettered division under a numbered source-of-obligation division (1. Договор); old-style heading with no Раздел/Подраздел word; section_heading also plausible"
+  },
+  {
+   "block": 99,
+   "kind": "low_confidence",
+   "detail": "numbered division (3. Едностранни волеизявления) within the sources of obligations; old-style heading with no Раздел word; chapter_heading also plausible"
+  },
+  {
+   "block": 101,
+   "kind": "low_confidence",
+   "detail": "numbered division (4. Непозволено увреждане), same level as block 99; chapter_heading also plausible"
+  },
+  {
+   "block": 119,
+   "kind": "low_confidence",
+   "detail": "arabic-numbered heading under a roman-numbered division (ЗЗД drafting); section_heading vs chapter_heading"
+  },
+  {
+   "block": 128,
+   "kind": "low_confidence",
+   "detail": "arabic-numbered heading under a roman-numbered division; section_heading vs chapter_heading"
+  },
+  {
+   "block": 136,
+   "kind": "low_confidence",
+   "detail": "roman-numbered top division of ЗЗД; chapter_heading vs part_heading"
+  },
+  {
+   "block": 137,
+   "kind": "low_confidence",
+   "detail": "arabic-numbered heading under roman division III; section_heading vs chapter_heading"
+  },
+  {
+   "block": 162,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 2 of Чл. 73 keeping its place; unnumbered_alinea vs repeal_note"
+  },
+  {
+   "block": 202,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 3 of чл. 91; occupies the ал. 3 position; alternative: unnumbered_alinea placeholder"
+  },
+  {
+   "block": 205,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 6 of чл. 91; alternative: unnumbered_alinea placeholder"
+  },
+  {
+   "block": 208,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 3 and 4 of чл. 92; alternative: unnumbered_alinea placeholder"
+  },
+  {
+   "block": 213,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 2 of чл. 94; alternative: unnumbered_alinea placeholder"
+  },
+  {
+   "block": 214,
+   "kind": "low_confidence",
+   "detail": "Arabic-numbered heading under a Roman-numbered division, no Глава/Раздел word; section_heading or subsection_heading"
+  },
+  {
+   "block": 222,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered division heading without the word Глава; chapter_heading or part_heading"
+  },
+  {
+   "block": 233,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered division heading without the word Глава; chapter_heading or part_heading"
+  },
+  {
+   "block": 234,
+   "kind": "low_confidence",
+   "detail": "Arabic-numbered heading under a Roman-numbered division; section_heading or subsection_heading"
+  },
+  {
+   "block": 243,
+   "kind": "low_confidence",
+   "detail": "states that alinea 2 of Чл. 107 is repealed; repeal_note or editorial_note"
+  },
+  {
+   "block": 246,
+   "kind": "low_confidence",
+   "detail": "numbered subdivision heading inside a chapter; section_heading or subsection_heading plausible"
+  },
+  {
+   "block": 288,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 2 placeholder keeping its address; repeal_note also plausible"
+  },
+  {
+   "block": 289,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 3 placeholder keeping its address; repeal_note also plausible"
+  },
+  {
+   "block": 290,
+   "kind": "low_confidence",
+   "detail": "repealed ал. 4 placeholder keeping its address; repeal_note also plausible"
+  },
+  {
+   "block": 291,
+   "kind": "low_confidence",
+   "detail": "Roman-numeral top division of the general part, no 'Глава' word; chapter_heading or part_heading"
+  },
+  {
+   "block": 323,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered division in caps; chapter level assumed, section_heading also plausible"
+  },
+  {
+   "block": 324,
+   "kind": "low_confidence",
+   "detail": "Arabic-numbered caps heading under a Roman division; section level assumed, subsection_heading also plausible"
+  },
+  {
+   "block": 333,
+   "kind": "low_confidence",
+   "detail": "Arabic-numbered caps heading, same level as block 324"
+  },
+  {
+   "block": 348,
+   "kind": "low_confidence",
+   "detail": "numbered all-caps sub-division heading inside a chapter (ЗЗД style); not an item; section_heading vs subsection_heading plausible"
+  },
+  {
+   "block": 366,
+   "kind": "low_confidence",
+   "detail": "numbered all-caps sub-division heading, same level as '3. ПОРЪЧИТЕЛСТВО'; section_heading vs subsection_heading plausible"
+  },
+  {
+   "block": 367,
+   "kind": "low_confidence",
+   "detail": "lettered all-caps heading under '4. ЗАЛОГ И ИПОТЕКА'; not a letter item"
+  },
+  {
+   "block": 378,
+   "kind": "low_confidence",
+   "detail": "lettered subdivision heading inside a section; section_heading also plausible"
+  },
+  {
+   "block": 388,
+   "kind": "low_confidence",
+   "detail": "lettered subdivision heading inside a section; section_heading also plausible"
+  },
+  {
+   "block": 395,
+   "kind": "low_confidence",
+   "detail": "lettered subdivision heading inside a section; section_heading also plausible"
+  },
+  {
+   "block": 425,
+   "kind": "low_confidence",
+   "detail": "arabic-numbered heading under a roman-numbered division; section_heading by hierarchy, chapter_heading plausible"
+  },
+  {
+   "block": 433,
+   "kind": "low_confidence",
+   "detail": "roman-numbered division under the part; chapter_heading by hierarchy, section_heading plausible"
+  },
+  {
+   "block": 434,
+   "kind": "low_confidence",
+   "detail": "arabic-numbered heading under a roman-numbered division; section_heading by hierarchy"
+  },
+  {
+   "block": 445,
+   "kind": "low_confidence",
+   "detail": "arabic-numbered heading under a roman-numbered division; section_heading by hierarchy"
+  },
+  {
+   "block": 472,
+   "kind": "low_confidence",
+   "detail": "numbered subheading inside a section (sale: obligations of the buyer); could be section_heading depending on the enclosing level"
+  },
+  {
+   "block": 476,
+   "kind": "low_confidence",
+   "detail": "numbered subheading inside a section; could be section_heading depending on the enclosing level"
+  },
+  {
+   "block": 480,
+   "kind": "low_confidence",
+   "detail": "new paragraph after the lettered items; continuation also plausible"
+  },
+  {
+   "block": 514,
+   "kind": "low_confidence",
+   "detail": "roman-numbered contract-type heading in the special part; chapter_heading also plausible"
+  },
+  {
+   "block": 518,
+   "kind": "low_confidence",
+   "detail": "roman-numbered contract-type heading in the special part; chapter_heading also plausible"
+  },
+  {
+   "block": 532,
+   "kind": "low_confidence",
+   "detail": "roman-numbered contract-type heading in the special part; chapter_heading also plausible"
+  },
+  {
+   "block": 558,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type division (V. Заем) inside the chapter on individual contracts; section_heading or chapter-level division"
+  },
+  {
+   "block": 565,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type division (VI. Заем за послужване); section_heading or chapter-level division"
+  },
+  {
+   "block": 577,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type division (VII. Влог); section_heading or chapter-level division"
+  },
+  {
+   "block": 593,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type heading inside a part; chapter_heading or section_heading plausible"
+  },
+  {
+   "block": 608,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 609,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 614,
+   "kind": "low_confidence",
+   "detail": "placeholder for repealed ал. 3 of Чл. 266; repeal_note or unnumbered_alinea plausible"
+  },
+  {
+   "block": 618,
+   "kind": "low_confidence",
+   "detail": "placeholder for repealed ал. 2 of Чл. 268; repeal_note or unnumbered_alinea plausible"
+  },
+  {
+   "block": 621,
+   "kind": "low_confidence",
+   "detail": "Roman-numeral heading of a contract type in Част втора; chapter_heading or section_heading plausible"
+  },
+  {
+   "block": 632,
+   "kind": "low_confidence",
+   "detail": "Roman-numeral heading of a contract type in Част втора; chapter_heading or section_heading plausible"
+  },
+  {
+   "block": 653,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type heading inside the special part; section_heading or chapter_heading plausible"
+  },
+  {
+   "block": 665,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type heading inside the special part; section_heading or chapter_heading plausible"
+  },
+  {
+   "block": 671,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type heading inside the special part; section_heading or chapter_heading plausible"
+  },
+  {
+   "block": 686,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type heading in the special part; chapter_heading also plausible"
+  },
+  {
+   "block": 721,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type heading (XV. ДРУЖЕСТВО); section_heading or chapter_heading plausible depending on the act's hierarchy"
+  },
+  {
+   "block": 723,
+   "kind": "low_confidence",
+   "detail": "states ал. 2 of чл. 357 repealed; repeal_note or editorial_note plausible"
+  },
+  {
+   "block": 742,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered contract-type heading (XVI. СПОГОДБА); section_heading or chapter_heading plausible depending on the act's hierarchy"
+  },
+  {
+   "block": 747,
+   "kind": "low_confidence",
+   "detail": "Roman-numeral division heading of the special part; chapter_heading or section_heading plausible"
+  },
+  {
+   "block": 755,
+   "kind": "low_confidence",
+   "detail": "Roman-numeral division heading; chapter_heading or section_heading plausible"
+  },
+  {
+   "block": 756,
+   "kind": "low_confidence",
+   "detail": "Arabic-numbered subdivision under XVIII; section_heading or subsection_heading plausible"
+  },
+  {
+   "block": 793,
+   "kind": "low_confidence",
+   "detail": "numbered sub-heading inside a chapter (2. МЕНИТЕЛНИЦА); could be subsection_heading"
+  },
+  {
+   "block": 806,
+   "kind": "low_confidence",
+   "detail": "numbered sub-heading inside a chapter (3. ОБЩИ РАЗПОРЕДБИ); could be subsection_heading"
+  },
+  {
+   "block": 812,
+   "kind": "low_confidence",
+   "detail": "numbered sub-heading inside a chapter (4. ЧЕК); could be subsection_heading"
+  },
+  {
+   "block": 829,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 831,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 833,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 835,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 838,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 840,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 843,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 845,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 848,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 850,
+   "kind": "low_confidence",
+   "detail": "numbered unnamed subdivision of the Част; section_heading or chapter_heading"
+  },
+  {
+   "block": 852,
+   "kind": "low_confidence",
+   "detail": "heading of the closing provisions on amendments to other laws; not literally Допълнителни/Преходни/Заключителни, could be section_heading"
+  },
+  {
+   "block": 853,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered grouping heading within the amendments to other laws; could be provisions_heading"
+  },
+  {
+   "block": 855,
+   "kind": "low_confidence",
+   "detail": "text of the new чл. 638а ЗГС inside the amending instruction; could be continuation"
+  },
+  {
+   "block": 856,
+   "kind": "low_confidence",
+   "detail": "text of the new чл. 638а ЗГС; could be continuation"
+  },
+  {
+   "block": 857,
+   "kind": "low_confidence",
+   "detail": "text of the new чл. 638а ЗГС; could be continuation"
+  },
+  {
+   "block": 867,
+   "kind": "low_confidence",
+   "detail": "Roman-numbered grouping heading within the amendments to other laws; could be provisions_heading"
+  },
+  {
+   "block": 869,
+   "kind": "low_confidence",
+   "detail": "text of the new чл. 5а ЗПИ; could be continuation"
+  },
+  {
+   "block": 870,
+   "kind": "low_confidence",
+   "detail": "text of the new чл. 5а ЗПИ; could be continuation"
+  },
+  {
+   "block": 871,
+   "kind": "low_confidence",
+   "detail": "text of the new чл. 5а ЗПИ; could be continuation"
+  },
+  {
+   "block": 913,
+   "kind": "low_confidence",
+   "detail": "elision dots marking omitted text of the amending act; drop also plausible"
+  },
+  {
+   "block": 917,
+   "kind": "low_confidence",
+   "detail": "repeated heading line of the same block; could be a duplicate to drop"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 852,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 853"
+  },
+  {
+   "block": 916,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 917"
+  }
+ ],
+ "exception_kinds": {
+  "bad_number": 2,
+  "missing_entry": 2,
+  "low_confidence": 95,
+  "unknown": 2
+ },
+ "source_finding_kinds": {
+  "empty_section": 2
+ },
+ "labels": {
+  "drop": 6,
+  "title": 1,
+  "prehistory": 1,
+  "article_head": 452,
+  "part_heading": 4,
+  "chapter_heading": 13,
+  "section_heading": 49,
+  "subsection_heading": 10,
+  "unnumbered_alinea": 262,
+  "repeal_note": 12,
+  "letter": 29,
+  "item": 33,
+  "provisions_heading": 18,
+  "paragraph_sign": 17,
+  "quoted": 14,
+  "editorial_note": 8,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site chrome (add to my acts button)"
+  },
+  {
+   "block": 927,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg section listing related EU acts, not part of the act"
+  },
+  {
+   "block": 928,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 929,
+   "text": "ДИРЕКТИВА 2011/7/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 февруари 2011 год",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 930,
+   "text": "ДИРЕКТИВА 2000/31/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2000 година з",
+   "note": "lex.bg related EU acts list, not part of the act"
+  },
+  {
+   "block": 931,
+   "text": "ДИРЕКТИВА 98/26/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 май 1998 година от",
+   "note": "lex.bg related EU acts list, not part of the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 97,
+ "diff_lines": 182
+}

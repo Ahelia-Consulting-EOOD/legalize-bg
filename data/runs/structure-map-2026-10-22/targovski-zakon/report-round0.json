@@ -1,0 +1,528 @@
+{
+ "slug": "targovski-zakon",
+ "round": 0,
+ "blocks": 5267,
+ "sections": 184,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 1342,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел I.'"
+  },
+  {
+   "block": 1343,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Общи разпоредби (Нов - ДВ, бр. 66 от 2023 г.)'"
+  },
+  {
+   "block": 222,
+   "kind": "low_confidence",
+   "detail": "lex.bg remark on a former paragraph repealed in 2006; not a new address (al. 6 already exists); editorial_note also plausible"
+  },
+  {
+   "block": 1370,
+   "kind": "low_confidence",
+   "detail": "repeats the Раздел II heading just printed (lex.bg duplicate); section_heading or drop"
+  },
+  {
+   "block": 1371,
+   "kind": "low_confidence",
+   "detail": "second line of the repeated Раздел II heading; section_heading or drop"
+  },
+  {
+   "block": 1417,
+   "kind": "low_confidence",
+   "detail": "repeats the Раздел III heading just printed (lex.bg duplicate); section_heading or drop"
+  },
+  {
+   "block": 1418,
+   "kind": "low_confidence",
+   "detail": "second line of the repeated Раздел III heading; section_heading or drop"
+  },
+  {
+   "block": 1438,
+   "kind": "low_confidence",
+   "detail": "repeats the Раздел IV heading just printed (lex.bg duplicate); section_heading or drop"
+  },
+  {
+   "block": 1439,
+   "kind": "low_confidence",
+   "detail": "second line of the repeated Раздел IV heading; section_heading or drop"
+  },
+  {
+   "block": 1528,
+   "kind": "low_confidence",
+   "detail": "repeats the Раздел V heading just printed (lex.bg duplicate); section_heading or drop"
+  },
+  {
+   "block": 1529,
+   "kind": "low_confidence",
+   "detail": "second line of the repeated Раздел V heading; section_heading or drop"
+  },
+  {
+   "block": 1901,
+   "kind": "low_confidence",
+   "detail": "Раздел V printed a second time; the next line is the title before the 2024 change, so this pair may be a stale duplicate heading (drop or editorial_note plausible)"
+  },
+  {
+   "block": 1902,
+   "kind": "low_confidence",
+   "detail": "earlier wording of the Раздел V title, superseded by the 2024 title change; duplicate of the heading above"
+  },
+  {
+   "block": 2696,
+   "kind": "low_confidence",
+   "detail": "repeats the Раздел II heading just above without the repeal remark; lex.bg duplicate, could be drop"
+  },
+  {
+   "block": 2697,
+   "kind": "low_confidence",
+   "detail": "second line of the repeated Раздел II heading; could be drop as a duplicate"
+  },
+  {
+   "block": 2767,
+   "kind": "low_confidence",
+   "detail": "Раздел VIII printed a second time right after the repealed heading; duplicate heading of the same section or drop as a repeat, review"
+  },
+  {
+   "block": 2768,
+   "kind": "low_confidence",
+   "detail": "second line of the repeated Раздел VIII heading; same doubt as 2767"
+  },
+  {
+   "block": 3859,
+   "kind": "low_confidence",
+   "detail": "first of two printings of Раздел II \"а\"; this one carries the repeal note, the next repeats the heading; section_heading or editorial duplicate"
+  },
+  {
+   "block": 3860,
+   "kind": "low_confidence",
+   "detail": "second line of the first printing, with repeal marker; possibly a duplicate of 3861-3862"
+  },
+  {
+   "block": 3861,
+   "kind": "low_confidence",
+   "detail": "repeated printing of the same section heading"
+  },
+  {
+   "block": 3862,
+   "kind": "low_confidence",
+   "detail": "second line of the repeated printing, without the repeal marker"
+  },
+  {
+   "block": 3867,
+   "kind": "low_confidence",
+   "detail": "first of two printings of Раздел III; this one carries the repeal marker, the next repeats the heading"
+  },
+  {
+   "block": 3868,
+   "kind": "low_confidence",
+   "detail": "second line of the first printing, with repeal marker; possibly a duplicate of 3869-3870"
+  },
+  {
+   "block": 3869,
+   "kind": "low_confidence",
+   "detail": "repeated printing of the same section heading"
+  },
+  {
+   "block": 3870,
+   "kind": "low_confidence",
+   "detail": "second line of the repeated printing, without the repeal marker"
+  },
+  {
+   "block": 4794,
+   "kind": "low_confidence",
+   "detail": "unnumbered heading over a single article; or section_heading"
+  },
+  {
+   "block": 4796,
+   "kind": "low_confidence",
+   "detail": "unnumbered heading over a single article; or section_heading"
+  },
+  {
+   "block": 4798,
+   "kind": "low_confidence",
+   "detail": "unnumbered heading over a single article; or section_heading"
+  },
+  {
+   "block": 4853,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4860,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4864,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4868,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4881,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4889,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4893,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4903,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4909,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4927,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4931,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4935,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4939,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4948,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4952,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4963,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4967,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4971,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4982,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4986,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4992,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 4996,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 5000,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 5004,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 5008,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 5012,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 5016,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 5020,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 5024,
+   "kind": "low_confidence",
+   "detail": "publication line of the amending act under its provisions heading; or provisions_heading"
+  },
+  {
+   "block": 5030,
+   "kind": "low_confidence",
+   "detail": "publication line of the other act under its provisions heading; or provisions_heading"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 1404,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1524,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1369,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1370"
+  },
+  {
+   "block": 1416,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1417"
+  },
+  {
+   "block": 1437,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1438"
+  },
+  {
+   "block": 1527,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1528"
+  },
+  {
+   "block": 1900,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1901"
+  },
+  {
+   "block": 2695,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2696"
+  },
+  {
+   "block": 2766,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 2767"
+  },
+  {
+   "block": 3860,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3861"
+  },
+  {
+   "block": 3868,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3869"
+  }
+ ],
+ "exception_kinds": {
+  "drop_inside_act": 2,
+  "low_confidence": 56
+ },
+ "source_finding_kinds": {
+  "fragment": 2,
+  "empty_section": 9
+ },
+ "labels": {
+  "drop": 28,
+  "title": 1,
+  "prehistory": 2,
+  "part_heading": 16,
+  "chapter_heading": 124,
+  "article_title": 1010,
+  "article_head": 1012,
+  "item": 979,
+  "alinea": 1514,
+  "section_heading": 226,
+  "repeal_note": 1,
+  "subsection_heading": 8,
+  "letter": 32,
+  "provisions_heading": 122,
+  "paragraph_sign": 121,
+  "editorial_note": 70,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1342,
+   "text": "Раздел I.",
+   "note": "lex.bg prints the Раздел I heading twice (1340-1341 and 1342-1343); this is the repeat; section_heading also plausible but would duplicate the address"
+  },
+  {
+   "block": 1343,
+   "text": "Общи разпоредби (Нов - ДВ, бр. 66 от 2023 г.)",
+   "note": "second line of the repeated Раздел I heading; section_heading also plausible but would duplicate the address"
+  },
+  {
+   "block": 5242,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's appended list of related EU acts, not part of the act"
+  },
+  {
+   "block": 5243,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5244,
+   "text": "ДИРЕКТИВА (ЕС) 2019/2121 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5245,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1023 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5246,
+   "text": "ДИРЕКТИВА (ЕС) 2017/1132 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2017 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5247,
+   "text": "ДИРЕКТИВА (ЕС) 2016/943 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2016 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5248,
+   "text": "ДИРЕКТИВА (ЕС) 2015/849 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 май 2015 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5249,
+   "text": "ДИРЕКТИВА 2012/17/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юни 2012 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5250,
+   "text": "ДИРЕКТИВА 2011/7/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 февруари 2011 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5251,
+   "text": "ДИРЕКТИВА 2009/109/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5252,
+   "text": "ДИРЕКТИВА 2009/102/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5253,
+   "text": "ДИРЕКТИВА 2007/63/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 ноември 2007 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5254,
+   "text": "ДИРЕКТИВА 2006/99/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5255,
+   "text": "ДИРЕКТИВА 2002/47/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 юни 2002 година о",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5256,
+   "text": "ДИРЕКТИВА 2001/86/ЕО НА СЪВЕТА от 8 октомври 2001 година за допълнение на Устава",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5257,
+   "text": "ДИРЕКТИВА 98/26/ЕO НА EВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 май 1998 година от",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5258,
+   "text": "ДИРЕКТИВА 97/9/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 3 март 1997 година отн",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5259,
+   "text": "ДИРЕКТИВА 86/653/ЕИО НА СЪВЕТА от 18 декември 1986 година относно координирането",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5260,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5261,
+   "text": "РЕГЛАМЕНТ (ЕС) 2023/1114 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 31 май 2023 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5262,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2017/1105 НА КОМИСИЯТА от 12 юни 2017 година за изг",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5263,
+   "text": "РЕГЛАМЕНТ (ЕС) 2015/848 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 май 2015 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5264,
+   "text": "РЕГЛАМЕНТ (ЕО) 1435/2003 НА СЪВЕТА от 22 юли 2003 година относно устава на Европ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5265,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2157/2001 НА СЪВЕТА от 8 октомври 2001 година относно Устава на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5266,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2137/85 НА СЪВЕТА от 25 юли 1985 година относно Eвропейското о",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 58,
+ "diff_lines": 3124
+}

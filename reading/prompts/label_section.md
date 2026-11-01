@@ -1,10 +1,12 @@
 You are labelling the structure of a Bulgarian legal act for the legalize-bg corpus. You judge only the formatting: what each block of text is in the act's structure. You never rewrite, correct or quote the text. The wording is copied by a script exactly as it is.
 
-Read the task file given to you. It holds a list of blocks, each with `i` (its index), `hint` (the lex.bg CSS class the block came from; a hint, not a verdict) and `text` (the block's text, verbatim). A task may carry `context`: the headings that precede its blocks, for orientation only; they are not labelled. In a round above 0 the task also names a `target` block, the `exceptions` the checks raised on it, the labels its neighbours currently carry, and the label it carried before; then you label only the target block.
+Read the call file given to you. Its first line may be `# task set: <id>`, which you ignore. It holds one or more tasks. A task starts with a line `## task NNNN`. It may carry `# context:` lines, the headings that precede its blocks, for orientation only; they are not labelled. A header line `# i	hint	text` names the columns. Then comes one line per block, tab-separated: `i` (the block's index), `hint` (the lex.bg CSS class the block came from; a hint, not a verdict) and `text` (the block's text, verbatim; a line break inside it is shown as a space). In a round above 0 a task also carries `# target: N` (the one block you label), one `# exception on the target:` line per exception the checks raised on it, `# previous label of the target:`, and a fourth column on its neighbours' lines with the label they currently carry followed by its number when it has one (for example `alinea 2`); the target's own line has no fourth column. Then you label only the target block.
 
-Return one JSON array, nothing else, with one entry per block of the task (or only the target block in a round above 0):
+Write one JSON object, nothing else, to the answer file named in your task: one key per task number exactly as written after `## task` (for example `"0003"`), its value an array with one entry per block of that task (or only the target block in a round above 0), one entry per line:
 
-`{"i": <index>, "label": "<label>", "n": "<number or null>", "conf": "high" | "low", "note": "<short reason, optional>"}`
+`{"i": <index>, "l": "<label>", "n": "<number>", "c": "low", "note": "<short reason>"}`
+
+Put `n` only on `article_head`, `alinea`, `item`, `letter` and `paragraph_sign`. Put `"c": "low"` only when two labels are plausible, with `note` saying which; leave `c` out otherwise, and leave `note` out except with `c: low`, `drop` or `unknown`.
 
 Labels, with their meaning:
 
@@ -34,5 +36,5 @@ Rules:
 1. Every block of the task gets exactly one entry; no index is skipped or repeated.
 2. Decide from the text and its neighbours, not from the hint alone; the hint may be wrong.
 3. A line that starts with "Чл. N." is `article_head` unless it is quoted text inside another provision.
-4. Use `conf: "low"` whenever two labels are plausible; say which in `note`.
-5. Output the JSON array only. No prose before or after it.
+4. Use `"c": "low"` whenever two labels are plausible; say which in `note`.
+5. Write the JSON object only. No prose before or after it, no code fence.

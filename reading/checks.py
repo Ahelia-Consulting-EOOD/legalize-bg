@@ -38,20 +38,28 @@ from __future__ import annotations
 
 import re
 
-from .assembler import assemble_lines, strip_line
+from .assembler import NUMBER_LINE, assemble_lines, strip_line
+from . import rules
 from .splitter import Block
 
 FRAGMENTS = ("sup>", "<sup", "span>", "<span", "div>", "<div", "&nbsp;", "<br", "&lt;", "&amp;", "<p", "</", "<b>", "<i>", "&quot;", "&#")
 _LATIN_TO_CYR = str.maketrans("aBbeEkKmMHoOpPcCTxXy", "аВьеЕкКмМНоОрРсСТхХу")
-_ARTNUM = re.compile(r"^(\d+)([а-я]?)(\d{0,2})$")
+_ARTNUM = re.compile(r"^(\d+)([а-я]?)-?(\d{0,2})$")  # 278б1 (Чл. 278б¹); 166-1 (Чл. 166¹, D-072 ruling 6)
 # the superscript digit of an article number (Чл. 88а¹) reaches the page as "88а.SUP>1." when lex.bg's markup leaks
 # (the text is read after the Latin-to-Cyrillic translation, which turns SUP> into SUР>)
-_ART_TEXT = re.compile(r"^Чл\.\s*(\d+[а-я]?)(\d{1,2})?(?:\.?(?:SU[PР]>|<sup>)(\d{1,2})(?:</sup>|/sup>)?)?\.")
+# a head repaired by ruling 13 of D-072 carries the superscript digit itself ("Чл. 278б¹."); it is read back as 278б1
+_SUPERSCRIPT_BACK = str.maketrans("⁰¹²³⁴⁵⁶⁷⁸⁹", "0123456789")
+_ART_TEXT = re.compile(r"^Чл\.\s*(\d+[а-я]?)(\d{1,2}|[⁰¹²³⁴⁵⁶⁷⁸⁹]{1,2})?(?:\.?(?:SU[PР]>|<sup>)(\d{1,2})(?:</sup>|/sup>)?)?\.")
 _EDINSTVEN = re.compile(r"^Член\s+единствен\.")
 _SIGN_TEXT = re.compile(r"^(?:§\s*(\d+[а-я]?)\s*\.?|Параграф\s+(единствен)\.)")  # tolerant: "§ 72 ." and "§ 26 В" are heads with a malformed form
 _ALINEA_TEXT = re.compile(r"^\((\d+[а-я]?)\)")
-_ITEM_TEXT = re.compile(r"^(\d+[а-я]?)\.\s")
-_ITEM_TIGHT = re.compile(r"^(\d+[а-я]?)\.(?=[А-Яа-я(\"„])")  # "8.Член 708" — an item head whose space the source lost
+_ITEM_TEXT = re.compile(r"^(\d+(?:([а-я])\2?)?)\.\s")  # 27аа. is the item between 27а. and 27б. (D-072 ruling 6)
+_ITEM_TIGHT = re.compile(r"^(\d+[а-я]?)\.(?=[А-Яа-я(\"„])")
+# irregular heads the page carries (D-072 ruling 7): a source finding when the number agrees, not an exception
+_IRREGULAR_SIGN = re.compile(r"^(\d+[а-я]?)\.\s")  # a § printed without its sign
+_IRREGULAR_ART = re.compile(r"^(\d+[а-я]?)\.\s")  # an article number printed without "Чл."
+_IRREGULAR_ITEM = re.compile(r"^(\d+[а-я]?)(?:\)|\s+\()")  # "1)" or "11 (нова …" without the dot
+_IRREGULAR_ALINEA = re.compile(r"^\((\d+[а-я]?)\s")  # "(2 (Нова …" without the closing bracket  # "8.Член 708" — an item head whose space the source lost
 _LETTER_TEXT = re.compile(r"^(([а-я])\2{0,2})\)")
 # the first alinea written in an article or § head: right after the number, or after one editorial note in parentheses
 _FIRST_ALINEA = re.compile(r"^(?:Чл\.\s*\S+\.|§\s*\S+\.|Член\s+единствен\.|Параграф\s+единствен\.)\s*(?:\((?:[^()]|\([^()]*\))*\)\s*)*\((\d+)\)")
@@ -82,11 +90,16 @@ def _art_key(n: str) -> tuple[int, str, int]:
 
 
 def _num_key(n: str | None) -> tuple[int, str]:
-    m = re.match(r"^(\d+)([а-я]?)$", n or "")
+    m = re.match(r"^(\d+)([а-я]{0,2})(?:-\d)?$", n or "")
     return (int(m.group(1)), m.group(2)) if m else (0, n or "")
 
 
 _ANY = (-1, "")  # the list resumes after an elision line: whatever comes next follows
+
+
+def _base(n: str | None) -> str | None:
+    """The number written on the page: a second printing of a number (D-072 ruling 6) is addressed "11-2"."""
+    return n.split("-")[0] if n else n
 
 
 def _follows(prev: tuple[int, str] | None, cur: tuple[int, str]) -> bool:
@@ -96,14 +109,14 @@ def _follows(prev: tuple[int, str] | None, cur: tuple[int, str]) -> bool:
     if prev is None:
         return cur[0] == 1
     if cur[1]:
-        return cur[0] == prev[0] and (prev[1] == "" or ord(cur[1]) > ord(prev[1]))
+        return cur[0] == prev[0] and (prev[1] == "" or cur[1] > prev[1])  # 27а, 27аа, 27б
     return cur[0] == prev[0] + 1
 
 
 def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -> bool:
     """Two consecutive heading blocks that form one heading (joined by the assembler), or a legal nesting."""
     ta, tb = blocks[a].text, blocks[b].text
-    if re.match(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+[\wIVXLC]+(\s*\"[а-я]\")?\.?$", ta):
+    if NUMBER_LINE.match(ta):
         return True
     if re.match(r"^(КЪМ|Към|към)\s", tb) or re.search(r"\s(КЪМ|Към|към)$", ta):
         return True
@@ -135,6 +148,8 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
         t = blocks[i].text
         if e.get("label") != "drop":
             ex.append({"block": i, "kind": "dropped_without_label", "detail": "left out without a drop label"})
+        elif e.get("rule"):
+            continue  # dropped by a ruling of D-072 and recorded in the omissions list (the labeller's answers never carry "rule")
         elif tail_from is not None and i >= tail_from:
             continue  # the page's tail chrome: forum post titles there may open like a provision
         elif _PROVISION_LIKE.match(t):
@@ -155,6 +170,7 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     if [i for _, idxs in lines for i in idxs] != placed:
         ex.append({"block": placed[0] if placed else 0, "kind": "reassembly", "detail": "the lines do not cover the placed blocks once each, in order"})
     run_open = False  # inside a quotation that a quoted block opened with a quotation mark and no block has closed yet
+    # inside a run of quoted blocks that follows an amending line directly: an old act prints the new text without marks (ЗЗД § 2)
     in_annex = False  # after the first annex heading: an annex keeps its own article numbering, outside the act's addresses
     for i in placed:
         e = smap.get(i)
@@ -175,27 +191,38 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
         if label == "article_head":
             m = _ART_TEXT.match(tn)
             if m:
-                written = m.group(1) + (m.group(2) or m.group(3) or "")
+                base, plain = m.group(1), m.group(2) if m.group(2) and m.group(2).isascii() else ""  # "¹".isdigit() is true
+                sup = m.group(3) or (m.group(2).translate(_SUPERSCRIPT_BACK) if m.group(2) and not plain else "")
+                # a superscript on a bare number is addressed 166-1 (D-072 ruling 6); after a letter it is written on: 278б1
+                written = f"{base}-{sup}" if sup and base.isdigit() else base + plain + sup
                 if written != n:
                     ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"article_head n={n!r} but the text says Чл. {written}"})
             elif _EDINSTVEN.match(tn):
                 if n != "единствен":
                     ex.append({"block": i, "kind": "label_text_mismatch", "detail": "Член единствен needs n 'единствен'"})
+            elif (mi := _IRREGULAR_ART.match(tn)) and mi.group(1) == n:
+                ex.append({"block": i, "kind": "malformed_head", "detail": f"article number without 'Чл.': {t[:30]!r}"})
             else:
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": "article_head on a line that does not open with Чл. N."})
         elif label == "paragraph_sign":
             m = _SIGN_TEXT.match(tn)
-            if not m or (m.group(1) or m.group(2)) != n:
+            if not m and (mi := _IRREGULAR_SIGN.match(tn)) and mi.group(1) == n:
+                ex.append({"block": i, "kind": "malformed_head", "detail": f"§ head without its sign: {t[:30]!r}"})
+            elif not m or (m.group(1) or m.group(2)) != n:
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"paragraph_sign n={n!r} on {t[:30]!r}"})
             elif not _SIGN_FORM.match(tn):
                 ex.append({"block": i, "kind": "malformed_head", "detail": f"§ head not written as '§ N.': {t[:30]!r}"})
         elif label == "alinea":
             m = _ALINEA_TEXT.match(tn)
-            if not m or m.group(1) != n:
+            if not m and (mi := _IRREGULAR_ALINEA.match(tn)) and mi.group(1) == n:
+                ex.append({"block": i, "kind": "malformed_head", "detail": f"alinea without its closing bracket: {t[:30]!r}"})
+            elif not m or m.group(1) != _base(n):
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"alinea n={n!r} on {t[:30]!r}"})
         elif label == "item":
             m = _ITEM_TEXT.match(tn) or _ITEM_TIGHT.match(tn)
-            if not m or m.group(1) != n:
+            if not m and (mi := _IRREGULAR_ITEM.match(tn)) and mi.group(1) == n:
+                ex.append({"block": i, "kind": "malformed_head", "detail": f"item head without its dot: {t[:30]!r}"})
+            elif not m or m.group(1) != _base(n):
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"item n={n!r} on {t[:30]!r}"})
             elif not _ITEM_TEXT.match(tn):
                 ex.append({"block": i, "kind": "malformed_head", "detail": f"item head without a space after the number: {t[:30]!r}"})
@@ -209,7 +236,8 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
         elif label == "quoted":
             # a quoted block that opens like a provision starts with a quotation mark, or stands inside a quotation that an
             # earlier quoted block opened with one and no block since has closed; a run with no mark goes to the ladder
-            if _PROVISION_LIKE.match(tn) and not _QUOTE_OPEN.match(t) and not run_open:
+            # (a block the session read whole, D-072, is quoted by its reading, not by its marks)
+            if _PROVISION_LIKE.match(tn) and not _QUOTE_OPEN.match(t) and not run_open and e.get("rule") != "D-072/judgement":
                 ex.append({"block": i, "kind": "label_text_mismatch", "detail": f"quoted on a line that opens like a provision, outside an open quotation: {t[:40]!r}"})
             # the marks pair up inside a line: a line that opens with one leaves the quotation open when its count is odd
             # ('"Глава трета "а"' opens a chapter quoted in full); any other line with an odd count closes or reopens it
@@ -227,6 +255,9 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             run_open = len(_QUOTE_MARKS.findall(t)) % 2 == 1
         if label == "annex_heading":
             in_annex = True
+    # D-072 ruling 1: a heading number (or provisions heading) printed twice in a stretch with no body between
+    for group in rules.superseded_headings(blocks, smap, frozenset(dropped)):
+        ex.append({"block": group[0], "kind": "repeated_heading", "detail": f"a heading printed again: {blocks[group[0]].text[:40]!r}"})
     prev_heading: int | None = None
     for i in placed:
         e = smap.get(i)
@@ -253,11 +284,13 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
     amending = False  # after the first "КЪМ …" provisions heading lex.bg prints a selection of another act's §§: no gap check there
     prov_groups = 0  # provisions-heading groups seen; a new group begins when a provisions heading follows a non-heading block
     prev_heading_label = ""
+    last_num_label = prev_num_label = ""
     for i in placed:
         e = smap.get(i)
         if not e or e["label"] == "unknown":
             continue
         label, n = e["label"], e.get("n")
+        prev_num_label, last_num_label = last_num_label, label
         t = blocks[i].text.translate(_LATIN_TO_CYR)
         if label in _HEADINGS:
             in_article = in_sign = False
@@ -326,8 +359,13 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             if not (in_article or in_sign):
                 ex.append({"block": i, "kind": "nesting", "detail": "alinea outside an article or §"})
             key = _num_key(n)
-            if not _follows(last_alinea, key):
-                ex.append({"block": i, "kind": "alinea_order", "detail": f"({n}) after ({last_alinea[0]}{last_alinea[1]})" if last_alinea else f"({n}) opens the article"})
+            if e.get("rule") == "D-072/6":
+                key = last_alinea  # the page prints the number again (D-072 ruling 6); the omissions list records it
+            elif not _follows(last_alinea, key):
+                if last_alinea is None and key[0] > 1:
+                    ex.append({"block": i, "kind": "alinea_gap", "detail": f"({n}) opens the article: the page has no (1)"})
+                else:
+                    ex.append({"block": i, "kind": "alinea_order", "detail": f"({n}) after ({last_alinea[0]}{last_alinea[1]})" if last_alinea else f"({n}) opens the article"})
             last_alinea = key
             last_item = None
             item_stack = []
@@ -351,12 +389,16 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
             if not item_parent_ok:
                 ex.append({"block": i, "kind": "nesting", "detail": "item outside an article, alinea or §"})
             key = _num_key(n)
-            if _follows(last_item, key):
+            if e.get("rule") == "D-072/6":
+                key = last_item  # the page prints the number again (D-072 ruling 6)
+            elif _follows(last_item, key):
                 pass
             elif key == (1, "") and last_item not in (None, _ANY) and last_item_text.rstrip().endswith(":"):
                 item_stack.append(last_item)  # "41. … е:" then "1. …": a numbered sub-list under the item
             elif item_stack and _follows(item_stack[-1], key):
                 item_stack.pop()  # the outer list resumes
+            elif last_item not in (None, _ANY) and not key[1] and key[0] > last_item[0] + 1:
+                ex.append({"block": i, "kind": "item_gap", "detail": f"{n}. after {last_item[0]}{last_item[1]}.: the page skips a number"})
             else:
                 ex.append({"block": i, "kind": "item_order", "detail": f"{n}. after {last_item[0]}{last_item[1]}." if last_item else f"{n}. opens the list"})
             last_item = key
@@ -390,10 +432,15 @@ def run_all(blocks: list[Block], smap: dict[int, dict]) -> tuple[str, list[dict]
                     ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) is not a lettering letter"})
                 elif last_letter == "*":
                     pass  # the list resumes after an elision line
+                elif n == "а" and prev_num_label == "continuation":
+                    pass  # letters that restart after prose start a new lettered list under it (D-072 ruling 5)
                 elif last_letter and pos >= 0 and pos != prev + 1:
                     ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) after {last_letter})"})
                 elif not last_letter and pos > 0:
                     ex.append({"block": i, "kind": "letter_order", "detail": f"{n}) opens the lettering"})
                 last_letter = n if pos >= 0 else last_letter
                 last_subletter = {}
+    # the labeller's doubt on an irregular head is the irregularity itself, recorded as a source finding (D-072 ruling 7)
+    irregular = {e["block"] for e in ex if e["kind"] == "malformed_head"}
+    ex = [e for e in ex if not (e["kind"] == "low_confidence" and e["block"] in irregular)]
     return md, ex

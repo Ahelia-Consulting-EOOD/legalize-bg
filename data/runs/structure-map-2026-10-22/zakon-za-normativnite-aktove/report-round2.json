@@ -1,0 +1,63 @@
+{
+ "slug": "zakon-za-normativnite-aktove",
+ "round": 2,
+ "blocks": 166,
+ "sections": 5,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 15,
+   "kind": "malformed_head",
+   "detail": "item head without its dot: '1) когато приема правилници, н'"
+  },
+  {
+   "block": 16,
+   "kind": "malformed_head",
+   "detail": "item head without its dot: '2) (изм. - ДВ, бр. 46 от 2007 '"
+  }
+ ],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    49,
+    50
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   49,
+   50
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "malformed_head": 2
+ },
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "chapter_heading": 12,
+  "article_head": 56,
+  "alinea": 56,
+  "item": 20,
+  "provisions_heading": 6,
+  "paragraph_sign": 12,
+  "editorial_note": 2
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 9
+}

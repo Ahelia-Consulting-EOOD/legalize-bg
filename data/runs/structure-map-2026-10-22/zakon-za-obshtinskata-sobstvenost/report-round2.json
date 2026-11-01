@@ -1,0 +1,51 @@
+{
+ "slug": "zakon-za-obshtinskata-sobstvenost",
+ "round": 2,
+ "blocks": 650,
+ "sections": 18,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [],
+ "ruled": {
+  "D-072/8": [
+   507
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 2,
+  "title": 1,
+  "prehistory": 2,
+  "chapter_heading": 18,
+  "article_head": 90,
+  "item": 134,
+  "alinea": 246,
+  "provisions_heading": 50,
+  "paragraph_sign": 62,
+  "letter": 10,
+  "quoted": 1,
+  "editorial_note": 32,
+  "adoption_formula": 1,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 507,
+   "text": "------------------------",
+   "note": "dashed separator line before the adoption formula; drop or editorial_note"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 54
+}

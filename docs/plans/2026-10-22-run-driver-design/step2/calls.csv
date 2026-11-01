@@ -1,0 +1,436 @@
+session,ts,agent,model,slug,round,n_tasks,tasks,tokens,tool_uses,ms,status
+night,2026-10-21T01:26:15.115Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0000,70336,4,18336,completed
+night,2026-10-21T01:26:17.804Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0001,71377,4,17900,completed
+night,2026-10-21T01:26:20.575Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0002,71739,4,16809,completed
+night,2026-10-21T01:26:23.367Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0003,71921,4,17810,completed
+night,2026-10-21T01:26:26.372Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0004,72061,4,19937,completed
+night,2026-10-21T01:26:28.972Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0005,71333,4,16743,completed
+night,2026-10-21T01:26:31.775Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0006,71091,4,18898,completed
+night,2026-10-21T01:26:34.499Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0007,71832,4,19206,completed
+night,2026-10-21T01:26:37.375Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0008,73436,4,19814,completed
+night,2026-10-21T01:26:40.176Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0009,70670,4,15400,completed
+night,2026-10-21T01:26:42.989Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0010,71669,4,17014,completed
+night,2026-10-21T01:26:45.788Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0011,70579,4,17634,completed
+night,2026-10-21T01:26:48.600Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0012,72124,4,19113,completed
+night,2026-10-21T01:26:51.420Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0013,79014,4,22658,completed
+night,2026-10-21T01:26:54.211Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0014,74879,4,19623,completed
+night,2026-10-21T01:26:57.022Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0015,72650,4,22693,completed
+night,2026-10-21T01:26:59.857Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0016,70739,4,16350,completed
+night,2026-10-21T01:30:12.062Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0000,70167,4,14919,completed
+night,2026-10-21T01:30:14.933Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0001,71566,4,16572,completed
+night,2026-10-21T01:30:17.747Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0002,71864,4,18549,completed
+night,2026-10-21T01:30:20.557Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0003,72158,4,18089,completed
+night,2026-10-21T01:30:23.373Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0004,71993,4,18172,completed
+night,2026-10-21T01:30:26.184Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0005,71483,4,18173,completed
+night,2026-10-21T01:30:29.060Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0006,70988,4,15158,completed
+night,2026-10-21T01:30:31.875Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0007,71889,4,17987,completed
+night,2026-10-21T01:30:34.682Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0008,73524,4,19005,completed
+night,2026-10-21T01:30:37.491Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0009,70820,4,14980,completed
+night,2026-10-21T01:30:40.376Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0010,71671,4,14667,completed
+night,2026-10-21T01:30:43.260Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0011,70649,4,15686,completed
+night,2026-10-21T01:30:46.070Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0012,71922,4,15682,completed
+night,2026-10-21T01:30:48.883Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0013,77584,4,14821,completed
+night,2026-10-21T01:30:51.694Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0014,75128,4,20921,completed
+night,2026-10-21T01:30:54.579Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0015,72408,4,19610,completed
+night,2026-10-21T01:30:57.465Z,general-purpose(default),opus,zakon-za-obshtestveniya-transport,0,1,0016,70785,4,15137,completed
+night,2026-10-21T01:31:00.347Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0000,68330,4,11780,completed
+night,2026-10-21T01:31:03.179Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0001,74837,4,25071,completed
+night,2026-10-21T01:31:05.962Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0002,,,,no notification
+night,2026-10-21T01:31:08.771Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0003,,,,no notification
+night,2026-10-21T01:31:11.619Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0004,,,,no notification
+night,2026-10-21T01:31:14.530Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0005,,,,no notification
+night,2026-10-21T01:31:17.217Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0006,,,,no notification
+night,2026-10-21T01:31:19.943Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0007,,,,no notification
+night,2026-10-21T01:31:22.747Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0008,,,,no notification
+night,2026-10-21T01:31:25.592Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0009,,,,no notification
+night,2026-10-21T01:31:28.379Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0010,,,,no notification
+night,2026-10-21T01:31:31.181Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0011,,,,no notification
+night,2026-10-21T01:31:33.993Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0012,,,,no notification
+night,2026-10-21T01:31:36.803Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0013,,,,no notification
+night,2026-10-21T01:31:39.616Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0014,,,,no notification
+night,2026-10-21T01:31:42.695Z,general-purpose(default),opus,zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato,0,1,0000,,,,no notification
+night,2026-10-21T01:31:46.153Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0000,,,,no notification
+night,2026-10-21T01:31:49.480Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0001,,,,no notification
+night,2026-10-21T01:31:52.876Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0002,,,,no notification
+night,2026-10-21T01:31:56.287Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0003,,,,no notification
+night,2026-10-21T01:31:59.606Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0004,,,,no notification
+night,2026-10-21T01:32:02.999Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0005,,,,no notification
+night,2026-10-21T01:32:06.397Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0006,,,,no notification
+night,2026-10-21T01:32:09.725Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0007,,,,no notification
+night,2026-10-21T01:32:13.059Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0008,,,,no notification
+night,2026-10-21T01:32:51.028Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0002,75015,4,22306,completed
+night,2026-10-21T01:32:53.750Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0003,72562,4,19736,completed
+night,2026-10-21T01:32:56.568Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0004,75715,4,23321,completed
+night,2026-10-21T01:32:59.278Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0005,71089,4,16767,completed
+night,2026-10-21T01:33:02.097Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0006,74438,4,22232,completed
+night,2026-10-21T01:33:04.823Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0007,71409,4,16769,completed
+night,2026-10-21T01:33:07.635Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0008,77434,4,28999,completed
+night,2026-10-21T01:33:10.434Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0009,71308,4,15719,completed
+night,2026-10-21T01:33:13.251Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0010,70234,4,15219,completed
+night,2026-10-21T01:33:16.052Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0011,71702,4,16711,completed
+night,2026-10-21T01:33:18.862Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0012,70278,4,14203,completed
+night,2026-10-21T01:33:21.669Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0013,71980,4,19318,completed
+night,2026-10-21T01:33:24.479Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,0,1,0014,70860,4,16581,completed
+night,2026-10-21T01:33:27.768Z,general-purpose(default),opus,zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato,0,1,0000,67845,4,10280,completed
+night,2026-10-21T01:33:31.242Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0000,72805,4,21765,completed
+night,2026-10-21T01:33:34.640Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0001,67885,4,9494,completed
+night,2026-10-21T01:33:38.122Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0002,75162,4,25204,completed
+night,2026-10-21T01:33:41.604Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0003,75307,4,25694,completed
+night,2026-10-21T01:33:44.778Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0004,76386,4,35059,completed
+night,2026-10-21T01:34:59.741Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,1,1,0000,67902,4,11153,completed
+night,2026-10-21T01:35:02.510Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,1,1,0001,67764,4,9286,completed
+night,2026-10-21T01:35:05.316Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,1,1,0002,67723,4,9083,completed
+night,2026-10-21T01:35:08.189Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,1,1,0003,67831,4,10135,completed
+night,2026-10-21T01:35:10.992Z,general-purpose(default),opus,konstitutsiya-na-republika-balgariya,1,1,0004,68655,4,16345,completed
+night,2026-10-21T01:35:14.398Z,general-purpose(default),opus,zakon-za-izplashtane-na-zadalzheniyata-ugovoreni-v-zlato,1,1,0000,67836,4,9759,completed
+night,2026-10-21T01:35:17.884Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0005,75573,4,26148,completed
+night,2026-10-21T01:35:21.271Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0006,76172,4,30807,completed
+night,2026-10-21T01:35:24.670Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0007,75785,4,29829,completed
+night,2026-10-21T01:35:28.072Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,0,1,0008,71837,4,24925,completed
+night,2026-10-21T01:35:31.009Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0000,73671,4,24806,completed
+night,2026-10-21T01:35:33.888Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0001,73381,4,23992,completed
+night,2026-10-21T01:35:36.826Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0002,72585,4,24216,completed
+night,2026-10-21T01:35:39.701Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0003,75429,4,27584,completed
+night,2026-10-21T01:35:42.570Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0004,73889,4,25204,completed
+night,2026-10-21T01:35:45.441Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0005,72345,4,19986,completed
+night,2026-10-21T01:35:48.317Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0006,73347,4,27611,completed
+night,2026-10-21T01:35:51.258Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0007,72166,4,19505,completed
+night,2026-10-21T01:35:54.068Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0008,71600,4,21534,completed
+night,2026-10-21T01:39:32.991Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0009,72327,4,18701,completed
+night,2026-10-21T01:39:36.069Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0010,75225,4,24049,completed
+night,2026-10-21T01:39:39.073Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0011,74548,4,24455,completed
+night,2026-10-21T01:39:42.084Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0012,72730,4,19589,completed
+night,2026-10-21T01:39:45.100Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0013,74112,4,25640,completed
+night,2026-10-21T01:39:48.112Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0014,72388,4,21614,completed
+night,2026-10-21T01:39:51.128Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0015,71824,4,21908,completed
+night,2026-10-21T01:39:54.150Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0016,72043,4,20293,completed
+night,2026-10-21T01:39:57.163Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0017,71429,4,19575,completed
+night,2026-10-21T01:40:00.180Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0018,71544,4,19743,completed
+night,2026-10-21T01:40:03.198Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0019,71040,4,20496,completed
+night,2026-10-21T01:40:06.216Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0020,73397,4,25604,completed
+night,2026-10-21T01:40:09.234Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0021,71488,4,20361,completed
+night,2026-10-21T01:40:12.254Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0022,70885,4,18608,completed
+night,2026-10-21T01:40:15.282Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0023,72768,4,25193,completed
+night,2026-10-21T01:40:18.288Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0024,70720,4,17318,completed
+night,2026-10-21T01:40:21.173Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,0,1,0025,71403,4,19599,completed
+night,2026-10-21T01:43:03.099Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0000,68440,4,14598,completed
+night,2026-10-21T01:43:06.993Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0001,68226,4,11377,completed
+night,2026-10-21T01:43:10.668Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0002,68268,4,11096,completed
+night,2026-10-21T01:43:14.508Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0003,68580,4,14220,completed
+night,2026-10-21T01:43:18.097Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0004,68277,4,12670,completed
+night,2026-10-21T01:43:21.849Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0005,68652,4,14931,completed
+night,2026-10-21T01:43:25.453Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0006,68295,4,11346,completed
+night,2026-10-21T01:43:29.134Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0007,68460,4,13452,completed
+night,2026-10-21T01:43:32.816Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0008,68327,4,12018,completed
+night,2026-10-21T01:43:36.501Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0009,68424,4,15054,completed
+night,2026-10-21T01:43:40.258Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0010,68746,4,16122,completed
+night,2026-10-21T01:43:43.938Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0011,68697,4,16019,completed
+night,2026-10-21T01:43:47.546Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0012,68482,4,14240,completed
+night,2026-10-21T01:43:51.237Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0013,68456,4,12764,completed
+night,2026-10-21T01:43:54.914Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0014,68286,4,10845,completed
+night,2026-10-21T01:43:58.758Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0015,68480,4,14671,completed
+night,2026-10-21T01:44:02.362Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0016,68436,4,12952,completed
+night,2026-10-21T01:44:05.970Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0017,68405,4,12423,completed
+night,2026-10-21T01:44:09.792Z,general-purpose(default),opus,naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,1,0018,68623,4,14895,completed
+night,2026-10-21T01:46:08.846Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,1,1,0057,67882,4,6899,completed
+night,2026-10-21T01:46:12.340Z,general-purpose(default),opus,zakon-za-zadalzheniyata-i-dogovorite,1,1,0058,67933,4,6881,completed
+night,2026-10-21T01:48:17.402Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0000,68866,4,11039,completed
+night,2026-10-21T01:48:20.802Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0001,75975,4,20555,completed
+night,2026-10-21T01:48:24.221Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0002,67700,4,9111,completed
+night,2026-10-21T01:48:27.602Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0003,75138,4,20446,completed
+night,2026-10-21T01:48:31.144Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0004,76727,4,22977,completed
+night,2026-10-21T01:48:34.542Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0005,72491,4,15324,completed
+night,2026-10-21T01:48:37.941Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0006,73448,4,16714,completed
+night,2026-10-21T01:48:41.342Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0007,72309,4,16438,completed
+night,2026-10-21T01:48:44.739Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0008,68414,4,9135,completed
+night,2026-10-21T01:48:48.212Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0009,74745,4,25733,completed
+night,2026-10-21T01:48:51.691Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0010,74435,4,23842,completed
+night,2026-10-21T01:48:55.227Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0011,75099,4,25845,completed
+night,2026-10-21T01:48:58.629Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0012,75615,4,27797,completed
+night,2026-10-21T01:49:02.109Z,general-purpose(default),opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,0,1,0013,71150,4,16134,completed
+night,2026-10-21T01:52:42.163Z,general-purpose,opus,naredba-1-ot-1-avgust-2013-g-za-usloviyata-i-reda-za-sahranyavane-na-zapasi-po-z,1,1,0000,69248,4,9568,completed
+night,2026-10-21T06:46:21.248Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,0,3,0000 0001 0002,81115,8,87710,completed
+night,2026-10-21T06:46:24.838Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,0,3,0003 0004 0005,88600,8,89035,completed
+night,2026-10-21T06:46:28.471Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,0,3,0006 0007 0008,97008,8,107877,completed
+night,2026-10-21T06:46:32.059Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,0,3,0009 0010 0011,90004,8,96920,completed
+night,2026-10-21T06:46:35.645Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,0,3,0012 0013 0014,84160,8,82514,completed
+night,2026-10-21T06:46:39.454Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,0,3,0015 0016 0017,88331,8,95602,completed
+night,2026-10-21T06:46:42.915Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,0,1,0018,70506,4,182642,completed
+night,2026-10-21T06:46:46.114Z,general-purpose,opus,nakazatelen-kodeks,0,3,0000 0001 0002,89312,8,96289,completed
+night,2026-10-21T06:46:49.322Z,general-purpose,opus,nakazatelen-kodeks,0,3,0003 0004 0005,89664,8,96089,completed
+night,2026-10-21T06:46:52.432Z,general-purpose,opus,nakazatelen-kodeks,0,3,0006 0007 0008,85703,8,89454,completed
+night,2026-10-21T06:46:55.612Z,general-purpose,opus,nakazatelen-kodeks,0,3,0009 0010 0011,87729,8,87569,completed
+night,2026-10-21T06:46:58.810Z,general-purpose,opus,nakazatelen-kodeks,0,3,0012 0013 0014,88845,8,106983,completed
+night,2026-10-21T06:47:02.006Z,general-purpose,opus,nakazatelen-kodeks,0,3,0015 0016 0017,90750,8,89238,completed
+night,2026-10-21T06:47:05.206Z,general-purpose,opus,nakazatelen-kodeks,0,3,0018 0019 0020,89847,8,96745,completed
+night,2026-10-21T06:47:08.405Z,general-purpose,opus,nakazatelen-kodeks,0,3,0021 0022 0023,94782,8,103290,completed
+night,2026-10-21T06:47:11.602Z,general-purpose,opus,nakazatelen-kodeks,0,3,0024 0025 0026,90694,8,104008,completed
+night,2026-10-21T06:47:14.810Z,general-purpose,opus,nakazatelen-kodeks,0,3,0027 0028 0029,90958,8,112483,completed
+night,2026-10-21T06:47:18.023Z,general-purpose,opus,nakazatelen-kodeks,0,3,0030 0031 0032,85214,8,139001,completed
+night,2026-10-21T06:47:21.197Z,general-purpose,opus,nakazatelen-kodeks,0,3,0033 0034 0035,80455,8,113133,completed
+night,2026-10-21T06:47:24.266Z,general-purpose,opus,nakazatelen-kodeks,0,3,0036 0037 0038,95162,8,107711,completed
+night,2026-10-21T06:51:24.335Z,general-purpose,opus,nakazatelen-kodeks,0,3,0039 0040 0041,98984,8,306598,completed
+night,2026-10-21T06:51:27.721Z,general-purpose,opus,nakazatelen-kodeks,0,3,0042 0043 0044,93495,8,67321,completed
+night,2026-10-21T06:51:31.058Z,general-purpose,opus,nakazatelen-kodeks,0,3,0045 0046 0047,89746,8,58296,completed
+night,2026-10-21T06:51:34.369Z,general-purpose,opus,nakazatelen-kodeks,0,3,0048 0049 0050,93296,8,58581,completed
+night,2026-10-21T06:51:37.722Z,general-purpose,opus,nakazatelen-kodeks,0,3,0051 0052 0053,82863,8,48426,completed
+night,2026-10-21T06:51:41.066Z,general-purpose,opus,nakazatelen-kodeks,0,3,0054 0055 0056,101927,8,68848,completed
+night,2026-10-21T06:51:44.483Z,general-purpose,opus,nakazatelen-kodeks,0,3,0057 0058 0059,88200,8,64687,completed
+night,2026-10-21T06:51:47.992Z,general-purpose,opus,nakazatelen-kodeks,0,3,0060 0061 0062,85843,8,63737,completed
+night,2026-10-21T06:51:51.316Z,general-purpose,opus,nakazatelen-kodeks,0,3,0063 0064 0065,83641,8,53164,completed
+night,2026-10-21T06:51:54.664Z,general-purpose,opus,nakazatelen-kodeks,0,3,0066 0067 0068,86279,8,73486,completed
+night,2026-10-21T06:51:58.012Z,general-purpose,opus,nakazatelen-kodeks,0,3,0069 0070 0071,83236,8,54550,completed
+night,2026-10-21T06:52:01.350Z,general-purpose,opus,nakazatelen-kodeks,0,3,0072 0073 0074,81701,8,58503,completed
+night,2026-10-21T06:52:04.628Z,general-purpose,opus,nakazatelen-kodeks,0,3,0075 0076 0077,85307,8,59796,completed
+night,2026-10-21T06:52:08.685Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0000 0001 0002,87699,8,77656,completed
+night,2026-10-21T06:52:12.610Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0003 0004 0005,90084,8,92814,completed
+night,2026-10-21T06:52:16.473Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0006 0007 0008,86813,8,82414,completed
+night,2026-10-21T06:52:20.383Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0009 0010 0011,86328,8,169085,completed
+night,2026-10-21T06:52:24.304Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0012 0013 0014,85665,8,85897,completed
+night,2026-10-21T06:52:28.226Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0015 0016 0017,84116,8,68791,completed
+night,2026-10-21T06:52:32.034Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0018 0019 0020,88850,8,85790,completed
+night,2026-10-21T06:57:55.897Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0021 0022 0023,88916,8,68507,completed
+night,2026-10-21T06:57:59.912Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0024 0025 0026,89263,8,67415,completed
+night,2026-10-21T06:58:03.870Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0027 0028 0029,88924,8,70406,completed
+night,2026-10-21T06:58:07.792Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0030 0031 0032,88633,8,65779,completed
+night,2026-10-21T06:58:11.718Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0033 0034 0035,88568,8,68111,completed
+night,2026-10-21T06:58:15.819Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0036 0037 0038,88789,8,68103,completed
+night,2026-10-21T06:58:19.646Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0039 0040 0041,88669,8,68079,completed
+night,2026-10-21T06:58:23.582Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0042 0043 0044,88586,8,67000,completed
+night,2026-10-21T06:58:27.498Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0045 0046 0047,88568,8,68277,completed
+night,2026-10-21T06:58:31.427Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0048 0049 0050,89776,8,70433,completed
+night,2026-10-21T06:58:35.414Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0051 0052 0053,88741,8,62499,completed
+night,2026-10-21T06:58:39.274Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0054 0055 0056,89790,8,68354,completed
+night,2026-10-21T06:58:43.196Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0057 0058 0059,89469,10,71207,completed
+night,2026-10-21T06:58:47.129Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0060 0061 0062,90230,8,70168,completed
+night,2026-10-21T06:58:51.054Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0063 0064 0065,85380,8,37567,completed
+night,2026-10-21T06:58:55.052Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0066 0067 0068,89824,8,68217,completed
+night,2026-10-21T06:58:59.742Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,1,6,0000 0001 0002 0003 0004 0005,76797,14,35619,completed
+night,2026-10-21T06:59:03.713Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,1,6,0006 0007 0008 0009 0010 0011,76547,14,32877,completed
+night,2026-10-21T06:59:07.849Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,1,6,0012 0013 0014 0015 0016 0017,76875,14,34105,completed
+night,2026-10-21T06:59:11.866Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,1,4,0018 0019 0020 0021,73199,10,26374,completed
+night,2026-10-21T07:01:07.588Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0069 0070 0071,88954,8,59478,completed
+night,2026-10-21T07:01:11.380Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0072 0073 0074,87132,8,49170,completed
+night,2026-10-21T07:01:15.293Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,3,0075 0076 0077,91414,8,72825,completed
+night,2026-10-21T07:01:19.315Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,0,1,0078,72556,4,23319,completed
+night,2026-10-21T07:01:23.043Z,general-purpose,opus,pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie,2,1,0000,69328,4,14119,completed
+night,2026-10-21T07:01:26.560Z,general-purpose,opus,nakazatelen-kodeks,1,6,0000 0001 0002 0003 0004 0005,75908,14,41015,completed
+night,2026-10-21T07:01:30.018Z,general-purpose,opus,nakazatelen-kodeks,1,6,0006 0007 0008 0009 0010 0011,76566,15,40152,completed
+night,2026-10-21T07:01:33.477Z,general-purpose,opus,nakazatelen-kodeks,1,6,0012 0013 0014 0015 0016 0017,76485,14,36227,completed
+night,2026-10-21T07:01:36.950Z,general-purpose,opus,nakazatelen-kodeks,1,6,0018 0019 0020 0021 0022 0023,76354,14,41073,completed
+night,2026-10-21T07:01:40.393Z,general-purpose,opus,nakazatelen-kodeks,1,6,0024 0025 0026 0027 0028 0029,76804,14,44064,completed
+night,2026-10-21T07:01:43.852Z,general-purpose,opus,nakazatelen-kodeks,1,6,0030 0031 0032 0033 0034 0035,75872,14,33921,completed
+night,2026-10-21T07:01:47.326Z,general-purpose,opus,nakazatelen-kodeks,1,6,0036 0037 0038 0039 0040 0041,75687,14,30796,completed
+night,2026-10-21T07:01:50.787Z,general-purpose,opus,nakazatelen-kodeks,1,6,0042 0043 0044 0045 0046 0047,75906,14,32850,completed
+night,2026-10-21T07:01:54.441Z,general-purpose,opus,nakazatelen-kodeks,1,7,0048 0049 0050 0051 0052 0053 0054,76870,16,34143,completed
+night,2026-10-21T07:01:58.201Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0000 0001 0002,83424,8,38329,completed
+night,2026-10-21T07:02:01.887Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0003 0004 0005,79985,8,33943,completed
+night,2026-10-21T07:02:05.617Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0006 0007 0008,79957,8,34616,completed
+night,2026-10-21T07:02:09.335Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0009 0010 0011,80318,8,34260,completed
+night,2026-10-21T07:02:13.000Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0012 0013 0014,81282,8,33451,completed
+night,2026-10-21T07:21:50.866Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0015 0016 0017,84362,8,47077,completed
+night,2026-10-21T07:21:54.609Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0018 0019 0020,82734,8,45757,completed
+night,2026-10-21T07:21:58.378Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0021 0022 0023,83825,8,47061,completed
+night,2026-10-21T07:22:02.127Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0024 0025 0026,81543,8,110586,completed
+night,2026-10-21T07:22:05.906Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0027 0028 0029,80919,8,47641,completed
+night,2026-10-21T07:22:09.621Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0030 0031 0032,80886,8,42983,completed
+night,2026-10-21T07:22:13.402Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0033 0034 0035,80838,8,42576,completed
+night,2026-10-21T07:22:17.191Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0036 0037 0038,80054,8,40447,completed
+night,2026-10-21T07:22:21.043Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0039 0040 0041,81223,8,46426,completed
+night,2026-10-21T07:22:24.774Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0042 0043 0044,80447,8,42274,completed
+night,2026-10-21T07:22:28.566Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0045 0046 0047,82549,8,50117,completed
+night,2026-10-21T07:22:32.373Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0048 0049 0050,80584,8,48032,completed
+night,2026-10-21T07:22:36.154Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0051 0052 0053,80323,8,47715,completed
+night,2026-10-21T07:22:39.946Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0054 0055 0056,82354,8,88145,completed
+night,2026-10-21T07:22:43.739Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0057 0058 0059,81231,8,45605,completed
+night,2026-10-21T07:22:47.488Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0060 0061 0062,81182,8,45743,completed
+night,2026-10-21T07:22:51.195Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0063 0064 0065,81959,8,47001,completed
+night,2026-10-21T07:22:54.899Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0066 0067 0068,81424,8,46884,completed
+night,2026-10-21T07:22:58.763Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0069 0070 0071,83186,8,49199,completed
+night,2026-10-21T07:23:02.486Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,3,0072 0073 0074,80689,8,151106,completed
+night,2026-10-21T07:25:53.442Z,labeller,(definition),naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,1,3,0000 0001 0002,,,,no notification
+night,2026-10-21T07:26:28.999Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,8,0075 0076 0077 0078 0079 0080 0081 0082,122274,18,257965,completed
+night,2026-10-21T07:26:32.866Z,general-purpose,opus,kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,4,0083 0084 0085 0086,89161,10,134964,completed
+night,2026-10-21T07:26:36.268Z,general-purpose,opus,kodeks-na-truda,0,8,0000 0001 0002 0003 0004 0005 0006 0007,101864,18,124070,completed
+night,2026-10-21T07:26:39.660Z,general-purpose,opus,kodeks-na-truda,0,8,0008 0009 0010 0011 0012 0013 0014 0015,105594,18,116142,completed
+night,2026-10-21T07:26:43.143Z,general-purpose,opus,kodeks-na-truda,0,8,0016 0017 0018 0019 0020 0021 0022 0023,107531,18,115971,completed
+night,2026-10-21T07:26:46.478Z,general-purpose,opus,kodeks-na-truda,0,8,0024 0025 0026 0027 0028 0029 0030 0031,108468,18,138703,completed
+night,2026-10-21T07:26:49.865Z,general-purpose,opus,kodeks-na-truda,0,8,0032 0033 0034 0035 0036 0037 0038 0039,107377,18,302788,completed
+night,2026-10-21T07:26:53.271Z,general-purpose,opus,kodeks-na-truda,0,8,0040 0041 0042 0043 0044 0045 0046 0047,112621,18,141027,completed
+night,2026-10-21T07:26:56.772Z,general-purpose,opus,kodeks-na-truda,0,8,0048 0049 0050 0051 0052 0053 0054 0055,107630,18,134132,completed
+night,2026-10-21T07:27:00.103Z,general-purpose,opus,kodeks-na-truda,0,8,0056 0057 0058 0059 0060 0061 0062 0063,103905,18,141010,completed
+night,2026-10-21T07:27:03.473Z,general-purpose,opus,kodeks-na-truda,0,8,0064 0065 0066 0067 0068 0069 0070 0071,110022,18,121191,completed
+night,2026-10-21T07:27:06.874Z,general-purpose,opus,kodeks-na-truda,0,8,0072 0073 0074 0075 0076 0077 0078 0079,106759,18,129734,completed
+night,2026-10-21T07:27:10.279Z,general-purpose,opus,kodeks-na-truda,0,8,0080 0081 0082 0083 0084 0085 0086 0087,112539,18,124568,completed
+night,2026-10-21T07:27:13.686Z,general-purpose,opus,kodeks-na-truda,0,8,0088 0089 0090 0091 0092 0093 0094 0095,115071,18,148517,completed
+night,2026-10-21T07:27:17.094Z,general-purpose,opus,kodeks-na-truda,0,8,0096 0097 0098 0099 0100 0101 0102 0103,109002,18,130322,completed
+night,2026-10-21T07:27:20.288Z,general-purpose,opus,kodeks-na-truda,0,3,0104 0105 0106,89649,9,85085,completed
+night,2026-10-21T07:27:24.097Z,general-purpose,opus,nakazatelen-kodeks,2,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,81504,22,141664,completed
+night,2026-10-21T07:27:27.708Z,general-purpose,opus,nakazatelen-kodeks,2,9,0010 0011 0012 0013 0014 0015 0016 0017 0018,80631,20,93553,completed
+night,2026-10-21T07:27:31.750Z,general-purpose,opus,naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni,1,3,0000 0001 0002,71648,8,58729,completed
+lean,2026-10-21T07:30:11.035Z,labeller,(definition),kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,0,7,0076 0077 0078 0079 0080 0081 0082,74254,16,86975,completed
+lean,2026-10-21T07:30:14.020Z,labeller,(definition),kodeks-na-truda,0,3,0037 0038 0039,32432,8,31281,completed
+lean,2026-10-21T07:30:31.909Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0000 0001 0002 0003 0004 0005 0006 0007,62791,18,83883,completed
+lean,2026-10-21T07:30:35.303Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0008 0009 0010 0011 0012 0013 0014 0015,64570,18,88533,completed
+lean,2026-10-21T07:30:38.758Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0016 0017 0018 0019 0020 0021 0022 0023,63711,18,94459,completed
+lean,2026-10-21T07:30:42.244Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0024 0025 0026 0027 0028 0029 0030 0031,65213,18,90239,completed
+lean,2026-10-21T07:30:45.619Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0032 0033 0034 0035 0036 0037 0038 0039,66709,18,92071,completed
+lean,2026-10-21T07:30:49.014Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0040 0041 0042 0043 0044 0045 0046 0047,65678,18,81402,completed
+lean,2026-10-21T07:30:52.475Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0048 0049 0050 0051 0052 0053 0054 0055,65958,18,84803,completed
+lean,2026-10-21T07:30:55.874Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0056 0057 0058 0059 0060 0061 0062 0063,67170,18,88690,completed
+lean,2026-10-21T07:30:59.345Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0064 0065 0066 0067 0068 0069 0070 0071,75702,18,95478,completed
+lean,2026-10-21T07:31:02.732Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0072 0073 0074 0075 0076 0077 0078 0079,65708,18,84879,completed
+lean,2026-10-21T07:31:06.192Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0080 0081 0082 0083 0084 0085 0086 0087,69119,18,144264,completed
+lean,2026-10-21T07:31:09.583Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0088 0089 0090 0091 0092 0093 0094 0095,105593,18,132176,completed
+lean,2026-10-21T07:31:13.048Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0096 0097 0098 0099 0100 0101 0102 0103,64051,18,99400,completed
+lean,2026-10-21T07:31:16.441Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,8,0104 0105 0106 0107 0108 0109 0110 0111,68453,18,97055,completed
+lean,2026-10-21T07:31:19.967Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,0,7,0112 0113 0114 0115 0116 0117 0118,71157,16,127409,completed
+lean,2026-10-21T07:31:23.246Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0000 0001 0002 0003 0004 0005 0006 0007,50554,18,78417,completed
+lean,2026-10-21T07:31:26.498Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0008 0009 0010 0011 0012 0013 0014 0015,48377,18,74382,completed
+lean,2026-10-21T07:31:29.701Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0016 0017 0018 0019 0020 0021 0022 0023,50260,18,74820,completed
+lean,2026-10-21T07:32:02.214Z,labeller,(definition),kodeks-na-truda,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,32406,23,57539,completed
+lean,2026-10-21T07:32:05.672Z,labeller,(definition),kodeks-na-truda,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,30970,22,35870,completed
+lean,2026-10-21T07:33:18.208Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0024 0025 0026 0027 0028 0029 0030 0031,50964,18,1691187,completed
+lean,2026-10-21T07:33:21.597Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0032 0033 0034 0035 0036 0037 0038 0039,47118,18,1690933,completed
+lean,2026-10-21T07:33:24.894Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0040 0041 0042 0043 0044 0045 0046 0047,48103,18,1011920,completed
+lean,2026-10-21T07:33:28.197Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0048 0049 0050 0051 0052 0053 0054 0055,50310,18,1689006,completed
+lean,2026-10-21T07:33:31.541Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0056 0057 0058 0059 0060 0061 0062 0063,49800,18,1691194,completed
+lean,2026-10-21T07:33:34.860Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0064 0065 0066 0067 0068 0069 0070 0071,53798,18,1690966,completed
+lean,2026-10-21T07:33:38.192Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0072 0073 0074 0075 0076 0077 0078 0079,58834,18,1690685,completed
+lean,2026-10-21T07:33:41.523Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0080 0081 0082 0083 0084 0085 0086 0087,53641,18,1688936,completed
+lean,2026-10-21T07:33:44.869Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0088 0089 0090 0091 0092 0093 0094 0095,55913,18,1690734,completed
+lean,2026-10-21T07:33:48.255Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0096 0097 0098 0099 0100 0101 0102 0103,50199,18,1011712,completed
+lean,2026-10-21T07:33:51.522Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0104 0105 0106 0107 0108 0109 0110 0111,56222,18,1690759,completed
+lean,2026-10-21T07:33:54.881Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0112 0113 0114 0115 0116 0117 0118 0119,75992,18,1712585,completed
+lean,2026-10-21T07:33:58.189Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,8,0120 0121 0122 0123 0124 0125 0126 0127,77251,19,1734329,completed
+lean,2026-10-21T07:34:01.387Z,labeller,(definition),grazhdanski-protsesualen-kodeks,0,3,0128 0129 0130,34395,8,41484,completed
+lean,2026-10-21T07:34:04.787Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0000 0001 0002 0003 0004 0005 0006 0007,52718,18,1688842,completed
+lean,2026-10-21T07:34:08.191Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0008 0009 0010 0011 0012 0013 0014 0015,55848,18,1691036,completed
+lean,2026-10-21T07:34:11.532Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0016 0017 0018 0019 0020 0021 0022 0023,65425,18,1702089,completed
+lean,2026-10-21T08:02:26.183Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0024 0025 0026 0027 0028 0029 0030 0031,56568,18,73652,completed
+lean,2026-10-21T08:02:29.568Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0032 0033 0034 0035 0036 0037 0038 0039,61238,18,72903,completed
+lean,2026-10-21T08:02:33.075Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0040 0041 0042 0043 0044 0045 0046 0047,64858,18,82485,completed
+lean,2026-10-21T08:02:36.528Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0048 0049 0050 0051 0052 0053 0054 0055,69094,18,87333,completed
+lean,2026-10-21T08:03:00.072Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0056 0057 0058 0059 0060 0061 0062 0063,67574,18,83554,completed
+lean,2026-10-21T08:03:03.472Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0064 0065 0066 0067 0068 0069 0070 0071,61882,18,78989,completed
+lean,2026-10-21T08:03:07.073Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0072 0073 0074 0075 0076 0077 0078 0079,58988,18,78716,completed
+lean,2026-10-21T08:03:10.485Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0080 0081 0082 0083 0084 0085 0086 0087,59187,18,72957,completed
+lean,2026-10-21T08:03:14.062Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0088 0089 0090 0091 0092 0093 0094 0095,56108,18,65339,completed
+lean,2026-10-21T08:03:17.553Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0096 0097 0098 0099 0100 0101 0102 0103,58280,18,67951,completed
+lean,2026-10-21T08:03:20.980Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0104 0105 0106 0107 0108 0109 0110 0111,59080,18,73206,completed
+lean,2026-10-21T08:03:24.521Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0112 0113 0114 0115 0116 0117 0118 0119,65636,18,74894,completed
+lean,2026-10-21T08:03:28.038Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0120 0121 0122 0123 0124 0125 0126 0127,120209,18,161140,completed
+lean,2026-10-21T08:03:31.533Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0128 0129 0130 0131 0132 0133 0134 0135,103854,18,141585,completed
+lean,2026-10-21T08:03:35.081Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0136 0137 0138 0139 0140 0141 0142 0143,60128,18,90125,completed
+lean,2026-10-21T08:03:38.541Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,8,0144 0145 0146 0147 0148 0149 0150 0151,61683,18,86257,completed
+lean,2026-10-21T08:03:42.028Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,0,6,0152 0153 0154 0155 0156 0157,62741,15,81377,completed
+lean,2026-10-21T08:03:45.314Z,labeller,(definition),targovski-zakon,0,8,0000 0001 0002 0003 0004 0005 0006 0007,56207,18,78950,completed
+lean,2026-10-21T08:03:48.375Z,labeller,(definition),targovski-zakon,0,8,0008 0009 0010 0011 0012 0013 0014 0015,51852,18,65086,completed
+lean,2026-10-21T08:05:32.691Z,labeller,(definition),targovski-zakon,0,8,0016 0017 0018 0019 0020 0021 0022 0023,52690,18,67948,completed
+lean,2026-10-21T08:05:36.050Z,labeller,(definition),targovski-zakon,0,8,0024 0025 0026 0027 0028 0029 0030 0031,52386,18,69732,completed
+lean,2026-10-21T08:05:39.262Z,labeller,(definition),targovski-zakon,0,8,0032 0033 0034 0035 0036 0037 0038 0039,55101,18,66167,completed
+lean,2026-10-21T08:05:42.460Z,labeller,(definition),targovski-zakon,0,8,0040 0041 0042 0043 0044 0045 0046 0047,55238,18,83334,completed
+lean,2026-10-21T08:05:45.740Z,labeller,(definition),targovski-zakon,0,8,0048 0049 0050 0051 0052 0053 0054 0055,54984,18,72851,completed
+lean,2026-10-21T08:05:49.015Z,labeller,(definition),targovski-zakon,0,8,0056 0057 0058 0059 0060 0061 0062 0063,61525,18,73606,completed
+lean,2026-10-21T08:05:52.296Z,labeller,(definition),targovski-zakon,0,8,0064 0065 0066 0067 0068 0069 0070 0071,62782,18,72592,completed
+lean,2026-10-21T08:05:55.575Z,labeller,(definition),targovski-zakon,0,8,0072 0073 0074 0075 0076 0077 0078 0079,55744,18,71066,completed
+lean,2026-10-21T08:05:58.860Z,labeller,(definition),targovski-zakon,0,8,0080 0081 0082 0083 0084 0085 0086 0087,51743,18,66860,completed
+lean,2026-10-21T08:06:02.188Z,labeller,(definition),targovski-zakon,0,8,0088 0089 0090 0091 0092 0093 0094 0095,49749,18,66739,completed
+lean,2026-10-21T08:06:05.415Z,labeller,(definition),targovski-zakon,0,8,0096 0097 0098 0099 0100 0101 0102 0103,49407,18,66713,completed
+lean,2026-10-21T08:06:08.697Z,labeller,(definition),targovski-zakon,0,8,0104 0105 0106 0107 0108 0109 0110 0111,51028,18,69347,completed
+lean,2026-10-21T08:06:11.970Z,labeller,(definition),targovski-zakon,0,8,0112 0113 0114 0115 0116 0117 0118 0119,51645,18,70506,completed
+lean,2026-10-21T08:06:15.251Z,labeller,(definition),targovski-zakon,0,8,0120 0121 0122 0123 0124 0125 0126 0127,57983,18,69098,completed
+lean,2026-10-21T08:06:18.530Z,labeller,(definition),targovski-zakon,0,8,0128 0129 0130 0131 0132 0133 0134 0135,60375,18,73728,completed
+lean,2026-10-21T08:06:21.814Z,labeller,(definition),targovski-zakon,0,8,0136 0137 0138 0139 0140 0141 0142 0143,56468,18,77825,completed
+lean,2026-10-21T08:06:25.087Z,labeller,(definition),targovski-zakon,0,8,0144 0145 0146 0147 0148 0149 0150 0151,55743,18,63100,completed
+lean,2026-10-21T08:06:28.298Z,labeller,(definition),targovski-zakon,0,8,0152 0153 0154 0155 0156 0157 0158 0159,58649,18,76940,completed
+lean,2026-10-21T08:07:32.905Z,labeller,(definition),kodeks-na-truda,1,10,0020 0021 0022 0023 0024 0025 0026 0027 0028 0029,31022,22,36254,completed
+lean,2026-10-21T08:07:36.413Z,labeller,(definition),kodeks-na-truda,1,10,0030 0031 0032 0033 0034 0035 0036 0037 0038 0039,30484,22,36253,completed
+lean,2026-10-21T08:08:52.679Z,labeller,(definition),targovski-zakon,0,8,0160 0161 0162 0163 0164 0165 0166 0167,63183,18,263605,completed
+lean,2026-10-21T08:08:55.782Z,labeller,(definition),targovski-zakon,0,8,0168 0169 0170 0171 0172 0173 0174 0175,63680,18,279525,completed
+lean,2026-10-21T08:08:58.980Z,labeller,(definition),targovski-zakon,0,8,0176 0177 0178 0179 0180 0181 0182 0183,60799,18,262749,completed
+lean,2026-10-21T08:09:02.447Z,labeller,(definition),kodeks-na-truda,1,10,0040 0041 0042 0043 0044 0045 0046 0047 0048 0049,32651,23,219686,completed
+lean,2026-10-21T08:09:05.909Z,labeller,(definition),kodeks-na-truda,1,10,0050 0051 0052 0053 0054 0055 0056 0057 0058 0059,31776,22,218632,completed
+lean,2026-10-21T08:09:09.234Z,labeller,(definition),kodeks-na-truda,1,6,0060 0061 0062 0063 0064 0065,26225,14,206195,completed
+lean,2026-10-21T08:09:13.290Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0000 0001 0002 0003 0004 0005 0006 0007,85298,18,277224,completed
+lean,2026-10-21T08:09:16.980Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0008 0009 0010 0011 0012 0013 0014 0015,60723,18,258255,completed
+lean,2026-10-21T08:09:20.636Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0016 0017 0018 0019 0020 0021 0022 0023,67125,18,254405,completed
+lean,2026-10-21T08:09:24.351Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0024 0025 0026 0027 0028 0029 0030 0031,69078,18,97055,completed
+lean,2026-10-21T08:09:28.043Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0032 0033 0034 0035 0036 0037 0038 0039,62857,18,255830,completed
+lean,2026-10-21T08:09:31.757Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0040 0041 0042 0043 0044 0045 0046 0047,68870,18,264772,completed
+lean,2026-10-21T08:09:35.393Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0048 0049 0050 0051 0052 0053 0054 0055,65223,18,258115,completed
+lean,2026-10-21T08:09:39.110Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0056 0057 0058 0059 0060 0061 0062 0063,76951,19,274085,completed
+lean,2026-10-21T08:09:42.863Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0064 0065 0066 0067 0068 0069 0070 0071,64993,19,267940,completed
+lean,2026-10-21T08:09:46.639Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0072 0073 0074 0075 0076 0077 0078 0079,68817,18,260072,completed
+lean,2026-10-21T08:09:50.283Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0080 0081 0082 0083 0084 0085 0086 0087,68874,18,277279,completed
+lean,2026-10-21T08:09:54.018Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0088 0089 0090 0091 0092 0093 0094 0095,66576,18,266310,completed
+lean,2026-10-21T08:09:57.778Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0096 0097 0098 0099 0100 0101 0102 0103,72002,18,274141,completed
+lean,2026-10-21T08:10:01.468Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0104 0105 0106 0107 0108 0109 0110 0111,74420,18,273679,completed
+lean,2026-10-21T08:14:47.359Z,labeller,(definition),kodeks-na-truda,2,7,0000 0001 0002 0003 0004 0005 0006,29060,16,41756,completed
+lean,2026-10-21T08:14:51.565Z,labeller,(definition),kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,33009,22,43068,completed
+lean,2026-10-21T08:14:55.693Z,labeller,(definition),kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,33677,22,36051,completed
+lean,2026-10-21T08:14:59.700Z,labeller,(definition),kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,1,5,0020 0021 0022 0023 0024,25761,12,19690,completed
+lean,2026-10-21T08:15:03.656Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,33561,22,37154,completed
+lean,2026-10-21T08:15:07.529Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,32740,22,37559,completed
+lean,2026-10-21T08:15:11.406Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,1,10,0020 0021 0022 0023 0024 0025 0026 0027 0028 0029,31863,22,28813,completed
+lean,2026-10-21T08:15:15.276Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,1,10,0030 0031 0032 0033 0034 0035 0036 0037 0038 0039,32858,22,33006,completed
+lean,2026-10-21T08:15:19.147Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,1,10,0040 0041 0042 0043 0044 0045 0046 0047 0048 0049,32299,22,32981,completed
+lean,2026-10-21T08:15:22.840Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,1,1,0050,19867,4,8006,completed
+lean,2026-10-21T08:15:26.723Z,labeller,(definition),grazhdanski-protsesualen-kodeks,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,34337,22,47026,completed
+lean,2026-10-21T08:15:30.322Z,labeller,(definition),grazhdanski-protsesualen-kodeks,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,31785,22,33628,completed
+lean,2026-10-21T08:15:33.988Z,labeller,(definition),grazhdanski-protsesualen-kodeks,1,10,0020 0021 0022 0023 0024 0025 0026 0027 0028 0029,30943,22,32795,completed
+lean,2026-10-21T08:15:37.548Z,labeller,(definition),grazhdanski-protsesualen-kodeks,1,1,0030,19763,4,7413,completed
+lean,2026-10-21T08:16:01.061Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0112 0113 0114 0115 0116 0117 0118 0119,65205,18,74439,completed
+lean,2026-10-21T08:16:04.709Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0120 0121 0122 0123 0124 0125 0126 0127,57077,18,72128,completed
+lean,2026-10-21T08:16:08.432Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0128 0129 0130 0131 0132 0133 0134 0135,54017,18,68764,completed
+lean,2026-10-21T08:16:12.159Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0136 0137 0138 0139 0140 0141 0142 0143,68576,18,82001,completed
+lean,2026-10-21T08:16:15.882Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0144 0145 0146 0147 0148 0149 0150 0151,84356,18,91264,completed
+lean,2026-10-21T08:16:19.609Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0152 0153 0154 0155 0156 0157 0158 0159,101960,18,135291,completed
+lean,2026-10-21T08:16:23.335Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0160 0161 0162 0163 0164 0165 0166 0167,59091,18,80040,completed
+lean,2026-10-21T08:16:27.131Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0168 0169 0170 0171 0172 0173 0174 0175,61304,18,79028,completed
+lean,2026-10-21T08:17:15.943Z,labeller,(definition),kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g,2,9,0000 0001 0002 0003 0004 0005 0006 0007 0008,31645,20,35385,completed
+lean,2026-10-21T08:17:19.483Z,labeller,(definition),zakon-za-danak-varhu-dobavenata-stoynost,2,6,0000 0001 0002 0003 0004 0005,27587,14,24625,completed
+lean,2026-10-21T08:17:22.991Z,labeller,(definition),grazhdanski-protsesualen-kodeks,2,9,0000 0001 0002 0003 0004 0005 0006 0007 0008,33764,20,53455,completed
+lean,2026-10-21T08:17:26.954Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0176 0177 0178 0179 0180 0181 0182 0183,66655,18,85846,completed
+lean,2026-10-21T08:17:30.660Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,0,8,0184 0185 0186 0187 0188 0189 0190 0191,72698,18,101713,completed
+lean,2026-10-21T08:17:34.463Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,31012,22,44664,completed
+lean,2026-10-21T08:17:38.122Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,31404,22,36852,completed
+lean,2026-10-21T08:17:41.848Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0020 0021 0022 0023 0024 0025 0026 0027 0028 0029,32090,22,38751,completed
+lean,2026-10-21T08:17:45.580Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0030 0031 0032 0033 0034 0035 0036 0037 0038 0039,32522,22,32629,completed
+lean,2026-10-21T08:17:49.236Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0040 0041 0042 0043 0044 0045 0046 0047 0048 0049,32453,22,35097,completed
+lean,2026-10-21T08:17:52.891Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0050 0051 0052 0053 0054 0055 0056 0057 0058 0059,32149,22,32864,completed
+lean,2026-10-21T08:17:56.624Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0060 0061 0062 0063 0064 0065 0066 0067 0068 0069,31788,22,35606,completed
+lean,2026-10-21T08:18:07.899Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0070 0071 0072 0073 0074 0075 0076 0077 0078 0079,32312,22,32933,completed
+lean,2026-10-21T08:18:11.776Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0080 0081 0082 0083 0084 0085 0086 0087 0088 0089,33325,22,51604,completed
+lean,2026-10-21T08:18:15.652Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,10,0090 0091 0092 0093 0094 0095 0096 0097 0098 0099,32000,22,34811,completed
+lean,2026-10-21T08:18:19.550Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,1,6,0100 0101 0102 0103 0104 0105,26376,14,21333,completed
+lean,2026-10-21T08:18:23.085Z,labeller,(definition),targovski-zakon,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,30850,22,43377,completed
+lean,2026-10-21T08:18:26.623Z,labeller,(definition),targovski-zakon,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,32776,23,54893,completed
+lean,2026-10-21T08:19:02.739Z,labeller,(definition),targovski-zakon,1,10,0020 0021 0022 0023 0024 0025 0026 0027 0028 0029,31346,23,40751,completed
+lean,2026-10-21T08:19:06.279Z,labeller,(definition),targovski-zakon,1,10,0030 0031 0032 0033 0034 0035 0036 0037 0038 0039,30957,22,33173,completed
+lean,2026-10-21T08:19:09.893Z,labeller,(definition),targovski-zakon,1,10,0040 0041 0042 0043 0044 0045 0046 0047 0048 0049,30747,22,33101,completed
+lean,2026-10-21T08:19:13.739Z,labeller,(definition),targovski-zakon,1,8,0050 0051 0052 0053 0054 0055 0056 0057,28809,18,27890,completed
+lean,2026-10-21T08:19:48.438Z,labeller,(definition),danachno-osiguritelen-protsesualen-kodeks,2,6,0000 0001 0002 0003 0004 0005,27796,14,49574,completed
+lean,2026-10-21T08:20:36.876Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,33949,22,50512,completed
+lean,2026-10-21T08:20:40.871Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,33765,22,46220,completed
+lean,2026-10-21T08:20:45.075Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,1,9,0020 0021 0022 0023 0024 0025 0026 0027 0028,31089,20,39372,completed
+lean,2026-10-21T08:20:48.540Z,labeller,(definition),targovski-zakon,2,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,31008,22,43767,completed
+lean,2026-10-21T08:20:52.230Z,labeller,(definition),targovski-zakon,2,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,31254,22,39982,completed
+lean,2026-10-21T08:22:06.319Z,labeller,(definition),kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g,2,6,0000 0001 0002 0003 0004 0005,28088,14,31283,completed
+lean,2026-10-21T08:27:40.616Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,29917,22,35564,completed
+lean,2026-10-21T08:27:44.231Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,30717,22,36940,completed
+lean,2026-10-21T08:27:47.872Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0020 0021 0022 0023 0024 0025 0026 0027 0028 0029,30258,22,37763,completed
+lean,2026-10-21T08:27:51.519Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0030 0031 0032 0033 0034 0035 0036 0037 0038 0039,30445,22,36582,completed
+lean,2026-10-21T08:27:55.162Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0040 0041 0042 0043 0044 0045 0046 0047 0048 0049,30587,22,41214,completed
+lean,2026-10-21T08:27:58.814Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0050 0051 0052 0053 0054 0055 0056 0059 0060 0061,30552,22,44963,completed
+lean,2026-10-21T08:28:02.539Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0062 0063 0064 0065 0066 0067 0068 0069 0070 0071,30426,22,40149,completed
+lean,2026-10-21T08:28:06.190Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0072 0073 0074 0075 0076 0077 0078 0079 0080 0081,30093,22,37824,completed
+lean,2026-10-21T08:28:09.907Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,10,0082 0083 0084 0085 0086 0087 0088 0089 0090 0091,30574,22,41720,completed
+lean,2026-10-21T08:28:13.293Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,1,5,0092 0093 0094 0095 0096,25964,13,27561,completed
+lean,2026-10-21T08:28:20.740Z,labeller,(definition),naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,30245,22,31246,completed
+lean,2026-10-21T08:28:24.990Z,labeller,(definition),naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,31627,22,41587,completed
+lean,2026-10-21T08:28:29.180Z,labeller,(definition),naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,1,9,0020 0021 0022 0023 0024 0025 0026 0027 0028,29725,20,36853,completed
+lean,2026-10-21T08:29:35.207Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,2,10,0000 0001 0002 0003 0004 0005 0006 0007 0008 0009,30602,22,32506,completed
+lean,2026-10-21T08:29:39.176Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,2,10,0010 0011 0012 0013 0014 0015 0016 0017 0018 0019,31317,22,36785,completed
+lean,2026-10-21T08:29:42.924Z,labeller,(definition),zakon-za-zadalzheniyata-i-dogovorite,2,2,0020 0021,21731,6,17241,completed
+lean,2026-10-21T08:29:54.124Z,labeller,(definition),naredba-04-14-ot-9-oktomvri-2019-g-za-usloviyata-i-reda-za-sertifitsirane-na-bal,2,9,0000 0001 0002 0003 0004 0005 0006 0007 0008,30181,20,39534,completed

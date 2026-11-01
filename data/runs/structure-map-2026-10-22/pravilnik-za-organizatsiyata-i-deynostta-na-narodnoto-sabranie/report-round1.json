@@ -1,0 +1,47 @@
+{
+ "slug": "pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie",
+ "round": 1,
+ "blocks": 767,
+ "sections": 19,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 695,
+   "kind": "low_confidence",
+   "detail": "dash separator printed with the act just before the adoption formula, part of its printed block; drop plausible if separators are treated as layout"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 1
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 2,
+  "repeal_note": 1,
+  "chapter_heading": 22,
+  "article_head": 162,
+  "alinea": 336,
+  "item": 139,
+  "continuation": 1,
+  "section_heading": 14,
+  "provisions_heading": 4,
+  "paragraph_sign": 16,
+  "adoption_formula": 2,
+  "editorial_note": 1,
+  "annex_heading": 4,
+  "annex_row": 61
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site button, not act text"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 1,
+ "diff_lines": 1580
+}

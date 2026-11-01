@@ -1,0 +1,148 @@
+{
+ "slug": "zakon-za-obshtestveniya-transport",
+ "round": 0,
+ "blocks": 572,
+ "sections": 17,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 531,
+   "kind": "sign_gap",
+   "detail": "the first § of the provisions block is § 2"
+  }
+ ],
+ "omissions": [],
+ "ruled": {
+  "D-072/8": [
+   552
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "sign_gap": 1
+ },
+ "labels": {
+  "drop": 20,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 20,
+  "section_heading": 56,
+  "article_head": 106,
+  "alinea": 144,
+  "item": 205,
+  "letter": 6,
+  "provisions_heading": 2,
+  "paragraph_sign": 9,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: lex.bg button"
+  },
+  {
+   "block": 552,
+   "text": "-------------------------",
+   "note": "dashed separator line before the adoption formula, not act text"
+  },
+  {
+   "block": 554,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's own 'Relevant EU acts' list heading, not part of the act"
+  },
+  {
+   "block": 555,
+   "text": "Регламенти:",
+   "note": "lex.bg's EU acts list, sub-heading 'Регламенти:'"
+  },
+  {
+   "block": 556,
+   "text": "РЕГЛАМЕНТ (ЕС) 2024/1183 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 април 2024 г",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 557,
+   "text": "РЕГЛАМЕНТ (ЕС) 2021/782 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 29 април 2021 го",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 558,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2018/1795 НА КОМИСИЯТА от 20 ноември 2018 година за",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 559,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2017/2177 НА КОМИСИЯТА от 22 ноември 2017 година от",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 560,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2017/1926 НА КОМИСИЯТА от 31 май 2017 година за допълва",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 561,
+   "text": "РЕГЛАМЕНТ (ЕС) № 181/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 февруари 20",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 562,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1177/2010 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 20",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 563,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1073/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 октомври 2",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 564,
+   "text": "РЕГЛАМЕНТ (ЕО) № 392/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 ",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 565,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1008/2008 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 септември ",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 566,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1370/2007 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 2",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 567,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1107/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 5 юли 2006 го",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 568,
+   "text": "РЕГЛАМЕНТ (ЕО) № 261/2004 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 февруари 20",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 569,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2027/97 НА СЪВЕТА от 9 октомври 1997 година относно отговорност",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 570,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 3577/92 НА СЪВЕТА от 7 декември 1992 година относно прилаганет",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  },
+  {
+   "block": 571,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 3921/91 НА СЪВЕТА от 16 декември 1991 година относно условията",
+   "note": "lex.bg's EU acts list entry, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 38
+}

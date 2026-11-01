@@ -1,0 +1,95 @@
+{
+ "slug": "zakon-za-kadastara-i-imotniya-registar",
+ "round": 2,
+ "blocks": 993,
+ "sections": 24,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    395,
+    396
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    941
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    744
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    747
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    749
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    750
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   395,
+   396,
+   941
+  ],
+  "D-072/8": [
+   784
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 2,
+  "title": 1,
+  "prehistory": 1,
+  "part_heading": 10,
+  "article_head": 126,
+  "alinea": 278,
+  "item": 297,
+  "chapter_heading": 26,
+  "letter": 29,
+  "editorial_note": 39,
+  "provisions_heading": 53,
+  "paragraph_sign": 89,
+  "quoted": 40,
+  "adoption_formula": 1,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add to my acts button"
+  },
+  {
+   "block": 784,
+   "text": "-------------------------",
+   "note": "dashed separator line before adoption formula; could be editorial_note"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 76
+}

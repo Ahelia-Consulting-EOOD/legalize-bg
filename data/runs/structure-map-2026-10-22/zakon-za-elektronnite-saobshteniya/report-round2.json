@@ -1,0 +1,492 @@
+{
+ "slug": "zakon-za-elektronnite-saobshteniya",
+ "round": 2,
+ "blocks": 3587,
+ "sections": 85,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "duplicate_number",
+   "blocks": [
+    143,
+    144
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    86,
+    87
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    134,
+    135
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    661,
+    662
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    744,
+    745
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    761,
+    762
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    989,
+    990
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1088,
+    1089
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1166,
+    1167
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1170,
+    1171
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1569,
+    1570
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1678,
+    1679
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    1855,
+    1856
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2046,
+    2047
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2048,
+    2049
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2052,
+    2053
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2054,
+    2055
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2077,
+    2078
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2405,
+    2406
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2409,
+    2410
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2474,
+    2475
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2488,
+    2489
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2492,
+    2493
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2497,
+    2498
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2510,
+    2511
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2522,
+    2523
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2531,
+    2532
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2715
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3364
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3435,
+    3436
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3445,
+    3446
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3471
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3530,
+    3531
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2219
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   86,
+   87,
+   134,
+   135,
+   661,
+   662,
+   744,
+   745,
+   761,
+   762,
+   989,
+   990,
+   1088,
+   1089,
+   1166,
+   1167,
+   1170,
+   1171,
+   1569,
+   1570,
+   1678,
+   1679,
+   1855,
+   1856,
+   2046,
+   2047,
+   2048,
+   2049,
+   2052,
+   2053,
+   2054,
+   2055,
+   2077,
+   2078,
+   2405,
+   2406,
+   2409,
+   2410,
+   2474,
+   2475,
+   2488,
+   2489,
+   2492,
+   2493,
+   2497,
+   2498,
+   2510,
+   2511,
+   2522,
+   2523,
+   2531,
+   2532,
+   2715,
+   3364,
+   3435,
+   3436,
+   3445,
+   3446,
+   3471,
+   3530,
+   3531
+  ],
+  "D-072/6": [
+   144
+  ],
+  "D-072/8": [
+   3189
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 30,
+  "title": 1,
+  "preamble": 1,
+  "chapter_heading": 54,
+  "article_head": 528,
+  "alinea": 1153,
+  "item": 1159,
+  "letter": 150,
+  "section_heading": 116,
+  "editorial_note": 114,
+  "provisions_heading": 129,
+  "paragraph_sign": 134,
+  "quoted": 17,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 3189,
+   "text": "-------------------------",
+   "note": "dash separator line before adoption formula; editorial_note also plausible"
+  },
+  {
+   "block": 3559,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3560,
+   "text": "Директиви:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3561,
+   "text": "ДИРЕКТИВА (ЕС) 2018/1972 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3562,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3563,
+   "text": "ДИРЕКТИВА 2014/53/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 април 2014 г. за",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3564,
+   "text": "ДИРЕКТИВА 2009/140/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2009 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3565,
+   "text": "ДИРЕКТИВА 2009/136/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2009 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3566,
+   "text": "ДИРЕКТИВА 2009/114/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3567,
+   "text": "ДИРЕКТИВА 2008/63/ЕО НА КОМИСИЯТА от 20 юни 2008 година относно конкуренцията на",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3568,
+   "text": "ДИРЕКТИВА 2002/77/ЕО НА КОМИСИЯТА от 16 септември 2002 година относно конкуренци",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3569,
+   "text": "ДИРЕКТИВА 2002/58/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 юли 2002 година ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3570,
+   "text": "ДИРЕКТИВА 98/84/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 ноември 1998 годин",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3571,
+   "text": "ДИРЕКТИВА 87/372/EИО НА СЪВЕТА от 25 юни 1987 година за честотните ленти, които ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3572,
+   "text": "Регламенти:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3573,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/612 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 април 2022 год",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3574,
+   "text": "ДЕЛЕГИРАН РЕГЛАМЕНТ (ЕС) 2021/654 НА КОМИСИЯТА от 18 декември 2020 година за доп",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3575,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2019/2243 НА КОМИСИЯТА от 17 декември 2019 г. за оп",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3576,
+   "text": "РЕГЛАМЕНТ (ЕС) 2018/1971 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3577,
+   "text": "РЕГЛАМЕНТ (ЕС) 2017/2394 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 201",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3578,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2016/2286 НА КОМИСИЯТА от 15 декември 2016 година з",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3579,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3580,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3581,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1315/2013 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 декември 2",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3582,
+   "text": "РЕГЛАМЕНТ (ЕО) № 544/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 18 юни 2009 го",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3583,
+   "text": "Решения:",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3584,
+   "text": "РЕШЕНИЕ (EС) 2017/899 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 май 2017 година",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3585,
+   "text": "РЕШЕНИЕ 2003/548/ЕО НА КОМИСИЯТА от 24 юли 2003 година относно минималния пакет ",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  },
+  {
+   "block": 3586,
+   "text": "РЕШЕНИЕ № 676/2002/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 7 март 2002 година",
+   "note": "lex.bg list of relevant EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 260
+}

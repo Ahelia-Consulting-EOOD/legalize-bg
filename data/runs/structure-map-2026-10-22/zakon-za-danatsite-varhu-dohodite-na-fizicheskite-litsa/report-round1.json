@@ -1,0 +1,124 @@
+{
+ "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+ "round": 1,
+ "blocks": 1537,
+ "sections": 47,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 741,
+   "kind": "low_confidence",
+   "detail": "repeated Раздел I. rendering the pre-amendment heading; section_heading or editorial_note"
+  },
+  {
+   "block": 742,
+   "kind": "low_confidence",
+   "detail": "pre-amendment title of the repeated Раздел I.; section_heading or editorial_note"
+  },
+  {
+   "block": 843,
+   "kind": "low_confidence",
+   "detail": "chapter title carrying its repeal (ОТМ.); chapter_heading or repeal_note"
+  },
+  {
+   "block": 844,
+   "kind": "low_confidence",
+   "detail": "second rendering of Глава петнадесета (pre-repeal version); chapter_heading or editorial_note"
+  },
+  {
+   "block": 845,
+   "kind": "low_confidence",
+   "detail": "pre-repeal title of the repeated Глава петнадесета; chapter_heading or editorial_note"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 740,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 741"
+  }
+ ],
+ "exception_kinds": {
+  "low_confidence": 5
+ },
+ "source_finding_kinds": {
+  "empty_section": 1
+ },
+ "labels": {
+  "drop": 10,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 12,
+  "chapter_heading": 34,
+  "article_title": 92,
+  "article_head": 102,
+  "item": 375,
+  "alinea": 312,
+  "letter": 93,
+  "section_heading": 32,
+  "continuation": 21,
+  "provisions_heading": 147,
+  "paragraph_sign": 156,
+  "editorial_note": 145,
+  "adoption_formula": 1,
+  "annex_heading": 1,
+  "repeal_note": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1528,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act; editorial_note also plausible"
+  },
+  {
+   "block": 1529,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1530,
+   "text": "ДИРЕКТИВА (ЕС) 2015/1535 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 септември 201",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1531,
+   "text": "ДИРЕКТИВА 2009/133/ЕО НА СЪВЕТА от 19 октомври 2009 година относно общата систем",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1532,
+   "text": "ДИРЕКТИВА 2009/55/ЕО НА СЪВЕТА от 25 май 2009 година за освобождаване от данъчно",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1533,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1534,
+   "text": "РЕГЛАМЕНТ (ЕС) 2022/2472 НА КОМИСИЯТА от 14 декември 2022 година относно деклари",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1535,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/972 НА КОМИСИЯТА от 2 юли 2020 година за изменение на Реглам",
+   "note": "lex.bg related EU legislation list"
+  },
+  {
+   "block": 1536,
+   "text": "РЕГЛАМЕНТ (ЕС) № 702/2014 НА КОМИСИЯТА от 25 юни 2014 година относно деклариране",
+   "note": "lex.bg related EU legislation list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 5,
+ "diff_lines": 484
+}

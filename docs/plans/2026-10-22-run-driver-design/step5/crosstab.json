@@ -1,0 +1,55 @@
+{
+ "unknown": {
+  "drop": 16
+ },
+ "Title": {
+  "title": 17,
+  "part_heading": 96,
+  "chapter_heading": 737,
+  "article_title": 4012,
+  "section_heading": 857,
+  "drop": 48,
+  "editorial_note": 9,
+  "subsection_heading": 32,
+  "provisions_heading": 1192,
+  "preamble": 1
+ },
+ "PreHistory": {
+  "prehistory": 16,
+  "editorial_note": 1
+ },
+ "Article": {
+  "preamble": 10,
+  "article_head": 5684,
+  "alinea": 9889,
+  "item": 7156,
+  "letter": 949,
+  "continuation": 144,
+  "drop": 304,
+  "unnumbered_item": 22,
+  "repeal_note": 25,
+  "table_row": 814,
+  "editorial_note": 9,
+  "annex_heading": 25,
+  "annex_row": 6110,
+  "chapter_heading": 1,
+  "unnumbered_alinea": 260
+ },
+ "FinalEdictsArticle": {
+  "paragraph_sign": 1389,
+  "item": 1612,
+  "letter": 766,
+  "continuation": 71,
+  "alinea": 539,
+  "quoted": 425,
+  "drop": 7,
+  "adoption_formula": 8,
+  "editorial_note": 793,
+  "annex_heading": 3,
+  "repeal_note": 1,
+  "unnumbered_alinea": 2,
+  "provisions_heading": 15,
+  "annex_row": 32,
+  "section_heading": 2
+ }
+}

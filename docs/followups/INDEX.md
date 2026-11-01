@@ -3,6 +3,7 @@
 Durable records of deferred findings (issues discovered in passing, out of scope for the current change).
 One line per follow-up, newest first.
 
+- [Is the Legalize way of recording acts fully suitable for this corpus?](2026-10-22-legalize-format-suitability.md) - the owner's question of 22 October 2026, recorded for later investigation and kept out of the current discussion and plan
 - [The lex.bg refresh of 2026-10-21 was started on the old script path by the session's own decision](2026-10-21-old-path-refresh-run-without-owner-go.md) - a protected surface and a corpus-writing run are the owner's to decide; the run was stopped at 1,658 acts with 80 unmerged commits on `refresh/2026-10-21`; the owner decides archive or resume
 - [Predecessor acts absent from the corpus, revealed by ДВ materials](2026-09-05-predecessor-acts-absent-from-the-corpus.md) - 722 Gazette materials over 207 corpus acts name a same-titled predecessor the corpus does not hold; the coverage map files them as `predecessor-materials.csv` with a reason, never as chain omissions or `estado` disputes; registered as FR-043, owner decides corpus scope
 - [`numbered_key` reads a cited regulation's number as the act's own](2026-09-05-numbered-key-borrowed-from-a-cited-regulation.md) - 7 of 1,987 keyed corpus acts carry a key borrowed from a Регламент (ЕО), a Указ, a Решение на МС or a приложение their title cites; contained by the floor, the digit guard and `content_mismatch`; fix by binding the number to the act-type noun

@@ -44,19 +44,12 @@ no_article_anchor:
   expires: "the article-anchor detector ships and its corpus-wide census replaces this empty map"
   acts: {}  # detector not yet implemented
 # Census of 2026-09-05 over the committed corpus: 771 occurrences over 80 acts.
+# Acts leave this waiver in their own commits as they are repaired (D-072 ruling 13); the acts below are the live census.
 tag_remnants:
   ruling: "W-002: FR-035 tag remnants (SUP>, /span>, /STRONG>) pending the Part V sweep; fixed in fetcher/bg/text_parser.py first"
   owner_signed: 2026-09-05
   expires: "Part V repair sweep (PR #23 phase 7); each act leaves the waiver as it is repaired"
   acts:
-    administrativnoprotsesualen-kodeks: 1
-    danachno-osiguritelen-protsesualen-kodeks: 22
-    grazhdanski-protsesualen-kodeks: 20
-    kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g: 1
-    kodeks-na-truda: 1
-    kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g: 15
-    nakazatelen-kodeks: 1
-    nakazatelno-protsesualen-kodeks: 12
     naredba-1-ot-1-yuli-2016-g-za-odobryavane-na-metodika-za-prilagane-na-izklyuchen: 5
     naredba-11-ot-30-oktomvri-2023-g-za-strukturata-i-organizatsiyata-na-deynostta-n: 1
     naredba-16-ot-12-avgust-1999-g-za-ogranichavane-emisiite-na-letlivi-organichni-s: 3
@@ -85,23 +78,14 @@ tag_remnants:
     pravilnik-za-prilagane-na-zakona-za-chuzhdentsite-v-republika-balgariya: 1
     pravilnik-za-uskoreni-proizvodstva-po-arbitrazhni-dela: 1
     pravilnik-za-ustroystvoto-i-deynostta-na-dializnite-tsentrove: 1
-    semeen-kodeks: 6
-    targovski-zakon: 2
     zakon-za-aktsizite-i-danachnite-skladove: 1
-    zakon-za-avtomobilnite-prevozi: 1
     zakon-za-avtorskoto-pravo-i-srodnite-mu-prava: 32
     zakon-za-borba-sreshtu-protivoobshtestvenite-proyavi-na-maloletnite-i-nepalnolet: 2
     zakon-za-chistotata-na-atmosferniya-vazduh: 1
     zakon-za-darzhavna-agentsiya-natsionalna-sigurnost: 9
     zakon-za-darzhavniya-byudzhet-na-republika-balgariya-za-2025-g: 15
-    zakon-za-dostap-do-obshtestvena-informatsiya: 2
-    zakon-za-dvizhenieto-po-patishtata: 3
-    zakon-za-elektronnite-saobshteniya: 1
-    zakon-za-energetikata: 1
     zakon-za-furazhite: 2
-    zakon-za-kadastara-i-imotniya-registar: 4
     zakon-za-komisiyata-za-finansov-nadzor: 3
-    zakon-za-korporativnoto-podohodno-oblagane: 40
     zakon-za-kreditnite-institutsii: 1
     zakon-za-lekarstvenite-produkti-v-humannata-meditsina: 4
     zakon-za-litsata-obsluzhvashti-krediti-i-kupuvachite-na-krediti: 1
@@ -112,7 +96,6 @@ tag_remnants:
     zakon-za-notariusite-i-notarialnata-deynost-zagl-izm-dv-br-123-ot-1997-g: 4
     zakon-za-obshtestvenite-biblioteki: 2
     zakon-za-obshtite-iziskvaniya-za-bezopasnost-pri-predostavyane-na-atraktsionni-u: 1
-    zakon-za-patishtata: 3
     zakon-za-pazarite-na-finansovi-instrumenti: 9
     zakon-za-pazarite-na-kriptoaktivi: 2
     zakon-za-pokritite-obligatsii: 2
@@ -125,7 +108,6 @@ tag_remnants:
     zakon-za-trudovata-migratsiya-i-trudovata-mobilnost: 6
     zakon-za-vazstanovyavane-i-prestrukturirane-na-kreditni-institutsii-i-investitsi: 19
     zakon-za-veterinarnomeditsinskata-deynost: 2
-    zakon-za-zadalzheniyata-i-dogovorite: 2
     zakon-za-zakrivane-na-natsionalnata-sluzhba-po-zarnoto: 5
     zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-: 1
     zakon-za-zdravnoto-osiguryavane: 1
@@ -134,5 +116,4 @@ chrome:
   ruling: "W-003: FR-036 lex.bg sidebar chrome in one act pending re-fetch"
   owner_signed: 2026-09-05
   expires: "Part V repair sweep (PR #23 phase 7); each act leaves the waiver as it is repaired"
-  acts:
-    naredba-5-ot-10-may-1999-g-za-strukturata-na-zapisa-v-tsifrov-vid-na-kadastralni: 2
+  acts: {}

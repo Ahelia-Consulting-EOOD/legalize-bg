@@ -1,0 +1,152 @@
+{
+ "slug": "pravilnik-za-organizatsiyata-i-deynostta-na-narodnoto-sabranie",
+ "round": 0,
+ "blocks": 767,
+ "sections": 19,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 360,
+   "kind": "low_confidence",
+   "detail": "closing sentence of ал. 1 after its items, before (2); unnumbered_alinea also plausible"
+  },
+  {
+   "block": 695,
+   "kind": "low_confidence",
+   "detail": "dash separator line printed before the adoption formula; drop also plausible"
+  },
+  {
+   "block": 725,
+   "kind": "low_confidence",
+   "detail": "Чл. 1 of the annex's financial rules, not of the act; article_head plausible but would collide with the act's Чл. 1"
+  },
+  {
+   "block": 731,
+   "kind": "low_confidence",
+   "detail": "Чл. 2 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 2"
+  },
+  {
+   "block": 733,
+   "kind": "low_confidence",
+   "detail": "Чл. 3 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 3"
+  },
+  {
+   "block": 734,
+   "kind": "low_confidence",
+   "detail": "Чл. 4 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 4"
+  },
+  {
+   "block": 737,
+   "kind": "low_confidence",
+   "detail": "Чл. 5 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 5"
+  },
+  {
+   "block": 738,
+   "kind": "low_confidence",
+   "detail": "Чл. 6 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 6"
+  },
+  {
+   "block": 743,
+   "kind": "low_confidence",
+   "detail": "Чл. 7 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 7"
+  },
+  {
+   "block": 745,
+   "kind": "low_confidence",
+   "detail": "Чл. 8 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 8"
+  },
+  {
+   "block": 746,
+   "kind": "low_confidence",
+   "detail": "Чл. 9 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 9"
+  },
+  {
+   "block": 747,
+   "kind": "low_confidence",
+   "detail": "Чл. 10 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 10"
+  },
+  {
+   "block": 753,
+   "kind": "low_confidence",
+   "detail": "Чл. 11 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 11"
+  },
+  {
+   "block": 754,
+   "kind": "low_confidence",
+   "detail": "Чл. 12 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 12"
+  },
+  {
+   "block": 755,
+   "kind": "low_confidence",
+   "detail": "Чл. 13 of the annex's financial rules; article_head plausible but would collide with the act's Чл. 13"
+  },
+  {
+   "block": 760,
+   "kind": "low_confidence",
+   "detail": "Чл. 14 of the rules in the annex (Приложение към правилника), not an article of the act; article_head plausible if annex articles are addressed"
+  },
+  {
+   "block": 761,
+   "kind": "low_confidence",
+   "detail": "Чл. 15 (1) inside the annex; article_head plausible if annex articles are addressed"
+  },
+  {
+   "block": 762,
+   "kind": "low_confidence",
+   "detail": "alinea (2) of annex Чл. 15; alinea plausible if annex articles are addressed"
+  },
+  {
+   "block": 763,
+   "kind": "low_confidence",
+   "detail": "alinea (3) of annex Чл. 15; alinea plausible if annex articles are addressed"
+  },
+  {
+   "block": 764,
+   "kind": "low_confidence",
+   "detail": "Чл. 16 (1) inside the annex; article_head plausible if annex articles are addressed"
+  },
+  {
+   "block": 765,
+   "kind": "low_confidence",
+   "detail": "alinea (2) of annex Чл. 16; alinea plausible if annex articles are addressed"
+  },
+  {
+   "block": 766,
+   "kind": "low_confidence",
+   "detail": "Чл. 17 inside the annex; article_head plausible if annex articles are addressed"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 22
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 1,
+  "title": 1,
+  "prehistory": 2,
+  "repeal_note": 1,
+  "chapter_heading": 22,
+  "article_head": 162,
+  "alinea": 336,
+  "item": 139,
+  "continuation": 1,
+  "section_heading": 14,
+  "provisions_heading": 4,
+  "paragraph_sign": 16,
+  "adoption_formula": 2,
+  "editorial_note": 1,
+  "annex_heading": 4,
+  "annex_row": 61
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site button, not act text"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 22,
+ "diff_lines": 1580
+}

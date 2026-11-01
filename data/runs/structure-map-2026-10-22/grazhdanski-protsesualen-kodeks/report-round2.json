@@ -1,0 +1,386 @@
+{
+ "slug": "grazhdanski-protsesualen-kodeks",
+ "round": 2,
+ "blocks": 3818,
+ "sections": 131,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 3569,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '8.Член 708 се изменя така:'"
+  }
+ ],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3001,
+    3002
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3025,
+    3026
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3040
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3085,
+    3086
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3175
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3258
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    3729
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    14
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    349
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    931
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    1473
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2606
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2770
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    2864
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3387
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3393
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3394
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3396
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3398
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3399
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3400
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3405
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3412
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3417
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3420
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3423
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    3424
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   3001,
+   3002,
+   3025,
+   3026,
+   3040,
+   3085,
+   3086,
+   3175,
+   3258,
+   3729
+  ],
+  "D-072/8": [
+   3585
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "malformed_head": 1
+ },
+ "labels": {
+  "drop": 31,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "part_heading": 26,
+  "chapter_heading": 138,
+  "article_title": 727,
+  "article_head": 727,
+  "alinea": 1044,
+  "item": 642,
+  "section_heading": 90,
+  "continuation": 2,
+  "provisions_heading": 75,
+  "editorial_note": 58,
+  "paragraph_sign": 122,
+  "letter": 41,
+  "quoted": 91,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "lex.bg site button, not the act"
+  },
+  {
+   "block": 4,
+   "text": "Таблица за съответствие между разпоредбите на ГПК (нов) и ГПК (отм.)",
+   "note": "lex.bg link to a correspondence table, not act text; preamble plausible"
+  },
+  {
+   "block": 3001,
+   "text": "Раздел I.",
+   "note": "repeated 'Раздел I.' that opens lex.bg's stale duplicate of the section heading (old title in 3002, without the 2024 amendment, already dropped); the current heading is the earlier 'Раздел I.' with title 3000; keeping it would duplicate the section address"
+  },
+  {
+   "block": 3002,
+   "text": "Връчване по Регламент (ЕО) № 1393/2007 на Европейския парламент и на Съвета от 1",
+   "note": "superseded wording of the Section I heading (Регламент (ЕО) № 1393/2007, only the 2009 amendment) printed again by lex.bg after the current heading (Регламент (ЕС) 2020/1784, amended 2024); stale duplicate together with the repeated 'Раздел I.' in 3001, not a second section"
+  },
+  {
+   "block": 3025,
+   "text": "Раздел II.",
+   "note": "repeated 'Раздел II.' opening lex.bg's stale duplicate of the section heading (old title in 3026, Регламент (ЕО) № 1206/2001, before the 2024 change, already dropped); the current heading is the earlier 'Раздел II.' with title 3024; keeping it would duplicate the section address"
+  },
+  {
+   "block": 3026,
+   "text": "Събиране на доказателства по Регламент (ЕО) № 1206/2001 на Съвета относно сътруд",
+   "note": "superseded wording of the Section II heading (Регламент (ЕО) № 1206/2001, before the 2024 change) printed again by lex.bg after the current heading (Регламент (ЕС) 2020/1783); stale duplicate together with the repeated 'Раздел II.' in 3025, not a second section"
+  },
+  {
+   "block": 3040,
+   "text": "Глава петдесет и шеста \"а\".",
+   "note": "lex.bg repeats the chapter number line after the chapter's title (the heading 'Глава петдесет и шеста \"а\".' already precedes title 3039); no title follows it, next block is an article title; keeping it would create a second Chapter 56a address"
+  },
+  {
+   "block": 3085,
+   "text": "Раздел II.",
+   "note": "repeated 'Раздел II.' opening lex.bg's stale duplicate of the section heading (old title in 3086, without the 2015 amendment, already dropped); the current heading is the earlier 'Раздел II.' with title 3084; keeping it would duplicate the section address"
+  },
+  {
+   "block": 3086,
+   "text": "Производство по признаване и допускане на изпълнението на решения и актове, пост",
+   "note": "superseded wording of the Section II heading (before the 2015 amendment) printed again by lex.bg after the current heading in 3084; stale duplicate together with the repeated 'Раздел II.' in 3085, not a second section"
+  },
+  {
+   "block": 3175,
+   "text": "Глава петдесет и осма \"б\".",
+   "note": "lex.bg repeats the chapter number line after the chapter's title (the heading 'Глава петдесет и осма \"б\".' already precedes title 3174); no title follows it, next block is an article title; keeping it would create a second Chapter 58b address"
+  },
+  {
+   "block": 3258,
+   "text": "Допълнителни разпоредби",
+   "note": "lex.bg repeats the heading line after its editorial note (the heading 'Допълнителни разпоредби' already precedes note 3257, same pattern as the repeated chapter and section lines in this act); keeping it would print the provisions heading twice before § 1"
+  },
+  {
+   "block": 3585,
+   "text": "-------------------------",
+   "note": "separator rule line before the adoption formula, not act text"
+  },
+  {
+   "block": 3799,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg EU-legislation reference block, not part of the act"
+  },
+  {
+   "block": 3800,
+   "text": "Директиви:",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3801,
+   "text": "ДИРЕКТИВА (ЕС) 2024/1069 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 април 2024 г",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3802,
+   "text": "ДИРЕКТИВА (ЕС) 2020/1828 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3803,
+   "text": "ДИРЕКТИВА 2000/31/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2000 година з",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3804,
+   "text": "Регламенти:",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3805,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1784 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3806,
+   "text": "РЕГЛАМЕНТ (ЕС) 2020/1783 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 25 ноември 2020",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3807,
+   "text": "РЕГЛАМЕНТ (ЕС) 2019/1111 НА СЪВЕТА от 25 юни 2019 години относно компетентността",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3808,
+   "text": "РЕГЛАМЕНТ (ЕС) 2015/2421 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 декември 201",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3809,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) № 1329/2014 НА КОМИСИЯТА от 9 декември 2014 година ",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3810,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3811,
+   "text": "РЕГЛАМЕНТ (ЕС) № 655/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 15 май 2014 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3812,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1215/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3813,
+   "text": "РЕГЛАМЕНТ (ЕС) № 650/2012 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 4 юли 2012 год",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3814,
+   "text": "РЕГЛАМЕНТ (ЕО) № 4/2009 НА СЪВЕТА от 18 декември 2008 година относно компетентно",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3815,
+   "text": "РЕГЛАМЕНТ (ЕО) № 861/2007 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 11 юли 2007 го",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3816,
+   "text": "РЕГЛАМЕНТ (ЕО) № 1896/2006 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 декември 2",
+   "note": "lex.bg EU-legislation reference block"
+  },
+  {
+   "block": 3817,
+   "text": "РЕГЛАМЕНТ(ЕО) № 805/2004 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 21 април 2004 г",
+   "note": "lex.bg EU-legislation reference block"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 2112
+}

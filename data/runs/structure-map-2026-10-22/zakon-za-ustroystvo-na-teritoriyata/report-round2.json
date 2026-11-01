@@ -1,0 +1,150 @@
+{
+ "slug": "zakon-za-ustroystvo-na-teritoriyata",
+ "round": 2,
+ "blocks": 2673,
+ "sections": 66,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 2224,
+   "kind": "malformed_head",
+   "detail": "§ head without its sign: '35. Законът влиза в сила от де'"
+  },
+  {
+   "block": 2587,
+   "kind": "malformed_head",
+   "detail": "§ head without its sign: '48. Строежите от пета категори'"
+  },
+  {
+   "block": 2102,
+   "kind": "item_gap",
+   "detail": "86. after 84.: the page skips a number"
+  }
+ ],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    546,
+    547
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2486
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2496
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2595
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2602
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    2647,
+    2648
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   546,
+   547,
+   2486,
+   2496,
+   2595,
+   2602,
+   2647,
+   2648
+  ],
+  "D-072/8": [
+   2192
+  ],
+  "D-072/judgement": [
+   2493
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "malformed_head": 2,
+  "item_gap": 1
+ },
+ "labels": {
+  "drop": 7,
+  "title": 1,
+  "prehistory": 1,
+  "part_heading": 10,
+  "chapter_heading": 46,
+  "article_head": 285,
+  "alinea": 986,
+  "item": 777,
+  "section_heading": 76,
+  "letter": 93,
+  "editorial_note": 77,
+  "continuation": 3,
+  "repeal_note": 1,
+  "provisions_heading": 144,
+  "paragraph_sign": 160,
+  "quoted": 5,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 2192,
+   "text": "-------------------------",
+   "note": "dashed separator rule before the adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 2668,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  },
+  {
+   "block": 2669,
+   "text": "Директиви:",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  },
+  {
+   "block": 2670,
+   "text": "ДИРЕКТИВА 2014/94/EC НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 22 октомври 2014 го",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  },
+  {
+   "block": 2671,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  },
+  {
+   "block": 2672,
+   "text": "РЕГЛАМЕНТ (ЕС) № 305/2011 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 9 март 2011 го",
+   "note": "lex.bg related EU legislation block, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 1382
+}

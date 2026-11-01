@@ -1,0 +1,78 @@
+{
+ "slug": "zakon-za-yuridicheskite-litsa-s-nestopanska-tsel",
+ "round": 2,
+ "blocks": 433,
+ "sections": 14,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    320,
+    321
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   320,
+   321
+  ],
+  "D-072/8": [
+   357
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 5,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 8,
+  "article_title": 56,
+  "article_head": 56,
+  "alinea": 126,
+  "item": 121,
+  "letter": 4,
+  "section_heading": 10,
+  "provisions_heading": 17,
+  "paragraph_sign": 18,
+  "adoption_formula": 1,
+  "editorial_note": 9
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 357,
+   "text": "-------------------------",
+   "note": "dashed separator rule before the adoption formula; could be editorial_note"
+  },
+  {
+   "block": 430,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg block of related EU acts, not part of the act"
+  },
+  {
+   "block": 431,
+   "text": "Директиви:",
+   "note": "lex.bg block of related EU acts, not part of the act"
+  },
+  {
+   "block": 432,
+   "text": "ДИРЕКТИВА (ЕС) 2015/849 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 май 2015 годи",
+   "note": "lex.bg block of related EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 168
+}

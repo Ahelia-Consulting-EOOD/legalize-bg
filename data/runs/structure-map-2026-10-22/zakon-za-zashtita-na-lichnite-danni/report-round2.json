@@ -1,0 +1,180 @@
+{
+ "slug": "zakon-za-zashtita-na-lichnite-danni",
+ "round": 2,
+ "blocks": 743,
+ "sections": 19,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    126,
+    127
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    160,
+    161
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    211,
+    212
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    227,
+    228
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    243,
+    244
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    294,
+    295
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    396
+   ]
+  },
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    683
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   126,
+   127,
+   160,
+   161,
+   211,
+   212,
+   227,
+   228,
+   243,
+   244,
+   294,
+   295,
+   396,
+   683
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 14,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 20,
+  "article_head": 132,
+  "alinea": 221,
+  "item": 226,
+  "letter": 8,
+  "editorial_note": 37,
+  "section_heading": 10,
+  "provisions_heading": 37,
+  "paragraph_sign": 33,
+  "quoted": 1,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 396,
+   "text": "Раздел III.",
+   "note": "rendering duplicate of the 'Раздел III.' heading already printed before its title; not part of the act"
+  },
+  {
+   "block": 731,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg appended list of related EU acts, not part of the act"
+  },
+  {
+   "block": 732,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 733,
+   "text": "ДИРЕКТИВА (ЕС) 2016/680 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 734,
+   "text": "ДИРЕКТИВА 2002/58/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 12 юли 2002 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 735,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 736,
+   "text": "РЕГЛАМЕНТ (ЕС) 2018/1725 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 октомври 201",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 737,
+   "text": "РЕГЛАМЕНТ (ЕС) 2016/679 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 април 2016 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 738,
+   "text": "РЕГЛАМЕНТ (ЕС) № 910/2014 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 го",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 739,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2380/74 НА СЪВЕТА от 17 септември 1974 година за приемане на р",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 740,
+   "text": "Решения:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 741,
+   "text": "РЕШЕНИЕ 2001/497/ЕО НА КОМИСИЯТА от 15 юни 2001 година относно общите договорни ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 742,
+   "text": "РЕШЕНИЕ 2000/518/ЕО НА КОМИСИЯТА от 26 юли 2000 година съгласно Директива 95/46/",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 76
+}

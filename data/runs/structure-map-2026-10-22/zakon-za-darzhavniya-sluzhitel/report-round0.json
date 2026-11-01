@@ -1,0 +1,63 @@
+{
+ "slug": "zakon-za-darzhavniya-sluzhitel",
+ "round": 0,
+ "blocks": 1314,
+ "sections": 43,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 787,
+   "kind": "low_confidence",
+   "detail": "former chapter heading reprinted by lex.bg after the Загл. изм. note; else chapter_heading"
+  },
+  {
+   "block": 788,
+   "kind": "low_confidence",
+   "detail": "former chapter title superseded from 01.06.2026, reprinted by lex.bg; else chapter_heading"
+  },
+  {
+   "block": 915,
+   "kind": "low_confidence",
+   "detail": "former heading reprinted by lex.bg after the Загл. изм. note; else provisions_heading"
+  }
+ ],
+ "source_findings": [],
+ "exception_kinds": {
+  "low_confidence": 3
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 2,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 20,
+  "article_title": 169,
+  "article_head": 169,
+  "alinea": 371,
+  "item": 262,
+  "letter": 7,
+  "section_heading": 24,
+  "editorial_note": 68,
+  "provisions_heading": 103,
+  "paragraph_sign": 108,
+  "quoted": 7,
+  "adoption_formula": 1,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 981,
+   "text": "-------------------------",
+   "note": "separator dash line before adoption formula; editorial_note also plausible"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 3,
+ "diff_lines": 677
+}

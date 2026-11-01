@@ -1,0 +1,181 @@
+{
+ "slug": "kodeks-na-targovskoto-koraboplavane-zagl-izm-dv-br-113-ot-2002-g",
+ "round": 2,
+ "blocks": 2445,
+ "sections": 87,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "superseded_heading",
+   "blocks": [
+    589,
+    590
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    613
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/1": [
+   589,
+   590
+  ],
+  "D-072/judgement": [
+   2270
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 24,
+  "title": 1,
+  "prehistory": 1,
+  "chapter_heading": 44,
+  "section_heading": 50,
+  "article_title": 471,
+  "article_head": 493,
+  "alinea": 687,
+  "item": 441,
+  "letter": 95,
+  "unnumbered_item": 2,
+  "provisions_heading": 55,
+  "editorial_note": 36,
+  "paragraph_sign": 43,
+  "unnumbered_alinea": 1,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 2269,
+   "text": "-------------------------",
+   "note": "separator rule line, not act text; could be kept as a layout line"
+  },
+  {
+   "block": 2423,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's list of related EU acts, not part of the act"
+  },
+  {
+   "block": 2424,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2425,
+   "text": "ДИРЕКТИВА (ЕС) 2019/883 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 17 април 2019 г.",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2426,
+   "text": "ДИРЕКТИВА (ЕС) 2016/2309 НА КОМИСИЯТА от 16 декември 2016 година за адаптиране з",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2427,
+   "text": "ДИРЕКТИВА (EС) 2016/1629 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 септември 20",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2428,
+   "text": "ДИРЕКТИВА (ЕС) 2016/844 НА КОМИСИЯТА от 27 май 2016 година за изменение на Дирек",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2429,
+   "text": "ДИРЕКТИВА НА СЪВЕТА 2014/112/ЕС от 19 декември 2014 година за прилагане на Европ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2430,
+   "text": "ДИРЕКТИВА 2014/90/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2431,
+   "text": "ДИРЕКТИВА 2009/100/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2432,
+   "text": "ДИРЕКТИВА 2014/90/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 юли 2014 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2433,
+   "text": "ДИРЕКТИВА 2009/45/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 май 2009 година з",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2434,
+   "text": "ДИРЕКТИВА 2009/21/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2435,
+   "text": "ДИРЕКТИВА 2009/20/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2436,
+   "text": "ДИРЕКТИВА 2009/18/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2437,
+   "text": "ДИРЕКТИВА 2009/15/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2438,
+   "text": "ДИРЕКТИВА 2008/68/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 септември 2008 г",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2439,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2440,
+   "text": "РЕГЛАМЕНТ (ЕС) 2023/988 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 10 май 2023 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2441,
+   "text": "РЕГЛАМЕНТ (ЕС) № 1177/2010 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 24 ноември 20",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2442,
+   "text": "РЕГЛАМЕНТ (ЕО) № 392/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2443,
+   "text": "РЕГЛАМЕНТ (ЕО) № 391/2009 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 23 април 2009 ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 2444,
+   "text": "РЕГЛАМЕНТ № 718/1999 НА СЪВЕТА от 29 март 1999 година относно политиката за капа",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 1327
+}

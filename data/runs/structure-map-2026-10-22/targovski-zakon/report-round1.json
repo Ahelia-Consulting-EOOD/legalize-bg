@@ -1,0 +1,377 @@
+{
+ "slug": "targovski-zakon",
+ "round": 1,
+ "blocks": 5267,
+ "sections": 184,
+ "answers_missing": [],
+ "exceptions": [
+  {
+   "block": 1342,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел I.'"
+  },
+  {
+   "block": 1343,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Общи разпоредби (Нов - ДВ, бр. 66 от 2023 г.)'"
+  },
+  {
+   "block": 1370,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II.'"
+  },
+  {
+   "block": 1371,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Капитал и дружествени дялове (Нов - ДВ, бр. 66 от 2023 г.)'"
+  },
+  {
+   "block": 1417,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел III.'"
+  },
+  {
+   "block": 1418,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Права и задължения на съдружниците (Нов - ДВ, бр. 66 от 2023'"
+  },
+  {
+   "block": 1438,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел IV.'"
+  },
+  {
+   "block": 1439,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Управление (Нов - ДВ, бр. 66 от 2023 г.)'"
+  },
+  {
+   "block": 1528,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел V.'"
+  },
+  {
+   "block": 1901,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел V.'"
+  },
+  {
+   "block": 1902,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'ПРЕОБРАЗУВАНЕ С УЧАСТИЕ НА ДРУЖЕСТВА ОТ ДЪРЖАВИ - ЧЛЕНКИ НА '"
+  },
+  {
+   "block": 2696,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II.'"
+  },
+  {
+   "block": 2697,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'ДОГОВОР ЗА РАЗПЛАЩАТЕЛНА СМЕТКА'"
+  },
+  {
+   "block": 2767,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел VIII.'"
+  },
+  {
+   "block": 2768,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'БАНКОВ ПРЕВОД'"
+  },
+  {
+   "block": 3861,
+   "kind": "drop_inside_act",
+   "detail": "a line between placed blocks was dropped: 'Раздел II \"а\".'"
+  },
+  {
+   "block": 222,
+   "kind": "low_confidence",
+   "detail": "unnumbered lex.bg history remark on a former paragraph repealed in 2006; al. 6 already exists above, so no new address; repeal_note also plausible"
+  },
+  {
+   "block": 1529,
+   "kind": "low_confidence",
+   "detail": "second line of the Раздел V. heading at 1528; the label follows the first line; if the heading is a duplicate of the earlier one, both lines would need the same treatment, so drop is the alternative"
+  },
+  {
+   "block": 4853,
+   "kind": "low_confidence",
+   "detail": "lex.bg's publication reference of the amending act, printed under its provisions heading; provisions_heading also plausible since it is set in the heading's capitals as a third heading line"
+  },
+  {
+   "block": 4860,
+   "kind": "low_confidence",
+   "detail": "lex.bg's publication reference of the other act, printed under its provisions heading; provisions_heading also plausible since it is set in the heading's capitals as a third heading line"
+  }
+ ],
+ "source_findings": [
+  {
+   "block": 1404,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1524,
+   "kind": "fragment",
+   "detail": "contains a markup fragment"
+  },
+  {
+   "block": 1527,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 1529"
+  },
+  {
+   "block": 3860,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3862"
+  },
+  {
+   "block": 3868,
+   "kind": "empty_section",
+   "detail": "heading with no body before block 3869"
+  }
+ ],
+ "exception_kinds": {
+  "drop_inside_act": 16,
+  "low_confidence": 4
+ },
+ "source_finding_kinds": {
+  "fragment": 2,
+  "empty_section": 3
+ },
+ "labels": {
+  "drop": 42,
+  "title": 1,
+  "prehistory": 2,
+  "part_heading": 16,
+  "chapter_heading": 124,
+  "article_title": 1010,
+  "article_head": 1012,
+  "item": 979,
+  "alinea": 1514,
+  "section_heading": 212,
+  "editorial_note": 71,
+  "subsection_heading": 8,
+  "letter": 32,
+  "provisions_heading": 122,
+  "paragraph_sign": 121,
+  "continuation": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 1342,
+   "text": "Раздел I.",
+   "note": "second rendering of the heading Раздел I. already placed just before (context line plus block 1341); with block 1343 it repeats the same section heading, so labelling it section_heading would duplicate the address; section_heading plausible if the first rendering is dropped instead"
+  },
+  {
+   "block": 1343,
+   "text": "Общи разпоредби (Нов - ДВ, бр. 66 от 2023 г.)",
+   "note": "second rendering, in sentence case, of the section heading ОБЩИ РАЗПОРЕДБИ already placed as block 1341; consistent with block 1342 being dropped as the repeated Раздел I.; section_heading plausible if the duplicate is kept and the first rendering dropped"
+  },
+  {
+   "block": 1370,
+   "text": "Раздел II.",
+   "note": "lex.bg second rendering of Раздел II. already placed with block 1369; same pattern as the repeated Раздел I. at 1342-1343; the following sentence-case line 1371 is its pair and would then be the duplicate too; section_heading plausible if the first rendering is the one dropped"
+  },
+  {
+   "block": 1371,
+   "text": "Капитал и дружествени дялове (Нов - ДВ, бр. 66 от 2023 г.)",
+   "note": "sentence-case second rendering of the Раздел II heading КАПИТАЛ И ДРУЖЕСТВЕНИ ДЯЛОВЕ already placed at 1369; pair of the repeated Раздел II. at 1370; section_heading plausible if the first rendering is the one dropped"
+  },
+  {
+   "block": 1417,
+   "text": "Раздел III.",
+   "note": "lex.bg second rendering of Раздел III. already placed with block 1416; same duplicate pattern as Раздел I and II of this chapter; section_heading plausible if the first rendering is the one dropped"
+  },
+  {
+   "block": 1418,
+   "text": "Права и задължения на съдружниците (Нов - ДВ, бр. 66 от 2023 г.)",
+   "note": "sentence-case second rendering of the Раздел III heading already placed at 1416; pair of the repeated Раздел III. at 1417; section_heading plausible if the first rendering is the one dropped"
+  },
+  {
+   "block": 1438,
+   "text": "Раздел IV.",
+   "note": "lex.bg second rendering of Раздел IV. already placed with block 1437; same duplicate pattern as Раздел I to III of this chapter; section_heading plausible if the first rendering is the one dropped"
+  },
+  {
+   "block": 1439,
+   "text": "Управление (Нов - ДВ, бр. 66 от 2023 г.)",
+   "note": "sentence-case second rendering of the Раздел IV heading УПРАВЛЕНИЕ already placed at 1437; pair of the repeated Раздел IV. at 1438; section_heading plausible if the first rendering is the one dropped"
+  },
+  {
+   "block": 1528,
+   "text": "Раздел V.",
+   "note": "lex.bg second rendering of Раздел V. already placed with block 1527; same duplicate pattern as Раздел I to IV of this chapter; the following sentence-case line 1529 is its pair; section_heading plausible if the first rendering is the one dropped"
+  },
+  {
+   "block": 1901,
+   "text": "Раздел V.",
+   "note": "second Раздел V. line whose title line (1902) carries the wording before the 2024 title change, while 1900 already carries the changed title; looks like a stale duplicate heading in lex.bg's rendering; section_heading if it is the real heading"
+  },
+  {
+   "block": 1902,
+   "text": "ПРЕОБРАЗУВАНЕ С УЧАСТИЕ НА ДРУЖЕСТВА ОТ ДЪРЖАВИ - ЧЛЕНКИ НА ЕВРОПЕЙСКИЯ СЪЮЗ, ИЛ",
+   "note": "title wording before the 2024 change, repeated after the heading that already carries the changed title (1900); second line of the stale duplicate Раздел V. at 1901; section_heading if the duplicate is kept"
+  },
+  {
+   "block": 2696,
+   "text": "Раздел II.",
+   "note": "second Раздел II. line repeating the heading just above (2695, which carries the 2009 repeal remark) without the remark; looks like a stale duplicate in lex.bg's rendering; section_heading if it is kept"
+  },
+  {
+   "block": 2697,
+   "text": "ДОГОВОР ЗА РАЗПЛАЩАТЕЛНА СМЕТКА",
+   "note": "second line of the duplicate Раздел II. at 2696; the same title without the repeal remark already carried by 2695; section_heading if the duplicate is kept"
+  },
+  {
+   "block": 2767,
+   "text": "Раздел VIII.",
+   "note": "second Раздел VIII. line right after the heading with the 2009 repeal remark (2766), repeating the same title without it; looks like a stale duplicate in lex.bg's rendering; section_heading if it is kept"
+  },
+  {
+   "block": 2768,
+   "text": "БАНКОВ ПРЕВОД",
+   "note": "second line of the duplicate Раздел VIII. at 2767; the same title without the repeal remark already carried by 2766; section_heading if the duplicate is kept"
+  },
+  {
+   "block": 3861,
+   "text": "Раздел II \"а\".",
+   "note": "second printing of Раздел II \"а\"; its title line (3862) lacks the 2023 repeal remark already carried by 3860, so it looks like a stale duplicate in lex.bg's rendering; section_heading if it is kept"
+  },
+  {
+   "block": 5242,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg's appended list of related EU acts, not part of the act"
+  },
+  {
+   "block": 5243,
+   "text": "Директиви:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5244,
+   "text": "ДИРЕКТИВА (ЕС) 2019/2121 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 27 ноември 2019",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5245,
+   "text": "ДИРЕКТИВА (ЕС) 2019/1023 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 юни 2019 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5246,
+   "text": "ДИРЕКТИВА (ЕС) 2017/1132 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 14 юни 2017 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5247,
+   "text": "ДИРЕКТИВА (ЕС) 2016/943 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 8 юни 2016 годин",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5248,
+   "text": "ДИРЕКТИВА (ЕС) 2015/849 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 май 2015 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5249,
+   "text": "ДИРЕКТИВА 2012/17/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 юни 2012 година ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5250,
+   "text": "ДИРЕКТИВА 2011/7/ЕС НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 февруари 2011 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5251,
+   "text": "ДИРЕКТИВА 2009/109/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5252,
+   "text": "ДИРЕКТИВА 2009/102/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 16 септември 2009 ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5253,
+   "text": "ДИРЕКТИВА 2007/63/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 13 ноември 2007 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5254,
+   "text": "ДИРЕКТИВА 2006/99/ЕО НА СЪВЕТА от 20 ноември 2006 година за адаптиране на някои ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5255,
+   "text": "ДИРЕКТИВА 2002/47/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 6 юни 2002 година о",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5256,
+   "text": "ДИРЕКТИВА 2001/86/ЕО НА СЪВЕТА от 8 октомври 2001 година за допълнение на Устава",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5257,
+   "text": "ДИРЕКТИВА 98/26/ЕO НА EВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 19 май 1998 година от",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5258,
+   "text": "ДИРЕКТИВА 97/9/ЕО НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 3 март 1997 година отн",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5259,
+   "text": "ДИРЕКТИВА 86/653/ЕИО НА СЪВЕТА от 18 декември 1986 година относно координирането",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5260,
+   "text": "Регламенти:",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5261,
+   "text": "РЕГЛАМЕНТ (ЕС) 2023/1114 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 31 май 2023 год",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5262,
+   "text": "РЕГЛАМЕНТ ЗА ИЗПЪЛНЕНИЕ (ЕС) 2017/1105 НА КОМИСИЯТА от 12 юни 2017 година за изг",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5263,
+   "text": "РЕГЛАМЕНТ (ЕС) 2015/848 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 20 май 2015 годи",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5264,
+   "text": "РЕГЛАМЕНТ (ЕО) 1435/2003 НА СЪВЕТА от 22 юли 2003 година относно устава на Европ",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5265,
+   "text": "РЕГЛАМЕНТ (ЕО) № 2157/2001 НА СЪВЕТА от 8 октомври 2001 година относно Устава на",
+   "note": "lex.bg related EU acts list"
+  },
+  {
+   "block": 5266,
+   "text": "РЕГЛАМЕНТ (ЕИО) № 2137/85 НА СЪВЕТА от 25 юли 1985 година относно Eвропейското о",
+   "note": "lex.bg related EU acts list"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 20,
+ "diff_lines": 3112
+}

@@ -1,0 +1,110 @@
+{
+ "slug": "semeen-kodeks",
+ "round": 2,
+ "blocks": 975,
+ "sections": 35,
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "omissions": [
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    42
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    141
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    144
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    363
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    567
+   ]
+  },
+  {
+   "kind": "remnant_repaired",
+   "blocks": [
+    577
+   ]
+  }
+ ],
+ "ruled": {
+  "D-072/8": [
+   874
+  ]
+ },
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 6,
+  "title": 1,
+  "prehistory": 1,
+  "preamble": 1,
+  "chapter_heading": 24,
+  "article_title": 180,
+  "article_head": 182,
+  "item": 123,
+  "alinea": 334,
+  "section_heading": 18,
+  "provisions_heading": 28,
+  "paragraph_sign": 47,
+  "letter": 8,
+  "quoted": 3,
+  "adoption_formula": 1,
+  "editorial_note": 18
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "ДОБАВИ В МОИТЕ АКТОВЕ",
+   "note": "site chrome: add-to-my-acts button"
+  },
+  {
+   "block": 4,
+   "text": "Таблица за съответствие между разпоредбите на СК (нов) и СК (отм.)",
+   "note": "lex.bg link to correspondence table; drop vs preamble"
+  },
+  {
+   "block": 874,
+   "text": "-------------------------",
+   "note": "separator dash line before adoption formula; editorial_note plausible"
+  },
+  {
+   "block": 972,
+   "text": "Релевантни актове от Европейското законодателство",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 973,
+   "text": "Регламенти:",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  },
+  {
+   "block": 974,
+   "text": "РЕГЛАМЕНТ (ЕС) 2018/1862 НА ЕВРОПЕЙСКИЯ ПАРЛАМЕНТ И НА СЪВЕТА от 28 ноември 2018",
+   "note": "lex.bg list of related EU acts, not part of the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 472
+}
