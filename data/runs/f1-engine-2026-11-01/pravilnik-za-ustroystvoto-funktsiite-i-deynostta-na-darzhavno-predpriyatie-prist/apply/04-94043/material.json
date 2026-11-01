@@ -1,0 +1,13 @@
+{
+ "material": 94043,
+ "issue": "31/2015",
+ "material_sha256": "82884835ac37b373bb68d1269bbd4fde2c24955098ed0e6bd3c260ea016d5b9d",
+ "body_before_sha256": "0c2aa2e46ec2c047ee68c9d08c6285574ba3ad445c39d910ce4800f27f040c6f",
+ "task_sha256": "fb062d31f3a7840cf569a9b804818e581de9e470a13cdc8e9c9d7312a9f4052e",
+ "scopes": [
+  "title"
+ ],
+ "findings": [],
+ "engine": "26",
+ "task_core": true
+}

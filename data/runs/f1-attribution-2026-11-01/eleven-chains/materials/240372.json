@@ -1,0 +1,29 @@
+{
+ "material": 240372,
+ "title": "Постановление № 363 от 29 декември 2025 г. за одобряване на допълнителни разходи по бюджета на Министерството на културата за 2025 г. за изплащане на държавни парични награди за особени заслуги към българската държава и нацията",
+ "issue": "115/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на културата да извърши налагащите се от ч"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 389,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

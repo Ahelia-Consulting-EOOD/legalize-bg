@@ -1,0 +1,40 @@
+{
+ "material": 240168,
+ "title": "Закон за изменение на Кодекса на труда",
+ "issue": "115/2025",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Кодекса на труда",
+   "cited_promulgation": [
+    26,
+    1986
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-na-truda",
+   "candidates": [
+    "kodeks-na-truda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    1986
+   ]
+  }
+ ],
+ "instructions": 1,
+ "signs": 1,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 25,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

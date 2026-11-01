@@ -1,0 +1,38 @@
+{
+ "material": 22496,
+ "title": "Закон за изменение на Закона за избиране на членове на Европейския парламент от Република България",
+ "issue": "47/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за избиране на членове на Европейския парламент от Република България",
+   "cited_promulgation": [
+    20,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 76,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

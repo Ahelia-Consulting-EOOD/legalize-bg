@@ -1,0 +1,41 @@
+{
+ "material": 69729,
+ "title": "Постановление № 257 от 19 октомври 2012 г. за предоставяне на допълнителни средства по бюджета на Министерството на образованието, младежта и науката за 2012 г.",
+ "issue": "82/2012",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§3",
+   "cited_title": "Постановление № 99 на Министерския съвет от 2012 г. за предоставяне на допълнителни средства по бюджета на Министерството на регионалното развитие и благоустройството за 2012 г.",
+   "cited_promulgation": [
+    41,
+    2012
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 99 на Министерския съвет от 2012 г. за предоставяне на допълнителни средства по бюджета на Министерството на регионалното развитие и благоустройството за 2012 г.')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 6,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на финансите по предложение на министъра н"
+  }
+ ],
+ "tokens_instructions": 440,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

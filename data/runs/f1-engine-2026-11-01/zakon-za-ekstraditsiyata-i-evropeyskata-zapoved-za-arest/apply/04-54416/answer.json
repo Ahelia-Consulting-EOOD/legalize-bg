@@ -1,0 +1,16 @@
+{"material": 54416, "operations": [
+{"id": "§1", "kind": "insert_provision", "address": "чл. 26, ал. 3, изречение трето", "after": "чл. 26, ал. 3, изречение второ", "new": "q1"},
+{"id": "§2", "kind": "no_text_change"},
+{"id": "§2.1", "kind": "insert_provision", "address": "чл. 30, ал. 2", "after": "чл. 30, ал. 1", "blocks": [13, 13]},
+{"id": "§2.2", "kind": "renumber", "address": "чл. 30, ал. 2", "to": "ал. 3"},
+{"id": "§3", "kind": "no_text_change"},
+{"id": "§3.1", "kind": "renumber", "address": "чл. 40", "to": "ал. 1"},
+{"id": "§3.2", "kind": "insert_provision", "address": "чл. 40, ал. 2", "after": "чл. 40, ал. 1", "blocks": [18, 22]},
+{"id": "§4", "kind": "insert_provision", "address": "чл. 40а", "after": "чл. 40", "blocks": [24, 27]},
+{"id": "§5", "kind": "repeal", "address": "чл. 41, ал. 1"},
+{"id": "§6", "kind": "insert_words", "address": "чл. 44, ал. 8", "anchor": "q1", "where": "after", "new": "q2", "punctuation": "before"},
+{"id": "§7", "kind": "insert_provision", "address": "чл. 59а", "after": "чл. 59", "blocks": [31, 32]},
+{"id": "§8", "kind": "insert_provision", "address": "чл. 60а", "after": "чл. 60", "blocks": [34, 36]},
+{"id": "§9", "kind": "replace_provision", "address": "Приложение към чл. 37, ал. 1, буква (d)", "blocks": [38, 62]},
+{"id": "§10", "kind": "no_text_change"}
+]}

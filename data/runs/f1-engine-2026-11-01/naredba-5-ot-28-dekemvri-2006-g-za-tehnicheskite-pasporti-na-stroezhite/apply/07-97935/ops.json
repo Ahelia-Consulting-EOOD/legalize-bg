@@ -1,0 +1,62 @@
+{
+ "material": 97935,
+ "issue": "79/2015",
+ "operations": [
+  {
+   "id": "§единствен",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§единствен.1",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "§ 2, ал. 2",
+   "lines": [
+    "(2) Техническите паспорти на съществуващи строежи – държавна, общинска или частна собственост, в т.ч. строежите – смесена държавна и частна собственост или смесена общинска и частна собственост, се съставят в срок до 2022 г."
+   ],
+   "blocks": [
+    4,
+    4
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§единствен.2",
+   "kind": "repeal",
+   "note": "",
+   "address": "§ 2, ал. 3"
+  },
+  {
+   "id": "§единствен.3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "§ 2, ал. 6",
+   "old": "сроковете",
+   "old_ref": "q1",
+   "new": "срока",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§единствен.3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "§ 2, ал. 7",
+   "old": "сроковете",
+   "old_ref": "q1",
+   "new": "срока",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§единствен no_text_change: nothing",
+  "§единствен.1 replace_provision: 6 line(s) replaced by 1",
+  "§единствен.2 repeal: 1 line(s) repealed",
+  "§единствен.3 replace_words: 1 replacement(s)",
+  "§единствен.3 replace_words: 1 replacement(s)"
+ ]
+}

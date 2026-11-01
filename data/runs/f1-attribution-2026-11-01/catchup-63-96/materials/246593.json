@@ -1,0 +1,49 @@
+{
+ "material": 246593,
+ "title": "Постановление № 202 от 14 октомври 2026 г. за одобряване на допълнителни разходи за 2026 г. по бюджета на Държавен фонд „Земеделие“ за финансиране на разходи за данък върху добавената стойност на общини по одобрени за подпомагане проекти по Стратегическия план за развитие на земеделието и селските райони на Република България за периода 2023 – 2027 г. и по Програмата за морско дело, рибарство и аквакултури за периода 2021 – 2027 г.",
+ "issue": "96/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 8,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 1 да се увеличат разходите п"
+  },
+  {
+   "block": 11,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Със сумата по чл. 1, ал. 1 да се увеличат показателит"
+  },
+  {
+   "block": 12,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Изпълнителният директор на Държавен фонд „Земеделие“ "
+  },
+  {
+   "block": 13,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Министърът на финансите да извърши произтичащите от ч"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 9: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 402,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

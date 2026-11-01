@@ -1,0 +1,118 @@
+{
+ "material": 78691,
+ "issue": "80/2013",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "repeal",
+   "note": "",
+   "address": "чл. 1, ал. 1, т. 3"
+  },
+  {
+   "id": "§2",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 2, ал. 1, т. 2",
+   "anchor": "глава трета",
+   "anchor_ref": "q1",
+   "where": "after",
+   "everywhere": false
+  },
+  {
+   "id": "§3",
+   "kind": "repeal",
+   "note": "",
+   "address": "чл. 4, ал. 1, т. 4"
+  },
+  {
+   "id": "§4",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§4.1",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 5, т. 3",
+   "punctuation": "after",
+   "new": "стойността на интегрираната енергийна характеристика на сградата и референтната й стойност, изразени като специфичен годишен разход на първична/потребена енергия в kWh/m2",
+   "new_ref": "q2",
+   "where": "after",
+   "anchor": "въздушния транспорт и др.,",
+   "anchor_ref": "q1"
+  },
+  {
+   "id": "§4.2",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 5, т. 4",
+   "new": "сертификат за проектни енергийни характеристики за нови сгради и/или",
+   "new_ref": "q2",
+   "where": "after",
+   "anchor": "(номер, срок на валидност и др.), вкл.",
+   "anchor_ref": "q1"
+  },
+  {
+   "id": "§5",
+   "kind": "repeal",
+   "note": "",
+   "address": "чл. 7а"
+  },
+  {
+   "id": "§6",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 8",
+   "lines": [
+    "Чл. 8. Енергийните характеристики на нова сграда преди въвеждането й в експлоатация се удостоверяват със сертификат за проектни енергийни характеристики, издаден въз основа на инвестиционния (екзекутивния) проект, при условията и по реда на наредбата по чл. 25 от Закона за енергийната ефективност."
+   ],
+   "blocks": [
+    9,
+    9
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§7",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 10, ал. 1",
+   "lines": [
+    "(1) Техническият паспорт на строежа се съставя в два оригинални екземпляра на хартиен носител, подписани от съставителя на паспорта, както и в електронна форма на оптически, магнитен или друг носител чрез снемане на електронен образ от екземпляра, предназначен за регистриране."
+   ],
+   "blocks": [
+    11,
+    11
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§8",
+   "kind": "repeal_annex",
+   "note": "",
+   "address": "Приложение към чл. 8, ал. 7"
+  },
+  {
+   "id": "§9",
+   "kind": "no_text_change",
+   "note": ""
+  }
+ ],
+ "log": [
+  "§1 repeal: 1 line(s) repealed",
+  "§2 delete_words: the words after the anchor deleted",
+  "§3 repeal: 1 line(s) repealed",
+  "§4 no_text_change: nothing",
+  "§4.1 insert_words: inserted",
+  "§4.2 insert_words: inserted",
+  "§5 repeal: 3 line(s) repealed",
+  "§6 replace_provision: 14 line(s) replaced by 1",
+  "§7 replace_provision: 1 line(s) replaced by 1",
+  "§8 repeal_annex: 2 line(s) repealed",
+  "§9 no_text_change: nothing"
+ ]
+}

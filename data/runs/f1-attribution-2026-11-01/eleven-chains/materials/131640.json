@@ -1,0 +1,101 @@
+{
+ "material": 131640,
+ "title": "Закон за изменение и допълнение на Закона за задължителното депозиране на печатни и други произведения",
+ "issue": "94/2018",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за задължителното депозиране на печатни и други произведения",
+   "cited_promulgation": [
+    108,
+    2000
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Закона за закрила и развитие на културата",
+   "cited_promulgation": [
+    50,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-i-razvitie-na-kulturata",
+   "candidates": [
+    "zakon-za-zakrila-i-razvitie-na-kulturata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    50,
+    1999
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за икономическите и финансовите отношения с дружествата, регистрирани в юрисдикции с преференциален данъчен режим, контролираните от тях лица и техните действителни собственици",
+   "cited_promulgation": [
+    1,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ikonomicheskite-i-finansovite-otnosheniya-s-druzhestvata-registrirani-v",
+   "candidates": [
+    "zakon-za-ikonomicheskite-i-finansovite-otnosheniya-s-druzhestvata-registrirani-v"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    1,
+    2014
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за обществените библиотеки",
+   "cited_promulgation": [
+    42,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-obshtestvenite-biblioteki",
+   "candidates": [
+    "zakon-za-obshtestvenite-biblioteki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    42,
+    2009
+   ]
+  }
+ ],
+ "instructions": 26,
+ "signs": 12,
+ "quoted_blocks": 22,
+ "findings": [],
+ "tokens_instructions": 2966,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

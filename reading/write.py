@@ -272,7 +272,7 @@ def _ops_as_answer(ops: list[dict]) -> list[dict]:
     """The checked operations back in the answer form the form check reads (the references, not the resolved texts)."""
     out = []
     for op in ops:
-        a = {k: v for k, v in op.items() if k in ("id", "kind", "address", "after", "blocks", "where", "to", "everywhere", "note")}
+        a = {k: v for k, v in op.items() if k in ("id", "kind", "address", "after", "blocks", "where", "to", "everywhere", "note", "punctuation")}
         for key in ("old", "new", "anchor"):
             if key in op and f"{key}_ref" in op:
                 a[key] = op[f"{key}_ref"]

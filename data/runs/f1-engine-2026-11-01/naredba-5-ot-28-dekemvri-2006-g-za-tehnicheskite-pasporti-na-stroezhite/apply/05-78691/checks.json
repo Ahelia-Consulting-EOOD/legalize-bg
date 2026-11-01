@@ -1,0 +1,10 @@
+{
+ "exceptions": [
+  {
+   "block": 330,
+   "kind": "empty_section",
+   "detail": "heading with no body at the end of the act"
+  }
+ ],
+ "blocking": 0
+}

@@ -1,0 +1,326 @@
+{
+ "material": 107550,
+ "title": "Закон за изменение и допълнение на Закона за юридическите лица с нестопанска цел",
+ "issue": "74/2016",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за юридическите лица с нестопанска цел",
+   "cited_promulgation": [
+    81,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-yuridicheskite-litsa-s-nestopanska-tsel",
+   "candidates": [
+    "zakon-za-yuridicheskite-litsa-s-nestopanska-tsel"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    81,
+    2000
+   ]
+  },
+  {
+   "scope": "§27",
+   "cited_title": "Закона за търговския регистър",
+   "cited_promulgation": [
+    34,
+    2006
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§28",
+   "cited_title": "Закона за регистър Булстат",
+   "cited_promulgation": [
+    39,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-registar-bulstat",
+   "candidates": [
+    "zakon-za-registar-bulstat"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    39,
+    2005
+   ]
+  },
+  {
+   "scope": "§29",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  },
+  {
+   "scope": "§30",
+   "cited_title": "Закона за народните читалища",
+   "cited_promulgation": [
+    89,
+    1996
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-narodnite-chitalishta",
+   "candidates": [
+    "zakon-za-narodnite-chitalishta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    89,
+    1996
+   ]
+  },
+  {
+   "scope": "§31",
+   "cited_title": "Закона за местните данъци и такси",
+   "cited_promulgation": [
+    117,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mestnite-danatsi-i-taksi",
+   "candidates": [
+    "zakon-za-mestnite-danatsi-i-taksi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    117,
+    1997
+   ]
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Закона за корпоративното подоходно облагане",
+   "cited_promulgation": [
+    105,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-korporativnoto-podohodno-oblagane",
+   "candidates": [
+    "zakon-za-korporativnoto-podohodno-oblagane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2006
+   ]
+  },
+  {
+   "scope": "§33",
+   "cited_title": "Закона за меценатството",
+   "cited_promulgation": [
+    103,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-metsenatstvoto",
+   "candidates": [
+    "zakon-za-metsenatstvoto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    103,
+    2005
+   ]
+  },
+  {
+   "scope": "§34",
+   "cited_title": "Закона за данък върху добавената стойност",
+   "cited_promulgation": [
+    63,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danak-varhu-dobavenata-stoynost",
+   "candidates": [
+    "zakon-za-danak-varhu-dobavenata-stoynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    63,
+    2006
+   ]
+  },
+  {
+   "scope": "§35",
+   "cited_title": "Закона за данъците върху доходите на физически лица",
+   "cited_promulgation": [
+    95,
+    2006
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+   "candidates": [
+    "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (fuzzy); the cited promulgation names the act",
+   "act_promulgation": [
+    95,
+    2006
+   ]
+  },
+  {
+   "scope": "§36",
+   "cited_title": "Закона за културното наследство",
+   "cited_promulgation": [
+    19,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kulturnoto-nasledstvo",
+   "candidates": [
+    "zakon-za-kulturnoto-nasledstvo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2009
+   ]
+  },
+  {
+   "scope": "§37",
+   "cited_title": "Закона за защита на потребителите",
+   "cited_promulgation": [
+    99,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-potrebitelite",
+   "candidates": [
+    "zakon-za-zashtita-na-potrebitelite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    99,
+    2005
+   ]
+  },
+  {
+   "scope": "§38",
+   "cited_title": "Закона за счетоводството",
+   "cited_promulgation": [
+    95,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-schetovodstvoto",
+   "candidates": [
+    "zakon-za-schetovodstvoto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    2015
+   ]
+  },
+  {
+   "scope": "§39",
+   "cited_title": "Закона за хазарта",
+   "cited_promulgation": [
+    26,
+    2012
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-hazarta",
+   "candidates": [
+    "zakon-za-hazarta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    2012
+   ]
+  }
+ ],
+ "instructions": 142,
+ "signs": 40,
+ "quoted_blocks": 113,
+ "findings": [
+  {
+   "block": 82,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 14. В чл. 34, ал. 4 се създава изречен' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 179: item 15 after 13 under §27"
+  }
+ ],
+ "tokens_instructions": 13550,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

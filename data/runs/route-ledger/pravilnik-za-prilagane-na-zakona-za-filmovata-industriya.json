@@ -1,0 +1,442 @@
+{
+ "slug": "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya",
+ "steps": [
+  {
+   "step": "chain",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9aee8086e886ba7f5a20b4f2b76773c9e0b0ee74b6142feeb8f5afc065c9ffcb",
+   "outputs_sha256": "4223af720296f87f8f1ec418c6c8c9d8df185aa81280737de39b24994b2f2333",
+   "outcome": "done",
+   "detail": "3 material(s) change the act after бр. 102/2018; lex.bg names 3 issue(s), 0 unexplained (none), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:59:35+00:00",
+   "ended": "2026-11-01T11:00:02+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9d39efb09ad21f451e0f8fdc863e2528148d89faf1b6436027fbeed8977a50b7",
+   "outputs_sha256": "8f1196123a3b027cee2b7ba33d7b456735d57d31c503ed8d812611d01c5e1ef0",
+   "outcome": "done",
+   "detail": "material 132829 of бр. 102/2018 (cached), sha256 0a99cded559d",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:00:02+00:00",
+   "ended": "2026-11-01T11:00:02+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "21653895117034ac193907bc1796e763b5273b1ffa4685dcd8d1f03362abcbdc",
+   "outputs_sha256": "0b1ea5c0cadf2409620bdf19c12fe3e27491949c18704bc670457abd87bda734",
+   "outcome": "done",
+   "detail": "521 blocks, 14 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:00:02+00:00",
+   "ended": "2026-11-01T11:00:02+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "34a6dd833cbc41e90d7361afaa18a2639ab163e12bb59ef4ddf030a7a476cdf9",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 14 of 14 tasks unanswered; 2 labeller call(s) to make: 2f0aef1410ac-0000-0007 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round0/2f0aef1410ac-0000-0007.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round0/2f0aef1410ac-0000-0007.json; 2f0aef1410ac-0008-0013 (6 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round0/2f0aef1410ac-0008-0013.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round0/2f0aef1410ac-0008-0013.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:00:02+00:00",
+   "ended": "2026-11-01T11:00:02+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "d6c53480f4ef43a9ca5baf0ada1e1b9613fe26f583175d3edeefded7c5dea452",
+   "outputs_sha256": "fb43792cc93a83cbe3344a3fb479fc650fb4ee2f0c8ce12360a67e8e80ab2ec3",
+   "outcome": "done",
+   "detail": "round 0 collected: 27 exception(s), 17 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:48+00:00",
+   "ended": "2026-11-01T11:02:48+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1d485f55443fcb5f878017f02631656a791153a18c61f25633afbf6f327600a6",
+   "outputs_sha256": "f14aa0bd1e39a0a3db2fc275d5eff8f6aeb16bf1ec77e8597ad598b6c93d5a7f",
+   "outcome": "pending",
+   "detail": "round 1: 27 of 27 tasks unanswered; 2 labeller call(s) to make: 927c20218be8-0000-0024 (25 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round1/927c20218be8-0000-0024.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round1/927c20218be8-0000-0024.json; 927c20218be8-0025-0026 (2 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round1/927c20218be8-0025-0026.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round1/927c20218be8-0025-0026.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:02:48+00:00",
+   "ended": "2026-11-01T11:02:48+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "200dd92c382017abf51cdd548a03059167832422af92d7d817526baff77ce461",
+   "outputs_sha256": "44ca4b25b5f52547ec3de6587f8d8d06d68183416cfc5c6804e0909f58e783d7",
+   "outcome": "pending",
+   "detail": "round 2: 1 of 1 tasks unanswered; 1 labeller call(s) to make: 9bfad092581a-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round2/9bfad092581a-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round2/9bfad092581a-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:05:36+00:00",
+   "ended": "2026-11-01T11:05:36+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "6c42743d3f6ff8438721185adc5e4d89a7e0d1e7b0c49e059bd3bc467c9fb3bc",
+   "outputs_sha256": "bb1c62c2b8b50121b9971d3c1a1ebb0ca952aff1329da3c088e77b90473dcf33",
+   "outcome": "pending",
+   "detail": "round 2: 1 of 1 tasks unanswered; 1 labeller call(s) to make: 9bfad092581a-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round2/9bfad092581a-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round2/9bfad092581a-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:08:58+00:00",
+   "ended": "2026-11-01T11:08:59+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b6a17bb621bb879e3b514e9acf5f5b53a798db07b8f375845003f752c7dc1142",
+   "outputs_sha256": "44ca4b25b5f52547ec3de6587f8d8d06d68183416cfc5c6804e0909f58e783d7",
+   "outcome": "pending",
+   "detail": "round 2: 1 of 1 tasks unanswered; 1 labeller call(s) to make: 9bfad092581a-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round2/9bfad092581a-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round2/9bfad092581a-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:10:21+00:00",
+   "ended": "2026-11-01T11:10:21+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "aaa5ddbc0adb27b0679ebb5e9fbb6f3389f4569108ba500a73ceb991cf97e549",
+   "outputs_sha256": "33dcf188f1375c8272c4f910fcd1280c4e78aaa0dad117fe149f6b6b7e729a11",
+   "outcome": "pending",
+   "detail": "round 2: 1 of 1 tasks unanswered; 1 labeller call(s) to make: 9bfad092581a-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round2/9bfad092581a-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round2/9bfad092581a-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:13:43+00:00",
+   "ended": "2026-11-01T11:13:43+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b5e2bc691b7a47890c22df1154d50bb38196366d3f5e51d24edfa8bf1b6b5d94",
+   "outputs_sha256": "60b1300a5b08d88fe7d2a762998d495f440d51235f6b96ced347e2d93f12cd3d",
+   "outcome": "done",
+   "detail": "round 0 collected: 1 exception(s), 17 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:05+00:00",
+   "ended": "2026-11-01T11:38:05+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ab9389b974eec2c201f117b4291f3025b111da21c0d8665bd5effd750834003e",
+   "outputs_sha256": "f14aa0bd1e39a0a3db2fc275d5eff8f6aeb16bf1ec77e8597ad598b6c93d5a7f",
+   "outcome": "pending",
+   "detail": "round 1: 1 of 1 tasks unanswered; 1 labeller call(s) to make: be45a052c864-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/calls/round1/be45a052c864-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/maps/round1/be45a052c864-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:38:05+00:00",
+   "ended": "2026-11-01T11:38:05+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "efd3fd16e41700aab4d9bce74ae3dd116f6ba5d86fd0398afb849c5b657550eb",
+   "outputs_sha256": "73cdd3639feffbc46634b603a92a52ae004b5db2d513157b3f079b0d3a30d0ff",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/ladder.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:37+00:00",
+   "ended": "2026-11-01T11:42:37+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "c23352a168da36ccea5baccf6c5d7a076c9d96b2272015339597e43994677887",
+   "outputs_sha256": "4fe10cda3ca1693e5b76d65298dcc38ee66865eb91d39b4befd53e9899fbf975",
+   "outcome": "stop",
+   "detail": "lost text (empty_section), first at block 502: heading with no body before block 503; the act is on the list with the route investigate (D-076)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:37+00:00",
+   "ended": "2026-11-01T11:42:37+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b45b2fc25665b4c615f027daee727e48de2de6e2c45e09e2acb5f2d70a488518",
+   "outputs_sha256": "64cb365b8d6c10a4f9ee0260383f74bee90259f54669afc6b6343bd5a8ae4ee0",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/ladder.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:58:44+00:00",
+   "ended": "2026-11-01T11:58:44+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "781b3e034eda9e6e0486a05bc77d253a149245f63cd424c0d7b845356c08292b",
+   "outputs_sha256": "4315be66d02ed1d85de5881c89a745b1a40416c6ba25e461dd916ff01096630f",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 1, 'annex_in_pdf': 16}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:58:44+00:00",
+   "ended": "2026-11-01T11:58:44+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "2b0c7c35c45414e4f0cc822801841985da2a91fd4c23b294a6a318e6700d5307",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 3 (бр. 67/2021, 160733): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:58:44+00:00",
+   "ended": "2026-11-01T11:58:44+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1c37f44a9129d5200ef40c4339220e1b79b1362503d8049db1bc0a9939fcd3c3",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 3 (бр. 67/2021, 160733): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:00:02+00:00",
+   "ended": "2026-11-01T12:00:02+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "d8d3c979e658da2f851dfccf0a1322070a6444858002f1bbf401d76661f18bad",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 3 (бр. 67/2021, 160733): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:22+00:00",
+   "ended": "2026-11-01T12:04:22+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ab23e34d37efe7ba949470d42d9e71dd23f84a8a6a417d2eda5b416685a87c52",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 3 (бр. 67/2021, 160733): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:09+00:00",
+   "ended": "2026-11-01T12:10:09+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ab23e34d37efe7ba949470d42d9e71dd23f84a8a6a417d2eda5b416685a87c52",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §2.1 insert_words: the anchor 'наричан по-нататък Регламент (ЕС) 2017/1084' occurs 0 times",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:05+00:00",
+   "ended": "2026-11-01T12:15:05+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "60285933d8a9703b998f236197d8b78ffbc931730c326af875a0c71e59a78071",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §2.1 insert_words: the anchor 'наричан по-нататък Регламент (ЕС) 2017/1084' occurs 0 times",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:21+00:00",
+   "ended": "2026-11-01T12:19:21+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8748cc05816ca3fb4d9d93361046cd1b9227e5466f29c3786754cb00003b3526",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §2.2.б insert_provision: 'т. 1' names 44 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:23:21+00:00",
+   "ended": "2026-11-01T12:23:21+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "171d3471ae34f5965587da7ee0433cf13da7af92f9fc0e61e74baf0ce91e7b97",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §8.3 replace_provision: the new text carries the number '3', the address '4'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:25:45+00:00",
+   "ended": "2026-11-01T12:25:45+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9febe0bd6754c4009864768ded4088e6ab67f595752097750eeb9c1bd48d5828",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §12 replace_heading: 'раздел II' names 4 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:28:11+00:00",
+   "ended": "2026-11-01T12:28:11+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "885a10c8885afb722cee9c2b658276a8f2aafa6a6b463f5f4c7db6648003a2df",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 3 (бр. 67/2021, 160733): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:30:25+00:00",
+   "ended": "2026-11-01T12:30:25+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "a40111cdbe4880a196dd99c25f729acb35365f9add8506321b7381bb96f4c481",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 3 (бр. 67/2021, 160733): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:32:39+00:00",
+   "ended": "2026-11-01T12:32:39+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "00403668e485e55beb64762f58a564787d6dbcfc9388765d486cb7b881dcc48e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 3 (бр. 67/2021, 160733): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:35:15+00:00",
+   "ended": "2026-11-01T12:35:15+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "a8f278e2d6f251251e78e5c031b22683901cce15d128a76e286beff5e7959956",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §17 insert_heading: 'глава втора „а“' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:36:41+00:00",
+   "ended": "2026-11-01T12:36:41+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "3e4913c52b25cf1a292772186cef156058e814fff44122c1baec93e8b2d395a4",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §21 delete_words: 'наименованието на глава четвърта' names a title, and the provision has none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:38:09+00:00",
+   "ended": "2026-11-01T12:38:09+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "4de4ebfb7a9bb6c3886ff0bedd8035bd0307369980118dcab53eeffaadd6fa33",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §21 delete_words: the words 'на филми' occur 0 times in the title 'Глава четвърта НАЦИОНАЛНА КОМИСИЯ ПО КАТЕГОРИЗАЦИЯ НА ФИЛМИ'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:41:47+00:00",
+   "ended": "2026-11-01T12:41:48+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "f0980850e16907085e8392ffffab7d2c467aa6de1c6f2bb47e3b2aeeb90ea2bb",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160733 (бр. 67/2021): the answer is refused: §34 insert_words: the anchor 'филма' occurs 2 times",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:45:08+00:00",
+   "ended": "2026-11-01T12:45:08+00:00"
+  }
+ ],
+ "state_before_stop": "listed"
+}

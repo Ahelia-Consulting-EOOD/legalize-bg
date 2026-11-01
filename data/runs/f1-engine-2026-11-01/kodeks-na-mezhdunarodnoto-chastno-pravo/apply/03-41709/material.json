@@ -1,0 +1,14 @@
+{
+ "material": 41709,
+ "issue": "100/2010",
+ "material_sha256": "ddd22bad3c0008ba59b0cf1b880dbfd90b0a8281a9df99e79883391f5bf83503",
+ "body_before_sha256": "4780159324a60672f6cb0dc3aa1f2952e1554376c4e2fdae8b68f72876ba0dbf",
+ "task_sha256": "ebe02611aa8a9598860f137db2edfac1453ec4f7e2be31c9311c1fd439e27fce",
+ "scopes": [
+  "§23"
+ ],
+ "findings": [],
+ "engine": "15",
+ "task_core": true,
+ "answer_sha256": "ec38bee39147d6e689a0776b4164d36a9fd200638b2321c15f653c937a4f959b"
+}

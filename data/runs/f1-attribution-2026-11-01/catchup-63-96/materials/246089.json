@@ -1,0 +1,32 @@
+{
+ "material": 246089,
+ "title": "Постановление № 157 от 24 септември 2026 г. за одобряване на допълнителни трансфери по бюджетите на общините за 2026 г. за транспорт на деца и ученици по чл. 283, ал. 2 от Закона за предучилищното и училищното образование",
+ "issue": "89/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 13,
+  "title": "Приложение към чл. 1"
+ },
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Средствата по чл. 1 да се осигурят за сметка на прест"
+  },
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на финансите да извърши налагащите се пром"
+  }
+ ],
+ "tokens_instructions": 225,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

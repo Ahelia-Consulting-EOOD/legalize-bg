@@ -280,7 +280,7 @@ class Label:
     version = "2"
 
     def inputs(self, ctx: Context) -> list[Path]:
-        return [ctx.act_dir / "tasks" / "round0", *_call_answers(ctx, 0)]
+        return [ctx.act_dir / "tasks" / "round0", *_call_answers(ctx, 0), ctx.act_dir / "maps" / "round0"]
 
     def outputs(self, ctx: Context) -> list[Path]:
         return [ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1"]
@@ -297,8 +297,10 @@ class Ladder:
     version = "2"
 
     def inputs(self, ctx: Context) -> list[Path]:
-        return [ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1", *_call_answers(ctx, 1),
-                ctx.act_dir / "tasks" / "round2", *_call_answers(ctx, 2)]
+        # the maps folders too: the per-task files the split writes from a call answer are what the round counts as answered,
+        # and a step pending on unchanged call answers must wake when they appear
+        return [ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1", *_call_answers(ctx, 1), ctx.act_dir / "maps" / "round1",
+                ctx.act_dir / "tasks" / "round2", *_call_answers(ctx, 2), ctx.act_dir / "maps" / "round2"]
 
     def outputs(self, ctx: Context) -> list[Path]:
         # the map, the staged body and the diff are written by every collect; the ladder is the last step that collects
@@ -638,13 +640,18 @@ class Chain:
                           f"{len(decisions)} court decision(s) name the act", evidence)
 
 
+def _task_core(text: str) -> str:
+    """The applier's task without its „current text at“ sections."""
+    return re.sub(r"(?m)^- current text at .*\n(?:    .*\n?|\n)*", "", text)
+
+
 class Apply:
     """Each material of the chain applied in order to the promulgation reading: the parsed instructions and the current text go
     to the applier in one call per material; the answer's operations are checked for form and applied by script; the body
     after each material goes through the mechanical checks; a refused form, a failed check or an instruction outside the
     closed set stops the act. Resumable per material: a material already applied on the same inputs is not applied again."""
     name = "apply"
-    version = "1"
+    version = "28"   # 2: tight items; 3: a § attributed whole keeps its subtree; 4: a text reference where nested marks cut a segment; 5: a named punctuation mark; 6: a range inside a quoted run; 7: unquoted continuation blocks as an annex, a sentence replaced whole (1 November 2026)
 
     def inputs(self, ctx: Context) -> list[Path]:
         paths = [ctx.act_dir / "staged.md", ctx.act_dir / "chain.json"]
@@ -677,7 +684,8 @@ class Apply:
             rec_p = d / "material.json"
             if after_p.exists() and ops_p.exists() and rec_p.exists() and answer_p.exists():
                 rec = json.loads(rec_p.read_text(encoding="utf-8"))
-                if rec.get("material_sha256") == sha and rec.get("body_before_sha256") == before and rec.get("answer_sha256") == _sha(answer_p.read_bytes()):
+                if rec.get("material_sha256") == sha and rec.get("body_before_sha256") == before and rec.get("answer_sha256") == _sha(answer_p.read_bytes()) \
+                        and rec.get("engine") == self.version and rec.get("scopes") == m["scopes"]:   # the engine's version and the scopes are inputs too
                     body = after_p.read_text(encoding="utf-8")
                     ops = json.loads(ops_p.read_text(encoding="utf-8"))
                     for op in ops["operations"]:
@@ -691,16 +699,19 @@ class Apply:
             if not scoped.instructions():
                 return StepResult("stop", f"material {m['material']} (бр. {m['issue']}): attributed through {m['scopes']}, yet no instruction of the material carries those ids")
             task_text = _operations.task_text(scoped, act.blocks, tree, ctx.slug, m["issue"], _rel(ctx, answer_p), [f for f in mat.findings if f["kind"] in PARSE_STOP_KINDS])
-            task_sha = _sha(task_text.encode("utf-8"))
+            # the task's core is the material's instructions and segments; the „current text at“ sections are a convenience that
+            # changes with every engine fix to an earlier material, and an answer references the material, never that text, so
+            # only a changed core sets an answer aside (the apply re-checks every reference mechanically anyway)
+            task_sha = _sha(_task_core(task_text).encode("utf-8"))
             old_rec = json.loads(rec_p.read_text(encoding="utf-8")) if rec_p.exists() else {}
-            if answer_p.exists() and old_rec.get("task_sha256") != task_sha:
+            if answer_p.exists() and old_rec.get("task_core") and old_rec.get("task_sha256") != task_sha:   # a record of the full-text scheme (before 1 November 2026, 14:30) is migrated, not set aside
                 # the task changed under an answer written for an earlier one (another body, another material text): set it aside
                 n = 1
                 while (d / f"answer.stale-{n}.json").exists():
                     n += 1
                 answer_p.rename(d / f"answer.stale-{n}.json")
             rec_p.write_text(json.dumps({"material": m["material"], "issue": m["issue"], "material_sha256": sha, "body_before_sha256": before, "task_sha256": task_sha,
-                                         "scopes": m["scopes"], "findings": mat.findings}, ensure_ascii=False, indent=1), encoding="utf-8")
+                                         "scopes": m["scopes"], "findings": mat.findings, "engine": self.version, "task_core": True}, ensure_ascii=False, indent=1), encoding="utf-8")
             (d / "instructions.json").write_text(json.dumps(mat.to_dict(), ensure_ascii=False, indent=1), encoding="utf-8")
             task_p.write_text(task_text, encoding="utf-8")
             if not answer_p.exists():
@@ -749,9 +760,11 @@ def _scoped(mat: "_material.Material", scopes: list[str]) -> "_material.Material
             path.append(path[-1].rsplit(".", 1)[0])
         path.reverse()
         top = by_id[path[0]]
+        if top.id in scopes:
+            roots[top.id] = top   # the § itself is attributed: it goes with its whole subtree (items, letters, quoted text)
+            continue
         cur = roots.setdefault(top.id, _material.Node(id=top.id, level=top.level, block=top.block, text=top.text, section=top.section, children=[],
-                                                      quoted=list(top.quoted) if top.id in scopes else [], continuation=list(top.continuation) if top.id in scopes else [],
-                                                      inline_quotes=list(top.inline_quotes), target=top.target))
+                                                      quoted=[], continuation=[], inline_quotes=list(top.inline_quotes), target=top.target))
         for pid in path[1:]:
             orig = by_id[pid]
             nxt = next((c for c in cur.children if c.id == pid), None)

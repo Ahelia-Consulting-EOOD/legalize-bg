@@ -1,0 +1,40 @@
+{
+ "material": 246092,
+ "title": "Наредба за допълнение на Наредба № 1 от 14 февруари 2007 г. за водене, съхраняване и достъп до търговския регистър и до регистъра на юридическите лица с нестопанска цел",
+ "issue": "90/2026",
+ "section": "Министерство на правосъдието",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 1 от 14 февруари 2007 г. за водене, съхраняване и достъп до търговския регистър и до регистъра на юридическите лица с нестопанска цел",
+   "cited_promulgation": [
+    18,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-1-ot-14-fevruari-2007-g-za-vodene-sahranyavane-i-dostap-do-targovskiya-r",
+   "candidates": [
+    "naredba-1-ot-14-fevruari-2007-g-za-vodene-sahranyavane-i-dostap-do-targovskiya-r"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    18,
+    2007
+   ]
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 9,
+ "findings": [],
+ "tokens_instructions": 840,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

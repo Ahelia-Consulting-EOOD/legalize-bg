@@ -1,0 +1,24 @@
+{
+ "material": 144151,
+ "title": "Постановление № 357 от 19 декември 2019 г. за одобряване на допълнителни трансфери по бюджетите на общини за 2019 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 57,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 60,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на финансите да извърши налагащите се пром"
+  }
+ ],
+ "tokens_instructions": 2703,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

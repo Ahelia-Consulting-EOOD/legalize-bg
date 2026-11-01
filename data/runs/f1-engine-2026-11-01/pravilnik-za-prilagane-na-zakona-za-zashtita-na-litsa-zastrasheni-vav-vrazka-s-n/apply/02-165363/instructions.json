@@ -1,0 +1,2052 @@
+{
+ "kind": "decree",
+ "amending": true,
+ "own_title": "ПОСТАНОВЛЕНИЕ № 401 ОТ 25 НОЕМВРИ 2021 Г. за изменение и допълнение на Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство, приет с Постановление №242 на Министерския съвет от 2018 г.",
+ "target_title": "Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство",
+ "cited_history": {
+  "promulgation": [
+   94,
+   2018
+  ],
+  "issues": [
+   [
+    94,
+    2018
+   ],
+   [
+    31,
+    2020
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 94 от 2018 г.; изм. и доп., бр. 31 от 2020 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "headings": [
+  213
+ ],
+ "tail": [
+  215,
+  216,
+  217
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "2": "header",
+  "3": "header",
+  "215": "tail",
+  "216": "tail",
+  "217": "tail",
+  "4": "instruction",
+  "5": "instruction",
+  "6": "quoted",
+  "7": "instruction",
+  "8": "instruction",
+  "9": "instruction",
+  "10": "instruction",
+  "11": "quoted",
+  "12": "instruction",
+  "13": "instruction",
+  "14": "instruction",
+  "15": "instruction",
+  "16": "instruction",
+  "17": "quoted",
+  "18": "instruction",
+  "19": "instruction",
+  "20": "instruction",
+  "21": "instruction",
+  "22": "instruction",
+  "23": "instruction",
+  "24": "instruction",
+  "25": "instruction",
+  "26": "instruction",
+  "27": "instruction",
+  "28": "instruction",
+  "29": "instruction",
+  "30": "quoted",
+  "31": "quoted",
+  "32": "instruction",
+  "33": "instruction",
+  "34": "instruction",
+  "35": "instruction",
+  "36": "quoted",
+  "37": "instruction",
+  "38": "instruction",
+  "39": "instruction",
+  "40": "instruction",
+  "41": "instruction",
+  "42": "instruction",
+  "43": "instruction",
+  "44": "quoted",
+  "45": "instruction",
+  "46": "instruction",
+  "47": "instruction",
+  "48": "quoted",
+  "49": "quoted",
+  "50": "quoted",
+  "51": "quoted",
+  "52": "instruction",
+  "53": "instruction",
+  "54": "quoted",
+  "55": "instruction",
+  "56": "quoted",
+  "57": "quoted",
+  "58": "quoted",
+  "59": "quoted",
+  "60": "quoted",
+  "61": "quoted",
+  "62": "quoted",
+  "63": "quoted",
+  "64": "quoted",
+  "65": "quoted",
+  "66": "quoted",
+  "67": "quoted",
+  "68": "quoted",
+  "69": "quoted",
+  "70": "quoted",
+  "71": "quoted",
+  "72": "quoted",
+  "73": "quoted",
+  "74": "quoted",
+  "75": "quoted",
+  "76": "quoted",
+  "77": "quoted",
+  "78": "quoted",
+  "79": "quoted",
+  "80": "quoted",
+  "81": "quoted",
+  "82": "quoted",
+  "83": "quoted",
+  "84": "quoted",
+  "85": "quoted",
+  "86": "quoted",
+  "87": "quoted",
+  "88": "quoted",
+  "89": "quoted",
+  "90": "quoted",
+  "91": "quoted",
+  "92": "quoted",
+  "93": "quoted",
+  "94": "instruction",
+  "95": "instruction",
+  "96": "instruction",
+  "97": "instruction",
+  "98": "instruction",
+  "99": "instruction",
+  "100": "instruction",
+  "101": "quoted",
+  "102": "instruction",
+  "103": "instruction",
+  "104": "quoted",
+  "105": "instruction",
+  "106": "instruction",
+  "107": "quoted",
+  "108": "quoted",
+  "109": "instruction",
+  "110": "instruction",
+  "111": "instruction",
+  "112": "instruction",
+  "113": "instruction",
+  "114": "quoted",
+  "115": "instruction",
+  "116": "quoted",
+  "117": "instruction",
+  "118": "instruction",
+  "119": "instruction",
+  "120": "instruction",
+  "121": "instruction",
+  "122": "quoted",
+  "123": "instruction",
+  "124": "instruction",
+  "125": "instruction",
+  "126": "quoted",
+  "127": "quoted",
+  "128": "quoted",
+  "129": "quoted",
+  "130": "quoted",
+  "131": "quoted",
+  "132": "quoted",
+  "133": "quoted",
+  "134": "quoted",
+  "135": "quoted",
+  "136": "quoted",
+  "137": "quoted",
+  "138": "quoted",
+  "139": "quoted",
+  "140": "quoted",
+  "141": "quoted",
+  "142": "quoted",
+  "143": "quoted",
+  "144": "quoted",
+  "145": "quoted",
+  "146": "quoted",
+  "147": "quoted",
+  "148": "instruction",
+  "149": "quoted",
+  "150": "quoted",
+  "151": "quoted",
+  "152": "quoted",
+  "153": "quoted",
+  "154": "quoted",
+  "155": "quoted",
+  "156": "quoted",
+  "157": "quoted",
+  "158": "quoted",
+  "159": "instruction",
+  "160": "instruction",
+  "161": "instruction",
+  "162": "instruction",
+  "163": "instruction",
+  "164": "instruction",
+  "165": "quoted",
+  "166": "instruction",
+  "167": "instruction",
+  "168": "instruction",
+  "169": "instruction",
+  "170": "instruction",
+  "171": "instruction",
+  "172": "instruction",
+  "173": "instruction",
+  "174": "instruction",
+  "175": "instruction",
+  "176": "instruction",
+  "177": "instruction",
+  "178": "instruction",
+  "179": "instruction",
+  "180": "instruction",
+  "181": "instruction",
+  "182": "instruction",
+  "183": "instruction",
+  "184": "quoted",
+  "185": "instruction",
+  "186": "instruction",
+  "187": "instruction",
+  "188": "instruction",
+  "189": "instruction",
+  "190": "instruction",
+  "191": "instruction",
+  "192": "instruction",
+  "193": "instruction",
+  "194": "quoted",
+  "195": "instruction",
+  "196": "instruction",
+  "197": "instruction",
+  "198": "instruction",
+  "199": "instruction",
+  "200": "instruction",
+  "201": "instruction",
+  "202": "instruction",
+  "203": "instruction",
+  "204": "instruction",
+  "205": "instruction",
+  "206": "instruction",
+  "207": "instruction",
+  "208": "instruction",
+  "209": "instruction",
+  "210": "instruction",
+  "211": "instruction",
+  "212": "instruction",
+  "213": "heading",
+  "214": "instruction"
+ },
+ "findings": [],
+ "blocks": 218,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 4,
+   "text": "§ 1. В чл. 2 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 5,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      6
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 7,
+     "text": "2. В ал. 2 думите „главния прокурор“ се заменят с „министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "главния прокурор",
+      "министъра на правосъдието"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 8,
+   "text": "§ 2. В чл. 3, ал. 2 думите „правила, утвърдени от главния прокурор“ се заменят с „правилата за дейността на Бюрото по защита по чл. 14в от ЗЗЛЗВНП, утвърдени от министъра на правосъдието“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "правила, утвърдени от главния прокурор",
+    "правилата за дейността на Бюрото по защита по чл. 14в от ЗЗЛЗВНП, утвърдени от министъра на правосъдието"
+   ],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 9,
+   "text": "§ 3. В чл. 4 думата „директор“ се заменя с „ръководител“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директор",
+    "ръководител"
+   ],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 10,
+   "text": "§ 4. В глава първа се създава чл. 4а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    11
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 12,
+   "text": "§ 5. В чл. 5, ал. 1 думата „директорът“ се заменя с „ръководителят“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директорът",
+    "ръководителят"
+   ],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 13,
+   "text": "§ 6. В чл. 6, ал. 1 думата „директорът“ се заменя с „ръководителят“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директорът",
+    "ръководителят"
+   ],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 14,
+   "text": "§ 7. В чл. 8, ал. 3 думите „разпореждането на главния прокурор“ се заменят с „акта на министъра на правосъдието“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "разпореждането на главния прокурор",
+    "акта на министъра на правосъдието"
+   ],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 15,
+   "text": "§ 8. В чл. 10 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§8.1",
+     "level": 1,
+     "block": 16,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      17
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§8.2",
+     "level": 1,
+     "block": 18,
+     "text": "2. В ал. 3 думата „директора“ се заменя с „ръководителя“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директора",
+      "ръководителя"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 19,
+   "text": "§ 9. В чл. 11 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§9.1",
+     "level": 1,
+     "block": 20,
+     "text": "1. В ал. 1 думите „разпореждането на главния прокурор“ се заменят с „акта на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждането на главния прокурор",
+      "акта на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§9.2",
+     "level": 1,
+     "block": 21,
+     "text": "2. В ал. 2 думите „разпореждане на главния прокурор“ и „директора“ се заменят съответно с „акт на министъра на правосъдието“ и „ръководителя“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждане на главния прокурор",
+      "директора",
+      "акт на министъра на правосъдието",
+      "ръководителя"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 22,
+   "text": "§ 10. В чл. 12, ал. 1, изречение първо думата „директорът“ се заменя с „ръководителят“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директорът",
+    "ръководителят"
+   ],
+   "target": null
+  },
+  {
+   "id": "§11",
+   "level": 0,
+   "block": 23,
+   "text": "§ 11. В чл. 13, ал. 1 в основния текст думата „директорът“ се заменя с „ръководителят“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директорът",
+    "ръководителят"
+   ],
+   "target": null
+  },
+  {
+   "id": "§12",
+   "level": 0,
+   "block": 24,
+   "text": "§ 12. В чл. 14, ал. 5 думата „директора“ се заменя с „ръководителя“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директора",
+    "ръководителя"
+   ],
+   "target": null
+  },
+  {
+   "id": "§13",
+   "level": 0,
+   "block": 25,
+   "text": "§ 13. В чл. 17 след думите „настаняване в друго място за изтърпяване на наказанието“ се добавя „или за изпълнение на мярката за неотклонение задържане под стража“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "настаняване в друго място за изтърпяване на наказанието",
+    "или за изпълнение на мярката за неотклонение задържане под стража"
+   ],
+   "target": null
+  },
+  {
+   "id": "§14",
+   "level": 0,
+   "block": 26,
+   "text": "§ 14. В чл. 19 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§14.1",
+     "level": 1,
+     "block": 27,
+     "text": "1. В ал. 1 думите „разпореждането на главния прокурор“ се заменят с „акта на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждането на главния прокурор",
+      "акта на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§14.2",
+     "level": 1,
+     "block": 28,
+     "text": "2. В ал. 2 думите „допълнително разпореждане на главния прокурор“ се заменят с „допълнителен акт на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "допълнително разпореждане на главния прокурор",
+      "допълнителен акт на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§14.3",
+     "level": 1,
+     "block": 29,
+     "text": "3. Създават се ал. 4 и 5:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      30,
+      31
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§15",
+   "level": 0,
+   "block": 32,
+   "text": "§ 15. В чл. 20 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§15.1",
+     "level": 1,
+     "block": 33,
+     "text": "1. В ал. 2 думата „директора“ се заменя с „ръководителя“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директора",
+      "ръководителя"
+     ],
+     "target": null
+    },
+    {
+     "id": "§15.2",
+     "level": 1,
+     "block": 34,
+     "text": "2. В ал. 3, изречение второ думата „директора“ се заменя с „ръководителя“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директора",
+      "ръководителя"
+     ],
+     "target": null
+    },
+    {
+     "id": "§15.3",
+     "level": 1,
+     "block": 35,
+     "text": "3. Алинея 4 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      36
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§16",
+   "level": 0,
+   "block": 37,
+   "text": "§ 16. В чл. 21 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§16.1",
+     "level": 1,
+     "block": 38,
+     "text": "1. В ал. 1 думите „представляващия Висшия съдебен съвет“ се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "представляващия Висшия съдебен съвет"
+     ],
+     "target": null
+    },
+    {
+     "id": "§16.2",
+     "level": 1,
+     "block": 39,
+     "text": "2. В ал. 2 след думите „чл. 13а, ал. 2, т. 2“ се добавя „и по чл. 14, ал. 5“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "чл. 13а, ал. 2, т. 2",
+      "и по чл. 14, ал. 5"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§17",
+   "level": 0,
+   "block": 40,
+   "text": "§ 17. В чл. 23, ал. 1 думите „главния прокурор“ се заменят с „министъра на правосъдието“, а след думите „чл. 17, ал. 2“ запетаята и думите „т. 3“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "главния прокурор",
+    "министъра на правосъдието",
+    "чл. 17, ал. 2",
+    "т. 3"
+   ],
+   "target": null
+  },
+  {
+   "id": "§18",
+   "level": 0,
+   "block": 41,
+   "text": "§ 18. В чл. 25 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§18.1",
+     "level": 1,
+     "block": 42,
+     "text": "1. В ал. 2 думите „предоставена на лица с разпореждане на главния прокурор“ се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "предоставена на лица с разпореждане на главния прокурор"
+     ],
+     "target": null
+    },
+    {
+     "id": "§18.2",
+     "level": 1,
+     "block": 43,
+     "text": "2. Създава се нова ал. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      44
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§18.3",
+     "level": 1,
+     "block": 45,
+     "text": "3. Досегашната ал. 3 става ал. 4 и в нея в т. 4 думите „разпореждане на главния прокурор“ се заменят с „акт на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждане на главния прокурор",
+      "акт на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§18.4",
+     "level": 1,
+     "block": 46,
+     "text": "4. Досегашната ал. 4 става ал. 5.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§18.5",
+     "level": 1,
+     "block": 47,
+     "text": "5. Създава се ал. 6:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      48,
+      49,
+      50,
+      51
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§18.6",
+     "level": 1,
+     "block": 52,
+     "text": "6. Досегашната ал. 5 става ал. 7.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§19",
+   "level": 0,
+   "block": 53,
+   "text": "§ 19. В глава трета заглавието на раздел II се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    54
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§20",
+   "level": 0,
+   "block": 55,
+   "text": "§ 20. Член 26 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§21",
+   "level": 0,
+   "block": 94,
+   "text": "§ 21. В чл. 27 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§21.1",
+     "level": 1,
+     "block": 95,
+     "text": "1. В ал. 1:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§21.1.а",
+       "level": 2,
+       "block": 96,
+       "text": "а) в основния текст думите „Главният прокурор“ се заменят с „Министърът на правосъдието“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "Главният прокурор",
+        "Министърът на правосъдието"
+       ],
+       "target": null
+      },
+      {
+       "id": "§21.1.б",
+       "level": 2,
+       "block": 97,
+       "text": "б) в т. 6 думата „директора“ се заменя с „ръководителя“.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "директора",
+        "ръководителя"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§21.2",
+     "level": 1,
+     "block": 98,
+     "text": "2. В ал. 3, т. 1 думите „разпореждането на главния прокурор“ се заменят с „акта на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждането на главния прокурор",
+      "акта на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§21.3",
+     "level": 1,
+     "block": 99,
+     "text": "3. В ал. 4 думата „Разпореждането“ се заменя с „Актът“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Разпореждането",
+      "Актът"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§22",
+   "level": 0,
+   "block": 100,
+   "text": "§ 22. В глава трета заглавието на раздел III се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    101
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§23",
+   "level": 0,
+   "block": 102,
+   "text": "§ 23. В чл. 28 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§23.1",
+     "level": 1,
+     "block": 103,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      104
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§23.2",
+     "level": 1,
+     "block": 105,
+     "text": "2. В ал. 2 думите „устройството и“ се заличават, а думите „главния прокурор“ се заменят с „министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "устройството и",
+      "главния прокурор",
+      "министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§23.3",
+     "level": 1,
+     "block": 106,
+     "text": "3. Алинеи 3 и 4 се изменят така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      107,
+      108
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§24",
+   "level": 0,
+   "block": 109,
+   "text": "§ 24. В чл. 29 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§24.1",
+     "level": 1,
+     "block": 110,
+     "text": "1. В ал. 1 думите „Директорът“ и „главния прокурор“ се заменят съответно с „Ръководителят“ и „министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Директорът",
+      "главния прокурор",
+      "Ръководителят",
+      "министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§24.2",
+     "level": 1,
+     "block": 111,
+     "text": "2. В ал. 2:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§24.2.а",
+       "level": 2,
+       "block": 112,
+       "text": "а) в основния текст думата „Директорът“ се заменя с „Ръководителят“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "Директорът",
+        "Ръководителят"
+       ],
+       "target": null
+      },
+      {
+       "id": "§24.2.б",
+       "level": 2,
+       "block": 113,
+       "text": "б) точка 2 се изменя така:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        114
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§24.2.в",
+       "level": 2,
+       "block": 115,
+       "text": "в) точка 4 се изменя така:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        116
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§24.2.г",
+       "level": 2,
+       "block": 117,
+       "text": "г) в т. 5 думите „главния прокурор“ се заменят с „министъра на правосъдието“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "главния прокурор",
+        "министъра на правосъдието"
+       ],
+       "target": null
+      },
+      {
+       "id": "§24.2.д",
+       "level": 2,
+       "block": 118,
+       "text": "д) в т. 6 думите „главния прокурор“ се заменят с „министъра на правосъдието“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "главния прокурор",
+        "министъра на правосъдието"
+       ],
+       "target": null
+      },
+      {
+       "id": "§24.2.е",
+       "level": 2,
+       "block": 119,
+       "text": "е) в т. 7 думите „главния прокурор“ се заменят с „министъра на правосъдието“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "главния прокурор",
+        "министъра на правосъдието"
+       ],
+       "target": null
+      },
+      {
+       "id": "§24.2.ж",
+       "level": 2,
+       "block": 120,
+       "text": "ж) в т. 8 думите „главния прокурор“ се заменят с „министъра на правосъдието“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "главния прокурор",
+        "министъра на правосъдието"
+       ],
+       "target": null
+      },
+      {
+       "id": "§24.2.з",
+       "level": 2,
+       "block": 121,
+       "text": "з) създава се т. 9а:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        122
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§24.2.и",
+       "level": 2,
+       "block": 123,
+       "text": "и) в т. 10 думите „съответното разпореждане на главния прокурор“ се заменят със „съответния акт на министъра на правосъдието“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "съответното разпореждане на главния прокурор",
+        "съответния акт на министъра на правосъдието"
+       ],
+       "target": null
+      },
+      {
+       "id": "§24.2.к",
+       "level": 2,
+       "block": 124,
+       "text": "к) в т. 14 думите „разпореждане на главния прокурор“ се заменят с „акт на министъра на правосъдието“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "разпореждане на главния прокурор",
+        "акт на министъра на правосъдието"
+       ],
+       "target": null
+      },
+      {
+       "id": "§24.2.л",
+       "level": 2,
+       "block": 125,
+       "text": "л) точки 16, 17 и 18 се изменят така:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        126,
+        127,
+        128,
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§24.2.м",
+       "level": 2,
+       "block": 148,
+       "text": "м) създават се т. 19 – 28:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§24.3",
+     "level": 1,
+     "block": 159,
+     "text": "3. В ал. 3 думата „директорът“ се заменя с „ръководителят“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директорът",
+      "ръководителят"
+     ],
+     "target": null
+    },
+    {
+     "id": "§24.4",
+     "level": 1,
+     "block": 160,
+     "text": "4. В ал. 4 думите „директорът“, „заместник-директори“, „Заместник-директорите“ и „директора“ се заменят съответно с „ръководителят“, „заместник-ръководители“, „Заместник-ръководителите“ и „ръководителя“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директорът",
+      "заместник-директори",
+      "Заместник-директорите",
+      "директора",
+      "ръководителят",
+      "заместник-ръководители",
+      "Заместник-ръководителите",
+      "ръководителя"
+     ],
+     "target": null
+    },
+    {
+     "id": "§24.5",
+     "level": 1,
+     "block": 161,
+     "text": "5. В ал. 5 думите „Директорът“ и „заместник-директорите“ се заменят съответно с „Ръководителят“ и „заместник-ръководителите“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Директорът",
+      "заместник-директорите",
+      "Ръководителят",
+      "заместник-ръководителите"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§25",
+   "level": 0,
+   "block": 162,
+   "text": "§ 25. В чл. 30 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§25.1",
+     "level": 1,
+     "block": 163,
+     "text": "1. В ал. 3, т. 2, буква „а“ след думите „транспортни средства“ се поставя запетая и се добавя „включително служебни автомобили със специален режим на движение“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "а",
+      "транспортни средства",
+      "включително служебни автомобили със специален режим на движение"
+     ],
+     "target": null
+    },
+    {
+     "id": "§25.2",
+     "level": 1,
+     "block": 164,
+     "text": "2. Алинея 4 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      165
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§25.3",
+     "level": 1,
+     "block": 166,
+     "text": "3. В ал. 5 думите „и 4“ се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "и 4"
+     ],
+     "target": null
+    },
+    {
+     "id": "§25.4",
+     "level": 1,
+     "block": 167,
+     "text": "4. Алинея 6 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§25.5",
+     "level": 1,
+     "block": 168,
+     "text": "5. В ал. 7 думата „директора“ се заменя с „ръководителя“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директора",
+      "ръководителя"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§26",
+   "level": 0,
+   "block": 169,
+   "text": "§ 26. В чл. 31 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§26.1",
+     "level": 1,
+     "block": 170,
+     "text": "1. В ал. 2 думите „главния прокурор“ се заменят с „министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "главния прокурор",
+      "министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§26.2",
+     "level": 1,
+     "block": 171,
+     "text": "2. В ал. 3 думата „директорът“ се заменя с „ръководителят“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директорът",
+      "ръководителят"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§27",
+   "level": 0,
+   "block": 172,
+   "text": "§ 27. В чл. 32, ал. 2, изречение второ думите „главния прокурор“ се заменят с „министъра на правосъдието“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "главния прокурор",
+    "министъра на правосъдието"
+   ],
+   "target": null
+  },
+  {
+   "id": "§28",
+   "level": 0,
+   "block": 173,
+   "text": "§ 28. В чл. 34, ал. 2 думите „Директорът“ и „главния прокурор“ се заменят съответно с „Ръководителят“ и „министъра на правосъдието“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Директорът",
+    "главния прокурор",
+    "Ръководителят",
+    "министъра на правосъдието"
+   ],
+   "target": null
+  },
+  {
+   "id": "§29",
+   "level": 0,
+   "block": 174,
+   "text": "§ 29. В чл. 35 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§29.1",
+     "level": 1,
+     "block": 175,
+     "text": "1. В ал. 1 думите „разпореждане на главния прокурор“ и „директорът“ се заменят съответно с „акт на министъра на правосъдието“ и „ръководителят“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждане на главния прокурор",
+      "директорът",
+      "акт на министъра на правосъдието",
+      "ръководителят"
+     ],
+     "target": null
+    },
+    {
+     "id": "§29.2",
+     "level": 1,
+     "block": 176,
+     "text": "2. Алинея 2 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§29.3",
+     "level": 1,
+     "block": 177,
+     "text": "3. В ал. 3 думите „директорът“ и „съда“ се заменят съответно с „ръководителят“ и „органа“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директорът",
+      "съда",
+      "ръководителят",
+      "органа"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§30",
+   "level": 0,
+   "block": 178,
+   "text": "§ 30. В чл. 36 думите „разпореждане от главния прокурор“ се заменят с „акта на министъра на правосъдието“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "разпореждане от главния прокурор",
+    "акта на министъра на правосъдието"
+   ],
+   "target": null
+  },
+  {
+   "id": "§31",
+   "level": 0,
+   "block": 179,
+   "text": "§ 31. В чл. 37 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§31.1",
+     "level": 1,
+     "block": 180,
+     "text": "1. В ал. 1 думата „разпореждането“ се заменя с „акта на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждането",
+      "акта на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§31.2",
+     "level": 1,
+     "block": 181,
+     "text": "2. В ал. 2 думата „разпореждането“ се заменя с „акта на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждането",
+      "акта на министъра на правосъдието"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§32",
+   "level": 0,
+   "block": 182,
+   "text": "§ 32. В чл. 39 думите „разпореждането на главния прокурор“ се заменят с „акта на министъра на правосъдието“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "разпореждането на главния прокурор",
+    "акта на министъра на правосъдието"
+   ],
+   "target": null
+  },
+  {
+   "id": "§33",
+   "level": 0,
+   "block": 183,
+   "text": "§ 33. В чл. 40 ал. 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    184
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§34",
+   "level": 0,
+   "block": 185,
+   "text": "§ 34. В чл. 41 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§34.1",
+     "level": 1,
+     "block": 186,
+     "text": "1. В ал. 1 думите „разпореждане на главния прокурор“ се заменят с „акт на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждане на главния прокурор",
+      "акт на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§34.2",
+     "level": 1,
+     "block": 187,
+     "text": "2. В ал. 2 думите „Разпореждането на главния прокурор“ се заменят с „Актът на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Разпореждането на главния прокурор",
+      "Актът на министъра на правосъдието"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§35",
+   "level": 0,
+   "block": 188,
+   "text": "§ 35. В чл. 42 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§35.1",
+     "level": 1,
+     "block": 189,
+     "text": "1. В ал. 1 думите „разпореждане на главния прокурор“ и „директорът“ се заменят съответно с „акт на министъра на правосъдието“ и „ръководителят“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждане на главния прокурор",
+      "директорът",
+      "акт на министъра на правосъдието",
+      "ръководителят"
+     ],
+     "target": null
+    },
+    {
+     "id": "§35.2",
+     "level": 1,
+     "block": 190,
+     "text": "2. Алинея 2 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§35.3",
+     "level": 1,
+     "block": 191,
+     "text": "3. В ал. 3 думите „директорът“ и „съда“ се заменят съответно с „ръководителят“ и „органа“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директорът",
+      "съда",
+      "ръководителят",
+      "органа"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§36",
+   "level": 0,
+   "block": 192,
+   "text": "§ 36. В чл. 43 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§36.1",
+     "level": 1,
+     "block": 193,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      194
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§36.2",
+     "level": 1,
+     "block": 195,
+     "text": "2. В ал. 2 думата „Директорът“ се заменя с „Ръководителят“ и думите „подписването на споразумението“ се заменят с „фактическото предоставяне на специалната защита“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Директорът",
+      "Ръководителят",
+      "подписването на споразумението",
+      "фактическото предоставяне на специалната защита"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§37",
+   "level": 0,
+   "block": 196,
+   "text": "§ 37. В чл. 44 думите „разпореждането на главния прокурор“ и „директорът“ се заменят съответно с „акта на министъра на правосъдието“ и „ръководителят“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "разпореждането на главния прокурор",
+    "директорът",
+    "акта на министъра на правосъдието",
+    "ръководителят"
+   ],
+   "target": null
+  },
+  {
+   "id": "§38",
+   "level": 0,
+   "block": 197,
+   "text": "§ 38. В чл. 46 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§38.1",
+     "level": 1,
+     "block": 198,
+     "text": "1. В ал. 1 думите „директорът“ и „главния прокурор“ се заменят съответно с „ръководителят“ и „министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "директорът",
+      "главния прокурор",
+      "ръководителят",
+      "министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§38.2",
+     "level": 1,
+     "block": 199,
+     "text": "2. В ал. 2 думите „главният прокурор“ се заменят с „министърът на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "главният прокурор",
+      "министърът на правосъдието"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§39",
+   "level": 0,
+   "block": 200,
+   "text": "§ 39. В чл. 47 в основния текст думите „разпореждането на главния прокурор“ се заменят с „акта на министъра на правосъдието“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "разпореждането на главния прокурор",
+    "акта на министъра на правосъдието"
+   ],
+   "target": null
+  },
+  {
+   "id": "§40",
+   "level": 0,
+   "block": 201,
+   "text": "§ 40. В чл. 48, т. 2 думата „директорът“ се заменя с „ръководителят“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директорът",
+    "ръководителят"
+   ],
+   "target": null
+  },
+  {
+   "id": "§41",
+   "level": 0,
+   "block": 202,
+   "text": "§ 41. В чл. 49 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§41.1",
+     "level": 1,
+     "block": 203,
+     "text": "1. В ал. 1, т. 4 думите „издадено разпореждане на главния прокурор“ се заменят с „издаден акт на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "издадено разпореждане на главния прокурор",
+      "издаден акт на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§41.2",
+     "level": 1,
+     "block": 204,
+     "text": "2. В ал. 2, т. 3 думите „главния прокурор“ се заменят с „министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "главния прокурор",
+      "министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§41.3",
+     "level": 1,
+     "block": 205,
+     "text": "3. В ал. 4 думите „съгласно сключеното конкретно споразумение“ се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "съгласно сключеното конкретно споразумение"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§42",
+   "level": 0,
+   "block": 206,
+   "text": "§ 42. В чл. 50 ал. 2 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§43",
+   "level": 0,
+   "block": 207,
+   "text": "§ 43. В чл. 51, ал. 1 думите „главния прокурор“ се заменят с „министъра на правосъдието“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "главния прокурор",
+    "министъра на правосъдието"
+   ],
+   "target": null
+  },
+  {
+   "id": "§44",
+   "level": 0,
+   "block": 208,
+   "text": "§ 44. В чл. 52 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§44.1",
+     "level": 1,
+     "block": 209,
+     "text": "1. В ал. 1 думите „разпореждания на главния прокурор“ се заменят с „актове на министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разпореждания на главния прокурор",
+      "актове на министъра на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§44.2",
+     "level": 1,
+     "block": 210,
+     "text": "2. В ал. 2 думите „Главният прокурор“ се заменят с „Министърът на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Главният прокурор",
+      "Министърът на правосъдието"
+     ],
+     "target": null
+    },
+    {
+     "id": "§44.3",
+     "level": 1,
+     "block": 211,
+     "text": "3. В ал. 3 думата „Директорът“ се заменя с „Ръководителят“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Директорът",
+      "Ръководителят"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§45",
+   "level": 0,
+   "block": 212,
+   "text": "§ 45. В чл. 53 думата „директора“ се заменя с „ръководителя“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "директора",
+    "ръководителя"
+   ],
+   "target": null
+  },
+  {
+   "id": "§46",
+   "level": 0,
+   "block": 214,
+   "text": "§ 46. Постановлението влиза в сила от деня на обнародването му в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

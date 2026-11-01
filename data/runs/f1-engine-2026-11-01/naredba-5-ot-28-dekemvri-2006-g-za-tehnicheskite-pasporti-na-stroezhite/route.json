@@ -1,0 +1,528 @@
+{
+ "slug": "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite",
+ "run": "f1-engine-2026-11-01",
+ "route": "history",
+ "state": "stopped",
+ "entries": [
+  {
+   "step": "chain",
+   "input_sha256": "3977311b60c9f710ef3005919cd8aef336709f5f80d424b593335cfff3113e52",
+   "outputs_sha256": "6e81ef51b238056367e4747b6798c3f0fc5f5ec952c88b5d76166460034e534f",
+   "outcome": "done",
+   "detail": "8 material(s) change the act after бр. 7/2007; lex.bg names 8 issue(s), 0 unexplained (none), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:53:02+00:00",
+   "ended": "2026-11-01T10:55:17+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "input_sha256": "74ae297fcee6f584f52ea86433b3b0e3f6b747678ce2d7178d428d9b503932d4",
+   "outputs_sha256": "0e345c0ed17040d6b0c24cf93c9dab323da326d4136f4a3a91c387a8bba99190",
+   "outcome": "done",
+   "detail": "material 3183 of бр. 7/2007 (cached), sha256 2c9bdcde9723",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:55:17+00:00",
+   "ended": "2026-11-01T10:55:17+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "65f771f392c1697d370d02c90645e0ac1b3156948155ece5e37e85f4a9fe5e0a",
+   "outputs_sha256": "023331f66f47546c38cefc87edf408bfafe09fc3251850acfbef9f9be0dbab20",
+   "outcome": "done",
+   "detail": "310 blocks, 11 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:55:17+00:00",
+   "ended": "2026-11-01T10:55:17+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "36a3c95ddb956785b00ee916a9f8fd5ca665a622f69df8ee254bfc5b8bf1df52",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 11 of 11 tasks unanswered; 2 labeller call(s) to make: b896f5198274-0000-0007 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round0/b896f5198274-0000-0007.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round0/b896f5198274-0000-0007.json; b896f5198274-0008-0010 (3 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round0/b896f5198274-0008-0010.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round0/b896f5198274-0008-0010.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:55:17+00:00",
+   "ended": "2026-11-01T10:55:17+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "cad29a649821e62430e234a39991c988825b595ec78ae4429f3442e6d234d490",
+   "outputs_sha256": "0442b5d1d4e81bf544f354ee4aaacb7b88fd313c2ec8dfc4196117ebada5ea94",
+   "outcome": "done",
+   "detail": "round 0 collected: 3 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:47+00:00",
+   "ended": "2026-11-01T11:02:47+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "9af0b76943b7e1f662dff10008c2cdc250478bd79bdf65e967997c9a1ce6883a",
+   "outputs_sha256": "21cdd14544d097d9b932d83d222691a055b8d724df081e6ce84d1e615cd25ad6",
+   "outcome": "pending",
+   "detail": "round 1: 3 of 3 tasks unanswered; 1 labeller call(s) to make: 5619c7ecc934-0000-0002 (3 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round1/5619c7ecc934-0000-0002.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round1/5619c7ecc934-0000-0002.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:02:47+00:00",
+   "ended": "2026-11-01T11:02:47+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "f165f308939c28787c01ce86ce444c70a6f2b69b52c014bf8caed36a3461a2da",
+   "outputs_sha256": "caf9248c99ecc1188027d8e367caa87697a61a037006155fbcbc2b1bf364c8eb",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "8c173163b8488b60f4f300d407ace790d7b4ea5b03759be6d94e69a1e6f1037e",
+   "outputs_sha256": "52d95c2df28d1cdf513a148ab889662bfecdc2a83b5df000da95f51ecea12628",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "40c312304141d79ed3dc92b748ffa159b6a7bbe24262fcd761f570b9dcb7a001",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 8 (бр. 38/2008, 5085): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "4b3c9bef3408afba5a1c99122c9a5add44485e9783d6f228f4076c6325e1cd5a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 8 (бр. 38/2008, 5085): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:57+00:00",
+   "ended": "2026-11-01T11:08:57+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "fcea0c124e3392a452ba602a7986219b651ec76244ec3d5419328b60e01c76fd",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 5085 (бр. 38/2008): the answer is refused: block 20 does not close the quotation: 'Енергиен паспорт на сграда'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:10:20+00:00",
+   "ended": "2026-11-01T11:10:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "97462bfa6fd84f26d911abf71752c8d1837bcd7f7a679bdaa00e437209a9e281",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 5085 (бр. 38/2008): the answer is refused: block 43 does not open with a quotation mark: 'Приложение към чл. 19г, ал. 2'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:12:29+00:00",
+   "ended": "2026-11-01T11:12:29+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ac5a1bdb012b776dc4b8163150ac2eac8e6fbb31a448e7e2c74e7c6f58575499",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 5085 (бр. 38/2008): the answer is refused: §1.1 insert_provision: 'чл. 1, ал. 1, т. 3' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:13:41+00:00",
+   "ended": "2026-11-01T11:13:41+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "e089f0d5e9e788e8517d7c41efdbeec60004c3330ae36fd9627597b27c5cf494",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 5085 (бр. 38/2008): the answer is refused: §10.3 insert_annex: 'Приложение към чл. 19г, ал. 2' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:26:00+00:00",
+   "ended": "2026-11-01T11:26:00+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "41fe34a07d28dd4c4230f7ba29a545278d362ace6cc406edd156855861046849",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 8 (бр. 22/2010, 30903): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/02-30903/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/02-30903/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/02-30903/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:34:07+00:00",
+   "ended": "2026-11-01T11:34:07+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "ee67557ca2693f4f1497fd5c190f6da60bbe6861e9f7e7a6533eae631478e6f8",
+   "outputs_sha256": "569a89d1890c7090f0de0284fdf2a794b070c2ad599464e8cbdb4245400d46a1",
+   "outcome": "done",
+   "detail": "round 0 collected: 2 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:03+00:00",
+   "ended": "2026-11-01T11:38:03+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "d3655ffd8efcb28f4f808338643ca18d10e11de7ebc982d14996ac564f36bf47",
+   "outputs_sha256": "c8f257a1315047c95e41dc1491ad0c33cb4f78cf5aa55de22e5987604c18afe7",
+   "outcome": "pending",
+   "detail": "round 1: 2 of 2 tasks unanswered; 1 labeller call(s) to make: ef00a61fcf87-0000-0001 (2 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round1/ef00a61fcf87-0000-0001.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round1/ef00a61fcf87-0000-0001.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:38:03+00:00",
+   "ended": "2026-11-01T11:38:03+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "6e5f5845088b711733c80329d763073b6d2c8780bba57330bb4a9f217bbeab04",
+   "outputs_sha256": "62460a3b71e14ae7d251e680d045e694c2060b3c42dedb03ef9e66c139bc3ee3",
+   "outcome": "pending",
+   "detail": "round 2: 1 of 1 tasks unanswered; 1 labeller call(s) to make: cb59ce157a44-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round2/cb59ce157a44-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round2/cb59ce157a44-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:42:35+00:00",
+   "ended": "2026-11-01T11:42:35+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "e88ebc234b68c63bd223e0ac6d5beb3e2d6d1198893100183acdfc9e31d76ee7",
+   "outputs_sha256": "f1a918bb483530daed8b51db80525724493b0229195a86f8fe6846437a77cf0a",
+   "outcome": "done",
+   "detail": "no residue after round 2",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round2.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:18+00:00",
+   "ended": "2026-11-01T11:51:18+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "902dff616d1c35827ace7924f23911c0995c9cbe01139d16732a7c680031c944",
+   "outputs_sha256": "178707c3c99240babfd1d11eeced4a6e5fabecd6771918eb9787d4ed3bdedfed",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:18+00:00",
+   "ended": "2026-11-01T11:51:18+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "77c37c658fcc96fbff771c6e3e88896cb0f37b18e504e49ad8045aa800e952d2",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 30903 (бр. 22/2010): the answer is refused: §1.1.б repeal: 'чл. 2, ал. 1, т. 3' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/02-30903/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:18+00:00",
+   "ended": "2026-11-01T11:51:18+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "151c37693c52205754e4be4890d029fca19e921ece9e9bfca7bd3cf1ba0eca8d",
+   "outputs_sha256": "f1a918bb483530daed8b51db80525724493b0229195a86f8fe6846437a77cf0a",
+   "outcome": "done",
+   "detail": "no residue after round 2",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round2.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:58:42+00:00",
+   "ended": "2026-11-01T11:58:42+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "65048f5da505511b8a1b3b9c5b04753ea196fdc51f4d512dae411b3ef20b73b5",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 30903 (бр. 22/2010): the answer is refused: §1.1.б repeal: 'чл. 2, ал. 1, т. 3' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/02-30903/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:00:01+00:00",
+   "ended": "2026-11-01T12:00:01+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "4cfb64d7b15569664750743eb33144f94db62b764abae7b13ad915b6ca6b0812",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 30903 (бр. 22/2010): the answer is refused: §12 replace_annex: the new text carries the number 'към чл. 8, ал. 7', the address 'към чл. 19г, ал. 2'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/02-30903/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:20+00:00",
+   "ended": "2026-11-01T12:04:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5494d31d7455ddef2e356e2481643aebe25acd428652d129b01b2fddd00833dc",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 8 (бр. 38/2008, 5085): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/01-5085/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:08+00:00",
+   "ended": "2026-11-01T12:10:08+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "5494d31d7455ddef2e356e2481643aebe25acd428652d129b01b2fddd00833dc",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 8 (бр. 98/2011, 59312): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/03-59312/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/03-59312/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/03-59312/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:03+00:00",
+   "ended": "2026-11-01T12:15:03+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "859138025b11dc5f3d15ed8e9ca57fd813a6d65e58650ec5cf37693109e6513e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 8 (бр. 2/2013, 71595): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/04-71595/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/04-71595/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/04-71595/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:19+00:00",
+   "ended": "2026-11-01T12:19:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "e479c1947b7e17a9a106bbd6d89e81baf615f23b22f318564abcc76406e737aa",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 71595 (бр. 2/2013): the answer is refused: §2.1 delete_words: the words '(1)' do not occur in '(1) Част А “Основни характеристики на строежа” съд'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/04-71595/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:23:20+00:00",
+   "ended": "2026-11-01T12:23:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c84e13c7b23aaedb96ee22fecc2d1855053a13be51af15a12a5237dc51ad8a6d",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 71595 (бр. 2/2013): the answer is refused: §2.2 insert_words: 'чл. 5, ал. 1, т. 3' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/04-71595/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:25:43+00:00",
+   "ended": "2026-11-01T12:25:43+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "034f5fe04fd2f17ce039fcf026381ce216bd1307cb2a468fa849853cd4d8def0",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 71595 (бр. 2/2013): the answer is refused: §6.2.б replace_provision: '§ 2, ал. 2, т. 1' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/04-71595/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:28:09+00:00",
+   "ended": "2026-11-01T12:28:10+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "df74fbfbde4a79bed8b527fd4c392d2168e838a3ddc1279fa85eb97379b0daec",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 71595 (бр. 2/2013): the answer is refused: §7 replace_words: no address in 'наредбата и приложенията към нея'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/04-71595/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:30:23+00:00",
+   "ended": "2026-11-01T12:30:23+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "597a7b6a74a95ac67e4a5f3665cf1ee722e9c8635faec716a760b256dd7f331a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 5 of 8 (бр. 80/2013, 78691): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/05-78691/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/05-78691/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/05-78691/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:32:37+00:00",
+   "ended": "2026-11-01T12:32:38+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c9e97dd205f12c0353fbf8c8b6f4a32e6c35210f0195ff71f1d963845894c2bf",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 6 of 8 (бр. 102/2014, 90452): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/06-90452/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/06-90452/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/06-90452/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:35:13+00:00",
+   "ended": "2026-11-01T12:35:14+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "0b5f6e7fff8a226d867fb7c639fe99d6e9bed27ed175d5a9834827ff58ad0091",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 7 of 8 (бр. 79/2015, 97935): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/07-97935/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/07-97935/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/07-97935/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:38:07+00:00",
+   "ended": "2026-11-01T12:38:07+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "c12ae4fa140cb98627d65afdd00bc939d12b996b69b7a5cf058b86071c10587b",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 8 of 8 (бр. 68/2021, 160759): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/08-160759/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/08-160759/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/08-160759/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:41:45+00:00",
+   "ended": "2026-11-01T12:41:46+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "b37049d046fd3aeee7e4a8bd5c9f17dc87ef3d87ad4053448e9c89451bf54799",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 160759 (бр. 68/2021): the answer is refused: §2.2 outside_set: outside the closed set of operations: The instruction also removes the parentheses around the abbreviation СМР in чл. 2, ал. 2, so that (СМР) becomes СМР; the parentheses are not a quoted segment and no kind deletes them.",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply/08-160759/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:45:05+00:00",
+   "ended": "2026-11-01T12:45:06+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "3e310f447424824a2ab22504b952b97eb1e0bb041fb002616852fc94356eb8a8",
+   "outputs_sha256": "f7a2ef9fee56419d4f1adf2a6b24db84505e5c62b4127fe928127fe8d64f4fc0",
+   "outcome": "done",
+   "detail": "8 material(s) applied, operations {'no_text_change': 20, 'insert_provision': 13, 'renumber': 7, 'replace_provision': 15, 'replace_words': 25, 'delete_words': 7, 'insert_heading': 1, 'repeal': 13, 'insert_annex': 1, 'insert_words': 8, 'replace_annex': 1, 'repeal_annex': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:47:46+00:00",
+   "ended": "2026-11-01T12:47:46+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "c1e99853c4031257a9ba01eaee6ec84d2ef323b15096fe1bd9b7b8df6b22039b",
+   "outputs_sha256": "b92e6939995975e75feab87c47b51648b5f8003352e6e6bf077352ba45a3523f",
+   "outcome": "pending",
+   "detail": "differences to settle (lexbg 117, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:47:46+00:00",
+   "ended": "2026-11-01T12:47:47+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "4d97447052c227faff37db78789b058d0fa73a159c07dc8335783432d5b0f21e",
+   "outputs_sha256": "96406cca2001c5b88e02ec7de480e44ad54cf1871cba3cf01bd9bf6b56ef02d3",
+   "outcome": "done",
+   "detail": "8 material(s) applied, operations {'no_text_change': 20, 'insert_provision': 13, 'renumber': 7, 'replace_provision': 15, 'replace_words': 25, 'delete_words': 7, 'insert_heading': 1, 'repeal': 13, 'insert_annex': 1, 'insert_words': 8, 'replace_annex': 1, 'repeal_annex': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:50:18+00:00",
+   "ended": "2026-11-01T12:50:19+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "8f3f6937aae2baa0e3333166828fd40a429fd81fa4abb727f212c690d8a90213",
+   "outputs_sha256": "eca1c6320cb520714e47eb899c1401217ad199d9ad86aa26b5cd67839c6fe75e",
+   "outcome": "stop",
+   "detail": "the settler found our reading wrong (reading_error): lexbg: 117 difference(s), settled reading_error 10, same_text_other_form 104, source_error 1, witness_error 2; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135542058 (absent, 2026-11-01T12:47:46+00:00))",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-diff.json",
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:50:19+00:00",
+   "ended": "2026-11-01T12:50:19+00:00"
+  }
+ ],
+ "step": "witnesses",
+ "stopped_at": "witnesses",
+ "exception": "the settler found our reading wrong (reading_error): lexbg: 117 difference(s), settled reading_error 10, same_text_other_form 104, source_error 1, witness_error 2; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135542058 (absent, 2026-11-01T12:47:46+00:00))",
+ "case_file": "docs/cases/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite.md"
+}

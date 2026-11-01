@@ -1,0 +1,96 @@
+{
+ "kind": "regulation",
+ "amending": true,
+ "own_title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+ "target_title": "Устройствения правилник на областните дирекции „Земеделие“",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2010
+  ],
+  "issues": [
+   [
+    7,
+    2010
+   ],
+   [
+    9,
+    2010
+   ],
+   [
+    60,
+    2010
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2010 г.; изм., бр. 9 и 60 от 2010 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА ЗЕМЕДЕЛИЕТО И ХРАНИТЕ",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [
+  4
+ ],
+ "tail": [
+  6,
+  7
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "6": "tail",
+  "7": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "heading",
+  "5": "instruction"
+ },
+ "findings": [],
+ "blocks": 8,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 3, ал. 3, т. 6 думите „и поименното разписание на длъжностите“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "и поименното разписание на длъжностите"
+   ],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 3,
+   "text": "§ 2. Параграф 1 от допълнителната разпоредба се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 5,
+   "text": "§ 3. Правилникът влиза в сила от деня на обнародването му в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

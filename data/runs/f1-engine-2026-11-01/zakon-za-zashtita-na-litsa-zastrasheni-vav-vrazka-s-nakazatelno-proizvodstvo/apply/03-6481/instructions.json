@@ -1,0 +1,722 @@
+{
+ "kind": "law",
+ "amending": true,
+ "own_title": "ЗАКОН за изменение и допълнение на Закона за защита на лица, застрашени във връзка с наказателно производство",
+ "target_title": "Закона за защита на лица, застрашени във връзка с наказателно производство",
+ "cited_history": {
+  "promulgation": [
+   103,
+   2004
+  ],
+  "issues": [
+   [
+    103,
+    2004
+   ],
+   [
+    82,
+    2006
+   ],
+   [
+    33,
+    2008
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 103 от 2004 г.; изм., бр. 82 от 2006 г.; доп., бр. 33 от 2008 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "headings": [
+  54
+ ],
+ "tail": [
+  62,
+  63,
+  64
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "2": "header",
+  "3": "header",
+  "4": "header",
+  "5": "header",
+  "6": "header",
+  "7": "header",
+  "8": "header",
+  "9": "header",
+  "62": "tail",
+  "63": "tail",
+  "64": "tail",
+  "10": "instruction",
+  "11": "instruction",
+  "12": "instruction",
+  "13": "quoted",
+  "14": "instruction",
+  "15": "quoted",
+  "16": "instruction",
+  "17": "quoted",
+  "18": "instruction",
+  "19": "instruction",
+  "20": "instruction",
+  "21": "instruction",
+  "22": "instruction",
+  "23": "instruction",
+  "24": "instruction",
+  "25": "instruction",
+  "26": "instruction",
+  "27": "instruction",
+  "28": "instruction",
+  "29": "quoted",
+  "30": "quoted",
+  "31": "quoted",
+  "32": "quoted",
+  "33": "quoted",
+  "34": "instruction",
+  "35": "instruction",
+  "36": "quoted",
+  "37": "instruction",
+  "38": "quoted",
+  "39": "quoted",
+  "40": "instruction",
+  "41": "quoted",
+  "42": "quoted",
+  "43": "quoted",
+  "44": "instruction",
+  "45": "quoted",
+  "46": "quoted",
+  "47": "quoted",
+  "48": "instruction",
+  "49": "instruction",
+  "50": "instruction",
+  "51": "quoted",
+  "52": "instruction",
+  "53": "quoted",
+  "54": "heading",
+  "55": "instruction",
+  "56": "instruction",
+  "57": "instruction",
+  "58": "instruction",
+  "59": "quoted",
+  "60": "instruction",
+  "61": "instruction"
+ },
+ "findings": [],
+ "blocks": 65,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 10,
+   "text": "§ 1. В чл. 3, т. 1 думите “заподозрян” и “уличен” се заличават, а думата “експерт” се заменя с “вещо лице”.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "заподозрян",
+    "уличен",
+    "експерт",
+    "вещо лице"
+   ],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 11,
+   "text": "§ 2. В чл. 6 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 12,
+     "text": "1. В ал. 1 т. 5 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      13
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 14,
+     "text": "2. Алинея 3 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      15
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.3",
+     "level": 1,
+     "block": 16,
+     "text": "3. Създава се нова ал. 5:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      17
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.4",
+     "level": 1,
+     "block": 18,
+     "text": "4. Досегашната ал. 5 става ал. 6.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 19,
+   "text": "§ 3. В чл. 7 ал. 2 и 3 се отменят.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 20,
+   "text": "§ 4. Член 11 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 21,
+   "text": "§ 5. В чл. 12 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§5.1",
+     "level": 1,
+     "block": 22,
+     "text": "1. Алинея 2 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§5.2",
+     "level": 1,
+     "block": 23,
+     "text": "2. В ал. 3 думата “промяна” се заменя с “пълна промяна”.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "промяна",
+      "пълна промяна"
+     ],
+     "target": null
+    },
+    {
+     "id": "§5.3",
+     "level": 1,
+     "block": 24,
+     "text": "3. В ал. 4 думата “Промяната” се заменя с “Пълната промяна”.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Промяната",
+      "Пълната промяна"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 25,
+   "text": "§ 6. В чл. 13 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§6.1",
+     "level": 1,
+     "block": 26,
+     "text": "1. В ал. 1 се създава изречение второ: “Мерките по Програмата за защита се прилагат от Бюро по защита на застрашени лица, наричано по-нататък “Бюрото по защита”.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Мерките по Програмата за защита се прилагат от Бюро по защита на застрашени лица, наричано по-нататък "
+     ],
+     "target": null
+    },
+    {
+     "id": "§6.2",
+     "level": 1,
+     "block": 27,
+     "text": "2. Алинеи 2, 3, 4, 5 и 6 се отменят.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 28,
+   "text": "§ 7. Създава се чл. 13а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    29,
+    30,
+    31,
+    32,
+    33
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 34,
+   "text": "§ 8. В чл. 14 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§8.1",
+     "level": 1,
+     "block": 35,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      36
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§8.2",
+     "level": 1,
+     "block": 37,
+     "text": "2. Създават се ал. 7 и 8:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      38,
+      39
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 40,
+   "text": "§ 9. В глава втора, раздел II се създават чл. 14а и 14б:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    41,
+    42,
+    43
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 44,
+   "text": "§ 10. В глава втора, раздел III се създава чл. 17а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    45,
+    46,
+    47
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§11",
+   "level": 0,
+   "block": 48,
+   "text": "§ 11. В глава втора раздел VI “Обработка на лични данни” с чл. 24 и 25 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Обработка на лични данни"
+   ],
+   "target": null
+  },
+  {
+   "id": "§12",
+   "level": 0,
+   "block": 49,
+   "text": "§ 12. В чл. 27 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§12.1",
+     "level": 1,
+     "block": 50,
+     "text": "1. Досегашният текст става ал. 1 и в нея т. 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      51
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§12.2",
+     "level": 1,
+     "block": 52,
+     "text": "2. Създава се ал. 2:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      53
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§13",
+   "level": 0,
+   "block": 55,
+   "text": "§ 13. За заварените случаи по Програмата за защита се прилагат разпоредбите на този закон.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§14",
+   "level": 0,
+   "block": 56,
+   "text": "§ 14. В двумесечен срок от деня на обнародването на този закон Министерският съвет приема произтичащите от него изменения и допълнения в правилника за прилагане на закона. До приемането на съответните промени се прилагат действащите правила, доколкото не противоречат на този закон.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§15",
+   "level": 0,
+   "block": 57,
+   "text": "§ 15. За практическата организация и изпълнение на мерките по Програмата за защита, условията и реда за издаване на документите за самоличност на защитените лица и на служителите в Бюрото по защита с променени нови основни данни, за вида на издаваните документи, както и за срока за съхранение на създадените нови данни и издадените нови документи, както и за тяхното унищожаване, министърът на правосъдието, министърът на вътрешните работи и министърът на регионалното развитие и благоустройството издават съвместна инструкция в двумесечен срок от деня на обнародването на този закон.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§16",
+   "level": 0,
+   "block": 58,
+   "text": "§ 16. В Закона за българските документи за самоличност (обн., ДВ, бр. 93 от 1998 г.; изм., бр. 53, 67, 70 и 113 от 1999 г., бр. 108 от 2000 г., бр. 42 от 2001 г., бр. 45 и 54 от 2002 г., бр. 29 и 63 от 2003 г., бр. 96, 103 и 111 от 2004 г., бр. 43, 71, 86, 88 и 105 от 2005 г., бр. 30, 82 и 105 от 2006 г., бр. 29, 46 и 52 от 2007 г.) в чл. 1 се създава ал. 4:",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [
+    59
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Закона за българските документи за самоличност",
+    "cite": "обн., ДВ, бр. 93 от 1998 г.; изм., бр. 53, 67, 70 и 113 от 1999 г., бр. 108 от 2000 г., бр. 42 от 2001 г., бр. 45 и 54 от 2002 г., бр. 29 и 63 от 2003 г., бр. 96, 103 и 111 от 2004 г., бр. 43, 71, 86, 88 и 105 от 2005 г., бр. 30, 82 и 105 от 2006 г., бр. 29, 46 и 52 от 2007 г.",
+    "promulgation": [
+     93,
+     1998
+    ],
+    "issues": [
+     [
+      93,
+      1998
+     ],
+     [
+      53,
+      1999
+     ],
+     [
+      67,
+      1999
+     ],
+     [
+      70,
+      1999
+     ],
+     [
+      113,
+      1999
+     ],
+     [
+      108,
+      2000
+     ],
+     [
+      42,
+      2001
+     ],
+     [
+      45,
+      2002
+     ],
+     [
+      54,
+      2002
+     ],
+     [
+      29,
+      2003
+     ],
+     [
+      63,
+      2003
+     ],
+     [
+      96,
+      2004
+     ],
+     [
+      103,
+      2004
+     ],
+     [
+      111,
+      2004
+     ],
+     [
+      43,
+      2005
+     ],
+     [
+      71,
+      2005
+     ],
+     [
+      86,
+      2005
+     ],
+     [
+      88,
+      2005
+     ],
+     [
+      105,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      82,
+      2006
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      29,
+      2007
+     ],
+     [
+      46,
+      2007
+     ],
+     [
+      52,
+      2007
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§17",
+   "level": 0,
+   "block": 60,
+   "text": "§ 17. В Закона за защита на класифицираната информация (обн., ДВ, бр. 45 от 2002 г.; попр., бр. 5 от 2003 г.; изм., бр. 31 от 2003 г., бр. 52, 55 и 89 от 2004 г., бр. 17 и 82 от 2006 г., бр. 46, 57, 95 и 109 от 2007 г. и бр. 36 от 2008 г.) в приложение № 1 към чл. 25, в раздел II, т. 5 след думите “обществен ред” се поставя запетая и се добавя “както и на лица, включени в Програмата за защита на лица, застрашени във връзка с наказателно производство”.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "обществен ред",
+    "както и на лица, включени в Програмата за защита на лица, застрашени във връзка с наказателно производство"
+   ],
+   "target": {
+    "title": "Закона за защита на класифицираната информация",
+    "cite": "обн., ДВ, бр. 45 от 2002 г.; попр., бр. 5 от 2003 г.; изм., бр. 31 от 2003 г., бр. 52, 55 и 89 от 2004 г., бр. 17 и 82 от 2006 г., бр. 46, 57, 95 и 109 от 2007 г. и бр. 36 от 2008 г.",
+    "promulgation": [
+     45,
+     2002
+    ],
+    "issues": [
+     [
+      45,
+      2002
+     ],
+     [
+      5,
+      2003
+     ],
+     [
+      31,
+      2003
+     ],
+     [
+      52,
+      2004
+     ],
+     [
+      55,
+      2004
+     ],
+     [
+      89,
+      2004
+     ],
+     [
+      17,
+      2006
+     ],
+     [
+      82,
+      2006
+     ],
+     [
+      46,
+      2007
+     ],
+     [
+      57,
+      2007
+     ],
+     [
+      95,
+      2007
+     ],
+     [
+      109,
+      2007
+     ],
+     [
+      36,
+      2008
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§18",
+   "level": 0,
+   "block": 61,
+   "text": "§ 18. Този закон влиза в сила два месеца след обнародването му в “Държавен вестник”.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

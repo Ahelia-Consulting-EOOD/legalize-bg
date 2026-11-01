@@ -1,0 +1,49 @@
+{
+ "material": 160733,
+ "issue": "67/2021",
+ "material_sha256": "11759dd551534f13d1bef1043f41b8e4727eb96bec70d3cca374c0f75fd1f2d6",
+ "body_before_sha256": "6b609878d72f952e9446cf1f26008f96a818c9604f9d4ffb08c77279669353cd",
+ "task_sha256": "70ab9b70d630ec3c4044a3f56d7e0a18a59d9adaa93a0ea7cb278313f117ea98",
+ "scopes": [
+  "title"
+ ],
+ "findings": [
+  {
+   "block": 730,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 66. В чл. 58, ал. 1 думите „чл. 26, ал' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1248,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 85. Досегашното приложение № 6 към чл.' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1552,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 95. Досегашното приложение № 11 към чл' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1584,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 102. Създава се приложение № 15а към ч' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1587,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 103. Създава се приложение № 15б, към ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1590,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 104. Приложение № 16 към чл. 54, ал. 2' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 1593,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 105. Създава се приложение № 16а към ч' is closed by the sequence, not by a mark"
+  }
+ ],
+ "engine": "26",
+ "task_core": true
+}

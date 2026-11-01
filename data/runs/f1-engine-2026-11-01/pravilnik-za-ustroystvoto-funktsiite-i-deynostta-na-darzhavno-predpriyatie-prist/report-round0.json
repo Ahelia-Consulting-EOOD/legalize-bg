@@ -1,0 +1,515 @@
+{
+ "slug": "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist",
+ "round": 0,
+ "blocks": 556,
+ "sections": 14,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [
+  {
+   "block": 214,
+   "kind": "bad_number",
+   "detail": "item with n='5.1'"
+  },
+  {
+   "block": 215,
+   "kind": "bad_number",
+   "detail": "item with n='5.2'"
+  },
+  {
+   "block": 216,
+   "kind": "bad_number",
+   "detail": "item with n='5.3'"
+  },
+  {
+   "block": 217,
+   "kind": "bad_number",
+   "detail": "item with n='5.4'"
+  },
+  {
+   "block": 218,
+   "kind": "bad_number",
+   "detail": "item with n='5.5'"
+  },
+  {
+   "block": 219,
+   "kind": "bad_number",
+   "detail": "item with n='5.6'"
+  },
+  {
+   "block": 220,
+   "kind": "bad_number",
+   "detail": "item with n='5.7'"
+  },
+  {
+   "block": 221,
+   "kind": "bad_number",
+   "detail": "item with n='5.8'"
+  },
+  {
+   "block": 222,
+   "kind": "bad_number",
+   "detail": "item with n='5.9'"
+  },
+  {
+   "block": 223,
+   "kind": "bad_number",
+   "detail": "item with n='5.10'"
+  },
+  {
+   "block": 224,
+   "kind": "bad_number",
+   "detail": "item with n='5.11'"
+  },
+  {
+   "block": 225,
+   "kind": "bad_number",
+   "detail": "item with n='5.12'"
+  },
+  {
+   "block": 226,
+   "kind": "bad_number",
+   "detail": "item with n='5.13'"
+  },
+  {
+   "block": 227,
+   "kind": "bad_number",
+   "detail": "item with n='5.14'"
+  },
+  {
+   "block": 228,
+   "kind": "bad_number",
+   "detail": "item with n='5.15'"
+  },
+  {
+   "block": 214,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 215,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 216,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 217,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 218,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 219,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 220,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 221,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 222,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 223,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 224,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 225,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 226,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 227,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 228,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 454,
+   "kind": "bad_number",
+   "detail": "item with n='2.1'"
+  },
+  {
+   "block": 455,
+   "kind": "bad_number",
+   "detail": "item with n='2.2'"
+  },
+  {
+   "block": 463,
+   "kind": "bad_number",
+   "detail": "item with n='3.1'"
+  },
+  {
+   "block": 464,
+   "kind": "bad_number",
+   "detail": "item with n='3.2'"
+  },
+  {
+   "block": 468,
+   "kind": "bad_number",
+   "detail": "item with n='1.1'"
+  },
+  {
+   "block": 469,
+   "kind": "bad_number",
+   "detail": "item with n='1.2'"
+  },
+  {
+   "block": 470,
+   "kind": "bad_number",
+   "detail": "item with n='1.3'"
+  },
+  {
+   "block": 471,
+   "kind": "bad_number",
+   "detail": "item with n='1.4'"
+  },
+  {
+   "block": 472,
+   "kind": "bad_number",
+   "detail": "item with n='1.5'"
+  },
+  {
+   "block": 474,
+   "kind": "bad_number",
+   "detail": "item with n='2.1'"
+  },
+  {
+   "block": 475,
+   "kind": "bad_number",
+   "detail": "item with n='2.2'"
+  },
+  {
+   "block": 476,
+   "kind": "bad_number",
+   "detail": "item with n='2.3'"
+  },
+  {
+   "block": 454,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 455,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 463,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 464,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 468,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 469,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 470,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 471,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 472,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 474,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 475,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 476,
+   "kind": "missing_entry",
+   "detail": "the block was not labelled"
+  },
+  {
+   "block": 177,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of a structural unit before one article; article_title or an unnumbered subsection_heading"
+  },
+  {
+   "block": 191,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of a structural unit before one article; article_title or an unnumbered subsection_heading"
+  },
+  {
+   "block": 207,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of a structural unit before one article; article_title or an unnumbered subsection_heading"
+  },
+  {
+   "block": 214,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 215,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 216,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 217,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 218,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 219,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 220,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 221,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 222,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 223,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 224,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 225,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 226,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 227,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 228,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 229,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of a structural unit before one article; article_title or an unnumbered subsection_heading"
+  },
+  {
+   "block": 247,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of a structural unit before one article; article_title or an unnumbered subsection_heading"
+  },
+  {
+   "block": 261,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of a structural unit before one article; article_title or an unnumbered subsection_heading"
+  },
+  {
+   "block": 295,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of an organisational unit inside a Раздел; article_title also plausible"
+  },
+  {
+   "block": 322,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of an organisational unit inside a Раздел; article_title also plausible"
+  },
+  {
+   "block": 330,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of an organisational unit inside a Раздел; article_title also plausible"
+  },
+  {
+   "block": 342,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of an organisational unit inside a Раздел; article_title also plausible"
+  },
+  {
+   "block": 378,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of an organisational unit inside a Раздел; article_title also plausible"
+  },
+  {
+   "block": 416,
+   "kind": "low_confidence",
+   "detail": "unnumbered centred heading of an organisational unit inside a Раздел; article_title also plausible"
+  },
+  {
+   "block": 454,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 455,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 463,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 464,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 468,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 469,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 470,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 471,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 472,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 474,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 475,
+   "kind": "unknown",
+   "detail": "no label"
+  },
+  {
+   "block": 476,
+   "kind": "unknown",
+   "detail": "no label"
+  }
+ ],
+ "source_findings": [],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {
+  "bad_number": 27,
+  "missing_entry": 27,
+  "low_confidence": 12,
+  "unknown": 27
+ },
+ "source_finding_kinds": {},
+ "labels": {
+  "title": 2,
+  "chapter_heading": 8,
+  "article_head": 54,
+  "alinea": 57,
+  "item": 371,
+  "section_heading": 20,
+  "article_title": 6,
+  "subsection_heading": 6,
+  "provisions_heading": 1,
+  "paragraph_sign": 2,
+  "drop": 2
+ },
+ "dropped": [
+  {
+   "block": 554,
+   "text": "Министър: Ал. Цветков",
+   "note": "minister's signature after the act"
+  },
+  {
+   "block": 555,
+   "text": "5380",
+   "note": "Gazette material number after the act"
+  }
+ ],
+ "note": "",
+ "next_round_tasks": 39,
+ "diff_lines": 1936
+}

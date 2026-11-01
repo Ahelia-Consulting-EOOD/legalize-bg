@@ -1,0 +1,42 @@
+{
+ "material": 138217,
+ "title": "Наредба за допълнение на Наредба № 3 от 2005 г. за реда за подбор, квалификация и контрол върху синдиците",
+ "issue": "45/2019",
+ "section": "Министерство на правосъдието, Министерство на икономиката, Министерство на финансите",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 3 от 2005 г. за реда за подбор, квалификация и контрол върху синдиците",
+   "cited_promulgation": [
+    64,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-3-ot-27-yuni-2005-g-za-reda-za-podbor-kvalifikatsiya-i-kontrol-varhu-sin",
+   "candidates": [
+    "naredba-3-ot-27-yuni-2005-g-za-reda-za-podbor-kvalifikatsiya-i-kontrol-varhu-sin"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    64,
+    2005
+   ]
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 61,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

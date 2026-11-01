@@ -1,0 +1,77 @@
+{
+ "material": 245886,
+ "title": "Закон за изменение и допълнение на Данъчно-осигурителния процесуален кодекс",
+ "issue": "85/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Данъчно-осигурителния процесуален кодекс",
+   "cited_promulgation": [
+    105,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "danachno-osiguritelen-protsesualen-kodeks",
+   "candidates": [
+    "danachno-osiguritelen-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2005
+   ]
+  },
+  {
+   "scope": "§25",
+   "cited_title": "Закона за изменение и допълнение на Данъчно-осигурителния процесуален кодекс",
+   "cited_promulgation": [
+    94,
+    2015
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Закона за данъците върху доходите на физическите лица",
+   "cited_promulgation": [
+    95,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+   "candidates": [
+    "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    2006
+   ]
+  }
+ ],
+ "instructions": 93,
+ "signs": 33,
+ "quoted_blocks": 254,
+ "findings": [],
+ "tokens_instructions": 22675,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

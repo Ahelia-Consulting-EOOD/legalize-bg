@@ -188,7 +188,7 @@ def test_a_stopped_act_without_a_case_file_is_refused_by_the_checks(root):
     assert check_case_file(case, root) == [f"{case}: the record nowhere.json does not exist"]
 
 
-def test_a_pending_step_halts_without_a_case_file_and_is_not_run_again_until_its_inputs_change(root):
+def test_a_pending_step_halts_without_a_case_file_and_runs_again_while_pending(root):
     ctx = _ctx(root)
     answered = {"yes": False}
 
@@ -201,15 +201,15 @@ def test_a_pending_step_halts_without_a_case_file_and_is_not_run_again_until_its
     out = run_route(ctx, steps, routes=ROUTES)
     assert out.state == "pending" and out.step == B
     assert not (root / "docs" / "cases" / f"{SLUG}.md").exists()
-    assert run_route(_ctx(root), steps, routes=ROUTES).state == "pending" and steps[B].calls == 1   # finding 5
-    with pytest.raises(RouteRefused, match="is pending on these inputs"):
-        run_step(ctx, steps[B])
+    # a pending step runs again on the same inputs (resumable and cheap; its own records may have moved), the done step before it not
+    assert run_route(_ctx(root), steps, routes=ROUTES).state == "pending" and steps[B].calls == 2 and steps[A].calls == 1
+    assert run_step(ctx, steps[B])["outcome"] == "pending" and steps[B].calls == 3
     ledger = json.loads(ctx.ledger_path.read_text(encoding="utf-8"))
     assert ledger["state"] == "pending" and ledger["entries"][-1]["outcome"] == "pending"
     answered["yes"] = True
     (ctx.act_dir / "answer.json").write_text("{}", encoding="utf-8")
     out = run_route(ctx, steps, routes=ROUTES)
-    assert out.state == "committed" and out.commit == "abc1234" and steps[A].calls == 1 and steps[B].calls == 2
+    assert out.state == "committed" and out.commit == "abc1234" and steps[A].calls == 1 and steps[B].calls == 4
     e = sx.listed(SLUG, _list(root))
     assert e.state == "committed" and e.commit == "abc1234"
     assert run_route(ctx, steps, routes=ROUTES).state == "committed" and steps[C].calls == 1   # nothing runs again

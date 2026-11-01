@@ -1,0 +1,61 @@
+{
+ "material": 245868,
+ "title": "Постановление № 133 от 9 септември 2026 г. за изменение и допълнение на Устройствения правилник на Министерството на финансите, приет с Постановление № 353 на Министерския съвет от 2016 г.",
+ "issue": "84/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Министерството на финансите",
+   "cited_promulgation": [
+    100,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-finansite",
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerstvoto-na-finansite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    100,
+    2016
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Устройствения правилник на Института по публична администрация, приет с Постановление № 44 на Министерския съвет от 2016 г.",
+   "cited_promulgation": [
+    19,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-instituta-po-publichna-administratsiya",
+   "candidates": [
+    "ustroystven-pravilnik-na-instituta-po-publichna-administratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2016
+   ]
+  }
+ ],
+ "instructions": 62,
+ "signs": 14,
+ "quoted_blocks": 40,
+ "findings": [],
+ "tokens_instructions": 4391,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

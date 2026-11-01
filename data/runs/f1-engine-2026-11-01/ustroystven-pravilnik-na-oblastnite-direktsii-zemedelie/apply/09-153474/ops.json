@@ -1,0 +1,44 @@
+{
+ "material": 153474,
+ "issue": "97/2020",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§1.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Сливен“",
+   "old": "48",
+   "old_ref": "q2",
+   "new": "49",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§1.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – София област“",
+   "old": "101",
+   "old_ref": "q2",
+   "new": "100",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§2",
+   "kind": "no_text_change",
+   "note": ""
+  }
+ ],
+ "log": [
+  "§1 no_text_change: nothing",
+  "§1.1 replace_words: 1 replacement(s)",
+  "§1.2 replace_words: 1 replacement(s)",
+  "§2 no_text_change: nothing"
+ ]
+}

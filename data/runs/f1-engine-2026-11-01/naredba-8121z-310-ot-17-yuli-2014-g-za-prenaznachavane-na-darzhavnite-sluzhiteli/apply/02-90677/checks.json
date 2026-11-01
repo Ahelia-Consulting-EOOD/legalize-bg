@@ -1,0 +1,15 @@
+{
+ "exceptions": [
+  {
+   "block": 72,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '1.главния секретар на МВР – за'"
+  },
+  {
+   "block": 74,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '3.прекия ръководител – за държ'"
+  }
+ ],
+ "blocking": 0
+}

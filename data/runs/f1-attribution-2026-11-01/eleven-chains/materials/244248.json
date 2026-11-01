@@ -1,0 +1,40 @@
+{
+ "material": 244248,
+ "title": "Правилник за изменение и допълнение на Правилника за дейността на Помирителната комисия за платежни спорове",
+ "issue": "59/2026",
+ "section": "Българска народна банка",
+ "kind": "regulation",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за дейността на Помирителната комисия за платежни спорове",
+   "cited_promulgation": [
+    101,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-deynostta-na-pomiritelnata-komisiya-za-platezhni-sporove",
+   "candidates": [
+    "pravilnik-za-deynostta-na-pomiritelnata-komisiya-za-platezhni-sporove"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    101,
+    2015
+   ]
+  }
+ ],
+ "instructions": 9,
+ "signs": 9,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 379,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

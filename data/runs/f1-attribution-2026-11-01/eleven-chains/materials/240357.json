@@ -1,0 +1,24 @@
+{
+ "material": 240357,
+ "title": "Постановление № 348 от 29 декември 2025 г. за одобряване на вътрешнокомпенсирани промени на утвърденитe разходи по области на политики/бюджетни програми по бюджета на Mинистерствотo на външните работи за 2025 г.",
+ "issue": "115/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 6,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на външните работи да извърши съответните "
+  }
+ ],
+ "tokens_instructions": 310,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

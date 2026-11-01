@@ -1,0 +1,51 @@
+{
+ "material": 244368,
+ "title": "Постановление № 75 от 24 юни 2026 г. за отменяне на Тарифата за пристанищните такси, събирани от Държавно предприятие „Пристанищна инфраструктура“, приета с Постановление № 97 на Министерския съвет от 2007 г.",
+ "issue": "58/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "repeal",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Тарифата за пристанищните такси, събирани от Държавно предприятие „Пристанищна инфраструктура“",
+   "cited_promulgation": [
+    38,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": true,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  },
+  {
+   "scope": "Чл.единствен",
+   "cited_title": "Тарифата за пристанищните такси, събирани от Държавно предприятие „Пристанищна инфраструктура“, приета с Постановление № 97 на Министерския съвет от 2007 г.",
+   "cited_promulgation": [
+    38,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 1,
+ "signs": 1,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 111,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

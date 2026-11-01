@@ -1,0 +1,131 @@
+{
+ "act": "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite",
+ "promulgation": {
+  "material": 3183,
+  "issue": "7/2007",
+  "date": "2007-01-23"
+ },
+ "materials": [
+  {
+   "material": 5085,
+   "issue": "38/2008",
+   "date": "2008-04-11",
+   "position": 14,
+   "title": "Наредба за изменение и допълнение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 30903,
+   "issue": "22/2010",
+   "date": "2010-03-19",
+   "position": 19,
+   "title": "Наредба за изменение и допълнение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 59312,
+   "issue": "98/2011",
+   "date": "2011-12-13",
+   "position": 10,
+   "title": "Наредба за изменение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 71595,
+   "issue": "2/2013",
+   "date": "2013-01-08",
+   "position": 29,
+   "title": "Наредба за изменение и допълнение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 78691,
+   "issue": "80/2013",
+   "date": "2013-09-13",
+   "position": 5,
+   "title": "Наредба за изменение и допълнение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 90452,
+   "issue": "102/2014",
+   "date": "2014-12-12",
+   "position": 24,
+   "title": "Наредба за изменение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 97935,
+   "issue": "79/2015",
+   "date": "2015-10-13",
+   "position": 10,
+   "title": "Наредба за изменение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 160759,
+   "issue": "68/2021",
+   "date": "2021-08-17",
+   "position": 13,
+   "title": "Наредба за изменение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "kind": "ordinance",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  }
+ ],
+ "lexbg_issues": [
+  "7/2007",
+  "38/2008",
+  "22/2010",
+  "98/2011",
+  "2/2013",
+  "80/2013",
+  "102/2014",
+  "79/2015",
+  "68/2021"
+ ],
+ "unexplained_lexbg_issues": [],
+ "extra_issues": [],
+ "decisions_naming_the_act": [],
+ "candidates": 115,
+ "bodies_fetched": 107,
+ "built_at": "2026-11-01T10:55:17+00:00"
+}

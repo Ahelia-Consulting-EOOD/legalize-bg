@@ -1,0 +1,91 @@
+{
+ "act": "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest",
+ "materials": [
+  {
+   "material": 973,
+   "issue": "86/2005",
+   "operations": 8,
+   "body_after_sha256": "188281841c7024ab7a1ef04abcd5da79679c48030cd618ac3296d6a65a69dff5"
+  },
+  {
+   "material": 5288,
+   "issue": "52/2008",
+   "operations": 30,
+   "body_after_sha256": "1fe12879b835454e031bc773b6f3d94e8d549b98e789c75a1c7a113ca59c8088"
+  },
+  {
+   "material": 34181,
+   "issue": "49/2010",
+   "operations": 19,
+   "body_after_sha256": "1f86c99fe7f8aa18b527586afd759b52a143c8e2bd271a47e02ab2aaf2c4898e"
+  },
+  {
+   "material": 54416,
+   "issue": "55/2011",
+   "operations": 14,
+   "body_after_sha256": "0faf11b505a7c6236702d7504d3f23c5c095fec3cf5f97b32e28553a39cf3ef2"
+  },
+  {
+   "material": 86030,
+   "issue": "53/2014",
+   "operations": 3,
+   "body_after_sha256": "bd1cf7e6c858cf2821a247f0b427e2b00127b665a40f6f65bc710429e607dc26"
+  },
+  {
+   "material": 134075,
+   "issue": "7/2019",
+   "operations": 8,
+   "body_after_sha256": "64f6806bfe56a02f58b09664f6674e52777936939692837116f153f17a6d1e57"
+  },
+  {
+   "material": 138116,
+   "issue": "45/2019",
+   "operations": 3,
+   "body_after_sha256": "17ffcaad1a9abb026ae1455560718fbce44c5a09925ec2dc587ba0d089f7d26c"
+  },
+  {
+   "material": 195264,
+   "issue": "48/2023",
+   "operations": 3,
+   "body_after_sha256": "aae5b93ee03903165f6e000655391b48445c5e7736a23dc3c9351f54946939d3"
+  },
+  {
+   "material": 197941,
+   "issue": "67/2023",
+   "operations": 3,
+   "body_after_sha256": "5201d463a746771430568cd74fe25857630be49319da86bbdb9c4fe725c045ec"
+  },
+  {
+   "material": 201467,
+   "issue": "100/2023",
+   "operations": 19,
+   "body_after_sha256": "a34c7872f48aaf61be766b2d26d57080108a85667282fa2e2d72fa67ff4b3c07"
+  },
+  {
+   "material": 208127,
+   "issue": "18/2024",
+   "operations": 4,
+   "body_after_sha256": "46f16950d1c2a7b80b7548406204f29a3ff6c82d9842f7de8f61abf6c4827bf1"
+  },
+  {
+   "material": 244229,
+   "issue": "59/2026",
+   "operations": 3,
+   "body_after_sha256": "fcbaed49168a623738f6e8a5a1b7e344068279a0df8d7848c53dea027c848119"
+  }
+ ],
+ "operations_by_kind": {
+  "no_text_change": 30,
+  "replace_words": 15,
+  "insert_words": 10,
+  "insert_provision": 32,
+  "replace_provision": 14,
+  "repeal": 2,
+  "renumber": 10,
+  "delete_words": 2,
+  "replace_sentence": 2
+ },
+ "unexplained_lexbg_issues": [],
+ "applied_sha256": "fcbaed49168a623738f6e8a5a1b7e344068279a0df8d7848c53dea027c848119",
+ "applied_at": "2026-11-01T12:50:18+00:00"
+}

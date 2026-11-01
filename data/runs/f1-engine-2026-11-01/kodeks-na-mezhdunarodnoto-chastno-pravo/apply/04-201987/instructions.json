@@ -1,0 +1,1945 @@
+{
+ "kind": "law",
+ "amending": true,
+ "own_title": "ЗАКОН за изменение и допълнение на Семейния кодекс",
+ "target_title": "Семейния кодекс",
+ "cited_history": {
+  "promulgation": [
+   47,
+   2009
+  ],
+  "issues": [
+   [
+    47,
+    2009
+   ],
+   [
+    74,
+    2009
+   ],
+   [
+    82,
+    2009
+   ],
+   [
+    98,
+    2010
+   ],
+   [
+    100,
+    2010
+   ],
+   [
+    82,
+    2012
+   ],
+   [
+    68,
+    2013
+   ],
+   [
+    74,
+    2016
+   ],
+   [
+    103,
+    2017
+   ],
+   [
+    24,
+    2019
+   ],
+   [
+    101,
+    2019
+   ],
+   [
+    103,
+    2020
+   ],
+   [
+    67,
+    2023
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 47 от 2009 г.; изм., бр. 74 и 82 от 2009 г., бр. 98 и 100 от 2010 г., бр. 82 от 2012 г., бр. 68 от 2013 г., бр. 74 от 2016 г., бр. 103 от 2017 г., бр. 24 и 101 от 2019 г., бр. 103 от 2020 г. и бр. 67 от 2023 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10
+ ],
+ "headings": [
+  154
+ ],
+ "tail": [
+  174,
+  175,
+  176
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "2": "header",
+  "3": "header",
+  "4": "header",
+  "5": "header",
+  "6": "header",
+  "7": "header",
+  "8": "header",
+  "9": "header",
+  "10": "header",
+  "174": "tail",
+  "175": "tail",
+  "176": "tail",
+  "11": "instruction",
+  "12": "instruction",
+  "13": "instruction",
+  "14": "instruction",
+  "15": "instruction",
+  "16": "quoted",
+  "17": "instruction",
+  "18": "quoted",
+  "19": "quoted",
+  "20": "quoted",
+  "21": "instruction",
+  "22": "instruction",
+  "23": "instruction",
+  "24": "quoted",
+  "25": "instruction",
+  "26": "instruction",
+  "27": "quoted",
+  "28": "quoted",
+  "29": "quoted",
+  "30": "quoted",
+  "31": "quoted",
+  "32": "quoted",
+  "33": "quoted",
+  "34": "quoted",
+  "35": "quoted",
+  "36": "quoted",
+  "37": "quoted",
+  "38": "quoted",
+  "39": "quoted",
+  "40": "quoted",
+  "41": "quoted",
+  "42": "quoted",
+  "43": "quoted",
+  "44": "quoted",
+  "45": "quoted",
+  "46": "instruction",
+  "47": "instruction",
+  "48": "instruction",
+  "49": "quoted",
+  "50": "quoted",
+  "51": "instruction",
+  "52": "quoted",
+  "53": "instruction",
+  "54": "quoted",
+  "55": "instruction",
+  "56": "instruction",
+  "57": "quoted",
+  "58": "instruction",
+  "59": "quoted",
+  "60": "quoted",
+  "61": "instruction",
+  "62": "quoted",
+  "63": "quoted",
+  "64": "quoted",
+  "65": "instruction",
+  "66": "instruction",
+  "67": "instruction",
+  "68": "quoted",
+  "69": "instruction",
+  "70": "instruction",
+  "71": "quoted",
+  "72": "quoted",
+  "73": "instruction",
+  "74": "instruction",
+  "75": "instruction",
+  "76": "instruction",
+  "77": "instruction",
+  "78": "instruction",
+  "79": "quoted",
+  "80": "instruction",
+  "81": "quoted",
+  "82": "quoted",
+  "83": "instruction",
+  "84": "quoted",
+  "85": "instruction",
+  "86": "quoted",
+  "87": "quoted",
+  "88": "instruction",
+  "89": "instruction",
+  "90": "instruction",
+  "91": "instruction",
+  "92": "instruction",
+  "93": "instruction",
+  "94": "instruction",
+  "95": "instruction",
+  "96": "instruction",
+  "97": "instruction",
+  "98": "instruction",
+  "99": "instruction",
+  "100": "quoted",
+  "101": "instruction",
+  "102": "instruction",
+  "103": "instruction",
+  "104": "instruction",
+  "105": "instruction",
+  "106": "instruction",
+  "107": "quoted",
+  "108": "instruction",
+  "109": "quoted",
+  "110": "quoted",
+  "111": "quoted",
+  "112": "quoted",
+  "113": "quoted",
+  "114": "instruction",
+  "115": "quoted",
+  "116": "quoted",
+  "117": "quoted",
+  "118": "quoted",
+  "119": "quoted",
+  "120": "instruction",
+  "121": "instruction",
+  "122": "quoted",
+  "123": "instruction",
+  "124": "instruction",
+  "125": "instruction",
+  "126": "instruction",
+  "127": "instruction",
+  "128": "instruction",
+  "129": "instruction",
+  "130": "instruction",
+  "131": "quoted",
+  "132": "instruction",
+  "133": "instruction",
+  "134": "instruction",
+  "135": "instruction",
+  "136": "instruction",
+  "137": "instruction",
+  "138": "instruction",
+  "139": "instruction",
+  "140": "instruction",
+  "141": "quoted",
+  "142": "quoted",
+  "143": "quoted",
+  "144": "instruction",
+  "145": "instruction",
+  "146": "quoted",
+  "147": "instruction",
+  "148": "instruction",
+  "149": "instruction",
+  "150": "instruction",
+  "151": "instruction",
+  "152": "quoted",
+  "153": "quoted",
+  "154": "heading",
+  "155": "instruction",
+  "156": "continuation",
+  "157": "continuation",
+  "158": "continuation",
+  "159": "continuation",
+  "160": "continuation",
+  "161": "instruction",
+  "162": "continuation",
+  "163": "instruction",
+  "164": "instruction",
+  "165": "instruction",
+  "166": "instruction",
+  "167": "instruction",
+  "168": "instruction",
+  "169": "instruction",
+  "170": "instruction",
+  "171": "quoted",
+  "172": "instruction",
+  "173": "instruction"
+ },
+ "findings": [],
+ "blocks": 177,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 11,
+   "text": "§ 1. В чл. 6 ал. 2, 3 и 4 се отменят.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 12,
+   "text": "§ 2. В чл. 47, ал. 1 т. 1 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 13,
+   "text": "§ 3. В чл. 77 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§3.1",
+     "level": 1,
+     "block": 14,
+     "text": "1. В ал. 2, изречение второ думите „регистъра по чл. 83“ се заменят с „информационната система по чл. 83, ал. 1“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регистъра по чл. 83",
+      "информационната система по чл. 83, ал. 1"
+     ],
+     "target": null
+    },
+    {
+     "id": "§3.2",
+     "level": 1,
+     "block": 15,
+     "text": "2. Създава се ал. 4:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      16
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 17,
+   "text": "§ 4. Член 79 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    18,
+    19,
+    20
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 21,
+   "text": "§ 5. В чл. 80, ал. 3 след думата „съдът“ се добавя „изисква становище от дирекция „Социално подпомагане“ по постоянен адрес на ищците и“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "съдът",
+    "Социално подпомагане"
+   ],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 22,
+   "text": "§ 6. В чл. 82 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§6.1",
+     "level": 1,
+     "block": 23,
+     "text": "1. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      24
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§6.2",
+     "level": 1,
+     "block": 25,
+     "text": "2. В ал. 3 думите „регистъра на осиновяващи по чл. 85“ се заменят с „информационната система по чл. 83, ал. 1“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регистъра на осиновяващи по чл. 85",
+      "информационната система по чл. 83, ал. 1"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 26,
+   "text": "§ 7. Член 83 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 46,
+   "text": "§ 8. В чл. 84 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§8.1",
+     "level": 1,
+     "block": 47,
+     "text": "1. В заглавието думите „в регионалните регистри на деца“ се заменят с „на деца в Националната електронна информационна система“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "в регионалните регистри на деца",
+      "на деца в Националната електронна информационна система"
+     ],
+     "target": null
+    },
+    {
+     "id": "§8.2",
+     "level": 1,
+     "block": 48,
+     "text": "2. Алинеи 1 и 2 се изменят така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      49,
+      50
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§8.3",
+     "level": 1,
+     "block": 51,
+     "text": "3. Създава се нова ал. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      52
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§8.4",
+     "level": 1,
+     "block": 53,
+     "text": "4. Досегашната ал. 3 става ал. 4 и се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      54
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§8.5",
+     "level": 1,
+     "block": 55,
+     "text": "5. Досегашната ал. 4 става ал. 5 и в нея думите „регистъра по реда на ал. 3“ се заменят с „информационната система по чл. 83, ал. 1 по реда на ал. 4“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регистъра по реда на ал. 3",
+      "информационната система по чл. 83, ал. 1 по реда на ал. 4"
+     ],
+     "target": null
+    },
+    {
+     "id": "§8.6",
+     "level": 1,
+     "block": 56,
+     "text": "6. Досегашната ал. 5 става ал. 6 и се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      57
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§8.7",
+     "level": 1,
+     "block": 58,
+     "text": "7. Създават се ал. 7 и 8:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      59,
+      60
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 61,
+   "text": "§ 9. Член 85 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    62,
+    63,
+    64
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 65,
+   "text": "§ 10. В чл. 86 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§10.1",
+     "level": 1,
+     "block": 66,
+     "text": "1. В заглавието думите „Националния регистър на осиновяващи“ се заменят с „Националната електронна информационна система“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Националния регистър на осиновяващи",
+      "Националната електронна информационна система"
+     ],
+     "target": null
+    },
+    {
+     "id": "§10.2",
+     "level": 1,
+     "block": 67,
+     "text": "2. Алинея 1 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      68
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§10.3",
+     "level": 1,
+     "block": 69,
+     "text": "3. В ал. 2 се създава изречение второ: „Когато лицето желае да осинови дете с обичайно местопребиваване в чужбина, въз основа на социалното проучване дирекция „Социално подпомагане“ издава удостоверение за годност по образец, приложение към наредбата по чл. 83, ал. 4.“",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Социално подпомагане"
+     ],
+     "target": null
+    },
+    {
+     "id": "§10.4",
+     "level": 1,
+     "block": 70,
+     "text": "4. Алинеи 3 и 4 се изменят така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      71,
+      72
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§10.5",
+     "level": 1,
+     "block": 73,
+     "text": "5. В ал. 5 след думата „разрешението“ се добавя „по ал. 3“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "разрешението",
+      "по ал. 3"
+     ],
+     "target": null
+    },
+    {
+     "id": "§10.6",
+     "level": 1,
+     "block": 74,
+     "text": "6. Алинея 6 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§11",
+   "level": 0,
+   "block": 75,
+   "text": "§ 11. В чл. 87 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§11.1",
+     "level": 1,
+     "block": 76,
+     "text": "1. В заглавието думата „регистъра“ се заменя с думите „Националната електронна информационна система за пълно осиновяване“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регистъра",
+      "Националната електронна информационна система за пълно осиновяване"
+     ],
+     "target": null
+    },
+    {
+     "id": "§11.2",
+     "level": 1,
+     "block": 77,
+     "text": "2. В ал. 2, изречение първо думата „регистъра“ се заменя с думите „информационната система по чл. 83, ал. 1“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регистъра",
+      "информационната система по чл. 83, ал. 1"
+     ],
+     "target": null
+    },
+    {
+     "id": "§11.3",
+     "level": 1,
+     "block": 78,
+     "text": "3. Алинея 4 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      79
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§12",
+   "level": 0,
+   "block": 80,
+   "text": "§ 12. Член 88 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    81,
+    82
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§13",
+   "level": 0,
+   "block": 83,
+   "text": "§ 13. В чл. 91 се създава ал. 4:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    84
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§14",
+   "level": 0,
+   "block": 85,
+   "text": "§ 14. В чл. 93 ал. 2 и 3 се изменят така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    86,
+    87
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§15",
+   "level": 0,
+   "block": 88,
+   "text": "§ 15. В чл. 95 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§15.1",
+     "level": 1,
+     "block": 89,
+     "text": "1. В ал. 1 навсякъде думите „регистъра“ се заменят с „информационната система по чл. 83, ал. 1“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регистъра",
+      "информационната система по чл. 83, ал. 1"
+     ],
+     "target": null
+    },
+    {
+     "id": "§15.2",
+     "level": 1,
+     "block": 90,
+     "text": "2. Алинея 2 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§15.3",
+     "level": 1,
+     "block": 91,
+     "text": "3. В ал. 3:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§15.3.а",
+       "level": 2,
+       "block": 92,
+       "text": "а) в изречение първо думата „данни“ се заменя с „доклад“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "данни",
+        "доклад"
+       ],
+       "target": null
+      },
+      {
+       "id": "§15.3.б",
+       "level": 2,
+       "block": 93,
+       "text": "б) създават се ново изречение второ и изречение трето: „Докладът се изготвя по образец, приложение към наредбата по чл. 83, ал. 4. Решението на Съвета по осиновяване се съобщава на дирекция „Социално подпомагане“ по настоящия адрес на детето и дирекция „Социално подпомагане“ по постоянния адрес на осиновяващия.“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "Социално подпомагане",
+        "Социално подпомагане"
+       ],
+       "target": null
+      },
+      {
+       "id": "§15.3.в",
+       "level": 2,
+       "block": 94,
+       "text": "в) досегашното изречение второ става изречение четвърто, като в него накрая се добавят думите „на осиновяващия с детето“.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "на осиновяващия с детето"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§15.4",
+     "level": 1,
+     "block": 95,
+     "text": "4. Алинея 4 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§15.5",
+     "level": 1,
+     "block": 96,
+     "text": "5. В ал. 5, изречение първо след думата „срок“ се добавя „до“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "срок",
+      "до"
+     ],
+     "target": null
+    },
+    {
+     "id": "§15.6",
+     "level": 1,
+     "block": 97,
+     "text": "6. В ал. 6 накрая се добавя „дирекция „Социално подпомагане“ по настоящия адрес на детето и дирекция „Социално подпомагане“ по постоянния адрес на осиновяващия“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Социално подпомагане",
+      "Социално подпомагане"
+     ],
+     "target": null
+    },
+    {
+     "id": "§15.7",
+     "level": 1,
+     "block": 98,
+     "text": "7. В ал. 7 думите „в Националния регистър на осиновяващи за пълно осиновяване“ се заменят с „от Министерството на труда и социалната политика в информационната система по чл. 83, ал. 1 след писмено уведомление от съответната дирекция „Социално подпомагане“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "в Националния регистър на осиновяващи за пълно осиновяване",
+      "Социално подпомагане"
+     ],
+     "target": null
+    },
+    {
+     "id": "§15.8",
+     "level": 1,
+     "block": 99,
+     "text": "8. Създава се ал. 8:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      100
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§16",
+   "level": 0,
+   "block": 101,
+   "text": "§ 16. В чл. 97, ал. 1, изречение второ думите „При пълно осиновяване“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "При пълно осиновяване"
+   ],
+   "target": null
+  },
+  {
+   "id": "§17",
+   "level": 0,
+   "block": 102,
+   "text": "§ 17. В чл. 100, ал. 2 в текста преди т. 1 след думата „Oсиновяването“ се добавя „винаги“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Oсиновяването",
+    "винаги"
+   ],
+   "target": null
+  },
+  {
+   "id": "§18",
+   "level": 0,
+   "block": 103,
+   "text": "§ 18. В чл. 103 ал. 2 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§19",
+   "level": 0,
+   "block": 104,
+   "text": "§ 19. В чл. 104 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§19.1",
+     "level": 1,
+     "block": 105,
+     "text": "1. Досегашният текст става ал. 1 и в нея думата „две“ се заменя с „три“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "две",
+      "три"
+     ],
+     "target": null
+    },
+    {
+     "id": "§19.2",
+     "level": 1,
+     "block": 106,
+     "text": "2. Създава се ал. 2:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      107
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§20",
+   "level": 0,
+   "block": 108,
+   "text": "§ 20. Член 105 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    109,
+    110,
+    111,
+    112,
+    113
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§21",
+   "level": 0,
+   "block": 114,
+   "text": "§ 21. В глава осма, раздел ІІІ се създава чл. 105а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    115,
+    116,
+    117,
+    118,
+    119
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§22",
+   "level": 0,
+   "block": 120,
+   "text": "§ 22. В чл. 106 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§22.1",
+     "level": 1,
+     "block": 121,
+     "text": "1. Алинея 5 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      122
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§22.2",
+     "level": 1,
+     "block": 123,
+     "text": "2. В ал. 8 след думите „дееспособни“ се добавя „и осиновеният е навършил 25-годишна възраст“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "дееспособни",
+      "и осиновеният е навършил 25-годишна възраст"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§23",
+   "level": 0,
+   "block": 124,
+   "text": "§ 23. В чл. 112 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§23.1",
+     "level": 1,
+     "block": 125,
+     "text": "1. В ал. 2, т. 1 думата „осъществява“ се заменя с „ръководи“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "осъществява",
+      "ръководи"
+     ],
+     "target": null
+    },
+    {
+     "id": "§23.2",
+     "level": 1,
+     "block": 126,
+     "text": "2. В ал. 3 след думите „министъра на правосъдието“ се добавя „или упълномощено от него лице“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "министъра на правосъдието",
+      "или упълномощено от него лице"
+     ],
+     "target": null
+    },
+    {
+     "id": "§23.3",
+     "level": 1,
+     "block": 127,
+     "text": "3. В ал. 6 накрая думите „ал. 4“ се заменят с „ал. 5“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "ал. 4",
+      "ал. 5"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§24",
+   "level": 0,
+   "block": 128,
+   "text": "§ 24. В чл. 113 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§24.1",
+     "level": 1,
+     "block": 129,
+     "text": "1. В ал. 2 след думата „децата“ се добавя „по ал. 1, т. 1“, а думите „му в регионалния регистър“ се заменят с „на детето в информационната система по чл. 83, ал. 1“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "децата",
+      "по ал. 1, т. 1",
+      "му в регионалния регистър",
+      "на детето в информационната система по чл. 83, ал. 1"
+     ],
+     "target": null
+    },
+    {
+     "id": "§24.2",
+     "level": 1,
+     "block": 130,
+     "text": "2. Създава се нова ал. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      131
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§24.3",
+     "level": 1,
+     "block": 132,
+     "text": "3. Досегашната ал. 3 става ал. 4 и в нея думите „регионалния регистър“ се заменят с „информационната система по чл. 83, ал. 1“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "регионалния регистър",
+      "информационната система по чл. 83, ал. 1"
+     ],
+     "target": null
+    },
+    {
+     "id": "§24.4",
+     "level": 1,
+     "block": 133,
+     "text": "4. Досегашните ал. 4 и 5 стават съответно ал. 5 и 6.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§25",
+   "level": 0,
+   "block": 134,
+   "text": "§ 25. В чл. 114, ал. 1 думите „Министерството на образованието и науката“ се заменят с „Агенцията за социално подпомагане“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Министерството на образованието и науката",
+    "Агенцията за социално подпомагане"
+   ],
+   "target": null
+  },
+  {
+   "id": "§26",
+   "level": 0,
+   "block": 135,
+   "text": "§ 26. В чл. 115, т. 3 след думата „правосъдието“ се добавя „по заявленията“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "правосъдието",
+    "по заявленията"
+   ],
+   "target": null
+  },
+  {
+   "id": "§27",
+   "level": 0,
+   "block": 136,
+   "text": "§ 27. В чл. 117, ал. 1 след думата „правосъдието“ се добавя „или упълномощено от него лице“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "правосъдието",
+    "или упълномощено от него лице"
+   ],
+   "target": null
+  },
+  {
+   "id": "§28",
+   "level": 0,
+   "block": 137,
+   "text": "§ 28. В чл. 153 се правят следните допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§28.1",
+     "level": 1,
+     "block": 138,
+     "text": "1. В ал. 1, изречение първо накрая се поставя запетая и се добавя „както и на непридружени малолетни чужденци, които са на територията на Република България.“",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "както и на непридружени малолетни чужденци, които са на територията на Република България."
+     ],
+     "target": null
+    },
+    {
+     "id": "§28.2",
+     "level": 1,
+     "block": 139,
+     "text": "2. В ал. 2, изречение първо накрая се поставя запетая и се добавя „както и на непридружени непълнолетни чужденци, които са на територията на Република България.“",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "както и на непридружени непълнолетни чужденци, които са на територията на Република България."
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§29",
+   "level": 0,
+   "block": 140,
+   "text": "§ 29. В чл. 156 се създават ал. 3, 4 и 5:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    141,
+    142,
+    143
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§30",
+   "level": 0,
+   "block": 144,
+   "text": "§ 30. В чл. 173 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§30.1",
+     "level": 1,
+     "block": 145,
+     "text": "1. Създава се нова ал. 2:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      146
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§30.2",
+     "level": 1,
+     "block": 147,
+     "text": "2. Досегашната ал. 2 става ал. 3.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§30.3",
+     "level": 1,
+     "block": 148,
+     "text": "3. Досегашната ал. 3 става ал. 4 и в нея думите „ал. 1 и 2“ се заменят с „ал. 1 – 3“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "ал. 1 и 2",
+      "ал. 1 – 3"
+     ],
+     "target": null
+    },
+    {
+     "id": "§30.4",
+     "level": 1,
+     "block": 149,
+     "text": "4. Досегашната ал. 4 става ал. 5 и в нея думите „ал. 2“ се заменят с „ал. 3“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "ал. 2",
+      "ал. 3"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§31",
+   "level": 0,
+   "block": 150,
+   "text": "§ 31. В чл. 174, ал. 1 и 2 думите „ал. 2“ се заменят с „ал. 2 и 3“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "ал. 2",
+    "ал. 2 и 3"
+   ],
+   "target": null
+  },
+  {
+   "id": "§32",
+   "level": 0,
+   "block": 151,
+   "text": "§ 32. Създава се чл. 173а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    152,
+    153
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§33",
+   "level": 0,
+   "block": 155,
+   "text": "§ 33. (1) Националната електронна информационна система за пълно осиновяване и Електронната платформа за кандидатстване за осиновяване на деца при условията на пълно осиновяване се създават до 1 януари 2025 г.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [
+    156,
+    157,
+    158,
+    159,
+    160
+   ],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§34",
+   "level": 0,
+   "block": 161,
+   "text": "§ 34. (1) Националната електронна информационна система на децата, които могат да бъдат осиновени при условията на пълно осиновяване, и Националният регистър на лицата, които желаят да осиновят дете при условията на пълно осиновяване, водени от Агенцията за социално подпомагане, както и регистрите на децата и осиновяващите, водени в регионалните дирекции за социално подпомагане, се поддържат до внедряването и въвеждането в експлоатация на Националната електронна информационна система за пълно осиновяване в информационната и комуникационна среда на Министерството на труда и социалната политика.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [
+    162
+   ],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§35",
+   "level": 0,
+   "block": 163,
+   "text": "§ 35. За дете, което служебно се вписва в Националната електронна информационна система за пълно осиновяване по реда на § 33, ал. 3 и 4, срокът по чл. 113, ал. 2 започва да тече от първото вписване на детето в регистъра на регионалната дирекция за социално подпомагане.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§36",
+   "level": 0,
+   "block": 164,
+   "text": "§ 36. Всички процедури по глава осма, започнали преди 31 декември 2024 г., се разглеждат и довършват по досегашния ред.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§37",
+   "level": 0,
+   "block": 165,
+   "text": "§ 37. Започналите, но неприключили съдебни дела по чл. 105 до влизане в сила на този закон, се довършват по новия ред.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§38",
+   "level": 0,
+   "block": 166,
+   "text": "§ 38. Започналите, но неприключили съдебни дела по чл. 106 до влизане в сила на този закон, се довършват по досегашния ред.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§39",
+   "level": 0,
+   "block": 167,
+   "text": "§ 39. В 6-месечен срок от влизането в сила на този закон министърът на труда и социалната политика, съгласувано с министъра на правосъдието, издава наредбата по чл. 83, ал. 4. До издаването на наредбата се прилага действащата подзаконова нормативна уредба, доколкото не противоречи на закона.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§40",
+   "level": 0,
+   "block": 168,
+   "text": "§ 40. Срокът по чл. 93, ал. 2 за вписване на дете в Националната електронна информационна система за пълно осиновяване по реда на чл. 84 се счита от датата на настаняването по административен ред по реда на Закона за закрила на детето и когато настаняването е извършено до влизането в сила на този закон.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§41",
+   "level": 0,
+   "block": 169,
+   "text": "§ 41. В Закона за социално подпомагане (обн., ДВ, бр. 56 от 1998 г.; изм., бр. 45 и 120 от 2002 г., бр. 18, 30 и 105 от 2006 г., бр. 52 и 59 от 2007 г., бр. 58 от 2008 г., бр. 14, 41 и 74 от 2009 г., бр. 15 от 2010 г., бр. 9 и 51 от 2011 г., бр. 32 от 2012 г., бр. 15 и 66 от 2013 г., бр. 98 от 2014 г., бр. 8 от 2016 г., бр. 85 от 2017 г., бр. 7, 17, 77, 91 и 105 от 2018 г., бр. 24, 35 и 101 от 2019 г., бр. 71 от 2020 г., бр. 102 от 2022 г. и бр. 84 от 2023 г.) в чл. 6, ал. 1, т. 10 думите „на децата, които могат да бъдат осиновени при условията на пълно осиновяване, на осиновяващи при условията на пълно осиновяване и“ се заличават.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "на децата, които могат да бъдат осиновени при условията на пълно осиновяване, на осиновяващи при условията на пълно осиновяване и"
+   ],
+   "target": {
+    "title": "Закона за социално подпомагане",
+    "cite": "обн., ДВ, бр. 56 от 1998 г.; изм., бр. 45 и 120 от 2002 г., бр. 18, 30 и 105 от 2006 г., бр. 52 и 59 от 2007 г., бр. 58 от 2008 г., бр. 14, 41 и 74 от 2009 г., бр. 15 от 2010 г., бр. 9 и 51 от 2011 г., бр. 32 от 2012 г., бр. 15 и 66 от 2013 г., бр. 98 от 2014 г., бр. 8 от 2016 г., бр. 85 от 2017 г., бр. 7, 17, 77, 91 и 105 от 2018 г., бр. 24, 35 и 101 от 2019 г., бр. 71 от 2020 г., бр. 102 от 2022 г. и бр. 84 от 2023 г.",
+    "promulgation": [
+     56,
+     1998
+    ],
+    "issues": [
+     [
+      56,
+      1998
+     ],
+     [
+      45,
+      2002
+     ],
+     [
+      120,
+      2002
+     ],
+     [
+      18,
+      2006
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      105,
+      2006
+     ],
+     [
+      52,
+      2007
+     ],
+     [
+      59,
+      2007
+     ],
+     [
+      58,
+      2008
+     ],
+     [
+      14,
+      2009
+     ],
+     [
+      41,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      15,
+      2010
+     ],
+     [
+      9,
+      2011
+     ],
+     [
+      51,
+      2011
+     ],
+     [
+      32,
+      2012
+     ],
+     [
+      15,
+      2013
+     ],
+     [
+      66,
+      2013
+     ],
+     [
+      98,
+      2014
+     ],
+     [
+      8,
+      2016
+     ],
+     [
+      85,
+      2017
+     ],
+     [
+      7,
+      2018
+     ],
+     [
+      17,
+      2018
+     ],
+     [
+      77,
+      2018
+     ],
+     [
+      91,
+      2018
+     ],
+     [
+      105,
+      2018
+     ],
+     [
+      24,
+      2019
+     ],
+     [
+      35,
+      2019
+     ],
+     [
+      101,
+      2019
+     ],
+     [
+      71,
+      2020
+     ],
+     [
+      102,
+      2022
+     ],
+     [
+      84,
+      2023
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§42",
+   "level": 0,
+   "block": 170,
+   "text": "§ 42. В Закона за закрила на детето (обн., ДВ, бр. 48 от 2000 г.; изм., бр. 75 и 120 от 2002 г., бр. 36 и 63 от 2003 г., бр. 70 и 115 от 2004 г., бр. 28, 94 и 103 от 2005 г., бр. 30, 38 и 82 от 2006 г., бр. 59 от 2007 г., бр. 69 от 2008 г., бр. 14, 47 и 74 от 2009 г., бр. 42, 50, 59 и 98 от 2010 г., бр. 28 и 51 от 2011 г., бр. 32 и 40 от 2012 г., бр. 15, 68 и 84 от 2013 г., бр. 79 от 2015 г., бр. 8 от 2016 г., бр. 85 и 103 от 2017 г., бр. 17, 77 и 102 от 2018 г., бр. 17, 24, 58 и 101 от 2019 г., бр. 71 и 99 от 2020 г., бр. 62 от 2022 г. и бр. 66 от 2023 г.) в чл. 17а, ал. 1, т. 9 буква „в“ се изменя така:",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [
+    171
+   ],
+   "continuation": [],
+   "inline_quotes": [
+    "в"
+   ],
+   "target": {
+    "title": "Закона за закрила на детето",
+    "cite": "обн., ДВ, бр. 48 от 2000 г.; изм., бр. 75 и 120 от 2002 г., бр. 36 и 63 от 2003 г., бр. 70 и 115 от 2004 г., бр. 28, 94 и 103 от 2005 г., бр. 30, 38 и 82 от 2006 г., бр. 59 от 2007 г., бр. 69 от 2008 г., бр. 14, 47 и 74 от 2009 г., бр. 42, 50, 59 и 98 от 2010 г., бр. 28 и 51 от 2011 г., бр. 32 и 40 от 2012 г., бр. 15, 68 и 84 от 2013 г., бр. 79 от 2015 г., бр. 8 от 2016 г., бр. 85 и 103 от 2017 г., бр. 17, 77 и 102 от 2018 г., бр. 17, 24, 58 и 101 от 2019 г., бр. 71 и 99 от 2020 г., бр. 62 от 2022 г. и бр. 66 от 2023 г.",
+    "promulgation": [
+     48,
+     2000
+    ],
+    "issues": [
+     [
+      48,
+      2000
+     ],
+     [
+      75,
+      2002
+     ],
+     [
+      120,
+      2002
+     ],
+     [
+      36,
+      2003
+     ],
+     [
+      63,
+      2003
+     ],
+     [
+      70,
+      2004
+     ],
+     [
+      115,
+      2004
+     ],
+     [
+      28,
+      2005
+     ],
+     [
+      94,
+      2005
+     ],
+     [
+      103,
+      2005
+     ],
+     [
+      30,
+      2006
+     ],
+     [
+      38,
+      2006
+     ],
+     [
+      82,
+      2006
+     ],
+     [
+      59,
+      2007
+     ],
+     [
+      69,
+      2008
+     ],
+     [
+      14,
+      2009
+     ],
+     [
+      47,
+      2009
+     ],
+     [
+      74,
+      2009
+     ],
+     [
+      42,
+      2010
+     ],
+     [
+      50,
+      2010
+     ],
+     [
+      59,
+      2010
+     ],
+     [
+      98,
+      2010
+     ],
+     [
+      28,
+      2011
+     ],
+     [
+      51,
+      2011
+     ],
+     [
+      32,
+      2012
+     ],
+     [
+      40,
+      2012
+     ],
+     [
+      15,
+      2013
+     ],
+     [
+      68,
+      2013
+     ],
+     [
+      84,
+      2013
+     ],
+     [
+      79,
+      2015
+     ],
+     [
+      8,
+      2016
+     ],
+     [
+      85,
+      2017
+     ],
+     [
+      103,
+      2017
+     ],
+     [
+      17,
+      2018
+     ],
+     [
+      77,
+      2018
+     ],
+     [
+      102,
+      2018
+     ],
+     [
+      17,
+      2019
+     ],
+     [
+      24,
+      2019
+     ],
+     [
+      58,
+      2019
+     ],
+     [
+      101,
+      2019
+     ],
+     [
+      71,
+      2020
+     ],
+     [
+      99,
+      2020
+     ],
+     [
+      62,
+      2022
+     ],
+     [
+      66,
+      2023
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§43",
+   "level": 0,
+   "block": 172,
+   "text": "§ 43. В Кодекса за международното частно право (обн., ДВ, бр. 42 от 2005 г.; изм., бр. 59 от 2007 г., бр. 47 от 2009 г. и бр. 100 от 2010 г.) в чл. 76, ал. 1 изречение второ се заличава.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": {
+    "title": "Кодекса за международното частно право",
+    "cite": "обн., ДВ, бр. 42 от 2005 г.; изм., бр. 59 от 2007 г., бр. 47 от 2009 г. и бр. 100 от 2010 г.",
+    "promulgation": [
+     42,
+     2005
+    ],
+    "issues": [
+     [
+      42,
+      2005
+     ],
+     [
+      59,
+      2007
+     ],
+     [
+      47,
+      2009
+     ],
+     [
+      100,
+      2010
+     ]
+    ],
+    "repeal": false
+   }
+  },
+  {
+   "id": "§44",
+   "level": 0,
+   "block": 173,
+   "text": "§ 44. Този закон влиза в сила от деня на обнародването му в „Държавен вестник“, с изключение на § 2, 41 и 42, които влизат в сила от 1 януари 2025 г.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

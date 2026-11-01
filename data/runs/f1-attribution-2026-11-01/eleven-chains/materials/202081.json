@@ -1,0 +1,39 @@
+{
+ "material": 202081,
+ "title": "Постановление № 316 от 20 декември 2023 г. за одобряване на допълнителни разходи по бюджета на Министерството на правосъдието за 2023 г.",
+ "issue": "106/2023",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 1 да се увеличат разходите п"
+  },
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Със сумата по чл. 1, ал. 1 да се увеличат показателит"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на правосъдието да извърши съответните про"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Министърът на финансите да извърши съответните промен"
+  }
+ ],
+ "tokens_instructions": 193,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

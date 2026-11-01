@@ -1,0 +1,42 @@
+{
+ "material": 121035,
+ "title": "Наредба за допълнение на Наредба № 9 от 2013 г. за изискванията за експлоатационна годност на пристанищата и специализираните пристанищни обекти",
+ "issue": "103/2017",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 9 от 2013 г. за изискванията за експлоатационна годност на пристанищата и специализираните пристанищни обекти",
+   "cited_promulgation": [
+    96,
+    2013
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-9-ot-17-oktomvri-2013-g-za-iziskvaniyata-za-eksploatatsionna-godnost-na-",
+   "candidates": [
+    "naredba-9-ot-17-oktomvri-2013-g-za-iziskvaniyata-za-eksploatatsionna-godnost-na-"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    96,
+    2013
+   ]
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 216,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

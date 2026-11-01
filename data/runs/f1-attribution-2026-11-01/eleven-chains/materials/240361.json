@@ -1,0 +1,40 @@
+{
+ "material": 240361,
+ "title": "Постановление № 353 от 29 декември 2025 г. за изменение на Наредбата за структурата и организацията на работната заплата, приета с Постановление № 4 на Министерския съвет от 2007 г.",
+ "issue": "115/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за структурата и организацията на работната заплата",
+   "cited_promulgation": [
+    9,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-strukturata-i-organizatsiyata-na-rabotnata-zaplata",
+   "candidates": [
+    "naredba-za-strukturata-i-organizatsiyata-na-rabotnata-zaplata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    9,
+    2007
+   ]
+  }
+ ],
+ "instructions": 6,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 105,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

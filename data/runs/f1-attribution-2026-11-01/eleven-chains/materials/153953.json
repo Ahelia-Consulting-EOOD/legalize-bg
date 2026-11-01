@@ -1,0 +1,70 @@
+{
+ "material": 153953,
+ "title": "Закон за изменение и допълнение на Закона за подпомагане на земеделските производители",
+ "issue": "103/2020",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за подпомагане на земеделските производители",
+   "cited_promulgation": [
+    58,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-podpomagane-na-zemedelskite-proizvoditeli",
+   "candidates": [
+    "zakon-za-podpomagane-na-zemedelskite-proizvoditeli"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    58,
+    1998
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за собствеността и ползването на земеделските земи се предоставят от общинските съвети само при условията на § 27, ал. 2 от преходните и заключителните разпоредби на Закона за изменение и допълнение на Закона за собствеността и ползуването на земеделските земи",
+   "cited_promulgation": [
+    62,
+    2010
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 49,
+ "signs": 13,
+ "quoted_blocks": 24,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 82: item 1 after 6 under §12"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 3058,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

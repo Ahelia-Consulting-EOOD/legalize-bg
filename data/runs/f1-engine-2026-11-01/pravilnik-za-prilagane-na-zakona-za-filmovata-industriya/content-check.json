@@ -1,0 +1,10 @@
+{
+ "lost_text": [],
+ "exceptions": 0,
+ "source_findings": {
+  "malformed_head": 1,
+  "annex_in_pdf": 16
+ },
+ "report": "report-round1.json",
+ "checked_at": "2026-11-01T11:58:44+00:00"
+}

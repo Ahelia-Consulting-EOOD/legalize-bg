@@ -1,0 +1,61 @@
+{
+ "material": 202043,
+ "title": "Закон за бюджета на държавното обществено осигуряване за 2024 г.",
+ "issue": "106/2023",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§5",
+   "cited_title": "Кодекса за социално осигуряване",
+   "cited_promulgation": [
+    110,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g",
+   "candidates": [
+    "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    110,
+    1999
+   ]
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Закона за професионалното образование и обучение",
+   "cited_promulgation": [
+    68,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-profesionalnoto-obrazovanie-i-obuchenie",
+   "candidates": [
+    "zakon-za-profesionalnoto-obrazovanie-i-obuchenie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    68,
+    1999
+   ]
+  }
+ ],
+ "instructions": 30,
+ "signs": 8,
+ "quoted_blocks": 6,
+ "findings": [],
+ "tokens_instructions": 2554,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

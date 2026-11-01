@@ -1,0 +1,56 @@
+{
+ "material": 202220,
+ "title": "Постановление № 352 от 28 декември 2023 г. за изменение и допълнение на Правилника за прилагане на Закона за филмовата индустрия, приет с Постановление № 274 на Министерския съвет от 2018 г.",
+ "issue": "2/2024",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за филмовата индустрия",
+   "cited_promulgation": [
+    102,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-filmovata-industriya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2018
+   ]
+  }
+ ],
+ "instructions": 154,
+ "signs": 73,
+ "quoted_blocks": 3501,
+ "findings": [
+  {
+   "block": 54,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '2. В ал. 3, т. 2 думите „или „б“ се зали' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 55,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '3. Алинея 5 се изменя така:' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 127: item 2 after 0 under §30"
+  }
+ ],
+ "tokens_instructions": 76539,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

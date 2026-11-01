@@ -1,0 +1,40 @@
+{
+ "material": 245785,
+ "title": "Закон за изменение и допълнение на Закона за въвеждане на еврото в Република България",
+ "issue": "82/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за въвеждане на еврото в Република България",
+   "cited_promulgation": [
+    70,
+    2024
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vavezhdane-na-evroto-v-republika-balgariya",
+   "candidates": [
+    "zakon-za-vavezhdane-na-evroto-v-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2024
+   ]
+  }
+ ],
+ "instructions": 4,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 87,
+ "attributed_at": "2026-11-01T09:40:31+00:00"
+}

@@ -217,6 +217,11 @@ def _head_stripped(text: str) -> str:
     return text
 
 
+def _signature(text: str) -> bool:
+    """A signature line of the amending act („Министър: …“, „Председател на Народното събрание: …“): the body is over."""
+    return bool(re.match(r"^(Министър|Председател|Министър-председател|Главен секретар|Изпълнителен директор|За министър)[^:]{0,80}:", text.strip()))
+
+
 def _closes(text: str) -> bool:
     """A block that ends a quotation: an unmatched closing mark at its end (its marks are odd and its last one, before
     trailing punctuation, closes); a block of one mark alone, as the Gazette prints after a quoted table, closes too."""
@@ -344,6 +349,7 @@ def parse(act: SplitAct) -> Material:
     quote_open = False
     depth = 0
     inner_list = False
+    unit_run = False   # the quoted text is a whole chapter or section („Глава четвърта се изменя така: „Глава четвърта …“)
     last: Node | None = None
     expected_sign = 1
     signed = False   # a signature line inside the body: the decree is over, an embedded act may follow
@@ -377,10 +383,15 @@ def parse(act: SplitAct) -> Material:
             elif _opens(t):
                 depth += 1
             elif _closes(t):
-                depth -= 1
+                # a quoted chapter or section runs on through a block whose nested marks happen to be odd (the Gazette closes a
+                # nested quotation with one mark); it ends where the amending act's own sequence resumes or the material ends
+                nxt = blocks[k + 1].text if k + 1 < body_end else ""
+                if not unit_run or not nxt or _resumes(nxt, SIGN.match(nxt), stack, expected_sign, section) or _signature(nxt):
+                    depth -= 1
             quote_open = depth > 0
             if not quote_open:
                 inner_list = False
+                unit_run = False
             k += 1
             continue
         if t[:1] in QUOTE_OPEN:
@@ -390,6 +401,7 @@ def parse(act: SplitAct) -> Material:
             else:
                 roles[k] = "quoted"
                 last.quoted.append(k)
+                unit_run = bool(STRUCTURAL.match(t[1:].strip()))
                 quote_open = _opens(t)
                 if quote_open and _ends_with_closer(t) and k + 1 < body_end:
                     # the block ends with a mark its parity does not pair: a nested quotation closed with one mark (the run is over) or an

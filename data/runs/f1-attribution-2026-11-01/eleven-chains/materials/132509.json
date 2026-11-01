@@ -1,0 +1,440 @@
+{
+ "material": 132509,
+ "title": "Закон за бюджета на Националната здравноосигурителна каса за 2019 г.",
+ "issue": "102/2018",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§8",
+   "cited_title": "Закона за ветераните от войните на Република България и по чл. 15, ал. 1 и 2 от Закона за военноинвалидите и военнопострадалите, както и целевите средства за диагностика и лечение в лечебни заведения за болнична помощ на лицата по Постановление № 17 на Министерския съвет от 2007 г. за определяне на условията и реда за разходване на целевите средства за диагностика и лечение в лечебни заведения за болнична помощ на лица, които нямат доход и/или лично имущество, което да им осигурява лично участие в здравноосигурителния процес",
+   "cited_promulgation": [
+    13,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§25",
+   "cited_title": "Закона за Българския Червен кръст",
+   "cited_promulgation": [
+    87,
+    1995
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskiya-cherven-krast",
+   "candidates": [
+    "zakon-za-balgarskiya-cherven-krast"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    87,
+    1995
+   ]
+  },
+  {
+   "scope": "§26",
+   "cited_title": "Закона за данъците върху доходите на физическите лица",
+   "cited_promulgation": [
+    95,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+   "candidates": [
+    "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    2006
+   ]
+  },
+  {
+   "scope": "§27",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  },
+  {
+   "scope": "§28",
+   "cited_title": "Закона за здравето",
+   "cited_promulgation": [
+    70,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdraveto",
+   "candidates": [
+    "zakon-za-zdraveto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2004
+   ]
+  },
+  {
+   "scope": "§29",
+   "cited_title": "Закона за здравното осигуряване",
+   "cited_promulgation": [
+    70,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravnoto-osiguryavane",
+   "candidates": [
+    "zakon-za-zdravnoto-osiguryavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    1998
+   ]
+  },
+  {
+   "scope": "§31",
+   "cited_title": "Закона за контрол върху наркотичните вещества и прекурсорите",
+   "cited_promulgation": [
+    30,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite",
+   "candidates": [
+    "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    1999
+   ]
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Закона за корпоративното подоходно облагане",
+   "cited_promulgation": [
+    105,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-korporativnoto-podohodno-oblagane",
+   "candidates": [
+    "zakon-za-korporativnoto-podohodno-oblagane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2006
+   ]
+  },
+  {
+   "scope": "§33",
+   "cited_title": "Закона за кръвта, кръводаряването и кръвопреливането",
+   "cited_promulgation": [
+    102,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kravta-kravodaryavaneto-i-kravoprelivaneto",
+   "candidates": [
+    "zakon-za-kravta-kravodaryavaneto-i-kravoprelivaneto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    102,
+    2003
+   ]
+  },
+  {
+   "scope": "§34",
+   "cited_title": "Закона за лекарствените продукти в хуманната медицина",
+   "cited_promulgation": [
+    31,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lekarstvenite-produkti-v-humannata-meditsina",
+   "candidates": [
+    "zakon-za-lekarstvenite-produkti-v-humannata-meditsina"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    31,
+    2007
+   ]
+  },
+  {
+   "scope": "§35",
+   "cited_title": "Закона за лечебните заведения",
+   "cited_promulgation": [
+    62,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lechebnite-zavedeniya",
+   "candidates": [
+    "zakon-za-lechebnite-zavedeniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    62,
+    1999
+   ]
+  },
+  {
+   "scope": "§36",
+   "cited_title": "Закона за медицинските изделия",
+   "cited_promulgation": [
+    46,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-meditsinskite-izdeliya",
+   "candidates": [
+    "zakon-za-meditsinskite-izdeliya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2007
+   ]
+  },
+  {
+   "scope": "§37",
+   "cited_title": "Закона за обществените поръчки",
+   "cited_promulgation": [
+    13,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-obshtestvenite-porachki",
+   "candidates": [
+    "zakon-za-obshtestvenite-porachki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    2016
+   ]
+  },
+  {
+   "scope": "§38",
+   "cited_title": "Закона за съсловните организации на медицинските сестри, акушерките и асоциираните медицински специалисти, на зъботехниците и на помощник-фармацевтите",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "zakon-za-saslovnite-organizatsii-na-meditsinskite-sestri-akusherkite-i-asotsiira",
+   "candidates": [
+    "zakon-za-saslovnite-organizatsii-na-meditsinskite-sestri-akusherkite-i-asotsiira"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (fuzzy); the cited promulgation names the act",
+   "act_promulgation": [
+    46,
+    2005
+   ]
+  },
+  {
+   "scope": "§39",
+   "cited_title": "Закона за съсловните организации на лекарите и на лекарите по дентална медицина",
+   "cited_promulgation": [
+    83,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-saslovnite-organizatsii-na-lekarite-i-na-lekarite-po-dentalna-meditsina",
+   "candidates": [
+    "zakon-za-saslovnite-organizatsii-na-lekarite-i-na-lekarite-po-dentalna-meditsina"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    83,
+    1998
+   ]
+  },
+  {
+   "scope": "§40",
+   "cited_title": "Закона за съсловната организация на магистър-фармацевтите",
+   "cited_promulgation": [
+    75,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-saslovnata-organizatsiya-na-magistar-farmatsevtite",
+   "candidates": [
+    "zakon-za-saslovnata-organizatsiya-na-magistar-farmatsevtite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    75,
+    2006
+   ]
+  },
+  {
+   "scope": "§41",
+   "cited_title": "Закона за трансплантация на органи, тъкани и клетки",
+   "cited_promulgation": [
+    83,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-transplantatsiya-na-organi-takani-i-kletki",
+   "candidates": [
+    "zakon-za-transplantatsiya-na-organi-takani-i-kletki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    83,
+    2003
+   ]
+  },
+  {
+   "scope": "§42",
+   "cited_title": "Изборния кодекс",
+   "cited_promulgation": [
+    19,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "izboren-kodeks",
+   "candidates": [
+    "izboren-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2014
+   ]
+  }
+ ],
+ "instructions": 404,
+ "signs": 43,
+ "quoted_blocks": 420,
+ "findings": [
+  {
+   "block": 208,
+   "kind": "citation_without_target",
+   "detail": "§ 13. (1) Създаденият с Постановление № 280 на Министерския съвет от 2004 г. за "
+  },
+  {
+   "block": 258,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 27. В Закона за закрила на детето (обн' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 510,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 33. В Закона за кръвта, кръводаряванет' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 449: item 2 after 17 under §29"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 453: item 18 after 2 under §29"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 450: letter б) after none) under §29.2"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 882: letter б) after none) under §35.34"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 44232,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "material": 156118,
+ "title": "Постановление № 55 от 18 февруари 2021 г. за допълнение на Наредбата за елементите на възнаграждението и за доходите, върху които се правят осигурителни вноски, приета с Постановление № 263 на Министерския съвет от 1999 г.",
+ "issue": "16/2021",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за елементите на възнаграждението и за доходите, върху които се правят осигурителни вноски",
+   "cited_promulgation": [
+    6,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-elementite-na-vaznagrazhdenieto-i-za-dohodite-varhu-koito-se-pravyat-",
+   "candidates": [
+    "naredba-za-elementite-na-vaznagrazhdenieto-i-za-dohodite-varhu-koito-se-pravyat-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    6,
+    2000
+   ]
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 133,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

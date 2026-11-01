@@ -177,3 +177,26 @@ def test_the_signature_rule_takes_only_the_colon_form():
     from reading.checks import DV_TAIL
     assert DV_TAIL.match("Председател на Народното събрание: Рая Назарян") and DV_TAIL.match("Министър на правосъдието: Име")
     assert not DV_TAIL.match("Председател на съвета е министърът на транспорта.")
+
+
+def test_the_issuing_body_in_capitals_before_the_title_is_chrome_of_a_gazette_material():
+    from reading.checks import run_all
+    from reading.splitter import Block
+    blocks = [Block(0, "МИНИСТЕРСТВО НА ВЪТРЕШНИТЕ РАБОТИ", "DvCenter"), Block(1, "НАРЕДБА № 8121з-310 от 17 юли 2014 г.", "DvCenter"),
+              Block(2, "Чл. 1. Текст.", "DvJustify"), Block(3, "Министър: Х", "DvRight"), Block(4, "5010", "DvJustify")]
+    smap = {0: {"label": "drop", "note": "issuing body"}, 1: {"label": "title"}, 2: {"label": "article_head", "n": "1"}, 3: {"label": "drop", "note": "signature"}, 4: {"label": "drop", "note": "number"}}
+    _, ex = run_all(blocks, smap, source="dv")
+    assert ex == []
+    blocks[0] = Block(0, "§ 1. Приема Наредба за пробата.", "DvJustify")   # a Council of Ministers' adopting decree before the act
+    _, ex = run_all(blocks, smap, source="dv")
+    assert ex == [], "everything before the act's title is the material's issuing part"
+
+
+def test_annex_headings_whose_body_is_in_the_pdf_alone_are_a_source_finding_not_lost_text():
+    from reading.splitter import Block
+    blocks = [Block(i, t, "DvCenter") for i, t in enumerate(["ЗАКОН", "Чл. 1. Текст.", "Приложение № 1 към чл. 1", "Приложение № 2 към чл. 1", "ВИЖ приложенията", "10876"])]
+    smap = {0: {"label": "title"}, 1: {"label": "article_head", "n": "1"}, 2: {"label": "annex_heading"}, 3: {"label": "annex_heading"},
+            4: {"label": "editorial_note"}, 5: {"label": "drop"}}
+    _, ex = run_all(blocks, smap, "dv")
+    kinds = [e["kind"] for e in ex if e["block"] in (2, 3)]
+    assert kinds == ["annex_in_pdf"] and [e["block"] for e in ex if e["kind"] == "annex_in_pdf"] == [2] and "annex_in_pdf" in ladder.SOURCE_FINDINGS and "annex_in_pdf" not in ladder.LOST_TEXT

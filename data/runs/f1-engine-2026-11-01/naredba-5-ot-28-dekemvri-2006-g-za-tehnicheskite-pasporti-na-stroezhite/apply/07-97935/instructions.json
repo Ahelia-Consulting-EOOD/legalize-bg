@@ -1,0 +1,125 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "target_title": "Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2007
+  ],
+  "issues": [
+   [
+    7,
+    2007
+   ],
+   [
+    38,
+    2008
+   ],
+   [
+    22,
+    2010
+   ],
+   [
+    98,
+    2011
+   ],
+   [
+    2,
+    2013
+   ],
+   [
+    80,
+    2013
+   ],
+   [
+    102,
+    2014
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2007 г.; изм. и доп., бр. 38 от 2008 г. и бр. 22 от 2010 г.; изм., бр. 98 от 2011 г.; изм. и доп., бр. 2 и 80 от 2013 г.; изм., бр. 102 от 2014 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА РЕГИОНАЛНОТО РАЗВИТИЕ И БЛАГОУСТРОЙСТВОТО",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [],
+ "tail": [
+  7,
+  8
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "7": "tail",
+  "8": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "quoted",
+  "5": "instruction",
+  "6": "instruction"
+ },
+ "findings": [],
+ "blocks": 9,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§единствен",
+   "level": 0,
+   "block": 2,
+   "text": "Параграф единствен. В § 2 от преходните и заключителните разпоредби се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§единствен.1",
+     "level": 1,
+     "block": 3,
+     "text": "1. Алинея 2 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      4
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§единствен.2",
+     "level": 1,
+     "block": 5,
+     "text": "2. Алинея 3 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§единствен.3",
+     "level": 1,
+     "block": 6,
+     "text": "3. В ал. 6 и 7, изречение първо думата „сроковете“ се заменя със „срока“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "сроковете",
+      "срока"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  }
+ ]
+}

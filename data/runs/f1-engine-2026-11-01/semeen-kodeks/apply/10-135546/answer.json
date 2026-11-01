@@ -1,0 +1,16 @@
+{"material": 135546, "operations": [
+{"id": "§2", "kind": "no_text_change"},
+{"id": "§2.1", "kind": "replace_words", "address": "чл. 59, ал. 7, изречение второ", "old": {"text": "приемно семейство, в специализирана институция, посочени от дирекция „Социално подпомагане“ или му се предоставя социална услуга – резидентен тип"}, "new": {"text": "приемно семейство или социална или интегрирана здравно-социална услуга за резидентна грижа, посочени от дирекция „Социално подпомагане“"}},
+{"id": "§2.2", "kind": "no_text_change"},
+{"id": "§2.2.а", "kind": "replace_words", "address": "чл. 84, ал. 2, изречение първо", "old": "q1", "new": "q2"},
+{"id": "§2.2.б", "kind": "replace_words", "address": "чл. 84, ал. 2, изречение трето", "old": "q1", "new": "q2"},
+{"id": "§2.3", "kind": "no_text_change"},
+{"id": "§2.3.а", "kind": "replace_words", "address": "чл. 93, ал. 2, изречение първо", "old": "q1", "new": "q2"},
+{"id": "§2.3.б", "kind": "replace_words", "address": "чл. 93, ал. 3", "old": "q1", "new": "q2"},
+{"id": "§2.4", "kind": "replace_words", "address": "чл. 94, ал. 2, изречение второ", "old": "q1", "new": "q2"},
+{"id": "§2.5", "kind": "replace_heading", "address": "чл. 137", "new": "q1"},
+{"id": "§2.6", "kind": "insert_provision", "address": "чл. 138а", "after": "чл. 138", "blocks": [1142, 1145]},
+{"id": "§2.7", "kind": "replace_words", "address": "чл. 143, ал. 4, изречение първо", "old": "q1", "new": "q2"},
+{"id": "§2.8", "kind": "replace_words", "address": "чл. 153, ал. 3, изречение второ", "old": "q1", "new": "q2"},
+{"id": "§2.9", "kind": "replace_words", "address": "чл. 173, ал. 1", "old": "q1", "new": "q2"}
+]}

@@ -1,0 +1,40 @@
+{
+ "material": 246125,
+ "title": "Закон за допълнение на Закона за акцизите и данъчните складове",
+ "issue": "90/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за акцизите и данъчните складове",
+   "cited_promulgation": [
+    91,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-aktsizite-i-danachnite-skladove",
+   "candidates": [
+    "zakon-za-aktsizite-i-danachnite-skladove"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2005
+   ]
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 121,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

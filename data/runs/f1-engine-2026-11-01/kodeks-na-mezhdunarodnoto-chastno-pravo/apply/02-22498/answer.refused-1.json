@@ -1,0 +1,7 @@
+{"material": 22498, "operations": [
+{"id": "§9", "kind": "no_text_change"},
+{"id": "§9.1", "kind": "no_text_change"},
+{"id": "§9.1.а", "kind": "outside_set", "address": "чл. 84, ал. 3", "note": "Sentence one (изречение първо) of чл. 84, ал. 3 is replaced whole by the quoted segment q1; sentence two stays. The closed set has no sentence-level replacement, and the current sentence one is not quoted in the instruction, so replace_words cannot name the old words."},
+{"id": "§9.1.б", "kind": "delete_words", "address": "чл. 84, ал. 3", "old": "q1"},
+{"id": "§9.2", "kind": "delete_words", "address": "чл. 84, ал. 4", "old": "q1"}
+]}

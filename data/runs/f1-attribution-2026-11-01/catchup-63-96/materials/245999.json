@@ -1,0 +1,61 @@
+{
+ "material": 245999,
+ "title": "Закон за изменение и допълнение на Закона за подпомагане на земеделските производители",
+ "issue": "88/2026",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за подпомагане на земеделските производители",
+   "cited_promulgation": [
+    58,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-podpomagane-na-zemedelskite-proizvoditeli",
+   "candidates": [
+    "zakon-za-podpomagane-na-zemedelskite-proizvoditeli"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    58,
+    1998
+   ]
+  },
+  {
+   "scope": "§24",
+   "cited_title": "Закона за собствеността и ползването на земеделските земи",
+   "cited_promulgation": [
+    17,
+    1991
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sobstvenostta-i-polzvaneto-na-zemedelskite-zemi-zagl-izm-dv-br-14-ot-20",
+   "candidates": [
+    "zakon-za-sobstvenostta-i-polzvaneto-na-zemedelskite-zemi-zagl-izm-dv-br-14-ot-20"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    17,
+    1991
+   ]
+  }
+ ],
+ "instructions": 56,
+ "signs": 25,
+ "quoted_blocks": 35,
+ "findings": [],
+ "tokens_instructions": 5140,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

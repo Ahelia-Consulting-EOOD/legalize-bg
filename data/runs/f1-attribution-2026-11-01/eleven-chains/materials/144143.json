@@ -1,0 +1,24 @@
+{
+ "material": 144143,
+ "title": "Постановление № 348 от 18 декември 2019 г. за одобряване на допълнителни разходи/трансфери за 2019 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "no_target",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 47,
+ "findings": [
+  {
+   "block": 161,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Заключителни разпоредби' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 9389,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

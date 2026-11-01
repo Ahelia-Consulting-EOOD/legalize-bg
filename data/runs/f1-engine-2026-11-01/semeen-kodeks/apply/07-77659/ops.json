@@ -1,0 +1,38 @@
+{
+ "material": 77659,
+ "issue": "68/2013",
+ "operations": [
+  {
+   "id": "§54",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§54.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 94, ал. 6",
+   "old": "министъра на образованието, младежта и науката",
+   "old_ref": "q1",
+   "new": "министъра на образованието и науката",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§54.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 114, ал. 1",
+   "old": "Министерството на образованието, младежта и науката",
+   "old_ref": "q1",
+   "new": "Министерството на образованието и науката",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§54 no_text_change: nothing",
+  "§54.1 replace_words: 1 replacement(s)",
+  "§54.2 replace_words: 1 replacement(s)"
+ ]
+}

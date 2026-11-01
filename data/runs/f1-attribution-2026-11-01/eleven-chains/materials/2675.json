@@ -1,0 +1,37 @@
+{
+ "material": 2675,
+ "title": "Правилник за изменение и допълнение на Правилника за дейността на Комисията за защита на личните данни и нейната администрация",
+ "issue": "82/2006",
+ "section": "Комисия за защита на личните данни",
+ "kind": "regulation",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за дейността на Комисията за защита на личните данни и нейната администрация",
+   "cited_promulgation": [
+    9,
+    2003
+   ],
+   "status": "predecessor_or_other",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [
+    "pravilnik-za-deynostta-na-komisiyata-za-zashtita-na-lichnite-danni-i-na-neynata-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the resolver names pravilnik-za-deynostta-na-komisiyata-za-zashtita-na-lichnite-danni-i-na-neynata- by fuzzy, promulgated 60/2019; the material cites бр. 9/2003",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 1,
+ "signs": 1,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 73,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

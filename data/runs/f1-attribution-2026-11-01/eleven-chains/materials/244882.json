@@ -1,0 +1,46 @@
+{
+ "material": 244882,
+ "title": "Постановление № 87 от 16 юли 2026 г. за изменение и допълнение на Устройствения правилник на Изпълнителна агенция „Автомобилна администрация“, приет с Постановление № 272 на Министерския съвет от 2013 г.",
+ "issue": "66/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Изпълнителна агенция „Автомобилна администрация“",
+   "cited_promulgation": [
+    105,
+    2013
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-avtomobilna-administratsiya",
+   "candidates": [
+    "ustroystven-pravilnik-na-izpalnitelna-agentsiya-avtomobilna-administratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2013
+   ]
+  }
+ ],
+ "instructions": 11,
+ "signs": 3,
+ "quoted_blocks": 32,
+ "findings": [
+  {
+   "block": 31,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Изпълнителен директор 1' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 902,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

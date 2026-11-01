@@ -1,0 +1,77 @@
+{
+ "material": 132513,
+ "title": "Закон за бюджета на държавното обществено осигуряване за 2019 г.",
+ "issue": "102/2018",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§3",
+   "cited_title": "Кодекса за социално осигуряване",
+   "cited_promulgation": [
+    110,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g",
+   "candidates": [
+    "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    110,
+    1999
+   ]
+  },
+  {
+   "scope": "§3.26",
+   "cited_title": "Закона за изменение и допълнение на Кодекса за социално осигуряване",
+   "cited_promulgation": [
+    61,
+    2015
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Закона за здравето",
+   "cited_promulgation": [
+    70,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdraveto",
+   "candidates": [
+    "zakon-za-zdraveto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2004
+   ]
+  }
+ ],
+ "instructions": 75,
+ "signs": 5,
+ "quoted_blocks": 22,
+ "findings": [],
+ "tokens_instructions": 5131,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

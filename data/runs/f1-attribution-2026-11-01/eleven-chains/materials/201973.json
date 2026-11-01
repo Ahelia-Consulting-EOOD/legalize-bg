@@ -1,0 +1,40 @@
+{
+ "material": 201973,
+ "title": "Закон за изменение и допълнение на Закона за тютюна, тютюневите и свързаните с тях изделия",
+ "issue": "106/2023",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за тютюна, тютюневите и свързаните с тях изделия",
+   "cited_promulgation": [
+    101,
+    1993
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-tyutyuna-tyutyunevite-i-svarzanite-s-tyah-izdeliya-zagl-izm-dv-br-28-ot",
+   "candidates": [
+    "zakon-za-tyutyuna-tyutyunevite-i-svarzanite-s-tyah-izdeliya-zagl-izm-dv-br-28-ot"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    101,
+    1993
+   ]
+  }
+ ],
+ "instructions": 66,
+ "signs": 26,
+ "quoted_blocks": 35,
+ "findings": [],
+ "tokens_instructions": 3606,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

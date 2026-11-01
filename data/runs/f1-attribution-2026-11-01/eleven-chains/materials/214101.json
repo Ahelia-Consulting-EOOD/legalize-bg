@@ -1,0 +1,40 @@
+{
+ "material": 214101,
+ "title": "Закон за допълнение на Закона за пътищата",
+ "issue": "39/2024",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за пътищата",
+   "cited_promulgation": [
+    26,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-patishtata",
+   "candidates": [
+    "zakon-za-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    2000
+   ]
+  }
+ ],
+ "instructions": 1,
+ "signs": 1,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 59,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

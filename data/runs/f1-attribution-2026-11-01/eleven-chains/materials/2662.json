@@ -1,0 +1,595 @@
+{
+ "material": 2662,
+ "title": "Закон за изменение и допълнение на Кодекса за социално осигуряване",
+ "issue": "82/2006",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Кодекса за социално осигуряване",
+   "cited_promulgation": [
+    110,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g",
+   "candidates": [
+    "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    110,
+    1999
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Данъчно-осигурителния процесуален кодекс",
+   "cited_promulgation": [
+    105,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "danachno-osiguritelen-protsesualen-kodeks",
+   "candidates": [
+    "danachno-osiguritelen-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2005
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Кодекса за застраховането",
+   "cited_promulgation": [
+    103,
+    2005
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "kodeks-za-zastrahovaneto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds kodeks-za-zastrahovaneto (promulgated 102/2015); the material cites бр. 103/2005",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Закона за частната охранителна дейност",
+   "cited_promulgation": [
+    15,
+    2004
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-chastnata-ohranitelna-deynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-chastnata-ohranitelna-deynost (promulgated 10/2018); the material cites бр. 15/2004",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за защита на лица, застрашени във връзка с наказателно производство",
+   "cited_promulgation": [
+    103,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo",
+   "candidates": [
+    "zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    103,
+    2004
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за българските документи за самоличност",
+   "cited_promulgation": [
+    93,
+    1998
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за изпълнение на наказанията",
+   "cited_promulgation": [
+    30,
+    1969
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за чужденците в Република България",
+   "cited_promulgation": [
+    153,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-chuzhdentsite-v-republika-balgariya",
+   "candidates": [
+    "zakon-za-chuzhdentsite-v-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    153,
+    1998
+   ]
+  },
+  {
+   "scope": "§15",
+   "cited_title": "Закона за опазване на обществения ред при провеждането на спортни мероприятия",
+   "cited_promulgation": [
+    96,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-opazvane-na-obshtestveniya-red-pri-provezhdaneto-na-sportni-meropriyati",
+   "candidates": [
+    "zakon-za-opazvane-na-obshtestveniya-red-pri-provezhdaneto-na-sportni-meropriyati"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    96,
+    2004
+   ]
+  },
+  {
+   "scope": "§16",
+   "cited_title": "Закона за специалните разузнавателни средства",
+   "cited_promulgation": [
+    95,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-spetsialnite-razuznavatelni-sredstva",
+   "candidates": [
+    "zakon-za-spetsialnite-razuznavatelni-sredstva"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    1997
+   ]
+  },
+  {
+   "scope": "§17",
+   "cited_title": "Закона за движението по пътищата",
+   "cited_promulgation": [
+    20,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dvizhenieto-po-patishtata",
+   "candidates": [
+    "zakon-za-dvizhenieto-po-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    1999
+   ]
+  },
+  {
+   "scope": "§18",
+   "cited_title": "Закона за задължителните запаси от нефт и нефтопродукти",
+   "cited_promulgation": [
+    9,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§19",
+   "cited_title": "Закона за защита срещу домашното насилие",
+   "cited_promulgation": [
+    27,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "zakon-za-zashtita-ot-domashnoto-nasilie-zagl-izm-dv-br-102-ot-2009-g-v-sila-ot-2",
+   "candidates": [
+    "zakon-za-zashtita-ot-domashnoto-nasilie-zagl-izm-dv-br-102-ot-2009-g-v-sila-ot-2"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's fuzzy key",
+   "act_promulgation": [
+    27,
+    2005
+   ]
+  },
+  {
+   "scope": "§20",
+   "cited_title": "Закона за лова и опазване на дивеча",
+   "cited_promulgation": [
+    78,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lova-i-opazvane-na-divecha",
+   "candidates": [
+    "zakon-za-lova-i-opazvane-na-divecha"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    78,
+    2000
+   ]
+  },
+  {
+   "scope": "§21",
+   "cited_title": "Закона за устройство на територията",
+   "cited_promulgation": [
+    1,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ustroystvo-na-teritoriyata",
+   "candidates": [
+    "zakon-za-ustroystvo-na-teritoriyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    1,
+    2001
+   ]
+  },
+  {
+   "scope": "§22",
+   "cited_title": "Закона за опазване на околната среда",
+   "cited_promulgation": [
+    91,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-opazvane-na-okolnata-sreda",
+   "candidates": [
+    "zakon-za-opazvane-na-okolnata-sreda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2002
+   ]
+  },
+  {
+   "scope": "§23",
+   "cited_title": "Закона за съхранение и търговия със зърно",
+   "cited_promulgation": [
+    93,
+    1998
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§24",
+   "cited_title": "Закона за регистрация и контрол на земеделската и горската техника",
+   "cited_promulgation": [
+    79,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-registratsiya-i-kontrol-na-zemedelskata-i-gorskata-tehnika",
+   "candidates": [
+    "zakon-za-registratsiya-i-kontrol-na-zemedelskata-i-gorskata-tehnika"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    79,
+    1998
+   ]
+  },
+  {
+   "scope": "§25",
+   "cited_title": "Закона за насърчаване на инвестициите",
+   "cited_promulgation": [
+    97,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060",
+   "candidates": [
+    "zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    97,
+    1997
+   ]
+  },
+  {
+   "scope": "§26",
+   "cited_title": "Закона за отбраната и въоръжените сили на Република България",
+   "cited_promulgation": [
+    112,
+    1995
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-otbranata-i-vaorazhenite-sili-na-republika-balgariya (promulgated 35/2009); the material cites бр. 112/1995",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§27",
+   "cited_title": "Закона за закрила на детето",
+   "cited_promulgation": [
+    48,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zakrila-na-deteto",
+   "candidates": [
+    "zakon-za-zakrila-na-deteto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2000
+   ]
+  },
+  {
+   "scope": "§28",
+   "cited_title": "Закона за контрол върху наркотичните вещества и прекурсорите",
+   "cited_promulgation": [
+    30,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite",
+   "candidates": [
+    "zakon-za-kontrol-varhu-narkotichnite-veshtestva-i-prekursorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    1999
+   ]
+  },
+  {
+   "scope": "§28.4",
+   "cited_title": "Закона за изменение и допълнение на Закона за контрол върху наркотичните вещества и прекурсорите",
+   "cited_promulgation": [
+    56,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§29",
+   "cited_title": "Закона за рибарството и аквакултурите",
+   "cited_promulgation": [
+    41,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ribarstvoto-i-akvakulturite",
+   "candidates": [
+    "zakon-za-ribarstvoto-i-akvakulturite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    41,
+    2001
+   ]
+  },
+  {
+   "scope": "§30",
+   "cited_title": "Закона за горите",
+   "cited_promulgation": [
+    125,
+    1997
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-gorite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-gorite (promulgated 19/2011); the material cites бр. 125/1997",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§31",
+   "cited_title": "Закона за защита на класифицираната информация",
+   "cited_promulgation": [
+    45,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-na-klasifitsiranata-informatsiya",
+   "candidates": [
+    "zakon-za-zashtita-na-klasifitsiranata-informatsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    45,
+    2002
+   ]
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Закона за мерките срещу изпирането на пари",
+   "cited_promulgation": [
+    85,
+    1998
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-merkite-sreshtu-izpiraneto-na-pari"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-merkite-sreshtu-izpiraneto-na-pari (promulgated 27/2018); the material cites бр. 85/1998",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§33",
+   "cited_title": "Закона за туризма",
+   "cited_promulgation": [
+    56,
+    2002
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-turizma"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-turizma (promulgated 30/2013); the material cites бр. 56/2002",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§34",
+   "cited_title": "Закона за далекосъобщенията",
+   "cited_promulgation": [
+    88,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 100,
+ "signs": 34,
+ "quoted_blocks": 11,
+ "findings": [],
+ "tokens_instructions": 5440,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

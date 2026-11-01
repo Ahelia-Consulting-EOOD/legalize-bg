@@ -1,0 +1,21 @@
+{
+ "material": 246285,
+ "title": "Постановление № 176 от 2 октомври 2026 г. за приемане на Наредба за регистрацията на индивидуалните електрически превозни средства в общините",
+ "issue": "92/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 7,
+  "title": "НАРЕДБА"
+ },
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 1,
+ "signs": 1,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 34,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

@@ -1,0 +1,42 @@
+{
+ "material": 132562,
+ "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за изискванията към дейностите по събиране и третиране на отпадъците на територията на лечебните и здравните заведения",
+ "issue": "102/2018",
+ "section": "Министерство на здравеопазването, Министерство на околната среда и водите",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 1 от 2015 г. за изискванията към дейностите по събиране и третиране на отпадъците на територията на лечебните и здравните заведения",
+   "cited_promulgation": [
+    13,
+    2015
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-1-ot-9-fevruari-2015-g-za-iziskvaniyata-kam-deynostite-po-sabirane-i-tre",
+   "candidates": [
+    "naredba-1-ot-9-fevruari-2015-g-za-iziskvaniyata-kam-deynostite-po-sabirane-i-tre"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    13,
+    2015
+   ]
+  }
+ ],
+ "instructions": 12,
+ "signs": 9,
+ "quoted_blocks": 7,
+ "findings": [],
+ "tokens_instructions": 929,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

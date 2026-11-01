@@ -1,0 +1,40 @@
+{
+ "material": 245819,
+ "title": "Постановление № 132 от 3 септември 2026 г. за изменение и допълнение на Правилника за прилагане на Закона за Държавна агенция „Национална сигурност“, приет с Постановление № 23 на Министерския съвет от 2008 г.",
+ "issue": "82/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за Държавна агенция „Национална сигурност“",
+   "cited_promulgation": [
+    17,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-darzhavna-agentsiya-natsionalna-sigurnost",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-darzhavna-agentsiya-natsionalna-sigurnost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    17,
+    2008
+   ]
+  }
+ ],
+ "instructions": 25,
+ "signs": 9,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 824,
+ "attributed_at": "2026-11-01T09:40:31+00:00"
+}

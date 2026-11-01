@@ -1,0 +1,42 @@
+{
+ "material": 133871,
+ "title": "Наредба за изменение и допълнение на Наредба № 9 от 2016 г. за институциите в системата на предучилищното и училищното образование",
+ "issue": "7/2019",
+ "section": "Министерство на образованието и науката",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 9 от 2016 г. за институциите в системата на предучилищното и училищното образование",
+   "cited_promulgation": [
+    68,
+    2016
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-9-ot-19-avgust-2016-g-za-institutsiite-v-sistemata-na-preduchilishtnoto-",
+   "candidates": [
+    "naredba-9-ot-19-avgust-2016-g-za-institutsiite-v-sistemata-na-preduchilishtnoto-"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    68,
+    2016
+   ]
+  }
+ ],
+ "instructions": 5,
+ "signs": 3,
+ "quoted_blocks": 2,
+ "findings": [],
+ "tokens_instructions": 311,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

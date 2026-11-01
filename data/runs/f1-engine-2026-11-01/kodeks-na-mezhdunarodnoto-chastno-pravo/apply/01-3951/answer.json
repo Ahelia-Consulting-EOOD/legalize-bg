@@ -1,0 +1,10 @@
+{"material": 3951, "operations": [
+{"id": "§7", "kind": "no_text_change"},
+{"id": "§7.1", "kind": "replace_words", "address": "чл. 12, ал. 1", "old": "q1", "new": "q2"},
+{"id": "§7.2", "kind": "replace_words", "address": "чл. 14", "old": "q1", "new": "q2"},
+{"id": "§7.3", "kind": "replace_words", "address": "чл. 19, ал. 1", "old": {"text": "чл. 80, ал. 1, буква “г”"}, "new": "q2"},
+{"id": "§7.4", "kind": "replace_words", "address": "чл. 21, ал. 2", "old": "q1", "new": "q2"},
+{"id": "§7.5", "kind": "replace_words", "address": "чл. 23, ал. 1, изречение второ", "old": "q1", "new": "q2"},
+{"id": "§7.6", "kind": "replace_words", "address": "чл. 24", "old": "q1", "new": "q2"},
+{"id": "§7.7", "kind": "replace_words", "address": "чл. 30, ал. 2", "old": "q1", "new": "q2"}
+]}

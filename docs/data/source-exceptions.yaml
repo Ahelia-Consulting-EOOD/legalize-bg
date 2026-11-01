@@ -521,9 +521,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: stopped
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 103/2004 (material 18357); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  case_file: docs/cases/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo.md
 - slug: zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest
   title: Закон за екстрадицията и Европейската заповед за арест
   defect: representative
@@ -535,9 +536,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: stopped
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 46/2005 (material 385); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  case_file: docs/cases/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest.md
 - slug: kodeks-na-mezhdunarodnoto-chastno-pravo
   title: Кодекс на международното частно право
   defect: representative
@@ -549,9 +551,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: committed
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 42/2005 (material 292); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  commit: 3ff8323b6
 - slug: semeen-kodeks
   title: Семеен кодекс
   defect: representative
@@ -563,9 +566,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: stopped
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 47/2009 (material 22498); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  case_file: docs/cases/semeen-kodeks.md
 - slug: naredba-8121z-310-ot-17-yuli-2014-g-za-prenaznachavane-na-darzhavnite-sluzhiteli
   title: Наредба № 8121з-310 от 17 юли 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи
   defect: representative
@@ -577,9 +581,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: committed
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 60/2014 (material 86641); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  commit: d63ed62d2
 - slug: naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite
   title: Наредба № 5 от 28 декември 2006 г. за техническите паспорти на строежите
   defect: representative
@@ -591,9 +596,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: stopped
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 7/2007 (material 3183); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  case_file: docs/cases/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite.md
 - slug: naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr
   title: Наредба № 1 от 22 януари 2015 г. за придобиване на специалност в системата на здравеопазването
   defect: representative
@@ -605,9 +611,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: stopped
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 7/2015 (material 91505); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  case_file: docs/cases/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr.md
 - slug: pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist
   title: Правилник за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“
   defect: representative
@@ -619,9 +626,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: stopped
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 36/2011 (material 49017); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  case_file: docs/cases/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist.md
 - slug: ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie
   title: Устройствен правилник на областните дирекции „Земеделие“
   defect: representative
@@ -633,9 +641,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: stopped
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 7/2010 (material 28798); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  case_file: docs/cases/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie.md
 - slug: pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n
   title: Правилник за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство
   defect: representative
@@ -647,9 +656,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: committed
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 94/2018 (material 131916); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  commit: 62d2f4a0d
 - slug: pravilnik-za-prilagane-na-zakona-za-filmovata-industriya
   title: Правилник за прилагане на Закона за филмовата индустрия
   defect: representative
@@ -661,6 +671,7 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: listed
+  state: stopped
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 102/2018 (material 132829); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
+  case_file: docs/cases/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya.md

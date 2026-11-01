@@ -1,0 +1,59 @@
+{
+ "material": 202042,
+ "title": "Закон за бюджета на Националната здравноосигурителна каса за 2024 г.",
+ "issue": "106/2023",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§7",
+   "cited_title": "Закона за ветераните от войните на Република България и по чл. 15, ал. 1 и 2 от Закона за военноинвалидите и военнопострадалите, както и целевите средства за диагностика и лечение в лечебни заведения за болнична помощ на лицата по Постановление № 17 на Министерския съвет от 2007 г. за определяне на условията и реда за разходване на целевите средства за диагностика и лечение в лечебни заведения за болнична помощ на лица, които нямат доход и/или лично имущество, което да им осигурява лично участие в здравноосигурителния процес",
+   "cited_promulgation": [
+    13,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за здравното осигуряване",
+   "cited_promulgation": [
+    70,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravnoto-osiguryavane",
+   "candidates": [
+    "zakon-za-zdravnoto-osiguryavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    1998
+   ]
+  }
+ ],
+ "instructions": 26,
+ "signs": 15,
+ "quoted_blocks": 3,
+ "findings": [],
+ "tokens_instructions": 4198,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

@@ -1,0 +1,39 @@
+{
+ "material": 246591,
+ "title": "Постановление № 200 от 14 октомври 2026 г. за одобряване на допълнителни разходи по бюджета на Комисията за противодействие на корупцията за 2026 г.",
+ "issue": "96/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 1 да се увеличат разходите п"
+  },
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Със сумата 596 400 евро да се увеличат показателите п"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Председателят на Комисията за противодействие на кору"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 251,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

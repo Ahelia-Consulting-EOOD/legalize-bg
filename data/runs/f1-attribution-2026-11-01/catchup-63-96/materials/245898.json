@@ -1,0 +1,34 @@
+{
+ "material": 245898,
+ "title": "Постановление № 140 от 10 септември 2026 г. за одобряване на допълнителни разходи по бюджета на Министерството на икономиката, инвестициите и индустрията за 2026 г.",
+ "issue": "85/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата по чл. 1, ал. 1 да се увеличат разходи"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на икономиката, инвестициите и индустрията"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 323,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

@@ -1,0 +1,109 @@
+{
+ "material": 154060,
+ "title": "Закон за бюджета на държавното обществено осигуряване за 2021 г.",
+ "issue": "103/2020",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§8",
+   "cited_title": "Кодекса за социално осигуряване",
+   "cited_promulgation": [
+    110,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g",
+   "candidates": [
+    "kodeks-za-sotsialno-osiguryavane-zagl-izm-dv-br-67-ot-2003-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    110,
+    1999
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Наказателния кодекс",
+   "cited_promulgation": [
+    26,
+    1968
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "nakazatelen-kodeks",
+   "candidates": [
+    "nakazatelen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    1968
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за гарантираните вземания на работниците и служителите при несъстоятелност на работодателя",
+   "cited_promulgation": [
+    37,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-garantiranite-vzemaniya-na-rabotnitsite-i-sluzhitelite-pri-nesastoyatel",
+   "candidates": [
+    "zakon-za-garantiranite-vzemaniya-na-rabotnitsite-i-sluzhitelite-pri-nesastoyatel"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    37,
+    2004
+   ]
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за мерките и действията по време на извънредното положение, обявено с решение на Народното събрание от 13 март 2020 г., и за преодоляване на последиците",
+   "cited_promulgation": [
+    28,
+    2020
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-merkite-i-deystviyata-po-vreme-na-izvanrednoto-polozhenie-obyaveno-s-re",
+   "candidates": [
+    "zakon-za-merkite-i-deystviyata-po-vreme-na-izvanrednoto-polozhenie-obyaveno-s-re"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    28,
+    2020
+   ]
+  }
+ ],
+ "instructions": 68,
+ "signs": 14,
+ "quoted_blocks": 39,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 390: letter б) after none) under §8.17"
+  }
+ ],
+ "tokens_instructions": 8210,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

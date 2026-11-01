@@ -1,0 +1,69 @@
+{
+ "material": 246087,
+ "title": "Постановление № 155 от 24 септември 2026 г. за условията и реда за отпускане на временни безлихвени заеми от централния бюджет по бюджетите на общините за финансиране на разходи за междинни и окончателни плащания по одобрени заявления за подпомагане по Стратегическия план за развитие на земеделието и селските райони за периода 2023 – 2027 г. и за тяхното възстановяване",
+ "issue": "89/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 17,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 10,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Заемът се отпуска на съответната община за извърш"
+  },
+  {
+   "block": 18,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. (1) Изпълнителният директор на Държавен фонд „Земедел"
+  },
+  {
+   "block": 25,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. При искане за заем общината инициира бюджетно платежн"
+  },
+  {
+   "block": 29,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Отпуснатите заеми от централния бюджет на общините се"
+  },
+  {
+   "block": 35,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Със заема по чл. 2, ал. 1 не могат да се плащат разхо"
+  },
+  {
+   "block": 36,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 7. За целите на залагането на лимити и за извършване на "
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 11: item 1 after 4 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 26: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 30: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 2119,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

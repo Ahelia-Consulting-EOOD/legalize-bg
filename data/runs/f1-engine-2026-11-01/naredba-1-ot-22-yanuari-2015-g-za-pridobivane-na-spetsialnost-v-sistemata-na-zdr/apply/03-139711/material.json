@@ -1,0 +1,34 @@
+{
+ "material": 139711,
+ "issue": "58/2019",
+ "material_sha256": "e8e3e7ed3c42d4e2eb02694582410f393f73fddf63f507eeadb72e8c62933d51",
+ "body_before_sha256": "da065f3f5105275ce6869d241472eae32e5df7ce60e93a93065697c94055b730",
+ "task_sha256": "16962cd7099c3cb236f27f9e2095bb6624fe61d0bb5ed7158df4bf088cf69236",
+ "scopes": [
+  "title"
+ ],
+ "findings": [
+  {
+   "block": 182,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '2. В ал. 2 думата „Таксата“ се заменя с ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 907,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '3. В раздел II „Специалности за лица с п' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 911,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '4. В раздел IV „Специалности за лица с в' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 925,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходни и заключителни разпоредби' is closed by the sequence, not by a mark"
+  }
+ ],
+ "engine": "26",
+ "task_core": true
+}

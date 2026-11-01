@@ -1,0 +1,16 @@
+{"material": 154109, "operations": [
+{"id": "§1", "kind": "no_text_change"},
+{"id": "§1.1", "kind": "insert_words", "address": "чл. 62, ал. 1", "new": "q1", "where": "end"},
+{"id": "§1.2", "kind": "replace_provision", "address": "чл. 62, ал. 4", "blocks": [13, 13]},
+{"id": "§1.3", "kind": "insert_provision", "address": "чл. 62, ал. 5", "after": "чл. 62, ал. 4", "blocks": [15, 15]},
+{"id": "§1.4", "kind": "renumber", "address": "чл. 62, ал. 5", "to": "ал. 6"},
+{"id": "§2", "kind": "no_text_change"},
+{"id": "§2.1", "kind": "renumber", "address": "чл. 63", "to": "ал. 1"},
+{"id": "§2.2", "kind": "insert_provision", "address": "чл. 63, ал. 2", "after": "чл. 63, ал. 1", "blocks": [20, 20]},
+{"id": "§3", "kind": "no_text_change"},
+{"id": "§3.1", "kind": "insert_provision", "address": "чл. 66, ал. 1, изречение второ", "after": "чл. 66, ал. 1, изречение първо", "new": {"text": "Дирекция „Социално подпомагане“ по настоящия адрес на детето може да оспори припознаването чрез възражение по същия ред, ако е в интерес на детето."}},
+{"id": "§3.2", "kind": "replace_provision", "address": "чл. 66, ал. 5", "blocks": [24, 24]},
+{"id": "§3.3", "kind": "insert_provision", "address": "чл. 66, ал. 6", "after": "чл. 66, ал. 5", "blocks": [26, 26]},
+{"id": "§4", "kind": "no_text_change"},
+{"id": "§5", "kind": "no_text_change"}
+]}

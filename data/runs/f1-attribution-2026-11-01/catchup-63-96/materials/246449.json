@@ -1,0 +1,29 @@
+{
+ "material": 246449,
+ "title": "Постановление № 180 от 8 октомври 2026 г. за одобряване на вътрешнокомпенсирани промени на утвърдените разходи по области на политики/ бюджетни програми и трансфери по бюджета на Министерството на икономиката, инвестициите и индустрията за 2026 г.",
+ "issue": "94/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 13,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, т. 1 се увеличават показателите "
+  },
+  {
+   "block": 15,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на икономиката, инвестициите и индустрията"
+  }
+ ],
+ "tokens_instructions": 437,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

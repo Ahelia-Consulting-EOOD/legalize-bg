@@ -1,0 +1,61 @@
+{
+ "material": 144157,
+ "title": "Постановление № 363 от 19 декември 2019 г. за изменение и допълнение на Наредбата за финансирането на институциите в системата на предучилищното и училищното образование, приета с Постановление № 219 на Министерския съвет от 2017 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за финансирането на институциите в системата на предучилищното и училищното образование",
+   "cited_promulgation": [
+    81,
+    2017
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-finansiraneto-na-institutsiite-v-sistemata-na-preduchilishtnoto-i-uch",
+   "candidates": [
+    "naredba-za-finansiraneto-na-institutsiite-v-sistemata-na-preduchilishtnoto-i-uch"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    81,
+    2017
+   ]
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Наредбата за приобщаващото образование, приета с Постановление № 232 на Министерския съвет от 2017 г.",
+   "cited_promulgation": [
+    86,
+    2017
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-priobshtavashtoto-obrazovanie",
+   "candidates": [
+    "naredba-za-priobshtavashtoto-obrazovanie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    86,
+    2017
+   ]
+  }
+ ],
+ "instructions": 11,
+ "signs": 7,
+ "quoted_blocks": 30,
+ "findings": [],
+ "tokens_instructions": 751,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

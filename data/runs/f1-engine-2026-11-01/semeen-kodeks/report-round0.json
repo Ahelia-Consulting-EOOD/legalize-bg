@@ -1,0 +1,88 @@
+{
+ "slug": "semeen-kodeks",
+ "round": 0,
+ "blocks": 822,
+ "sections": 29,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {},
+ "labels": {
+  "drop": 10,
+  "title": 1,
+  "chapter_heading": 24,
+  "article_title": 174,
+  "article_head": 176,
+  "item": 100,
+  "alinea": 287,
+  "section_heading": 18,
+  "provisions_heading": 2,
+  "paragraph_sign": 18,
+  "letter": 8,
+  "quoted": 3,
+  "adoption_formula": 1
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "УКАЗ № 192",
+   "note": "promulgation decree, not the act"
+  },
+  {
+   "block": 1,
+   "text": "На основание чл. 98, т. 4 от Конституцията на Република България",
+   "note": "promulgation decree, not the act"
+  },
+  {
+   "block": 2,
+   "text": "ПОСТАНОВЯВАМ:",
+   "note": "promulgation decree, not the act"
+  },
+  {
+   "block": 3,
+   "text": "Да се обнародва в “Държавен вестник” Семейният кодекс, приет от ХL Народно събра",
+   "note": "promulgation decree, not the act"
+  },
+  {
+   "block": 4,
+   "text": "Издаден в София на 18 юни 2009 г.",
+   "note": "promulgation decree, not the act"
+  },
+  {
+   "block": 5,
+   "text": "Президент на републиката: Георги Първанов",
+   "note": "promulgation decree, not the act"
+  },
+  {
+   "block": 6,
+   "text": "Подпечатан с държавния печат.",
+   "note": "promulgation decree, not the act"
+  },
+  {
+   "block": 7,
+   "text": "Министър на правосъдието: Миглена Тачева",
+   "note": "promulgation decree countersignature, not the act"
+  },
+  {
+   "block": 820,
+   "text": "Председател на Народното събрание: Георги Пирински",
+   "note": "signature of the President of the National Assembly after the adoption formula, not the act"
+  },
+  {
+   "block": 821,
+   "text": "8630",
+   "note": "Gazette material number after the signature, not the act"
+  }
+ ],
+ "note": "",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 865
+}

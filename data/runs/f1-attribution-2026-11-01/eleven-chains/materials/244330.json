@@ -1,0 +1,24 @@
+{
+ "material": 244330,
+ "title": "Наредба № H-4 от 15 юни 2026 г. за придобиване на квалификация по професията „Сержант (Старшина за ВМС) – логистик“",
+ "issue": "59/2026",
+ "section": "Министерство на отбраната",
+ "kind": "ordinance",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 15,
+   "kind": "citation_without_target",
+   "detail": "§ 2. Военнослужещите, които към датата на влизане в сила на тази наредба са запо"
+  }
+ ],
+ "tokens_instructions": 253,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

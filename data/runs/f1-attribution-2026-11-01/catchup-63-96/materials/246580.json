@@ -1,0 +1,49 @@
+{
+ "material": 246580,
+ "title": "Постановление № 189 от 14 октомври 2026 г. за одобряване на допълнителни разходи по бюджета на Министерския съвет за 2026 г.",
+ "issue": "96/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 9,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 13,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 2, т. 1 да се увеличат разхо"
+  },
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Със сумата в общ размер 5956352 евро по чл. 1, ал. 2,"
+  },
+  {
+   "block": 15,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Със сумата по чл. 1, ал. 2, т. 6 да се увеличат разхо"
+  },
+  {
+   "block": 16,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Със сума в размер 11 388 072 евро да се увеличат пока"
+  },
+  {
+   "block": 17,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Главният секретар на Министерския съвет да извърши съ"
+  },
+  {
+   "block": 18,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 7. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 930,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

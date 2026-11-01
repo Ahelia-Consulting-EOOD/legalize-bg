@@ -1,0 +1,24 @@
+{
+ "material": 144153,
+ "title": "Постановление № 359 от 19 декември 2019 г. за одобряване на вътрешнокомпенсирани промени на утвърдените разходи по области на политика/бюджетни програми по бюджета на Министерството на енергетиката за 2019 г.",
+ "issue": "101/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 6,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на енергетиката да извърши съответните про"
+  }
+ ],
+ "tokens_instructions": 230,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "material": 246318,
+ "title": "Правилник за изменение и допълнение на Правилника за устройството и дейността на Националната здравноосигурителна каса",
+ "issue": "93/2026",
+ "section": "Национална здравноосигурителна каса",
+ "kind": "regulation",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за устройството и дейността на Националната здравноосигурителна каса",
+   "cited_promulgation": [
+    19,
+    2019
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-natsionalnata-zdravnoosiguritelna-kasa",
+   "candidates": [
+    "pravilnik-za-ustroystvoto-i-deynostta-na-natsionalnata-zdravnoosiguritelna-kasa"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2019
+   ]
+  }
+ ],
+ "instructions": 10,
+ "signs": 5,
+ "quoted_blocks": 23,
+ "findings": [],
+ "tokens_instructions": 2012,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

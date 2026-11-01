@@ -1,0 +1,1 @@
+{"material": 138116, "operations": [{"id": "§5", "kind": "no_text_change"}, {"id": "§5.1", "kind": "insert_words", "address": "чл. 40, ал. 1, т. 4", "anchor": "q1", "where": "after", "new": "q2", "punctuation": "before"}, {"id": "§5.2", "kind": "replace_sentence", "address": "чл. 41, ал. 3, изречение второ", "new": "q1"}]}

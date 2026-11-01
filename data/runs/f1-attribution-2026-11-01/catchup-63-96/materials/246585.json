@@ -1,0 +1,56 @@
+{
+ "material": 246585,
+ "title": "Постановление № 194 от 14 октомври 2026 г. за изменение и допълнение на Устройствения правилник на Изпълнителна агенция „Главна инспекция по труда“, приет с Постановление № 313 на Министерския съвет от 2022 г.",
+ "issue": "96/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Изпълнителна агенция „Главна инспекция по труда“",
+   "cited_promulgation": [
+    81,
+    2022
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-glavna-inspektsiya-po-truda",
+   "candidates": [
+    "ustroystven-pravilnik-na-izpalnitelna-agentsiya-glavna-inspektsiya-po-truda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    81,
+    2022
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Постановление № 266 на Министерския съвет от 10 ноември 2009 г. за приемане на Устройствен правилник на Министерството на труда и социалната политика",
+   "cited_promulgation": [
+    91,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Министерството на труда и социалната политика')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 8,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 469,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

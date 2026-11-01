@@ -1,0 +1,107 @@
+{
+ "kind": "regulation",
+ "amending": true,
+ "own_title": "Правилник за изменение на Устройствения правилник на областните дирекции „Земеделие“",
+ "target_title": "Устройствения правилник на областните дирекции „Земеделие“",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2010
+  ],
+  "issues": [
+   [
+    7,
+    2010
+   ],
+   [
+    9,
+    2010
+   ],
+   [
+    60,
+    2010
+   ],
+   [
+    73,
+    2010
+   ],
+   [
+    32,
+    2011
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2010 г.; изм., бр. 9, 60 и 73 от 2010 г. и бр. 32 от 2011 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА ЗЕМЕДЕЛИЕТО И ХРАНИТЕ",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [
+  6
+ ],
+ "tail": [
+  8,
+  9
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "8": "tail",
+  "9": "tail",
+  "2": "instruction",
+  "3": "quoted",
+  "4": "quoted",
+  "5": "instruction",
+  "6": "heading",
+  "7": "instruction"
+ },
+ "findings": [],
+ "blocks": 10,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. Член 24 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    3,
+    4
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 5,
+   "text": "§ 2. Член 25 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 7,
+   "text": "§ 3. Правилникът влиза в сила от деня на обнародването му в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

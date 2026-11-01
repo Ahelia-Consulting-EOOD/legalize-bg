@@ -1,0 +1,13 @@
+{
+ "material": 83184,
+ "issue": "21/2014",
+ "material_sha256": "548f62f116f5e48e621d5b6a8a389da6e786fd6b040b2b7af959c80e17c4bf4a",
+ "body_before_sha256": "38120d3b9ccffc14cf8be91d9652c3dd1c00d6e4788aec4d764b5235d131421f",
+ "task_sha256": "d6b95721dae18b96bc67188882be8e3735ade80b85a161191fd23cbf47219a99",
+ "scopes": [
+  "title"
+ ],
+ "findings": [],
+ "engine": "26",
+ "task_core": true
+}

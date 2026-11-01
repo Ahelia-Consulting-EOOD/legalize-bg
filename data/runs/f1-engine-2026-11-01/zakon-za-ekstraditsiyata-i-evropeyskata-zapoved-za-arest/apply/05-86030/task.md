@@ -1,0 +1,1386 @@
+# Apply the amending material of ДВ бр. 53/2014 to zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest
+
+You read the instructions of an amending act and turn each into operations on the act's text, in the form below. You never retype the act's words: a new text is a reference to the quoted blocks (their indices), an old or new string is a reference to a quoted segment of the instruction (q1, q2, … in order of appearance), an address is written as the Gazette writes it („чл. 36, ал. 1, т. 5“, „§ 3“, „глава втора, раздел V“, „Приложение № 3“, „наименованието“). An instruction that changes no text of this act (entry into force, a transitional rule, an instruction aimed at another act) is `no_text_change`. An instruction that changes this act's text in a way you cannot express in the closed set is `outside_set` with a note that says what it does: the script stops the act for the owner.
+
+Kinds: `replace_provision`: the addressed provision (article, alinea, item, letter, §) is replaced whole by the quoted text (blocks); `replace_words`: inside the addressed provision the words old are replaced by new; everywhere: true when the instruction says „навсякъде“; `delete_words`: inside the addressed provision the words old are deleted; `insert_words`: inside the addressed provision new is inserted after the words anchor, or at the end (where: end) or the start (where: start); `insert_provision`: a new provision (blocks) is inserted after the sibling named by after, at the address it will carry; `repeal`: the addressed provision is repealed: its number stays with the repeal marker, its text and children go; `renumber`: the addressed provision becomes the number in to (досегашната ал. 2 става ал. 3); `replace_heading`: the addressed heading, or the act's title (address наименованието), takes the words in new (a quoted segment or blocks); `insert_heading`: a new heading (blocks) is inserted after the provision or heading named by after; `replace_annex`: the annex named by address is replaced whole by the quoted blocks; `insert_annex`: a new annex (blocks) is appended after the annex named by after, or at the end of the act; `repeal_annex`: the annex named by address is repealed: its heading stays with the repeal marker, its rows go; `corrigendum`: a corrigendum: inside the addressed provision the words old are replaced by new, marked Попр.; `no_text_change`: the instruction changes no text of this act (entry into force, a transitional rule, an instruction for another act); `outside_set`: the instruction changes this act's text in a way none of the kinds above expresses; the note says what it does, and the script stops the act for the owner.
+
+Write exactly one JSON object to `data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/apply/05-86030/answer.json`: {"material": <id>, "operations": [...]}, one or more operations per instruction id, in the material's order; nothing else, no prose, no code fence. Each operation is an object with these keys and no others: `id` (the instruction id as written above, e.g. "§3.1"), `kind` (one of the kinds), `address` (the provision, in the Gazette's grammar; not for no_text_change), and by kind: `blocks` ([first, last] block indices of the quoted text, for replace_provision, insert_provision, insert_heading, replace_annex, insert_annex, or replace_heading with quoted blocks), `after` (the sibling the new text follows, for the insert kinds), `old` and `new` (segment references like "q1", for replace_words, delete_words, corrigendum, insert_words, replace_heading), `anchor` and `where` (after | before | end | start, for insert_words), `to` (the new number, for renumber), `everywhere` (true when the instruction says навсякъде, for replace_words), `note` (free text, required for outside_set). Where the Gazette's nested quotation marks cut a segment short (q1 ends before the inner quote), give `old`, `new` or `anchor` as {"text": "…"} with the words copied exactly from the instruction line above, quotation marks included; the script checks they stand there. Example: {"id": "§1.1", "kind": "replace_words", "address": "чл. 36, ал. 1", "old": "q1", "new": "q2"}.
+
+The parser recorded these findings on the material (where its quoted extents may be wrong, give the block range yourself):
+- block 15: unquoted_provision: Чл. 1. Този закон урежда принципите, функциите, дейностите, 
+- block 16: unquoted_provision: Чл. 2. Министерството на вътрешните работи е юридическо лице
+- block 17: unquoted_provision: Чл. 3. (1) Дейността на МВР се осъществява въз основа на сле
+- block 18: item_without_sign: 1. спазване на Конституцията, законите и международните дого
+- block 19: item_without_sign: 2. зачитане и гарантиране на правата и свободите на граждани
+- block 20: item_without_sign: 3. публичност и отчетност;
+- block 21: item_without_sign: 4. политически неутралитет;
+- block 22: item_without_sign: 5. обективност и безпристрастност;
+- block 23: item_without_sign: 6. защита на информацията и източниците за нейното придобива
+- block 24: item_without_sign: 7. защита на служителите при и по повод изпълнението на служ
+- block 25: item_without_sign: 8. сътрудничество с другите органи на държавната власт, орга
+- block 26: unplaced: (2) Върху дейността на МВР се осъществява граждански контрол
+- block 27: unquoted_provision: Чл. 4. Държавните органи, организациите, юридическите лица и
+- block 28: unquoted_provision: Чл. 5. Служителите на МВР при изпълнение на служебните си за
+- block 33: unquoted_provision: Чл. 6. (1) За осъществяване на политиките по превенция, прот
+- block 34: item_without_sign: 1. оперативно-издирвателна;
+- block 35: item_without_sign: 2. охранителна;
+- block 36: item_without_sign: 3. разследване на престъпления;
+- block 37: item_without_sign: 4. осигуряване на пожарна безопасност и защита при пожари, б
+- block 38: item_without_sign: 5. информационна;
+- block 39: item_without_sign: 6. контролна;
+- block 40: item_without_sign: 7. административнонаказателна и предоставяне на администрати
+- block 41: unplaced: (2) За осигуряване на непрекъснато и ефективно осъществяване
+- block 42: unquoted_provision: Чл. 7. Други дейности на МВР могат да се възлагат само със з
+- block 45: unquoted_provision: Чл. 8. (1) Оперативно-издирвателната дейност е дейност за пр
+- block 46: unplaced: (2) Дейността по ал. 1 се осъществява от оперативно-издирват
+- block 47: unplaced: (3) Оперативно-издирвателната дейност има за цел:
+- block 48: item_without_sign: 1. разкриване, предотвратяване и пресичане на престъпления и
+- block 49: item_without_sign: 2. установяване самоличността на лица, подготвящи, извършващ
+- block 50: item_without_sign: 3. издирване на лица, които се укриват от привличане към нак
+- block 51: item_without_sign: 4. издирване на вещи, които са предмет или средство за извър
+- block 52: item_without_sign: 5. изготвяне и съхраняване на веществени доказателствени сре
+- block 53: unquoted_provision: Чл. 9. Основания за извършване на оперативно-издирвателна де
+- block 54: item_without_sign: 1. получени данни за лица, които подготвят, извършват или ве
+- block 55: item_without_sign: 2. получени данни за събития или действия, създаващи заплаха
+- block 56: item_without_sign: 3. издирване на лица, укриващи се от органите на наказателно
+- block 57: item_without_sign: 4. издирване на безследно изчезнали лица и идентифициране на
+- block 58: item_without_sign: 5. искане на органите на досъдебното производство и съда;
+- block 59: item_without_sign: 6. изпълнение на международни договори, по които Република Б
+- block 60: unquoted_provision: Чл. 10. (1) Оперативно-издирвателната дейност се извършва чр
+- block 61: item_without_sign: 1. събиране, съхранение и обработване на информация;
+- block 62: item_without_sign: 2. вземане на образци за изследване и изследване на предмети
+- block 63: item_without_sign: 3. белязване на обекти и предмети;
+- block 64: item_without_sign: 4. идентифициране и издирване на лица и предмети;
+- block 65: item_without_sign: 5. оперативно внедряване;
+- block 66: item_without_sign: 6. отправяне на предупреждения за спазване на правовия ред;
+- block 67: item_without_sign: 7. контролирани доставки и доверителни сделки;
+- block 68: item_without_sign: 8. извършване на насрещни проверки по документи;
+- block 69: item_without_sign: 9. изследване поведението на лица и групи в контролирана сре
+- block 70: unplaced: (2) Събирането на информация се осъществява чрез:
+- block 71: item_without_sign: 1. измерване чрез научни и технически методи;
+- block 72: item_without_sign: 2. достъп до информационни фондове, архиви или отделни докум
+- block 73: item_without_sign: 3. контрол на комуникацията в мрежи или единични комуникацио
+- block 74: item_without_sign: 4. събиране и обработване на изображения;
+- block 75: item_without_sign: 5. оперативна комуникация с лица.
+- block 76: unplaced: (3) Дейността по ал. 1 се осъществява чрез специфични явни и
+- block 77: unquoted_provision: Чл. 11. Условията и редът за използване на специални разузна
+- block 78: unquoted_provision: Чл. 12. Органите на МВР издават български лични документи с 
+- block 79: unquoted_provision: Чл. 13. (1) При осъществяване на оперативно-издирвателната д
+- block 80: unplaced: (2) Използването на доброволните сътрудници може да се извър
+- block 81: unplaced: (3) Привличането и дейността на лицата по ал. 1 се осъществя
+- block 82: item_without_sign: 1. доброволност при привличането, работата и освобождаването
+- block 83: item_without_sign: 2. защита при или по повод на сътрудничеството;
+- block 84: item_without_sign: 3. запазване в тайна на самоличността и другите лични данни,
+- block 85: unplaced: (4) Данни за лица, приели доброволно сътрудничество с органи
+- block 88: unquoted_provision: Чл. 14. (1) Охранителната дейност е дейност по опазване на о
+- block 89: unplaced: (2) Дейността по ал. 1 се осъществява от полицейските органи
+- block 90: item_without_sign: 1. патрулно-постова дейност;
+- block 91: item_without_sign: 2. териториално обслужване на населението;
+- block 92: item_without_sign: 3. наблюдение на държавната граница, специфична охранителна 
+- block 93: item_without_sign: 4. охрана на обекти по чл. 92, ал. 1 и 2, обекти на МВР и ди
+- block 94: item_without_sign: 5. осигуряване на обществения ред при провеждане на мероприя
+- block 95: item_without_sign: 6. конвоиране и съпровождане на лица в страната и в чужбина;
+- block 96: item_without_sign: 7. освобождаване на заложници, задържане и обезвреждане на и
+- block 97: item_without_sign: 8. откриване, идентифициране и неутрализиране на взривни уст
+- block 98: item_without_sign: 9. извършване на физикохимическо изследване и експертна оцен
+- block 99: unplaced: (3) Редът и организацията за осъществяване на дейностите по 
+- block 102: unquoted_provision: Чл. 15. (1) Дейността по разследване на престъпления се осъщ
+- block 103: unplaced: (2) На разследващите полицаи не могат да се възлагат други д
+- block 104: unplaced: (3) При осъществяване на своите правомощия разследващите орг
+- block 105: unplaced: (4) Писмените указания на прокурора по разследването са задъ
+- block 106: unplaced: (5) Горестоящите ръководители нямат право да дават указания 
+- block 107: unplaced: (6) Взаимодействието на разследващите полицаи с другите поли
+- block 108: unquoted_provision: Чл. 16. (1) Разпределението на досъдебните производства се и
+- block 109: unplaced: (2) Принципът на случайния подбор при разпределението на дос
+- block 112: unquoted_provision: Чл. 17. (1) Дейността по осигуряване на пожарна безопасност 
+- block 113: unplaced: (2) Дейността по ал. 1 се осъществява чрез:
+- block 114: item_without_sign: 1. превантивна дейност;
+- block 115: item_without_sign: 2. държавен противопожарен контрол и превантивен контрол;
+- block 116: item_without_sign: 3. пожарогасителна и спасителна дейност;
+- block 117: item_without_sign: 4. разрешителна и контролна дейност на търговци, извършващи 
+- block 118: item_without_sign: 5. оценяване на съответствието и контролна дейност на продук
+- block 119: item_without_sign: 6. неотложни аварийно-възстановителни работи, оперативна защ
+- block 120: item_without_sign: 7. ранно предупреждение и оповестяване при бедствия и при въ
+- block 121: item_without_sign: 8. методическа и експертна помощ на териториалните органи на
+- block 122: item_without_sign: 9. определяне на пожарните характеристики на продукти и техн
+- block 123: unplaced: (3) Обхватът и съдържанието на отделните дейности по ал. 2 с
+- block 124: unplaced: (4) Редът за осъществяване на дейностите по ал. 2, т. 1 – 3 
+- block 125: unplaced: (5) С наредбата за осъществяване на дейността по ал. 2, т. 3
+- block 126: unplaced: (6) Изискванията към продуктите за пожарогасене по ал. 2, т.
+- block 127: unplaced: (7) Условията и редът за осъществяване на дейностите по ал. 
+- block 130: unquoted_provision: Чл. 18. (1) Информационната дейност е дейност по събиране, о
+- block 131: unplaced: (2) За осъществяване на дейността по ал. 1 се осигуряват фун
+- block 132: unquoted_provision: Чл. 19. (1) Информационната дейност в МВР е обща и специализ
+- block 133: unplaced: (2) Общата информационна дейност е свързана с информационно 
+- block 134: unplaced: (3) Специализираната информационна дейност се осъществява от
+- block 135: unquoted_provision: Чл. 20. (1) Информационната дейност се основава на информаци
+- block 136: unplaced: (2) Информационната дейност се основава и на информация, изг
+- block 137: unquoted_provision: Чл. 21. Списъкът на категориите информация, подлежаща на кла
+- block 138: unquoted_provision: Чл. 22. (1) Забранява се събирането на информация за граждан
+- block 139: unplaced: (2) Забранява се предоставянето на информация на държавни ор
+- block 140: unquoted_provision: Чл. 23. (1) В МВР се изготвят и разработват информационни и 
+- block 141: item_without_sign: 1. министъра на вътрешните работи, заместник-министрите и гл
+- block 142: item_without_sign: 2. структурите на МВР;
+- block 143: item_without_sign: 3. външни потребители.
+- block 144: unplaced: (2) Информационните и аналитичните документи и продуктите за
+- block 145: unquoted_provision: Чл. 24. (1) В МВР се изграждат информационни фондове и звена
+- block 146: unplaced: (2) Информационните фондове се изграждат при съответните стр
+- block 147: unplaced: (3) Информационните фондове се изграждат, експлоатират, конт
+- block 148: unquoted_provision: Чл. 25. (1) За изпълнение на дейностите си органите на МВР м
+- block 149: unplaced: (2) Органите на МВР могат да обработват и лични данни, получ
+- block 150: unplaced: (3) Обработването на лични данни се осъществява при условият
+- block 151: unquoted_provision: Чл. 26. При обработване на лични данни, свързани с дейностит
+- block 152: item_without_sign: 1. могат да не искат съгласието на физическото лице;
+- block 153: item_without_sign: 2. могат да не информират физическото лице преди и по време 
+- block 154: item_without_sign: 3. съхраняват данните в срокове, определени от администратор
+- block 155: item_without_sign: 4. предоставят личните данни само на органите за защита на н
+- block 156: unquoted_provision: Чл. 27. Данните от полицейската регистрация на лицата, извър
+- block 157: unquoted_provision: Чл. 28. (1) Органите на МВР отказват изцяло или частично пре
+- block 158: item_without_sign: 1. от това би възникнала опасност:
+- block 159: item_without_sign: а) за националната сигурност или обществения ред;
+- block 160: item_without_sign: б) за опазването на информация, класифицирана като държавна 
+- block 161: item_without_sign: в) от разкриване на източниците на информацията или негласни
+- block 162: item_without_sign: 2. предоставянето на тези данни на лицето би накърнило изпъл
+- block 163: item_without_sign: 3. информацията е въведена в Шенгенската информационна систе
+- block 164: unplaced: (2) Уведомяването на заявителите за отказа по ал. 1 се извър
+- block 165: unplaced: (3) Отказът по ал. 1 и 2 подлежи на обжалване по реда на Адм
+- block 166: unquoted_provision: Чл. 29. (1) Администратор на лични данни по смисъла на Закон
+- block 167: unplaced: (2) Редът за обработване на лични данни се определя с инстру
+- block 170: unquoted_provision: Чл. 30. (1) Контролна дейност се осъществява от органите на 
+- block 171: item_without_sign: 1. издаване, отказване и отнемане на разрешения или лицензи;
+- block 172: item_without_sign: 2. проверки на документи и на място;
+- block 173: item_without_sign: 3. гранични проверки;
+- block 174: item_without_sign: 4. геодезическо определяне и контрол на линията на държавнат
+- block 175: item_without_sign: 5. проверки за спазване на правилата за движение по пътищата
+- block 176: item_without_sign: 6. проверки и провеждане на интервюта на чужденци и граждани
+- block 177: item_without_sign: 7. контрол на технологичните дейности по изработка на българ
+- block 178: item_without_sign: 8. изискване на информация и документи.
+- block 179: unplaced: (2) Редът и организацията за осъществяване на дейността по а
+- block 182: unquoted_provision: Чл. 31. Административнонаказателна дейност се осъществява от
+- block 183: item_without_sign: 1. установяване на административни нарушения и налагане на а
+- block 184: item_without_sign: 2. прилагане на принудителни административни мерки.
+- block 185: unquoted_provision: Чл. 32. Предоставянето на административни услуги от органите
+- block 186: item_without_sign: 1. административно обслужване на чужденците и на гражданите 
+- block 187: item_without_sign: 2. издаване, отказване издаването, отнемане, изземване и обя
+- block 190: unquoted_provision: Чл. 33. Министърът на вътрешните работи:
+- block 191: item_without_sign: 1. представлява МВР;
+- block 192: item_without_sign: 2. провежда държавната политика по превенцията, противодейст
+- block 193: item_without_sign: 3. определя стратегически приоритети, програми, цели и задач
+- block 194: item_without_sign: 4. осъществява международното сътрудничество;
+- block 195: item_without_sign: 5. създава и закрива звена извън тези, създадени със закона;
+- block 196: item_without_sign: 6. предлага проекта на бюджет на МВР;
+- block 197: item_without_sign: 7. разпределя и управлява финансовите и материалните ресурси
+- block 198: item_without_sign: 8. управлява човешките ресурси;
+- block 199: item_without_sign: 9. издава правилници, наредби, инструкции и заповеди.
+- block 200: unquoted_provision: Чл. 34. (1) При осъществяване на своите правомощия министъръ
+- block 201: unplaced: (2) При отсъствие министърът на вътрешните работи се заместв
+- block 202: unplaced: (3) При изпълнение на функциите си министърът на вътрешните 
+- block 203: unquoted_provision: Чл. 35. (1) Министърът на вътрешните работи делегира със зап
+- block 204: unplaced: (2) При изпълнение на правомощията си заместник-министрите и
+- block 205: unquoted_provision: Чл. 36. (1) Главният секретар на МВР е висшата професионална
+- block 206: unplaced: (2) Главният секретар:
+- block 207: item_without_sign: 1. ръководи пряко планирането, организирането и контрола на 
+- block 208: item_without_sign: 2. организира взаимодействието между отделните структури на 
+- block 209: item_without_sign: 3. организира взаимодействието на МВР с други държавни орган
+- block 210: item_without_sign: 4. издава заповеди във връзка с изпълнението на правомощията
+- block 211: unplaced: (3) Главният секретар на МВР е пряко подчинен на министъра н
+- block 212: unplaced: (4) Главният секретар на МВР се назначава от Министерския съ
+- block 213: unplaced: (5) При осъществяване на своите правомощия главният секретар
+- block 214: unplaced: (6) За главен секретар и заместник главен секретар на МВР мо
+- block 215: unplaced: (7) Правомощията на главния секретар се прекратяват предсроч
+- block 216: item_without_sign: 1. по негово искане;
+- block 217: item_without_sign: 2. при навършване на 60-годишна възраст;
+- block 218: item_without_sign: 3. при фактическа невъзможност да изпълнява задълженията си 
+- block 219: item_without_sign: 4. при несъвместимост с изискванията на ал. 6;
+- block 220: item_without_sign: 5. при влизане в сила на акт, с който е установен конфликт н
+- block 221: item_without_sign: 6. при смърт.
+- block 222: unplaced: (8) В случаите по ал. 7 правомощията на главния секретар се 
+- block 223: unplaced: (9) При смърт или предсрочно прекратяване правомощията на гл
+- block 224: unplaced: (10) До определянето на нов главен секретар неговите правомо
+- block 225: unquoted_provision: Чл. 37. (1) Основни структури на МВР са:
+- block 226: item_without_sign: 1. главните дирекции;
+- block 227: item_without_sign: 2. областните дирекции;
+- block 228: item_without_sign: 3. дирекциите;
+- block 229: item_without_sign: 4. административните дирекции.
+- block 230: unplaced: (2) Структури на МВР са и Специализираният отряд за борба с 
+- block 231: unplaced: (3) Устройството и дейността на структурите на МВР се урежда
+- block 232: unplaced: (4) С правилника по ал. 3 могат да се създават и други струк
+- block 233: unplaced: (5) Главните дирекции, областните дирекции, дирекция „Междун
+- block 234: unquoted_provision: Чл. 38. Главните дирекции на МВР са:
+- block 235: item_without_sign: 1. Главна дирекция „Криминална полиция“;
+- block 236: item_without_sign: 2. Главна дирекция „Охранителна полиция“;
+- block 237: item_without_sign: 3. Главна дирекция „Гранична полиция“;
+- block 238: item_without_sign: 4. Главна дирекция „Пожарна безопасност и защита на населени
+- block 239: unquoted_provision: Чл. 39. (1) Главна дирекция „Криминална полиция“ (ГДКП) е на
+- block 240: unplaced: (2) Главна дирекция „Охранителна полиция“ (ГДОП) е националн
+- block 241: unplaced: (3) Главна дирекция „Гранична полиция“ (ГДГП) е национална с
+- block 242: unplaced: (4) Министерският съвет определя:
+- block 243: item_without_sign: 1. дълбочината на граничната ивица и граничната зона;
+- block 244: item_without_sign: 2. откриването и закриването на гранични контролно-пропускат
+- block 245: item_without_sign: 3. организацията, дейността и управлението на граничните кон
+- block 246: unplaced: (5) Главна дирекция „Пожарна безопасност и защита на населен
+- block 247: unquoted_provision: Чл. 40. (1) В главните дирекции могат да се създават дирекци
+- block 248: unplaced: (2) Териториалните звена се ръководят от съответния директор
+- block 249: unplaced: (3) Районите на действие на териториалните звена се определя
+- block 250: unquoted_provision: Чл. 41. (1) Главните дирекции се ръководят от директори, кои
+- block 251: unplaced: (2) Директорите на главните дирекции са пряко подчинени на г
+- block 252: unplaced: (3) Директорите на главните дирекции:
+- block 253: item_without_sign: 1. осъществяват общото и непосредственото им ръководство;
+- block 254: item_without_sign: 2. управляват човешките ресурси;
+- block 255: item_without_sign: 3. представляват юридическото лице;
+- block 256: item_without_sign: 4. отчитат се за дейността си пред министъра на вътрешните р
+- block 257: unplaced: (4) В изпълнение на правомощията си по ал. 3 директорите на 
+- block 258: unplaced: (5) При изпълнение на функциите си директорите на главните д
+- block 259: unquoted_provision: Чл. 42. (1) Областните дирекции на МВР се създават на терито
+- block 260: unplaced: (2) Областните дирекции са основни структури на МВР за опера
+- block 261: unplaced: (3) В областните дирекции на МВР може да се създават отдели,
+- block 262: unplaced: (4) Районните управления в областните дирекции на МВР се съз
+- block 263: unplaced: (5) Районите на действие на управленията по ал. 4 се определ
+- block 264: unplaced: (6) Министърът на вътрешните работи при условията на ал. 3 м
+- block 265: unquoted_provision: Чл. 43. (1) Областните дирекции се ръководят от директори, к
+- block 266: unplaced: (2) Директорите на областните дирекции са пряко подчинени на
+- block 267: unplaced: (3) Директорите на областните дирекции:
+- block 268: item_without_sign: 1. осъществяват общото и непосредственото им ръководство;
+- block 269: item_without_sign: 2. управляват човешките ресурси;
+- block 270: item_without_sign: 3. координират действията на структурите на МВР при бедствия
+- block 271: item_without_sign: 4. представляват юридическото лице;
+- block 272: item_without_sign: 5. отчитат се за дейността си на министъра на вътрешните раб
+- block 273: unplaced: (4) В изпълнение на правомощията си по ал. 3 директорите на 
+- block 274: unplaced: (5) При изпълнение на функциите си директорите на областните
+- block 275: unquoted_provision: Чл. 44. (1) Специализираният отряд за борба с тероризма е сп
+- block 276: item_without_sign: 1. предотвратява и пресича терористични действия;
+- block 277: item_without_sign: 2. освобождава заложници;
+- block 278: item_without_sign: 3. задържа и/или обезврежда особено опасни престъпници или п
+- block 279: item_without_sign: 4. осигурява зона за безопасност срещу потенциални атаки чре
+- block 280: item_without_sign: 5. открива, идентифицира и неутрализира взривни устройства и
+- block 281: item_without_sign: 6. извършва физикохимическо изследване и експертна оценка на
+- block 282: unplaced: (2) В Специализирания отряд за борба с тероризма може да се 
+- block 283: unplaced: (3) Специализираният отряд за борба с тероризма се ръководи 
+- block 284: unplaced: (4) Командирът е на пряко подчинение на главния секретар на 
+- block 285: unplaced: (5) Командирът:
+- block 286: item_without_sign: 1. осъществява общото и непосредственото ръководство на СОБТ
+- block 287: item_without_sign: 2. управлява човешките ресурси;
+- block 288: item_without_sign: 3. отчита се за дейността си на министъра на вътрешните рабо
+- block 289: unplaced: (6) В изпълнение на функциите по ал. 5 командирът издава зап
+- block 290: unquoted_provision: Чл. 45. (1) Дирекциите и административните дирекции осъществ
+- block 291: unplaced: (2) В дирекциите и административните дирекции могат да се съ
+- block 292: unplaced: (3) Териториалните звена се ръководят от съответния директор
+- block 293: unplaced: (4) Районите на действие на териториалните звена се определя
+- block 294: unquoted_provision: Чл. 46. (1) Дирекциите и административните дирекции се ръков
+- block 295: item_without_sign: 1. осъществяват общото и непосредственото ръководство на дир
+- block 296: item_without_sign: 2. управляват човешките ресурси.
+- block 297: unplaced: (2) В изпълнение на функциите по ал. 1 директорите издават з
+- block 298: unplaced: (3) При изпълнение на функциите си директорите могат да се п
+- block 299: unplaced: (4) Директорите на дирекция „Международни проекти“ и дирекци
+- block 300: unplaced: (5) Директорът на дирекция „Сигурност на Министерството на в
+- block 301: unquoted_provision: Чл. 47. (1) Академията на МВР е университет, създаден с реше
+- block 302: unplaced: (2) Академията на МВР е висше училище за професионална подго
+- block 303: unplaced: (3) Устройството и дейността на Академията на МВР се определ
+- block 304: unplaced: (4) В Академията на МВР могат да се обучават специалисти за 
+- block 305: unplaced: (5) Извън случаите по ал. 4 в Академията на МВР могат да се 
+- block 306: unplaced: (6) Условията и редът за приемане на обучаващи се за придоби
+- block 307: unquoted_provision: Чл. 48. В Академията на МВР могат да се създават основни зве
+- block 308: unquoted_provision: Чл. 49. (1) Академията на МВР се ръководи от академичен съве
+- block 309: unplaced: (2) Академичният съвет е колективен орган за ръководство на 
+- block 310: unplaced: (3) В Академията на МВР се избира общо събрание, чийто съста
+- block 311: unplaced: (4) Ректорът е пряк ръководител на служителите на академията
+- block 312: item_without_sign: 1. определя дневния ред на академичния съвет;
+- block 313: item_without_sign: 2. решава всички въпроси, свързани с приемането, отписването
+- block 314: item_without_sign: 3. изпълнява други функции, произтичащи от нормативните акто
+- block 315: item_without_sign: 4. издава заповеди;
+- block 316: item_without_sign: 5. представлява юридическото лице.
+- block 317: unplaced: (5) Ректорът е хабилитирано лице и се назначава от министъра
+- block 318: unplaced: (6) Съставът на академичния съвет се определя от министъра н
+- block 319: unquoted_provision: Чл. 50. (1) Медицинският институт на МВР е лечебно заведение
+- block 320: unplaced: (2) Медицинският институт на МВР е научноизследователски и н
+- block 321: unplaced: (3) За осъществяване на дейността по ал. 2 в Медицинския инс
+- block 322: unquoted_provision: Чл. 51. (1) В МВР освен Медицинския институт се изграждат и 
+- block 323: unplaced: (2) Устройството и дейността на научноизследователските и на
+- block 324: unplaced: (3) В научноизследователските и научно-приложните институти 
+- block 325: unquoted_provision: Чл. 52. (1) Научноизследователските и научно-приложните инст
+- block 326: item_without_sign: 1. осъществяват общото и непосредственото ръководство на инс
+- block 327: item_without_sign: 2. управляват човешките ресурси.
+- block 328: unplaced: (2) Директорът на Медицинския институт на МВР представлява ю
+- block 329: unplaced: (3) В изпълнение на функциите по ал. 1 и 2 директорите издав
+- block 330: unquoted_provision: Чл. 53. В изпълнение на функциите си ръководителите на терит
+- block 331: unquoted_provision: Чл. 54. Районното управление на областната дирекция на МВР с
+- block 332: unquoted_provision: Чл. 55. Участъкът в районно управление се ръководи от началн
+- block 337: unquoted_provision: Чл. 56. Органи на структурите по чл. 37 и на техните структу
+- block 338: unquoted_provision: Чл. 57. (1) Полицейски органи са органите на Главна дирекция
+- block 339: unplaced: (2) Полицейски органи са и служителите за осигуряване на дей
+- block 340: unquoted_provision: Чл. 58. (1) Органи за пожарна безопасност и защита на населе
+- block 341: unplaced: (2) Органи за пожарна безопасност и защита на населението са
+- block 342: unquoted_provision: Чл. 59. Оперативно-издирвателни органи на МВР са държавните 
+- block 343: unquoted_provision: Чл. 60. (1) Държавните служители и лицата, работещи по трудо
+- block 344: unplaced: (2) Органи са и научноизследователските и научно-приложните 
+- block 345: unplaced: (3) Когато за извършването на екпертиза е определен служител
+- block 350: unquoted_provision: Чл. 61. (1) За осъществяване на общата превенция на правонар
+- block 351: unplaced: (2) За осъществяване на индивидуалната превенция на правонар
+- block 352: unplaced: (3) За предотвратяване на замислени или подготвени престъпле
+- block 353: unplaced: (4) За пресичане на престъпления полицейските органи осъщест
+- block 354: unquoted_provision: Чл. 62. (1) В изпълнение на дейностите по този закон министъ
+- block 355: unplaced: (2) Заповедите по ал. 1 се издават:
+- block 356: item_without_sign: 1. за предотвратяване извършването на престъпления или наруш
+- block 357: item_without_sign: 2. при безредици или при непосредствена опасност от възниква
+- block 358: item_without_sign: 3. при провеждане на карантинни мероприятия по предложение н
+- block 359: unplaced: (3) Ограниченията по ал. 1 не се прилагат при стачки, събран
+- block 360: unplaced: (4) За заповедите по ал. 1 се уведомява незабавно кметът на 
+- block 361: unplaced: (5) Заповедите по ал. 1 могат да се обжалват от засегнатите 
+- block 362: unplaced: (6) Действието на заповедите се прекратява с изтичането на т
+- block 363: unquoted_provision: Чл. 63. (1) Дейността на полицейските органи по противодейст
+- block 364: unplaced: (2) Извънщатните сътрудници нямат правомощия на полицейски о
+- block 365: unplaced: (3) Изискванията към извънщатните сътрудници, редът за вписв
+- block 366: unplaced: (4) При осъществяне на дейността си извънщатните сътрудници 
+- block 367: unplaced: (5) За осъществяване на дейността по ал. 1 на извънщатните с
+- block 368: unplaced: (6) Главните и областните дирекции водят списък на извънщатн
+- block 369: unquoted_provision: Чл. 64. (1) Полицейските органи могат да издават разпореждан
+- block 370: unplaced: (2) При невъзможност да се издадат писмено или устно разпоре
+- block 371: unplaced: (3) При изпълнение на функциите по контрол на правилата за д
+- block 372: unplaced: (4) Разпорежданията на полицейския орган са задължителни за 
+- block 373: unplaced: (5) Разпореждането, издадено в писмена форма, съдържа следни
+- block 374: item_without_sign: 1. наименование на органа, който го издава;
+- block 375: item_without_sign: 2. адресат на разпореждането;
+- block 376: item_without_sign: 3. фактически и правни основания за издаване;
+- block 377: item_without_sign: 4. разпоредителна част, с която се определят правата или зад
+- block 378: item_without_sign: 5. пред кой орган и в какъв срок може да се обжалва;
+- block 379: item_without_sign: 6. дата на издаване и подпис на лицето, издало разпорежданет
+- block 380: unplaced: (6) Разпорежданията, издадени в писмена форма, могат да се о
+- block 381: unquoted_provision: Чл. 65. (1) Полицейските органи предупреждават устно или пис
+- block 382: unplaced: (2) За писменото предупреждение се съставя протокол, с който
+- block 383: unplaced: (3) Протоколът за предупреждение се съставя в присъствието н
+- block 384: unquoted_provision: Чл. 66. (1) При установяване на условия и причини за извършв
+- block 385: unplaced: (2) Когато други органи или организации са компетентни да вз
+- block 386: unplaced: (3) Компетентните органи по ал. 2 са длъжни в едномесечен ср
+- block 387: unquoted_provision: Чл. 67. Полицейските органи предотвратяват, пресичат, разкри
+- block 388: unquoted_provision: Чл. 68. (1) Полицейските органи извършват полицейска регистр
+- block 389: unplaced: (2) Полицейската регистрация е вид обработване на лични данн
+- block 390: unplaced: (3) За целите на полицейската регистрация полицейските орган
+- block 391: item_without_sign: 1. събират за лицата личните им данни, посочени в чл. 18 от 
+- block 392: item_without_sign: 2. дактилоскопират и фотографират лицата;
+- block 393: item_without_sign: 3. изземват образци за ДНК профил на лицата.
+- block 394: unplaced: (4) За извършване на действията по ал. 3, т. 1 съгласието на
+- block 395: unplaced: (5) Лицата са длъжни да оказват съдействие, да не пречат и д
+- block 396: unplaced: (6) Полицейската регистрация се снема въз основа на писмена 
+- block 397: item_without_sign: 1. регистрацията е извършена в нарушение на закона;
+- block 398: item_without_sign: 2. наказателното производство е прекратено с изключение на с
+- block 399: item_without_sign: 3. наказателното производство е приключило с влязла в сила о
+- block 400: item_without_sign: 4. лицето е освободено от наказателна отговорност и му е нал
+- block 401: item_without_sign: 5. лицето е починало, като в този случай искането може да бъ
+- block 402: unplaced: (7) Редът за извършване и снемане на полицейската регистраци
+- block 403: unquoted_provision: Чл. 69. (1) Полицейските органи могат да призовават в служеб
+- block 404: unplaced: (2) Полицейските органи писмено уведомяват гражданите за при
+- block 405: unplaced: (3) В неотложни случаи призоваването може да се извършва по 
+- block 406: unquoted_provision: Чл. 70. (1) Полицейските органи могат да извършват проверки 
+- block 407: item_without_sign: 1. за което има данни, че е извършило престъпление или друго
+- block 408: item_without_sign: 2. когато това е необходимо за разкриване или разследване на
+- block 409: item_without_sign: 3. при осъществяване на контрол по редовността на документит
+- block 410: item_without_sign: 4. на контролен пункт, организиран от полицейските органи;
+- block 411: item_without_sign: 5. по искане на друг държавен орган за оказване на съдействи
+- block 412: unplaced: (2) Установяването на самоличността се извършва чрез предста
+- block 413: unquoted_provision: Чл. 71. (1) Полицейските органи могат да извършват действия 
+- block 414: item_without_sign: 1. самоличността на едно лице не може да бъде установена по 
+- block 415: item_without_sign: 2. лицето е извършило престъпление или съществуват данни, че
+- block 416: item_without_sign: 3. чужденец, търсещ закрила по Закона за убежището и бежанци
+- block 417: unplaced: (2) Действията по идентификация включват:
+- block 418: item_without_sign: 1. снемане на пръстови отпечатъци и отпечатъци от дланите на
+- block 419: item_without_sign: 2. фотографиране на лицето;
+- block 420: item_without_sign: 3. установяване на външни белези;
+- block 421: item_without_sign: 4. измервания и изземване на образци за сравнителни изследва
+- block 422: item_without_sign: 5. изземване на образци от биологичен произход за сравнителн
+- block 423: unplaced: (3) За извършване на действията по ал. 2 се прилага чл. 68, 
+- block 424: unplaced: (4) Когато основанията по чл. 70, ал. 1 отпаднат, полицейски
+- block 425: unquoted_provision: Чл. 72. (1) Полицейските органи могат да задържат лице:
+- block 426: item_without_sign: 1. за което има данни, че е извършило престъпление;
+- block 427: item_without_sign: 2. което след надлежно предупреждение съзнателно пречи на по
+- block 428: item_without_sign: 3. което показва тежки психични отклонения и с поведението с
+- block 429: item_without_sign: 4. при невъзможност да се установи самоличността му в случаи
+- block 430: item_without_sign: 5. което се е отклонило от изтърпяване на наказанието лишава
+- block 431: item_without_sign: 6. обявено за издирване с цел задържане, както и по искане н
+- block 432: item_without_sign: 7. в други случаи, определени със закон.
+- block 433: unplaced: (2) В случаите по ал. 1 лицето може да бъде настанено в поме
+- block 434: unplaced: (3) Когато задържаното лице не владее български език, то нез
+- block 435: unplaced: (4) Задържаното лице има право да обжалва пред съда законнос
+- block 436: unplaced: (5) От момента на задържането си лицето има право на защитни
+- block 437: unplaced: (6) За задържането съответният орган е длъжен незабавно да у
+- block 438: unplaced: (7) Полицейските органи са длъжни незабавно да освободят лиц
+- block 439: unplaced: (8) Задържаните непълнолетни лица се настаняват в специални 
+- block 440: unplaced: (9) Редът за осъществяване на задържане, оборудването на пом
+- block 441: unquoted_provision: Чл. 73. На лицето, задържано при условията на чл. 72, ал. 1,
+- block 442: unquoted_provision: Чл. 74. (1) За лицата по чл. 72, ал. 1 се издава писмена зап
+- block 443: unplaced: (2) В заповедта по ал. 1 се посочват:
+- block 444: item_without_sign: 1. името, длъжността и местоработата на служителя, издал зап
+- block 445: item_without_sign: 2. основанията за задържането;
+- block 446: item_without_sign: 3. данни, индивидуализиращи задържаното лице;
+- block 447: item_without_sign: 4. датата и часът на задържането;
+- block 448: item_without_sign: 5. ограничаването на правата на лицето по чл. 73;
+- block 449: item_without_sign: 6. правото му:
+- block 450: item_without_sign: а) да обжалва пред съда законността на задържането;
+- block 451: item_without_sign: б) на адвокатска защита от момента на задържането;
+- block 452: item_without_sign: в) на медицинска помощ;
+- block 453: item_without_sign: г) на телефонно обаждане, с което да съобщи за своето задърж
+- block 454: item_without_sign: д) да се свърже с консулските власти на съответната държава,
+- block 455: item_without_sign: е) да ползва преводач, в случай че не разбира български език
+- block 456: unplaced: (3) Задържаното лице попълва декларация, че е запознато с пр
+- block 457: unplaced: (4) Отказът или невъзможността на задържаното лице да подпиш
+- block 458: unplaced: (5) Заповедта за задържане се вписва в специален регистър.
+- block 459: unplaced: (6) Копие от заповедта се връчва на задържаното лице срещу п
+- block 460: unquoted_provision: Чл. 75. (1) При извършване на задържане по чл. 72 полицейски
+- block 461: unplaced: (2) Мерките по ал. 1 се изразяват в извършване на проверка н
+- block 462: unquoted_provision: Чл. 76. (1) Полицейските органи могат да конвоират на терито
+- block 463: item_without_sign: 1. по отношение, на които е постановен акт за принудително д
+- block 464: item_without_sign: 2. задържани лица по чл. 72, ал. 1, т. 1 – 4, 6 и 7;
+- block 465: item_without_sign: 3. с наложено от съда наказание „задържане в териториална ст
+- block 466: unplaced: (2) Извън случаите по ал. 1 полицейските органи могат да кон
+- block 467: unplaced: (3) Ведомствата и органите, възложили конвоирането, осигуряв
+- block 468: unplaced: (4) Организацията и редът за осъществяване на конвойната дей
+- block 469: unquoted_provision: Чл. 77. (1) Полицейските органи могат да съпровождат на тери
+- block 470: item_without_sign: 1. лица, спрямо които е приложена мярка за административна п
+- block 471: item_without_sign: 2. малолетни и непълнолетни лица.
+- block 472: unplaced: (2) Организацията и редът за съпровождане на лица по ал. 1, 
+- block 473: unplaced: (3) Организацията и редът за съпровождане на малолетни и неп
+- block 474: unquoted_provision: Чл. 78. Съпровождането на чужденци, подлежащи на експулсиран
+- block 475: unquoted_provision: Чл. 79. При осъществяване на охранителна дейност от полицейс
+- block 476: unquoted_provision: Чл. 80. (1) Полицейските органи извършват обиск на лице:
+- block 477: item_without_sign: 1. задържано при условията на чл. 72, ал. 1;
+- block 478: item_without_sign: 2. за което съществуват данни, че носи опасни или забранени 
+- block 479: item_without_sign: 3. заварено на място, където е извършено престъпление или на
+- block 480: item_without_sign: 4. за което има сигнал в ШИС за извършване на специфичен кон
+- block 481: unplaced: (2) Обиск може да бъде извършен само от лице, което принадле
+- block 482: unquoted_provision: Чл. 81. (1) Полицейските органи могат да проверяват личните 
+- block 483: item_without_sign: 1. в случаите по чл. 70, ал. 1, т. 1, 2 и 4, чл. 71, ал. 1, 
+- block 484: item_without_sign: 2. когато са налице достатъчно данни, че се укриват вещи, св
+- block 485: item_without_sign: 3. прeди съпровождане или настаняване в специален дом за вре
+- block 486: item_without_sign: 4. в други случаи, определени със закон.
+- block 487: unplaced: (2) Полицейските органи могат да извършват проверка на прево
+- block 488: item_without_sign: 1. има данни за извършено престъпление или нарушение на обще
+- block 489: item_without_sign: 2. има сигнал в ШИС за извършване на специфичен контрол.
+- block 490: unplaced: (3) Редът и условията за извършване на проверката по ал. 1 и
+- block 491: unquoted_provision: Чл. 82. (1) За всеки случай на извършен обиск или проверка п
+- block 492: unplaced: (2) Протоколът по ал. 1 се подписва от полицейския орган, от
+- block 493: unplaced: (3) Обискът и проверката по чл. 81 се извършват по начин, ко
+- block 494: unquoted_provision: Чл. 83. (1) Полицейските органи могат да извършват проверки 
+- block 495: item_without_sign: 1. следва да се предотврати непосредствено предстоящо или за
+- block 496: item_without_sign: 2. са налице данни, че в помещението се укрива лице, извърши
+- block 497: item_without_sign: 3. е необходимо оказване на неотложна помощ на лица, чийто ж
+- block 498: unplaced: (2) След приключване на проверката полицейските органи са дл
+- block 499: item_without_sign: 1. името и длъжността на служителя и неговата месторабота;
+- block 500: item_without_sign: 2. самоличността на собственика или обитателя;
+- block 501: item_without_sign: 3. основанието за проверката;
+- block 502: item_without_sign: 4. времето и мястото на извършването й;
+- block 503: item_without_sign: 5. резултатите от нея.
+- block 504: unplaced: (3) Протоколът се подписва от полицейския орган, от един сви
+- block 505: unplaced: (4) Копие от протокола се предоставя на собственика или обит
+- block 506: unplaced: (5) За извършената проверка незабавно се уведомява съответни
+- block 507: unplaced: (6) Редът и условията за извършване на проверката по ал. 1 с
+- block 508: unquoted_provision: Чл. 84. (1) Полицейските органи могат да изземват временно в
+- block 509: unplaced: (2) Лицето, в което се намира издирваната по ал. 1 вещ, се п
+- block 510: unplaced: (3) При отказ на лицето да предаде вещта по ал. 1 тя се иззе
+- block 511: unplaced: (4) Отказът или невъзможността на лицето да подпише протокол
+- block 512: unplaced: (5) За срока на временното изземване вещта се съхранява в съ
+- block 513: unplaced: (6) След съставяне на протокола по ал. 2 или 3 той се предст
+- block 514: unplaced: (7) Уведомяването на държавата членка, въвела сигнала за изд
+- block 515: unplaced: (8) Ако в срок до 60 дни не постъпи молба за правна помощ ил
+- block 516: item_without_sign: 1. тя е предмет или средство за извършване на престъпление н
+- block 517: item_without_sign: 2. тя e доказателство, обект на обезпечителни мерки или пред
+- block 518: item_without_sign: 3. притежаването й е забранено от законите на Република Бълг
+- block 519: unplaced: (9) В случаите по ал. 8, т. 1 – 3 вещта се предава по реда н
+- block 520: unplaced: (10) Открита изгубена вещ, обявена за издирване, се предава 
+- block 521: unplaced: (11) Открита изгубена вещ, обявена за издирване, за която не
+- block 522: unplaced: (12) При предаване или изземване на празни бланки за официал
+- block 523: unquoted_provision: Чл. 85. (1) При изпълнение на служебните си задължения полиц
+- block 524: item_without_sign: 1. противодействие или отказ да се изпълни законно разпорежд
+- block 525: item_without_sign: 2. задържане на правонарушител, който не се подчинява или ок
+- block 526: item_without_sign: 3. конвоиране на лице или при опит то да избяга, да посегне 
+- block 527: item_without_sign: 4. оказване съдействие на други държавни органи или длъжност
+- block 528: item_without_sign: 5. нападения срещу граждани и полицейски органи;
+- block 529: item_without_sign: 6. освобождаване на заложници;
+- block 530: item_without_sign: 7. групови нарушения на обществения ред;
+- block 531: item_without_sign: 8. нападения на сгради, помещения, съоръжения и транспортни 
+- block 532: item_without_sign: 9. освобождаване на незаконно заети обекти, ако им е разпоре
+- block 533: item_without_sign: 10. вземане на мерки за осигуряване на лична безопасност по 
+- block 534: unplaced: (2) При изпълнение на служебните си задължения органите за п
+- block 535: unplaced: (3) Помощни средства са: белезници, усмирителни ризи, палки 
+- block 536: unplaced: (4) Редът за употреба на помощни средства се определя с наре
+- block 537: unquoted_provision: Чл. 86. (1) Физическа сила и помощни средства се използват с
+- block 538: unplaced: (2) Използването на физическа сила и помощни средства се съо
+- block 539: unplaced: (3) В случаите по чл. 85 полицейските органи използват само 
+- block 540: unplaced: (4) При използването на физическа сила и помощни средства по
+- block 541: unplaced: (5) Използването на физическа сила и помощни средства се пре
+- block 542: unplaced: (6) Забранява се използването на физическа сила и помощни ср
+- block 543: unplaced: (7) Забранява се използването на животозастрашаваща сила за 
+- block 544: unquoted_provision: Чл. 87. (1) Полицейските органи могат да използват оръжие са
+- block 545: item_without_sign: 1. при въоръжено нападение или заплаха с оръжие;
+- block 546: item_without_sign: 2. при освобождаване на заложници и отвлечени лица;
+- block 547: item_without_sign: 3. след предупреждение при задържане на лице, извършващо или
+- block 548: item_without_sign: 4. след предупреждение за предотвратяване бягство на лице, з
+- block 549: item_without_sign: 5. при вземане на мерки за осигуряване на лична безопасност 
+- block 550: unplaced: (2) При използване на оръжие полицейските органи са длъжни д
+- block 551: unplaced: (3) Полицейските органи могат да употребяват оръжие без пред
+- block 552: item_without_sign: 1. при въоръжено нападение срещу тях;
+- block 553: item_without_sign: 2. срещу лица, оказали въоръжена съпротива.
+- block 554: unplaced: (4) При осъществяване на граничното наблюдение в пределите н
+- block 555: unplaced: (5) Полицейските органи преустановяват употребата на оръжие 
+- block 556: unplaced: (6) Забранява се употребата на оръжие за задържане или предо
+- block 557: unplaced: (7) След използване на оръжие полицейските органи изготвят д
+- block 558: unquoted_provision: Чл. 88. Планирането и контролът на използването на физическа
+- block 559: unquoted_provision: Чл. 89. (1) При освобождаване на заложници, при задържане ил
+- block 560: item_without_sign: 1. използват специални защитни средства, гарантиращи тяхната
+- block 561: item_without_sign: 2. отцепват райони, да спират или отклоняват движението на п
+- block 562: item_without_sign: 3. охраняват органи на МВР, държавни органи и организации пр
+- block 563: unplaced: (2) Самоличността на служителите, изпълняващи дейностите по 
+- block 564: unplaced: (3) Използването на служителите, изпълняващи дейностите по а
+- block 565: unplaced: (4) В неотложни случаи използването по ал. 3 може да бъде ра
+- block 566: unplaced: (5) Редът за осъществяване на дейностите по ал. 1 се определ
+- block 567: unquoted_provision: Чл. 90. При осъществяване на дейностите по чл. 14, ал. 2, т.
+- block 568: unquoted_provision: Чл. 91. (1) Полицейските органи могат да използват средства 
+- block 569: item_without_sign: 1. превенция и противодействие на престъпления и други наруш
+- block 570: item_without_sign: 2. контрол по спазване на правилата за движение по пътищата,
+- block 571: item_without_sign: 3. охрана на държавна и общинска собственост;
+- block 572: item_without_sign: 4. други случаи, посочени в закон.
+- block 573: unplaced: (2) Средствата по ал. 1 не могат да бъдат използвани за набл
+- block 574: unplaced: (3) Използването на средства за явно наблюдение се разгласяв
+- block 575: unplaced: (4) Информацията по ал. 1 може да се използва само за извърш
+- block 576: unplaced: (5) Редът за използване на техническите средства за явно наб
+- block 577: unquoted_provision: Чл. 92. (1) За охрана на стратегически обекти от полицейски 
+- block 578: unplaced: (2) Министерството на вътрешните работи може да сключва дого
+- block 579: item_without_sign: 1. обекти, ползвани или собственост на държавна структура, к
+- block 580: item_without_sign: 2. държавни недвижими културни ценности по смисъла на Закона
+- block 581: item_without_sign: 3. обекти, ползвани или собственост на държавни музеи по сми
+- block 582: unplaced: (3) За охрана от полицейските органи на спортни състезания и
+- block 583: unplaced: (4) Договорите по ал. 1 се сключват от структурите по чл. 37
+- block 584: unplaced: (5) Договорите по ал. 2 се сключват от структурите по чл. 37
+- block 585: unplaced: (6) Разрешение от министъра на вътрешните работи не се изиск
+- block 586: unplaced: (7) За осигуряване на дейностите по охрана на обекти от поли
+- block 587: unplaced: (8) Служителите за осигуряване на дейностите по охрана на об
+- block 588: unplaced: (9) Приходите и разходите от дейностите по ал. 1 – 3 се отчи
+- block 589: unquoted_provision: Чл. 93. Главните и областните дирекции на МВР могат да сключ
+- block 590: item_without_sign: 1. охранително обследване на обектите;
+- block 591: item_without_sign: 2. обучение на служителите от звената за самоохрана, осъщест
+- block 592: unquoted_provision: Чл. 94. (1) За опазване на обществения ред, охраната на обек
+- block 593: unplaced: (2) За осигуряване на дейностите по ал. 1 в основната структ
+- block 594: unplaced: (3) Служителите в звената „Общинска полиция“ се назначават и
+- block 595: unplaced: (4) Ръководството, организацията на звената „Общинска полици
+- block 596: unquoted_provision: Чл. 95. Полицейските органи могат да настаняват в специални 
+- block 597: unquoted_provision: Чл. 96. Полицейските органи наблюдават, установяват и контро
+- block 598: unquoted_provision: Чл. 97. Полицейските органи получават съдействие и организир
+- block 599: unquoted_provision: Чл. 98. За осъществяване на контрол за спазване на правилата
+- block 600: unquoted_provision: Чл. 99. Полицейските органи организират или осъществяват пил
+- block 601: unquoted_provision: Чл. 100. При осъществяване на дейностите по чл. 14, ал. 2, т
+- block 602: item_without_sign: 1. разполагат сили и средства, да изграждат, използват и сне
+- block 603: item_without_sign: 2. отцепват райони, да ограничават временно или да забранява
+- block 604: item_without_sign: 3. ползват или да прекъсват комуникационни връзки след съгла
+- block 605: unquoted_provision: Чл. 101. (1) Охраната на обектите по чл. 14, ал. 2, т. 4 мож
+- block 606: unplaced: (2) Редът и условията за приемането на обектите по чл. 14, а
+- block 607: unquoted_provision: Чл. 102. (1) За осъществяване на граничен контрол полицейски
+- block 608: item_without_sign: 1. разполагат сили и средства, изграждат, използват и снемат
+- block 609: item_without_sign: 2. извършват гранични проверки на лицата, предметите в тяхно
+- block 610: item_without_sign: 3. спират, извършват проверки и задържат български и чуждест
+- block 611: item_without_sign: 4. спират, извършват проверки и задържат български и чуждест
+- block 612: item_without_sign: 5. извършват самостоятелно проверки в граничната зона на лиц
+- block 613: item_without_sign: 6. задържат извършители на контрабанда, незаконно пренесени 
+- block 614: item_without_sign: 7. ограничават временно или забраняват движението на лица и 
+- block 615: item_without_sign: 8. приемат, придружават и предават нарушители на държавната 
+- block 616: item_without_sign: 9. поставят и използват технически средства за наблюдение и 
+- block 617: item_without_sign: 10. настаняват принудително в помещения за настаняване на за
+- block 618: item_without_sign: 11. контролират и извършват проверка на лица, багажи и прево
+- block 619: item_without_sign: 12. проследяват и регистрират движението на кораби и плавате
+- block 620: item_without_sign: 13. използват въздухоплавателни средства, като регистрацията
+- block 621: item_without_sign: 14. използват интегрирани и автоматизирани системи за наблюд
+- block 622: unplaced: (2) В граничната зона органите на ГДГП самостоятелно и съвме
+- block 623: unplaced: (3) Организацията, редът и условията за използването на възд
+- block 624: unplaced: (4) Граничен контрол може да се извършва и на територията на
+- block 625: unplaced: (5) Полицейските органи, извършващи граничен контрол, могат 
+- block 626: unquoted_provision: Чл. 103. (1) Полицейските органи, извършващи граничен контро
+- block 627: item_without_sign: 1. разписания, списъци на пътници и друга информация, която 
+- block 628: item_without_sign: 2. достъп до техни помещения, съоръжения и транспортни средс
+- block 629: unplaced: (2) Командирите на български и чуждестранни въздухоплавателн
+- block 630: unquoted_provision: Чл. 104. Полицейските органи, извършващи граничен контрол, о
+- block 631: unquoted_provision: Чл. 105. При осъществяване на дейността си по регулиране на 
+- block 632: item_without_sign: 1. издават, отказват или отнемат разрешения за пребиваване;
+- block 633: item_without_sign: 2. продължават срока на пребиваване на чужденците в Републик
+- block 634: item_without_sign: 3. осъществяват съгласувателни процедури с Министерството на
+- block 635: item_without_sign: 4. противодействат на незаконната миграция чрез извършване н
+- block 636: item_without_sign: 5. осъществяват административното обслужване на гражданите н
+- block 637: unquoted_provision: Чл. 106. За целите на международното полицейско сътрудничест
+- block 638: item_without_sign: 1. осъществяват, координират и контролират обмена на полицей
+- block 639: item_without_sign: 2. ползват, въвеждат, актуализират и заличават сигнали в ШИС
+- block 640: item_without_sign: 3. предават лица и вещи въз основа на международни договори,
+- block 641: item_without_sign: 4. ползват информационните фондове на Интерпол и на Европейс
+- block 642: unquoted_provision: Чл. 107. При изпълнение на своите правомощия полицейските ор
+- block 645: unquoted_provision: Чл. 108. (1) По реда на този раздел МВР чрез компетентна спе
+- block 646: unplaced: (2) Министерството на вътрешните работи чрез компетентна спе
+- block 647: item_without_sign: 1. информация или данни от информационните фондове на минист
+- block 648: item_without_sign: 2. информация или данни, получени от други държавни органи и
+- block 649: unplaced: (3) Обменът на информация или на данни с компетентните орган
+- block 650: unquoted_provision: Чл. 109. Прилагането на този раздел не създава задължение за
+- block 651: unquoted_provision: Чл. 110. (1) Предоставяне на исканата информация или данни м
+- block 652: item_without_sign: 1. се създадат условия за заплаха за националната сигурност 
+- block 653: item_without_sign: 2. се попречи на действия по разследване или на събиране на 
+- block 654: item_without_sign: 3. се застраши сигурността на физическо лице.
+- block 655: unplaced: (2) Освен в случаите по ал. 1 може да бъде отказано предоста
+- block 656: item_without_sign: 1. не отговарят на целите, за които са поискани;
+- block 657: item_without_sign: 2. са за престъпление, за което по закон е предвидено наказа
+- block 658: unplaced: (3) Исканата информация или данни се предоставят само ако е 
+- block 659: unquoted_provision: Чл. 111. (1) Когато искането е за предоставяне на информация
+- block 660: unplaced: (2) Информация или данни, получени от друга държава членка и
+- block 661: unquoted_provision: Чл. 112. (1) Информация или данни се предоставят въз основа 
+- block 662: unplaced: (2) Искането за предоставяне на информация или данни се изго
+- block 663: item_without_sign: 1. основанията, че съответните информация или данни са налич
+- block 664: item_without_sign: 2. целта, с която се искат информацията или данните;
+- block 665: item_without_sign: 3. връзката между целта и лицето, за което се отнасят информ
+- block 666: unplaced: (3) Информация или данни, необходими за предотвратяване, раз
+- block 667: unquoted_provision: Чл. 113. (1) Предоставянето на исканата информация или данни
+- block 668: item_without_sign: 1. осем часа – при спешно искане за информация или данни, св
+- block 669: item_without_sign: 2. седем дни – за информация или данни, свързани с престъпле
+- block 670: item_without_sign: 3. четиринадесет дни – за всички останали случаи.
+- block 671: unplaced: (2) При обективна невъзможност за спазване на срока по ал. 1
+- block 672: unplaced: (3) При обективна невъзможност за предоставяне в сроковете п
+- block 673: unplaced: (4) Сроковете по ал. 1 започват да текат от постъпването на 
+- block 674: unquoted_provision: Чл. 114. (1) Обменът на информация или данни се извършва при
+- block 675: item_without_sign: 1. Шенгенската информационна система;
+- block 676: item_without_sign: 2. органите на Интерпол в държавите членки;
+- block 677: item_without_sign: 3. органите на Европол;
+- block 678: item_without_sign: 4. задгранични представители на МВР и офицери за връзка на д
+- block 679: item_without_sign: 5. електронна поща или факс;
+- block 680: item_without_sign: 6. всеки надлежно защитен начин, при който може да се устано
+- block 681: unplaced: (2) Обменът на информация или данни по този раздел се извърш
+- block 682: unquoted_provision: Чл. 115. При предоставяне на информация или данни по този ра
+- block 683: item_without_sign: 1. определи условия за използването им;
+- block 684: item_without_sign: 2. изиска съобщаване на резултата от наказателното производс
+- block 685: unquoted_provision: Чл. 116. Компетентната специализирана структура на МВР може 
+- block 686: unquoted_provision: Чл. 117. (1) При условията и по реда на този раздел компетен
+- block 687: unplaced: (2) Компетентната специализирана структура на МВР използва п
+- block 688: unquoted_provision: Чл. 118. Предоставените по реда на този раздел информация ил
+- block 689: item_without_sign: 1. се използват само за целта, за която са поискани, или за 
+- block 690: item_without_sign: 2. се обработват с друга цел извън случаите по т. 1 само с п
+- block 691: item_without_sign: 3. се използват като доказателство в наказателно производств
+- block 692: unquoted_provision: Чл. 119. Министърът на вътрешните работи утвърждава формуляр
+- block 695: unquoted_provision: Чл. 120. (1) В МВР се създава, поддържа и експлоатира Национ
+- block 696: unplaced: (2) Националната Шенгенска информационна система осигурява о
+- block 697: unplaced: (3) Националната Шенгенска информационна система съдържа рег
+- block 698: unquoted_provision: Чл. 121. Компетентните органи на МВР правят справки, въвежда
+- block 699: item_without_sign: 1. собствена инициатива;
+- block 700: item_without_sign: 2. искане на друг орган в съответствие с неговата компетентн
+- block 701: item_without_sign: 3. искане на физическо лице, отнасящо се до негови лични дан
+- block 702: unquoted_provision: Чл. 122. Компетентните органи на МВР самостоятелно или съвме
+- block 703: unquoted_provision: Чл. 123. (1) Обработването на информация и лични данни в НШИ
+- block 704: unplaced: (2) Организацията и функционирането на НШИС, правото на дост
+- block 707: unquoted_provision: Чл. 124. (1) При извършване на пожарогасителна и спасителна 
+- block 708: item_without_sign: 1. да влизат в жилищни, производствени и други сгради и поме
+- block 709: item_without_sign: 2. да разрушават сгради или части от тях, да разглобяват кон
+- block 710: item_without_sign: 3. да използват спасителни, пожарогасителни, транспортни, съ
+- block 711: item_without_sign: 4. да привличат длъжностни лица, участници в доброволни форм
+- block 712: item_without_sign: 5. да изменят реда за движение и да ограничават достъпа на в
+- block 713: item_without_sign: 6. да използват безвъзмездно водоизточници и водопроводни мр
+- block 714: item_without_sign: 7. да извършват евакуация на хора и движимо имущество в райо
+- block 715: unplaced: (2) Дейностите по ал. 1 се организират и осъществяват от орг
+- block 716: unplaced: (3) Пожарогасителна и спасителна дейност могат да извършват 
+- block 717: unplaced: (4) При извършване на съвместни дейности по ал. 2 координаци
+- block 718: unplaced: (5) По искане на чуждестранните представителства и на физиче
+- block 719: unplaced: (6) Когато непосредствено са застрашени други сгради и съоръ
+- block 720: unplaced: (7) При бедствия, пожари и извънредни ситуации органите на д
+- block 721: unquoted_provision: Чл. 125. (1) При упражняване на държавен противопожарен конт
+- block 722: item_without_sign: 1. извършват проверки за спазване на правилата и нормите за 
+- block 723: item_without_sign: 2. извършват проверки в жилища при получаване на писмен сигн
+- block 724: item_without_sign: 3. извършват проверки на земеделската техника за допускане д
+- block 725: item_without_sign: 4. издават писмени разпореждания или уведомления за изпълнен
+- block 726: item_without_sign: 5. прилагат мерки за административна принуда при установяван
+- block 727: item_without_sign: 6. изискват от държавни органи, юридически лица и граждани д
+- block 728: item_without_sign: 7. изискват документи за правоспособност за упражняване на п
+- block 729: item_without_sign: 8. участват в експертни съвети за оценка на съответствието н
+- block 730: item_without_sign: 9. дават становища за съответствие с правилата и нормите за 
+- block 731: item_without_sign: 10. издават сертификати и други документи във връзка с пожар
+- block 732: item_without_sign: 11. изискват от държавни органи, юридически лица и граждани 
+- block 733: item_without_sign: 12. участват в разработването на строителни и технически пра
+- block 734: unplaced: (2) Правилата и нормите за пожарна безопасност при проектира
+- block 735: unplaced: (3) Проверките по ал. 1, т. 2 може да се извършват през деня
+- block 736: unplaced: (4) За определяне на правилата и нормите за пожарна безопасн
+- block 737: unquoted_provision: Чл. 126. Органите за пожарна безопасност и защита на населен
+- block 738: item_without_sign: 1. пожарогасителна и спасителна дейност и дейности по защита
+- block 739: item_without_sign: 2. държавен противопожарен контрол в обекти на подземната ми
+- block 740: item_without_sign: 3. дейности по защита при бедствия извън вътрешните морски в
+- block 741: unquoted_provision: Чл. 127. Министерският съвет по предложение на министъра на 
+- block 742: unquoted_provision: Чл. 128. (1) За осигуряване на дейностите по чл. 6, ал. 1, т
+- block 743: unplaced: (2) За осигуряване на пожарната безопасност и защита на насе
+- block 744: unplaced: (3) За осигуряване на дейностите по ал. 1 извън определената
+- block 745: unplaced: (4) Приходите и разходите от дейностите по ал. 1 и 2 се отчи
+- block 746: unplaced: (5) Договорите по ал. 1 се сключват от директора на ГДПБЗН и
+- block 747: unplaced: (6) Разрешение от министъра на вътрешните работи не се изиск
+- block 748: unplaced: (7) Служителите за осигуряване на дейностите по чл. 6, ал. 1
+- block 749: unquoted_provision: Чл. 129. (1) Директорът на ГДПБЗН или оправомощено от него д
+- block 750: unplaced: (2) Дейностите по ал. 1 включват:
+- block 751: item_without_sign: 1. противопожарно обезопасяване и провеждане на превантивни 
+- block 752: item_without_sign: 2. пожарогасителна дейност;
+- block 753: item_without_sign: 3. спасителна дейност;
+- block 754: item_without_sign: 4. сервизно обслужване на противопожарни уреди;
+- block 755: item_without_sign: 5. поддържане и обслужване на противопожарни системи и съоръ
+- block 756: unplaced: (3) Дейностите по осигуряване на пожарната безопасност на об
+- block 757: unplaced: (4) Лицата, които искат да осъществяват дейностите по ал. 2,
+- block 758: unplaced: (5) За получаване на разрешение за извършване на всички или 
+- block 759: item_without_sign: 1. Единен идентификационен код (ЕИК), когато са регистрирани
+- block 760: item_without_sign: 2. списък на собствената или наетата техника и оборудване по
+- block 761: item_without_sign: 3. свидетелство за съдимост или аналогичен документ по нацио
+- block 762: item_without_sign: 4. официален документ, издаден от орган на съдебната власт, 
+- block 763: item_without_sign: 5. медицинско свидетелство от лечебно заведение или аналогич
+- block 764: item_without_sign: 6. списък на наетите лица и съответните им длъжности и задъл
+- block 765: item_without_sign: 7. списък с адресите на сервизите, в които ще се осъществява
+- block 766: item_without_sign: 8. документи за професионална квалификация, документите по т
+- block 767: item_without_sign: 9. медицинско свидетелство от лечебно заведение или аналогич
+- block 768: item_without_sign: 10. документ за платена държавна такса в размер, определен о
+- block 769: unplaced: (6) Лицето по ал. 1 посочва в заявлението съответната дейнос
+- block 770: unplaced: (7) Изискванията към квалификацията на персонала се определя
+- block 771: unplaced: (8) За удостоверяване на преминат курс за първоначална профе
+- block 772: unplaced: (9) Условията и редът за осъществяване на дейностите по ал. 
+- block 773: unquoted_provision: Чл. 130. (1) При постъпване на заявлението и документацията 
+- block 774: unplaced: (2) При констатиране на непълноти и/или несъответствия с изи
+- block 775: unplaced: (3) Ако констатираните непълноти и/или несъответствия не бъд
+- block 776: unplaced: (4) Директорът на ГДПБЗН или оправомощено от него длъжностно
+- block 777: unplaced: (5) Отказът по ал. 4 подлежи на обжалване по реда на Админис
+- block 778: unquoted_provision: Чл. 131. (1) Разрешенията за извършване на дейности по осигу
+- block 779: unplaced: (2) Издадените разрешения за извършване на дейности по осигу
+- block 780: unquoted_provision: Чл. 132. (1) Лицето, получило разрешение за извършване на де
+- block 781: item_without_sign: 1. промяна на лице от персонала по чл. 129, ал. 4;
+- block 782: item_without_sign: 2. промяна на търговската регистрация;
+- block 783: item_without_sign: 3. всяка друга промяна на условията, при които е издадено ра
+- block 784: unplaced: (2) В случаите по ал. 1 лицето, получило разрешение за извър
+- block 785: unplaced: (3) Оценяването на документацията по ал. 2 се извършва по ре
+- block 786: unplaced: (4) Директорът на ГДПБЗН или оправомощено от него длъжностно
+- block 787: unquoted_provision: Чл. 133. (1) Органите за пожарна безопасност и защита на нас
+- block 788: unplaced: (2) При проверките органите имат право да посещават обектите
+- block 789: unquoted_provision: Чл. 134. (1) При настъпване на обстоятелства, при наличието 
+- block 790: unplaced: (2) Решението по ал. 1 подлежи на обжалване по реда на Админ
+- block 791: unquoted_provision: Чл. 135. При упражняване на превантивен контрол органите по 
+- block 792: item_without_sign: 1. извършват проверки за спазване на изискванията за защита 
+- block 793: item_without_sign: 2. извършват проверки за спазване на нормативната уредба при
+- block 794: item_without_sign: 3. извършват проверки по изготвяне и съгласуване на аварийни
+- block 795: item_without_sign: 4. дават задължителни предписания;
+- block 796: item_without_sign: 5. прилагат мерки за административна принуда при установяван
+- block 797: item_without_sign: 6. изискват от държавни и местни органи, организации, юридич
+- block 798: item_without_sign: 7. извършват проверки на колективни средства за защита за сп
+- block 799: item_without_sign: 8. извършват контрол по спазване на изискванията за защита п
+- block 800: unquoted_provision: Чл. 136. За оценяване на съответствието и контролна дейност 
+- block 801: item_without_sign: 1. изследват, изпитват и определят показатели от физическите
+- block 802: item_without_sign: 2. участват в процеса на оценяване на съответствието на стро
+- block 803: item_without_sign: 3. изследват, изпитват и определят техническите и експлоатац
+- block 804: item_without_sign: 4. разработват продукти в областта на пожарната безопасност 
+- block 805: item_without_sign: 5. издават изпитвателни и класификационни протоколи и други 
+- block 806: item_without_sign: 6. оценяват съответствието на продукти за пожарогасене;
+- block 807: item_without_sign: 7. проверяват съответствието на продуктите, използвани в пож
+- block 808: unquoted_provision: Чл. 137. За осъществяване на дейностите по пожарна безопасно
+- block 809: item_without_sign: 1. осигуряват спазването на правилата и нормите за пожарна б
+- block 810: item_without_sign: 2. разработват съгласувано с органите за пожарна безопасност
+- block 811: item_without_sign: 3. информират органите за пожарна безопасност и защита на на
+- block 812: unquoted_provision: Чл. 138. За осъществяване на дейностите по пожарна безопасно
+- block 813: unquoted_provision: Чл. 139. За осъществяване на дейности по пожарна безопасност
+- block 814: item_without_sign: 1. да осигуряват спазването на правилата и нормите за пожарн
+- block 815: item_without_sign: 2. да осигуряват на органите за пожарна безопасност и защита
+- block 816: item_without_sign: 3. да осигуряват при поискване от органите за пожарна безопа
+- block 817: unquoted_provision: Чл. 140. За осигуряване на пожарната безопасност и защитата 
+- block 818: item_without_sign: 1. спазват установените правила и норми за пожарна безопасно
+- block 819: item_without_sign: 2. изпълняват издадените писмени разпореждания на органите з
+- block 820: item_without_sign: 3. провеждат дейности, осигуряващи пожарната безопасност и з
+- block 821: item_without_sign: 4. информират органите за пожарна безопасност и защита на на
+- block 822: item_without_sign: 5. предоставят при поискване на органите за пожарна безопасн
+- block 827: unquoted_provision: Чл. 141. Постъпването на държавна служба в МВР и професионал
+- block 828: item_without_sign: 1. прозрачност – прилагане на ясни и точни критерии за оценк
+- block 829: item_without_sign: 2. публичност – обявяване на процедурите и механизмите за по
+- block 830: item_without_sign: 3. обективност – чрез отчитане на личните качества, компетен
+- block 831: item_without_sign: 4. равни възможности на всеки служител за развитие в кариера
+- block 832: item_without_sign: 5. прилагане на мотивационни механизми за професионално разв
+- block 833: item_without_sign: 6. забрана за дискриминация.
+- block 838: unquoted_provision: Чл. 142. (1) Служители на МВР са:
+- block 839: item_without_sign: 1. държавните служители;
+- block 840: item_without_sign: 2. лицата, работещи по трудово правоотношение.
+- block 841: unplaced: (2) Статутът на държавните служители в МВР се урежда с този 
+- block 842: unplaced: (3) Статутът на лицата, работещи по трудово правоотношение, 
+- block 843: unquoted_provision: Чл. 143. (1) Държавните служители в МВР съобразно изпълняван
+- block 844: item_without_sign: 1. висши ръководни;
+- block 845: item_without_sign: 2. старши ръководни;
+- block 846: item_without_sign: 3. ръководни;
+- block 847: item_without_sign: 4. старши експертни;
+- block 848: item_without_sign: 5. експертни;
+- block 849: item_without_sign: 6. изпълнителски;
+- block 850: item_without_sign: 7. младши изпълнителски.
+- block 851: unplaced: (2) Министърът на вътрешните работи утвърждава класификатор 
+- block 852: unplaced: (3) Редът за изготвяне и утвърждаването на длъжностните хара
+- block 853: unquoted_provision: Чл. 144. Общата щатна численост на МВР се определя с правилн
+- block 854: unquoted_provision: Чл. 145. (1) Министърът на вътрешните работи утвърждава функ
+- block 855: unplaced: (2) Редът за изготвяне на функционалните задължения, организ
+- block 856: unplaced: (3) Военновременни структури и щатове се разработват по ред,
+- block 857: unquoted_provision: Чл. 146. (1) Служителите на МВР полагат клетва за спазване н
+- block 858: unplaced: (2) Полагането на клетвата се удостоверява с подписването на
+- block 859: unplaced: (3) Служителите на МВР не могат да членуват в политически па
+- block 860: unquoted_provision: Чл. 147. (1) За всеки служител от МВР се съставя и води личн
+- block 861: unplaced: (2) Редът за съхраняване и ползване на личните кадрови дела 
+- block 862: unquoted_provision: Чл. 148. На държавните служители е забранено, включително в 
+- block 863: unquoted_provision: Чл. 149. За привличане на държавен служител в МВР като обвин
+- block 864: unquoted_provision: Чл. 150. (1) Министърът на вътрешните работи утвърждава Етич
+- block 865: unplaced: (2) Държавните служители са длъжни да спазват правилата, опр
+- block 866: unquoted_provision: Чл. 151. (1) При осъществяване на правомощията си държавните
+- block 867: unplaced: (2) Министърът на вътрешните работи определя с наредба вида 
+- block 868: unplaced: (3) Забранява се на лица, неоправомощени със закон, да изпол
+- block 869: unplaced: (4) Държавните служители носят служебно оръжие при условия и
+- block 870: unquoted_provision: Чл. 152. Държавните служители са длъжни да оказват помощ или
+- block 871: unquoted_provision: Чл. 153. (1) Държавните служители в МВР не могат да изпълняв
+- block 872: unplaced: (2) Държавните служители не могат да извършват дейност, несъ
+- block 873: unplaced: (3) Несъвместимост със службата в МВР е налице, когато държа
+- block 874: item_without_sign: 1. биха се оказали в непосредствена йерархическа връзка на р
+- block 875: item_without_sign: 2. са еднолични търговци, неограничено отговорни съдружници 
+- block 876: item_without_sign: 3. извършват търговска дейност;
+- block 877: item_without_sign: 4. работят по трудово правоотношение или по граждански догов
+- block 878: item_without_sign: 5. са избрани за президент, вицепрезидент, народни представи
+- block 879: unplaced: (4) Не се смята за търговска дейност по смисъла на ал. 3, т.
+- block 880: unplaced: (5) Несъвместимост със служба в МВР не е налице:
+- block 881: item_without_sign: 1. в случаите по чл. 97;
+- block 882: item_without_sign: 2. при участие в юридически лица с нестопанска цел, определе
+- block 883: item_without_sign: 3. при участие в проекти и програми, свързани с дейността на
+- block 884: item_without_sign: 4. при участие в организациите по чл. 242.
+- block 885: unplaced: (6) В 7-дневен срок от възникване на обстоятелствата по ал. 
+- block 886: unquoted_provision: Чл. 154. (1) Държавните служители са длъжни да декларират по
+- block 887: unplaced: (2) Държавните служители са длъжни да не участват при обсъжд
+- block 888: unplaced: (3) В случаите по ал. 2 държавните служители писмено уведомя
+- block 889: unplaced: (4) Държавният служител е длъжен да подаде декларация при пр
+- block 890: unplaced: (5) Главният секретар и ръководителите на структурите по чл.
+- block 893: unquoted_provision: Чл. 155. (1) Държавен служител в МВР може да бъде дееспособн
+- block 894: item_without_sign: 1. да има само българско гражданство;
+- block 895: item_without_sign: 2. да не е осъждано за умишлено престъпление от общ характер
+- block 896: item_without_sign: 3. да не е привлечено като обвиняем или да не е подсъдимо за
+- block 897: item_without_sign: 4. да отговаря на специфичните изисквания за възраст, образо
+- block 898: item_without_sign: 5. да отговаря на медицинските изисквания за работа в МВР, о
+- block 899: unplaced: (2) Други изисквания за постъпване на държавна служба могат 
+- block 900: unplaced: (3) За работа по трудово правоотношение се приемат лица, кои
+- block 903: unquoted_provision: Чл. 156. (1) Назначаването на държавна служба в МВР се предх
+- block 904: unplaced: (2) Конкурс за назначаване на държавна служба в МВР не се пр
+- block 905: unplaced: (3) Конкурс за назначаване на държавна служба в МВР не се пр
+- block 906: unplaced: (4) Конкурс за назначаване на държавна служба в МВР не се пр
+- block 907: unplaced: (5) Конкурсът за постъпване на държавна служба се обявява съ
+- block 908: unplaced: (6) Обявлението за конкурса се публикува в един централен ил
+- block 909: unplaced: (7) Срокът за провеждане на конкурса не може да бъде по-дълъ
+- block 910: unquoted_provision: Чл. 157. (1) До участие в конкурса се допускат лица, които с
+- block 911: unplaced: (2) Списъците на допуснатите и недопуснатите кандидати се об
+- block 912: unplaced: (3) Недопускането до участие в конкурса може да се обжалва п
+- block 913: unplaced: (4) Министърът на вътрешните работи се произнася в 14-дневен
+- block 914: unplaced: (5) Крайното класиране може да бъде обжалвано пред министъра
+- block 915: unplaced: (6) В срок до три месеца след приключване на конкурсната про
+- block 916: unplaced: (7) Новопостъпилите държавни служители, които подлежат на за
+- block 917: unplaced: (8) Държавните служители – стажанти, успешно завършили курса
+- block 918: unquoted_provision: Чл. 158. Министърът на вътрешните работи:
+- block 919: item_without_sign: 1. назначава държавните служители на висши ръководни, старши
+- block 920: item_without_sign: 2. назначава за стажанти спечелилите конкурс за изпълнителск
+- block 921: item_without_sign: 3. преназначава държавните служители на висши ръководни, ста
+- block 922: unquoted_provision: Чл. 159. (1) Ръководителите на структурите по чл. 37:
+- block 923: item_without_sign: 1. назначават държавните служители на младши изпълнителските
+- block 924: item_without_sign: 2. назначават за стажанти спечелилите конкурс за младши изпъ
+- block 925: item_without_sign: 3. преназначават държавните служители на старши експертни, е
+- block 926: unplaced: (2) Органите по ал. 1 сключват трудови договори с лицата, ра
+- block 927: unquoted_provision: Чл. 160. (1) При постъпване на служба в МВР държавните служи
+- block 928: unplaced: (2) Отказът да се подпишат декларациите по ал. 1 е пречка за
+- block 929: unplaced: (3) Държавните служители подават ежегодно до 31 март деклара
+- block 930: unquoted_provision: Чл. 161. (1) Изпълнението на служебните задължения на държав
+- block 931: unplaced: (2) Държавните служители встъпват в длъжност не по-късно от 
+- block 932: unplaced: (3) Ако държавният служител не подпише акта за встъпване в д
+- block 933: unplaced: (4) При първоначално назначаване на длъжност започва да тече
+- block 934: unplaced: (5) Срокът за изпитване не тече през времето, през което дър
+- block 935: unplaced: (6) През периода на изпитване се извършва въвеждане в работа
+- block 938: unquoted_provision: Чл. 162. (1) На държавните служители се извършва оценка на п
+- block 939: item_without_sign: 1. компетентност – квалификация (знания и умения) и опит;
+- block 940: item_without_sign: 2. принос за постигане на целите, включително получени отлич
+- block 941: unplaced: (2) Оценката по ал. 1 се извършва при условия и по ред, опре
+- block 942: unquoted_provision: Чл. 163. Развитието в професионалната кариера се осъществява
+- block 943: unquoted_provision: Чл. 164. (1) Държавният служител може да бъде преназначен на
+- block 944: unplaced: (2) Държавният служител може да бъде преназначен на друга дл
+- block 945: item_without_sign: 1. след оценка на професионалната дейност, когато получената
+- block 946: item_without_sign: 2. поради намалена работоспособност за изпълнение на служебн
+- block 947: unplaced: (3) В случаите по ал. 2 държавните служители, заемащи изпълн
+- block 948: unplaced: (4) Преназначаването по ал. 1 – 3 се извършва, ако служителя
+- block 949: unplaced: (5) Условията и редът за преназначаване се определят с наред
+- block 950: unquoted_provision: Чл. 165. (1) Държавният служител може да бъде временно прена
+- block 951: unplaced: (2) Временното преназначаване се извършва със съгласието на 
+- block 952: unplaced: (3) Временното преназначаване е за срок до една година с въз
+- block 953: unplaced: (4) Временно преназначаване за по-дълъг срок може да се прил
+- block 954: unplaced: (5) За срока на временното преназначаване държавният служите
+- block 955: unquoted_provision: Чл. 166. Служителите в МВР са длъжни да представят на органа
+- block 956: unquoted_provision: Чл. 167. (1) Държавните служители могат да кандидатстват за 
+- block 957: unplaced: (2) Държавните служители могат да кандидатстват отново за за
+- block 958: unquoted_provision: Чл. 168. (1) Държавните служители могат да участват в мисии 
+- block 959: unplaced: (2) Участието по ал. 1 се извършва в съответствие с национал
+- block 960: unplaced: (3) Държавните служители в МВР могат да участват в мисии изв
+- block 961: unplaced: (4) Условията и редът за изпращане за изпълнение на длъжност
+- block 962: unquoted_provision: Чл. 169. Министърът на вътрешните работи след получено писме
+- block 965: unquoted_provision: Чл. 170. (1) Професионалната подготовка на служителите в МВР
+- block 966: unplaced: (2) Професионалното обучение при първоначално постъпване на 
+- block 967: unplaced: (3) Професионалното обучение на държавните служители в МВР с
+- block 968: unplaced: (4) Професионална подготовка може да се провежда и в обучава
+- block 969: unplaced: (5) Редът за планиране, организиране, провеждане, контрол и 
+- block 970: unquoted_provision: Чл. 171. (1) Приетите в Академията на МВР за придобиване на 
+- block 971: unplaced: (2) Правата и задълженията на курсантите се определят с прав
+- block 972: unplaced: (3) Курсантите могат да получават стипендия при условия, по 
+- block 973: unplaced: (4) Курсантите получават униформено облекло при условия и по
+- block 974: unplaced: (5) По време на подготовката лицата по ал. 1 не могат да бъд
+- block 975: unquoted_provision: Чл. 172. Курсантите, завършили редовно обучение в Академията
+- block 976: unquoted_provision: Чл. 173. (1) По време на първоначалното професионално обучен
+- block 977: unplaced: (2) Правата и задълженията на стажантите във връзка с първон
+- block 978: unplaced: (3) Стажантите се задължават да служат в МВР не по-малко от 
+- block 979: unquoted_provision: Чл. 174. (1) Курсантите, отстранени от обучение поради слаб 
+- block 980: unplaced: (2) Алинея 1 се прилага и за курсантите по чл. 156, ал. 3.
+- block 981: unplaced: (3) Разходите по ал. 1 се възстановяват и от стажантите, на 
+- block 982: unplaced: (4) Разходите по ал. 1 се възстановяват и от държавните служ
+- block 983: unquoted_provision: Чл. 175. (1) Държавните служители могат да придобиват образо
+- block 984: unplaced: (2) За обучението по ал. 1 държавните служители имат право д
+- block 987: unquoted_provision: Чл. 176. Брутното месечно възнаграждение на държавните служи
+- block 988: unquoted_provision: Чл. 177. (1) Държавните служители получават основно месечно 
+- block 989: unplaced: (2) Базата за определяне размера на основното месечно възнаг
+- block 990: item_without_sign: 1. за най-ниската изпълнителска длъжност – не по-малко от 2,
+- block 991: item_without_sign: 2. за най-ниската младша изпълнителска длъжност – не по-малк
+- block 992: unplaced: (3) Конкретният размер на основните месечни възнаграждения н
+- block 993: unplaced: (4) Стажантите получават месечно възнаграждение в размер, оп
+- block 994: unquoted_provision: Чл. 178. (1) Към основното месечно възнаграждение на държавн
+- block 995: item_without_sign: 1. прослужено време – в размер 2 на сто върху основното месе
+- block 996: item_without_sign: 2. изпълнение на специфични служебни дейности;
+- block 997: item_without_sign: 3. извънреден труд;
+- block 998: item_without_sign: 4. работа при специфични условия – при условия и в размер, о
+- block 999: item_without_sign: 5. постигнати резултати в служебната дейност въз основа на о
+- block 1000: unplaced: (2) Условията и редът за формиране на допълнителното възнагр
+- block 1001: unplaced: (3) Служителите на МВР, работещи в Медицинския институт на М
+- block 1002: unquoted_provision: Чл. 179. (1) На държавните служители се изплащат допълнителн
+- block 1003: unplaced: (2) Размерът на допълнителните възнаграждения по ал. 1 и по 
+- block 1004: unplaced: (3) Извън допълнителните възнаграждения по ал. 1 и по чл. 17
+- block 1005: unquoted_provision: Чл. 180. (1) Лицата, работещи по трудово правоотношение, пол
+- block 1006: unplaced: (2) Базата за определяне размера на основното месечно възнаг
+- block 1007: item_without_sign: 1. за висше образование – не по-малко от 1,8;
+- block 1008: item_without_sign: 2. за средно образование – не по-малко от 1,3.
+- block 1009: unplaced: (3) Най-ниската заплата за длъжност на лицата, работещи по т
+- block 1010: unplaced: (4) Размерът на добавката за работа в МВР се определя със за
+- block 1011: unplaced: (5) Лицата, работещи по трудово правоотношение, получават и 
+- block 1012: unplaced: (6) На лицата по ал. 1 се изплаща ежегодно сума за облекло п
+- block 1013: unplaced: (7) Лицата, работещи по трудово правоотношение, получават до
+- block 1014: unquoted_provision: Чл. 181. (1) На служителите на МВР се изплащат ежемесечно по
+- block 1015: unplaced: (2) На държавните служители се осигуряват работно и униформе
+- block 1016: unplaced: (3) За извършване на дейности, свързани със специфичния хара
+- block 1017: unplaced: (4) Размерът на сумите и доволствията по ал. 1 – 3 се опреде
+- block 1018: unplaced: (5) Условията и редът за предоставяне на сумите и доволствия
+- block 1019: unplaced: (6) Сумите и доволствията по ал. 1 – 3 не се облагат с данъц
+- block 1020: unquoted_provision: Чл. 182. (1) Служителите, както и членовете на семействата н
+- block 1021: unplaced: (2) При смърт на служител на МВР разноските за погребението 
+- block 1022: unquoted_provision: Чл. 183. (1) Задължителното социално и здравно осигуряване н
+- block 1023: unplaced: (2) Социалното и здравното осигуряване на летателния състав 
+- block 1024: unplaced: (3) Трудът на държавните служители при пенсиониране се зачит
+- block 1025: unquoted_provision: Чл. 184. (1) Служителите на МВР задължително се застраховат 
+- block 1026: unplaced: (2) Задължителното застраховане не е пречка за сключване на 
+- block 1027: unquoted_provision: Чл. 185. (1) При изпълнение на служебните си задължения служ
+- block 1028: unplaced: (2) Безплатните пътувания на служителите по ал. 1 се извършв
+- block 1029: unquoted_provision: Чл. 186. На държавните служители, които ползват жилище при у
+- block 1032: unquoted_provision: Чл. 187. (1) Нормалната продължителност на работното време н
+- block 1033: unplaced: (2) За държавните служители, които изпълняват служебните си 
+- block 1034: unplaced: (3) Работното време на държавните служители се изчислява в р
+- block 1035: unplaced: (4) За държавните служители в МВР, извън тези по ал. 2 и раб
+- block 1036: unplaced: (5) Работата извън редовното работно време се компенсира със
+- block 1037: item_without_sign: 1. допълнителен платен годишен отпуск за работата в работни 
+- block 1038: item_without_sign: 2. възнаграждение за извънреден труд за отработени до 70 час
+- block 1039: unplaced: (6) Извънредният труд по ал. 5 се заплаща с 50 на сто увелич
+- block 1040: unplaced: (7) Извънредният труд не може да надвишава 280 часа годишно,
+- block 1041: unplaced: (8) Държавните служители в МВР имат право на почивки в работ
+- block 1042: unplaced: (9) Редът за организацията и разпределянето на работното вре
+- block 1043: unquoted_provision: Чл. 188. (1) Държавните служители на МВР са длъжни да бъдат 
+- block 1044: unplaced: (2) Държавните служители, които полагат труд за времето межд
+- block 1045: unquoted_provision: Чл. 189. (1) Държавните служители в МВР имат право на следни
+- block 1046: item_without_sign: 1. редовен платен годишен отпуск – в размер 30 работни дни;
+- block 1047: item_without_sign: 2. допълнителен платен годишен отпуск – по един ден за всяка
+- block 1048: item_without_sign: 3. допълнителен платен годишен отпуск по чл. 187, ал. 5, т. 
+- block 1049: item_without_sign: 4. допълнителен платен годишен отпуск при преместване на раб
+- block 1050: item_without_sign: 5. неплатен отпуск – до 6 месеца за цялата служба;
+- block 1051: item_without_sign: 6. неплатен отпуск – за времето на заемане на длъжност по ср
+- block 1052: item_without_sign: 7. неплатен отпуск по реда на чл. 247;
+- block 1053: item_without_sign: 8. неплатен служебен отпуск по реда на чл. 161, ал. 1 – 3 от
+- block 1054: item_without_sign: 9. неплатен отпуск – за времето на провеждане на стаж по чл.
+- block 1055: item_without_sign: 10. неплатен отпуск по реда на чл. 77 от Закона за дипломати
+- block 1056: unplaced: (2) Отпуските по ал. 1 се зачитат за трудов стаж по този зак
+- block 1057: unplaced: (3) За времето на платения годишен отпуск държавните служите
+- block 1058: unplaced: (4) Когато платеният годишен отпуск се ползва в период, койт
+- block 1059: unplaced: (5) Когато по силата на нормативен акт от определена дата се
+- block 1060: unplaced: (6) Забранява се компенсирането на отпуските по ал. 1, т. 1 
+- block 1061: unplaced: (7) Редът за ползване на отпуск по ал. 1 от служителите на М
+- block 1062: unplaced: (8) Ежегодно на служителите в МВР се изплаща еднократно сума
+- block 1063: unquoted_provision: Чл. 190. (1) Държавните служители в МВР имат право на отпуск
+- block 1064: unplaced: (2) Държавните служители жени в МВР се ползват от специалнат
+- block 1065: unplaced: (3) Бременните държавни служители жени и ползващите отпуск п
+- block 1066: unplaced: (4) Министърът на вътрешните работи може да определя за държ
+- block 1067: unplaced: (5) Редът за ползване на отпуските по ал. 1 се определя със 
+- block 1070: unquoted_provision: Чл. 191. Служителите на МВР могат да бъдат награждавани с от
+- block 1071: unquoted_provision: Чл. 192. (1) Отличията са:
+- block 1072: item_without_sign: 1. писмена похвала;
+- block 1073: item_without_sign: 2. обявяване на благодарност с парична награда в размер:
+- block 1074: item_without_sign: а) до 200 лв. – при награждаване от министъра, заместник-мин
+- block 1075: item_without_sign: б) до 120 лв. – при награждаване от ръководителите на структ
+- block 1076: item_without_sign: 3. почетен медал на МВР;
+- block 1077: item_without_sign: 4. почетно отличие на МВР „За доблест и заслуга“;
+- block 1078: item_without_sign: 5. почетен знак на МВР.
+- block 1079: unplaced: (2) Наградите са парични и предметни.
+- block 1080: unplaced: (3) Отличията и наградите се дават от министъра на вътрешнит
+- block 1081: unplaced: (4) Условията и редът за награждаване, както и съдържанието 
+- block 1082: unplaced: (5) Формата, видът и статутът на почетните отличия на МВР се
+- block 1083: unquoted_provision: Чл. 193. За оказване на съдействие и конкретна помощ на МВР 
+- block 1086: unquoted_provision: Чл. 194. (1) Държавните служители в МВР, които са нарушили с
+- block 1087: unplaced: (2) Дисциплинарните нарушения са:
+- block 1088: item_without_sign: 1. неизпълнение на разпоредбите на този закон и на издаденит
+- block 1089: item_without_sign: 2. неизпълнение на служебните задължения;
+- block 1090: item_without_sign: 3. неспазване на служебните правомощия;
+- block 1091: item_without_sign: 4. неспазване на правилата на Етичния кодекс за поведение на
+- block 1092: unplaced: (3) Държавните служители в МВР носят дисциплинарна отговорно
+- block 1093: unplaced: (4) Дисциплинарната отговорност е лична.
+- block 1094: unquoted_provision: Чл. 195. (1) Дисциплинарното наказание се налага не по-късно
+- block 1095: unplaced: (2) За извършено тежко нарушение на служебната дисциплина ди
+- block 1096: unplaced: (3) Сроковете по ал. 1 и 2 не текат, когато държавният служи
+- block 1097: unplaced: (4) Когато дисциплинарното нарушение е и престъпление или ад
+- block 1098: unquoted_provision: Чл. 196. (1) Дисциплинарното нарушение се смята за открито, 
+- block 1099: unplaced: (2) Дисциплинарното нарушение е установено, когато материали
+- block 1100: unquoted_provision: Чл. 197. (1) Дисциплинарните наказания са:
+- block 1101: item_without_sign: 1. мъмрене;
+- block 1102: item_without_sign: 2. писмено предупреждение;
+- block 1103: item_without_sign: 3. порицание;
+- block 1104: item_without_sign: 4. забрана за повишаване в длъжност за срок от една до три г
+- block 1105: item_without_sign: 5. понижаване в длъжност за срок до една година;
+- block 1106: item_without_sign: 6. уволнение.
+- block 1107: unplaced: (2) За едно и също дисциплинарно нарушение може да се наложи
+- block 1108: unquoted_provision: Чл. 198. (1) Дисциплинарно наказание „мъмрене“ се налага за 
+- block 1109: unplaced: (2) Маловажно е нарушението, при което отклонението от изиск
+- block 1110: unplaced: (3) Наказанието се налага за срок от един до три месеца. Дър
+- block 1111: unquoted_provision: Чл. 199. (1) Дисциплинарно наказание „писмено предупреждение
+- block 1112: item_without_sign: 1. извършване на маловажно нарушение в срока на наложено дис
+- block 1113: item_without_sign: 2. системни маловажни нарушения на служебната дисциплина;
+- block 1114: item_without_sign: 3. небрежност в служебната дейност, забавено или лошо изпълн
+- block 1115: item_without_sign: 4. неправомерно поведение спрямо граждани или длъжностни лиц
+- block 1116: item_without_sign: 5. пропуски в изучаването и прилагането на разпоредбите, рег
+- block 1117: item_without_sign: 6. системно неспазване на реда в службата; закъснение; прежд
+- block 1118: unplaced: (2) Наказанието се налага за срок от три до шест месеца. Дър
+- block 1119: unquoted_provision: Чл. 200. (1) Дисциплинарно наказание „порицание“ се налага з
+- block 1120: item_without_sign: 1. извършване на дисциплинарно нарушение в срока на наложено
+- block 1121: item_without_sign: 2. неизпълнение на разпоредбите за съхраняване, опазване и и
+- block 1122: item_without_sign: 3. неявяване на работа за един работен ден без уважителни пр
+- block 1123: item_without_sign: 4. явяване на работа в състояние, което не позволява да се и
+- block 1124: item_without_sign: 5. превишаване на правомощия;
+- block 1125: item_without_sign: 6. неупражняване на контрол над подчинени;
+- block 1126: item_without_sign: 7. укриване на произшествия;
+- block 1127: item_without_sign: 8. укриване или омаловажаване на дисциплинарни нарушения;
+- block 1128: item_without_sign: 9. неизпълнение на задълженията по чл. 154, ал. 2;
+- block 1129: item_without_sign: 10. възпрепятстване или ограничаване на професионалните, ико
+- block 1130: item_without_sign: 11. неизпълнение на служебни задължения или на заповеди;
+- block 1131: item_without_sign: 12. нарушаване на етичните правила за поведение на държавнит
+- block 1132: item_without_sign: 13. действия, насочени към ограничаване или затрудняване на 
+- block 1133: unplaced: (2) Дисциплинарното наказание „порицание“ се налага за срок 
+- block 1134: unquoted_provision: Чл. 201. (1) Дисциплинарно наказание „забрана за повишаване 
+- block 1135: item_without_sign: 1. извършване на дисциплинарно нарушение в срока на наложено
+- block 1136: item_without_sign: 2. системни нарушения на служебната дисциплина;
+- block 1137: item_without_sign: 3. нарушения, довели до накърняване на правата и свободите н
+- block 1138: item_without_sign: 4. потвърждаване на неистина или затаяване на истина в декла
+- block 1139: item_without_sign: 5. нарушаване на служебни задължения, довели до бягство на д
+- block 1140: item_without_sign: 6. системно нарушаване на сроковете, предвидени в Наказателн
+- block 1141: unplaced: (2) Дисциплинарното наказание се налага за срок от една до т
+- block 1142: unquoted_provision: Чл. 202. (1) Дисциплинарно наказание „понижаване в длъжност 
+- block 1143: unplaced: (2) Наказанието по ал. 1 се изразява в понижаване в по-ниска
+- block 1144: unplaced: (3) Държавният служител, на когото е наложено наказанието по
+- block 1145: unquoted_provision: Чл. 203. (1) Тежки нарушения на служебната дисциплина, за ко
+- block 1146: item_without_sign: 1. осъждане за умишлено престъпление от общ характер или лиш
+- block 1147: item_without_sign: 2. нарушаване забраната на чл. 146, ал. 3 или на чл. 148;
+- block 1148: item_without_sign: 3. неподаване на декларацията по чл. 153, ал. 6 и чл. 154, а
+- block 1149: item_without_sign: 4. нарушаване на правилата за защита на класифицираната инфо
+- block 1150: item_without_sign: 5. неявяване на работа без уважителни причини в два последов
+- block 1151: item_without_sign: 6. демонстративно неподчинение или подбуждане към такова, за
+- block 1152: item_without_sign: 7. превишаване на власт или използване на служебното положен
+- block 1153: item_without_sign: 8. злоупотреба с власт или доверие;
+- block 1154: item_without_sign: 9. умишлени нарушения на служебните задължения, които са при
+- block 1155: item_without_sign: 10. извършване на дисциплинарно нарушение в срока на изтърпя
+- block 1156: item_without_sign: 11. извършване на друго дисциплинарно нарушение в срока на и
+- block 1157: item_without_sign: 12. издаване на неправомерна заповед, при изпълнението на ко
+- block 1158: item_without_sign: 13. деяния, несъвместими с етичните правила за поведение на 
+- block 1159: item_without_sign: 14. когато в срока на изтърпяване на дисциплинарно наказание
+- block 1160: unplaced: (2) В случаите на временно отстраняване от длъжност по реда 
+- block 1161: unquoted_provision: Чл. 204. Наказанията се налагат със заповеди от:
+- block 1162: item_without_sign: 1. министъра на вътрешните работи – за всички наказания по ч
+- block 1163: item_without_sign: 2. главния секретар на МВР – за наказанията по чл. 197, ал. 
+- block 1164: item_without_sign: 3. ръководителите на структурите по чл. 37 – за всички наказ
+- block 1165: item_without_sign: 4. служители на висши ръководни, старши ръководни и ръководн
+- block 1166: unquoted_provision: Чл. 205. (1) Дисциплинарно производство се образува при нали
+- block 1167: unplaced: (2) За изясняване на постъпилите данни и/или установяване на
+- block 1168: unplaced: (3) Държавният служител, срещу когото се води дисциплинарно 
+- block 1169: unquoted_provision: Чл. 206. (1) Дисциплинарно наказващият орган е длъжен преди 
+- block 1170: unplaced: (2) При определяне на вида и размера на дисциплинарните нака
+- block 1171: unplaced: (3) За разкриване на обективната истина могат да се използва
+- block 1172: unplaced: (4) Наказващият орган е длъжен да събере и оцени всички дока
+- block 1173: unplaced: (5) Дисциплинарното производство се провежда в отсъствие на 
+- block 1174: item_without_sign: 1. не е намерен на посочения от него адрес или го е променил
+- block 1175: item_without_sign: 2. се намира в чужбина, без да е в законоустановен отпуск ил
+- block 1176: unquoted_provision: Чл. 207. (1) При наличие на данни за извършено дисциплинарно
+- block 1177: item_without_sign: 1. министъра на вътрешните работи – за държавните служители 
+- block 1178: item_without_sign: 2. ръководителите на структурите по чл. 37 – за държавните с
+- block 1179: unplaced: (2) В заповедта по ал. 1 се определя и дисциплинарно разслед
+- block 1180: unplaced: (3) Дисциплинарно разследващият орган е длъжен да извърши вс
+- block 1181: unplaced: (4) Когато се установи, че дисциплинарно разследващият орган
+- block 1182: unplaced: (5) Искането по ал. 4 се отправя писмено до дисциплинарно на
+- block 1183: unplaced: (6) В рамките на своите правомощия дисциплинарно разследващи
+- block 1184: unplaced: (7) За резултатите от разследването дисциплинарно разследващ
+- block 1185: unplaced: (8) Държавният служител, срещу когото се води дисциплинарнот
+- block 1186: item_without_sign: 1. да се запознае със заповедта по ал. 1 и с обобщената спра
+- block 1187: item_without_sign: 2. да участва в производството самостоятелно или да бъде под
+- block 1188: item_without_sign: 3. да се запознава с материали по производството и да прави 
+- block 1189: item_without_sign: 4. да представя доказателства;
+- block 1190: item_without_sign: 5. да прави искания, бележки и възражения;
+- block 1191: item_without_sign: 6. да дава или да откаже да дава обяснения.
+- block 1192: unplaced: (9) Отказът на държавния служител да се запознае с материали
+- block 1193: unplaced: (10) В срок 24 часа след запознаването с обобщената справка 
+- block 1194: unplaced: (11) За извършването на действията по ал. 8, т. 1 дисциплина
+- block 1195: unplaced: (12) Дисциплинарно разследващият орган приключва дисциплинар
+- block 1196: unquoted_provision: Чл. 208. При наличие на данни за извършено дисциплинарно нар
+- block 1197: unquoted_provision: Чл. 209. Дисциплинарно производство не се образува, а образу
+- block 1198: item_without_sign: 1. деянието не е дисциплинарно нарушение;
+- block 1199: item_without_sign: 2. не са събрани достатъчно доказателства за извършено дисци
+- block 1200: item_without_sign: 3. са изтекли сроковете по чл. 195, ал. 1 и 2;
+- block 1201: item_without_sign: 4. за същото деяние на същия държавен служител вече е наложе
+- block 1202: item_without_sign: 5. служебното правоотношение на държавния служител е прекрат
+- block 1203: item_without_sign: 6. държавният служител е починал.
+- block 1204: unquoted_provision: Чл. 210. (1) Дисциплинарното наказание се налага с писмена з
+- block 1205: unplaced: (2) Заповедта за дисциплинарното наказание се връчва на държ
+- block 1206: unplaced: (3) При отказ на служителя да получи заповедта тя му се обяв
+- block 1207: unplaced: (4) При невъзможност заповедта да бъде връчена лично се изго
+- block 1208: unplaced: (5) От деня, следващ поставянето на съобщението, започва да 
+- block 1209: unplaced: (6) Заповедта влиза в сила от датата на връчването.
+- block 1210: unplaced: (7) При налагане на дисциплинарно наказание „уволнение“ на с
+- block 1211: unquoted_provision: Чл. 211. Заповедта за налагане на дисциплинарно наказание мо
+- block 1212: unquoted_provision: Чл. 212. При обжалване на заповед за налагане на дисциплинар
+- block 1213: unquoted_provision: Чл. 213. (1) Дисциплинарно наказващият орган може с мотивира
+- block 1214: unplaced: (2) Дисциплинарно наказание, наложено на държавен служител, 
+- block 1215: unquoted_provision: Чл. 214. (1) Държавен служител в МВР може да бъде временно о
+- block 1216: item_without_sign: 1. когато срещу него е образувано дисциплинарно производство
+- block 1217: item_without_sign: 2. когато се яви в състояние, което не му позволява да изпъл
+- block 1218: item_without_sign: 3. когато му бъде отнет или отказан достъпът до класифициран
+- block 1219: unplaced: (2) При привличане на държавен служител като обвиняем за пре
+- block 1220: unplaced: (3) Държавният служител не получава заплата за времето, през
+- block 1221: unplaced: (4) Когато дисциплинарното производство по ал. 1, т. 1 бъде 
+- block 1222: unquoted_provision: Чл. 215. (1) При отстраняване от длъжност при условията на ч
+- block 1223: unplaced: (2) Отстраняването от длъжност при условията на чл. 214, ал.
+- block 1224: unplaced: (3) В случаите по чл. 214, ал. 1, т. 3 органът по назначаван
+- block 1225: unplaced: (4) Когато актът, с който е отнет или отказан достъпът до кл
+- block 1228: unquoted_provision: Чл. 216. (1) Държавните служители в МВР отговарят имуществен
+- block 1229: unplaced: (2) За вреди, причинени на граждани при условията на ал. 1, 
+- block 1230: unplaced: (3) За вредите, причинени умишлено или в резултат на престъп
+- block 1231: unplaced: (4) Имуществената отговорност на държавните служители в МВР 
+- block 1232: unquoted_provision: Чл. 217. (1) Държавните служители в МВР не отговарят имущест
+- block 1233: unplaced: (2) Държавата и държавните служители в МВР не отговарят за в
+- block 1234: unquoted_provision: Чл. 218. (1) За изплатените обезщетения за вреди, причинени 
+- block 1235: unplaced: (2) Държавата има право на иск срещу служителите, виновно пр
+- block 1236: unplaced: (3) Когато служителят е изпълнявал служебните си задължения 
+- block 1237: unquoted_provision: Чл. 219. (1) Държавните служители в МВР отговарят за причине
+- block 1238: unplaced: (2) Размерът на вредите се определя към деня на настъпването
+- block 1239: unquoted_provision: Чл. 220. (1) За вреди, причинени при условията на чл. 216, а
+- block 1240: unplaced: (2) За вреди, причинени при условията на ал. 1 от висши ръко
+- block 1241: unquoted_provision: Чл. 221. (1) Държавните служители в МВР, чието служебно задъ
+- block 1242: item_without_sign: 1. в размера на вредата, но не повече от три брутни месечни 
+- block 1243: item_without_sign: 2. за липса – в пълен размер заедно със законната лихва от д
+- block 1244: unplaced: (2) Лицата, които са получили нещо без основание от причинит
+- block 1245: unplaced: (3) Исковете по ал. 1, т. 2 и ал. 2 се погасяват с изтичане 
+- block 1246: unquoted_provision: Чл. 222. Когато вредата е причинена от няколко лица, те отго
+- block 1247: item_without_sign: 1. в случаите на ограничена имуществена отговорност – съобра
+- block 1248: item_without_sign: 2. в случаите на пълна имуществена отговорност – солидарно.
+- block 1249: unquoted_provision: Чл. 223. (1) В случаите на ограничена имуществена отговорнос
+- block 1250: unplaced: (2) Заповедта по ал. 1 се издава в едномесечен срок от откри
+- block 1251: unplaced: (3) Ако служителят в едномесечен срок от връчването на запов
+- block 1252: unquoted_provision: Чл. 224. (1) Пълната имуществена отговорност се осъществява 
+- block 1253: unplaced: (2) Исковете за пълна имуществена отговорност по ал. 1 се по
+- block 1254: unquoted_provision: Чл. 225. За неуредените в тази глава въпроси се прилагат раз
+- block 1257: unquoted_provision: Чл. 226. (1) Служебното правоотношение на държавния служител
+- block 1258: item_without_sign: 1. при навършване на пределна възраст за служба в МВР – 60 г
+- block 1259: item_without_sign: 2. при придобиване право на пенсия за осигурителен стаж и въ
+- block 1260: item_without_sign: 3. по здравословни причини – при невъзможност държавният слу
+- block 1261: item_without_sign: 4. по собствено желание;
+- block 1262: item_without_sign: 5. при съкращаване на длъжността;
+- block 1263: item_without_sign: 6. при неявяване или отказ на служителя да заеме длъжността,
+- block 1264: item_without_sign: 7. при обективна невъзможност да изпълнява задълженията си п
+- block 1265: item_without_sign: а) влизане в сила на присъда, с която е наложено наказание л
+- block 1266: item_without_sign: б) получаване на най-ниската обща оценка на професионалната 
+- block 1267: item_without_sign: в) незавършване на курса за първоначална професионална подго
+- block 1268: item_without_sign: г) неподаване на декларации по чл. 160, ал. 3;
+- block 1269: item_without_sign: д) установяване наличието на обстоятелства по чл. 155, ал. 1
+- block 1270: item_without_sign: е) отказ или отнемане на разрешение за достъп до класифицира
+- block 1271: item_without_sign: ж) установяване на несъвместимост в случаите по чл. 153, ал.
+- block 1272: item_without_sign: з) назначаване или преминаване на държавната служба въз осно
+- block 1273: item_without_sign: и) придобиване на друго гражданство;
+- block 1274: item_without_sign: 8. при налагане на дисциплинарно наказание „уволнение“;
+- block 1275: item_without_sign: 9. при преминаване на изборна длъжност в случаите по чл. 153
+- block 1276: item_without_sign: 10. при прекратяване действието на договор или при намаляван
+- block 1277: item_without_sign: 11. в периода на срока за изпитване – при получаване на най-
+- block 1278: item_without_sign: 12. при смърт на държавния служител;
+- block 1279: item_without_sign: 13. при придобиване право на пенсия при условията на чл. 69 
+- block 1280: item_without_sign: 14. при влизане в сила на акт, с който е установен конфликт 
+- block 1281: item_without_sign: 15. когато служебното правоотношение е възникнало, след като
+- block 1282: item_without_sign: 16. при отказ да заеме друга длъжност в случаите по чл. 164,
+- block 1283: item_without_sign: 17. по преценка на министъра на вътрешните работи или прекра
+- block 1284: unplaced: (2) В случаите по ал. 1, т. 15 органът по назначаване може д
+- block 1285: unplaced: (3) Обстоятелствата по ал. 1, т. 3 се установяват въз основа
+- block 1286: unplaced: (4) В случаите по ал. 1, т. 9 в едномесечен срок след прекра
+- block 1287: unplaced: (5) Прекратяване на служебните правоотношения в случаите по 
+- block 1288: unplaced: (6) Редът за прекратяване на служебното правоотношение по ал
+- block 1289: unplaced: (7) Служебното правоотношение не може да бъде прекратено в с
+- block 1290: unquoted_provision: Чл. 227. Заповед за прекратяване на служебното правоотношени
+- block 1291: unquoted_provision: Чл. 228. (1) Органът по чл. 227 прекратява служебното правоо
+- block 1292: unplaced: (2) Заповедта за прекратяване на служебното правоотношение п
+- block 1293: unquoted_provision: Чл. 229. Служебното правоотношение на държавните служители в
+- block 1294: unquoted_provision: Чл. 230. (1) Заповедта за прекратяване на служебното правоот
+- block 1295: unplaced: (2) Служебното правоотношение се прекратява от датата на връ
+- block 1296: item_without_sign: 1. чл. 226, ал. 1, т. 1 и 3 – от датата на издаване на запов
+- block 1297: item_without_sign: 2. чл. 226, ал. 1, т. 12 – от датата на смъртта.
+- block 1298: unquoted_provision: Чл. 231. Заповедта за прекратяване на служебното правоотноше
+- block 1299: unquoted_provision: Чл. 232. При отмяна на заповедта за прекратяване на служебно
+- block 1300: unquoted_provision: Чл. 233. (1) На държавните служители с прекратено служебно п
+- block 1301: unplaced: (2) Карти по ал. 1 може да се издават и на държавните служит
+- block 1302: unplaced: (3) Видът на картите, условията и редът за издаването им се 
+- block 1305: unquoted_provision: Чл. 234. (1) При прекратяване на служебното правоотношение д
+- block 1306: unplaced: (2) Когато държавните служители са прослужили 10 и повече го
+- block 1307: unplaced: (3) При прекратяване на служебното правоотношение при услови
+- block 1308: unplaced: (4) При повторно и при всяко следващо прекратяване на служеб
+- block 1309: unplaced: (5) При прекратяване на служебното правоотношение след просл
+- block 1310: unplaced: (6) При прекратяване на служебното правоотношение поради смъ
+- block 1311: unplaced: (7) Разпоредбите на ал. 1 и 5 не се прилагат, когато служебн
+- block 1312: unplaced: (8) При прекратяване на служебното правоотношение на държавн
+- block 1313: unplaced: (9) За годината на освобождаване от служба обезщетението по 
+- block 1314: unquoted_provision: Чл. 235. (1) При определяне размера на обезщетението по чл. 
+- block 1315: item_without_sign: 1. като държавен служител, офицер или сержант в МВР;
+- block 1316: item_without_sign: 2. като гражданско лице в МВР по отменения Закон за Министер
+- block 1317: item_without_sign: 3. като служител по отменения § 19 от преходните и заключите
+- block 1318: item_without_sign: 4. на военна служба, с изключение на служилите редовна военн
+- block 1319: unplaced: (2) При определяне размера на обезщетението по чл. 234 се вз
+- block 1320: unplaced: (3) Извън случаите по ал. 1 при прекратяване на служебното п
+- block 1321: item_without_sign: 1. прослужените години по ал. 1;
+- block 1322: item_without_sign: 2. години на приравнения трудов стаж към първа категория тру
+- block 1323: unplaced: (4) При наложено дисциплинарно наказание „уволнение“ прослуж
+- block 1324: unquoted_provision: Чл. 236. При преместване на работа в други населени места на
+- block 1325: unquoted_provision: Чл. 237. (1) При незаконно прекратяване на служебното правоо
+- block 1326: unplaced: (2) Разпоредбата на ал. 1 се прилага и в случаите на отстран
+- block 1327: unplaced: (3) Възстановените на работа по силата на влязло в сила съде
+- block 1328: unplaced: (4) При повторно и при всяко следващо прекратяване на служеб
+- block 1329: unplaced: (5) Когато държавните служители по ал. 3 не възстановят полу
+- block 1330: unquoted_provision: Чл. 238. (1) На служителите в МВР, претърпели телесна повред
+- block 1331: unplaced: (2) На преживелия съпруг, децата и родителите на загинали пр
+- block 1332: unplaced: (3) Видът на причинената телесна повреда се определя от Цент
+- block 1333: unplaced: (4) В случаите на смърт на лицата по ал. 2 се изплаща и обез
+- block 1334: unplaced: (5) Обезщетенията по ал. 1 и 2 се разрешават от ръководители
+- block 1335: unquoted_provision: Чл. 239. (1) Обезщетенията по този закон се изплащат на база
+- block 1336: item_without_sign: 1. основното месечно възнаграждение;
+- block 1337: item_without_sign: 2. допълнителни възнаграждения за прослужено време, за работ
+- block 1338: unplaced: (2) Обезщетенията по чл. 234, 236 и 238 не подлежат на облаг
+- block 1339: unquoted_provision: Чл. 240. При прекратяване на служебното правоотношение по ис
+- block 1340: unquoted_provision: Чл. 241. Обезщетенията по тази глава се изплащат по правила,
+- block 1343: unquoted_provision: Чл. 242. (1) Служителите в МВР имат право свободно да се сдр
+- block 1344: unplaced: (2) Държавните служители в МВР могат да членуват в синдикалн
+- block 1345: unplaced: (3) Лицата, работещи по трудово правоотношение, имат право д
+- block 1346: unplaced: (4) Синдикалните организации в МВР осъществяват дейността си
+- block 1347: unquoted_provision: Чл. 243. (1) Синдикалните организации на служителите в МВР п
+- block 1348: unplaced: (2) Синдикалните организации в МВР представляват своите член
+- block 1349: unplaced: (3) Синдикалните организации, в които членуват държавни служ
+- block 1350: unplaced: (4) Синдикалните организации, в които членуват само държавни
+- block 1351: unplaced: (5) Синдикалните организации, в които членуват държавни служ
+- block 1352: unplaced: (6) Ръководството на МВР съдейства на синдикалните организац
+- block 1353: unquoted_provision: Чл. 244. (1) Синдикалните организации изразяват и отстояват 
+- block 1354: unplaced: (2) Когато при осъществяване на дейностите по ал. 1 не се по
+- block 1355: unplaced: (3) По време на протестните действия представителите на орга
+- block 1356: unquoted_provision: Чл. 245. (1) Министърът на вътрешните работи и синдикалните 
+- block 1357: unplaced: (2) Министърът на вътрешните работи и синдикалните организац
+- block 1358: unquoted_provision: Чл. 246. (1) Държавните служители могат да провеждат събрани
+- block 1359: item_without_sign: 1. помещения или места, предоставени за ползване и управлени
+- block 1360: item_without_sign: 2. други помещения, избрани от тях.
+- block 1361: unplaced: (2) Държавните служители могат да провеждат събрания през ра
+- block 1362: unquoted_provision: Чл. 247. (1) Държавните служители, които заемат ръководна из
+- block 1363: unplaced: (2) Служебните правоотношения на държавните служители по ал.
+- block 1364: unplaced: (3) Броят на служителите с право на неплатен отпуск по ал. 1
+- block 1365: unplaced: (4) Времето по ал. 1 се зачита за трудов стаж по този закон.
+- block 1366: unquoted_provision: Чл. 248. (1) В МВР се създава Съвет за социално партньорство
+- block 1367: unplaced: (2) В съвета участват представители на ръководството на МВР,
+- block 1368: unplaced: (3) Съветът осъществява социалния диалог, като разрешава въп
+- block 1369: unplaced: (4) Съветът полага усилия за доброволно уреждане на възникна
+- block 1370: unplaced: (5) Съветът приема правила за организацията и дейността си.
+- block 1373: unquoted_provision: Чл. 249. (1) Бюджетът на МВР включва всички постъпления и пл
+- block 1374: unplaced: (2) Средствата от продажба на недвижими имоти и движими вещи
+- block 1375: unplaced: (3) В рамките на общия бюджет министърът на вътрешните работ
+- block 1376: unplaced: (4) Второстепенните разпоредители с бюджет определят и утвър
+- block 1377: unplaced: (5) Министърът на вътрешните работи утвърждава разпределение
+- block 1378: unplaced: (6) Министърът на вътрешните работи утвърждава разпределение
+- block 1379: unplaced: (7) Министърът на вътрешните работи утвърждава вътрешни прав
+- block 1380: unplaced: (8) Министърът на вътрешните работи упражнява контрол върху 
+- block 1381: unplaced: (9) Забранява се сключването на договори за дарения в МВР ос
+- block 1382: unquoted_provision: Чл. 250. Министерството на вътрешните работи е администратор
+- block 1383: unquoted_provision: Чл. 251. Материално-техническото осигуряване на МВР включва:
+- block 1384: item_without_sign: 1. текуща издръжка;
+- block 1385: item_without_sign: 2. доставка, производство и ремонт на техника и въоръжение, 
+- block 1386: item_without_sign: 3. проектиране и извършване на капитално строителство и изгр
+- block 1387: item_without_sign: 4. управление на земи, сгради и съоръжения;
+- block 1388: item_without_sign: 5. социални и обслужващи дейности;
+- block 1389: item_without_sign: 6. други дейности, свързани със защитата на националната сиг
+- block 1390: unquoted_provision: Чл. 252. Дейностите в областта на материално-техническото ос
+- block 1391: unquoted_provision: Чл. 253. Министерският съвет предоставя на МВР за управление
+- block 1392: unquoted_provision: Чл. 254. За осигуряване изпълнението на военновременни задач
+- block 1397: unquoted_provision: Чл. 255. За предотвратяване и преустановяване на нарушенията
+- block 1398: unquoted_provision: Чл. 256. (1) Заповедта за прилагане на принудителни админист
+- block 1399: unplaced: (2) Заповедта по ал. 1 подлежи на незабавно изпълнение, осве
+- block 1402: unquoted_provision: Чл. 257. (1) Който не изпълни разпореждане на орган на МВР, 
+- block 1403: unplaced: (2) За маловажни нарушения органите на МВР налагат глоба 50 
+- block 1404: unquoted_provision: Чл. 258. (1) Който без уважителни причини не се яви в местат
+- block 1405: unplaced: (2) При повторно неявяване без уважителни причини глобата е 
+- block 1406: unquoted_provision: Чл. 259. Който при условията на глава пета без уважителни пр
+- block 1407: unquoted_provision: Чл. 260. Който не изпълни писмените разпореждания по чл. 125
+- block 1408: unquoted_provision: Чл. 261. (1) Физически лица, които извършват дейности по чл.
+- block 1409: unplaced: (2) За нарушение по ал. 1 на търговците се налага имуществен
+- block 1410: unplaced: (3) При повторно извършване на нарушенията лицата по ал. 1 с
+- block 1411: unquoted_provision: Чл. 262. (1) Лице, получило разрешение по чл. 129, което:
+- block 1412: item_without_sign: 1. е наело лица, неотговарящи на изискванията за професионал
+- block 1413: item_without_sign: 2. осъществява дейност без наличие на техника, оборудване ил
+- block 1414: item_without_sign: 3. нарушава реда за осъществяване на съответната дейност,
+- block 1415: unplaced: се наказва с глоба от 1000 до 10 000 лв. и/или му се налага 
+- block 1416: unplaced: (2) При повторно нарушение по ал. 1 се налага глоба от 10 00
+- block 1417: unquoted_provision: Чл. 263. (1) Физическо или юридическо лице, което произвежда
+- block 1418: unplaced: (2) При повторно извършване на нарушенията лицата по ал. 1 с
+- block 1419: unquoted_provision: Чл. 264. (1) Който противозаконно пречи на орган на МВР да и
+- block 1420: unplaced: (2) Който противозаконно наруши физическата неприкосновеност
+- block 1421: unquoted_provision: Чл. 265. (1) Ръководителите на държавни органи, организации 
+- block 1422: unplaced: (2) За маловажни нарушения по ал. 1 органите на МВР налагат 
+- block 1423: unquoted_provision: Чл. 266. (1) За нарушение на чл. 151, ал. 3 на юридическите 
+- block 1424: unplaced: (2) При повторно извършване на нарушенията по ал. 1 на юриди
+- block 1425: unplaced: (3) Вещите, които са послужили за извършване на администрати
+- block 1426: unquoted_provision: Чл. 267. (1) Актовете за установяване на нарушенията се съст
+- block 1427: unplaced: (2) Наказателните постановления се издават от министъра на в
+- block 1428: unplaced: (3) Установяването на нарушенията, издаването, обжалването и
+- block 1429: unquoted_provision: Чл. 268. (1) Иззетите с влязло в сила наказателно постановле
+- block 1430: unplaced: (2) Наказанието „отнемане на разрешението“ тече от датата на
+- block 1431: unquoted_provision: Чл. 269. (1) Глобите, предвидени в този закон, се налагат на
+- block 1432: unplaced: (2) Имуществените санкции, предвидени в този закон, се налаг
+- block 1433: unplaced: (3) Глобите и имуществените санкции, предвидени в този закон
+
+## The instructions
+### §48 (block 1621, section transitional_final)
+§ 48. В Закона за екстрадицията и Европейската заповед за арест (обн., ДВ, бр. 46 от 2005 г.; изм., бр. 86 от 2005 г., бр. 52 от 2008 г., бр. 49 от 2010 г. и бр. 55 от 2011 г.) се правят следните изменения:
+
+### §48.1 (block 1622, section transitional_final)
+1. В чл. 42, ал. 4 думите „чл. 95 от Конвенцията от 19 юни 1990 г. за прилагане на Шенгенското споразумение от 14 юни 1990 г. за постепенно премахване на контрола върху общите държавни граници“ се заменят с „чл. 26 от Решение 2007/533/ПВР на Съвета от 12 юни 2007 г. за създаването, функционирането и използването на Шенгенска информационна система от второ поколение (ШИС ІІ) (ОВ, L 205/63 от 7 август 2009 г.)“.
+- q1: „чл. 95 от Конвенцията от 19 юни 1990 г. за прилагане на Шенгенското споразумение от 14 юни 1990 г. за постепенно премахване на контрола върху общите държавни граници“
+- q2: „чл. 26 от Решение 2007/533/ПВР на Съвета от 12 юни 2007 г. за създаването, функционирането и използването на Шенгенска информационна система от второ поколение (ШИС ІІ) (ОВ, L 205/63 от 7 август 2009 г.)“
+- current text at „чл. 42, ал. 4“:
+    (4) (Изм. - ДВ, бр. 52 от 2008 г.) Сигнал, получен чрез ШИС се приравнява на Европейска заповед за арест, ако е придружен от информацията по чл. 37, ал. 1 и 2, и се изпълнява в съответствие с чл. 95 от Конвенцията от 19 юни 1990 г. за прилагане на Шенгенското споразумение от 14 юни 1990 г. за постепенно премахване на контрола върху общите държавни граници.
+- „чл. 95“: 'чл. 95' names 0 place(s) in the act
+- current text at „чл. 26“:
+    Предаване на екстрадираното лице **Чл. 26.**
+    (1) При допусната екстрадиция Върховната касационна прокуратура със съдействието на Националното централно бюро “Интерпол” уговаря с молещата държава датата и мястото на предаване на лицето.
+    (2) Предаването на лицето се извършва в изпълнение на постановление на Върховната касационна прокуратура, като органите на Министерството на правосъдието осигуряват охраната и конвоирането му.
+    (3) (Доп. - ДВ, бр. 55 от 2011 г.) При предаването се съставя протокол, в който се отразяват предаването и приемането на лицето, участващите длъжностни лица и други обстоятелства. Към протокола се прилагат: документът за самоличност на лицето, опис на личните му вещи, справка за здравословното му състояние, както и справка за продължителността на задържането под стража за осъществяване на екстрадицията. Когато лицето не притежава валиден документ за самоличност, издаването на такъв се извършва служебно от Министерството на вътрешните работи по разпореждане на Върховната касационна прокуратура по реда на Закона за българските лични документи.
+    (4) Когато предаването не е осъществено, компетентните органи на двете държави се споразумяват за нова дата на предаване. Ако исканото лице не е прието на новата дата, то се освобождава след изтичането на 30 дни от тази дата.
+
+### §48.2 (block 1623, section transitional_final)
+2. В чл. 57, ал. 3 думите „чл. 95 от Конвенцията от 19 юни 1990 г. за прилагане на Шенгенското споразумение от 14 юни 1990 г. за постепенно премахване на контрола върху общите държавни граници“ се заменят с „чл. 26 от Решение 2007/533/ПВР на Съвета от 12 юни 2007 г. за създаването, функционирането и използването на Шенгенска информационна система от второ поколение (ШИС ІІ)“.
+- q1: „чл. 95 от Конвенцията от 19 юни 1990 г. за прилагане на Шенгенското споразумение от 14 юни 1990 г. за постепенно премахване на контрола върху общите държавни граници“
+- q2: „чл. 26 от Решение 2007/533/ПВР на Съвета от 12 юни 2007 г. за създаването, функционирането и използването на Шенгенска информационна система от второ поколение (ШИС ІІ)“
+- current text at „чл. 57, ал. 3“:
+    (3) Сигналът по ал. 2 се подава в съответствие с чл. 95 от Конвенцията от 19 юни 1990 г. за прилагане на Шенгенското споразумение от 14 юни 1990 г. за постепенно премахване на контрола върху общите държавни граници.
+- „чл. 95“: 'чл. 95' names 0 place(s) in the act
+- current text at „чл. 26“:
+    Предаване на екстрадираното лице **Чл. 26.**
+    (1) При допусната екстрадиция Върховната касационна прокуратура със съдействието на Националното централно бюро “Интерпол” уговаря с молещата държава датата и мястото на предаване на лицето.
+    (2) Предаването на лицето се извършва в изпълнение на постановление на Върховната касационна прокуратура, като органите на Министерството на правосъдието осигуряват охраната и конвоирането му.
+    (3) (Доп. - ДВ, бр. 55 от 2011 г.) При предаването се съставя протокол, в който се отразяват предаването и приемането на лицето, участващите длъжностни лица и други обстоятелства. Към протокола се прилагат: документът за самоличност на лицето, опис на личните му вещи, справка за здравословното му състояние, както и справка за продължителността на задържането под стража за осъществяване на екстрадицията. Когато лицето не притежава валиден документ за самоличност, издаването на такъв се извършва служебно от Министерството на вътрешните работи по разпореждане на Върховната касационна прокуратура по реда на Закона за българските лични документи.
+    (4) Когато предаването не е осъществено, компетентните органи на двете държави се споразумяват за нова дата на предаване. Ако исканото лице не е прието на новата дата, то се освобождава след изтичането на 30 дни от тази дата.

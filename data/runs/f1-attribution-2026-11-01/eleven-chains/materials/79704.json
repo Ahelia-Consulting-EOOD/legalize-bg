@@ -1,0 +1,306 @@
+{
+ "material": 79704,
+ "title": "Правилник за изменение и допълнение на Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+ "issue": "93/2013",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "regulation",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за устройството, функциите и дейността на Държавно предприятие „Пристанищна инфраструктура“",
+   "cited_promulgation": [
+    36,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist",
+   "candidates": [
+    "pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    36,
+    2011
+   ]
+  }
+ ],
+ "instructions": 268,
+ "signs": 8,
+ "quoted_blocks": 42,
+ "findings": [
+  {
+   "block": 72,
+   "kind": "unquoted_provision",
+   "detail": "Раздел II"
+  },
+  {
+   "block": 74,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 24. (1) Финансовият контрольор е пряко подчинен на генер"
+  },
+  {
+   "block": 83,
+   "kind": "unquoted_provision",
+   "detail": "Раздел III"
+  },
+  {
+   "block": 85,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 25. Отдел „Охрана и сигурност“ организира, осигурява и к"
+  },
+  {
+   "block": 92,
+   "kind": "unquoted_provision",
+   "detail": "Раздел IV"
+  },
+  {
+   "block": 94,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 26. Отдел „Човешки ресурси“:"
+  },
+  {
+   "block": 121,
+   "kind": "unquoted_provision",
+   "detail": "Раздел V"
+  },
+  {
+   "block": 123,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 27. Отдел „Връзки с обществеността и протокол“ изпълнява"
+  },
+  {
+   "block": 129,
+   "kind": "unquoted_provision",
+   "detail": "Раздел VI"
+  },
+  {
+   "block": 132,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 28. Дирекция „Правна“:"
+  },
+  {
+   "block": 145,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 29. Дирекция „Административно-финансово и информационно "
+  },
+  {
+   "block": 176,
+   "kind": "unquoted_provision",
+   "detail": "Раздел VII"
+  },
+  {
+   "block": 179,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 30. (1) Дирекция „Инфраструктура, акватория и собственос"
+  },
+  {
+   "block": 214,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 31. (1) Дирекция „Управление на проекти“ осъществява дей"
+  },
+  {
+   "block": 246,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 32. (1) Дирекция „Пристанищни услуги, статистика и еколо"
+  },
+  {
+   "block": 271,
+   "kind": "unquoted_provision",
+   "detail": "Раздел VIII"
+  },
+  {
+   "block": 275,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 33. (1) В предприятието са обособени като специализирани"
+  },
+  {
+   "block": 332,
+   "kind": "unquoted_provision",
+   "detail": "Раздел IХ"
+  },
+  {
+   "block": 334,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 34. (1) Клоновете – териториални поделения на предприяти"
+  },
+  {
+   "block": 354,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 35. (1) Клоновете – териториални поделения, се ръководят"
+  },
+  {
+   "block": 364,
+   "kind": "unquoted_provision",
+   "detail": "Раздел Х"
+  },
+  {
+   "block": 366,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 36. (1) Продължителността на работното време на служител"
+  },
+  {
+   "block": 369,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 37. (1) Документите, изпратени до предприятието от държа"
+  },
+  {
+   "block": 371,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 38. (1) Служебните преписки подлежат на насочване според"
+  },
+  {
+   "block": 373,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 39. (1) Генералният директор разпределя служебните препи"
+  },
+  {
+   "block": 377,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 40. Изходящите от предприятието документи се съставят в "
+  },
+  {
+   "block": 378,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 41. Служителите в предприятието изпълняват възложените и"
+  },
+  {
+   "block": 379,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 42. (1) В изпълнение на функциите и поставените задачи а"
+  },
+  {
+   "block": 381,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 43. Ръководителите на структурните звена в предприятието"
+  },
+  {
+   "block": 382,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 44. Пропускателният режим, документооборотът, противопож"
+  },
+  {
+   "block": 383,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 45. (1) За изпълнение на задачи, свързани с основните де"
+  },
+  {
+   "block": 385,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 46. (1) За образцово изпълнение на трудовите си задължен"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 86: item 1 after 6 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 95: item 1 after 6 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 124: item 1 after 26 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 133: item 1 after 5 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 146: item 1 after 11 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 180: item 1 after 30 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 202: item 1 after 21 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 216: item 1 after 11 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 247: item 1 after 4 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 253: item 1 after 5 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 256: item 1 after 2 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 263: item 1 after 6 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 266: item 1 after 2 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 277: item 1 after 5 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 291: item 1 after 12 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 324: item 1 after 20 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 335: item 1 after 8 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 340: item 1 after 4 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 356: item 1 after 13 under §8"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 218: letter б) after none) under §8.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 15791,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

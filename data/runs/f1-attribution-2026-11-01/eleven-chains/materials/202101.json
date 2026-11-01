@@ -1,0 +1,120 @@
+{
+ "material": 202101,
+ "title": "Постановление № 336 от 20 декември 2023 г. за изменение и допълнение на нормативни актове на Министерския съвет",
+ "issue": "106/2023",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Устройствения правилник на Агенцията по обществени поръчки, приет с Постановление № 53 на Министерския съвет от 2017 г.",
+   "cited_promulgation": [
+    25,
+    2017
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki",
+   "candidates": [
+    "ustroystven-pravilnik-na-agentsiyata-po-obshtestveni-porachki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    25,
+    2017
+   ]
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Устройствения правилник на Министерството на финансите, приет с Постановление № 353 на Министерския съвет от 2016 г.",
+   "cited_promulgation": [
+    100,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-finansite",
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerstvoto-na-finansite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    100,
+    2016
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Постановление № 215 на Министерския съвет от 1999 г. за приемане на Устройствен правилник на Министерството на финансите и за преобразуване и закриване на административни структури към министъра на финансите",
+   "cited_promulgation": [
+    104,
+    1999
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Министерството на финансите и за преобразуване и закриване на административни структури към министъра на финансите')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Устройствения правилник на Агенция „Митници“, приет с Постановление № 227 на Министерския съвет от 2021 г.",
+   "cited_promulgation": [
+    59,
+    2021
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-agentsiya-mitnitsi",
+   "candidates": [
+    "ustroystven-pravilnik-na-agentsiya-mitnitsi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    59,
+    2021
+   ]
+  },
+  {
+   "scope": "§5",
+   "cited_title": "Постановление № 104 на Министерския съвет от 2023 г. за създаване на Институт за анализи и прогнози и за приемане на Устройствен правилник на Института за анализи и прогнози",
+   "cited_promulgation": [
+    63,
+    2023
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 104 на Министерския съвет от 2023 г. за създаване на Институт за анализи и прогнози и за приемане на Устройствен правилник на Института за анализи и прогнози')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 85,
+ "signs": 6,
+ "quoted_blocks": 49,
+ "findings": [
+  {
+   "block": 91,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Изпълнителен директор' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 4280,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

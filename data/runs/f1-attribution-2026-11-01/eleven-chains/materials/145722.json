@@ -1,0 +1,44 @@
+{
+ "material": 145722,
+ "title": "Постановление № 16 от 31 януари 2020 г. за одобряване на допълнителни разходи по бюджета на Министерския съвет за 2020 г.",
+ "issue": "11/2020",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 7,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 1 да се увеличат разходите п"
+  },
+  {
+   "block": 10,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Със сумата по чл. 1, ал. 1 да се увеличат показателит"
+  },
+  {
+   "block": 11,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. По бюджета на Министерския съвет за 2020 г. по „Полит"
+  },
+  {
+   "block": 12,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Главният секретар на Министерския съвет да извърши съ"
+  },
+  {
+   "block": 13,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Министърът на финансите да извърши произтичащите пром"
+  }
+ ],
+ "tokens_instructions": 319,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

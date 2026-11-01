@@ -1,0 +1,82 @@
+{
+ "material": 240236,
+ "title": "Закон за изменение и допълнение на Наказателния кодекс",
+ "issue": "115/2025",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наказателния кодекс",
+   "cited_promulgation": [
+    26,
+    1968
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "nakazatelen-kodeks",
+   "candidates": [
+    "nakazatelen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    1968
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Закона за административните нарушения и наказания",
+   "cited_promulgation": [
+    92,
+    1969
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-administrativnite-narusheniya-i-nakazaniya",
+   "candidates": [
+    "zakon-za-administrativnite-narusheniya-i-nakazaniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    92,
+    1969
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Закона за социалните услуги",
+   "cited_promulgation": [
+    24,
+    2019
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sotsialnite-uslugi",
+   "candidates": [
+    "zakon-za-sotsialnite-uslugi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    24,
+    2019
+   ]
+  }
+ ],
+ "instructions": 33,
+ "signs": 9,
+ "quoted_blocks": 30,
+ "findings": [],
+ "tokens_instructions": 2770,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

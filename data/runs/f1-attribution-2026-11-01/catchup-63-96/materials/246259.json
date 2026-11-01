@@ -1,0 +1,40 @@
+{
+ "material": 246259,
+ "title": "Постановление № 173 от 29 септември 2026 г. за изменение и допълнение на Наредба за норми за допустими емисии на серен диоксид, азотни оксиди и прах, изпускани в атмосферата от големи горивни инсталации, приета с Постановление № 354 на Министерския съвет от 2012 г.",
+ "issue": "91/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба за норми за допустими емисии на серен диоксид, азотни оксиди и прах, изпускани в атмосферата от големи горивни инсталации",
+   "cited_promulgation": [
+    2,
+    2013
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-normi-za-dopustimi-emisii-na-seren-dioksid-azotni-oksidi-i-prah-izpus",
+   "candidates": [
+    "naredba-za-normi-za-dopustimi-emisii-na-seren-dioksid-azotni-oksidi-i-prah-izpus"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    2,
+    2013
+   ]
+  }
+ ],
+ "instructions": 5,
+ "signs": 5,
+ "quoted_blocks": 4,
+ "findings": [],
+ "tokens_instructions": 552,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

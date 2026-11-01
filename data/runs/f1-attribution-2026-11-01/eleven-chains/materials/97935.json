@@ -1,0 +1,42 @@
+{
+ "material": 97935,
+ "title": "Наредба за изменение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "issue": "79/2015",
+ "section": "Министерство на регионалното развитие и благоустройството",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "cited_promulgation": [
+    7,
+    2007
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite",
+   "candidates": [
+    "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    7,
+    2007
+   ]
+  }
+ ],
+ "instructions": 4,
+ "signs": 1,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 139,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

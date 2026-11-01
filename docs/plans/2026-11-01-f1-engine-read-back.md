@@ -92,3 +92,24 @@ Offered: `/goal F1 of docs/plans/2026-10-31-starting-state-implementation-plan.m
 ## Provenance
 
 The measurement scripts and records: `reading/material.py`, `reading/attribution.py`, their tests, `data/runs/f1-attribution-2026-11-01/` (the summaries are committed; the per-material records are rebuilt by `python -m reading.attribution measure`). The per-section labelling figure is D-070's; the per-act ladder ratio is S1's run of the transport law (`data/runs/starting-state-2026-10-31/`). No model was called for anything in this document.
+
+## Results of the run (1 November 2026, evening)
+
+The owner gave the go at 5.0 M tokens. The run spent 4,773,000 tokens in 155 model calls (labeller, applier, settler; agent-reported totals, no cache split visible) and stopped there.
+
+| Act | Materials applied | lex.bg differences settled (form / ours / witness / source) | Outcome |
+|---|---|---|---|
+| Implementing regulation of the protected-persons law | 2 of 2 | 19 (15 / 0 / 2 / 0; 2 of ours fixed, re-settled) | committed 62d2f4a0d |
+| Наредба № 8121з-310 | 7 of 7 | 10 (9 / 0 / 1 / 0) | committed d63ed62d2 |
+| Private International Law Code | 6 of 6 | 131 (126 / 0 / 4 / 1) | committed 3ff8323b6 |
+| Extradition law | 12 of 12 | 205 (196 / 5 / 2 / 2) | stopped: 5 reading errors |
+| Наредба № 5/2006 | 8 of 8 | 117 (104 / 10 / 2 / 1) | stopped: 10 reading errors |
+| Agricultural directorates' rules | 12 of 12 | 73 (46 / 24 / 3 / 0) | stopped: 24 reading errors |
+| Family Code | 11 of 16 | not reached | stopped: a new article's title line |
+| Port enterprise rules | 3 of 8 | not reached | stopped: words into a two-line subheading |
+| Protected-persons law | 4 of 12 | not reached | stopped: the Gazette's numbering clash (open reading) |
+| Наредба № 1/2015 | 2 of 9 | not reached | stopped: „не повече от“ twice (open reading) |
+| Film-industry regulation | 0 of 3 | not reached | stopped: „филма“ twice (open reading) |
+
+Distance: 8 of 11 not committed; 18 of 18 listed acts not started. The estimate of 280,000 tokens per act was low by half: 434,000 per act with the engine's 21 rule versions fixed during the run, about 300,000 without them. The 18 listed acts at that rate: 5.4 to 7.8 M tokens. The residual error kinds are in `docs/followups/2026-11-01-f1-engine-residual-error-kinds.md`; the rules added are listed in D-081.
+

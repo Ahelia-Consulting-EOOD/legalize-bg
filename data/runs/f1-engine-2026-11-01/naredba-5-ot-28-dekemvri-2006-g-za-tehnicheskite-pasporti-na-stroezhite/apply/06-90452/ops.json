@@ -1,0 +1,50 @@
+{
+ "material": 90452,
+ "issue": "102/2014",
+ "operations": [
+  {
+   "id": "§единствен",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§единствен.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "§ 2, ал. 2, т. 1",
+   "old": "31 декември 2014 г.",
+   "old_ref": "q1",
+   "new": "31 декември 2015 г.",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§единствен.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "§ 2, ал. 2, т. 4",
+   "old": "31 декември 2016 г.",
+   "old_ref": "q1",
+   "new": "31 декември 2017 г.",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§единствен.3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "§ 2, ал. 2, т. 5",
+   "old": "31 декември 2018 г.",
+   "old_ref": "q1",
+   "new": "31 декември 2019 г.",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§единствен no_text_change: nothing",
+  "§единствен.1 replace_words: 1 replacement(s)",
+  "§единствен.2 replace_words: 1 replacement(s)",
+  "§единствен.3 replace_words: 1 replacement(s)"
+ ]
+}

@@ -1,0 +1,66 @@
+{
+ "material": 235635,
+ "title": "Наредба за изменение и допълнение на Наредба № 14 от 2023 г. за условията и реда за предоставяне на финансова помощ по интервенциите в лозаро-винарския сектор, включени в Стратегическия план за развитие на земеделието и селските райони за периода 2023 – 2027 г.",
+ "issue": "52/2025",
+ "section": "Министерство на земеделието и храните",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 14 от 2023 г. за условията и реда за предоставяне на финансова помощ по интервенциите в лозаро-винарския сектор, включени в Стратегическия план за развитие на земеделието и селските райони за периода 2023 – 2027 г.",
+   "cited_promulgation": [
+    80,
+    2023
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-14-ot-11-septemvri-2023-g-za-usloviyata-i-reda-za-predostavyane-na-finan",
+   "candidates": [
+    "naredba-14-ot-11-septemvri-2023-g-za-usloviyata-i-reda-za-predostavyane-na-finan"
+   ],
+   "flags": [
+    "numbered_key_tie",
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (numbered); the cited promulgation names the act",
+   "act_promulgation": [
+    80,
+    2023
+   ]
+  }
+ ],
+ "instructions": 131,
+ "signs": 56,
+ "quoted_blocks": 230,
+ "findings": [
+  {
+   "block": 2,
+   "kind": "cited_issue_unread",
+   "detail": "(oбн., ДВ, бр. 80 от 2023 г.; изм. и доп., бр. 93 от 2023 г., бр. 44 и бр. 73 от"
+  },
+  {
+   "block": 178,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '5. В таблица „Пределна цена за дейност „' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 183,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '6. Таблица „Пределна цена за дейност „См' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 414,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 55. В приложение № 3а към чл. 30, ал. ' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 8449,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

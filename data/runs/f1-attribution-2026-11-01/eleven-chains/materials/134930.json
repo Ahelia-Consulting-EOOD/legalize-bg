@@ -1,0 +1,72 @@
+{
+ "material": 134930,
+ "title": "Закон за изменение и допълнение на Закона за защита от вредното въздействие на химичните вещества и смеси",
+ "issue": "17/2019",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за защита от вредното въздействие на химичните вещества и смеси",
+   "cited_promulgation": [
+    10,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-",
+   "candidates": [
+    "zakon-za-zashtita-ot-vrednoto-vazdeystvie-na-himichnite-veshtestva-i-smesi-zagl-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    10,
+    2000
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Закона за изменение и допълнение на Закона за защита от вредното въздействие на химичните вещества и смеси",
+   "cited_promulgation": [
+    84,
+    2012
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Закона за изменение и допълнение на Закона за водите",
+   "cited_promulgation": [
+    58,
+    2015
+   ],
+   "status": "not_in_corpus",
+   "how": "amending_act",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the citation names an amending act's own provisions, which the corpus holds only as the amended act's text",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 12,
+ "signs": 5,
+ "quoted_blocks": 10,
+ "findings": [],
+ "tokens_instructions": 979,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

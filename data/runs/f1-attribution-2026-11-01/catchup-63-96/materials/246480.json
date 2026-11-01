@@ -1,0 +1,56 @@
+{
+ "material": 246480,
+ "title": "Постановление № 187 от 9 октомври 2026 г. за изменение и допълнение на нормативни актове на Министерския съвет",
+ "issue": "94/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Наредбата за Националния туристически регистър и за условията и реда за вписване в Националния регистър на туристическите забележителности, фестивали и събития, приета с Постановление № 252 на Министерския съвет от 2019 г.",
+   "cited_promulgation": [
+    81,
+    2019
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-natsionalniya-turisticheski-registar-i-za-usloviyata-i-reda-za-vpisva",
+   "candidates": [
+    "naredba-za-natsionalniya-turisticheski-registar-i-za-usloviyata-i-reda-za-vpisva"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    81,
+    2019
+   ]
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Тарифата за таксите, които се събират по Закона за туризма, приета с Постановление № 118 на Министерския съвет от 2021 г.",
+   "cited_promulgation": [
+    28,
+    2021
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 15,
+ "signs": 3,
+ "quoted_blocks": 76,
+ "findings": [],
+ "tokens_instructions": 4175,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

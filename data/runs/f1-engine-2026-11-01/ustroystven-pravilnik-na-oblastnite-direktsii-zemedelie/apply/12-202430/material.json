@@ -1,0 +1,14 @@
+{
+ "material": 202430,
+ "issue": "3/2024",
+ "material_sha256": "308b157be2272bfe4431a9dbe9d4d0d3f33ba4f5888456f24366f8cf26a49ff0",
+ "body_before_sha256": "221ba6c7249321bdcd355547f2528a1c41e02afb9d3c13bc5a209cc18b98ac15",
+ "task_sha256": "c0a9fd14818fcda212546d1d0dbf1182f743b6ff1a59c1eacd2609a5e089783a",
+ "scopes": [
+  "title"
+ ],
+ "findings": [],
+ "engine": "28",
+ "task_core": true,
+ "answer_sha256": "bc9f3d9d3fffca3513b280e106468167fcf9dec7196d97c75c4151571f095ffd"
+}

@@ -1,0 +1,35 @@
+{
+ "material": 246454,
+ "title": "Постановление № 185 от 8 октомври 2026 г. за създаване на териториални дирекции на Държавна агенция „Национална сигурност“ и определяне на седалищата и районите им на действие",
+ "issue": "94/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Постановление № 316 на Министерския съвет от 2009 г. за създаване на териториални дирекции на Държавна агенция „Национална сигурност“ и определяне на седалищата и районите им на действие",
+   "cited_promulgation": [
+    103,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": true,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 316 на Министерския съвет от 2009 г. за създаване на териториални дирекции на Държавна агенция „Национална сигурност“ и определяне на седалищата и районите им на действие')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 8,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 436,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

@@ -1,0 +1,47 @@
+{
+ "material": 246059,
+ "title": "Постановление № 148 от 18 септември 2026 г. за одобряване на допълнителни разходи/трансфери по бюджетите на Министерството на образоването и науката, на Министерството на младежта и спорта и на общините за 2026 г.",
+ "issue": "88/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 25,
+  "title": "Приложение към чл. 1, ал. 1"
+ },
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 9,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 12,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата 686 682 евро да се увеличат разходите "
+  },
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. (1) Със сумата 243 516 евро да се увеличат разходите "
+  },
+  {
+   "block": 16,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Трансферите по чл. 1, ал. 1, т. 1 и 5 се предоставят "
+  },
+  {
+   "block": 17,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Министърът на образованието и науката и министърът на"
+  },
+  {
+   "block": 18,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Министърът на финансите да извърши налагащите се пром"
+  }
+ ],
+ "tokens_instructions": 943,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

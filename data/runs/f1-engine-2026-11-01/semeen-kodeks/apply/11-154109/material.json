@@ -1,0 +1,14 @@
+{
+ "material": 154109,
+ "issue": "103/2020",
+ "material_sha256": "892fbadbde5fd4aa9d64eb1426600cd2885dc890a9c2832fb2d8f528ae81e5a0",
+ "body_before_sha256": "85f8cfc59630ec39d971a6835de30ebcf59adf40ecd9a56654e55e5c5b5035fe",
+ "task_sha256": "07f800ff4c871e3f5b602ebc9b680ec0d7702809e41f1342322bbb4be2ddd8b6",
+ "scopes": [
+  "title"
+ ],
+ "findings": [],
+ "engine": "28",
+ "task_core": true,
+ "answer_sha256": "9fdbebf2f198d66a49e22d8c10bcd8d14b80f2a17e5e324cfce5e6cd0b2e6159"
+}

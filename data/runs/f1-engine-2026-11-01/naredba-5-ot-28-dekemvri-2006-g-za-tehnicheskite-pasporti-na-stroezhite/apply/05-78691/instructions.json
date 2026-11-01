@@ -1,0 +1,224 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение и допълнение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "target_title": "Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2007
+  ],
+  "issues": [
+   [
+    7,
+    2007
+   ],
+   [
+    38,
+    2008
+   ],
+   [
+    22,
+    2010
+   ],
+   [
+    98,
+    2011
+   ],
+   [
+    2,
+    2013
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2007 г.; изм. и доп., бр. 38 от 2008 г., бр. 22 от 2010 г., бр. 98 от 2011 г. и бр. 2 от 2013 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0
+ ],
+ "headings": [
+  13
+ ],
+ "tail": [
+  17,
+  18
+ ],
+ "roles": {
+  "0": "header",
+  "17": "tail",
+  "18": "tail",
+  "1": "instruction",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "instruction",
+  "5": "instruction",
+  "6": "instruction",
+  "7": "instruction",
+  "8": "instruction",
+  "9": "quoted",
+  "10": "instruction",
+  "11": "quoted",
+  "12": "instruction",
+  "13": "heading",
+  "14": "instruction",
+  "15": "continuation",
+  "16": "continuation"
+ },
+ "findings": [],
+ "blocks": 19,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 1,
+   "text": "§ 1. В чл. 1, ал. 1 т. 3 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 2,
+   "text": "§ 2. В чл. 2, ал. 1, т. 2 текстът след думите „глава трета“ до края се заличава.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "глава трета"
+   ],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 3,
+   "text": "§ 3. В чл. 4, ал. 1 т. 4 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 4,
+   "text": "§ 4. В чл. 5 се правят следните допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§4.1",
+     "level": 1,
+     "block": 5,
+     "text": "1. В т. 3 след думите „въздушния транспорт и др.,“ се добавя „стойността на интегрираната енергийна характеристика на сградата и референтната й стойност, изразени като специфичен годишен разход на първична/потребена енергия в kWh/m2“ и се поставя запетая.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "въздушния транспорт и др.,",
+      "стойността на интегрираната енергийна характеристика на сградата и референтната й стойност, изразени като специфичен годишен разход на първична/потребена енергия в kWh/m2"
+     ],
+     "target": null
+    },
+    {
+     "id": "§4.2",
+     "level": 1,
+     "block": 6,
+     "text": "2. В т. 4 след думите „(номер, срок на валидност и др.), вкл.“ се добавя „сертификат за проектни енергийни характеристики за нови сгради и/или“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "(номер, срок на валидност и др.), вкл.",
+      "сертификат за проектни енергийни характеристики за нови сгради и/или"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 7,
+   "text": "§ 5. Член 7а се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 8,
+   "text": "§ 6. Член 8 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    9
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 10,
+   "text": "§ 7. В чл. 10 ал. 1 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    11
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 12,
+   "text": "§ 8. Приложението към чл. 8, ал. 7 се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 14,
+   "text": "§ 9. (1) Наредбата влиза в сила един месец след обнародването й в „Държавен вестник“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [
+    15,
+    16
+   ],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

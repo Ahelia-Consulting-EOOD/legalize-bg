@@ -1,0 +1,245 @@
+{
+ "act": "semeen-kodeks",
+ "promulgation": {
+  "material": 22498,
+  "issue": "47/2009",
+  "date": "2009-06-23"
+ },
+ "materials": [
+  {
+   "material": 25033,
+   "issue": "74/2009",
+   "date": "2009-09-15",
+   "position": 1,
+   "title": "Закон за изменение и допълнение на Закона за професионалното образование и обучение",
+   "kind": "law",
+   "scopes": [
+    "§47"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 25652,
+   "issue": "82/2009",
+   "date": "2009-10-16",
+   "position": 2,
+   "title": "Закон за изменение и допълнение на Закона за българските документи за самоличност",
+   "kind": "law",
+   "scopes": [
+    "§73"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 41376,
+   "issue": "98/2010",
+   "date": "2010-12-14",
+   "position": 4,
+   "title": "Закон за изменение и допълнение на Закона за здравето",
+   "kind": "law",
+   "scopes": [
+    "§94"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 41671,
+   "issue": "100/2010",
+   "date": "2010-12-21",
+   "position": 1,
+   "title": "Закон за изменение и допълнение на Гражданския процесуален кодекс",
+   "kind": "law",
+   "scopes": [
+    "§23"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 41709,
+   "issue": "100/2010",
+   "date": "2010-12-21",
+   "position": 4,
+   "title": "Закон за изменение и допълнение на Семейния кодекс",
+   "kind": "law",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 69470,
+   "issue": "82/2012",
+   "date": "2012-10-26",
+   "position": 2,
+   "title": "Закон за изменение на Закона за администрацията",
+   "kind": "law",
+   "scopes": [
+    "§15"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 77659,
+   "issue": "68/2013",
+   "date": "2013-08-02",
+   "position": 1,
+   "title": "Закон за изменение на Закона за младежта",
+   "kind": "law",
+   "scopes": [
+    "§54"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 107550,
+   "issue": "74/2016",
+   "date": "2016-09-20",
+   "position": 3,
+   "title": "Закон за изменение и допълнение на Закона за юридическите лица с нестопанска цел",
+   "kind": "law",
+   "scopes": [
+    "§29"
+   ],
+   "status": "parse_findings",
+   "findings": []
+  },
+  {
+   "material": 121172,
+   "issue": "103/2017",
+   "date": "2017-12-28",
+   "position": 3,
+   "title": "Закон за допълнение на Закона за ограничаване на административното регулиране и административния контрол върху стопанската дейност",
+   "kind": "law",
+   "scopes": [
+    "§6"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 135546,
+   "issue": "24/2019",
+   "date": "2019-03-22",
+   "position": 1,
+   "title": "Закон за социалните услуги",
+   "kind": "law",
+   "scopes": [
+    "§2"
+   ],
+   "status": "parse_findings",
+   "findings": []
+  },
+  {
+   "material": 154109,
+   "issue": "103/2020",
+   "date": "2020-12-04",
+   "position": 5,
+   "title": "Закон за изменение и допълнение на Семейния кодекс",
+   "kind": "law",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 197941,
+   "issue": "67/2023",
+   "date": "2023-08-04",
+   "position": 1,
+   "title": "Закон за изменение и допълнение на Закона за чужденците в Република България",
+   "kind": "law",
+   "scopes": [
+    "§20"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 201987,
+   "issue": "106/2023",
+   "date": "2023-12-22",
+   "position": 7,
+   "title": "Закон за изменение и допълнение на Семейния кодекс",
+   "kind": "law",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 233694,
+   "issue": "26/2025",
+   "date": "2025-03-27",
+   "position": 1,
+   "title": "Закон за държавния бюджет на Репуб­лика България за 2025 г.",
+   "kind": "law",
+   "scopes": [
+    "§34"
+   ],
+   "status": "parse_findings",
+   "findings": []
+  },
+  {
+   "material": 235575,
+   "issue": "52/2025",
+   "date": "2025-06-27",
+   "position": 1,
+   "title": "Закон за изменение и допълнение на Закона за чужденците в Република България",
+   "kind": "law",
+   "scopes": [
+    "§45"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  },
+  {
+   "material": 240237,
+   "issue": "115/2025",
+   "date": "2025-12-30",
+   "position": 3,
+   "title": "Закон за изменение и допълнение на Семейния кодекс",
+   "kind": "law",
+   "scopes": [
+    "title"
+   ],
+   "status": "amends_corpus_act",
+   "findings": []
+  }
+ ],
+ "lexbg_issues": [
+  "47/2009",
+  "74/2009",
+  "82/2009",
+  "98/2010",
+  "100/2010",
+  "82/2012",
+  "68/2013",
+  "74/2016",
+  "103/2017",
+  "24/2019",
+  "101/2019",
+  "103/2020",
+  "67/2023",
+  "106/2023",
+  "26/2025",
+  "52/2025",
+  "115/2025"
+ ],
+ "unexplained_lexbg_issues": [
+  "101/2019"
+ ],
+ "extra_issues": [],
+ "decisions_naming_the_act": [],
+ "candidates": 289,
+ "bodies_fetched": 33,
+ "built_at": "2026-11-01T10:53:02+00:00"
+}

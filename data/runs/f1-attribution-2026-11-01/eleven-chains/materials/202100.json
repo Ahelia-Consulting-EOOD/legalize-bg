@@ -1,0 +1,104 @@
+{
+ "material": 202100,
+ "title": "Постановление № 335 от 20 декември 2023 г. за изменение и допълнение на Устройствения правилник на Министерския съвет и на неговата администрация, приет с Постановление № 229 на Министерския съвет от 2009 г.",
+ "issue": "106/2023",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Министерския съвет и на неговата администрация",
+   "cited_promulgation": [
+    78,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-ministerskiya-savet-i-na-negovata-administratsiya",
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerskiya-savet-i-na-negovata-administratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    78,
+    2009
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Устройствения правилник на Изпълнителна агенция „Инфраструктура на електронното управление“, приет с Постановление № 89 на Министерския съвет от 2022 г.",
+   "cited_promulgation": [
+    38,
+    2022
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-infrastruktura-na-elektronnoto-u",
+   "candidates": [
+    "ustroystven-pravilnik-na-izpalnitelna-agentsiya-infrastruktura-na-elektronnoto-u"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    38,
+    2022
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Постановление № 276 на Министерския съвет от 2023 г. за приемане на Правилник за устройството, организацията и дейността на Националния съвет за превенция и защита от домашното насилие",
+   "cited_promulgation": [
+    104,
+    2023
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Правилник за устройството, организацията и дейността на Националния съвет за превенция и защита от домашното насилие')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Постановление № 219 на Министерския съвет от 2023 г. за изменение и допълнение на Устройствения правилник на Министерството на външните работи, приет с Постановление № 202 на Министерския съвет от 2013 г.",
+   "cited_promulgation": [
+    95,
+    2023
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствения правилник на Министерството на външните работи')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 23,
+ "signs": 9,
+ "quoted_blocks": 21,
+ "findings": [
+  {
+   "block": 33,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходни и заключителни разпоредби' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 49,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '2. В § 39 думите „от 1 януари“ се заменя' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 2016,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

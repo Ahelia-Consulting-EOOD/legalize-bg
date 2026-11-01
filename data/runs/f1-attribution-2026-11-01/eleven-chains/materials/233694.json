@@ -1,0 +1,530 @@
+{
+ "material": 233694,
+ "title": "Закон за държавния бюджет на Репуб­лика България за 2025 г.",
+ "issue": "26/2025",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§9",
+   "cited_title": "Закона за Комисията за финансов надзор",
+   "cited_promulgation": [
+    8,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-komisiyata-za-finansov-nadzor",
+   "candidates": [
+    "zakon-za-komisiyata-za-finansov-nadzor"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    8,
+    2003
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за социалните услуги",
+   "cited_promulgation": [
+    24,
+    2019
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sotsialnite-uslugi",
+   "candidates": [
+    "zakon-za-sotsialnite-uslugi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    24,
+    2019
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за вероизповеданията",
+   "cited_promulgation": [
+    120,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-veroizpovedaniyata",
+   "candidates": [
+    "zakon-za-veroizpovedaniyata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    120,
+    2002
+   ]
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за висшето образование",
+   "cited_promulgation": [
+    112,
+    1995
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vissheto-obrazovanie",
+   "candidates": [
+    "zakon-za-vissheto-obrazovanie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    112,
+    1995
+   ]
+  },
+  {
+   "scope": "§14",
+   "cited_title": "Закона за изпълнение на наказанията и задържането под стража",
+   "cited_promulgation": [
+    25,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha",
+   "candidates": [
+    "zakon-za-izpalnenie-na-nakazaniyata-i-zadarzhaneto-pod-strazha"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    25,
+    2009
+   ]
+  },
+  {
+   "scope": "§15",
+   "cited_title": "Закона за счетоводството",
+   "cited_promulgation": [
+    95,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-schetovodstvoto",
+   "candidates": [
+    "zakon-za-schetovodstvoto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    2015
+   ]
+  },
+  {
+   "scope": "§16",
+   "cited_title": "Данъчно-осигурителния процесуален кодекс",
+   "cited_promulgation": [
+    105,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "danachno-osiguritelen-protsesualen-kodeks",
+   "candidates": [
+    "danachno-osiguritelen-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2005
+   ]
+  },
+  {
+   "scope": "§18",
+   "cited_title": "Закона за предучилищното и училищното образование",
+   "cited_promulgation": [
+    79,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-preduchilishtnoto-i-uchilishtnoto-obrazovanie",
+   "candidates": [
+    "zakon-za-preduchilishtnoto-i-uchilishtnoto-obrazovanie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    79,
+    2015
+   ]
+  },
+  {
+   "scope": "§19",
+   "cited_title": "Закона за насърчаване на заетостта",
+   "cited_promulgation": [
+    112,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasarchavane-na-zaetostta",
+   "candidates": [
+    "zakon-za-nasarchavane-na-zaetostta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    112,
+    2001
+   ]
+  },
+  {
+   "scope": "§20",
+   "cited_title": "Гражданския процесуален кодекс",
+   "cited_promulgation": [
+    59,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "grazhdanski-protsesualen-kodeks",
+   "candidates": [
+    "grazhdanski-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    59,
+    2007
+   ]
+  },
+  {
+   "scope": "§21",
+   "cited_title": "Валутния закон",
+   "cited_promulgation": [
+    83,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "valuten-zakon",
+   "candidates": [
+    "valuten-zakon"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    83,
+    1999
+   ]
+  },
+  {
+   "scope": "§22",
+   "cited_title": "Закона за акцизите и данъчните складове",
+   "cited_promulgation": [
+    91,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-aktsizite-i-danachnite-skladove",
+   "candidates": [
+    "zakon-za-aktsizite-i-danachnite-skladove"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2005
+   ]
+  },
+  {
+   "scope": "§24",
+   "cited_title": "Закона за данък върху добавената стойност",
+   "cited_promulgation": [
+    63,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danak-varhu-dobavenata-stoynost",
+   "candidates": [
+    "zakon-za-danak-varhu-dobavenata-stoynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    63,
+    2006
+   ]
+  },
+  {
+   "scope": "§26",
+   "cited_title": "Закона за данъците върху доходите на физическите лица",
+   "cited_promulgation": [
+    95,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa",
+   "candidates": [
+    "zakon-za-danatsite-varhu-dohodite-na-fizicheskite-litsa"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    95,
+    2006
+   ]
+  },
+  {
+   "scope": "§27",
+   "cited_title": "Закона за корпоративното подоходно облагане",
+   "cited_promulgation": [
+    105,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-korporativnoto-podohodno-oblagane",
+   "candidates": [
+    "zakon-za-korporativnoto-podohodno-oblagane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2006
+   ]
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Закона за Българската народна банка",
+   "cited_promulgation": [
+    13,
+    2024
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskata-narodna-banka",
+   "candidates": [
+    "zakon-za-balgarskata-narodna-banka"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    13,
+    2024
+   ]
+  },
+  {
+   "scope": "§33",
+   "cited_title": "Закона за Българската банка за развитие",
+   "cited_promulgation": [
+    43,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskata-banka-za-razvitie",
+   "candidates": [
+    "zakon-za-balgarskata-banka-za-razvitie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    43,
+    2008
+   ]
+  },
+  {
+   "scope": "§34",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  },
+  {
+   "scope": "§34.2",
+   "cited_title": "В преходните и заключителните разпоредби на Закона за изменение и допълнение на Семейния кодекс",
+   "cited_promulgation": [
+    106,
+    2023
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds semeen-kodeks (promulgated 47/2009); the material cites бр. 106/2023",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§35",
+   "cited_title": "Закона за енергетиката",
+   "cited_promulgation": [
+    107,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-energetikata",
+   "candidates": [
+    "zakon-za-energetikata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    107,
+    2003
+   ]
+  },
+  {
+   "scope": "§36",
+   "cited_title": "Закона за пътищата",
+   "cited_promulgation": [
+    26,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-patishtata",
+   "candidates": [
+    "zakon-za-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    2000
+   ]
+  },
+  {
+   "scope": "§38",
+   "cited_title": "Закона за ограничаване изменението на климата",
+   "cited_promulgation": [
+    22,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ogranichavane-izmenenieto-na-klimata",
+   "candidates": [
+    "zakon-za-ogranichavane-izmenenieto-na-klimata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    22,
+    2014
+   ]
+  },
+  {
+   "scope": "§39",
+   "cited_title": "Закона за хазарта",
+   "cited_promulgation": [
+    26,
+    2012
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-hazarta",
+   "candidates": [
+    "zakon-za-hazarta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    26,
+    2012
+   ]
+  }
+ ],
+ "instructions": 347,
+ "signs": 41,
+ "quoted_blocks": 400,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 9618: item 1 after 3 under §3"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 9621: item 1 after 2 under §3"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 9626: item 1 after 4 under §3"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 9634: item 1 after 3 under §3"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 9640: item 1 after 4 under §3"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 41637,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

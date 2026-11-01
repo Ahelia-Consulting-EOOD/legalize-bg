@@ -1,0 +1,147 @@
+{
+ "material": 154059,
+ "title": "Закон за бюджета на Националната здравноосигурителна каса за 2021 г.",
+ "issue": "103/2020",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§7",
+   "cited_title": "Закона за ветераните от войните на Република България и по чл. 15, ал. 1 и 2 от Закона за военноинвалидите и военнопострадалите, както и целевите средства за диагностика и лечение в лечебни заведения за болнична помощ на лицата по Постановление № 17 на Министерския съвет от 2007 г. за определяне на условията и реда за разходване на целевите средства за диагностика и лечение в лечебни заведения за болнична помощ на лица, които нямат доход и/или лично имущество, което да им осигурява лично участие в здравноосигурителния процес",
+   "cited_promulgation": [
+    13,
+    2007
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§17",
+   "cited_title": "Закона за здравето",
+   "cited_promulgation": [
+    70,
+    2004
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdraveto",
+   "candidates": [
+    "zakon-za-zdraveto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    2004
+   ]
+  },
+  {
+   "scope": "§18",
+   "cited_title": "Закона за здравното осигуряване",
+   "cited_promulgation": [
+    70,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravnoto-osiguryavane",
+   "candidates": [
+    "zakon-za-zdravnoto-osiguryavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    1998
+   ]
+  },
+  {
+   "scope": "§19",
+   "cited_title": "Закона за лекарствените продукти в хуманната медицина",
+   "cited_promulgation": [
+    31,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lekarstvenite-produkti-v-humannata-meditsina",
+   "candidates": [
+    "zakon-za-lekarstvenite-produkti-v-humannata-meditsina"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    31,
+    2007
+   ]
+  },
+  {
+   "scope": "§22",
+   "cited_title": "Закона за лечебните заведения",
+   "cited_promulgation": [
+    62,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lechebnite-zavedeniya",
+   "candidates": [
+    "zakon-za-lechebnite-zavedeniya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    62,
+    1999
+   ]
+  },
+  {
+   "scope": "§23",
+   "cited_title": "Закона за бюджета на Националната здравноосигурителна каса за 2020 г.",
+   "cited_promulgation": [
+    99,
+    2019
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 76,
+ "signs": 24,
+ "quoted_blocks": 41,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 304: letter б) after none) under §19.1"
+  }
+ ],
+ "tokens_instructions": 12036,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

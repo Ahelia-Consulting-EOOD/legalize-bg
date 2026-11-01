@@ -1,0 +1,34 @@
+{
+ "material": 214511,
+ "title": "Постановление № 133 от 29 април 2024 г. за одобряване на допълнителни разходи по бюджета на Комисията за отнемане на незаконно придобитото имущество за 2024 г.",
+ "issue": "39/2024",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 1 да се увеличат разходите п"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Председателят на Комисията за отнемане на незаконно п"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 374,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

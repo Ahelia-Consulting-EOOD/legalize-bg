@@ -1,0 +1,86 @@
+{
+ "material": 973,
+ "issue": "86/2005",
+ "operations": [
+  {
+   "id": "§10",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§10.1",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§10.1.а",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 13, ал. 7",
+   "old": "чл. 152а, ал. 5 и 8",
+   "old_ref": "q1",
+   "new": "чл. 64, ал. 3 и 5",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§10.1.б",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 13, ал. 10",
+   "old": "чл. 152б",
+   "old_ref": "q1",
+   "new": "чл. 65",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§10.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 15, ал. 1",
+   "old": "чл. 152а, ал. 5 и 8",
+   "old_ref": "q1",
+   "new": "чл. 64, ал. 3 и 5",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§10.3",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§10.3.а",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 43, ал. 2",
+   "old": "чл. 152а",
+   "old_ref": "q1",
+   "new": "чл. 64",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§10.3.б",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 43, ал. 4",
+   "old": "чл. 152б",
+   "old_ref": "q1",
+   "new": "чл. 65",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§10 no_text_change: nothing",
+  "§10.1 no_text_change: nothing",
+  "§10.1.а replace_words: 1 replacement(s)",
+  "§10.1.б replace_words: 1 replacement(s)",
+  "§10.2 replace_words: 1 replacement(s)",
+  "§10.3 no_text_change: nothing",
+  "§10.3.а replace_words: 1 replacement(s)",
+  "§10.3.б replace_words: 1 replacement(s)"
+ ]
+}

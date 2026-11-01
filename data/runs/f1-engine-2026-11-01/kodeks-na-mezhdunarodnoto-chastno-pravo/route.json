@@ -1,0 +1,404 @@
+{
+ "slug": "kodeks-na-mezhdunarodnoto-chastno-pravo",
+ "run": "f1-engine-2026-11-01",
+ "route": "history",
+ "state": "committed",
+ "entries": [
+  {
+   "step": "chain",
+   "input_sha256": "c16065a7d805a33bf0d33fbc3beb5df8216845c754b72ac328c3f7286c501553",
+   "outputs_sha256": "e6700d1c2c9044b15ac9ccd1c0cf55e72659a22bdad294d0e34d2645ab4265d1",
+   "outcome": "done",
+   "detail": "6 material(s) change the act after бр. 42/2005; lex.bg names 6 issue(s), 0 unexplained (none), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:51:59+00:00",
+   "ended": "2026-11-01T10:52:21+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "input_sha256": "b8b240bcc0743ee4f9519a8e3747ec91087fe8dda7ba93f592341c660508cce2",
+   "outputs_sha256": "443272f2757844dec4727ec453b89deaea4d625ea258c206329a00feb9787a8a",
+   "outcome": "done",
+   "detail": "material 292 of бр. 42/2005 (cached), sha256 7aaa96adc976",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:52:21+00:00",
+   "ended": "2026-11-01T10:52:21+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "d513b6032c7d48945461758daa82b58b974cadc38ac19999109313f4d8b7bdba",
+   "outputs_sha256": "7b83b8ab6806d5b27e0fa80566821d28abefd75b61383aa5c711fd155613eb95",
+   "outcome": "done",
+   "detail": "574 blocks, 20 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:52:21+00:00",
+   "ended": "2026-11-01T10:52:21+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "9bd8f1ae1129710470c7278480ba3177d15260cfdd6438d4285df4cc638ba639",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 20 of 20 tasks unanswered; 3 labeller call(s) to make: 1a718d7f288a-0000-0007 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/calls/round0/1a718d7f288a-0000-0007.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/maps/round0/1a718d7f288a-0000-0007.json; 1a718d7f288a-0008-0015 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/calls/round0/1a718d7f288a-0008-0015.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/maps/round0/1a718d7f288a-0008-0015.json; 1a718d7f288a-0016-0019 (4 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/calls/round0/1a718d7f288a-0016-0019.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/maps/round0/1a718d7f288a-0016-0019.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T10:52:21+00:00",
+   "ended": "2026-11-01T10:52:21+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "98194acfbbee0619447ce45d6c556e171a28e1d4deb1e0f04b03f3dd2a31dd25",
+   "outputs_sha256": "8e8422c90338a96def2bbc9efc39695e9c1ab118a7fafc609fa7ab36af4394fb",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:54+00:00",
+   "ended": "2026-11-01T10:56:54+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "2aa79608cdeb93aa2d9f1c86b3a4b098183dcf5670d7f56feafea1b336a4968d",
+   "outputs_sha256": "0b4f2497c5ff07336d97733af05af4906b611b8c639b4a87a5358e9e75462757",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/ladder.json",
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:54+00:00",
+   "ended": "2026-11-01T10:56:54+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "153aef5ff64a45751f967708def6a314732dbc7e8f4c2bf4b9b1454dfb2ae8d6",
+   "outputs_sha256": "04c10dd8e55117c960f5746147ef6f6b2c1c8de93d038570ee2fa6aba0f8e287",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:54+00:00",
+   "ended": "2026-11-01T10:56:54+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "96d36bc70fac7e70c9967323ba0e302233118d92978607110996040652066687",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 6 (бр. 59/2007, 3951): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:56:54+00:00",
+   "ended": "2026-11-01T10:56:54+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "e3f639b4c65d39b6e5a5e09eae59d10913dcb01b367519f0be6ef5c51200bd69",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 6 (бр. 59/2007, 3951): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:02:46+00:00",
+   "ended": "2026-11-01T11:02:46+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "fde0243f40008e01f47480878d55fd1fc31568d9d5170b61d088a5d42f0c789a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 3951 (бр. 59/2007): the answer is refused: §7.3 outside_set: outside the closed set of operations: The instruction replaces the whole reference (чл. 80, ал. 1, буква plus the quoted letter г and its closing quote mark) with q2, but the Gazette's nested quotation marks cut segment q1 short before the letter г, so replacing q1 with q2 would leave the letter г and its closing quote mark in the text. No quoted segment covers the full old words; the old string must be the reference including the letter г and its quote marks.",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:34+00:00",
+   "ended": "2026-11-01T11:05:34+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "d4f6ab4931d228e0bd783fb8780a4fc13f9a21da3162f0fd010d41dfa20aca6a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 6 (бр. 59/2007, 3951): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:06:59+00:00",
+   "ended": "2026-11-01T11:06:59+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "1f1339e6652f4ae0224248d58e68169d21da93ff9983e58effdc268c2e13b9ea",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 6 (бр. 47/2009, 22498): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:57+00:00",
+   "ended": "2026-11-01T11:08:57+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "6528f154a229f5a7afa21c5a91845155eb05278ab7283d7e440641dcd0a8bba1",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 6 (бр. 47/2009, 22498): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:10:20+00:00",
+   "ended": "2026-11-01T11:10:20+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "7399fbfbe72ccdfbbe590d309fca4708d242c0598a0dfa0c125681a302a055a9",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 6 (бр. 47/2009, 22498): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/02-22498/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:13:41+00:00",
+   "ended": "2026-11-01T11:13:41+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "30ecf1d9fd3f45d4f0fd4e723b8f5ea66d1868c027745fc47459a0c6f234f0de",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 6 (бр. 100/2010, 41709): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/03-41709/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/03-41709/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/03-41709/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:17:33+00:00",
+   "ended": "2026-11-01T11:17:33+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "b9f55a8b3e574fc41325b0d925da4acdf846965f75ef62d56311beb984efe9d3",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 6 (бр. 106/2023, 201987): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/04-201987/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/04-201987/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/04-201987/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:26:00+00:00",
+   "ended": "2026-11-01T11:26:00+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "436b5d68365cbebd7e6281a648c641ffdf0abb9417b94a8708c7744263f3bc75",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 5 of 6 (бр. 39/2024, 214105): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/05-214105/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/05-214105/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/05-214105/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:31:58+00:00",
+   "ended": "2026-11-01T11:31:58+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "b50c8b6da0568ea93fd1b9d85c5b1f564a6096602b58a6e46b15b4cb64213507",
+   "outputs_sha256": "8e8422c90338a96def2bbc9efc39695e9c1ab118a7fafc609fa7ab36af4394fb",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:03+00:00",
+   "ended": "2026-11-01T11:38:03+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "db78c9065c89d66b0601e4d55c84e8e7ebb4db128d94afb4a65c100891e35b5b",
+   "outputs_sha256": "0b4f2497c5ff07336d97733af05af4906b611b8c639b4a87a5358e9e75462757",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/ladder.json",
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:03+00:00",
+   "ended": "2026-11-01T11:38:03+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ab189370aa9873c94455d419c35561b997eb6967da01b0ed0093d1ad2e33a886",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 246208 (бр. 92/2026): the answer is refused: §9.2.б renumber: 'чл. 121, ал. 2 и 3' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/06-246208/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:17+00:00",
+   "ended": "2026-11-01T11:51:17+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "d25646b2ca790357093562432487c67590bbcf5e580223727c8e7c2a9c64b076",
+   "outputs_sha256": "e5de028116ee88f322a45e55b6b5a257e4e31ca3e1505aa31ec559e3de8f30d2",
+   "outcome": "done",
+   "detail": "6 material(s) applied, operations {'no_text_change': 5, 'replace_words': 8, 'replace_sentence': 1, 'delete_words': 2, 'repeal': 1, 'replace_provision': 1, 'insert_provision': 2, 'renumber': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:59:59+00:00",
+   "ended": "2026-11-01T11:59:59+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "55bae4e1dda2d62fd4d8281930664d746ee31ba72c2c706437a66dfcdbe96349",
+   "outputs_sha256": "08ac9d0e86475e0757453bc3512f05a69e4e451b2c4d058b184eaf22b08bef71",
+   "outcome": "pending",
+   "detail": "differences to settle (lexbg 132, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:59:59+00:00",
+   "ended": "2026-11-01T12:00:00+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "8782d8737b1dc5ed3391c5feabe6448ea8d357a8da584ff3954130d473e01f2a",
+   "outputs_sha256": "c0b9d3e4b20a87aec3b1e2b8733751e7a978f1da0ce61281ac888e68894395ca",
+   "outcome": "done",
+   "detail": "6 material(s) applied, operations {'no_text_change': 5, 'replace_words': 8, 'replace_sentence': 1, 'delete_words': 2, 'repeal': 1, 'replace_provision': 1, 'insert_provision': 2, 'renumber': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:19+00:00",
+   "ended": "2026-11-01T12:04:19+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "d130a3aadb0de57c2c2befa70dd9d8c4e966576313fe8cb62770bcc39fff5d29",
+   "outputs_sha256": "2e4a927ca8fb213d81f41e8f73611cfb939b2077d89658e065d5f8ff48be0e5e",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 131, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:19+00:00",
+   "ended": "2026-11-01T12:04:19+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "985ed5319e71daa15df484dd9940077d42036dcfd556984fa2806cdb87214bc7",
+   "outputs_sha256": "c0b9d3e4b20a87aec3b1e2b8733751e7a978f1da0ce61281ac888e68894395ca",
+   "outcome": "pending",
+   "detail": "material 1 of 6 (бр. 59/2007, 3951): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply/01-3951/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:08+00:00",
+   "ended": "2026-11-01T12:10:08+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "985ed5319e71daa15df484dd9940077d42036dcfd556984fa2806cdb87214bc7",
+   "outputs_sha256": "99b0d72dfad1ade3721040fafffdc19bf89e56d7b114299d71bc27414b4dd903",
+   "outcome": "done",
+   "detail": "6 material(s) applied, operations {'no_text_change': 5, 'replace_words': 8, 'replace_sentence': 1, 'delete_words': 2, 'repeal': 1, 'replace_provision': 1, 'insert_provision': 2, 'renumber': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:02+00:00",
+   "ended": "2026-11-01T12:15:02+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "d130a3aadb0de57c2c2befa70dd9d8c4e966576313fe8cb62770bcc39fff5d29",
+   "outputs_sha256": "2e4a927ca8fb213d81f41e8f73611cfb939b2077d89658e065d5f8ff48be0e5e",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 131, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:02+00:00",
+   "ended": "2026-11-01T12:15:02+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ed674ba1b2ca398863c7a19c71c36e9d0548eeed42eced32340eac49ac38a15e",
+   "outputs_sha256": "463f1f51c4487a862a4f3595802324c821f768e4be1677cc172be0edc94b5483",
+   "outcome": "done",
+   "detail": "6 material(s) applied, operations {'no_text_change': 5, 'replace_words': 8, 'replace_sentence': 1, 'delete_words': 2, 'repeal': 1, 'replace_provision': 1, 'insert_provision': 2, 'renumber': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:18+00:00",
+   "ended": "2026-11-01T12:19:18+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "17fc8b1aebfd92ef38fec7788563ee8a5e711a66faf83cc60b93d6b974bb152b",
+   "outputs_sha256": "739c8e83dec1194331048eb28f0cf59d1208110f93d0596ba73d6f8f4ca597e3",
+   "outcome": "done",
+   "detail": "lexbg: 131 difference(s), settled same_text_other_form 126, source_error 1, witness_error 4; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135503651 (absent, 2026-11-01T11:59:59+00:00))",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-diff.json",
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:18+00:00",
+   "ended": "2026-11-01T12:19:18+00:00"
+  },
+  {
+   "step": "write",
+   "input_sha256": "5110edd461b2bc9384ff530c443e209eeac7823cd2b276ae906a3e8bcb78385c",
+   "outputs_sha256": "f5e011d1343c3ee0990b53de4943487d40e8e1a0545719adccfa88e270b119a6",
+   "outcome": "done",
+   "detail": "[popravka] 3ff8323b6 Record-Id f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/a4d82265c9a1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/kodeks-na-mezhdunarodnoto-chastno-pravo/written.json"
+   ],
+   "committed": "3ff8323b6",
+   "started": "2026-11-01T12:19:18+00:00",
+   "ended": "2026-11-01T12:19:19+00:00"
+  }
+ ],
+ "step": "write",
+ "stopped_at": null,
+ "exception": null,
+ "case_file": "docs/cases/kodeks-na-mezhdunarodnoto-chastno-pravo.md",
+ "commit": "3ff8323b6"
+}

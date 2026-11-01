@@ -1,0 +1,477 @@
+{
+ "material": 121196,
+ "title": "Постановление № 332 от 22 декември 2017 г. за изпълнението на държавния бюджет на Република България за 2018 г.",
+ "issue": "103/2017",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 232,
+  "title": "ВИЖ приложенията"
+ },
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "Чл.1.2",
+   "cited_title": "Наредба № 25 от 1999 г. за оказване на спешна медицинска помощ",
+   "cited_promulgation": [
+    98,
+    1999
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-25-ot-4-noemvri-1999-g-za-okazvane-na-speshna-meditsinska-pomosht",
+   "candidates": [
+    "naredba-25-ot-4-noemvri-1999-g-za-okazvane-na-speshna-meditsinska-pomosht"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    98,
+    1999
+   ]
+  },
+  {
+   "scope": "§1",
+   "cited_title": "Наредбата за определяне на реда, начина, сроковете и обхвата на подлежащата на публикуване информация от Системата за електронни бюджетни разплащания, приета с Постановление № 299 на Министерския съвет от 2016 г.",
+   "cited_promulgation": [
+    92,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-opredelyane-na-reda-nachina-srokovete-i-obhvata-na-podlezhashtata-na-",
+   "candidates": [
+    "naredba-za-opredelyane-na-reda-nachina-srokovete-i-obhvata-na-podlezhashtata-na-"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    92,
+    2016
+   ]
+  }
+ ],
+ "instructions": 50,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Утвърждава предназначението на субсидиите по чл. 51, "
+  },
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Утвърждава предназначението на субсидиите по чл. 51, "
+  },
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. (1) Министърът на земеделието, храните и горите по пр"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. (1) Първостепенните разпоредители с бюджет в срок до "
+  },
+  {
+   "block": 11,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 6. Утвърждава норматив за час програма на Българската на"
+  },
+  {
+   "block": 12,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 7. Утвърждава норматив за час програма на Българското на"
+  },
+  {
+   "block": 13,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 8. Утвърждава предназначението на трансферите по чл. 16,"
+  },
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 9. (1) Промени по реда на чл. 110 от Закона за публичнит"
+  },
+  {
+   "block": 16,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 10. (1) Промени на утвърдените целеви текущи и капиталов"
+  },
+  {
+   "block": 21,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 11. Определя базов норматив за издръжка на обучението на"
+  },
+  {
+   "block": 22,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 12. (1) Определя средствата от държавния бюджет за студе"
+  },
+  {
+   "block": 30,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 13. (1) Субсидиите от централния бюджет за Национална ко"
+  },
+  {
+   "block": 33,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 14. (1) Министърът на транспорта, информационните технол"
+  },
+  {
+   "block": 42,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 15. (1) Утвърденият общ лимит на разход в размер до 79 8"
+  },
+  {
+   "block": 57,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 16. (1) За компенсиране на намалените приходи от прилага"
+  },
+  {
+   "block": 70,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 17. (1) Министърът на транспорта, информационните технол"
+  },
+  {
+   "block": 73,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 18. (1) Одобрява допълнителни трансфери в размер до 1 43"
+  },
+  {
+   "block": 81,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 19. (1) За заявените от общините, но неразкрити специали"
+  },
+  {
+   "block": 83,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 20. (1) Средствата за предоставяне на социалните услуги "
+  },
+  {
+   "block": 88,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 21. (1) Одобрява допълнителни трансфери в размер до 1 12"
+  },
+  {
+   "block": 92,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 22. (1) За изплащане на действително извършени пътни раз"
+  },
+  {
+   "block": 95,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 23. (1) За изплащане на действително извършени разходи п"
+  },
+  {
+   "block": 97,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 24. (1) За финансиране на подготовката, осигуряването и "
+  },
+  {
+   "block": 99,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 25. Предвидените в централния бюджет средства за археоло"
+  },
+  {
+   "block": 100,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 26. (1) Министърът на здравеопазването чрез регионалните"
+  },
+  {
+   "block": 105,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 27. (1) Остатъчните салда от конвертируемите валутни нал"
+  },
+  {
+   "block": 107,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 28. (1) Одобрява допълнителни разходи в размер до 3 000 "
+  },
+  {
+   "block": 110,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 29. Министърът на икономиката разпределя предвидените ср"
+  },
+  {
+   "block": 111,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 30. (1) Средствата от резерва за предотвратяване, овладя"
+  },
+  {
+   "block": 119,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 31. Средствата от общия бюджет на Европейския съюз за въ"
+  },
+  {
+   "block": 120,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 32. От средствата, предвидени за краткосрочни командиров"
+  },
+  {
+   "block": 121,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 33. (1) Средствата, изразходвани за участие на делегати "
+  },
+  {
+   "block": 123,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 34. (1) Първостепенните разпоредители с бюджет по прилож"
+  },
+  {
+   "block": 126,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 35. Разходите за представителни цели на бюджетните орган"
+  },
+  {
+   "block": 130,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 36. (1) Бюджетните организации могат да извършват разход"
+  },
+  {
+   "block": 135,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 37. (1) Средствата за социално-битово и културно обслужв"
+  },
+  {
+   "block": 140,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 38. Министърът на финансите въз основа на предложения от"
+  },
+  {
+   "block": 141,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 39. (1) Първостепенните разпоредители с бюджет предостав"
+  },
+  {
+   "block": 143,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 40. (1) Министърът на образованието и науката извършва п"
+  },
+  {
+   "block": 146,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 41. (1) По решение на директора, при условие че са осигу"
+  },
+  {
+   "block": 152,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 42. Директорите на училища в системата на предучилищното"
+  },
+  {
+   "block": 153,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 43. (1) Финансирането на разкритите след 1 януари 2018 г"
+  },
+  {
+   "block": 156,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 44. (1) Неусвоените средства от допълнително предоставен"
+  },
+  {
+   "block": 159,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 45. Неусвоените към 31 декември 2017 г. средства от пост"
+  },
+  {
+   "block": 160,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 46. Неусвоените средства от трансформирана по реда на чл"
+  },
+  {
+   "block": 161,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 47. (1) Трансферът за зимно поддържане на общинските път"
+  },
+  {
+   "block": 163,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 48. Със средства от целевата субсидия за капиталови разх"
+  },
+  {
+   "block": 164,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 49. (1) Общините представят на Фонд „Социална закрила“ в"
+  },
+  {
+   "block": 166,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 50. (1) До 20 на сто от ежемесечно превежданите от държа"
+  },
+  {
+   "block": 168,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 51. Министерството на здравеопазването може да предостав"
+  },
+  {
+   "block": 169,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 52. (1) Министерството на здравеопазването субсидира дър"
+  },
+  {
+   "block": 189,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 53. Необходимите разходи за медицински транспорт по чл. "
+  },
+  {
+   "block": 190,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 54. (1) Лечебните заведения за болнична помощ, които са "
+  },
+  {
+   "block": 192,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 55. (1) Снабдяването на здравните и лечебните заведения "
+  },
+  {
+   "block": 194,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 56. Предвидените в бюджета на Министерството на здравеоп"
+  },
+  {
+   "block": 195,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 57. (1) Министърът на финансите може да не одобри смени "
+  },
+  {
+   "block": 197,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 58. (1) За целите на касовото изпълнение на бюджета пост"
+  },
+  {
+   "block": 199,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 59. (1) Вноските по отчислената печалба, съответно по ра"
+  },
+  {
+   "block": 201,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 60. Министерството на финансите публикува ежемесечно отч"
+  },
+  {
+   "block": 202,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 61. (1) Средства и плащания на „БДЖ – Пътнически превози"
+  },
+  {
+   "block": 204,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 62. (1) На Национална компания „Железопътна инфраструкту"
+  },
+  {
+   "block": 207,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 63. При нулева или отрицателна лихва по депозитите в Бъл"
+  },
+  {
+   "block": 208,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 64. (1) До 10-о число на всеки месец Държавен фонд „Земе"
+  },
+  {
+   "block": 216,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 65. В случаите, когато по одобрени проекти ДДС е финанси"
+  },
+  {
+   "block": 217,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 66. Предвидените средства по бюджета на Министерския съв"
+  },
+  {
+   "block": 218,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 67. (1) Средствата по чл. 152, ал. 1 от Семейния кодекс "
+  },
+  {
+   "block": 221,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 68. Предвидените по бюджета на Министерството на отбрана"
+  },
+  {
+   "block": 222,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 69. (1) Министерството на финансите да прехвърли на Мини"
+  },
+  {
+   "block": 224,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 70. С оглед осигуряване на ефективно управление на публи"
+  },
+  {
+   "block": 225,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 71. Бюджетните организации своевременно разплащат от бюд"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 23: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 34: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 43: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 58: item 1 after 10 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 75: item 1 after 4 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 127: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 131: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 147: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 170: item 1 after 3 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 181: item 1 after 10 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 184: item 1 after 2 under Чл.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 10613,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

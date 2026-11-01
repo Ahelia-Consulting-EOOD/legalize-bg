@@ -1,0 +1,35 @@
+{
+ "material": 41993,
+ "title": "Постановление № 303 от 16 декември 2010 г. за изменение на Постановление № 67 на Министерския съвет от 2010 г. за заплатите в бюджетните организации и дейности",
+ "issue": "100/2010",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Постановление № 67 на Министерския съвет от 2010 г. за заплатите в бюджетните организации и дейности",
+   "cited_promulgation": [
+    32,
+    2010
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 67 на Министерския съвет от 2010 г. за заплатите в бюджетните организации и дейности')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 62,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

@@ -1,0 +1,37 @@
+{
+ "material": 245872,
+ "title": "Постановление № 137 от 9 септември 2026 г. за одобряване на допълнителни трансфери по бюджетите на общини за 2026 г.",
+ "issue": "84/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": {
+  "start": 18,
+  "title": "Приложение към чл. 1, ал. 1"
+ },
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 5,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 7,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Със сумата по чл. 1, ал. 1 да се намалят показателите"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на здравеопазването да извърши съответните"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши налагащите се пром"
+  }
+ ],
+ "tokens_instructions": 434,
+ "attributed_at": "2026-11-01T09:40:31+00:00"
+}

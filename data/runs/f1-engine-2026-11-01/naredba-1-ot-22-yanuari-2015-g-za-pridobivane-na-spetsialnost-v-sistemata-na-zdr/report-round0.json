@@ -1,0 +1,59 @@
+{
+ "slug": "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr",
+ "round": 0,
+ "blocks": 971,
+ "sections": 28,
+ "source": "dv",
+ "answers_missing": [],
+ "call_defects": [],
+ "exceptions": [],
+ "source_findings": [
+  {
+   "block": 33,
+   "kind": "malformed_head",
+   "detail": "item head without a space after the number: '2.сесията и годината на полага'"
+  }
+ ],
+ "lost_text": [],
+ "omissions": [],
+ "ruled": {},
+ "exception_kinds": {},
+ "source_finding_kinds": {
+  "malformed_head": 1
+ },
+ "labels": {
+  "drop": 3,
+  "title": 2,
+  "chapter_heading": 12,
+  "article_head": 50,
+  "alinea": 96,
+  "item": 66,
+  "letter": 10,
+  "provisions_heading": 1,
+  "paragraph_sign": 11,
+  "annex_heading": 3,
+  "annex_row": 717
+ },
+ "dropped": [
+  {
+   "block": 0,
+   "text": "МИНИСТЕРСТВО НА ЗДРАВЕОПАЗВАНЕТО",
+   "note": "issuing body printed before the title, not the act"
+  },
+  {
+   "block": 249,
+   "text": "Министър: Петър Москов",
+   "note": "minister's signature after the act, not the act"
+  },
+  {
+   "block": 970,
+   "text": "439",
+   "note": "bare number after the last annex row, read as the Gazette material's number after the act; annex_row also plausible"
+  }
+ ],
+ "note": "an earlier task set was replaced: answers of round 1 moved to round1-stale-133804139516",
+ "residue": [],
+ "residue_detail": [],
+ "residue_classes": {},
+ "diff_lines": 4158
+}

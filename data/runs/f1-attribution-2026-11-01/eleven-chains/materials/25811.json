@@ -1,0 +1,40 @@
+{
+ "material": 25811,
+ "title": "Закон за изменение и допълнение на Закона за гражданското въздухоплаване",
+ "issue": "82/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за гражданското въздухоплаване",
+   "cited_promulgation": [
+    94,
+    1972
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-grazhdanskoto-vazduhoplavane",
+   "candidates": [
+    "zakon-za-grazhdanskoto-vazduhoplavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    94,
+    1972
+   ]
+  }
+ ],
+ "instructions": 15,
+ "signs": 5,
+ "quoted_blocks": 4,
+ "findings": [],
+ "tokens_instructions": 626,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

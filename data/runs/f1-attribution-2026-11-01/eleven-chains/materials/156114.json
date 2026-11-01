@@ -1,0 +1,35 @@
+{
+ "material": 156114,
+ "title": "Постановление № 51 от 17 февруари 2021 г. за изменение и допълнение на Постановление № 41 на Министерския съвет за приемане на план-сметка за разходите по подготовката и произвеждането на изборите за народни представители през 2021 г.",
+ "issue": "16/2021",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Постановление № 41 на Министерския съвет за приемане на план-сметка за разходите по подготовката и произвеждането на изборите за народни представители през 2021 г.",
+   "cited_promulgation": [
+    11,
+    2021
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 41 на Министерския съвет за приемане на план-сметка за разходите по подготовката и произвеждането на изборите за народни представители през 2021 г.')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 12,
+ "signs": 4,
+ "quoted_blocks": 8,
+ "findings": [],
+ "tokens_instructions": 442,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

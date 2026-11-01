@@ -1,0 +1,228 @@
+{
+ "material": 41673,
+ "title": "Закон за изменение и допълнение на Закона за електронния документ и електронния подпис",
+ "issue": "100/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за електронния документ и електронния подпис",
+   "cited_promulgation": [
+    34,
+    2001
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§43",
+   "cited_title": "Закона за данък върху добавената стойност",
+   "cited_promulgation": [
+    63,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-danak-varhu-dobavenata-stoynost",
+   "candidates": [
+    "zakon-za-danak-varhu-dobavenata-stoynost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    63,
+    2006
+   ]
+  },
+  {
+   "scope": "§44",
+   "cited_title": "Административнопроцесуалния кодекс",
+   "cited_promulgation": [
+    30,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "administrativnoprotsesualen-kodeks",
+   "candidates": [
+    "administrativnoprotsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    30,
+    2006
+   ]
+  },
+  {
+   "scope": "§45",
+   "cited_title": "Данъчно-осигурителния процесуален кодекс",
+   "cited_promulgation": [
+    105,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "danachno-osiguritelen-protsesualen-kodeks",
+   "candidates": [
+    "danachno-osiguritelen-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    105,
+    2005
+   ]
+  },
+  {
+   "scope": "§46",
+   "cited_title": "Кодекса за застраховането",
+   "cited_promulgation": [
+    103,
+    2005
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "kodeks-za-zastrahovaneto"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds kodeks-za-zastrahovaneto (promulgated 102/2015); the material cites бр. 103/2005",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§47",
+   "cited_title": "Закона за българските лични документи",
+   "cited_promulgation": [
+    93,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g",
+   "candidates": [
+    "zakon-za-balgarskite-lichni-dokumenti-zagl-izm-dv-br-82-ot-2009-g"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    93,
+    1998
+   ]
+  },
+  {
+   "scope": "§48",
+   "cited_title": "Закона за движението по пътищата",
+   "cited_promulgation": [
+    20,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-dvizhenieto-po-patishtata",
+   "candidates": [
+    "zakon-za-dvizhenieto-po-patishtata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    1999
+   ]
+  },
+  {
+   "scope": "§49",
+   "cited_title": "Закона за насърчаване на инвестициите",
+   "cited_promulgation": [
+    97,
+    1997
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060",
+   "candidates": [
+    "zakon-za-nasarchavane-na-investitsiite-zagl-izm-dv-br-37-ot-2004-g-v-sila-ot-060"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    97,
+    1997
+   ]
+  },
+  {
+   "scope": "§50",
+   "cited_title": "Закона за статистика на вътрешнообщностната търговия със стоки",
+   "cited_promulgation": [
+    51,
+    2006
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§51",
+   "cited_title": "Закона за здравното осигуряване",
+   "cited_promulgation": [
+    70,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravnoto-osiguryavane",
+   "candidates": [
+    "zakon-za-zdravnoto-osiguryavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    1998
+   ]
+  }
+ ],
+ "instructions": 137,
+ "signs": 54,
+ "quoted_blocks": 108,
+ "findings": [
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 228: item 9 after 3 under §39"
+  }
+ ],
+ "tokens_instructions": 8373,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

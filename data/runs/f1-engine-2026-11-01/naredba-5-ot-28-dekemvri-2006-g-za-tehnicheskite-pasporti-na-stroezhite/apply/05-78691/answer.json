@@ -1,0 +1,13 @@
+{"material": 78691, "operations": [
+{"id": "§1", "kind": "repeal", "address": "чл. 1, ал. 1, т. 3"},
+{"id": "§2", "kind": "delete_words", "address": "чл. 2, ал. 1, т. 2", "anchor": "q1", "where": "after"},
+{"id": "§3", "kind": "repeal", "address": "чл. 4, ал. 1, т. 4"},
+{"id": "§4", "kind": "no_text_change"},
+{"id": "§4.1", "kind": "insert_words", "address": "чл. 5, т. 3", "anchor": "q1", "where": "after", "new": "q2", "punctuation": "after"},
+{"id": "§4.2", "kind": "insert_words", "address": "чл. 5, т. 4", "anchor": "q1", "where": "after", "new": "q2"},
+{"id": "§5", "kind": "repeal", "address": "чл. 7а"},
+{"id": "§6", "kind": "replace_provision", "address": "чл. 8", "blocks": [9, 9]},
+{"id": "§7", "kind": "replace_provision", "address": "чл. 10, ал. 1", "blocks": [11, 11]},
+{"id": "§8", "kind": "repeal_annex", "address": "Приложение към чл. 8, ал. 7"},
+{"id": "§9", "kind": "no_text_change"}
+]}

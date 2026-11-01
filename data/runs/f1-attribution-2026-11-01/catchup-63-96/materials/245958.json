@@ -1,0 +1,143 @@
+{
+ "material": 245958,
+ "title": "Наредба за изменение и допълнение на Наредба № 11 от 31 октомври 2002 г. за международен автомобилен превоз на пътници и товари",
+ "issue": "89/2026",
+ "section": "Министерство на транспорта и съобщенията",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 11 от 31 октомври 2002 г. за международен автомобилен превоз на пътници и товари",
+   "cited_promulgation": [
+    108,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-11-ot-31-oktomvri-2002-g-za-mezhdunaroden-avtomobilen-prevoz-na-patnitsi",
+   "candidates": [
+    "naredba-11-ot-31-oktomvri-2002-g-za-mezhdunaroden-avtomobilen-prevoz-na-patnitsi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    108,
+    2002
+   ]
+  },
+  {
+   "scope": "§72",
+   "cited_title": "Наредба № H-3 от 7.04.2009 г. за необходимите мерки за изпълнението и прилагането на Регламент (ЕС) № 165/2014 на Европейския парламент и на Съвета от 4 февруари 2014 г. относно тахографите в автомобилния транспорт, за отмяна на Регламент (ЕИО) № 3821/85 на Съвета относно контролните уреди за регистриране на данните за движението при автомобилен транспорт и за изменение на Регламент (ЕО) № 561/2006 на Европейския парламент и на Съвета за хармонизиране на някои разпоредби от социалното законодателство, свързани с автомобилния транспорт, и за необходимите мерки за изпълнението и прилагането на Регламент (ЕО) № 561/2006 на Европейския парламент и на Съвета от 15 март 2006 г. за хармонизиране на някои разпоредби от социалното законодателство, свързани с автомобилния транспорт, за изменение на регламенти (ЕИО) № 3821/85 и (ЕО) № 2135/98 на Съвета и за отмяна на Регламент (ЕИО) № 3820/85 на Съвета",
+   "cited_promulgation": [
+    31,
+    2009
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-n-3-ot-7-april-2009-g-za-neobhodimite-merki-za-izpalnenieto-i-prilaganet",
+   "candidates": [
+    "naredba-n-3-ot-27-may-2009-g-za-spetsifichnite-iziskvaniya-za-zaemane-na-dlazhno",
+    "naredba-n-3-ot-7-april-2009-g-za-neobhodimite-merki-za-izpalnenieto-i-prilaganet"
+   ],
+   "flags": [
+    "numbered_date_mismatch",
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (numbered); the cited promulgation names the act",
+   "act_promulgation": [
+    31,
+    2009
+   ]
+  }
+ ],
+ "instructions": 187,
+ "signs": 68,
+ "quoted_blocks": 118,
+ "findings": [
+  {
+   "block": 76,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'б) точка 6 се отменя;' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 270,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 50. Приложение № 3 към чл. 6, ал. 8 се' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 272,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 51. Приложение № 6 към чл. 8, ал. 1 се' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 274,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 52. Приложение № 6б към чл. 8, ал. 3 с' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 277,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 54. Приложение № 11б към чл. 9, ал. 4 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 279,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 55. Приложение № 11в към чл. 9, ал. 5 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 281,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 56. В приложение № 11г думите „чл. 9, ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 283,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 57. Приложение № 11д към чл. 10, ал. 3' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 285,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 58. Приложение № 14 към чл. 20, ал. 2 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 287,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 59. Приложение № 15а към чл. 27 се изм' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 289,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 60. Приложение № 17 към чл. 35, ал. 1,' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 291,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 61. Приложение № 21а към чл. 47, ал. 1' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 293,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 62. Приложение № 24 към чл. 53, ал. 1 ' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 303,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходни и заключителни разпоредби' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": 304,
+   "kind": "sign_sequence",
+   "detail": "§ 68 where § 63 was expected"
+  }
+ ],
+ "tokens_instructions": 10486,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

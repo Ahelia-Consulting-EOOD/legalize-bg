@@ -1,0 +1,39 @@
+{
+ "material": 156117,
+ "title": "Постановление № 54 от 18 февруари 2021 г. за откриване на Институт за устойчив преход и развитие в структурата на Тракийския университет – Стара Загора",
+ "issue": "16/2021",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Органи за управление на института са управителен съве"
+  },
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. (1) Управителният съвет се състои от 10 членове – по "
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Ректорът на Тракийския университет – Стара Загора, на"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. По предложение на управителния съвет на института Ака"
+  }
+ ],
+ "tokens_instructions": 96,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

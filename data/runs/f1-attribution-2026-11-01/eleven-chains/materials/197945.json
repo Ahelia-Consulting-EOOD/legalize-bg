@@ -1,0 +1,45 @@
+{
+ "material": 197945,
+ "title": "Наредба за допълнение на Наредба № 58 от 28.02.2018 г. за изискванията за защита на финансовите инструменти и паричните средства на клиенти, за управление на продукти и за предоставяне или получаване на възнаграждения, комисиони, други парични или непарични облаги",
+ "issue": "67/2023",
+ "section": "Комисия за финансов надзор",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 58 от 28.02.2018 г. за изискванията за защита на финансовите инструменти и паричните средства на клиенти, за управление на продукти и за предоставяне или получаване на възнаграждения, комисиони, други парични или непарични облаги",
+   "cited_promulgation": [
+    22,
+    2018
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-58-ot-28-fevruari-2018-g-za-iziskvaniyata-za-zashtita-na-finansovite-ins",
+   "candidates": [
+    "naredba-58-ot-28-fevruari-2018-g-za-iziskvaniyata-za-zashtita-na-finansovite-ins"
+   ],
+   "flags": [
+    "numbered_date_mismatch",
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (numbered); the cited promulgation names the act",
+   "act_promulgation": [
+    22,
+    2018
+   ]
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 74,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

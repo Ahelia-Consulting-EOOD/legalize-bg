@@ -1,0 +1,24 @@
+{
+ "material": 246261,
+ "title": "Постановление № 175 от 29 септември 2026 г. за одобряване на промени по бюджета на Министерството на енергетиката за 2026 г. във връзка с увеличаване капитала на търговско дружество",
+ "issue": "91/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Министърът на енергетиката да извърши съответните"
+  }
+ ],
+ "tokens_instructions": 373,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

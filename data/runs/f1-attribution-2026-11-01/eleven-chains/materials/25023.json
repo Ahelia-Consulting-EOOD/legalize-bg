@@ -1,0 +1,54 @@
+{
+ "material": 25023,
+ "title": "Наредба за изменение и допълнение на Наредба № 9 от 2003 г. за условията и реда за планиране, разпределение и разходване на средствата, отпускани целево от държавния бюджет за присъщата на висшите училища научна или художествено-творческа дейност",
+ "issue": "74/2009",
+ "section": "Министерство на образованието, младежта и науката",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 9 от 2003 г. за условията и реда за планиране, разпределение и разходване на средствата, отпускани целево от държавния бюджет за присъщата на висшите училища научна или художествено-творческа дейност",
+   "cited_promulgation": [
+    73,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 31,
+ "signs": 17,
+ "quoted_blocks": 28,
+ "findings": [
+  {
+   "block": 42,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'б) закупуване на работно облекло и обувк' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 46: letter б) after д) under §10.1"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 2421,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

@@ -1,0 +1,14 @@
+{
+ "material": 25652,
+ "issue": "82/2009",
+ "material_sha256": "984771825c55ccfdcdd5f7abad808897c85db42e7c5cd10704fb9595428d4050",
+ "body_before_sha256": "c81d3b47ece8cd48a07a0ff8939024c7b080d8ddd10035b0a479f190b5ed1058",
+ "task_sha256": "5cca42be390d743f160c9a204d158cf42e27044799417fea83001486ccbcd267",
+ "scopes": [
+  "§81"
+ ],
+ "findings": [],
+ "engine": "26",
+ "task_core": true,
+ "answer_sha256": "2b626bec15bda53e118ec5a30c510c1d813039c1c116f825d02369a2dfe695ee"
+}

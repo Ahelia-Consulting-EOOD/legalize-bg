@@ -1,0 +1,54 @@
+{
+ "material": 107546,
+ "title": "Решение № 461 от 1 септември 2016 г. за приемане на Технически изисквания за осигуряване на оперативна съвместимост на потребителските цифрови телевизионни устройства",
+ "issue": "74/2016",
+ "section": "Комисия за регулиране на съобщенията",
+ "kind": "decision",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 5,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 1. Техническите изисквания определят условията за осигур"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Всички потребителски цифрови телевизионни устройства "
+  },
+  {
+   "block": 10,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Всеки аналогов телевизионен апарат с екран с видим ди"
+  },
+  {
+   "block": 11,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Всеки цифров телевизионен апарат с екран с видим диаг"
+  },
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 5. Битовата техника за приемане на стандартен цифров тел"
+  },
+  {
+   "block": 15,
+   "kind": "item_without_sign",
+   "detail": "1. да позволява декодиране на сигнали в съответствие с общ е"
+  },
+  {
+   "block": 16,
+   "kind": "item_without_sign",
+   "detail": "2. да изобразява на екран свободно излъчен сигнал, включител"
+  }
+ ],
+ "tokens_instructions": 192,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

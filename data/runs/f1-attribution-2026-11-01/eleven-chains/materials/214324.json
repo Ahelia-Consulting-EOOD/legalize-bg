@@ -1,0 +1,40 @@
+{
+ "material": 214324,
+ "title": "Закон за изменение и допълнение на Закона за чужденците в Република България",
+ "issue": "39/2024",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за чужденците в Република България",
+   "cited_promulgation": [
+    153,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-chuzhdentsite-v-republika-balgariya",
+   "candidates": [
+    "zakon-za-chuzhdentsite-v-republika-balgariya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    153,
+    1998
+   ]
+  }
+ ],
+ "instructions": 12,
+ "signs": 2,
+ "quoted_blocks": 16,
+ "findings": [],
+ "tokens_instructions": 2017,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

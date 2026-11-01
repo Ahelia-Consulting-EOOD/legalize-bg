@@ -1,0 +1,40 @@
+{
+ "material": 147261,
+ "title": "Постановление № 56 от 31 март 2020 г. за изменение и допълнение на Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство, приет с Постановление № 242 на Министерския съвет от 2018 г.",
+ "issue": "31/2020",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство",
+   "cited_promulgation": [
+    94,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    94,
+    2018
+   ]
+  }
+ ],
+ "instructions": 10,
+ "signs": 3,
+ "quoted_blocks": 4,
+ "findings": [],
+ "tokens_instructions": 356,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

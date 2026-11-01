@@ -1,0 +1,61 @@
+{
+ "material": 41860,
+ "title": "Наредба за изменение и допълнение на Наредба № 38 от 2004 г. за определяне на списъка на заболяванията, за чието домашно лечение Националната здравноосигурителна каса заплаща лекарства, медицински изделия и диетични храни за специални медицински цели напълно или частично",
+ "issue": "100/2010",
+ "section": "Министерство на здравеопазването",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 38 от 2004 г. за определяне на списъка на заболяванията, за чието домашно лечение Националната здравноосигурителна каса заплаща лекарства, медицински изделия и диетични храни за специални медицински цели напълно или частично",
+   "cited_promulgation": [
+    106,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Наредба № 34 от 2005 г. за реда за заплащане от републиканския бюджет на лечението на българските граждани за заболявания, извън обхвата на задължителното здравно осигуряване",
+   "cited_promulgation": [
+    95,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-34-ot-25-noemvri-2005-g-za-reda-za-zaplashtane-ot-darzhavniya-byudzhet-n",
+   "candidates": [
+    "naredba-34-ot-25-noemvri-2005-g-za-reda-za-zaplashtane-ot-darzhavniya-byudzhet-n"
+   ],
+   "flags": [
+    "content_mismatch"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (content_mismatch)",
+   "act_promulgation": [
+    95,
+    2005
+   ]
+  }
+ ],
+ "instructions": 20,
+ "signs": 3,
+ "quoted_blocks": 91,
+ "findings": [],
+ "tokens_instructions": 1979,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

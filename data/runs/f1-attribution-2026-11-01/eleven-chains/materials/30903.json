@@ -1,0 +1,48 @@
+{
+ "material": 30903,
+ "title": "Наредба за изменение и допълнение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "issue": "22/2010",
+ "section": "Министерство на регионалното развитие и благоустройството",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+   "cited_promulgation": [
+    7,
+    2007
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite",
+   "candidates": [
+    "naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    7,
+    2007
+   ]
+  }
+ ],
+ "instructions": 22,
+ "signs": 13,
+ "quoted_blocks": 20,
+ "findings": [
+  {
+   "block": 43,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходна и заключителна разпоредба' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 1821,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

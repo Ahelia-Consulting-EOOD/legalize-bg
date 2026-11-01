@@ -1,0 +1,68 @@
+{
+ "material": 148957,
+ "title": "Наредба за изменение и допълнение на Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+ "issue": "54/2020",
+ "section": "Министерство на здравеопазването",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "cited_promulgation": [
+    7,
+    2015
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr",
+   "candidates": [
+    "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "by the resolver's numbered key (numbered_key_tie)",
+   "act_promulgation": [
+    7,
+    2015
+   ]
+  },
+  {
+   "scope": "§32",
+   "cited_title": "Наредба № 1 от 2015 г. за придобиване на специалност в системата на здравеопазването",
+   "cited_promulgation": [
+    58,
+    2019
+   ],
+   "status": "predecessor_or_other",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [
+    "naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr"
+   ],
+   "flags": [
+    "numbered_key_tie"
+   ],
+   "repeal": false,
+   "note": "the resolver names naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr by numbered, promulgated 7/2015; the material cites бр. 58/2019",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 73,
+ "signs": 34,
+ "quoted_blocks": 56,
+ "findings": [
+  {
+   "block": 129,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходни и заключителни разпоредби' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 5823,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

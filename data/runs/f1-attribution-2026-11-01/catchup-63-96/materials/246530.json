@@ -1,0 +1,243 @@
+{
+ "material": 246530,
+ "title": "Постановление № 188 от 12 октомври 2026 г. за приемане на Устройствен правилник на Изпълнителната агенция за насърчаване на малките и средните предприятия към министъра на икономиката, инвестициите и индустрията",
+ "issue": "95/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 47,
+  "title": "УСТРОЙСТВЕН ПРАВИЛНИК"
+ },
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1.1",
+   "cited_title": "Устройствения правилник на Изпълнителната агенция за насърчаване на малките и средните предприятия към министъра на иновациите и растежа (заглавие изменено – ДВ, бр. 60 от 2025 г.), приет с Постановление № 105 на Министерския съвет от 2015 г.",
+   "cited_promulgation": [
+    32,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-izpalnitelnata-agentsiya-za-nasarchavane-na-malkite-i-s",
+   "candidates": [
+    "ustroystven-pravilnik-na-izpalnitelnata-agentsiya-za-nasarchavane-na-malkite-i-s"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    32,
+    2015
+   ]
+  },
+  {
+   "scope": "§1.2",
+   "cited_title": "Постановление № 105 на Министерския съвет от 2015 г. за приемане на Устройствен правилник на Българската агенция за инвестиции и на Устройствен правилник на Изпълнителната агенция за насърчаване на малките и средните предприятия към министъра на икономиката",
+   "cited_promulgation": [
+    32,
+    2015
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Устройствен правилник на Българската агенция за инвестиции и на Устройствен правилник на Изпълнителната агенция за насърчаване на малките и средните предприятия към министъра на икономиката')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Устройствения правилник на Българския институт по метрология, приет с Постановление № 63 на Министерския съвет от 2023 г.",
+   "cited_promulgation": [
+    38,
+    2023
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-balgarskiya-institut-po-metrologiya",
+   "candidates": [
+    "ustroystven-pravilnik-na-balgarskiya-institut-po-metrologiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    38,
+    2023
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Правилника за устройството и дейността на Държавната комисия по стоковите борси и тържищата и на нейната администрация, приет с Постановление № 61 на Министерския съвет от 2000 г.",
+   "cited_promulgation": [
+    36,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-darzhavnata-komisiya-po-stokovite-borsi",
+   "candidates": [
+    "pravilnik-za-ustroystvoto-i-deynostta-na-darzhavnata-komisiya-po-stokovite-borsi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    36,
+    2000
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Устройствения правилник на Държавната агенция за метрологичен и технически надзор, приет с Постановление № 47 на Министерския съвет от 2003 г.",
+   "cited_promulgation": [
+    20,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-darzhavnata-agentsiya-za-metrologichen-i-tehnicheski-na",
+   "candidates": [
+    "ustroystven-pravilnik-na-darzhavnata-agentsiya-za-metrologichen-i-tehnicheski-na"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    20,
+    2003
+   ]
+  },
+  {
+   "scope": "§5",
+   "cited_title": "Устройствения правилник на Българската агенция за инвестиции, приет с Постановление № 105 на Министерския съвет от 2015 г.",
+   "cited_promulgation": [
+    32,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-balgarskata-agentsiya-za-investitsii",
+   "candidates": [
+    "ustroystven-pravilnik-na-balgarskata-agentsiya-za-investitsii"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    32,
+    2015
+   ]
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Устройствения правилник на Агенцията за публичните предприятия и контрол, приет с Постановление № 68 на Министерския съвет от 2020 г.",
+   "cited_promulgation": [
+    37,
+    2020
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-agentsiyata-za-publichnite-predpriyatiya-i-kontrol",
+   "candidates": [
+    "ustroystven-pravilnik-na-agentsiyata-za-publichnite-predpriyatiya-i-kontrol"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    37,
+    2020
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Устройствения правилник на Комисията за защита на потребителите към министъра на икономиката и индустрията и на нейната администрация, приет с Постановление № 139 на Министерския съвет от 2006 г.",
+   "cited_promulgation": [
+    49,
+    2006
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-komisiyata-za-zashtita-na-potrebitelite-kam-ministara-n",
+   "candidates": [
+    "ustroystven-pravilnik-na-komisiyata-za-zashtita-na-potrebitelite-kam-ministara-n"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    49,
+    2006
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Устройствения правилник на Изпълнителна агенция „Българска служба за акредитация“, приет с Постановление № 187 на Министерския съвет от 2011 г.",
+   "cited_promulgation": [
+    53,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-izpalnitelna-agentsiya-balgarska-sluzhba-za-akreditatsi",
+   "candidates": [
+    "ustroystven-pravilnik-na-izpalnitelna-agentsiya-balgarska-sluzhba-za-akreditatsi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    53,
+    2011
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Устройствения правилник на Министерството на икономиката, инвестициите и индустрията, приет с Постановление № 104 на Министерския съвет от 2026 г.",
+   "cited_promulgation": [
+    76,
+    2026
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [
+    "ustroystven-pravilnik-na-ministerstvoto-na-ikonomikata-i-industriyata"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Постановление № 160 от 2026 г.",
+   "cited_promulgation": [
+    89,
+    2026
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 160 от 2026 г.')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 32,
+ "signs": 12,
+ "quoted_blocks": 8,
+ "findings": [],
+ "tokens_instructions": 3027,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

@@ -86,12 +86,14 @@ def test_a_stale_answer_is_set_aside_and_a_child_scope_is_kept(tmp_path, monkeyp
     (d / "answer.json").write_text(json.dumps(ANSWER, ensure_ascii=False), encoding="utf-8")
     (ctx.act_dir / "staged.md").write_text(BODY.replace("2. втора, до 30 000 лв.", "2. втора, до 30 000 лв. днес"), encoding="utf-8")   # a provision the task shows changes under the answer
     res = steps.STEPS["apply"].run(ctx)
-    assert res.outcome == "pending" and (d / "answer.stale-1.json").exists() and not (d / "answer.json").exists()
+    # the „current text at“ sections are no part of the task's core: the answer stands, and the apply re-checks it
+    assert res.outcome != "pending" and (d / "answer.json").exists() and not (d / "answer.stale-1.json").exists()
     chain = json.loads((ctx.act_dir / "chain.json").read_text(encoding="utf-8"))
-    chain["materials"][0]["scopes"] = ["§1"]   # attributed through one § only: that instruction, not the whole material
+    chain["materials"][0]["scopes"] = ["§1"]   # attributed through one § only: that instruction, not the whole material: the core changes
     (ctx.act_dir / "chain.json").write_text(json.dumps(chain), encoding="utf-8")
     res = steps.STEPS["apply"].run(ctx)
-    assert res.outcome == "pending" and "§2" not in (d / "task.md").read_text(encoding="utf-8").split("## The instructions")[1]
+    assert res.outcome == "pending" and (d / "answer.stale-1.json").exists() and not (d / "answer.json").exists()
+    assert "§2" not in (d / "task.md").read_text(encoding="utf-8").split("## The instructions")[1]
     chain["materials"][0]["scopes"] = ["§9"]
     (ctx.act_dir / "chain.json").write_text(json.dumps(chain), encoding="utf-8")
     assert steps.STEPS["apply"].run(ctx).outcome == "stop"

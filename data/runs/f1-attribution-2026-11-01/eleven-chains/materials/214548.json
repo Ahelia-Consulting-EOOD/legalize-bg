@@ -1,0 +1,29 @@
+{
+ "material": 214548,
+ "title": "Постановление № 142 от 29 април 2024 г. за одобряване на допълнителни разходи по бюджета на Министерството на енергетиката за 2024 г.",
+ "issue": "39/2024",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 10,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 13,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на енергетиката да извърши съответните про"
+  },
+  {
+   "block": 14,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 508,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

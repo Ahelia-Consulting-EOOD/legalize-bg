@@ -228,8 +228,7 @@ def run_step(ctx: Context, step: Step, ledger: dict | None = None) -> dict:
             raise RouteRefused(f"{ctx.slug}: step {step.name} already ran on these inputs ({h[:12]}) in run {e['run']} with outcome "
                                f"{e['outcome']}; a step never runs again on inputs it has already run on")
         if e["outcome"] == "pending":
-            raise RouteRefused(f"{ctx.slug}: step {step.name} is pending on these inputs ({h[:12]}) since run {e['run']}; "
-                               f"it runs again when its inputs change")
+            continue   # a pending step may run again on the same inputs: resumable, cheap, and its own records may have moved
         if e["outcome"] in ("running", "interrupted"):
             raise RouteRefused(f"{ctx.slug}: step {step.name} was interrupted on these inputs ({h[:12]}) in run {e['run']} "
                                f"(started {e['started']}); read the record before running it again")
@@ -309,7 +308,18 @@ def run_route(ctx: Context, steps: dict[str, Step], route: str | None = None,
                                        f"the run folder was altered, read the record before going on")
                 continue   # the result stands
             if e["outcome"] == "pending":
-                return _pending(ctx, ledger, name, e["detail"])
+                # a pending step runs again on the same inputs: it is resumable and cheap, and its own records (a material's
+                # record, a set-aside answer) may have moved since, which the inputs do not see (1 November 2026)
+                e = run_step(ctx, step, ledger)
+                if e["outcome"] == "pending":
+                    return _pending(ctx, ledger, name, e["detail"])
+                if e["outcome"] == "unchanged":
+                    return _stop(ctx, ledger, name, f"{STOP_UNCHANGED}: {name}")
+                if e["outcome"] == "stop":
+                    return _stop(ctx, ledger, name, e["detail"])
+                if e.get("committed"):
+                    return _committed(ctx, ledger, e)
+                continue
             if e["outcome"] in ("running", "interrupted"):
                 # the step died on these inputs: a stop the owner reads, never a blind rerun
                 return _stop(ctx, ledger, name, f"the step was interrupted in run {e['run']} (started {e['started']}); the record names it")

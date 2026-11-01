@@ -1,0 +1,61 @@
+{
+ "material": 240237,
+ "title": "Закон за изменение и допълнение на Семейния кодекс",
+ "issue": "115/2025",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Семейния кодекс",
+   "cited_promulgation": [
+    47,
+    2009
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "semeen-kodeks",
+   "candidates": [
+    "semeen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    47,
+    2009
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Гражданския процесуален кодекс",
+   "cited_promulgation": [
+    59,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "grazhdanski-protsesualen-kodeks",
+   "candidates": [
+    "grazhdanski-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    59,
+    2007
+   ]
+  }
+ ],
+ "instructions": 25,
+ "signs": 13,
+ "quoted_blocks": 26,
+ "findings": [],
+ "tokens_instructions": 3282,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

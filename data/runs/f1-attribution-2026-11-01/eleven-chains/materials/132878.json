@@ -1,0 +1,35 @@
+{
+ "material": 132878,
+ "title": "Постановление № 282 от 7 декември 2018 г. за изменение на Постановление № 221 на Министерския съвет от 2018 г. за одобряване на допълнителни разходи по бюджета на Министерството на регионалното развитие и благоустройството за 2018 г.",
+ "issue": "102/2018",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Постановление № 221 на Министерския съвет от 2018 г. за одобряване на допълнителни разходи по бюджета на Министерството на регионалното развитие и благоустройството за 2018 г.",
+   "cited_promulgation": [
+    85,
+    2018
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 221 на Министерския съвет от 2018 г. за одобряване на допълнителни разходи по бюджета на Министерството на регионалното развитие и благоустройството за 2018 г.')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 2,
+ "signs": 2,
+ "quoted_blocks": 158,
+ "findings": [],
+ "tokens_instructions": 1590,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

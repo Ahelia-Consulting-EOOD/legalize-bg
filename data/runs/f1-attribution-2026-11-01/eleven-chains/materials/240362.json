@@ -1,0 +1,103 @@
+{
+ "material": 240362,
+ "title": "Постановление № 354 от 29 декември 2025 г. за изменение на нормативни актове на Министерския съвет",
+ "issue": "115/2025",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Наредбата за паричните обезщетения и помощи от държавното обществено осигуряване",
+   "cited_promulgation": [
+    57,
+    2015
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-parichnite-obezshteteniya-i-pomoshti-ot-darzhavnoto-obshtestveno-osig",
+   "candidates": [
+    "naredba-za-parichnite-obezshteteniya-i-pomoshti-ot-darzhavnoto-obshtestveno-osig"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    57,
+    2015
+   ]
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Наредбата за обществено осигуряване на самоосигуряващите се лица, българските граждани на работа в чужбина и морските лица",
+   "cited_promulgation": [
+    21,
+    2000
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-obshtestveno-osiguryavane-na-samoosiguryavashtite-se-litsa-balgarskit",
+   "candidates": [
+    "naredba-za-obshtestveno-osiguryavane-na-samoosiguryavashtite-se-litsa-balgarskit"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    21,
+    2000
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Наредбата за осигурителните каси",
+   "cited_promulgation": [
+    37,
+    2001
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-osiguritelnite-kasi",
+   "candidates": [
+    "naredba-za-osiguritelnite-kasi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    37,
+    2001
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Наредбата за командировките в страната",
+   "cited_promulgation": [
+    11,
+    1987
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-komandirovkite-v-stranata",
+   "candidates": [
+    "naredba-za-komandirovkite-v-stranata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    11,
+    1987
+   ]
+  }
+ ],
+ "instructions": 5,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 688,
+ "attributed_at": "2026-11-01T09:40:27+00:00"
+}

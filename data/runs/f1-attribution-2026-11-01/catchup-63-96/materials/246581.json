@@ -1,0 +1,61 @@
+{
+ "material": 246581,
+ "title": "Постановление № 190 от 14 октомври 2026 г. за изменение и допълнение на Устройствения правилник на Института по публична администрация, приет с Постановление № 44 на Министерския съвет от 2016 г.",
+ "issue": "96/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Устройствения правилник на Института по публична администрация",
+   "cited_promulgation": [
+    19,
+    2016
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-instituta-po-publichna-administratsiya",
+   "candidates": [
+    "ustroystven-pravilnik-na-instituta-po-publichna-administratsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    19,
+    2016
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Устройствения правилник на Държавна агенция „Архиви“, приет с Постановление № 9 на Министерския съвет от 2010 г.",
+   "cited_promulgation": [
+    10,
+    2010
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "ustroystven-pravilnik-na-darzhavna-agentsiya-arhivi",
+   "candidates": [
+    "ustroystven-pravilnik-na-darzhavna-agentsiya-arhivi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    10,
+    2010
+   ]
+  }
+ ],
+ "instructions": 44,
+ "signs": 13,
+ "quoted_blocks": 24,
+ "findings": [],
+ "tokens_instructions": 2450,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

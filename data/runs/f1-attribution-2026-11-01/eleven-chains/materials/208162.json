@@ -1,0 +1,38 @@
+{
+ "material": 208162,
+ "title": "Постановление № 31 от 23 февруари 2024 г. за приемане на Тарифа за таксите, които се събират в системата на Държавната агенция за метрологичен и технически надзор",
+ "issue": "18/2024",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 10,
+  "title": "ТАРИФА"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Тарифа № 11 за таксите, които се събират в системата на Държавната агенция за метрологичен и технически надзор по Закона за държавните такси, утвърдена с Постановление № 97 на Министерския съвет от 1999 г.",
+   "cited_promulgation": [
+    50,
+    1999
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": true,
+   "note": "the cited act is a тарифа, a type the corpus does not hold",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 229,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

@@ -1,0 +1,40 @@
+{
+ "material": 77798,
+ "title": "Наредба за изменение на Наредба № 15 от 2002 г. за изискванията към използване на ароматизанти в храните",
+ "issue": "68/2013",
+ "section": "Министерство на здравеопазването",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 15 от 2002 г. за изискванията към използване на ароматизанти в храните",
+   "cited_promulgation": [
+    70,
+    2002
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-15-ot-28-yuni-2002-g-za-iziskvaniyata-kam-izpolzvane-na-aromatizanti-v-h",
+   "candidates": [
+    "naredba-15-ot-28-yuni-2002-g-za-iziskvaniyata-kam-izpolzvane-na-aromatizanti-v-h"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    70,
+    2002
+   ]
+  }
+ ],
+ "instructions": 13,
+ "signs": 13,
+ "quoted_blocks": 17,
+ "findings": [],
+ "tokens_instructions": 1401,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

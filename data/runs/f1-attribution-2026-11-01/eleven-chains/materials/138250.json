@@ -1,0 +1,40 @@
+{
+ "material": 138250,
+ "title": "Наредба за изменение и допълнение на Наредба № 41 от 2001 г. за достъп и използване на железопътната инфраструктура",
+ "issue": "45/2019",
+ "section": "Министерство на транспорта, информационните технологии и съобщенията",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 41 от 2001 г. за достъп и използване на железопътната инфраструктура",
+   "cited_promulgation": [
+    64,
+    2001
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-41-ot-27-yuni-2001-g-za-dostap-i-izpolzvane-na-zhelezopatnata-infrastruk",
+   "candidates": [
+    "naredba-41-ot-27-yuni-2001-g-za-dostap-i-izpolzvane-na-zhelezopatnata-infrastruk"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "by the resolver's numbered key",
+   "act_promulgation": [
+    64,
+    2001
+   ]
+  }
+ ],
+ "instructions": 110,
+ "signs": 33,
+ "quoted_blocks": 79,
+ "findings": [],
+ "tokens_instructions": 11255,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

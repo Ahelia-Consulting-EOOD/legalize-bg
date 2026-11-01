@@ -1,0 +1,40 @@
+{
+ "material": 144195,
+ "title": "Закон за изменение на Закона за социалните услуги",
+ "issue": "101/2019",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за социалните услуги",
+   "cited_promulgation": [
+    24,
+    2019
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sotsialnite-uslugi",
+   "candidates": [
+    "zakon-za-sotsialnite-uslugi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    24,
+    2019
+   ]
+  }
+ ],
+ "instructions": 1,
+ "signs": 1,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 38,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

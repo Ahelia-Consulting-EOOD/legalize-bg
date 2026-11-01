@@ -1,0 +1,187 @@
+{
+ "material": 208127,
+ "title": "Закон за изменение и допълнение на Наказателно-процесуалния кодекс",
+ "issue": "18/2024",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наказателно-процесуалния кодекс",
+   "cited_promulgation": [
+    86,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "nakazatelno-protsesualen-kodeks",
+   "candidates": [
+    "nakazatelno-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    86,
+    2005
+   ]
+  },
+  {
+   "scope": "§6",
+   "cited_title": "Закона за Министерството на вътрешните работи",
+   "cited_promulgation": [
+    53,
+    2014
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ministerstvoto-na-vatreshnite-raboti",
+   "candidates": [
+    "zakon-za-ministerstvoto-na-vatreshnite-raboti"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    53,
+    2014
+   ]
+  },
+  {
+   "scope": "§7",
+   "cited_title": "Закона за митниците",
+   "cited_promulgation": [
+    15,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-mitnitsite",
+   "candidates": [
+    "zakon-za-mitnitsite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    15,
+    1998
+   ]
+  },
+  {
+   "scope": "§8",
+   "cited_title": "Закона за военната полиция",
+   "cited_promulgation": [
+    48,
+    2011
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-voennata-politsiya",
+   "candidates": [
+    "zakon-za-voennata-politsiya"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    2011
+   ]
+  },
+  {
+   "scope": "§9",
+   "cited_title": "Закона за Държавна агенция „Национална сигурност“",
+   "cited_promulgation": [
+    109,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-darzhavna-agentsiya-natsionalna-sigurnost",
+   "candidates": [
+    "zakon-za-darzhavna-agentsiya-natsionalna-sigurnost"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    109,
+    2007
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Закона за съдебната власт",
+   "cited_promulgation": [
+    64,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-sadebnata-vlast",
+   "candidates": [
+    "zakon-za-sadebnata-vlast"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    64,
+    2007
+   ]
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за екстрадицията и Европейската заповед за арест",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest",
+   "candidates": [
+    "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2005
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за правната помощ",
+   "cited_promulgation": [
+    79,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-pravnata-pomosht",
+   "candidates": [
+    "zakon-za-pravnata-pomosht"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    79,
+    2005
+   ]
+  }
+ ],
+ "instructions": 45,
+ "signs": 12,
+ "quoted_blocks": 305,
+ "findings": [],
+ "tokens_instructions": 11803,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

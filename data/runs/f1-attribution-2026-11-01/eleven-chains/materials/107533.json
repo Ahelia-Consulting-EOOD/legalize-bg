@@ -1,0 +1,87 @@
+{
+ "material": 107533,
+ "title": "Наредба № 11 от 1 септември 2016 г. за оценяване на резултатите от обучението на учениците",
+ "issue": "74/2016",
+ "section": "Министерство на образованието и науката",
+ "kind": "ordinance",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§6.1",
+   "cited_title": "Наредба № 3 от 2003 г. за системата за оценяване",
+   "cited_promulgation": [
+    37,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§6.2",
+   "cited_title": "Наредба № 3 от 2004 г. за организацията и провеждането на държавните зрелостни изпити",
+   "cited_promulgation": [
+    46,
+    2004
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§6.3",
+   "cited_title": "Наредба № 2 от 2003 г. за признаване на завършени етапи на училищно обучение или степени на образование и професионална квалификация по документи, издадени от училища на чужди държави",
+   "cited_promulgation": [
+    40,
+    2003
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 20,
+ "signs": 8,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 962,
+   "kind": "citation_without_target",
+   "detail": "1. „Училища от системата на Европейските училища“ са училищата, създадени по Кон"
+  },
+  {
+   "block": 974,
+   "kind": "citation_without_target",
+   "detail": "§ 3. До влизане в сила по реда на § 24, ал. 1 от преходните и заключителните раз"
+  }
+ ],
+ "tokens_instructions": 2316,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

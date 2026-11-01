@@ -1,0 +1,61 @@
+{
+ "material": 54416,
+ "title": "Закон за изменение и допълнение на Закона за екстрадицията и Европейската заповед за арест",
+ "issue": "55/2011",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за екстрадицията и Европейската заповед за арест",
+   "cited_promulgation": [
+    46,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest",
+   "candidates": [
+    "zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    46,
+    2005
+   ]
+  },
+  {
+   "scope": "§10",
+   "cited_title": "Закона за държавните такси",
+   "cited_promulgation": [
+    104,
+    1951
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-darzhavnite-taksi",
+   "candidates": [
+    "zakon-za-darzhavnite-taksi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    104,
+    1951
+   ]
+  }
+ ],
+ "instructions": 14,
+ "signs": 10,
+ "quoted_blocks": 41,
+ "findings": [],
+ "tokens_instructions": 2397,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

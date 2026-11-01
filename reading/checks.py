@@ -111,6 +111,9 @@ DV_DECREE_START = re.compile(r"^УКАЗ №")
 DV_DECREE_END = re.compile(r"^Министър на правосъдието")
 DV_TAIL = re.compile(r"^(Председател|Заместник-председател|Зам\.-председател|Министър|За министър|Главен секретар)\b[^:]{0,80}:\s*\S")   # the colon form "…: Name"
 DV_NUMBER_LINE = re.compile(r"^\d{1,6}$")
+DV_TAIL_TITLE = re.compile(r"^(Председател|Заместник-председател|Зам\.-председател|Министър|За министър|Главен секретар|Министър-председател)\b[^:]{0,80}:\s*$")
+# a ministry's or agency's material opens with the issuing body in capitals („МИНИСТЕРСТВО НА ВЪТРЕШНИТЕ РАБОТИ“): chrome before the title
+DV_BODY_ORG = re.compile(r"^[А-Я][А-Я \-„“\"().,]+$")
 
 
 def dv_decree(blocks: list[Block]) -> range:
@@ -150,6 +153,23 @@ def _follows(prev: tuple[int, str] | None, cur: tuple[int, str]) -> bool:
     if cur[1]:
         return cur[0] == prev[0] and (prev[1] == "" or cur[1] > prev[1])  # 27а, 27аа, 27б
     return cur[0] == prev[0] + 1
+
+
+_PDF_NOTE = re.compile(r"^(?:ВИЖ\s+приложени|виж\s+приложени)", re.I)
+
+
+def _empty(blocks: list[Block], smap: dict, heading: int, detail: str) -> dict:
+    """A heading with nothing under it. An annex heading whose body the Gazette's HTML does not carry (the issue prints
+    „ВИЖ приложенията“ or „виж приложението в PDF-а на броя“ after the annex headings: the forms are in the PDF alone) is the
+    source finding ``annex_in_pdf``, not lost text: the heading is the act's, the body was never in the source read."""
+    if smap[heading]["label"] == "annex_heading":
+        for j in range(heading + 1, len(blocks)):
+            lab = smap.get(j, {}).get("label")
+            if lab == "editorial_note" and _PDF_NOTE.match(blocks[j].text.strip()):
+                return {"block": heading, "kind": "annex_in_pdf", "detail": f"the annex's body is in the issue's PDF alone (note at block {j})"}
+            if lab not in ("annex_heading", "drop", None):
+                break
+    return {"block": heading, "kind": "empty_section", "detail": detail}
 
 
 def _same_heading_group(blocks: list[Block], a: int, b: int, la: str, lb: str) -> bool:
@@ -204,7 +224,17 @@ def run_all(blocks: list[Block], smap: dict[int, dict], source: str = "lexbg") -
     # a Gazette material's signature lines and the number printed after them are chrome wherever they stand (an annex
     # may follow the signature); any other dropped line after the act is judged like one inside it
     dv_sign = {i for i in dropped if is_dv and DV_TAIL.match(blocks[i].text)} if is_dv else set()
+    if is_dv:
+        # the older form: the signature's title ending with a colon on one line and the name on the next („Председател на Народното събрание:“ / „Огнян Герджиков“)
+        for i in dropped:
+            if DV_TAIL_TITLE.match(blocks[i].text) and i + 1 in dropped and len(blocks[i + 1].text) < 60 and not _PROVISION_LIKE.match(blocks[i + 1].text):
+                dv_sign.add(i); dv_sign.add(i + 1)
     dv_chrome = set(dv_sign)
+    if is_dv:
+        # the material's number closes the material even when an annex follows the signature: the trailing number lines are chrome
+        j = len(blocks) - 1
+        while j >= 0 and j in dropped and DV_NUMBER_LINE.match(blocks[j].text):
+            dv_chrome.add(j); j -= 1
     for i in sorted(dv_sign):
         j = i + 1
         while j < len(blocks) and j in dropped and DV_NUMBER_LINE.match(blocks[j].text):
@@ -219,8 +249,11 @@ def run_all(blocks: list[Block], smap: dict[int, dict], source: str = "lexbg") -
             continue  # dropped by a ruling of D-072 and recorded in the omissions list (the labeller's answers never carry "rule")
         elif tail_from is not None and i >= tail_from:
             continue  # the page's tail chrome: forum post titles there may open like a provision
-        elif is_dv and i in decree and i < first_placed:
-            continue  # the promulgation decree the material opens with
+        elif is_dv and i < first_placed:
+            # everything a Gazette material prints before the act's first placed block is the issuing part: the promulgation decree
+            # (УКАЗ № …), the Council of Ministers' adopting decree with its own §§ and signatures (ПОСТАНОВЛЕНИЕ № … / ПОСТАНОВИ: / § 1. Приема …),
+            # the issuing body in capitals; the act's own text begins with its title, which is placed (1 November 2026, the F1 run)
+            continue
         elif is_dv and i in dv_chrome:
             continue  # the signature, and the material's number after it
         elif _PROVISION_LIKE.match(t):
@@ -336,12 +369,12 @@ def run_all(blocks: list[Block], smap: dict[int, dict], source: str = "lexbg") -
             continue
         if e["label"] in _HEADINGS:
             if prev_heading is not None and not _same_heading_group(blocks, prev_heading, i, smap[prev_heading]["label"], e["label"]):
-                ex.append({"block": prev_heading, "kind": "empty_section", "detail": f"heading with no body before block {i}"})
+                ex.append(_empty(blocks, smap, prev_heading, f"heading with no body before block {i}"))
             prev_heading = i
         else:
             prev_heading = None
     if prev_heading is not None and smap[prev_heading]["label"] != "title":
-        ex.append({"block": prev_heading, "kind": "empty_section", "detail": "heading with no body at the end of the act"})
+        ex.append(_empty(blocks, smap, prev_heading, "heading with no body at the end of the act"))
     last_art: tuple[int, str, int] | None = None
     seen_art: dict[str, int] = {}
     seen_sign: dict[str, int] = {}

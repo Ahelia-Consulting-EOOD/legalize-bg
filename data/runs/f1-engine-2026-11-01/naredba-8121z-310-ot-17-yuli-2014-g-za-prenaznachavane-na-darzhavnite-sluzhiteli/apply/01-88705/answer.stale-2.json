@@ -1,0 +1,1 @@
+{"material": 88705, "operations": [{"instruction": "§1", "kind": "insert_words", "address": "чл. 12, ал. 2", "new": "q1", "where": "end"}, {"instruction": "§2", "kind": "replace_words", "address": "§ 3, ал. 1", "old": "q1", "new": "q2", "everywhere": false}, {"instruction": "§3", "kind": "no_text_change", "note": "entry into force of the amending act"}]}

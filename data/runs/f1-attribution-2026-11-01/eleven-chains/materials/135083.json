@@ -1,0 +1,54 @@
+{
+ "material": 135083,
+ "title": "Постановление № 31 от 21 февруари 2019 г. за приемане на Наредба за дейностите и задачите по отбранително-мобилизационна подготовка и условията и реда за тяхното осъществяване",
+ "issue": "17/2019",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "adopting",
+ "amending": false,
+ "embedded": {
+  "start": 13,
+  "title": "НАРЕДБА"
+ },
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Постановление № 120 на Министерския съвет от 2012 г. за създаване на Междуведомствен съвет по отбранителна индустрия и сигурност на доставките към Министерския съвет",
+   "cited_promulgation": [
+    49,
+    2012
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 120 на Министерския съвет от 2012 г. за създаване на Междуведомствен съвет по отбранителна индустрия и сигурност на доставките към Министерския съвет')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Постановление № 258 на Министерския съвет от 2005 г. за дейностите и задачите по отбранително-мобилизационна подготовка на държавните органи и юридическите лица с военновременни задачи",
+   "cited_promulgation": [
+    100,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": true,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 258 на Министерския съвет от 2005 г. за дейностите и задачите по отбранително-мобилизационна подготовка на държавните органи и юридическите лица с военновременни задачи')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 5,
+ "signs": 5,
+ "quoted_blocks": 1,
+ "findings": [],
+ "tokens_instructions": 389,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

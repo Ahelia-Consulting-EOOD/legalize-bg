@@ -1,0 +1,20 @@
+{"material": 68862, "operations": [
+{"id": "§1", "kind": "replace_provision", "address": "чл. 26", "blocks": [3, 13]},
+{"id": "§2", "kind": "delete_words", "address": "наименованието на чл. 27", "old": "q1"},
+{"id": "§3", "kind": "repeal", "address": "чл. 27"},
+{"id": "§4", "kind": "delete_words", "address": "чл. 28, т. 13", "old": "q1", "punctuation": "before"},
+{"id": "§5", "kind": "delete_words", "address": "чл. 29, т. 5.15", "old": "q1", "punctuation": "before"},
+{"id": "§6", "kind": "replace_heading", "address": "чл. 30", "new": {"text": "Дирекция „Правна дейност и собственост“"}},
+{"id": "§7", "kind": "replace_provision", "address": "чл. 30", "blocks": [20, 51]},
+{"id": "§8", "kind": "replace_heading", "address": "чл. 31", "new": {"text": "Дирекция „Международно сътрудничество, протокол и връзки с обществеността“"}},
+{"id": "§9", "kind": "replace_provision", "address": "чл. 31", "blocks": [54, 74]},
+{"id": "§10", "kind": "replace_heading", "address": "чл. 32", "new": {"text": "Направление „Маркетинг на пристанищните дейности и екология“"}},
+{"id": "§11", "kind": "no_text_change"},
+{"id": "§11.1", "kind": "replace_words", "address": "чл. 32, ал. 1", "old": "q1", "new": "q2"},
+{"id": "§11.2", "kind": "delete_words", "address": "чл. 32, ал. 8", "old": "q1", "punctuation": "before"},
+{"id": "§12", "kind": "delete_words", "address": "наименованието на чл. 35", "old": "q1"},
+{"id": "§13", "kind": "repeal", "address": "чл. 35"},
+{"id": "§14", "kind": "replace_heading", "address": "чл. 36", "new": {"text": "Дирекция „Инфраструктура и акватория“"}},
+{"id": "§15", "kind": "replace_provision", "address": "чл. 36", "blocks": [83, 102]},
+{"id": "§16", "kind": "delete_words", "address": "чл. 38, ал. 2", "old": "q1", "punctuation": "before"}
+]}

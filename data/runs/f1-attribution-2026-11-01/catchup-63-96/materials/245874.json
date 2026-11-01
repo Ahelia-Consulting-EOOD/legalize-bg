@@ -1,0 +1,51 @@
+{
+ "material": 245874,
+ "title": "Постановление № 139 от 9 септември 2026 г. за одобряване на допълнителни разходи по бюджета на Министерството на културата за 2026 г.",
+ "issue": "84/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Постановление № 102 на Министерския съвет от 2026 г. за изпълнението на държавния бюджет на Република България за 2026 г.",
+   "cited_promulgation": [
+    74,
+    2026
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Постановление № 102 на Министерския съвет от 2026 г. за изпълнението на държавния бюджет на Република България за 2026 г.')",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 17,
+ "signs": 5,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. (1) Със сумата по чл. 1, ал. 1 се увеличават разходит"
+  },
+  {
+   "block": 8,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на културата да извърши съответните промен"
+  },
+  {
+   "block": 9,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 4. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 836,
+ "attributed_at": "2026-11-01T09:40:31+00:00"
+}

@@ -1,0 +1,101 @@
+{
+ "material": 41232,
+ "title": "Закон за бюджета на Националната здравноосигурителна каса за 2011 г.",
+ "issue": "98/2010",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "§10",
+   "cited_title": "Закона за бюджета на Националната здравноосигурителна каса за 2010 г.",
+   "cited_promulgation": [
+    99,
+    2009
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§11",
+   "cited_title": "Закона за здравното осигуряване",
+   "cited_promulgation": [
+    70,
+    1998
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-zdravnoto-osiguryavane",
+   "candidates": [
+    "zakon-za-zdravnoto-osiguryavane"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    70,
+    1998
+   ]
+  },
+  {
+   "scope": "§12",
+   "cited_title": "Закона за лекарствените продукти в хуманната медицина",
+   "cited_promulgation": [
+    31,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-lekarstvenite-produkti-v-humannata-meditsina",
+   "candidates": [
+    "zakon-za-lekarstvenite-produkti-v-humannata-meditsina"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    31,
+    2007
+   ]
+  },
+  {
+   "scope": "§13",
+   "cited_title": "Закона за трансплантация на органи, тъкани и клетки",
+   "cited_promulgation": [
+    83,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-transplantatsiya-na-organi-takani-i-kletki",
+   "candidates": [
+    "zakon-za-transplantatsiya-na-organi-takani-i-kletki"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    83,
+    2003
+   ]
+  }
+ ],
+ "instructions": 43,
+ "signs": 15,
+ "quoted_blocks": 12,
+ "findings": [],
+ "tokens_instructions": 3104,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

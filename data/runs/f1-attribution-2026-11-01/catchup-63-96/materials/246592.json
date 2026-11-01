@@ -1,0 +1,40 @@
+{
+ "material": 246592,
+ "title": "Постановление № 201 от 14 октомври 2026 г. за изменение и допълнение на Наредбата за структурата и организацията на работната заплата, приета с Постановление № 4 на Министерския съвет от 2007 г.",
+ "issue": "96/2026",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за структурата и организацията на работната заплата",
+   "cited_promulgation": [
+    9,
+    2007
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-strukturata-i-organizatsiyata-na-rabotnata-zaplata",
+   "candidates": [
+    "naredba-za-strukturata-i-organizatsiyata-na-rabotnata-zaplata"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    9,
+    2007
+   ]
+  }
+ ],
+ "instructions": 7,
+ "signs": 5,
+ "quoted_blocks": 30,
+ "findings": [],
+ "tokens_instructions": 1541,
+ "attributed_at": "2026-11-01T09:40:30+00:00"
+}

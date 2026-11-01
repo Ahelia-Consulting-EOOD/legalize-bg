@@ -1,0 +1,577 @@
+{
+ "material": 202430,
+ "issue": "3/2024",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§1.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 2, ал. 1",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§1.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 2, ал. 3",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§1.3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 2, ал. 4",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": true
+  },
+  {
+   "id": "§1.4",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§1.4.а",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 2, ал. 6",
+   "old": "Министерството на земеделието (МЗм)",
+   "old_ref": "q1",
+   "new": "Министерството на земеделието и храните (МЗХ)",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§1.4.б",
+   "kind": "repeal",
+   "note": "",
+   "address": "чл. 2, ал. 6, т. 3"
+  },
+  {
+   "id": "§1.5",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 2, ал. 7",
+   "old": "МЗм",
+   "old_ref": "q1",
+   "new": "МЗХ",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§1.6",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 2, ал. 8",
+   "old": "Дирекция „Пазарни мерки и организации на производители“ в МЗм",
+   "old_ref": {
+    "text": "Дирекция „Пазарни мерки и организации на производители“ в МЗм"
+   },
+   "new": "Дирекция „Растениевъдство“ в МЗХ",
+   "new_ref": {
+    "text": "Дирекция „Растениевъдство“ в МЗХ"
+   },
+   "everywhere": false
+  },
+  {
+   "id": "§1.7",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 2, ал. 9",
+   "old": "МЗм",
+   "old_ref": "q1",
+   "new": "МЗХ",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§2.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 3, ал. 2",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2.2",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§2.2.а",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 3, ал. 3, т. 4",
+   "new": "и Стратегическия план за развитие на земеделието и селските райони на Република България за периода 2023 – 2027 г. (СПРЗСР 2023 – 2027 г.)",
+   "new_ref": "q1",
+   "where": "end"
+  },
+  {
+   "id": "§2.2.б",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 3, ал. 3, т. 5",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2.2.б",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 3, ал. 3, т. 6",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2.2.в",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 3, ал. 3, т. 23",
+   "old": "чл. 35, ал. 1 от Закона за противодействие на корупцията и за отнемане на незаконно придобитото имущество (ЗПКОНПИ)",
+   "old_ref": "q1",
+   "new": "чл. 49, ал. 1 от Закона за противодействие на корупцията",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2.2.г",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 3, ал. 3, т. 27",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 13, т. 17",
+   "old": "чл. 35, ал. 1 от ЗПКОНПИ",
+   "old_ref": "q1",
+   "new": "чл. 49, ал. 1 от Закона за противодействие на корупцията",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 13, т. 17",
+   "old": "чл. 37, ал. 1, т. 12 – 14 от ЗПКОНПИ",
+   "old_ref": "q3",
+   "new": "чл. 51, ал. 1, т. 13 – 15 от Закона за противодействие на корупцията",
+   "new_ref": "q4",
+   "everywhere": false
+  },
+  {
+   "id": "§4",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§4.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 4",
+   "old": "Министерството на земеделието",
+   "old_ref": "q1",
+   "new": "Министерството на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.2",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 14, т. 11",
+   "new": "и СПРЗСР 2023 – 2027 г.",
+   "new_ref": "q1",
+   "where": "end"
+  },
+  {
+   "id": "§4.3",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 14, т. 12",
+   "new": "и/или други документи",
+   "new_ref": "q2",
+   "where": "after",
+   "anchor": "ваучери",
+   "anchor_ref": "q1"
+  },
+  {
+   "id": "§4.3",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 14, т. 12",
+   "new": "и по интервенция II.И.2. „Професионално обучение и придобиване на знания“ от СПРЗСР 2023 – 2027 г.",
+   "new_ref": {
+    "text": "и по интервенция II.И.2. „Професионално обучение и придобиване на знания“ от СПРЗСР 2023 – 2027 г."
+   },
+   "where": "end"
+  },
+  {
+   "id": "§4.4",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 16",
+   "old": "Наредба № 15 от 2009 г. за окачествяване и класификация на кланични трупове от говеда, свине и овце по скалата на Общността EUROP, докладване на цените и проверка на кланиците (ДВ, бр. 37 от 2009 г.)",
+   "old_ref": "q1",
+   "new": "Наредба № 2 от 2022 г. за класификация на кланични трупове на говеда, свине и овце по скàлите на Съюза, отчитане и докладване на пазарните цени на някои категории кланични трупове и проверки в кланиците (ДВ, бр. 64 от 2022 г.)",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.4",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 16",
+   "old": "министъра на земеделието по чл. 6 от Наредба № 15 от 2009 г.",
+   "old_ref": "q3",
+   "new": "министъра на земеделието и храните по чл. 5, ал. 1 от Наредба № 2 от 2022 г.",
+   "new_ref": "q4",
+   "everywhere": false
+  },
+  {
+   "id": "§4.5",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 28",
+   "old": "дирекция „Пазарни мерки и организации на производители“ в МЗм",
+   "old_ref": {
+    "text": "дирекция „Пазарни мерки и организации на производители“ в МЗм"
+   },
+   "new": "дирекция „Растениевъдство“ в МЗХ",
+   "new_ref": {
+    "text": "дирекция „Растениевъдство“ в МЗХ"
+   },
+   "everywhere": false
+  },
+  {
+   "id": "§4.6",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 41",
+   "old": "МЗм",
+   "old_ref": "q1",
+   "new": "МЗХ",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.7",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 42",
+   "old": "МЗм",
+   "old_ref": "q1",
+   "new": "МЗХ",
+   "new_ref": "q2",
+   "everywhere": true
+  },
+  {
+   "id": "§4.8",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 45",
+   "old": "МЗм",
+   "old_ref": "q1",
+   "new": "МЗХ",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.9",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 50",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.10",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 58",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.10",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 59",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.10",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 60",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.10",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 61",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.10",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 62",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.11",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 68",
+   "old": "МЗм",
+   "old_ref": "q1",
+   "new": "МЗХ",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.12",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 74",
+   "old": "МЗм",
+   "old_ref": "q1",
+   "new": "МЗХ",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§4.13",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 14, т. 76",
+   "old": "МЗм",
+   "old_ref": "q1",
+   "new": "МЗХ",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§5",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§5.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Благоевград“",
+   "old": "84",
+   "old_ref": "q2",
+   "new": "82",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§5.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Бургас“",
+   "old": "84",
+   "old_ref": "q2",
+   "new": "87",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§5.3",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Велико Търново“",
+   "old": "63",
+   "old_ref": "q2",
+   "new": "62",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§5.4",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Плевен“",
+   "old": "73",
+   "old_ref": "q2",
+   "new": "72",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§5.5",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Русе“",
+   "old": "52",
+   "old_ref": "q2",
+   "new": "54",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§5.6",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Силистра“",
+   "old": "57",
+   "old_ref": "q2",
+   "new": "56",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§5.7",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – София-град“",
+   "old": "43",
+   "old_ref": "q2",
+   "new": "45",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§5.8",
+   "kind": "replace_words",
+   "note": "",
+   "address": "Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – София област“",
+   "old": "100",
+   "old_ref": "q2",
+   "new": "98",
+   "new_ref": "q3",
+   "everywhere": false
+  },
+  {
+   "id": "§6",
+   "kind": "replace_words",
+   "note": "",
+   "address": "навсякъде в правилника",
+   "old": "министъра на земеделието",
+   "old_ref": "q1",
+   "new": "министъра на земеделието и храните",
+   "new_ref": "q2",
+   "everywhere": true
+  },
+  {
+   "id": "§7",
+   "kind": "no_text_change",
+   "note": ""
+  }
+ ],
+ "log": [
+  "§1 no_text_change: nothing",
+  "§1.1 replace_words: 1 replacement(s)",
+  "§1.2 replace_words: 1 replacement(s)",
+  "§1.3 replace_words: 2 replacement(s)",
+  "§1.4 no_text_change: nothing",
+  "§1.4.а replace_words: 1 replacement(s)",
+  "§1.4.б repeal: 1 line(s) repealed",
+  "§1.5 replace_words: 1 replacement(s)",
+  "§1.6 replace_words: 1 replacement(s)",
+  "§1.7 replace_words: 1 replacement(s)",
+  "§2 no_text_change: nothing",
+  "§2.1 replace_words: 1 replacement(s)",
+  "§2.2 no_text_change: nothing",
+  "§2.2.а insert_words: inserted",
+  "§2.2.б replace_words: 1 replacement(s)",
+  "§2.2.б replace_words: 1 replacement(s)",
+  "§2.2.в replace_words: 1 replacement(s)",
+  "§2.2.г replace_words: 1 replacement(s)",
+  "§3 replace_words: 1 replacement(s)",
+  "§3 replace_words: 1 replacement(s)",
+  "§4 no_text_change: nothing",
+  "§4.1 replace_words: 1 replacement(s)",
+  "§4.2 insert_words: inserted",
+  "§4.3 insert_words: inserted",
+  "§4.3 insert_words: inserted",
+  "§4.4 replace_words: 1 replacement(s)",
+  "§4.4 replace_words: 1 replacement(s)",
+  "§4.5 replace_words: 1 replacement(s)",
+  "§4.6 replace_words: 1 replacement(s)",
+  "§4.7 replace_words: 2 replacement(s)",
+  "§4.8 replace_words: 1 replacement(s)",
+  "§4.9 replace_words: 1 replacement(s)",
+  "§4.10 replace_words: 1 replacement(s)",
+  "§4.10 replace_words: 1 replacement(s)",
+  "§4.10 replace_words: 1 replacement(s)",
+  "§4.10 replace_words: 1 replacement(s)",
+  "§4.10 replace_words: 1 replacement(s)",
+  "§4.11 replace_words: 1 replacement(s)",
+  "§4.12 replace_words: 1 replacement(s)",
+  "§4.13 replace_words: 1 replacement(s)",
+  "§5 no_text_change: nothing",
+  "§5.1 replace_words: 1 replacement(s)",
+  "§5.2 replace_words: 1 replacement(s)",
+  "§5.3 replace_words: 1 replacement(s)",
+  "§5.4 replace_words: 1 replacement(s)",
+  "§5.5 replace_words: 1 replacement(s)",
+  "§5.6 replace_words: 1 replacement(s)",
+  "§5.7 replace_words: 1 replacement(s)",
+  "§5.8 replace_words: 1 replacement(s)",
+  "§6 replace_words: 17 replacement(s)",
+  "§7 no_text_change: nothing"
+ ]
+}

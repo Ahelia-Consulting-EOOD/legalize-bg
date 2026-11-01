@@ -1,0 +1,168 @@
+{
+ "material": 22464,
+ "title": "Закон за изменение и допълнение на Закона за водите",
+ "issue": "47/2009",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Закона за водите",
+   "cited_promulgation": [
+    67,
+    1999
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-vodite",
+   "candidates": [
+    "zakon-za-vodite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    67,
+    1999
+   ]
+  },
+  {
+   "scope": "§40",
+   "cited_title": "Закона за концесиите",
+   "cited_promulgation": [
+    36,
+    2006
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "zakon-za-kontsesiite"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds zakon-za-kontsesiite (promulgated 96/2017); the material cites бр. 36/2006",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§41",
+   "cited_title": "Закона за опазване на околната среда",
+   "cited_promulgation": [
+    91,
+    2002
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-opazvane-na-okolnata-sreda",
+   "candidates": [
+    "zakon-za-opazvane-na-okolnata-sreda"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    91,
+    2002
+   ]
+  },
+  {
+   "scope": "§42",
+   "cited_title": "Закона за регионалното развитие",
+   "cited_promulgation": [
+    50,
+    2008
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-regionalnoto-razvitie",
+   "candidates": [
+    "zakon-za-regionalnoto-razvitie"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    50,
+    2008
+   ]
+  },
+  {
+   "scope": "§43",
+   "cited_title": "Търговския закон",
+   "cited_promulgation": [
+    48,
+    1991
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "targovski-zakon",
+   "candidates": [
+    "targovski-zakon"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    48,
+    1991
+   ]
+  },
+  {
+   "scope": "§44",
+   "cited_title": "Закона за регулиране на водоснабдителните и канализационните услуги",
+   "cited_promulgation": [
+    18,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "zakon-za-regulirane-na-vodosnabditelnite-i-kanalizatsionnite-uslugi",
+   "candidates": [
+    "zakon-za-regulirane-na-vodosnabditelnite-i-kanalizatsionnite-uslugi"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    18,
+    2005
+   ]
+  }
+ ],
+ "instructions": 101,
+ "signs": 46,
+ "quoted_blocks": 339,
+ "findings": [
+  {
+   "block": 80,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'б) уличните канализационни мрежи и дъждо' is closed by the sequence, not by a mark"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 83: letter б) after в) under §9.1"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 410: item 1 after 11 under §30"
+  },
+  {
+   "block": -1,
+   "kind": "sequence",
+   "detail": "block 416: item 1 after 2 under §30"
+  },
+  {
+   "block": -1,
+   "kind": "duplicate_id",
+   "detail": "an instruction id occurs twice"
+  }
+ ],
+ "tokens_instructions": 22800,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

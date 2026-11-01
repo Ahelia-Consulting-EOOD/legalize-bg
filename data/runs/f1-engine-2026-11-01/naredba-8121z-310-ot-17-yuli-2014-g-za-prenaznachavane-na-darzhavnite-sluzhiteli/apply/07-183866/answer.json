@@ -1,0 +1,11 @@
+{"material": 183866, "operations": [
+{"id": "§1", "kind": "insert_provision", "address": "чл. 4а, ал. 5, изречение второ", "after": "чл. 4а, ал. 5, изречение първо", "new": "q1"},
+{"id": "§2", "kind": "insert_provision", "address": "чл. 4б", "after": "чл. 4а", "blocks": [6, 15]},
+{"id": "§3", "kind": "renumber", "address": "чл. 4б", "to": "чл. 4в"},
+{"id": "§4", "kind": "insert_words", "address": "чл. 7, ал. 3, т. 3", "anchor": "q1", "where": "after", "new": "q2"},
+{"id": "§5", "kind": "insert_words", "address": "чл. 12, ал. 2", "anchor": "q1", "where": "after", "new": "q2"},
+{"id": "§6", "kind": "no_text_change"},
+{"id": "§6.1", "kind": "no_text_change"},
+{"id": "§6.2", "kind": "no_text_change"},
+{"id": "§6.3", "kind": "no_text_change"}
+]}

@@ -1,0 +1,509 @@
+{
+ "slug": "ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie",
+ "steps": [
+  {
+   "step": "chain",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "7bfef58e30f5ab72f4f188b8ef4fb9e30d204fbbb09f64afc3cb3fce40f85766",
+   "outputs_sha256": "f7d12da6c50cab24f293b823e48a3de4b8be394da74ac0d578f7a73ead91a3c3",
+   "outcome": "done",
+   "detail": "12 material(s) change the act after бр. 7/2010; lex.bg names 12 issue(s), 0 unexplained (none), 0 the Gazette adds (none); 0 court decision(s) name the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/chain.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T10:57:46+00:00",
+   "ended": "2026-11-01T11:01:10+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9f5c75207428e37c2e49b9c5276039e2d1d407c831c6dc4d8a979b91a6f5e796",
+   "outputs_sha256": "ee56b9bcf330c8e2d6f970ef96422255ce3bda2a7e122992337abe4a5af9d5d3",
+   "outcome": "done",
+   "detail": "material 28798 of бр. 7/2010 (cached), sha256 6396c9985418",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/material.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:01:10+00:00",
+   "ended": "2026-11-01T11:01:10+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "c93eeccc6cc08ad7c2d85e384cf7fd25deee94dd0666719c9ffa1ae66dabe28b",
+   "outputs_sha256": "5fe2a276cbe6faccffe740d4d452315b159c0382f863ced9bd4f4fc3d080584c",
+   "outcome": "done",
+   "detail": "236 blocks, 7 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:01:10+00:00",
+   "ended": "2026-11-01T11:01:10+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e8dcc2ea547f6fb8c4e5c427948e08a1a6b3f307dd582336d8395bf358bf7800",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 7 of 7 tasks unanswered; 1 labeller call(s) to make: 939c498496d8-0000-0006 (7 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/calls/round0/939c498496d8-0000-0006.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/maps/round0/939c498496d8-0000-0006.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:01:10+00:00",
+   "ended": "2026-11-01T11:01:10+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "f91cd1777b21c1eea6df0c39715059a1f53205b0713affc6b6074300d8482ad5",
+   "outputs_sha256": "f35da8ece7426aeefbf29a2d15e56c117305c9f88f7c18a2a559dea756bfbdcb",
+   "outcome": "done",
+   "detail": "round 0 collected: 1 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "a120cd3ef1a0114e656d5d669e3716716d24e684545a374aaf749ad9acf7b10f",
+   "outputs_sha256": "435589804668667de8adf22658abf4a7d436bd805a4b6b27ae41b47bcbe3baa1",
+   "outcome": "pending",
+   "detail": "round 1: 1 of 1 tasks unanswered; 1 labeller call(s) to make: 87412caccb8c-0000-0000 (1 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/calls/round1/87412caccb8c-0000-0000.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/maps/round1/87412caccb8c-0000-0000.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T11:05:35+00:00",
+   "ended": "2026-11-01T11:05:35+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "4d457392886fda7f7d555cde6d6df62e50a0df9b84c4a484252b14ecbbda14e5",
+   "outputs_sha256": "723b6f8391fd92563e207ed45ee098de8262ed731512d925138d46e9672e8a00",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/ladder.json",
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:58+00:00",
+   "ended": "2026-11-01T11:08:58+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b4920760df9bab36759ed32936fd0b4f54914251f79adc91772879860a5963ce",
+   "outputs_sha256": "8559e81575262c1a6622ac03ca1a478af9392996842f1426afe7bfb252fd10e7",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:58+00:00",
+   "ended": "2026-11-01T11:08:58+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b16e351d3e7d3f52e6d95684af6701a230a03d3f4e58267bda55862eca48ab03",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 12 (бр. 9/2010, 29283): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:08:58+00:00",
+   "ended": "2026-11-01T11:08:58+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "3d753a3d370db9e916e38a82b840d792639863e30c5f88d83eee90e288b77a39",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 12 (бр. 9/2010, 29283): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:10:21+00:00",
+   "ended": "2026-11-01T11:10:21+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "4d8868dffe3e00ad21ced4c0dea17249a71a8a02a6f38c34df9c0ddef75bcebe",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 29283 (бр. 9/2010): the answer is refused: block 85 does not close the quotation: '41'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:13:42+00:00",
+   "ended": "2026-11-01T11:13:42+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "0a76acc5b816d4e304c61e60a9506e00138cd64f0b2e1edb530cbef8fc7671fd",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 29283 (бр. 9/2010): the answer is refused: §1 replace_annex: 'Приложението към чл. 6, ал. 2' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:26:01+00:00",
+   "ended": "2026-11-01T11:26:01+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8890142b0e771861056477d99046d417cc39f5547a827ca65271256c2fe6e2b0",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 2 of 12 (бр. 60/2010, 35396): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/02-35396/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/02-35396/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/02-35396/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:34:08+00:00",
+   "ended": "2026-11-01T11:34:08+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8fc5cb995041f596ee124a43931cc747d33c23e99a9592966ec1895a7d8eaa5a",
+   "outputs_sha256": "f35da8ece7426aeefbf29a2d15e56c117305c9f88f7c18a2a559dea756bfbdcb",
+   "outcome": "done",
+   "detail": "round 0 collected: 1 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "51ccd2bb80b1194d0f47129fd75053a6b4bd97ba74743dc975f1feca695c2aee",
+   "outputs_sha256": "723b6f8391fd92563e207ed45ee098de8262ed731512d925138d46e9672e8a00",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/ladder.json",
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1f64087b05080e9bcbd8cc53433a04d193bbbc23714d2b84c9bff50e14916008",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 35396 (бр. 60/2010): the answer is refused: §1.2 insert_provision: the address 'чл. 3, ал. 3, т. 14' is already carried by a provision, and no renumber of the material moves it",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/02-35396/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:38:04+00:00",
+   "ended": "2026-11-01T11:38:04+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "57e83033f57a655a17a4215cdeb0d634edb5881cd54ae5e5f15fb46bc16d6a34",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 35396 (бр. 60/2010): the answer is refused: §3.1 replace_words: the annex reference in 'Приложение към чл. 6, ал. 2, наименованието' is not a provision the grammar reads: 'чл. 6, ал. 2, наименованието'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/02-35396/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:42:35+00:00",
+   "ended": "2026-11-01T11:42:35+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e2d913dc17584b6affa55fcca3048480a26a445dacbc3481d54613a68c2f4782",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 35396 (бр. 60/2010): the answer is refused: §3.1 replace_words: the words '1742' occur 0 times in the title 'Приложение към чл. 6, ал. 2'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/02-35396/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T11:51:19+00:00",
+   "ended": "2026-11-01T11:51:19+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "3af736a3c038328bc144ae0fdc6ce40e61c1dd8c47469ec592b576c3600482b2",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 35396 (бр. 60/2010): the answer is refused: §3.3 replace_words: 'Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Варна“' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/02-35396/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:00:01+00:00",
+   "ended": "2026-11-01T12:00:02+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "55949fa3c55dcaf39bd90cc87ecc2a0d6d3fbdccebaa383570e8ee342f670847",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 3 of 12 (бр. 73/2010, 36798): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/03-36798/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/03-36798/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/03-36798/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:04:21+00:00",
+   "ended": "2026-11-01T12:04:21+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "791dcb2eec84b1ace4201d283f4ab887d8fdd71f12195cd0451aa1a896d066bf",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 1 of 12 (бр. 9/2010, 29283): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/01-29283/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:10:09+00:00",
+   "ended": "2026-11-01T12:10:09+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "791dcb2eec84b1ace4201d283f4ab887d8fdd71f12195cd0451aa1a896d066bf",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 4 of 12 (бр. 32/2011, 48515): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/04-48515/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/04-48515/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/04-48515/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:15:04+00:00",
+   "ended": "2026-11-01T12:15:04+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "2123108e657a856f96bc871ebf9b0d8ee8802ed604f89808f57c23ce93a638d5",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 5 of 12 (бр. 21/2012, 62371): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/05-62371/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/05-62371/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/05-62371/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:19:21+00:00",
+   "ended": "2026-11-01T12:19:21+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "f49bb28409e69e95e8d75a76728bc41133e96ace895f649ecef8dfdad5e62bf6",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 6 of 12 (бр. 12/2016, 100860): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/06-100860/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/06-100860/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/06-100860/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:23:21+00:00",
+   "ended": "2026-11-01T12:23:21+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "0d06becda33780218f3ced714d10a02a079d64d45954682541eb46d7bb86a9cc",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 100860 (бр. 12/2016): 4 check exception(s) after the operations, first label_text_mismatch at line 144: continuation on a line that opens like a provision: 'a) регистрираната техника на територията'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/06-100860/checks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:25:44+00:00",
+   "ended": "2026-11-01T12:25:44+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "4f6bf2e17de29e340d8f3009226cc650fbd27059e3e1f5c18892e61e66f35db4",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 7 of 12 (бр. 75/2016, 107723): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/07-107723/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/07-107723/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/07-107723/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:28:11+00:00",
+   "ended": "2026-11-01T12:28:11+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "aa69d6c335401cb5683e7922d34bfef39091a9ddaaeb942b81eec734267ac88c",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 8 of 12 (бр. 40/2020, 147660): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/08-147660/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/08-147660/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/08-147660/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:30:24+00:00",
+   "ended": "2026-11-01T12:30:24+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9ea5a34cdcf6a7c6e9deb1adc59727261782c438408cf143c4b9213374d902dc",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 147660 (бр. 40/2020): the answer is refused: §3.4 replace_words: the words 'МЗХ' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/08-147660/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:32:39+00:00",
+   "ended": "2026-11-01T12:32:39+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ccb3546fbd18a9a1dac47d7821927828f1ea300bae4937311369f7751c368740",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 9 of 12 (бр. 97/2020, 153474): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/09-153474/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/09-153474/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/09-153474/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:35:15+00:00",
+   "ended": "2026-11-01T12:35:15+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "a9f6faafef3e54a721f22e641570452403627ff6823b21c60928a19ef99f7e3a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 10 of 12 (бр. 9/2021, 155516): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/10-155516/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/10-155516/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/10-155516/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:38:08+00:00",
+   "ended": "2026-11-01T12:38:09+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "08815c83c08110771f3a07415cde549f557b9c58d55cbda9ebe645cb6192e8b8",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 11 of 12 (бр. 41/2022, 173772): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/11-173772/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/11-173772/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/11-173772/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:41:47+00:00",
+   "ended": "2026-11-01T12:41:47+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "069fe4c1ac954d5d0b5b3277b0b0a9c6981fd0c74634fcce65001a82e9e09ebb",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 12 of 12 (бр. 3/2024, 202430): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/12-202430/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/12-202430/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/12-202430/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:45:07+00:00",
+   "ended": "2026-11-01T12:45:07+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "6bb79fd127bbb3aa5b6f43025f12c75d3dda1d1f64cf88ac50d3773529c32958",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 202430 (бр. 3/2024): the answer is refused: §5.3 replace_words: 'Приложение към чл. 6, ал. 2, ред „Областна дирекция „Земеделие“ – Велико Търново“' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply/12-202430/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:47:12+00:00",
+   "ended": "2026-11-01T12:47:12+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8c5e1e8e480f389431398f4bc21c420cb1258ac9b784d7b1e9c2b48ba5218cbb",
+   "outputs_sha256": "403375da8f1902ef685c1845092b85559ef940ed5277bfec5deea13f8191a7a7",
+   "outcome": "done",
+   "detail": "12 material(s) applied, operations {'replace_annex': 4, 'no_text_change': 38, 'replace_provision': 15, 'insert_provision': 13, 'renumber': 53, 'replace_words': 92, 'delete_words': 2, 'repeal': 16, 'insert_words': 8}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:49:15+00:00",
+   "ended": "2026-11-01T12:49:16+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "685e81ef033546511b86d5eb3093fcb010f606398f19039c04ce73b3611f4c96",
+   "outputs_sha256": "7ab0a5ceae797cc65b1656f7fad5e0e6ce67b863bfd8bebdce5bed320fd6fccc",
+   "outcome": "pending",
+   "detail": "differences to settle (lexbg 73, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:49:16+00:00",
+   "ended": "2026-11-01T12:49:17+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "d9baca145f8ea03579a462fb8ea9b746b61a0f65c55adbfe72aa36394f92a8aa",
+   "outputs_sha256": "eae8240e36f08167096247e77697f72208faa8e2647caee6155bf8e445121b78",
+   "outcome": "stop",
+   "detail": "the settler found our reading wrong (reading_error): lexbg: 73 difference(s), settled reading_error 24, same_text_other_form 46, witness_error 3; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135659679 (absent, 2026-11-01T12:49:16+00:00))",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/witness-diff.json",
+    "data/runs/f1-engine-2026-11-01/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T12:53:03+00:00",
+   "ended": "2026-11-01T12:53:04+00:00"
+  }
+ ],
+ "state_before_stop": "listed"
+}

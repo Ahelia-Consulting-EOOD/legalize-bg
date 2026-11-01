@@ -1,0 +1,29 @@
+{
+ "material": 214543,
+ "title": "Постановление № 137 от 29 април 2024 г. за одобряване на допълнителен трансфер по бюджета на Националната здравноосигурителна каса за 2024 г.",
+ "issue": "39/2024",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Средствата по чл. 1 да се осигурят за сметка на предв"
+  },
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 333,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

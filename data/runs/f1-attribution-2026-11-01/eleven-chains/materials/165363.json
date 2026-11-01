@@ -1,0 +1,40 @@
+{
+ "material": 165363,
+ "title": "Постановление № 401 от 25 ноември 2021 г. за изменение и допълнение на Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство, приет с Постановление № 242 на Министерския съвет от 2018 г.",
+ "issue": "100/2021",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство",
+   "cited_promulgation": [
+    94,
+    2018
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    94,
+    2018
+   ]
+  }
+ ],
+ "instructions": 118,
+ "signs": 46,
+ "quoted_blocks": 92,
+ "findings": [],
+ "tokens_instructions": 6736,
+ "attributed_at": "2026-11-01T09:40:25+00:00"
+}

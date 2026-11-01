@@ -1,0 +1,132 @@
+{
+ "material": 2667,
+ "title": "Постановление № 257 от 25 септември 2006 г. за изменение и допълнение на нормативни актове на Министерския съвет",
+ "issue": "82/2006",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": true,
+ "embedded": null,
+ "status": "parse_findings",
+ "targets": [
+  {
+   "scope": "§1",
+   "cited_title": "Постановление № 254 на Министерския съвет от 2005 г. за приемане на Наредба за признаване на дипломи, удостоверения и други доказателства за професионална квалификация по медицинска професия и за специализация в областта на здравеопазването",
+   "cited_promulgation": [
+    100,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "type_outside_corpus",
+   "slug": null,
+   "candidates": [],
+   "flags": [],
+   "repeal": false,
+   "note": "the cited act is a постановление, a type the corpus does not hold (it names 'Наредба за признаване на дипломи, удостоверения и други доказателства за професионална квалификация по медицинска професия и за специализация в областта на здравеопазването')",
+   "act_promulgation": null
+  },
+  {
+   "scope": "§2",
+   "cited_title": "Наредбата за единните държавни изисквания за придобиване на висше образование по специалността “Фармация” за образователно-квалификационна степен “магистър”, приета с Постановление № 61 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    32,
+    2005
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-9",
+   "candidates": [
+    "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-9"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    32,
+    2005
+   ]
+  },
+  {
+   "scope": "§3",
+   "cited_title": "Наредбата за единните държавни изисквания за придобиване на висше образование по специалностите “Медицина” и “Стоматология” за образователно-квалификационна степен “магистър”, приета с Постановление № 245 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    94,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p",
+   "candidates": [
+    "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p",
+    "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-9"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (fuzzy); the cited promulgation names the act",
+   "act_promulgation": [
+    94,
+    2005
+   ]
+  },
+  {
+   "scope": "§4",
+   "cited_title": "Наредбата за единните държавни изисквания за придобиване на висше образование по специалностите “Медицинска сестра” и “Акушерка” за образователно-квалификационна степен “бакалавър”, приета с Постановление № 248 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    95,
+    2005
+   ],
+   "status": "attributed",
+   "how": "resolver",
+   "slug": "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-2",
+   "candidates": [
+    "naredba-za-edinnite-darzhavni-iziskvaniya-za-pridobivane-na-visshe-obrazovanie-p-2"
+   ],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate",
+    "candidate_by_promulgation"
+   ],
+   "repeal": false,
+   "note": "the title scored under the resolver's floor (fuzzy); the cited promulgation names the act",
+   "act_promulgation": [
+    95,
+    2005
+   ]
+  },
+  {
+   "scope": "§5",
+   "cited_title": "Наредбата за признаване на дипломи, удостоверения и други доказателства за професионална квалификация по медицинска професия и за специализация в областта на здравеопазването, приета с Постановление № 254 на Министерския съвет от 2005 г.",
+   "cited_promulgation": [
+    100,
+    2005
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 65,
+ "signs": 5,
+ "quoted_blocks": 77,
+ "findings": [
+  {
+   "block": 145,
+   "kind": "quote_open_at_end",
+   "detail": "a quotation is left open at the end of the body"
+  }
+ ],
+ "tokens_instructions": 5025,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

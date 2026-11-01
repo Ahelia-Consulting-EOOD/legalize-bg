@@ -1,0 +1,38 @@
+{
+ "material": 77831,
+ "title": "Постановление № 154 от 25 юли 2013 г. за допълнение на Наредбата за водноспасителната дейност и обезопасяването на водните площи, приета с Постановление № 182 на Министерския съвет от 1996 г.",
+ "issue": "68/2013",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредбата за водноспасителната дейност и обезопасяването на водните площи",
+   "cited_promulgation": [
+    65,
+    1996
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 3,
+ "signs": 3,
+ "quoted_blocks": 4,
+ "findings": [],
+ "tokens_instructions": 476,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

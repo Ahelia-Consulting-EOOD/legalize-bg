@@ -1,0 +1,40 @@
+{
+ "material": 41713,
+ "title": "Постановление № 291 от 9 декември 2010 г. за изменение и допълнение на Правилника за прилагане на Закона за насърчаване на заетостта, приет с Постановление № 131 на Министерския съвет от 2003 г.",
+ "issue": "98/2010",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_corpus_act",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Правилника за прилагане на Закона за насърчаване на заетостта",
+   "cited_promulgation": [
+    58,
+    2003
+   ],
+   "status": "attributed",
+   "how": "title+promulgation",
+   "slug": "pravilnik-za-prilagane-na-zakona-za-nasarchavane-na-zaetostta",
+   "candidates": [
+    "pravilnik-za-prilagane-na-zakona-za-nasarchavane-na-zaetostta"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": [
+    58,
+    2003
+   ]
+  }
+ ],
+ "instructions": 69,
+ "signs": 32,
+ "quoted_blocks": 84,
+ "findings": [],
+ "tokens_instructions": 5379,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

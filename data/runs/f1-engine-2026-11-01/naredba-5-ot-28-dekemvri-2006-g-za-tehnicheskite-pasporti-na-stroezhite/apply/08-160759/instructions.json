@@ -1,0 +1,177 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "target_title": "Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2007
+  ],
+  "issues": [
+   [
+    7,
+    2007
+   ],
+   [
+    38,
+    2008
+   ],
+   [
+    22,
+    2010
+   ],
+   [
+    98,
+    2011
+   ],
+   [
+    2,
+    2013
+   ],
+   [
+    80,
+    2013
+   ],
+   [
+    102,
+    2014
+   ],
+   [
+    79,
+    2015
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2007 г.; изм. и доп., бр. 38 от 2008 г., бр. 22 от 2010 г., бр. 98 от 2011 г., бр. 2 и 80 от 2013 г., бр. 102 от 2014 г. и бр. 79 от 2015 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0
+ ],
+ "headings": [],
+ "tail": [
+  12,
+  13
+ ],
+ "roles": {
+  "0": "header",
+  "12": "tail",
+  "13": "tail",
+  "1": "instruction",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "quoted",
+  "5": "quoted",
+  "6": "quoted",
+  "7": "instruction",
+  "8": "instruction",
+  "9": "instruction",
+  "10": "quoted",
+  "11": "instruction"
+ },
+ "findings": [],
+ "blocks": 14,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 1,
+   "text": "§ 1. В чл. 1, ал. 1, т. 5 думата „отделните“ се заменя с „отделни“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "отделните",
+    "отделни"
+   ],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 2,
+   "text": "§ 2. В чл. 2 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 3,
+     "text": "1. В ал. 1 т. 2 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      4,
+      5,
+      6
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 7,
+     "text": "2. В ал. 2 думите „строителни и монтажни работи“, както и скобите на абревиатурата „СМР“ се заличават.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "строителни и монтажни работи",
+      "СМР"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 8,
+   "text": "§ 3. В § 2 от преходните и заключителните разпоредби се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§3.1",
+     "level": 1,
+     "block": 9,
+     "text": "1. Алинея 2 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      10
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§3.2",
+     "level": 1,
+     "block": 11,
+     "text": "2. Алинеи 6 и 7 се отменят.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  }
+ ]
+}

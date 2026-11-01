@@ -1,0 +1,38 @@
+{
+ "material": 977,
+ "title": "Наредба № 12 от 19 октомври 2005 г. за условията и реда за създаване и поддържане на регистър на лозарските стопанства и специализирана карта на лозята",
+ "issue": "86/2005",
+ "section": "Министерство на земеделието и горите, Министерство на регионалното развитие и благоустройството",
+ "kind": "ordinance",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§9",
+   "cited_title": "Наредбата отменяНаредбата за условията и реда за класифициране на лозарските терени по категории и тяхното кадастрално очертаване",
+   "cited_promulgation": [
+    9,
+    2002
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 10,
+ "signs": 6,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 405,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

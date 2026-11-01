@@ -1,0 +1,29 @@
+{
+ "material": 107575,
+ "title": "Решение № 3488-НР от 13 септември 2016 г. относно утвърждаване образци на книжа № 69-НР, № 70-НР и № 71-НР за произвеждане на национален референдум на 6 ноември 2016 г.",
+ "issue": "74/2016",
+ "section": "Централна избирателна комисия",
+ "kind": "decision",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 0,
+ "signs": 0,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 14,
+   "kind": "unplaced",
+   "detail": "Приложение № 70-НР"
+  },
+  {
+   "block": 15,
+   "kind": "unplaced",
+   "detail": "Приложение № 71-НР"
+  }
+ ],
+ "tokens_instructions": 0,
+ "attributed_at": "2026-11-01T09:40:24+00:00"
+}

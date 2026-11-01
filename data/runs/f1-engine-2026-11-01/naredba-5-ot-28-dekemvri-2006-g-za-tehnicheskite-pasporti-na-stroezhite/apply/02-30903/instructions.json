@@ -1,0 +1,421 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение и допълнение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "target_title": "Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2007
+  ],
+  "issues": [
+   [
+    7,
+    2007
+   ],
+   [
+    38,
+    2008
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 7 от 2007 г.; изм. и доп., бр. 38 от 2008 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВОНА РЕГИОНАЛНОТО РАЗВИТИЕ И БЛАГОУСТРОЙСТВОТО",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [
+  43
+ ],
+ "tail": [
+  47,
+  48
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "47": "tail",
+  "48": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "instruction",
+  "5": "instruction",
+  "6": "instruction",
+  "7": "quoted",
+  "8": "instruction",
+  "9": "instruction",
+  "10": "instruction",
+  "11": "instruction",
+  "12": "quoted",
+  "13": "quoted",
+  "14": "instruction",
+  "15": "quoted",
+  "16": "quoted",
+  "17": "quoted",
+  "18": "quoted",
+  "19": "quoted",
+  "20": "quoted",
+  "21": "quoted",
+  "22": "quoted",
+  "23": "quoted",
+  "24": "quoted",
+  "25": "quoted",
+  "26": "quoted",
+  "27": "quoted",
+  "28": "instruction",
+  "29": "instruction",
+  "30": "instruction",
+  "31": "instruction",
+  "32": "instruction",
+  "33": "instruction",
+  "34": "instruction",
+  "35": "instruction",
+  "36": "quoted",
+  "37": "instruction",
+  "38": "quoted",
+  "39": "instruction",
+  "40": "instruction",
+  "41": "quoted",
+  "42": "quoted",
+  "43": "heading",
+  "44": "instruction",
+  "45": "continuation",
+  "46": "continuation"
+ },
+ "findings": [
+  {
+   "block": 43,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before 'Преходна и заключителна разпоредба' is closed by the sequence, not by a mark"
+  }
+ ],
+ "blocks": 49,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 2 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 3,
+     "text": "1. В ал. 1:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§1.1.а",
+       "level": 2,
+       "block": 4,
+       "text": "а) в т. 2 след думите „по реда на глава трета“ се добавя „с изключение на част Г „Енергиен паспорт на сграда“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "по реда на глава трета",
+        "Енергиен паспорт на сграда"
+       ],
+       "target": null
+      },
+      {
+       "id": "§1.1.б",
+       "level": 2,
+       "block": 5,
+       "text": "б) точка 3 се отменя.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 6,
+     "text": "2. Алинея 2 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      7
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 8,
+   "text": "§ 2. В чл. 5, ал. 1 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 9,
+     "text": "1. В т. 3 след думите „в промишлените системи като съвкупност от“ се добавя „производствени сгради,“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "в промишлените системи като съвкупност от",
+      "производствени сгради,"
+     ],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 10,
+     "text": "2. В т. 4 думите „сертификат за енергийна ефективност“ се заменят със „сертификат за енергийните характеристики, издаден за съществуващи сгради по реда на наредбата по чл. 25 от Закона за енергийната ефективност (ЗЕЕ),“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "сертификат за енергийна ефективност",
+      "сертификат за енергийните характеристики, издаден за съществуващи сгради по реда на наредбата по чл. 25 от Закона за енергийната ефективност (ЗЕЕ),"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 11,
+   "text": "§ 3. Член 7а се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    12,
+    13
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 14,
+   "text": "§ 4. Член 8 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 28,
+   "text": "§ 5. В чл. 10, ал. 1 след думите „Техническият паспорт на строежа“ се поставя запетая и се добавя „ в т.ч. „енергийният паспорт на сграда,“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Техническият паспорт на строежа",
+    "енергийният паспорт на сграда,"
+   ],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 29,
+   "text": "§ 6. В чл. 11, ал. 2 думите „се съставя и технически паспорт“ се заменят със „се актуализира техническият паспорт“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "се съставя и технически паспорт",
+    "се актуализира техническият паспорт"
+   ],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 30,
+   "text": "§ 7. В чл. 14, ал. 2 думите „се съставя и технически паспорт“ се заменят със „се актуализира техническият паспорт“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "се съставя и технически паспорт",
+    "се актуализира техническият паспорт"
+   ],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 31,
+   "text": "§ 8. В чл. 15, ал. 1, изречение първо думите „в 3-дневен срок“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "в 3-дневен срок"
+   ],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 32,
+   "text": "§ 9. В чл. 17, ал. 2 думите „Националния институт за паметниците на културата“ се заменят с „Националния институт за недвижимото културно наследство“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Националния институт за паметниците на културата",
+    "Националния институт за недвижимото културно наследство"
+   ],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 33,
+   "text": "§ 10. В глава втора раздел IV се отменя.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§11",
+   "level": 0,
+   "block": 34,
+   "text": "§ 11. В § 1 от допълнителната разпоредба се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§11.1",
+     "level": 1,
+     "block": 35,
+     "text": "1. Точка 3 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      36
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§11.2",
+     "level": 1,
+     "block": 37,
+     "text": "2. Създава се нова т. 4:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      38
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§11.3",
+     "level": 1,
+     "block": 39,
+     "text": "3. Досегашната т. 4 става т. 5.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§12",
+   "level": 0,
+   "block": 40,
+   "text": "§ 12. Досегашното приложение към чл. 19г, ал. 2 става приложение към чл. 8, ал. 7 и се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    41,
+    42
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§13",
+   "level": 0,
+   "block": 44,
+   "text": "§ 13. (1) Наредбата влиза в сила един месец след обнародването й в „Държавен вестник“.",
+   "section": "transitional_final",
+   "children": [],
+   "quoted": [],
+   "continuation": [
+    45,
+    46
+   ],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

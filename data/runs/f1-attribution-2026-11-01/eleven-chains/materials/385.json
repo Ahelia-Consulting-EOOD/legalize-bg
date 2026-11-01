@@ -1,0 +1,37 @@
+{
+ "material": 385,
+ "title": "Закон за екстрадицията и Европейската заповед за арест",
+ "issue": "46/2005",
+ "section": "Народно събрание",
+ "kind": "law",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "§2",
+   "cited_title": "Наказателно-процесуалния кодекс",
+   "cited_promulgation": [
+    89,
+    1974
+   ],
+   "status": "predecessor_or_other",
+   "how": "title+promulgation",
+   "slug": null,
+   "candidates": [
+    "nakazatelno-protsesualen-kodeks"
+   ],
+   "flags": [],
+   "repeal": false,
+   "note": "the corpus holds nakazatelno-protsesualen-kodeks (promulgated 86/2005); the material cites бр. 89/1974",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 5,
+ "signs": 3,
+ "quoted_blocks": 0,
+ "findings": [],
+ "tokens_instructions": 474,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

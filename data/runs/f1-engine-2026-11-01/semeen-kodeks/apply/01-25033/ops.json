@@ -1,0 +1,38 @@
+{
+ "material": 25033,
+ "issue": "74/2009",
+ "operations": [
+  {
+   "id": "§47",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§47.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 94, ал. 6",
+   "old": "министъра на образованието и науката",
+   "old_ref": "q1",
+   "new": "министъра на образованието, младежта и науката",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§47.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 114, ал. 1",
+   "old": "Министерството на образованието и науката",
+   "old_ref": "q1",
+   "new": "Министерството на образованието, младежта и науката",
+   "new_ref": "q2",
+   "everywhere": false
+  }
+ ],
+ "log": [
+  "§47 no_text_change: nothing",
+  "§47.1 replace_words: 1 replacement(s)",
+  "§47.2 replace_words: 1 replacement(s)"
+ ]
+}

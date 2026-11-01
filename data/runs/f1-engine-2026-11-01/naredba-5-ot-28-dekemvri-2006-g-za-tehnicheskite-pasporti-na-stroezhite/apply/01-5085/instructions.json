@@ -1,0 +1,401 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение и допълнение на Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "target_title": "Наредба № 5 от 2006 г. за техническите паспорти на строежите",
+ "cited_history": {
+  "promulgation": [
+   7,
+   2007
+  ],
+  "issues": [
+   [
+    7,
+    2007
+   ]
+  ],
+  "text": "(ДВ, бр. 7 от 2007 г.)"
+ },
+ "body_org": "МИНИСТЕРСТВО НА РЕГИОНАЛНОТО РАЗВИТИЕ И БЛАГОУСТРОЙСТВОТО",
+ "header": [
+  0,
+  1
+ ],
+ "headings": [],
+ "tail": [
+  65,
+  66
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "65": "tail",
+  "66": "tail",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "quoted",
+  "5": "instruction",
+  "6": "instruction",
+  "7": "quoted",
+  "8": "instruction",
+  "9": "quoted",
+  "10": "instruction",
+  "11": "instruction",
+  "12": "instruction",
+  "13": "instruction",
+  "14": "quoted",
+  "15": "instruction",
+  "16": "quoted",
+  "17": "instruction",
+  "18": "instruction",
+  "19": "quoted",
+  "20": "quoted",
+  "21": "quoted",
+  "22": "quoted",
+  "23": "quoted",
+  "24": "quoted",
+  "25": "quoted",
+  "26": "quoted",
+  "27": "quoted",
+  "28": "quoted",
+  "29": "quoted",
+  "30": "quoted",
+  "31": "quoted",
+  "32": "instruction",
+  "33": "quoted",
+  "34": "quoted",
+  "35": "instruction",
+  "36": "instruction",
+  "37": "instruction",
+  "38": "quoted",
+  "39": "instruction",
+  "40": "instruction",
+  "41": "quoted",
+  "42": "instruction",
+  "43": "continuation",
+  "44": "continuation",
+  "45": "continuation",
+  "46": "continuation",
+  "47": "continuation",
+  "48": "continuation",
+  "49": "continuation",
+  "50": "continuation",
+  "51": "continuation",
+  "52": "continuation",
+  "53": "continuation",
+  "54": "continuation",
+  "55": "continuation",
+  "56": "continuation",
+  "57": "continuation",
+  "58": "continuation",
+  "59": "continuation",
+  "60": "continuation",
+  "61": "continuation",
+  "62": "continuation",
+  "63": "continuation",
+  "64": "continuation"
+ },
+ "findings": [],
+ "blocks": 67,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 2,
+   "text": "§ 1. В чл. 1 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 3,
+     "text": "1. Създава се нова т. 3:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      4
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 5,
+     "text": "2. Досегашните т. 3 и 4 стават съответно т. 4 и 5.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 6,
+   "text": "§ 2. В чл. 2 ал. 2 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    7
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 8,
+   "text": "§ 3. В чл. 4, ал. 1 се създава т. 4:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    9
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 10,
+   "text": "§ 4. В чл. 5, ал. 1 се правят следните изменения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§4.1",
+     "level": 1,
+     "block": 11,
+     "text": "1. В т. 3 думите “стойността на енергийната характеристика, изразена в годишно количество потребна енергия, първична енергия, в екологичен еквивалент, коефициенти на топлопреминаване на сградните ограждащи елементи” се заменят със “стойността на енергийната характеристика на промишлените системи, показателите за разход на енергия, характеризиращи процесите на енергопреобразуване и/или енергопотреблението в промишлените системи като съвкупност от съоръжения, технологии и спомагателни стопанства, включени в определено производство”.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "стойността на енергийната характеристика, изразена в годишно количество потребна енергия, първична енергия, в екологичен еквивалент, коефициенти на топлопреминаване на сградните ограждащи елементи",
+      "стойността на енергийната характеристика на промишлените системи, показателите за разход на енергия, характеризиращи процесите на енергопреобразуване и/или енергопотреблението в промишлените системи като съвкупност от съоръжения, технологии и спомагателни стопанства, включени в определено производство"
+     ],
+     "target": null
+    },
+    {
+     "id": "§4.2",
+     "level": 1,
+     "block": 12,
+     "text": "2. В т. 4 думата “(паспорт)” се заличава.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "(паспорт)"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 13,
+   "text": "§ 5. Създава се чл. 7а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    14
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§6",
+   "level": 0,
+   "block": 15,
+   "text": "§ 6. Член 8 се изменя така:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    16
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§7",
+   "level": 0,
+   "block": 17,
+   "text": "§ 7. В чл. 16, ал. 2 цифрата “3” се заменя със “7”.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "3",
+    "7"
+   ],
+   "target": null
+  },
+  {
+   "id": "§8",
+   "level": 0,
+   "block": 18,
+   "text": "§ 8. В глава втора “ТЕХНИЧЕСКИ ПАСПОРТИ НА СТРОЕЖИ” се създава раздел IV с чл. 19а - 19г:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+   ],
+   "continuation": [],
+   "inline_quotes": [
+    "ТЕХНИЧЕСКИ ПАСПОРТИ НА СТРОЕЖИ"
+   ],
+   "target": null
+  },
+  {
+   "id": "§9",
+   "level": 0,
+   "block": 32,
+   "text": "§ 9. В § 1 от допълнителната разпоредба се създават т. 3 и 4:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    33,
+    34
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§10",
+   "level": 0,
+   "block": 35,
+   "text": "§ 10. В преходните и заключителните разпоредби се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§10.1",
+     "level": 1,
+     "block": 36,
+     "text": "1. В § 2:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§10.1.а",
+       "level": 2,
+       "block": 37,
+       "text": "а) създава се нова ал. 3:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        38
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§10.1.б",
+       "level": 2,
+       "block": 39,
+       "text": "б) досегашните ал. 3, 4, 5 и 6 стават съответно ал. 4, 5, 6 и 7.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§10.2",
+     "level": 1,
+     "block": 40,
+     "text": "2. Създава се § 5а:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      41
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§10.3",
+     "level": 1,
+     "block": 42,
+     "text": "3. Параграф 7 се отменя.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64
+     ],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  }
+ ]
+}

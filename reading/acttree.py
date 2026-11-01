@@ -31,11 +31,32 @@ _HEAD_LEVEL = {"# ": "title", "## ": "l2", "### ": "chapter_heading", "#### ": "
 _ART = re.compile(r"^(?:(?P<title>[^*\n]{1,160}?)\s+)?\*\*(Чл\.\s*(\d+[а-я]?(?:\d{1,2})?)\.|Член\s+единствен\.)\*\*\s*(.*)$", re.S)   # lex.bg prints an article's title before its head
 _SIGN = re.compile(r"^(?:\*\*)?(§\s*(\d+[а-я]?)\.|Параграф\s+единствен\.)(?:\*\*)?\s*(.*)$", re.S)   # a plain § head is lex.bg's amending tail
 _ALINEA = re.compile(r"^\((\d{1,3}[а-я]?)\)\s*(.*)$", re.S)
-_ITEM = re.compile(r"^(\d{1,3}(?:[а-я]{1,2})?)\.\s+(.*)$", re.S)
+_ITEM = re.compile(r"^(\d{1,3}(?:[а-я]{1,2})?)\.(?:\s+|(?=[А-Яа-я(„\"]))(.*)$", re.S)   # „1.главния“: the Gazette prints an item without its space (a malformed head, D-072 ruling 7)
 _LETTER = re.compile(r"^([а-я]{1,3})\)\s+(.*)$", re.S)
 _MARKER = re.compile(r"^\((?:Изм|изм|Нова|Нов|нова|нов|Доп|доп|Отм|отм|Попр|попр|Загл|Предишн|предишн|В сила|Обявен)[^()]*(?:\([^()]*\)[^()]*)*\)\s*")
 _INLINE_ALINEA = re.compile(r"^((?:\([^()]*(?:\([^()]*\)[^()]*)*\)\s*)*)(\(\d{1,3}\)\s*.*)$", re.S)   # after an editorial note in parentheses
 _ANNEX = re.compile(r"^Приложение(?:\s*№\s*(\S+))?", re.I)
+_ANNEX_REF = re.compile(r"^Приложение\s*(?:№\s*\S+)?\s*към\s+((?:(?:чл|ал|т)\.\s*\d+[а-я]?|§\s*\d+[а-я]?|,\s*|\bи\b\s*|\s)+)", re.I)
+
+
+def _annex_n(heading: str) -> str | None:
+    """An annex's identity: its number („Приложение № 3 към чл. 6“ → "3"), or, unnumbered, the provision it belongs to
+    („Приложение към чл. 19г, ал. 2“ → "към чл. 19г, ал. 2"); lex.bg's „Приложениекъм чл. 8“ reads the same."""
+    m = _ANNEX.match(heading)
+    if not m:
+        return None
+    if m.group(1):
+        return m.group(1).strip("„“\"") or None
+    r = _ANNEX_REF.match(heading)
+    if not r:
+        return None
+    return "към " + _norm_ref(r.group(1))
+
+
+def _norm_ref(ref: str) -> str:
+    ref = re.sub(r"(чл|ал|т)\.\s*", r"\1. ", ref)
+    ref = re.sub(r"§\s*", "§ ", ref)
+    return re.sub(r"\s+", " ", ref).strip().rstrip(",").strip()
 _PROVISIONS = re.compile(r"^(допълнителн|преходн|заключителн)\S*(\s+и\s+\S+)?\s+разпоредб", re.I)
 HEADING_NUMBER = r"((?:[\wIVXLC]+)(?:\s+и\s+[\w]+)?(?:\s*[„\"][а-я][“\"])?)"   # първа, двадесет и първа, единадесета „а“, I, IIIа
 _PART = re.compile(r"^(Част|Дял)\s+" + HEADING_NUMBER, re.I)
@@ -71,7 +92,7 @@ class Line:
             if m and m.group("title"):
                 t = t[len(m.group("title")):].lstrip()
         for rx in (re.compile(r"^(Чл\.\s*\S+\.|Член\s+единствен\.|§\s*\S+\.|Параграф\s+единствен\.)\s*"), re.compile(r"^\(\d{1,3}[а-я]?\)\s*"),
-                   re.compile(r"^\d{1,3}(?:[а-я]{1,2})?\.\s+"), re.compile(r"^[а-я]{1,3}\)\s+")):
+                   re.compile(r"^\d{1,3}(?:[а-я]{1,2})?\.(?:\s+|(?=[А-Яа-я(„\"]))"), re.compile(r"^[а-я]{1,3}\)\s+")):
             m = rx.match(t)
             if m and self.kind in ("article", "sign", "alinea", "item", "letter"):
                 t = t[m.end():]
@@ -87,7 +108,7 @@ class Line:
             if m and m.group("title"):
                 t = t[len(m.group("title")):].lstrip()
         for rx in (re.compile(r"^(Чл\.\s*\S+\.|Член\s+единствен\.|§\s*\S+\.|Параграф\s+единствен\.)\s*"), re.compile(r"^\(\d{1,3}[а-я]?\)\s*"),
-                   re.compile(r"^\d{1,3}(?:[а-я]{1,2})?\.\s+"), re.compile(r"^[а-я]{1,3}\)\s+")):
+                   re.compile(r"^\d{1,3}(?:[а-я]{1,2})?\.(?:\s+|(?=[А-Яа-я(„\"]))"), re.compile(r"^[а-я]{1,3}\)\s+")):
             m = rx.match(t)
             if m and self.kind in ("article", "sign", "alinea", "item", "letter"):
                 t = t[m.end():]
@@ -131,7 +152,7 @@ class Tree:
 
 
 def _same_n(a: str | None, b: str) -> bool:
-    norm = lambda x: re.sub(r"\s+", " ", x.lower().rstrip(".").replace("„", "\"").replace("“", "\""))
+    norm = lambda x: re.sub(r"\s+", " ", re.sub(r"[„“”\"]", "", x.lower().rstrip(".")))   # „глава втора „а““: the marks around a letter are print
     return a is not None and norm(a) == norm(b)
 
 
@@ -141,8 +162,7 @@ def _kind_of(text: str) -> tuple[str, str | None]:
             body = text[len(prefix):]
             if kind == "l2":
                 if _ANNEX.match(body):
-                    m = _ANNEX.match(body)
-                    return "annex_heading", (m.group(1) or "").strip("„“\"") or None
+                    return "annex_heading", _annex_n(body)
                 if _PROVISIONS.match(body):
                     return "provisions_heading", None
                 m = _PART.match(body)
@@ -277,7 +297,7 @@ def parse(markdown: str) -> Tree:
 
 _ADDR_PART = re.compile(r"(чл\.|член|ал\.|алинея|т\.|точка|б\.|буква|§|параграф|глава|раздел|част|дял|подраздел|приложение|изречение|изр\.)\s*(№\s*)?"
                         r"((?:[\w„“\"]+(?:\s+и\s+[\w]+)?(?:\s*[„\"][а-я][“\"])?))", re.I)
-_LEAD = re.compile(r"\b(?:в\s+)?(?:текста\s+преди\s+т\.\s*\d+[а-я]?|основния\s+текст|основният\s+текст|уводното\s+изречение)", re.I)
+_LEAD = re.compile(r"\b(?:в\s+)?(?:текст(?:а|ът)\s+преди\s+т\.\s*\d+[а-я]?|основния\s+текст|основният\s+текст|уводното\s+изречение)", re.I)
 _PART_KIND = {"чл.": "article", "член": "article", "ал.": "alinea", "алинея": "alinea", "т.": "item", "точка": "item", "б.": "letter", "буква": "letter",
               "§": "sign", "параграф": "sign", "глава": "chapter_heading", "раздел": "section_heading", "част": "part_heading", "дял": "part_heading",
               "подраздел": "subsection_heading", "приложение": "annex_heading", "изречение": "sentence", "изр.": "sentence"}
@@ -291,10 +311,41 @@ def parse_address(text: str) -> list[tuple[str, str]]:
     """„чл. 36, ал. 1, т. 5, б. „а““ → [("article", "36"), ("alinea", "1"), ("item", "5"), ("letter", "а")]; „наименованието“ → [("title", "")];
     „навсякъде“ → [("act", "")]; „чл. 5, ал. 2, изречение второ“ ends with ("sentence", "2"). Anything else in the text refuses it."""
     t = text.strip().strip(".")
-    if re.match(r"^(наименованието|заглавието)", t, re.I):
-        return [("title", "")]
-    if re.match(r"^(навсякъде|в целия|в цялата|в целия текст|в текста на целия)", t, re.I):
-        return [("act", "")]
+    tail: list[tuple[str, str]] = []
+    # „наименованието на чл. 27“, „приложение …, наименованието“: the provision's or the annex's own title words
+    tm = re.search(r"(?:^|,\s*|\s+)(?:в\s+)?(наименованието|заглавието)(?:\s+на)?(?=\s|,|$)", t, re.I)
+    if tm:
+        rest = (t[:tm.start()] + " " + t[tm.end():]).strip(" ,")
+        if not rest.strip():
+            return [("title", "")]
+        t = rest
+        tail.append(("article_title", ""))
+    # „…, ред „Областна дирекция „Земеделие“ – Варна““: a row of an annex table, named by its words
+    # „т. 5.15“: a sub-item numbered inside an item's text (the Gazette's flattened hierarchy); the item is the address, the
+    # sub-item the scope of the words operation
+    lm = re.search(r",?\s*(?:буква|б\.)\s*[„(]?([a-zа-я])[“)]?\s*$", t)
+    if lm and re.match(r"^(?:Приложението|Приложение)\s", t, re.I):
+        tail.insert(0, ("annex_letter", lm.group(1)))   # a lettered entry of an annex form („(d) …“)
+        t = t[:lm.start()].strip(" ,")
+    sm = re.search(r"\b(т\.|точка)\s*(\d+)\.(\d+)(?=\s|,|$)", t)
+    if sm:
+        tail.append(("subitem", f"{sm.group(2)}.{sm.group(3)}"))
+        t = t[:sm.start()] + f"т. {sm.group(2)}" + t[sm.end():]
+    rm = re.search(r",?\s*(?:на\s+)?ред\s+„(.+)“\s*$", t)
+    if rm:
+        tail.insert(0, ("annex_row", rm.group(1).strip()))
+        t = t[:rm.start()].strip(" ,")
+    if re.match(r"^(навсякъде|в целия|в цялата|в целия текст|в текста на целия)", t, re.I) or \
+            re.fullmatch(r"(?:навсякъде\s+)?(?:в\s+)?(?:наредбата|закона|кодекса|правилника|устройствения правилник|инструкцията)(?:\s+и\s+(?:в\s+)?приложени(?:ето|ята)\s+към\s+(?:нея|него))?", t, re.I):
+        return [("act", "")]   # „навсякъде в наредбата и в приложенията към нея“: the whole act
+    unnumbered = re.fullmatch(r"(?:Приложението|Приложение)\s+към\s+(.+)", t, re.I)
+    if unnumbered:
+        # an unnumbered annex is named by the provision it belongs to; the parts after „към“ are its name, not a path into it
+        ref = _norm_ref(unnumbered.group(1))
+        if not re.fullmatch(r"(?:(?:чл|ал|т)\. \d+[а-я]?|§ \d+[а-я]?)(?:(?:, | и )(?:(?:чл|ал|т)\. \d+[а-я]?|§ \d+[а-я]?))*", ref):
+            raise AddressError(f"the annex reference in {text!r} is not a provision the grammar reads: {ref!r}")
+        return [("annex_heading", "към " + ref)] + tail
+    t = re.sub(r"^Приложението\b", "Приложение", t)
     out: list[tuple[str, str]] = []
     rest = t
     lead = _LEAD.search(t)
@@ -316,9 +367,62 @@ def parse_address(text: str) -> list[tuple[str, str]]:
         raise AddressError(f"the address {text!r} carries a part the grammar does not read: {rest.strip()!r}")
     if lead:
         out.append(("lead", ""))   # the provision's own words before its items
+    out.extend(tail)
     sentences = [p for p in out if p[0] == "sentence"]
     if len(sentences) > 1 or (sentences and out[-1][0] not in ("sentence", "lead")):
         raise AddressError(f"a sentence part stands last and once in {text!r}")
+    return out
+
+
+def subitem_of(address: str) -> str | None:
+    """The sub-item („5.15“) an address names inside an item's text, or None."""
+    parts = [p for p in parse_address(address) if p[0] == "subitem"]
+    return parts[0][1] if parts else None
+
+
+def title_part(address: str) -> bool:
+    """Whether the address names the provision's (or the annex's) own title words („наименованието на чл. 27“)."""
+    return any(p[0] == "article_title" for p in parse_address(address))
+
+
+def _row_equal(have: str, want: str) -> bool:
+    """A table row's name equals the instruction's, word by word; a word the act abbreviates („В.“) matches the word the
+    instruction writes in full („Велико“)."""
+    a, b = have.split(), want.split()
+    if len(a) != len(b):
+        return False
+    for x, y in zip(a, b):
+        if x == y:
+            continue
+        if x.endswith(".") and len(x) > 1 and y.startswith(x[:-1]):
+            continue
+        if y.endswith(".") and len(y) > 1 and x.startswith(y[:-1]):
+            continue
+        return False
+    return True
+
+
+def _norm_row(text: str) -> str:
+    return re.sub(r"\s+", " ", text.replace("„", "\"").replace("“", "\"").replace("”", "\"").replace("–", "-").replace("—", "-")).strip().rstrip(".").lower()
+
+
+_ANNEX_SECTION = re.compile(r"(?:Раздел\s+)?([IVXLC]+|\d+)\.?")
+_ANNEX_LETTER = re.compile(r"\(?([a-zа-я])\)\s")
+
+
+def annex_section_span(tree: "Tree", idx: int) -> list[int]:
+    """The rows of an annex from a section-head row („II.“, „Раздел II“) to the row before the next one, or the annex's end."""
+    parent = tree.lines[idx].parent
+    rows = tree.lines[parent].children if parent is not None else [idx]
+    out = [idx]
+    lettered = bool(_ANNEX_LETTER.match(tree.lines[idx].text.strip()))
+    for k in rows:
+        if k <= idx:
+            continue
+        t = tree.lines[k].text.strip()
+        if _ANNEX_SECTION.fullmatch(t) or (lettered and _ANNEX_LETTER.match(t)):
+            break
+        out.append(k)
     return out
 
 
@@ -335,7 +439,7 @@ def lead_of(address: str) -> bool:
 
 def resolve(tree: Tree, address: str) -> int:
     """The one line an address names (``ACT`` for the whole act); AddressError when none or several."""
-    parts = [p for p in parse_address(address) if p[0] not in ("sentence", "lead")]
+    parts = [p for p in parse_address(address) if p[0] not in ("sentence", "lead", "article_title", "subitem")]
     kind, n = parts[0]
     if kind == "act":
         return ACT
@@ -346,7 +450,28 @@ def resolve(tree: Tree, address: str) -> int:
     for kind, n in parts[1:]:
         nxt: list[int] = []
         for f in found:
-            nxt.extend(tree.find(kind, n, under=f))
+            if tree.lines[f].kind == "annex_heading" and kind == "annex_row":
+                # a table row named by its words: the row line whose text is those words, or the first of the row lines whose
+                # joined text is (a cell wrapped onto two lines: „Областна дирекция „Земеделие“ –“, „Варна“)
+                rows = tree.lines[f].children
+                want = _norm_row(n)
+                for pos, k in enumerate(rows):
+                    joined = ""
+                    for j in rows[pos:pos + 3]:
+                        joined = (joined + " " + tree.lines[j].text).strip()
+                        if _row_equal(_norm_row(joined), want):
+                            nxt.append(k)
+                            break
+                        if len(_norm_row(joined).split()) >= len(want.split()):
+                            break
+            elif tree.lines[f].kind == "annex_heading" and kind == "annex_letter":
+                nxt.extend(k for k in tree.lines[f].children if re.match(rf"^\(?{re.escape(n)}\)\s", tree.lines[k].text.strip()))
+            elif tree.lines[f].kind == "annex_heading" and kind in ("section_heading", "chapter_heading", "part_heading"):
+                # a section inside an annex („раздел II“): the row that carries the number alone, or „Раздел II“
+                nxt.extend(k for k in tree.lines[f].children
+                           if (m := _ANNEX_SECTION.fullmatch(tree.lines[k].text.strip())) and _same_n(m.group(1), n))
+            else:
+                nxt.extend(tree.find(kind, n, under=f))
         found = nxt
     if len(found) != 1:
         raise AddressError(f"{address!r} names {len(found)} place(s) in the act")
@@ -398,7 +523,7 @@ def line_from_text(text: str, context_kind: str | None = None) -> Line:
     if _PROVISIONS.match(t) and len(t) < 80:
         return Line("provisions_heading", "## " + t, None)
     if _ANNEX.match(t) and len(t) < 120:
-        return Line("annex_heading", "## " + t, (_ANNEX.match(t).group(1) or "").strip("„“\"") or None)
+        return Line("annex_heading", "## " + t, _annex_n(t))
     kind, n = _kind_of(t)
     if kind == "text" and context_kind == "annex_row":
         kind = "annex_row"

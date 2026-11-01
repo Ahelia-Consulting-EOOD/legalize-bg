@@ -1,0 +1,44 @@
+{
+ "material": 24866,
+ "title": "Наредба за изменение и допълнение на Наредба № 23 от 2001 г. за условията и изискванията за представяне на хранителната информация при етикетирането на храните",
+ "issue": "74/2009",
+ "section": "Министерство на здравеопазването",
+ "kind": "ordinance",
+ "instruction_kind": "amending",
+ "amending": true,
+ "embedded": null,
+ "status": "amends_other_acts",
+ "targets": [
+  {
+   "scope": "title",
+   "cited_title": "Наредба № 23 от 2001 г. за условията и изискванията за представяне на хранителната информация при етикетирането на храните",
+   "cited_promulgation": [
+    53,
+    2001
+   ],
+   "status": "not_in_corpus",
+   "how": "resolver",
+   "slug": null,
+   "candidates": [],
+   "flags": [
+    "title_ambiguous",
+    "no_candidate"
+   ],
+   "repeal": false,
+   "note": "",
+   "act_promulgation": null
+  }
+ ],
+ "instructions": 45,
+ "signs": 29,
+ "quoted_blocks": 122,
+ "findings": [
+  {
+   "block": 162,
+   "kind": "quote_closed_by_sequence",
+   "detail": "the run before '§ 23. Приложение № 1 към чл. 8, ал. 4 се' is closed by the sequence, not by a mark"
+  }
+ ],
+ "tokens_instructions": 2840,
+ "attributed_at": "2026-11-01T09:40:23+00:00"
+}

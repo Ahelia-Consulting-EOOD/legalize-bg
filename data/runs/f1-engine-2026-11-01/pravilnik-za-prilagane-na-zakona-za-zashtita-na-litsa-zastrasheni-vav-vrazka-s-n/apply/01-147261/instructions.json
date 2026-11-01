@@ -1,0 +1,201 @@
+{
+ "kind": "decree",
+ "amending": true,
+ "own_title": "ПОСТАНОВЛЕНИЕ № 56 ОТ 31 МАРТ 2020 Г. за изменение и допълнение на Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство, приет с Постановление № 242 на Министерския съвет от 2018 г.",
+ "target_title": "Правилника за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство",
+ "cited_history": {
+  "promulgation": [
+   94,
+   2018
+  ],
+  "issues": [
+   [
+    94,
+    2018
+   ]
+  ],
+  "text": "(ДВ, бр. 94 от 2018 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0,
+  1,
+  2,
+  3
+ ],
+ "headings": [
+  17
+ ],
+ "tail": [
+  19,
+  20,
+  21
+ ],
+ "roles": {
+  "0": "header",
+  "1": "header",
+  "2": "header",
+  "3": "header",
+  "19": "tail",
+  "20": "tail",
+  "21": "tail",
+  "4": "instruction",
+  "5": "instruction",
+  "6": "instruction",
+  "7": "quoted",
+  "8": "instruction",
+  "9": "instruction",
+  "10": "quoted",
+  "11": "instruction",
+  "12": "quoted",
+  "13": "instruction",
+  "14": "instruction",
+  "15": "quoted",
+  "16": "instruction",
+  "17": "heading",
+  "18": "instruction"
+ },
+ "findings": [],
+ "blocks": 22,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 4,
+   "text": "§ 1. В чл. 29 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§1.1",
+     "level": 1,
+     "block": 5,
+     "text": "1. В ал. 2:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§1.1.а",
+       "level": 2,
+       "block": 6,
+       "text": "а) създава се нова т. 17:",
+       "section": "body",
+       "children": [],
+       "quoted": [
+        7
+       ],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      },
+      {
+       "id": "§1.1.б",
+       "level": 2,
+       "block": 8,
+       "text": "б) досегашната т. 17 става т. 18.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.2",
+     "level": 1,
+     "block": 9,
+     "text": "2. Алинея 4 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      10
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§1.3",
+     "level": 1,
+     "block": 11,
+     "text": "3. Създава се ал. 5:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      12
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 13,
+   "text": "§ 2. В чл. 30 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 14,
+     "text": "1. В ал. 4 т. 4 се изменя така:",
+     "section": "body",
+     "children": [],
+     "quoted": [
+      15
+     ],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 16,
+     "text": "2. В ал. 5 след думите „Министерството на вътрешните работи“ се добавя „и на Главна дирекция „Охрана“ към министъра на правосъдието“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "Министерството на вътрешните работи",
+      "Охрана"
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 18,
+   "text": "§ 3. Постановлението влиза в сила от деня на обнародването му в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}

@@ -1,0 +1,601 @@
+{
+ "material": 41709,
+ "issue": "100/2010",
+ "operations": [
+  {
+   "id": "§1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 21, ал. 4",
+   "old": "значително по-голям принос",
+   "old_ref": "q1",
+   "new": "липса на съвместен принос",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§2",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 23, ал. 1",
+   "anchor": "изцяло с лично имущество",
+   "anchor_ref": "q1",
+   "where": "after",
+   "everywhere": false
+  },
+  {
+   "id": "§3",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 39, ал. 3",
+   "new": "в деня на нотариалното удостоверяване, когато е сключен по време на брака",
+   "new_ref": "q2",
+   "where": "after",
+   "anchor": "регистър",
+   "anchor_ref": "q1"
+  },
+  {
+   "id": "§3",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 39, ал. 3, изречение второ",
+   "new": "Когато договорът е сключен преди встъпването в брак, той се представя за вписване от нотариуса в деня на получаване от него на удостоверението за сключване на граждански брак. Ако договорът подлежи на вписване в друг съдебен район, се прилага чл. 25, ал. 6 от Закона за нотариусите и нотариалната дейност.",
+   "new_ref": "q3",
+   "after": ""
+  },
+  {
+   "id": "§4",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§4.1",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 59, ал. 6, изречение второ",
+   "old": "синдром на",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§4.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 59, ал. 7, изречение второ",
+   "old": "или",
+   "old_ref": "q2",
+   "new": ",",
+   "new_ref": {
+    "text": ","
+   },
+   "everywhere": false
+  },
+  {
+   "id": "§4.2",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 59, ал. 7, изречение второ",
+   "new": "или му се предоставя социална услуга – резидентен тип",
+   "new_ref": "q4",
+   "where": "after",
+   "anchor": "Социално подпомагане“",
+   "anchor_ref": {
+    "text": "Социално подпомагане“"
+   }
+  },
+  {
+   "id": "§5",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 65, ал. 2",
+   "old": "и",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§5",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 65, ал. 2",
+   "new": "както и на Дирекция „Социално подпомагане“ по настоящия адрес на детето",
+   "new_ref": {
+    "text": "както и на Дирекция „Социално подпомагане“ по настоящия адрес на детето"
+   },
+   "where": "after",
+   "anchor": "години",
+   "anchor_ref": "q2"
+  },
+  {
+   "id": "§6",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§6.1",
+   "kind": "delete_words",
+   "note": "",
+   "address": "наименованието на чл. 66",
+   "old": "от другия родител и от детето",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§6.2",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 66, ал. 5",
+   "lines": [
+    "(5) Извън случаите по ал. 1 и 4 припознаването може да бъде оспорено по съдебен ред чрез иск, предявен в едногодишен срок от извършването му, от Дирекция „Социално подпомагане“ по настоящия адрес на детето и от прокурора."
+   ],
+   "blocks": [
+    20,
+    20
+   ],
+   "hints": [
+    "DvJustify"
+   ],
+   "after": "чл. 66, ал. 4"
+  },
+  {
+   "id": "§7",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§7.1",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 84, ал. 1, изречение второ",
+   "new": "Ако съгласието е дадено след настаняването, 7-дневният срок тече от деня на даване на съгласието.",
+   "new_ref": "q1",
+   "after": ""
+  },
+  {
+   "id": "§7.2",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 84, ал. 2, изречение трето",
+   "new": "Когато на детето е предоставена социална услуга – резидентен тип, или е настанено в приемно семейство и родителят не е поискал прекратяване на настаняването без основателни причини в срока по чл. 93, ал. 2, Дирекция „Социално подпомагане“ уведомява регионалната дирекция за социално подпомагане за вписването на детето в регистъра, ако интересите на детето налагат това.",
+   "new_ref": {
+    "text": "Когато на детето е предоставена социална услуга – резидентен тип, или е настанено в приемно семейство и родителят не е поискал прекратяване на настаняването без основателни причини в срока по чл. 93, ал. 2, Дирекция „Социално подпомагане“ уведомява регионалната дирекция за социално подпомагане за вписването на детето в регистъра, ако интересите на детето налагат това."
+   },
+   "after": ""
+  },
+  {
+   "id": "§8",
+   "kind": "replace_sentence",
+   "note": "",
+   "address": "чл. 92, изречение първо",
+   "new": "Родителят може да оттегли предварително даденото си съгласие за пълно осиновяване със заявление с нотариална заверка на подписа до подаване на молба за осиновяване по чл. 95, ал. 5, съответно до даване на съгласие за осиновяване от определения от Съвета по международно осиновяване по реда на чл. 114, ал. 7 осиновяващ.",
+   "new_ref": "q1"
+  },
+  {
+   "id": "§9",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§9.1",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 93, ал. 3",
+   "lines": [
+    "(3) Осиновяване без съгласие на родителя при условията на ал. 2 се допуска и когато на детето е предоставена социална услуга – резидентен тип, или е настанено в приемно семейство и е вписано в регистъра на деца за пълно осиновяване."
+   ],
+   "blocks": [
+    27,
+    27
+   ],
+   "hints": [
+    "DvJustify"
+   ],
+   "after": "чл. 93, ал. 2"
+  },
+  {
+   "id": "§9.2",
+   "kind": "renumber",
+   "note": "",
+   "address": "чл. 93, ал. 3",
+   "to": "ал. 4"
+  },
+  {
+   "id": "§10",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 94, ал. 2, изречение второ",
+   "old": "както и",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§10",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 94, ал. 2, изречение второ",
+   "punctuation": "before",
+   "new": "както и на институцията, предоставяща социалната услуга – резидентен тип",
+   "new_ref": "q2",
+   "where": "end"
+  },
+  {
+   "id": "§11",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§11.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 97, ал. 1, изречение второ",
+   "old": "изслушва доклада на",
+   "old_ref": "q1",
+   "new": "изисква доклад от",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§11.2",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 97, ал. 3",
+   "old": "Агенцията за социално подпомагане",
+   "old_ref": "q1",
+   "new": "съответната регионална дирекция за социално подпомагане",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§12",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 98, ал. 1, изречение първо",
+   "old": "чл. 93, ал. 2",
+   "old_ref": "q1",
+   "new": "чл. 100, ал. 2",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§12",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 98, ал. 1, изречение първо",
+   "old": "14-дневен",
+   "old_ref": "q3",
+   "new": "7-дневен",
+   "new_ref": "q4",
+   "everywhere": false
+  },
+  {
+   "id": "§12",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 98, ал. 1, изречение първо",
+   "old": "съобщаване",
+   "old_ref": "q5",
+   "new": "обявяването",
+   "new_ref": "q6",
+   "everywhere": false
+  },
+  {
+   "id": "§13",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 100, ал. 2, т. 3",
+   "new": "и 3",
+   "new_ref": "q1",
+   "where": "end"
+  },
+  {
+   "id": "§14",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 105",
+   "lines": [
+    "Право на информация",
+    "Чл. 105. (1) Осиновителите или навършилият шестнадесет години осиновен могат да поискат от окръжния съд, постановил решението за допускане на осиновяването, да им бъде предоставена информация за произхода на осиновения, когато важни обстоятелства налагат това. Окръжният съд в съдебно заседание при закрити врата, след като изслуша рождените родители на осиновения и заключението на прокурора, се произнася с решение.",
+    "(2) Решението на окръжния съд може да се обжалва от осиновителите и осиновения и да се протестира от прокурора."
+   ],
+   "blocks": [
+    36,
+    38
+   ],
+   "hints": [
+    "DvCenter",
+    "DvJustify",
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§15",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§15.1",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 106, ал. 6",
+   "lines": [
+    "(6) Прокурорът има право да поиска прекратяване на осиновяването в защита на обществения интерес. В случаите по ал. 1, т. 1 искът се предявява в сроковете по ал. 3 и 4, а по ал. 1, т. 2 – до навършване на пълнолетие на детето."
+   ],
+   "blocks": [
+    41,
+    41
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§15.1",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 106, ал. 7",
+   "lines": [
+    "(7) Дирекция „Социално подпомагане“ има право да поиска прекратяване на осиновяването по ал. 1, ако то противоречи на интереса на детето. В случаите по ал. 1, т. 1 искът се предявява в сроковете по ал. 3 и 4, а по ал. 1, т. 2 – до навършване на пълнолетие на детето."
+   ],
+   "blocks": [
+    42,
+    42
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§15.2",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 106, ал. 9",
+   "lines": [
+    "(9) По делата за прекратяване на осиновяването, извън случаите по ал. 8, участва прокурор."
+   ],
+   "blocks": [
+    44,
+    44
+   ],
+   "hints": [
+    "DvJustify"
+   ],
+   "after": "чл. 106, ал. 8"
+  },
+  {
+   "id": "§16",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§16.1",
+   "kind": "replace_words",
+   "note": "",
+   "address": "чл. 113, ал. 1, т. 3",
+   "old": "постоянно",
+   "old_ref": "q1",
+   "new": "обичайно",
+   "new_ref": "q2",
+   "everywhere": false
+  },
+  {
+   "id": "§16.2",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 113, ал. 5",
+   "lines": [
+    "(5) За вписване в регистрите по ал. 1, т. 2 и 3 се заплащат такси в размери, определени с тарифа на Министерския съвет."
+   ],
+   "blocks": [
+    48,
+    48
+   ],
+   "hints": [
+    "DvJustify"
+   ],
+   "after": "чл. 113, ал. 4"
+  },
+  {
+   "id": "§17",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 118, ал. 2",
+   "lines": [
+    "(2) Решението по ал. 1 може да се обжалва по реда на чл. 98."
+   ],
+   "blocks": [
+    50,
+    50
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§18",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§18.1",
+   "kind": "insert_words",
+   "note": "",
+   "address": "чл. 152, ал. 1",
+   "new": "ненавършил пълнолетие",
+   "new_ref": "q2",
+   "where": "before",
+   "anchor": "български гражданин",
+   "anchor_ref": "q1"
+  },
+  {
+   "id": "§18.2",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 152, ал. 2",
+   "lines": [
+    "(2) Изплащането по ал. 1 се дължи, когато по изпълнителното дело се установи, че неизправният длъжник няма доходи и не притежава имущество, върху които да се насочи принудителното изпълнение."
+   ],
+   "blocks": [
+    54,
+    54
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§18.3",
+   "kind": "repeal",
+   "note": "",
+   "address": "чл. 152, ал. 3"
+  },
+  {
+   "id": "§18.4",
+   "kind": "delete_words",
+   "note": "",
+   "address": "чл. 152, ал. 4",
+   "old": "144 и",
+   "old_ref": "q1",
+   "everywhere": false
+  },
+  {
+   "id": "§18.5",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 152, ал. 5",
+   "lines": [
+    "(5) Издръжката се изплаща считано от първо число на месеца, следващ месеца, през който са установени обстоятелствата по ал. 2."
+   ],
+   "blocks": [
+    58,
+    58
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§18.5",
+   "kind": "replace_provision",
+   "note": "",
+   "address": "чл. 152, ал. 6",
+   "lines": [
+    "(6) Неизправният длъжник е задължен да възстанови платената от държавата издръжка заедно със законната лихва."
+   ],
+   "blocks": [
+    59,
+    59
+   ],
+   "hints": [
+    "DvJustify"
+   ]
+  },
+  {
+   "id": "§18.6",
+   "kind": "insert_provision",
+   "note": "",
+   "address": "чл. 152, ал. 7",
+   "lines": [
+    "(7) Държавата се смята за присъединен взискател за частното държавно вземане за платената от общината издръжка по образуваното изпълнително дело заедно със законната лихва. В тези случаи дължимите такси и разноски се събират направо от длъжника."
+   ],
+   "blocks": [
+    61,
+    61
+   ],
+   "hints": [
+    "DvJustify"
+   ],
+   "after": "чл. 152, ал. 6"
+  },
+  {
+   "id": "§18.7",
+   "kind": "renumber",
+   "note": "",
+   "address": "чл. 152, ал. 7",
+   "to": "ал. 8"
+  },
+  {
+   "id": "§19",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§20",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§21",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§22",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§23",
+   "kind": "no_text_change",
+   "note": ""
+  },
+  {
+   "id": "§24",
+   "kind": "no_text_change",
+   "note": ""
+  }
+ ],
+ "log": [
+  "§1 replace_words: 1 replacement(s)",
+  "§2 delete_words: the words after the anchor deleted",
+  "§3 insert_words: inserted",
+  "§3 insert_provision: sentence 2 added",
+  "§4 no_text_change: nothing",
+  "§4.1 delete_words: 1 deletion(s)",
+  "§4.2 replace_words: 1 replacement(s)",
+  "§4.2 insert_words: inserted",
+  "§5 delete_words: 1 deletion(s)",
+  "§5 insert_words: inserted",
+  "§6 no_text_change: nothing",
+  "§6.1 delete_words: title words changed",
+  "§6.2 insert_provision: 1 line(s) at чл. 66, ал. 5",
+  "§7 no_text_change: nothing",
+  "§7.1 insert_provision: sentence 2 added",
+  "§7.2 insert_provision: sentence 3 added",
+  "§8 replace_sentence: sentence 1 replaced",
+  "§9 no_text_change: nothing",
+  "§9.2 renumber: 3 -> 4 (moved before §9.1)",
+  "§9.1 insert_provision: 1 line(s) at чл. 93, ал. 3",
+  "§10 delete_words: 1 deletion(s)",
+  "§10 insert_words: inserted",
+  "§11 no_text_change: nothing",
+  "§11.1 replace_words: 1 replacement(s)",
+  "§11.2 replace_words: 1 replacement(s)",
+  "§12 replace_words: 1 replacement(s)",
+  "§12 replace_words: 1 replacement(s)",
+  "§12 replace_words: 1 replacement(s)",
+  "§13 insert_words: inserted",
+  "§14 replace_provision: 1 line(s) replaced by 2",
+  "§15 no_text_change: nothing",
+  "§15.1 replace_provision: 1 line(s) replaced by 1",
+  "§15.1 replace_provision: 1 line(s) replaced by 1",
+  "§15.2 insert_provision: 1 line(s) at чл. 106, ал. 9",
+  "§16 no_text_change: nothing",
+  "§16.1 replace_words: 1 replacement(s)",
+  "§16.2 insert_provision: 1 line(s) at чл. 113, ал. 5",
+  "§17 replace_provision: 1 line(s) replaced by 1",
+  "§18 no_text_change: nothing",
+  "§18.1 insert_words: inserted",
+  "§18.2 replace_provision: 1 line(s) replaced by 1",
+  "§18.3 repeal: 4 line(s) repealed",
+  "§18.4 delete_words: 1 deletion(s)",
+  "§18.5 replace_provision: 1 line(s) replaced by 1",
+  "§18.5 replace_provision: 1 line(s) replaced by 1",
+  "§18.7 renumber: 7 -> 8 (moved before §18.6)",
+  "§18.6 insert_provision: 1 line(s) at чл. 152, ал. 7",
+  "§19 no_text_change: nothing",
+  "§20 no_text_change: nothing",
+  "§21 no_text_change: nothing",
+  "§22 no_text_change: nothing",
+  "§23 no_text_change: nothing",
+  "§24 no_text_change: nothing"
+ ]
+}

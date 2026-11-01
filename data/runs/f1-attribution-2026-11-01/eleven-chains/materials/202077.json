@@ -1,0 +1,29 @@
+{
+ "material": 202077,
+ "title": "Постановление № 312 от 20 декември 2023 г. за одобряване на промени по бюджета на Министерството на отбраната за 2023 г. във връзка с увеличаване капитала на търговско дружество",
+ "issue": "106/2023",
+ "section": "Министерски съвет",
+ "kind": "decree",
+ "instruction_kind": "promulgation",
+ "amending": false,
+ "embedded": null,
+ "status": "not_amending",
+ "targets": [],
+ "instructions": 4,
+ "signs": 4,
+ "quoted_blocks": 0,
+ "findings": [
+  {
+   "block": 5,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 2. Министърът на отбраната да извърши съответните промен"
+  },
+  {
+   "block": 6,
+   "kind": "unquoted_provision",
+   "detail": "Чл. 3. Министърът на финансите да извърши произтичащите от ч"
+  }
+ ],
+ "tokens_instructions": 164,
+ "attributed_at": "2026-11-01T09:40:26+00:00"
+}

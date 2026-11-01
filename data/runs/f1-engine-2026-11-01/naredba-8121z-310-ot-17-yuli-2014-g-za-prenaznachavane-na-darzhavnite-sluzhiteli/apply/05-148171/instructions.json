@@ -1,0 +1,214 @@
+{
+ "kind": "ordinance",
+ "amending": true,
+ "own_title": "Наредба за изменение и допълнение на Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "target_title": "Наредба № 8121з-310 от 2014 г. за преназначаване на държавните служители в Министерството на вътрешните работи",
+ "cited_history": {
+  "promulgation": [
+   60,
+   2014
+  ],
+  "issues": [
+   [
+    60,
+    2014
+   ],
+   [
+    87,
+    2014
+   ],
+   [
+    104,
+    2014
+   ],
+   [
+    29,
+    2015
+   ],
+   [
+    29,
+    2017
+   ]
+  ],
+  "text": "(обн., ДВ, бр. 60 от 2014 г.; изм. и доп., бр. 87 и 104 от 2014 г., бр. 29 от 2015 г. и бр. 29 от 2017 г.)"
+ },
+ "body_org": null,
+ "header": [
+  0
+ ],
+ "headings": [
+  12
+ ],
+ "tail": [
+  14,
+  15
+ ],
+ "roles": {
+  "0": "header",
+  "14": "tail",
+  "15": "tail",
+  "1": "instruction",
+  "2": "instruction",
+  "3": "instruction",
+  "4": "instruction",
+  "5": "instruction",
+  "6": "instruction",
+  "7": "instruction",
+  "8": "instruction",
+  "9": "quoted",
+  "10": "quoted",
+  "11": "instruction",
+  "12": "heading",
+  "13": "instruction"
+ },
+ "findings": [],
+ "blocks": 16,
+ "embedded": null,
+ "instruction_kind": "amending",
+ "whole_act": false,
+ "nodes": [
+  {
+   "id": "§1",
+   "level": 0,
+   "block": 1,
+   "text": "§ 1. В чл. 2 думите „Закона за Министерството на вътрешните работи (ЗМВР)“ се заменят със „ЗМВР“.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Закона за Министерството на вътрешните работи (ЗМВР)",
+    "ЗМВР"
+   ],
+   "target": null
+  },
+  {
+   "id": "§2",
+   "level": 0,
+   "block": 2,
+   "text": "§ 2. В чл. 7 се правят следните изменения и допълнения:",
+   "section": "body",
+   "children": [
+    {
+     "id": "§2.1",
+     "level": 1,
+     "block": 3,
+     "text": "1. В ал. 1:",
+     "section": "body",
+     "children": [
+      {
+       "id": "§2.1.а",
+       "level": 2,
+       "block": 4,
+       "text": "а) в т. 5 след думата „вакантна“ се добавя „или е съкратена“;",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "вакантна",
+        "или е съкратена"
+       ],
+       "target": null
+      },
+      {
+       "id": "§2.1.б",
+       "level": 2,
+       "block": 5,
+       "text": "б) в т. 6 след думите „ал. 3“ се поставя запетая и се добавя „т. 2“.",
+       "section": "body",
+       "children": [],
+       "quoted": [],
+       "continuation": [],
+       "inline_quotes": [
+        "ал. 3",
+        "т. 2"
+       ],
+       "target": null
+      }
+     ],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [],
+     "target": null
+    },
+    {
+     "id": "§2.2",
+     "level": 1,
+     "block": 6,
+     "text": "2. В ал. 6 думите „равностойна длъжност“ се заменят с „длъжност в рамките на съответния вид по чл. 143, ал. 1 ЗМВР“.",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "равностойна длъжност",
+      "длъжност в рамките на съответния вид по чл. 143, ал. 1 ЗМВР"
+     ],
+     "target": null
+    },
+    {
+     "id": "§2.3",
+     "level": 1,
+     "block": 7,
+     "text": "3. В ал. 7 се създава изречение второ: „В случаите по ал. 1, т. 6, когато за другата длъжност се изисква професионална квалификация, която служителят не притежава, преназначаването се извършва в тридесетдневен срок от успешното завършване на съответния курс.“",
+     "section": "body",
+     "children": [],
+     "quoted": [],
+     "continuation": [],
+     "inline_quotes": [
+      "В случаите по ал. 1, т. 6, когато за другата длъжност се изисква професионална квалификация, която служителят не притежава, преназначаването се извършва в тридесетдневен срок от успешното завършване на съответния курс."
+     ],
+     "target": null
+    }
+   ],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§3",
+   "level": 0,
+   "block": 8,
+   "text": "§ 3. Създава се чл. 7а:",
+   "section": "body",
+   "children": [],
+   "quoted": [
+    9,
+    10
+   ],
+   "continuation": [],
+   "inline_quotes": [],
+   "target": null
+  },
+  {
+   "id": "§4",
+   "level": 0,
+   "block": 11,
+   "text": "§ 4. В чл. 11, ал. 1 думите „и 4“ се заличават.",
+   "section": "body",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "и 4"
+   ],
+   "target": null
+  },
+  {
+   "id": "§5",
+   "level": 0,
+   "block": 13,
+   "text": "§ 5. Наредбата влиза в сила от деня на обнародването й в „Държавен вестник“.",
+   "section": "final",
+   "children": [],
+   "quoted": [],
+   "continuation": [],
+   "inline_quotes": [
+    "Държавен вестник"
+   ],
+   "target": null
+  }
+ ]
+}
