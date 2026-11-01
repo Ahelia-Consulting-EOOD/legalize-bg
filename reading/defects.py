@@ -69,7 +69,7 @@ KINDS: dict[str, str] = {
 }
 STAGES = ("tails", "whole", "amendment", "script")
 STAGE_RANK = {"script": 0, "tails": 1, "whole": 2, "amendment": 2}   # a later stage's verdict is never written over by an earlier stage's answer
-SESSION_FIELDS = ("in_force_from", "next")   # set on a verdict by the session from a recorded reading (D-077 (7)), never by an answer
+SESSION_FIELDS = ("in_force_from", "next")   # set on a verdict by the session from a recorded reading (D-078 (7)), never by an answer
 PER_CALL = 8            # candidates per call at most
 CAP_TOKENS = 40_000     # estimated content tokens per call at most (the measured safe range of a lean call is 25,000 of task text)
 BYTES_PER_TOKEN = 3.44  # the Read rate fitted in the run-driver study of 21 October 2026
