@@ -1,0 +1,41 @@
+{
+ "slug": "naredba-1-za-neprikosnovenite-zapasi-na-morskite-korabi",
+ "category": "ordinances",
+ "title": "НАРЕДБА № 1 ЗА НЕПРИКОСНОВЕНИТЕ ЗАПАСИ НА МОРСКИТЕ КОРАБИ",
+ "kind": "наредба",
+ "fecha_publicacion": "1981-03-31",
+ "ultima_actualizacion": "1981-03-31",
+ "amendments_recorded": 1,
+ "last_amendments": [
+  {
+   "dv": "26/1981",
+   "date": "1981-03-31"
+  }
+ ],
+ "lexbg_history": "Обн. ДВ. бр. 26 от 31 Март 1981г.",
+ "lexbg_repeal_marker": null,
+ "words": [
+  "запаси",
+  "кораби",
+  "морските",
+  "неприкосновените"
+ ],
+ "key": {
+  "type": "наредба",
+  "number": "1",
+  "year": 1981
+ },
+ "candidates": [
+  {
+   "kind": "title",
+   "id_mat": 208701,
+   "issue": "20/2024",
+   "date": "2024-03-08",
+   "title": "Наредба за отменяне на Наредба № 1 за условията, при които министерствата, другите ведомства и организациите могат да експлоатират малък брой автобуси",
+   "line": null,
+   "shared_words": [],
+   "same_number": true,
+   "score": 1.0
+  }
+ ]
+}

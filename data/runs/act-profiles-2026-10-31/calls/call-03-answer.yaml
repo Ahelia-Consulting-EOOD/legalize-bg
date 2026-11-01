@@ -1,0 +1,40 @@
+zakon-za-oproshtavane-na-zadalzheniya-kam-darzhavata:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line holds only the 1964 promulgation (ДВ 73/1964), so it ends before 2003; no candidate and no repeal marker, so the only evidence is that nothing was found.
+zakon-za-otgovornostta-na-darzhavata-i-obshtinite-za-vredi-zagl-izm-dv-br-30-ot-:
+  verdict: in_force
+  repealed_by: null
+  evidence: The history line and the amendment rows carry amendments well into the HTML era, the last being ДВ 16/2026, 51/2026 and 59/2026; no candidate names it and there is no repeal marker.
+zakon-za-otmenyavane-na-vsichki-zakoni-izdadeni-predi-9091944-g:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line holds only the 1951 promulgation (ДВ 93/1951), so it ends before 2003; no candidate and no repeal marker.
+zakon-za-sobstvenostta:
+  verdict: in_force
+  repealed_by: null
+  evidence: The history line and the amendment rows carry amendments in the HTML era, the last being ДВ 7/2018, 18/2020 and 18/2022; no candidate names it and there is no repeal marker.
+zakon-za-tvorcheskite-fondove:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line ends with the amendment in ДВ 153/1998, before 2003, and there is no repeal marker; each of the six candidates shares only the word "фондове" and repeals a different act (наредби, a постановление and an инструкция on other subjects), so none names this law.
+zakon-za-urezhdane-pravata-na-kupuvachi-na-nedvizhimi-imoti-s-chastni-dogovori:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line holds only the 1947 promulgation (ДВ 171/1947), so it ends before 2003; no candidate and no repeal marker.
+zakon-za-urezhdane-pravata-na-litsata-koito-sa-zaeli-ili-poluchili-darzhavni-dvo:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line holds only the 1956 promulgation (ДВ 90/1956), so it ends before 2003, and there is no repeal marker; the only candidate (material 240221) repeals Наредба № Н-9 от 2020 г. on the register of virtual-currency service providers, a different act that shares only the words "лицата" and "които".
+zakon-za-vanshnata-targoviya:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line ends with the amendment in ДВ 4/1989, before 2003, and there is no repeal marker; both candidates (material 21361, a постановление on the free-trade agreement with Estonia, and material 108524, Наредба № 44 от 2001 г. on compound feed) repeal different acts that share only the word "търговия".
+zakon-za-zadalzheniyata-i-dogovorite:
+  verdict: in_force
+  repealed_by: null
+  evidence: The history line and the amendment rows carry amendments in the HTML era, the last being ДВ 42/2018, 102/2020 and 35/2021, and there is no repeal marker; the four candidates (materials 2758, 21361, 121425 and 217963) each repeal a different постановление or наредба that shares only the word "договорите" or "задълженията".
+zakon-za-zhilishtnostroitelnite-kooperatsii:
+  verdict: unknown
+  repealed_by: null
+  evidence: The history line ends with the amendment in ДВ 59/1998, before 2003; no candidate and no repeal marker.
