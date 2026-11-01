@@ -99,6 +99,36 @@ def test_the_note_decides_pending_or_unsettled(note, status, says):
     assert r.status == status and says in r.reason, (r.status, r.reason)
 
 
+def test_the_entry_into_force_is_read_only_after_the_issue_never_from_the_repealing_acts_title():
+    titled = NOTE.replace("за пробите", "за пробите (загл. изм. - ДВ, бр. 60 от 2025 г., в сила от 25.07.2025 г.)").replace("в сила от 10.03.2015 г.", "в сила от 01.01.2027 г.")
+    parts = E.parse_note(titled)
+    assert parts["kind"] == "other" and parts["in_force"] is None   # two „в сила“, two „ДВ, бр.“: not read, listed
+    r = E.read_page(page(note=titled), TODAY)
+    assert r.status == "unsettled" and "form the parser does not read" in r.reason
+    only_title = NOTE.replace("за пробите", "за пробите (в сила от 25.07.2015 г.)").replace(", в сила от 10.03.2015 г.", "")
+    assert E.parse_note(only_title)["in_force"] is None   # a date inside the title is never the entry into force
+    assert E.read_page(page(note=only_title), TODAY).reason == "the note's entry into force is not a fixed date"
+
+
+def test_a_note_in_a_form_the_parser_does_not_read_is_unsettled_on_any_line():
+    for note in ("Отменено с § 1 от Правила за пробите - ДВ, бр. 20 от 6 март 2015 г., в сила от 10.03.2015 г.", "Отменени с § 1 от нещо.", "Отменен."):
+        r = E.read_page(page(note=note), TODAY)
+        assert r.status == "unsettled" and "form the parser does not read" in r.reason, (note, r.status)
+        alive = HISTORY.replace("отм. ДВ. бр.", "изм. ДВ. бр.")
+        r = E.read_page(page(history=alive, note=note), TODAY)
+        assert r.status == "unsettled" and "form the parser does not read" in r.reason, (note, r.status)
+
+
+def test_the_note_is_looked_for_before_the_first_provision_only():
+    body_note = PAGE.format(history=HISTORY.replace("отм. ДВ. бр.", "изм. ДВ. бр."), note="").replace(
+        '<div class="Article">Чл. 1. Пробата.</div>', '<div class="Article">Чл. 1. Пробата.</div><div class="Article">Отменена с чл. 5 заповедта - ДВ, бр. 1 от 2 януари 2015 г., в сила от 02.01.2015 г.</div>')
+    assert E.read_page(body_note.encode("cp1251"), TODAY).status == "not_repealed"
+    # a municipal page prints „Публикуван: …“ in an article element above the note: the note is still found
+    above = PAGE.format(history=HISTORY, note="").replace('<div class="Article">Чл. 1. Пробата.</div>',
+                                                          '<div class="Article">Публикуван: https://example.test</div><div class="Article">' + NOTE + '</div><div class="Article">Чл. 1. Пробата.</div>')
+    assert E.read_page(above.encode("cp1251"), TODAY).status == "repealed"
+
+
 def test_a_pending_repeal_becomes_a_repeal_on_its_day():
     note = NOTE.replace("в сила от 10.03.2015 г.", "в сила от 01.01.2027 г.")
     assert E.read_page(page(note=note), "2026-12-31").status == "repeal_pending"
@@ -257,10 +287,17 @@ def test_a_refused_write_leaves_the_act_the_index_and_the_run_folder_untouched(t
     assert path.read_text(encoding="utf-8") == before and _git(root, "rev-parse", "HEAD") == head
     assert _git(root, "status", "--porcelain") == "" and not (run_dir / "acts" / f"{SLUG}.json").exists()
     monkeypatch.undo()
-    # an uncommitted act is refused before anything is read
+    # without a commit, a failure after the gate wrote still puts the act back from HEAD
+    monkeypatch.setattr(Path, "write_bytes", lambda self, data: (_ for _ in ()).throw(OSError("disk")))
+    with pytest.raises(OSError):
+        E.write_change(row, root=root, run_dir=run_dir, waivers_path=_waivers(root), commit=False)
+    monkeypatch.undo()
+    assert path.read_text(encoding="utf-8") == before and _git(root, "status", "--porcelain") == ""
+    # an uncommitted act is refused before anything is read, in both modes
     path.write_text(before + "\n", encoding="utf-8")
-    with pytest.raises(E.WriteRefused, match="uncommitted"):
-        E.write_change(row, root=root, run_dir=run_dir, waivers_path=_waivers(root))
+    for commit in (True, False):
+        with pytest.raises(E.WriteRefused, match="uncommitted"):
+            E.write_change(row, root=root, run_dir=run_dir, waivers_path=_waivers(root), commit=commit)
 
 
 def test_run_write_skips_every_outcome_but_change_and_reports_refusals(tmp_path, monkeypatch):
@@ -273,6 +310,18 @@ def test_run_write_skips_every_outcome_but_change_and_reports_refusals(tmp_path,
     monkeypatch.setattr(E, "frontmatter_after", lambda *a: (_ for _ in ()).throw(E.WriteRefused("no")))
     written, refused = E.run_write([change], root=root, run_dir=root / "data" / "runs" / "t", waivers_path=_waivers(root))
     assert written == [] and refused == [{"slug": SLUG, "by": "run", "detail": ["no"]}]
+    monkeypatch.undo()
+    # a git failure (a hook, say) is rolled back, reported as a refusal, and the run goes on to the next act
+    real_git = E._git
+
+    def failing(r, *args, **kw):
+        if args and args[0] == "commit":
+            raise subprocess.CalledProcessError(1, ["git", "commit"], stderr="hook said no")
+        return real_git(r, *args, **kw)
+    monkeypatch.setattr(E, "_git", failing)
+    written, refused = E.run_write([change, {**change, "outcome": "agree"}], root=root, run_dir=root / "data" / "runs" / "t", waivers_path=_waivers(root))
+    assert written == [] and refused[0]["by"] == "git" and "hook said no" in refused[0]["detail"][0]
+    assert _git(root, "status", "--porcelain") == ""
 
 
 def test_the_report_counts_and_lists(tmp_path):

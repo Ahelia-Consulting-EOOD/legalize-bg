@@ -82,7 +82,9 @@ _NOTE_ACT = re.compile(r"^Отменен[аa]?\s+с\s+", re.IGNORECASE)      # �
 _NOTE_BASIS = re.compile(r"^Отменено\s+основание", re.IGNORECASE)   # the act's legal basis was repealed, not the act
 _NOTE_ANY = re.compile(r"^Отменен", re.IGNORECASE)
 _NOTE_ISSUE = re.compile(r"\s+-\s+ДВ,\s*бр\.\s*(\d+)\s+от\s+(\d{1,2})\s+([А-Яа-я]+)\s+(\d{4})\s*г\.", re.IGNORECASE)
-_IN_FORCE = re.compile(r"в\s+сила\s+(?:от\s+)?(?:(\d{1,2})\.(\d{1,2})\.(\d{4})|(\d{1,2})\s+([А-Яа-я]+)\s+(\d{4}))\s*г\.", re.IGNORECASE)
+_IN_FORCE = re.compile(r"^\s*,?\s*в\s+сила\s+(?:от\s+)?(?:(\d{1,2})\.(\d{1,2})\.(\d{4})|(\d{1,2})\s+([А-Яа-я]+)\s+(\d{4}))\s*г\.", re.IGNORECASE)
+_IN_FORCE_WORDS = re.compile(r"в\s+сила", re.IGNORECASE)
+_ISSUE_WORDS = re.compile(r"ДВ,\s*бр\.", re.IGNORECASE)
 
 
 def _ws(text: str) -> str:
@@ -184,17 +186,29 @@ def history_of(soup: BeautifulSoup) -> str | None:
     return _ws(el.get_text()) if el else None
 
 
+_PROVISION_START = re.compile(r"^(Чл\.|§|Глава|Раздел|Част|Преамбюл|Приложение)", re.IGNORECASE)
+
+
 def note_of(soup: BeautifulSoup) -> str | None:
-    """The repeal note under the title: the innermost paragraph beginning „Отменен…“, where the page carries one."""
+    """The repeal note under the title, where the page carries one: the innermost paragraph beginning „Отменен…“ that stands
+    before the act's first provision (lex.bg prints the note in an ``Article`` element above the text, after lines such as
+    „Публикуван: …“ on municipal pages); a provision that starts with the word is the act's text, not the note."""
     for el in soup.find_all(["div", "p"]):
         text = _ws(el.get_text(" "))
+        if "Article" in (el.get("class") or []) and _PROVISION_START.match(text):
+            return None   # the act's text begins
         if _NOTE_ANY.match(text) and not any(_NOTE_ANY.match(_ws(c.get_text(" "))) for c in el.find_all(["div", "p"])):
             return text
     return None
 
 
 def parse_note(note: str | None) -> dict:
-    """The parts of a repeal note: kind (act or basis), the repealing provision and act, the issue „N/YYYY“ and the entry into force."""
+    """The parts of a repeal note: kind (act, basis or other), the repealing provision and act, the issue „N/YYYY“ and the entry into force.
+
+    The entry into force is read only where the form puts it, right after the issue („- ДВ, бр. N от <date> г., в сила от
+    <date> г.“): the repealing act's title may carry a date of its own („(загл. изм. - ДВ, бр. 60 от 2025 г., в сила от
+    25.07.2025 г.)“), and a note with more than one issue or more than one entry into force is not read (``kind`` other).
+    """
     out = {"kind": None, "repealing_act": None, "note_issue": None, "in_force": None}
     if not note:
         return out
@@ -202,15 +216,19 @@ def parse_note(note: str | None) -> dict:
         out["kind"] = "basis"
         return out
     if not _NOTE_ACT.match(note):
+        out["kind"] = "other"
+        return out
+    if len(_ISSUE_WORDS.findall(note)) > 1 or len(_IN_FORCE_WORDS.findall(note)) > 1:
+        out["kind"] = "other"
         return out
     out["kind"] = "act"
     issue = _NOTE_ISSUE.search(note)
     if issue:
         out["repealing_act"] = _ws(_NOTE_ACT.sub("", note[:issue.start()]))
         out["note_issue"] = f"{issue.group(1)}/{issue.group(4)}"
-    m = _IN_FORCE.search(note)
-    if m:
-        out["in_force"] = _iso(m.group(1), m.group(2), m.group(3)) if m.group(1) else _iso(m.group(4), m.group(5), m.group(6))
+        m = _IN_FORCE.match(note[issue.end():])
+        if m:
+            out["in_force"] = _iso(m.group(1), m.group(2), m.group(3)) if m.group(1) else _iso(m.group(4), m.group(5), m.group(6))
     return out
 
 
@@ -231,6 +249,8 @@ def read_page(raw: bytes | None, today: str | None = None) -> Reading:
         return r
     if parts["kind"] == "basis":
         r.status, r.reason = "unsettled", "the note says the act's legal basis was repealed („Отменено основание“), not the act"
+    elif parts["kind"] == "other":
+        r.status, r.reason = "unsettled", "the page carries a note beginning „Отменен…“ in a form the parser does not read"
     elif r.status == "repealed":
         if parts["kind"] != "act":
             r.status, r.reason = "unsettled", "the line's last entry is a repeal but the page carries no note „Отменен(а) с …“"
@@ -395,7 +415,7 @@ def write_change(row: dict, *, root: Path = ROOT, run_dir: Path | None = None, w
     run_dir = Path(run_dir) if run_dir else RUNS / RUN_NAME
     path = root / row["category"] / f"{row['slug']}.md"
     rel = str(path.relative_to(root))
-    if commit and _git(root, "status", "--porcelain", "--", rel):
+    if _git(root, "status", "--porcelain", "--", rel):   # in both modes: the rollback puts the act back from HEAD
         raise WriteRefused(f"{row['slug']}: uncommitted changes in {rel}; commit or restore them first")
     committed_raw = path.read_text(encoding="utf-8")
     committed, body = _split_frontmatter(committed_raw)
@@ -443,8 +463,8 @@ def write_change(row: dict, *, root: Path = ROOT, run_dir: Path | None = None, w
     except BaseException:
         if commit:
             subprocess.run(["git", "reset", "-q", "--", *files], cwd=root, capture_output=True)
-            if written:
-                _git(root, "checkout", "HEAD", "--", rel)
+        if written:
+            _git(root, "checkout", "HEAD", "--", rel)   # the committed act, as the check above found it
         if recorded:
             record_path.unlink(missing_ok=True)   # no orphan record of a write that was put back
         raise
@@ -463,6 +483,8 @@ def run_write(rows: list[dict], *, root: Path = ROOT, run_dir: Path | None = Non
             refused.append({"slug": row["slug"], "by": "gate", "detail": [f"{v.check}@{v.locator}: {v.detail}" for v in exc.violations]})
         except (WriteRefused, ListedActRefused) as exc:
             refused.append({"slug": row["slug"], "by": "run", "detail": [str(exc)]})
+        except subprocess.CalledProcessError as exc:   # a git failure is rolled back and reported; the run and its report go on
+            refused.append({"slug": row["slug"], "by": "git", "detail": [f"{exc.cmd}: exit {exc.returncode}: {(exc.stderr or '').strip()[:300]}"]})
     return written, refused
 
 
