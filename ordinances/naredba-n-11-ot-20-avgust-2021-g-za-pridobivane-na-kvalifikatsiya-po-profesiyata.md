@@ -5,8 +5,8 @@ identificador: '2137214240'
 pais: bg
 rango: наредба
 fecha_publicacion: '2021-09-03'
-ultima_actualizacion: '2021-09-03'
-estado: vigente
+ultima_actualizacion: '2026-07-03'
+estado: derogado
 fuente: lex.bg
 dv_issue: '73'
 dv_year: 2021
@@ -16,6 +16,8 @@ eli: /eli/bg/наредба/2021/9/3/naredba-n-11-ot-20-avgust-2021-g-za-pridobi
 amendment_history:
 - dv: 73/2021
   date: '2021-09-03'
+- dv: 61/2026
+  date: '2026-07-03'
 ---
 
 # НАРЕДБА № Н-11 ОТ 20 АВГУСТ 2021 Г. ЗА ПРИДОБИВАНЕ НА КВАЛИФИКАЦИЯ ПО ПРОФЕСИЯТА "СЕРЖАНТ (СТАРШИНА ЗА ВОЕННОМОРСКИТЕ СИЛИ) - АДМИНИСТРАТОР"

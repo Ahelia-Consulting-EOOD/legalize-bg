@@ -4,8 +4,8 @@ identificador: '2137249755'
 pais: bg
 rango: правилник
 fecha_publicacion: '2025-04-11'
-ultima_actualizacion: '2025-07-11'
-estado: vigente
+ultima_actualizacion: '2026-08-21'
+estado: derogado
 fuente: lex.bg
 dv_issue: '31'
 dv_year: 2025
@@ -17,6 +17,8 @@ amendment_history:
   date: '2025-04-11'
 - dv: 56/2025
   date: '2025-07-11'
+- dv: 76/2026
+  date: '2026-08-21'
 ---
 
 # УСТРОЙСТВЕН ПРАВИЛНИК НА МИНИСТЕРСТВОТО НА ЕЛЕКТРОННОТО УПРАВЛЕНИЕ

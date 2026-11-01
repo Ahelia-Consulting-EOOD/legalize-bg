@@ -1,0 +1,660 @@
+{
+ "run": "estado-lexbg-2026-11-01",
+ "today": "2026-11-01",
+ "written_at": "2026-11-01T09:35:41+00:00",
+ "acts": 3624,
+ "pages_with_history": 3584,
+ "parsed": 3577,
+ "repealed_per_lexbg": 30,
+ "already_derogado": 30,
+ "to_change": 0,
+ "repeal_pending": 11,
+ "unsettled": 7,
+ "no_history": 40,
+ "kept_derogado_without_repeal": [
+  {
+   "slug": "pravilnik-za-sotsialno-podpomagane-na-chlenovete-na-sayuza-na-arhitektite-v-balg",
+   "doc_id": "2137255124",
+   "estado": "derogado",
+   "reason": null,
+   "history": "Приет от УС на САБ с Решение № . по Протокол от 08.07.2014 г.",
+   "note": null
+  }
+ ],
+ "pending_acts": [
+  {
+   "slug": "naredba-10-ot-29-yuni-2021-g-za-iziskvaniyata-kam-granitsata-na-platezhosposobno",
+   "doc_id": "2137213264",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.59 от 16 Юли 2021г., изм. и доп. ДВ. бр.29 от 12 Април 2022г., изм. ДВ. бр.82 от 14 Октомври 2022г., изм. и доп. ДВ. бр.70 от 20 Август 2024г., изм. ДВ. бр.20 от 11 Март 2025г., отм. ДВ. бр.67 от 24 Юли 2026г.",
+   "note": "Отменена с § 2 от преходните и заключителните разпоредби на Наредба № 10 от 16 юли 2026 г. за изискванията към капиталовата база на пенсионноосигурителното дружество, минималните ликвидни средства на дружеството и на управляваните от него фондове и неговата оздравителна програма - ДВ, бр. 67 от 24 юли 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "67/2026"
+  },
+  {
+   "slug": "naredba-12-ot-10-dekemvri-2003-g-za-nachina-i-reda-za-opredelyane-na-minimalnata",
+   "doc_id": "2135475731",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.110 от 19 Декември 2003г., попр. ДВ. бр.1 от 6 Януари 2004г., изм. ДВ. бр.17 от 2 Март 2004г., изм. ДВ. бр.29 от 5 Април 2005г., изм. ДВ. бр.57 от 13 Юли 2007г., изм. и доп. ДВ. бр.50 от 15 Юни 2018г., изм. и доп. ДВ. бр.52 от 22 Юни 2021г., изм. ДВ. бр.64 от 9 Август 2022г., изм. ДВ. бр.20 от 11 Март 2025г., отм. ДВ. бр.63 от 10 Юли 2026г.",
+   "note": "Отменена с § 5 от заключителните разпоредби на Наредба № 4 от 30 юни 2026 г. за показателите за съпоставяне на доходността на подфондовете в универсалните пенсионни фондове и на професионалните пенсионни фондове - ДВ, бр. 63 от 10 юли 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "63/2026"
+  },
+  {
+   "slug": "naredba-19-ot-8122004-g-za-pensionnite-rezervi-i-rezervite-za-garantirane-izplas",
+   "doc_id": "2135496693",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.110 от 17 Декември 2004г., изм. ДВ. бр.18 от 27 Февруари 2018г., изм. и доп. ДВ. бр.60 от 20 Юли 2021г., изм. ДВ. бр.20 от 11 Март 2025г., отм. ДВ. бр.61 от 3 Юли 2026г.",
+   "note": "Отменена с § 3 от преходните и заключителните разпоредби на Наредба № 1 от 23 юни 2026 г. за резервите за гарантиране на брутния размер на вноските във фондовете за допълнително задължително пенсионно осигуряване и резервите за гарантиране на пенсионните плащания - ДВ, бр. 61 от 3 юли 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "61/2026"
+  },
+  {
+   "slug": "naredba-3-ot-24-septemvri-2003-g-za-reda-i-nachina-za-promyana-na-uchastie-i-za-",
+   "doc_id": "2135472666",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.90 от 10 Октомври 2003г., изм. ДВ. бр.9 от 3 Февруари 2004г., изм. ДВ. бр.85 от 28 Септември 2004г., изм. ДВ. бр.50 от 17 Юни 2005г., попр. ДВ. бр.52 от 24 Юни 2005г., изм. ДВ. бр.7 от 24 Януари 2006г., изм. ДВ. бр.78 от 7 Октомври 2011г., изм. и доп. ДВ. бр.1 от 5 Януари 2016г., изм. и доп. ДВ. бр.62 от 9 Август 2016г., изм. и доп. ДВ. бр.10 от 30 Януари 2018г., изм. ДВ. бр.94 от 13 Ноември 2018г., изм. и доп. ДВ. бр.54 от 29 Юни 2021г., изм. ДВ. бр.58 от 13 Юли 2021г., изм. ДВ. бр.70 от 20 Август 2024г., изм. ДВ. бр.20 от 11 Март 2025г., отм. ДВ. бр.68 от 28 Юли 2026г.",
+   "note": "Отменена с § 5 от преходните и заключителните разпоредби на Наредба № 3 от 16 юли 2026 г. за промяна на участие и прехвърляне на средства на осигурено лице във фонд за допълнително пенсионно осигуряване - ДВ, бр. 68 от 28 юли 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "68/2026"
+  },
+  {
+   "slug": "naredba-33-ot-19-septemvri-2006-g-za-individualnite-zayavleniya-za-uchastie-vav-",
+   "doc_id": "2135535980",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.83 от 13 Октомври 2006г., изм. ДВ. бр.57 от 27 Юли 2012г., изм. и доп. ДВ. бр.64 от 21 Август 2012г., изм. и доп. ДВ. бр.67 от 12 Август 2014г., изм. и доп. ДВ. бр.62 от 9 Август 2016г., изм. и доп. ДВ. бр.10 от 30 Януари 2018г., изм. ДВ. бр.94 от 13 Ноември 2018г., изм. ДВ. бр.41 от 21 Май 2019г., изм. ДВ. бр.54 от 29 Юни 2021г., отм. ДВ. бр.67 от 24 Юли 2026г.",
+   "note": "Отменена с § 3 от преходните и заключителните разпоредби на Наредба № 33 от 16 юли 2026 г. за индивидуалните заявления за участие във фонд за допълнително задължително пенсионно осигуряване и за възобновяване на осигуряването в универсален пенсионен фонд - ДВ, бр. 67 от 24 юли 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "67/2026"
+  },
+  {
+   "slug": "naredba-52-ot-21102016-g-za-reda-i-nachina-za-otchislyavane-na-taksite-po-chl-20",
+   "doc_id": "2136925551",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.87 от 4 Ноември 2016г., изм. и доп. ДВ. бр.31 от 10 Април 2018г., изм. и доп. ДВ. бр.55 от 2 Юли 2021г., изм. ДВ. бр.70 от 20 Август 2024г., отм. ДВ. бр.67 от 24 Юли 2026г.",
+   "note": "Отменена с § 2 от преходните и заключителните разпоредби на Наредба № 52 от 16 юли 2026 г. за реда и начина за отчисляване на таксите по чл. 123ц, ал. 1, чл. 201, ал. 1, т. 2 и чл. 256, ал. 1, т. 3 от Кодекса за социално осигуряване, събирани от пенсионноосигурителните дружества - ДВ, бр. 67 от 24 юли 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "67/2026"
+  },
+  {
+   "slug": "naredba-60-ot-2-may-2018-g-za-iziskvaniyata-kam-dokumentite-po-chl-122a-al-1-t-6",
+   "doc_id": "2137183978",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.39 от 11 Май 2018г., изм. и доп. ДВ. бр.60 от 20 Юли 2021г., изм. и доп. ДВ. бр.70 от 20 Август 2024г., отм. ДВ. бр.71 от 7 Август 2026г.",
+   "note": "Отменена с § 2 от преходните и заключителните разпоредби на Наредба № 60 от 28 юли 2026 г. за документите, необходими за издаване на пенсионна лицензия, разрешения и одобрения по Кодекса за социално осигуряване - ДВ, бр. 71 от 7 август 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "71/2026"
+  },
+  {
+   "slug": "naredba-61-ot-27-septemvri-2018-g-za-iziskvaniyata-kam-reklamnite-i-pismenite-in",
+   "doc_id": "2137187526",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.84 от 12 Октомври 2018г., изм. и доп. ДВ. бр.41 от 21 Май 2019г., изм. и доп. ДВ. бр.55 от 2 Юли 2021г., изм. и доп. ДВ. бр.29 от 12 Април 2022г., изм. и доп. ДВ. бр.82 от 14 Октомври 2022г., изм. и доп. ДВ. бр.70 от 20 Август 2024г., изм. ДВ. бр.20 от 11 Март 2025г., отм. ДВ. бр.72 от 11 Август 2026г.",
+   "note": "Отменена с § 2 от заключителните разпоредби на Наредба № 61 от 28 юли 2026 г. за изискванията към рекламните и информационните материали и интернет страниците на пенсионноосигурителните дружества, за определянето на образците, формата и съдържанието на информацията и документите, предоставяни или публично оповестявани от пенсионноосигурителните дружества, за определяне на постигнатата доходност и равнището на инвестиционния риск - ДВ, бр. 72 от 11 август 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "72/2026"
+  },
+  {
+   "slug": "naredba-63-ot-8-noemvri-2018-g-za-iziskvaniyata-kam-sadarzhanieto-periodichnostt",
+   "doc_id": "2137188326",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.95 от 16 Ноември 2018г., изм. и доп. ДВ. бр.58 от 13 Юли 2021г., доп. ДВ. бр.80 от 24 Септември 2021г., изм. ДВ. бр.64 от 9 Август 2022г., изм. и доп. ДВ. бр.70 от 20 Август 2024г., изм. ДВ. бр.20 от 11 Март 2025г., отм. ДВ. бр.71 от 7 Август 2026г.",
+   "note": "Отменена с § 2 от преходните и заключителните разпоредби на Наредба № 63 от 28 юли 2026 г. за изискванията към съдържанието, периодичността на изготвяне и сроковете за представяне на отчетите за надзорни цели на пенсионноосигурителните дружества и управляваните от тях фондове и подфондове - ДВ, бр. 71 от 7 август 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "71/2026"
+  },
+  {
+   "slug": "naredba-68-ot-10-yuni-2021-g-za-rezervite-na-pensionnoosiguritelnite-druzhestva-",
+   "doc_id": "2137212947",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.52 от 22 Юни 2021г., изм. ДВ. бр.64 от 9 Август 2022г., изм. ДВ. бр.65 от 8 Август 2025г., отм. ДВ. бр.61 от 3 Юли 2026г.",
+   "note": "Отменена с § 4 от преходните и заключителните разпоредби на Наредба № 1 от 23 юни 2026 г. за резервите за гарантиране на брутния размер на вноските във фондовете за допълнително задължително пенсионно осигуряване и резервите за гарантиране на пенсионните плащания - ДВ, бр. 61 от 3 юли 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "61/2026"
+  },
+  {
+   "slug": "naredba-70-ot-29-yuni-2021-g-za-iziskvaniyata-kam-fondovete-za-izvarshvane-na-pl",
+   "doc_id": "2137213313",
+   "estado": "vigente",
+   "reason": "the repeal takes effect on 2027-01-01, after the run's date 2026-11-01",
+   "history": "Обн. ДВ. бр.60 от 20 Юли 2021г., изм. и доп. ДВ. бр.82 от 14 Октомври 2022г., изм. ДВ. бр.20 от 11 Март 2025г., отм. ДВ. бр.61 от 3 Юли 2026г.",
+   "note": "Отменена с § 5 от преходните и заключителните разпоредби на Наредба № 70 от 23 юни 2026 г. за изискванията към фондовете за извършване на плащания - ДВ, бр. 61 от 3 юли 2026 г., в сила от 01.01.2027 г.",
+   "in_force": "2027-01-01",
+   "repeal_issue": "61/2026"
+  }
+ ],
+ "unsettled_acts": [
+  {
+   "slug": "naredba-4-za-poshtenskite-saobshteniya",
+   "doc_id": "-554909183",
+   "estado": "vigente",
+   "reason": "the note says the act's legal basis was repealed („Отменено основание“), not the act",
+   "history": "Обн. ДВ. бр.97 от 7 Декември 1979г., попр. ДВ. бр.98 от 11 Декември 1979г., изм. ДВ. бр.48 от 18 Юни 1991г., отм. ДВ. бр.64 от 4 Август 2000г.",
+   "note": "Отменено основание. С § 2 от преходните и заключителните разпоредби на Закона за пощенските услуги е отменен Законът за съобщенията - ДВ, бр. 64 от 4 август 2000 г., в сила от 1 август 2000 г."
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-organizatsiya-na-dvizhenieto-na-teritor",
+   "doc_id": "2135584936",
+   "estado": "vigente",
+   "reason": "the line carries „отм“ but no Gazette entry at all",
+   "history": "Приета с Решение № 332 на СОС по Протокол № 48 от 19.05.2005 г.; изм. с Решение № 3 по Протокол № 67 от 12.01.2006 г., доп. с Решение № 515 по Протокол № 83 от 13.07.2006 г, доп. и изм. с Решение № 709 по Протокол № 88 от 28.09.2006 г., доп. и изм. с Решение № 250 по Протокол № 105 от 12.04.2007 г., доп. и изм. с Решение № 364 по Протокол № 107 от 26.04.2007 г., доп. и изм. с Решение № 502 по Протокол № 110 от 13.05.2007 г., доп. и изм. с Решение № 645 по Протокол № 113 от 12.07.2007 г., доп. с Решение № 82 по Протокол № 7 от 28.02.2008 г., изм. с Решение № 301 по Протокол № 14 от 12.06.2008 г., изм. и доп. с Решение № 460 по Протокол № 17 от 24.07.2008 г., изм. и доп. с Решение № 630 по Протокол № 23 от 23.10.2008 г., изм. с Решение № 152 по Протокол № 35 от 12.03.2009 г., изм. и доп. с Решение № 494 по Протокол № 45 от 29.07.2009 г., изм. с Решение № 419 по Протокол № 70 от 22.07.2010 г., изм. и доп. с Решение № 108 по Протокол № 84 от 24.02.2011 г., изм. и доп. с Решение № 148 по Протокол № 12 от 22.03.2012 г., изм. с Решение № 320 по Протокол № 19 от 28.06.2012 г., изм. с Решение № 457 по Протокол № 22 от 13.09.2012 г., изм. и доп. с Решение № 480 по Протокол № 24 от 20.09.2012 г., изм. с Решение № 634 по Протокол № 32 от 20.12.2012 г., изм. с Решение № 119 по Протокол № 36 от 14.03.2013 г., изм. и доп. с Решение № 521 по Протокол № 48 от 26.09.2013 г., изм. с Решение № 4224 от 24.06.2014 г. по адм. д. № 11395/2013 г. на Адм. съд София-град, изм. и доп. с Решение № 717 по Протокол № 71 от 06.11.2014 г., изм. с Решение № 9045 от 24.07.2015 г. по адм. д. № 11689/2014 г. на ВАС, изм. с Решение № 12473 от 23.11.2015 г. по адм. д. № 4919/2015 г. на ВАС, изм. и доп. с Решение № 440 по Протокол № 37 от 20.07.2017 г., изм. и доп. с Решение № 8 по Протокол № 46 от 25.01.2018 г., изм. с Решение № 4924 от 19.07.2018 г. по адм. д. № 8523/2017 г. на адм. съд - София-град, изм. и доп. с Решение № 511 по Протокол № 58 от 26.07.2018 г., изм. с Решение № 2559 от 12.04.2019 г. по адм. д. № 10513/2018 на Адм. съд - София-град, изм. с Решение № 6174 от 27.05.2020 г. по адм. д. № 12737/2019 г. на ВАС, изм. с Решение № 3513 от 02.07.2020 г. по адм. д. № 1194/2020 г. на Адм. съд - София-град, изм. и доп. с Решение № 522 по Протокол № 23 от 12.11.2020 г., изм. и доп. с Решение № 523 по Протокол № 23 от 12.11.2020 г., изм. с Решение № 4730 от 14.04.2021 г. по адм. д. № 13025/2021 г. на ВАС, изм. и доп. с Решение № 704 по Протокол № 42 от 28.10.2021 г., изм. и доп. с Решение № 808 по Протокол № 44 от 16.12.2021 г., изм. и доп. с Решение № 73 по Протокол № 47 от 10.02.2022 г., изм. - Решение № 5604 от 19.10.2020 г. по адм. д. № 9207/2019 г. на Адм. съд - София-град, попр. с Решение № 2626 от 20.04.2021 г. по адм. д. № 9207/2019 г. на Адм. съд - София-град, отм. с Решение № 1867 от 28.02.2022 г. по адм. д. № 10567/2021 г. на ВАС, изм. с Решение № 1252 от 28.02.2022 г. по адм. д. № 9657/2021 г. на Адм. съд - София-град, изм. с Решение № 476 по Протокол № 59 от 07.07.2022 г., изм. с Решение № 11933 от 21.12.2022 г. по адм. д. № 3626/2022 г. на ВАС, изм. и доп. с Решение № 117 по Протокол № 71 от 23.02.2023 г., изм. с Решение № 171 по Протокол № 72 от 09.03.2023 г., изм. с Решение № 320 по Протокол № 77 от 25.05.2023 г., изм. и доп. с Решение № 411 по Протокол № 78 от 15.06.2023 г., изм. и доп. Решение № 601 по Протокол № 80 от 13.07.2023 г., изм. с Решение № 7824 от 14.12.2023 г. по адм. д. № 7315/2023 г. на Адм. съд - София-град, изм. с Решение № 6975 от 06.06.2024 г. по адм. д. № 1820/2024 г. на ВАС, изм. с Решение № 14307 от 25.04.2025 г. по адм. д. № 877/2025 г. на Адм. съд - София-град, изм. и доп. с Решение № 686 по Протокол № 45 от 11.09.2025 г., изм. и доп. с Решение № 883 по Протокол № 51 от 13.11.2025 г., изм. и доп. с Решение № 1048 по Протокол № 53 от 18.12.2025 г., изм. и доп. с Решение № 3 по Протокол № 54 от 15.01.2026 г.",
+   "note": null
+  },
+  {
+   "slug": "naredba-rd-02-20-8-ot-11-may-2012-g-za-sazdavane-i-poddarzhane-na-publichen-regi",
+   "doc_id": "2135794446",
+   "estado": "vigente",
+   "reason": "the note's entry into force is not a fixed date",
+   "history": "Обн. ДВ. бр.40 от 29 Май 2012г., отм. ДВ. бр.20 от 20 Февруари 2026г.",
+   "note": "Отменена с § 2 от преходните и заключителните разпоредби на Наредба № РД-02-20-1 от 5 февруари 2026 г. за единната информационна система на етажната собственост - ДВ, бр. 20 от 20 февруари 2026 г., в сила считано от момента на започване на функционирането на ЕИСЕС"
+  },
+  {
+   "slug": "naredba-rd-07-7-ot-5-oktomvri-2010-g-za-usloviyata-i-reda-za-vodene-i-sahranyava",
+   "doc_id": "2135699150",
+   "estado": "vigente",
+   "reason": "1 Gazette entry follow the repeal entry (a repeal of a part, or one that did not hold)",
+   "history": "Обн. ДВ. бр.82 от 19 Октомври 2010г., изм. ДВ. бр.79 от 3 Октомври 2017г., изм. и доп. ДВ. бр.39 от 14 Май 2019г., отм. ДВ. бр.97 от 15 Ноември 2024г., изм. ДВ. бр.58 от 18 Юли 2025г.",
+   "note": "Отмененa с § 4 от преходните и заключителните разпоредби на Наредба № РД-06-46 от 4 ноември 2024 г. за реда за вписването, воденето, съхраняването, поддържането и функционирането на Националната електронна информационна система за пълно осиновяване - ДВ, бр. 97 от 15 ноември 2024 г., в сила от датата на въвеждане в експлоатация на Националната електронна информационна система за пълно осиновяване в информационната и комуникационната среда на Министерството на труда и социалната политика"
+  },
+  {
+   "slug": "naredba-za-prospektite-za-nabirane-na-kapitala-i-za-publichno-predlagane-na-akts",
+   "doc_id": "-550490623",
+   "estado": "vigente",
+   "reason": "the page carries a repeal note but the line carries no repeal entry",
+   "history": "Обн. ДВ. бр.23 от 16 Март 1996г.",
+   "note": "Отменена с § 1 от преходните и заключителните разпоредби на Постановление № 119 от 3 юли 2000 г. за приемане на Наредба за проспектите при публично предлагане на ценни книжа и за разкриване на информация от публичните дружества и другите емитенти на ценни книжа - ДВ, бр. 56 от 11 юли 2000 г."
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-mladezhta-i-sporta",
+   "doc_id": "2135869662",
+   "estado": "vigente",
+   "reason": "2 Gazette entries follow the repeal entry (a repeal of a part, or one that did not hold)",
+   "history": "Обн. ДВ. бр.62 от 12 Юли 2013г., изм. и доп. ДВ. бр.97 от 8 Ноември 2013г., изм. и доп. ДВ. бр.50 от 17 Юни 2014г., изм. и доп. ДВ. бр.102 от 12 Декември 2014г., изм. ДВ. бр.96 от 2 Декември 2016г., изм. и доп. ДВ. бр.27 от 31 Март 2017г., изм. и доп. ДВ. бр.65 от 11 Август 2017г., изм. и доп. ДВ. бр.8 от 25 Януари 2019г., изм. и доп. ДВ. бр.46 от 19 Май 2020г., изм. ДВ. бр.67 от 13 Август 2021г., отм. ДВ. бр.56 от 19 Юли 2022г., изм. ДВ. бр.70 от 30 Август 2022г., изм. ДВ. бр.77 от 8 Септември 2023г.",
+   "note": "Отменен с § 1 от заключителните разпоредби на Постановление № 169 от 14 юли 2022 г. за приемане на Устройствен правилник на Министерството на младежта и спорта - ДВ, бр. 56 от 19 юли 2022 г., в сила от 01.09.2022 г."
+  },
+  {
+   "slug": "ustroystven-pravilnik-za-organizatsiyata-i-deynostta-na-stolichnata-obshtinska-a",
+   "doc_id": "2137230242",
+   "estado": "vigente",
+   "reason": "the page carries a repeal note but the line carries no repeal entry",
+   "history": "Утвърден със Заповед № СОА22-РД09-1397 от 15.08.2022 г. на кмета на Столична община",
+   "note": "Отменен с § 2 от преходните и заключителните разпоредби на Устройствен правилник на администрацията на Столична община , утвърден със Заповед СОА26-РД09-781 от 02.02.2026 г. на кмета на Столичната община, в сила от 02.02.2026 г."
+  }
+ ],
+ "no_history_acts": [
+  {
+   "slug": "-549676032",
+   "doc_id": "-549676032",
+   "reason": "the page carries no HistoryOfDocument element"
+  },
+  {
+   "slug": "2135625007",
+   "doc_id": "2135625007",
+   "reason": "the page carries no HistoryOfDocument element"
+  },
+  {
+   "slug": "2136890603",
+   "doc_id": "2136890603",
+   "reason": "the page carries no HistoryOfDocument element"
+  },
+  {
+   "slug": "2137254795",
+   "doc_id": "2137254795",
+   "reason": "the page carries no HistoryOfDocument element"
+  },
+  {
+   "slug": "2137254802",
+   "doc_id": "2137254802",
+   "reason": "the page carries no HistoryOfDocument element"
+  },
+  {
+   "slug": "2137254803",
+   "doc_id": "2137254803",
+   "reason": "the page carries no HistoryOfDocument element"
+  },
+  {
+   "slug": "2137254804",
+   "doc_id": "2137254804",
+   "reason": "the page carries no HistoryOfDocument element"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-po-prinuditelnoto-otchuzhdavane-na-imoti-c",
+   "doc_id": "-1073741283",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-izgrazhdane-na-obshtodostapna-sreda-v-g",
+   "doc_id": "-1073741270",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-izvarshvane-na-obshtestven-prevoz-na-pa",
+   "doc_id": "-1073741276",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-pravata-i-zadalzheniyata-na-mestnite-or",
+   "doc_id": "-1073741274",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-prinuditelnoto-izpalnenie-na-zapovedi-p",
+   "doc_id": "2136235773",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-privatizatsiya-na-grupa-predpriyatiya-c",
+   "doc_id": "-1073741285",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-reda-za-preobrazuvane-i-privatizatsiya-",
+   "doc_id": "-1073741272",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-sastavyane-izpalnenie-otchitane-i-kontr",
+   "doc_id": "2135785167",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-upravlenie-na-obshtinskite-patishta",
+   "doc_id": "2135788487",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-stolichen-obshtinski-savet-za-usloviyata-i-reda-za-provezhdane-na-obs",
+   "doc_id": "2135585789",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-velikotarnovskiya-obshtinski-savet-za-organizatsiyata-na-rabota-v-pri",
+   "doc_id": "2137207467",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-na-velikotarnovskiya-obshtinski-savet-za-usloviyata-i-reda-pri-predostav",
+   "doc_id": "2137180667",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "naredba-za-otchitane-i-opazvane-na-dvizhimite-pametnitsi-na-kulturata",
+   "doc_id": "2135573429",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-d-01-016-za-bezopasnostta-na-truda-pri-proizvodstvoto-transporta-sahra",
+   "doc_id": "2136260930",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-avtomatiziranite-informatsionni-siste",
+   "doc_id": "2135614833",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-deynostta-na-kastratsionni-tsentrove-",
+   "doc_id": "-536870176",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-organizatsiyata-i-deynostta-na-konsul",
+   "doc_id": "2135608451",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-organizatsiyata-i-deynostta-na-obshte-2",
+   "doc_id": "2135614832",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-organizatsiyata-i-deynostta-na-rayone",
+   "doc_id": "-536870199",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-organizatsiyata-i-deynostta-na-stolic",
+   "doc_id": "2135594231",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-organizatsiyata-na-deynostta-na-obsht-5",
+   "doc_id": "2135584323",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-organizatsiyata-na-deynostta-na-obsht-8",
+   "doc_id": "2135805119",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-otlichiyata-na-stolichniya-obshtinski",
+   "doc_id": "-536870197",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-ustroystvoto-i-deynostta-na-obshtinsk-2",
+   "doc_id": "2136451648",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-ustroystvoto-i-deynostta-na-saveta-po",
+   "doc_id": "2135565701",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-ustroystvoto-i-deynostta-na-stolichen",
+   "doc_id": "2135614835",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-na-stolichen-obshtinski-savet-za-zalavyane-i-transportirane-na-bezstop",
+   "doc_id": "-536870175",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-po-bezopasnostta-na-truda-pri-vzrivnite-raboti",
+   "doc_id": "2136017526",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-za-planirane-na-naselenite-mesta",
+   "doc_id": "2135464957",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "pravilnik-za-ustroystvoto-i-organizatsiyata-na-deynostta-na-smetnata-palata",
+   "doc_id": "2136124032",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "primeren-pravilnik-za-vatreshniya-red-v-etazhnata-sobstvenost",
+   "doc_id": "2135659572",
+   "reason": "the page's HistoryOfDocument element is empty"
+  },
+  {
+   "slug": "ukaz-883-ot-24-april-1974-g-za-prilagane-na-zakona-za-normativnite-aktove",
+   "doc_id": "-883197400",
+   "reason": "no page in the raw store"
+  },
+  {
+   "slug": "pravilnik-za-prilagane-na-natsionalnata-klasifikatsiya-na-profesiite-i-dlazhnost",
+   "doc_id": "2135711771",
+   "reason": "the page's HistoryOfDocument element is empty"
+  }
+ ],
+ "changes": [],
+ "surveyed_again_at": "2026-11-01T10:08:10+00:00",
+ "note": "The 13 acts under 'written' were written on 2026-11-01 by the run's write step; the counts and lists are from a survey taken again with the final parser (review round 2 fixes), after the write: to_change is 0 and the 30 repealed acts are all derogado. 'changes_at_write' is the write step's list of the 13 as it saw them.",
+ "changes_at_write": [
+  {
+   "slug": "naredba-11-ot-8-fevruari-2019-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata-",
+   "doc_id": "2137191104",
+   "repeal_issue": "62/2026",
+   "repeal_date": "2026-07-07",
+   "in_force": "2026-07-07",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 1 от преходните и заключителните разпоредби на Наредба № Н-9 от 15 юни 2026 г. за придобиване на квалификация по професията \"Военнослужещ - санитарен инструктор\""
+  },
+  {
+   "slug": "naredba-15-ot-13-april-2011-g-za-aeronavigatsionnoto-informatsionno-obsluzhvane",
+   "doc_id": "2135730108",
+   "repeal_issue": "81/2026",
+   "repeal_date": "2026-09-04",
+   "in_force": "2026-09-08",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 3 от заключителните разпоредби на Наредба № 15 от 25 август 2026 г. за аеронавигационно информационно обслужване"
+  },
+  {
+   "slug": "naredba-4-ot-25-yanuari-2010-g-za-utvarzhdavane-na-meditsinski-standart-mikrobio",
+   "doc_id": "2135662600",
+   "repeal_issue": "74/2026",
+   "repeal_date": "2026-08-18",
+   "in_force": "2026-08-22",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 2 от преходните и заключителните разпоредби на Наредба № Н-6 от 30 юли 2026 г. за утвърждаване на медицински стандарт \"Клинична микробиология\""
+  },
+  {
+   "slug": "naredba-6-ot-18-septemvri-2009-g-za-opredelyane-na-prilezhashtata-plosht-kam-sgr",
+   "doc_id": "2135646612",
+   "repeal_issue": "59/2026",
+   "repeal_date": "2026-06-30",
+   "in_force": "2026-06-30",
+   "repeal_row_in_history": true,
+   "history_matches_page": true,
+   "repealing_act": "Решение № 5764 от 28 май 2026 г. по административно дело № 524 от 2026 г. на Върховния административен съд"
+  },
+  {
+   "slug": "naredba-n-10-ot-20-avgust-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata",
+   "doc_id": "2137214245",
+   "repeal_issue": "59/2026",
+   "repeal_date": "2026-06-30",
+   "in_force": "2026-06-30",
+   "repeal_row_in_history": true,
+   "history_matches_page": true,
+   "repealing_act": "§ 1 от преходните и заключителните разпоредби на Наредба № Н-4 от 15 юни 2026 г. за придобиване на квалификация по професията \"Сержант (Старшина за ВМС) - логистик\""
+  },
+  {
+   "slug": "naredba-n-11-ot-20-avgust-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata",
+   "doc_id": "2137214240",
+   "repeal_issue": "61/2026",
+   "repeal_date": "2026-07-03",
+   "in_force": "2026-07-03",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 1 от преходните и заключителните разпоредби на Наредба № Н-6 от 15 юни 2026 г. за придобиване на квалификация по професията \"Сержант (Старшина за ВМС) - администратор\""
+  },
+  {
+   "slug": "naredba-n-17-ot-22-dekemvri-2015-g-za-usloviyata-i-reda-za-priemane-na-serzhanti",
+   "doc_id": "2136733649",
+   "repeal_issue": "68/2026",
+   "repeal_date": "2026-07-28",
+   "in_force": "2026-07-28",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 6 от преходните и заключителните разпоредби на Наредба № Н-11 от 24 юли 2026 г. за условията и реда за приемане на сержанти (старшини), войници (матроси) и български граждани за обучение в професионалните сержантски (старшински) колежи към висшите военни училища"
+  },
+  {
+   "slug": "naredba-n-22-ot-30-dekemvri-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiya",
+   "doc_id": "2137217798",
+   "repeal_issue": "61/2026",
+   "repeal_date": "2026-07-03",
+   "in_force": "2026-07-03",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 1 от преходните и заключителните разпоредби на Наредба № Н-7 от 15 юни 2026 г. за придобиване на квалификация по професията \"Сержант (Старшина за ВМС) - командир\""
+  },
+  {
+   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-voenno-geografskata-sluzhba",
+   "doc_id": "2137227611",
+   "repeal_issue": "62/2026",
+   "repeal_date": "2026-07-07",
+   "in_force": "2026-07-01",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 3 от заключителните разпоредби на Правилника за устройството и дейността на Военно-географската служба"
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-izpalnitelnata-agentsiya-za-nasarchavane-na-malkite-i-s",
+   "doc_id": "2136492309",
+   "repeal_issue": "95/2026",
+   "repeal_date": "2026-10-16",
+   "in_force": "2026-10-16",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 1, т. 1 от заключителните разпоредби на Постановление № 188 от 12 октомври 2026 г. за приемане на Устройствен правилник на Изпълнителната агенция за насърчаване на малките и средните предприятия към министъра на икономиката, инвестициите и индустрията"
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-elektronnoto-upravlenie",
+   "doc_id": "2137249755",
+   "repeal_issue": "76/2026",
+   "repeal_date": "2026-08-21",
+   "in_force": "2026-09-01",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 3 от преходните и заключителните разпоредби на Постановление № 104 от 18 август 2026 г. за приемане на Устройствен правилник на Министерството на икономиката, инвестициите и индустрията и на Устройствен правилник на Министерството на иновациите и дигиталната трансформация, за създаване на Изпълнителна агенция \"Европейски фондове за конкурентноспособност\" и за приемане на Устройствен правилник на Изпълнителна агенция \"Европейски фондове за конкурентноспособност\""
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-ikonomikata-i-industriyata",
+   "doc_id": "2137219668",
+   "repeal_issue": "76/2026",
+   "repeal_date": "2026-08-21",
+   "in_force": "2026-09-01",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 1 от преходните и заключителните разпоредби на Постановление № 104 от 18 август 2026 г. за приемане на Устройствен правилник на Министерството на икономиката, инвестициите и индустрията и на Устройствен правилник на Министерството на иновациите и дигиталната трансформация, за създаване на Изпълнителна агенция \"Европейски фондове за конкурентноспособност\" и за приемане на Устройствен правилник на Изпълнителна агенция \"Европейски фондове за конкурентноспособност\""
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-inovatsiite-i-rastezha",
+   "doc_id": "2137219666",
+   "repeal_issue": "76/2026",
+   "repeal_date": "2026-08-21",
+   "in_force": "2026-09-01",
+   "repeal_row_in_history": false,
+   "history_matches_page": true,
+   "repealing_act": "§ 2 от преходните и заключителните разпоредби на Постановление № 104 от 18 август 2026 г. за приемане на Устройствен правилник на Министерството на икономиката, инвестициите и индустрията и на Устройствен правилник на Министерството на иновациите и дигиталната трансформация, за създаване на Изпълнителна агенция \"Европейски фондове за конкурентноспособност\" и за приемане на Устройствен правилник на Изпълнителна агенция \"Европейски фондове за конкурентноспособност\""
+  }
+ ],
+ "written": [
+  {
+   "slug": "naredba-11-ot-8-fevruari-2019-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata-",
+   "commit": "ba417db30",
+   "record_id": "estado-lexbg-2026-11-01/naredba-11-ot-8-fevruari-2019-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata-/de1bd9dee913",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "naredba-15-ot-13-april-2011-g-za-aeronavigatsionnoto-informatsionno-obsluzhvane",
+   "commit": "959e2d4d8",
+   "record_id": "estado-lexbg-2026-11-01/naredba-15-ot-13-april-2011-g-za-aeronavigatsionnoto-informatsionno-obsluzhvane/5b610152cff2",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "naredba-4-ot-25-yanuari-2010-g-za-utvarzhdavane-na-meditsinski-standart-mikrobio",
+   "commit": "fc388303a",
+   "record_id": "estado-lexbg-2026-11-01/naredba-4-ot-25-yanuari-2010-g-za-utvarzhdavane-na-meditsinski-standart-mikrobio/357f187735fe",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "naredba-6-ot-18-septemvri-2009-g-za-opredelyane-na-prilezhashtata-plosht-kam-sgr",
+   "commit": "6dfe86614",
+   "record_id": "estado-lexbg-2026-11-01/naredba-6-ot-18-septemvri-2009-g-za-opredelyane-na-prilezhashtata-plosht-kam-sgr/d24dfb5d5524",
+   "fields": [
+    "estado"
+   ]
+  },
+  {
+   "slug": "naredba-n-10-ot-20-avgust-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata",
+   "commit": "ac5e425d6",
+   "record_id": "estado-lexbg-2026-11-01/naredba-n-10-ot-20-avgust-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata/7951311c25f8",
+   "fields": [
+    "estado"
+   ]
+  },
+  {
+   "slug": "naredba-n-11-ot-20-avgust-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata",
+   "commit": "5dc901233",
+   "record_id": "estado-lexbg-2026-11-01/naredba-n-11-ot-20-avgust-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata/a2404469bd48",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "naredba-n-17-ot-22-dekemvri-2015-g-za-usloviyata-i-reda-za-priemane-na-serzhanti",
+   "commit": "bac6eb3f2",
+   "record_id": "estado-lexbg-2026-11-01/naredba-n-17-ot-22-dekemvri-2015-g-za-usloviyata-i-reda-za-priemane-na-serzhanti/04bf7ea9c2aa",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "naredba-n-22-ot-30-dekemvri-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiya",
+   "commit": "dc64b2abd",
+   "record_id": "estado-lexbg-2026-11-01/naredba-n-22-ot-30-dekemvri-2021-g-za-pridobivane-na-kvalifikatsiya-po-profesiya/84ad840ff14c",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "pravilnik-za-ustroystvoto-i-deynostta-na-voenno-geografskata-sluzhba",
+   "commit": "7e4d70cb3",
+   "record_id": "estado-lexbg-2026-11-01/pravilnik-za-ustroystvoto-i-deynostta-na-voenno-geografskata-sluzhba/38122bf82cb6",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-izpalnitelnata-agentsiya-za-nasarchavane-na-malkite-i-s",
+   "commit": "73eaff336",
+   "record_id": "estado-lexbg-2026-11-01/ustroystven-pravilnik-na-izpalnitelnata-agentsiya-za-nasarchavane-na-malkite-i-s/9ac652099da0",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-elektronnoto-upravlenie",
+   "commit": "07a28bfc2",
+   "record_id": "estado-lexbg-2026-11-01/ustroystven-pravilnik-na-ministerstvoto-na-elektronnoto-upravlenie/fa89363f7f87",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-ikonomikata-i-industriyata",
+   "commit": "da30287fe",
+   "record_id": "estado-lexbg-2026-11-01/ustroystven-pravilnik-na-ministerstvoto-na-ikonomikata-i-industriyata/1467f9473f60",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  },
+  {
+   "slug": "ustroystven-pravilnik-na-ministerstvoto-na-inovatsiite-i-rastezha",
+   "commit": "b6658f260",
+   "record_id": "estado-lexbg-2026-11-01/ustroystven-pravilnik-na-ministerstvoto-na-inovatsiite-i-rastezha/fd997c5aa65a",
+   "fields": [
+    "estado",
+    "amendment_history",
+    "ultima_actualizacion"
+   ]
+  }
+ ],
+ "refused": []
+}
