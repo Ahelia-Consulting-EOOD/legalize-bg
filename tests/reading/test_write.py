@@ -330,3 +330,197 @@ def test_a_repaired_chrome_line_leaves_the_chrome_waiver_in_the_same_commit(tmp_
     _write(root, run_dir, raw_dir)
     assert f"{SLUG}:" not in wp.read_text(encoding="utf-8")
     assert "docs/data/waivers.yaml" in _git(root, "show", "--name-only", "--format=", "HEAD").split()
+
+
+# --- the exceptions list and the Gazette as a source (step S1 of the plan of 31 October 2026) -----------------
+
+def _list_with(root, slug, route="whole_act_from_material"):
+    import source_exceptions as sx
+    p = root / "docs" / "data" / "source-exceptions.yaml"
+    sx.save(p, [sx.Entry(slug=slug, title="t", defect="dropped_section", source="dv_html", address="77", route=route,
+                         evidence=[{"kind": "plan", "ref": "the test"}], state="listed", added="2026-10-31")])
+    return p
+
+
+def test_a_listed_act_is_refused_on_the_lexbg_path_by_name_in_the_write_path_and_at_the_gate(tmp_path):
+    from corpus_gate import ListedActRefused, SourceRef, write_act
+    root, run_dir, raw_dir = _setup(tmp_path)
+    lst = _list_with(root, SLUG)
+    before = (root / "laws" / f"{SLUG}.md").read_bytes()
+    with pytest.raises(WriteRefused, match=f"{SLUG}: on the exceptions list \\(dropped_section; source dv_html, route whole_act_from_material\\)"):
+        _write(root, run_dir, raw_dir)
+    assert (root / "laws" / f"{SLUG}.md").read_bytes() == before
+    with pytest.raises(ListedActRefused, match=f"{SLUG} is on the exceptions list"):
+        write_act(root / "laws" / f"{SLUG}.md", COMMITTED, "**Чл. 1.** Текст.", source=SourceRef("lexbg", "999"),
+                  waivers_path=root / "docs" / "data" / "waivers.yaml", exceptions_path=lst)
+    assert (root / "laws" / f"{SLUG}.md").read_bytes() == before
+    write_act(root / "laws" / f"{SLUG}.md", COMMITTED, "**Чл. 1.** Текст.", source=SourceRef("dv", "77"),
+              waivers_path=root / "docs" / "data" / "waivers.yaml", exceptions_path=lst)   # another source: not the lex.bg path
+    assert (root / "laws" / f"{SLUG}.md").read_bytes() != before
+    _list_with(root, "drug-zakon")   # another act listed: this one passes
+    _git(root, "checkout", "--", f"laws/{SLUG}.md")
+    assert _write(root, run_dir, raw_dir).commit is not None
+
+
+def test_lost_text_refuses_the_write_under_the_amended_ruling_7(tmp_path):
+    # the page prints the heading of the additional provision with nothing under it and opens the final provisions at § 2 (FR-042)
+    page = PAGE.replace('<div class="Article">Чл. 2. Законът влиза в сила от деня на обнародването му.</div>',
+                        '<div class="Article">Чл. 2. Текст.</div><div class="Section">Допълнителна разпоредба</div>'
+                        '<div class="Section">Заключителни разпоредби</div><div class="Article">§ 2. Законът влиза в сила.</div>')
+    smap = {**MAP, 7: {"label": "provisions_heading"}, 8: {"label": "provisions_heading"}, 9: {"label": "paragraph_sign", "n": "2"},
+            10: {"label": "drop", "note": "chrome"}}
+    root, run_dir, raw_dir = _setup(tmp_path, page=page, smap=smap)
+    before = (root / "laws" / f"{SLUG}.md").read_bytes()
+    with pytest.raises(WriteRefused, match=r"lost text on the page \(empty_section, sign_start\).*route investigate \(D-076\)"):
+        _write(root, run_dir, raw_dir)
+    assert (root / "laws" / f"{SLUG}.md").read_bytes() == before
+
+
+DV_MATERIAL = """<html><body><div class="titleHead">Народно събрание</div><span class="mark">Брой 32 от 1.4.2026 г.</span>
+<div style=" width: 100%;"><span>
+<p style="text-align:center">УКАЗ № 139</p><p style="text-align:justify">Да се обнародва Законът за пробата.</p>
+<p style="text-align:right">Министър на правосъдието: Име</p>
+<p style="text-align:center">ЗАКОН</p><p style="text-align:center">за пробата</p>
+<p style="text-align:center">Глава първа</p><p style="text-align:center">ОБЩИ ПОЛОЖЕНИЯ</p>
+<p style="text-align:justify"><b>Чл. 1. </b>(1) Този закон урежда пробата.<br/>(2) Пробата е публична.</p>
+<p style="text-align:justify"><b>Чл. 2. </b>Законът влиза в сила от деня на обнародването му.</p>
+<p style="text-align:center">ДОПЪЛНИТЕЛНА РАЗПОРЕДБА</p>
+<p style="text-align:justify"><b>§ 1. </b>По смисъла на този закон „проба“ е опит.</p>
+<p style="text-align:justify">Законът е приет от 51-вото Народно събрание на 19 март 2026 г.</p>
+<p style="text-align:right">Председател на Народното събрание: Име</p><p style="text-align:justify">1563</p>
+</span></div></body></html>"""
+DV_MAP = {0: {"label": "drop", "note": "decree"}, 1: {"label": "drop", "note": "decree"}, 2: {"label": "drop", "note": "decree"},
+          3: {"label": "title"}, 4: {"label": "title"}, 5: {"label": "chapter_heading"}, 6: {"label": "chapter_heading"},
+          7: {"label": "article_head", "n": "1"}, 8: {"label": "alinea", "n": "2"}, 9: {"label": "article_head", "n": "2"},
+          10: {"label": "provisions_heading"}, 11: {"label": "paragraph_sign", "n": "1"}, 12: {"label": "adoption_formula"},
+          13: {"label": "drop", "note": "signature"}, 14: {"label": "drop", "note": "number"}}
+
+
+def _setup_dv(tmp_path):
+    from reading.splitter import split_dv
+    root, run_dir, raw_dir = _setup(tmp_path, old_body="# ЗАКОН ЗА ПРОБАТА\n\n**Чл. 1.** Стар текст.\n\n## Допълнителна разпоредба\n\n## Заключителни разпоредби\n\n**§ 2.** Стар.\n")
+    _list_with(root, SLUG)
+    cache = tmp_path / "cache"
+    cache.mkdir()
+    html = DV_MATERIAL.encode("utf-8")
+    (cache / "77.html").write_bytes(html)
+    act = split_dv(html)
+    (run_dir / "blocks.json").write_text(json.dumps(act.to_dict(), ensure_ascii=False), encoding="utf-8")
+    (run_dir / "map.json").write_text(json.dumps({str(k): v for k, v in DV_MAP.items()}, ensure_ascii=False), encoding="utf-8")
+    md, *_ = ladder.evaluate(act, DV_MAP, [], SLUG)
+    (run_dir / "staged.md").write_text(md, encoding="utf-8")
+    (run_dir / "material.json").write_text(json.dumps({"id_mat": 77, "sha256": hashlib.sha256(html).hexdigest(), "fetched_at": "2026-10-31T10:00:00+00:00",
+                                                       "issue_number": 32, "issue_year": 2026, "issue_date": "2026-04-01", "section_path": "Официален раздел / НАРОДНО СЪБРАНИЕ"}), encoding="utf-8")
+    from reading import witnesses as W
+    W.write_diff(run_dir, md, [{"name": "lexbg", "absent": "no page in the test (absent)"}, {"name": "moj", "absent": "the portal answers 500 (absent, t)"}])
+    W.record(run_dir, {})   # the witness record for this body, nothing to settle
+    return root, run_dir, raw_dir, cache
+
+
+def test_an_act_is_committed_from_a_gazette_material_with_the_gazette_frontmatter(tmp_path):
+    from reading.write import DV_FUENTE
+    root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
+    w = write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    assert w.commit_type == "reforma" and w.commit   # the material's issue row is new to the committed history (ruling 11)
+    msg = _git(root, "log", "-1", "--format=%B")
+    map_sha = hashlib.sha256((run_dir / "map.json").read_bytes()).hexdigest()
+    for trailer in ("Source-Id: dv-77", "Source-Date: 2026-04-01", "Norm-Id: 999", f"Record-Id: {RUN}/{SLUG}/{map_sha[:12]}"):
+        assert trailer in msg
+    fm, body = _split_frontmatter((root / "laws" / f"{SLUG}.md").read_text(encoding="utf-8"))
+    assert fm["fuente"] == DV_FUENTE == "dv.parliament.bg" and fm["identificador"] == "999" and fm["titulo"] == COMMITTED["titulo"]
+    assert fm["amendment_history"] == [{"dv": "32/2026", "date": "2026-04-01"}] and fm["dv_issue"] == "32" and fm["dv_year"] == 2026
+    assert fm["fecha_publicacion"] == fm["ultima_actualizacion"] == "2026-04-01" and fm["estado"] == "vigente" and fm["materia"] == COMMITTED["materia"]
+    assert fm["provenance"]["base"] == {"source": "dv", "state": "promulgated", "material": 77, "issue": "32/2026", "issue_date": "2026-04-01",
+                                        "material_sha256": hashlib.sha256((cache / "77.html").read_bytes()).hexdigest(), "fetched_at": "2026-10-31T10:00:00+00:00"}
+    assert fm["provenance"]["record"]["map_sha256"] == map_sha and fm["provenance"]["omissions"] == []
+    assert body.lstrip("\n").startswith("# ЗАКОН за пробата\n\n### Глава първа ОБЩИ ПОЛОЖЕНИЯ\n\n**Чл. 1.** (1)") and "**§ 1.** По смисъла" in body
+    assert "УКАЗ" not in body and "Председател" not in body
+    again = write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    assert again.commit_type == "unchanged"
+
+
+def test_a_gazette_reading_that_does_not_hold_is_refused(tmp_path):
+    root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
+    before = (root / "laws" / f"{SLUG}.md").read_bytes()
+    (cache / "77.html").write_bytes((cache / "77.html").read_bytes() + b" ")
+    with pytest.raises(WriteRefused, match="differs from the run's material.json"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    (run_dir / "material.json").unlink()
+    with pytest.raises(WriteRefused, match="no material.json"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    assert (root / "laws" / f"{SLUG}.md").read_bytes() == before and _git(root, "rev-list", "--count", "HEAD") == "1\n"
+
+
+def test_a_gazette_write_is_held_to_the_entrys_route_address_and_history(tmp_path):
+    import source_exceptions as sx
+    root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
+    lst = root / "docs" / "data" / "source-exceptions.yaml"
+    before = (root / "laws" / f"{SLUG}.md").read_bytes()
+    sx.update(lst, SLUG, route="history")
+    with pytest.raises(WriteRefused, match="listed with the route whole_act_from_material \\(the list says history\\)"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    sx.update(lst, SLUG, route="whole_act_from_material", address="78")
+    with pytest.raises(WriteRefused, match="material 77 is not the entry's address 78"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    sx.update(lst, SLUG, address="77")
+    committed = {**COMMITTED, "amendment_history": [{"dv": "32/2026", "date": "2026-04-01"}, {"dv": "55/2026", "date": "2026-06-16"}], "ultima_actualizacion": "2026-06-16"}
+    (root / "laws" / f"{SLUG}.md").write_text(render_act(committed, "# x\n"), encoding="utf-8")
+    _git(root, "commit", "-qam", "amended")
+    with pytest.raises(WriteRefused, match="holds 55/2026 after the material's issue 32/2026"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    assert (root / "laws" / f"{SLUG}.md").read_bytes() != before and _git(root, "rev-list", "--count", "HEAD") == "2\n"
+    (root / "laws" / f"{SLUG}.md").write_bytes(before)
+    _git(root, "commit", "-qam", "back")
+    assert write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache).commit
+
+
+def test_lost_text_on_the_lexbg_path_lists_the_act_for_investigation(tmp_path):
+    import source_exceptions as sx
+    page = PAGE.replace('<div class="Article">Чл. 2. Законът влиза в сила от деня на обнародването му.</div>',
+                        '<div class="Article">Чл. 2. Текст.</div><div class="Section">Допълнителна разпоредба</div>'
+                        '<div class="Section">Заключителни разпоредби</div><div class="Article">§ 2. Законът влиза в сила.</div>')
+    smap = {**MAP, 7: {"label": "provisions_heading"}, 8: {"label": "provisions_heading"}, 9: {"label": "paragraph_sign", "n": "2"}, 10: {"label": "drop", "note": "chrome"}}
+    root, run_dir, raw_dir = _setup(tmp_path, page=page, smap=smap)
+    lst = _list_with(root, "drug-zakon")
+    with pytest.raises(WriteRefused, match="lost text"):
+        _write(root, run_dir, raw_dir)
+    e = sx.listed(SLUG, lst)
+    assert e is not None and e.route == "investigate" and e.source == "unknown" and e.address == "unknown" and e.evidence[0]["kind"] == "audit"
+    with pytest.raises(WriteRefused, match="on the exceptions list"):
+        _write(root, run_dir, raw_dir)   # listed now: refused by name before anything else
+
+
+def test_a_gazette_write_needs_a_clean_witness_record_for_this_body(tmp_path):
+    root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
+    rec_path = run_dir / "witness-record.json"
+    rec = json.loads(rec_path.read_text(encoding="utf-8"))
+    rec_path.write_text(json.dumps({**rec, "stops": ["reading_error"]}), encoding="utf-8")
+    with pytest.raises(WriteRefused, match="stopping verdict \\(reading_error\\)"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    rec_path.write_text(json.dumps({**rec, "body_sha256": "0" * 64}), encoding="utf-8")
+    with pytest.raises(WriteRefused, match="made for another body"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    rec_path.unlink()
+    with pytest.raises(WriteRefused, match="no witness-record.json"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    assert _git(root, "rev-list", "--count", "HEAD") == "1\n"
+    committed = {**COMMITTED, "amendment_history": [{"dv": "32/2026", "date": "2026-04-01"}, {"dv": "55/2026 изм.", "date": "2026-06-16"}]}
+    (root / "laws" / f"{SLUG}.md").write_text(render_act(committed, "# x\n"), encoding="utf-8")
+    _git(root, "commit", "-qam", "odd row")
+    with pytest.raises(WriteRefused, match="do not read as issue/year"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+
+
+def test_a_gazette_write_needs_every_witness_compared_or_absent_by_its_own_answer(tmp_path):
+    from reading import witnesses as W
+    root, run_dir, raw_dir, cache = _setup_dv(tmp_path)
+    md = (run_dir / "staged.md").read_text(encoding="utf-8")
+    W.write_diff(run_dir, md, [{"name": "lexbg", "absent": "no page in the test (absent)"}])
+    W.record(run_dir, {})
+    with pytest.raises(WriteRefused, match="the witness moj is not in the record"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    W.write_diff(run_dir, md, [{"name": "lexbg", "absent": "no page in the test (absent)"}, {"name": "moj", "absent": "the portal answers None for u (error, t)"}])
+    W.record(run_dir, {})
+    with pytest.raises(WriteRefused, match="an error is not an absence"):
+        write_staged(SLUG, run_dir, root=root, raw_dir=raw_dir, cache_dir=cache)
+    assert _git(root, "rev-list", "--count", "HEAD") == "1\n"

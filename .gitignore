@@ -48,3 +48,16 @@ data/dv/materials.jsonl
 
 # raw store of fetched pages (plan step 2); whether it enters git is the owner's open decision
 data/raw
+
+# a route run's rebuildable files (D-073): the blocks, the tasks, the calls and the answers are rebuilt from the
+# page or material and the map; the ledger, the record, the step outputs and the committed record stay in git
+data/runs/*/*/blocks.json
+data/runs/*/*/source.txt
+data/runs/*/*/staged.md
+data/runs/*/*/diff.txt
+data/runs/*/*/tasks/
+data/runs/*/*/calls/
+data/runs/*/*/maps/
+data/runs/*/*/texts/
+data/runs/*/*/later-materials.jsonl
+data/raw/moj/

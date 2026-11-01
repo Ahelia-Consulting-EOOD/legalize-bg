@@ -1,0 +1,10 @@
+{
+ "slug": "zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi",
+ "run": "starting-state-2026-10-31",
+ "route": "history",
+ "state": "stopped",
+ "entries": [],
+ "stopped_at": "engine",
+ "exception": "the next step is not defined: engine",
+ "case_file": "docs/cases/zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi.md"
+}

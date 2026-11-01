@@ -34,9 +34,10 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 from reading import calls, ladder  # noqa: E402
-from reading.splitter import Block, SplitAct, Section, split_lexbg  # noqa: E402
+from reading.splitter import SplitAct, split_dv, split_lexbg  # noqa: E402
 
 RAW = ROOT / "data" / "raw" / "lexbg"
+DV_CACHE = ROOT / "data" / "dv" / "cache"
 CATEGORIES = ("laws", "codes", "ordinances", "regulations", "implementing")
 
 
@@ -59,9 +60,7 @@ def _doc_id(slug: str) -> str:
 
 
 def _load_act(run_dir: Path) -> SplitAct:
-    d = json.loads((run_dir / "blocks.json").read_text(encoding="utf-8"))
-    return SplitAct(blocks=[Block(**b) for b in d["blocks"]], sections=[Section(**s) for s in d["sections"]],
-                    dropped_by_splitter=d["dropped_by_splitter"], has_spine=d["has_spine"])
+    return SplitAct.from_dict(json.loads((run_dir / "blocks.json").read_text(encoding="utf-8")))
 
 
 def _write_tasks(run_dir: Path, tasks: list[dict]) -> None:
@@ -89,11 +88,26 @@ def _slug(slug: str) -> str:
 def cmd_prepare(args) -> int:
     run_dir = _run_root(args.out) / _slug(args.slug)
     run_dir.mkdir(parents=True, exist_ok=True)
-    doc_id = _doc_id(args.slug)
-    raw = (RAW / f"{doc_id}.html").read_bytes()
-    act = split_lexbg(raw)
-    if not act.has_spine:
-        raise SystemExit(f"{args.slug}: the page {doc_id} has no act (no spine of Title/Article blocks); it is site chrome only, a source finding for the owner")
+    if args.source == "dv":
+        if not args.material:
+            raise SystemExit("--source dv needs --material <id_mat>")
+        doc_id = str(args.material)
+        html = (DV_CACHE / f"{doc_id}.html").read_text(encoding="utf-8")
+        act = split_dv(html)
+        if not act.has_spine:
+            raise SystemExit(f"{args.slug}: the material {doc_id} has no act (no article or § block)")
+    else:
+        doc_id = _doc_id(args.slug)
+        raw = (RAW / f"{doc_id}.html").read_bytes()
+        act = split_lexbg(raw)
+        if not act.has_spine:
+            raise SystemExit(f"{args.slug}: the page {doc_id} has no act (no spine of Title/Article blocks); it is site chrome only, a source finding for the owner")
+    return prepare_act(run_dir, args.slug, act, doc_id)
+
+
+def prepare_act(run_dir: Path, slug: str, act: SplitAct, doc_id: str) -> int:
+    """Write the blocks, the source text and the round-0 tasks of a split act; set aside an earlier task set it replaces."""
+    run_dir.mkdir(parents=True, exist_ok=True)
     (run_dir / "blocks.json").write_text(json.dumps(act.to_dict(), ensure_ascii=False, indent=1), encoding="utf-8")
     (run_dir / "source.txt").write_text(act.source_text + "\n", encoding="utf-8")
     tasks = ladder.round0_tasks(act)
@@ -110,15 +124,20 @@ def cmd_prepare(args) -> int:
             if f.exists():
                 f.unlink()
         print("round-0 task set changed: every round's answers set aside, later rounds' tasks and the reports removed", file=sys.stderr)
-    print(f"{args.slug}: doc {doc_id}, {len(act.blocks)} blocks, {len(act.sections)} sections, "
+    print(f"{slug}: {act.source} {doc_id}, {len(act.blocks)} blocks, {len(act.sections)} sections, "
           f"dropped by splitter {act.dropped_by_splitter}, spine={act.has_spine}")
     return 0
 
 
 def cmd_collect(args) -> int:
-    run_dir = _run_root(args.out) / _slug(args.slug)
+    report = collect(_run_root(args.out) / _slug(args.slug), args.slug, args.round)
+    print(json.dumps({k: v for k, v in report.items() if k != "exceptions"}, ensure_ascii=False))
+    return 0
+
+
+def collect(run_dir: Path, slug: str, rnd: int) -> dict:
+    """Merge the round's answers, assemble, check, write the report and the next round's tasks; returns the report."""
     act = _load_act(run_dir)
-    rnd = args.round
     # the map is rebuilt from the answers of rounds 0 to R in order, so re-collecting a round never keeps a later round's labels
     smap: dict[int, dict] = {}
     mp = run_dir / "map.json"
@@ -128,13 +147,15 @@ def cmd_collect(args) -> int:
     answers, missing = _answers(run_dir, rnd)
     call_defects = _call_defects(run_dir, rnd)
     smap, problems = ladder.merge(smap, answers)
-    md, exceptions, omissions, ruled = ladder.evaluate(act, smap, problems, args.slug)
+    md, exceptions, omissions, ruled = ladder.evaluate(act, smap, problems, slug)
     mp.write_text(json.dumps({str(k): v for k, v in sorted(smap.items())}, ensure_ascii=False, indent=1), encoding="utf-8")
     (run_dir / "staged.md").write_text(md, encoding="utf-8")
     source_findings = [e for e in exceptions if e["kind"] in ladder.SOURCE_FINDINGS]
     label_exceptions = [e for e in exceptions if e["kind"] not in ladder.SOURCE_FINDINGS]
-    report = {"slug": args.slug, "round": rnd, "blocks": len(act.blocks), "sections": len(act.sections),
+    lost_text = [e for e in source_findings if e["kind"] in ladder.LOST_TEXT]
+    report = {"slug": slug, "round": rnd, "blocks": len(act.blocks), "sections": len(act.sections), "source": act.source,
               "answers_missing": missing, "call_defects": call_defects, "exceptions": label_exceptions, "source_findings": source_findings,
+              "lost_text": lost_text,
               "omissions": omissions, "ruled": _ruled_blocks(ruled), "exception_kinds": _count(label_exceptions), "source_finding_kinds": _count(source_findings),
               "labels": _count_labels(smap),
               "dropped": [{"block": i, "text": act.blocks[i].text[:80], "note": smap.get(i, {}).get("note", "")}
@@ -156,15 +177,14 @@ def cmd_collect(args) -> int:
         per_round = [ladder.merge({}, a) for a in earlier + [answers]]
         report["residue_detail"] = ladder.classify_residue(report["residue"], per_round, label_exceptions)
         report["residue_classes"] = _count([{"kind": d["class"]} for d in report["residue_detail"]])
-    cf = _corpus_file(args.slug)
+    cf = _corpus_file(slug)
     if cf:
         current = cf.read_text(encoding="utf-8").split("---", 2)[-1].lstrip("\n")
         diff = list(difflib.unified_diff(current.splitlines(), md.splitlines(), "corpus", "staged", lineterm="", n=1))
         (run_dir / "diff.txt").write_text("\n".join(diff) + "\n", encoding="utf-8")
         report["diff_lines"] = sum(1 for l in diff if l[:1] in "+-" and not l.startswith(("+++", "---")))
     (run_dir / f"report-round{rnd}.json").write_text(json.dumps(report, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(json.dumps({k: v for k, v in report.items() if k != "exceptions"}, ensure_ascii=False))
-    return 0
+    return report
 
 
 def _answers(run_dir: Path, rnd: int) -> tuple[list[tuple[dict, list[dict]]], list[str]]:
@@ -322,14 +342,13 @@ PER_CALL_LADDER = 25
 RELIST_AFTER_MIN = 15      # a call file written less than this many minutes ago with no answer is taken as still running
 
 
-def cmd_dispatch(args) -> int:
-    root = _run_root(args.out)
-    rnd = args.round
-    per = args.per or PER_CALL.get(rnd, PER_CALL_LADDER)
+def dispatch(root: Path, slugs: list[str], rnd: int, per: int = 0, mx: int = 20, relist: bool = False) -> tuple[list[dict], int]:
+    """Group the unanswered tasks of a round into call files; returns (the calls listed, the tasks still unanswered)."""
+    per = per or PER_CALL.get(rnd, PER_CALL_LADDER)
     printed = 0
     remaining = 0
     listed: list[dict] = []
-    for slug in args.slugs:
+    for slug in slugs:
         run_dir = root / _slug(slug)
         tdir = run_dir / "tasks" / f"round{rnd}"
         mdir = run_dir / "maps" / f"round{rnd}"
@@ -340,14 +359,14 @@ def cmd_dispatch(args) -> int:
         task_set = calls.task_set_id(task_files)
         unanswered = [t for t in task_files if not (mdir / t.name).exists()]
         remaining += len(unanswered)
-        running = set() if args.relist else _in_flight_tasks(run_dir, rnd, task_set)
+        running = set() if relist else _in_flight_tasks(run_dir, rnd, task_set)
         todo = [t for t in unanswered if t.stem not in running]
         if running:
             print(f"# {slug} round{rnd}: {len(running)} tasks in calls written less than {RELIST_AFTER_MIN} minutes ago and not answered, taken as running; --relist lists them again", file=sys.stderr)
         cdir = run_dir / "calls" / f"round{rnd}"
         for k in range(0, len(todo), per):
             group = todo[k:k + per]
-            if printed >= args.max:
+            if printed >= mx:
                 break
             tasks = [json.loads(t.read_text(encoding="utf-8")) for t in group]
             name = f"{task_set}-{group[0].stem}-{group[-1].stem}"
@@ -362,14 +381,22 @@ def cmd_dispatch(args) -> int:
                 answer_file.rename(answer_file.with_name(f"{name}.superseded-{datetime.now().strftime('%H%M%S%f')}.json"))
             prompt = calls.DISPATCH_PROMPT.format(call_file=call_file, answer_file=answer_file)
             listed.append({"slug": slug, "round": rnd, "name": name, "tasks": len(tasks), "call_file": str(call_file), "answer_file": str(answer_file), "prompt": prompt})
-            if not args.json:
-                print(f"{slug} round{rnd} {name} {len(tasks)} tasks\t{call_file}\t{answer_file}")
-                if args.prompts:
-                    print("  " + prompt)
             printed += 1
+    return listed, remaining
+
+
+def cmd_dispatch(args) -> int:
+    root = _run_root(args.out)
+    rnd = args.round
+    listed, remaining = dispatch(root, args.slugs, rnd, args.per, args.max, args.relist)
     if args.json:
         print(json.dumps(listed, ensure_ascii=False))
-    print(f"# {printed} calls listed, {remaining} tasks unanswered in round {rnd}", file=sys.stderr)
+    else:
+        for c in listed:
+            print(f"{c['slug']} round{rnd} {c['name']} {c['tasks']} tasks\t{c['call_file']}\t{c['answer_file']}")
+            if args.prompts:
+                print("  " + c["prompt"])
+    print(f"# {len(listed)} calls listed, {remaining} tasks unanswered in round {rnd}", file=sys.stderr)
     return 0
 
 
@@ -399,7 +426,9 @@ def _count_labels(smap: dict[int, dict]) -> dict[str, int]:
 def main() -> int:
     ap = argparse.ArgumentParser()
     sub = ap.add_subparsers(dest="cmd", required=True)
-    p = sub.add_parser("prepare"); p.add_argument("--slug", required=True); p.add_argument("--out", default="data/runs/structure-map-2026-10-22"); p.set_defaults(fn=cmd_prepare)
+    p = sub.add_parser("prepare"); p.add_argument("--slug", required=True); p.add_argument("--out", default="data/runs/structure-map-2026-10-22")
+    p.add_argument("--source", choices=("lexbg", "dv"), default="lexbg", help="lexbg: the act's page from the raw store; dv: a Gazette material from data/dv/cache")
+    p.add_argument("--material", type=int, default=0, help="the material's id_mat (with --source dv)"); p.set_defaults(fn=cmd_prepare)
     c = sub.add_parser("collect"); c.add_argument("--slug", required=True); c.add_argument("--round", type=int, default=0); c.add_argument("--out", default="data/runs/structure-map-2026-10-22"); c.set_defaults(fn=cmd_collect)
     d = sub.add_parser("dispatch"); d.add_argument("slugs", nargs="+"); d.add_argument("--round", type=int, default=0); d.add_argument("--per", type=int, default=0, help="tasks per call (default 8 in round 0, 25 above)")
     d.add_argument("--max", type=int, default=20, help="calls to list"); d.add_argument("--prompts", action="store_true", help="print the labeller prompt under each call")

@@ -183,13 +183,16 @@ def test_numbering_gaps_are_source_findings():
             6: {"label": "paragraph_sign", "n": "4"}, 7: {"label": "provisions_heading"}, 8: {"label": "paragraph_sign", "n": "45"},
             9: {"label": "paragraph_sign", "n": "48"}}
     _, ex = run_all(act.blocks, smap)
-    gaps = [(e["kind"], e["block"]) for e in ex if e["kind"] in ("article_gap", "sign_gap")]
-    assert gaps == [("article_gap", 0), ("article_gap", 2), ("sign_gap", 5), ("sign_gap", 6)]
+    gaps = [(e["kind"], e["block"]) for e in ex if e["kind"] in ("article_gap", "sign_gap", "sign_start")]
+    # a first § above 1 in the act's own provisions is lost text (sign_start, D-076), a gap further on a carried finding
+    assert gaps == [("article_gap", 0), ("article_gap", 2), ("sign_start", 5), ("sign_gap", 6)]
     act = _act(["Чл. 1. Едно.", "ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ", "§ 1. Текст.", "§ 2. Текст."])
     _, ex = run_all(act.blocks, {0: {"label": "article_head", "n": "1"}, 1: {"label": "provisions_heading"},
                                  2: {"label": "paragraph_sign", "n": "1"}, 3: {"label": "paragraph_sign", "n": "2"}})
-    assert not any(e["kind"] in ("article_gap", "sign_gap") for e in ex)
-    assert {"article_gap", "sign_gap"} <= SOURCE_FINDINGS
+    assert not any(e["kind"] in ("article_gap", "sign_gap", "sign_start") for e in ex)
+    assert {"article_gap", "sign_gap", "sign_start"} <= SOURCE_FINDINGS
+    from reading.ladder import LOST_TEXT
+    assert LOST_TEXT == {"empty_section", "sign_start"}
 
 
 def test_first_alinea_is_read_only_from_the_head():

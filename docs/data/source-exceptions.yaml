@@ -1,0 +1,60 @@
+# docs/data/source-exceptions.yaml: the exceptions list (plan of 31 October 2026, step S1; D-075, D-076).
+#
+# One entry per act whose text is not taken from lex.bg. Every field is from a closed set defined in
+# source_exceptions.py; the file is written by that module only (the route driver adds entries and moves
+# their state), never by hand. An entry is not an outcome: its act counts only once it is committed
+# correct from its route, and `python source_exceptions.py report` prints the distance left first.
+#
+# defect: dropped_section | wrong_text | page_without_act | server_error | source_before_archive
+# source: dv_html | dv_pdf | moj_portal | strategy_bg | paid_service | unknown; address: a material id (dv_html, dv_pdf), a URL, or unknown
+# route:  whole_act_from_material | history | source_before_archive | investigate
+# state:  listed | investigated | committed | stopped
+# evidence: a list of {kind: decision | audit | case_file | register | plan, ref: <where>}
+entries:
+- slug: zakon-za-obshtestveniya-transport
+  title: Закон за обществения транспорт
+  defect: dropped_section
+  source: dv_html
+  address: '242220'
+  route: whole_act_from_material
+  evidence:
+  - kind: register
+    ref: 'FR-042 (docs/frs/INDEX.md): lex.bg renders Допълнителна разпоредба with no text and starts the final provisions at § 2; ДВ бр. 32/2026 (material 242220) carries § 1 with twelve definitions'
+  - kind: audit
+    ref: docs/audits/2026-09-05-source-dropped-additional-provisions.md
+  - kind: decision
+    ref: 'D-076 (docs/sync/DECISIONS.md): the first session commits the act from ДВ бр. 32/2026; the index through бр. 96/2026 lists no amendment'
+  state: committed
+  added: '2026-10-31'
+  note: The owner uses this act daily, so it is the first entry (owner fact of 22 October 2026). Never amended, so its promulgation material is the whole act; the route searches the materials after бр. 32/2026 before writing.
+  commit: a504b8c72
+- slug: zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi
+  title: Закон за прозрачност при представителство на интереси
+  defect: dropped_section
+  source: dv_html
+  address: '242221'
+  route: history
+  evidence:
+  - kind: register
+    ref: 'FR-042 (docs/frs/INDEX.md): the dropped additional provision verified live for a second act (lex.bg document 2137259673)'
+  - kind: plan
+    ref: 'docs/plans/2026-10-31-starting-state-implementation-plan.md, S1 item 6: amended in ДВ бр. 55/2026, so the act needs the history route of F1'
+  state: stopped
+  added: '2026-10-31'
+  note: Promulgated in ДВ бр. 30/2026 (material 242221) and amended in ДВ бр. 55/2026 through a material that does not carry its title in the index; its § 1 can be filled only once the engine of F1 exists.
+  case_file: docs/cases/zakon-za-prozrachnost-pri-predstavitelstvo-na-interesi.md
+- slug: ukaz-883-ot-24-april-1974-g-za-prilagane-na-zakona-za-normativnite-aktove
+  title: Указ № 883 от 24 април 1974 г. за прилагане на Закона за нормативните актове
+  defect: source_before_archive
+  source: strategy_bg
+  address: unknown
+  route: source_before_archive
+  evidence:
+  - kind: decision
+    ref: 'D-049 addendum (docs/sync/DECISIONS.md): the act was captured on 3 July 2026 from strategy.bg, outside lex.bg'
+  - kind: plan
+    ref: 'docs/plans/2026-10-31-starting-state-implementation-plan.md, S4: the provenance of Указ № 883 is traced in the owner''s legislation repositories and ДВ бр. 39/1974 is looked for'
+  state: stopped
+  added: '2026-10-31'
+  note: Promulgated in ДВ бр. 39/1974, before the Gazette's online archive (issue PDFs from 1989); the text in the corpus came from strategy.bg, whose page was not recorded; the authoritative source and its address are decided in S4.
+  case_file: docs/cases/ukaz-883-ot-24-april-1974-g-za-prilagane-na-zakona-za-normativnite-aktove.md

@@ -1,0 +1,289 @@
+{
+ "slug": "zakon-za-obshtestveniya-transport",
+ "run": "starting-state-2026-10-31",
+ "route": "whole_act_from_material",
+ "state": "committed",
+ "entries": [
+  {
+   "step": "amendment_search",
+   "input_sha256": "fe835107b21b058f2b3d41699d16170a8df5559959f3872b6f22623705707500",
+   "outputs_sha256": "08fa64f6cea977fa4b310e1016492c939e22788c1c15eb63e6f4f8f2e4c356cb",
+   "outcome": "done",
+   "detail": "no amendment of the act in 56 laws and corrigenda after бр. 32/2026 (index through 96/2026, later issues ['97/2026', '98/2026', '99/2026']; 0 mention(s) that are not amendments)",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/amendments.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T12:56:46+00:00",
+   "ended": "2026-10-31T12:57:37+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "input_sha256": "2b7dd454c5bd2c8c425658737a58235985e4d04ddc2daf930ddde695d652593c",
+   "outputs_sha256": "8611808972d0a2a78992c429bd7aae6284499bcd55a67e9562f1dabf6071351a",
+   "outcome": "done",
+   "detail": "material 242220 of бр. 32/2026 (cached), sha256 4938ba76e644",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/material.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T12:57:37+00:00",
+   "ended": "2026-10-31T12:57:37+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "c46a2981cca9d9b382e415a94232c93a979e7537f4ad1904c793cd073efc2b73",
+   "outputs_sha256": "4c7b68562d6c160fee44e1b24ae81d4d6a85e9af075e20ff9630dc8815fc0b2a",
+   "outcome": "done",
+   "detail": "575 blocks, 16 sections",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T12:57:37+00:00",
+   "ended": "2026-10-31T12:57:37+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "99578255b44baa91109248c08f05a0d3b4e7d94632762d15ce43d9aa802d9850",
+   "outputs_sha256": "69257c50df64a1a8047a08c6b46db9f30201ef8b2ca4c76cc0178400ff579c01",
+   "outcome": "pending",
+   "detail": "round 0: 16 of 16 tasks unanswered; 2 labeller call(s) to make: b45bb2ec319d-0000-0007 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/calls/round0/b45bb2ec319d-0000-0007.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/maps/round0/b45bb2ec319d-0000-0007.json; b45bb2ec319d-0008-0015 (8 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/calls/round0/b45bb2ec319d-0008-0015.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/maps/round0/b45bb2ec319d-0008-0015.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-10-31T12:57:37+00:00",
+   "ended": "2026-10-31T12:57:37+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "54290f57250ee7a4a6c5b35a1d5083bdaf89d30a6ddcfee3c9944ff480133b23",
+   "outputs_sha256": "e6d3e592eec1ffeb8178eeb62e78be8d4957a13406b71115436a2b8e821c33da",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:03:49+00:00",
+   "ended": "2026-10-31T13:03:49+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "932a4a729cddcf2fa6b940e11e5b328da0c86057c86ce7c0c76fb42a2bab8003",
+   "outputs_sha256": "f3127e18b8172de04148b99628e67e86cb040c1d14d47d3e31078c50528c29f2",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/ladder.json",
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:03:49+00:00",
+   "ended": "2026-10-31T13:03:49+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "b868670bd26dfd9f2c9ae94927179605553872c8681799e10a83d0870bd264f7",
+   "outputs_sha256": "026e84faea93612d4074142ca5973258818c3cf5274a2eb79d73e930a3ec83ed",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:03:49+00:00",
+   "ended": "2026-10-31T13:03:49+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "ace3fe5e0378f82ade793af1fc2a52aa8daed42d2a787f73f4cb29f0d3d329fc",
+   "outputs_sha256": "7b965c9f42f256982141b507526ac78eb1378ee4d30c28641ca10a6cad3ea7ab",
+   "outcome": "pending",
+   "detail": "differences to settle (lexbg 31, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-answer.json",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:03:49+00:00",
+   "ended": "2026-10-31T13:03:50+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "da67273ab0e73ef311fc4ec7808efba58c1beef59e4f23be2304313a826bef92",
+   "outputs_sha256": "e6d3e592eec1ffeb8178eeb62e78be8d4957a13406b71115436a2b8e821c33da",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:06:03+00:00",
+   "ended": "2026-10-31T13:06:03+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "27193d0c2c78691d578bc1bc595cc049a64be420f7c397b529a4891d8cdf542a",
+   "outputs_sha256": "e7eaacdedf2461c0ec6d8cb159e05113be59742e3d772cc61cade63eed9f54c7",
+   "outcome": "done",
+   "detail": "lexbg: 31 difference(s), settled same_text_other_form 19, source_error 5, witness_error 7; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2137259781 (absent, 2026-10-31T13:06:03+00:00))",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json",
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:06:03+00:00",
+   "ended": "2026-10-31T13:06:04+00:00"
+  },
+  {
+   "step": "fetch_material",
+   "input_sha256": "33293f5abab0f37de7cdb4f57be63a3207050270b14a4935551b8c17238729df",
+   "outputs_sha256": "8611808972d0a2a78992c429bd7aae6284499bcd55a67e9562f1dabf6071351a",
+   "outcome": "done",
+   "detail": "material 242220 of бр. 32/2026 (cached), sha256 4938ba76e644",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/material.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:19:49+00:00",
+   "ended": "2026-10-31T13:19:49+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "c15b9feeefc675e30173ddab699fc5c27a48947ae198566102c4819ad643f485",
+   "outputs_sha256": "d46e1d2d909fc1e7b6940471cca66229e1180865330ddd077bf9a7fec5cc52ec",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:19:49+00:00",
+   "ended": "2026-10-31T13:19:49+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "118557988dca38959b2266fea2dce352767868a24899974da77c409a050986b1",
+   "outputs_sha256": "7430731a19922a7106881303064c51dcd4bc967185c97e65ecb36bc739d9965a",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/ladder.json",
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:19:49+00:00",
+   "ended": "2026-10-31T13:19:49+00:00"
+  },
+  {
+   "step": "content_check",
+   "input_sha256": "43e42af31768b1b68f84207a697002cbee82b84f420fa068d770720bbaf758c5",
+   "outputs_sha256": "41e1830990fee5644647ef9903b7fd37634e38b5cb807777d839cad8fc969a13",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:19:49+00:00",
+   "ended": "2026-10-31T13:19:49+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "642ec0b521237e6bc3f69cd58edfeb45802fbe3b1bb0f4b89bbc9a7119994ec7",
+   "outputs_sha256": "35fc6edf643426a083eb3884910e57cf488b1359db9a7d65cf5aedfbb431fd8f",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 33, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-answer.json",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:19:49+00:00",
+   "ended": "2026-10-31T13:19:49+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "b76bde5f471436dca156aef54a1476e788a70fdb42dfe0065e37b2c9fae4339e",
+   "outputs_sha256": "a0650be2fc7302216d753132730385181a28fb83311b10a10b087e97adde463f",
+   "outcome": "done",
+   "detail": "lexbg: 33 difference(s), settled same_text_other_form 20, source_error 5, witness_error 8; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2137259781 (absent, 2026-10-31T13:06:03+00:00))",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json",
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:21:14+00:00",
+   "ended": "2026-10-31T13:21:14+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "a72049b71892ea3464cf2502ab6703a8155b4be313365d1b5092667fc59b33dc",
+   "outputs_sha256": "e550c7929460950c1a942e61306179e540048c4bf62328e0d5c3a1611c3a9e4f",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 33, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-answer.json",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:29:47+00:00",
+   "ended": "2026-10-31T13:29:48+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "692bf2259080222b181f66fe81119fbe47d714f4acfaf74d368692b4d3550805",
+   "outputs_sha256": "df07e90046c64c5a78bea80016d6bc3b3ddbdedba3837f8da312d0e1ec0c69fb",
+   "outcome": "done",
+   "detail": "lexbg: 33 difference(s), settled same_text_other_form 20, source_error 5, witness_error 8; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2137259781 (absent, 2026-10-31T13:06:03+00:00))",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json",
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:30:40+00:00",
+   "ended": "2026-10-31T13:30:41+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "d95841dd928e15bef8b54133a8afaf3249a23c8012689dc3991084832441e045",
+   "outputs_sha256": "a6d3775cd236c07e486496f6e49313626392415829186f88af94aacea188d822",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 33, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/s0-s1-starting-state-6bccc3/data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-answer.json",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:38:34+00:00",
+   "ended": "2026-10-31T13:38:34+00:00"
+  },
+  {
+   "step": "witnesses",
+   "input_sha256": "0bf27af5d8d300b7b8f7e8805dd4152c84cbbca4dbc3d7a3b7e03ab4d7efb160",
+   "outputs_sha256": "0488b77c0ebb2639dfa5b38d603b5d4e6ed868a5dc362252987c225dfa1a281e",
+   "outcome": "done",
+   "detail": "lexbg: 33 difference(s), settled same_text_other_form 20, source_error 5, witness_error 8; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2137259781 (absent, 2026-10-31T13:06:03+00:00))",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-diff.json",
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-10-31T13:39:36+00:00",
+   "ended": "2026-10-31T13:39:36+00:00"
+  },
+  {
+   "step": "write",
+   "input_sha256": "3fc138ee4fcf530acd91847423b1dec383ab9d84077861deb67a56122f1c5e86",
+   "outputs_sha256": "9fb936deacda61215be66b19cf52db77dec339679ff09fb9a20c88043a4a4bdf",
+   "outcome": "done",
+   "detail": "[popravka] a504b8c72 Record-Id starting-state-2026-10-31/zakon-za-obshtestveniya-transport/bbe37bb68a5f",
+   "evidence": [
+    "data/runs/starting-state-2026-10-31/zakon-za-obshtestveniya-transport/written.json"
+   ],
+   "committed": "a504b8c72",
+   "started": "2026-10-31T14:32:08+00:00",
+   "ended": "2026-10-31T14:32:08+00:00"
+  }
+ ],
+ "step": "write",
+ "stopped_at": null,
+ "exception": null,
+ "commit": "a504b8c72"
+}

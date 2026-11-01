@@ -1,7 +1,7 @@
-"""Cut a raw lex.bg act page into blocks: every character of the act's text lands in exactly one block.
+"""Cut a raw act page into blocks: every character of the act's text lands in exactly one block.
 
-The splitter decides nothing about meaning. It locates the legal-content region
-the way the old parser did (the common ancestor of the elements with lex.bg's
+The splitter decides nothing about meaning. ``split_lexbg`` locates the legal-content
+region the way the old parser did (the common ancestor of the elements with lex.bg's
 semantic classes), walks it in document order, breaks text at ``<br>`` and at
 block-level children, and gives each non-empty line a *hint*: the lex.bg class
 of its nearest classified ancestor. Chrome elements the old parser's denylist
@@ -9,6 +9,14 @@ names are dropped before blocks are cut and counted in ``dropped_by_splitter``,
 so the act text alone is what the blocks partition. Blocks are then grouped
 into *sections* for the labelling call: a new section starts at every heading-
 class block and a section never exceeds ``MAX_SECTION_BLOCKS``.
+
+``split_dv`` (step S1 of the plan of 31 October 2026) does the same for a material of
+Държавен вестник (``dv.parliament.bg``): the content region is the one the Gazette
+fetcher names, nothing is dropped (the promulgation decree before the act and the
+signature after it are labelled ``drop`` by the labeller and known to the checks),
+and the hint is the paragraph's alignment (``DvCenter`` for a heading-like centred
+line, ``DvJustify`` for body text, ``DvRight`` for a signature or date line), since
+the Gazette's markup carries no semantic classes.
 """
 from __future__ import annotations
 
@@ -18,11 +26,16 @@ from dataclasses import dataclass, field, asdict
 from bs4 import BeautifulSoup, NavigableString, Tag
 
 from fetcher.bg.text_parser import CLASS_MAP, CHROME_DENYLIST, content_region
+from fetcher.dv.materials import _content_div as dv_content_region
 
+SOURCES = ("lexbg", "dv")
+DV_HINTS = {"center": "DvCenter", "justify": "DvJustify", "right": "DvRight", "left": "DvLeft"}
 HEADING_HINTS = frozenset({
     "TitleDocument", "Title", "Portion", "Part", "Heading", "Section", "UnderSection",
-    "AdditionalEdicts", "FinalEdicts", "TransitionalFinalEdicts",
+    "AdditionalEdicts", "FinalEdicts", "TransitionalFinalEdicts", "DvCenter",
 })
+_ALIGN = re.compile(r"text-align\s*:\s*(center|justify|right|left)", re.I)
+_BLOCK_TAGS = ("div", "p", "li", "tr", "td", "th", "table", "h1", "h2", "h3", "h4")
 # Classes whose text is inline content inside an article (cross-references, anchors).
 INLINE_KEEP = frozenset({"NewDocReference", "SameDocReference", "LegalDocReference"})
 SKIP_CLASSES = (CHROME_DENYLIST - INLINE_KEEP) | {"HistoryOfDocument"}
@@ -52,18 +65,27 @@ class SplitAct:
     sections: list[Section]
     dropped_by_splitter: dict[str, int] = field(default_factory=dict)
     has_spine: bool = True
+    source: str = "lexbg"
 
     @property
     def source_text(self) -> str:
         return "\n".join(b.text for b in self.blocks)
 
     def to_dict(self) -> dict:
-        return {
+        d = {
             "has_spine": self.has_spine,
             "dropped_by_splitter": self.dropped_by_splitter,
             "blocks": [asdict(b) for b in self.blocks],
             "sections": [asdict(s) for s in self.sections],
         }
+        if self.source != "lexbg":
+            d["source"] = self.source  # the lex.bg form of blocks.json is unchanged, so the 50 committed records still match
+        return d
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "SplitAct":
+        return cls(blocks=[Block(**b) for b in d["blocks"]], sections=[Section(**s) for s in d["sections"]],
+                   dropped_by_splitter=d["dropped_by_splitter"], has_spine=d["has_spine"], source=d.get("source", "lexbg"))
 
 
 def decode(raw: bytes) -> str:
@@ -124,6 +146,48 @@ def split_lexbg(raw: bytes) -> SplitAct:
     flush()
     blocks = [Block(i, t, h) for i, (t, h) in enumerate(lines)]
     return SplitAct(blocks=blocks, sections=_sections(blocks), dropped_by_splitter=dropped, has_spine=has_spine)
+
+
+def split_dv(html: str | bytes) -> SplitAct:
+    """Blocks of a Gazette material's content region: every character of it in exactly one block, nothing dropped."""
+    if isinstance(html, bytes):
+        html = html.decode("utf-8")
+    soup = BeautifulSoup(html, "lxml")
+    region = dv_content_region(soup)
+    lines: list[tuple[str, str]] = []
+    buf: list[str] = []
+    cur_hint = ["DvText"]
+
+    def flush() -> None:
+        text = _WS.sub(" ", "".join(buf)).strip()
+        if text:
+            lines.append((text, cur_hint[0]))
+        buf.clear()
+
+    def walk(node: Tag, hint: str) -> None:
+        for child in node.children:
+            if isinstance(child, Tag):
+                if child.name == "br":
+                    flush()
+                elif child.name in _BLOCK_TAGS:
+                    flush()
+                    m = _ALIGN.search(child.get("style") or "")
+                    child_hint = DV_HINTS[m.group(1).lower()] if m else hint
+                    prev = cur_hint[0]
+                    cur_hint[0] = child_hint
+                    walk(child, child_hint)
+                    flush()
+                    cur_hint[0] = prev
+                else:
+                    walk(child, hint)
+            elif type(child) is NavigableString:
+                buf.append(str(child))
+
+    walk(region, "DvText")
+    flush()
+    blocks = [Block(i, t, h) for i, (t, h) in enumerate(lines)]
+    has_spine = any(_ARTICLE_START.match(b.text) for b in blocks)
+    return SplitAct(blocks=blocks, sections=_sections(blocks), dropped_by_splitter={}, has_spine=has_spine, source="dv")
 
 
 _ARTICLE_START = re.compile(r"^(Чл\.|§)\s*\d")

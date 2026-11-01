@@ -1,0 +1,330 @@
+{
+ "normalisation": [
+  "whitespace runs become one space; leading and trailing whitespace is removed",
+  "quotation marks „ “ ” « » ' are all written as \"",
+  "the dashes – and — are written as -",
+  "the dot that closes a heading number (Глава първа., Раздел I.) is removed, and a heading number line is joined to its title line",
+  "nothing else: a Latin letter for a Cyrillic one, a missing word, a different number, a line joined or split are differences"
+ ],
+ "witnesses": [
+  {
+   "witness": "lexbg",
+   "page_sha256": "4f68efbc9f987518dd03d8e486443a68a8320c74a39aabd15784a631d4de2b27",
+   "fetched_at": "2026-10-21T01:19:54.593569+00:00",
+   "differences": 33,
+   "verdicts": {
+    "1": {
+     "verdict": "same_text_other_form",
+     "note": "our line 0 vs witness line 0: same title in capitals; witness appends its editorial in-force date and draft number, not act text",
+     "kind": "replace",
+     "ours": "за обществения транспорт",
+     "witness": "ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРТ В сила от 16.04.2026 г. Проект: 51-602-01-7/04.02.2026 г.",
+     "our_line": 0,
+     "witness_line": 0
+    },
+    "2": {
+     "verdict": "same_text_other_form",
+     "note": "our line 0 vs witness lines 0-2: lex.bg splits its editorial lines 'В сила от' and 'Проект' after the title; title text the same",
+     "kind": "structure",
+     "ours": "ЗАКОН за обществения транспорт",
+     "witness": "ЗАКОН ЗА ОБЩЕСТВЕНИЯ ТРАНСПОРТ | В сила от 16.04.2026 г. | Проект: 51-602-01-7/04.02.2026 г.",
+     "our_line": 0,
+     "witness_line": 0
+    },
+    "3": {
+     "verdict": "source_error",
+     "note": "our line 4 (чл. 2, ал. 1): Latin e for Cyrillic е in the Gazette text; witness line 6 has the Cyrillic letter",
+     "kind": "replace",
+     "ours": "e",
+     "witness": "е",
+     "our_line": 4,
+     "witness_line": 6
+    },
+    "4": {
+     "verdict": "witness_error",
+     "note": "our line 133: 'съответствието й' is the correct possessive clitic; witness line 135 prints 'и'",
+     "kind": "replace",
+     "ours": "й",
+     "witness": "и",
+     "our_line": 133,
+     "witness_line": 135
+    },
+    "5": {
+     "verdict": "source_error",
+     "note": "our line 137: Gazette misprint 'Адмистративнопроцесуалния'; witness line 139 has the code's correct name",
+     "kind": "replace",
+     "ours": "Адмистративнопроцесуалния",
+     "witness": "Административнопроцесуалния",
+     "our_line": 137,
+     "witness_line": 139
+    },
+    "6": {
+     "verdict": "witness_error",
+     "note": "our line 143: 'административния й център' is the correct clitic; witness line 145 prints 'и'",
+     "kind": "replace",
+     "ours": "й",
+     "witness": "и",
+     "our_line": 143,
+     "witness_line": 145
+    },
+    "7": {
+     "verdict": "witness_error",
+     "note": "our line 150: 'съответствието й с изискванията' correct clitic; witness line 152 prints 'и'",
+     "kind": "replace",
+     "ours": "й",
+     "witness": "и",
+     "our_line": 150,
+     "witness_line": 152
+    },
+    "8": {
+     "verdict": "source_error",
+     "note": "our line 154: Gazette misprint 'Адмистративнопроцесуалния'; witness line 156 correct name",
+     "kind": "replace",
+     "ours": "Адмистративнопроцесуалния",
+     "witness": "Административнопроцесуалния",
+     "our_line": 154,
+     "witness_line": 156
+    },
+    "9": {
+     "verdict": "witness_error",
+     "note": "our line 165: 'административния й център' correct clitic; witness line 167 prints 'и'",
+     "kind": "replace",
+     "ours": "й",
+     "witness": "и",
+     "our_line": 165,
+     "witness_line": 167
+    },
+    "10": {
+     "verdict": "witness_error",
+     "note": "our line 209: 'вида й.' correct clitic; witness line 211 prints 'и.'",
+     "kind": "replace",
+     "ours": "й.",
+     "witness": "и.",
+     "our_line": 209,
+     "witness_line": 211
+    },
+    "11": {
+     "verdict": "source_error",
+     "note": "our line 219: 'срокa' ends in a Latin a in the Gazette text; witness line 221 all Cyrillic",
+     "kind": "replace",
+     "ours": "срокa",
+     "witness": "срока",
+     "our_line": 219,
+     "witness_line": 221
+    },
+    "12": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 258 before чл. 51: lex.bg editorial in-force note, not act text",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 18.04.2027 г.)",
+     "our_line": 256,
+     "witness_line": 258
+    },
+    "13": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 384 (чл. 91, т. 6): lex.bg editorial in-force note from the final provisions' dates",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 382,
+     "witness_line": 384
+    },
+    "14": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 385 (чл. 91, т. 7): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 383,
+     "witness_line": 385
+    },
+    "15": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 388 (чл. 91, т. 10): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 07.06.2028 г.)",
+     "our_line": 386,
+     "witness_line": 388
+    },
+    "16": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 389 (чл. 91, т. 11): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 07.06.2028 г.)",
+     "our_line": 387,
+     "witness_line": 389
+    },
+    "17": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 390 (чл. 91, т. 12): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 07.06.2028 г.)",
+     "our_line": 388,
+     "witness_line": 390
+    },
+    "18": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 391 (чл. 91, т. 13): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 07.06.2028 г.)",
+     "our_line": 389,
+     "witness_line": 391
+    },
+    "19": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 392 (чл. 91, т. 14): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 390,
+     "witness_line": 392
+    },
+    "20": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 393 (чл. 91, т. 15): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 391,
+     "witness_line": 393
+    },
+    "21": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 394 (чл. 91, т. 16): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 392,
+     "witness_line": 394
+    },
+    "22": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 395 (чл. 91, т. 17): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 393,
+     "witness_line": 395
+    },
+    "23": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 396 (чл. 91, т. 18): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 394,
+     "witness_line": 396
+    },
+    "24": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 414 (чл. 91, т. 36): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 412,
+     "witness_line": 414
+    },
+    "25": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 421 (чл. 92, т. 1): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 419,
+     "witness_line": 421
+    },
+    "26": {
+     "verdict": "witness_error",
+     "note": "our line 420: 'предоставянето й' correct clitic; witness line 422 prints 'и'",
+     "kind": "replace",
+     "ours": "й",
+     "witness": "и",
+     "our_line": 420,
+     "witness_line": 422
+    },
+    "27": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 432 (чл. 92, т. 12): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 430,
+     "witness_line": 432
+    },
+    "28": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 444 (чл. 94, ал. 5): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 442,
+     "witness_line": 444
+    },
+    "29": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 445 (чл. 94, ал. 6): lex.bg editorial in-force note",
+     "kind": "insert",
+     "ours": "",
+     "witness": "(В сила от 04.12.2029 г.)",
+     "our_line": 443,
+     "witness_line": 445
+    },
+    "30": {
+     "verdict": "witness_error",
+     "note": "our lines 488-502: the Gazette carries § 1 with definitions 1-12 under ДОПЪЛНИТЕЛНА РАЗПОРЕДБА; witness line 490 has the heading and goes straight to Заключителни разпоредби, dropping § 1",
+     "kind": "replace",
+     "ours": "ДОПЪЛНИТЕЛНА РАЗПОРЕДБА § 1. По смисъла на този закон: 1. \"Възел за достъп\" е предварително определено място, където пътниците могат да се качат на или да слязат от превозно средство, по време на превоз по редовни линии или по време на превоз по заявка. 2. \"Доставчик на услуги за пътническа информация\" е всеки публичен или частен доставчик на информация за пътувания или за трафика, който извършва дейности като електронно събиране на пътни такси, цифровизация и предоставяне на информация на борда на превозните средства, оператори за GPS проследяване за мониторинг в реално време и др. 3. \"Достъпност до инфраструктура за обществен транспорт\" е съвкупност от физическа достъпност, информационна достъпност, социална и териториална достъпност, които позволяват равен и удобен достъп на пътниците, включително за лицата с увреждания и лицата с намалена подвижност. 4. \"Eдинен превозен документ\" е билет или билети за пътуване, или друг, съответстващ на тях документ, които се комбинират, продават се заедно и се закупуват чрез еднократно плащане от пътника. 5. \"Икономическо равновесие на договор за обществена услуга\" е финансовото състояние на договора, при което приходите на оператора заедно с плащанията от компетентния орган покриват разходите за изпълнение на задълженията за обществена услуга и осигуряват разумна печалба. 6. \"Интегрирани обществени услуги за превоз на пътници\" са взаимосвързани превозни услуги в рамките на определен географски район, които ползват единно информационно обслужване, система за билети и разписание. 7. \"Нормално поведение на пътник\" е поведение, което се основава на взаимно уважение и спазване на обществения ред. 8. \"Повторно нарушение\" е нарушението, извършено в едногодишен срок от влизането в сила на наказателното постановление, с което на нарушителя е наложено наказание за същото по вид нарушение. 9. \"Редовна линия\" е постоянен маршрут за изпълнение на превози с железопътен транспорт, автомобилен транспорт, превоз по вътрешни водни пътища или морски каботаж, въздушен транспорт, трамваен транспорт или метро по утвърдено разписание, като пътниците се качват и слизат на предварително определени възли за достъп. 10. \"Тарифното задължение\" като елемент от задължението за извършване на обществени услуги е задължението на транспортното предприятие да прилага цени, които са в разрез с търговския му интерес, но са определени или установени от компетентните органи по съответния ред съгласно действащото законодателство. 11. \"Транспортна бедност\" е състояние, при което лица или домакинства имат ограничен или затруднен достъп до основни дейности и услуги поради липса или недостатъчност на обществен транспорт, висока цена на транспортните услуги спрямо доходите, недостатъчна честота или свързаност на транспортните услуги или недостъпност на транспортната инфраструктура. 12. \"Зарядна станция\" е съоръжение, състоящо се от една или повече зарядни точки на определено място. ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ",
+     "witness": "Допълнителна разпоредба Заключителни разпоредби",
+     "our_line": 488,
+     "witness_line": 490
+    },
+    "31": {
+     "verdict": "witness_error",
+     "note": "our lines 488-502 (15 lines) vs witness lines 490-491 (2): the structure gap is lex.bg's omission of § 1 and its 12 points, not a split of ours",
+     "kind": "structure",
+     "ours": "ДОПЪЛНИТЕЛНА РАЗПОРЕДБА | § 1. По смисъла на този закон: | 1. \"Възел за достъп\" е предварително определено място, където пътниците могат да се качат на или да слязат от превозно средство, по време на превоз по редовни линии или по време на превоз по заявка. | 2. \"Доставчик на услуги за пътническа информация\" е всеки публичен или частен доставчик на информация за пътувания или за трафика, който извършва дейности като електронно събиране на пътни такси, цифровизация и предоставяне на информация на борда на превозните средства, оператори за GPS проследяване за мониторинг в реално време и др. | 3. \"Достъпност до инфраструктура за обществен транспорт\" е съвкупност от физическа достъпност, информационна достъпност, социална и териториална достъпност, които позволяват равен и удобен достъп на пътниците, включително за лицата с увреждания и лицата с намалена подвижност. | 4. \"Eдинен превозен документ\" е билет или билети за пътуване, или друг, съответстващ на тях документ, които се комбинират, продават се заедно и се закупуват чрез еднократно плащане от пътника. | 5. \"Икономическо равновесие на договор за обществена услуга\" е финансовото състояние на договора, при което приходите на оператора заедно с плащанията от компетентния орган покриват разходите за изпълнение на задълженията за обществена услуга и осигуряват разумна печалба. | 6. \"Интегрирани обществени услуги за превоз на пътници\" са взаимосвързани превозни услуги в рамките на определен географски район, които ползват единно информационно обслужване, система за билети и разписание. | 7. \"Нормално поведение на пътник\" е поведение, което се основава на взаимно уважение и спазване на обществения ред. | 8. \"Повторно нарушение\" е нарушението, извършено в едногодишен срок от влизането в сила на наказателното постановление, с което на нарушителя е наложено наказание за същото по вид нарушение. | 9. \"Редовна линия\" е постоянен маршрут за изпълнение на превози с железопътен транспорт, автомобилен транспорт, превоз по вътрешни водни пътища или морски каботаж, въздушен транспорт, трамваен транспорт или метро по утвърдено разписание, като пътниците се качват и слизат на предварително определени възли за достъп. | 10. \"Тарифното задължение\" като елемент от задължението за извършване на обществени услуги е задължението на транспортното предприятие да прилага цени, които са в разрез с търговския му интерес, но са определени или установени от компетентните органи по съответния ред съгласно действащото законодателство. | 11. \"Транспортна бедност\" е състояние, при което лица или домакинства имат ограничен или затруднен достъп до основни дейности и услуги поради липса или недостатъчност на обществен транспорт, висока цена на транспортните услуги спрямо доходите, недостатъчна честота или свързаност на транспортните услуги или недостъпност на транспортната инфраструктура. | 12. \"Зарядна станция\" е съоръжение, състоящо се от една или повече зарядни точки на определено място. | ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ",
+     "witness": "Допълнителна разпоредба | Заключителни разпоредби",
+     "our_line": 488,
+     "witness_line": 490
+    },
+    "32": {
+     "verdict": "source_error",
+     "note": "our line 517 (§ 9 final provisions): '(oбн.,' with a Latin o in the Gazette text; witness line 506 Cyrillic",
+     "kind": "replace",
+     "ours": "(oбн.,",
+     "witness": "(обн.,",
+     "our_line": 517,
+     "witness_line": 506
+    },
+    "33": {
+     "verdict": "same_text_other_form",
+     "note": "witness line 513: a dashed separator lex.bg prints before the adoption clause; not act text",
+     "kind": "witness_line",
+     "ours": "",
+     "witness": "-------------------------",
+     "our_line": 524,
+     "witness_line": 513
+    }
+   },
+   "counts": {
+    "same_text_other_form": 20,
+    "source_error": 5,
+    "witness_error": 8
+   }
+  },
+  {
+   "witness": "moj",
+   "absent": "the portal answers 500 for https://justice.government.bg/home/normdoc/2137259781 (absent, 2026-10-31T13:06:03+00:00)",
+   "differences": 0,
+   "verdicts": {}
+  }
+ ],
+ "diff_sha256": "f3a887d8539ad8afe9ee22fa3843f20b944e8b1aca7a53b5810f69d840719ed2",
+ "body_sha256": "d417cf03ce33ef1ce3ebf2731800bdbfc642a7309e0af8ba8b2690c421fe799b",
+ "stops": []
+}

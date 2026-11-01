@@ -1,0 +1,10 @@
+{
+ "slug": "ukaz-883-ot-24-april-1974-g-za-prilagane-na-zakona-za-normativnite-aktove",
+ "run": "starting-state-2026-10-31",
+ "route": "source_before_archive",
+ "state": "stopped",
+ "entries": [],
+ "stopped_at": "source_decision",
+ "exception": "the next step is not defined: source_decision",
+ "case_file": "docs/cases/ukaz-883-ot-24-april-1974-g-za-prilagane-na-zakona-za-normativnite-aktove.md"
+}

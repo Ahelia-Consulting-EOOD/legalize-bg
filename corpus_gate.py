@@ -40,6 +40,7 @@ from corpus_integrity.__main__ import CHECKS  # registered by append, see below
 from corpus_integrity.loader import CATEGORY_DIRS, act_from_text
 from corpus_integrity.protocol import Act, Violation
 from corpus_integrity.waivers import load_waivers, reconcile
+import source_exceptions
 
 log = logging.getLogger(__name__)
 
@@ -49,6 +50,11 @@ REPO_ROOT = Path(__file__).resolve().parent
 # run that silently used a different exception set than CI would defeat the
 # point of running the same reconciliation.
 DEFAULT_WAIVERS = REPO_ROOT / "docs" / "data" / "waivers.yaml"
+
+# The exceptions list (step S1 of the plan of 31 October 2026): an act whose
+# text is not taken from lex.bg is refused on the lex.bg path by name, at the
+# gate, so that no writer of the lex.bg path can put lex.bg's text of it back.
+DEFAULT_EXCEPTIONS = source_exceptions.DEFAULT_PATH
 
 # Where an act may come from. The value travels into the commit trailer, so an
 # unknown kind is a usage error and not a free-text label.
@@ -80,6 +86,17 @@ class SourceRef:
             )
         if not str(self.ident).strip():
             raise ValueError(f"source {self.kind!r} carries no identifier")
+
+
+class ListedActRefused(Exception):
+    """A write refused because the act is on the exceptions list and the source is the lex.bg path."""
+
+    def __init__(self, path: Path, entry) -> None:
+        self.path, self.entry = Path(path), entry
+        super().__init__(
+            f"{path}: {entry.slug} is on the exceptions list ({entry.defect}; source "
+            f"{entry.source}, route {entry.route}); the lex.bg path is refused for it by name"
+        )
 
 
 class CorpusIntegrityError(Exception):
@@ -216,6 +233,7 @@ def write_act(
     source: SourceRef,
     category: str | None = None,
     waivers_path: Path | str | None = None,
+    exceptions_path: Path | str | None = None,
 ) -> None:
     """The ONLY sanctioned writer of a corpus `.md` file.
 
@@ -223,13 +241,16 @@ def write_act(
     manual gap-fill, municipal. There is deliberately no force flag — a bypass
     would make the guarantee advisory rather than structural.
 
-    Raises `CorpusIntegrityError` naming every violation with its locator, and
-    `ValueError` for a malformed call: an unknown source kind, a path outside
-    the corpus categories, or a waiver file the strict schema refuses.
+    Raises `CorpusIntegrityError` naming every violation with its locator,
+    `ListedActRefused` for an act on the exceptions list written from the
+    lex.bg path, and `ValueError` for a malformed call: an unknown source kind,
+    a path outside the corpus categories, or a waiver file the strict schema
+    refuses.
     """
     write_act_text(
         path, render_act(frontmatter, body),
         source=source, category=category, waivers_path=waivers_path,
+        exceptions_path=exceptions_path,
     )
 
 
@@ -240,6 +261,7 @@ def write_act_text(
     source: SourceRef,
     category: str | None = None,
     waivers_path: Path | str | None = None,
+    exceptions_path: Path | str | None = None,
 ) -> None:
     """The same gate over an already-serialised act.
 
@@ -258,6 +280,10 @@ def write_act_text(
             f"{list(CATEGORY_DIRS)}; a write outside them lands where the index "
             "never scans"
         )
+    if source.kind == "lexbg":
+        listed = source_exceptions.listed(path.stem, exceptions_path or DEFAULT_EXCEPTIONS)
+        if listed is not None:
+            raise ListedActRefused(path, listed)
 
     act = act_from_text(path, text, category=category)
     violations = run_write_checks(act, waivers=load_waiver_set(waivers_path))
