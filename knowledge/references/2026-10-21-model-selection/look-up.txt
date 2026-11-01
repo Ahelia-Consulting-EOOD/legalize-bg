@@ -1,0 +1,9 @@
+repository: /Users/ekimir/swprj/legalize-bg
+source log outside bundles: repo:docs/research/2026-06-22-I1-legalize-ecosystem-sources.md: "Source Log: I1 Legalize ecosystem"  [match: legal]
+source log outside bundles: repo:docs/research/2026-06-22-I2-lawvm-sources.md: "Source Log: I2 LawVM"
+source log outside bundles: repo:docs/research/2026-06-22-I3-dv-access-sources.md: "Source Log: I3 DV access"
+source log outside bundles: repo:docs/research/2026-06-22-I4-official-consolidation-sources.md: "Source Log: I4 Official consolidation"  [match: consolidation]
+listed 0 bundle(s), 0 hub(s), 0 run(s), 4 source log(s) outside bundles
+skipped 2 test, fixture or example folder(s), 0 nested checkout(s)
+marked 2 for "model selection long context reliability reading audit legal text consolidation opus sonnet haiku chunking citations": 0 hub(s), 0 run(s), 2 source log(s), 0 bundle(s)
+(listing made at 03:30 Sofia on 2026-10-21, before the bundle was created; recorded from the session transcript, since the first saved copy was made after the bundle existed)

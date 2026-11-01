@@ -1,0 +1,11 @@
+# 2026-10-22: the labelling run started without a token design
+
+**What happened.** The structure-map labelling run of plan step 3 (decision D-069) was started on the night of 21 to 22 October 2026 and continued on the morning of 22 October with general-purpose subagents, one section of up to 60 blocks per call. Each call carried about 65,000 tokens of fixed context (the session's tool catalogue, system prompt and instruction files) for 3,000 to 8,000 tokens of content. The night's ~100 calls and the morning's first ~160 calls ran this way: about 18 million tokens of the owner's plan, of which about three quarters were the fixed part. The session had measured the figure on the first night and filed it as "a how for step 6" instead of acting on it.
+
+**What it should have been.** Two levers were available from the first call and need no new design: a project agent with only the tools the call needs (`.claude/agents/labeller.md`, Read and Write, now defined) and several sections per call (eight, well within the model's reliable range). Together they bring a call to roughly 15,000 to 20,000 tokens of fixed context plus content, about four to five times less per section. The owner raised the inefficiency on the morning of 22 October; the agent was defined, the batching raised to eight sections per call, and the run moved to a new session so the agent definition loads.
+
+**Cause.** The session treated cost as a figure to report rather than a constraint to design against, and the goal contract for the run did not state a per-section budget. The owner's rule of 21 October (tokens are money; the budget is stated in the read-back) was in context and was not applied to the run's design.
+
+**Fix in the work.** Owner fact of 22 October 2026 in `.claude/CLAUDE.md`: every model call of a run goes through a lean project agent, several tasks per call. The results document records tokens per section for the lean agent once measured. Step 6 of the plan (the run driver) inherits these figures as its baseline.
+
+**Status.** Open until the lean agent's per-section figure is measured and written into `docs/testing/2026-10-22-structure-map-results.md`.

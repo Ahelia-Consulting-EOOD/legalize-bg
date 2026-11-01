@@ -1,0 +1,109 @@
+Apr 25, 2026 18:00:00
+The 'legalize-es' project converts all of Spain's laws into Markdown files and publishes them in a Git repository; legal changes are managed as commits and can be tracked.
+While laws are important documents that define the rules of society, ordinary people rarely have the opportunity to read the actual articles. The ' legalize-es ' project aims to improve the transparency and accessibility of laws by publishing all of Spain's laws as Markdown files in a Git repository.
+legalize-dev/legalize-es: Spanish legislation as a Git repo — every law is a Markdown file, every reform a commit. 8,600+ laws.
+https://github.com/legalize-dev/legalize-es
+legalize-es was created in March 2026 by independent IT consultant Enrique Lopez . The phrase in the README, 'Cada ley es un fichero. Cada reforma es un commit,' means 'One law is one file. One amendment is one commit.' As stated above, legalize-es has published all of Spain's laws as over 8600 Markdown files on GitHub at the time of writing. Since legal amendments are managed as Git commits, anyone can easily track the change history.
+Spain is a federal country, and its laws are divided into federal laws at the national level and laws specific to each of its 17 autonomous communities . In legalize-es, federal laws and the laws of each autonomous community are organized into separate directories. For example, federal laws are stored in the 'es/' directory, and laws of Andalusia are stored in the 'es-an/' directory.
+[code]
+es/ ← Federal Law (8646 cases)
+BOE-A-1978-31229.md — Spanish Constitution
+BOE-A-1995-25444.md — Criminal Code
+BOE-A-1889-4763.md — Civil Code
+BOE-A-2015-11430.md — Workers' Charter
+...
+es-an/ ← Andalusia
+es-ar/ ← Aragon
+es-as/ ← Asturias
+es-cb/ ← Cantabria
+es-cl/ ← Castile and León
+es-cm/ ← Castile-La Mancha
+es-cn/ ← Canary Islands
+es-ct/ ← Catalonia
+es-ex/ ← Extremadura
+es-ga/ ← Galicia
+es-ib/ ← Balearic Islands Province
+es-mc/ ← Murcia
+es-md/ ← Madrid Community
+es-nc/ ← Navarre
+es-pv/ ← Basque Country
+es-ri/ ← La Rioja
+es-vc/ ← Valencia
+[code]
+Looking at individual files, they have a format divided into upper and lower sections. The upper section contains metadata such as the title, number, and effective date of the law in YAML frontmatter format, while the lower section contains the text of the law in Markdown format.
+[code]
+---
+:
+:
+[YAML frontmatter: metadata]
+:
+:
+---
+:
+:
+[Markdown: Legal text]
+:
+:
+[code]
+When you view a file created in the above format in GitHub's preview, metadata such as the title and number of the law will be displayed in a table format, and the articles will be displayed in Markdown format, making it easy to read and understand the content of the law.
+legalize-es has also been featured on the social news site 'Hacker News,' where its creator, Lopez, revealed that it was developed in just under four hours using Claude Code.
+Spanish legislation as a Git repo | Hacker News
+https://news.ycombinator.com/item?id=47553798
+The objectives and benefits of the legalize-es project are explained as follows:
+- Tracking Change History : By using the 'git log' and 'git diff' commands, the history of legal amendments can be accurately tracked as change differences rather than expressions like 'replace X with Y,' making it possible to visualize how laws are built up by 'patches upon patches.'
+• Improved Transparency : The use of Markdown format and Git-based history management makes it easily accessible to everyone, thus ensuring legal transparency.
+• Use as a dataset : By creating APIs from structured legal data, there are potential business opportunities in areas such as legal tech and compliance, or simply as a useful open dataset.
+Incidentally, although the relationship with the legalize-es project is not explicitly stated, a similar attempt was made with Japanese law shortly after the legalize-es project was released.
+aluqas/gitlaw-jp: Japanese legislation as a Git repo.
+https://github.com/aluqas/gitlaw-jp
+Set as Preferred Source
+Copy Title and URL
+Related Posts:
+'Ripgrep-all' that allows you to search for character strings in image files and databases like 'grep'
+Supports 'Pandoc' reviews, Markdown to LaTex, EPUB that can convert tremendous types of document files to other formats
+It turns out that a data broker has acquired a media license to take advantage of a loophole in EU law that ``media is exempt from GDPR regulations''
+Free high-speed log analysis software "Visitors" that processes 100,000 rows in 1 second
+Harvard University releases 'Institutional Books', a dataset that extracts text from 980,000 copyright-free books, utilizing data from Google Books' book indexing project
+Members of the 'Twitter unit' that exist on Amazon are selected for their 'sense of humor'
+The 'architecture documentation' of a program should be tedious, so how should it be written?
+I tried using the commercial OK open source `` ProseMirror '' that can create a WYSIWYG rich text editor that can be collaboratively edited and runs on all browsers
+<< Next
+How did someone with no prior software release experience win the Anthropic-sponsored Opus 4.6 hackathon? What are the requirements for AI products?
+Prev >>
+A French government agency suffered a cyberattack, resulting in the theft of over 11 million pieces of personal information. The perpetrators have since begun selling the data on the dark web.
+Apr 25, 2026 18:00:00 in Education,   AI,   Software, Posted by log1c_sh
+Latest news 40
+Archives
+Categories
+Free Member
+Education
+AI
+Video
+Note
+Hardware
+Software
+Web Service
+Science
+Smartphone
+Review
+Tasting
+Game
+Coverage
+Headline
+Anime
+Vehicle
+Security
+Movie
+Food
+Creature
+Design
+Manga
+Creation
+Web Application
+Pick Up
+Interview
+Notice
+Column
+Search
+Contacts
+About GIGAZINE

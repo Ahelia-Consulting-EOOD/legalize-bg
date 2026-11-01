@@ -1,0 +1,270 @@
+{
+ "source": "2026-10-21-reasoning-driven-corpus.md",
+ "note": "Write each item's verdict: \"change\", then change the source and run the gate again, or \"keep\" with a reason of a few words. Read the source at each position; the kinds are explained in self-contained-deliverable's references/index-kinds.md. A verdict stays while its line is unchanged.",
+ "items": [
+  {
+   "id": "r1",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 18,
+   "col": 265,
+   "fp": "6a63eca42a",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "defined in the glossary (decision log, future-requirements register)"
+  },
+  {
+   "id": "r2",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 31,
+   "col": 64,
+   "fp": "4032bd84c1",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
+  },
+  {
+   "id": "r3",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 52,
+   "col": 50,
+   "fp": "0beedc74c1",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
+  },
+  {
+   "id": "r4",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 52,
+   "col": 139,
+   "fp": "0beedc74c1",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
+  },
+  {
+   "id": "r5",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 52,
+   "col": 233,
+   "fp": "0beedc74c1",
+   "repeat": 2,
+   "verdict": "keep",
+   "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
+  },
+  {
+   "id": "r6",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 52,
+   "col": 284,
+   "fp": "0beedc74c1",
+   "repeat": 3,
+   "verdict": "keep",
+   "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
+  },
+  {
+   "id": "r7",
+   "gate": "reader",
+   "kind": "undefined-acronym",
+   "line": 55,
+   "col": 87,
+   "fp": "dd52804ed7",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "written out at first use or defined in the glossary"
+  },
+  {
+   "id": "r8",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 64,
+   "col": 0,
+   "fp": "f324514ba1",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r9",
+   "gate": "reader",
+   "kind": "internal-path",
+   "line": 64,
+   "col": 291,
+   "fp": "f324514ba1",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "the path names the knowledge-base run the reader opens next"
+  },
+  {
+   "id": "r10",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 70,
+   "col": 0,
+   "fp": "3619b101c0",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r11",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r12",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r13",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 2,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r14",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 3,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r15",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 4,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r16",
+   "gate": "reader",
+   "kind": "semicolon-chain",
+   "line": 72,
+   "col": 0,
+   "fp": "34e5608a78",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "read and kept"
+  },
+  {
+   "id": "r17",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 73,
+   "col": 0,
+   "fp": "074a8235fb",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r18",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 77,
+   "col": 0,
+   "fp": "6f6301ac9e",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r19",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 80,
+   "col": 0,
+   "fp": "b231a9b611",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r20",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 84,
+   "col": 5,
+   "fp": "62aa9cb77a",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "defined at first use and in the glossary (decision log, future-requirements register, stages)"
+  },
+  {
+   "id": "r21",
+   "gate": "reader",
+   "kind": "long-sentence",
+   "line": 92,
+   "col": 0,
+   "fp": "9740395516",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "a list sentence the reader scans item by item"
+  },
+  {
+   "id": "r22",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 94,
+   "col": 0,
+   "fp": "71b5500145",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r23",
+   "gate": "reader",
+   "kind": "bare-number",
+   "line": 94,
+   "col": 0,
+   "fp": "71b5500145",
+   "repeat": 1,
+   "verdict": "keep",
+   "reason": "unit and scenario in the same sentence"
+  },
+  {
+   "id": "r24",
+   "gate": "reader",
+   "kind": "undefined-code-name",
+   "line": 111,
+   "col": 82,
+   "fp": "64f8342328",
+   "repeat": 0,
+   "verdict": "keep",
+   "reason": "defined in the glossary (decision log, future-requirements register)"
+  }
+ ]
+}
