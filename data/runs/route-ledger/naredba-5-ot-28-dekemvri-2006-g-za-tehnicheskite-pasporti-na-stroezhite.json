@@ -556,6 +556,240 @@
    "committed": null,
    "started": "2026-11-01T12:50:19+00:00",
    "ended": "2026-11-01T12:50:19+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1333a8eb794dbe7cb20e3370740cc2faf5143f1954c1367d32e99bbb381b3746",
+   "outputs_sha256": "286e1cfd7e46dddfbf9ce52f2bcb7080d532b7fb83c22ec2e3f3923758f47ac1",
+   "outcome": "done",
+   "detail": "310 blocks, 11 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:08:37+00:00",
+   "ended": "2026-11-01T13:08:37+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "f4986de758cf36f8f9deff1807dc9954c17583c53005d3e22d83f0fbaf8b7d88",
+   "outputs_sha256": "dbfd0d6694328d7050f771a3556c346fb7f665fd1ae114a8136a73bf70f74e8c",
+   "outcome": "done",
+   "detail": "8 material(s) applied, operations {'no_text_change': 20, 'insert_provision': 13, 'renumber': 7, 'replace_provision': 15, 'replace_words': 25, 'delete_words': 7, 'insert_heading': 1, 'repeal': 13, 'insert_annex': 1, 'insert_words': 8, 'replace_annex': 1, 'repeal_annex': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:08:37+00:00",
+   "ended": "2026-11-01T13:08:37+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "eb6f663f29345639ccf83b909584df8fdcbfad3f5a25d6b9d0b3f260c839a4b9",
+   "outputs_sha256": "d24a8b3398424979d8da216fadb40b19417dd08b76dd8e284df429dcea016dc6",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 116, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:08:37+00:00",
+   "ended": "2026-11-01T13:08:37+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ed20021de401ec7ea29671bf7e22ca7c1e6ca8ff864e09edf5bd409d36a98411",
+   "outputs_sha256": "c0586b1aa993c300d5b85e03ce656cc033ca0e5791409b8a8ad90c4de8df4ad3",
+   "outcome": "done",
+   "detail": "round 0 collected: 7 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:32+00:00",
+   "ended": "2026-11-01T13:09:32+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "995604da25ade68d89ce767edb496de36e8a852bc623e9afcbd2505139210d62",
+   "outputs_sha256": "94d10d127dd435f2a513ad8dd7ace042e1e359fca6a253f6c7ede17eb1587916",
+   "outcome": "pending",
+   "detail": "round 1: 7 of 7 tasks unanswered; 1 labeller call(s) to make: 3cb3ea8dfc82-0000-0006 (7 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round1/3cb3ea8dfc82-0000-0006.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round1/3cb3ea8dfc82-0000-0006.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T13:09:32+00:00",
+   "ended": "2026-11-01T13:09:32+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "995604da25ade68d89ce767edb496de36e8a852bc623e9afcbd2505139210d62",
+   "outputs_sha256": "94d10d127dd435f2a513ad8dd7ace042e1e359fca6a253f6c7ede17eb1587916",
+   "outcome": "pending",
+   "detail": "round 1: 7 of 7 tasks unanswered; 1 labeller call(s) to make: 3cb3ea8dfc82-0000-0006 (7 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round1/3cb3ea8dfc82-0000-0006.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round1/3cb3ea8dfc82-0000-0006.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T13:09:52+00:00",
+   "ended": "2026-11-01T13:09:52+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "eca29704d1fed636962f5a199f81acf8e097aaeddb21edfce71feb0e532d15fb",
+   "outputs_sha256": "390ace3f0ca6237fc348c9081cf23c9e27f06b705a173d09fb16b3eaad7e3f59",
+   "outcome": "pending",
+   "detail": "round 2: 7 of 7 tasks unanswered; 1 labeller call(s) to make: 211afd2fe661-0000-0006 (7 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round2/211afd2fe661-0000-0006.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round2/211afd2fe661-0000-0006.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T13:12:02+00:00",
+   "ended": "2026-11-01T13:12:02+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "16b1665362608667c2cb20b0bcb0f7a98e369a3b6cc62dd49efcf9817cb98a27",
+   "outputs_sha256": "ce9cec6cf5c3510ecc785f2445b29cc5d9b91a485c30ec78702f73275cb216f2",
+   "outcome": "unchanged",
+   "detail": "after round 2 the residue is 5 block(s), 5 of them a reading the labeller holds and the checks refuse (rule_needed); a rule, not a round, is needed",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round2.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:08+00:00",
+   "ended": "2026-11-01T13:15:09+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ab21e04306dd12a22c18c9834aa0e306f14b9821498081e5c52711bbf3b8f215",
+   "outputs_sha256": "f7adf4bc592b6f53de7ce64676a981eadb23690ce63786678d2a277c98f09960",
+   "outcome": "pending",
+   "detail": "round 2: 2 of 2 tasks unanswered; 1 labeller call(s) to make: 5526abbd624c-0000-0001 (2 tasks): read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/calls/round2/5526abbd624c-0000-0001.tsv, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/maps/round2/5526abbd624c-0000-0001.json",
+   "evidence": [],
+   "committed": null,
+   "started": "2026-11-01T13:16:40+00:00",
+   "ended": "2026-11-01T13:16:40+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "7f07c2b698df10efefa6704db96cfb37fc3b45bca4c9aa1bfe49c9f7726fbb64",
+   "outputs_sha256": "d6d779be53c2f24f55ab25834f34fdcbab442e0911bb4dad03e558b14f1a2359",
+   "outcome": "done",
+   "detail": "no residue after round 2",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round2.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:19:15+00:00",
+   "ended": "2026-11-01T13:19:15+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e88824ea1aa769169c6f427278087c303c7a46ac062326cb50c8ad50187408a3",
+   "outputs_sha256": "f892c0110d5d8ed3739c6944da4a6d74cb06e9b249ed2382f69967a6c1dd9b97",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:19:15+00:00",
+   "ended": "2026-11-01T13:19:15+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "f977f20b44f8dc739b133abe743b2d8230a2df231266f7944ee34669d3ca5993",
+   "outputs_sha256": "83ebccdc80f96b66d1e155e2e5ee14a4f2cd802b656dfa1662bcebb8e341c9bf",
+   "outcome": "done",
+   "detail": "8 material(s) applied, operations {'no_text_change': 20, 'insert_provision': 13, 'renumber': 7, 'replace_provision': 15, 'replace_words': 25, 'delete_words': 7, 'insert_heading': 1, 'repeal': 13, 'insert_annex': 1, 'insert_words': 8, 'replace_annex': 1, 'repeal_annex': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:19:15+00:00",
+   "ended": "2026-11-01T13:19:16+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "2f0fccff36a1cd935341d50d6d03961e046b23952609e3ac5f59a46df428d117",
+   "outputs_sha256": "535ad3f40f91b0fcd1f974e20f3a5b1681bf508fa067b91d5ebe42abac94f8a7",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 110, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:19:16+00:00",
+   "ended": "2026-11-01T13:19:16+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9c4ca8817f44e5466d1f628a4affaf69feaa3e5141c5f1d97a04d88967b470ea",
+   "outputs_sha256": "d6d779be53c2f24f55ab25834f34fdcbab442e0911bb4dad03e558b14f1a2359",
+   "outcome": "done",
+   "detail": "no residue after round 2",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round2.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:22:12+00:00",
+   "ended": "2026-11-01T13:22:13+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "f7e7d52746ea371df674ce80159ad60b839a0a01ad30e4ecc06bc021e3a2a946",
+   "outputs_sha256": "2a44df93d862a048fc1e636a85f62c9dd3b0f901639170e31dacfac76e44ccee",
+   "outcome": "done",
+   "detail": "8 material(s) applied, operations {'no_text_change': 20, 'insert_provision': 13, 'renumber': 7, 'replace_provision': 15, 'replace_words': 25, 'delete_words': 7, 'insert_heading': 1, 'repeal': 13, 'insert_annex': 1, 'insert_words': 8, 'replace_annex': 1, 'repeal_annex': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:22:13+00:00",
+   "ended": "2026-11-01T13:22:13+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8748bcb8bab0c766779f2369b8a5141349c1e2499c46dc1f3cc4fc92b5c5dab0",
+   "outputs_sha256": "1120416812c7a7f9c3e01b3e1bedb48c1bfb70584e4e7bbf0088b30e1b1a4422",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 110, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:22:13+00:00",
+   "ended": "2026-11-01T13:22:13+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e18d71c67088bea6d801e05203833f6b8ceb5b269f10ce7581659c65d4c9797e",
+   "outputs_sha256": "a286742dc92916ac8969d8f10f9dfc684a6ad889281f7d10cd36066b23fa3c0a",
+   "outcome": "stop",
+   "detail": "the settler found our reading wrong (reading_error): lexbg: 110 difference(s), settled reading_error 5, same_text_other_form 105; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135542058 (absent, 2026-11-01T12:47:46+00:00))",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-diff.json",
+    "data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:24:13+00:00",
+   "ended": "2026-11-01T13:24:13+00:00"
   }
  ],
  "state_before_stop": "listed"

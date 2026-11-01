@@ -265,7 +265,8 @@ def test_round_three_the_lead_in_the_annex_name_the_heading_repeal_and_the_marke
     # major 7: an act-wide replace marks every changed line
     mat, blocks = _mat_with("§ 1. Навсякъде в закона думата „министъра“ се заменя с „министъра на реда“.")
     out = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "навсякъде", "old": "q1", "new": "q2"}]}, mat, blocks, lead_body, "96/2026")
-    assert "1. (изм. - ДВ, бр. 96 от 2026 г.) министъра на реда на реда;" in out.markdown
+    assert "на реда на реда" not in out.markdown   # a place that already reads the new words is not extended again (ODZ, 1 November 2026)
+    assert "(изм. - дв, бр. 96 от 2026 г.)" in out.markdown.lower() and "министъра на реда" in out.markdown
     # major 8: words cannot land between a head and its inline alinea
     mat, blocks = _mat_with("§ 1. В чл. 2 накрая се добавя „и още“.")
     with pytest.raises(O.FormError, match="are in its alineas"):
@@ -627,6 +628,9 @@ def test_sentence_appended_whole_word_conjunction_heading_title_renamed_annex_an
     mat = M.parse(act)
     out = O.apply({"operations": [{"id": "§1", "kind": "replace_annex", "address": "Приложение към чл. 2, ал. 2", "blocks": [4, 5]}]}, mat, act.blocks, body, "96/2026")
     assert out.markdown.rstrip().endswith("## Приложение към чл. 3 (Предишно приложение към чл. 2, ал. 2 - ДВ, бр. 96 от 2026 г., изм. - ДВ, бр. 96 от 2026 г.)\n\nнов ред")
+    body2 = BODY + "\n## Приложение към чл. 2, ал. 2 (Ново - ДВ, бр. 38 от 2008 г.)\n\nстар ред\n"
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_annex", "address": "Приложение към чл. 2, ал. 2", "blocks": [4, 5]}]}, mat, act.blocks, body2, "96/2026")
+    assert "## Приложение към чл. 3 (Ново - ДВ, бр. 38 от 2008 г., предишно приложение към чл. 2, ал. 2 - ДВ, бр. 96 от 2026 г., изм. - ДВ, бр. 96 от 2026 г.)" in out.markdown
     # a new alinea at a repealed head's number rewrites the head and keeps its history
     body = BODY.replace("(2) Втора алинея.", "(2) (Отм. - ДВ, бр. 5 от 2021 г.)")
     mat, blocks = _mat_with("§ 1. В чл. 2 се създава нова ал. 2: „(2) Пак втора.“")
@@ -789,3 +793,52 @@ def test_a_row_the_act_abbreviates_is_found_by_its_full_name():
     mat, blocks = _mat_with("§ 1. В приложението към чл. 2, ал. 2 на ред „Областна дирекция „Земеделие“ – Велико Търново“ числото „63“ се заменя с „62“.")
     out = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "Приложение към чл. 2, ал. 2, ред „Областна дирекция „Земеделие“ – Велико Търново“", "old": "q2", "new": "q3"}]}, mat, blocks, body, "96/2026")
     assert "Областна дирекция „Земеделие“ – В. Търново\n\n62" in out.markdown
+
+
+def test_an_extension_replace_skips_places_already_extended_and_a_comma_is_not_doubled():
+    body = BODY.replace("**Чл. 1.** Този закон урежда пробата.", "**Чл. 1.** Министъра на земеделието и храните и министъра на земеделието решават.")
+    mat, blocks = _mat_with("§ 1. В чл. 1 думите „министъра на земеделието“ се заменят с „министъра на земеделието и храните“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "чл. 1", "old": "q1", "new": "q2", "everywhere": True}]}, mat, blocks, body, "96/2026")
+    assert "Министъра на земеделието и храните и министъра на земеделието и храните решават." in out.markdown
+    body = BODY.replace("**Чл. 1.** Този закон урежда пробата.", "**Чл. 1.** Законът (ЗЕЕ), наредбата и други важат.")
+    mat, blocks = _mat_with("§ 1. В чл. 1 след думите „(ЗЕЕ)“ се поставя запетая и се добавя „правилникът“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "insert_words", "address": "чл. 1", "anchor": {"text": "(ЗЕЕ)"}, "where": "after", "new": "q2", "punctuation": "before"}]}, mat, blocks, body, "96/2026")
+    assert "Законът (ЗЕЕ), правилникът, наредбата и други важат." in out.markdown
+
+
+def test_an_article_rewritten_whole_marks_its_alineas_and_a_comma_comes_with_words_added_at_the_end():
+    lines = ["ЗАКОН", "за изменение на Закона за пробата", "(обн., ДВ, бр. 1 от 2020 г.)", "§ 1. Член 2 се изменя така:",
+             "„Чл. 2. (1) Първа нова.", "(2) Втора нова.", "(3) Трета нова.", "(4) Четвърта нова.“", "§ 2. В чл. 1 накрая се поставя запетая и се добавя „ако деянието е тежко“.",
+             "Законът е приет.", "Председател на Народното събрание: Х", "1"]
+    act = SplitAct(blocks=[Block(i, t, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 10: "DvRight"}.get(i, "DvJustify")) for i, t in enumerate(lines)], sections=[], source="dv")
+    mat = M.parse(act)
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_provision", "address": "чл. 2", "blocks": [4, 7]},
+                                  {"id": "§2", "kind": "insert_words", "address": "чл. 1", "where": "end", "new": "q1", "punctuation": "before"}]}, mat, act.blocks, BODY, "96/2026")
+    assert "**Чл. 2.** (1) (Изм. - ДВ, бр. 96 от 2026 г.) Първа нова.\n\n(2) (Изм. - ДВ, бр. 96 от 2026 г.) Втора нова.\n\n(3) (Изм. - ДВ, бр. 96 от 2026 г.) Трета нова.\n\n(4) (Нова - ДВ, бр. 96 от 2026 г.) Четвърта нова." in out.markdown
+    assert "**Чл. 1.** (Доп. - ДВ, бр. 96 от 2026 г.) Този закон урежда пробата, ако деянието е тежко." in out.markdown
+
+
+def test_a_rewritten_annex_keeps_its_marker_history_and_one_issue_marks_a_heading_once():
+    body = BODY + "\n## Приложение към чл. 2, ал. 2 Численост (Изм. - ДВ, бр. 9 от 2010 г.)\n\nред А\n\n5\n\nред Б\n\n7\n"
+    lines = ["ЗАКОН", "за изменение на Закона за пробата", "(обн., ДВ, бр. 1 от 2020 г.)", "§ 1. В приложението към чл. 2, ал. 2 се правят следните изменения:",
+             "1. На ред „ред А“ числото „5“ се заменя с „6“.", "2. На ред „ред Б“ числото „7“ се заменя с „8“.", "§ 2. Приложението към чл. 2, ал. 2 се изменя така:",
+             "„Приложение към чл. 2, ал. 2", "Численост", "ред В", "9“", "Законът е приет.", "Председател на Народното събрание: Х", "1"]
+    act = SplitAct(blocks=[Block(i, t, {0: "DvCenter", 1: "DvCenter", 2: "DvCenter", 7: "DvRight", 8: "DvCenter", 12: "DvRight"}.get(i, "DvJustify")) for i, t in enumerate(lines)], sections=[], source="dv")
+    mat = M.parse(act)
+    out = O.apply({"operations": [{"id": "§1", "kind": "no_text_change"},
+                                  {"id": "§1.1", "kind": "replace_words", "address": "Приложение към чл. 2, ал. 2, ред „ред А“", "old": "q2", "new": "q3"},
+                                  {"id": "§1.2", "kind": "replace_words", "address": "Приложение към чл. 2, ал. 2, ред „ред Б“", "old": "q2", "new": "q3"},
+                                  {"id": "§2", "kind": "no_text_change"}]}, mat, act.blocks, body, "96/2026")
+    assert "## Приложение към чл. 2, ал. 2 Численост (Изм. - ДВ, бр. 9 от 2010 г., изм. - ДВ, бр. 96 от 2026 г.)\n\nред А\n\n6\n\nред Б\n\n8" in out.markdown
+    out = O.apply({"operations": [{"id": "§1", "kind": "no_text_change"}, {"id": "§1.1", "kind": "no_text_change"}, {"id": "§1.2", "kind": "no_text_change"},
+                                  {"id": "§2", "kind": "replace_annex", "address": "Приложение към чл. 2, ал. 2", "blocks": [7, 10]}]}, mat, act.blocks, body, "96/2026")
+    assert "## Приложение към чл. 2, ал. 2 Численост (Изм. - ДВ, бр. 9 от 2010 г., изм. - ДВ, бр. 96 от 2026 г.)\n\nред В\n\n9" in out.markdown
+
+
+def test_a_renumber_onto_a_repealed_heads_number_takes_its_place():
+    body = BODY.replace("(3) Трета алинея.", "(3) Трета алинея.\n\n(4) (Отм. - ДВ, бр. 5 от 2021 г.)")
+    mat, blocks = _mat_with("§ 1. В чл. 2 досегашната ал. 3 става ал. 4.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "renumber", "address": "чл. 2, ал. 3", "to": "ал. 4"}]}, mat, blocks, body, "96/2026")
+    t = T.parse(out.markdown)
+    assert [t.lines[k].text for k in t.subtree(T.resolve(t, "чл. 2")) if t.lines[k].kind == "alinea"] == [
+        "(1) Пробата е:", "(2) Втора алинея.", "(4) (Предишна ал. 3 - ДВ, бр. 96 от 2026 г.) Трета алинея."]

@@ -114,6 +114,49 @@ tried:
   detail: 'material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of ''наименованието на чл. 33'' are in its alineas; the address names the alinea'
   evidence:
   - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json
+- run: f1-engine-2026-11-01
+  step: prepare
+  outcome: done
+  detail: 556 blocks, 14 sections
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/blocks.json
+- run: f1-engine-2026-11-01
+  step: label
+  outcome: done
+  detail: 'round 0 collected: 93 exception(s), 0 source finding(s)'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round0.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 2
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/ladder.json
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round2.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of ''наименованието на чл. 33'' are in its alineas; the address names the alinea'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of ''наименованието на чл. 33'' are in its alineas; the address names the alinea'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of ''наименованието на чл. 33'' are in its alineas; the address names the alinea'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of ''наименованието на чл. 33'' are in its alineas; the address names the alinea'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json
 run: f1-engine-2026-11-01
 record: data/runs/route-ledger/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist.json
 date: '2026-11-01'

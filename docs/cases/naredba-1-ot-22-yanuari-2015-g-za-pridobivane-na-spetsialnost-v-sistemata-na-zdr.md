@@ -163,6 +163,55 @@ tried:
   detail: 'material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words ''не повече от'' occur 2 times at the address; the instruction does not say навсякъде'
   evidence:
   - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json
+- run: f1-engine-2026-11-01
+  step: prepare
+  outcome: done
+  detail: 971 blocks, 28 sections
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/blocks.json
+- run: f1-engine-2026-11-01
+  step: label
+  outcome: done
+  detail: 'round 0 collected: 0 exception(s), 1 source finding(s)'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 0
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/ladder.json
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json
+- run: f1-engine-2026-11-01
+  step: content_check
+  outcome: done
+  detail: 'no lost text, no exception; source findings {''malformed_head'': 1}'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/content-check.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words ''не повече от'' occur 2 times at the address; the instruction does not say навсякъде'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words ''не повече от'' occur 2 times at the address; the instruction does not say навсякъде'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words ''не повече от'' occur 2 times at the address; the instruction does not say навсякъде'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words ''не повече от'' occur 2 times at the address; the instruction does not say навсякъде'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json
 run: f1-engine-2026-11-01
 record: data/runs/route-ledger/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr.json
 date: '2026-11-01'

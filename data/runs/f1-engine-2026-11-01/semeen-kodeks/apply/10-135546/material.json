@@ -2,13 +2,13 @@
  "material": 135546,
  "issue": "24/2019",
  "material_sha256": "1a08b6f596cc8382e45d4c4f1c16da3795b9dcbbb749c4a7ec5b4a5ff131ea9a",
- "body_before_sha256": "488356bd9bee88ea369c06e166d284cf5e0c1b49af39ec2ac4c40564a37872bd",
+ "body_before_sha256": "fb7106ae8f2e5e405101f4840790fae2e8cc434c9f8399231dcbf763f6f5851f",
  "task_sha256": "0fcad613cb9827dc7cb4fe71d2aaaa8ff2959c816d9fc98c225be05285579cae",
  "scopes": [
   "§2"
  ],
  "findings": [],
- "engine": "28",
+ "engine": "35",
  "task_core": true,
  "answer_sha256": "39cf898df424497e6181cd9ac07e0620465406970bfdc5659c49eb5921470404"
 }

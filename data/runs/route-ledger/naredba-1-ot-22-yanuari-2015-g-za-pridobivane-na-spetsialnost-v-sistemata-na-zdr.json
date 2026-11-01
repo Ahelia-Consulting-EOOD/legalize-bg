@@ -502,6 +502,119 @@
    "committed": null,
    "started": "2026-11-01T12:45:06+00:00",
    "ended": "2026-11-01T12:45:06+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "492a7a7d0ccd28a37573f17a99e42c9d4eebe43d2fd351424888cef917c3eb38",
+   "outputs_sha256": "6707509346b192c0f2bc2799acee04d0c3433a628ad462cea389f90309ffb723",
+   "outcome": "done",
+   "detail": "971 blocks, 28 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "932099086ed69c70bbf3577552fd721dff006742739557c9c2c69f34f00007c4",
+   "outputs_sha256": "19091362348e9a71ae0b33160aacb64467b463b2ee3b836738e2b451f7471834",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 1 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ff0c28fa0c4f634cccdad568a55dea0c6b56d702b2259b979a7fb957e6277f98",
+   "outputs_sha256": "535eb642775d2a4919bd2c14425edcb9c535f8aa359b67f5a765c5f958f18099",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/ladder.json",
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "222f87b731c07237375ac22f5f44d13a6bc8728726bed58231f4921c26d0e8ad",
+   "outputs_sha256": "06220a4c438c25fa5a78b9246e1e827b666ec2a4ca57072eb2e42b372877baed",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings {'malformed_head': 1}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "83e07424b36668a0dad3b99e0c04fb229185b954e9ad02981c41de6991dd51d6",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "7567bd61996d54b790b4b4cc57d07f3690715f51d55b020f20f73f4335ddacb9",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:03+00:00",
+   "ended": "2026-11-01T13:12:03+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "6189b148cd2085fb995a6070b566f2e39e065527b061947e22c6323c1e2d2a81",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:09+00:00",
+   "ended": "2026-11-01T13:15:09+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e8b281e655a624d9eac725dcbb26f89462f7b925c4f85fdcc22f5beeae6fdd5a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 139711 (бр. 58/2019): the answer is refused: §6 replace_words: the words 'не повече от' occur 2 times at the address; the instruction does not say навсякъде",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/naredba-1-ot-22-yanuari-2015-g-za-pridobivane-na-spetsialnost-v-sistemata-na-zdr/apply/03-139711/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:24:14+00:00",
+   "ended": "2026-11-01T13:24:14+00:00"
   }
  ],
  "state_before_stop": "listed"

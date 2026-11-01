@@ -28,7 +28,7 @@ KINDS = ("title", "prehistory", "part_heading", "chapter_heading", "section_head
          "annex_heading", "article", "sign", "alinea", "item", "letter", "annex_row", "note", "text")
 ACT = -1   # the address of the whole act („навсякъде“, „в целия закон“)
 _HEAD_LEVEL = {"# ": "title", "## ": "l2", "### ": "chapter_heading", "#### ": "section_heading", "##### ": "subsection_heading"}
-_ART = re.compile(r"^(?:(?P<title>[^*\n]{1,160}?)\s+)?\*\*(Чл\.\s*(\d+[а-я]?(?:\d{1,2})?)\.|Член\s+единствен\.)\*\*\s*(.*)$", re.S)   # lex.bg prints an article's title before its head
+_ART = re.compile(r"^(?:(?P<title>[^*\n]{1,800}?)\s+)?\*\*(Чл\.\s*(\d+[а-я]?(?:\d{1,2})?)\.|Член\s+единствен\.)\*\*\s*(.*)$", re.S)   # a title of the Family Code's length (615 characters, чл. 127б) is still a title   # lex.bg prints an article's title before its head
 _SIGN = re.compile(r"^(?:\*\*)?(§\s*(\d+[а-я]?)\.|Параграф\s+единствен\.)(?:\*\*)?\s*(.*)$", re.S)   # a plain § head is lex.bg's amending tail
 _ALINEA = re.compile(r"^\((\d{1,3}[а-я]?)\)\s*(.*)$", re.S)
 _ITEM = re.compile(r"^(\d{1,3}(?:[а-я]{1,2})?)\.(?:\s+|(?=[А-Яа-я(„\"]))(.*)$", re.S)   # „1.главния“: the Gazette prints an item without its space (a malformed head, D-072 ruling 7)

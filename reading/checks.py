@@ -42,7 +42,7 @@ import re
 
 from .assembler import NUMBER_LINE, assemble_lines, strip_line
 from . import rules
-from .splitter import Block
+from .splitter import Block, text_with_joins
 
 FRAGMENTS = ("sup>", "<sup", "span>", "<span", "div>", "<div", "&nbsp;", "<br", "&lt;", "&amp;", "<p", "</", "<b>", "<i>", "&quot;", "&#")
 _LATIN_TO_CYR = str.maketrans("aBbeEkKmMHoOpPcCTxXy", "аВьеЕкКмМНоОрРсСТхХу")
@@ -165,7 +165,7 @@ def _empty(blocks: list[Block], smap: dict, heading: int, detail: str) -> dict:
     if smap[heading]["label"] == "annex_heading":
         for j in range(heading + 1, len(blocks)):
             lab = smap.get(j, {}).get("label")
-            if lab == "editorial_note" and _PDF_NOTE.match(blocks[j].text.strip()):
+            if _PDF_NOTE.match(blocks[j].text.strip()):   # whatever label the note carries (editorial_note, annex_row)
                 return {"block": heading, "kind": "annex_in_pdf", "detail": f"the annex's body is in the issue's PDF alone (note at block {j})"}
             if lab not in ("annex_heading", "drop", None):
                 break
@@ -269,7 +269,7 @@ def run_all(blocks: list[Block], smap: dict[int, dict], source: str = "lexbg") -
         elif not e.get("note"):
             ex.append({"block": i, "kind": "drop_without_reason", "detail": "drop carries no note"})
     for line, idxs in lines:
-        if strip_line(line) != " ".join(blocks[i].text for i in idxs):
+        if strip_line(line) != " ".join(text_with_joins(blocks[i]) for i in idxs):   # a block's run-together words are spaced in the line
             ex.append({"block": idxs[0], "kind": "reassembly", "detail": "the assembled line differs from its blocks"})
     if [i for _, idxs in lines for i in idxs] != placed:
         ex.append({"block": placed[0] if placed else 0, "kind": "reassembly", "detail": "the lines do not cover the placed blocks once each, in order"})

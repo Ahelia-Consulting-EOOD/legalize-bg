@@ -3,7 +3,7 @@ act: semeen-kodeks
 title: Семеен кодекс
 route: history
 stopped_at: apply
-exception: 'material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: the new text opens as text None, the address names article ''127б'''
+exception: 'material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: ''чл. 84, ал. 6'' names 2 place(s) in the act'
 tried:
 - run: f1-engine-2026-11-01
   step: chain
@@ -112,6 +112,55 @@ tried:
   detail: 'material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: the new text opens as text None, the address names article ''127б'''
   evidence:
   - data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json
+- run: f1-engine-2026-11-01
+  step: prepare
+  outcome: done
+  detail: 822 blocks, 29 sections
+  evidence:
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/blocks.json
+- run: f1-engine-2026-11-01
+  step: label
+  outcome: done
+  detail: 'round 0 collected: 0 exception(s), 0 source finding(s)'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 0
+  evidence:
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/ladder.json
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: the new text opens as text None, the address names article ''127б'''
+  evidence:
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: ''чл. 127б'' names 0 place(s) in the act'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: ''чл. 84, ал. 6'' names 2 place(s) in the act'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: ''чл. 84, ал. 6'' names 2 place(s) in the act'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: ''чл. 84, ал. 6'' names 2 place(s) in the act'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json
 run: f1-engine-2026-11-01
 record: data/runs/route-ledger/semeen-kodeks.json
 date: '2026-11-01'

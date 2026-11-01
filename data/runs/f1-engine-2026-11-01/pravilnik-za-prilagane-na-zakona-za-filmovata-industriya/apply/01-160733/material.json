@@ -2,7 +2,7 @@
  "material": 160733,
  "issue": "67/2021",
  "material_sha256": "11759dd551534f13d1bef1043f41b8e4727eb96bec70d3cca374c0f75fd1f2d6",
- "body_before_sha256": "6b609878d72f952e9446cf1f26008f96a818c9604f9d4ffb08c77279669353cd",
+ "body_before_sha256": "f0d3ae1795519c811fc04aeabbeed7887f480c76aa55cfc6bae5a7fed145f78b",
  "task_sha256": "70ab9b70d630ec3c4044a3f56d7e0a18a59d9adaa93a0ea7cb278313f117ea98",
  "scopes": [
   "title"
@@ -44,6 +44,6 @@
    "detail": "the run before '§ 105. Създава се приложение № 16а към ч' is closed by the sequence, not by a mark"
   }
  ],
- "engine": "26",
+ "engine": "35",
  "task_core": true
 }

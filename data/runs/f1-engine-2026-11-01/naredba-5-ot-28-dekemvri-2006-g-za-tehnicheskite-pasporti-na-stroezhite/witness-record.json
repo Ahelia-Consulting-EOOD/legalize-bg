@@ -12,11 +12,11 @@
    "witness": "lexbg",
    "page_sha256": "15e60497f619b29f57745a682530c3685ee05baa3c57e98476cd435565167ad6",
    "fetched_at": "2026-10-21T01:46:50.139612+00:00",
-   "differences": 117,
+   "differences": 110,
    "verdicts": {
     "1": {
      "verdict": "same_text_other_form",
-     "note": "witness writes the title in capitals and adds the editorial issuer line 'Издадена от министъра...'; same title words",
+     "note": "witness title in capitals plus its 'Издадена от' issuer line; diff alignment artefact, title text the same",
      "kind": "insert",
      "ours": "",
      "witness": "ОТ 28 ДЕКЕМВРИ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ Издадена",
@@ -25,7 +25,7 @@
     },
     "2": {
      "verdict": "same_text_other_form",
-     "note": "part of the capitalised title and the added issuer line of the witness",
+     "note": "alignment artefact of the witness's uppercase title and added issuer line (see 4)",
      "kind": "replace",
      "ours": "28 декември 2006 г. за техническите паспорти",
      "witness": "министъра",
@@ -34,7 +34,7 @@
     },
     "3": {
      "verdict": "same_text_other_form",
-     "note": "part of the witness's added issuer line; our title words are all present",
+     "note": "alignment artefact of the witness's added issuer line 'министъра на регионалното развитие и благоустройството'",
      "kind": "replace",
      "ours": "строежите",
      "witness": "регионалното развитие и благоустройството",
@@ -43,7 +43,7 @@
     },
     "4": {
      "verdict": "same_text_other_form",
-     "note": "title in capitals plus an editorial issuer line on the witness; text otherwise the same",
+     "note": "same title, witness in capitals and with an editorial issuer line not part of the act's text",
      "kind": "structure",
      "ours": "НАРЕДБА № 5 от 28 декември 2006 г. за техническите паспорти на строежите",
      "witness": "НАРЕДБА № 5 ОТ 28 ДЕКЕМВРИ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ | Издадена от министъра на регионалното развитие и благоустройството",
@@ -51,8 +51,8 @@
      "witness_line": 0
     },
     "5": {
-     "verdict": "witness_error",
-     "note": "single closing mark ';' against '.' with the same following lines on both sides; nothing on our side lost or joined",
+     "verdict": "reading_error",
+     "note": "item end 'му;' ours vs 'му.' witness with no added or lost item in either; nothing in the task supports ours, check source and amendment application",
      "kind": "replace",
      "ours": "му;",
      "witness": "му.",
@@ -60,8 +60,8 @@
      "witness_line": 16
     },
     "6": {
-     "verdict": "witness_error",
-     "note": "last item before Чл. 5 on both sides; witness ends it with ';' though no item follows, ours closes with '.'",
+     "verdict": "reading_error",
+     "note": "item end '.' ours vs ';' witness with the following lines aligned; punctuation swap not explained by the task, check source and amendment application",
      "kind": "replace",
      "ours": "експлоатация\".",
      "witness": "експлоатация\";",
@@ -69,8 +69,8 @@
      "witness_line": 32
     },
     "7": {
-     "verdict": "same_text_other_form",
-     "note": "same amendment ДВ бр. 2 от 2013; witness marker wording 'Изм. и доп.' against the engine's 'Изм.'; editorial marker, not the act's text",
+     "verdict": "reading_error",
+     "note": "marker of чл. 5 for ДВ бр. 2/2013: witness 'Изм. и доп.', ours 'Изм.'; marker history differs",
      "kind": "insert",
      "ours": "",
      "witness": "и доп.",
@@ -79,1000 +79,935 @@
     },
     "8": {
      "verdict": "reading_error",
-     "note": "doubled comma '(ЗЕЕ),,' on our side",
-     "kind": "replace",
-     "ours": "(ЗЕЕ),,",
-     "witness": "(ЗЕЕ),",
-     "our_line": 40,
-     "witness_line": 41
-    },
-    "9": {
-     "verdict": "reading_error",
-     "note": "'паспортна' on our side: the words 'паспорт на' joined, a space lost",
-     "kind": "replace",
-     "ours": "паспортна",
-     "witness": "паспорт на",
-     "our_line": 71,
-     "witness_line": 72
-    },
-    "10": {
-     "verdict": "reading_error",
-     "note": "our marker on Раздел IV reads 'Нова'; a Раздел takes 'Нов' as the witness has; our label is wrong",
+     "note": "marker on Раздел IV heading: ours '(Нова', witness '(Нов' (раздел is masculine); marker differs",
      "kind": "replace",
      "ours": "(Нова",
      "witness": "(Нов",
      "our_line": 83,
      "witness_line": 84
     },
-    "11": {
-     "verdict": "source_error",
-     "note": "comma before 'който включва' missing in our line, taken as the source's text; nothing else lost around it",
-     "kind": "replace",
-     "ours": "обследването",
-     "witness": "обследването,",
-     "our_line": 96,
-     "witness_line": 97
-    },
-    "12": {
+    "9": {
      "verdict": "same_text_other_form",
-     "note": "heading of the additional provision in capitals and singular against the witness's editorial heading 'Допълнителни разпоредби'",
+     "note": "heading of the additional provision; witness writes its standard plural heading in sentence case",
      "kind": "replace",
      "ours": "ДОПЪЛНИТЕЛНА РАЗПОРЕДБА",
      "witness": "Допълнителни разпоредби",
      "our_line": 114,
      "witness_line": 115
     },
-    "13": {
+    "10": {
      "verdict": "reading_error",
-     "note": "a different number in our renumbering marker: 'предишна т. 4' where the witness has 'предишна т. 5' for ДВ бр. 22 от 2010",
+     "note": "marker 'предишна т. 4' ours vs 'предишна т. 5' witness (ДВ бр. 22/2010); marker number differs",
      "kind": "replace",
      "ours": "4",
      "witness": "5",
      "our_line": 125,
      "witness_line": 126
     },
-    "14": {
+    "11": {
      "verdict": "same_text_other_form",
-     "note": "same heading words, capitals against mixed case",
+     "note": "same heading, letter case only",
      "kind": "replace",
      "ours": "ПРЕХОДНИ И ЗАКЛЮЧИТЕЛНИ РАЗПОРЕДБИ",
      "witness": "Преходни и Заключителни разпоредби",
      "our_line": 126,
      "witness_line": 127
     },
-    "15": {
-     "verdict": "reading_error",
-     "note": "our annex heading reads 'Приложениекъм' (space lost); the witness's transitional provisions of the amending acts are its appended editorial material",
-     "kind": "replace",
-     "ours": "Приложениекъм",
-     "witness": "Преходни и Заключителни разпоредби КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ (ОБН. - ДВ, БР. 22 ОТ 2010 Г., В СИЛА ОТ 20.04.2010 Г.) § 13. (1) Наредбата влиза в сила един месец след обнародването й в \"Държавен вестник\". (2) Наредбата не се прилага за строежите, за които е започнало производството по въвеждането им в експлоатация. (3) За започнато производство по въвеждане в експлоатация се счита датата на внасянето на искане пред компетентния орган съгласно ЗУТ. Допълнителни разпоредби КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ (ОБН. - ДВ, БР. 2 ОТ 2013 Г.) § 7. Навсякъде в наредбата и в приложенията към нея думите \"лиценз\" и \"лиценза\" се заменят съответно с \"удостоверение\" и \"удостоверението\". § 8. Навсякъде в наредбата думите \"чл. 169, ал. 1 и 2 ЗУТ\" се заменят с \"чл. 169, ал. 1 - 3 ЗУТ\". Преходни и Заключителни разпоредби КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ (ОБН. - ДВ, БР. 80 ОТ 2013 Г., В СИЛА ОТ 14.10.2013 Г.) § 9. (1) Наредбата влиза в сила един месец след обнародването й в \"Държавен вестник\". (2) Наредбата не се прилага за сгради, за които е започнало производство по въвеждането им в експлоатация. (3) За започнато производство по въвеждане в експлоатация се счита датата на внасяне на искане пред компетентния орган съгласно ЗУТ. Приложение към",
+    "12": {
+     "verdict": "same_text_other_form",
+     "note": "witness appends the transitional and additional provisions of the amending acts (ДВ 22/2010, 2/2013, 80/2013); not the act's own text",
+     "kind": "insert",
+     "ours": "",
+     "witness": "Преходни и Заключителни разпоредби КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ (ОБН. - ДВ, БР. 22 ОТ 2010 Г., В СИЛА ОТ 20.04.2010 Г.) § 13. (1) Наредбата влиза в сила един месец след обнародването й в \"Държавен вестник\". (2) Наредбата не се прилага за строежите, за които е започнало производството по въвеждането им в експлоатация. (3) За започнато производство по въвеждане в експлоатация се счита датата на внасянето на искане пред компетентния орган съгласно ЗУТ. Допълнителни разпоредби КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ (ОБН. - ДВ, БР. 2 ОТ 2013 Г.) § 7. Навсякъде в наредбата и в приложенията към нея думите \"лиценз\" и \"лиценза\" се заменят съответно с \"удостоверение\" и \"удостоверението\". § 8. Навсякъде в наредбата думите \"чл. 169, ал. 1 и 2 ЗУТ\" се заменят с \"чл. 169, ал. 1 - 3 ЗУТ\". Преходни и Заключителни разпоредби КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ (ОБН. - ДВ, БР. 80 ОТ 2013 Г., В СИЛА ОТ 14.10.2013 Г.) § 9. (1) Наредбата влиза в сила един месец след обнародването й в \"Държавен вестник\". (2) Наредбата не се прилага за сгради, за които е започнало производство по въвеждането им в експлоатация. (3) За започнато производство по въвеждане в експлоатация се счита датата на внасяне на искане пред компетентния орган съгласно ЗУТ.",
      "our_line": 143,
      "witness_line": 144
     },
-    "16": {
-     "verdict": "reading_error",
-     "note": "our annex marker repeats 'изм. - ДВ, бр. 2 от 2013 г.' four times; the witness has it once",
-     "kind": "delete",
-     "ours": "г., изм. - ДВ, бр. 2 от 2013 г., изм. - ДВ, бр. 2 от 2013 г., изм. - ДВ, бр. 2 от 2013",
-     "witness": "",
-     "our_line": 143,
-     "witness_line": 162
-    },
-    "17": {
-     "verdict": "reading_error",
-     "note": "contains the joined 'Приложениекъм' and the fourfold repeated marker of ours",
+    "13": {
+     "verdict": "same_text_other_form",
+     "note": "the amending acts' provisions appended by the witness, then the same annex heading split onto two lines",
      "kind": "structure",
-     "ours": "Приложениекъм чл. 8 (Изм. - ДВ, бр. 2 от 2013 г., изм. - ДВ, бр. 2 от 2013 г., изм. - ДВ, бр. 2 от 2013 г., изм. - ДВ, бр. 2 от 2013 г.)",
+     "ours": "Приложение към чл. 8 (Изм. - ДВ, бр. 2 от 2013 г.)",
      "witness": "Преходни и Заключителни разпоредби | КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ | (ОБН. - ДВ, БР. 22 ОТ 2010 Г., В СИЛА ОТ 20.04.2010 Г.) | § 13. (1) Наредбата влиза в сила един месец след обнародването й в \"Държавен вестник\". | (2) Наредбата не се прилага за строежите, за които е започнало производството по въвеждането им в експлоатация. | (3) За започнато производство по въвеждане в експлоатация се счита датата на внасянето на искане пред компетентния орган съгласно ЗУТ. | Допълнителни разпоредби | КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ | (ОБН. - ДВ, БР. 2 ОТ 2013 Г.) | § 7. Навсякъде в наредбата и в приложенията към нея думите \"лиценз\" и \"лиценза\" се заменят съответно с \"удостоверение\" и \"удостоверението\". | § 8. Навсякъде в наредбата думите \"чл. 169, ал. 1 и 2 ЗУТ\" се заменят с \"чл. 169, ал. 1 - 3 ЗУТ\". | Преходни и Заключителни разпоредби | КЪМ НАРЕДБА ЗА ИЗМЕНЕНИЕ И ДОПЪЛНЕНИЕ НА НАРЕДБА № 5 ОТ 2006 Г. ЗА ТЕХНИЧЕСКИТЕ ПАСПОРТИ НА СТРОЕЖИТЕ | (ОБН. - ДВ, БР. 80 ОТ 2013 Г., В СИЛА ОТ 14.10.2013 Г.) | § 9. (1) Наредбата влиза в сила един месец след обнародването й в \"Държавен вестник\". | (2) Наредбата не се прилага за сгради, за които е започнало производство по въвеждането им в експлоатация. | (3) За започнато производство по въвеждане в експлоатация се счита датата на внасяне на искане пред компетентния орган съгласно ЗУТ. | Приложение към чл. 8 | (Изм. - ДВ, бр. 2 от 2013 г.)",
      "our_line": 143,
      "witness_line": 144
     },
-    "18": {
+    "14": {
      "verdict": "same_text_other_form",
-     "note": "blank fill dots of different length in the form",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".......................................................................... ..............................................................................................",
      "witness": "............................................................................................................................................................... .......................................................................................................................................................................",
      "our_line": 146,
      "witness_line": 165
     },
-    "19": {
+    "15": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "във:.................................................................",
      "witness": "във: ................................................................................................................................................................",
      "our_line": 148,
      "witness_line": 167
     },
-    "20": {
+    "16": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "..........................................................................................................................................................................",
      "our_line": 150,
      "witness_line": 169
     },
-    "21": {
+    "17": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "...........",
      "witness": ".............................................................................................................................................................................",
      "our_line": 151,
      "witness_line": 170
     },
-    "22": {
-     "verdict": "reading_error",
-     "note": "'даннии' on our side: 'данни и' joined, a space lost",
-     "kind": "replace",
-     "ours": "даннии",
-     "witness": "данни и",
-     "our_line": 153,
-     "witness_line": 172
-    },
-    "23": {
+    "18": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строежа:..........................................................",
      "witness": "строежа: ............................................................................",
      "our_line": 154,
      "witness_line": 173
     },
-    "24": {
+    "19": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "....................................",
      "witness": "..........................................................................................................................................",
      "our_line": 156,
      "witness_line": 175
     },
-    "25": {
+    "20": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................",
      "witness": "..........................................................................................................................................",
      "our_line": 157,
      "witness_line": 176
     },
-    "26": {
+    "21": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строежа:.....................................",
      "witness": "строежа: ..........................................................................................................................................",
      "our_line": 158,
      "witness_line": 177
     },
-    "27": {
+    "22": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "район:.....................",
      "witness": "район: ..........................................................................................................................................",
      "our_line": 159,
      "witness_line": 178
     },
-    "28": {
+    "23": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "имот:............................",
      "witness": "имот: ..........................................................................................................................................",
      "our_line": 160,
      "witness_line": 179
     },
-    "29": {
+    "24": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "сграда:...........................................",
      "witness": "сграда: ......................................................................................................................................................",
      "our_line": 161,
      "witness_line": 180
     },
-    "30": {
+    "25": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "съоръжение:......................",
      "witness": "съоръжение: ..........................................................................................................................................",
      "our_line": 162,
      "witness_line": 181
     },
-    "31": {
+    "26": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "№:................................ местност:...............",
      "witness": "№: .......................................................................................................................................... местност: ...............",
      "our_line": 164,
      "witness_line": 183
     },
-    "32": {
+    "27": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "имот:............",
      "witness": "имот: ..........................................................................................................................................",
      "our_line": 165,
      "witness_line": 184
     },
-    "33": {
+    "28": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..........................................................................",
      "witness": ".........................................................................................................................................................",
      "our_line": 167,
      "witness_line": 186
     },
-    "34": {
+    "29": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 169,
      "witness_line": 188
     },
-    "35": {
+    "30": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".............................................",
      "witness": "..........................................................................................................................................",
      "our_line": 171,
      "witness_line": 190
     },
-    "36": {
+    "31": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".......................................................",
      "witness": "..........................................................................................................................................",
      "our_line": 172,
      "witness_line": 191
     },
-    "37": {
+    "32": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "...................................................",
      "witness": "..........................................................................................................................................",
      "our_line": 175,
      "witness_line": 194
     },
-    "38": {
+    "33": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "................................................",
      "witness": "..........................................................................................................................................",
      "our_line": 178,
      "witness_line": 197
     },
-    "39": {
+    "34": {
      "verdict": "same_text_other_form",
-     "note": "an extra fill-dot line on the witness",
+     "note": "witness adds a dot-leader blank line; no words involved",
      "kind": "insert",
      "ours": "",
      "witness": "..........................................................................................................................................",
      "our_line": 180,
      "witness_line": 199
     },
-    "40": {
+    "35": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".........................................,",
      "witness": "......................................,",
      "our_line": 182,
      "witness_line": 201
     },
-    "41": {
+    "36": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..................................",
      "witness": "..........................................................................",
      "our_line": 182,
      "witness_line": 201
     },
-    "42": {
+    "37": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "№........................................ от.......................................................................................",
      "witness": "№ ......................................................................................................................................... от ......................................................................................................",
      "our_line": 183,
      "witness_line": 202
     },
-    "43": {
+    "38": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "........................................................................",
      "witness": ".........................................................................................................................................................",
      "our_line": 185,
      "witness_line": 204
     },
-    "44": {
+    "39": {
      "verdict": "same_text_other_form",
-     "note": "fill dots the witness has before 'г.'; no words differ",
+     "note": "witness has a dot-leader blank before 'г.' where ours has none; placeholder only, no words",
      "kind": "insert",
      "ours": "",
      "witness": ".......................................................................................",
      "our_line": 186,
      "witness_line": 205
     },
-    "45": {
+    "40": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".............................,",
      "witness": ".........................................................................................,",
      "our_line": 187,
      "witness_line": 206
     },
-    "46": {
+    "41": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "......................",
      "witness": "..............................................................",
      "our_line": 187,
      "witness_line": 206
     },
-    "47": {
+    "42": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "....................................",
      "witness": "...............................................",
      "our_line": 188,
      "witness_line": 207
     },
-    "48": {
+    "43": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".....................",
      "witness": "...................................",
      "our_line": 188,
      "witness_line": 207
     },
-    "49": {
+    "44": {
      "verdict": "same_text_other_form",
-     "note": "fill dots the witness has before 'г.'; no words differ",
+     "note": "witness has a dot-leader blank before 'г.' where ours has none; placeholder only",
      "kind": "insert",
      "ours": "",
      "witness": "...........................................................................................................",
      "our_line": 189,
      "witness_line": 208
     },
-    "50": {
+    "45": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "от.....",
      "witness": "от ...........................................................................................................",
      "our_line": 190,
      "witness_line": 209
     },
-    "51": {
+    "46": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".......................................................................",
      "witness": ".........................................................................................................................................................",
      "our_line": 191,
      "witness_line": 210
     },
-    "52": {
+    "47": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..................................",
      "witness": "................................................................................",
      "our_line": 192,
      "witness_line": 211
     },
-    "53": {
+    "48": {
      "verdict": "same_text_other_form",
-     "note": "fill dots the witness has before 'г.'; no words differ",
+     "note": "witness has a dot-leader blank before 'г.' where ours has none; placeholder only",
      "kind": "insert",
      "ours": "",
      "witness": "......................................................................................................",
      "our_line": 192,
      "witness_line": 211
     },
-    "54": {
+    "49": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "от.........................................................................",
      "witness": "от .........................................................................................................................................................",
      "our_line": 193,
      "witness_line": 212
     },
-    "55": {
+    "50": {
      "verdict": "same_text_other_form",
-     "note": "fill dots the witness has before 'г.'; no words differ",
+     "note": "witness has a dot-leader blank before 'г.' where ours has none; placeholder only",
      "kind": "insert",
      "ours": "",
      "witness": "....................................................................................................................................",
      "our_line": 194,
      "witness_line": 213
     },
-    "56": {
+    "51": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "........................................................................",
      "witness": ".........................................................................................................................................................",
      "our_line": 195,
      "witness_line": 214
     },
-    "57": {
+    "52": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length and count only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "......................................................................................................................................................... ........................................................................................................................................................................",
      "our_line": 197,
      "witness_line": 216
     },
-    "58": {
+    "53": {
      "verdict": "same_text_other_form",
-     "note": "same form items 1.9.1 to 1.10; only fill dots and one line split differ",
+     "note": "block of form items 1.9.1-1.10: same words, differing only in dot leaders and one line wrap",
      "kind": "structure",
      "ours": "1.9.1. Инвестиционен проект, одобрен от: ........................................., на .................................. г. | 1.9.2. Разрешение за строеж №........................................ | от....................................................................................... г., | издадено от ........................................................................ | 1.9.3. Преработка на инвестиционния проект, одобрена на г. | от ............................., вписана с/на ...................... г. | 1.9.4. Екзекутивна документация, предадена в .................................... и заверена на ..................... г. | 1.9.5. Констативен акт по чл. 176, ал. 1 ЗУТ, съставен на г. | 1.9.6. Окончателен доклад по чл. 168, ал. 6 ЗУТ от..... г., | съставен от ....................................................................... | 1.9.7. Разрешение за ползване/удостоверение за въвеждане в експлоатация № .................................. от г., | издадено от......................................................................... | 1.9.8. Удостоверение за търпимост № ..................... от г., | издадено от ........................................................................ | 1.10. Други данни в зависимост от вида и предназначението на строежа: | ..............................................................................................",
      "witness": "1.9.1. Инвестиционен проект, одобрен от: ......................................, на .......................................................................... г. | 1.9.2. Разрешение за строеж № ......................................................................................................................................... | от ...................................................................................................... г., | издадено от ......................................................................................................................................................... | 1.9.3. Преработка на инвестиционния проект, одобрена на ....................................................................................... г. | от ........................................................................................., вписана с/на .............................................................. г. | 1.9.4. Екзекутивна документация, предадена в ............................................... и заверена на ................................... г. | 1.9.5. Констативен акт по чл. 176, ал. 1 ЗУТ, съставен на ........................................................................................................... г. | 1.9.6. Окончателен доклад по чл. 168, ал. 6 ЗУТ от ........................................................................................................... г., | съставен от ......................................................................................................................................................... | 1.9.7. Разрешение за ползване/удостоверение за въвеждане в експлоатация № ................................................................................ от ...................................................................................................... г., | издадено от ......................................................................................................................................................... | 1.9.8. Удостоверение за търпимост № ..................... от .................................................................................................................................... г., | издадено от ......................................................................................................................................................... | 1.10. Други данни в зависимост от вида и предназначението на | строежа: ......................................................................................................................................................... | ........................................................................................................................................................................",
      "our_line": 182,
      "witness_line": 201
     },
-    "59": {
+    "54": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".............,",
      "witness": ".........................................,",
      "our_line": 200,
      "witness_line": 220
     },
-    "60": {
+    "55": {
      "verdict": "same_text_other_form",
-     "note": "an extra fill-dot run on the witness",
+     "note": "witness adds a dot-leader blank after 'разгъната застроена площ'; placeholder only",
      "kind": "insert",
      "ours": "",
      "witness": "...........................................................................................................................................................",
      "our_line": 201,
      "witness_line": 221
     },
-    "61": {
+    "56": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "обем....................",
      "witness": "обем ...................................................................................................................................",
      "our_line": 201,
      "witness_line": 222
     },
-    "62": {
+    "57": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".................,",
      "witness": ".........................,",
      "our_line": 202,
      "witness_line": 223
     },
-    "63": {
+    "58": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".................,",
      "witness": ".................................,",
      "our_line": 202,
      "witness_line": 223
     },
-    "64": {
+    "59": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".......,",
      "witness": ".............,",
      "our_line": 203,
      "witness_line": 224
     },
-    "65": {
+    "60": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".......,",
      "witness": "..............,",
      "our_line": 203,
      "witness_line": 224
     },
-    "66": {
+    "61": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "........",
      "witness": ".............................................................................................................",
      "our_line": 203,
      "witness_line": 224
     },
-    "67": {
+    "62": {
      "verdict": "same_text_other_form",
-     "note": "same items 2.1.1 to 2.1.3; only fill dots and one line split differ",
+     "note": "block of items 2.1.1-2.1.3: same words, dot leaders and one line wrap differ",
      "kind": "structure",
      "ours": "2.1.1. Площи: застроена площ ............., разгъната застроена площ | 2.1.2. Обеми: застроен обем, полезен обем.................... | 2.1.3. Височина ................., брой етажи: ................., | надземни ......., полуподземни ......., подземни ........",
      "witness": "2.1.1. Площи: застроена площ ........................................., разгъната | застроена площ ........................................................................................................................................................... | 2.1.2. Обеми: застроен обем, полезен обем ................................................................................................................................... | 2.1.3. Височина ........................., брой етажи: ................................., | надземни ............., полуподземни .............., подземни .............................................................................................................",
      "our_line": 200,
      "witness_line": 220
     },
-    "68": {
+    "63": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".............................................................................................. ..............................................................................................",
      "witness": "........................................................................................................................................................................ ........................................................................................................................................................................",
      "our_line": 205,
      "witness_line": 226
     },
-    "69": {
+    "64": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "Сервитути.................................................................",
      "witness": "Сервитути ..........................................................................................................................................................",
      "our_line": 212,
      "witness_line": 233
     },
-    "70": {
+    "65": {
      "verdict": "same_text_other_form",
-     "note": "an extra fill-dot run on the witness",
+     "note": "witness adds a dot-leader blank after the item 2.3 text; placeholder only",
      "kind": "insert",
      "ours": "",
      "witness": ".........................................................................................................................................",
      "our_line": 214,
      "witness_line": 235
     },
-    "71": {
+    "66": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "....................................................................................",
      "witness": "....................................................................................................................................................................",
      "our_line": 214,
      "witness_line": 236
     },
-    "72": {
+    "67": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "....................................................................................",
      "witness": "....................................................................................................................................................................",
      "our_line": 215,
      "witness_line": 237
     },
-    "73": {
+    "68": {
      "verdict": "same_text_other_form",
-     "note": "same items 2.2.4 to 2.3.2; only fill dots and one line split differ",
+     "note": "block of items 2.2.4-2.3.2: same words, dot leaders and one line wrap differ",
      "kind": "structure",
      "ours": "2.2.4. Сервитути................................................................. | 2.3. Други специфични характерни показатели в зависимост от вида и предназначението на строежа | 2.3.1. .................................................................................... | 2.3.2. ....................................................................................",
      "witness": "2.2.4. Сервитути .......................................................................................................................................................... | 2.3. Други специфични характерни показатели в зависимост от | вида и предназначението на строежа ......................................................................................................................................... | 2.3.1. .................................................................................................................................................................... | 2.3.2. ....................................................................................................................................................................",
      "our_line": 212,
      "witness_line": 233
     },
-    "74": {
+    "69": {
      "verdict": "same_text_other_form",
-     "note": "an extra fill-dot line on the witness",
+     "note": "witness adds a dot-leader blank line; placeholder only",
      "kind": "insert",
      "ours": "",
      "witness": ".......................................................................................................................",
      "our_line": 218,
      "witness_line": 240
     },
-    "75": {
+    "70": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строеж........................",
      "witness": "строеж .............................................................................................................................................",
      "our_line": 220,
      "witness_line": 242
     },
-    "76": {
+    "71": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "стойност.......................",
      "witness": "стойност .............................................................................................................................................",
      "our_line": 221,
      "witness_line": 243
     },
-    "77": {
+    "72": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строеж........................",
      "witness": "строеж .............................................................................................................................................",
      "our_line": 223,
      "witness_line": 245
     },
-    "78": {
+    "73": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "стойност.......................",
      "witness": "стойност .............................................................................................................................................",
      "our_line": 224,
      "witness_line": 246
     },
-    "79": {
+    "74": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строеж........................",
      "witness": "строеж ............................................................................................................................................",
      "our_line": 227,
      "witness_line": 249
     },
-    "80": {
+    "75": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "стойност.......................",
      "witness": "стойност ............................................................................................................................................",
      "our_line": 228,
      "witness_line": 250
     },
-    "81": {
+    "76": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строеж........................",
      "witness": "строеж ............................................................................................................................................",
      "our_line": 230,
      "witness_line": 252
     },
-    "82": {
+    "77": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "стойност.......................",
      "witness": "стойност ............................................................................................................................................",
      "our_line": 231,
      "witness_line": 253
     },
-    "83": {
+    "78": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строеж........................",
      "witness": "строеж ............................................................................................................................................",
      "our_line": 233,
      "witness_line": 255
     },
-    "84": {
+    "79": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "стойност.......................",
      "witness": "стойност ............................................................................................................................................",
      "our_line": 234,
      "witness_line": 256
     },
-    "85": {
+    "80": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".............................................................................................. ..............................................................................................",
      "witness": "........................................................................................................................................................................ ........................................................................................................................................................................",
      "our_line": 236,
      "witness_line": 258
     },
-    "86": {
+    "81": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строеж........................",
      "witness": "строеж ............................................................................................................................................",
      "our_line": 239,
      "witness_line": 261
     },
-    "87": {
+    "82": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "стойност.......................",
      "witness": "стойност ............................................................................................................................................",
      "our_line": 240,
      "witness_line": 262
     },
-    "88": {
+    "83": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "строеж........................",
      "witness": "строеж ............................................................................................................................................",
      "our_line": 242,
      "witness_line": 264
     },
-    "89": {
+    "84": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "стойност.......................",
      "witness": "стойност ............................................................................................................................................",
      "our_line": 243,
      "witness_line": 265
     },
-    "90": {
+    "85": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 245,
      "witness_line": 267
     },
-    "91": {
+    "86": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".............................................................................................. ..............................................................................................",
      "witness": "........................................................................................................................................................................ ........................................................................................................................................................................",
      "our_line": 247,
      "witness_line": 269
     },
-    "92": {
+    "87": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 252,
      "witness_line": 274
     },
-    "93": {
+    "88": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 255,
      "witness_line": 277
     },
-    "94": {
+    "89": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 258,
      "witness_line": 280
     },
-    "95": {
-     "verdict": "reading_error",
-     "note": "'конструкциии/или' on our side: 'конструкции и/или' joined, a space lost",
-     "kind": "replace",
-     "ours": "конструкциии/или",
-     "witness": "конструкции и/или",
-     "our_line": 259,
-     "witness_line": 281
-    },
-    "96": {
+    "90": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 260,
      "witness_line": 282
     },
-    "97": {
+    "91": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 263,
      "witness_line": 285
     },
-    "98": {
+    "92": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 265,
      "witness_line": 287
     },
-    "99": {
+    "93": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 268,
      "witness_line": 290
     },
-    "100": {
+    "94": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 270,
      "witness_line": 292
     },
-    "101": {
+    "95": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 273,
      "witness_line": 295
     },
-    "102": {
+    "96": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 275,
      "witness_line": 297
     },
-    "103": {
+    "97": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length and count only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": ".......................................................................................................................................... ........................................................................................................................................................................",
      "our_line": 279,
      "witness_line": 300
     },
-    "104": {
+    "98": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length and spacing",
+     "note": "form blank: dot leader length and spacing only",
      "kind": "replace",
      "ours": "удостоверението................. ..............................................................................................",
      "witness": "удостоверението .......................................................................................................................................... ........................................................................................................................................................................",
      "our_line": 280,
      "witness_line": 302
     },
-    "105": {
+    "99": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 283,
      "witness_line": 305
     },
-    "106": {
+    "100": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 285,
      "witness_line": 307
     },
-    "107": {
+    "101": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 287,
      "witness_line": 309
     },
-    "108": {
-     "verdict": "reading_error",
-     "note": "'строежаи' on our side: 'строежа и' joined, a space lost",
-     "kind": "replace",
-     "ours": "строежаи",
-     "witness": "строежа и",
-     "our_line": 289,
-     "witness_line": 311
-    },
-    "109": {
+    "102": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".............................................................................................. ..............................................................................................",
      "witness": "........................................................................................................................................................................ ........................................................................................................................................................................",
      "our_line": 291,
      "witness_line": 313
     },
-    "110": {
+    "103": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": ".............................................................................................. ..............................................................................................",
      "witness": "........................................................................................................................................................................ ........................................................................................................................................................................",
      "our_line": 294,
      "witness_line": 316
     },
-    "111": {
+    "104": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 297,
      "witness_line": 319
     },
-    "112": {
+    "105": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 299,
      "witness_line": 321
     },
-    "113": {
+    "106": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 301,
      "witness_line": 323
     },
-    "114": {
+    "107": {
      "verdict": "same_text_other_form",
-     "note": "fill dots of different length",
+     "note": "form blank: dot leader length only",
      "kind": "replace",
      "ours": "..............................................................................................",
      "witness": "........................................................................................................................................................................",
      "our_line": 303,
      "witness_line": 325
     },
-    "115": {
+    "108": {
      "verdict": "same_text_other_form",
-     "note": "witness marker adds the editorial history 'Ново - ДВ, бр. 38 от 2008 г.'; amendment marker wording, not the act's text",
+     "note": "letter case of 'приложение' inside the marker only",
      "kind": "replace",
-     "ours": "(Предишно приложение",
-     "witness": "(Ново - ДВ, бр. 38 от 2008 г., предишно Приложение",
+     "ours": "приложение",
+     "witness": "Приложение",
      "our_line": 311,
      "witness_line": 334
     },
-    "116": {
+    "109": {
      "verdict": "same_text_other_form",
-     "note": "same renumbering by ДВ бр. 22 от 2010 written in the engine's marker form against the witness's",
+     "note": "marker names ДВ бр. 22/2010 for the renumbering explicitly; witness implies the same issue through the following 'изм. - ДВ, бр. 22 от 2010 г.'; same history",
      "kind": "replace",
      "ours": "2 - ДВ, бр. 22 от 2010 г.,",
      "witness": "2,",
      "our_line": 311,
      "witness_line": 334
     },
-    "117": {
+    "110": {
      "verdict": "same_text_other_form",
-     "note": "annex heading with the same amendments; marker wording and line split differ",
+     "note": "same annex heading and marker, witness splits them onto two lines; marker contents covered by 108 and 109",
      "kind": "structure",
-     "ours": "Приложение към чл. 8, ал. 7 (Предишно приложение към чл. 19г, ал. 2 - ДВ, бр. 22 от 2010 г., изм. - ДВ, бр. 22 от 2010 г., отм. - ДВ, бр. 80 от 2013 г.)",
+     "ours": "Приложение към чл. 8, ал. 7 (Ново - ДВ, бр. 38 от 2008 г., предишно приложение към чл. 19г, ал. 2 - ДВ, бр. 22 от 2010 г., изм. - ДВ, бр. 22 от 2010 г., отм. - ДВ, бр. 80 от 2013 г.)",
      "witness": "Приложение към чл. 8, ал. 7 | (Ново - ДВ, бр. 38 от 2008 г., предишно Приложение към чл. 19г, ал. 2, изм. - ДВ, бр. 22 от 2010 г., отм. - ДВ, бр. 80 от 2013 г.)",
      "our_line": 311,
      "witness_line": 333
     }
    },
    "counts": {
-    "same_text_other_form": 104,
-    "witness_error": 2,
-    "reading_error": 10,
-    "source_error": 1
+    "same_text_other_form": 105,
+    "reading_error": 5
    }
   },
   {
@@ -1082,8 +1017,8 @@
    "verdicts": {}
   }
  ],
- "diff_sha256": "0cf69b2aa526530118e04a685672197d5b2874ed3147733b22d644942b7c13fb",
- "body_sha256": "6afdbc39d52a5ed65dff508315b62e9d6fdd5e4bce266e884c8ffe6a3ac9fc6e",
+ "diff_sha256": "d644aaefb2d3d20590f390b0cd3a10cc18467f649e680c6c4d1c9aa258d5991d",
+ "body_sha256": "0fb54900029d8ac114705e7038f46cc1af5511d334165463f0ace598aa757a78",
  "stops": [
   "reading_error"
  ]

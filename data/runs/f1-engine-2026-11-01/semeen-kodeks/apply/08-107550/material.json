@@ -2,7 +2,7 @@
  "material": 107550,
  "issue": "74/2016",
  "material_sha256": "77f60a413ad36dee71e344e31c831dab87f4978fd6cfc4cf21b2e4604e271816",
- "body_before_sha256": "97f3a20c8fc091a42e9a1b162568da5d236f82b49a50d199c067270c31b48459",
+ "body_before_sha256": "2f81a1c14c246aa9900c8d25a1dd5fc634d9a57c0017cddd64d9135a6d53075c",
  "task_sha256": "03ceded7aaa32ce794f4b4625071e0379357d4097e213973863f43e5215bc113",
  "scopes": [
   "§29"
@@ -14,7 +14,7 @@
    "detail": "the run before '§ 14. В чл. 34, ал. 4 се създава изречен' is closed by the sequence, not by a mark"
   }
  ],
- "engine": "28",
+ "engine": "35",
  "task_core": true,
  "answer_sha256": "5cc4cc14c5d60d1e6175083213af6a94875ba44ce317271f8b6bb17c2878d480"
 }

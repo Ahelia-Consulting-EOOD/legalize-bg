@@ -445,10 +445,128 @@
    "committed": null,
    "started": "2026-11-01T12:49:17+00:00",
    "ended": "2026-11-01T12:49:18+00:00"
+  },
+  {
+   "step": "prepare",
+   "input_sha256": "ee59e0722b8ccaa315fb397da015f0fc780d31aa95aeb1142e52a7b3b626a0f9",
+   "outputs_sha256": "ce7569af0360377bf008cafdd6123368df5b922bc952415d0116f391062a6522",
+   "outcome": "done",
+   "detail": "822 blocks, 29 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:51+00:00",
+   "ended": "2026-11-01T13:09:51+00:00"
+  },
+  {
+   "step": "label",
+   "input_sha256": "fe9748afc9d6fb2de1eee03a9c5e2b0dc80b3bc63747cd8f92b1e4f73cbcc888",
+   "outputs_sha256": "210ce239e1e94b4d029da4c887fb042ff58c2e4f9928ba5ef7755fc0e1dcbaba",
+   "outcome": "done",
+   "detail": "round 0 collected: 0 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:51+00:00",
+   "ended": "2026-11-01T13:09:52+00:00"
+  },
+  {
+   "step": "ladder",
+   "input_sha256": "59e1782a98de78b8d0e4b11cc7f545dd15b19a0d02f0eaf24d733c1dc3fbf79e",
+   "outputs_sha256": "3d3ba5a80ac6ba61b4e7b962732bd38a437399b5b8e8242ac84045f41876029c",
+   "outcome": "done",
+   "detail": "no residue after round 0",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/ladder.json",
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:52+00:00",
+   "ended": "2026-11-01T13:09:52+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "4b2c8da615aafdeb17ab924985c8992b34d0edd32c880a5852bec2400de3512a",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: the new text opens as text None, the address names article '127б'",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:52+00:00",
+   "ended": "2026-11-01T13:09:52+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "629e956efe5df4c0d064c896b231a3304b49f1f445e124a0631f505dbef4d0f0",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: 'чл. 127б' names 0 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/12-197941/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:01+00:00",
+   "ended": "2026-11-01T13:12:02+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "3cb41f902875510f58819b1d43e9aac8a9ad7ad982e044b71ab3d24b04308dab",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "pending",
+   "detail": "material 13 of 16 (бр. 106/2023, 201987): one applier call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/task.md"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:07+00:00",
+   "ended": "2026-11-01T13:15:08+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "919ddfc8dc71665a8ac9729640df95041789a5bceb0346f438f04faeb27c17b6",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: 'чл. 84, ал. 6' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:19:16+00:00",
+   "ended": "2026-11-01T13:19:17+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "ac4961ae6724a67d61637e478b01fcd294ac5a77b0a98fbf0a0b7d88cbd64c04",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: 'чл. 84, ал. 6' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:20:41+00:00",
+   "ended": "2026-11-01T13:20:42+00:00"
+  },
+  {
+   "step": "apply",
+   "input_sha256": "26d28cc6e8e335ee829484badf9499b195daa8bd4639924be6944a145c29283e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: 'чл. 84, ал. 6' names 2 place(s) in the act",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/semeen-kodeks/apply/13-201987/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:24:12+00:00",
+   "ended": "2026-11-01T13:24:13+00:00"
   }
  ],
  "step": "apply",
  "stopped_at": "apply",
- "exception": "material 197941 (бр. 67/2023): the answer is refused: §20 insert_provision: the new text opens as text None, the address names article '127б'",
+ "exception": "material 201987 (бр. 106/2023): the answer is refused: §8.6 replace_provision: 'чл. 84, ал. 6' names 2 place(s) in the act",
  "case_file": "docs/cases/semeen-kodeks.md"
 }

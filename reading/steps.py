@@ -222,7 +222,7 @@ class FetchMaterial:
 
 class Prepare:
     name = "prepare"
-    version = "1"
+    version = "2"   # joins: the HTML's run-together words spaced (1 November 2026)
 
     def inputs(self, ctx: Context) -> list[Path]:
         rec = ctx.act_dir / "material.json"
@@ -280,7 +280,7 @@ class Label:
     version = "2"
 
     def inputs(self, ctx: Context) -> list[Path]:
-        return [ctx.act_dir / "tasks" / "round0", *_call_answers(ctx, 0), ctx.act_dir / "maps" / "round0"]
+        return [ctx.act_dir / "blocks.json", ctx.act_dir / "tasks" / "round0", *_call_answers(ctx, 0), ctx.act_dir / "maps" / "round0"]
 
     def outputs(self, ctx: Context) -> list[Path]:
         return [ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1"]
@@ -299,7 +299,7 @@ class Ladder:
     def inputs(self, ctx: Context) -> list[Path]:
         # the maps folders too: the per-task files the split writes from a call answer are what the round counts as answered,
         # and a step pending on unchanged call answers must wake when they appear
-        return [ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1", *_call_answers(ctx, 1), ctx.act_dir / "maps" / "round1",
+        return [ctx.act_dir / "blocks.json", ctx.act_dir / "report-round0.json", ctx.act_dir / "tasks" / "round1", *_call_answers(ctx, 1), ctx.act_dir / "maps" / "round1",
                 ctx.act_dir / "tasks" / "round2", *_call_answers(ctx, 2), ctx.act_dir / "maps" / "round2"]
 
     def outputs(self, ctx: Context) -> list[Path]:
@@ -651,7 +651,7 @@ class Apply:
     after each material goes through the mechanical checks; a refused form, a failed check or an instruction outside the
     closed set stops the act. Resumable per material: a material already applied on the same inputs is not applied again."""
     name = "apply"
-    version = "28"   # 2: tight items; 3: a § attributed whole keeps its subtree; 4: a text reference where nested marks cut a segment; 5: a named punctuation mark; 6: a range inside a quoted run; 7: unquoted continuation blocks as an annex, a sentence replaced whole (1 November 2026)
+    version = "35"   # 2: tight items; 3: a § attributed whole keeps its subtree; 4: a text reference where nested marks cut a segment; 5: a named punctuation mark; 6: a range inside a quoted run; 7: unquoted continuation blocks as an annex, a sentence replaced whole (1 November 2026)
 
     def inputs(self, ctx: Context) -> list[Path]:
         paths = [ctx.act_dir / "staged.md", ctx.act_dir / "chain.json"]

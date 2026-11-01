@@ -6,7 +6,13 @@
  "source": "dv",
  "answers_missing": [],
  "call_defects": [],
- "exceptions": [],
+ "exceptions": [
+  {
+   "block": 519,
+   "kind": "low_confidence",
+   "detail": "Gazette's own pointer standing in for the annex content under the annex heading; editorial_note also plausible"
+  }
+ ],
  "source_findings": [
   {
    "block": 132,
@@ -97,7 +103,9 @@
  "lost_text": [],
  "omissions": [],
  "ruled": {},
- "exception_kinds": {},
+ "exception_kinds": {
+  "low_confidence": 1
+ },
  "source_finding_kinds": {
   "malformed_head": 1,
   "annex_in_pdf": 16
@@ -115,7 +123,7 @@
   "provisions_heading": 2,
   "paragraph_sign": 7,
   "annex_heading": 17,
-  "editorial_note": 1
+  "annex_row": 1
  },
  "dropped": [
   {
@@ -265,8 +273,6 @@
   }
  ],
  "note": "",
- "residue": [],
- "residue_detail": [],
- "residue_classes": {},
+ "next_round_tasks": 1,
  "diff_lines": 12590
 }

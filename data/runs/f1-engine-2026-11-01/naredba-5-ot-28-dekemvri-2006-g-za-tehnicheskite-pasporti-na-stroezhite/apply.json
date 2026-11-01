@@ -5,49 +5,49 @@
    "material": 5085,
    "issue": "38/2008",
    "operations": 29,
-   "body_after_sha256": "82de6ded1f20da89575c6deea3280a6c04f77a57ac6204632ef5f64a4be21d5b"
+   "body_after_sha256": "ec799dba65f5d8bff2c1e709d524635ab6df4bbc4e4d49a734cd17ccefa647dd"
   },
   {
    "material": 30903,
    "issue": "22/2010",
    "operations": 23,
-   "body_after_sha256": "4d10705a4c9e079daab67b769a9717f275009d21c067e9d3b363d94252ea706d"
+   "body_after_sha256": "61bb82616418a06599ea8ec420f12de6e8384bb6d94fb78d6c5a5fbdd9a09202"
   },
   {
    "material": 59312,
    "issue": "98/2011",
    "operations": 5,
-   "body_after_sha256": "cedc8160793e725f4297c5d7f56182b5fda97764f8817d4fa821d531a4d4e1df"
+   "body_after_sha256": "b79a49590122aa5926690d06ec939675cf557d2d4ec46dd7a129fd02e0867cf0"
   },
   {
    "material": 71595,
    "issue": "2/2013",
    "operations": 26,
-   "body_after_sha256": "af7e51d40ce799faee7d1f6ffe88ba4e8c48c376ffb78a45a8b9e4358d399139"
+   "body_after_sha256": "e42030ff439f9290a1047608bbee004783018c8bd1085f5c35e41842dcd9de42"
   },
   {
    "material": 78691,
    "issue": "80/2013",
    "operations": 11,
-   "body_after_sha256": "2cb6157b06b8d8eda3550351e7ebc425813cb52e98317582d8c1813c690f9f06"
+   "body_after_sha256": "8b6d0c132f4f0410ac83703d12816c512367acde89d098561c1a1f675f60eb70"
   },
   {
    "material": 90452,
    "issue": "102/2014",
    "operations": 4,
-   "body_after_sha256": "547f79facf4e5ef8646ff0fc4bb8636340c62fc9033eed58a1c4c436ed5bb252"
+   "body_after_sha256": "4488805495ad4f78fc56a57fbae00130946dc3153dbd03102a9c82947a15c9ed"
   },
   {
    "material": 97935,
    "issue": "79/2015",
    "operations": 5,
-   "body_after_sha256": "4e010da5b990943091b9a6b1c88971cca188e6b78a0677aad276161c0c0f24dd"
+   "body_after_sha256": "4c838cbb8dfb7ce95970154193584d7f3ca8918fd1851267590c0f42ca652013"
   },
   {
    "material": 160759,
    "issue": "68/2021",
    "operations": 9,
-   "body_after_sha256": "6afdbc39d52a5ed65dff508315b62e9d6fdd5e4bce266e884c8ffe6a3ac9fc6e"
+   "body_after_sha256": "0fb54900029d8ac114705e7038f46cc1af5511d334165463f0ace598aa757a78"
   }
  ],
  "operations_by_kind": {
@@ -65,6 +65,6 @@
   "repeal_annex": 1
  },
  "unexplained_lexbg_issues": [],
- "applied_sha256": "6afdbc39d52a5ed65dff508315b62e9d6fdd5e4bce266e884c8ffe6a3ac9fc6e",
- "applied_at": "2026-11-01T12:50:19+00:00"
+ "applied_sha256": "0fb54900029d8ac114705e7038f46cc1af5511d334165463f0ace598aa757a78",
+ "applied_at": "2026-11-01T13:22:13+00:00"
 }

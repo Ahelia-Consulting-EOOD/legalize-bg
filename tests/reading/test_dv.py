@@ -200,3 +200,18 @@ def test_annex_headings_whose_body_is_in_the_pdf_alone_are_a_source_finding_not_
     _, ex = run_all(blocks, smap, "dv")
     kinds = [e["kind"] for e in ex if e["block"] in (2, 3)]
     assert kinds == ["annex_in_pdf"] and [e["block"] for e in ex if e["kind"] == "annex_in_pdf"] == [2] and "annex_in_pdf" in ladder.SOURCE_FINDINGS and "annex_in_pdf" not in ladder.LOST_TEXT
+
+
+def test_words_the_html_runs_together_across_spans_are_spaced_in_the_assembled_text():
+    from reading.assembler import assemble
+    from reading.splitter import text_with_joins
+    html = ('<html><body><div class="titleHead">Министерство</div><span class="mark">Брой 1 от 2.1.2007 г.</span><div style=" width: 100%;"><span style="font-size:8.5pt">'
+            '<p style="text-align:center"><b>НАРЕДБА</b></p><p><strong>Чл. 1.</strong> Регистриране на <span>техническия паспорт</span><span>на строежа'
+            '</span> и на данни</p><p>Част Б „Мерки за поддържане на <span>строежа</span><span>и срокове“</span></p></span></div></body></html>')
+    act = split_dv(html)
+    texts = [b.text for b in act.blocks]
+    assert any("паспортна строежа" in t for t in texts)   # the block text stays as served, so the labelling tasks do not change
+    b = next(b for b in act.blocks if "паспортна" in b.text)
+    assert b.joins and "техническия паспорт на строежа" in text_with_joins(b)
+    md, _, _ = assemble(act.blocks, {b.i: {"label": "continuation"} if i else {"label": "title"} for i, b in enumerate(act.blocks)})
+    assert "паспорт на строежа" in md and "строежа и срокове" in md

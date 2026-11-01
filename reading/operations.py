@@ -28,7 +28,7 @@ from dataclasses import dataclass, field
 
 from . import acttree as T
 from .material import Material, Node
-from .splitter import Block
+from .splitter import Block, text_with_joins
 
 KINDS: dict[str, str] = {
     "replace_provision": "the addressed provision (article, alinea, item, letter, §) is replaced whole by the quoted text (blocks)",
@@ -99,7 +99,7 @@ def _quoted_text(blocks: list[Block], first: int, last: int, run: list[int] | No
     operation) need not open or close the quotation itself: the run does, at its first and last block."""
     if first > last or first < 0 or last >= len(blocks):
         raise FormError(f"blocks [{first}, {last}] are not a range of the material")
-    lines = [blocks[k].text for k in range(first, last + 1)]
+    lines = [text_with_joins(blocks[k]) for k in range(first, last + 1)]
     if plain and set(range(first, last + 1)) <= set(plain):
         return [l for l in lines if l.strip()]   # unquoted lines that hang under the instruction (an annex printed after the act): as they stand
     run = sorted(run or [])
@@ -289,6 +289,8 @@ def _marker(line: T.Line, word: str, issue: str, extra: str = "") -> None:
         m = _HEADING_MARKER.search(line.text)
         if m:
             inner = m.group(1)
+            if piece.lower() in inner.lower():
+                return   # several operations of one issue on one annex or heading: one entry (lex.bg's form)
             line.text = line.text[: m.start()].rstrip() + f" ({inner}, {piece[0].lower() + piece[1:]})"
         else:
             line.text = line.text.rstrip() + f" ({piece})"
@@ -508,7 +510,13 @@ def _replace_in(tree: T.Tree, idx: int, old: str, new: str, everywhere: bool, wh
         scope = _row_scope(tree, idx)
     if idx == T.ACT:
         everywhere = True
-    find = _finder(old)
+    find0 = _finder(old)
+    if new.startswith(old) and len(new) > len(old):
+        # „министъра на земеделието“ → „министъра на земеделието и храните“: a place that already reads the new words is not changed again
+        ext = new[len(old):]
+        find = lambda text: [(p, e) for p, e in find0(text) if not text[e:].startswith(ext)]
+    else:
+        find = find0
     hits: list[tuple[int, int, int]] = []
     for k in scope:
         body = tree.lines[k].body()
@@ -536,6 +544,7 @@ def _replace_in(tree: T.Tree, idx: int, old: str, new: str, everywhere: bool, wh
             replaced = part[:pos[0][0]] + fix + part[pos[0][1]:]
         nb = body[:a] + replaced + body[b:]
         nb = re.sub(r" +([,;.])(?=\s|$)", r"\1", nb)   # a mark that replaced a word („или“ → „,“) closes up to the word before it
+        nb = re.sub(r",(?:\s*,)+", ",", nb)             # a quoted segment that ends with the sentence's comma („… (ЗЕЕ),“) meets the comma already there
         if new == "":
             nb = re.sub(r"  +", " ", nb).replace(" ,", ",").replace(" .", ".").replace(" ;", ";").strip()
             nb = re.sub(r",(?:\s*,)+", ",", nb)          # „работи, [X], председателя“ → one comma
@@ -584,7 +593,7 @@ def _bare_annex_heading(text: str) -> bool:
 
 def _is_title(text: str) -> bool:
     t = T.strip_line(text).strip()
-    return 0 < len(t) <= 160 and not t.endswith((".", ";", ":", ",")) and not t.startswith(("(", "„"))
+    return 0 < len(t) <= 800 and not t.endswith((".", ";", ":", ",")) and not t.startswith("(")
 
 
 def _insert_after(tree: T.Tree, after_idx: int, new_lines: list[T.Line]) -> tuple[int, int]:
@@ -995,6 +1004,8 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
                 if close == "." and new[:1].isupper() and len(new) > 1 and not new[1:2].isupper():
                     # a whole sentence added at the end: the provision's full stop stays before it, the sentence brings its own
                     nb = core + ". " + (new if new.endswith((".", ";", "!", "?", "”", "“")) else new + ".")
+                elif op.get("punctuation") == "before":
+                    nb = core + ", " + new + close   # „накрая се поставя запетая и се добавя „…““
                 else:
                     nb = core + ("" if not core or new.startswith((",", ";", ".")) else " ") + new + close
             elif op["where"] == "start":
@@ -1048,8 +1059,13 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
             elif line.kind in ("article", "sign", "alinea", "item", "letter", "annex_heading") and not T._same_n(new_lines[0].n, line.n or ""):
                 raise FormError(f"{what}: the new text carries the number {new_lines[0].n!r}, the address {line.n!r}")
             old_marker = line.marker()
+            if line.kind in T.HEADING_PREFIX:
+                hm0 = _HEADING_MARKER.search(line.text)
+                old_marker = hm0.group(1) if hm0 else None   # a heading's marker sits at its end
             span = T.annex_section_span(tree, idx) if line.kind == "annex_row" else tree.subtree(idx)
             first, last = min(span), max(span)
+            # lex.bg marks the alineas of an article rewritten whole one by one: „Изм.“ where the number existed, „Нова“ where not
+            had_alineas = {tree.lines[c].n for c in line.children if tree.lines[c].kind == "alinea"} if line.kind in ("article", "sign") else None
             if line.inline:
                 new_lines[0].inline = True
             if line.kind == "annex_row":
@@ -1058,6 +1074,8 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
             tree = _reparse(tree)
             if renamed is not None:
                 idx2 = first
+                if old_marker and not _HEADING_MARKER.search(tree.lines[idx2].text):
+                    tree.lines[idx2].text = tree.lines[idx2].text.rstrip() + f" ({old_marker})"   # the annex's history first, then the move
                 _marker(tree.lines[idx2], f"Предишно приложение {renamed}", issue)
             else:
                 idx2 = _span_after_reparse(tree, op["address"], first, first + len(new_lines) - 1, what)
@@ -1069,7 +1087,14 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
                 head_end = len(tree.lines[idx2].head())
                 tree.lines[idx2].text = tree.lines[idx2].text[:head_end].rstrip() + f" ({old_marker}) " + tree.lines[idx2].text[head_end:]
                 tree.lines[idx2].text = tree.lines[idx2].text.rstrip()
-            _marker(tree.lines[idx2], MARKERS[kind], issue)
+            elif old_marker and tree.lines[idx2].kind in T.HEADING_PREFIX and not _HEADING_MARKER.search(tree.lines[idx2].text):
+                tree.lines[idx2].text = tree.lines[idx2].text.rstrip() + f" ({old_marker})"   # a rewritten annex or heading keeps its history
+            new_alineas = [c for c in tree.lines[idx2].children if tree.lines[c].kind == "alinea"] if had_alineas is not None else []
+            if new_alineas and had_alineas:
+                for c in new_alineas:
+                    _marker(tree.lines[c], "Изм." if tree.lines[c].n in had_alineas else "Нова", issue)
+            else:
+                _marker(tree.lines[idx2], MARKERS[kind], issue)
             log.append(f"{what}: {last - first + 1} line(s) replaced by {len(new_lines)}")
         elif kind == "repeal" and sentence is not None:
             # „изречение второ се заличава“: the sentence goes, the provision stays with an amendment marker
@@ -1110,6 +1135,12 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
         elif kind == "renumber":
             # „досегашната ал. 6 става ал. 7“ followed by „досегашната ал. 7 става ал. 8“: the holder of the target number moves first
             target = _renumbered_address(op["address"], op["to"])
+            rep = _repealed_at(tree, target)
+            if rep is not None:
+                # the target number is held by a repealed head („(6) (Отм. - …)“): the moved provision takes its place
+                del tree.lines[rep]
+                tree = _reparse(tree)
+                log.append(f"{what}: the repealed {target} gave way")
             guard = 0
             while _taken(tree, target) and guard < 20:
                 movers = [j for j in range(i + 1, len(ops)) if j not in done and ops[j]["kind"] == "renumber" and ops[j]["address"] == target]

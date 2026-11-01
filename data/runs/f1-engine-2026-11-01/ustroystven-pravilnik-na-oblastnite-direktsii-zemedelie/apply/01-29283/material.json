@@ -14,7 +14,7 @@
    "detail": "the run before 'Заключителна разпоредба' is closed by the sequence, not by a mark"
   }
  ],
- "engine": "28",
+ "engine": "35",
  "task_core": true,
  "answer_sha256": "ea451ad430251785a9751bda446537574b6dd9bfa319bdf5453d0e42ff1b9aba"
 }

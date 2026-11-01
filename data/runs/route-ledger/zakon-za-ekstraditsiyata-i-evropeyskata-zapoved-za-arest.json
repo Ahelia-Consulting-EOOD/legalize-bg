@@ -541,6 +541,176 @@
    "committed": null,
    "started": "2026-11-01T12:50:18+00:00",
    "ended": "2026-11-01T12:50:18+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "54cbdebcb2a3d0f1d1db8c714c7eee0836ca81ad95f50de7f03f01f6373c5882",
+   "outputs_sha256": "c0c8c9b55f7100e8e6784bccfa67a39a115f5b2073e009f7e7e487d70c550da4",
+   "outcome": "done",
+   "detail": "546 blocks, 17 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "4fa3652c34c72a26ff86b2ed247dcdef1b76bb8d53a8c098b0f5cfd69e9b3bba",
+   "outputs_sha256": "dc92cdf3725cd0b44476d152f8ae13cf632a7fb3ebd38ad6f850b443bf193f4e",
+   "outcome": "done",
+   "detail": "round 0 collected: 1 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "af8733b076138ddbee54ac1226b102471cd63d893a61bf7dde6e210887211b5b",
+   "outputs_sha256": "ceee4b37f2483d61330cf34675aef3d8edb4b8948dee46a53f2a92bb05a3a7ba",
+   "outcome": "done",
+   "detail": "no residue after round 1",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/ladder.json",
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/report-round1.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "content_check",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "98f11131266628cbfe5ffdecad77579db8c0b2a17a40cf8f6d647d94ff60d1d0",
+   "outputs_sha256": "6e59bac155edf377c8b90ff77f861fd2d8c2d3d5e38fc0e80e617203f5c9a988",
+   "outcome": "done",
+   "detail": "no lost text, no exception; source findings none",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/content-check.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:50+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "abde9e22b42d97468c619632b8a38febb4f1ed375943684efc578c7652f0c6d8",
+   "outputs_sha256": "11e06ec64b39e8d3f54f13e406cbd9e89d98fe65df486eadf0cb24bfe9e6b8d0",
+   "outcome": "done",
+   "detail": "12 material(s) applied, operations {'no_text_change': 30, 'replace_words': 15, 'insert_words': 10, 'insert_provision': 32, 'replace_provision': 14, 'repeal': 2, 'renumber': 10, 'delete_words': 2, 'replace_sentence': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:50+00:00",
+   "ended": "2026-11-01T13:09:51+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "768c1bdba9eed401d4a7d1ae3b75834f7da113e537d58ca9e8923132b70d18b3",
+   "outputs_sha256": "af67a64eb0bfac5fe645da9babb6f6190ed89b745b251f4aed8344b54dd03db9",
+   "outcome": "done",
+   "detail": "12 material(s) applied, operations {'no_text_change': 30, 'replace_words': 15, 'insert_words': 10, 'insert_provision': 32, 'replace_provision': 14, 'repeal': 2, 'renumber': 10, 'delete_words': 2, 'replace_sentence': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:00+00:00",
+   "ended": "2026-11-01T13:12:01+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1f27f3e3ae21a2ae6ff9a5408e249c8b8947e4ff1e42270031c5d012e0c80fef",
+   "outputs_sha256": "c8d8110e2a4b0b8c86b3f8e6942da404c0af5292da67e41ad47307da3a2c5a4b",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 202, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:01+00:00",
+   "ended": "2026-11-01T13:12:01+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "0835795e9accd363eaabe3cd58c1b201401a34d9da69a21e75925bb408d26ec5",
+   "outputs_sha256": "fe993d7a11c0a17b2027cc3111074d11c1755615b109564ab95703228b648582",
+   "outcome": "done",
+   "detail": "12 material(s) applied, operations {'no_text_change': 30, 'replace_words': 15, 'insert_words': 10, 'insert_provision': 32, 'replace_provision': 14, 'repeal': 2, 'renumber': 10, 'delete_words': 2, 'replace_sentence': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:06+00:00",
+   "ended": "2026-11-01T13:15:07+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "1f27f3e3ae21a2ae6ff9a5408e249c8b8947e4ff1e42270031c5d012e0c80fef",
+   "outputs_sha256": "c8d8110e2a4b0b8c86b3f8e6942da404c0af5292da67e41ad47307da3a2c5a4b",
+   "outcome": "pending",
+   "detail": "the settler's answer is for another diff; differences to settle again (lexbg 202, moj 0); one settler call: read /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-task.md, write /Users/ekimir/swprj/legalize-bg/.claude/worktrees/jolly-wright-479586/data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-answer.json",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-diff.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:07+00:00",
+   "ended": "2026-11-01T13:15:07+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8cedd756a3baa23ab4e73009dcf8b2708903eb8c849622985b3df3c67106a390",
+   "outputs_sha256": "182f1cf136bbeddba0c6ac15a91ce8d00fcd4f48c1e2f99c932bc4e6522ca622",
+   "outcome": "done",
+   "detail": "12 material(s) applied, operations {'no_text_change': 30, 'replace_words': 15, 'insert_words': 10, 'insert_provision': 32, 'replace_provision': 14, 'repeal': 2, 'renumber': 10, 'delete_words': 2, 'replace_sentence': 2}",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/apply.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:16:39+00:00",
+   "ended": "2026-11-01T13:16:39+00:00"
+  },
+  {
+   "step": "witnesses",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e9337466d2e593464e4a4d83be852af0dd73b484d170052076906a7aa52e660d",
+   "outputs_sha256": "5e39f8f24432ac28ee158e5db20c5e3b45ab879a65f159f18b64a82b0b89ff6a",
+   "outcome": "done",
+   "detail": "lexbg: 202 difference(s), settled same_text_other_form 194, source_error 2, witness_error 6; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135504378 (absent, 2026-11-01T12:45:02+00:00))",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-diff.json",
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-record.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:16:39+00:00",
+   "ended": "2026-11-01T13:16:39+00:00"
+  },
+  {
+   "step": "write",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "9043a2e708575b95b2edfe459332eeb9668d65f547cc265c6428cbd4c730424f",
+   "outputs_sha256": "912ccb4c391cb567dbb79541e2283826bdb0e394fd24ddedd6f55a6a959ee0dc",
+   "outcome": "done",
+   "detail": "[popravka] 916aa2bfb Record-Id f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/82eb7039d44f",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/written.json"
+   ],
+   "committed": "916aa2bfb",
+   "started": "2026-11-01T13:16:39+00:00",
+   "ended": "2026-11-01T13:16:40+00:00"
   }
  ],
  "state_before_stop": "listed"

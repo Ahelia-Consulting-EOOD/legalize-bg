@@ -8,6 +8,31 @@
  "call_defects": [],
  "exceptions": [
   {
+   "block": 72,
+   "kind": "reassembly",
+   "detail": "the assembled line differs from its blocks"
+  },
+  {
+   "block": 141,
+   "kind": "reassembly",
+   "detail": "the assembled line differs from its blocks"
+  },
+  {
+   "block": 151,
+   "kind": "reassembly",
+   "detail": "the assembled line differs from its blocks"
+  },
+  {
+   "block": 257,
+   "kind": "reassembly",
+   "detail": "the assembled line differs from its blocks"
+  },
+  {
+   "block": 287,
+   "kind": "reassembly",
+   "detail": "the assembled line differs from its blocks"
+  },
+  {
    "block": 62,
    "kind": "low_confidence",
    "detail": "unnumbered group heading inside Раздел II over чл. 11-13; subsection_heading or article_title"
@@ -60,6 +85,7 @@
   ]
  },
  "exception_kinds": {
+  "reassembly": 5,
   "low_confidence": 2
  },
  "source_finding_kinds": {},
@@ -95,7 +121,7 @@
    "note": "Gazette material number after the act, not part of the act"
   }
  ],
- "note": "an earlier task set was replaced: answers of round 1 moved to round1-stale-133803917086",
- "next_round_tasks": 2,
- "diff_lines": 558
+ "note": "an earlier task set was replaced: answers of round 1 moved to round1-stale-150932663010; an earlier task set was replaced: answers of round 2 moved to round2-stale-150932663401",
+ "next_round_tasks": 7,
+ "diff_lines": 552
 }

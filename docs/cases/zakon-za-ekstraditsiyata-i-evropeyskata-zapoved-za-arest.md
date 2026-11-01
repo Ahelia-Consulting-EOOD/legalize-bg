@@ -124,9 +124,42 @@ tried:
   evidence:
   - data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-diff.json
   - data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/witness-record.json
+- run: f1-engine-2026-11-01
+  step: prepare
+  outcome: done
+  detail: 546 blocks, 17 sections
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/blocks.json
+- run: f1-engine-2026-11-01
+  step: label
+  outcome: done
+  detail: 'round 0 collected: 1 exception(s), 0 source finding(s)'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/report-round0.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 1
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/ladder.json
+  - data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/report-round1.json
+- run: f1-engine-2026-11-01
+  step: content_check
+  outcome: done
+  detail: no lost text, no exception; source findings none
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/content-check.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: done
+  detail: '12 material(s) applied, operations {''no_text_change'': 30, ''replace_words'': 15, ''insert_words'': 10, ''insert_provision'': 32, ''replace_provision'': 14, ''repeal'': 2, ''renumber'': 10, ''delete_words'': 2, ''replace_sentence'': 2}'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest/apply.json
 run: f1-engine-2026-11-01
 record: data/runs/route-ledger/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest.json
 date: '2026-11-01'
+superseded: the act went on in run f1-engine-2026-11-01
+resolved: 916aa2bfb
 ---
 
 ## Lessons learnt

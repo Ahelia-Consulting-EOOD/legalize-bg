@@ -115,6 +115,63 @@ tried:
   detail: 'material 160733 (бр. 67/2021): the answer is refused: §34 insert_words: the anchor ''филма'' occurs 2 times'
   evidence:
   - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json
+- run: f1-engine-2026-11-01
+  step: prepare
+  outcome: done
+  detail: 521 blocks, 14 sections
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/blocks.json
+- run: f1-engine-2026-11-01
+  step: label
+  outcome: done
+  detail: 'round 0 collected: 2 exception(s), 17 source finding(s)'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/report-round0.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: unchanged
+  detail: after round 2 the residue is 1 block(s), 1 of them a reading the labeller holds and the checks refuse (rule_needed); a rule, not a round, is needed
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/ladder.json
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/report-round2.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 2
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/ladder.json
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/report-round2.json
+- run: f1-engine-2026-11-01
+  step: content_check
+  outcome: stop
+  detail: 'lost text (empty_section), first at block 502: heading with no body before block 503; the act is on the list with the route investigate (D-076)'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/content-check.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 2
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/ladder.json
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/report-round2.json
+- run: f1-engine-2026-11-01
+  step: content_check
+  outcome: done
+  detail: 'no lost text, no exception; source findings {''malformed_head'': 1, ''annex_in_pdf'': 16}'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/content-check.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 160733 (бр. 67/2021): the answer is refused: §34 insert_words: the anchor ''филма'' occurs 2 times'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 160733 (бр. 67/2021): the answer is refused: §34 insert_words: the anchor ''филма'' occurs 2 times'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya/apply/01-160733/answer.json
 run: f1-engine-2026-11-01
 record: data/runs/route-ledger/pravilnik-za-prilagane-na-zakona-za-filmovata-industriya.json
 date: '2026-11-01'

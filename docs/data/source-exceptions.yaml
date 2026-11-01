@@ -536,10 +536,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: stopped
+  state: committed
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 46/2005 (material 385); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
-  case_file: docs/cases/zakon-za-ekstraditsiyata-i-evropeyskata-zapoved-za-arest.md
+  commit: 916aa2bfb
 - slug: kodeks-na-mezhdunarodnoto-chastno-pravo
   title: Кодекс на международното частно право
   defect: representative
@@ -641,10 +641,10 @@ entries:
     ref: 'docs/plans/2026-10-31-f1-representative-acts-proposal.md: a representative of its kind for the engine''s verification (D-074 (3)); the parent session''s decision of 1 November 2026 on the list value'
   - kind: decision
     ref: 'D-080 (docs/sync/DECISIONS.md): the history route of F1'
-  state: stopped
+  state: committed
   added: '2026-11-01'
   note: 'F1 representative act (no lex.bg defect known): promulgated in ДВ бр. 7/2010 (material 28798); its history is rebuilt from the Gazette through the engine and every witness difference settled.'
-  case_file: docs/cases/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie.md
+  commit: '259072266'
 - slug: pravilnik-za-prilagane-na-zakona-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-n
   title: Правилник за прилагане на Закона за защита на лица, застрашени във връзка с наказателно производство
   defect: representative

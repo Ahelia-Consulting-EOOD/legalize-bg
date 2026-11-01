@@ -423,6 +423,105 @@
    "committed": null,
    "started": "2026-11-01T12:45:06+00:00",
    "ended": "2026-11-01T12:45:07+00:00"
+  },
+  {
+   "step": "prepare",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "8046e77d7cd8bc8deff80c6366c39f866484482189289e54475cf8ae274ee14d",
+   "outputs_sha256": "52a5cb3c85389a662f1041473dcf14e7a67e2a91c8d1f84cb2180ba3884ed6d8",
+   "outcome": "done",
+   "detail": "556 blocks, 14 sections",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/blocks.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "label",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "ad60ed84ebbb40fd7bc34a8d65c77ace9baea947b746ca09ed8781d7dbe166fe",
+   "outputs_sha256": "cd9b7f17272980e1547c284fea74d862762c2cba6f5b615f4fe107bda804e92c",
+   "outcome": "done",
+   "detail": "round 0 collected: 93 exception(s), 0 source finding(s)",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round0.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "ladder",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "e70f886653072d0259b50cdab1ebb71d68ef86be1aef906049c299c1a0d6aa5d",
+   "outputs_sha256": "655774faa8ee7e5f64d5f155c5425d75b20294490eec03a944bc2e69d3a2626e",
+   "outcome": "done",
+   "detail": "no residue after round 2",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/ladder.json",
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/report-round2.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:53+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "b94818d76e19fd33c4d9daec2b24cf31842e58fefc073541873977e5483f757e",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:09:53+00:00",
+   "ended": "2026-11-01T13:09:54+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "bb52416d2e5b79806dc0f4d1dd62ac9dc11f48a37c316f17030f6e0d84580f03",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:12:03+00:00",
+   "ended": "2026-11-01T13:12:03+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "38249f46ee5e37e23d0e2760433b60e101eb125609e9ef4688e1718c4c450464",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:15:09+00:00",
+   "ended": "2026-11-01T13:15:10+00:00"
+  },
+  {
+   "step": "apply",
+   "run": "f1-engine-2026-11-01",
+   "input_sha256": "98e8e8cebe80ff981a6b954806d59b385e1de95908176438f85c985e8c5a0171",
+   "outputs_sha256": "833b533ea90bee6a1124957abf1dcac0560340045f1859281f9c8d7222dd513c",
+   "outcome": "stop",
+   "detail": "material 94043 (бр. 31/2015): the answer is refused: §2.1 insert_words: the words of 'наименованието на чл. 33' are in its alineas; the address names the alinea",
+   "evidence": [
+    "data/runs/f1-engine-2026-11-01/pravilnik-za-ustroystvoto-funktsiite-i-deynostta-na-darzhavno-predpriyatie-prist/apply/04-94043/answer.json"
+   ],
+   "committed": null,
+   "started": "2026-11-01T13:24:14+00:00",
+   "ended": "2026-11-01T13:24:14+00:00"
   }
  ],
  "state_before_stop": "listed"

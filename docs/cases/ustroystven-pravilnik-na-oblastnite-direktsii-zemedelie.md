@@ -125,6 +125,8 @@ tried:
 run: f1-engine-2026-11-01
 record: data/runs/route-ledger/ustroystven-pravilnik-na-oblastnite-direktsii-zemedelie.json
 date: '2026-11-01'
+superseded: the act went on in run f1-engine-2026-11-01
+resolved: '259072266'
 ---
 
 ## Lessons learnt

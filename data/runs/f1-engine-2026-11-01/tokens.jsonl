@@ -151,3 +151,16 @@
 {"ts":"2026-11-01","call":"settle zakon-za-ekstraditsiyata witnesses","tokens":83106}
 {"ts":"2026-11-01","call":"settle naredba-5-2006 witnesses","tokens":43466}
 {"ts":"2026-11-01","call":"settle ustroystven-pravilnik-odz witnesses","tokens":50691}
+{"ts":"2026-11-01","call":"label pravilnik-filmova round1 bd65694389c7 (after joins)","tokens":23171}
+{"ts":"2026-11-01","call":"label naredba-5-2006 round1 3cb3ea8dfc82 (after joins)","tokens":25943}
+{"ts":"2026-11-01","call":"settle ustroystven-pravilnik-odz witnesses (2nd, superseded by version 30)","tokens":46458}
+{"ts":"2026-11-01","call":"label pravilnik-filmova round2 35c132125dcf","tokens":23194}
+{"ts":"2026-11-01","call":"label naredba-5-2006 round2 211afd2fe661","tokens":25851}
+{"ts":"2026-11-01","call":"settle zakon-za-ekstraditsiyata witnesses (2nd)","tokens":82557}
+{"ts":"2026-11-01","call":"label naredba-5-2006 round2 5526abbd624c","tokens":23271}
+{"ts":"2026-11-01","call":"label pravilnik-filmova round2 c69678c304f2","tokens":22541}
+{"ts":"2026-11-01","call":"apply semeen-kodeks 13-201987","tokens":63201}
+{"ts":"2026-11-01","call":"settle ustroystven-pravilnik-odz witnesses (3rd)","tokens":44816}
+{"ts":"2026-11-01","call":"settle naredba-5-2006 witnesses (2nd)","tokens":43819}
+{"ts":"2026-11-01","call":"settle ustroystven-pravilnik-odz witnesses (4th)","tokens":41826}
+{"ts":"2026-11-01","call":"settle naredba-5-2006 witnesses (3rd)","tokens":42190}

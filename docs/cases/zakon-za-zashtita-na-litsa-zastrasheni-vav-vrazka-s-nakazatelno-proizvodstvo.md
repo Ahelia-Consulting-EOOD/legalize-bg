@@ -156,6 +156,55 @@ tried:
   detail: 'material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: ''чл. 14, ал. 7'' names 2 place(s) in the act'
   evidence:
   - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json
+- run: f1-engine-2026-11-01
+  step: prepare
+  outcome: done
+  detail: 149 blocks, 3 sections
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/blocks.json
+- run: f1-engine-2026-11-01
+  step: label
+  outcome: done
+  detail: 'round 0 collected: 0 exception(s), 0 source finding(s)'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/report-round0.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 0
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/ladder.json
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/report-round0.json
+- run: f1-engine-2026-11-01
+  step: content_check
+  outcome: done
+  detail: no lost text, no exception; source findings none
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/content-check.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: ''чл. 14, ал. 7'' names 2 place(s) in the act'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: ''чл. 14, ал. 7'' names 2 place(s) in the act'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: ''чл. 14, ал. 7'' names 2 place(s) in the act'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: stop
+  detail: 'material 83184 (бр. 21/2014): the answer is refused: §5.5 replace_provision: ''чл. 14, ал. 7'' names 2 place(s) in the act'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo/apply/05-83184/answer.json
 run: f1-engine-2026-11-01
 record: data/runs/route-ledger/zakon-za-zashtita-na-litsa-zastrasheni-vav-vrazka-s-nakazatelno-proizvodstvo.json
 date: '2026-11-01'

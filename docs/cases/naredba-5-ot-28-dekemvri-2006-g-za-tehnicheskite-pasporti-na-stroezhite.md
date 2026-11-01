@@ -3,7 +3,7 @@ act: naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite
 title: Наредба № 5 от 28 декември 2006 г. за техническите паспорти на строежите
 route: history
 stopped_at: witnesses
-exception: 'the settler found our reading wrong (reading_error): lexbg: 117 difference(s), settled reading_error 10, same_text_other_form 104, source_error 1, witness_error 2; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135542058 (absent, 2026-11-01T12:47:46+00:00))'
+exception: 'the settler found our reading wrong (reading_error): lexbg: 110 difference(s), settled reading_error 5, same_text_other_form 105; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135542058 (absent, 2026-11-01T12:47:46+00:00))'
 tried:
 - run: f1-engine-2026-11-01
   step: chain
@@ -156,6 +156,70 @@ tried:
   step: witnesses
   outcome: stop
   detail: 'the settler found our reading wrong (reading_error): lexbg: 117 difference(s), settled reading_error 10, same_text_other_form 104, source_error 1, witness_error 2; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135542058 (absent, 2026-11-01T12:47:46+00:00))'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-diff.json
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-record.json
+- run: f1-engine-2026-11-01
+  step: prepare
+  outcome: done
+  detail: 310 blocks, 11 sections
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/blocks.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: done
+  detail: '8 material(s) applied, operations {''no_text_change'': 20, ''insert_provision'': 13, ''renumber'': 7, ''replace_provision'': 15, ''replace_words'': 25, ''delete_words'': 7, ''insert_heading'': 1, ''repeal'': 13, ''insert_annex'': 1, ''insert_words'': 8, ''replace_annex'': 1, ''repeal_annex'': 1}'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply.json
+- run: f1-engine-2026-11-01
+  step: label
+  outcome: done
+  detail: 'round 0 collected: 7 exception(s), 0 source finding(s)'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round0.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: unchanged
+  detail: after round 2 the residue is 5 block(s), 5 of them a reading the labeller holds and the checks refuse (rule_needed); a rule, not a round, is needed
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round2.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 2
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round2.json
+- run: f1-engine-2026-11-01
+  step: content_check
+  outcome: done
+  detail: no lost text, no exception; source findings none
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/content-check.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: done
+  detail: '8 material(s) applied, operations {''no_text_change'': 20, ''insert_provision'': 13, ''renumber'': 7, ''replace_provision'': 15, ''replace_words'': 25, ''delete_words'': 7, ''insert_heading'': 1, ''repeal'': 13, ''insert_annex'': 1, ''insert_words'': 8, ''replace_annex'': 1, ''repeal_annex'': 1}'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply.json
+- run: f1-engine-2026-11-01
+  step: ladder
+  outcome: done
+  detail: no residue after round 2
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/ladder.json
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/report-round2.json
+- run: f1-engine-2026-11-01
+  step: apply
+  outcome: done
+  detail: '8 material(s) applied, operations {''no_text_change'': 20, ''insert_provision'': 13, ''renumber'': 7, ''replace_provision'': 15, ''replace_words'': 25, ''delete_words'': 7, ''insert_heading'': 1, ''repeal'': 13, ''insert_annex'': 1, ''insert_words'': 8, ''replace_annex'': 1, ''repeal_annex'': 1}'
+  evidence:
+  - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/apply.json
+- run: f1-engine-2026-11-01
+  step: witnesses
+  outcome: stop
+  detail: 'the settler found our reading wrong (reading_error): lexbg: 110 difference(s), settled reading_error 5, same_text_other_form 105; moj: absent (the portal answers 500 for https://justice.government.bg/home/normdoc/2135542058 (absent, 2026-11-01T12:47:46+00:00))'
   evidence:
   - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-diff.json
   - data/runs/f1-engine-2026-11-01/naredba-5-ot-28-dekemvri-2006-g-za-tehnicheskite-pasporti-na-stroezhite/witness-record.json

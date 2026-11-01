@@ -1,5 +1,5 @@
 {
- "rounds": 1,
+ "rounds": 2,
  "residue": [],
  "residue_classes": {},
  "exceptions": 0,
@@ -7,5 +7,5 @@
   "malformed_head": 1,
   "annex_in_pdf": 16
  },
- "last_report": "report-round1.json"
+ "last_report": "report-round2.json"
 }

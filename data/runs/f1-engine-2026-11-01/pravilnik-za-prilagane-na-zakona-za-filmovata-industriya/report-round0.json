@@ -8,6 +8,11 @@
  "call_defects": [],
  "exceptions": [
   {
+   "block": 117,
+   "kind": "reassembly",
+   "detail": "the assembled line differs from its blocks"
+  },
+  {
    "block": 519,
    "kind": "low_confidence",
    "detail": "Gazette's pointer that the annexes are printed elsewhere (issue PDF); editorial_note or annex_row"
@@ -21,175 +26,95 @@
   },
   {
    "block": 502,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 503"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 503,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 504"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 504,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 505"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 505,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 506"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 506,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 507"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 507,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 508"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 508,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 509"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 509,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 510"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 510,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 511"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 511,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 512"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 512,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 513"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 513,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 514"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 514,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 515"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 515,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 516"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 516,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 517"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   },
   {
    "block": 517,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 518"
+   "kind": "annex_in_pdf",
+   "detail": "the annex's body is in the issue's PDF alone (note at block 519)"
   }
  ],
- "lost_text": [
-  {
-   "block": 502,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 503"
-  },
-  {
-   "block": 503,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 504"
-  },
-  {
-   "block": 504,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 505"
-  },
-  {
-   "block": 505,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 506"
-  },
-  {
-   "block": 506,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 507"
-  },
-  {
-   "block": 507,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 508"
-  },
-  {
-   "block": 508,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 509"
-  },
-  {
-   "block": 509,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 510"
-  },
-  {
-   "block": 510,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 511"
-  },
-  {
-   "block": 511,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 512"
-  },
-  {
-   "block": 512,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 513"
-  },
-  {
-   "block": 513,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 514"
-  },
-  {
-   "block": 514,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 515"
-  },
-  {
-   "block": 515,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 516"
-  },
-  {
-   "block": 516,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 517"
-  },
-  {
-   "block": 517,
-   "kind": "empty_section",
-   "detail": "heading with no body before block 518"
-  }
- ],
+ "lost_text": [],
  "omissions": [],
  "ruled": {},
  "exception_kinds": {
+  "reassembly": 1,
   "low_confidence": 1
  },
  "source_finding_kinds": {
   "malformed_head": 1,
-  "empty_section": 16
+  "annex_in_pdf": 16
  },
  "labels": {
   "drop": 29,
@@ -353,7 +278,7 @@
    "note": "Gazette material number after the act, not part of the act"
   }
  ],
- "note": "an earlier task set was replaced: answers of round 1 moved to round1-stale-133805212705; an earlier task set was replaced: answers of round 2 moved to round2-stale-133805214024",
- "next_round_tasks": 1,
+ "note": "an earlier task set was replaced: answers of round 1 moved to round1-stale-150955136019",
+ "next_round_tasks": 2,
  "diff_lines": 12590
 }

@@ -8,9 +8,14 @@
  "call_defects": [],
  "exceptions": [
   {
+   "block": 62,
+   "kind": "low_confidence",
+   "detail": "unnumbered group heading over several articles (чл. 11-13) inside Раздел II; subsection_heading rather than article_title"
+  },
+  {
    "block": 68,
    "kind": "low_confidence",
-   "detail": "parallel to the group heading over чл. 11-13, so subsection_heading; article_title if it covers only чл. 14"
+   "detail": "unnumbered group heading parallel to the one over чл. 11-13 inside Раздел II; subsection_heading rather than article_title"
   }
  ],
  "source_findings": [],
@@ -55,7 +60,7 @@
   ]
  },
  "exception_kinds": {
-  "low_confidence": 1
+  "low_confidence": 2
  },
  "source_finding_kinds": {},
  "labels": {
@@ -91,6 +96,6 @@
   }
  ],
  "note": "",
- "next_round_tasks": 1,
- "diff_lines": 558
+ "next_round_tasks": 2,
+ "diff_lines": 552
 }
