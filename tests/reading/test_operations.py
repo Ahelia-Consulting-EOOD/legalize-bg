@@ -64,12 +64,11 @@ def test_apply_every_kind_and_the_markers_in_the_corpus_convention():
     assert t.lines[T.resolve(t, "чл. 2, ал. 4")].text == "(4) (Нова - ДВ, бр. 96 от 2026 г.) Четвърта алинея."
     assert t.lines[T.resolve(t, "чл. 2, ал. 2")].text == "(2) (Доп. - ДВ, бр. 96 от 2026 г.) Втора алинея и още думи."
     assert t.lines[T.resolve(t, "чл. 3")].text == "**Чл. 3.** (Отм. - ДВ, бр. 96 от 2026 г.)"
-    a = T.resolve(t, "чл. 3а")
-    assert t.lines[a].text == "**Чл. 3а.** (Нов - ДВ, бр. 96 от 2026 г.) (1) Нов член." and t.lines[a + 1].text == "(2) С втора алинея."
+    assert "**Чл. 3а.** (Нов - ДВ, бр. 96 от 2026 г.) (1) Нов член.\n\n(2) С втора алинея." in out.markdown
     assert t.lines[T.resolve(t, "чл. 1")].text == "**Чл. 1.** (Изм. - ДВ, бр. 96 от 2026 г.) Този закон пробата."
     assert t.lines[T.resolve(t, "чл. 2, ал. 5")].text == "(5) (Предишна ал. 3 - ДВ, бр. 96 от 2026 г.) Трета алинея."
     # the order of the lines holds: ал. 4 was inserted after ал. 3, which then became ал. 5
-    assert [l.n for l in t.lines if l.kind == "alinea"] == ["2", "5", "4", "2"]
+    assert [l.n for l in t.lines if l.kind == "alinea"] == ["1", "2", "5", "4", "1", "2"]
     assert len(out.log) == 8 and out.markdown.endswith("\n")
     # a second amendment extends the marker in lex.bg's form
     second = O.apply({"material": 2, "operations": [{"id": "§4", "kind": "delete_words", "address": "чл. 1", "old": "q1"}]},
@@ -84,15 +83,24 @@ def _mat_with(instruction: str):
     return M.parse(act), act.blocks
 
 
+def _with(op):
+    """The full answer with one operation replaced (the form needs every instruction answered)."""
+    ops = [o for o in ANSWER["operations"] if o["id"] != op["id"]] + [op]
+    return {"material": 1, "operations": ops}
+
+
 @pytest.mark.parametrize("answer, message", [
-    ({"operations": [{"id": "§1.1", "kind": "rewrite", "address": "чл. 2"}]}, "not one of"),
-    ({"operations": [{"id": "§9", "kind": "repeal", "address": "чл. 2"}]}, "not an instruction"),
-    ({"operations": [{"id": "§2", "kind": "repeal", "address": "чл. 9"}]}, "names 0 place"),
-    ({"operations": [{"id": "§1.1", "kind": "replace_words", "address": "чл. 2, ал. 1, т. 2", "old": "q3", "new": "q2"}]}, "not a quoted segment"),
-    ({"operations": [{"id": "§1.1", "kind": "replace_words", "address": "чл. 2", "old": "q1", "new": "q2", "extra": 1}]}, "outside the form"),
-    ({"operations": [{"id": "§1.2", "kind": "insert_provision", "address": "чл. 2, ал. 4", "after": "чл. 2, ал. 3", "blocks": [4, 4]}]}, "does not open with a quotation mark"),
-    ({"operations": [{"id": "§3", "kind": "replace_provision", "address": "чл. 3", "blocks": [10, 11]}]}, "carries the number"),
-    ({"operations": [{"id": "§4", "kind": "delete_words", "address": "чл. 2", "old": "q1"}]}, "do not occur"),
+    (_with({"id": "§1.1", "kind": "rewrite", "address": "чл. 2"}), "not one of"),
+    ({"operations": ANSWER["operations"] + [{"id": "§9", "kind": "repeal", "address": "чл. 2"}]}, "not an instruction"),
+    (_with({"id": "§2", "kind": "repeal", "address": "чл. 9"}), "names 0 place"),
+    (_with({"id": "§1.1", "kind": "replace_words", "address": "чл. 2, ал. 1, т. 2", "old": "q3", "new": "q2"}), "not a quoted segment"),
+    (_with({"id": "§1.1", "kind": "replace_words", "address": "чл. 2", "old": "q1", "new": "q2", "extra": 1}), "outside the form"),
+    (_with({"id": "§1.2", "kind": "insert_provision", "address": "чл. 2, ал. 4", "after": "чл. 2, ал. 3", "blocks": [4, 4]}), "outside the instruction's quoted text"),
+    (_with({"id": "§3", "kind": "insert_provision", "address": "чл. 3а", "after": "чл. 3", "blocks": [10, 10]}), "does not close the quotation"),
+    (_with({"id": "§3", "kind": "insert_provision", "address": "чл. 3б", "after": "чл. 3", "blocks": [10, 11]}), "the address names article '3б'"),
+    (_with({"id": "§4", "kind": "delete_words", "address": "чл. 2", "old": "q1"}), "do not occur"),
+    (_with({"id": "§4", "kind": "delete_words", "address": "чл. 1, предложение второ", "old": "q1"}), "a part the grammar does not read"),
+    ({"operations": [o for o in ANSWER["operations"] if o["id"] != "§6"]}, "no operation for the instruction"),
 ])
 def test_the_form_check_refuses_and_applies_nothing(answer, message):
     mat, blocks = _mat()
@@ -122,3 +130,88 @@ def test_replace_provision_and_heading_and_annex():
     assert out2.markdown.startswith("# новата проба\n")
     task = O.task_text(mat, blocks, T.parse(BODY), "zakon-za-probata", "96/2026", "a.json", [])
     assert "current text at „чл. 1“" in task and "no_text_change" in task
+
+
+INLINE_BODY = """# ЗАКОН за пробата
+
+**Чл. 6.** (1) Министърът провежда политиката.
+
+(2) Министърът утвърждава плана.
+
+(3) Трета алинея.
+
+**Чл. 7.** Член седем.
+"""
+
+
+def test_an_inline_first_alinea_is_its_own_address():
+    # the review of 1 November 2026, B1: operations on „чл. 6, ал. 1“ touch the alinea written in the head line, nothing else
+    mat, blocks = _mat_with("§ 1. В чл. 6, ал. 1 думите „утвърждава“ се заменят с „приема“.")
+    with pytest.raises(O.FormError, match="do not occur"):
+        O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "чл. 6, ал. 1", "old": "q1", "new": "q2"}]}, mat, blocks, INLINE_BODY, "5/2026")
+    mat, blocks = _mat_with("§ 1. В чл. 6, ал. 1 думите „провежда“ се заменят с „води“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "чл. 6, ал. 1", "old": "q1", "new": "q2"}]}, mat, blocks, INLINE_BODY, "5/2026")
+    assert "**Чл. 6.** (1) (Изм. - ДВ, бр. 5 от 2026 г.) Министърът води политиката.\n\n(2) Министърът утвърждава плана." in out.markdown
+    mat, blocks = _mat_with("§ 1. В чл. 6 ал. 1 се отменя.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "repeal", "address": "чл. 6, ал. 1"}]}, mat, blocks, INLINE_BODY, "5/2026")
+    assert "**Чл. 6.** (1) (Отм. - ДВ, бр. 5 от 2026 г.)\n\n(2) Министърът утвърждава плана.\n\n(3) Трета алинея." in out.markdown
+    mat, blocks = _mat_with("§ 1. В чл. 6 се създава ал. 1а:")
+    blocks.insert(4, Block(4, "„(1а) Нова алинея.“", "DvJustify"))
+    for k, b in enumerate(blocks):
+        b.i = k
+    mat = M.parse(SplitAct(blocks=blocks, sections=[], source="dv"))
+    out = O.apply({"operations": [{"id": "§1", "kind": "insert_provision", "address": "чл. 6, ал. 1а", "after": "чл. 6, ал. 1", "blocks": [4, 4]}]}, mat, blocks, INLINE_BODY, "5/2026")
+    assert "(1) Министърът провежда политиката.\n\n(1а) (Нова - ДВ, бр. 5 от 2026 г.) Нова алинея.\n\n(2) Министърът" in out.markdown
+    # the whole article: the marker goes after the head, before the inline alinea
+    mat, blocks = _mat_with("§ 1. В чл. 6 думите „Министърът“ се заменят с „Министерството“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "чл. 6", "old": "q1", "new": "q2", "everywhere": True}]}, mat, blocks, INLINE_BODY, "5/2026")
+    assert "**Чл. 6.** (Изм. - ДВ, бр. 5 от 2026 г.) (1) Министерството провежда политиката.\n\n(2) Министерството утвърждава плана." in out.markdown
+
+
+def test_headings_and_annexes_keep_their_number_and_take_the_marker_at_the_end():
+    # B2
+    mat, blocks = _mat_with("§ 1. В наименованието на глава първа думите „ОБЩИ ПОЛОЖЕНИЯ“ се заменят с „Нови положения“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_heading", "address": "глава първа", "new": "q2"}]}, mat, blocks, BODY, "5/2026")
+    assert "### Глава първа Нови положения (Загл. изм. - ДВ, бр. 5 от 2026 г.)" in out.markdown
+    t = T.parse(out.markdown)
+    assert T.resolve(t, "глава първа") == 1
+    annex_body = BODY + "\n## Приложение № 1 към чл. 1\n\nред първи\n\nред втори\n"
+    mat, blocks = _mat_with("§ 1. Приложение № 1 към чл. 1 се отменя.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "repeal_annex", "address": "Приложение № 1"}]}, mat, blocks, annex_body, "5/2026")
+    assert out.markdown.endswith("## Приложение № 1 към чл. 1 (Отм. - ДВ, бр. 5 от 2026 г.)\n") and "ред първи" not in out.markdown
+    mat, blocks = _mat_with("§ 1. Приложение № 1 към чл. 1 се изменя така:")
+    blocks[4:4] = [Block(4, "„Приложение № 1 към чл. 1", "DvCenter"), Block(5, "нов ред“", "DvJustify")]
+    for k, b in enumerate(blocks):
+        b.i = k
+    mat = M.parse(SplitAct(blocks=blocks, sections=[], source="dv"))
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_annex", "address": "Приложение № 1", "blocks": [4, 5]}]}, mat, blocks, annex_body, "5/2026")
+    assert out.markdown.endswith("## Приложение № 1 към чл. 1 (Изм. - ДВ, бр. 5 от 2026 г.)\n\nнов ред\n")
+    t = T.parse(out.markdown)
+    assert t.lines[-1].kind == "annex_row" and t.lines[-2].kind == "annex_heading"
+
+
+def test_markers_merge_and_carry_and_sentences_and_the_whole_act():
+    # M2: two operations of one issue on one line; the earlier marker survives a replaced provision; the gender of „Предишен“
+    mat, blocks = _mat_with("§ 1. В чл. 1 думите „урежда“ се заменят с „определя“ и накрая се добавя „изцяло“.")
+    out = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "чл. 1", "old": "q1", "new": "q2"},
+                                  {"id": "§1", "kind": "insert_words", "address": "чл. 1", "where": "end", "new": "q3"}]}, mat, blocks, BODY, "5/2026")
+    assert "**Чл. 1.** (Изм. и доп. - ДВ, бр. 5 от 2026 г.) Този закон определя пробата изцяло." in out.markdown
+    mat, blocks = _mat_with("§ 1. Член 1 се изменя така:")
+    blocks.insert(4, Block(4, "„Чл. 1. Съвсем нов текст.“", "DvJustify"))
+    for k, b in enumerate(blocks):
+        b.i = k
+    mat = M.parse(SplitAct(blocks=blocks, sections=[], source="dv"))
+    out2 = O.apply({"operations": [{"id": "§1", "kind": "replace_provision", "address": "чл. 1", "blocks": [4, 4]}]}, mat, blocks, out.markdown, "10/2027")
+    assert "**Чл. 1.** (Изм. и доп. - ДВ, бр. 5 от 2026 г., изм. - ДВ, бр. 10 от 2027 г.) Съвсем нов текст." in out2.markdown
+    mat, blocks = _mat_with("§ 1. Член 3 става чл. 4.")
+    out3 = O.apply({"operations": [{"id": "§1", "kind": "renumber", "address": "чл. 3", "to": "чл. 4"}]}, mat, blocks, BODY, "5/2026")
+    assert "**Чл. 4.** (Предишен чл. 3 - ДВ, бр. 5 от 2026 г.) Член за отмяна." in out3.markdown
+    # B3 / sentences: the second sentence only
+    two = BODY.replace("**Чл. 1.** Този закон урежда пробата.", "**Чл. 1.** Този закон урежда пробата. Той важи навсякъде.")
+    mat, blocks = _mat_with("§ 1. В чл. 1, изречение второ накрая се добавя „в страната“.")
+    out4 = O.apply({"operations": [{"id": "§1", "kind": "insert_words", "address": "чл. 1, изречение второ", "where": "end", "new": "q1"}]}, mat, blocks, two, "5/2026")
+    assert "Този закон урежда пробата. Той важи навсякъде в страната." in out4.markdown
+    # M4: the whole act
+    mat, blocks = _mat_with("§ 1. Навсякъде в закона думите „пробата“ се заменят с „опита“.")
+    out5 = O.apply({"operations": [{"id": "§1", "kind": "replace_words", "address": "навсякъде", "old": "q1", "new": "q2"}]}, mat, blocks, BODY, "5/2026")
+    assert "пробата" not in out5.markdown.split("\n\n", 1)[1] and "# ЗАКОН за пробата" in out5.markdown and "Този закон урежда опита." in out5.markdown

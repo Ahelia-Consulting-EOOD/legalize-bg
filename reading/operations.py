@@ -139,8 +139,10 @@ def check_form(answer: dict, mat: Material, blocks: list[Block]) -> list[dict]:
             if not (isinstance(b, list) and len(b) == 2 and all(isinstance(x, int) for x in b)):
                 raise FormError(f"{node.id}: {kind} needs blocks [first, last]")
             allowed = set(node.quoted) | set(node.continuation)
-            if not allowed and kind != "no_text_change":
-                allowed = set(range(len(blocks)))   # the model may point outside the parser's extents when the grammar lost the run (a finding is on record)
+            if allowed and not set(range(b[0], b[1] + 1)) <= allowed:
+                raise FormError(f"{node.id}: blocks [{b[0]}, {b[1]}] lie outside the instruction's quoted text {sorted(allowed)}")
+            if not allowed:
+                res["blocks_outside_parse"] = True   # the parser found no quoted text here: the model's range is recorded as such
             res["lines"] = _quoted_text(blocks, b[0], b[1])
             res["blocks"] = [b[0], b[1]]
         if kind in ("insert_provision", "insert_heading", "insert_annex"):
@@ -163,61 +165,128 @@ def check_form(answer: dict, mat: Material, blocks: list[Block]) -> list[dict]:
                 raise FormError(f"{node.id}: renumber needs to")
             res["to"] = op["to"].strip()
         out.append(res)
+    leaves = [n.id for n in mat.instructions() if not n.children]
+    missing = [i for i in leaves if i not in seen_ids]
+    if missing:
+        raise FormError(f"no operation for the instruction(s) {', '.join(missing)}; every instruction gets at least one (no_text_change when it changes nothing)")
     return out
 
 
+_MARKER_ENTRY = re.compile(r"^(?P<words>[^-]+?)\s*-\s*ДВ,\s*бр\.\s*(?P<num>\d+)\s*от\s*(?P<year>\d{4})\s*г\.(?P<extra>.*)$")
+_HEAD_RX = (r"^(?:[^*\n]{1,160}?\s+)?\*\*(?:Чл\.\s*\S+\.|Член\s+единствен\.|§\s*\S+\.|Параграф\s+единствен\.)\*\*\s*", r"^\(\d{1,3}[а-я]?\)\s*",
+            r"^\d{1,3}(?:[а-я]{1,2})?\.\s+", r"^[а-я]{1,3}\)\s+")
+_PAIRS = {frozenset({"изм", "доп"}): "Изм. и доп.", frozenset({"нова", "изм"}): "Нова", frozenset({"нов", "изм"}): "Нов"}
+
+
+def _merge_words(have: str, word: str) -> str:
+    """Two markers of one issue on one line become one, in lex.bg's form („Изм. и доп.“); the same word twice stays once."""
+    a, b = have.rstrip(".").lower(), word.rstrip(".").lower()
+    if a == b or b in a.split(" и "):
+        return have
+    pair = _PAIRS.get(frozenset(x.strip(".") for x in [a.replace(" и ", " ").split()[0], b]))
+    return pair if pair else f"{have.rstrip('.')} и {word[0].lower() + word[1:]}"
+
+
 def _marker(line: T.Line, word: str, issue: str, extra: str = "") -> None:
-    """Add „(Изм. - ДВ, бр. N от YYYY г.)“ after the head, or extend an existing marker with „, изм. - ДВ, …“ (lex.bg's form)."""
+    """Add „(Изм. - ДВ, бр. N от YYYY г.)“ after the head, or extend an existing marker with „, изм. - ДВ, …“ (lex.bg's form); two
+    operations of one issue on one line give one entry („Изм. и доп.“). A heading's or an annex heading's marker goes at the end
+    of the line, as lex.bg writes „… (Загл. изм. - ДВ, …)“."""
     num, year = issue.split("/")
+    low = word[0].lower() + word[1:] if line.kind in ("item", "letter") else word
+    piece = f"{low} - ДВ, бр. {num} от {year} г." + (f", {extra}" if extra else "")
+    if line.kind in T.HEADING_PREFIX or line.kind == "title":
+        m = re.search(r"\s*\(((?:Загл\. изм|Изм|изм|Нова|Отм|отм|Ново|ново)[^()]*)\)\s*$", line.text)
+        if m:
+            inner = m.group(1)
+            line.text = line.text[: m.start()].rstrip() + f" ({inner}, {piece[0].lower() + piece[1:]})"
+        else:
+            line.text = line.text.rstrip() + f" ({piece})"
+        return
     text = line.text
     head_end = 0
-    for rx in (r"^(?:[^*\n]{1,160}?\s+)?\*\*(?:Чл\.\s*\S+\.|Член\s+единствен\.|§\s*\S+\.|Параграф\s+единствен\.)\*\*\s*", r"^\(\d{1,3}[а-я]?\)\s*",
-               r"^\d{1,3}(?:[а-я]{1,2})?\.\s+", r"^[а-я]{1,3}\)\s+", r"^#{1,5}\s+"):
+    for rx in _HEAD_RX:
         m = re.match(rx, text)
         if m:
             head_end = m.end()
             break
     rest = text[head_end:]
-    low = word[0].lower() + word[1:] if line.kind in ("item", "letter") else word
-    m = T._MARKER.match(rest)
-    piece = f"{low} - ДВ, бр. {num} от {year} г." + (f", {extra}" if extra else "")
     sep = "" if head_end == 0 or text[head_end - 1].isspace() else " "
+    m = T._MARKER.match(rest)
     if m:
         inner = m.group(0).rstrip()
         inner = inner[1:-1] if inner.endswith(")") else inner[1:]
-        new = f"({inner}, {piece[0].lower() + piece[1:]}) "
+        entries = [e.strip() for e in re.split(r",\s*(?=(?:[Ии]зм|[Дд]оп|[Нн]ов|[Оо]тм|[Пп]опр|[Пп]редишн|[Зз]агл)[^,]*-\s*ДВ)", inner)]
+        last = _MARKER_ENTRY.match(entries[-1]) if entries else None
+        if last and (last.group("num"), last.group("year")) == (num, year) and not extra and not last.group("extra").strip(" ,") and word.lower().startswith(("изм", "доп")) and last.group("words").lower().startswith(("изм", "доп")):
+            entries[-1] = f"{_merge_words(last.group('words').strip(), low)} - ДВ, бр. {num} от {year} г."
+            new = "(" + ", ".join(entries) + ") "
+        elif last and (last.group("num"), last.group("year")) == (num, year) and last.group("words").strip().lower() == low.lower():
+            new = "(" + inner + ") "
+        else:
+            new = f"({inner}, {piece[0].lower() + piece[1:]}) "
         line.text = text[:head_end] + sep + new + rest[m.end():]
     else:
         line.text = text[:head_end] + sep + f"({piece}) " + rest
     line.text = line.text.rstrip()
 
 
-def _replace_in(tree: T.Tree, idx: int, old: str, new: str, everywhere: bool, what: str) -> int:
-    """Replace old by new in the words of the addressed provision and what hangs under it; the count replaced."""
-    scope = tree.subtree(idx)
-    count = sum(tree.lines[k].body().count(old) for k in scope)
+def _sentences(body: str) -> list[tuple[int, int]]:
+    """The spans of the sentences of a provision's words: a full stop followed by a space and a capital, or the end."""
+    spans: list[tuple[int, int]] = []
+    start = 0
+    for m in re.finditer(r"\.\s+(?=[А-ЯA-Z„\"(])", body):
+        spans.append((start, m.end()))
+        start = m.end()
+    if start < len(body):
+        spans.append((start, len(body)))
+    return spans or [(0, len(body))]
+
+
+def _scope_text(body: str, sentence: int | None, what: str) -> tuple[int, int]:
+    if sentence is None:
+        return 0, len(body)
+    spans = _sentences(body)
+    idx = len(spans) - 1 if sentence == -1 else sentence - 1
+    if idx < 0 or idx >= len(spans):
+        raise FormError(f"{what}: the provision has {len(spans)} sentence(s), not {sentence}")
+    return spans[idx]
+
+
+def _set_body(line: T.Line, body: str) -> None:
+    line.text = (line.head() + body).rstrip()
+
+
+def _replace_in(tree: T.Tree, idx: int, old: str, new: str, everywhere: bool, what: str, sentence: int | None = None) -> int:
+    """Replace old by new in the words of the addressed provision and what hangs under it (the whole act for ``ACT``); the count replaced."""
+    scope = tree.addressable_lines() if idx == T.ACT else tree.subtree(idx)
+    if idx == T.ACT:
+        everywhere = True
+    hits: list[tuple[int, int, int]] = []
+    for k in scope:
+        body = tree.lines[k].body()
+        a, b = _scope_text(body, sentence if k == idx else None, what)
+        hits.append((k, a, b)) if old in body[a:b] else None
+    count = sum(tree.lines[k].body()[a:b].count(old) for k, a, b in hits)
     if count == 0:
-        raise FormError(f"{what}: the words {old!r} do not occur in {tree.lines[idx].text[:50]!r}")
+        raise FormError(f"{what}: the words {old!r} do not occur in {'the act' if idx == T.ACT else tree.lines[idx].text[:50]!r}")
     if count > 1 and not everywhere:
         raise FormError(f"{what}: the words {old!r} occur {count} times at the address; the instruction does not say навсякъде")
-    for k in scope:
+    for k, a, b in hits:
         l = tree.lines[k]
         body = l.body()
-        if old in body:
-            head_len = len(l.text) - len(body) if l.text.endswith(body) else None
-            if head_len is None:
-                raise FormError(f"{what}: the provision's words could not be separated from its head: {l.text[:50]!r}")
-            # a quoted segment that ends with an abbreviation's dot („до 30 000 лв.“) closed the sentence too; the sentence keeps its full stop
-            fix = new + "." if old.endswith(".") and not new.endswith(".") and body.rstrip().endswith(old) else new
-            l.text = l.text[:head_len] + (body.replace(old, new) if everywhere else body.replace(old, fix, 1))
+        part = body[a:b]
+        # a quoted segment that ends with an abbreviation's dot („до 30 000 лв.“) closed the sentence too; the sentence keeps its full stop
+        fix = new + "." if old.endswith(".") and not new.endswith(".") and part.rstrip().endswith(old) else new
+        replaced = part.replace(old, new) if everywhere else part.replace(old, fix, 1)
+        nb = body[:a] + replaced + body[b:]
+        if new == "":
+            nb = re.sub(r"  +", " ", nb).replace(" ,", ",").replace(" .", ".").replace(" ;", ";").strip()
+        _set_body(l, nb)
     return count
 
 
 def _lines_from(texts: list[str], context_kind: str | None) -> list[T.Line]:
-    out: list[T.Line] = []
-    for t in texts:
-        out.append(T.line_from_text(t, context_kind))
-    # a heading number line and its title on two lines are one heading line, as the assembler joins them
+    out = [T.line_from_text(t, context_kind) for t in texts]
     joined: list[T.Line] = []
     for l in out:
         if joined and l.kind == "text" and joined[-1].kind in ("part_heading", "chapter_heading", "section_heading", "subsection_heading") and T.NUMBER_LINE.match(T.strip_line(joined[-1].text)):
@@ -227,15 +296,30 @@ def _lines_from(texts: list[str], context_kind: str | None) -> list[T.Line]:
     return joined
 
 
-def _insert_after(tree: T.Tree, after_idx: int, new_lines: list[T.Line]) -> None:
+def _insert_after(tree: T.Tree, after_idx: int, new_lines: list[T.Line]) -> tuple[int, int]:
     end = max(tree.subtree(after_idx)) + 1
     tree.lines[end:end] = new_lines
+    return end, end + len(new_lines) - 1
+
+
+def _reparse(tree: T.Tree) -> T.Tree:
+    return T.parse(tree.to_markdown())
+
+
+def _span_after_reparse(tree: T.Tree, address: str, first: int, last: int, what: str) -> int:
+    """After a re-parse the inserted or replaced lines must hold the address (the inline alinea moves the count by at most the join)."""
+    idx = _resolve(tree, address, what)
+    if not (first - 1 <= idx <= last + 1):
+        raise FormError(f"{what}: the address {address!r} does not name the inserted text (line {idx}, inserted {first}-{last})")
+    return idx
 
 
 def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue: str) -> Applied:
     """Apply a material's operations to the body; the form is checked first, and any failure applies nothing."""
     ops = check_form(answer, mat, blocks)
     tree = T.parse(markdown)
+    if tree.to_markdown() != markdown:
+        raise FormError("the body does not round-trip through the act tree; the apply step cannot hold it")
     log: list[str] = []
     for op in ops:
         kind = op["kind"]
@@ -245,100 +329,157 @@ def apply(answer: dict, mat: Material, blocks: list[Block], markdown: str, issue
             continue
         if kind == "outside_set":
             raise FormError(f"{what}: outside the closed set of operations: {op['note']}")
+        try:
+            sentence = T.sentence_of(op["address"]) if "address" in op else None
+        except T.AddressError as exc:
+            raise FormError(f"{what}: {exc}") from None
+        if sentence is not None and kind not in ("replace_words", "delete_words", "insert_words", "corrigendum"):
+            raise FormError(f"{what}: a sentence address fits only an operation on words")
         if kind in ("insert_provision", "insert_heading", "insert_annex"):
             new_lines = _lines_from(op["lines"], "annex_row" if kind == "insert_annex" else None)
+            if not new_lines:
+                raise FormError(f"{what}: the quoted text is empty")
+            try:
+                parts = [p for p in T.parse_address(op["address"]) if p[0] != "sentence"]
+            except T.AddressError as exc:
+                raise FormError(f"{what}: {exc}") from None
+            want_kind, want_n = parts[-1]
+            if kind == "insert_provision" and (new_lines[0].kind != want_kind or not T._same_n(new_lines[0].n, want_n)):
+                raise FormError(f"{what}: the new text opens as {new_lines[0].kind} {new_lines[0].n!r}, the address names {want_kind} {want_n!r}")
+            if kind == "insert_heading" and new_lines[0].kind not in T.HEADING_PREFIX:
+                raise FormError(f"{what}: the new text does not open with a heading")
+            if kind == "insert_annex" and new_lines[0].kind != "annex_heading":
+                raise FormError(f"{what}: the new text does not open with an annex heading")
             if kind == "insert_annex" and not op["after"]:
+                first = len(tree.lines)
                 tree.lines.extend(new_lines)
+                last = len(tree.lines) - 1
             else:
-                anchor = _resolve(tree, op["after"], what) if op["after"] else None
-                if anchor is None:
+                if not op["after"]:
                     raise FormError(f"{what}: needs after")
-                _insert_after(tree, anchor, new_lines)
-            tree = T.parse(tree.to_markdown())
-            idx = _resolve(tree, op["address"], what)
-            _marker(tree.lines[idx], MARKERS[kind] if tree.lines[idx].kind not in ("article", "sign") else "Нов", issue)
+                anchor = _resolve(tree, op["after"], what)
+                first, last = _insert_after(tree, anchor, new_lines)
+            tree = _reparse(tree)
+            idx = _span_after_reparse(tree, op["address"], first, last, what)
+            _marker(tree.lines[idx], "Нов" if tree.lines[idx].kind in ("article", "sign") else ("Ново" if tree.lines[idx].kind == "annex_heading" else MARKERS[kind]), issue)
             log.append(f"{what}: {len(new_lines)} line(s) at {op['address']}")
             continue
         idx = _resolve(tree, op["address"], what)
-        line = tree.lines[idx]
+        line = tree.lines[idx] if idx != T.ACT else None
         if kind in ("replace_words", "corrigendum"):
-            n = _replace_in(tree, idx, op["old"], op["new"], op.get("everywhere", False), what)
-            _marker(line, MARKERS[kind], issue)
+            n = _replace_in(tree, idx, op["old"], op["new"], op.get("everywhere", False), what, sentence)
+            if line is not None:
+                _marker(line, MARKERS[kind], issue)
             log.append(f"{what}: {n} replacement(s)")
         elif kind == "delete_words":
-            n = _replace_in(tree, idx, op["old"], "", False, what)
-            tree.lines[idx].text = re.sub(r"  +", " ", tree.lines[idx].text).replace(" ,", ",").replace(" .", ".")
-            _marker(line, MARKERS[kind], issue)
-            log.append(f"{what}: deleted")
+            n = _replace_in(tree, idx, op["old"], "", idx == T.ACT, what, sentence)
+            if line is not None:
+                _marker(line, MARKERS[kind], issue)
+            log.append(f"{what}: {n} deletion(s)")
         elif kind == "insert_words":
+            if line is None:
+                raise FormError(f"{what}: insert_words needs a provision")
             body = line.body()
-            head = line.text[: len(line.text) - len(body)] if line.text.endswith(body) else None
-            if head is None:
-                raise FormError(f"{what}: the provision's words could not be separated from its head")
+            a, b = _scope_text(body, sentence, what)
+            part = body[a:b]
             if op["where"] == "end":
-                nb = body.rstrip().rstrip(".;") + (" " if not op["new"].startswith((",", ";", ".")) else "") + op["new"] + (body.rstrip()[-1] if body.rstrip()[-1:] in ".;" else "")
+                core = part.rstrip()
+                close = core[-1] if core and core[-1] in ".;" else ""
+                core = core[: -1] if close else core
+                nb = core + ("" if not core or op["new"].startswith((",", ";", ".")) else " ") + op["new"] + close
             elif op["where"] == "start":
-                nb = op["new"] + " " + body
+                nb = op["new"] + " " + part
             else:
-                if body.count(op["anchor"]) != 1:
-                    raise FormError(f"{what}: the anchor {op['anchor']!r} occurs {body.count(op['anchor'])} times")
-                a = body.index(op["anchor"])
-                nb = body[:a + len(op["anchor"])] + " " + op["new"] + body[a + len(op["anchor"]):] if op["where"] == "after" else body[:a] + op["new"] + " " + body[a:]
-            line.text = head + nb
+                if part.count(op["anchor"]) != 1:
+                    raise FormError(f"{what}: the anchor {op['anchor']!r} occurs {part.count(op['anchor'])} times")
+                at = part.index(op["anchor"])
+                nb = part[:at + len(op["anchor"])] + " " + op["new"] + part[at + len(op["anchor"]):] if op["where"] == "after" else part[:at] + op["new"] + " " + part[at:]
+            _set_body(line, body[:a] + nb + body[b:])
             _marker(line, MARKERS[kind], issue)
             log.append(f"{what}: inserted")
         elif kind in ("replace_provision", "replace_annex"):
+            if line is None:
+                raise FormError(f"{what}: needs a provision")
             new_lines = _lines_from(op["lines"], "annex_row" if kind == "replace_annex" else None)
             if not new_lines:
                 raise FormError(f"{what}: the quoted text is empty")
-            if line.kind in ("article", "sign", "alinea", "item", "letter") and new_lines[0].kind != line.kind:
+            if line.kind in ("article", "sign", "alinea", "item", "letter", "annex_heading") and new_lines[0].kind != line.kind:
                 raise FormError(f"{what}: the new text opens as a {new_lines[0].kind}, the address is a {line.kind}")
-            if line.kind in ("article", "sign", "alinea", "item", "letter") and new_lines[0].n != line.n:
+            if line.kind in ("article", "sign", "alinea", "item", "letter", "annex_heading") and not T._same_n(new_lines[0].n, line.n or ""):
                 raise FormError(f"{what}: the new text carries the number {new_lines[0].n!r}, the address {line.n!r}")
-            old_marker = T._MARKER.match(line.body_with_marker()) if hasattr(line, "body_with_marker") else None
+            old_marker = line.marker()
             span = tree.subtree(idx)
             first, last = min(span), max(span)
+            if line.inline:
+                new_lines[0].inline = True
             tree.lines[first:last + 1] = new_lines
-            tree = T.parse(tree.to_markdown())
-            idx2 = _resolve(tree, op["address"], what)
+            tree = _reparse(tree)
+            idx2 = _span_after_reparse(tree, op["address"], first, first + len(new_lines) - 1, what)
+            if old_marker and tree.lines[idx2].kind not in T.HEADING_PREFIX:
+                head_end = len(tree.lines[idx2].head())
+                tree.lines[idx2].text = tree.lines[idx2].text[:head_end].rstrip() + f" ({old_marker}) " + tree.lines[idx2].text[head_end:]
+                tree.lines[idx2].text = tree.lines[idx2].text.rstrip()
             _marker(tree.lines[idx2], MARKERS[kind], issue)
             log.append(f"{what}: {last - first + 1} line(s) replaced by {len(new_lines)}")
         elif kind in ("repeal", "repeal_annex"):
+            if line is None:
+                raise FormError(f"{what}: needs a provision")
             span = tree.subtree(idx)
             first, last = min(span), max(span)
-            head_body = line.body()
-            head = line.text[: len(line.text) - len(head_body)] if line.text.endswith(head_body) else line.text
-            keep = T.Line(line.kind, head.rstrip(), line.n, title=line.title)
+            if line.kind in T.HEADING_PREFIX:
+                keep = T.Line(line.kind, line.text, line.n)   # a heading keeps its words; what hung under it goes
+            else:
+                keep = T.Line(line.kind, line.head().rstrip(), line.n, title=line.title, inline=line.inline)
             tree.lines[first:last + 1] = [keep]
-            tree = T.parse(tree.to_markdown())
-            idx2 = _resolve(tree, op["address"], what)
+            tree = _reparse(tree)
+            idx2 = _span_after_reparse(tree, op["address"], first, first, what)
             _marker(tree.lines[idx2], MARKERS[kind], issue)
             log.append(f"{what}: {last - first + 1} line(s) repealed")
         elif kind == "renumber":
-            parts = T.parse_address(op["to"])
+            if line is None:
+                raise FormError(f"{what}: needs a provision")
+            try:
+                parts = T.parse_address(op["to"])
+            except T.AddressError as exc:
+                raise FormError(f"{what}: {exc}") from None
             new_n = parts[-1][1]
             body = line.body()
-            head = line.text[: len(line.text) - len(body)]
+            head = line.head()
             old_n = line.n
             head2 = head.replace(old_n, new_n, 1) if old_n and old_n in head else head
             if head2 == head:
                 raise FormError(f"{what}: the number {old_n!r} was not found in the head {head!r}")
             line.text = head2 + body
             line.n = new_n
-            _marker(line, f"Предишна {T.parse_address(op['address'])[-1][0] and _word(line.kind)} {old_n}", issue)
+            gender = "Предишен" if line.kind in ("article", "sign") else "Предишна"
+            _marker(line, f"{gender} {_word(line.kind)} {old_n}", issue)
             log.append(f"{what}: {old_n} -> {new_n}")
         elif kind == "replace_heading":
+            if line is None:
+                raise FormError(f"{what}: needs a heading")
             if "lines" in op:
                 new_lines = _lines_from(op["lines"], None)
                 if len(new_lines) != 1:
                     raise FormError(f"{what}: a heading is one line, the quoted text has {len(new_lines)}")
-                line.text = new_lines[0].text if new_lines[0].kind != "text" else T.render_heading(line.kind, new_lines[0].text) if line.kind in T.HEADING_PREFIX else new_lines[0].text
+                words = T.strip_line(new_lines[0].text)
             else:
-                line.text = T.render_heading(line.kind, op["new"]) if line.kind in T.HEADING_PREFIX else op["new"]
-            if line.kind != "title":
+                words = op["new"]
+            if line.kind == "title":
+                line.text = T.render_heading("title", words)
+            elif line.kind in T.HEADING_PREFIX:
+                # the number part („Глава първа“, „Раздел V“, „Приложение № 3 към чл. 6“) stays; the title words change
+                current = re.sub(r"\s*\((?:Загл\. изм|Изм|изм)[^()]*\)\s*$", "", T.strip_line(line.text))
+                m = T.NUMBER_LINE.match(current.split(" ")[0] + " " + current.split(" ")[1]) if len(current.split(" ")) > 1 else None
+                number = " ".join(current.split(" ")[:2]) if m else (current.split(" ")[0] if line.kind == "annex_heading" else "")
+                if words.lower().startswith(number.lower()) and number:
+                    line.text = T.render_heading(line.kind, words)
+                else:
+                    line.text = T.render_heading(line.kind, (number + " " + words).strip())
                 _marker(line, "Загл. изм.", issue)
+            else:
+                raise FormError(f"{what}: {op['address']!r} is not a heading")
             log.append(f"{what}: heading replaced")
-        tree = T.parse(tree.to_markdown())
+        tree = _reparse(tree)
     return Applied(material=int(answer.get("material", 0) or 0), issue=issue, operations=ops, markdown=tree.to_markdown(), log=log)
 
 

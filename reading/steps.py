@@ -661,6 +661,8 @@ class Apply:
     def run(self, ctx: Context) -> StepResult:
         chain = json.loads((ctx.act_dir / "chain.json").read_text(encoding="utf-8"))
         body = (ctx.act_dir / "staged.md").read_text(encoding="utf-8")
+        if _acttree.parse(body).to_markdown() != body:
+            return StepResult("stop", "the promulgation reading does not round-trip through the act tree; the engine cannot hold it")
         root = ctx.act_dir / "apply"
         root.mkdir(exist_ok=True)
         done: list[dict] = []
@@ -685,11 +687,22 @@ class Apply:
             act = split_dv(html)
             mat = _material.parse(act)
             tree = _acttree.parse(body)
-            rec_p.write_text(json.dumps({"material": m["material"], "issue": m["issue"], "material_sha256": sha, "body_before_sha256": before,
+            scoped = _scoped(mat, m["scopes"])
+            if not scoped.instructions():
+                return StepResult("stop", f"material {m['material']} (бр. {m['issue']}): attributed through {m['scopes']}, yet no instruction of the material carries those ids")
+            task_text = _operations.task_text(scoped, act.blocks, tree, ctx.slug, m["issue"], answer_p, [f for f in mat.findings if f["kind"] in PARSE_STOP_KINDS])
+            task_sha = _sha(task_text.encode("utf-8"))
+            old_rec = json.loads(rec_p.read_text(encoding="utf-8")) if rec_p.exists() else {}
+            if answer_p.exists() and old_rec.get("task_sha256") != task_sha:
+                # the task changed under an answer written for an earlier one (another body, another material text): set it aside
+                n = 1
+                while (d / f"answer.stale-{n}.json").exists():
+                    n += 1
+                answer_p.rename(d / f"answer.stale-{n}.json")
+            rec_p.write_text(json.dumps({"material": m["material"], "issue": m["issue"], "material_sha256": sha, "body_before_sha256": before, "task_sha256": task_sha,
                                          "scopes": m["scopes"], "findings": mat.findings}, ensure_ascii=False, indent=1), encoding="utf-8")
             (d / "instructions.json").write_text(json.dumps(mat.to_dict(), ensure_ascii=False, indent=1), encoding="utf-8")
-            scoped = _scoped(mat, m["scopes"])
-            task_p.write_text(_operations.task_text(scoped, act.blocks, tree, ctx.slug, m["issue"], answer_p, [f for f in mat.findings if f["kind"] in PARSE_STOP_KINDS]), encoding="utf-8")
+            task_p.write_text(task_text, encoding="utf-8")
             if not answer_p.exists():
                 return StepResult("pending", f"material {k} of {len(chain['materials'])} (бр. {m['issue']}, {m['material']}): one applier call: read {task_p}, write {answer_p}",
                                   [_rel(ctx, task_p)])
@@ -719,10 +732,11 @@ class Apply:
 
 
 def _scoped(mat: "_material.Material", scopes: list[str]) -> "_material.Material":
-    """For a material attributed to the act through a § of its provisions only, the instructions under that § (and its subtree)."""
+    """For a material attributed to the act through §§ of its provisions only, those instructions with their subtrees, wherever they
+    stand in the tree (attribution names child instructions too, „§1.1“); the whole material when the title names the act."""
     if "title" in scopes:
         return mat
-    keep = [n for n in mat.nodes if n.id in scopes]
+    keep = [n for n in mat.instructions() if n.id in scopes]
     return _material.Material(kind=mat.kind, amending=mat.amending, own_title=mat.own_title, target_title=mat.target_title, cited_history=mat.cited_history,
                               body_org=mat.body_org, header=mat.header, nodes=keep, headings=mat.headings, tail=mat.tail, roles=mat.roles, findings=mat.findings,
                               blocks=mat.blocks, embedded=mat.embedded, instruction_kind=mat.instruction_kind, whole_act=mat.whole_act)

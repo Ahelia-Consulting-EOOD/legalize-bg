@@ -245,6 +245,8 @@ def rebuild_engine(slug: str, run_dir: Path, cache_dir: Path, body0: str) -> tup
     applied: list[dict] = []
     for k, m in enumerate(chain["materials"], 1):
         d = run_dir / "apply" / f"{k:02d}-{m['material']}"
+        if not (d / "material.json").exists() or not (d / "ops.json").exists():
+            raise WriteRefused(f"{slug}: the apply records of material {m['material']} are missing ({d.name})")
         rec = json.loads((d / "material.json").read_text(encoding="utf-8"))
         html = (cache_dir / f"{m['material']}.html").read_bytes()
         if _sha256(html) != rec["material_sha256"]:
@@ -257,7 +259,8 @@ def rebuild_engine(slug: str, run_dir: Path, cache_dir: Path, body0: str) -> tup
         except _operations.FormError as exc:
             raise WriteRefused(f"{slug}: the operations of material {m['material']} no longer apply: {exc}") from None
         body = out.markdown
-        applied.append({"material": int(m["material"]), "issue": m["issue"], "date": m.get("date"), "material_sha256": rec["material_sha256"], "operations": len(ops["operations"])})
+        applied.append({"material": int(m["material"]), "issue": m["issue"], "date": m.get("date"), "material_sha256": rec["material_sha256"],
+                        "operations": sum(1 for o in ops["operations"] if o["kind"] != "no_text_change")})
     if body != (run_dir / "applied.md").read_text(encoding="utf-8"):
         raise WriteRefused(f"{slug}: the body rebuilt from the chain's operations differs from the run's applied.md")
     if _sha256(body.encode("utf-8")) != summary.get("applied_sha256"):
@@ -284,7 +287,8 @@ def build_frontmatter_dv_chain(committed: dict, rec: dict, chain: list[dict]) ->
     meta = build_frontmatter_dv(committed, rec)
     rows = [meta["amendment_history"][0]]
     for c in chain:
-        rows.append({"dv": c["issue"], "date": c.get("date") or rec["issue_date"]})
+        if c.get("operations", 1) and c["issue"] not in {r["dv"] for r in rows}:   # one row per issue; a material of no operations adds none
+            rows.append({"dv": c["issue"], "date": c.get("date") or rec["issue_date"]})
     meta["amendment_history"] = rows
     meta["ultima_actualizacion"] = rows[-1]["date"]
     return meta

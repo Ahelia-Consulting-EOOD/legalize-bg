@@ -3,9 +3,14 @@
 The corpus body is Markdown in the assembler's conventions: one provision line per paragraph, headings with hashes,
 bold article and § heads, alineas „(2) …“, items „1. …“, letters „а) …“, annex headings „## Приложение …“. This module
 reads such a body into ``Line`` nodes with a kind and a number, gives each the parent the numbering grammar implies
-(an alinea under its article, an item under the alinea or the article, a letter under the item), and resolves the
-addresses an amending instruction uses („чл. 36, ал. 1, т. 5, б. „а““, „§ 3“, „глава втора, раздел V“, „Приложение № 3“)
-to nodes. It writes the tree back to the same Markdown, so a body that is read and written unchanged is byte-equal.
+(a section under its chapter, an alinea under its article, an item under the alinea or the article, a letter under the
+item), and resolves the addresses an amending instruction uses („чл. 36, ал. 1, т. 5, б. „а““, „§ 3“, „глава втора,
+раздел V“, „Приложение № 3“, „наименованието“, „навсякъде“) to lines. An address part the grammar does not know is
+refused, never dropped (review of 1 November 2026, B3). A first alinea written in the head line („Чл. 6. (1) …“) is
+its own line in the tree and is joined back to the head on output, so an operation on „чл. 6, ал. 1“ touches the
+alinea and nothing else (B1). The §§ lex.bg prints after a „… КЪМ …“ provisions heading are another act's and are not
+addressable (M3). A body that is read and written unchanged is byte-equal when its paragraphs are separated by one
+blank line, which is what the assembler writes; the apply step asserts it before the first material.
 
 ``to_blocks_and_map`` turns the tree into the blocks and labels that ``reading/checks.py`` reads, so the mechanical
 checks of the reading architecture (numbering, nesting, addresses, reassembly) run over an engine-built body as they
@@ -21,6 +26,7 @@ from .splitter import Block
 
 KINDS = ("title", "prehistory", "part_heading", "chapter_heading", "section_heading", "subsection_heading", "provisions_heading",
          "annex_heading", "article", "sign", "alinea", "item", "letter", "annex_row", "note", "text")
+ACT = -1   # the address of the whole act („навсякъде“, „в целия закон“)
 _HEAD_LEVEL = {"# ": "title", "## ": "l2", "### ": "chapter_heading", "#### ": "section_heading", "##### ": "subsection_heading"}
 _ART = re.compile(r"^(?:(?P<title>[^*\n]{1,160}?)\s+)?\*\*(Чл\.\s*(\d+[а-я]?(?:\d{1,2})?)\.|Член\s+единствен\.)\*\*\s*(.*)$", re.S)   # lex.bg prints an article's title before its head
 _SIGN = re.compile(r"^(?:\*\*)?(§\s*(\d+[а-я]?)\.|Параграф\s+единствен\.)(?:\*\*)?\s*(.*)$", re.S)   # a plain § head is lex.bg's amending tail
@@ -28,24 +34,33 @@ _ALINEA = re.compile(r"^\((\d{1,3}[а-я]?)\)\s*(.*)$", re.S)
 _ITEM = re.compile(r"^(\d{1,3}(?:[а-я]{1,2})?)\.\s+(.*)$", re.S)
 _LETTER = re.compile(r"^([а-я]{1,3})\)\s+(.*)$", re.S)
 _MARKER = re.compile(r"^\((?:Изм|изм|Нова|Нов|нова|нов|Доп|доп|Отм|отм|Попр|попр|Загл|Предишн|предишн|В сила|Обявен)[^()]*(?:\([^()]*\)[^()]*)*\)\s*")
+_INLINE_ALINEA = re.compile(r"^((?:\([^()]*(?:\([^()]*\)[^()]*)*\)\s*)*)(\(\d{1,3}\)\s*.*)$", re.S)   # after an editorial note in parentheses
 _ANNEX = re.compile(r"^Приложение(?:\s*№\s*(\S+))?", re.I)
-_PROVISIONS = re.compile(r"(допълнителн|преходн|заключителн)", re.I)
+_PROVISIONS = re.compile(r"^(допълнителн|преходн|заключителн)\S*(\s+и\s+\S+)?\s+разпоредб", re.I)
+_PART = re.compile(r"^(Част|Дял)\s+(\S+)", re.I)
 _WORD_LEVEL = {"част": "part_heading", "дял": "part_heading", "глава": "chapter_heading", "раздел": "section_heading", "подраздел": "subsection_heading"}
+_RANK = {"part_heading": 1, "chapter_heading": 2, "section_heading": 3, "subsection_heading": 4}
+_HEADINGS = ("title", "part_heading", "chapter_heading", "section_heading", "subsection_heading", "provisions_heading", "annex_heading")
+_KAM = re.compile(r"\b(КЪМ|Към|към)\b")
 
 
 @dataclass
 class Line:
     kind: str
-    text: str                 # the full Markdown line as written
-    n: str | None = None      # the number as written (article "36", alinea "1", item "5", letter "а", § "3", annex "3")
+    text: str                 # the Markdown line as written (an inline alinea: its own part, joined to the head on output)
+    n: str | None = None      # the number as written (article "36", alinea "1", item "5", letter "а", § "3", annex "3", chapter "първа")
     parent: int | None = None
     children: list[int] = field(default_factory=list)
-    marker: str | None = None  # the amendment marker after the head, without its parentheses
     title: str | None = None   # an article's own title, printed before its head (lex.bg's form)
-    inline_alinea: str | None = None   # the first alinea written in the head line itself („Чл. 4. (1) …“)
+    inline: bool = False       # an alinea written in the head line of its article or §
+    addressable: bool = True   # False in lex.bg's amending tails after a „КЪМ …“ heading
+
+    def head(self) -> str:
+        """The line's head: the title, the bold number and the marker; what precedes the provision's own words."""
+        return self.text[: len(self.text) - len(self.body())]
 
     def body(self) -> str:
-        """The provision's own words: the line without its head, its marker and the assembler's markers."""
+        """The provision's own words: the line without its title, its head, its marker and the assembler's markers."""
         t = strip_line(self.text)
         if self.kind == "article":
             m = _ART.match(self.text)
@@ -58,17 +73,30 @@ class Line:
                 t = t[m.end():]
                 break
         m = _MARKER.match(t)
-        t = t[m.end():] if m else t
-        if self.inline_alinea:
-            m = re.match(r"^\(\d{1,3}[а-я]?\)\s*", t)
-            t = t[m.end():] if m else t
-            m = _MARKER.match(t)
-            t = t[m.end():] if m else t
-        return t
+        return t[m.end():] if m else t
+
+    def marker(self) -> str | None:
+        """The marker after the head, without its parentheses, or None."""
+        t = strip_line(self.text)
+        if self.kind == "article":
+            m = _ART.match(self.text)
+            if m and m.group("title"):
+                t = t[len(m.group("title")):].lstrip()
+        for rx in (re.compile(r"^(Чл\.\s*\S+\.|Член\s+единствен\.|§\s*\S+\.|Параграф\s+единствен\.)\s*"), re.compile(r"^\(\d{1,3}[а-я]?\)\s*"),
+                   re.compile(r"^\d{1,3}(?:[а-я]{1,2})?\.\s+"), re.compile(r"^[а-я]{1,3}\)\s+")):
+            m = rx.match(t)
+            if m and self.kind in ("article", "sign", "alinea", "item", "letter"):
+                t = t[m.end():]
+                break
+        m = _MARKER.match(t)
+        if not m:
+            return None
+        inner = m.group(0).strip()
+        return inner[1:-1] if inner.endswith(")") else inner[1:]
 
 
 class AddressError(ValueError):
-    """An address the act does not have, or one that names several places."""
+    """An address the act does not have, one that names several places, or one with a part the grammar does not know."""
 
 
 @dataclass
@@ -76,7 +104,13 @@ class Tree:
     lines: list[Line]
 
     def to_markdown(self) -> str:
-        return "\n\n".join(l.text for l in self.lines) + "\n"
+        out: list[str] = []
+        for l in self.lines:
+            if l.inline and out:
+                out[-1] = f"{out[-1]} {l.text}".rstrip() if l.text else out[-1]
+            else:
+                out.append(l.text)
+        return "\n\n".join(out) + "\n"
 
     def subtree(self, i: int) -> list[int]:
         out = [i]
@@ -84,26 +118,16 @@ class Tree:
             out.extend(self.subtree(c))
         return out
 
-    def children_of_kind(self, i: int, kind: str) -> list[int]:
-        return [c for c in self.lines[i].children if self.lines[c].kind == kind]
+    def find(self, kind: str, n: str, under: int | None = None) -> list[int]:
+        pool = self.subtree(under) if under is not None else range(len(self.lines))
+        return [k for k in pool if self.lines[k].kind == kind and self.lines[k].addressable and _same_n(self.lines[k].n, n)]
 
-    def articles(self) -> list[int]:
-        return [k for k, l in enumerate(self.lines) if l.kind == "article"]
+    def addressable_lines(self) -> list[int]:
+        return [k for k, l in enumerate(self.lines) if l.addressable and l.kind not in ("title", "prehistory", "note")]
 
-    def own_subtree(self, i: int) -> list[int]:
-        """The head's inline first alinea and what hangs under it: the children that are not later alineas, with their subtrees."""
-        out = [i]
-        for c in self.lines[i].children:
-            if self.lines[c].kind != "alinea":
-                out.extend(self.subtree(c))
-        return out
 
-    def find(self, kind: str, n: str, under: int | None = None, inline: bool = False) -> list[int]:
-        pool = (self.own_subtree(under) if inline else self.subtree(under)) if under is not None else range(len(self.lines))
-        found = [k for k in pool if self.lines[k].kind == kind and self.lines[k].n == n]
-        if kind == "alinea" and not found and under is not None and self.lines[under].inline_alinea == n:
-            found = [under]   # „Чл. 7. (1) …“: the first alinea lives in the head line
-        return found
+def _same_n(a: str | None, b: str) -> bool:
+    return a is not None and a.lower().rstrip(".") == b.lower().rstrip(".")
 
 
 def _kind_of(text: str) -> tuple[str, str | None]:
@@ -114,9 +138,10 @@ def _kind_of(text: str) -> tuple[str, str | None]:
                 if _ANNEX.match(body):
                     m = _ANNEX.match(body)
                     return "annex_heading", (m.group(1) or "").strip("„“\"") or None
-                if _PROVISIONS.search(body):
+                if _PROVISIONS.match(body):
                     return "provisions_heading", None
-                return "part_heading", None
+                m = _PART.match(body)
+                return "part_heading", (m.group(2).rstrip(".") if m else None)
             if kind == "title":
                 return "title", None
             m = re.match(r"^(Част|Дял|Глава|Раздел|Подраздел)\s+(\S+)", body, re.I)
@@ -145,6 +170,22 @@ def _kind_of(text: str) -> tuple[str, str | None]:
     return "text", None
 
 
+def _split_inline(line: Line) -> Line | None:
+    """Cut the first alinea out of a head line: the head keeps its title, number and marker; the alinea becomes its own line."""
+    m = _ART.match(line.text) if line.kind == "article" else _SIGN.match(line.text)
+    if not m:
+        return None
+    rest = m.group(4) if line.kind == "article" else m.group(3)
+    mm = _INLINE_ALINEA.match(rest or "")
+    if not mm or not re.match(r"^\(\d{1,3}\)", mm.group(2)):
+        return None
+    marker_part, alinea_part = mm.group(1), mm.group(2)
+    head_text = line.text[: len(line.text) - len(rest)] + marker_part.rstrip()
+    line.text = head_text.rstrip()
+    n = re.match(r"^\((\d{1,3})\)", alinea_part).group(1)
+    return Line("alinea", alinea_part.strip(), n, inline=True)
+
+
 def parse(markdown: str) -> Tree:
     """Read a body in the assembler's Markdown into lines with parents; an annex's lines are rows, never addresses."""
     raw = [p for p in markdown.split("\n\n") if p.strip()]
@@ -153,37 +194,52 @@ def parse(markdown: str) -> Tree:
         t = t.rstrip("\n")
         kind, n = _kind_of(t)
         line = Line(kind=kind, text=t, n=n)
-        if kind in ("article", "sign"):
-            m = _ART.match(t) if kind == "article" else None
+        if kind == "article":
+            m = _ART.match(t)
             if m and m.group("title"):
                 line.title = m.group("title")
-            rest = (m.group(4) if m else _SIGN.match(t).group(3)) or ""
-            mm = re.match(r"^(?:\([^()]*(?:\([^()]*\)[^()]*)*\)\s*)*\((\d{1,3})\)", rest)   # after an editorial note in parentheses
-            if mm:
-                line.inline_alinea = mm.group(1)
         lines.append(line)
+        if kind in ("article", "sign"):
+            inline = _split_inline(line)
+            if inline is not None:
+                lines.append(inline)
     tree = Tree(lines)
-    # parents by the numbering grammar, as checks.py nests them
     last: dict[str, int | None] = {"article": None, "sign": None, "alinea": None, "item": None, "heading": None}
+    ranks: dict[int, int] = {}   # the open heading of each rank
     in_annex: int | None = None
+    tail = False   # after a „… КЪМ …“ provisions heading: lex.bg's print of another act's §§
     for k, l in enumerate(lines):
         if l.kind == "annex_heading":
             in_annex = k
+            tail = False
             last = {"article": None, "sign": None, "alinea": None, "item": None, "heading": k}
             continue
-        if in_annex is not None and l.kind not in ("provisions_heading",):
-            # inside an annex every line is a row of it (an annex's own articles are not the act's addresses)
-            l.kind = "annex_row" if l.kind not in ("note",) else l.kind
+        if in_annex is not None and l.kind != "provisions_heading":
+            l.kind = "annex_row" if l.kind != "note" else l.kind
             l.n = None
             l.parent = in_annex
             lines[in_annex].children.append(k)
             continue
         in_annex = None if l.kind == "provisions_heading" else in_annex
-        if l.kind in ("title", "part_heading", "chapter_heading", "section_heading", "subsection_heading", "provisions_heading"):
+        if l.kind in _HEADINGS:
+            if l.kind == "provisions_heading":
+                tail = bool(_KAM.search(l.text))
+                ranks = {}
+            rank = _RANK.get(l.kind)
+            if rank is not None:
+                for r in [r for r in ranks if r >= rank]:
+                    del ranks[r]
+                above = [ranks[r] for r in sorted(ranks) if r < rank]
+                if above:
+                    l.parent = above[-1]
+                    lines[above[-1]].children.append(k)
+                ranks[rank] = k
             last = {"article": None, "sign": None, "alinea": None, "item": None, "heading": k}
             continue
         if l.kind == "prehistory":
             continue
+        if tail:
+            l.addressable = False
         if l.kind in ("article", "sign"):
             l.parent = last["heading"]
             if last["heading"] is not None:
@@ -207,45 +263,66 @@ def parse(markdown: str) -> Tree:
     return tree
 
 
-_ADDR_PART = re.compile(r"(чл\.|член|ал\.|алинея|т\.|точка|б\.|буква|§|параграф|глава|раздел|част|дял|подраздел|приложение)\s*(№\s*)?([\w„“\"]+)", re.I)
+_ADDR_PART = re.compile(r"(чл\.|член|ал\.|алинея|т\.|точка|б\.|буква|§|параграф|глава|раздел|част|дял|подраздел|приложение|изречение|изр\.)\s*(№\s*)?([\w„“\"]+)", re.I)
 _PART_KIND = {"чл.": "article", "член": "article", "ал.": "alinea", "алинея": "alinea", "т.": "item", "точка": "item", "б.": "letter", "буква": "letter",
               "§": "sign", "параграф": "sign", "глава": "chapter_heading", "раздел": "section_heading", "част": "part_heading", "дял": "part_heading",
-              "подраздел": "subsection_heading", "приложение": "annex_heading"}
+              "подраздел": "subsection_heading", "приложение": "annex_heading", "изречение": "sentence", "изр.": "sentence"}
+_ORDINALS = {"първо": 1, "второ": 2, "трето": 3, "четвърто": 4, "пето": 5, "шесто": 6, "последно": -1}
+# what may stand in an address besides its parts: separators and the phrases that name the scope the parts lie in
+_FILLER = re.compile(r"^(?:[\s,;:()„“\"]|\b(?:и|от|на|в|във|към|по|за|от|преходните|заключителните|допълнителните|допълнителната|преходната|заключителната|"
+                     r"разпоредби|разпоредба|закона|кодекса|наредбата|правилника|този|тази|текста|основния|основният|преди)\b)*$", re.I)
 
 
 def parse_address(text: str) -> list[tuple[str, str]]:
-    """„чл. 36, ал. 1, т. 5, б. „а““ → [("article", "36"), ("alinea", "1"), ("item", "5"), ("letter", "а")]; „наименованието“ → [("title", "")]."""
+    """„чл. 36, ал. 1, т. 5, б. „а““ → [("article", "36"), ("alinea", "1"), ("item", "5"), ("letter", "а")]; „наименованието“ → [("title", "")];
+    „навсякъде“ → [("act", "")]; „чл. 5, ал. 2, изречение второ“ ends with ("sentence", "2"). Anything else in the text refuses it."""
     t = text.strip().strip(".")
     if re.match(r"^(наименованието|заглавието)", t, re.I):
         return [("title", "")]
+    if re.match(r"^(навсякъде|в целия|в цялата|в целия текст|в текста на целия)", t, re.I):
+        return [("act", "")]
     out: list[tuple[str, str]] = []
+    rest = t
     for m in _ADDR_PART.finditer(t):
         kind = _PART_KIND[m.group(1).lower()]
         n = m.group(3).strip("„“\"").rstrip(".,;:")
+        if kind == "sentence":
+            if n.lower() not in _ORDINALS:
+                raise AddressError(f"the sentence {n!r} in {text!r} is not an ordinal the grammar knows")
+            n = str(_ORDINALS[n.lower()])
         out.append((kind, n))
+        rest = rest.replace(m.group(0), " ", 1)
     if not out:
         raise AddressError(f"no address in {text!r}")
+    if not _FILLER.match(rest):
+        raise AddressError(f"the address {text!r} carries a part the grammar does not read: {rest.strip()!r}")
+    sentences = [p for p in out if p[0] == "sentence"]
+    if len(sentences) > 1 or (sentences and out[-1][0] != "sentence"):
+        raise AddressError(f"a sentence part stands last and once in {text!r}")
     return out
 
 
-def resolve(tree: Tree, address: str) -> int:
-    """The one line an address names; AddressError when none or several."""
+def sentence_of(address: str) -> int | None:
+    """The sentence number an address ends with, or None (-1: the last sentence)."""
     parts = parse_address(address)
+    return int(parts[-1][1]) if parts[-1][0] == "sentence" else None
+
+
+def resolve(tree: Tree, address: str) -> int:
+    """The one line an address names (``ACT`` for the whole act); AddressError when none or several."""
+    parts = [p for p in parse_address(address) if p[0] != "sentence"]
     kind, n = parts[0]
+    if kind == "act":
+        return ACT
     if kind == "title":
         found = [k for k, l in enumerate(tree.lines) if l.kind == "title"]
     else:
         found = tree.find(kind, n)
-        if kind in ("chapter_heading", "section_heading", "part_heading", "subsection_heading"):
-            found = [k for k, l in enumerate(tree.lines) if l.kind == kind and l.n is not None and l.n.lower() == n.lower()]
-    prev_kind = kind
     for kind, n in parts[1:]:
         nxt: list[int] = []
         for f in found:
-            inline = prev_kind == "alinea" and tree.lines[f].kind in ("article", "sign") and tree.lines[f].inline_alinea is not None
-            nxt.extend(tree.find(kind, n, under=f, inline=inline))
+            nxt.extend(tree.find(kind, n, under=f))
         found = nxt
-        prev_kind = kind
     if len(found) != 1:
         raise AddressError(f"{address!r} names {len(found)} place(s) in the act")
     return found[0]
@@ -256,7 +333,7 @@ _LABEL = {"article": "article_head", "sign": "paragraph_sign", "alinea": "alinea
 
 
 def to_blocks_and_map(tree: Tree) -> tuple[list[Block], dict[int, dict]]:
-    """The tree as the blocks and labels the checks read; a heading written on one line is one block."""
+    """The tree as the blocks and labels the checks read; a heading written on one line is one block, an article title its own block."""
     blocks: list[Block] = []
     smap: dict[int, dict] = {}
     for l in tree.lines:
@@ -293,7 +370,7 @@ def line_from_text(text: str, context_kind: str | None = None) -> Line:
     if m:
         kind = _WORD_LEVEL[m.group(1).lower()]
         return Line(kind, HEADING_PREFIX[kind] + t, m.group(2).rstrip("."))
-    if _PROVISIONS.search(t) and len(t) < 80 and t == t.upper() or re.match(r"^(Допълнителн|Преходн|Заключителн)", t) and len(t) < 80:
+    if _PROVISIONS.match(t) and len(t) < 80:
         return Line("provisions_heading", "## " + t, None)
     if _ANNEX.match(t) and len(t) < 120:
         return Line("annex_heading", "## " + t, (_ANNEX.match(t).group(1) or "").strip("„“\"") or None)

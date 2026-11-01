@@ -58,12 +58,16 @@ _HEADING_DOT = re.compile(r"^((?:Част|Дял|Глава|Раздел|Под�
 CONTEXT = 6
 
 
-_IN_FORCE = re.compile(r",\s*в сила от \d{1,2}\.\d{1,2}\.\d{4}\s*г\.(?=[,)])")
+_IN_FORCE = re.compile(r"(\([^()]*?ДВ, бр\.[^()]*?),\s*в сила от \d{1,2}\.\d{1,2}\.\d{4}\s*г\.(?=[,)])")
 
 
 def normalise_line(line: str) -> str:
     t = _WS.sub(" ", line.translate(_QUOTES)).strip()
-    t = _IN_FORCE.sub("", t)
+    while True:   # a marker may carry the clause more than once („изм. - ДВ, …, в сила от …, изм. - ДВ, …, в сила от …“)
+        t2 = _IN_FORCE.sub(r"\1", t)
+        if t2 == t:
+            break
+        t = t2
     return _HEADING_DOT.sub(r"\1", t)
 
 

@@ -67,7 +67,7 @@ def test_the_apply_step_waits_for_the_applier_then_applies_checks_and_records(tm
     assert steps.STEPS["apply"].run(ctx).outcome == "done"
     # the write path rebuilds the same body from the records, and refuses a body that was altered
     body, rec = write.rebuild_engine(SLUG, ctx.act_dir, cache, BODY)
-    assert body == applied and rec["chain"][0]["material"] == 77 and rec["chain"][0]["operations"] == 3
+    assert body == applied and rec["chain"][0]["material"] == 77 and rec["chain"][0]["operations"] == 2   # no_text_change is not counted
     (ctx.act_dir / "applied.md").write_text(applied.replace("Нов член", "Друг член"), encoding="utf-8")
     try:
         write.rebuild_engine(SLUG, ctx.act_dir, cache, BODY)
@@ -79,10 +79,28 @@ def test_the_apply_step_waits_for_the_applier_then_applies_checks_and_records(tm
     assert meta["amendment_history"] == [{"dv": "1/2020", "date": "2020-01-03"}, {"dv": "96/2026", "date": "2026-11-20"}] and meta["ultima_actualizacion"] == "2026-11-20"
 
 
+def test_a_stale_answer_is_set_aside_and_a_child_scope_is_kept(tmp_path, monkeypatch):
+    ctx, cache = _setup(tmp_path, monkeypatch)
+    steps.STEPS["apply"].run(ctx)
+    d = ctx.act_dir / "apply" / "01-77"
+    (d / "answer.json").write_text(json.dumps(ANSWER, ensure_ascii=False), encoding="utf-8")
+    (ctx.act_dir / "staged.md").write_text(BODY.replace("2. втора, до 30 000 лв.", "2. втора, до 30 000 лв. днес"), encoding="utf-8")   # a provision the task shows changes under the answer
+    res = steps.STEPS["apply"].run(ctx)
+    assert res.outcome == "pending" and (d / "answer.stale-1.json").exists() and not (d / "answer.json").exists()
+    chain = json.loads((ctx.act_dir / "chain.json").read_text(encoding="utf-8"))
+    chain["materials"][0]["scopes"] = ["§1"]   # attributed through one § only: that instruction, not the whole material
+    (ctx.act_dir / "chain.json").write_text(json.dumps(chain), encoding="utf-8")
+    res = steps.STEPS["apply"].run(ctx)
+    assert res.outcome == "pending" and "§2" not in (d / "task.md").read_text(encoding="utf-8").split("## The instructions")[1]
+    chain["materials"][0]["scopes"] = ["§9"]
+    (ctx.act_dir / "chain.json").write_text(json.dumps(chain), encoding="utf-8")
+    assert steps.STEPS["apply"].run(ctx).outcome == "stop"
+
+
 def test_a_refused_answer_and_a_failed_check_stop_the_act(tmp_path, monkeypatch):
     ctx, cache = _setup(tmp_path, monkeypatch)
     steps.STEPS["apply"].run(ctx)
-    bad = {"material": 77, "operations": [{"id": "§1", "kind": "outside_set", "note": "a form the set lacks"}]}
+    bad = {"material": 77, "operations": [{"id": "§1", "kind": "outside_set", "note": "a form the set lacks"}, {"id": "§2", "kind": "no_text_change"}, {"id": "§3", "kind": "no_text_change"}]}
     (ctx.act_dir / "apply" / "01-77" / "answer.json").write_text(json.dumps(bad), encoding="utf-8")
     res = steps.STEPS["apply"].run(ctx)
     assert res.outcome == "stop" and "outside the closed set" in res.detail and not (ctx.act_dir / "applied.md").exists()
