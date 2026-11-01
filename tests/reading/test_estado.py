@@ -311,17 +311,23 @@ def test_run_write_skips_every_outcome_but_change_and_reports_refusals(tmp_path,
     written, refused = E.run_write([change], root=root, run_dir=root / "data" / "runs" / "t", waivers_path=_waivers(root))
     assert written == [] and refused == [{"slug": SLUG, "by": "run", "detail": ["no"]}]
     monkeypatch.undo()
-    # a git failure (a hook, say) is rolled back, reported as a refusal, and the run goes on to the next act
+    # a git failure (a hook, say) on one act is rolled back and reported as a refusal, and the run goes on to write the next act
+    second = "naredba-za-vtorata-proba"
+    (root / "ordinances" / f"{second}.md").write_text(render_act({**COMMITTED, "titulo": "НАРЕДБА ЗА ВТОРАТА ПРОБА", "identificador": "998"}, BODY), encoding="utf-8")
+    _git(root, "add", "-A")
+    _git(root, "commit", "-q", "-m", "second act")
+    change2 = E.decide(second, "ordinances", root / "ordinances" / f"{second}.md", page(), TODAY)
     real_git = E._git
 
     def failing(r, *args, **kw):
-        if args and args[0] == "commit":
+        if args and args[0] == "commit" and f"ordinances/{SLUG}.md" in args:
             raise subprocess.CalledProcessError(1, ["git", "commit"], stderr="hook said no")
         return real_git(r, *args, **kw)
     monkeypatch.setattr(E, "_git", failing)
-    written, refused = E.run_write([change, {**change, "outcome": "agree"}], root=root, run_dir=root / "data" / "runs" / "t", waivers_path=_waivers(root))
-    assert written == [] and refused[0]["by"] == "git" and "hook said no" in refused[0]["detail"][0]
-    assert _git(root, "status", "--porcelain") == ""
+    written, refused = E.run_write([change, change2], root=root, run_dir=root / "data" / "runs" / "t", waivers_path=_waivers(root))
+    assert [w.slug for w in written] == [second] and refused[0]["by"] == "git" and "hook said no" in refused[0]["detail"][0]
+    assert _git(root, "status", "--porcelain") == "" and _git(root, "log", "-1", "--format=%s") == "[otmyana] НАРЕДБА ЗА ВТОРАТА ПРОБА"
+    assert _split_frontmatter(path.read_text(encoding="utf-8"))[0]["estado"] == "vigente"   # the failed act stands as committed
 
 
 def test_the_report_counts_and_lists(tmp_path):

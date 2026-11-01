@@ -6,8 +6,8 @@
  "pages_with_history": 3584,
  "parsed": 3577,
  "repealed_per_lexbg": 30,
- "already_derogado": 17,
- "to_change": 13,
+ "already_derogado": 30,
+ "to_change": 0,
  "repeal_pending": 11,
  "unsettled": 7,
  "no_history": 40,
@@ -393,7 +393,10 @@
    "reason": "the page's HistoryOfDocument element is empty"
   }
  ],
- "changes": [
+ "changes": [],
+ "surveyed_again_at": "2026-11-01T10:08:10+00:00",
+ "note": "The 13 acts under 'written' were written on 2026-11-01 by the run's write step; the counts and lists are from a survey taken again with the final parser (review round 2 fixes), after the write: to_change is 0 and the 30 repealed acts are all derogado. 'changes_at_write' is the write step's list of the 13 as it saw them.",
+ "changes_at_write": [
   {
    "slug": "naredba-11-ot-8-fevruari-2019-g-za-pridobivane-na-kvalifikatsiya-po-profesiyata-",
    "doc_id": "2137191104",
